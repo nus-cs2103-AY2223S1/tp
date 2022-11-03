@@ -7,11 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import tracko.logic.parser.ArgumentMultimap;
-import tracko.logic.parser.ArgumentTokenizer;
-import tracko.logic.parser.Flag;
-import tracko.logic.parser.FlagTokenizer;
-
 public class FlagTokenizerTest {
 
     private final Flag unknownPrefix = new Flag("--u");

@@ -27,6 +27,7 @@ public class ItemNameTest {
         // invalid ItemName
         assertFalse(ItemName.isValidItemName("")); // empty string
         assertFalse(ItemName.isValidItemName(" ")); // spaces only
+        assertFalse(ItemName.isValidItemName("!@#$%^&*")); // non-alphanumeric characters
 
         // valid ItemName
         assertTrue(ItemName.isValidItemName("Golden Spoon")); // alphabets only

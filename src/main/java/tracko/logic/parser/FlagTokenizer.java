@@ -98,7 +98,7 @@ public class FlagTokenizer extends ArgumentToken {
         // Map flags to argument values "true" (if any)
         ArgumentMultimap argMultimap = new ArgumentMultimap();
         for (int i = 0; i < flagPositions.size() - 1; i++) {
-            // Extract and store prefixes and their arguments
+            // Extract and store flags and their arguments "true"
             Flag argFlag = flagPositions.get(i).getFlag();
             String argValue = extractArgumentValue(argsString, flagPositions.get(i), flagPositions.get(i + 1));
             argMultimap.put(argFlag, argValue);

@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+skinparam noteTextAlignment left
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant "parser:AddOrderCommandParser" as AddOrderCommandParser LOGIC_COLOR
+participant "toAdd:Order" as toAdd LOGIC_COLOR
+participant "command:AddOrderCommand" as AddOrderCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+-> LogicManager : execute("i/Eraser q/3")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseAndUpdateCommand("i/Eraser q/3", command)
+activate TrackOParser
+
+create AddOrderCommandParser
+TrackOParser -> AddOrderCommandParser
+activate AddOrderCommandParser
+
+AddOrderCommandParser --> TrackOParser : parser
+deactivate AddOrderCommandParser
+
+TrackOParser -> AddOrderCommandParser : parseAndUpdate("i/Eraser q/3", command)
+activate AddOrderCommandParser
+
+
+note right
+<i>(omitted to reduce diagram complexity)</i>
+Quantity input (in this case 3) is validated
+and encapsulated in a Quantity object, similar
+to the <b>parse</b> method in the previous input
+end note
+AddOrderCommandParser -> AddOrderCommand : stageForValidation("Eraser", quantity)
+activate AddOrderCommand
+
+AddOrderCommand --> AddOrderCommandParser : command
+deactivate AddOrderCommand
+
+AddOrderCommandParser --> TrackOParser : command
+deactivate AddOrderCommandParser
+
+AddOrderCommandParser -[hidden]-> TrackOParser
+destroy AddOrderCommandParser
+
+TrackOParser --> LogicManager : command
+deactivate TrackOParser
+
+LogicManager -> AddOrderCommand : execute(model)
+activate AddOrderCommand
+
+AddOrderCommand -> Model : getItem("Eraser")
+activate Model
+
+Model --> AddOrderCommand : inventoryItem (InventoryItem with matching name -- "Eraser")
+deactivate Model
+
+AddOrderCommand -> toAdd: addToItemList(inventoryItem, quantity)
+activate toAdd
+
+toAdd --> AddOrderCommand
+deactivate toAdd
+
+create CommandResult
+AddOrderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddOrderCommand : result
+deactivate CommandResult
+
+AddOrderCommand --> LogicManager : result
+deactivate AddOrderCommand
+
+note left
+The returned CommandResult object
+here contains the message that the
+UI will use to prompt user to enter
+further inputs for item data and instructions
+to end the command sequence
+end note
+
+<-- LogicManager: result
+deactivate LogicManager
+@enduml

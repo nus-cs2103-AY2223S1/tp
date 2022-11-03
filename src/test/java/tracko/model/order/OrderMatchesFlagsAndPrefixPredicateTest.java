@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import tracko.model.item.Description;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
@@ -71,8 +71,10 @@ public class OrderMatchesFlagsAndPrefixPredicateTest {
 
     @Test
     public void test_orderNameContainsKeywords_returnTrue() {
-        Order order1 = new OrderBuilder().withName("Alice Tan").build();
-        Order order2 = new OrderBuilder().withName("Brandon Tan").build();
+        Order order1 = new OrderBuilder()
+                .withName("Alice Tan").build();
+        Order order2 = new OrderBuilder()
+                .withName("Brandon Tan").build();
 
         // One keyword
         OrderMatchesFlagsAndPrefixPredicate predicate =
@@ -98,8 +100,10 @@ public class OrderMatchesFlagsAndPrefixPredicateTest {
 
     @Test
     public void test_orderAddressContainsKeywords_returnTrue() {
-        Order order1 = new OrderBuilder().withAddress("75 Clementi Street, Blk 990, #45-09").build();
-        Order order2 = new OrderBuilder().withAddress("23 King Albert Park Street, 632093").build();
+        Order order1 = new OrderBuilder()
+                .withAddress("75 Clementi Street, Blk 990, #45-09").build();
+        Order order2 = new OrderBuilder()
+                .withAddress("23 King Albert Park Street, 632093").build();
 
         // One keyword
         OrderMatchesFlagsAndPrefixPredicate predicate =
@@ -127,51 +131,56 @@ public class OrderMatchesFlagsAndPrefixPredicateTest {
     // contains item keywords
     @Test
     public void test_orderItemContainsKeywords_returnsTrue() {
-        Item appleKeychainItem = new Item(new ItemName("Apple Keychain"), new Description("test"),
+        InventoryItem appleKeychainItem = new InventoryItem(new ItemName("Apple Keychain"), new Description("test"),
                 new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
-        Item bananaKeychainItem = new Item(new ItemName("Banana Keychain"), new Description("test"),
+        InventoryItem bananaKeychainItem = new InventoryItem(new ItemName("Banana Keychain"), new Description("test"),
                 new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
 
         // One keyword
         OrderMatchesFlagsAndPrefixPredicate predicate =
                 new OrderMatchesFlagsAndPrefixPredicate(EMPTY_LIST, EMPTY_LIST,
-                        Collections.singletonList("Keychain"), false, false, false, false);
-        assertTrue(predicate.test(new OrderBuilder().withItemQuantityPair(
-                new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
+                        Collections.singletonList("Keychain"),
+                        false, false, false, false);
+        assertTrue(predicate.test(new OrderBuilder()
+                .withItemQuantityPair(new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
 
         // Multiple keywords
         predicate = new OrderMatchesFlagsAndPrefixPredicate(EMPTY_LIST, EMPTY_LIST,
                 Arrays.asList("Keychain", "Apple"), false, false, false, false);
-        assertTrue(predicate.test(new OrderBuilder().withItemQuantityPair(
-                new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
+        assertTrue(predicate.test(new OrderBuilder()
+                .withItemQuantityPair(new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
 
         // Only one matching keyword
         predicate = new OrderMatchesFlagsAndPrefixPredicate(EMPTY_LIST, EMPTY_LIST,
                 Arrays.asList("Keychain", "Apple"), false, false, false, false);
-        assertTrue(predicate.test(new OrderBuilder().withItemQuantityPair(
-                new ItemQuantityPair(bananaKeychainItem, new Quantity(1))).build()));
+        assertTrue(predicate.test(new OrderBuilder()
+                .withItemQuantityPair(new ItemQuantityPair(bananaKeychainItem, new Quantity(1))).build()));
 
         // Mixed-case keywords
         predicate = new OrderMatchesFlagsAndPrefixPredicate(EMPTY_LIST, EMPTY_LIST,
                 Arrays.asList("kEyChAiN", "aPpLe"), false, false, false, false);
-        assertTrue(predicate.test(new OrderBuilder().withItemQuantityPair(
-                new ItemQuantityPair(bananaKeychainItem, new Quantity(1))).build()));
+        assertTrue(predicate.test(new OrderBuilder()
+                .withItemQuantityPair(new ItemQuantityPair(bananaKeychainItem, new Quantity(1))).build()));
     }
 
     @Test
     public void test_orderContainsKeywordsFromMultipleFields_returnsTrue() {
-        Item appleKeychainItem = new Item(new ItemName("Apple Keychain"), new Description("test"),
+        InventoryItem appleKeychainItem = new InventoryItem(new ItemName("Apple Keychain"), new Description("test"),
                 new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
-        Item bananaKeychainItem = new Item(new ItemName("Banana Keychain"), new Description("test"),
+        InventoryItem bananaKeychainItem = new InventoryItem(new ItemName("Banana Keychain"), new Description("test"),
                 new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
 
         // name + item
         // one keyword each
         Order order1 = new OrderBuilder().withItemQuantityPair(
-                new ItemQuantityPair(appleKeychainItem, new Quantity(1))).withName("Alice Tan")
-                .withAddress("75 Clementi Street, Blk 990, #45-09").withDelivereddStatus(true).withPaymentStatus(true).build();
+                new ItemQuantityPair(appleKeychainItem, new Quantity(1)))
+                .withName("Alice Tan")
+                .withAddress("75 Clementi Street, Blk 990, #45-09")
+                .withDeliveredStatus(true)
+                .withPaidStatus(true).build();
         Order order2 = new OrderBuilder().withItemQuantityPair(
-                new ItemQuantityPair(bananaKeychainItem, new Quantity(1))).withName("Bobbert Bobbertson")
+                new ItemQuantityPair(bananaKeychainItem, new Quantity(1)))
+                .withName("Bobbert Bobbertson")
                 .withAddress("23 King Albert Park Street, 632093").build();
         OrderMatchesFlagsAndPrefixPredicate predicate = new OrderMatchesFlagsAndPrefixPredicate(Arrays.asList("Alice"),
                 EMPTY_LIST, Arrays.asList("Apple"), true, true, true, true);
@@ -207,17 +216,19 @@ public class OrderMatchesFlagsAndPrefixPredicateTest {
 
     @Test
     public void test_orderContainsKeywordsFromMultipleFields_returnsFalse() {
-        Item appleKeychainItem = new Item(new ItemName("Apple Keychain"), new Description("test"),
+        InventoryItem appleKeychainItem = new InventoryItem(new ItemName("Apple Keychain"), new Description("test"),
                 new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
-        Item bananaKeychainItem = new Item(new ItemName("Banana Keychain"), new Description("test"),
+        InventoryItem bananaKeychainItem = new InventoryItem(new ItemName("Banana Keychain"), new Description("test"),
                 new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
 
         // name + item
         // one keyword matches, one doesnt
-        Order order1 = new OrderBuilder().withItemQuantityPair(
-                new ItemQuantityPair(appleKeychainItem, new Quantity(1))).withName("Alice Tan").build();
-        Order order2 = new OrderBuilder().withItemQuantityPair(
-                new ItemQuantityPair(bananaKeychainItem, new Quantity(1))).withName("Brendan").build();
+        Order order1 = new OrderBuilder()
+                .withItemQuantityPair(new ItemQuantityPair(appleKeychainItem, new Quantity(1)))
+                .withName("Alice Tan").build();
+        Order order2 = new OrderBuilder()
+                .withItemQuantityPair(new ItemQuantityPair(bananaKeychainItem, new Quantity(1)))
+                .withName("Brendan").build();
         OrderMatchesFlagsAndPrefixPredicate predicate = new OrderMatchesFlagsAndPrefixPredicate(Arrays.asList("Alice"),
                 EMPTY_LIST, Arrays.asList("Banana"), false, false, false, false);
         assertFalse(predicate.test(order1));
@@ -230,9 +241,11 @@ public class OrderMatchesFlagsAndPrefixPredicateTest {
 
     @Test
     public void test_orderMatchesKeywordInAllFields_returnsTrue() {
-        Item appleKeychainItem = new Item(new ItemName("Apple Keychain"), new Description("test"),
+        InventoryItem appleKeychainItem = new InventoryItem(new ItemName("Apple Keychain"), new Description("test"),
                 new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
-        Order order1 = new OrderBuilder().withAddress("75 Clementi Street, Blk 990, #45-09").withName("Alice Tan")
+        Order order1 = new OrderBuilder()
+                .withAddress("75 Clementi Street, Blk 990, #45-09")
+                .withName("Alice Tan")
                 .withItemQuantityPair(new ItemQuantityPair(appleKeychainItem, new Quantity(4))).build();
         OrderMatchesFlagsAndPrefixPredicate predicate = new OrderMatchesFlagsAndPrefixPredicate(Arrays.asList("Alice"),
                 Arrays.asList("Clementi"), Arrays.asList("Apple"), false, false, false, false);
@@ -241,43 +254,51 @@ public class OrderMatchesFlagsAndPrefixPredicateTest {
 
     @Test
     public void test_orderMatchesKeywordInAllFields_returnsFalse() {
-        Item appleKeychainItem = new Item(new ItemName("Apple Keychain"), new Description("test"),
+        InventoryItem appleKeychainItem = new InventoryItem(new ItemName("Apple Keychain"), new Description("test"),
                 new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
-        Order order1 = new OrderBuilder().withAddress("75 Clementi Street, Blk 990, #45-09").withName("Alice Tan")
+        Order order1 = new OrderBuilder()
+                .withAddress("75 Clementi Street, Blk 990, #45-09")
+                .withName("Alice Tan")
                 .withItemQuantityPair(new ItemQuantityPair(appleKeychainItem, new Quantity(4))).build();
-        OrderMatchesFlagsAndPrefixPredicate predicate = new OrderMatchesFlagsAndPrefixPredicate(Arrays.asList("Bobbert"),
-                Arrays.asList("Clementi"), Arrays.asList("Apple"), false, false, false, false);
+        OrderMatchesFlagsAndPrefixPredicate predicate = new OrderMatchesFlagsAndPrefixPredicate(
+                Arrays.asList("Bobbert"), Arrays.asList("Clementi"), Arrays.asList("Apple"),
+                false, false, false, false);
         assertFalse(predicate.test(order1));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        Item appleKeychainItem = new Item(new ItemName("Apple Keychain"), new Description("test"),
+        InventoryItem appleKeychainItem = new InventoryItem(new ItemName("Apple Keychain"), new Description("test"),
             new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
 
         // Zero keywords
         OrderMatchesFlagsAndPrefixPredicate predicate = new OrderMatchesFlagsAndPrefixPredicate(Collections.emptyList(),
                 Collections.emptyList(), Collections.emptyList(), false, false, false, false);
-        assertFalse(predicate.test(new OrderBuilder().withItemQuantityPair(
-                new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
+        assertFalse(predicate.test(new OrderBuilder()
+                .withItemQuantityPair(new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
 
         // Non-matching keyword
         predicate = new OrderMatchesFlagsAndPrefixPredicate(Collections.emptyList(), Collections.emptyList(),
                 Arrays.asList("Banana"), false, false, false, false);
-        assertFalse(predicate.test(new OrderBuilder().withItemQuantityPair(
-                new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
+        assertFalse(predicate.test(new OrderBuilder()
+                .withItemQuantityPair(new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
 
         // Keywords match phone, email and address, but does not match order name
         predicate = new OrderMatchesFlagsAndPrefixPredicate(Collections.emptyList(), Collections.emptyList(),
                 Arrays.asList("12345", "alice@email.com", "Main", "Street"),
                 false, false, false, false);
-        assertFalse(predicate.test(new OrderBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+        assertFalse(predicate.test(new OrderBuilder()
+                .withName("Alice")
+                .withPhone("12345")
+                .withEmail("alice@email.com")
+                .withAddress("Main Street").build()));
     }
 
     @Test
     public void test_orderMatchesFlags() {
-        Order order1 = new OrderBuilder().withDelivereddStatus(true).withPaymentStatus(true).build();
+        Order order1 = new OrderBuilder()
+                .withDeliveredStatus(true)
+                .withPaidStatus(true).build();
         OrderMatchesFlagsAndPrefixPredicate predicate = new OrderMatchesFlagsAndPrefixPredicate(EMPTY_LIST, EMPTY_LIST,
                 EMPTY_LIST, true, true, true, true);
         assertTrue(predicate.test(order1));

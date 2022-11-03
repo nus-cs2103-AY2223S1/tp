@@ -34,9 +34,14 @@
         </HBox>
         <VBox style="-fx-padding: 0 20 0 20;" spacing="2" HBox.hgrow="ALWAYS">
           <VBox fx:id="items" spacing="2"/>
-          <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="date-container">
-            <Region styleClass="date-icon" id="timeCreatedIcon"/>
+          <HBox alignment="CENTER_LEFT" spacing="5.0" fx:id="dateContainer" styleClass="date-container">
+            <Region styleClass="date-icon" fx:id="timeCreatedIcon"/>
             <Label fx:id="timeCreated" styleClass="date-label" text="\$timeCreated" />
+          </HBox>
+          <HBox fx:id="totalOrderPriceContainer" alignment="CENTER_LEFT"
+                spacing="5.0" styleClass="light-green-container">
+            <Region styleClass="total-price-icon" fx:id="totalPriceIcon"/>
+            <Label fx:id="totalOrderPrice"/>
           </HBox>
           <HBox>
             <Label fx:id="paidStatus" styleClass="status-labels"/>

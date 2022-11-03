@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+skinparam noteTextAlignment left
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant "parser:AddOrderCommandParser" as AddOrderCommandParser LOGIC_COLOR
+participant "toAdd:Order" as toAdd LOGIC_COLOR
+participant "command:AddOrderCommand" as AddOrderCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+-> LogicManager : execute("done")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseAndUpdateCommand("done", command)
+activate TrackOParser
+
+create AddOrderCommandParser
+TrackOParser -> AddOrderCommandParser
+activate AddOrderCommandParser
+
+AddOrderCommandParser --> TrackOParser : parser
+deactivate AddOrderCommandParser
+
+TrackOParser -> AddOrderCommandParser : parseAndUpdate("done", command)
+activate AddOrderCommandParser
+
+AddOrderCommandParser -> AddOrderCommand : setAwaitingInput(false)
+activate AddOrderCommand
+
+AddOrderCommand --> AddOrderCommandParser
+deactivate AddOrderCommand
+
+AddOrderCommandParser --> TrackOParser
+deactivate AddOrderCommandParser
+
+AddOrderCommandParser -[hidden]-> TrackOParser
+destroy AddOrderCommandParser
+
+TrackOParser --> LogicManager
+deactivate TrackOParser
+
+LogicManager -> AddOrderCommand : execute(model)
+activate AddOrderCommand
+
+AddOrderCommand -> Model : addOrder(toAdd)
+activate Model
+
+Model --> AddOrderCommand
+deactivate Model
+
+
+create CommandResult
+AddOrderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddOrderCommand : result
+deactivate CommandResult
+
+AddOrderCommand --> LogicManager : result
+deactivate AddOrderCommand
+
+note left
+Command sequence ends here,
+system will stop awaiting further
+input for the AddOrderCommand
+end note
+
+AddOrderCommand -[hidden]-> TrackOParser
+destroy AddOrderCommand
+
+
+<-- LogicManager: result
+deactivate LogicManager
+@enduml

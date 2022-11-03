@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+package Storage{
+
+package "UserPrefs Storage" #F4F6F6{
+Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+Class JsonUserPrefsStorage
+}
+
+Class "<<interface>>\nStorage" as Storage
+Class StorageManager
+
+package "TrackO Storage" #F4F6F6{
+Class "<<interface>>\nTrackOStorage" as TrackOStorage
+Class JsonTrackOStorage
+Class JsonSerializableTrackO
+Class JsonAdaptedItem
+Class JsonAdaptedOrder
+Class JsonAdaptedTag
+}
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Storage
+
+StorageManager .up.|> Storage
+StorageManager -up-> "1" UserPrefsStorage
+StorageManager -up-> "1" TrackOStorage
+
+Storage -left-|> UserPrefsStorage
+Storage -right-|> TrackOStorage
+
+JsonUserPrefsStorage .up.|> UserPrefsStorage
+JsonTrackOStorage .up.|> TrackOStorage
+JsonTrackOStorage ..> JsonSerializableTrackO
+JsonSerializableTrackO --> "*" JsonAdaptedOrder
+JsonSerializableTrackO --> "*" JsonAdaptedItem
+JsonAdaptedItem --> "*" JsonAdaptedTag
+
+@enduml

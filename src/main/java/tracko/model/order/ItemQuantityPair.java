@@ -2,7 +2,9 @@ package tracko.model.order;
 
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
+import tracko.model.item.InventoryItem;
 import tracko.model.item.Item;
+import tracko.model.item.Price;
 import tracko.model.item.Quantity;
 
 /**
@@ -14,7 +16,7 @@ public class ItemQuantityPair {
     private Quantity quantity;
 
     /**
-     *  * Constructs an ItemQuantityPair with the given Item and Quantity.
+     * Constructs an ItemQuantityPair with the given Item and Quantity.
      * @param item The given item
      * @param quantity The given quantity
      */
@@ -63,7 +65,32 @@ public class ItemQuantityPair {
      * Returns the quantity value of the referenced {@code Quantity} object of this ItemQuantityPair.
      */
     public Integer getQuantityValue() {
-        return quantity.getQuantity();
+        return quantity.getValue();
+    }
+
+    /**
+     * Returns a new {@code ItemQuantityPair} with an immutable copy of this {@code ItemQuantityPair}'s {@code Item}.
+     * @return A new {@code ItemQuantityPair} with an immutable copy of this {@code ItemQuantityPair}'s {@code Item}
+     */
+    public ItemQuantityPair getImmutableItemCopy() {
+        return new ItemQuantityPair(item.getRecordedItem(), quantity);
+    }
+
+    /**
+     * Returns true if the referenced {@code Item} has sufficient quantity to be delivered.
+     * @return True if the referenced {@code Item} has sufficient quantity to be delivered.
+     */
+    public boolean isDeliverable() {
+        return (item instanceof InventoryItem) && ((InventoryItem) item).hasMoreThan(quantity);
+    }
+
+    /**
+     * Calculates the selling price of an ItemQuantityPair.
+     */
+    public Double calculatePrice() {
+        Price singleItemPrice = this.item.getSellPrice();
+        double itemPrice = singleItemPrice.multiply(quantity.value);
+        return itemPrice;
     }
 
     @Override

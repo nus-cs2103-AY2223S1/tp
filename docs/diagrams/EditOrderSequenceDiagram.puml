@@ -1,0 +1,113 @@
+@startuml
+!include style.puml
+skinparam noteTextAlignment left
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant "parser:EditOrderCommandParser" as EditOrderCommandParser LOGIC_COLOR
+participant "descriptor:EditOrderDescriptor" as EditOrderDescriptor LOGIC_COLOR
+participant "command:EditOrderCommand" as EditOrderCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+
+end box
+[-> LogicManager : execute("edito 3 n/John Doe i/Banana q/5")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseCommand("edito 3 n/John Doe i/Banana q/5")
+activate TrackOParser
+
+create EditOrderCommandParser
+TrackOParser -> EditOrderCommandParser
+activate EditOrderCommandParser
+
+EditOrderCommandParser --> TrackOParser : parser
+deactivate EditOrderCommandParser
+
+TrackOParser -> EditOrderCommandParser : parse("3 n/John Doe i/Banana q/5")
+activate EditOrderCommandParser
+
+note right
+//(omitted to reduce diagram complexity)//
+**parse** method argument is processed as follows:
+* separated into prefixes ("n/","p/", etc) using the ArgumentTokenizer class,
+* have accompanying values (John Doe, Banana, 5, etc)
+encapsulated in relevant data classes (Name, Phone, etc)
+* passed as arguments for Order instantiation
+end note
+
+create EditOrderDescriptor
+EditOrderCommandParser -> EditOrderDescriptor
+activate EditOrderDescriptor
+
+EditOrderDescriptor --> EditOrderCommandParser : descriptor
+deactivate EditOrderDescriptor
+
+create EditOrderCommand
+EditOrderCommandParser -> EditOrderCommand : EditOrderCommand(3, descriptor)
+activate EditOrderCommand
+
+EditOrderCommand --> EditOrderCommandParser : command
+deactivate EditOrderCommand
+
+EditOrderCommandParser --> TrackOParser : command
+deactivate EditOrderCommandParser
+
+
+TrackOParser --> LogicManager : command
+deactivate TrackOParser
+
+destroy EditOrderCommandParser
+
+LogicManager -> EditOrderCommand : execute(model)
+activate EditOrderCommand
+
+EditOrderCommand -> Model : getSortedOrderList()
+activate Model
+
+Model --> EditOrderCommand : sortedOrderList
+deactivate Model
+
+EditOrderCommand -> EditOrderCommand: createEditedOrder(orderToEdit, descriptor)
+activate EditOrderCommand
+
+EditOrderCommand --> EditOrderCommand: editedOrder
+deactivate EditOrderCommand
+
+EditOrderCommand -> Model : setOrder(orderToEdit, editedOrder)
+activate Model
+deactivate Model
+
+EditOrderCommand -> Model : refreshData()
+activate Model
+deactivate Model
+
+EditOrderCommand -> Model : updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS)
+activate Model
+deactivate Model
+
+note right
+PREDICATE_SHOW_ALL_ORDERS:
+Predicate to show all orders
+end note
+
+create CommandResult
+EditOrderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditOrderCommand
+deactivate CommandResult
+
+EditOrderCommand --> LogicManager : result
+deactivate EditOrderCommand
+EditOrderCommand -[hidden]-> LogicManager : result
+destroy EditOrderCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+

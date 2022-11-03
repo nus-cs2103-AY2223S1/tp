@@ -2,6 +2,8 @@ package tracko.logic.parser.order;
 
 import static java.util.Objects.requireNonNull;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tracko.logic.commands.order.EditOrderCommand.MESSAGE_QUANTITY_ACCOMPANIED_WITH_ITEM;
+import static tracko.logic.commands.order.EditOrderCommand.MESSAGE_QUANTITY_INVALID;
 import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
@@ -98,13 +100,17 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
 
         if ((isItemPrefixPresent && !isQuantityPrefixPresent)
                 || (!isItemPrefixPresent && isQuantityPrefixPresent)) {
-            throw new ParseException("Item prefix should be accompanied with a quantity prefix, and vice versa.");
+            throw new ParseException(MESSAGE_QUANTITY_ACCOMPANIED_WITH_ITEM);
         }
 
         if (isItemPrefixPresent && isQuantityPrefixPresent) {
             String item = argMultimap.getValue(PREFIX_ITEM).get();
-            Integer quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
-            editOrderDescriptor.setUnlinkedItemToEdit(new Pair<String, Integer>(item, quantity));
+            try {
+                Integer quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
+                editOrderDescriptor.setUnlinkedItemToEdit(new Pair<String, Integer>(item, quantity));
+            } catch (NumberFormatException nfe) {
+                throw new ParseException(MESSAGE_QUANTITY_INVALID);
+            }
         }
     }
 }

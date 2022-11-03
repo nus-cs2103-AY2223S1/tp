@@ -7,7 +7,7 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 
 /**
  * Adds an item to TrackO. The AddItemCommand is a single-level command in which the user initiates the item to be
@@ -21,30 +21,30 @@ public class AddItemCommand extends Command {
             + CliSyntax.PREFIX_ITEM + "ITEM NAME "
             + CliSyntax.PREFIX_QUANTITY + "QUANTITY "
             + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "[" + CliSyntax.PREFIX_TAG + "Tag]... "
             + CliSyntax.PREFIX_SELL_PRICE + "SELL PRICE "
             + CliSyntax.PREFIX_COST_PRICE + "COST PRICE \n"
+            + "[" + CliSyntax.PREFIX_TAG + "Tag]... "
             + "Example: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_ITEM + "Paper "
             + CliSyntax.PREFIX_QUANTITY + "1000 "
             + CliSyntax.PREFIX_DESCRIPTION + "White printing paper "
-            + CliSyntax.PREFIX_TAG + "Limited "
-            + CliSyntax.PREFIX_TAG + "New "
             + CliSyntax.PREFIX_SELL_PRICE + "2.00 "
-            + CliSyntax.PREFIX_COST_PRICE + "1.98 ";
+            + CliSyntax.PREFIX_COST_PRICE + "1.98 "
+            + CliSyntax.PREFIX_TAG + "Limited "
+            + CliSyntax.PREFIX_TAG + "New ";
 
     public static final String MESSAGE_SUCCESS = "New item and quantity added:\n%1$s";
     public static final String MESSAGE_ITEM_EXISTS = "This item already exists in the inventory list.";
 
-    private final Item toAdd;
+    private final InventoryItem toAdd;
 
     /**
      * Creates an AddItemCommand that is set to await further input from the user.
-     * @param item The base item to be created, includes all item details
+     * @param inventoryItem The base item to be created, includes all item details
      */
-    public AddItemCommand(Item item) {
-        requireNonNull(item);
-        toAdd = item;
+    public AddItemCommand(InventoryItem inventoryItem) {
+        requireNonNull(inventoryItem);
+        toAdd = inventoryItem;
     }
 
     @Override

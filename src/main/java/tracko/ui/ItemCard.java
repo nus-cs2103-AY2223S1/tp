@@ -6,10 +6,11 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextAlignment;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 
 /**
  * A UI component that displays information of an {@code Item}.
@@ -26,7 +27,7 @@ public class ItemCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Item item;
+    public final InventoryItem inventoryItem;
 
     @FXML
     private HBox cardPane;
@@ -45,16 +46,16 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label costPrice;
     @FXML
-    private HBox tags;
+    private FlowPane tags;
 
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
      */
-    public ItemCard(Item item, int displayedIndex) {
+    public ItemCard(InventoryItem inventoryItem, int displayedIndex) {
         super(FXML);
-        this.item = item;
+        this.inventoryItem = inventoryItem;
         id.setText(Integer.toString(displayedIndex));
-        itemName.setText(item.getItemName().itemName);
+        itemName.setText(inventoryItem.getItemName().value);
         itemName.setWrapText(true);
         itemName.setPadding(new Insets(0, 10, 0, 0));
 
@@ -62,23 +63,23 @@ public class ItemCard extends UiPart<Region> {
         id.prefHeightProperty().bind(itemName.heightProperty());
         id.setAlignment(Pos.TOP_LEFT);
 
-        quantity.setText(item.getTotalQuantity().toString());
+        quantity.setText(inventoryItem.getTotalQuantity().toString());
         quantityRow.setMaxSize(HBox.USE_PREF_SIZE, HBox.USE_PREF_SIZE);
 
-        description.setText(item.getDescription().value);
+        description.setText(inventoryItem.getDescription().value);
         description.setWrapText(true);
         description.setTextAlignment(TextAlignment.JUSTIFY);
         description.setPadding(new Insets(0, 10, 0, 0));
 
-        sellPrice.setText("$" + item.getSellPrice().toString());
+        sellPrice.setText(inventoryItem.getSellPrice().toString());
         sellPrice.setWrapText(true);
         sellPrice.setPadding(new Insets(0, 10, 0, 0));
 
-        costPrice.setText("$" + item.getCostPrice().toString());
+        costPrice.setText(inventoryItem.getCostPrice().toString());
         costPrice.setWrapText(true);
         costPrice.setPadding(new Insets(0, 10, 0, 0));
 
-        item.getTags().stream()
+        inventoryItem.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(constructTags(tag.tagName)));
         tags.setPadding(new Insets(0, 10, 5, 0));
@@ -92,6 +93,7 @@ public class ItemCard extends UiPart<Region> {
      */
     public Label constructTags(String tagName) {
         Label tagLabel = new Label();
+        tagLabel.setMaxWidth(300);
         tagLabel.setText(tagName);
         tagLabel.setWrapText(true);
         return tagLabel;
@@ -112,6 +114,6 @@ public class ItemCard extends UiPart<Region> {
         // state check
         ItemCard card = (ItemCard) other;
         return id.getText().equals(card.id.getText())
-                && item.equals(card.item);
+                && inventoryItem.equals(card.inventoryItem);
     }
 }

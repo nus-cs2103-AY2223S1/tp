@@ -3,11 +3,14 @@ package tracko.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static tracko.logic.parser.CliSyntax.PREFIX_COST_PRICE;
+import static tracko.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static tracko.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static tracko.logic.parser.CliSyntax.PREFIX_SELL_PRICE;
 import static tracko.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -15,17 +18,19 @@ import java.util.Collections;
 import java.util.List;
 
 import tracko.commons.core.index.Index;
-import tracko.logic.commands.Command;
-import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
+import tracko.logic.commands.item.EditItemCommand;
 import tracko.logic.commands.order.EditOrderCommand;
 import tracko.model.Model;
 import tracko.model.TrackO;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemContainsKeywordsPredicate;
 import tracko.model.order.Order;
 import tracko.model.order.OrderMatchesFlagsAndPrefixPredicate;
+import tracko.model.tag.Tag;
+import tracko.testutil.EditItemDescriptorBuilder;
 import tracko.testutil.EditOrderDescriptorBuilder;
+
 
 /**
  * Contains helper methods for testing commands.
@@ -40,10 +45,19 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_ITEM_NAME_AMY = "Pen";
-    public static final String VALID_ITEM_NAME_BOB = "Eraser";
-    public static final Integer VALID_ITEM_QUANTITY_AMY = 2;
-    public static final Integer VALID_ITEM_QUANTITY_BOB = 1;
+
+    public static final String VALID_ITEM_NAME_PEN = "Pen";
+    public static final String VALID_ITEM_NAME_ERASER = "Eraser";
+    public static final Integer VALID_ITEM_QUANTITY_PEN = 2;
+    public static final Integer VALID_ITEM_QUANTITY_ERASER = 1;
+    public static final String VALID_ITEM_DESCRIPTION_PEN = "Blue Pen";
+    public static final String VALID_ITEM_DESCRIPTION_ERASER = "Black Eraser";
+    public static final String VALID_ITEM_TAG_PEN = "Limited";
+    public static final String VALID_ITEM_TAG_ERASER = "New";
+    public static final Double VALID_ITEM_SELL_PRICE_PEN = 5.00;
+    public static final Double VALID_ITEM_SELL_PRICE_ERASER = 3.00;
+    public static final Double VALID_ITEM_COST_PRICE_PEN = 2.00;
+    public static final Double VALID_ITEM_COST_PRICE_ERASER = 1.00;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -54,10 +68,10 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
 
-    public static final String ITEM_NAME_AMY = " " + PREFIX_ITEM + VALID_NAME_AMY;
-    public static final String QUANTITY_AMY = " " + PREFIX_QUANTITY + VALID_ITEM_QUANTITY_AMY;
-    public static final String ITEM_NAME_BOB = " " + PREFIX_ITEM + VALID_ITEM_NAME_BOB;
-    public static final String QUANTITY_BOB = " " + PREFIX_QUANTITY + VALID_ITEM_QUANTITY_BOB;
+    public static final String ITEM_NAME_PEN = " " + PREFIX_ITEM + VALID_ITEM_NAME_PEN;
+    public static final String QUANTITY_PEN = " " + PREFIX_QUANTITY + VALID_ITEM_QUANTITY_PEN;
+    public static final String ITEM_NAME_ERASER = " " + PREFIX_ITEM + VALID_ITEM_NAME_ERASER;
+    public static final String QUANTITY_ERASER = " " + PREFIX_QUANTITY + VALID_ITEM_QUANTITY_ERASER;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -65,6 +79,31 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_ITEM_NAME_DESC = " " + PREFIX_ITEM;
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-3";
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " ";
+    public static final String INVALID_SELL_PRICE_DESC = " " + PREFIX_SELL_PRICE + -33.00;
+    public static final String INVALID_COST_PRICE_DESC = " " + PREFIX_COST_PRICE + 33.333;
+
+    public static final String VALID_DEFAULT_ITEM_NAME = "Chair";
+    public static final String VALID_DEFAULT_DESCRIPTION = "This is a wooden dining chair.";
+    public static final String VALID_SECOND_DESCRIPTION = "This set of furniture require some DIY.";
+
+    public static final Integer VALID_DEFAULT_QUANTITY = 300;
+
+    public static final Double VALID_DEFAULT_SELL_PRICE = 60.00;
+    public static final Double VALID_SECOND_SELL_PRICE = 10.00;
+
+    public static final Double VALID_DEFAULT_COST_PRICE = 45.00;
+    public static final Double VALID_SECOND_COST_PRICE = 15.00;
+
+    public static final String ITEM_NAME_DESC_DEFAULT = " " + PREFIX_ITEM + VALID_DEFAULT_ITEM_NAME;
+    public static final String QUANTITY_DESC_DEFAULT = " " + PREFIX_QUANTITY + VALID_DEFAULT_QUANTITY;
+    public static final String ITEM_DESCRIPTION_DESC_DEFAULT = " " + PREFIX_DESCRIPTION + VALID_DEFAULT_DESCRIPTION;
+    public static final String ITEM_DESCRIPTION_DESC_SECOND = " " + PREFIX_DESCRIPTION + VALID_SECOND_DESCRIPTION;
+    public static final String SELL_PRICE_DESC_DEFAULT = " " + PREFIX_SELL_PRICE + VALID_DEFAULT_SELL_PRICE;
+    public static final String SELL_PRICE_DESC_SECOND = " " + PREFIX_SELL_PRICE + VALID_SECOND_SELL_PRICE;
+    public static final String COST_PRICE_DESC_DEFAULT = " " + PREFIX_COST_PRICE + VALID_DEFAULT_COST_PRICE;
+    public static final String COST_PRICE_DESC_SECOND = " " + PREFIX_COST_PRICE + VALID_SECOND_COST_PRICE;
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -80,6 +119,22 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withItemList().build();
     }
+
+    public static final EditItemCommand.EditItemDescriptor DESC_PEN;
+    public static final EditItemCommand.EditItemDescriptor DESC_ERASER;
+
+    static {
+        DESC_PEN = new EditItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_PEN)
+                .withQuantity(VALID_ITEM_QUANTITY_PEN).withDescription(VALID_ITEM_DESCRIPTION_PEN)
+                .withTags(VALID_ITEM_TAG_PEN).withSellPrice(VALID_ITEM_SELL_PRICE_PEN)
+                .withCostPrice(VALID_ITEM_COST_PRICE_PEN).build();
+        DESC_ERASER = new EditItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_ERASER)
+                .withQuantity(VALID_ITEM_QUANTITY_ERASER).withDescription(VALID_ITEM_DESCRIPTION_ERASER)
+                .withTags(VALID_ITEM_TAG_ERASER).withSellPrice(VALID_ITEM_SELL_PRICE_ERASER)
+                .withCostPrice(VALID_ITEM_COST_PRICE_ERASER).build();
+    }
+
+    private static final List<Tag> TAGS_AMY = new ArrayList<>();
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -146,9 +201,9 @@ public class CommandTestUtil {
     public static void showItemAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredItemList().size());
 
-        Item item = model.getInventoryList().get(targetIndex.getZeroBased());
+        InventoryItem inventoryItem = model.getInventoryList().get(targetIndex.getZeroBased());
         // Index is at 1 because at 0, every person is initialized to have a keychain.
-        final String[] splitName = item.getItemName().toString().split("\\s+");
+        final String[] splitName = inventoryItem.getItemName().toString().split("\\s+");
         model.updateFilteredItemList(new ItemContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredItemListSize());

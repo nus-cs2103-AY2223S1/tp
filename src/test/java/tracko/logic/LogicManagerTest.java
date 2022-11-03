@@ -3,10 +3,10 @@ package tracko.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 // import static tracko.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static tracko.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-// import static tracko.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-// import static tracko.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-// import static tracko.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-// import static tracko.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+// import static tracko.tracko.commands.logic.CommandTestUtil.ADDRESS_DESC_AMY;
+// import static tracko.tracko.commands.logic.CommandTestUtil.EMAIL_DESC_AMY;
+// import static tracko.tracko.commands.logic.CommandTestUtil.NAME_DESC_AMY;
+// import static tracko.tracko.commands.logic.CommandTestUtil.PHONE_DESC_AMY;
 import static tracko.testutil.Assert.assertThrows;
 // import static tracko.testutil.TypicalOrders.ORDER_10;
 
@@ -18,8 +18,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 // import tracko.logic.commands.order.AddOrderCommand;
-import tracko.logic.Logic;
-import tracko.logic.LogicManager;
 import tracko.logic.commands.CommandResult;
 // import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.commands.exceptions.CommandException;
@@ -48,7 +46,8 @@ public class LogicManagerTest {
     public void setUp() {
         JsonTrackOStorage trackOStorage =
                 new JsonTrackOStorage(temporaryFolder.resolve("orders.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+            new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(trackOStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
@@ -86,7 +85,7 @@ public class LogicManagerTest {
     //             + ADDRESS_DESC_AMY;
     //     Order expectedOrder = new OrderBuilder(ORDER_10).build();
     //     ModelManager expectedModel = new ModelManager();
-    //     expectedModel.addOrder(expectedOrder);
+    //     expectedModel.addItem(expectedOrder);
     //     String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
     //     assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     // }

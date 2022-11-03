@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.order.Order;
 
 /**
@@ -17,7 +17,7 @@ public interface Model {
     Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
+    Predicate<InventoryItem> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -98,34 +98,34 @@ public interface Model {
     /**
      * Adds the given item.
      */
-    void addItem(Item item);
+    void addItem(InventoryItem inventoryItem);
 
     /**
      * Returns an item from the inventory list with the given item name.
      */
-    Item getItem(String itemName);
+    InventoryItem getItem(String itemName);
 
     /**
      * Deletes the given item.
      */
-    void deleteItem(Item item);
+    void deleteItem(InventoryItem inventoryItem);
 
     /**
      * Returns true if an item with the same identity as {@code item} exists in the inventory list.
      */
-    boolean hasItem(Item item);
+    boolean hasItem(InventoryItem inventoryItem);
 
     /**
      * Replaces the given item {@code target} with {@code editedItem}.
      * {@code target} must exist in the inventory list.
      * The item identity of {@code editedItem} must not be the same as another existing item in the inventory list.
      */
-    void setItem(Item target, Item editedItem);
+    void setItem(InventoryItem target, InventoryItem editedInventoryItem);
 
     /**
      * Returns an unmodifiable view of the filtered item list.
      */
-    ObservableList<Item> getFilteredItemList();
+    ObservableList<InventoryItem> getFilteredItemList();
 
     /**
      * Updates the filter of the filtered item list to filter by the given {@code predicate}.
@@ -133,7 +133,7 @@ public interface Model {
      * @param predicate The predicate given to filter the items in the item list.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredItemList(Predicate<Item> predicate);
+    void updateFilteredItemList(Predicate<InventoryItem> predicate);
 
     /**
      * Returns the number of items in the filtered item list.
@@ -156,7 +156,7 @@ public interface Model {
     /**
      * Returns the item list.
      */
-    ObservableList<Item> getInventoryList();
+    ObservableList<InventoryItem> getInventoryList();
 
     void refreshData();
 }

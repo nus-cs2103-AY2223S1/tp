@@ -8,32 +8,33 @@ import static tracko.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS = "Quantity should be valid."
-            + "\nA valid Quantity value should be non-empty, non-negative, and should not exceed 2,147,483,647.";
+            + "\nA valid Quantity value should be numeric, non-empty, "
+            + "non-negative, and should not exceed 2,147,483,647.";
 
 
-    public final Integer quantity;
+    public final Integer value;
 
     /**
      * Constructs a {@code Quantity}.
-     * @param quantity The quantity of an item.
+     * @param value The quantity of an item.
      */
-    public Quantity(Integer quantity) {
-        requireAllNonNull(quantity);
-        checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
-        this.quantity = quantity;
+    public Quantity(Integer value) {
+        requireAllNonNull(value);
+        checkArgument(isValidQuantity(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     public static boolean isValidQuantity(Integer test) {
         return !(test < 0);
     }
 
-    public Integer getQuantity() {
-        return this.quantity;
+    public Integer getValue() {
+        return this.value;
     }
 
     @Override
     public String toString() {
-        return String.valueOf(quantity);
+        return String.valueOf(value);
     }
 
     @Override
@@ -47,6 +48,6 @@ public class Quantity {
         }
 
         Quantity otherQuantity = (Quantity) other;
-        return this.quantity.equals(otherQuantity.getQuantity());
+        return this.value.equals(otherQuantity.getValue());
     }
 }

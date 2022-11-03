@@ -118,8 +118,14 @@ public class JsonAdaptedOrder {
         }
 
         List<ItemQuantityPair> itemQuantityPairs = new ArrayList<>();
-        for (JsonAdaptedItemQuantityPair pair : itemList) {
-            itemQuantityPairs.add(pair.toModelType(inventoryList));
+        if (isPaid && isDelivered) {
+            for (JsonAdaptedItemQuantityPair pair : itemList) {
+                itemQuantityPairs.add(pair.toModelType());
+            }
+        } else {
+            for (JsonAdaptedItemQuantityPair pair : itemList) {
+                itemQuantityPairs.add(pair.toModelType(inventoryList));
+            }
         }
 
         return new Order(modelName, modelPhone, modelEmail, modelAddress, timeCreated, itemQuantityPairs,

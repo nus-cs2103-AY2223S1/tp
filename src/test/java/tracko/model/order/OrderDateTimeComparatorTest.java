@@ -1,9 +1,12 @@
 package tracko.model.order;
 
-import org.junit.jupiter.api.Test;
-import tracko.testutil.OrderBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import tracko.testutil.OrderBuilder;
 
 public class OrderDateTimeComparatorTest {
     @Test

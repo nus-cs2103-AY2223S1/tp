@@ -6,6 +6,7 @@ import static tracko.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import tracko.logic.commands.ClearCommand;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.ExitCommand;
 import tracko.logic.commands.HelpCommand;
@@ -55,6 +56,8 @@ public class TrackOParser {
     public MultiLevelCommand parseAndUpdateCommand(String userInput, MultiLevelCommand command) throws ParseException {
         if (command instanceof AddOrderCommand) {
             return new AddOrderCommandParser().parseAndUpdate(userInput, (AddOrderCommand) command);
+        } else if (command instanceof ClearCommand) {
+            return new ClearCommandParser().parseAndUpdate(userInput, (ClearCommand) command);
         }
         throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
     }
@@ -116,6 +119,11 @@ public class TrackOParser {
 
         case EditItemCommand.COMMAND_WORD:
             return new EditItemCommandParser().parse(arguments);
+
+        case ClearCommand.COMMAND_WORD:
+            // an empty string is used as a dummy input for the parser method.
+            // no inputs from the user is taken in as arguments for the ClearCommand method
+            return new ClearCommandParser().parse("");
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -2,7 +2,6 @@ package tracko.ui;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -46,9 +45,19 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label deliveryStatus;
     @FXML
+    private Label totalOrderPrice;
+    @FXML
     private VBox items;
     @FXML
     private HBox dateContainer;
+    @FXML
+    private HBox orderStatus;
+    @FXML
+    private HBox totalOrderPriceContainer;
+    @FXML
+    private Region totalPriceIcon;
+    @FXML
+    private Region timeCreatedIcon;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -56,14 +65,12 @@ public class OrderCard extends UiPart<Region> {
     public OrderCard(Order order, int displayedIndex) {
         super(FXML);
         this.order = order;
+
         id.setText(Integer.toString(displayedIndex));
+
         name.setText(order.getName().fullName);
         name.setWrapText(true);
         name.setPadding(new Insets(0, 10, 0, 0));
-
-        // If name consists of more than 1 line, this will align the id to the first line.
-        id.prefHeightProperty().bind(name.heightProperty());
-        id.setAlignment(Pos.TOP_LEFT);
 
         phone.setText(order.getPhone().value);
         phone.setWrapText(true);
@@ -97,13 +104,36 @@ public class OrderCard extends UiPart<Region> {
             deliveryStatus.setStyle("-fx-background-color: #FF6C64; -fx-text-fill: #FFEDEC");
         }
 
+        totalOrderPrice.setText("$" + String.format("%.2f", order.calculateTotalOrderPrice()));
+        totalOrderPrice.setWrapText(true);
+        totalOrderPrice.setPadding(new Insets(0, 10, 0, 0));
+
+        if (order.isCompleted()) {
+            setCompletedStyle();
+        }
+
         items.setPadding(new Insets(8, 10, 8, 10));
         items.setStyle("-fx-background-insets: 5 0 5 0;");
         items.getStyleClass().add("ordered-items-container");
         order.getItemList().stream()
                 .forEach(pair -> items.getChildren().add(
                         constructItemLabel(pair.toString())));
+    }
 
+    /**
+     * Changes the colors of the order card elements to faded colors after an order is completed.
+     */
+    public void setCompletedStyle() {
+        paidStatus.setText("Completed");
+        paidStatus.setStyle("-fx-background-color: #DFDFEB; -fx-text-fill: #7A7CA5");
+        deliveryStatus.setText(null);
+        deliveryStatus.setStyle("-fx-background-color: #7A7CA5");
+        totalOrderPriceContainer.setStyle("-fx-background-color: #C4EAC8 !important;");
+        totalOrderPrice.setStyle("-fx-text-fill: #678D6C !important;");
+        totalPriceIcon.setStyle("-fx-background-color: #678D6C !important;");
+        timeCreated.setStyle("-fx-text-fill: #AA9787 !important;");
+        dateContainer.setStyle("-fx-background-color: #FAF4EF !important;");
+        timeCreatedIcon.setStyle("-fx-background-color: #AA9787 !important;");
     }
 
     /**

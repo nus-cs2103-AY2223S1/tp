@@ -47,7 +47,9 @@
               <Insets top="55.0"/>
             </padding>
             <VBox id="resultPadding" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-              <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="100" minWidth="550" prefWidth="550" maxWidth="550" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="NEVER"/>
+              <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="100" minWidth="450"
+                         prefWidth="450" maxWidth="450" styleClass="pane-with-border" VBox.vgrow="ALWAYS"
+                         HBox.hgrow="NEVER"/>
             </VBox>
 
             <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER" HBox.hgrow="NEVER">
