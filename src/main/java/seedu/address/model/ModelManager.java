@@ -306,6 +306,19 @@ public class ModelManager implements Model {
         throw new TeamNotFoundException();
     }
 
+    @Override
+    public boolean teamNameExists(seedu.address.model.team.Name name) {
+        List<Team> teams = getFilteredTeamList();
+        for (int i = 0; i < teams.size(); i++) {
+            Team team = teams.get(i);
+            seedu.address.model.team.Name teamname = team.getName();
+            if (teamname.equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Returns team name from given team index.
      * @param teamIndex Index of team.
