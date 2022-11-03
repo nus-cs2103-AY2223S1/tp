@@ -145,8 +145,11 @@ public class CommandTestUtil {
 
         Student student = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new FindCommandPredicate(
-            Collections.singletonList(splitName[0])));
+
+        List<String> predicateKeywordList = new ArrayList<>();
+        Collections.addAll(predicateKeywordList, splitName[0], "", "");
+        List<String> unmodifiablePredicateKeywordList = Collections.unmodifiableList(predicateKeywordList);
+        model.updateFilteredPersonList(new FindCommandPredicate(unmodifiablePredicateKeywordList));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

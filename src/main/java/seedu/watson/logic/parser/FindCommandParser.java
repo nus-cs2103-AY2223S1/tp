@@ -33,25 +33,30 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             System.out.println("name");
             String foundName = String.join(" ", argMultimap.getAllValues(PREFIX_NAME));
-            findCommandKeywords.add(foundName);
+            findCommandKeywords.add(0, foundName.trim());
+        } else {
+            findCommandKeywords.add(0, "");
         }
 
         if (argMultimap.getValue(PREFIX_STUDENTCLASS).isPresent()) {
             String foundClass = String.join(" ", argMultimap.getAllValues(PREFIX_STUDENTCLASS));
-            findCommandKeywords.add(foundClass);
+            findCommandKeywords.add(1, foundClass.trim());
+        } else {
+            findCommandKeywords.add(1, "");
         }
 
         if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
             String foundSubjects = String.join(" ", argMultimap.getAllValues(PREFIX_SUBJECT));
-            findCommandKeywords.add(foundSubjects);
+            findCommandKeywords.add(2, foundSubjects.trim());
+        } else {
+            findCommandKeywords.add(2, "");
         }
 
-        if (findCommandKeywords.isEmpty()) {
+        if (args.trim().isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         return new FindCommand(new FindCommandPredicate(findCommandKeywords));
     }
-
 }
