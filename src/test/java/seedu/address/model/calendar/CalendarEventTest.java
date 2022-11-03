@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.DateTimeParser;
-import seedu.address.model.person.Appointment;
-import seedu.address.model.person.DateTime;
-import seedu.address.model.person.Location;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.DateTime;
+import seedu.address.model.appointment.Location;
 import seedu.address.model.person.Name;
 
 

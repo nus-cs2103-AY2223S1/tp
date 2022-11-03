@@ -8,6 +8,8 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import seedu.address.model.appointment.Date;
+import seedu.address.model.appointment.Time;
 
 public class DateTest {
     private static final Date DATE_21_JAN_2023 = new Date(LocalDate.of(2023, 1, 21));

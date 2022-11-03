@@ -3,9 +3,9 @@ package seedu.address.logic.parser;
 import java.util.Optional;
 
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.model.person.Appointment;
-import seedu.address.model.person.DateTime;
-import seedu.address.model.person.Location;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.DateTime;
+import seedu.address.model.appointment.Location;
 
 /**
  * Stores the details to edit the appointment with. Each non-empty field value will replace the

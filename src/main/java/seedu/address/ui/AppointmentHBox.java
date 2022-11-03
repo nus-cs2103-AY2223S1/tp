@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Appointment;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * An UI component that displays information of an {@code Appointment}.

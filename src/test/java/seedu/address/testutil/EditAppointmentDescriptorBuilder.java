@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import seedu.address.logic.parser.EditAppointmentDescriptor;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.model.person.Appointment;
-import seedu.address.model.person.Location;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Location;
 
 /**
  * A utility class to help with building EditAppointmentDescriptor objects.

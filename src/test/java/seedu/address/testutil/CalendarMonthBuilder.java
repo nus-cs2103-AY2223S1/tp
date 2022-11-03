@@ -6,9 +6,9 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
-import seedu.address.model.person.Appointment;
-import seedu.address.model.person.DateTime;
-import seedu.address.model.person.Location;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.DateTime;
+import seedu.address.model.appointment.Location;
 import seedu.address.model.person.Name;
 
 /**

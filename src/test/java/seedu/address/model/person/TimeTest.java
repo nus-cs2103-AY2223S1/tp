@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.appointment.Time;
 
 public class TimeTest {
     private static final Time TIME_TWELVE_THIRTY_PM = new Time(LocalTime.of(12, 30));

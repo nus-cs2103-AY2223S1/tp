@@ -22,8 +22,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
-import seedu.address.model.person.DateTime;
-import seedu.address.model.person.Location;
+import seedu.address.model.appointment.DateTime;
+import seedu.address.model.appointment.Location;
 
 public class EditAppointmentCommandParserTest {
 

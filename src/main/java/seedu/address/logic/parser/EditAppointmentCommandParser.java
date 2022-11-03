@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.appointment.DateTime;
 
 /**
  * Parses input arguments and creates a new EditAppointmentCommand object

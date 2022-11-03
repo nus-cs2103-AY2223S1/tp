@@ -3,9 +3,9 @@ package seedu.address.testutil;
 import java.time.LocalDateTime;
 
 import seedu.address.logic.parser.DateTimeParser;
-import seedu.address.model.person.Appointment;
-import seedu.address.model.person.DateTime;
-import seedu.address.model.person.Location;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.DateTime;
+import seedu.address.model.appointment.Location;
 
 /**
  * A utility class to help with building Appointment objects.

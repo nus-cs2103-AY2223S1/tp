@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.model.appointment.DateTime;
 
 public class DateTimeTest {
 
