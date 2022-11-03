@@ -355,6 +355,8 @@ Format: `find nm/STUDENT-NAME` or `find id/ID`
 * The search only recognises whole words, and searching for substrings is not valid. e.g. `Han` will not match `Hans`.
 
 Examples:
+* `find nm/lee` returns the list of students with `lee` in their names.
+![FindByName](images/FindByName.png)
 * `find nm/John` returns the records for any student named `john` or any student with `john` in their name. 
 * `find nm/john alice` returns the records for the students whose names contain either `john` or `alice` or both.
 * `find id/123A` returns the student record for the student with `123A` as their student ID.
