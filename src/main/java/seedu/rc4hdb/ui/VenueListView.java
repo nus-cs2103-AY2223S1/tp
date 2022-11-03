@@ -48,6 +48,7 @@ public class VenueListView extends UiPart<Region> {
 
         updateVenueList();
         updateCurrentVenueName();
+        configureListProperties();
     }
 
     private ListCell<Venue> populateList(ListView<Venue> venueListView) {
@@ -74,5 +75,11 @@ public class VenueListView extends UiPart<Region> {
     public void updateCurrentVenueName() {
         currentVenueHeader.setText("Currently viewing bookings for: " + currentlyDisplayedVenueName.getValue());
     }
+
+    private void configureListProperties() {
+        venueListView.setMinWidth(220.0);
+        venueListView.setSelectionModel(new NoSelectionModel<Venue>());
+    }
+
 
 }
