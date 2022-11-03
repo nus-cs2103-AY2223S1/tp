@@ -48,7 +48,6 @@ The rest of the App consists of four components.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-* [** `History`**](#history-component):
 
 
 **How the architecture components interact with each other**
@@ -117,21 +116,47 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/dg/ModelClassDiagram.png" width="450" />
+#### Model
 
+<img src="images/dg/ModelClassDiagram.png" width="450" />
 
 The `Model` component,
 
-* stores the HealthContact data i.e., all `Patient` objects (which are contained in a `UniquePatientList` object).
-* stores the currently 'selected' `Patient` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores the HealthContact data i.e.,
+    * all `Patient` objects (which are contained in a `UniquePatientList` object)
+    * all `Appointment` objects (which are contained in a `UniqueAppointmentList` object)
+    * all `Bill` objects (which are contained in a `UniqueBillList` object)
+* stores the currently 'selected' `Patient`, `Appointment` or `Bill` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>`, `ObservableList<Appointment>` or `ObservableList<Bill>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `HealthContact`, which `Patient` references. This allows `HealthContact` to only require one `Tag` object per unique tag, instead of each `Patient` needing their own `Tag` objects.<br>
+#### Patient
 
-<img src="images/dg/BetterModelClassDiagram.png" width="450" />
+<img src="images/dg/UniquePatientListClassDiagram.png" width="450">
 
-</div>
+* The `Patient` object stored in the `Model`, stores the personal information of a patient. Take note that every `Patient` must have a unique `Name` because the application differentiates `Patient` by `Name`.
+* Take note that,
+    * the application differentiates patients by `Name`
+    * same letters of `Name` in different cases are considered as the same `Name`
+#### Appointment
+
+<img src="images/dg/UniqueAppointmentListClassDiagram.png" width="450">
+
+* The `Appointment` object stored in the `Model`, stores the information of an appointment.
+* Take note that,
+    * the `Name` must be a `Name` from an existing `Patient`
+    * the application differentiates appointments by all four attributes
+    * same letters of `MedicalTest`, `Doctor` and `Name` in different cases are considered as same `MedicalTest`, `Doctor` and `Name`.
+
+#### Bill
+
+<img src="images/dg/UniqueBillListClassDiagram.png" width="450">
+
+* The `Bill` object stored in the `Model`, stores the information of a bill.
+* Take note that,
+    * the `Appointment` must be the same as an existing `Appointment`
+    * one `Appointment` can attach at most one bill
+    * the application differentiates bills by all four attributes.
 
 
 ### Storage component
