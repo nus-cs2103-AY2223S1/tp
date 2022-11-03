@@ -176,16 +176,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTrip(Trip target, Trip editedTrip) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setEvent(Event target, Event editedEvent) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Trip> getFilteredTripList() {
             throw new AssertionError("This method should not be called.");
         }

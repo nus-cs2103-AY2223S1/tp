@@ -1,6 +1,5 @@
 package seedu.travelr.logic.parser;
 
-import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_REVERSE_ORDER;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_SORTBY;
 import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_COMPLETION;
@@ -38,7 +37,7 @@ public class SortTripsCommandParser implements Parser<SortTripsCommand> {
         boolean reverse = argMultimap.getValue(PREFIX_REVERSE_ORDER).map(x -> true).orElse(false);
 
         Comparator<Trip> comp = COMPARE_BY_TITLE;
-        
+
         if (hasFactor) {
             switch (sortBy) {
             case "title":
@@ -54,7 +53,7 @@ public class SortTripsCommandParser implements Parser<SortTripsCommand> {
                 comp = COMPARE_BY_NUM_EVENTS;
                 break;
             default:
-                throw new ParseException(String.format(INVALID_FACTOR_ERROR_MESSAGE,  SortTripsCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(INVALID_FACTOR_ERROR_MESSAGE, SortTripsCommand.MESSAGE_USAGE));
             }
         }
 

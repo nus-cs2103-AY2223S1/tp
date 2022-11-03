@@ -38,6 +38,6 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonTravelrStorage .up.|> TravelrStorage
 JsonTravelrStorage ..> JsonSerializableTravelr
 JsonSerializableTravelr --> "*" JsonAdaptedTrip
-JsonAdaptedTrip --> "*" JsonAdaptedEvent
+JsonSerializableTravelr -left-> "*" JsonAdaptedEvent
 
 @enduml
