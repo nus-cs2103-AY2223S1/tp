@@ -18,7 +18,6 @@ import seedu.address.model.meeting.MeetingTime;
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
 class JsonAdaptedMeeting {
 
-    private JsonAdaptedClient client;
     @JsonProperty
     private String description;
     private String meetingDate;
@@ -29,7 +28,6 @@ class JsonAdaptedMeeting {
      * Converts a given {@code Meeting} into this class for Jackson use.
      */
     JsonAdaptedMeeting(Meeting meeting) {
-        client = new JsonAdaptedClient(meeting.getClient(), this);
         description = meeting.getDescription().toString();
         meetingDate = meeting.getMeetingDate().toString();
         meetingStartTime = meeting.getMeetingStartTime().toString();
@@ -42,7 +40,6 @@ class JsonAdaptedMeeting {
      * @param adaptedClient
      */
     JsonAdaptedMeeting(Meeting meeting, JsonAdaptedClient adaptedClient) {
-        client = adaptedClient;
         description = meeting.getDescription().toString();
         meetingDate = meeting.getMeetingDate().toString();
         meetingStartTime = meeting.getMeetingStartTime().toString();
@@ -53,14 +50,6 @@ class JsonAdaptedMeeting {
      * Default constructor for {@code JsonAdaptedMeeting}
      */
     public JsonAdaptedMeeting() {
-    }
-
-    public void setClient(JsonAdaptedClient client) {
-        this.client = client;
-    }
-
-    public JsonAdaptedClient getClient() {
-        return client;
     }
 
     public void setDescription(String description) {

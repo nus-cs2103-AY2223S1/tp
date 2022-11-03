@@ -20,6 +20,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.product.Product;
 
 /**
@@ -170,8 +171,9 @@ class JsonAdaptedClient {
         if (meetings.isEmpty()) {
             return client;
         }
-        for (JsonAdaptedMeeting meeting : meetings) {
-            client.addMeeting(meeting.toModelType(client));
+        for (JsonAdaptedMeeting jsonMeeting : meetings) {
+            Meeting meeting = jsonMeeting.toModelType(client);
+            client.addMeeting(meeting);
         }
         return client;
     }
