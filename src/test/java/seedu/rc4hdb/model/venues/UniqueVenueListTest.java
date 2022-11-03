@@ -98,7 +98,8 @@ public class UniqueVenueListTest {
     public void addBooking_withValidBooking_success() {
         uniqueVenueList.add(new VenueBuilder(DISCUSSION_ROOM).build());
         uniqueVenueList.addBooking(DISCUSSION_ROOM_NAME, MR_BOB_TUESDAY_6_TO_7PM);
-        assertTrue(uniqueVenueList.getBookings(DISCUSSION_ROOM_NAME).contains(MR_BOB_TUESDAY_6_TO_7PM));
+        assertTrue(uniqueVenueList.getVenueWithName(DISCUSSION_ROOM_NAME)
+                .getBookings().contains(MR_BOB_TUESDAY_6_TO_7PM));
     }
 
     @Test
@@ -135,7 +136,8 @@ public class UniqueVenueListTest {
         uniqueVenueList.add(new VenueBuilder(MEETING_ROOM).build());
         uniqueVenueList.addBooking(MEETING_ROOM_VENUE_NAME, MR_ALICE_MONDAY_5_TO_6PM);
         uniqueVenueList.removeBooking(getExampleBookingDescriptor());
-        assertFalse(uniqueVenueList.getBookings(MEETING_ROOM_VENUE_NAME).contains(MR_ALICE_MONDAY_5_TO_6PM));
+        assertFalse(uniqueVenueList.getVenueWithName(MEETING_ROOM_VENUE_NAME)
+                .getBookings().contains(MR_ALICE_MONDAY_5_TO_6PM));
     }
 
     @Test
@@ -171,17 +173,17 @@ public class UniqueVenueListTest {
     }
 
     @Test
-    public void getBookings_venueNotInVenueList_throwsVenueNotFoundException() {
+    public void getVenueWithName_venueNotInVenueList_throwsVenueNotFoundException() {
         uniqueVenueList.add(new VenueBuilder(MEETING_ROOM).build());
         uniqueVenueList.addBooking(MEETING_ROOM_VENUE_NAME, MR_ALICE_MONDAY_5_TO_6PM);
-        assertThrows(VenueNotFoundException.class, () -> uniqueVenueList.getBookings(DISCUSSION_ROOM_NAME));
+        assertThrows(VenueNotFoundException.class, () -> uniqueVenueList.getVenueWithName(DISCUSSION_ROOM_NAME));
     }
 
     @Test
-    public void getBookings_withNullVenueName_throwsNullPointerException() {
+    public void getVenueWithName_withNullVenueName_throwsNullPointerException() {
         uniqueVenueList.add(new VenueBuilder(MEETING_ROOM).build());
         uniqueVenueList.addBooking(MEETING_ROOM_VENUE_NAME, MR_ALICE_MONDAY_5_TO_6PM);
-        assertThrows(NullPointerException.class, () -> uniqueVenueList.getBookings(null));
+        assertThrows(NullPointerException.class, () -> uniqueVenueList.getVenueWithName(null));
     }
 
     @Test
