@@ -211,7 +211,7 @@ Examples:
 
 * `edit 1 n/A Clash of Kings d/Epic fantasy novel by George R. R. Martin.`
 
-  *Edits the name and description of the 1st activity to be `A Clash of Kings` and `Epic fantasy novel by George R. R. Martin.` respectively.*
+  *Edits the name and description of the first activity to be `A Clash of Kings` and `Epic fantasy novel by George R. R. Martin.` respectively.*
 
 * `edit 2 date/2022-10-21 t/`
 
@@ -314,41 +314,40 @@ Example:
 
 #### With keywords:
 
-Shows a list of all hobby activities whose names or descriptions contain any of the specified keywords.
+You can show a list of all hobby activities which contain any of the specified keywords using this command.
 
-Format:
-    `find KEYWORDS`
+> Format: `find KEYWORDS`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Additional information for `find`:**<br>
 
 * The `KEYWORDS` are case-insensitive.
+* Each keyword in `KEYWORDS` is a string of characters separated by spaces.
+* All activities with names or description containing at least one keyword would be displayed.
+* Only one of the keywords can be in the form of `date/DATE` to show activities with the specified date.
+* The date in `date/DATE` can be in the form of `yyyy`, `yyyy-mm`, or `yyyy-mm-dd`.
+* Only one of the keywords can be in the form of `rate/RATING`to show activities with the specified rating.
+* The rating has to be an integer from 1 to 5.
 
-Example:
-* `find run`
-* `find mystery novel`
+</div>
 
-#### With time:
+Examples:
+* `find horror comedy`
 
-Shows a list of all hobby activities that located on a certain date, or in a certain month of a year, or in a certain year.
+  *Finds all activities with a name or description containing `horror` or `comedy` or both.*
 
-Format:
-* `find YYYY-MM-DD`
-* `find YYYY-MM`
-* `find YYYY`
+* `find sleep date/2020-12`
 
-Example:
-* `find 2001-01-01`
-* `find 1974-02`
-* `find 1999`
+  *Finds all activities with a name or description containing `sleep`, or with a date in December 2020.*
 
-#### With exact rating value:
+* `find rate/1 date/2021`
 
-Shows a list of all hobby activities whose rating is exactly the required value(between 0-5, both inclusive).
+  *Finds all activities with a rating of 1 or with a date in the year 2021.*
 
-Format: `find rate/VALUE`
+* `find romance tragedy rate/5 date/2019-10-23`
 
-* `VALUE` only accepts integer numbers from 0 to 5 (inclusive).
-* If given `VALUE` is 0, HobbyList shows all activities which do not have a rating.
-
-Example: `find rate/3`
+  *Finds all activities with a name or description containing `romance` or `tragedy` or both, or with a rating of 5, or with a date of 23 October 2019.
 
 ### 5.8 Finding activities with tags : `findTag`
 
