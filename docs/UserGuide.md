@@ -148,7 +148,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 * All leading and trailing whitespaces will be trimmed, while multiple whitespaces in between words will be replaced by a single whitespace.
 
-* All duplicate checks and find command keywords are case-insensitive.
+* All find command keywords and duplicate checks for applicants are case-insensitive.
   e.g., `JACOB@example.com` will be considered equal to `jacob@EXAMPLE.COM`.
 
 </div>
