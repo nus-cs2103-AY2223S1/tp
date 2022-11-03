@@ -1,5 +1,6 @@
 package seedu.taassist.model.student;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -30,6 +31,7 @@ public class StudentView {
      * @param student the student.
      */
     public StudentView(Student student) {
+        requireNonNull(student);
         this.student = student;
         sessionData = null;
     }
@@ -41,6 +43,7 @@ public class StudentView {
      * @param sessionData the (optional) session data.
      */
     private StudentView(Student student, Optional<SessionData> sessionData) {
+        requireAllNonNull(student, sessionData);
         this.student = student;
         this.sessionData = sessionData;
     }
