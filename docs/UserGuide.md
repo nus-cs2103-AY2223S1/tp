@@ -328,6 +328,10 @@ Format: `task t/TITLE d/DESC by/YYYY-MM-DD`
 * Both title and description should not be left blank.
 * A date should strictly follow the format of YYYY-MM-DD.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Invalid input:**
+0000-00-00 is <strong>not</strong> considered a valid date.
+</div>
+
 Examples:
 * `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`
 * `task t/Collect robot d/At MakersLab by/2019-09-10`
