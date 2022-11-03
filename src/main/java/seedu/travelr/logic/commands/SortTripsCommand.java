@@ -27,17 +27,19 @@ public class SortTripsCommand extends Command {
             + "eventcount : sorts by number of events within each trip" + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_SORTBY + "title " + PREFIX_REVERSE_ORDER;
 
-    public static final String SORT_SUCCESS = "Trips have been sorted.";
+    public static final String SORT_SUCCESS = "Trips have been sorted by %s.";
 
     private final Comparator<Trip> comparator;
+    private final String sortBy;
 
-    public SortTripsCommand(Comparator<Trip> comparator) {
+    public SortTripsCommand(Comparator<Trip> comparator, String sortBy) {
         this.comparator = comparator;
+        this.sortBy = sortBy;
     }
 
     @Override
     public CommandResult execute(Model model) {
         model.sortTripsByComparator(comparator);
-        return new CommandResult(SORT_SUCCESS);
+        return new CommandResult(String.format(SORT_SUCCESS, sortBy));
     }
 }

@@ -34,7 +34,7 @@ public class SortTripsCommandParser implements Parser<SortTripsCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_SORTBY, PREFIX_REVERSE_ORDER);
 
         boolean hasFactor = argMultimap.getValue(PREFIX_SORTBY).map(x -> true).orElse(false);
-        String sortBy = argMultimap.getValue(PREFIX_SORTBY).orElse("").toLowerCase();
+        String sortBy = argMultimap.getValue(PREFIX_SORTBY).orElse("title").toLowerCase();
         boolean reverse = argMultimap.getValue(PREFIX_REVERSE_ORDER).map(x -> true).orElse(false);
 
         Comparator<Trip> comp = COMPARE_BY_TITLE;
@@ -60,7 +60,7 @@ public class SortTripsCommandParser implements Parser<SortTripsCommand> {
 
         comp = makeComparator(reverse, comp);
 
-        return new SortTripsCommand(comp);
+        return new SortTripsCommand(comp, sortBy);
     }
 
     private static Comparator<Trip> makeComparator(boolean reverse, Comparator<Trip> comp) {
