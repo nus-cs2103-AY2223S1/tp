@@ -67,6 +67,7 @@ Required Arguments:
     - Any keyword to search against the list of modules
     - A keyword can be a regex expression
         - e.g. `^CS20\d0$`
+        - Refer to the FAQ section to learn more about regex!
 
 Search for a (list of) module in the entire list of modules offered by NUS.
 
@@ -184,3 +185,9 @@ Traverse/Scroll **down**: `<Down>`
 
 ## Miscellaneous
 1. Edit the json files at your own risk!
+
+## FAQs
+1. What is a `regex` expression?
+
+Ans: It stands for `regular expression` and is a sequence of characters that specifies a search pattern in text.
+To learn more about regex, you can refer to [this tutorial](https://regexone.com).
