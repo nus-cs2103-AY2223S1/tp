@@ -12,8 +12,11 @@ Given below are my contributions to the project.
 * **New Feature**: Data Archiving
     * What it does: allows user to hide past applications in the list and refer/retrieve back if necessary.
     * Justification: This feature improves the convenience of users in managing their applications significantly as they can hide unwanted data (e.g. past applications) to better manage the actual application list while not losing the benefits of keeping track of old applications (deleting it).
-    * Highlights: This enhancement utilises and extends the idea of `FindCommand` filtering the list shown to user. It requires in-depth analysis of past commands to find alternatives that fits the existing implementation most. 
-    * Credits: Idea Inspired by `FindCommand` implementation from [address-book-level-3](https://github.com/se-edu/addressbook-level3)
+    * Highlights: This enhancement utilises and extends the idea of `FindCommand` filtering the list shown to user. It requires in-depth analysis of past commands to find alternatives that fits the existing implementation most. This feature provides three additional commands:
+      1. `ListArchiveCommand`: Allow users to list all archived applications.
+      2. `ArchiveCommand`: Allow users to archive selected application.
+      3. `RetrieveCommand`: Allow users to retrieve selected application.
+   * Credits: Idea Inspired by `FindCommand` implementation from [address-book-level-3](https://github.com/se-edu/addressbook-level3)
 
 * **New Feature**: Showing statistic
     * What it does: a simple feature that allows user to review his overall applications' statistic.
@@ -33,5 +36,5 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PR reviewed highlights: [#58](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/58), [#109](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/109)
-    * Reported 13 bugs for other teams in the class
+    * Reported bugs for other teams in the class [here](https://github.com/eesung00/ped/issues)
 
