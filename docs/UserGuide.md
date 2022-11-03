@@ -241,6 +241,8 @@ Format: `list`  `list time`
 `list time` is the only exception to the list command ignoring extraneous parameters.
 * `list abc` and `list time abc` will be both interpreted as `list`.
 
+</div>
+
 Click [here](#) to return to the top of the page.
 
 ### Managing contacts
