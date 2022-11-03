@@ -408,6 +408,35 @@ These objects are stored in a list field of the `JsonAdaptedPerson` and are stor
   * Pros: Easier to maintain as there's only one appointment object.
   * Cons: Harder and more costly to track of each person's appointments, especially if the person himself is edited or deleted in the process.
 
+### Edit Appointment Feature
+
+#### Implementation
+The `AddressBookParser` class checks for the `edit` command word and the `appts` descriptor word to begin. The edit appointment mechanism is facilitated by the `EditAppointmentCommandParser`, `EditAppointmentCommand` classes and `EditAppointmentDescriptor` inner class. The `EditAppointmentCommandParser` implements the `Parser` interface and takes in the user input and parses it into an index and up to 4 string values. The string values are obtained from the `ArgumentMultimap` that checks whether the user has inputted any of the 4 prefixes supported by this feature.
+
+The prefixes are:
+* `r/` for reason
+* `d/` for dateTime
+* `pe/` for recurring time period
+* `t/` for tags
+
+The logical flow of using this command is shown in the activity diagram given below.
+
+![EditApptActivityDiagram](images/EditApptActivityDiagram.png)
+
+If any of the prefixes contain invalid values or no prefix values were provided, a `ParseException` will be thrown. Else, a new `Appointment` will be created with the changes and replaces the specified `Appointment` object to be edited in both the `Person` list of appointments and the `UniqueAppointmentList`. 
+
+#### Design Considerations
+
+**Aspect: How to edit the appointment objects:**
+
+* **Alternative 1 (current implementation):** Follow the `EditPersonDescriptor` inner class and implement a `EditAppointmentDescriptor` inner class.
+  * Pros: Easier to follow existing systems and edit the appointment the same way as the `edit patients` command.
+  * Cons: Existing `Appointment` object is no longer used, using memory until garbage collected.
+
+* **Alternative 2:** Edit the existing `Appointment` object itself.
+  * Pros: Only have to edit the required fields.
+  * Cons: Editing the existing object may not reflect the changes in the Appointment listview as compared to setting a new object, hence requiring more Observable fields.
+
 ### Mark/Unmark Feature
 
 The execution of the `mark`/`unmark` is quite similar to each other, with some minor differences.
