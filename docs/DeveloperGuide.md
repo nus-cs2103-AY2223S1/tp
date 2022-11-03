@@ -244,7 +244,9 @@ Step 1. User executes `sync`. `Model#syncMeetingTimes()` is called by `SyncComma
 
 Step 2. `Model#syncMeetingTimes()` calls `AddressBook` which calls `UniquePersonList#syncMeetingTimes()`.
 
-Step3.  `UniquePersonList#syncMeetingTimes()` calls `Person#syncMeetingTimes()` for each person in `UniquePersonList#internalList`
+Step 3.  `UniquePersonList#syncMeetingTimes()` calls `Person#syncMeetingTimes()` for each person in `UniquePersonList#internalList`
+
+Step 4. In `Person#syncMeetingTimes()`, the predicate `MeetingTimePastPredicate()` is passed into `MeetingTimes#removeIf(Predicate)` which removes meetings that are before the time of execution.
 
 #### Design
 
