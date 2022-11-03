@@ -10,10 +10,15 @@ SoCompiler is the sole app that university students will need to streamline thei
 Given below are my contributions to the project.
 
 * **New Feature**:
-    * What it does: _(to be added soon)_
-    * Justification: _(to be added soon)_
-    * Highlights: _(to be added soon)_
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+    * What it does: Delete Module 
+    * Justification: After a semester is over, or if the student is not taking the module anymore, they would need to be able to delete the module from the list.
+    * Highlights: 
+    * Credits:
+    
+    * What it does: Automatically update module title from input module code
+    * Justification: Ease of use for the user.
+    * Highlights:
+    * Credits:
 
 * **Code contributed**:
     * _(to be added soon)_
