@@ -56,21 +56,20 @@ public class LogicManager implements Logic {
         } else {
             command = addressBookParser.parseCommand(commandText);
         }
-        commandResult = execute(command);
 
+        return execute(command);
+    }
+
+    @Override
+    public CommandResult execute(Command command) throws CommandException {
+        CommandResult commandResult = command.execute(model);
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveTaskPanel(model.getTaskPanel());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-
         return commandResult;
-    }
-
-    @Override
-    public CommandResult execute(Command command) throws CommandException {
-        return command.execute(model);
     }
 
     @Override
