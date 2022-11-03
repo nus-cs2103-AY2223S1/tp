@@ -63,9 +63,9 @@ To navigate to see a particular command, you can click on the link in blue.
 <div markdown="block" class="alert alert-info">
 The window is empty because no friends have been added yet. Adding more friends will change the look of the window.
 </div>
-
+<ol start="5">
 6. Type the command in the [command box](#user-interface-breakdown) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-
+</ol>
 Some sample commands you can try out:
 
    * **`list`** : Lists all of your friends.
