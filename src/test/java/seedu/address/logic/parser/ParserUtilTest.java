@@ -48,6 +48,7 @@ public class ParserUtilTest {
     private static final String INVALID_CAP_4 = "2.0"; // without any maximum value
     private static final String INVALID_CAP_5 = "3.94f" + CAP_SEPARATOR + MAXIMUM_CAP_VALUE;
     private static final String INVALID_CAP_6 = "3.20" + CAP_SEPARATOR + "5.03f";
+    private static final String INVALID_CAP_7 = "2.0" + CAP_SEPARATOR + "3.0" + CAP_SEPARATOR + "4.0"; // > 2 values
     private static final String INVALID_UNIVERSITY = "n()S";
     private static final String INVALID_MAJOR = "C0MPUT3R $C13NC3";
     private static final String INVALID_ID = "J9021-1";
@@ -345,6 +346,7 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_4));
         assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_5));
         assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_6));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_7));
     }
 
     @Test

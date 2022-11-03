@@ -23,4 +23,18 @@ class CapTest {
         assertTrue(Cap.isValidCap(5, 5));
         assertTrue(Cap.isValidCap(0, 5));
     }
+
+    @Test
+    void isValidCapFormat() {
+        // invalid cap format
+        assertFalse(Cap.isValidCapFormat("2.0f")); // contains alphabet
+        assertFalse(Cap.isValidCapFormat("3.0@")); // contains symbol
+
+        // valid cap format
+        assertTrue(Cap.isValidCapFormat("2.0")); // double
+        assertTrue(Cap.isValidCapFormat("2")); // integer
+        assertTrue(Cap.isValidCapFormat("2 . 0")); // with spaces in between
+        assertTrue(Cap.isValidCapFormat(" 2.0")); // with leading space
+        assertTrue(Cap.isValidCapFormat("2.0 ")); // with trailing space
+    }
 }
