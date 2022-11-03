@@ -99,9 +99,11 @@ public class UidList implements Iterable<Uid> {
             }
         }
         if (count == 0) {
-            this.personNames = "0 people";
+            this.personNames = "0 attendees";
+        } else if (count == 1) {
+            this.personNames = String.format("1 attendee: %s", personNames.get(0));
         } else {
-            this.personNames = String.format("%d people: %s", count, String.join(", ", personNames));
+            this.personNames = String.format("%d attendees: %s", count, String.join(", ", personNames));
         }
         return true;
     }
