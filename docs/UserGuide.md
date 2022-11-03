@@ -427,7 +427,11 @@ Format: `list -c`
 ### Filtering client profiles: `filter -c`
 
 Returns a filtered list of clients according to specified tags.
+
+TAG have to be fully specified (i.e. no partial tags like 'high' instead of 'high-end')
+
 Format: `filter -c TAG...`
+
 Examples:
 * `filter -c high-end`
 * `filter -c thrifty`
