@@ -168,7 +168,7 @@ Examples of usage:
 
 ### Range feature [Zacchaeus]
 
-The range feature allows the user to filter properties by a price range in Condonery. 
+The range feature allows the user to filter properties by a price range in Condonery.
 
 The feature is activated by the command pattern `range -p l/[lower] u/[upper]`.
 
@@ -183,7 +183,7 @@ These are the steps that will be taken when parsing a range command:
 2. The `RangePropertyCommandParser` which implements the `Parser` interface, parses the command via `Parser#parse`.
 3. If the user command is valid, the parser creates the corresponding `Command` object for execution.
 
-Given below is a sequence diagram for interactions inside the Logic component for the `execute(range -p l/<LOWER> u/<UPPER>` 
+Given below is a sequence diagram for interactions inside the Logic component for the `execute(range -p l/<LOWER> u/<UPPER>`
 API call.
 - Note that the command is truncated for brevity and <LOWER> and <UPPER> are used as placeholders to encapsulate the remaining arguments supplied by the user.
 - For example, if the full command was `range -p l/100,000 u/500,000`, then `l/<LOWER> u/<UPPER>` is equivalent to `l/100,000 u/500,000`.
@@ -192,7 +192,7 @@ API call.
 
 **Execution of command within the `Logic` component**
 
-When a `RangePropertyCommand` is created by the `RangePropertyCommandParser`, it is executed with `model` passed in 
+When a `RangePropertyCommand` is created by the `RangePropertyCommandParser`, it is executed with `model` passed in
 as the parameter.
 
 Firstly, the `updateFilteredPropertyList` is called to get the list of properties within the specified price range.
@@ -219,7 +219,7 @@ Aspect: How to filter properties by prices
 - **Alternative 1** (current choice): Add a lower and upper prefix to command phrase to indicate lower and upper bound.
     - Pros:
       - Less time-consuming to implement.
-      - Easier to parse price range. 
+      - Easier to parse price range.
     - Cons:
       - Imposes strict requirement on use of lower and upper prefixes.
 - **Alternative 2**: Allow user to key in two separate integers in command.
@@ -232,7 +232,7 @@ Aspect: How to filter properties by prices
 
 Alternative 1 was chosen to enable more efficient parsing of commands.
 
-`PropertyPriceWithinRangePredicate` 
+`PropertyPriceWithinRangePredicate`
 
 ### Commands
 
@@ -243,7 +243,7 @@ Alternative 1 was chosen to enable more efficient parsing of commands.
 The proposed search command allows the user to search for a particular `Property`. It is facilitated by `SearchCommand`.
 It extends the `Command` class.
 
-Users can specify if they want to perform the search for a `Property` or `Client` with the following 
+Users can specify if they want to perform the search for a `Property` or `Client` with the following
 options
 
 1. `-p` Search for a particular property with matching keywords
@@ -253,35 +253,35 @@ options
 
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
 
-To parse the different commands in our application, we have individual command parsers for the different commands 
+To parse the different commands in our application, we have individual command parsers for the different commands
 (e.g. `EditCommandParser`).
 
 The steps taken when parsing a search command are as follows:
 
-1. The `SearchCommandParser` will check what type (`Property` or `Client`) the search is for 
-and create the corresponding parser 
+1. The `SearchCommandParser` will check what type (`Property` or `Client`) the search is for
+and create the corresponding parser
    1. `search -p` will create the command: `SearchPropertyCommand`
    2. `search -c` will create the command: `SearchClientCommand`
 3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
 
 #### Design Considerations:
 
-- Create a `SearchCommand` class 
+- Create a `SearchCommand` class
 
 ### User Uploaded Images
 The application allows users to upload their own images for Property and Client models. By default, the images are stored
 in `data/images`, but users can specify their custom directory in `preferences.json`.
 
-The Image object is not initialized until the PropertyCard/ClientCard of the UI is rendered. This is to save memory 
-consumption and rely on the Lazy Loading of Observable List. We need to inject the UserPrefs into the Property/Client 
+The Image object is not initialized until the PropertyCard/ClientCard of the UI is rendered. This is to save memory
+consumption and rely on the Lazy Loading of Observable List. We need to inject the UserPrefs into the Property/Client
 models in order to determine the location to source for the uploaded images.
 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. 
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. 
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`.
+It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
 Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
@@ -347,7 +347,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1:** Saves the initial PropertyDirectory and ClientDirectory on initialization. Store all commands in 
+* **Alternative 1:** Saves the initial PropertyDirectory and ClientDirectory on initialization. Store all commands in
 CommandQueue and re-executes _n - 1_ commands on undo.
     * Pros: Easy to implement. Less memory usage
     * Cons: Might make undo command less responsive, depending on complexity of commands.

@@ -24,9 +24,9 @@ Given below are my contributions to the project.
 - Add `range` command for properties
   - What it does: Allows user to filter properties within a lower and upper bound of price range.
   - Justification: This feature enables the property agent to identify suitable properties within budget for their clients.
-  - Highlights: This enhancement required an in-depth analysis of design alternatives. 
-  The implementation too was challenging as it required a user-friendly implementation of the price attribute in the property class. 
-  
+  - Highlights: This enhancement required an in-depth analysis of design alternatives.
+  The implementation too was challenging as it required a user-friendly implementation of the price attribute in the property class.
+
 - Add `type` command for properties
   - What it does: Allows user to filter properties by type.
   - Justification; This feature enables the property agent to identify properties by their type e.g. HDB, Condo.
