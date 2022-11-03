@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Code used: [Input History](https://github.com/AY2122S2-CS2103T-W13-3/tp)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -249,7 +249,7 @@ Sequence diagram for AttendanceDeleteCommand
 #### Design considerations:
 
 **Aspect: Command Syntax**
-- Current implementation: Using 2 command word syntax \n E.g. ```attendance add``
+- Current implementation: Using 2 command word syntax \n E.g. ```attendance add```
 - Pros: Increases clarity and flexibility of future commands
 - Cons: Users have to type more
 - Alternatives considered: We considered using only ```attendance```, while using the forward slash ```/``` with specific prefixes for attendance commands, e.g. ```attendance 1 a/10 s/12```, which adds an attendance list of size 12 to the first student.
@@ -260,6 +260,7 @@ Sequence diagram for AttendanceDeleteCommand
 - Current Implementation: Max size of 12
 - Pros: No need to resize attendance list display, users typically do not have more than 12 tutorials.
 - Cons: Less flexibility in size of attendance list.
+
 ### Upload Student Picture Feature
 The address book is able to have profile pictures assigned to each student. The upload picture feature allows for tutors to add the profile picture corresponding to a student.
 This feature comprises a single ```UploadPictureCommand```

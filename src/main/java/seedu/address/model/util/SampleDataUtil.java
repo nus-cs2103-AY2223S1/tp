@@ -1,6 +1,8 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -71,7 +73,7 @@ public class SampleDataUtil {
             new Assignment(
                     new TaskTitle("Assignment 2"),
                     new TaskDescription("Essence of Recursion"),
-                    Arrays.asList("Alex Yeoh", "Bernice Yu", "Irfan Ibrahim", "Roy Balakrishnan")),
+                    new ArrayList<String>((Arrays.asList("Alex Yeoh", "Bernice Yu", "Irfan Ibrahim", "Roy Balakrishnan")))),
             new ToDo(
                     new TaskTitle("Collect robot"),
                     new TaskDescription("At MakersLab")),

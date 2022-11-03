@@ -2,6 +2,8 @@ package seedu.address.model.task;
 
 import java.util.List;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents an Assignment in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -15,6 +17,7 @@ public class Assignment implements Task {
      * Every field must be present and not null.
      */
     public Assignment(TaskTitle title, TaskDescription desc, List<String> students) {
+        requireNonNull(students);
         this.taskTitle = title;
         this.taskDescription = desc;
         this.students = students;
