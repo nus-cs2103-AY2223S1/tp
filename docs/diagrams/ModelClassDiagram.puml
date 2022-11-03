@@ -24,6 +24,12 @@ Class Name
 Class Phone
 Class Tag
 
+Class Patient
+Class ConditionList
+Class MedicationList
+Class TaskList
+Class RemarkList
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -49,6 +55,13 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+
+Patient -left-|> Person
+
+Patient --> "1" TaskList
+Patient --> "1" ConditionList
+Patient --> "1" MedicationList
+Patient --> "1" RemarkList
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
