@@ -792,7 +792,7 @@ public class EditCommand extends Command {
          * @return {@code Optional#empty()} if {@code physician} is null.
          */
         public Optional<Optional<Physician>> getPhysician() {
-            return (physician != null) ? Optional.of(physician) : Optional.empty();
+            return (physician.isPresent()) ? Optional.of(physician) : Optional.empty();
         }
 
         /**
@@ -811,7 +811,7 @@ public class EditCommand extends Command {
          * @return {@code Optioanl.empty()} if {@code nextOfKin} is null.
          */
         public Optional<Optional<NextOfKin>> getNextOfKin() {
-            return (nextOfKin != null) ? Optional.of(nextOfKin) : Optional.empty();
+            return (nextOfKin.isPresent()) ? Optional.of(nextOfKin) : Optional.empty();
         }
 
         /**
