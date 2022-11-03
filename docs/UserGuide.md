@@ -86,8 +86,8 @@ Here are some symbols used throughout this user guide:
       2. [Finding patients: `find`](#finding-patients-find)
       3. [Viewing all details of a patient: `focus` `-p`](#viewing-all-details-of-a-patient-focus--p)
    9. [Viewing tasks](#listing-all-tasks-of-a-patient-view--p)
-      1. [Listing all tasks: `view` `-p` `-all`](#listing-all-tasks-of-a-patient-view--p)
-      2. [Listing all tasks of a patient: `view` `-p`](#listing-all-tasks-of-all-patients-view--p---all)
+      1. [Listing all tasks of a patient: `view` `-p`](#listing-all-tasks-of-a-patient-view--p)
+      2. [Listing tasks of all patients: `view` `-p` `-all`](#listing-all-tasks-of-all-patients-view--p---all)
       3. [Listing all tasks for a particular day: `view`](#listing-all-tasks-for-a-particular-day-view)
       4. [Listing all patients for today: `view` `--today`](#listing-all-patients-for-today-view---today)
    10. [Undoing last command: `undo`](#undo-last-command-undo)
@@ -140,16 +140,16 @@ java -version
 
 **Here are some of the technical terminologies used:**
 
-| Word                    | Meaning                                                                                                                                                                                                     |
-|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command                 | A sentence which the user inputs to.                                                                                                                                                                        |
-| Command word            | The first word of every command.                                                                                                                                                                            |
-| Option                  | Part of the user input specifying the options for a command, which is preceded by a flag.                                                                                                                   |
-| Flag                    | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`, `-d`, `-m`, `-c`, `-r`.             |
-| Parameter               | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                                           |
+| Word                    | Meaning                                                                                                                                                                                                    |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command                 | A sentence which the user inputs to.                                                                                                                                                                       |
+| Command word            | The first word of every command.                                                                                                                                                                           |
+| Option                  | Part of the user input specifying the options for a command, which is preceded by a flag.                                                                                                                  |
+| Flag                    | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`, `-d`, `-m`, `-c`, `-r`.            |
+| Parameter               | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                                          |
 | Prefix                  | Part of the user input that allows the user to specify information for a patient, consisting of a letter preceded by a hyphen. <br> Type of prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `d/`, `m/`, `c/`, `r/`. |
-| Single-valued attribute | A patient's detail that consist of a single value. <br> List of single-valued attributes: name, phone, email address, address.                                                                              |
-| Multi-valued attribute  | A patient's details that consist of a list of values. <br> List of multi-valued attributes: tags, tasks, medications, conditions, remarks.                                                                  |
+| Single-valued attribute | A patient's detail that consist of a single value. <br> List of single-valued attributes: name, phone, email address, address.                                                                             |
+| Multi-valued attribute  | A patient's detail that consist of a list of values. <br> List of multi-valued attributes: tags, tasks, medications, conditions, remarks.                                                                  |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -680,22 +680,23 @@ Format: `list`
 
 ### Finding patients: `find`
 
-Finds patients whose parameters contain the given keywords.
+You can find specific patients using the `find` command.
 
-Format: `find [KEYWORD]… [xyz/XYZ_KEYWORD]…`
+Format: **`find`**`[KEYWORD]… [xyz/XYZ_KEYWORD]…`
+
 * `xyz/XYZ_KEYWORD` refers to a keyword for a specific parameter.
 * There should be at least one parameter for the command.
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Partial words can be matched e.g. `Han` will match `Hans`.
 * Patients matching at least one keyword in every parameter will be returned (i.e. AND search for different parameters, OR search for same parameter). In more details,
-    * At least one of the patient's details (name, phone, email, address, tag, condition, task description, or medication) must match with at least one `KEYWORD`.
+    * At least one of the patient's details (name, phone, email, address, tag, task description, condition, medication, or remark) must match with at least one `KEYWORD`.
     * For every different parameter `xyz`, it must match at least one `XYZ_KEYWORD`.
 
 Examples:
 * `find key n/John n/Betsy n/Charlie e/@example.com e/@u.nus.edu` returns patients who fulfill all conditions below:
-    * The patient's name contains either `John` or `Betsy` or `Charlie`.
-    * The patient's email address must contains either `@example.com` or `@u.nus.edu`.
+    * The patient's name must contain either `John` or `Betsy` or `Charlie`.
+    * The patient's email address must contain either `@example.com` or `@u.nus.edu`.
     * At least one of the patient's details must contain `key` (e.g., one of their tags contains `key`).
 * `find jo` returns patients with names `Joe` and `John`, patients with emails `jo@example.com`, and patients with tag `joints`.
 * `find alice meier` returns `Alice Tan` & `Benson Meier`.
