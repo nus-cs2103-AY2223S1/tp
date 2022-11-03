@@ -33,7 +33,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
     - [Listing all client profiles: list -c](#listing-all-client-profiles-list--c)
     - [Filtering client profiles: filter -c](#filtering-client-profiles-filter--c)
     - [Deleting a client profile: delete -c](#deleting-a-client-profile-delete--c-index)
-    - [Selecting a client profile: select -pc](#selecting-a-client-profile-select--pc-index)
+    - [Selecting a client profile: select -c](#selecting-a-client-profile-select--pc-index)
 - [`Command summary`](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
