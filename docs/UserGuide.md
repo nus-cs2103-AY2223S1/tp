@@ -72,7 +72,7 @@ Currently, **TrackO** only supports tracking inventory items that are countable 
 Our development team will introduce more powerful inventory tracking functionalities _(e.g. by weight, by litres, etc)_
 in future enhancements of the product (stay tuned!).
 
-Interested? Jump straight to our [Quick Start](#quick-start) segment to get started now! 
+Interested? Jump straight to our [Quick Start section](#quick-start) to get started now! 
 
 ---
 ## Using this guide
@@ -87,19 +87,19 @@ you can find [here](#layout). This section of the guide will help you understand
 their roles in this application. 
 
 After familiarising yourself with the [GUI](#gui), we have included a [tutorial section](#tutorial) where you can use some 
-example commands play around with some of our sample data and get to know TrackO's features a bit better. 
+example commands to play around with some of our sample data and get to know TrackO's features a bit better. 
 
 Following that, as our application uses commands which require specific inputs. To help you out with learning the command formats used
 in this guide, you can head over to the [Command Guide](#command-guide) section of this guide. This will come in handy for you when 
 you're ready to get some in-depth exposure to our [features](#features). Because our applications helps your business handle 
-orders and inventory, we have segmented our commands into 2 sections. You can click [here](#uinventory-managementu) to find commands 
-related to **managing orders** and click [here](#uorder-managementu) to find commands which help with **inventory management**. For more **general features**, 
+orders and inventory, we have split our commands into 2 sections. You can click [here](#uorder-managementu) to find commands 
+related to **managing orders** and click [here](#uinventory-managementu) to find commands which help with **inventory management**. For more **general features**, 
 you can go to [this section](#ugeneral-featuresu) as well!
 
 Lastly, we have included a handy [command summary](#command-summary) for when you're proficient at using TrackO and just want to take a quick look
 at any commands you need!
 
-p.s. Not too sure about some technical terms in this guide? Check out our [glossary](#glossary) to get better understand all the technical jargon! 
+p.s. Not too sure about some technical terms in this guide? Check out our [glossary](#glossary) to get a better understand all the technical jargon! 
 
 -------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -114,13 +114,13 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
    data.<br>
    ![Ui](images/Ui.png)
 
-5. To start out with some commands, head over to the [tutorial segment](#tutorial) of this user guide!
+5. To start out with some commands, head over to the [tutorial section](#tutorial) of this user guide!
 
 6. If you'd like to skip the tutorial, head over to the [features section](#features) below for some of the 
 more technical specifications of each command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Want to begin integration with TrackO now? Enter the `clear` command to get rid of the sample data.
+Want start using TrackO from scratch? Enter the [`clear`](##clearing-all-data-in-tracko-clear) command to remove all application data.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -132,15 +132,15 @@ Want to begin integration with TrackO now? Enter the `clear` command to get rid 
 To get you started, here are some simple commands you can try out on our sample data before getting to know more of
 TrackO's functionalities! 
 
-1. We start off by getting to know how to manage our **inventory**!
+1. We start off by getting to know how to manage your **inventory**!
    1. Adding an item: `addi`
-       * Say your small business has `350` of a new item, `Teddy bear keychain` currently in your physical inventory.
-         It cost you `$0.89` to make these keychains and are selling them at `$3.50`.
+       * Say your small business has `350` units of the new item, `Teddy bear keychain` currently in your physical inventory.
+         It costs `$0.89` to make these keychains and you will be selling them at `$3.50` each.
        * You can add these items to TrackO, with the following command:
          `addi i/Teddy bear keychains q/350 d/Great for kids! t/New sp/3.50 cp/0.89`
        * This command also helps to add a short description to the item and tags it as `New`.
 
-You should see this item appear in the [item card](link to layout) at index 5.
+You should see this item appear in TrackO at index 5 as shown below:
    <br/>
 2. Next, we move on to order management:
     1. Adding an order: `addo`
@@ -165,19 +165,19 @@ If an item is not in your inventory, TrackO does not allow you to add that item 
 
    2. Finding order(s): `findo`
       * Our application allows you to search for orders by different fields (eg. payment status, delievery status, customer details).
-      * To find orders to be sent to `Clementi` which have not been paid enter the following command to the [command box](link to layout section):
+      * To find orders to be delivered to `Clementi` which have not been paid for, enter the following command to the [command box](link to layout section):
       ```
       findo -P a/Clementi
       ```
-   You should see these orders appear in the [order card](link to layout).
+   You should see these orders appear in the [order list](link to layout).
 
    3. Listing order(s): `listo`
        * To view all your orders again, enter `listo`.
 
-   You should see these orders appear in the [order card](link to layout).
+   You should see these orders appear in the [order list](link to layout).
 
 Now that you're done trying out some commands, you can enter `exit` to leave the application. We hope that this short tutorial was helpful! 
-To check out more commands, you can head over to our [features segment](#features).
+To check out more commands, you can head over to our [features section](#features).
 
 -------
 ## Command guide
