@@ -12,6 +12,7 @@ Given below are my contributions to the project.
 * **New Feature**: To be added soon
 
 
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=rachelchua)
 
 
@@ -19,13 +20,25 @@ Given below are my contributions to the project.
     * To be added soon
 
 * **Enhancements to existing features**:
-    * To be added soon
+   * FindTasks command, 
+   * FindModules command,
+   * ListTasks command, 
+   * ListModules command, 
+   * Implemented Exam class and its fields classes, 
+   * AddExamCommand, 
+   * EditExamCommand.
 
 * **Documentation**:
     * User Guide:
-        * To be added soon
+  Wrote documentation for 
+      * FindTasks command, 
+      * FindModules command,
+      * ListTasks command,
+      * ListModules command,
+      * AddExamCommand,
+      * EditExamCommand.
     * Developer Guide:
-        * To be added soon
+        * AddExamCommand. Included the sequence diagram. 
 
 * **Community**:
     * To be added soon
