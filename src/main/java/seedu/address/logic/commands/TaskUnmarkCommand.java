@@ -61,7 +61,7 @@ public class TaskUnmarkCommand extends Command {
         Task taskToUnmark = lastShownTeamList.get(teamIndex.getZeroBased()).getTask(taskIndex.getZeroBased());
 
         if (!taskToUnmark.getIsDone()) {
-            return new CommandResult(String.format(MESSAGE_ALREADY_UNMARKED, taskToUnmark));
+            throw new CommandException(String.format(MESSAGE_ALREADY_UNMARKED, taskToUnmark));
         }
 
         model.unmarkTask(teamIndex, taskIndex);
