@@ -190,6 +190,8 @@ Format: `add-et n/EVENT NAME t/TRIP NAME`
 - The TRIP NAME must exist in the trips list.
 - The EVENT NAME must exist in the events list.
 
+*Note: Event names and trip names are used as inputs instead of indexes to make the command as specific as possible.
+
 <div class="alert alert-block alert-success"><b>Use case: </b> <code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command. </div>
 
 Examples:
@@ -209,11 +211,11 @@ Format: `delete-et n/EVENT NAME t/TRIP NAME`
 - The TRIP NAME must exist in the trips list.
 - The EVENT NAME must exist in the trip itinerary.
 
+<div class="alert alert-block alert-success"><b>Use case: </b> Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. </div>
+
 Examples:
 - `delete-et n/Visit the Swiss Alps t/Trip to Switzerland` remove the event titled `Visit the Swiss Alps` from the itinerary of the trip titled `Trip to Switzerland` and returns it to the bucket list.
 
-
-<div class="alert alert-block alert-success"><b>Use case: </b> Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. </div>
 
 #### Selecting a trip to view its itinerary `select`
 Selects the trip in the specified INDEX and displays all events added to that trip in the events list panel.
@@ -265,10 +267,10 @@ Format: `unmark INDEX`
 - The index refers to the index number shown in the trip list.
 - The index must be a positive integer 1, 2, 3, …
 
+<div class="alert alert-block alert-success"><b>Use case: </b> Accidentally marked a trip as completed on accident? Use the <code>unmark</code> command to set it back to incomplete. </div>
+
 Examples:
 - `unmark 1` marks the first trip in the trip list as not done.
-
-<div class="alert alert-block alert-success"><b>Use case: </b> Accidentally marked a trip as completed on accident? Use the <code>unmark</code> command to set it back to incomplete. </div>
 
 ### Sorting
 
@@ -330,12 +332,11 @@ Format: `summary`
 - Progress indicator for trips and events.
 - Command must be used again to view updates to the summary.
 
+<div class="alert alert-block alert-success"><b>Use case: </b> How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the <code>summary</code> command. </div>
+
 After the command has been successfully executed, a new window will pop up, with information summarising your lifetime travels.
 
 [Summary_Window](images/SummaryScreenshot.png)
-
-
-<div class="alert alert-block alert-success"><b>Use case: </b> How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the <code>summary</code> command. </div>
 
 ### General Commands
 
