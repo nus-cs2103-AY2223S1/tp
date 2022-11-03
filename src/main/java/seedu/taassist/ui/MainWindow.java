@@ -238,8 +238,6 @@ public class MainWindow extends UiPart<Stage> {
                 case UI_UNFOCUS:
                     handleUnfocusMode();
                     break;
-                case UI_NO_ACTION:
-                    // fallthrough
                 default:
                     assert false;
                 }
