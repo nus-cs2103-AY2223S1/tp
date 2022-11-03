@@ -35,11 +35,11 @@ future tasks. With our app, teams management would be easier than ever.
 3. Copy the file to the folder you want to use as the home folder for your EZLead app.
 4. Double-click the file to start the app.
 5. Type the command in the command box and press Enter to execute it.<br>Some example commands you can try:
-  * `userlist`: Shows the global list of all members and their details.
-  * `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney`: Adds a member named `John Doe` to the app.
-  * `delete p/2`: Deletes the 2nd member shown in the global member list.
-  * `clear`: Deletes all teams, members and tasks.
-  * `exit`: Exits the app.
+   * `userlist`: Shows the global list of all members and their details.
+   * `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney`: Adds a member named `John Doe` to the app.
+   * `delete p/2`: Deletes the 2nd member shown in the global member list.
+   * `clear`: Deletes all teams, members and tasks.
+   * `exit`: Exits the app.
 6. Refer to the [Features](#features) section in this user guide for more details on commands
 
 --------------------------------------------------------------------------------------------------------------------
@@ -62,8 +62,7 @@ future tasks. With our app, teams management would be easier than ever.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurence of the parameter will be taken.
   e.g. if the command specifies `task/1 task/2`, only `task/2` will be taken.
 
-
-* Commands are case-sensitive.
+* Commands are case-sensitive. 
   e.g. You cannot enter HeLp instead of help
 
 </div>
@@ -150,7 +149,7 @@ Examples:
 
 assigns a member to a team. 
 
-Format: `assign m/MEMBER-INDEX t/TEAM-INDEX`
+Format: `assign m/MEMBER-INDEX t/TEAM-INDEX` 
 
 <div markdown="block" class="alert alert-info">
 
@@ -161,7 +160,7 @@ MEMBER-INDEX is the index from the userlist (refer to `Viewing all members` sect
 </div>
 
 Examples:
-* `assign m/1 t/1` Assigns the first member in the global member list to the first team.
+* `assign m/1 t/1` Assigns the first member in the global member list to the first team. 
 
 ![AssignMemberExample.png](images/AssignMemberExample.png)
 
@@ -239,27 +238,13 @@ Examples:
 
 </div>
 
-### Manually editing save file:
-
-For advanced users, the data and state of EZLEAD is stored in `data/addressbook.json`.
-You can manually modify the data directly by accessing this JSON file.
-
-However, EZLEAD cannot verify validity of the data if it was manually modified. Any invalid data will cause EZLEAD
-to load in an EMPTY state.
-
-![JSONSaveFile.png](images/JSONSaveFile.png)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: What should be the index of the member to be specified to assign and unassign members from a team?
 
-<<<<<<< HEAD
-**A**: You can use the index of the member provided in the user list. You can access user list by using the command `userlist`.
-=======
 **A**: You can use the index of the member provided in the user list. You can access user list by using the command `userlist`.    
->>>>>>> 55d866053b35d32b118853e2714ff2ec28d6d700
 
 --------------------------------------------------------------------------------------------------------------------
 
