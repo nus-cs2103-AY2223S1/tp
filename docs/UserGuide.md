@@ -17,7 +17,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 2. [**Features**](#features)
    1. [**Universal commands**](#universal-commands)
       1. [`help` Viewing help](#viewing-help--help)
-      2. [`exit` Exiting Waddle](#exiting-waddle--exit)<br><br>
+      2. [`exit` Exiting Waddle](#exiting-waddle--exit)
    2. [**The main page**](#the-main-page)
    3. [**Commands on main page**](#commands-on-the-main-page)
       1. [`add` Creating a new itinerary](#creating-a-new-itinerary--add)
@@ -99,6 +99,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
   - e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
 ### Universal commands
 Most commands in Waddle can only be used on the [main page](#the-main-page) or the [planning page](#the-planning-page). However, the commands in this section may be used on either page at any time.
 
