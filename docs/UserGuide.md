@@ -420,7 +420,7 @@ As long as you want, however please note that the UI will be distorted if these 
 **Q: Why do I need to press `Enter` twice to input the command?** <br>
 
 **A**:
-Unfortunately, this is a limitation of JavaFX. 
+Unfortunately, this is a limitation of ControlsFX, which is a third party library for the autocomplete feature. 
 The first `Enter` key press will trigger the autocomplete feature, 
 the second `Enter` key press will execute the command.
 
