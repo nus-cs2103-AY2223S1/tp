@@ -41,6 +41,7 @@ DevEnable is a **desktop app for developers to manager their projects, optimized
 
 **:information_source: Notes about the command format:**<br>
 
+* Commands are in the following format: `COMMAND FLAG [ID/ARGUMENTS]*`. Every command starts with a command keyword, followed by the command flag, then the arguments for said command. Typically, flags start with a dash `-`, and arguments start with an identifier `ID/ARGUMENT`.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `project -a n/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used as `project -a n/PROJECT_NAME`.
 
