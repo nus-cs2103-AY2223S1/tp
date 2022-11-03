@@ -5,8 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalToDos.FIRST;
+import static seedu.address.testutil.TypicalToDos.SECOND;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 public class TaskListTest {
 
@@ -50,5 +53,22 @@ public class TaskListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
                 -> taskList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void setTask_invalidTask_throwsTaskNotFoundException() {
+        taskList.add(FIRST);
+        assertThrows(TaskNotFoundException.class, () -> taskList.setTask(SECOND, FIRST));
+    }
+
+    @Test
+    public void setTask_validTask_editsTask() {
+        taskList.add(FIRST);
+        taskList.setTask(FIRST, SECOND);
+
+        TaskList expectedTaskList = new TaskList();
+        expectedTaskList.add(SECOND);
+
+        assertEquals(expectedTaskList, taskList);
     }
 }
