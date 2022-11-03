@@ -67,6 +67,7 @@ class UngradeCommandTest {
                 assignment.assignmentName, unmarkedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_THIRD_STUDENT);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), unmarkedStudent);
         assertCommandSuccess(ungradeCommand, model, expectedMessage, expectedModel);
     }

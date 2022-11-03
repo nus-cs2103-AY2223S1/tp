@@ -95,6 +95,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

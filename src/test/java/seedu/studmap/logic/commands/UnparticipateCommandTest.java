@@ -70,6 +70,7 @@ class UnparticipateCommandTest {
                 participation.participationComponent, unmarkedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_SECOND_STUDENT);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), unmarkedStudent);
         assertCommandSuccess(unparticipateCommand, model, expectedMessage, expectedModel);
     }

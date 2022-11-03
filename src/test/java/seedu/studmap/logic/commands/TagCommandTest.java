@@ -233,6 +233,7 @@ public class TagCommandTest {
         }
 
         showStudentAtIndex(baseModel, INDEX_SECOND_STUDENT);
+        showStudentAtIndex(expectedModel, INDEX_SECOND_STUDENT);
         TagCommand tagCommand = new TagCommand(new AllIndexGenerator(), singleTagAdder);
         assertCommandSuccess(tagCommand, baseModel, expectedMessage, expectedModel);
     }
@@ -258,6 +259,7 @@ public class TagCommandTest {
                 editedStudentBase.getName());
 
         showStudentAtIndex(baseModel, INDEX_SECOND_STUDENT);
+        showStudentAtIndex(expectedModel, INDEX_SECOND_STUDENT);
         TagCommand tagCommand = new TagCommand(new SingleIndexGenerator(indexLaststudent),
                 singleTagAdder);
 
