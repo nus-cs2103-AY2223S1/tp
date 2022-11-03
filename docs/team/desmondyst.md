@@ -62,5 +62,6 @@ Given below are my contributions to the project.
     * [#159](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/159)
     * [#165](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/165)
 
-
+* **Contributions beyond the project team**: 
+  * Reported bugs and provided suggestions for other teams: [Bugs](https://github.com/desmondyst/ped/issues)
 
