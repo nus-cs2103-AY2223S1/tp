@@ -28,15 +28,16 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**: 
   * Redesigned Help Window (PR #115, #141, #142)
-    * Help window now provides a brief summary of available commands on top of a link to the user guide. 
-    * Provides convenience as users can now get some basic help in the help window instead of being redirected to the user guide. This enhancement saves clicks and time in the long run.  
+    * What I did: 
+      * Help window now provides a brief summary of available commands on top of a link to the user guide. 
+    * Justification: 
+      * Provides convenience as users can now get some basic help in the help window instead of being redirected to the user guide. This enhancement saves clicks and time in the long run.  
   * Redesigned User Interface (PR #84, #94, #116)
     * What I did:
       * Moved Result Display window to the right and added Saved Exercises List window. 
       * Separated Date as a standalone label in the Exercise Card UI. 
     * Justification: 
       * For moving the Result Display window and adding the Saved Exercises List window, the previous UI had a lot of wasted real estate as the cards were taking up alot of space. Furthermore, the result display window was too small and needed to scroll, especially when a long error message came up, which was inconvenient. By moving it to the side, it would make messages much easier to see and tie in with the Generate and Listing PR features on top of existing system messages.
-    * Highlights:
   * Added Reps to the creation of an Exercise. (Pr #67)
     * In charge of REGEX and operations relating to reps. 
 
