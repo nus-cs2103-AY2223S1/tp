@@ -1,8 +1,9 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an Assignment in the task book.
