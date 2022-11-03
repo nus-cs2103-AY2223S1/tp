@@ -93,7 +93,7 @@ public class Appointment implements Comparable<Appointment> {
      * @return True if The given person is involved in this appointment
      */
     public boolean involvesPerson(Person testPerson) {
-        return this.patient.equals(testPerson) || this.nurse.equals(testPerson);
+        return patient.equals(testPerson) || nurse.equals(testPerson);
     }
 
     /**
@@ -103,7 +103,7 @@ public class Appointment implements Comparable<Appointment> {
      * @return True if The appointment involves The given patient
      */
     public boolean hasPatient(Patient patient) {
-        return this.patient.equals(patient);
+        return patient.equals(patient);
     }
 
     /**
@@ -113,7 +113,7 @@ public class Appointment implements Comparable<Appointment> {
      * @return True if The appointment involves The given nurse
      */
     public boolean hasNurse(Nurse nurse) {
-        return this.nurse.equals(nurse);
+        return nurse.equals(nurse);
     }
 
     @Override
@@ -127,6 +127,33 @@ public class Appointment implements Comparable<Appointment> {
 
     @Override
     public int compareTo(Appointment o) {
-        return this.getAppointmentDateTime().compareTo(o.getAppointmentDateTime());
+        return getAppointmentDateTime().compareTo(o.getAppointmentDateTime());
+    }
+
+    /**
+     * Links the current appointment to its nurse and patient
+     */
+    public void create() {
+        nurse.addAppointment(this);
+        patient.addAppointment(this);
+    }
+
+    /**
+     * Unlinks the current appointment to its nurse and patient
+     */
+    public void delete() {
+        nurse.removeAppointment(this);
+        patient.removeAppointment(this);
+    }
+
+    /**
+     * Links the current appointment to its new nurse
+     *
+     * @param newNurse The new nurse to link to
+     */
+    public void changeNurseTo(Nurse newNurse) {
+        nurse.removeAppointment(this);
+        setNurse(newNurse);
+        nurse.addAppointment(this);
     }
 }

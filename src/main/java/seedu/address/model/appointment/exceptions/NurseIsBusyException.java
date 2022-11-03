@@ -7,4 +7,8 @@ public class NurseIsBusyException extends Exception {
     public NurseIsBusyException() {
         super("This nurse is busy");
     }
+
+    public NurseIsBusyException(String string) {
+        super(string);
+    }
 }

@@ -1,11 +1,15 @@
 package seedu.address.model.person;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.category.Category;
 import seedu.address.model.tag.Tag;
 
@@ -20,6 +24,7 @@ public class Nurse extends Person {
     private final List<HomeVisit> homeVisitList = new ArrayList<>();
     private final List<Date> unavailableDateList = new ArrayList<>();
     private final List<Date> fullyScheduledDateList = new ArrayList<>();
+    public Set<Appointment> appointments = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -106,5 +111,51 @@ public class Nurse extends Person {
 
     public boolean isNurse() {
         return true;
+    }
+
+    /**
+     * Adds new appointment to current appointment set
+     *
+     * @param newAppointment New appointment to add
+     */
+    public void addAppointment(Appointment newAppointment) {
+        this.appointments.add(newAppointment);
+    }
+
+    /**
+     * Removes appointment from current appointment set
+     *
+     * @param appointment Appointment to remove
+     */
+    public void removeAppointment(Appointment appointment) {
+        this.appointments.remove(appointment);
+    }
+
+    /**
+     * Returns an optional of an appointment filtered from the appointment set
+     *
+     * @param appointmentDateTime The appointment date time of the requested
+     *                            appointment
+     * @return The optional of the appointment
+     */
+    public Optional<Appointment> findAppointment(AppointmentDateTime appointmentDateTime) {
+        return appointments.stream()
+                .filter(appointment -> appointment.getAppointmentDateTime().equals(appointmentDateTime))
+                .findFirst();
+    }
+
+    /**
+     * Returns an optional of an appointment filtered from the appointment set
+     *
+     * @param patient             The patient of the request appointment
+     * @param appointmentDateTime The appointment date time of the requested
+     *                            appointment
+     * @return The optional of the appointment
+     */
+    public Optional<Appointment> findAppointment(Patient patient, AppointmentDateTime appointmentDateTime) {
+        return appointments.stream()
+                .filter(appointment -> appointment.getAppointmentDateTime().equals(appointmentDateTime)
+                        && appointment.getPatient().equals(patient))
+                .findFirst();
     }
 }
