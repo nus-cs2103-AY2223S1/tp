@@ -5,9 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.PRACTICE;
 import static seedu.address.testutil.TypicalEvents.PRESENTATION;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.BOB;
+import static seedu.address.testutil.TypicalProfiles.HOON;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +25,11 @@ class EventsAttendingTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new EventsAttending(null));
+    }
+
+    @Test
+    public void constructor_emptyList_returnsEmptyEventsAttending() {
+        assertEquals(eventsAttending, new EventsAttending(List.of()));
     }
 
     @Test
@@ -77,8 +86,20 @@ class EventsAttendingTest {
     }
 
     @Test
-    public void asUnmodifiableList_modifyList_throwsUnsupportedOperationException() {
+    public void getEventsList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
                 -> eventsAttending.getEventsList().remove(0));
+    }
+
+    @Test
+    public void addAttendeeToEvents_newAttendee_attendeeAdded() {
+        eventsAttending.addEvent(PRESENTATION);
+        eventsAttending.addEvent(PRACTICE);
+        assertFalse(PRESENTATION.hasAttendee(HOON));
+        assertFalse(PRACTICE.hasAttendee(HOON));
+
+        eventsAttending.addAttendeeToEvents(HOON);
+        assertTrue(PRESENTATION.hasAttendee(HOON));
+        assertTrue(PRESENTATION.hasAttendee(HOON));
     }
 }

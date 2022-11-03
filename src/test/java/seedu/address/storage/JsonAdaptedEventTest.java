@@ -5,6 +5,7 @@ import static seedu.address.storage.JsonAdaptedEvent.MISSING_FIELD_MESSAGE_FORMA
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.PRESENTATION;
 import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
+import static seedu.address.testutil.TypicalProfiles.AMY;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ public class JsonAdaptedEventTest {
     private static final String INVALID_START = "+651234";
     private static final String INVALID_END = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final List<JsonAdaptedProfile> NON_EXISTENT_ATTENDEES = List.of(
+            new JsonAdaptedProfile(AMY));
 
     private static final String VALID_TITLE = PRESENTATION.getTitle().toString();
     private static final String VALID_START = PRESENTATION.getStartDateTime().toString();
@@ -83,5 +86,20 @@ public class JsonAdaptedEventTest {
         JsonAdaptedEvent event =
                 new JsonAdaptedEvent(VALID_TITLE, VALID_START, VALID_END, invalidTags, VALID_ATTENDEES);
         assertThrows(IllegalValueException.class, () -> event.toModelType(NUS_SCHEDULER));
+    }
+
+    @Test
+    public void toModelType_nonExistentAttendees_returnsEventWithValidAttendees() {
+        List<JsonAdaptedProfile> invalidProfiles = new ArrayList<>(VALID_ATTENDEES);
+        invalidProfiles.addAll(NON_EXISTENT_ATTENDEES);
+        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_TITLE, VALID_START, VALID_END, VALID_TAGS,
+                invalidProfiles);
+
+        try {
+            assertEquals(PRESENTATION, event.toModelType(NUS_SCHEDULER));
+        } catch (IllegalValueException e) {
+            throw new AssertionError("There should not be an error converting the event.", e);
+        }
+
     }
 }

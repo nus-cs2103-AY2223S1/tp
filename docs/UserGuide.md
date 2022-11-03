@@ -123,13 +123,13 @@ Each profile is a set of contact information about a person in your NUS communit
 A profile must contain the following information:
 
 * Name, limited to 24 alphanumeric characters including spaces
-* Phone number
+* A phone number, at least 3 digits and at most 15 digits long
 * A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email domains
 
 A profile may also contain:
 
 * Telegram username
-* Tags to categorise your profiles, limited to 24 characters
+* Tags to categorise your profiles, each limited to 24 characters
 
 </div>
 

@@ -1,6 +1,8 @@
 package seedu.address.model.profile;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -39,5 +41,17 @@ public class NameTest {
         // long names
         assertTrue(Name.isValidName("123456789 123456789 1234")); // 24 chars
         assertFalse(Name.isValidName("123456789 123456789 12345")); // 25 chars invalid
+    }
+
+    @Test
+    public void compareTo_sameCapitalisationAndSpelling_isEqual() {
+        assertEquals(0, new Name("Aaron").compareTo(new Name("Aaron")));
+        assertEquals(0, new Name("65aaron").compareTo(new Name("65aaron")));
+    }
+
+    @Test
+    public void compareTo_differentCapitalisationSameSpelling_isNotEqual() {
+        assertNotEquals(0, new Name("aaron").compareTo(new Name("Aaron")));
+        assertNotEquals(0, new Name("A").compareTo(new Name("AA")));
     }
 }

@@ -1,0 +1,10 @@
+{
+  "profiles": [
+
+  ],
+  "events": [ {
+    "title" : "Event with invalid title field: Discuss present@tion",
+    "start" : "11/10/2022 09:00",
+    "end" : "11/10/2022 10:00"
+  } ]
+}
