@@ -217,9 +217,51 @@ The person model now contains a `Net Worth` field.
 * `displayValue` of type `String`: Used for displaying `MeetingTime` on `MeetingCard`, `PersonCard` and `PersonProfile`
 * `date` of type `java.time.LocalDateTime`: Used for sorting `MeetingTime`s for `MeetingsWindow` and `SyncCommand`
 
-#### Related Features
+#### Design Considerations
+**Aspect: MeetingTime Object**
+* **Alternative 1 (current choice): Person object contains its own set of MeetingTime**
+  * Pros: Easier to implement given the short amount of time
+  * Cons: Harder to sort/filter/manipulate
+* **Alternative 2 (ideal choice): Bidirectional navigation between MeetingTime and Person**
+  * Pros: Better abstraction therefore easier to perform MeetingTime specific tasks(e.g. sort, filter)
+  * Cons: More complicated to implement
 
-**Upcoming Meetings**
+#### Related Features                                  
+* [Sync Meetings feature](#SyncMeetingsFeature)        
+* [Upcoming Meetings feature](#UpcomingMeetingsFeature)
+
+<a id="SyncMeetingsFeature"></a>
+### Sync Meetings feature
+#### Implementation
+The Sync Meetings feature is facilitated by the following operation:
+
+* `Person#syncMeetingTimes()` — Iterates through all `MeetingTime`s a `Person` has and removes those that have passed.
+
+This operation is exposed in the Model interface as `Model#syncMeetingTimes()`
+
+#### Example Usage:
+Step 1. User executes `sync`. `Model#syncMeetingTimes()` is called by `SyncCommand#execute(Model)`.
+
+Step 2. `Model#syncMeetingTimes()` calls `AddressBook` which calls `UniquePersonList#syncMeetingTimes()`.
+
+Step3.  `UniquePersonList#syncMeetingTimes()` calls `Person#syncMeetingTimes()` for each person in `UniquePersonList#internalList`
+
+#### Design
+
+[//]: # (Add Sequence Diagram)
+
+#### Design Considerations
+**Aspect: Sync Meeting**
+* **Alternative 1 (current choice): In place filter of uniquePersonList**
+  * Pros: Simple to implement
+  * Cons: Hard to introduce undo logic
+* **Alternative 2: New instance of uniquePersonList when syncing**                       
+  * Pros: Easy to introduce undo logic                                                   
+  * Cons: Breaks singularity of address book in model or uniquePersonList in address book
+
+<a id="UpcomingMeetingsFeature"></a>
+### Upcoming Meetings feature
+#### Implementation
 The Upcoming Meetings function is facilitated by the `MeetingsWindow`, `MeetingCard` and `MeetingListPane` classes.
 `MeetingsWindow` extends `UIPart<Stage>` and is linked to an FXML Menu Item `meetingsMenuItem` in `MainWindow`
 During construction of `MainWindow` object, a `MeetingsWindow` object is instantiated and `setAccelerator()` is
@@ -230,39 +272,18 @@ The `MainWindow#setAccelerator()` function sets a shortcut that links the call o
 The construction of a `MeetingsWindow` object, will create a `MeetingsListPanel` and a `private` `meetingsMessage`
 `label` that takes in a `MEETINGS_MESSAGE`
 
-**Sync Meetings**
-The Sync Meetings feature is facilitated by the following operation:
+#### Example Usage:
+Step 1. User click `F2` on his keyboard. `MainWindow#handleMeetings()` is called by the Key Event.
 
-* `Person#syncMeetingTimes()` — Iterates through all `MeetingTime`s a `Person` has and removes those that have passed.
+Step 2. Check is `MeetingsWindow` is showing. 
 
-This operation is exposed in the Model interface as `Model#syncMeetingTimes()`
+* Step 2a. If `MeetingsWindow` is not showing, call `MeetingsWindow#getMeetings()`, filtering through all the meetings in the next 7 days. `MeetingsWindow#show()` is then called to show the meeting window.
 
-#### Example Usage
-Step 1. The user executes `sync` to get rid of outdated meetings.
+* Step 2b. Else, `MeetingsWindow#focus()` is called.
 
-Step 2. The user then presses `F2` on his keyboard to quickly access the Upcoming Meetings function.
-
-Step 3. After the meeting, the user arranges the next meeting using `meeting ...` and also executes `deleteMeeting ...` to delete the old one.
-                                                                                                                                                                                                                
 #### Design
-[//]: # (<fxml portion>)
 
-#### Design Considerations
-**Aspect: MeetingTime Object**
-* **Alternative 1 (current choice): Person object contains its own set of MeetingTime**
-  * Pros: Easier to implement given the short amount of time
-  * Cons: Harder to sort/filter/manipulate
-* **Alternative 2 (ideal choice): Bidirectional navigation between MeetingTime and Person**
-  * Pros: Better abstraction therefore easier to perform MeetingTime specific tasks(e.g. sort, filter)
-  * Cons: More complicated to implement
-
-**Aspect: Sync Meeting**
-* **Alternative 1 (current choice): In place filter of uniquePersonList**
-  * Pros: Simple to implement
-  * Cons: Hard to introduce undo logic
-* **Alternative 2: New instance of uniquePersonList when syncing**
-  * Pros: Easy to introduce undo logic
-  * Cons: Breaks singularity of address book in model or uniquePersonList in address book
+[//]: # (Add Sequence Diagram)
 
 ### Undo/redo feature
 
