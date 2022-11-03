@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.Parser.DEFAULT_LOC_STRING;
+
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.TeachingAssistant;
@@ -30,6 +32,7 @@ public class TeachingAssistantBuilder extends PersonBuilder {
      */
     public TeachingAssistantBuilder(TeachingAssistant personToCopy) {
         super(personToCopy);
+        rating = personToCopy.getRating();
         moduleCode = personToCopy.getModuleCode();
     }
 
@@ -49,6 +52,23 @@ public class TeachingAssistantBuilder extends PersonBuilder {
         return this;
     }
 
+    @Override
+    public TeachingAssistantBuilder withName(String name) {
+        super.withName(name);
+        return this;
+    }
+
+    @Override
+    public TeachingAssistantBuilder withLocation(String location) {
+        if (location.equals(DEFAULT_LOC_STRING)) {
+            super.withLocation("NUS");
+        } else {
+            super.withLocation(location);
+        }
+        return this;
+    }
+
+
     /**
      * Sets the {@code ModuleCode} of the {@code TeachingAssistant} that we are building.
      */
@@ -57,4 +77,13 @@ public class TeachingAssistantBuilder extends PersonBuilder {
         return this;
     }
 
+    @Override
+    public TeachingAssistantBuilder withGithubUsername(String username) {
+        return (TeachingAssistantBuilder) super.withGithubUsername(username);
+    }
+
+    @Override
+    public TeachingAssistantBuilder withTags(String... tags) {
+        return (TeachingAssistantBuilder) super.withTags(tags);
+    }
 }

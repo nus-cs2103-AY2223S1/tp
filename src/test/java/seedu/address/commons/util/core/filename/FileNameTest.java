@@ -28,17 +28,53 @@ class FileNameTest {
 
         // invalid fileName
         assertFalse(FileName.isValidFileName("")); // empty string
-        assertFalse(FileName.isValidFileName(" ")); // space only
-        assertFalse(FileName.isValidFileName("  ")); // tab
-        assertFalse(FileName.isValidFileName("&"));
-        assertFalse(FileName.isValidFileName("*"));
-        assertFalse(FileName.isValidFileName("%"));
+        assertFalse(FileName.isValidFileName("&&&"));
+        assertFalse(FileName.isValidFileName("***"));
+        assertFalse(FileName.isValidFileName("%%%"));
+        assertFalse(FileName.isValidFileName("!!!"));
+        assertFalse(FileName.isValidFileName("@@@"));
+        assertFalse(FileName.isValidFileName("###"));
+        assertFalse(FileName.isValidFileName("$$$"));
+        assertFalse(FileName.isValidFileName("^^^"));
+        assertFalse(FileName.isValidFileName("***"));
+        assertFalse(FileName.isValidFileName("~~~"));
+        assertFalse(FileName.isValidFileName("```"));
+        assertFalse(FileName.isValidFileName("((("));
+        assertFalse(FileName.isValidFileName(")))"));
+        assertFalse(FileName.isValidFileName("+++"));
+        assertFalse(FileName.isValidFileName("==="));
+        assertFalse(FileName.isValidFileName("[[["));
+        assertFalse(FileName.isValidFileName("{{{"));
+        assertFalse(FileName.isValidFileName("]]]"));
+        assertFalse(FileName.isValidFileName("}}}"));
+        assertFalse(FileName.isValidFileName("|||"));
+        assertFalse(FileName.isValidFileName("\\\\"));
+        assertFalse(FileName.isValidFileName(":::"));
+        assertFalse(FileName.isValidFileName(";;;"));
+        assertFalse(FileName.isValidFileName("'''"));
+        assertFalse(FileName.isValidFileName("\"\"\""));
+        assertFalse(FileName.isValidFileName("<<<"));
+        assertFalse(FileName.isValidFileName(",,,"));
+        assertFalse(FileName.isValidFileName(">>>"));
+        assertFalse(FileName.isValidFileName("???"));
+        assertFalse(FileName.isValidFileName("///"));
+        assertFalse(FileName.isValidFileName("ab"));
+        assertFalse(FileName.isValidFileName("0123456789012345678901234567890"));
 
         // valid fileName
-        assertTrue(FileName.isValidFileName("filename"));
-        assertTrue(FileName.isValidFileName("FILENAME"));
-        assertTrue(FileName.isValidFileName("0123456789"));
-        assertTrue(FileName.isValidFileName("."));
+        assertTrue(FileName.isValidFileName("012345678901234567890123456789"));
+        assertTrue(FileName.isValidFileName("abcdefghijklmnopqrstuvwxyzabcd"));
+        assertTrue(FileName.isValidFileName("ABCEDFGHIJKLMNOPQRSTUVWXYZABCD"));
+        assertTrue(FileName.isValidFileName("______________________________"));
+        assertTrue(FileName.isValidFileName("------------------------------"));
+        assertTrue(FileName.isValidFileName(".............................."));
+        assertTrue(FileName.isValidFileName("                              "));
+        assertTrue(FileName.isValidFileName("ABC"));
+        assertTrue(FileName.isValidFileName("abc"));
+        assertTrue(FileName.isValidFileName("   "));
+        assertTrue(FileName.isValidFileName("..."));
+        assertTrue(FileName.isValidFileName("---"));
+        assertTrue(FileName.isValidFileName("___"));
     }
 
     @Test

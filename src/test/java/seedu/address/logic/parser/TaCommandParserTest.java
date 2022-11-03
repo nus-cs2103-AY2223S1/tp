@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.GITHUB_USERNAME_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -35,6 +35,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.Parser.DEFAULT_LOC_STRING;
 import static seedu.address.testutil.TypicalPersons.CABE;
 
 import org.junit.jupiter.api.Test;
@@ -117,7 +118,7 @@ public class TaCommandParserTest {
         Person expectedPerson = new TeachingAssistantBuilder(CABE).withRating(VALID_RATING_CABE)
                 .withModuleCode(VALID_MODULE_CODE_CABE).withTags(VALID_TAG_FRIEND).withGithubUsername("")
                 .withLocation(VALID_LOCATION_CABE).build();
-        System.out.println(expectedPerson.getUsername());
+
         assertParseSuccess(taParser, NAME_DESC_CABE + PHONE_DESC_CABE + EMAIL_DESC_CABE + GENDER_DESC_CABE
                         + MODULE_CODE_DESC_CABE + RATING_DESC_CABE + TAG_DESC_FRIEND + LOCATION_DESC_CABE,
                 new TaCommand((TeachingAssistant) expectedPerson));
@@ -128,7 +129,7 @@ public class TaCommandParserTest {
         // no year input
         Person expectedPerson = new TeachingAssistantBuilder(CABE).withRating(VALID_RATING_CABE)
                 .withModuleCode(VALID_MODULE_CODE_CABE).withGithubUsername(VALID_GITHUB_CABE)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_FRIEND).withLocation(DEFAULT_LOC_STRING).build();
         assertParseSuccess(taParser, NAME_DESC_CABE + PHONE_DESC_CABE + EMAIL_DESC_CABE + GENDER_DESC_CABE
                         + MODULE_CODE_DESC_CABE + RATING_DESC_CABE + TAG_DESC_FRIEND + GITHUB_USERNAME_DESC_CABE,
                 new TaCommand((TeachingAssistant) expectedPerson));
@@ -177,7 +178,7 @@ public class TaCommandParserTest {
             + TAG_DESC_HUSBAND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid Module Code
-        assertParseFailure(taParser, NAME_DESC_CABE + INVALID_MODULE_CODE + RATING_DESC_CABE + PHONE_DESC_CABE
+        assertParseFailure(taParser, NAME_DESC_CABE + INVALID_MODULE_CODE_DESC + RATING_DESC_CABE + PHONE_DESC_CABE
                 + EMAIL_DESC_CABE + GENDER_DESC_CABE
                 + TAG_DESC_HUSBAND, ModuleCode.MESSAGE_CONSTRAINTS);
 
@@ -202,7 +203,7 @@ public class TaCommandParserTest {
                 + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(taParser, INVALID_NAME_DESC + INVALID_MODULE_CODE + PHONE_DESC_CABE
+        assertParseFailure(taParser, INVALID_NAME_DESC + INVALID_MODULE_CODE_DESC + PHONE_DESC_CABE
                 + EMAIL_DESC_CABE + GENDER_DESC_CABE
                 + TAG_DESC_HUSBAND, Name.MESSAGE_CONSTRAINTS);
 

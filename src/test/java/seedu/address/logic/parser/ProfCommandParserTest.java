@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.GITHUB_USERNAME_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -178,7 +178,7 @@ public class ProfCommandParserTest {
             Name.MESSAGE_CONSTRAINTS);
 
         // invalid Module Code
-        assertParseFailure(profParser, NAME_DESC_BOB + INVALID_MODULE_CODE + PHONE_DESC_BOB
+        assertParseFailure(profParser, NAME_DESC_BOB + INVALID_MODULE_CODE_DESC + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + GENDER_DESC_BOB
                 + TAG_DESC_HUSBAND, ModuleCode.MESSAGE_CONSTRAINTS);
 
@@ -203,7 +203,7 @@ public class ProfCommandParserTest {
                 + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(profParser, INVALID_NAME_DESC + INVALID_MODULE_CODE + PHONE_DESC_BOB
+        assertParseFailure(profParser, INVALID_NAME_DESC + INVALID_MODULE_CODE_DESC + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + GENDER_DESC_BOB
                 + TAG_DESC_HUSBAND, Name.MESSAGE_CONSTRAINTS);
 
