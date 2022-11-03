@@ -12,7 +12,7 @@ import seedu.address.model.team.Team;
  */
 public class TeamBuilder {
 
-    public static final String DEFAULT_TEAM_NAME = "Frontend";
+    public static final String DEFAULT_TEAM_NAME = "GUI";
 
     private Name name;
     private UniquePersonList members = new UniquePersonList();
