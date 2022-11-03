@@ -1,14 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.MarkQCommand.MESSAGE_MARK_QUESTION_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_QUESTION;
+import static seedu.address.testutil.TypicalQuestions.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,18 +19,17 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.commons.core.Messages;
+import seedu.address.model.*;
 import seedu.address.model.person.Person;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.QuestionBuilder;
-import seedu.address.testutil.TypicalIndexes;
 
 public class MarkQCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_nullQuestion_throwsNullPointerException() {
@@ -36,17 +38,37 @@ public class MarkQCommandTest {
 
     @Test
     public void execute_questionMarkedByModel_markSuccessful() throws Exception {
-        Question validQuestion = new QuestionBuilder().build();
-        ModelStubAcceptingQuestionsAdded modelStub = new ModelStubAcceptingQuestionsAdded();
-        modelStub.addQuestion(validQuestion);
+//        Question validQuestion = new QuestionBuilder().withDescription("Q1").build();
+//        ModelStubAcceptingQuestionsAdded modelStub = new ModelStubAcceptingQuestionsAdded();
+//        modelStub.addQuestion(validQuestion);
+//
+//        CommandResult commandResult = new MarkQCommand(INDEX_FIRST_QUESTION).execute(modelStub);
+//
+//        assertEquals(String.format(MESSAGE_MARK_QUESTION_SUCCESS, validQuestion),
+//        commandResult.getFeedbackToUser());
+//        assertEquals(Arrays.asList(validQuestion), modelStub.questionsAdded);
 
-        CommandResult commandResult = new MarkQCommand(TypicalIndexes.INDEX_FIRST_QUESTION).execute(modelStub);
+        Question questionToBeMarked = model.getFilteredQuestionList().get(INDEX_FIRST_QUESTION.getZeroBased());
+        Question editedQuestion = new QuestionBuilder(questionToBeMarked)
+                .withImportantTag(true)
+                .build();
+        MarkQCommand markQCommand = new MarkQCommand(INDEX_FIRST_QUESTION);
 
-        assertEquals(String.format(MarkQCommand.MESSAGE_MARK_QUESTION_SUCCESS, validQuestion),
-        commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validQuestion), modelStub.questionsAdded);
+        String expectedMessage = String.format(MESSAGE_MARK_QUESTION_SUCCESS, editedQuestion);
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setQuestion(model.getFilteredQuestionList().get(0), editedQuestion);
+
+        assertCommandSuccess(markQCommand, model, expectedMessage, expectedModel);
     }
 
+
+    @Test
+    public void execute_questionMarkedByModel_markFailure() throws Exception {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredQuestionList().size() + 1);
+        MarkQCommand markQCommand = new MarkQCommand(outOfBoundIndex);
+
+        assertCommandFailure(markQCommand, model, Messages.MESSAGE_INVALID_QUESTION_DISPLAYED_INDEX);
+    }
 
     @Test
     public void equals() {
@@ -54,13 +76,13 @@ public class MarkQCommandTest {
         Question q2 = new QuestionBuilder().withDescription("Q2").build();
         ModelStubAcceptingQuestionsAdded modelStub = new ModelStubAcceptingQuestionsAdded();
         modelStub.addQuestion(q1);
-        MarkQCommand markQ1Command = new MarkQCommand(TypicalIndexes.INDEX_FIRST_QUESTION);
+        MarkQCommand markQ1Command = new MarkQCommand(INDEX_FIRST_QUESTION);
 
         // same object -> returns true
         assertTrue(markQ1Command.equals(markQ1Command));
 
         // same values -> returns true
-        MarkQCommand MarkQ1CommandCopy = new MarkQCommand(TypicalIndexes.INDEX_FIRST_QUESTION);
+        MarkQCommand MarkQ1CommandCopy = new MarkQCommand(INDEX_FIRST_QUESTION);
         assertTrue(markQ1Command.equals(MarkQ1CommandCopy));
 
         // different types -> returns false
