@@ -21,7 +21,7 @@ import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
- * Marks a specific debt of a person identified using their respective displayed
+ * Marks specific debts of a person identified using their respective displayed
  * indexes from the address book as paid.
  */
 public class MarkCommand extends Command {
@@ -29,9 +29,7 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks a specific debt of the person identified by the index number "
-            + "used in the displayed person list as paid. The debt is specified by the index number "
-            + "of the debt displayed in the person's debt field. Multiple debts may be specified.\n"
+            + ": Marks a debt of a person as paid. Multiple debts may be specified.\n"
             + "Parameters: PERSON_INDEX (must be a positive integer) "
             + PREFIX_DEBT + "DEBT_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DEBT + "2 3";
@@ -44,7 +42,7 @@ public class MarkCommand extends Command {
     /**
      * Constructs the given MarkCommand.
      *
-     * @param debtorIndex is the index of the {@code Person} in the filtered person list to have a debt marked as paid
+     * @param debtorIndex is the index of the {@code Person} in the filtered person list to have debts marked as paid.
      * @param indexSet is the set of indexes of the {@code Debt}s in the list of debts displayed in the given
      *      person's debt field.
      */
@@ -98,11 +96,11 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code debtorToClear}
-     * with no debts.
+     * Creates and returns a {@code Person} with the details of {@code debtorToUpdate}
+     * and debts-to-mark marked as paid.
      *
-     * @param debtorToUpdate {@code Person} within addressbook to have the specified {@code Debt}s marked as paid.
-     * @param debtsToMark Set of {@code Debt}s to mark from the {@code debtorToUpdate}.
+     * @param debtorToUpdate {@code Person} within PayMeLah to have the specified {@code Debt}s marked as paid.
+     * @param debtsToMark Set of {@code Debt}s to mark as paid from the {@code debtorToUpdate}.
      * @return Person with an updated {@code DebtList}.
      */
     private static Person createUpdatedDebtor(Person debtorToUpdate, Set<Debt> debtsToMark) {
