@@ -13,6 +13,7 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.task.NonRecurringTask;
 import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
@@ -87,7 +88,7 @@ public class EditTaskCommand extends EditGenericCommand {
                 editTaskDescriptor.getDateTime().orElse(initialTask.getDateTime()),
                 editTaskDescriptor.getRecurrenceAndFrequency().get());
         } else {
-            updatedTask = new Task(
+            updatedTask = new NonRecurringTask(
                 editTaskDescriptor.getDescription().orElse(initialTask.getTaskDescription()),
                 editTaskDescriptor.getDateTime().orElse(initialTask.getDateTime()));
         }
