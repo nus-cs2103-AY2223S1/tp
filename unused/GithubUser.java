@@ -40,4 +40,5 @@ public class GithubUser {
     public String ifPresent(Object object) {
         return null;
     }
+
 }
