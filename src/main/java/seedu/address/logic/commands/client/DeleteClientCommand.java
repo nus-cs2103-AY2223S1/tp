@@ -52,7 +52,7 @@ public class DeleteClientCommand extends ClientCommand {
             }
         }
 
-        throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_ID);
+        throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_ID);
 
     }
 
