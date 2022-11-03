@@ -444,7 +444,7 @@ Format: `module user [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PL
 * You are able to specify the modules you are taking currently, taken in the past, and is planning to take in the future.
 * The module code refers to the module code of the module the user is planning to take (E.g. CS2103T)
 * The module code should be a registered module in NUS.
-* Using `rm/module to remove` feature will remove the module from all 3 module lists.
+* Using `rm/MODULE_TO_REMOVE` feature will remove the module from all 3 module lists.
 
 Examples:
 
@@ -468,7 +468,7 @@ Format: `module INDEX [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/P
 * You are able to specify the modules you are taking currently, taken in the past, and is planning to take in the future.
 * The module code refers to the module code of the module the user is planning to take (E.g. CS2103T)
 * The module code should be a registered module in NUS.
-* Using `rm/(module to remove)` feature will remove the module from all 3 module lists.
+* Using `rm/MODULE_TO_REMOVE` feature will remove the module from all 3 module lists.
 
 Examples:
 
@@ -870,10 +870,10 @@ Format: `exit`
     <td><strong>Delete Contact</strong>
     </td>
     <td>
-      <code>delete contact INDEX</code>
+      <code>delete INDEX</code>
       <br>
       <br>
-      <code>Eg. delete contact 2</code>
+      <code>Eg. delete 2</code>
     </td>
   </tr>
 
