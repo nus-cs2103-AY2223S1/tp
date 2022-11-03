@@ -116,7 +116,8 @@ Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION 
 <br>
 1. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
 2. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
-3. Tags must be alphanumeric and cannot contain spaces.
+3. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list.<br>
+4. Tags must be alphanumeric and cannot contain spaces.
 </div>
 
 Examples:
@@ -278,7 +279,7 @@ Restores the state of CinternS before the change made by the previous command.
 Format: `undo`
 
 * There must be a previous state to restore to.
-* Commands that do not change the state, e.g. list, find, etc., will not be undone.
+* Commands that do not change the state, e.g. list, find, sort, etc., will not be undone.
 
 Example:
 * `delete 1` followed by `undo` makes no change to the application list or the interview list.
