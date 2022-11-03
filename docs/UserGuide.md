@@ -16,7 +16,7 @@ title: FinBook User Guide
    4.1. [Managing a client](#41-managing-a-client)<br>
    &emsp; 4.1.1. [Adding a client: `add`](#411-adding-a-client-add)<br>
    &emsp; 4.1.2. [Editing a client: `edit`](#412-editing-a-client--edit)<br>
-   &emsp; 4.1.3. [Removing a client's details: `remove`](#413-removing-a-client's-details--remove)<br>
+   &emsp; 4.1.3. [Removing a client's details: `remove`](#413-removing-a-clients-details--remove)<br>
    &emsp; 4.1.4. [Deleting a client: `delete`](#414-deleting-a-client--delete)<br>
    &emsp; &emsp; 4.1.4.1. [Deleting a single client](#4141-deleting-a-single-client)<br>
    &emsp; &emsp; 4.1.4.2. [Deleting multiple clients](#4142-deleting-multiple-clients)<br>
@@ -49,7 +49,7 @@ title: FinBook User Guide
 
 **FinBook is a desktop application for you as a Financial Advisor (FA) to manage your client details and ensure that
 your data is secured.** With FinBook, you can set a unique [password](#422-setting-or-updating-the-password--password),
-[manage](#41-managing-a-client) and [view](#416-viewing-portfolio-of-a-specific-client-view) client’s details,
+[manage](#41-managing-a-client) and [view](#417-viewing-portfolio-of-a-specific-client-view) client’s details,
 meetings and portfolio as well as many [other features](#43-general) to make your daily workflow much
 **more efficient**!
 
@@ -283,7 +283,7 @@ Examples:
 
 * `edit` command will automatically view the updated portfolio of the edited client.
 * To remove tags, plans, or notes, refer
-  to [4.1.3. Removing a client's details : `remove`](#413-removing-a-client's-details--remove)
+  to [4.1.3. Removing a client's details : `remove`](#413-removing-a-clients-details--remove)
 
 </div>
 
@@ -544,11 +544,11 @@ Steps to reset the password:
 Toggles the visibility of FinBook by clicking on the `open eye` or `closed eye` icon on the top right of the
 application.
 
-|               ![Shown](images/Ui_shown.png)                               |
+|                       ![Shown](images/Ui_shown.png)                       |
 |:-------------------------------------------------------------------------:|
 | <sub>If the icon is an `open eye` FinBook displays all client data.</sub> |
 
-|                  ![Hidden](images/Ui_hidden.png)                                  |
+|                          ![Hidden](images/Ui_hidden.png)                          |
 |:---------------------------------------------------------------------------------:|
 | <sub>If the icon is a `closed eye` FinBook hides all sensitive client data.</sub> |
 
