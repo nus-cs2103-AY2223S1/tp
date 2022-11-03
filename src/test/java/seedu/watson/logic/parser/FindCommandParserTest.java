@@ -4,6 +4,8 @@ import static seedu.watson.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.watson.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.watson.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -25,8 +27,12 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() throws ParseException {
         // no leading and trailing whitespaces
+        List<String> predicateKeywordList = new ArrayList<>();
+        Collections.addAll(predicateKeywordList, "Alice", "", "");
+        List<String> unmodifiablePredicateKeywordList = Collections.unmodifiableList(predicateKeywordList);
+
         FindCommand expectedFindCommand =
-            new FindCommand(new FindCommandPredicate(List.of("Alice")));
+            new FindCommand(new FindCommandPredicate(unmodifiablePredicateKeywordList));
         assertParseSuccess(parser, " n/Alice", expectedFindCommand);
     }
 
