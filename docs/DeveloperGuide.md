@@ -197,8 +197,8 @@ Therefore, given the constraints of the UI, sorting is implemented as a **perman
 
 ### Adding Events
 
-The Add Event feature that is accessed through the `addEvent` command allows users to add new marketing campaigns of 
-the `event` class to the application. 
+The Add Event feature that is accessed through the `addEvent` command allows users to add new marketing campaigns of
+the `event` class to the application.
 
 The `event` added by the user will have 4 compulsory fields:
 - Title of the `event`
@@ -207,23 +207,23 @@ The `event` added by the user will have 4 compulsory fields:
 - Purpose of the `event`
 
 The `addEvent` operation is facilitated by `AddEventCommand` which extends from `Command`. If the users' input matches
-the `COMMAND_WORD` of `AddEventCommand` in `AddressBookParser#parseCommand()`, `AddEventCommandParser#parse()` will 
-process the additional user inputs which constitute the 4 compulsory fields of the `event` class and return an 
-`AddEventCommand`. 
+the `COMMAND_WORD` of `AddEventCommand` in `AddressBookParser#parseCommand()`, `AddEventCommandParser#parse()` will
+process the additional user inputs which constitute the 4 compulsory fields of the `event` class and return an
+`AddEventCommand`.
 
-Executing this Command object through the `AddEventCommand#execute()` triggers the `Model` interface's 
-`Model#addEvent()`. This operation subsequently calls upon the `AddressBook#addEvent()` operation which in turn calls 
+Executing this Command object through the `AddEventCommand#execute()` triggers the `Model` interface's
+`Model#addEvent()`. This operation subsequently calls upon the `AddressBook#addEvent()` operation which in turn calls
 upon the `UniqueEventList#add()` operation and the `event` will be stored in memory.
 
 The addEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the event to
 a .JSON format together with all other `Person`(s) and `Event`(s) in memory.
 
-The following sequence diagram will illustrate how the `addEvent` operation works: 
+The following sequence diagram will illustrate how the `addEvent` operation works:
 
 ![AddEventSequenceDiagram](images/AddEventSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add
-event command text entered by user. event represents the event class created and stored within AddEventCommand. 
+event command text entered by user. event represents the event class created and stored within AddEventCommand.
 Additionally, saving of the updated events list has been excluded from this diagram for simplicity.
 </div>
 
@@ -241,7 +241,7 @@ Executing this Command object through the `DeleteEventCommand#execute()` trigger
 `Model#deleteEvent()`. This operation subsequently calls upon the `AddressBook#deleteEvent()` operation which in turn calls
 upon the `UniqueEventList#remove()` operation and the `event` will be removed from memory.
 
-The deleteEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the current 
+The deleteEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the current
 list of events which excludes the deleted event to a .JSON format together with all other `Person`(s) in memory.
 
 The following sequence diagram will illustrate how the `deleteEvent` operation works:
@@ -249,7 +249,7 @@ The following sequence diagram will illustrate how the `deleteEvent` operation w
 ![DeleteEventSequenceDiagram](images/DeleteEventSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the delete
-event command text entered by user. event represents the instance of event class created and stored within DeleteEventCommand. 
+event command text entered by user. event represents the instance of event class created and stored within DeleteEventCommand.
 Additionally, saving of the updated events list from has been excluded from this diagram for simplicity.
 </div>
 
