@@ -30,10 +30,18 @@ public class Assignment extends Task {
         return this.students;
     }
 
+    /**
+     * Add a student to the list
+     * @param studentsToAdd
+     */
     public void addStudent(List<String> studentsToAdd) {
         this.students.addAll(studentsToAdd);
     }
 
+    /**
+     * Delete a student from the list
+     * @param studentsToDelete
+     */
     public void deleteStudent(List<String> studentsToDelete) {
         this.students.removeAll(studentsToDelete);
     }
