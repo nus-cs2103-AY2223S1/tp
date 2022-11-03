@@ -255,11 +255,7 @@ to load in an EMPTY state.
 
 **Q**: What should be the index of the member to be specified to assign and unassign members from a team?
 
-<<<<<<< HEAD
 **A**: You can use the index of the member provided in the user list. You can access user list by using the command `userlist`.
-=======
-**A**: You can use the index of the member provided in the user list. You can access user list by using the command `userlist`.    
->>>>>>> 55d866053b35d32b118853e2714ff2ec28d6d700
 
 --------------------------------------------------------------------------------------------------------------------
 
