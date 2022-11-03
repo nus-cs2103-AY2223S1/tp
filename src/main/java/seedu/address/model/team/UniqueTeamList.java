@@ -104,6 +104,11 @@ public class UniqueTeamList implements Iterable<Team> {
         internalList.setAll(teams);
     }
 
+    public boolean teamHasTask(int index, Task task) {
+        requireAllNonNull(index, task);
+        return internalList.get(index).containTask(task);
+    }
+
     /**
      * Adds the {@code Task} into the {@code Team} at the specified index.
      *

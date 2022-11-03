@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.team.Team;
 
 /**
@@ -25,13 +26,14 @@ public class TaskAddCommand extends Command {
             + "Parameters: "
             + PREFIX_TEAM_INDEX + "INDEX (must be a positive integer) "
             + PREFIX_TASK_NAME + "TASK-NAME"
-            + " [" + PREFIX_TASK_DEADLINE + "dd-MM-yyyy]"
+            + " [" + PREFIX_TASK_DEADLINE + "DD-MM-YYYY]"
             + " (It's optional to include deadline for a task!) \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TEAM_INDEX + "1 "
             + PREFIX_TASK_NAME + "Create GUI for AddressBook "
             + PREFIX_TASK_DEADLINE + "12-12-2023";
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task is already assigned to the team";
 
     private final Index index;
     private final Task toAdd;
@@ -59,7 +61,12 @@ public class TaskAddCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
         }
 
+        if (model.teamHasTask(index, toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
         model.addTask(index, toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

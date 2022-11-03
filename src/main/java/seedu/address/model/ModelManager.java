@@ -161,6 +161,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean teamHasTask(Index index, Task task) {
+        requireAllNonNull(index, task);
+        return addressBook.teamHasTask(index, task);
+    }
+
+    @Override
     public void addTask(Index index, Task task) {
         requireAllNonNull(index, task);
         addressBook.addTask(index, task);
@@ -375,8 +381,6 @@ public class ModelManager implements Model {
         }
         return false;
     }
-
-    // todo implementation of updateFilteredTeamList
 
     @Override
     public boolean equals(Object obj) {
