@@ -26,7 +26,7 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
             + "\nRecord participation for the participation component specified in the parameter."
             + "\nParameters: INDEX (must be positive integer or use \"all\" to record everyone currently displayed)"
             + " OPTION (must be yes/no) "
-            + PREFIX_PARTICIPATION + "PARTICIPATION_COMPONENT"
+            + PREFIX_PARTICIPATION + "COMPONENT"
             + "\nExample: " + COMMAND_WORD + " 1 yes " + PREFIX_PARTICIPATION + "P01"
             + "\nExample: " + COMMAND_WORD + " all yes " + PREFIX_PARTICIPATION + "P02";
 

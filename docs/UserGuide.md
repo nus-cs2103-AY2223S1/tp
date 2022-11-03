@@ -59,7 +59,7 @@ tasks done faster than traditional GUI apps.
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
   the parameter will be taken.<br>
@@ -106,7 +106,7 @@ Format: `list`
 
 Edits an existing student in the StudMap.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITUSER] [h/TELEHANDLE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
   The index **must be a positive integer** 1, 2, 3, …​ or use `all` to edit all students currently displayed.
@@ -416,7 +416,7 @@ Action | Format, Examples
 **[Add](#adding-a-student-add)** | `add n/NAME m/MODULE s/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T s/E1234567 g/user1 h/@user1 t/friends t/owesMoney`
 **[Clear](#clearing-all-entries--clear)** | `clear`
 **[Delete](#deleting-a-student--delete)** | `delete INDEX`<br> e.g., `delete 3`
-**[Edit](#editing-a-student--edit)** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITUSER] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
+**[Edit](#editing-a-student--edit)** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
 **[Find](#locating-students-by-name-find)** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **[List](#listing-all-students--list)** | `list`
 **[Help](#viewing-help--help)** | `help`
@@ -425,7 +425,9 @@ Action | Format, Examples
 **[Mark](#mark-attendance-of-student-mark)** | `mark INDEX/ALL ATTENDANCE c/CLASS` <br> e.g., `mark 1 present c/T01`
 **[Unmark](#unmark-attendance-of-a-student-unmark)** | `unmark INDEX/ALL c/CLASS` <br> e.g., `mark 1 c/T01`
 **[Add tag](#tag-student-with-label-tag)** | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`
-**[Remove tag](#remove-tag-from-student-untag)** | `untag INDEX t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`
+**[Remove tag](#remove-tag-from-student-untag)** | `untag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`
+**[Grade assignment](#grade-assignment-for-student-grade)** | `grade INDEX/ALL STATUS a/ASSIGNMENT` <br> e.g., `grade 1 new a/A01`
+**[Remove assignment](#remove-assignment-from-student-ungrade)** | `ungrade INDEX/ALL a/ASSIGNMENT` <br> e.g., `ungrade 1 a/A01`
 **[Record participation](#recording-participation-of-a-student-participate)** | `participate INDEX/ALL STATUS p/COMPONENT` <br> e.g., `participate 2 yes p/C01`
-**[Remove participation](#removing-participation-of-a-student-unparticipate)** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 c/C01`
+**[Remove participation](#removing-participation-of-a-student-unparticipate)** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 p/C01`
 **[Import CSV](#import-students-from-csv-file-import)** | `import`
