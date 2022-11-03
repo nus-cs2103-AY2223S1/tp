@@ -20,20 +20,20 @@ If you are looking to help develop this project, take a look at our [Developer G
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-* [Layout](#layout)
-* [Using this guide](#using-this-guide)
-* [Command guide](#command-guide)
-* [Quick start](#quick-start)
-* [Tutorial](#tutorial)
-* [Features](#features)
-  * [Inventory management](#uinventory-managementu)
+* [**Introduction**](#introduction)
+* [**Layout**](#layout)
+* [**Using this guide**](#using-this-guide)
+* [**Command guide**](#command-guide)
+* [**Quick start**](#quick-start)
+* [**Tutorial**](#tutorial)
+* [**Features**](#features)
+  * [**Inventory management**](#uinventory-managementu)
     * [Adding an inventory item: `addi`](#adding-an-inventory-item-addi)
     * [Listing all inventory items: `listi`](#listing-all-inventory-items-listi)
     * [Finding an inventory item: `findi`](#finding-an-inventory-item-findi)
     * [Deleting an inventory item: `deletei`](#deleting-an-inventory-item-deletei)
     * [Editing an inventory item: `editi`](#editing-an-inventory-item-editi)
-  * [Order management](#uorder-managementu)
+  * [**Order management**](#uorder-managementu)
     * [Adding an order: `addo`](#adding-an-order-addo)
     * [Listing all orders: `listo`](#listing-all-orders-listo)
     * [Finding order(s): `findo`](#finding-orders-findo)
@@ -41,15 +41,17 @@ If you are looking to help develop this project, take a look at our [Developer G
     * [Deleting an order: `deleto`](#deleting-an-order-deleteo)
     * [Editing an order: `edito`](#editing-an-order-edito)
     * [Marking an order as paid/delivered: `marko`](#marking-an-order-as-paiddelivered-marko)
-  * [General features](#ugeneral-featuresu)
+  * [**General features**](#ugeneral-featuresu)
     * [Getting help: `help`](#getting-help-help)
     * [Clearing data in TrackO: `clear`](#clearing-all-data-in-tracko-clear)
     * [Exiting TrackO: `exit`](#exiting-tracko--exit)
-* [Command Summary](#command-summary)
-* [Glossary](#glossary)
+* [**Command Summary**](#command-summary)
+* [**Glossary**](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Introduction
+
 **TrackO** is a desktop application built for small home-based business owners (just like you!) to manage their orders 
 and inventory items. It is an **integrated solution** that merges the process of tracking orders and inventory in one
 place, optimized for use via a Command Line Interface ([CLI](#cli)), while still having the benefits of a Graphical User Interface
@@ -74,8 +76,12 @@ in future enhancements of the product (stay tuned!).
 
 Interested? Jump straight to our [Quick Start section](#quick-start) to get started now! 
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ---
+
 ## Using this guide
+
 Feeling overwhelmed already? Fret not because we're here to help you integrate this application seamlessly into your 
 business operations.
 
@@ -101,7 +107,10 @@ at any commands you need!
 
 p.s. Not too sure about some technical terms in this guide? Check out our [glossary](#glossary) to get a better understand all the technical jargon! 
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 -------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -120,12 +129,16 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 more technical specifications of each command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Want start using TrackO from scratch? Enter the [`clear`](##clearing-all-data-in-tracko-clear) command to remove all application data.
+Want start using TrackO from scratch? Enter the [`clear`](#clearing-all-data-in-tracko-clear) command to remove all application data.
 </div>
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Layout
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -181,6 +194,8 @@ If an item is not in your inventory, TrackO does not allow you to add that item 
 Now that you're done trying out some commands, you can enter `exit` to leave the application. We hope that this short tutorial was helpful! 
 To check out more commands, you can head over to our [features section](#features).
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 -------
 
 ## Command guide
@@ -205,6 +220,8 @@ This section of the user guide helps to break down the formatting used for comma
 * If you use parameters for commands that do not take in parameters (such as `listi`, `listo`,`clear` and `exit`), these parameters will be ignored.<br>
   e.g. if the command specifies `listi 123`, it will be interpreted as `listi`.
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -212,6 +229,11 @@ This section of the user guide helps to break down the formatting used for comma
 This section contains some technical specifications of how to use the commands in TrackO.
 
 ### <u>Inventory management</u>
+
+The commands included in this section are related to inventory management. 
+As of the latest update, there are 5 commands.
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 ### Adding an inventory item: `addi`
 
@@ -235,12 +257,15 @@ Examples:
 * `addi i/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
 * `addi i/Chair q/10 d/This is a wooden dining chair t/Furniture t/Mahogany sp/50 cp/20`
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 ### Listing all inventory items: `listi`
 
 Lists all the existing items in the store’s inventory.
 
 Format: `listi`
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 ### Finding an inventory item: `findi`
 
@@ -259,6 +284,8 @@ Examples:
 - `findi oil` returns items with item names containing the keyword `oil` such as `Olive Oil` and `Vegetable Oil`
 - `findi yellow pillow` returns items with the item names containing the keywords `yellow` and `pillow` such as `yellow blanket`, `ergonomic pillow` and `yellow pillow`
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ### Deleting an inventory item: `deletei`
 
 Deletes the specified item from the list of tracked inventory.
@@ -273,6 +300,8 @@ Format: `deletei INDEX`
 Examples:
 * `listi` followed by `deletei 2` deletes the 2nd item in the list of tracked inventory.
 * `findi Paper` followed by `deletei 1` deletes the 1st item in the results of the `findi` command.
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 ### Editing an inventory item: `editi`
 
@@ -294,9 +323,16 @@ Examples:
 * `editi 3 t/` removes the tags of the item at index 3.
 * `editi 3 t/bedroom t/premium` updates the tags of the item at index 3 to be `bedroom` and `premium`
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 -------------------------------------------------------------------------
 
 ### <u>Order management</u>
+
+The commands included in this section are related to order management.
+As of the latest update, there are 7 commands.
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 ### Adding an order: `addo`
 
@@ -327,17 +363,24 @@ Format: `i/ITEM_NAME q/QUANTITY`
 
 Lastly, to end the command, you can enter `done` to tell TrackO to track the order or `cancel` to completely abort the command.
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ### Listing all orders: `listo`
 
 Lists all the orders a store has.
 
 Format: `listo`
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ### Finding order(s): `findo`
 
 Finds an order with item names containing any of the given keywords.
 
-Format: `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] [n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`
+Format: `findo [-d OR -D] [-p OR -P]` <br> 
+`[i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]]` <br> 
+`[a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]]` <br> 
+`[n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`
 
 * All 4 flags (`-d`, `-D`, `-p`, `-P`) are optional
   * `-d`: search for orders which are delivered
@@ -351,7 +394,8 @@ Format: `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/AD
 * A prefix is only expected once in the command but if specified multiple times, only the last occurrence of 
 the parameter will be taken in. Eg. `findo a/Clementi a/Geylang` will search for orders with `Geylang` 
 in their address.
-<br><br/>
+
+
 * The search keywords used are case-insensitive. e.g. `keychain` will match `Keychain`
 * The order of the keywords does not matter. e.g. `findo a/Geylang n/Alex` will also give the same results as `findo n/Alex a/Geylang`
 * Only full words will be matched e.g. `Gardens,` will not match `Gardens` and `keychain` will not match `keychains`
@@ -369,6 +413,8 @@ Examples:
 Completed orders are orders which have been paid **and** delivered. You can search using both -p **and** -d to find completed orders! 
 </div>
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ### Sorting orders by time created: `sorto`
 
 Sorts the displayed list of orders by the time at which they were created.
@@ -384,6 +430,7 @@ Examples:
 * `findo i/Chair` followed by `sorto new` sorts all orders found using `findo i/Chair` such that newest orders are at the 
 top
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 ### Deleting an order: `deleteo`
 
@@ -399,6 +446,8 @@ Examples:
 * `listo` followed by `deleteo 2` deletes the 2nd order from the order list.
 * `findo i/Paper` followed by `deleteo 1` deletes the 1st item in the results of the `findo i/Paper` command.
 * `sorto new` followed by `deleteo 1` deletes the most recently created order
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 ### Editing an order: `edito`
 
@@ -438,6 +487,8 @@ Examples:
 * When the fifth order in the list has `Tables` in quantity `3` in its order list, and you have `Chairs` in your inventory,
 `edito 5 i/chairs q/15` will add `15 Chairs` to the order list.
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ### Marking an order as paid/delivered: `marko`
 
 Marks an existing order in the order list as paid and/or delivered. 
@@ -471,7 +522,14 @@ Examples:
 * `marko 1 -d` Marks the order at index `1` in the currently displayed list as `delivered`.
 * `marko 1 -p -d` Marks the order at index `1` in the currently displayed list as both `paid` and `delivered`.
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ### **<u>General features</u>**
+
+The commands included here are `TrackO`'s general features for you to clear the sample data, access the help window, 
+or to exit the application.
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 ### Clearing all data in TrackO: `clear`
 
@@ -492,15 +550,21 @@ The command `clear` clears all data (in both `Order List` and `Inventory List`) 
 The keywords `confirm` and `done` are case-sensitive. Thus, only the keywords in lower case are accepted.
 </div>
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ### Getting help: `help`
 
 Shows a window with a link to the user guide.
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 ### Exiting TrackO: `exit`
 
 Exits the program.
 
 Format: `exit`
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 ## Command summary
 
@@ -522,14 +586,20 @@ Format: `exit`
 | **Getting Help**             | `help`                                                                                                                                                                                                                                                     |
 | **Exit**                     | `exit`                                                                                                                                                                                                                                                     |
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ## Glossary
+
 ### CLI
+
 `CLI` stands for `Command Line Interface`. A `CLI` is a text-based user interface in which a program connects to the user. 
 Through a `CLI`, users interact with a system or application by typing in commands in the form of text. The system then executes
 the typed in command in response.
 
 ### GUI
+
 `GUI` stands for `Graphical User Interface`. A `GUI` is a user interface that provides interactive visual components _(e.g. icons, etc)_.
 Through a `GUI`, users interact with a system or application by clicking on these elements. The system then responds to the user's actions
 by updating the user interface.
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
