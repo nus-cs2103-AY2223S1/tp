@@ -213,7 +213,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidClientTag_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_INCOME,
-                        VALID_MONTHLY, VALID_RISKTAG_HIGH, VALID_PLANTAG,
+                        VALID_MONTHLY, VALID_RISKTAG_HIGH, "SAVINGS Plan",
                         INVALID_CLIENTTAG, VALID_TAGS, VALID_APPOINTMENTS);
         String expectedMessage = ClientTag.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -222,7 +222,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullClientTag_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_INCOME, VALID_MONTHLY, VALID_RISKTAG_HIGH, VALID_PLANTAG, null, VALID_TAGS, VALID_APPOINTMENTS);
+                VALID_INCOME, VALID_MONTHLY, VALID_RISKTAG_HIGH, "SAVINGS Plan", null, VALID_TAGS, VALID_APPOINTMENTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientTag.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

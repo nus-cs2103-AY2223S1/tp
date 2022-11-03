@@ -54,7 +54,7 @@ public class IncomeLevel {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof IncomeLevel // instanceof handles nulls
-                && value.equals(((IncomeLevel) other).value)); // state check
+                && this.convertIncomeToLong() == (((IncomeLevel) other).convertIncomeToLong())); // state check
     }
 
     @Override

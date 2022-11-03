@@ -20,6 +20,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKTAG_HIGH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKTAG_LOW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -186,7 +187,7 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_BOB)
             .withIncome(VALID_INCOME_BOB)
             .withMonthly(VALID_MONTHLY_BOB)
-            .withRiskTag(VALID_RISKTAG_LOW)
+            .withRiskTag(VALID_RISKTAG_HIGH)
             .withPlanTag("Savings Plan")
             .withClientTag(VALID_CLIENTTAG_POTENTIAL)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
