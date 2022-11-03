@@ -21,14 +21,14 @@ class JsonAdaptedSessionDataTest {
 
     @Test
     public void toModelType_invalidSessionName_throwsIllegalValueException() {
-        JsonAdaptedSessionData jsonAdaptedSessionData = new JsonAdaptedSessionData("+Lab 1", 100);
+        JsonAdaptedSessionData jsonAdaptedSessionData = new JsonAdaptedSessionData("+Lab 1", "100");
         String expectedMessage = Session.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, jsonAdaptedSessionData::toModelType);
     }
 
     @Test
     public void toModelType_nullSessionName_throwsIllegalValueException() {
-        JsonAdaptedSessionData jsonAdaptedSessionData = new JsonAdaptedSessionData(null, 100);
+        JsonAdaptedSessionData jsonAdaptedSessionData = new JsonAdaptedSessionData(null, "100");
         assertThrows(IllegalValueException.class, JsonAdaptedSessionData.MISSING_NAME_MESSAGE,
                 jsonAdaptedSessionData::toModelType);
     }

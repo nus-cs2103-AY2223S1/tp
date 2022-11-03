@@ -13,10 +13,12 @@ import seedu.taassist.model.student.SessionData;
 class JsonAdaptedSessionData {
 
     public static final String MISSING_NAME_MESSAGE = "Session's name field is missing!";
+    public static final String MISSING_GRADE_MESSAGE = "Session's grade field is missing!";
+    public static final String INVALID_GRADE_MESSAGE = "Session's grade field is invalid!";
 
     @JsonProperty("session")
     private final String sessionName;
-    private final double grade;
+    private final String grade;
 
     /**
      * Constructs a {@code JsonAdaptedSessionData} with the given {@code session} and list
@@ -24,7 +26,7 @@ class JsonAdaptedSessionData {
      */
     @JsonCreator
     public JsonAdaptedSessionData(@JsonProperty("session") String sessionName,
-                                  @JsonProperty("grade") double grade) {
+                                  @JsonProperty("grade") String grade) {
         this.sessionName = sessionName;
         this.grade = grade;
     }
@@ -34,7 +36,7 @@ class JsonAdaptedSessionData {
      */
     public JsonAdaptedSessionData(SessionData source) {
         sessionName = source.getSessionName();
-        grade = source.getGrade();
+        grade = String.valueOf(source.getGrade());
     }
 
     /**
@@ -49,7 +51,13 @@ class JsonAdaptedSessionData {
         if (!Session.isValidSessionName(sessionName)) {
             throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
         }
-        return new SessionData(new Session(sessionName), grade);
+        if (grade == null) {
+            throw new IllegalValueException(MISSING_GRADE_MESSAGE);
+        }
+        if (!SessionData.isValidGrade(grade)) {
+            throw new IllegalValueException(INVALID_GRADE_MESSAGE);
+        }
+        return new SessionData(new Session(sessionName), Double.parseDouble(grade));
     }
 
 }

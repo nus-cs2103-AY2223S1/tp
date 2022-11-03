@@ -29,6 +29,18 @@ public class SessionData implements Identity<SessionData>, Comparable<SessionDat
         this.grade = grade;
     }
 
+    /**
+     * Returns true if the given string is a valid grade, false otherwise.
+     */
+    public static boolean isValidGrade(String grade) {
+        try {
+            double gradeDouble = Double.parseDouble(grade);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public Session getSession() {
         return session;
     }
