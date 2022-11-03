@@ -31,7 +31,7 @@ public class EditPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "editperson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an existing person in TABS.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an existing person's contact details in TABS.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: NAME (must be exactly the same as person's name) "
             + "[" + PREFIX_NAME + "NAME] "
