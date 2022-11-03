@@ -91,8 +91,8 @@ Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3
 * Items in square brackets are optional.<br>
   e.g `n/NAME [m/MAJOR]` can be used as `n/John Doe m/Business` or as `n/John Doe`.
 
-* Items in angle brackets are fixed, precise values.<br>
-  e.g. `<ACCEPTED>` means the parameter must be an input of the value `ACCEPTED`.
+* Items in angle brackets are fixed, precise and **case-insensitive** values.<br>
+  e.g. `<ACCEPTED>` means the parameter must be an input of a **case-insensitive** value `ACCEPTED`. This means `AccEpTEd` or `accepted` are valid inputs.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[m/MAJOR]…​` can be used as ` ` (i.e. 0 times), `m/Business`, `m/Medicine m/Dentistry` etc.
@@ -118,7 +118,10 @@ Pops open a help window which contains a link that directs the user to this user
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format:
+```
+help
+```
 
 [Return to top](#table-of-contents)
 
@@ -134,7 +137,7 @@ Adds an applicant with the following details to the TrackAScholar:
 * `APPLICATION_STATUS`: Status of scholarship application for the applicant, can only be either `PENDING`, `ACCEPTED` or `REJECTED`.
 * `MAJOR`: A Major taken up by the applicant.
 
-Format: 
+Format:
 ```
 add n/NAME p/PHONE_NUMBER e/EMAIL s/SCHOLARSHIP as/APPLICATION_STATUS [m/MAJOR]…​
 ```
@@ -166,7 +169,7 @@ Sample output for `add n/Samuel Cheong m/Medicine e/samuelcheong1234@gmail.com p
 
 List out all the applicants stored in TrackAScholar.
 
-Format: 
+Format:
 ```
 list
 ```
@@ -182,7 +185,7 @@ Sample output for `list`:
 
 Edits an existing applicant stored in TrackAScholar.
 
-Format: 
+Format:
 ```
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR]…​
 ```
@@ -221,7 +224,7 @@ Sample output for `edit 2 n/Samuel Cheong m/`:
 
 Deletes the specified applicant from TrackAScholar.
 
-Format: 
+Format:
 ```
 delete INDEX
 ```
@@ -244,15 +247,19 @@ Sample output for `delete 2`:
 
 ### Removing applicants by status : `remove`
 
-All applicants with the corresponding statuses stored in TrackAScholar are removed.
+All applicants with a specified completed application status (accepted/rejected) stored in TrackAScholar are removed.
 
-Format: 
+Format:
 ```
 remove <ACCEPTED>/<REJECTED>
 ```
 
 * The user selects the applicant(s) with application status of either `ACCEPTED` or `REJECTED` to be removed from TrackAScholar.
 * Remove command is **case-insensitive**. e.g. `Accepted` or `accepted` both matches `ACCEPTED`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can navigate between the **Close** and **Yes** button on the confirmation screen using **Shift** + **Left Arrow / Right Arrow** on your keyboard
+</div>
 
 Examples:
 * `remove accepted` removes all entries with `ACCEPTED` as an application status from TrackAScholar.
@@ -272,10 +279,14 @@ Sample output for `remove accepted`:
 
 Clears all entries from data stored in TrackAScholar.
 
-Format: 
+Format:
 ```
 clear
 ```
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can navigate between the **Close** and **Yes** button on the confirmation screen using **Shift** + **Left Arrow / Right Arrow** on your keyboard
+</div>
 
 Sample output for `clear`:
 
@@ -291,7 +302,7 @@ Sample output for `clear`:
 
 Finds all scholarship applicants whose credentials match any of the attributes searched.
 
-Format: 
+Format:
 ```
 find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...
 ```
@@ -319,7 +330,7 @@ Sample output for `find n/alex m/Business`:
 
 Filters and list all applicants whose application status matches the specified application status.
 
-Format: 
+Format:
 ```
 filter <PENDING>/<ACCEPTED>/<REJECTED>
 ```
@@ -342,7 +353,7 @@ Sample output for `filter pending`:
 
 All applicants in TrackAScholar will be sorted in the specified manner.
 
-Format: 
+Format:
 ```
 sort <NAME>/<SCHOLARSHIP>/<STATUS> [-r]
 ```
@@ -369,7 +380,7 @@ Sample output for `sort name`:
 
 Imports a trackAScholar file into the current trackAScholar file.
 
-Format: 
+Format:
 ```
 import <r>/<k>
 ```
