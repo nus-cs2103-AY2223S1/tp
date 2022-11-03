@@ -77,7 +77,7 @@ Format: `help`
 
 ### Adding a member: `add`
 
-Adds a new person to EZLead.
+Adds a new person to EZLead. 
 
 Format: `add n/NAME p/PHONE-NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
@@ -238,6 +238,16 @@ Examples:
 
 </div>
 
+### Manually editing save file:
+
+For advanced users, the data and state of EZLead is stored in `data/addressbook.json`.
+You can manually modify the data directly by accessing this JSON file.
+
+However, EZLead cannot verify validity of the data if it was manually modified. Any invalid data will cause EZLead
+to load in an EMPTY state.
+
+![JSONSaveFile.png](images/JSONSaveFile.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -267,3 +277,4 @@ Examples:
 | **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                        |
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
 | **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                  |
+
