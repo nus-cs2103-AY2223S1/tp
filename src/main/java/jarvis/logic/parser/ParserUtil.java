@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
@@ -30,6 +31,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_MARK = "Mark has to be a non-negative number.";
     public static final String MESSAGE_INVALID_MCNUM = "Mastery check number has to be 1 or 2.";
     public static final String MESSAGE_INVALID_MCRESULT = "Mastery check result has to be \"PASS\" or \"FAIL\"";
+
+    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -206,7 +209,7 @@ public class ParserUtil {
         requireNonNull(time);
 
         try {
-            return LocalTime.parse(time.trim());
+            return LocalTime.parse(time.trim(), TIME_FORMATTER);
         } catch (DateTimeParseException e) {
             throw new ParseException(TimePeriod.MESSAGE_CONSTRAINTS_TIME);
         }
