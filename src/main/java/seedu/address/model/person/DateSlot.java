@@ -36,7 +36,7 @@ public class DateSlot {
     private static final String SLOT_THREE = "14:00:00";
     private static final String SLOT_FOUR = "16:00:00";
     private static final Boolean DEFAULT_BOOLEAN = false;
-    private static final Long DEFAULT_EMPTY_ASSIGNED_NURSE = Long.valueOf(-1); // No nurse assigned
+    private static final Long DEFAULT_EMPTY_ASSIGNED_NURSE = -1L; // No nurse assigned
     private static final String DEFAULT_CHECK = " ";
     public final LocalDateTime dateSlotTime;
     private final String dateSlotInString;
