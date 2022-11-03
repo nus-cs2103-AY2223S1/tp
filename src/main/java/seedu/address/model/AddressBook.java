@@ -173,26 +173,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.staff.add(p);
     }
 
-    /**
-     * Replaces the given staff {@code target} in the list with {@code editedStaff}.
-     * {@code target} must exist in the address book.
-     * The staff identity of {@code editedStaff} must not be the same as another
-     * existing staff in the address book.
-     */
-    public void setStaff(Staff target, Staff editedStaff) {
-        requireNonNull(editedStaff);
-
-        this.staff.setStaff(target, editedStaff);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeStaff(Staff key) {
-        this.staff.remove(key);
-    }
-
     //// task-level operations
 
     /**

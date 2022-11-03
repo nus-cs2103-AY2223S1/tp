@@ -40,6 +40,10 @@ public class EditStaffCommand extends Command {
 
     public static final String COMMAND_WORD = "editstaff";
 
+    public static final String MESSAGE_NOT_EDITED = "At least one field must be provided.";
+    public static final String MESSAGE_DUPLICATE_STAFF = "This staff already exists in the project.";
+    public static final String MESSAGE_EDIT_STAFF_SUCCESS = "Edited Staff in %2$s: %1$s\n"
+            + "Displaying all staff in project: %2$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": The project name refers to the project whose staff is to be edited. The command "
             + "looks for the staff identified by the INDEX\nwithin the displayed staff list and edits the "
@@ -60,11 +64,6 @@ public class EditStaffCommand extends Command {
             + PREFIX_STAFF_NAME + "John Doe "
             + PREFIX_STAFF_CONTACT + "98765432 ";
 
-    public static final String MESSAGE_EDIT_STAFF_SUCCESS = "Edited Staff in %2$s: %1$s\n"
-            + "Displaying all staff in project: %2$s";
-
-    public static final String MESSAGE_NOT_EDITED = "At least one field must be provided.";
-    public static final String MESSAGE_DUPLICATE_STAFF = "This staff already exists in the project.";
     private final ProjectName projectName;
     private final Index staffIndex;
     private final EditStaffDescriptor editStaffDescriptor;
@@ -86,16 +85,16 @@ public class EditStaffCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Project> lastShownList = model.getFilteredProjectList();
+        List<Project> lastShownProjectList = model.getFilteredProjectList();
         List<Staff> lastShownStaffList = model.getFilteredStaffList();
-        checkForEmptyList(lastShownList, lastShownStaffList);
 
-        Project toFindIn = getProjectFrom(lastShownList);
-        ProjectName foundProjectName = toFindIn.getProjectName();
-
+        checkForEmptyList(lastShownProjectList, lastShownStaffList);
         if (staffIndex.getZeroBased() >= lastShownStaffList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
         }
+
+        Project toFindIn = getProjectFrom(lastShownProjectList, this.projectName);
+        ProjectName foundProjectName = toFindIn.getProjectName();
 
         Staff toEdit = lastShownStaffList.get(staffIndex.getZeroBased());
         Staff editedStaff = createEditedStaff(toEdit, editStaffDescriptor);
@@ -107,25 +106,34 @@ public class EditStaffCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff, foundProjectName));
     }
 
-    private Project getProjectFrom(List<Project> lastShownList) throws CommandException {
+    /**
+     * Returns the project that has a project name which matches {@code projectName}.
+     *
+     * @param lastShownProjectList The project list currently displayed.
+     * @return Project
+     * @throws CommandException If project cannot be found.
+     */
+    private Project getProjectFrom(List<Project> lastShownProjectList, ProjectName projectName)
+            throws CommandException {
         int projectIndex = 0;
-        for (int i = 0; i < lastShownList.size(); ++i) {
-            if (lastShownList.get(i).getProjectName().equals(projectName)) {
+        for (int i = 0; i < lastShownProjectList.size(); ++i) {
+            if (lastShownProjectList.get(i).getProjectName().equals(projectName)) {
                 projectIndex = i;
             }
         }
 
         Index index = Index.fromZeroBased(projectIndex);
 
-        ProjectName foundProjectName = lastShownList.get(index.getZeroBased()).getProjectName();
+        ProjectName foundProjectName = lastShownProjectList.get(index.getZeroBased()).getProjectName();
         if (!projectName.equals(foundProjectName)) {
             throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName.fullName));
         }
-        return lastShownList.get(index.getZeroBased());
+        return lastShownProjectList.get(index.getZeroBased());
     }
 
     /**
      * Checks if there are Projects and Staff displayed on their respectively list.
+     *
      * @param projectList The displayed Project list
      * @param staffList The displayed Staff list
      * @throws CommandException Exception thrown if either list do not have anything displayed
@@ -144,6 +152,7 @@ public class EditStaffCommand extends Command {
     /**
      * Checks that the Staff to edit exist within the project and if the Staff
      * new details will not result in a duplicate Staff in the project.
+     *
      * @param toEdit The staff to be edited
      * @param editedStaff New Staff with new details to replace to original Staff
      * @param toFindIn The project where the Staff is to be found in
