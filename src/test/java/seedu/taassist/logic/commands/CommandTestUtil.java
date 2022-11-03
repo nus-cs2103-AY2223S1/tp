@@ -20,8 +20,8 @@ import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.TaAssist;
-import seedu.taassist.model.student.predicate.NameContainsKeywordsPredicate;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.predicate.NameContainsKeywordsPredicate;
 import seedu.taassist.testutil.EditStudentDescriptorBuilder;
 
 /**

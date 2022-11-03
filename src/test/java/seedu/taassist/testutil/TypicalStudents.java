@@ -15,8 +15,6 @@ import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
 import static seedu.taassist.testutil.TypicalSessions.LAB_1;
 import static seedu.taassist.testutil.TypicalSessions.TUTORIAL_1;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.taassist.model.TaAssist;

@@ -6,13 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.student.StudentModuleData;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
 import seedu.taassist.model.student.Phone;
 import seedu.taassist.model.student.Student;
-import seedu.taassist.model.util.SampleDataUtil;
+import seedu.taassist.model.student.StudentModuleData;
 
 /**
  * A utility class to help with building Student objects.

@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.taassist.model.student.predicate.NameContainsKeywordsPredicate;
 import seedu.taassist.testutil.StudentBuilder;
 
 public class NameContainsKeywordsPredicateTest {

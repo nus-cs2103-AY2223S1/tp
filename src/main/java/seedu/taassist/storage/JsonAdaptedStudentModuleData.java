@@ -17,6 +17,8 @@ import seedu.taassist.model.student.StudentModuleData;
  */
 class JsonAdaptedStudentModuleData {
 
+    public static final String MISSING_NAME_MESSAGE = "Module data's module field is missing!";
+
     @JsonProperty("module")
     private final String className;
 
@@ -51,6 +53,9 @@ class JsonAdaptedStudentModuleData {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public StudentModuleData toModelType() throws IllegalValueException {
+        if (className == null) {
+            throw new IllegalValueException(MISSING_NAME_MESSAGE);
+        }
         if (!ModuleClass.isValidModuleClassName(className)) {
             throw new IllegalValueException(ModuleClass.MESSAGE_CONSTRAINTS);
         }
