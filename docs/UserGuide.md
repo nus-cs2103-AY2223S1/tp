@@ -158,9 +158,10 @@ Format: `help`
 
 Adds a client to the list of clients. 
 
-This command is case-sensitive for the parameter NAME.
-
 Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE ip/INVESTMENT_PLAN c/CLIENT_TYPE [t/TAG]…​`
+
+* This command is case-sensitive for the parameter NAME.
+* After each execution of add command, the displayed contact list resets to the original contact list.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
 <br>
@@ -193,6 +194,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3,…​
 * At least one of the fields must be provided.
+* * After each execution of edit command, the displayed contact list resets to the original contact list.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the client’s tags by typing `t/` without
@@ -202,15 +204,17 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-#### 5.1.5 Filtering persons by keyword: `find`
+#### 5.1.5 Filtering clients by keyword: `find`
 
 Finds clients whose names contain any of the given keywords.
 
-Format: `find [PREFIX] KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
 
 Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 
 * The search is case-insensitive. e.g hans will match Hans
+* At least one of the parameter fields must be provided.
+* The find command finds on the currently displayed contact list.
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only full words will be matched e.g. Han will not match Hans
 * Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
