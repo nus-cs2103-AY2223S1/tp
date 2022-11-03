@@ -231,7 +231,7 @@ The construction of a `MeetingsWindow` object, will create a `MeetingsListPanel`
 `label` that takes in a `MEETINGS_MESSAGE`
 
 **Sync Meetings**
-The Sync Meetings feature is facilitated the following operation:
+The Sync Meetings feature is facilitated by the following operation:
 
 * `Person#syncMeetingTimes()` — Iterates through all `MeetingTime`s a `Person` has and removes those that have passed.
 
