@@ -61,7 +61,6 @@ public class EditBuyerCommandParser extends Parser<EditBuyerCommand> {
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             editBuyerDescriptor.setDesiredCharacteristics(ParserUtil
                     .parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get()));
-
         }
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             editBuyerDescriptor.setPriority(ParserUtil

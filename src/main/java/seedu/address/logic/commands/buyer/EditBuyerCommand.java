@@ -109,6 +109,9 @@ public class EditBuyerCommand extends Command {
         Characteristics updatedCharacteristics = editBuyerDescriptor
                 .getDesiredCharacteristics()
                 .orElse(buyerToEdit.getDesiredCharacteristics().orElse(null));
+        if (updatedCharacteristics != null && updatedCharacteristics.isReset()) {
+            updatedCharacteristics = null;
+        }
         Priority updatedPriority = editBuyerDescriptor.getPriority().orElse(buyerToEdit.getPriority());
 
         LocalDateTime entryTime = buyerToEdit.getEntryTime();

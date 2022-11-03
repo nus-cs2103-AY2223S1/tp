@@ -59,11 +59,11 @@ public class AddBuyerCommandParser extends Parser<AddBuyerCommand> {
         if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
             priceRange = ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
         }
-
-        // TODO: Consider allowing multiple -c instead of separated by ; in one -c
+        
         Characteristics characteristics = null;
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
+            characteristics = characteristics.isReset() ? null : characteristics;
         }
 
         Priority priority = new Priority("normal");

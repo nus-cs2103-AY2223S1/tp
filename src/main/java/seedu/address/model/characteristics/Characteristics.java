@@ -13,11 +13,7 @@ public class Characteristics {
     public static final String MESSAGE_CONSTRAINTS = "If -c flag is used, "
             + "characteristics entry cannot be left blank.";
 
-    /*
-     * The first character of the characteristics must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    private static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final Characteristics RESET_CHARACTERISTICS = new Characteristics("RESET");
 
     private static final String CHARACTERISTIC_DELIMITER = ";";
 
@@ -45,10 +41,10 @@ public class Characteristics {
     }
 
     /**
-     * Returns true if a given user-input string is valid to be used in desired characteristics.
+     * Any string input, including an empty one, is a valid characteristic.
      */
     public static boolean isValidCharacteristics(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return true;
     }
 
     /**
@@ -104,4 +100,7 @@ public class Characteristics {
         return characteristicsArray.hashCode();
     }
 
+    public boolean isReset() {
+        return characteristicsArray[0].equals("RESET");
+    }
 }

@@ -162,25 +162,10 @@ public class ParserUtil {
         if (!Characteristics.isValidCharacteristics(trimmedCharacteristics)) {
             throw new ParseException(Characteristics.MESSAGE_CONSTRAINTS);
         }
-        return new Characteristics(trimmedCharacteristics);
-    }
-
-    /**
-     * Parses {@code String properties} into a {@code List<Integer>}.
-     */
-    // TODO: Actually parse properties here?
-    public static Properties parseProperties(String properties) throws ParseException {
-        if (properties.isEmpty()) {
-            return new Properties("");
+        if (trimmedCharacteristics.isEmpty()) {
+            return Characteristics.RESET_CHARACTERISTICS;
         }
-        String trimmedProperties = properties.trim();
-        List<Integer> propertyArray = Arrays.stream(trimmedProperties.split(";"))
-                .map(item -> Integer.parseInt(item.trim()))
-                .collect(Collectors.toList());
-
-        // TODO: should add a check that all values that are ; separated are integers
-
-        return new Properties("");
+        return new Characteristics(trimmedCharacteristics);
     }
 
     /**
