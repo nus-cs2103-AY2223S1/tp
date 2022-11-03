@@ -1,17 +1,23 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
@@ -23,17 +29,15 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
+import seedu.address.model.pet.Pet;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
-import seedu.address.testutil.TypicalBuyers;
-import seedu.address.testutil.TypicalDeliverers;
-import seedu.address.testutil.TypicalSuppliers;
+import seedu.address.testutil.*;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -153,6 +157,50 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPetList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPetList().remove(0));
+    }
+
+    @Test
+    public void getAddressBookFilePath() {
+        assertEquals(logic.getAddressBookFilePath(), model.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getOrderAsObservableListFromBuyer() {
+        Buyer buyer = new PersonBuilder().withName("Natasha").buildBuyer();
+        Order firstOrder = new OrderBuilder().build();
+        Order secondOrder = new OrderBuilder().build();
+        model.addOrder(firstOrder);
+        model.addOrder(secondOrder);
+        List<UniqueId> orderList = Arrays.asList(firstOrder, secondOrder).stream().map(x -> x.getId())
+                .collect(Collectors.toList());
+        buyer.addOrders(orderList);
+        assertEquals(Arrays.asList(firstOrder, secondOrder), logic.getOrderAsObservableListFromBuyer(buyer));
+    }
+
+    @Test
+    public void getOrderAsObservableListFromDeliverer() {
+        Deliverer deliverer = new PersonBuilder().withName("Faith").buildDeliverer();
+        assertEquals(new ArrayList<>(), logic.getOrderAsObservableListFromDeliverer(deliverer));
+    }
+
+    @Test
+    public void getPetAsObservableListFromSupplier() {
+        Supplier supplier = new PersonBuilder().withName("David").buildSupplier();
+        Pet firstPet = new PetBuilder().withName("first").build();
+        Pet secondPet = new PetBuilder().withName("second").build();
+        model.addPet(firstPet);
+        model.addPet(secondPet);
+        List<UniqueId> petList = Arrays.asList(firstPet, secondPet).stream().map(x -> x.getId())
+                .collect(Collectors.toList());
+        supplier.addPets(petList);
+
+        List<Pet> expectedList = Arrays.asList(firstPet, secondPet);
+        List<Pet> resultList = logic.getPetAsObservableListFromSupplier(supplier);
+
+        for (int i = 0; i < expectedList.size(); i++) {
+            assertTrue(expectedList.get(i).equals(resultList.get(i)));
+        }
+
     }
 
     /**
