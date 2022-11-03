@@ -5,7 +5,7 @@ title: See Leng's Project Portfolio Page
 
 ### Project: ArtBuddy
 
-ArtBuddy is a desktop client management system built to help freelance artists manage their clients and commissions easily. It is written in Java, with a GUI created with JavaFx and has about 14 kLoC.
+ArtBuddy (AB) a desktop application that helps commission-based artists manage their customers, commissions, and artworks easily. Written in Java, ArtBuddy is primarily optimised for use via a Command Line Interface (CLI), but also comes with a GUI created using JavaFX. It has about 14 kLoC.
 
 Given below are my contributions to the project.
 
