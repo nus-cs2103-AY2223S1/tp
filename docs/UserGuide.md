@@ -631,20 +631,20 @@ Format: `list`
 
 You can find specific patients using the `find` command.
 
-Format: `find [KEYWORD]… [xyz/XYZ_KEYWORD]…`
+Format: **`find`**`[KEYWORD]… [xyz/XYZ_KEYWORD]…`
 * `xyz/XYZ_KEYWORD` refers to a keyword for a specific parameter.
 * There should be at least one parameter for the command.
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Partial words can be matched e.g. `Han` will match `Hans`.
 * Patients matching at least one keyword in every parameter will be returned (i.e. AND search for different parameters, OR search for same parameter). In more details,
-    * At least one of the patient's details (name, phone, email, address, tag, condition, task description, or medication) must match with at least one `KEYWORD`.
-    * For every different parameter `xyz`, it must match at least one `XYZ_KEYWORD`.
+    * At least one of the patient's details (name, phone, email, address, tag, task description, condition, medication, or remark) must match with at least one `KEYWORD`.
+    * For every different parameter `xyz`, the patient's corresponding details must match at least one `XYZ_KEYWORD`.
 
 Examples:
 * `find key n/John n/Betsy n/Charlie e/@example.com e/@u.nus.edu` returns patients who fulfill all conditions below:
     * The patient's name contains either `John` or `Betsy` or `Charlie`.
-    * The patient's email address must contains either `@example.com` or `@u.nus.edu`.
+    * The patient's email address must contain either `@example.com` or `@u.nus.edu`.
     * At least one of the patient's details must contain `key` (e.g., one of their tags contains `key`).
 * `find jo` returns patients with names `Joe` and `John`, patients with emails `jo@example.com`, and patients with tag `joints`.
 * `find alice meier` returns `Alice Tan` & `Benson Meier`.
