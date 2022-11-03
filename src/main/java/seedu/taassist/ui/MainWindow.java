@@ -1,7 +1,5 @@
 package seedu.taassist.ui;
 
-import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_UI_ACTION;
-
 import java.awt.Desktop;
 import java.net.URL;
 import java.util.logging.Logger;
@@ -243,13 +241,12 @@ public class MainWindow extends UiPart<Stage> {
                 case UI_NO_ACTION:
                     // fallthrough
                 default:
-                    logger.info(MESSAGE_INVALID_UI_ACTION);
-                    throw new CommandException(MESSAGE_INVALID_UI_ACTION);
+                    assert false;
                 }
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | AssertionError e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

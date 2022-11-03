@@ -1,13 +1,9 @@
 package seedu.taassist.logic.commands.actions;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.csv.CsvConfig.CSV_EXPORT_PATH;
-import static seedu.taassist.commons.core.csv.CsvConfig.CSV_EXTENSION;
 
 import java.io.IOException;
-import java.nio.file.Path;
 
-import seedu.taassist.commons.util.FileUtil;
 import seedu.taassist.logic.commands.exceptions.StorageActionException;
 import seedu.taassist.logic.commands.result.StorageActionResult;
 import seedu.taassist.storage.Storage;
@@ -38,8 +34,7 @@ public class ExportCsvStorageAction implements StorageAction {
     public StorageActionResult act(Storage storage) throws StorageActionException {
         String feedback;
         try {
-            Path filePath = CSV_EXPORT_PATH.resolve(fileName + CSV_EXTENSION);
-            FileUtil.writeToFile(filePath, fileData);
+            storage.exportAsCsv(fileName, fileData);
             feedback = String.format(MESSAGE_SUCCESS, fileName);
         } catch (IOException e) {
             throw new StorageActionException(String.format(MESSAGE_EXPORT_FAILED, fileName));
