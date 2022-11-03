@@ -3,4 +3,4 @@
 <?import javafx.scene.control.Button?>
 
 
-<Button fx:id="nextButton" onAction="#handleOnAction" onKeyPressed="#handleOnKeyPressed" style="-fx-border-color: grey; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />
+<Button fx:id="nextButton" onAction="#handleOnAction" style="-fx-border-color: grey; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />
