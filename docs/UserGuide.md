@@ -8,7 +8,6 @@ use via a Command Line Interface** (CLI) while still having the benefits of a Gr
 type fast, FRIDAY can get your contact management tasks done faster than traditional GUI apps.
 
 ### Table of Contents
-1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -89,6 +88,7 @@ Format: `clear`
 ### Adding a student: `add`
 
 Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, Mastery Check date, and tags.
+All student names and Telegram handles must be unique.
 
 Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`
 
@@ -96,10 +96,9 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 A student can have any number of tags (including 0).
 </div>
 
-Example:
-![AddCommand.png](images/AddCommand.png)
+Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16`
 
-Outcome:
+Outcome: a student named Alex Yeoh is added.
 ![AddCommandOutcome.png](images/AddCommandOutcome.png)
 
 ### Deleting a student: `delete`
@@ -178,6 +177,26 @@ Lists all students in FRIDAY. This command helps you to reset the sorting and fi
 
 Format: `list`
 
+### Sorting students: `sort`
+
+Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
+If the `find` command was run before this, using `sort` will undo the result and all students will be sorted.
+
+Format: `sort CRITERIA/ORDER`
+
+* `CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`
+* `ORDER` can be `a` (ascending) or `d` (descending)
+* Names and Telegram handles are sorted in alphabetical order
+* Consultations and Mastery Checks are sorted by time
+* Grades are sorted in numerical order
+* Students with missing details (e.g. missing Telegram handles) will be shown first when sorted in descending order.
+
+Example: enter `sort m/a` with an unsorted list of students.
+![SortCommand.png](images/SortCommand.png)
+
+Outcome: students are sorted by Mastery Check date, from earliest to latest.
+![SortCommandOutcome.png](images/SortCommandOutcome.png)
+
 ### Marking a student's Mastery Check as passed: `mark`
 
 Marks the Mastery Check of a specified student as passed.
@@ -205,24 +224,6 @@ The index of the student can be seen from the student list.<br>
 
 Example after entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
 ![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
-
-### Sorting students: `sort`
-
-Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
-
-Format: `sort CRITERIA/ORDER`
-
-* `CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`
-* `ORDER` can be `a` (ascending) or `d` (descending)
-* Names and Telegram handles are sorted in alphabetical order
-* Consultations and Mastery Checks are sorted by time
-* Grades are sorted in numerical order
-
-Example:
-![SortCommand.png](images/SortCommand.png)
-
-Outcome:
-![SortCommandOutcome.png](images/SortCommandOutcome.png)
 
 ### Adding aliases: `alias`
 
