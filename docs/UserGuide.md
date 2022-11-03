@@ -255,7 +255,7 @@ remove <ACCEPTED>/<REJECTED>
 ```
 
 * The user selects the applicant(s) with application status of either `ACCEPTED` or `REJECTED` to be removed from TrackAScholar.
-* Remove command is **case-insensitive**. e.g. `Accepted` or `accepted` both matches `ACCEPTED`
+* Remove command is **case-insensitive**. e.g. `Accepted` or `accepted` both matches `ACCEPTED`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can navigate between the **Close** and **Yes** button on the confirmation screen using **Shift** + **Left Arrow / Right Arrow** on your keyboard
@@ -316,7 +316,7 @@ find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...
 
 Examples:
 * `find n/John n/Sam` returns applicant with Name `john`, applicant with Name `John Doe` and applicant with Name `Sam Ong`
-* `find n/alex m/Business` returns any applicants with either Name containing `Alex` or Major containing `Business`
+* `find n/alex m/Business` returns any applicants with Name containing `Alex` and Major containing `Business`
 
 Sample output for `find n/alex m/Business`:
 
