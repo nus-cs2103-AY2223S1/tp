@@ -19,4 +19,5 @@ public class Messages {
     public static final String MESSAGE_NOT_IN_FOCUS_MODE = "Usage of [ %s ] requires you to be in focus mode to be "
             + "used!";
     public static final String MESSAGE_INVALID_SESSION = "The session [ %1$s ] does not exist in class [ %2$s ].";
+    public static final String MESSAGE_INVALID_UI_ACTION = "Invalid UI action.";
 }

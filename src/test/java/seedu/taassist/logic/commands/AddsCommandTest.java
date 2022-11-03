@@ -13,6 +13,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
+import seedu.taassist.logic.commands.result.CommandResult;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.stubs.ModelStub;

@@ -1,5 +1,7 @@
 package seedu.taassist.ui;
 
+import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_UI_ACTION;
+
 import java.awt.Desktop;
 import java.net.URL;
 import java.util.logging.Logger;
@@ -14,8 +16,8 @@ import javafx.stage.Stage;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.logic.Logic;
-import seedu.taassist.logic.commands.CommandResult;
 import seedu.taassist.logic.commands.exceptions.CommandException;
+import seedu.taassist.logic.commands.result.CommandResult;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 
 /**
@@ -224,20 +226,26 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
-            if (commandResult.isFocus()) {
-                handleFocusMode();
-            }
-
-            if (commandResult.isUnfocus()) {
-                handleUnfocusMode();
+            if (commandResult.hasUiAction()) {
+                switch (commandResult.getUiAction()) {
+                case UI_HELP:
+                    handleHelp();
+                    break;
+                case UI_EXIT:
+                    handleExit();
+                    break;
+                case UI_FOCUS:
+                    handleFocusMode();
+                    break;
+                case UI_UNFOCUS:
+                    handleUnfocusMode();
+                    break;
+                case UI_NO_ACTION:
+                    // fallthrough
+                default:
+                    logger.info(MESSAGE_INVALID_UI_ACTION);
+                    throw new CommandException(MESSAGE_INVALID_UI_ACTION);
+                }
             }
 
             return commandResult;

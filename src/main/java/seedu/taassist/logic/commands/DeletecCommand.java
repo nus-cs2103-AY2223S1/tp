@@ -3,12 +3,14 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
+import static seedu.taassist.logic.commands.actions.UiAction.UI_UNFOCUS;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
+import seedu.taassist.logic.commands.result.CommandResult;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
@@ -63,7 +65,10 @@ public class DeletecCommand extends Command {
         model.removeModuleClasses(existingClasses);
 
         String message = getCommandMessage(existingClasses, nonExistentClasses);
-        return new CommandResult(message, false, false, false, isDeletingFocusedClass);
+        if (isDeletingFocusedClass) {
+            return new CommandResult(message, UI_UNFOCUS);
+        }
+        return new CommandResult(message);
     }
 
     public static String getCommandMessage(Set<ModuleClass> existingClasses, Set<ModuleClass> nonExistentClasses) {

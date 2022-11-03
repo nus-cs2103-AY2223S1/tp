@@ -3,6 +3,7 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.taassist.commons.core.Messages;
+import seedu.taassist.logic.commands.result.CommandResult;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.student.NameContainsKeywordsPredicate;
 
