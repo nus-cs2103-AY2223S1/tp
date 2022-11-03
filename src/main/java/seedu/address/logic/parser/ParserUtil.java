@@ -3,10 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -21,7 +17,6 @@ import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;
-import seedu.address.model.property.Properties;
 import seedu.address.model.property.PropertyName;
 
 

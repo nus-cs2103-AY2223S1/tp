@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.PropertyCommandTestUtil.CHARACTERISTI
 import static seedu.address.logic.commands.PropertyCommandTestUtil.DESCRIPTION_DESC_HOME;
 import static seedu.address.logic.commands.PropertyCommandTestUtil.DESCRIPTION_DESC_PROPERTY1;
 import static seedu.address.logic.commands.PropertyCommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.INVALID_CHARACTERISTICS_DESC;
 import static seedu.address.logic.commands.PropertyCommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.PropertyCommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.PropertyCommandTestUtil.INVALID_OWNER_NAME_DESC;
@@ -50,7 +49,6 @@ import seedu.address.logic.commands.property.EditPropertyCommand.EditPropertyDes
 import seedu.address.model.address.Address;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
-import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.PropertyName;
@@ -104,9 +102,6 @@ public class EditPropertyCommandParserTest {
 
         // invalid description
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
-
-        // invalid characteristics
-        assertParseFailure(parser, "1" + INVALID_CHARACTERISTICS_DESC, Characteristics.MESSAGE_CONSTRAINTS);
 
         // invalid owner name
         assertParseFailure(parser, "1" + INVALID_OWNER_NAME_DESC, Name.MESSAGE_CONSTRAINTS);

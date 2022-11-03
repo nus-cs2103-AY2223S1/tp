@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.DESIRED_CHARACTE
 import static seedu.address.logic.commands.BuyerCommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_DESIRED_CHARACTERISTICS_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_PHONE_DESC;
@@ -48,7 +47,6 @@ import seedu.address.model.buyer.Email;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
-import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 import seedu.address.testutil.EditBuyerDescriptorBuilder;
 
@@ -95,8 +93,6 @@ public class EditBuyerCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_PRICE_RANGE_DESC, PriceRange.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_DESIRED_CHARACTERISTICS_DESC,
-                Characteristics.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email

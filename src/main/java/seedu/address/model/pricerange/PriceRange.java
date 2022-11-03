@@ -59,12 +59,14 @@ public class PriceRange {
      * Accepts an empty string.
      */
     public static boolean isValidPriceRange(String test) {
-        if (test.isEmpty()) {
+        requireNonNull(test);
+
+        if (test.trim().isEmpty()) {
             return true;
         }
 
         boolean isValid = test.matches(VALIDATION_REGEX);
-        
+
         // to prevent out of bounds error below
         if (!isValid) {
             return false;

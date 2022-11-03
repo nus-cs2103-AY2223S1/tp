@@ -44,6 +44,7 @@ public class Characteristics {
      * Any string input, including an empty one, is a valid characteristic.
      */
     public static boolean isValidCharacteristics(String test) {
+        requireNonNull(test);
         return true;
     }
 
