@@ -59,9 +59,9 @@ AppointmentCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-PatientCard ..> Model
-AppointmentCard ..> Model
-BillCard ..> Model
+PatientCard .down.> Model
+AppointmentCard .down.> Model
+BillCard .down.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
