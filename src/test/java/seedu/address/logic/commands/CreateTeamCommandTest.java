@@ -27,62 +27,60 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Team;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TeamBuilder;
 
-public class AddCommandTest {
-
+public class CreateTeamCommandTest {
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullTeam_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new CreateTeamCommand(null));
+    }
+    @Test
+    public void execute_teamAcceptedByModel_addSuccessful() throws Exception {
+        CreateTeamCommandTest.ModelStubAcceptingTeamAdded modelStub =
+                new CreateTeamCommandTest.ModelStubAcceptingTeamAdded();
+        Team validTeam = new TeamBuilder().build();
+
+        CommandResult commandResult = new CreateTeamCommand(validTeam).execute(modelStub);
+
+        assertEquals(String.format(CreateTeamCommand.MESSAGE_SUCCESS, validTeam), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTeam), modelStub.teamsAdded);
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_duplicateTeam_throwsCommandException() {
+        Team validTeam = new TeamBuilder().build();
+        CreateTeamCommand createTeamCommand = new CreateTeamCommand(validTeam);
+        ModelStub modelStub = new ModelStubWithTeam(validTeam);
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertThrows(CommandException.class, CreateTeamCommand.MESSAGE_DUPLICATE_TEAM, () ->
+                createTeamCommand.execute(modelStub));
     }
 
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
-    }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Team frontend = new TeamBuilder().withName("Frontend").build();
+        Team backend = new TeamBuilder().withName("Backend").build();
+        CreateTeamCommand createFrontendCommand = new CreateTeamCommand(frontend);
+        CreateTeamCommand createBackendCommand = new CreateTeamCommand(backend);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(createFrontendCommand.equals(createFrontendCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        CreateTeamCommand createFrontendCommandCopy = new CreateTeamCommand(frontend);
+        assertTrue(createFrontendCommand.equals(createFrontendCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(createFrontendCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(createFrontendCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different team -> returns false
+        assertFalse(createFrontendCommand.equals(createBackendCommand));
     }
 
-    /**
-     * A default model stub that have all of the methods failing.
-     */
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -225,11 +223,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean teamNameExists(seedu.address.model.team.Name name) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public seedu.address.model.team.Name getTeamName(Index teamIndex) {
             throw new AssertionError("This method should not be called.");
         }
@@ -246,11 +239,6 @@ public class AddCommandTest {
 
         @Override
         public boolean teamHasMember(Index p, Index t) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean teamHasTask(Index index, Task t) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -281,40 +269,34 @@ public class AddCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithTeam extends CreateTeamCommandTest.ModelStub {
+        private final Team team;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithTeam(Team team) {
+            requireNonNull(team);
+            this.team = team;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasTeam(Team team) {
+            requireNonNull(team);
+            return this.team.isSameTeam(team);
         }
     }
 
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTeamAdded extends CreateTeamCommandTest.ModelStub {
+        final ArrayList<Team> teamsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasTeam(Team team) {
+            requireNonNull(team);
+            return teamsAdded.stream().anyMatch(team::isSameTeam);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTeam(Team team) {
+            requireNonNull(team);
+            teamsAdded.add(team);
         }
 
         @Override

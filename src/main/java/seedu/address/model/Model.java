@@ -120,6 +120,8 @@ public interface Model {
 
     public Team getTeam(Name name);
 
+    public boolean teamNameExists(Name name);
+
     ObservableList<Task> getFilteredTaskList();
 
     public Name getTeamName(Index teamIndex);
@@ -129,6 +131,8 @@ public interface Model {
     public List<Team> teamsWithMember(Person p);
 
     public boolean teamHasMember(Index p, Index t);
+
+    boolean teamHasTask(Index index, Task task);
 
     void addTask(Index index, Task task);
 

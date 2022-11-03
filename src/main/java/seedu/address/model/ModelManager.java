@@ -161,6 +161,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean teamHasTask(Index index, Task task) {
+        requireAllNonNull(index, task);
+        return addressBook.teamHasTask(index, task);
+    }
+
+    @Override
     public void addTask(Index index, Task task) {
         requireAllNonNull(index, task);
         addressBook.addTask(index, task);
@@ -306,6 +312,19 @@ public class ModelManager implements Model {
         throw new TeamNotFoundException();
     }
 
+    @Override
+    public boolean teamNameExists(seedu.address.model.team.Name name) {
+        List<Team> teams = getFilteredTeamList();
+        for (int i = 0; i < teams.size(); i++) {
+            Team team = teams.get(i);
+            seedu.address.model.team.Name teamname = team.getName();
+            if (teamname.equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Returns team name from given team index.
      * @param teamIndex Index of team.
@@ -375,8 +394,6 @@ public class ModelManager implements Model {
         }
         return false;
     }
-
-    // todo implementation of updateFilteredTeamList
 
     @Override
     public boolean equals(Object obj) {
