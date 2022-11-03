@@ -10,11 +10,11 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
 public class Bill {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Bills should only contain numbers, optionally one decimal point (.), and one leading plus (+) "
-                    + "or minus (-) sign.\n"
-                    + "If a decimal point is used, there can be up to 2 digits after it (e.g., 2.5, 9.99).\n"
+            "Bills should only contain numbers, optionally one decimal point (.), and optionally one leading sign (+/-)"
+                    + ".\n"
+                    + "There can be up to 12 leading digits and up to 2 decimal places.\n"
                     + "If no sign is used, the value is assumed to be positive.";
-    public static final String VALIDATION_REGEX = "^[-+]?(\\d+(\\.\\d{0,2})?|\\d*\\.\\d{1,2})$";
+    public static final String VALIDATION_REGEX = "^[-+]?(\\d{1,12}(\\.\\d{0,2})?|\\d{0,12}\\.\\d{1,2})$";
     public final String value;
 
     /**
@@ -49,7 +49,7 @@ public class Bill {
     /**
      * Returns a {@code Bill} containing the sum of values.
      */
-    public Bill add(Bill addend) {
+    public Bill add(Bill addend) throws IllegalArgumentException {
         return new Bill(String.format("%.2f", getValue() + addend.getValue()));
     }
 
