@@ -13,7 +13,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.commons.Criteria;
+import seedu.address.model.Criteria;
 import seedu.address.model.exam.ExamDate;
 import seedu.address.model.exam.ExamDescription;
 import seedu.address.model.module.ModuleCode;

@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
@@ -21,6 +22,7 @@ import seedu.address.model.module.ModuleName;
 public class AddModuleCommandParser implements Parser<Command> {
     @Override
     public Command parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MOD_CODE, PREFIX_MOD_NAME, PREFIX_MOD_CREDIT);
 

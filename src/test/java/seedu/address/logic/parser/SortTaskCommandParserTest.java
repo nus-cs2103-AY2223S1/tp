@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.SortTaskCommand;
-import seedu.address.model.commons.Criteria;
+import seedu.address.model.Criteria;
 import seedu.address.testutil.CriteriaBuilder;
 
 public class SortTaskCommandParserTest {

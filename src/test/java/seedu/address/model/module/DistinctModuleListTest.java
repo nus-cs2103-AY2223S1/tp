@@ -1,15 +1,5 @@
 package seedu.address.model.module;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.module.exceptions.DuplicateModuleException;
-import seedu.address.model.module.exceptions.ModuleNotFoundException;
-import seedu.address.model.task.DistinctTaskList;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.ModuleBuilder;
-import seedu.address.testutil.TaskBuilder;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,6 +8,17 @@ import static seedu.address.testutil.TypicalModules.CS2030;
 import static seedu.address.testutil.TypicalModules.CS2040;
 import static seedu.address.testutil.TypicalModules.CS2040S;
 import static seedu.address.testutil.TypicalModules.CS2100;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.module.exceptions.DuplicateModuleException;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.task.DistinctTaskList;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.TaskBuilder;
 
 /**
  * Integration testing of DistinctModuleList with Module class and DistinctTaskList.
@@ -43,8 +44,8 @@ public class DistinctModuleListTest {
 
     @Test
     public void containsModule_moduleWithSameModuleCode_returnsTrue() {
-        Module module = new ModuleBuilder().
-                withModuleCode("CS2030").build();
+        Module module = new ModuleBuilder()
+                .withModuleCode("CS2030").build();
         moduleList.addModule(module);
         assertTrue(moduleList.containsModule(CS2030));
     }

@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CRITERIA;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.commons.Criteria;
+import seedu.address.model.Criteria;
 
 /**
  * SortTaskCommandParser represents a parser which parses the arguments

@@ -7,6 +7,7 @@ import static seedu.address.model.module.Module.MESSAGE_NO_TASKS_FOR_MODULE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.ModuleBuilder;
 
 /**

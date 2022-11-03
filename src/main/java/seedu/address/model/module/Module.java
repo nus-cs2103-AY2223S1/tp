@@ -208,7 +208,7 @@ public class Module implements Comparable<Module> {
 
         Module otherModule = (Module) other;
 
-        return hasSameModuleCode(otherModule) ;
+        return hasSameModuleCode(otherModule);
     }
 
     @Override

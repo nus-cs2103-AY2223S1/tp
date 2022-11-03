@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CRITERIA;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Criteria;
 import seedu.address.model.Model;
-import seedu.address.model.commons.Criteria;
 
 /**
  * SortTaskCommand represents a command which sorts the tasks in the task list.
