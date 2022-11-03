@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam sequence {
+ParticipantFontColor #white
+ParticipantBorderColor #red
+
+LifeLineBorderColor #firebrick
+}
+
+hide footbox
+actor User #black
+
+participant ":UI" as UI #green
+participant ":Logic" as Logic #blue
+participant ":Model" as Model #firebrick
+participant ":Storage" as Storage #orange
+
+User -> UI : "deletebuyer 1"
+activate UI #green
+UI -> Logic : execute("deletebuyer 1")
+activate Logic #blue
+Logic -> Model : deleteBuyer(target)
+activate Model #firebrick
+return
+Logic -> Storage : saveBuyerBook(buyerBook)
+activate Storage #orange
+Storage -> Storage ++ #GoldenRod :Save to file
+return
+return
+return
+return
+
+
+@enduml
