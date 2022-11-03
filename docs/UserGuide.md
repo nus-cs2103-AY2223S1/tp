@@ -15,27 +15,30 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 ## Table of Contents
 1. [**Quick start**](#quick-start)
 2. [**Features**](#features)
-   1. [**Commands on main page**](#commands-on-main-page)
+   1. [**Universal commands**](#universal-commands)
       1. [`help` Viewing help](#viewing-help--help)
-      2. [`add` Creating a new itinerary](#creating-a-new-itinerary--add)
-      3. [`list` Listing all itineraries](#listing-all-itineraries--list)
-      4. [`edit` Editing the details of an itinerary](#editing-the-details-of-an-itinerary--edit)
-      5. [`delete` Deleting an itinerary](#deleting-an-itinerary--delete)
-      6. [`clear` Clearing itineraries](#clearing-itineraries--clear)
-      7. [`find` Locating itineraries by name](#locating-itineraries-by-name--find)
-      8. [`select` Selecting an itinerary](#selecting-an-itinerary--select)
-   2. [**Commands on item planning page**](#commands-on-item-planning-page)
+      2. [`exit` Exiting Waddle](#exiting-waddle--exit)<br><br>
+   2. [**The main page**](#the-main-page)
+   3. [**Commands on main page**](#commands-on-the-main-page)
+      1. [`add` Creating a new itinerary](#creating-a-new-itinerary--add)
+      2. [`list` Listing all itineraries](#listing-all-itineraries--list)
+      3. [`edit` Editing the details of an itinerary](#editing-the-details-of-an-itinerary--edit)
+      4. [`delete` Deleting an itinerary](#deleting-an-itinerary--delete)
+      5. [`clear` Clearing itineraries](#clearing-itineraries--clear)
+      6. [`find` Locating itineraries by name](#locating-itineraries-by-name--find)
+      7. [`select` Selecting an itinerary](#selecting-an-itinerary--select)
+   4. [**The planning page**](#the-planning-page)
+   5. [**Commands on item planning page**](#commands-on-the-item-planning-page)
       1. [`add` Adding an item](#adding-an-item--add)
       2. [`edit` Editing the details of an item](#editing-the-details-of-an-item--edit)
       3. [`delete` Deleting an item](#deleting-an-item--delete)
       4. [`plan` Scheduling an item](#scheduling-an-item--plan)
       5. [`unplan` Unscheduling an item](#unscheduling-an-item--unplan)
       6. [`free` Viewing vacant timeslots](#viewing-vacant-timeslots--free)
-      7. [`home` Returning to main page](#returning-to-main-page--home)
-      8. [`copy` Copying to clipboard](#copying-to-clipboard--copy)
-      9. [`pdf` Exporting to PDF file](#exporting-to-pdf-file--pdf)
-   3. [`exit` Exiting Waddle](#exiting-waddle--exit)<br><br>
-   4. [**Advanced**](#advanced)
+      7. [`copy` Copying to clipboard](#copying-to-clipboard--copy)
+      8. [`pdf` Exporting to PDF file](#exporting-to-pdf-file--pdf)
+      9. [`home` Returning to main page](#returning-to-main-page--home)
+   6. [**Advanced**](#advanced)
       1. [Saving the data](#saving-the-data)
       2. [Editing the data file](#editing-the-data-file)
 3. [**FAQ**](#faq)
@@ -49,19 +52,22 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `Waddle.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-4/tp/releases/tag/v1.3.1).
+2. Download the latest `waddle.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-4/tp/releases/).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Waddle.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. This will bring you to the Waddle main page, and graphical user interface (GUI) similar to the below should appear in a few seconds.
+   Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all itineraries.
 
    * **`add`**`d/My Japan Trip du/14 sd/2023-04-01` : Adds an itinerary named "My Japan Trip".
+   
+   * **`select`** `1` : Brings you into the planning page for the 1st itinerary shown in the current list.
 
    * **`delete`**`1` : Deletes the 1st itinerary shown in the current list.
 
@@ -93,16 +99,29 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
   - e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
-### Commands on main page
+### Universal commands
+Most commands in Waddle can only be used on the [main page](#the-main-page) or the [planning page](#the-planning-page). However, the commands in this section may be used on either page at any time.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Brings up the help message, which contains a link to this guide.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+### Exiting Waddle : `exit`
+
+Exits the Waddle program.
+
+Format: `exit`
+
+### The main page
+The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app. [Commands exclusive to the main page](#commands-on-the-main-page) can help you add new itineraries, edit or delete existing itineraries, or find an itinerary.
+
+Using the [`select` command](#selecting-an-itinerary--select)  will bring you to the [planning page](#the-planning-page) of the selected itinerary.
+
+### Commands on the main page
 
 ### Creating a new itinerary : `add`
 
@@ -216,31 +235,39 @@ Format: `select INDEX`
 Examples:
 * `select 1`
 
-### Commands on item planning page
+### The planning page
+The planning page of an itinerary displays the list of items you have added to the itinerary. Items on the Wishlist that have not been added to you schedule yet will appear on top in order of priority, while scheduled items will appear in order of date and time.
+
+[Commands exclusive to the planning page](#commands-on-the-planning-page) can help you add new items, edit or delete existing items, or find an item.
+
+Using the [`home` command](#returning-to-main-page--home)  will bring you to the [main page](#the-main-page) of the selected itinerary.
+
+### Commands on the item planning page
 
 Here's an example of how the item planning page looks like:
 ![item planning page](images/itemPlanningUi.png)
 
 ### Adding an item : `add`
 
-Adds an item to the list of items.
+Adds an item to the wishlist without a scheduled day and time.
 
 Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 
 * `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and shorter than 1440 minutes (1 day).
     - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
-* Adds a new item with `DESCRIPTION` to the unscheduled item list.
+
+* `PRIORITY` is used to rank the importance of an item. It must be a number from 1 to 5, with 1 being the highest priority.
 
 * `COST` is the cost of the item and must be between $0 to $1,000,000. Please provide the cost in dollars ($), you may include cents too!
   - e.g. `b/100.20` is $100.20.
+
 * You cannot add items with the same description as an existing item in the item list.
-* 
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
-
+If no `PRIORITY` or `COST` is provided, Waddle assigns them a default value as follows:
 * The default `PRIORITY` is 1.<br>
-
 * The default `COST` is $0.<br>
 
 </div>
@@ -285,16 +312,16 @@ Examples:
 
 ### Scheduling an item : `plan`
 
-Schedules an item in the unscheduled item list.
+Schedules an item from the wishlist.
 
 Format: `plan INDEX d/DAY NUMBER st/START TIME`
 
 * Schedules the item at the specified `INDEX`. The index refers to the index number displayed in the unscheduled item list.
-* The index **must be a positive integer** 1, 2, 3, ...​
-* `DAY NUMBER` **must be a positive integer** 1, 2, 3, ...​ referring to a day in the list of days displayed.
+* `DAY NUMBER` must be an integer from 1 to the duration (in days) of the trip.
 * `START TIME` should be given in the format `hh:mm`, or `hh:mm:ss` where `hh` is the hour in 24-hour format, `mm` is the minute, and `ss` is the seconds.
-* The end time of the item is calculated by adding the `DURATION` of the item to the `START TIME`.
+* The end time of the item is automatically calculated by adding the `DURATION` of the item to the `START TIME`.
 * You can only add an item if there is no clash in timing between the start and end time of the new item, and the start and end time of any existing scheduled item.
+* When an item is scheduled, the cost of the item will be automatically deducted from the budget of the itinerary.
 
 <div markdown="block" class="alert alert-info">
 
@@ -322,19 +349,11 @@ Examples:
 * `unplan 2.1` would unschedule the 1st item in the Day 2 item list.
 * `unplan 4.5` would unschedule the 5th item in the Day 4 item list.
 
-
-
 ### Viewing vacant timeslots : `free`
 
 Displays the vacant timeslots available for scheduling items.
 
 Format: `free`
-
-### Returning to main page : `home`
-
-Returns you to the main itinerary list page.
-
-Format: `home`
 
 ### Copying to clipboard : `copy`
 
@@ -362,13 +381,11 @@ Exports the itinerary into a PDF file. The file can be found under the "Waddle" 
 
 Format: `pdf`
 
-### Exiting Waddle : `exit`
+### Returning to main page : `home`
 
-Exits the Waddle program.
+Returns you to the main itinerary list page.
 
-Format: `exit`
-
-* This command can be used both in the home page and the item planning page.
+Format: `home`
 
 ### Advanced
 
