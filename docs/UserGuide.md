@@ -176,6 +176,7 @@ Example: `ip/duxton`, `ip/rosewood`
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
 
+* For `PRICE` parameter, max value is 2,147,483,647
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear -p`  and `clear -c`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.

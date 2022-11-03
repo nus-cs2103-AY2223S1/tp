@@ -2,6 +2,7 @@ package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -50,6 +51,7 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_PRICE + "PRICE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "[" + PREFIX_INTERESTEDCLIENTS + "INTERESTED-CLIENTS]...\n"
+            + "[" + PREFIX_IMAGE_UPLOAD + "IMAGE-PATH]...\n"
             + "[" + PREFIX_PROPERTY_TYPE + "PROPERTY TYPE] "
             + "Example: " + COMMAND_WORD + " 1 ";
 
@@ -146,17 +148,19 @@ public class EditPropertyCommand extends Command {
         Set<Client> updatedInterestedClients = editPropertyDescriptor
                 .getInterestedClients()
                 .orElse(propertyToEdit.getInterestedClients());
-        PropertyTypeEnum propertyTypeEnum = editPropertyDescriptor
+        PropertyTypeEnum updatedPropertyTypeEnum = editPropertyDescriptor
                 .getPropertyTypeEnum().orElse(propertyToEdit.getPropertyTypeEnum());
-        PropertyStatusEnum propertyStatusEnum = editPropertyDescriptor
+        PropertyStatusEnum updatedPropertyStatusEnum = editPropertyDescriptor
                 .getPropertyStatusEnum().orElse(propertyToEdit.getPropertyStatusEnum());
+        Path updatedImageDirectoryPath = editPropertyDescriptor
+                .getImageDirectoryPath().orElse(propertyToEdit.getImagePath());
         Property updatedProperty = new Property(updatedName, updatedAddress,
                 updatedPrice,
                 updatedTags,
                 updatedInterestedClients,
-                propertyTypeEnum,
-                propertyStatusEnum);
-        updatedProperty.setImageDirectoryPath(imageDirectoryPath);
+                updatedPropertyTypeEnum,
+                updatedPropertyStatusEnum);
+        updatedProperty.setImageDirectoryPath(updatedImageDirectoryPath);
         return updatedProperty;
     }
 
@@ -191,6 +195,7 @@ public class EditPropertyCommand extends Command {
         private Price price;
         private Set<Tag> tags;
         private Set<Client> interestedClients;
+        private Path imageDirectoryPath;
         private PropertyTypeEnum propertyTypeEnum;
         private PropertyStatusEnum propertyStatusEnum;
 
@@ -206,6 +211,7 @@ public class EditPropertyCommand extends Command {
             setPrice(toCopy.price);
             setTags(toCopy.tags);
             setInterestedClients(toCopy.interestedClients);
+            setImageDirectoryPath(toCopy.imageDirectoryPath);
             setPropertyTypeEnum(toCopy.propertyTypeEnum);
             setPropertyStatusEnum(toCopy.propertyStatusEnum);
         }
@@ -256,6 +262,14 @@ public class EditPropertyCommand extends Command {
 
         public Optional<Price> getPrice() {
             return Optional.ofNullable(price);
+        }
+
+        public Optional<Path> getImageDirectoryPath() {
+            return Optional.ofNullable(imageDirectoryPath);
+        }
+
+        public void setImageDirectoryPath(Path imageDirectoryPath) {
+            this.imageDirectoryPath = imageDirectoryPath;
         }
 
         /**
@@ -313,6 +327,7 @@ public class EditPropertyCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getPrice().equals(e.getPrice())
                     && getTags().equals(e.getTags())
+                    && getImageDirectoryPath().equals(e.getImageDirectoryPath())
                     && getInterestedClients().equals(e.getInterestedClients())
                     && getPropertyTypeEnum().equals(e.getPropertyTypeEnum());
         }
@@ -325,6 +340,7 @@ public class EditPropertyCommand extends Command {
                     + ", price=" + price
                     + ", tags=" + tags
                     + ", interested clients=" + interestedClients
+                    + ", image path=" + imageDirectoryPath
                     + ", propertyType=" + propertyTypeEnum
                     + '}';
         }
