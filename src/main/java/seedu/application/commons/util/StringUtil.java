@@ -5,6 +5,7 @@ import static seedu.application.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.math.BigInteger;
 import java.util.Arrays;
 
 /**
@@ -61,6 +62,26 @@ public class StringUtil {
         try {
             int value = Integer.parseInt(s);
             return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if {@code s} represents a non-zero unsigned integer.
+     * The integer can be of any size and will be parsed using the constructor of {@code BigInteger}.
+     * Will return false for any other non-null string input
+     * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     * @param s The string to check.
+     * @return whether the string is a valid integer.
+     * @throws NullPointerException if {@code s} is null.
+     */
+    public static boolean isNonZeroUnsignedBigInteger(String s) {
+        requireNonNull(s);
+
+        try {
+            BigInteger value = new BigInteger(s);
+            return value.signum() == 1 && !s.startsWith("+"); // "+1" is successfully parsed by BigInteger::new
         } catch (NumberFormatException nfe) {
             return false;
         }

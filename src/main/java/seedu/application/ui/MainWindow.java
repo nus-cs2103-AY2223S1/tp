@@ -72,7 +72,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        reminderWindow = new ReminderWindow(logic.getFilteredApplicationListWithUpcomingInterview());
+        reminderWindow = new ReminderWindow(logic.getApplicationListWithUpcomingInterview());
     }
 
     public Stage getPrimaryStage() {

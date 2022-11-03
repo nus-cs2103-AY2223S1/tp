@@ -118,9 +118,9 @@ public interface Model {
     ObservableList<Application> getFilteredApplicationList();
 
     /**
-     * Returns an unmodifiable view of the filtered applications with upcoming interviews list
+     * Returns an unmodifiable view of the applications with upcoming interviews list
      */
-    ObservableList<Application> getFilteredApplicationsWithUpcomingInterviewList();
+    ObservableList<Application> getApplicationsWithUpcomingInterviewList();
 
     /**
      * Returns an unmodifiable view of the filtered application list with existing interview
@@ -139,11 +139,10 @@ public interface Model {
     void updateFilteredApplicationList(Predicate<Application> predicate);
 
     /**
-     * Updates the filter of the filtered applications with upcoming interviews list to filter by the given
-     * {@code predicate}.
+     * Updates the filter of the applications with interview list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredApplicationsWithUpcomingInterviewList(Predicate<Application> predicate);
+    void updateApplicationListWithInterview(Predicate<Application> predicate);
 
     /**
      * Sorts the application list by company.
@@ -178,11 +177,6 @@ public interface Model {
      * @param shouldReverse Whether to sort in the reversed order.
      */
     void sortApplicationListByInterview(boolean shouldReverse);
-
-    /**
-     * Updates the application list with interview when a new interview is added.
-     */
-    void updateApplicationListWithInterview();
 
     /**
      * Saves the current {@code ApplicationBook} state in the history.
