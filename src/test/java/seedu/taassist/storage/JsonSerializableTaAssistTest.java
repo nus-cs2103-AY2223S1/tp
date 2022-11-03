@@ -19,6 +19,12 @@ public class JsonSerializableTaAssistTest {
     private static final Path TYPICAL_STUDENTS_FILE = TEST_DATA_FOLDER.resolve("typicalStudentsTaAssist.json");
     private static final Path INVALID_STUDENT_FILE = TEST_DATA_FOLDER.resolve("invalidStudentTaAssist.json");
     private static final Path DUPLICATE_STUDENT_FILE = TEST_DATA_FOLDER.resolve("duplicateStudentTaAssist.json");
+    private static final Path DUPLICATE_MODULE_CLASSES_FILE =
+            TEST_DATA_FOLDER.resolve("duplicateModuleClassTaAssist.json");
+    private static final Path NON_EXISTENT_MODULE_FILE =
+            TEST_DATA_FOLDER.resolve("nonExistentModuleTaAssist.json");
+    private static final Path NON_EXISTENT_SESSION_FILE =
+            TEST_DATA_FOLDER.resolve("nonExistentSessionTaAssist.json");
 
     @Test
     public void toModelType_typicalStudentsFile_success() throws Exception {
@@ -26,10 +32,6 @@ public class JsonSerializableTaAssistTest {
                 JsonSerializableTaAssist.class).get();
         TaAssist taAssistFromFile = dataFromFile.toModelType();
         TaAssist typicalStudentsTaAssist = TypicalStudents.getTypicalTaAssist();
-
-        System.out.println(JsonUtil.toJsonString(taAssistFromFile));
-        System.out.println(JsonUtil.toJsonString(typicalStudentsTaAssist));
-
         assertEquals(taAssistFromFile, typicalStudentsTaAssist);
     }
 
@@ -48,4 +50,27 @@ public class JsonSerializableTaAssistTest {
                 dataFromFile::toModelType);
     }
 
+    @Test
+    public void toModelType_duplicateModuleClasses_throwsIllegalValueException() throws Exception {
+        JsonSerializableTaAssist dataFromFile = JsonUtil.readJsonFile(DUPLICATE_MODULE_CLASSES_FILE,
+                JsonSerializableTaAssist.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableTaAssist.MESSAGE_DUPLICATE_MODULE_CLASS,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_nonExistentModule_throwsIllegalValueException() throws Exception {
+        JsonSerializableTaAssist dataFromFile = JsonUtil.readJsonFile(NON_EXISTENT_MODULE_FILE,
+                JsonSerializableTaAssist.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableTaAssist.MESSAGE_CLASS_NOT_FOUND,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_nonExistentSession_throwsIllegalValueException() throws Exception {
+        JsonSerializableTaAssist dataFromFile = JsonUtil.readJsonFile(NON_EXISTENT_SESSION_FILE,
+            JsonSerializableTaAssist.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableTaAssist.MESSAGE_SESSION_NOT_FOUND,
+            dataFromFile::toModelType);
+    }
 }
