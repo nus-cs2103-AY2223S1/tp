@@ -36,7 +36,8 @@ import static seedu.address.testutil.TypicalBuyers.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddBuyerCommand;
+import seedu.address.logic.commands.buyer.AddBuyerCommand;
+import seedu.address.logic.parser.buyer.AddBuyerCommandParser;
 import seedu.address.model.address.Address;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Email;

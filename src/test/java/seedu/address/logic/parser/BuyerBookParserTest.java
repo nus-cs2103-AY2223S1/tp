@@ -7,25 +7,21 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteBuyerCommand;
-import seedu.address.logic.commands.DeletePropertyCommand;
-import seedu.address.logic.commands.EditBuyerCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindBuyersCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListBuyersCommand;
-import seedu.address.logic.commands.ListPropertiesCommand;
+import seedu.address.logic.commands.buyer.AddBuyerCommand;
+import seedu.address.logic.commands.buyer.DeleteBuyerCommand;
+import seedu.address.logic.commands.buyer.EditBuyerCommand;
+import seedu.address.logic.commands.buyer.FindBuyersCommand;
+import seedu.address.logic.commands.buyer.ListBuyersCommand;
+import seedu.address.logic.commands.property.DeletePropertyCommand;
+import seedu.address.logic.commands.property.ListPropertiesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.NameContainsKeywordsPredicate;
+import seedu.address.model.buyer.BuyerNameContainsSubstringPredicate;
 import seedu.address.testutil.BuyerBuilder;
 import seedu.address.testutil.BuyerUtil;
 import seedu.address.testutil.EditBuyerDescriptorBuilder;
@@ -78,10 +74,10 @@ public class BuyerBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String fullString = "foo bar baz";
         FindBuyersCommand command = (FindBuyersCommand) parser.parseCommand(
-                FindBuyersCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindBuyersCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindBuyersCommand.COMMAND_WORD + " " + fullString);
+        assertEquals(new FindBuyersCommand(new BuyerNameContainsSubstringPredicate(fullString)), command);
     }
 
     @Test

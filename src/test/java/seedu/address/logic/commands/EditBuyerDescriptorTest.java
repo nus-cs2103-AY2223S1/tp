@@ -14,7 +14,8 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_L
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditBuyerCommand.EditBuyerDescriptor;
+import seedu.address.logic.commands.buyer.EditBuyerCommand;
+import seedu.address.logic.commands.buyer.EditBuyerCommand.EditBuyerDescriptor;
 import seedu.address.testutil.EditBuyerDescriptorBuilder;
 
 public class EditBuyerDescriptorTest {

@@ -13,8 +13,12 @@ The only tools you need to make use of the full suite of capabilities Cobb has t
 
 This **user guide** aims to provide an in-depth overview of how to set up, use, and debug Cobb. Take a look at the [command summary](#command-summary)
 section for a quick overview of the different commands along with how to use them, or dive into the [quick start](#quick-start)
-section to get started. Also, be sure to check out the [key definitions](#key-definitions) section of the guide if you are confused
-by any of the terms used throughout it!
+section to get started. 
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
+Be sure to check out the [key definitions](#key-definitions) section of the guide if you are confused
+by any of the terms used!
+</div>
 
 * Table of Contents
 {:toc}
@@ -92,10 +96,11 @@ good to take note of them before continuing.
 ## Layout
 
 When you launch Cobb, Cobb will appear on your screen as a window, or a [Graphical User Interface](https://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).<br>
-Let's take a look at the different components that make up Cobb's GUI.
+Let's take a look at the 4 different components that make up Cobb's GUI.
 
-#### 1. Command Input Box and Command Output Box
-![CommandBox](images/CommandBox.png)
+### 1. Command Input and Output Boxes
+You can find them located at the top section of Cobb's GUI.
+![CommandBox](images/CommandBox.png)<br>
 The __command input box__ is located where the placeholder text `Enter command here...` is.<br>
 Clicking on it will allow you to input commands for Cobb to execute. Here are some commands you can test to start with.
 
@@ -120,24 +125,26 @@ unsuccessfully executed.
 If a command was not successfully executed, the text within the command input box will turn red.
 </div>
 
-#### 2. Buyer List
-![Buyer List](images/BuyerList.png)
-The __buyer list__ displays information regarding buyers who are currently stored in Cobb's database.
+### 2. Buyer List
+You can find the buyer list located at the left section of Cobb's GUI.
+![Buyer List](images/BuyerList.png)<br>
+The __Buyer List__ displays information regarding buyers who are currently stored in Cobb's database.
 
 The buyer list can be filtered and modified using commands given in the [features](#features) section of the guide.
 
-
-#### 3. Property List
-![Property List](images/PropertyList.png)
-The __property list__ displays information regarding properties that are currently stored in Cobb's database.
+### 3. Property List
+You can find the property list located at the right section of Cobb's GUI.
+![Property List](images/PropertyList.png)<br>
+The __Property List__ displays information regarding properties that are currently stored in Cobb's database.
 
 The property list can be filtered and modified using commands given in the [features](#features) section of the guide.
 
-#### 4. Help Window
+### 4. Help Window
+This will appear as a separate window, and is not part of the main GUI.
 ![Help Window](images/HelpWindow.png)
-The __help window__ displays a link to Cobb's User Guide, which is what you are currently reading.
+The __help window__ displays a link to Cobb's User Guide, which is this document :)
 
-It appears when you execute a `help` command.
+It appears when you execute the `help` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -174,7 +181,7 @@ It appears when you execute a `help` command.
   information about the syntax of the command and its required parameters.
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Displays a link for you to access Cobb's User Guide for further help.
 
