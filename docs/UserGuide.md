@@ -8,7 +8,7 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 * Table of Contents
 {:toc}
 
-## Glossary 
+## **Glossary**
 - **ENT**: Stands for ear, nose and throat. ENT departments of a hospital therefore handle patients whom require medical attention for issues pertaining to ear, nose or throat.
 - **UI**: Stands for User Interface, it is the space where users interact with an application or website. In this case, the launching idENTify shows the UI to the user directly and the user can interact with the application by entering commands.
 - **GUI**: Stands for Graphical User Interface, it is a type of user interface through which users interact with electronic devices via visual indicator representations.
@@ -20,18 +20,18 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 - **Case-sensitive**: Difference between capital and lower-case letters matters. Therefore, not case-sensitive or case-insensitive means capital and lower-case letters are treated as the same.
 
 
-## Quick Start
+## **Quick Start**
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest [idENTify.jar](https://github.com/AY2223S1-CS2103T-T17-4/tp/releases/tag/v1.3) from here.
 3. Copy the file to your preferred folder.
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 ![start_up](images/IdENTifyStartUp.png)
 
-## UI Components
+## **UI Components**
 ![SampleUiImage](images/SampleUI.png)
 * The UI is available in light mode (by default, shown above) or dark mode.
 
-### General UI information
+### **General UI information**
 
 Component | Purpose
 --------|------------------
@@ -54,7 +54,7 @@ Component | Purpose
 * The status of an appointment is `[]` when uncompleted, and `[X]` when completed.
 * More information about recurrence duration can be found [here](#book-an-appointment--book).
 
-## Features
+## **Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -525,7 +525,7 @@ If your changes to the data file makes its format invalid, idENTify will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **Command summary**
 
 Action | Format, Examples
 --------|------------------

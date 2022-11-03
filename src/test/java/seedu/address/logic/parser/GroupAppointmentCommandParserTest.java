@@ -3,10 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.GroupAppointmentCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Key;
 
 public class GroupAppointmentCommandParserTest {
@@ -31,5 +33,6 @@ public class GroupAppointmentCommandParserTest {
     public void parse_invalidArg_fails() {
         assertParseFailure(parser, "k/ds", MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "ear", MESSAGE_INVALID_FORMAT);
+        assertThrows(ParseException.class, () -> new GroupAppointmentCommandParser().parse("leg"));
     }
 }

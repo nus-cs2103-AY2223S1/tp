@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,16 @@ public class KeyTest {
     public void isValidKeyName() {
         // null tag name
         assertThrows(NullPointerException.class, () -> Key.isValidKey(null));
+
+        // valid tag names
+        assertTrue(Key.isValidKey("patIent"));
+        assertTrue(Key.isValidKey("marK"));
+        assertTrue(Key.isValidKey("TaG"));
+
+        // shortcuts
+        assertTrue(Key.isValidKey("p"));
+        assertTrue(Key.isValidKey("m"));
+        assertTrue(Key.isValidKey("t"));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -29,5 +30,13 @@ public class GroupPatientCommandTest {
     public void execute_patientListSorted_showsSameList() {
         assertCommandSuccess(
                 new GroupPatientCommand(), model, GroupPatientCommand.MESSAGE_SUCCESS_PATIENTS, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        GroupPatientCommand groupPatientCommand = new GroupPatientCommand();
+
+        // same object -> returns true
+        assertTrue(groupPatientCommand.equals(groupPatientCommand));
     }
 }
