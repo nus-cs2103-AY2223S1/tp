@@ -89,6 +89,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+        persons.sort();
     }
 
     /**
@@ -140,6 +141,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTeam(Group g) {
         teams.add(g);
+        teams.sort();
     }
 
     /**
@@ -172,6 +174,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addTask(Task task) {
         requireNonNull(task);
         tasks.add(task);
+        tasks.sort();
     }
 
     /**
@@ -194,6 +197,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedTask);
 
         tasks.setTask(target, editedTask);
+        tasks.sort();
     }
 
     /**
