@@ -70,16 +70,22 @@ Before you start using ConnectNUS, you are recommended to read the [Navigating t
 sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this 
 User Guide and help you navigate it with ease.
 
+If this is your first time using the ConnectNUS application, you are advised to read through the **entire** User Guide **in the sequence
+provided**. 
+
+Whenever you are in doubt, forget the command formats for any feature, need help troubleshooting
+or you simply want to maximise your use of this application, do remember to revisit this User Guide.
+
 ## Navigating the User Guide
 
 For each of the [Features](#features) in this User Guide, you will be provided with
 1. An overview of the feature to introduce its purpose and function.
 2. The command format to use the particular feature.
 3. Sample commands for you to try out the feature.
-4. Explanation on valid command parameters.
-5. Screenshots of the expected behaviour of the sample command to help you understand how the command works.
+4. Explanations on valid command parameters.
+5. Some include screenshots of the expected behaviour of the sample command to help you understand how the command works.
 
-The User Guide is divided into the sections by each feature :
+The Features in the User Guide are grouped according to their functions :
 - [User profile features](#user-features) 
 - [Contact list features](#contact-list-features)
 - [Module features](#module-features)
@@ -87,15 +93,18 @@ The User Guide is divided into the sections by each feature :
 - [Filtering features](#filtering-features)
 - [Other features](#other-features)
 
-You can jump into the various sections from the Table of Contents to learn about all related commands to the respective 
-features and click on [Scroll back to top](#table-of-contents), which can be found at the end of every section, to 
-access to the Table of Contents to quickly jump to another section without manually scrolling through the User Guide.
+You can jump to the specific section of the user guide which you require using the Table of Contents on the first page
+of the User Guide. This enables you to learn about all the related information you need to know regarding the respective
+features. You may click on [Scroll back to top](#table-of-contents), which can be found at the end of every section, to 
+gain quick access to the Table of Contents, enabling you to redirect yourself to another section if necessary without 
+having to manually scroll through the User Guide.
 
-If it is your first time using a Command Line Interface, you are recommended to try out the sample commands provided
-to gain a better understanding of how a Command Line Interface works.
+If this is your first time using a Command Line Interface, you are recommended to go through the entire user guide according
+to the sequence laid out in the user guide, as well as trying out the sample commands provided in each feature to gain 
+a better understanding of how a Command Line Interface works.
 
 Once you are proficient with the various command types, you may refer to the section [Command Summary](#command-summary), 
-which will provide you with a summary of all the command formats of all features provided by ConnectNUS.
+which will provide you with a quick glance summary of all the command formats of all features provided by ConnectNUS.
 
 As recommended in the introduction, we would like to direct you to read the [Glossary](#glossary) section next.
 

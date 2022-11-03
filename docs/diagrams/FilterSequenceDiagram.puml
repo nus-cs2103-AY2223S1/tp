@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+
+
+user -[USER_COLOR]> ui : "filtertag friends"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute("filtertag friends")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model : updateFilteredPersonList(predicate)
+activate model MODEL_COLOR
+
+model --[MODEL_COLOR]> logic
+deactivate model
+
+logic -[LOGIC_COLOR]> model : getFilteredPersonList()
+activate model MODEL_COLOR
+
+model --[MODEL_COLOR]> logic : filteredPersons:FilteredList<Person>
+deactivate model
+
+logic --[LOGIC_COLOR]> ui : filteredPersons:FilteredList<Person>
+deactivate logic
+
+ui --[UI_COLOR]> user : PersonListPanel
+deactivate ui
+@enduml

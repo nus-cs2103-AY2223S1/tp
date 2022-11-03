@@ -204,7 +204,6 @@ All `Person` have a `Name`, `Email`, `Address` and `Phone` and a set of `Tag`, `
 `Person`s can have a `Github` URL to their profile added, and as many `Tags`, `Modules` and `Lessons` as desired.
 
 #### User Class
-
 `User` Class is implemented the same way.
 
 ![User Class Diagram](images/UserClassDiagram.png)
@@ -239,12 +238,20 @@ only AY2021/22 enrolment bc we selfish blah blah...
 
 
 ### Refreshing to next semester
+ConnectNUS has a feature that helps you to update the previous module lists and clear the current module list of your profile 
+as well as any persons stored in the contact list at the start of each semester so that it is easy for you to update 
+yours and your friend's profiles.
 
-sequence diagram or sth
+#### Implementation flow
 
-#### Design considerations
+Given below is a sequence diagram to illustrate how the Next Semester feature, `nexsem`, behaves after the user gives the 
+respective command:
 
-no clue lmao laura u do but if rly nth j remove the design considerations header and from the toc also
+![Next Semester Sequence Diagram](images/NextSemesterSequenceDiagram.png)
+
+`nextsem` moves all `CurrentModule` in the `CurrentModule` set in your profile as well as any persons stored in the contact list 
+to their respective `PreviousModule` sets. After which, the `CurrentModule` sets in both yours and all persons stored in the
+contact list will be cleared.
 
 ### Adding lessons
 ConnectNUS has a feature that allows you to add lessons to your profile as well as any persons stored in the contact list,
@@ -370,7 +377,7 @@ Given below are some examples of a user command to show a `Timetable`.
 3. Example 3 : Command to show the timetable of the user's tenth contact,
 - `timetable 10`
 
-### Implementation flow
+#### Implementation flow
 
 Given below is a sequence diagram to illustrate how the timetable is displayed after the user attempts to show his/her
 timetable.
@@ -394,6 +401,7 @@ sorted and converted to `String` which is displayed in the `TimetableWindow` whi
 * **Alternative 2:** User runs a command to display his/her and his/her contact's timetable which creates a new window.
   * Pros: User will have a larger space to see the timetable.
   * Cons: We must ensure the implementation of the additional commands are correct and the UI displays correctly.
+
 * **Decision:** Since we expect the timetable feature to not be used often (only when arranging meetings), we chose alternative 1
 to reduce the clutter on the main window.
 
@@ -498,31 +506,6 @@ Given below are the proposed Methods to implement:
   * `Model#redoAddressBook()` - Changes the current Model to read from the next `AddressBook` state
   * `Model#commitAddressBook()` - Saves current `AddressBook` state into `addressBookStateList`
 
-### \[Proposed\] Filter feature
-
-#### Proposed Implementation
-
-The proposed feature enables users to filter contacts by tags or modules. It is facilitated by `Command`, with the PersonCards being sorted according to tags instead of the order in which they were added to the app. This will be stored as an `ObservableList<Person>`. Additionally, it implements the following operations:
-
-* `FilterByTagCommand#execute(Model model)` — Filters the `FilteredPersonList` according to tag.
-* `FilterByCurrModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Current Modules.
-* `FilterByPrevModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Previous Modules.
-* `FilterByPlanModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Planned Modules.
-
-These operations are exposed in the Model interface as `Model#updateFilteredPersonList`.
-
-Given below is an example of the usage scenario and how the filtering mechanism behaves at each step.
-
-Step 1. The User wants to filter their contacts according to tag. The `FilterByTagCommand#execute()` will update `Model#filteredPersons` with `Model#updateFilteredPersonList(Predicate<Person> predicate)`.
-
-![FilterState0](images/UndoRedoState0.png)
-
-Step 2. The `PersonListPanel` Ui will then only display `PersonCard`s of contacts that have the tag specified by the User.
-
-The following activity diagram summarizes what happens when a user executes a filterByTag command:
-
-Reason for implementation: All filter methods could have been implemented as one class instead of multiple subclasses. However as the different filtering specifications would have to access different classes to filter the contact list, each filter command has been abstracted out as a different class.
-
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -536,29 +519,38 @@ Reason for implementation: All filter methods could have been implemented as one
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+### Filter feature
+ConnectNUS has a filter function that allows you to filter all persons in your contact list according to `Tag`, `CurrentModule`,
+`PreviousModule` or `PlannedModule`. This allows you to find people who are taking specific mods such that you 
+are able to reach out to friends for collaboration more quickly.
 
-### Filter contacts
+#### Implementation
 
-#### Proposed Implementation
+The following sequence diagram summarizes what happens when a user executes a `filterTagCommand`:
 
-The proposed feature enables the user to move the CurrentModules in both the User and their contacts into PreviousModules. It is facilitated by `ShiftCommand`, where each `CurrentModule` in User's and Peron's Set<CurrentModule> will be deleted and changed into a `PreviousModule` and added into the User and each Person's `Set<PreviousModule>`. Additionally, it implemented the following operations:
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
 
-* `Person#updatePrevMods` — Adds the `Modules` in `Set<CurrentModule>` into `Set<PreviousModule>`.
-* `User#updatePrevMods` — Adds the `Modules` in `Set<CurrentModule>` into `Set<PreviousModule>`.
+The `filterCurrModCommand`, `filterPrevModCommand` and `filterPlanModCommand` are executed in the same manner.
 
-These operations are exposed in the Model interface as `Model#getPerson` and `Model#getUser` respectively.
+`ModelManager`, which implements the `Model` class, stores an attribute `filteredPersons`, which is a `FilteredList` of `Person`s
+that is shown in the `MainWindow` class as a `PersonListPanel`. When a `filterTagCommand`, `filterCurrModCommand`, 
+`filterPrevModCommand` or `filterPlanModCommand` is given by the user, `Model`
+updates it's `filteredPersons` attribute to only contain `Person`s with any of the `Tag`s specified by the user. 
+The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
 
-Given below is an example of the usage scenario and how the User's PreviousModule's are updated.
+#### Design considerations:
 
-Step 1. The User wants to update his ConnnectNUS app details as a new AY has started. He inputs the `shift` command.
+**Aspect: The implementation of the various filter features ie. filtering by Tag, filtering by Current Module, filtering by Previous Module and filtering by Planned Module:**
 
-Step 2. The LogicManager will parse the User's input and execute a `NextSemCommand`.
+* **Alternative 1:** Creating a common filter parent class with each specific filter function extending from the parent filter class.
+* Pros: Since all filter functions require the same methods, it would be easier to implement filter functions with the different specifications in ConnectNUS. Furthermore, it allows developers to create new filter functions for future features that may be added to the application in future iterations.
+  * Cons: the different filtering features would have to access different classes located in different packages to filter the contact list
 
-Step 3. When `NextSemCommand` is called, it will call on `Person#updatePrevMods` and `User#updatePrevMods`, updating both the User and all the Person's in the User's contact list.
+* **Alternative 2:** Abstracting out each filter feature as a different class which directly extends the command class.
+  * Pros: Less confusing for developers as each filtering feature would have to access different classes depending on the feature that is being filtered. Furthermore each filter feature's classes would belong in different packages within the programme due to the fact that it filters different features.
+  * Cons: Future implementations of filter functions for new features that may be added to the programme would have to be created from scractch.
 
-Step 4. The changes will be reflected in the PersonCard and UserProfile Uis.
-
-The following activity diagram summarizes what happens when a user executes a shift command:
+* **Decision:** We decided to use alternative 2 as we do not foresee new features being added to the programme which would require filtering functions in the new feature based on the current purpose of our app. Furthermore, it would not be difficult to implement a parent abstract filter class for the filter function in future iterations should we need to do so.
 
 --------------------------------------------------------------------------------------------------------------------
 
