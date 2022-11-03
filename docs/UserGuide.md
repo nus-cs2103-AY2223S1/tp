@@ -248,6 +248,7 @@ Optional Parameters: `TAG`, `IMAGE`, `INTERESTED_CLIENTS`, `PROPERTY_STATUS`
 * A property can have any number of interested clients (including 0)
 * The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.
 * The `h/PROPERTY_TYPE` flag specifies the type of property. It can only be either HDB, CONDO, or LANDED.
+* Succesfully adding interested clients to a property does not add the new property as an interested property for those clients. The user has to manually add the new property as an interested property of those clients.
 </div>
 
 Examples:
@@ -280,6 +281,7 @@ Format: `edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [s/PROPERTY_STATUS] [h/PRO
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the property’s tags by typing `t/` without
   specifying any tags after it.
+* Succesfully adding interested clients to a property does not add the edited property as an interested property for those clients. The user has to manually add the edited property as an interested property of those clients, as well as possibly remove the edited property from its original interested clients.
 
 Examples:
 *  `edit -p 1 p/1,000,000 a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` Edits the price and address of the 1st person to be `1,000,000` and `11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` respectively.
@@ -405,7 +407,8 @@ Optional parameters:
 - [Interested properties](#interested-properties): `ip/`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
+* A client can have any number of tags (including 0)
+* Succesfully adding interested properties to a client does not add the new client as an interested client for those properties. The user has to manually add the new client as an interested client of those properties.
 </div>
 
 The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.
@@ -426,6 +429,7 @@ Tips:
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the listing will be removed i.e. adding of tags is not cumulative.
 * You can remove all the listing's tags b
+* Succesfully adding interested properties to a client does not add the edited client as an interested client for those properties. The user has to manually add the edited client as an interested client of those properties, as well as possibly remove the edited client from its original interested properties.
   Examples:
 * `edit -c 5 n/Bob a/RC4 t/thrifty`
 
