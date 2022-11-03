@@ -125,6 +125,7 @@ public class PersonCard extends UiPart<Region> {
         if (person instanceof Student) {
             Student student = (Student) person;
             student.getModuleCodes().stream()
+                    .sorted((m1, m2) -> -1 * m1.compareTo(m2))
                     .forEach(moduleCode -> moduleCodes.getChildren().add(new Label(moduleCode.value)));
             title.setText("Student");
             setYear(student);
