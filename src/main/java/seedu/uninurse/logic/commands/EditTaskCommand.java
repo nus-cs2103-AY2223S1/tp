@@ -12,6 +12,7 @@ import seedu.uninurse.model.Model;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
+import seedu.uninurse.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Edits the details of an existing Task for a patient.
@@ -67,12 +68,14 @@ public class EditTaskCommand extends EditGenericCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
-        if (patientToEdit.getTasks().hasTask(updatedTask)) {
+        Task initialTask = initialTaskList.get(taskIndex.getZeroBased());
+        TaskList updatedTaskList;
+
+        try {
+            updatedTaskList = initialTaskList.edit(taskIndex.getZeroBased(), updatedTask);
+        } catch (DuplicateTaskException dte) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
         }
-
-        Task initialTask = initialTaskList.get(taskIndex.getZeroBased());
-        TaskList updatedTaskList = initialTaskList.edit(taskIndex.getZeroBased(), updatedTask);
 
         Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
 

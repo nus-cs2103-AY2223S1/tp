@@ -1,5 +1,6 @@
 package seedu.uninurse.model.task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,8 +22,8 @@ public class NonRecurringTask extends Task {
         super(description, dateAndTime);
     }
 
-    public List<Task> updateTask(List<Task> taskList) {
-        return taskList;
+    public List<Task> updateTask() {
+        return new ArrayList<>();
     }
 
     @Override

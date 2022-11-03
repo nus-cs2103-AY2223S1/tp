@@ -5,12 +5,15 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.uninurse.model.GenericList;
 import seedu.uninurse.model.ListModificationPair;
 import seedu.uninurse.model.ModificationType;
+import seedu.uninurse.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Represents a list of tasks for a particular person.
@@ -42,6 +45,12 @@ public class TaskList implements GenericList<Task> {
      */
     @Override
     public TaskList add(Task task) {
+        requireNonNull(task);
+
+        if (this.internalTaskList.contains(task)) {
+            throw new DuplicateTaskException();
+        }
+
         ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
         updatedTasks.add(task);
         updatedTasks.sort(Comparator.comparing(Task::getDateTime));
@@ -58,6 +67,11 @@ public class TaskList implements GenericList<Task> {
     @Override
     public TaskList edit(int index, Task task) {
         assert(index >= 0 && index <= this.size());
+
+        if (this.internalTaskList.contains(task)) {
+            throw new DuplicateTaskException();
+        }
+
         ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
         updatedTasks.set(index, task);
         updatedTasks.sort(Comparator.comparing(Task::getDateTime));
@@ -173,11 +187,14 @@ public class TaskList implements GenericList<Task> {
      */
     public void updateTasks() {
         List<Task> updatedTasks = new ArrayList<>(internalTaskList);
+        Set<Task> tmpTasks = new HashSet<Task>();
         for (Task task : internalTaskList) {
             if (task.passedTaskDate()) {
-                updatedTasks = task.updateTask(updatedTasks);
+                tmpTasks.addAll(task.updateTask());
             }
         }
+        updatedTasks.addAll(tmpTasks.stream().filter(task -> !updatedTasks.contains(task))
+                .collect(Collectors.toList()));
         updatedTasks.sort(Comparator.comparing(Task::getDateTime));
         internalTaskList = updatedTasks;
     }

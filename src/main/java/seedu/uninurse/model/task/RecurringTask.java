@@ -91,14 +91,12 @@ public class RecurringTask extends Task {
     }
 
     @Override
-    public List<Task> updateTask(List<Task> taskList) {
-        ArrayList<Task> updatedTasks = new ArrayList<>(taskList);
+    public List<Task> updateTask() {
+        ArrayList<Task> updatedTasks = new ArrayList<>();
         RecurringTask nextRecurringTask = this;
 
         while (nextRecurringTask.passedTaskDate()) {
-            if (!updatedTasks.contains(nextRecurringTask)) {
-                updatedTasks.add(nextRecurringTask);
-            }
+            updatedTasks.add(nextRecurringTask);
             nextRecurringTask = nextRecurringTask.getNextRecurringTask();
         }
 

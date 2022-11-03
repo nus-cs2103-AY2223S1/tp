@@ -76,7 +76,7 @@ public abstract class Task {
     /**
      * TODO
      */
-    public abstract List<Task> updateTask(List<Task> taskList);
+    public abstract List<Task> updateTask();
 
     /**
      * Returns the String representation of the recurrence.
