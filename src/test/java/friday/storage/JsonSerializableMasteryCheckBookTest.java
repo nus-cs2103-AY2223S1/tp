@@ -1,6 +1,5 @@
 package friday.storage;
 
-
 import static friday.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
