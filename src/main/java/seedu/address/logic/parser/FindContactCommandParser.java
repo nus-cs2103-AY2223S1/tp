@@ -55,6 +55,10 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
         } else if (searchPrefix.equals(PREFIX_TASK)) {
 
             int taskIndex = Integer.parseInt(argMultimap.getValue(PREFIX_TASK).get());
+            if (taskIndex < 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+            }
             return new FindContactCommand(new CanHelpWithTaskPredicate(taskIndex));
 
         } else {

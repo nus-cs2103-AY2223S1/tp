@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
@@ -16,9 +17,11 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -74,6 +77,28 @@ public class FindContactCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_searchByValidTask_personFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        CanHelpWithTaskPredicate predicate = new CanHelpWithTaskPredicate(1);
+        FindContactCommand command = new FindContactCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_searchByInvalidTask_throwsCommandException() {
+        CanHelpWithTaskPredicate predicate = new CanHelpWithTaskPredicate(100);
+        FindContactCommand command = new FindContactCommand(predicate);
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void withoutArgs_returnCanHelpWithFirstTask() {
+        FindContactCommand expectedCommand = new FindContactCommand(new CanHelpWithTaskPredicate((1)));
+        assertEquals(expectedCommand, FindContactCommand.withoutArgs());
     }
 
     /**

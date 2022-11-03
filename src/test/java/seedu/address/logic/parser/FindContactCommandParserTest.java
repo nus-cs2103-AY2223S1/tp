@@ -26,6 +26,17 @@ public class FindContactCommandParserTest {
         // multiple search prefixes (e.g. both n/ and m/)
         assertParseFailure(parser, " n/Alice m/CS1101S",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+
+        // invalid prefixes
+        assertParseFailure(parser, "s/foo",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "s/foo g/bar",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+
+        // no prefixes
+        assertParseFailure(parser, "jeremy",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
     }
 
     @Test
