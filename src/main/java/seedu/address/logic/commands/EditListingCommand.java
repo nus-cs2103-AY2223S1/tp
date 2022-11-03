@@ -3,13 +3,18 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASKING_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LISTING_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LISTINGS;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -18,6 +23,7 @@ import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
+import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -30,44 +36,46 @@ public class EditListingCommand extends Command {
             + "by the id used in the displayed listing list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + "[" + PREFIX_ID + "ID]"
+            + "[" + PREFIX_LISTING_ID + "ID]"
             + "[" + PREFIX_ADDRESS + "ADDRESS]"
             + "[" + PREFIX_NAME + "NAME]"
             + "[" + PREFIX_ASKING_PRICE + "ASKING PRICE] \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ID + "3412 "
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_LISTING_ID + "3412 "
             + PREFIX_ADDRESS + " 100 Charming Avenue "
             + PREFIX_NAME + "Jake Holt "
             + PREFIX_ASKING_PRICE + "1 ";
 
-    public static final String MESSAGE_EDIT_LISTING_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_LISTING_SUCCESS = "Edited Listing: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_LISTING = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_LISTING = "This Listing already exists in the address book.";
 
-    private final ListingId id;
+    private final Index index;
     private final EditListingDescriptor editListingDescriptor;
 
     /**
-     * @param id of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param editListingDescriptor details to edit the person with
      */
-    public EditListingCommand(ListingId id, EditListingDescriptor editListingDescriptor) {
+    public EditListingCommand(Index index, EditListingDescriptor editListingDescriptor) {
+        requireNonNull(index);
         requireNonNull(editListingDescriptor);
 
-        this.id = id;
+        this.index = index;
         this.editListingDescriptor = new EditListingDescriptor(editListingDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Listing listingToEdit = model.getListing(id);
+        List<Listing> lastShownList = model.getFilteredListingList();
 
-        if (!model.hasListing(listingToEdit)) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LISTING_ID);
         }
 
-        Listing editedListing = createEditedPerson(listingToEdit, editListingDescriptor, model);
+        Listing listingToEdit = lastShownList.get(index.getZeroBased());
+        Listing editedListing = createEditedListing(listingToEdit, editListingDescriptor);
 
         if (!listingToEdit.isSameListing(editedListing) && model.hasListing(editedListing)) {
             throw new CommandException(MESSAGE_DUPLICATE_LISTING);
@@ -82,13 +90,12 @@ public class EditListingCommand extends Command {
      * Creates and returns a {@code Listing} with the details of {@code listingToEdit}
      * edited with {@code editListingDescriptor}.
      */
-    private static Listing createEditedPerson(Listing listingToEdit, EditListingDescriptor editListingDescriptor,
-                                              Model model) {
+    private static Listing createEditedListing(Listing listingToEdit, EditListingDescriptor editListingDescriptor) {
         assert listingToEdit != null;
 
         ListingId updatedId = editListingDescriptor.getId().orElse(listingToEdit.getId());
-        Name updatedName = editListingDescriptor.getName().orElse(listingToEdit.getName());
         Address updatedAddress = editListingDescriptor.getAddress().orElse(listingToEdit.getAddress());
+        Name updatedName = editListingDescriptor.getName().orElse(listingToEdit.getName());
         Price updatedAskingPrice = editListingDescriptor.getAskingPrice().orElse(listingToEdit.getAskingPrice());
 
         return new Listing(updatedId, updatedAddress, updatedName, updatedAskingPrice);
@@ -101,18 +108,18 @@ public class EditListingCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditListingDescriptor)) {
+        if (!(other instanceof EditListingCommand)) {
             return false;
         }
 
         // state check
-        EditListingDescriptor e = (EditListingDescriptor) other;
-        return id.equals(e.id)
-                && editListingDescriptor.equals(e);
+        EditListingCommand e = (EditListingCommand) other;
+        return index.equals(e.index)
+                && editListingDescriptor.equals(e.editListingDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * Stores the details to edit the listing with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
     public static class EditListingDescriptor {
@@ -120,6 +127,7 @@ public class EditListingCommand extends Command {
         private Name name;
         private Address address;
         private Price askingPrice;
+        private Set<Tag> tags;
 
         public EditListingDescriptor() {}
 
@@ -132,13 +140,14 @@ public class EditListingCommand extends Command {
             setName(toCopy.name);
             setAddress(toCopy.address);
             setAskingPrice(toCopy.askingPrice);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(id, name, address, askingPrice);
+            return CollectionUtil.isAnyNonNull(id, name, address, askingPrice, tags);
         }
 
         public void setName(Name name) {
@@ -170,7 +179,24 @@ public class EditListingCommand extends Command {
         }
 
         public Optional<Price> getAskingPrice() {
-            return Optional.of(askingPrice);
+            return Optional.ofNullable(askingPrice);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override

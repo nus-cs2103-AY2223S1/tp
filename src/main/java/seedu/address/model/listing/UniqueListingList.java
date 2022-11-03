@@ -13,7 +13,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.listing.exceptions.DuplicateListingException;
 import seedu.address.model.listing.exceptions.ListingNotFoundException;
 import seedu.address.model.person.Client;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -60,7 +59,7 @@ public class UniqueListingList implements Iterable<Listing> {
      */
     public Listing getListing(ListingId id) {
         for (Listing listing : internalList) {
-            if (listing.getId().equals(id)) {
+            if (listing.getId() == (id)) {
                 return listing;
             }
         }
@@ -81,7 +80,7 @@ public class UniqueListingList implements Iterable<Listing> {
         }
 
         if (!target.isSameListing(editedListing) && contains(editedListing)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateListingException();
         }
 
         internalList.set(index, editedListing);
