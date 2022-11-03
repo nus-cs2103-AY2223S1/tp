@@ -226,7 +226,10 @@ public class ParserUtil {
     public static String parseFileName(String filename) throws ParseException {
         requireNonNull(filename);
         String trimmedFileName = filename.trim();
-        if (trimmedFileName.length() < 1) {
+        // Checking if trimmedFileName is either empty or not in the correct file format
+        if (trimmedFileName.length() < 1
+            || trimmedFileName.indexOf(".") == -1
+            || !trimmedFileName.split("\\.")[1].equals("csv")) {
             throw new ParseException("Fail");
         }
         return trimmedFileName;

@@ -87,7 +87,6 @@ public class PersonInfo extends UiPart<Region> {
     }
 
     private static Node createDataNode(ObjectExpression<Number> value) {
-        System.out.println(value);
         var label = new Label();
         label.textProperty().bind(value.asString());
 
