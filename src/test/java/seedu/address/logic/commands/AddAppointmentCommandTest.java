@@ -76,12 +76,13 @@ public class AddAppointmentCommandTest {
 
         // Create expectedModel
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
-        expectedModel.addPerson(new PersonBuilder().build());
-        expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
-        Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
+        Person expectedPerson = new PersonBuilder().build();
         expectedPerson.getAppointments().add(new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build());
+        expectedModel.addPerson(expectedPerson);
+        expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
+        expectedModel.updateFilteredPersonList(person -> person.isSamePerson(expectedPerson) );
 
         // Create addAppointmentCommand
         Appointment appointmentToAdd = new AppointmentBuilder()

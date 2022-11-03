@@ -26,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -81,15 +82,17 @@ public class DeleteAppointmentCommandTest {
 
         // Create expectedModel
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
-        expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
+        Person expectedPerson = new PersonBuilder(MUSAB_WITH_NO_APPT)
                                 .withAppointment(new AppointmentBuilder()
                                         .withDateTime(VALID_DATETIME_22_JAN_2023)
                                         .withLocation(VALID_LOCATION_JURONGPOINT).build())
-                                .build());
+                                .build();
+        expectedModel.addPerson(expectedPerson);
         expectedModel.addPerson(ALICE);
         Appointment deletedAppointment = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build();
+        expectedModel.updateFilteredPersonList(person -> person.isSamePerson(expectedPerson) );
 
         DeleteAppointmentCommand deleteAppointmentCommand =
                 new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
