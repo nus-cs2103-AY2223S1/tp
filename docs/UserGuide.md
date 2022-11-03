@@ -51,6 +51,7 @@ FYP projects in a concise manner.
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -90,6 +91,8 @@ FYP projects in a concise manner.
   ID of A0123456X.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding students FYP: `add`
 
@@ -251,6 +254,8 @@ Exits the program.
 Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
