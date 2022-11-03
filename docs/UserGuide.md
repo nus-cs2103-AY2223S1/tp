@@ -36,7 +36,7 @@ If you want to **quick**ly get **start**ed with using HobbyList, you can read an
 #### Features
 The [features](#5-features) section contains a list of all the features that HobbyList currently has. Within each feature, you can read up on how each feature is used and look at some examples.
 The features are laid out with a short description, followed by the format of the command, then finally some examples with explanation on what they do.
-This [information box](#command-info) provides information on understanding the command format.
+This [information box](#command-info) provides information on understanding the command format. This [information box](#what-is-an-activity) tells you what an activity is and what information is stored in one.
 
 #### Special boxes
 Throughout the entire user guide, there are special boxes like the ones below which give you additional information.
@@ -169,6 +169,7 @@ Examples:
 
   *Adds an activity with the name "Badminton", description "play badminton", tags "sport" and "entertainment", date "2022-10-19" and status "COMPLETED".*
 
+<a name="what-is-an-activity"></a>
 <div markdown="block" class="alert alert-info">
 
 :information_source: **What is an activity?**<br>
@@ -397,7 +398,7 @@ Examples:
 
   *Shows a list of activities with a status of `UPCOMING`.*
 
-### 5.10 Finding activities with rating value above certain value : `r/above`
+### 5.10 Finding activities with ratings above a certain value : `r/above`
 
 You can show a list of all activities whose rating value is greater or equal than the required value using this command.
 
