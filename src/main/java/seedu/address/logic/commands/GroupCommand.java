@@ -57,4 +57,11 @@ public class GroupCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SHOWING_GROUP), true, groupToDisplay);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof GroupCommand // instanceof handles nulls
+                && groupToDisplay.equals(((GroupCommand) other).groupToDisplay));
+    }
+
 }
