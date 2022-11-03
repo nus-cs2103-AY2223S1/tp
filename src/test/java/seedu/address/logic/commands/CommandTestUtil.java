@@ -28,6 +28,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleDetailsContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonDetailsContainsKeywordsPredicate;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -53,6 +54,7 @@ public class CommandTestUtil {
 
     public static final String VALID_MODULE_CODE_CS2103T = "CS2103T";
     public static final String VALID_MODULE_CODE_CS2100 = "CS2100";
+    public static final String VALID_MODULE_CODE_CS2040S = "CS2040S";
     public static final String VALID_LECTURE_DETAILS_CS2103T = "Every friday";
     public static final String VALID_LECTURE_DETAILS_CS2100 = "Every tuesday";
     public static final String VALID_TUTORIAL_DETAILS_CS2103T = "Every wednesday";
@@ -86,7 +88,7 @@ public class CommandTestUtil {
     public static final String LECTURE_ZOOM_LINK_CS2103T = " " + PREFIX_LECTURE_ZOOM + VALID_LECTURE_ZOOM_LINK_CS2103T;
     public static final String LECTURE_ZOOM_LINK_CS2100 = " " + PREFIX_LECTURE_ZOOM + VALID_LECTURE_ZOOM_LINK_CS2100;
     public static final String TUTORIAL_ZOOM_LINK_CS2103T = " " + PREFIX_TUTORIAL_ZOOM
-            + VALID_TUTORIAL_ZOOM_LINK_CS2103T;
+        + VALID_TUTORIAL_ZOOM_LINK_CS2103T;
     public static final String TUTORIAL_ZOOM_LINK_CS2100 = " " + PREFIX_TUTORIAL_ZOOM + VALID_TUTORIAL_ZOOM_LINK_CS2100;
     public static final String ASSIGNMENT_DETAILS_HARD = " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DETAILS_HARD;
     public static final String ASSIGNMENT_DETAILS_NORMAL = " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DETAILS_NORMAL;
@@ -110,6 +112,9 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS2103T;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS2100;
+
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -118,6 +123,17 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withModuleCode(VALID_MODULE_CODE_CS2103T)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    static {
+        DESC_CS2103T = new EditModuleDescriptorBuilder().withLectureDetails(VALID_LECTURE_DETAILS_CS2103T)
+            .withLectureDetails(VALID_LECTURE_DETAILS_CS2103T).withLectureZoomLink(VALID_LECTURE_ZOOM_LINK_CS2103T)
+            .withTutorialDetails(VALID_TUTORIAL_DETAILS_CS2103T).withTutorialZoomLink(VALID_TUTORIAL_ZOOM_LINK_CS2103T)
+            .withAssignmentDetails(VALID_ASSIGNMENT_DETAILS_NORMAL).build();
+        DESC_CS2100 = new EditModuleDescriptorBuilder().withLectureDetails(VALID_LECTURE_DETAILS_CS2100)
+            .withLectureDetails(VALID_LECTURE_DETAILS_CS2100).withLectureZoomLink(VALID_LECTURE_ZOOM_LINK_CS2100)
+            .withTutorialDetails(VALID_TUTORIAL_DETAILS_CS2100).withTutorialZoomLink(VALID_TUTORIAL_ZOOM_LINK_CS2100)
+            .withAssignmentDetails(VALID_ASSIGNMENT_DETAILS_HARD, VALID_ASSIGNMENT_DETAILS_NORMAL).build();
     }
 
     /**
