@@ -41,4 +41,11 @@ public class SortTaskCommand extends Command {
         }
         return new CommandResult(TASK_SORTED_SUCCESSFULLY);
     }
+
+    @Override
+    public boolean equals(Object otherSortTaskCommand) {
+        return otherSortTaskCommand == this
+                || (otherSortTaskCommand instanceof SortTaskCommand
+                && criteria.equals(((SortTaskCommand) otherSortTaskCommand).criteria));
+    }
 }
