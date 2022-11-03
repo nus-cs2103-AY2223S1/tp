@@ -52,8 +52,8 @@ public class CreateTeamCommandTest {
         CreateTeamCommand createTeamCommand = new CreateTeamCommand(validTeam);
         ModelStub modelStub = new ModelStubWithTeam(validTeam);
 
-        assertThrows(CommandException.class, CreateTeamCommand.MESSAGE_DUPLICATE_TEAM,
-                () -> createTeamCommand.execute(modelStub));
+        assertThrows(CommandException.class, CreateTeamCommand.MESSAGE_DUPLICATE_TEAM, () ->
+                createTeamCommand.execute(modelStub));
     }
 
 
