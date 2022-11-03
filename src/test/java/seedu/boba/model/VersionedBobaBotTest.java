@@ -7,6 +7,7 @@ import static seedu.boba.testutil.TypicalCustomers.ALICE;
 import static seedu.boba.testutil.TypicalCustomers.CARL;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.boba.model.exceptions.NextStateNotFoundException;
 import seedu.boba.model.exceptions.PreviousStateNotFoundException;
 
@@ -49,7 +50,7 @@ public class VersionedBobaBotTest {
         BobaBot editedBobaBot = new BobaBot();
         //To fill up the stateList of size 20 with the different versions of bobaBot
         for (int i = 0; i < 20; i++) {
-            if(i % 2 == 0) {
+            if (i % 2 == 0) {
                 editedBobaBot.addPerson(ALICE);
             } else {
                 editedBobaBot.removePerson(ALICE);
