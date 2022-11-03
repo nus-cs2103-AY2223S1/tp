@@ -73,7 +73,15 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+
+
+The UI consists of a `MainWindow` that is made up of parts e.g. `OutputPanel`,`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Additionally, the structure of `OutputPanel` is as shown below:
+![Structure of the OutputPanel Component](images/OutputPanelClassDiagram.PNG)
+
+`OutputPanel` is made up of parts e.g. `TruncatedTaskListPanel`, `ScheduleListPanel`, `UpdatedPersonListPanel`, `UndoCard` etc. Similar to `MainWindow`, all these components including the `OutputPanel` inherit from the abstract `UiPart` class.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/uninurse/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
