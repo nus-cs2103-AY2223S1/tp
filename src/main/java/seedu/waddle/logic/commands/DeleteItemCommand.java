@@ -22,7 +22,7 @@ public class DeleteItemCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the item identified by the index number used in the displayed item list. "
             + "Parameters: "
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must exist in the wishlist or day list)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ITINERARY_SUCCESS = "Deleted item: %1$s";
