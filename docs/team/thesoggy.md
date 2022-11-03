@@ -26,7 +26,7 @@ Given below are my contributions to the project.
         * [To be added]
 
 * **Community**:
-    * Some PRs reviewed (with non-trivial review comments): [#61](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/61), [#129](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/129), 
+    * Some PRs reviewed (with non-trivial review comments): [#61](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/61), [#129](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/129)
 
 * **Tools**:
     * Made use of PlantUML to create diagrams for the Developer Guide
