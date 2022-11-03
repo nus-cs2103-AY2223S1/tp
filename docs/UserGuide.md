@@ -272,6 +272,8 @@ Edits an existing internship application in the tracker.
 
 * Tags can be removed by typing `t/` without specifying any tags after it.
 
+* Editing an internship application is only allowed if it does not result in a duplicates. See [`add` command](#adding-an-internship-application-add) to see what are considered duplicates.
+
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
 
