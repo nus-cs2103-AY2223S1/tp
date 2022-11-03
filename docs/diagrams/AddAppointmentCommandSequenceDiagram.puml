@@ -2,11 +2,6 @@
 !include style.puml
 
 skinparam Sequence {
-    MessageAlign center
-    BoxFontSize 15
-    BoxPadding 0
-    BoxFontColor #FFFFFF
-    FontName Arial
     ArrowFontSize 20
 }
 
@@ -14,7 +9,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddAppointmentCommandParser " as AddAppointmentCommandParser  LOGIC_COLOR
-participant "d:AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
+participant "a:AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -43,7 +38,7 @@ create Appointment
 AddAppointmentCommandParser -> Appointment : Appointment(dateTime, location)
 activate Appointment
 
-Appointment --> AddAppointmentCommandParser : a
+Appointment --> AddAppointmentCommandParser :
 deactivate Appointment
 
 create AddAppointmentCommand
