@@ -887,8 +887,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * **v1.2** by 13 October 2022, Thursday, Week 9
    * **v1.3** by 27 October 2022, Thursday, Week 11
    * **v1.4** by 3 November 2022, Thursday, Week 12
-2. Pull requests should be approved by at least one other team member before merging into the master branch on GitHub.
-3. Rapportbook code should follow the Object-oriented paradigm primarily.
+2. Rapportbook code should follow the Object-oriented paradigm primarily.
 
 **Quality requirements**
 
