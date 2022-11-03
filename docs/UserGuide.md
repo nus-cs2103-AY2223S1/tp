@@ -3,9 +3,11 @@ layout: page
 title: User Guide
 ---
 
-HackAssist is a desktop application which aims to help manage tasks in software development hackathons. 
+HackAssist is a desktop application which aims to help manage tasks in software development hackathons. In hackathons, task managements are often hectic because we are required to complete a large number of tasks in a short amount of time. However, using HackAssist, we wish to make task managements easier, so you can focus on your hackathon project :)
 
-It is optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a **Graphical User Interface** (GUI). If you can type fast, HackAssist can get your task management done faster than traditional GUI apps.
+This guide provides an overview on how to perform the main functionalities of HackAssist: [members management](#members-management) and [tasks management](#tasks-management).
+
+For advanced user, you can go straight to [command summary](#command-summary).
 
 * Table of Contents
 {:toc}
@@ -132,7 +134,7 @@ If your changes to the data file makes its format invalid, HackAssist will disca
 
 <br>
 
-### People Management
+### Members Management
 
 #### Adding a person: `add`
 
@@ -339,7 +341,7 @@ Examples:
 
 add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 --------------------------------------------------------------------------------------------------------------------
-## Person parameters
+## Member parameters
 
 | Parameter               | Format                                                                                                                                                 |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
