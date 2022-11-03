@@ -163,7 +163,7 @@ Parameter constraints:
   * DAY: 1 or 2 valid digits allowed
   * MONTH: 1 or 2 valid digits allowed
   * YEAR: 4 valid digits allowed
-  * Examples: 27/10/2022, 27-10-2022... 
+  * Examples: 27/10/2022, 27-10-2022...
   * `d/DATE` field is left optional, will store exercise with current date if no date field is found
 
 <div style="page-break-after: always;"></div>
@@ -438,7 +438,7 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 
 **Q**: Why is `:filter`, `:range` or `:sort` not showing the "correct" list even though I have input valid parameters?
 <br>
-**A**: The three commands works on the exercises in the current [Exercise List](#42-exercise-list). If your current Exercise List has been altered by list-changing commands such as `:range` or `:filter`, the commands will act on the current Exercise List rather than the full list comprising all exercises in the system. 
+**A**: The three commands works on the exercises in the current [Exercise List](#42-exercise-list). If your current Exercise List has been altered by list-changing commands such as `:range` or `:filter`, the commands will act on the current Exercise List rather than the full list comprising all exercises in the system.
 
 <br><br>
 If you would like to operate on the full list instead, try executing the command `:list` to display the full list before running the commands again.
