@@ -42,9 +42,6 @@ FYP projects in a concise manner.
     * **`find machine`** - searches any FYP project names that has “machine” in its name, for example it will include
       the FYP project named “Machine Learning”.
 
-    * ** `sort -s`** - sorts our list of FYP projects by their project status (`YTS`, `IP` followed by `DONE`)
-      , then by alphabetical order.
-      
     * **`help add -s`** - shows a message on how to use the `add -s` command.
 
     * **`help`** - shows the list of all commands available.
