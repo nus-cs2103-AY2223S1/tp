@@ -899,6 +899,7 @@ point for testers to work on; testers are expected to do more exploratory testin
     2. Test case: `checkout FILE_NAME`
 
        Expected: The data in the file `FILE_NAME.json` located at `data/` folder is wiped.
+       The application will not contain any applicants.
 
 ### 7.10 Saving data
 
