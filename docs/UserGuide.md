@@ -88,8 +88,13 @@ Adds an event to the bucket list.
 
 Format: `add-e n/TITLE d/DESCRIPTION`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Have something new to add to your bucket list? Use the <code>add-e</code> to add a new event to your bucket list! 
+<div class="alert alert-block alert-success">
    
+**:point_up: Use case:**<br> 
+
+Have something new to add to your bucket list? Use the <code>add-e</code> to add a new event to your bucket list! 
+      
+
 Examples:
 - `add-e n/Skydiving d/Skydiving with crew`
 - `add-e n/Sailing d/Sail in the Danube River`
@@ -126,7 +131,11 @@ Displays the full title, description of the event at the specified INDEX of the 
 
 Format: `display-e INDEX`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Occasionally, you may add events with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display-e</code> command to look at a specified event's full title and description.
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+
+Occasionally, you may add events with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display-e</code> command to look at a specified event's full title and description.
 
 The following is an example of how the `display-e` command can be run in the GUI.
 
@@ -147,7 +156,11 @@ Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`
 - All fields are compulsory.
 - Date must follow the format `dd-mm-yyyy`.
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Planning an upcoming trip? Use the `add` command to add a new trip to your trip list!
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Planning an upcoming trip? Use the `add` command to add a new trip to your trip list!
 
 Examples:
 - `add n/Trip to Iceland d/Skiing in Iceland l/Iceland D/26-12-2023`
@@ -180,7 +193,11 @@ Examples:
 Displays the full title, description, location, and date of the trip at the specified INDEX of the displayed trip list in the output box.
 Format: `display INDEX`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Occasionally, you may add trips with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display</code> command to look at a specified trip's full title and description.
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Occasionally, you may add trips with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display</code> command to look at a specified trip's full title and description.
 
 The following is an example of how the `display` command can be run in the GUI.
 
@@ -205,7 +222,11 @@ Format: `add-et n/EVENT NAME t/TRIP NAME`
 
 *Note: Event names and trip names are used as inputs instead of indexes to make the command as specific as possible.
 
-<div class="alert alert-block alert-success"><b>Use case: </b> <code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command.
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+<code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command.
 
 Examples:
 - `add-et n/Visit the Swiss Alps t/Trip to Switzerland` adds the event titled `Visit the Swiss Alps` in the bucket list to the itinerary of the trip with the title `Trip to Switzerland`.
@@ -225,7 +246,11 @@ Format: `delete-et n/EVENT NAME t/TRIP NAME`
 - The TRIP NAME must exist in the trips list.
 - The EVENT NAME must exist in the trip itinerary.
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. </div>
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. </div>
 
 Examples:
 - `delete-et n/Visit the Swiss Alps t/Trip to Switzerland` remove the event titled `Visit the Swiss Alps` from the itinerary of the trip titled `Trip to Switzerland` and returns it to the bucket list.
@@ -239,7 +264,11 @@ Format: `select INDEX`
 - The index refers to the index number shown in the current displayed trip list.
 - The index must be a positive integer 1, 2, 3, …
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Now that you have added events into a trip's itinerary, you may want to take a look at how that trip's itinerary looks like. You can run the <code>select</code> command to select a trip and view all the events that have been added its itinerary. 
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Now that you have added events into a trip's itinerary, you may want to take a look at how that trip's itinerary looks like. You can run the <code>select</code> command to select a trip and view all the events that have been added its itinerary. 
 
 The following is an example of how the `select` command can be run in the GUI.
 
@@ -261,7 +290,11 @@ Format: `mark INDEX`
 - The index refers to the index number shown in the trip list.
 - The index must be a positive integer 1, 2, 3, …
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Congratulations, you have just completed a trip! You can now mark it as completed using the <code>mark</code> command.
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Congratulations, you have just completed a trip! You can now mark it as completed using the <code>mark</code> command.
 
 Examples:
 - `mark 1` marks the first trip in the trip list as done.
@@ -284,7 +317,11 @@ Format: `unmark INDEX`
 - The index refers to the index number shown in the trip list.
 - The index must be a positive integer 1, 2, 3, …
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Accidentally marked a trip as completed on accident? Use the <code>unmark</code> command to set it back to incomplete.
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Accidentally marked a trip as completed on accident? Use the <code>unmark</code> command to set it back to incomplete.
 
 Examples:
 - `unmark 1` marks the first trip in the trip list as not done.
@@ -332,7 +369,11 @@ Displays all completed trips and events.
 
 Format: `completed`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Take a stroll down memory lane and revisit happy memories as a list of all your completed trips and events are shown to you. </div>
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Take a stroll down memory lane and revisit happy memories as a list of all your completed trips and events are shown to you. </div>
 
 #### View all trips and events: `view`
 Displays all trips and events in Travelr. This includes events that are part of the bucket list or events that are part of a trip.
@@ -350,7 +391,11 @@ Format: `summary`
 - Progress indicator for trips and events.
 - Command must be used again to view updates to the summary.
 
-<div class="alert alert-block alert-success"><b>Use case: </b> How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the <code>summary</code> command.
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the <code>summary</code> command.
 
 After the command has been successfully executed, a new window will pop up, with information summarising your lifetime travels.
 
@@ -375,7 +420,11 @@ Shows a command summary as well as link to the User Guide page. The link can be 
 
 Format: `help`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Need help with using Travelr effectively? The <code>help</code> command provides a summarized list of commands that you can try out. </div>
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Need help with using Travelr effectively? The <code>help</code> command provides a summarized list of commands that you can try out. </div>
 
 #### Exiting the program: `exit`
 Exits the program.
