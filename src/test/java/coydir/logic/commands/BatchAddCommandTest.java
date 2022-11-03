@@ -28,14 +28,14 @@ class BatchAddCommandTest {
 
     private static final Person KIM = new PersonBuilder().withName("Kim Meier").withPhone("84824249")
             .withEmail("kimmeier@example.com").withPosition("Frontend Engineer")
-            .withDepartment("Information Technology").withAddress("Little India").withTags("PromotionComing")
+            .withDepartment("Information Technology").withAddress("Little India").withTags("Promotion coming")
             .withEmployeeId("1").withTotalLeave(20).build();
     private static final Person PETRIS = new PersonBuilder().withName("Petris Mueller").withPhone("96722343")
             .withEmptyEmail().withEmptyAddress().withPosition("Marketing Intern").withDepartment("Marketing")
             .withEmployeeId("2").withTotalLeave(13).withEmployeeId("2").build();
     private static final Person PAUL = new PersonBuilder().withName("Paul Morty").withEmail("paul@example.com")
             .withEmptyPhone().withEmptyAddress().withPosition("UI/UX Engineer").withDepartment("Sales")
-            .withEmployeeId("3").withTags("InnovationLead")
+            .withEmployeeId("3").withTags("Innovation Lead")
             .build();
 
     private Model model = new ModelManager(TypicalPersons.getTypicalDatabase(), new UserPrefs());
