@@ -1,7 +1,6 @@
 package seedu.address.logic.sortcomparators;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.sortcomparators.Order.OrderType.ASC;
 
 import java.util.Comparator;
 
