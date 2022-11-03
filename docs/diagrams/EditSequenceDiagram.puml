@@ -35,7 +35,7 @@ TrackAScholarParser -> EditCommandParser : parse(1 n/Sam \n p/98886767)
 activate EditCommandParser
 
 
-EditCommandParser -> EditCommandParser : arePrefixesPresent()
+EditCommandParser -> EditCommandParser : isPrefixPresent()
 activate EditCommandParser
 
 
