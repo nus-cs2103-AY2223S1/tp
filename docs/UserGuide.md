@@ -332,7 +332,7 @@ The data of all the internship applications is saved automatically to the hard d
 
 * A new folder `data` will be created with the file `applicationbook.json`. This is where your data will be stored for the next time you use the app, transferring it to another device or sharing with your friend.
 
-* Please refrain from editing this save file as the file might become corrupted. When CinternS is booted, if the file is corrupted, it will reset the save file. You will NOT be able to retrieve your data!
+* Editing the save file directly is discouraged as it might become corrupted. When CinternS is booted, if the file is corrupted, it will reset the save file. You will NOT be able to retrieve your data!
 
 * If you do wish to edit the save file, please make sure every field is included as specified in the above commands (e.g. each application and interview must have all the fields listed as required above). Do make a copy of your save file before making any edits in the case that your data is lost so that you can recover it (by replacing the save file with the copy).
 
