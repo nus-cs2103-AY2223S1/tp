@@ -39,7 +39,6 @@ public class WeeklyTimeslot {
      * Returns true if a given string is a valid day.
      */
     public static boolean isValidDay(String dayString) {
-
         return dayString.matches(DAY_FORMAT_REGEX);
     }
 

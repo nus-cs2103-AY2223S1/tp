@@ -79,7 +79,7 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         telegram = source.getTelegram().telegram;
-        tutorialModule = source.getTutorialModule().moduleCode;
+        tutorialModule = source.getModuleCode().moduleCode;
         tutorialName = source.getTutorialName().fullName;
         attendance = String.valueOf(source.getAttendance().value);
         participation = String.valueOf(source.getParticipation().value);

@@ -1,11 +1,10 @@
 package seedu.address.model.consultation;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Consultation's description in ModQuik.
- * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
+ * Guarantees: immutable;
  */
 public class ConsultationDescription {
     public static final String MESSAGE_CONSTRAINTS =
@@ -15,7 +14,6 @@ public class ConsultationDescription {
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String description;
 
@@ -26,17 +24,8 @@ public class ConsultationDescription {
      */
     public ConsultationDescription(String description) {
         requireNonNull(description);
-        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         this.description = description;
     }
-
-    /**
-     * Returns true if a given string is a valid name.
-     */
-    public static boolean isValidDescription(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
 
     @Override
     public String toString() {

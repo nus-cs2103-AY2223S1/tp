@@ -19,7 +19,6 @@ public class DatetimeRange {
     public final LocalDateTime startDatetime;
     public final LocalDateTime endDatetime;
 
-
     /**
      * Constructs a {@code DatetimeRange}.
      *
@@ -31,6 +30,10 @@ public class DatetimeRange {
         requireNonNull(endDatetime);
         this.startDatetime = startDatetime;
         this.endDatetime = endDatetime;
+    }
+
+    public LocalDateTime getStartDatetime() {
+        return startDatetime;
     }
 
     /**
@@ -86,6 +89,18 @@ public class DatetimeRange {
     }
 
     /**
+     * Returns true if {@code DatetimeRange} overlap with each other.
+     */
+    public boolean isOverlapping(DatetimeRange other) {
+        requireNonNull(other);
+        if (other == this) {
+            return true;
+        }
+
+        return startDatetime.isBefore(other.endDatetime) && other.startDatetime.isBefore(endDatetime);
+    }
+
+    /**
      * Converts this DatetimeRange into a human-readable form.
      *
      * @return Human-readable representation of the DatetimeRange
@@ -93,7 +108,6 @@ public class DatetimeRange {
     @Override
     public String toString() {
         if (!startDatetime.toLocalDate().equals(endDatetime.toLocalDate())) {
-            System.out.println(startDatetime.toLocalDate().toString());
             return String.format("%s to %s", startDatetime, endDatetime);
         }
         // If start date and end date is same, no need to show it twice

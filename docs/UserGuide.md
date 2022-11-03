@@ -35,9 +35,11 @@ If you can type fast, ModQuik can get your lesson management tasks done faster t
 
     * **[`add student`]**`n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`: Adds a student named `John Doe` to CS2103T module.
 
-    * **[`delete student`]**`3`: Deletes the 3rd student shown in the current list.
+    * **[`delete student`]**`3`: Deletes the 3rd student shown in the current list displayed.
 
-    * **[`clear`]**`f/reminder`: Deletes all reminders.
+    * **[`switch`]**`f/grade`: Switch the tab to view the grade charts for the respective modules you teach.
+
+    * **[`clear`]**`f/reminder`: Deletes all your reminders.
 
     * **[`exit`]**: Exits the app.
 
@@ -53,6 +55,40 @@ This guide aims to
   * available commands with their respective formats
   * available prefixes and which commands use which prefixes
 
+### 3.1 Navigating the User Guide
+**Information Box**
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** Provides useful information
+</div>
+
+**Tip Box**
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** Provides pointers to enhance your experience
+</div>
+
+**Highlights** <br>
+[`commands`](#glossary) or [`PARAMETERS`](#glossary) are inputs by users
+
+### 3.2 Navigating the GUI
+![GUI](images/AnnotatedUi.png)
+
+**Command Box**
+Enter your command here.
+
+**Result Display Box**
+Displays a feedback message after a command is executed.
+
+**Navigation Tab**
+Panel displaying the tabs you can navigate to.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Clicking on a button in the panel will allow you to switch tabs. 
+</div>
+
+**Main Display**
+Displays the list of your chosen tab.
+
+**Reminder List**
+Displays your list of reminders.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Features
@@ -76,11 +112,11 @@ This guide aims to
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g., if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
 
-* The following prefix parameters, `D/` and `T/`, have more than 1 definition, depending on the type of command inputted.</br>
-    - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands.</br>
-      Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday).</br>
+* The following prefix parameters, `D/` and `T/`, have more than 1 definition, depending on the type of command inputted.<br>
+    - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands.<br>
+      Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday).<br>
       Format of `DATE` should be yyyy-MM-dd. e.g., 2022-02-24
-    - `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands.</br>
+    - `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands.<br>
       Format of `TIMESLOT` should be HH:mm-HH:mm. e.g. 08:00-09:00</br>
       Format of `TIME` should be HH:mm. e.g., 13:00.
 
@@ -104,14 +140,12 @@ Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m
 
 * `PHONE` should be 8 digits long as per standard telephone numbers in Singapore.
 * `STUDENT_ID` should follow the following format AXXXXXXXY, where X is a number, and Y is an alphabet.
+* `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
+* `GRADE` can take in `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
-
-You can add a student more than once if they take different modules. The attendance, participation and grade score entered will then belong to the specified module.
 </div>
-
-* `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
 
 Examples:
 * `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
@@ -159,8 +193,13 @@ Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* `find` across different prefixes is a `AND` search.
+e.g. `find n/John m/CS2105` will return students matching `John` who are also in `CS2105`, if the students exist in ModQuik.
+* `find` works on the entire list of students and successive find commands are independent of each other.
+e.g. `find n/John` followed by find `find m/CS2103` will not find students matching `John` in `CS2103`.
+It will first display all students matching `John`, then display all students in `CS2103`.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
@@ -206,6 +245,7 @@ Adds a tutorial to ModQuik.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 * `DAY` should take in a number from 1 (Monday) to 7 (Sunday).
+* `TIMESLOT` should take in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
 
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
@@ -248,9 +288,11 @@ Examples:
 Adds a consultation to ModQuik.
 
 Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
+* `DATE` should take in a date in the format yyyy-MM-dd, e.g. 2022-10-24.
+* `TIMESLOT` should take in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
 
 Examples:
-* `add consultation n/JakeKim m/CS2103T D/2022-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
+* `add consultation n/JakeKim m/CS2103T D/2023-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
 
 <a name="edit-consultation"></a>
 #### 4.4.2 Editing a consultation: `edit consultation`
@@ -266,7 +308,7 @@ Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/D
 
 Examples:
 * `edit consultation 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
-* `edit consultation 2 T/14:00-16:00 D/2022-10-10` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2022 Oct 10`.
+* `edit consultation 2 T/14:00-16:00 D/2023-10-10` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Oct 10`.
 
 <a name="delete-consultation"></a>
 #### 4.4.3 Deleting a consultation: `delete consultation`
@@ -292,12 +334,14 @@ Adds a reminder to ModQuik. Users can add reminders such as "Mark Assignment 1" 
 Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
-* `DATE` must be after the time
-* Duplicated reminders are allowed.
+* `DATE` and `TIME` inputted must be after the current date and time as shown in your local PC.
+* You cannot add 2 reminders of the same name, date, time and description as they are considered duplicate.
+* Whenever a reminded is added, it will be automatically sorted by priority, just like when `sort reminder by/priority` is used so that the tasks deemed most important are shown at the top of the list.
 
 
 Examples:
-* `add reminder n/Mark Midterms D/2022-01-01 T/15:00 d/300 papers to mark p/HIGH`
+* `add reminder n/Mark Midterms D/2023-01-01 T/15:00 d/300 papers to mark p/HIGH`
+* `add reminder n/update grades T/16:00 D/2023-01-01 d/20 students to update p/MEDIUM`
 
 <a name="edit-reminder"></a>
 #### 4.4.2 Editing a reminder: `edit reminder`
@@ -309,13 +353,14 @@ Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPT
 * Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing the time or the date, both fields must be given.
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
+* `DATE` and `TIME` inputted must be after the current date and time as shown in your local PC.
+* When editing the `DATE` or `TIME`, both fields must be given.
 
 
 Examples:
 * `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
-* `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd reminder to be `14:00` and sets deadline date to `2022 Oct 10`.
+* `edit reminder 2 T/14:00 D/2023-10-10` Edits the deadline time of the 2nd reminder to be `14:00` and sets deadline date to `2023 Oct 10`.
 
 <a name="mark-reminder"></a>
 #### 4.4.3 Mark a reminder: `mark reminder`
@@ -374,7 +419,8 @@ Format: `sort reminder by/SORT_CRITERIA`
   Reminders with the same priority will then be sorted by date, from earliest to latest chronologically.
 * Specifying `deadline` will sort reminders by their deadline, with the earliest date on top of the list.
   Reminders with the same deadline will then be sorted by descending priority level, with the same order as stated above.
-* Reminders with the same priority and deadline will then be sorted lexicographically.
+* Reminders with the same priority and deadline will then be sorted lexicographically. 
+* Sorting does not take reminders' status into account since users may mark or unmark tasks accidentally and editing reminders that are constantly jumping in order is inconvenient.
 
 Examples:
 * `sort reminder by/priority`
@@ -435,6 +481,10 @@ If your changes to the data file makes its format invalid, ModQuik will discard 
 
 _Details coming soon..._
 
+### 4.12 Add existing student into multiple modules `[coming in v2.0]`
+
+_Details coming soon..._
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
@@ -442,37 +492,38 @@ _Details coming soon..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModQuik home folder.
 
-**Q**: How do I toggle between tabs at the side panel  ?<br>
-**A**: Click on the `Tab` button, and it will toggle between all 4 tabs (**Student**, **Grade Chart**, **Consultation**, **Tutorial**) and the command line input too.
+**Q**: How do I toggle between tabs at the side panel?<br>
+**A**: Method 1: Use the [**switch tabs**][`switch`] command.<br>
+       Method 2: Click on the `Tab` button, and it will toggle between all 4 tabs (**Student**, **Grade Chart**, **Consultation**, **Tutorial**).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Command summary
 
-| Action                                           | Format, Examples                                                                                                                                                                                                     |
-|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add Student**][`add student`]                 | `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [t/TAG]…`<br> e.g., `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17` |
-| [**List All Students**][`list`]                  | `list`                                                                                                                                                                                                               |
-| [**Edit Student**][`edit student`]               | `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g., `edit student 1 ph/91234567 e/jameslee@example.com`                                                                                 |
-| [**Find Student**][`find`]                       | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`<br> e.g., `find n/john m/CS2103T`                                                                                                                           |
-| [**Delete Student**][`delete student`]           | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                             |
-| [**Extract Student Emails**][`extract emails`]   | `extract emails`                                                                                                                                                                                                     |
-| [**Add Tutorial**][`add tutorial`]               | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`<br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                                         |
-| [**Edit Tutorial**][`edit tutorial`]             | `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                 |
-| [**Delete Tutorial**][`delete tutorial`]         | `delete tutorial INDEX`<br> e.g., `delete tutorial 3`                                                                                                                                                                |
-| [**Add Consultation**][`add consultation`]       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation D/2022-10-24 T/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                |
-| [**Edit Consultation**][`edit consultation`]     | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                   |
-| [**Delete Consultation**][`delete consultation`] | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                        |
-| [**Add Reminder**][`add reminder`]               | `add reminder n/NAME D/DATE T/TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2022-03-21 T/13:00 p/HIGH d/300 papers to mark`                                                                 |
-| [**Edit Reminder**][`edit reminder`]             | `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPTION]`<br> e.g., `delete reminder 1 D/2022-01-01 T/14:00`                                                                                     |
-| [**Mark Reminder**][`mark reminder`]             | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                    |
-| [**Unmark Reminder**][`unmark reminder`]         | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                |
-| [**Delete Reminder**][`delete reminder`]         | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                |
-| [**Sort Reminder**][`sort reminder`]             | `sort reminder by/SORT_CRITERIA`<br> e.g., `sort reminder by/priority`                                                                                                                                               |
-| [**Switch Tabs**][`switch`]                      | `switch f/FIELD`<br> e.g., `switch f/tutorial`                                                                                                                                                                       |
-| [**Clear**][`clear`]                             | `clear f/FIELD`<br> e.g., `clear f/student`                                                                                                                                                                          |
-| [**Help**][`help`]                               | `help`                                                                                                                                                                                                               |
-| [**Exit**][`exit`]                               | `exit`                                                                                                                                                                                                               |
+| Action                                           | Format, Examples                                                                                                                                                                                                                                           |
+|--------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add Student**][`add student`]                 | `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`<br> e.g., `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17` |
+| [**List All Students**][`list`]                  | `list`                                                                                                                                                                                                                                                     |
+| [**Edit Student**][`edit student`]               | `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/TELEGRAM_HANDLE] [m/MODULE] [tut/TUTORIAL] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`<br> e.g., `edit student 1 ph/91234567 e/jameslee@example.com`                            |
+| [**Find**][`find`]                               | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`<br> e.g., `find n/john m/CS2103T`                                                                                                                                                                 |
+| [**Delete Student**][`delete student`]           | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                                                                   |
+| [**Extract Student Emails**][`extract emails`]   | `extract emails`                                                                                                                                                                                                                                           |
+| [**Add Tutorial**][`add tutorial`]               | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`<br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                                                                               |
+| [**Edit Tutorial**][`edit tutorial`]             | `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                                                       |
+| [**Delete Tutorial**][`delete tutorial`]         | `delete tutorial INDEX`<br> e.g., `delete tutorial 3`                                                                                                                                                                                                      |
+| [**Add Consultation**][`add consultation`]       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation D/2023-10-24 T/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                                                      |
+| [**Edit Consultation**][`edit consultation`]     | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                                                         |
+| [**Delete Consultation**][`delete consultation`] | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                                                              |
+| [**Add Reminder**][`add reminder`]               | `add reminder n/NAME D/DATE T/TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2023-03-21 T/13:00 p/HIGH d/300 papers to mark`                                                                                                       |
+| [**Edit Reminder**][`edit reminder`]             | `edit reminder INDEX [n/NAME] [D/DATE] [T/TIME] [p/PRIORITY] [d/DESCRIPTION]`<br> e.g., `edit reminder 1 D/2023-01-01 T/14:00`                                                                                                                           |
+| [**Mark Reminder**][`mark reminder`]             | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                                                          |
+| [**Unmark Reminder**][`unmark reminder`]         | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                                                      |
+| [**Delete Reminder**][`delete reminder`]         | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                                                      |
+| [**Sort Reminder**][`sort reminder`]             | `sort reminder by/SORT_CRITERIA`<br> e.g., `sort reminder by/deadline`                                                                                                                                                                                     |
+| [**Switch Tabs**][`switch`]                      | `switch f/FIELD`<br> e.g., `switch f/tutorial`                                                                                                                                                                                                             |
+| [**Clear**][`clear`]                             | `clear f/FIELD`<br> e.g., `clear f/student`                                                                                                                                                                                                                |
+| [**Help**][`help`]                               | `help`                                                                                                                                                                                                                                                     |
+| [**Exit**][`exit`]                               | `exit`                                                                                                                                                                                                                                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -526,10 +577,11 @@ _Details coming soon..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## 8. Glossary
-| Term                               | Description                                                                                                                                                                                   |
-|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Graphical User Interface (GUI)** | User interface that allows users to interact with an application through graphics and visuals                                                                                                 |
-| **Command**                        | User-specified instruction that MoqQuik will execute.<br> e.g., `add student` and `find`                                                                                                      |
-| **Parameter**                      | A component of the command that the user will need to input.<br> e.g., `sort reminder by/deadline` where deadline is the parameter.                                                           |
-| **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix.|
-| **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                  |
+| Term                               | Description                                                                                                                                                                                    |
+|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**   | User interface that allows users to use text as commands to be executed by an application.                                                                                                     |
+| **Graphical User Interface (GUI)** | User interface that allows users to interact with an application through graphics and visuals                                                                                                  |
+| **Command**                        | User-specified instruction that MoqQuik will execute.<br> e.g., `add student` and `find`                                                                                                       |
+| **Parameter**                      | A component of the command that the user will need to input.<br> e.g., `sort reminder by/deadline` where deadline is the parameter.                                                            |
+| **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix. |
+| **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                   |

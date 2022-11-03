@@ -5,12 +5,19 @@
 
 ![Ui](docs/images/Ui.png)
 
-ModQuik is a **desktop app for NUS Teaching Assistants, optimised for use via a Command Line Interface (CLI).**
-It allows TAs to keep track of their responsibilities, students’ progress and schedules for the ongoing semester.
+Are you a Teaching Assistant (Teaching Assistant) struggling to monitor your classes and what tasks you have to complete?
+Tired of having to use multiple applications (such as LumiNUS and Todoist) to keep track of all your responsibilities? <br>
+<br>
+Introducing ModQuik, a Teaching Assistant tool made for you!
+
+ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks(such as creating tutorial slides or marking homework).
+ModQuik is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, ModQuik can get your lesson management tasks done faster than traditional GUI apps.
 
 Example usages:
   * To find out which students are in which class
-  * To find out which TA is teaching which class
+  * To keep track of your students' grades
+  * To keep track of your tutorials and consultations
   * To keep track of upcoming tasks
 
 ## Site Map

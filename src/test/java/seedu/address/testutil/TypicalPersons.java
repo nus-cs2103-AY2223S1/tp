@@ -20,7 +20,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
+import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.student.Student;
+import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialName;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -109,6 +114,8 @@ public class TypicalPersons {
         for (Student student : getTypicalPersons()) {
             ab.addPerson(student);
         }
+        ab.addTutorial(new Tutorial(new TutorialName("W17"), new ModuleCode("CS2103T"), new Venue("Zoom"),
+                WeeklyTimeslot.fromFormattedString("1", "15:00", "17:00")));
         return ab;
     }
 

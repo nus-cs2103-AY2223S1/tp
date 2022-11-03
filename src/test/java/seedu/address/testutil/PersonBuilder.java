@@ -78,7 +78,7 @@ public class PersonBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         telegramHandle = studentToCopy.getTelegram();
-        moduleCode = studentToCopy.getTutorialModule();
+        moduleCode = studentToCopy.getModuleCode();
         tutorialName = studentToCopy.getTutorialName();
         attendance = studentToCopy.getAttendance();
         participation = studentToCopy.getParticipation();
