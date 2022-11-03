@@ -71,7 +71,7 @@ public class EditBuyerCommandParserTest {
         assertParseFailure(parser, "1", EditBuyerCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_FORMAT, EditBuyerCommand.MESSAGE_USAGE));
     }
 
     @Test
