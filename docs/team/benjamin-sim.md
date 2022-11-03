@@ -9,29 +9,29 @@ Duke The Market is a desktop application used for managing customer contacts and
 
 Given below are my contributions to the project.
 
-* **Code Contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=Benjamin-Sim&tabRepo=AY2223S1-CS2103-F09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+* **Code Contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=benjamin-sim&breakdown=true)
 <br>
 
 * **Enhancements Implemented**:
 
-  * **New Feature**: Added the ability to sort persons when listing them.
+  * **New Feature**: Added the ability to sort persons when listing them (Pull requests [#53](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/53), [#83](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/83))
     * What it does: Allows the user to sort all persons in the application by their name, gender or date of birth.
 
     * Justification: Sorting persons improves the user's productivity as he can easily locate people in the contact list.
 
     * Highlights: This feature required redesigning the original `list` command. Furthermore, designing how the sorting operation would function was challenging as it required detailed analysis of how data was handled and presented on the GUI.
 
-  * **New Feature**: Added the ability to sort events when listing them.
+  * **New Feature**: Added the ability to sort events when listing them (Pull request [#113](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/113))
     * What it does: Allows the user to sort all events in the application by their event title or date.
 
     * Justification: Sorting events improves the user's productivity as he can easily locate events in the event list.
 
-    * Highlights: This featue required redesigning the `listEvents` command created by another team member.
+    * Highlights: This feature required redesigning the `listEvents` command created by another team member.
 
 
   * **Testing**: Added substantial unit tests and integration tests for the sort persons feature, increasing test coverage from 48% to 50% (Pull request [#192](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/192))
 
-  * **Testing**: Added some unit tests tests for the sort events feature. (Pull request [#192](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/192))
+  * **Testing**: Added some unit tests for the sort events feature. (Pull request [#192](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/192))
 
   * **Refactoring**: Refactored the original `list` command to `listPersons` to distinguish it from the `listEvents` command.
 
