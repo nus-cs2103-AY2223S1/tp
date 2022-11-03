@@ -175,15 +175,15 @@ This section describes some noteworthy details on how certain features are imple
 
 [comment]: <> (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
 
-[comment]: <> (Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitFriday&#40;&#41;`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.)
+[comment]: <> (Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitFriday&#40;&#41;`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `fridayStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.)
 
 [comment]: <> (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
 
-[comment]: <> (Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitFriday&#40;&#41;`, causing another modified FRIDAY state to be saved into the `addressBookStateList`.)
+[comment]: <> (Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitFriday&#40;&#41;`, causing another modified FRIDAY state to be saved into the `fridayStateList`.)
 
 [comment]: <> (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
 
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFriday&#40;&#41;`, so the FRIDAY state will not be saved into the `addressBookStateList`.)
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFriday&#40;&#41;`, so the FRIDAY state will not be saved into the `fridayStateList`.)
 
 [comment]: <> (</div>)
 
@@ -207,15 +207,15 @@ This section describes some noteworthy details on how certain features are imple
 
 [comment]: <> (The `redo` command does the opposite — it calls `Model#redoFriday&#40;&#41;`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FRIDAY to that state.)
 
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest FRIDAY state, then there are no undone FRIDAY states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `fridayStateList.size&#40;&#41; - 1`, pointing to the latest FRIDAY state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
 
 [comment]: <> (</div>)
 
-[comment]: <> (Step 5. The user then decides to execute the command `list`. Commands that do not modify the FRIDAY, such as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`. Thus, the `addressBookStateList` remains unchanged.)
+[comment]: <> (Step 5. The user then decides to execute the command `list`. Commands that do not modify the FRIDAY, such as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`. Thus, the `fridayStateList` remains unchanged.)
 
 [comment]: <> (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
 
-[comment]: <> (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all FRIDAY states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.)
+[comment]: <> (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not pointing at the end of the `fridayStateList`, all FRIDAY states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.)
 
 [comment]: <> (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
 
