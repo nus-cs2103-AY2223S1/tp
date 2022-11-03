@@ -12,7 +12,7 @@ Given below are my contributions to the project.
   * What it does: Allows the application to keep track of 5 new attributes in a person.
   * Justification: Since the application is for surveyors to keep track of their surveyees, there is a need to add more attributes to a person that surveyors will need.
 
-* **Updated Feature**: 'add` command
+* **Updated Feature**: `add` command
   * What it does: Allows the user to add new surveyees using a text command.
   * Justification: While the feature was already included in v1.0, it had to be updated to suit the updated model.
   * Highlights: Updated the command to accept these new attributes as parameters.
