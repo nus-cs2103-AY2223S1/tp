@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "c:CheckoutCommand" as CheckoutCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":StorageManager" as Storage STORAGE_COLOR
+end box
+
+[-> LogicManager : execute(checkout)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(checkout)
+activate AddressBookParser
+
+create CheckoutCommand
+AddressBookParser -> CheckoutCommand
+activate CheckoutCommand
+
+CheckoutCommand --> AddressBookParser
+deactivate CheckoutCommand
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> CheckoutCommand : execute()
+activate CheckoutCommand
+
+CheckoutCommand -> Model : setAddressBookFilePath()
+activate Model
+Model --> CheckoutCommand
+deactivate Model
+
+CheckoutCommand -> Model : setAddressBook()
+activate Model
+Model --> CheckoutCommand
+deactivate Model
+
+CheckoutCommand -> Storage : setAddressBookStorage()
+activate Storage
+Storage --> CheckoutCommand
+deactivate Storage
+
+CheckoutCommand -> Storage : saveUserPrefs()
+activate Storage
+Storage --> CheckoutCommand
+deactivate Storage
+
+CheckoutCommand -> Model : updateFilteredPersonList()
+activate Model
+Model --> CheckoutCommand
+deactivate Model
+
+CheckoutCommand --> LogicManager
+deactivate CheckoutCommand
+
+CheckoutCommand -[hidden]-> LogicManager : result
+destroy CheckoutCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

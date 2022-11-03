@@ -24,6 +24,9 @@ Class GraduationDate
 Class Gender
 Class University
 CLass CAP
+Class Job
+Class JobId
+Class JobTitle
 
 }
 
@@ -51,13 +54,18 @@ Person *-right> GraduationDate
 Person *---> Major
 Person *---> Gender
 Person *---> University
-Person *--> CAP
+Person *---> CAP
+Person *--> Job
+Job *--> JobId
+Job *--> JobTitle
 
 
 ModelManager -[hidden]down-> Person
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+
+GraduationDate -[hidden]down- Job
 
 ModelManager -->"~* filtered" Person
 @enduml

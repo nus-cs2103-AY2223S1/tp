@@ -39,6 +39,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.University;
+import seedu.address.model.person.predicates.SamePersonPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.Storage;
 
@@ -58,18 +59,18 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GENDER + "GENDER] "
-            + "[" + PREFIX_GRADUATION_DATE + "GRADUATION DATE] "
+            + "[" + PREFIX_GRADUATION_DATE + "GRADUATION_DATE] "
             + "[" + PREFIX_CAP + "CAP_VALUE" + CAP_SEPARATOR + "MAX_CAP_VALUE] "
             + "[" + PREFIX_UNIVERSITY + "UNIVERSITY] "
             + "[" + PREFIX_MAJOR + "MAJOR] "
-            + "[" + PREFIX_JOB_ID + "ID] "
-            + "[" + PREFIX_JOB_TITLE + "TITLE] "
+            + "[" + PREFIX_JOB_ID + "JOB_ID] "
+            + "[" + PREFIX_JOB_TITLE + "JOB_TITLE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Person edited";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
@@ -106,7 +107,8 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.updateViewedPersonList(new SamePersonPredicate(editedPerson));
+        return new CommandResult(MESSAGE_EDIT_PERSON_SUCCESS);
     }
 
     /**

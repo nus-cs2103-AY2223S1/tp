@@ -23,4 +23,9 @@ Person *--> Major
 Person *--> Gender
 Person *--> University
 Person *--> CAP
+Person *-> Job
+Job *--> JobId
+Job *--> JobTitle
+
+GraduationDate -[hidden]down- Job
 @enduml

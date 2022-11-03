@@ -1,7 +1,10 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -78,6 +81,16 @@ public class StorageManager implements Storage {
     @Override
     public void setAddressBookStorage(AddressBookStorage addressBookStorage) {
         this.addressBookStorage = addressBookStorage;
+    }
+
+    @Override
+    public void exportDisplayedListAddressBook(ReadOnlyAddressBook displayedListAddressBook, String filePathString)
+            throws IOException {
+        requireNonNull(displayedListAddressBook);
+        requireNonNull(filePathString);
+
+        Path filePath = Paths.get(filePathString);
+        saveAddressBook(displayedListAddressBook, filePath);
     }
 
 }

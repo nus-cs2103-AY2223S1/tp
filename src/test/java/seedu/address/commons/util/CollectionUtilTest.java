@@ -2,6 +2,7 @@ package seedu.address.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.checkCapKeywords;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -11,6 +12,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class CollectionUtilTest {
     @Test
@@ -80,6 +83,15 @@ public class CollectionUtilTest {
         assertFalse(CollectionUtil.isAnyNonNull((Object[]) null));
         assertTrue(CollectionUtil.isAnyNonNull(new Object()));
         assertTrue(CollectionUtil.isAnyNonNull(new Object(), null));
+    }
+
+    @Test
+    public void invalidCap_throwsParseException() {
+        String[] alphanumericKeywords = {"asdf", "3a", "a2"};
+        assertThrows(ParseException.class, () -> checkCapKeywords(alphanumericKeywords));
+
+        String[] symbolKeywords = {"!", "@", "#", "/", "3.0/", "/3.0"};
+        assertThrows(ParseException.class, () -> checkCapKeywords(symbolKeywords));
     }
 
     /**

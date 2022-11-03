@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command switches AddressBook])
+    :Storage is set to use other AddressBook;
+    :Model is set to use other AddressBook;
+    :Ui updates the view with other AddressBook;
+    :Feedback message is printed to user;
+else ([else])
+    :Feedback message is printed to user;
+endif
+stop
+@enduml

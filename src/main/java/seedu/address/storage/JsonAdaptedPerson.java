@@ -61,7 +61,7 @@ class JsonAdaptedPerson {
             @JsonProperty("cap") String cap,
             @JsonProperty("university") String university,
             @JsonProperty("major") String major,
-                             @JsonProperty("id") String id,
+            @JsonProperty("id") String id,
             @JsonProperty("title") String title,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = trimAndReplaceMultipleSpaces(name);

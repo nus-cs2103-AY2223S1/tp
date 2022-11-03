@@ -9,7 +9,7 @@ participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Storage STORAGE_COLOR_T1
-participant "<<class>>\nStorage" as Storage STORAGE_COLOR
+participant ":Storage" as Storage STORAGE_COLOR
 end box
 
 [-> LogicManager : execute("export")
@@ -31,7 +31,7 @@ deactivate AddressBookParser
 LogicManager -> ExportCommand : execute()
 activate ExportCommand
 
-ExportCommand -> Storage : saveDisplayedList()
+ExportCommand -> Storage : exportDisplayedListAddressBook()
 activate Storage
 
 Storage --> ExportCommand
