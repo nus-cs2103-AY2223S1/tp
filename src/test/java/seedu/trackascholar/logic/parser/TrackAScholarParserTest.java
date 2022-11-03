@@ -41,7 +41,7 @@ import seedu.trackascholar.testutil.TypicalApplicants;
 
 public class TrackAScholarParserTest {
 
-    private final TrackAScholarParser parser = new TrackAScholarParser();
+    private static final TrackAScholarParser parser = new TrackAScholarParser();
 
     @Test
     public void parseCommand_add() throws Exception {

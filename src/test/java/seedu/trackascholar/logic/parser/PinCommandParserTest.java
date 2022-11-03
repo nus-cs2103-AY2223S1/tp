@@ -17,7 +17,10 @@ import seedu.trackascholar.logic.commands.PinCommand;
  * therefore should be covered by the ParserUtilTest.
  */
 public class PinCommandParserTest {
-    private PinCommandParser parser = new PinCommandParser();
+
+    private static final PinCommandParser parser = new PinCommandParser();
+    private static final String ERROR_MESSAGE =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, PinCommand.MESSAGE_USAGE);
 
     @Test
     public void parse_validArgs_returnsPinCommand() {
@@ -26,6 +29,6 @@ public class PinCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, PinCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", ERROR_MESSAGE);
     }
 }
