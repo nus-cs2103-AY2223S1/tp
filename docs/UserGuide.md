@@ -129,7 +129,8 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 more technical specifications of each command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Want start using TrackO from scratch? Enter the [`clear`](#clearing-all-data-in-tracko-clear) command to remove all application data.
+Want start using TrackO from scratch? Enter the [`clear`](#clearing-all-data-in-tracko-clear) command to remove 
+the application's sample data.
 </div>
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
