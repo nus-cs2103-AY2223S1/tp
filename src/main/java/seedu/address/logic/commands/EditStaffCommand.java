@@ -95,7 +95,7 @@ public class EditStaffCommand extends Command {
 
         Project toFindIn = getProjectFrom(lastShownProjectList, this.projectName);
         ProjectName foundProjectName = toFindIn.getProjectName();
-        
+
         Staff toEdit = lastShownStaffList.get(staffIndex.getZeroBased());
         Staff editedStaff = createEditedStaff(toEdit, editStaffDescriptor);
         checkForDuplicateStaff(toEdit, editedStaff, toFindIn);
@@ -108,12 +108,13 @@ public class EditStaffCommand extends Command {
 
     /**
      * Returns the project that has a project name which matches {@code projectName}.
-     * 
+     *
      * @param lastShownProjectList The project list currently displayed.
-     * @return Project 
+     * @return Project
      * @throws CommandException If project cannot be found.
      */
-    private Project getProjectFrom(List<Project> lastShownProjectList, ProjectName projectName) throws CommandException {
+    private Project getProjectFrom(List<Project> lastShownProjectList, ProjectName projectName)
+            throws CommandException {
         int projectIndex = 0;
         for (int i = 0; i < lastShownProjectList.size(); ++i) {
             if (lastShownProjectList.get(i).getProjectName().equals(projectName)) {
@@ -132,7 +133,7 @@ public class EditStaffCommand extends Command {
 
     /**
      * Checks if there are Projects and Staff displayed on their respectively list.
-     * 
+     *
      * @param projectList The displayed Project list
      * @param staffList The displayed Staff list
      * @throws CommandException Exception thrown if either list do not have anything displayed
@@ -151,7 +152,7 @@ public class EditStaffCommand extends Command {
     /**
      * Checks that the Staff to edit exist within the project and if the Staff
      * new details will not result in a duplicate Staff in the project.
-     * 
+     *
      * @param toEdit The staff to be edited
      * @param editedStaff New Staff with new details to replace to original Staff
      * @param toFindIn The project where the Staff is to be found in
