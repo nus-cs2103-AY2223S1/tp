@@ -290,7 +290,8 @@ Selects and shows the details of the internship application at the specified `IN
 **:information_source: Note about `select`:**<br>
 
 An internship application entry must be selected via the `select` command before the `edit`, `addtask`, `deltask`,
-`mail` and `remark` commands can be used.
+`mail` and `remark` commands can be used. This ensures that the user can see the entire internship application 
+before executing these commands, which might rely on fields not visible from the list view.
 
 </div>
 
@@ -411,6 +412,15 @@ After adding a new task for `Technical Interview` at `12-01-2023 15:00` to the s
 
 Deletes the task at the specified `TASK_INDEX` in the task list of the currently selected internship application.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Before using `deltask`:**<br>
+
+Before a task can be deleted from an internship application, the internship must first be selected via the
+[`select` command](#selecting-an-internship-application--select).
+
+</div>
+
 Format: `deltask TASK_INDEX`
 
 | Parameter    | Significance                 | Constraints                                                                                         |
@@ -439,7 +449,7 @@ Adds a `remark` to the selected internship application.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note about `remark`:**<br>
+**:information_source: Before using `remark`:**<br>
 
 Before a remark can be added to an application or edited, the internship must first be selected via the
 [`select` command](#selecting-an-internship-application--select).
@@ -475,7 +485,7 @@ registered to the selected internship.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Before using `addtask`:**<br>
+**:information_source: Before using `mail`:**<br>
 
 Before this command can be used on an internship application, the internship application must first be selected via the
 [`select` command](#selecting-an-internship-application--select).
@@ -557,7 +567,7 @@ Finds internship applications which has tags containing any of the given keyword
 
 Format: `findt KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. E.g. `urgent` will match `Urgent`.
+* The search is case-sensitive. E.g. `urgent` will not match `Urgent`.
 * The order of keywords does not matter. E.g. `Urgent Remote` will match `Remote Urgent`.
 * Only full words will be matched. E.g. `Remote` will not match `Remotely`.
 * Internship applications with tags matching at least one keyword will be returned. E.g. `findt urgent remote` will
