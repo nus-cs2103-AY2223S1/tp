@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
 
@@ -82,7 +83,7 @@ public class DeleteAttributeCommand extends Command {
      */
     private Person createPersonAfterDeletion(Person toDelete) {
         Name name = toDelete.getName();
-        Set<Tag> tags = toDelete.getTags();
+        Set<Tag> tags = prefixToDelete.equals(PREFIX_TAG) ? null : toDelete.getTags();
         Role role = prefixToDelete.equals(PREFIX_ROLE) ? null : toDelete.getRole().orElse(null);
         Address address = prefixToDelete.equals(PREFIX_ADDRESS) ? null
                 : toDelete.getAddress().orElse(null);
