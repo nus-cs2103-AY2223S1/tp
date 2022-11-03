@@ -623,6 +623,16 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Import trackAScholarImport File
+
+1. Run trackAScholar program (make some changes to the file) and close it
+2. It will create a new ./data/ folder with the trackAScholar.json file in the same folder 
+3. Insert the trackAScholarImport.json file here (Note that the name needs to be exactly as stated)
+
+[trackAScholarImport test files](https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master/src/test/data/JsonImportCommandTest)
+
+
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files

@@ -30,7 +30,8 @@ public class ImportCommand extends Command {
 
     public static final String MESSAGE_NO_FILE_FOUND_ERROR = "No File Found"
             + ": Please insert file to be imported into data/trackAScholarImport.json with the exact name.\n";
-    public static final String MESSAGE_INVALID_FILE_DATA_FORMAT = "Invalid file data format!";
+    public static final String MESSAGE_INVALID_FILE_DATA_FORMAT = "Invalid file data format! Please insert " +
+            "a json file with the same format as trackAScholar.json. ";
     public static final String MESSAGE_SUCCESS = "Imported new file";
 
     private final Path importedFilePath;
