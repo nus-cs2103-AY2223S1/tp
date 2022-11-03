@@ -345,15 +345,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The `AddressBookParser` class checks for the `book` command word to begin. The book mechanism is facilitated by the `BookCommandParser` and `BookCommand` classes. The `BookCommandParser` implements the `Parser` interface and takes in the user input and parses it into an index and 3 string values. The 3 string values are obtained from the `ArgumentMultimap` that checks whether the user has inputted the 3 prefixes supported by this feature.
+The `AddressBookParser` class checks for the `book` command word. The book mechanism is facilitated by the `BookCommandParser` and `BookCommand` classes. The `BookCommandParser` implements the `Parser` interface and takes in the user input and parses it into an index and 4 string values. The 4 string values are obtained from the `ArgumentMultimap` that checks whether the user has inputted the 4 prefixes supported by this feature.
 
-The 3 prefixes are:
+The prefixes are:
 * `r/` for reason
 * `d/` for dateTime
 * `pe/` for recurring time period (optional)
+* `t/` for tags (optional)
 
-
-After retrieving the string values, the `BookCommandParser` executes the `ParserUtil#ParseAppointment()` to convert these values and create an `Appointment` object. A `BookCommand` object will then be created with the given index and `Appointment` object. The `BookCommand` object will retrieve the specified person in the `UniquePersonList` and adds the `Appointment` object to the person's list of appointments.
+After retrieving the string values, the `BookCommandParser` executes the `ParserUtil#ParseAppointment()` to use these values to create an `Appointment` object. A `BookCommand` object will then be created with the given index and `Appointment` object. The `BookCommand` object will retrieve the specified person in the `UniquePersonList` and adds the `Appointment` object to the person's list of appointments.
 
 The newly added `Appointment` object will also be saved in the JSON file through the usage of a Jackson-friendly class `JsonAdaptedAppointment`.
 
@@ -361,22 +361,25 @@ Given below are some example usage scenarios and how the book feature behaves in
 
 Scenario 1: User inputs `book 1 r/Sore Throat d/2022-12-10 12:00`. 
 
-The `ParserUtil` class will detect that both the given reason and date are valid, and creates an appointment object to be stored in the specified `Person`, 
-only if the `Person` does not have an existing appointment at that date.
+The `ParserUtil#ParseAppointment()` will detect that both the given reason and date are valid, and creates an appointment object to be stored in the specified `Person`, only if the `Person` does not have an existing appointment at that date(Scenario 6).
 
 Scenario 2: User inputs an empty reason in the `r/` prefix.
 
-The `ParserUtil` class will detect that the given reason is empty and throws a `CommandException`, which will feedback to the user that he has given an invalid reason.
+The `ParserUtil#ParseAppointment()` will detect that the given reason is empty and throws a `CommandException`, which will feedback to the user that he has given an invalid reason.
 
 Scenario 3: User inputs an invalid dateTime in the `d/` prefix, such as `2022-15-10 14:00`.
 
-The `ParserUtil` class will detect that the given dateTime is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid dateTime.
+The `ParserUtil#ParseAppointment()` will detect that the given dateTime is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid dateTime.
 
 Scenario 4: User inputs an invalid recurring time period in the `pe/` prefix, such as `1S`.
 
-The `ParserUtil` class will detect that the given time period is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid time period.
+The `ParserUtil#ParseAppointment()` will detect that the given time period is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid time period.
 
-Scenario 5: User tries to book an appointment with the same time as other appointments of the same person.
+Scenario 5: User inputs an invalid tag in the `t/` prefix, such as `Sick`.
+
+The `ParserUtil#ParseAppointment()` will detect that the given tag is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid tag.
+
+Scenario 6: User tries to book an appointment with the same time as other appointments of the same person.
 
 <img src="images/BookCommandObjectDiagram.png" width="450" />
 
