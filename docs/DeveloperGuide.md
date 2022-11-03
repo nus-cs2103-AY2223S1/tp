@@ -1,8 +1,8 @@
-<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
-
-# Developer Guide
-
 ---
+layout: page
+title: Developer Guide for bobaBot
+---
+
 * Table of Contents
 {:toc}
 
