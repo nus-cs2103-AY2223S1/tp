@@ -116,4 +116,31 @@ public class StringUtil {
         }
         return s.trim().split("\\s+");
     }
+
+    /**
+     * Splits a string by its slashes
+     *
+     * @param value a String to be processed
+     * @Return String[]
+     */
+    public static String[] splitBySlash(String value) {
+        return value.split("/");
+    }
+
+    /**
+     * Converts a string array {@code String[]} to a double array {@code double[]}.
+     *
+     * @param strArr String array to be converted
+     * @Return double[]
+     */
+    public static double[] convertToDoubleArray(String[] strArr) {
+        double[] splitedDouble = new double[strArr.length];
+        int idx = 0;
+        for (String s : strArr) {
+            double convertedToDouble = Double.parseDouble(s);
+            splitedDouble[idx] = convertedToDouble;
+            ++idx;
+        }
+        return splitedDouble;
+    }
 }

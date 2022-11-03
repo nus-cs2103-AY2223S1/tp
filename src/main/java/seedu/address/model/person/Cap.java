@@ -26,8 +26,10 @@ public class Cap {
         requireNonNull(cap);
         requireNonNull(max);
         checkArgument(isValidCap(cap, max), MESSAGE_CONSTRAINTS);
-        value = cap;
-        maximum = max;
+        String roundedCapValue = String.format("%.2f", cap);
+        String roundedMaxValue = String.format("%.2f", max);
+        value = Double.parseDouble(roundedCapValue);
+        maximum = Double.parseDouble(roundedMaxValue);
     }
 
     /**

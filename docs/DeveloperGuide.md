@@ -2,31 +2,65 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+# Table of Contents
+1. [Acknowledgements](#1-acknowledgements)
+2. [Setting up, getting started](#2-setting-up-getting-started)
+3. [Design](#3-design)
+   1. [Architecture](#31-architecture)
+   2. [UI component](#32-ui-component)
+   3. [Logic component](#33-logic-component)
+   4. [Model component](#34-model-component)
+   5. [Storage component](#35-storage-component)
+   6. [Common classes](#36-common-classes)
+4. [Implementation Highlights](#4-implementation-highlights)
+   1. [Checkout Feature](#41-checkout-feature)
+   2. [View Feature](#42-view-feature)
+   3. [Import Feature](#43-import-feature)
+   4. [Export Feature](#44-export-feature)
+   5. [Find Feature Improvements](#45-find-feature-improvements)
+5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)
+6. [Appendix A: Requirements](#6-appendix-a-requirements)
+   1. [Product scope](#61-product-scope)
+   2. [User stories](#62-user-stories)
+   3. [Use cases](#63-use-cases)
+   4. [Non-Functional Requirements](#64-non-functional-requirements)
+   5. [Glossary](#65-glossary)
+7. [Appendix B: Instructions for Manual Testing](#7-appendix-b-instructions-for-manual-testing)
+   1. [Launch and shutdown](#71-launch-and-shutdown)
+   2. [Adding a person](#72-adding-an-applicant)
+   3. [Viewing the detail of an applicant](#73-viewing-the-detail-of-an-applicant)
+   4. [Editing an applicant](#74-editing-an-applicant)
+   5. [Deleting an applicant](#75-deleting-an-applicant)
+   6. [Locating applicants by field](#76-locating-applicants-by-field)
+   7. [Importing applicants from an external text file](#77-importing-applicants-from-an-external-json-file)
+   8. [Exporting displayed list](#78-exporting-displayed-list)
+   9. [Checkout a new or existing list](#79-checkout-a-new-or-existing-list)
+   10. [Saving data](#710-saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## 1. Acknowledgements
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Code base: [addressbook-level3](https://github.com/se-edu/addressbook-level3)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 2. Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 3. Design
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+
+### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -36,18 +70,19 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/Main.java) and 
+[`MainApp`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 
 **How the architecture components interact with each other**
@@ -67,15 +102,18 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+### 3.2 UI component
+
+**API** : [`Ui.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
+For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -84,9 +122,10 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+### 3.3 Logic component
+
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -102,7 +141,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -113,11 +153,11 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+
+### 3.4 Model component
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" />
-
 
 The `Model` component,
 
@@ -133,9 +173,9 @@ The `Model` component,
 </div>
 
 
-### Storage component
+### 3.5 Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -144,101 +184,19 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+
+### 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4. Implementation Highlights
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### checkout feature
+### 4.1 Checkout Feature
 
 #### Implementation
 
@@ -297,7 +255,8 @@ The following activity diagram summarizes what happens when a user executes a ch
     * Cons: May have performance issues in terms of memory usage because a new instance is created for every
       new AddressBook.
 
-### View Feature
+
+### 4.2 View Feature
 
 #### Implementation
 
@@ -321,34 +280,76 @@ It implements the following operations:
     - Pros: Can have a larger pane to view details of a person.
     - Cons: Need to scroll more to see typed command and result displayed.
 
-### export Feature
+
+### 4.3 Import Feature
+
+The `import` feature allows the user to append their list with another list imported from an external JSON file, instead of asking them to write the applicants one by one into the command line.
+
+#### Implementation
+
+The import feature is done through a `ImportCommand` that extends `Command`. It is supported by `ImportCommandParser` 
+and `JsonAddressBookStorage`.
+
+Given below is an example success scenario and how the `import` mechanism behaves at each step.
+
+1. The user executes `import fileName.json`.
+2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
+3. `LogicManager` calls `ImportCommand#execute(model, storage)`.
+4. `ImportCommand` creates a`JsonAddressBookStorage` object using the specified file, and calls 
+   `JsonAddressBookStorage#readAddressBook()` to create the `AddressBook` that is going to be appended.
+5. `ImportCommand` then calls `Model#appendAddressBook(toAppend)` to append it to the original list. 
+6. A `CommandResult` object indicating that the `import` command is successful will be created.
+
+The following sequence diagram shows how the `import` command works:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+#### Design Considerations
+
+**Aspect: What format should the imported file be**
+* **Alternative 1 (current implementation)**: We use the current `addressbook.json` format.
+    * Pros:
+        * Same format as the data file, meaning 1 less format to remember.
+        * Can be read with current methods.
+        * Consistent file formatting across the app's files.
+    * Cons:
+        * It may take some time for user to get used to the format.
+* **Alternative 2**: We use a txt file with a new format
+    * Pros:
+        * The format may be easier to remember, as it does not have JSON file restrictions.
+    * Cons:
+        * We need to implement new methods to read the txt file.
+        * The format is not consistent with the rest of the app's files.
+
+
+### 4.4 Export Feature
 
 The `export` feature allows the user to export the displayed list in InternConnect to a JSON file.
 
 #### Implementation
 
-`exportCommand` class is used in the execution of `export` command. 
-`Storage#exportDisplayedList(displayedList, filePath)` is called to save the JSON file in `data/export/` folder.
+`exportCommand` class is used in the execution of `export` command.
+`Storage#exportDisplayedListAddressBook(displayedListAddressBook, filePath)` is called to save the JSON file in `data/export/` folder.
 
 Given below is an example success scenario and how the `export` mechanism behaves at each step.
 
-1. The user executes `export`.
-2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
-3. `LogicManager` calls `ExportCommand#execute(model, storage)`.
-4. `ExportCommand` gets current DateTime and use it for the output JSON file path.
-5. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`.
-6. `ExportCommand` calls `Storage#exportDisplayedList()`
-7. The displayedList is stored as a JSON file in `data/export/<currentDateTime>.json`.
-8. A `CommandResult` object indicating that the `export` command is successful will be created.
+1. The user executes `export`
+2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`
+3. `LogicManager` calls `ExportCommand#execute(model, storage)`
+4. `ExportCommand` gets current `DateTime` and use it for the output JSON file name
+5. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`
+6. `ExportCommand` calls `Storage#exportDisplayedListAddressBook(displayedListAddressBook, filePath)`
+7. The displayed list is stored as a JSON file in `data/export/<currentDateTime>.json`
+8. A `CommandResult` object indicating that the `export` command is successful will be created
 
 The following sequence diagram shows how the `export` command works:
 
 ![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
-   
+
 #### Design Considerations
 
 **Aspect: Where to save the exported JSON file**
-* **Alternative 1 (current implementation)**: We save the files in the `data/export/` folder and 
+* **Alternative 1 (current implementation)**: We save the files in the `data/export/` folder and
   use `<currentDateTime>.json` as the file name.
     * Pros:
         * Location for all exported JSON files is in a single folder.
@@ -361,9 +362,9 @@ The following sequence diagram shows how the `export` command works:
         * Users will be able to save the JSON file where they like.
         * Users will be able to name the JSON file as they wish.
     * Cons:
-        * Harder to implement since there will be a lot of cases to cover, e.g. if the specified path is not 
+        * Harder to implement since there will be a lot of cases to cover, e.g. if the specified path is not
           in JSON format or not a valid file path or file already exists etc.
-        * Quite messy since the users can specify a completely different file path/directory everytime they 
+        * Quite messy since the users can specify a completely different file path/directory everytime they
           execute `export` command.
 * **Alternative 3**: We save the files in the `data/export/` folder and user specifies only the file name.
     * Pros:
@@ -375,9 +376,9 @@ The following sequence diagram shows how the `export` command works:
         * Users will not be able to save the files where they like.
 
 
-### Find Feature Improvements
+### 4.5 Find Feature Improvements
 
-The `find` feature currently allows the user to search by name among all Persons in store by InternConnect. We want to improve onto this feature to allow Users to search by any possible field of choice, allow multiple field searches, as well as allow substring searches
+The `find` feature currently allows the user to search by name among all Persons in store by InternConnect. We want to improve onto this feature to allow Users to search by any possible field of choice
 
 #### Implementation
 
@@ -418,17 +419,17 @@ The following sequence diagram shows how the `find` command works:
         * Flags introduce the possibility for more input types to consider, and these affects the inputs that users can use in all commands
         * Requires restructuring old code, which will increase testing time and possibility of introducing bugs into existing code
 *  **Alternative 3**: Choose a search type for each field type
-  * Pros:
-    * Allow for multiple field searches where the search within each field is curated to best search the available field values
-    * Intuitive and easy for Users to use
-    * Less syntax and user input required in comparison to _alternative 2_
-  * Cons:
-    * Limits User's freedom in how they want to search
-    * Search type for the field may not be how the User wants to search
+    * Pros:
+        * Allow for multiple field searches where the search within each field is curated to best search the available field values
+        * Intuitive and easy for Users to use
+        * Less syntax and user input required in comparison to _alternative 2_
+    * Cons:
+        * Limits User's freedom in how they want to search
+        * Search type for the field may not be how the User wants to search
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -438,9 +439,10 @@ The following sequence diagram shows how the `find` command works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 6. Appendix A: Requirements
 
-### Product scope
+
+### 6.1 Product scope
 
 **Target user profile**:
 
@@ -458,11 +460,11 @@ Say goodbye to opening multiple windows to retrieve the information you need and
 focus on what matters more: matching the right people for the right job.
 
 
-### User stories
+### 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                           | I want to …​                                                                             | So that I can…​                                                                                                                  |
+| Priority | As a ...                          | I want to ...                                                                            | So that I can ...                                                                                                                |
 |----------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | `* * *`  | potential user exploring the app  | see the sample data                                                                      | easily play around and understand how the app works                                                                              |
 | `* * *`  | new user                          | see the list of available things I can do with the app                                   | learn how to use the app fully                                                                                                   |
@@ -502,9 +504,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | user                              | add a custom field to my data                                                            | so that I can have more flexible records                                                                                         |
 | `*    `  | user                              | add profile pictures to my records                                                       | so that I can see who I’m looking at                                                                                             |
 
-*{More to be added}*
 
-### Use cases
+### 6.3 Use cases
 
 (For all use cases below, the **System** is the `InternConnect` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -570,11 +571,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given index is not a positive integer or out of bounds.
 
     * 3a1. InternConnect shows an error message.
 
       Use case resumes at step 2.
+
 
 **Use case: View an applicant**
 
@@ -593,11 +595,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Import applicants from an external json file**
+
+**Use case: Import applicants from an external JSON file**
 
 **MSS**
 
-1.  User requests to import applicants from a json file
+1.  User requests to import applicants from a JSON file
 2.  InternConnect adds all applicants
 3.  InternConnect shows the updated list of applicants
 
@@ -605,7 +608,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given file path is invalid or is not a json file.
+* 1a. The given file path is invalid or is not a JSON file.
 
     * 1a1. InternConnect shows an error message.
 
@@ -617,6 +620,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+
+**Use case: Export displayed list to a JSON file**
+
+**MSS**
+
+1.  User requests to export displayed list to a JSON file
+2.  InternConnect exports displayed list to a JSON file
+
+    Use case ends.
+
 **Use case: Exit**
 
 **MSS**
@@ -626,9 +639,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+
 **Use case: Help**
 
 **MSS**
+
 1. User requests for help
 2. InternConnect shows a pop-up window with the link to the User Guide
     
@@ -637,6 +652,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Find an applicant**
 
 **MSS**
+
 1. User requests to find all applicants with matching keywords in its specified fields
 2. InternConnect lists all applicants who match the request
 
@@ -654,9 +670,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-*{More to be added}*
 
-### Non-Functional Requirements
+### 6.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 applicants without a noticeable sluggishness in performance for typical usage.
@@ -675,36 +690,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     In addition, the GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for, 
     resolutions 1280x720 and higher, and, for screen scales 150%.
 
-*{More to be added}*
+### 6.5 Glossary
 
-### Glossary
-
-* **Applicant**: An applicant refers to a person who has applied for a role. 
-  Applicant and Person can be used interchangeably as they refer to the same thing.
-* **Role**: Role and Job are used interchangeably. They refer to a job opening that an applicant applied for.
+* **Applicant**: An applicant refers to a person who has applied for a job. 
+  Applicant and Person can be used interchangeably as they refer to the same thing
+* **Job**: A job opening the applicant applied for
 * **Command Line Interface (CLI)**: Text-based user interface
 * **Graphical User Interface (GUI)**: Graphic-based user interface
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X 
+* **Main Success Scenario (MSS)**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 7. Appendix B: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: Note: These instructions only provide a starting point for testers to work on;
+testers are expected to do more exploratory testing.
 
 </div>
 
-### Launch and shutdown
+### 7.1 Launch and shutdown
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file expected: Shows the GUI with a set of sample applicants.
 
 2. Saving window preferences
 
@@ -713,29 +727,158 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
 
-### Deleting a person
+### 7.2 Adding an applicant
 
-1. Deleting a person while all persons are being shown
+1. Adding an applicant to InternConnect
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: No applicant with the email `johnd@example.com`
+
+   2. Test case: `add add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male 
+      u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/J12300 jt/Software Engineer Intern t/rejected t/KIV`<br>
+      Expected: An applicant named John Doe is added. Details of the added applicant shown in the right panel. Success 
+      message shown in the status message.
+
+2. Adding a duplicate applicant to InternConnect
+
+   1. Prerequisites: There exists an applicant with email `johndoe@example.com` and jobID `J12300`
+   
+   2. Test case: `add add n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male
+      u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/J12300 jt/Software Engineer Intern t/rejected t/KIV`<br>
+      Expected: No applicant is added. Error details shown in the status message.
+
+3. Other incorrect `add` commands to try: `add`, `add n/John`, `add 1`<br>
+   Expected: No applicant is added. Error details shown in the status message.
+
+
+### 7.3 Viewing the detail of an applicant
+
+1. tc description
+
+   1. Prerequisites: 
+
+   2. Test case: 
+
+2. more tc
+
+
+### 7.4 Editing an applicant
+
+1. tc description
+
+   1. Prerequisites:
+
+   2. Test case:
+
+2. more tc
+
+
+### 7.5 Deleting an applicant
+
+1. Deleting an applicant while all applicants are being shown
+
+   1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
+      Success message shown in the status message.
 
-   3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+2. Deleting a non-positive index
+   
+   1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+      
+   2. Test case: `delete 0`<br>
+      Expected: No applicant is deleted. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+3. Other incorrect `delete` commands to try: `delete`, `delete john`, `delete x`(where `x` is larger than the list size)<br>
+   Expected: No applicant is deleted. Error details shown in the status message.
 
-2. _{ more test cases …​ }_
 
-### Saving data
+### 7.6 Locating applicants by field
+
+1. tc description
+
+   1. Prerequisites:
+
+   2. Test case:
+
+2. more tc
+
+
+### 7.7 Importing applicants from an external JSON file
+
+1. Importing several applicants from an external JSON file
+
+   1. Prerequisites: There exists a valid file named `test.json` with the correct formatting, no duplicate applicants, 
+      and valid data values.
+
+   2. Test case: `import test.json`<br>
+      Expected: All applicants inside `test.json` will be appended to the list. Success message shown in the status message.
+
+2. Importing an external JSON file with invalid format, duplicate applicant, or invalid data values
+
+   1. Prerequisites: There exists a file named `format.json` with incorrect formatting, `duplicate.json` with 
+      duplicate applicants, and `invalid.json` with invalid data values.
+
+   2. Test case: `import format.json`<br>
+      Expected: No applicant is added. Template file created in `data/template/template.json`. Error details shown in 
+      the status message.
+   
+   3. Test case: `import duplicate.json`<br>
+      Expected: No applicant is added. Template file created in `data/template/template.json`. Error details shown in
+      the status message.
+   
+   4. Test case: `import invalid.json`<br>
+      Expected: No applicant is added. Template file created in `data/template/template.json`. Error details shown in
+      the status message.
+
+3. Other incorrect import commands to try: `import`, `import folderName`(where `folderName` is a folder)<br>
+   Expected: No applicant is added. Error details shown in the status message.
+
+
+### 7.8 Exporting displayed list to a JSON file
+
+1. Exporting empty displayed list 
+
+   1. Test case: `find g/nonbinary` followed by `export`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is 
+      **"persons"** and value is an empty array.
+      
+   2. Test case: `find g/nonbinary` followed by `export 1`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
+      **"persons"** and value is an empty array.
+      
+2. Exporting non-empty displayed list
+
+   1. Prerequisite: currently displayed list is not empty
+      
+   2. Test case: `export`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is 
+      **"persons"** and value is a non-empty array.
+      
+   3. Test case: `export a`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
+      **"persons"** and value is a non-empty array.
+
+
+### 7.9 Checkout a new or existing list
+
+1. tc description
+
+   1. Prerequisites:
+
+   2. Test case:
+
+2. more tc
+
+
+### 7.10 Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
+   1. If the data is missing/corrupted, InternConnect will start with an empty data file, replacing the corrupted data
+      with an empty one.

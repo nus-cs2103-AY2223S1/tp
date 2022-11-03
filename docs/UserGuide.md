@@ -7,7 +7,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 # Table of Contents
 
-1. [Quick Start](#quick-start)
+1. [Quick Start](#1-quick-start)
 2. [Fields](#2-fields)
    1. [Identity Fields](#21-identity-fields)
    2. [Data Fields](#22-data-fields)
@@ -31,11 +31,11 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressbook.jar` from [here](https://github.com/AY2223S1-CS2103-F14-2/tp/releases).
+2. Download the latest `internconnect_v1.4.jar` from [here](https://github.com/AY2223S1-CS2103-F14-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your InternConnect.
 
@@ -92,17 +92,17 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 ### 2.2 Data Fields
 
-| Field               | Parameter | Length Limit | Constraints                                                                   |
-|---------------------|-----------|--------------|-------------------------------------------------------------------------------|
-| **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                           |
-| **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                              |
-| **Address**         | `a`       | 100          | Can take any values, but not blank                                            |
-| **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`     |
-| **Gender**          | `g`       | None         | Can only be `male` or `female` in any capitalization                          |
-| **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                           |
+| Field               | Parameter | Length Limit | Constraints                                                                     |
+|---------------------|-----------|--------------|---------------------------------------------------------------------------------|
+| **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                             |
+| **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                                |
+| **Address**         | `a`       | 100          | Can take any values, but not blank                                              |
+| **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`       |
+| **Gender**          | `g`       | None         | Can only be `male` or `female`, will be converted to lower-case.                |
+| **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                             |
 | **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `MM-yyyy`, starting from the year 0000 |                           
-| **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                           |
-| **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces     |
+| **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                             |
+| **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces       |
 
 * `CURRENT_CAP` must be smaller than or equal to `MAX_CAP`
 * Special punctuations: `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
@@ -131,11 +131,11 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 * Items with `...` after them can be used multiple times including zero times.
   e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/KIV`, `t/KIV t/offered` etc.
 
-* Items in curly brackets are mandatory.
-  e.g., `{mandatory_field_parameter/FIELD_DETAIL}`, all fields must be listed.
+* Items in curly brackets represent multiple parameters, and each of them is mandatory.
+  e.g., `{mandatory_field_parameter/FIELD_DETAIL}`, all fields that belong to mandatory fields must be listed.
 
 * Items in square brackets are optional.
-  e.g., `n/NAME p/PHONE e/EMAIL [t/TAG]` can be used as `n/Bobby p/91234567 e/bob@example.com t/KIV` or as `n/Bobby p/91234567 e/bob@example.com`
+  e.g., `n/NAME [t/TAG]` can be used as `n/Bobby t/KIV` or as `n/Bobby`
 
 * Parameters can be in any order, and are separated by a space.
   e.g., if the command specifies `n/NAME p/PHONE e/EMAIL`, `n/NAME e/EMAIL p/PHONE` is also acceptable.
@@ -148,7 +148,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 * All leading and trailing whitespaces will be trimmed, while multiple whitespaces in between words will be replaced by a single whitespace.
 
-* All duplicate checks and find command keywords are case-insensitive.
+* All find command keywords and duplicate checks for applicants are case-insensitive.
   e.g., `JACOB@example.com` will be considered equal to `jacob@EXAMPLE.COM`.
 
 </div>
@@ -168,6 +168,7 @@ Adds an applicant to InternConnect.
 Format: `add {mandatory_field_parameter/MANDATORY_FIELD_DETAIL} [t/TAG]...`
 
 * For `mandatory_field_parameter` arguments, please refer to the `parameter` of each fields in the [Identity Fields](#21-identity-fields) and [Data Fields](#22-data-fields) section above.
+* There are 11 `mandatory_field_parameter` in total, and you need to specify all of them.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV`
@@ -197,7 +198,7 @@ Edits an existing applicant in InternConnect.
 
 Format: `edit INDEX parameter/NEW_PARAMETER_DETAIL [parameter/NEW_PARAMETER_DETAIL]...`
 
-* For `parameter` arguments, please refer to the `parameter` of each fields in the [Fields](#2-fields) section above.
+* For `parameter` arguments, please refer to the `parameter` of each field in the [Fields](#2-fields) section above.
 * Edits the applicant at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed applicants list. 
 * The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
@@ -236,18 +237,19 @@ Format: `find parameter/KEYWORD [parameter/KEYWORD]...`
 * At least one of the parameter fields must be provided.
 * If a field parameter is given more than once, the command will search only for the latest specifier. E.g., `n/Bobby n/cortez` will only search and return names with `cortez` in them.
 * The search is case-insensitive. E.g., `bobby` will match `Bobby`.
-* Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `n/Bobby Cortez` will return applicants with the name `Bobby Lacruz`, `Alexander Cortez`
+* Applicants matching at least one keyword will be returned (i.e., _OR_ search). E.g., `n/Bobby Cortez` will return applicants with the name `Bobby Lacruz`, `Alexander Cortez`
 * The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
+* Multiple field search: Across different fields, an _AND_ search is done, while an _OR_ search is still done within each field for its keywords. E.g., `n/Bobby Cortez g/male` will return male applicants with names matching `Bobby` or `Cortez`.
 
 Search Types:
 1. Matching word: Keywords will only match if there is a full matching word. E.g., `Bobby` will not match `Bobbys`.
-2. Substring: Keywords will match as long as a substring match exists. E.g., `Bob` will match `Bobby` and `Robobson`
-3. Numeric: Search will search by its numeric value. E.g., Both `3` and `3.0` will match `3.0`
+2. Substring: Keywords will match as long as a substring match exists. E.g., `@gmail.com` will match `jason@gmail.com` and `CS2103@gmail.com`
+3. Numeric: Search will search by its numeric value, rounded to 2 decimal places. E.g., Both `3` and `3.00000001` will match `3.00`
 
 | Field               | Search Type               | 
 |---------------------|---------------------------|
 | **Name**            | Matching word             | 
-| **Email**           | Substring                 | 
+| **Email**           | Substring                 |
 | **Phone**           | Substring                 |
 | **Address**         | Matching word             | 
 | **CAP**             | Numeric of `CURRENT_CAP`  | 
@@ -260,8 +262,8 @@ Search Types:
 
 Examples:
 * `find n/Bobby` Returns applicants with names matching `bobby` and `Bobby Cortez`
-* `find g/Female c/3.5 2` returns female applicants with a CAP value of 3.5 or 2.0
-* `find g/Male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
+* `find g/Female c/3.5 2` returns female applicants with a CAP value of `3.5` or `2.0`
+* `find g/Male t/offered KIV` returns male applicants who have an `offered` or `KIV` tag attached to them
 * `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
 
@@ -289,7 +291,7 @@ Format: `export`
 * Exported JSON file will be stored in `data/export/` folder
 
 Examples:
-* `find u/NUS` followed by `export` exports the result of the `find` command to a JSON file.
+* `find u/NUS` followed by `export` exports the displayed list from the `find` command to a JSON file.
 
 
 ### 3.10 Checkout a new or existing list: `checkout`
@@ -299,10 +301,14 @@ Switches between different lists in InternConnect stored in `data/` folder.
 Format: `checkout FILE_NAME`
 
 * `FILE_NAME` should not include any extension, as it would always be a JSON file.
-* The command will create a new list populated with the sample data if the specified `FILE_NAME.json` doesn't exist. Otherwise, it will switch to a previously created list.
+* The command will attempt to load the specified `FILE_NAME.json` file in the `data/` folder.
+* If the file contains invalid data or have an invalid format, the contents of the file will be erased and an empty 
+addressbook will be loaded.
+* If the file doesn't exist, a new file will be created, populated with sample data.
+* If the file contains valid data, the file will be loaded.
 
 Examples:
-* `checkout 27-oct-2022` loads data from `data/27-oct-2022.json` if it exists. Otherwise, a new file will be created and populated with sample data.
+* `checkout 27-oct-2022` attempt to load data from `data/27-oct-2022.json`.
 
 
 ### 3.11 Clearing all entries: `clear`
