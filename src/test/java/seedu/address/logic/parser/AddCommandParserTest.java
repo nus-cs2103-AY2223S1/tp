@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_CABE;
 import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -211,7 +211,7 @@ public class AddCommandParserTest {
             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + OFFICE_HOUR_MONDAY, Name.MESSAGE_CONSTRAINTS);
 
         // invalid Module Code
-        assertParseFailure(profParser, NAME_DESC_BOB + INVALID_MODULE_CODE + PHONE_DESC_BOB
+        assertParseFailure(profParser, NAME_DESC_BOB + INVALID_MODULE_CODE_DESC + PHONE_DESC_BOB
             + EMAIL_DESC_BOB + GENDER_DESC_BOB
             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + OFFICE_HOUR_MONDAY, ModuleCode.MESSAGE_CONSTRAINTS);
 

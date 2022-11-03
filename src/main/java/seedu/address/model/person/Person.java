@@ -83,7 +83,8 @@ public abstract class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getTypeString().equals(getTypeString());
     }
 
     /**
@@ -96,7 +97,7 @@ public abstract class Person {
      * @return int.
      */
     public int compareName(Person person) {
-        return this.name.toString().compareTo(person.name.toString());
+        return this.name.toString().toUpperCase().compareTo(person.name.toString().toUpperCase());
     }
 
     /**
@@ -110,10 +111,10 @@ public abstract class Person {
      * @return int.
      */
     public int compareModuleCode(Person person) {
-        if (person instanceof Student) {
-            return compareName(person);
+        if (person instanceof Student || person instanceof Professor || person instanceof TeachingAssistant) {
+            return -1;
         }
-        return -1;
+        return 0;
     }
 
     /**
