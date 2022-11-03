@@ -1,11 +1,11 @@
-<!---
-Overall structure of this user guide is adapted from https://ay2223s1-cs2103t-w16-2.github.io/tp/UserGuide.html
---->
-
 ---
 layout: page
 title: User Guide
 ---
+
+<!---
+Overall structure of this user guide is adapted from https://ay2223s1-cs2103t-w16-2.github.io/tp/UserGuide.html
+--->
 
 ## **About Swift+**
 
@@ -18,7 +18,7 @@ Perfect for SWE professionals, Swift+ is built around a **command line interface
 If you have fast fingers, Swift+ can help you manage contacts and tasks more quickly than a traditional point-and-click interface.
 
 This user guide provides details on how to use Swift+ in your daily workflow. This guide covers how to set up Swift+ and 
-use its text-based commands. Get started now by heading over to [How to use the User Guide](#how-to-use-the-user-guide)!
+use its text-based commands. Get started now by heading over to [How to use the User Guide](#how-to-use-this-user-guide)!
 
 ---
 
