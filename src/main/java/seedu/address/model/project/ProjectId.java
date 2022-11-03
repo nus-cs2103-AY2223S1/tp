@@ -20,6 +20,10 @@ public class ProjectId {
      */
     public ProjectId(int id) {
         requireNonNull(id);
+        if (!isValidProjectId(Integer.toString(id))) {
+            throw new IllegalArgumentException();
+        }
+
         this.projectId = id;
     }
 

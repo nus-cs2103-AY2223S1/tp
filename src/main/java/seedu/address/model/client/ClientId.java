@@ -18,6 +18,10 @@ public class ClientId {
      */
     public ClientId(int id) {
         requireNonNull(id);
+        if (!isValidClientId(Integer.toString(id))) {
+            throw new IllegalArgumentException();
+        }
+
         this.clientId = id;
     }
 

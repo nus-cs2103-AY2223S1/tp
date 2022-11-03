@@ -59,6 +59,7 @@ public class ProjectWithoutModel implements Function<Model, Project> {
             }
         }
 
+        System.out.println(model.generateProjectId());
         return new Project(name, repository, deadline,
                 client, issueList, new ProjectId(model.generateProjectId()), pin);
     }

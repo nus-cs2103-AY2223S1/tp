@@ -19,6 +19,10 @@ public class IssueId {
      */
     public IssueId(int id) {
         requireNonNull(id);
+        if (!isValidIssueId(Integer.toString(id))) {
+            throw new IllegalArgumentException();
+        }
+
         this.issueId = id;
     }
 
