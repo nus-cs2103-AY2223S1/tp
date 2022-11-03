@@ -29,14 +29,14 @@ public class PolicyTitleContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         Set<AssignedPolicy> assignedPolicies = person.getAssignedPolicies();
         for (int i = 0; i < keywords.size(); i++) {
-            if (checkKeywordAgainstTitles(assignedPolicies, keywords.get(i))) {
+            if (isKeywordMatchTitle(assignedPolicies, keywords.get(i))) {
                 return true;
             }
         }
         return false;
     }
 
-    private static boolean checkKeywordAgainstTitles(Set<AssignedPolicy> assignedPolicies, String keyword) {
+    private static boolean isKeywordMatchTitle(Set<AssignedPolicy> assignedPolicies, String keyword) {
         for (AssignedPolicy assignedPolicy : assignedPolicies) {
             if (StringUtil.containsWordIgnoreCase(assignedPolicy.getPolicy().getTitle().fullTitle, keyword)) {
                 return true;
