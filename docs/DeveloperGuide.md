@@ -193,9 +193,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Edit contact modules
-
-#### Person Class
+### Person Class
 Each `Person` in the AddressBook is implemented in the following way:
 
 ![Person Class Diagram](images/PersonClassDiagram.png)
@@ -203,16 +201,23 @@ Each `Person` in the AddressBook is implemented in the following way:
 All `Person` have a `Name`, `Email`, `Address` and `Phone` and a set of `Tag`, `CurrentModule`, `PreviousModule`, `PlannedModule` and `Lesson`.
 `Person`s can have a `Github` URL to their profile added, and as many `Tags`, `Modules` and `Lessons` as desired.
 
-#### User Class
+### User Class
 
-`User` Class is implemented the same way.
+`User` Class is implemented in a similar way.
 
 ![User Class Diagram](images/UserClassDiagram.png)
 
 `User` has a `Name`, `Email`, `Address` and `Phone` and a set of `CurrentModule`, `PreviousModule`, `PlannedModule`, and `Lesson`.
 `User` can have a `Github` URL to their profile added, and as many `Modules` and `Lessons` as desired.
 
-#### Module class
+#### Design considerations
+
+The `User` class is implemented as an abstract class with 2 inheritors, `EmptyUser` and `ExistingUser`. This is so that `User`
+can never be null thus when the user profile is deleted or has yet to be added, `EmptyUser` will act as a placeholder to indicate
+to the application that there is no user profile currently stored. Unlike `Person`, `User` does not contain `Tags` as the `Tags`
+feature should be used by the user to indicate each `Person`'s relation to the user instead.
+
+### Module class
 `CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
 
 ![Module Class Diagram](images/ModuleClassDiagram.png)
@@ -223,20 +228,37 @@ All implementations of `Module`s have a name.
 
 why we chose to have planned, curr and prev mods as own classes or wtv
 
+Multiple instances of the same module can be added and stored as iterating through each module list everytime a new module is added
+to check for similarity makes the program slower. Additionally, the same module may appear in different lists due to the possibility
+of repeating the module. The application does not check the modules added against a list of actual registered modules in NUS
+because NUS has over 6000 registered modules and iterating through this list to check if the module is valid would
+make the program slow.
+
+### Edit contact modules
+
+Editing contact modules is implemented such that you can directly add modules into each list of current, previous or planned modules.
+Users can also use this command to remove all instances of the same module from each list.
+
 ### Edit user modules
 
-Similar to edit contact modules blah blah... user implemented same way as person... module class same... diff command
+Editing user modules has been implemented very similarly to editing contact modules as `User` has been implemented in a
+similar way to a `Person` thus many commands that affect each individual contact are similarly designed to commands that
+affect the user. Additionally, both `Person` and `User` use the same `Module` classes to store modules hence the similarity
+in design.
 
-#### Design considerations of editing user modules
+#### Design considerations of editing module commands
 
-use same parser as contacts or wtv for space since same function
+Removal of modules has been implemented such that modules are removed from all 3 lists at once as it is simpler to have to use only one
+prefix for both the user and the program, and the user does not need to worry about mistyping multiple prefixes when keying in the command.
 
 ### Checking modules left
 
 #### Design considerations
 
-only AY2021/22 enrolment bc we selfish blah blah...
-
+Currently, we have tailored this feature towards AY21/22 enrolled Computer Science students as we have yet to implement
+features that accept and save a contact's or the user's majors and year of enrolment to check their modules left.
+Hence, we have decided that for this version we would limit the feature to only be of use to individuals from our own
+batch and major for now.
 
 ### Refreshing to next semester
 
