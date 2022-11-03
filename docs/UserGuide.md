@@ -61,7 +61,6 @@ DevEnable is a **desktop app for managing developer projects, optimized for use 
   e.g. if the command specifies `project -e n/New Project p/2 x/this is extra`, `2 x/this is extra` will be taken as 
   the argument for `p/`.
 
-* Additionally, there is a known bug where an illegal argument (e.g. negative/overflow integers) are not handled correctly by the application. This bug will be fixed in a future release.
 </div>
 
 ## General Commands
