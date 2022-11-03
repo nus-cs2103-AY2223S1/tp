@@ -86,25 +86,33 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 | **Job ID**  | `ji`      | 10           | Can only contain upper case alphanumeric characters and spaces |
 
 * `LOCAL_PART` can only contain alphanumeric characters and any of `+` `_` `.` `-`, but must not start or end with these special characters
-* `DOMAIN` can be made up of numerous `DOMAIN_LABEL` separated by `.`, with the last `DOMAIN_LABEL` being at least 2 characters long
-* `DOMAIN_LABEL` can only contain alphanumeric characters separated by `-`, but must start and end with alphanumeric characters
+* `DOMAIN` refers to the email domain that can be made of numerous `DOMAIN_LABEL`
+    * Each `DOMAIN_LABEL` can be separated by `.`
+    * `DOMAIN_LABEL` can only contain alphanumeric characters and hyphens `-`
+    * `DOMAIN_LABEL` must start and end with alphanumeric characters
+    * The last `DOMAIN_LABEL` should be at least 2 characters long
+* For example, in `john_doe@workday-nus.edu.sg`, `john_doe` is the `LOCAL_PART` and `workday-nus.edu.sg` is the `DOMAIN`
+which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 
 
 ### 2.2 Data Fields
 
-| Field               | Parameter | Length Limit | Constraints                                                                     |
-|---------------------|-----------|--------------|---------------------------------------------------------------------------------|
-| **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                             |
-| **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                                |
-| **Address**         | `a`       | 100          | Can take any values, but not blank                                              |
-| **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`       |
-| **Gender**          | `g`       | None         | Can only be `male` or `female`, will be converted to lower-case.                |
-| **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                             |
-| **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `MM-yyyy`, starting from the year 0000 |                           
-| **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                             |
-| **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces       |
+| Field               | Parameter | Length Limit | Constraints                                                                            |
+|---------------------|-----------|--------------|----------------------------------------------------------------------------------------|
+| **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                                    |
+| **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                                       |
+| **Address**         | `a`       | 100          | Can take any values, but not blank                                                     |
+| **CAP**             | `c`       | None         | Can only consist of 2 positive numeric values in the form of `CURRENT_CAP/MAX_CAP`     |
+| **Gender**          | `g`       | None         | Can only be `male` or `female` , will be converted to lower-case                       |
+| **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                                    |
+| **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `MM-yyyy`, starting from the year 0000        |                           
+| **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                                    |
+| **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces              |
 
-* `CURRENT_CAP` must be smaller than or equal to `MAX_CAP`
+* `CURRENT_CAP` must be a positive value (more than `0.0`)
+* `CURRENT_CAP` value must be smaller than or equal to `MAX_CAP`
+* `MAX_CAP` and `CURRENT_CAP` values should not exceed `100.0`
+* `MAX_CAP` and `CURRENT_CAP` will be rounded to 2 decimal places, e.g. `3.99999` will be rounded to `4.00`
 * Special punctuations: `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
 
 
