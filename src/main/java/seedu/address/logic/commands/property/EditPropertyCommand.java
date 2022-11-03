@@ -112,6 +112,9 @@ public class EditPropertyCommand extends Command {
         Characteristics updatedCharacteristics = descriptor
                 .getCharacteristics()
                 .orElse(propertyToEdit.getCharacteristics().orElse(null));
+        if (updatedCharacteristics != null && updatedCharacteristics.isReset()) {
+            updatedCharacteristics = null;
+        }
 
         // Allows for the changing of owner name and owner phone individually
         Name updatedOwnerName = descriptor.getOwnerName().orElse(propertyToEdit.getOwner().getName());

@@ -46,7 +46,7 @@ public class PriceRange {
     /**
      * Constructs a {@code PriceRange} that is going to be reset.
      */
-    public PriceRange() {
+    private PriceRange() {
         this.low = null;
         this.high = null;
         this.isReset = true;
