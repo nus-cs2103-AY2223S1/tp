@@ -14,17 +14,11 @@ import seedu.address.model.appointment.enums.AppointmentSlotNumber;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.NurseIsBusyException;
 import seedu.address.model.appointment.exceptions.PatientIsBusyException;
-import seedu.address.model.person.Nurse;
-import seedu.address.model.person.Patient;
 
 public class AppointmentManagerTest {
 
     private final AppointmentManager appointmentManager = new AppointmentManager();
 
-    private final Optional<Patient> optionalPatient = Optional.of(PATIENT);
-    private final Optional<Nurse> optionalNurse = Optional.of(NURSE);
-    private final Optional<Patient> emptyPatient = Optional.empty();
-    private final Optional<Nurse> emptyNurse = Optional.empty();
     private final AppointmentDateTime testDateTime = new AppointmentDateTime(LocalDate.now(),
             AppointmentSlotNumber.ONE);
 
@@ -68,7 +62,7 @@ public class AppointmentManagerTest {
     @Test
     public void removeAppointment_validArguments_successfullyRemovesAppointment() {
         createMockAppointment();
-        appointmentManager.removeAppointment(Optional.of(PATIENT), Optional.of(NURSE), testDateTime);
+        appointmentManager.removeAppointment(PATIENT, NURSE, testDateTime);
     }
 
     @Test
@@ -79,34 +73,19 @@ public class AppointmentManagerTest {
             appointmentManager.removeAppointment(null, null, null));
 
         assertThrows(NullPointerException.class, () ->
-            appointmentManager.removeAppointment(optionalPatient, null, null));
+            appointmentManager.removeAppointment(PATIENT, null, null));
 
         assertThrows(NullPointerException.class, () ->
-            appointmentManager.removeAppointment(null, optionalNurse, null));
+            appointmentManager.removeAppointment(null, NURSE, null));
 
         assertThrows(NullPointerException.class, () ->
-            appointmentManager.removeAppointment(optionalPatient, optionalNurse, null));
-
-        assertThrows(NullPointerException.class, () ->
-            appointmentManager.removeAppointment(emptyPatient, null, null));
-
-        assertThrows(NullPointerException.class, () ->
-            appointmentManager.removeAppointment(null, emptyNurse, null));
-    }
-
-    @Test
-    public void removeAppointment_invalidEmptyArguments_throwsException() {
-        createMockAppointment();
-
-        assertThrows(IllegalArgumentException.class, () ->
-            appointmentManager.removeAppointment(emptyPatient, emptyNurse, testDateTime));
+            appointmentManager.removeAppointment(PATIENT, NURSE, null));
     }
 
     @Test
     public void hasAppointment_validArguments_returnsAppointment() {
         Appointment createdAppointment = createMockAppointment();
-        Optional<Appointment> foundAppointment = appointmentManager.findAppointment(optionalNurse, optionalPatient,
-                testDateTime);
+        Optional<Appointment> foundAppointment = appointmentManager.findAppointment(NURSE, PATIENT, testDateTime);
         assertEquals(createdAppointment, foundAppointment.orElseThrow(AppointmentNotFoundException::new));
     }
 
