@@ -1204,7 +1204,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a module while all modules are being shown at home page
 
-    1. Prerequisites: User is at home page. List all modules using the `list-module` command. Module `CS1231S` exist in the list.
+    1. Prerequisites: User is at home page. List all modules using the `list-module` command. Module `CS1231S` exists in the list.
 
     2. Test case: `delete-module m/CS1231S`<br>
        Expected: `CS1231S` is deleted from the list. Details of the deleted module shown in the status message. Timestamp in the status bar is updated.
@@ -1221,7 +1221,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a contact while all contacts are being shown at home page
 
-    1. Prerequisites: User is at home page. List all contacts using the `list-contact` command. Person `Alice` exist in the list.
+    1. Prerequisites: User is at home page. List all contacts using the `list-contact` command. Person `Alice` exists in the list.
 
     1. Test case: `delete-person n/Alice`<br>
        Expected: `Alice` is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
