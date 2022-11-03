@@ -297,8 +297,7 @@ The `delete` allows the user to delete a book or a user from the system.
 
 `delete book` deletes a book from the model. Specifically, `ModelManager` maintains a list of books and contains the method `deleteBook()` that is invoked by `DeleteBookCommand`to perform this deletion.
 
-The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("delete user 
-1")` API call.
+The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("delete user 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -433,15 +432,10 @@ in the future.
 
 One issue is that the `UniquePersonList` and `BookList` do not refresh their UI
 automatically, and we resorted to getting the index of each list to set their
-internal `ObservableLists` to 'refresh' their UI. 
+internal `ObservableLists` to 'refresh' their UI.
 
-We have chosen to use an external `PrettyTimeParser` library here to allow for higher degrees of 
-flexibility for input. One downside however is that it uses Natural Language Processing, and 
-it may cause unintended parsing behaviours that is difficult to resolve since Natural Language Processing
-is beyond the scope of this module. In this case, invalid dates such as `2075-99-99` are accepted as
-valid dates by the library, and we have decided to check only for the two most common date formats,
+We have chosen to use an external `PrettyTimeParser` library here to allow for higher degrees of flexibility for input. One downside however is that it uses Natural Language Processing, and it may cause unintended parsing behaviours that is difficult to resolve since Natural Language Processing is beyond the scope of this module. In this case, invalid dates such as `2075-99-99` are accepted as valid dates by the library, and we have decided to check only for the two most common date formats,
 `dd/MM/yyyy` and `yyyy-MM-dd`.
-
 
 ### Return feature
 

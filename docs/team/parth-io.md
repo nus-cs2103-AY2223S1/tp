@@ -33,7 +33,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `add user`, `delete user`, `delete book`, `edit book`, and `edit user` [\#64](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/64), [\#166](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/166)
-    * ~~Did cosmetic tweaks to existing documentation of features~~ `clear`, `exit`: [\#74]() 
+    * ~~Did cosmetic tweaks to existing documentation of features~~ `clear`, `exit`: [\#74]()
   * Developer Guide:
     * Added the Non-Functional requirements [\#85](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/85)
     * Did cosmetic tweaks for the Glossary table [\#92](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/92)
