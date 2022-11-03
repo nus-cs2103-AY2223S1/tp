@@ -80,6 +80,28 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code PriorityTag} of the {@code Task} which is being built.
+     *
+     * @param priorityTag The priority tag being set.
+     * @return The task builder which now contains the priority tag.
+     */
+    public TaskBuilder withPriorityTag(PriorityTag priorityTag) {
+        this.priorityTag = priorityTag;
+        return this;
+    }
+
+    /**
+     * Sets the {@code DeadlineTag} of the {@code Task} which is being built.
+     *
+     * @param deadlineTag The deadline tag being set.
+     * @return The task builder which now contains the deadline tag.
+     */
+    public TaskBuilder withDeadlineTag(DeadlineTag deadlineTag) {
+        this.deadlineTag = deadlineTag;
+        return this;
+    }
+
     public Task build() {
         return new Task(module, taskDescription, taskStatus, priorityTag, deadlineTag, linkedExam);
     }

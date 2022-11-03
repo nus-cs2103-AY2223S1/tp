@@ -48,6 +48,19 @@ public class TypicalTasks {
         .withStatus("complete")
         .build();
 
+    public static final Task TASK_G = new TaskBuilder().withModule("cs2100")
+            .withTaskDescription("Task G")
+            .withPriorityTag(new PriorityTagBuilder().build())
+            .build();
+
+    public static final Task TASK_H = new TaskBuilder().withModule("cs2103t")
+            .withTaskDescription("Task H")
+            .withDeadlineTag(new DeadlineTagBuilder().build())
+            .build();
+
+    public static final Task TASK_I = new TaskBuilder().withModule("cs2103t")
+            .withTaskDescription("Task I")
+            .build();
     private TypicalTasks() {
     } // prevents instantiation
 
@@ -69,6 +82,7 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(TASK_A, TASK_B, TASK_C, TASK_D, TASK_E, TASK_F));
+        return new ArrayList<>(Arrays.asList(TASK_A, TASK_B, TASK_C, TASK_D, TASK_E, TASK_F,
+                TASK_G, TASK_H, TASK_I));
     }
 }

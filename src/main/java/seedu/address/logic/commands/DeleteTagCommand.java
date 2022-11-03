@@ -25,8 +25,8 @@ public class DeleteTagCommand extends Command {
             "There is no priority tag to delete from the task.";
     public static final String NO_DEADLINE_TAG_TO_DELETE =
             "There is no deadline tag to delete form the task.";
-    public static final String ALL_TAGS_DELETED_SUCCESSFULLY =
-            "All tags have been deleted from the task.";
+    public static final String TAG_DELETED_SUCCESSFULLY =
+            "The tag(s) has/have been deleted from the task.";
 
     private final Index index;
     private final Set<String> keywords;
@@ -68,6 +68,14 @@ public class DeleteTagCommand extends Command {
             changedTask = changedTask.deleteDeadlineTag();
         }
         model.replaceTask(currentTask, changedTask, true);
-        return new CommandResult(ALL_TAGS_DELETED_SUCCESSFULLY);
+        return new CommandResult(TAG_DELETED_SUCCESSFULLY);
+    }
+
+    @Override
+    public boolean equals(Object otherDeleteTagCommand) {
+        return otherDeleteTagCommand == this
+                || (otherDeleteTagCommand instanceof DeleteTagCommand
+                && keywords.equals(((DeleteTagCommand) otherDeleteTagCommand).keywords)
+                && index.equals(((DeleteTagCommand) otherDeleteTagCommand).index));
     }
 }
