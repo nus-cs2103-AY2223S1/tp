@@ -19,20 +19,17 @@ public class CommandResult {
      * Constructs a CommandResult with the specified fields.
      */
     public CommandResult(String feedbackToUser, CommandType commandType) {
-        requireAllNonNull(feedbackToUser);
-        requireAllNonNull(commandType);
+        requireAllNonNull(feedbackToUser, commandType);
         this.feedbackToUser = feedbackToUser;
         this.commandType = commandType;
         this.patientListTracker = Optional.empty();
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a CommandResult with the specified fields with a provided patientListTracker.
      */
-    public CommandResult(String feedbackToUser, CommandType commandType,
-                         PatientListTracker patientListTracker) {
-        requireNonNull(feedbackToUser);
-        requireNonNull(commandType);
+    public CommandResult(String feedbackToUser, CommandType commandType, PatientListTracker patientListTracker) {
+        requireAllNonNull(feedbackToUser, commandType, patientListTracker);
         this.feedbackToUser = feedbackToUser;
         this.commandType = commandType;
         this.patientListTracker = Optional.of(patientListTracker);
