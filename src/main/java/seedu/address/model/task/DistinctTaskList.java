@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -90,17 +91,19 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
-     * Unlinks all tasks that are currently linked to {@code exam}.
-     * @param exam
+     * Unlinks all tasks that are currently linked to {@code exam} and returns a List of these tasks.
+     * @param exam the exam for the tasks to be unlinked from
      */
-    public void unlinkTasksFromExam(Exam exam) {
-        requireNonNull(exam);
-        taskList.forEach(task -> {
+    public List<Task> unlinkTasksFromExam(Exam exam) {
+        List<Task> matchedTasks = new ArrayList<Task>();
+        taskList.forEach(task-> {
             if (task.isLinked() && task.getExam().equals(exam)) {
                 Task unlinkedTask = task.unlinkTask();
+                matchedTasks.add(unlinkedTask);
                 replaceTask(task, unlinkedTask, true);
             }
         });
+        return matchedTasks;
     }
 
     /**
@@ -145,6 +148,18 @@ public class DistinctTaskList implements Iterable<Task> {
                 Task editedTask = task.edit(newModule, null);
                 replaceTask(task, editedTask, false);
             }
+        });
+    }
+
+    /**
+     * Links all tasks in {@code tasks} to {@code exam}.
+     * @param exam The exam to link to.
+     * @param tasks The list of tasks to link each task to {@code exam}.
+     */
+    public void linkTasksToExam(Exam exam, List<Task> tasks) {
+        tasks.forEach(task-> {
+            Task linkedTask = task.linkTask(exam);
+            replaceTask(task, linkedTask, true);
         });
     }
 

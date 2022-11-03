@@ -269,7 +269,7 @@ public class Task {
         if (newTaskDescription != null) {
             updatedDescription = newTaskDescription;
         }
-        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag, linkedExam);
     }
 
     /**
