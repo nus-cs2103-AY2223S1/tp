@@ -66,7 +66,7 @@ public class Deadline implements Comparable<Deadline> {
      */
     public boolean isBefore(Deadline deadline) {
         if (isUnspecified() || deadline.isUnspecified()) {
-            return true;
+            return false;
         }
         return date.isBefore(deadline.date);
     }
@@ -76,7 +76,7 @@ public class Deadline implements Comparable<Deadline> {
      */
     public boolean isAfter(Deadline deadline) {
         if (isUnspecified() || deadline.isUnspecified()) {
-            return true;
+            return false;
         }
         return date.isAfter(deadline.date);
     }
