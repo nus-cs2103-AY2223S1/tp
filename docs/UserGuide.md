@@ -206,6 +206,7 @@ Adds a contact to your TaskBook.
 Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
 
 * For more information on the `NAME` parameter, see [NAME Parameter](#name-parameter).
+* For more information on the `PHONE_NUMBER` parameter, see [PHONE_NUMBER Parameter](#phone_number-parameter).
 * Note that adding a new contact [will remove the effect of a `find` command](#finding), displaying the full list of contacts.
 
 Examples:
@@ -604,6 +605,12 @@ Where the NAME parameter is required (e.g. `n/NAME`), specify the **exact name**
 * in a case-sensitive format
 
 This prevents ambiguity in naming so that you can specify the exact contact where necessary.
+
+### PHONE_NUMBER Parameter
+
+Phone numbers must consist of only numerical inputs 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. TaskBook does not support country code extensions.
+
+Phone numbers must be at least 3 digits long, as the shortest phone numbers in the world (emergency hotlines) are 3 digits long.
 
 --------------------------------------------------------------------------------------------------------------------
 
