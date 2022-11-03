@@ -1,8 +1,8 @@
-<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
-
-# User Guide for bobaBot
-
 ---
+layout: page
+title: User Guide for bobaBot
+---
+
 bobaBot is a **cheap & easy-to-use desktop application** for managing bubble tea shop customers’ membership details.<br/>
 
 bobaBot offers simple **adding**, **enquiring**, and **maintaining** of customer information.
