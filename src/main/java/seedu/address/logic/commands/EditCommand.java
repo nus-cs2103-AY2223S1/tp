@@ -192,6 +192,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setIncome(toCopy.income);
             setMeetingDate(toCopy.meetingDate);
+            setMeetingLocation(toCopy.meetingLocation);
             setTags(toCopy.tags);
             setRisk(toCopy.risk);
             setPlans(toCopy.plans);
@@ -202,7 +203,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, income, meetingDate, tags,
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, income, meetingDate, meetingLocation, tags,
                 risk, plans, notes);
         }
 
