@@ -187,6 +187,8 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 
 Sorts the list by the specified attribute in the specified order.
 
+When managing your students, you might want to focus on a certain aspect of the module to track. For instance, you may wish to clamp down on absenteeism and identify students who are constantly missing from class. To achieve this, we can sort the StudMap by `ATTENDANCE`.
+
 Format: `sort ORDER a/ATTRIBUTE`
 
 - `ORDER`: You can specify the order you wish to sort your StudMap. 
@@ -216,9 +218,9 @@ Format: `sort ORDER a/ATTRIBUTE`
 
 Examples:
 
+* `sort asc a/attendance` sorts list by `ATTENDANCE` in ascending order
 * `sort asc a/name` sorts list by `NAME` in ascending order
 * `sort dsc a/phone` sorts list by `PHONE` in descending order
-* `sort asc a/attendance` sorts list by `ATTENDANCE` in ascending order
 
 ### Filtering the students: `filter`
 
