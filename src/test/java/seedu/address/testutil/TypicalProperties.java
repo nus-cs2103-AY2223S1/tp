@@ -1,9 +1,19 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_ADDRESS_HOME;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_DESCRIPTION_HOME;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_HOME;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRICE_HOME;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_ADDRESS_HOME;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_ADDRESS_PROPERTY1;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_CHARACTERISTICS_HOME;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_CHARACTERISTICS_PROPERTY1;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_DESCRIPTION_HOME;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_DESCRIPTION_PROPERTY1;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_NAME_HOME;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_NAME_PROPERTY1;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_OWNER_NAME_HOME;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_OWNER_NAME_PROPERTY1;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_OWNER_PHONE_HOME;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_OWNER_PHONE_PROPERTY1;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_PRICE_HOME;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_PRICE_PROPERTY1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,8 +38,16 @@ public class TypicalProperties {
             .build();
 
     // Manually added - Property's details found in {@code CommandTestUtil}
+    public static final Property PROPERTY1 = new PropertyBuilder().withName(VALID_NAME_PROPERTY1)
+            .withAddress(VALID_ADDRESS_PROPERTY1).withPrice(VALID_PRICE_PROPERTY1)
+            .withDescription(VALID_DESCRIPTION_PROPERTY1).withCharacteristics(VALID_CHARACTERISTICS_PROPERTY1)
+            .withOwner(VALID_OWNER_NAME_PROPERTY1, VALID_OWNER_PHONE_PROPERTY1).build();
+
     public static final Property HOME = new PropertyBuilder().withName(VALID_NAME_HOME).withAddress(VALID_ADDRESS_HOME)
-            .withPrice(VALID_PRICE_HOME).withDescription(VALID_DESCRIPTION_HOME).build();
+            .withPrice(VALID_PRICE_HOME).withDescription(VALID_DESCRIPTION_HOME)
+            .withCharacteristics(VALID_CHARACTERISTICS_HOME)
+            .withOwner(VALID_OWNER_NAME_HOME, VALID_OWNER_PHONE_HOME)
+            .build();
 
     private TypicalProperties() {} // prevents instantiation
 

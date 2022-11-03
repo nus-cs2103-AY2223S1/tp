@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
@@ -32,7 +34,7 @@ public class EditPropertyCommandParser extends Parser<EditPropertyCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer
                 .tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
-                        PREFIX_CHARACTERISTICS);
+                        PREFIX_CHARACTERISTICS, PREFIX_OWNER_NAME, PREFIX_PHONE);
 
         Index index;
 
@@ -62,6 +64,17 @@ public class EditPropertyCommandParser extends Parser<EditPropertyCommand> {
             editPropertyDescriptor.setCharacteristics(ParserUtil
                     .parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get()));
         }
+
+        if (argMultimap.getValue(PREFIX_OWNER_NAME).isPresent()) {
+            editPropertyDescriptor.setOwnerName(ParserUtil
+                    .parseName(argMultimap.getValue(PREFIX_OWNER_NAME).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            editPropertyDescriptor.setOwnerPhone(ParserUtil
+                    .parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        }
+
 
         if (!editPropertyDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);

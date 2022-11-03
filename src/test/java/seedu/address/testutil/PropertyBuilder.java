@@ -94,8 +94,8 @@ public class PropertyBuilder {
     /**
      * Sets the {@code Owner} of the {@code Property} that we are building.
      */
-    public PropertyBuilder withOwner(Owner owner) {
-        this.owner = owner;
+    public PropertyBuilder withOwner(String ownerName, String ownerPhone) {
+        this.owner = new Owner(new Name(ownerName), new Phone(ownerPhone));
         return this;
     }
 

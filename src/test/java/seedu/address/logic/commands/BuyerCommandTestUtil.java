@@ -19,7 +19,6 @@ import seedu.address.logic.commands.buyer.EditBuyerCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.BuyerBook;
 import seedu.address.model.Model;
-import seedu.address.model.PropertyBook;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.BuyerNameContainsSubstringPredicate;
 import seedu.address.model.property.Property;
@@ -45,10 +44,6 @@ public class BuyerCommandTestUtil {
     public static final String VALID_DESIRED_CHARACTERISTICS_BOB = "Jurong; 3-Room";
     public static final String VALID_PRIORITY_HIGH = "HIGH";
     public static final String VALID_PRIORITY_LOW = "LOW";
-    public static final String VALID_NAME_HOME = "Home";
-    public static final String VALID_ADDRESS_HOME = "25 College Avenue East";
-    public static final String VALID_PRICE_HOME = "0";
-    public static final String VALID_DESCRIPTION_HOME = "Tembu";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + " " + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + " " + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + " " + VALID_PHONE_AMY;
@@ -135,24 +130,6 @@ public class BuyerCommandTestUtil {
         assertEquals(expectedBuyerBook, actualModel.getBuyerBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredBuyerList());
     }
-
-    /**
-     * Executes the given {@code command}, confirms that <br>
-     * - a {@code CommandException} is thrown <br>
-     * - the CommandException message matches {@code expectedMessage} <br>
-     * - the PropertyBook, filtered property list and selected property in {@code actualModel} remain unchanged
-     */
-    public static void assertPropertyCommandFailure(Command command, Model actualModel, String expectedMessage) {
-        // we are unable to defensively copy the model for comparison later, so we can
-        // only do so by copying its components.
-        PropertyBook expectedPropertyBook = new PropertyBook(actualModel.getPropertyBook());
-        List<Property> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPropertyList());
-
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedPropertyBook, actualModel.getPropertyBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPropertyList());
-    }
-
 
     /**
      * Updates {@code model}'s filtered list to show only the buyer at the given {@code targetIndex} in the

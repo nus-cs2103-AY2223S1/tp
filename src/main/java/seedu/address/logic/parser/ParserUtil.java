@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +19,7 @@ import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.property.Description;
+import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Properties;
 import seedu.address.model.property.PropertyName;
@@ -209,6 +211,28 @@ public class ParserUtil {
             throw new ParseException(PropertyName.MESSAGE_CONSTRAINTS);
         }
         return new PropertyName(trimmedPropertyName);
+    }
+
+    /**
+     * Parses a {@code String ownerName} and a {@code String ownerPhone} into an {@code Owner}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ownerName} or {@code ownerPhone} is invalid.
+     */
+    public static Owner parseOwner(String ownerName, String ownerPhone) throws ParseException {
+        requireAllNonNull(ownerName, ownerPhone);
+        String trimmedOwnerName = ownerName.trim();
+        String trimmedOwnerPhone = ownerPhone.trim();
+
+        if (!Name.isValidName(trimmedOwnerName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Phone.isValidPhone(trimmedOwnerPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Owner(new Name(trimmedOwnerName), new Phone(trimmedOwnerPhone));
     }
 
     /**
