@@ -20,10 +20,10 @@ public class PolicyDeleteAssignedCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteAssigned";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes assigned policy from a person. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes assigned policy from a person.\n"
             + "Parameters: "
-            + "(Index of client) "
-            + "(Index of assigned policy) "
+            + "CLIENT_INDEX "
+            + "ASSIGNED_POLICY_INDEX "
             + "\nExample: " + COMMAND_WORD + " 1 1";
 
     public static final String MESSAGE_ASSIGN_POLICY_SUCCESS = "Deleted assigned policy %1$s from Client: %2$s";
@@ -63,8 +63,16 @@ public class PolicyDeleteAssignedCommand extends Command {
         AssignedPolicy assignedPolicy = assignedPolicyArray[targetPolicyIndex.getZeroBased()];
         boolean success = personToDeleteFrom.removePolicy(assignedPolicy);
         return new CommandResult(String.format(success
-                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_POLICY_FAIL, assignedPolicy, personToDeleteFrom),
+                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_POLICY_FAIL, assignedPolicy.getPolicy().getTitle(),
+                personToDeleteFrom.getName()),
                 false, false, false, true, false, false);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PolicyDeleteAssignedCommand // instanceof handles nulls
+                && targetPersonIndex.equals(((PolicyDeleteAssignedCommand) other).targetPersonIndex) // state check
+                && targetPolicyIndex.equals(((PolicyDeleteAssignedCommand) other).targetPersonIndex)); // state check
+    }
 }

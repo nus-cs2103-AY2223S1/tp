@@ -60,6 +60,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Code quality, integration, Main reviewer for Reuben
-* In-charge of features: find
+* In-charge of features: findClient, findPolicy, findEvent
 
 

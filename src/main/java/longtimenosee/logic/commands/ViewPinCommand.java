@@ -15,8 +15,8 @@ public class ViewPinCommand extends Command {
 
     public static final String COMMAND_WORD = "viewPin";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": pins the person to start of list\n"
-            + "Parameters: INDEX...\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": pins the client to start of list\n"
+            + "Parameters: CLIENT_INDEX...\n"
             + "Example: " + COMMAND_WORD + "Alice";
 
     private final PinnedPersonPredicate predicate;

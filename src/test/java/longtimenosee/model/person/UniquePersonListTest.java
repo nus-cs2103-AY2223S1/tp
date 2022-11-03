@@ -16,7 +16,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import longtimenosee.model.person.exceptions.DuplicatePersonException;
-import longtimenosee.model.person.exceptions.PersonNotFoundException;
+import longtimenosee.model.person.exceptions.PolicyNotFoundException;
 import longtimenosee.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -70,7 +70,7 @@ public class UniquePersonListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+        assertThrows(PolicyNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
     }
 
     @Test
@@ -116,7 +116,7 @@ public class UniquePersonListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+        assertThrows(PolicyNotFoundException.class, () -> uniquePersonList.remove(ALICE));
     }
 
     @Test

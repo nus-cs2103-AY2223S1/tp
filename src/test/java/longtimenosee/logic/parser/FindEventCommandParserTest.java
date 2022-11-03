@@ -22,21 +22,22 @@ public class FindEventCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        // EP: empty arguments
+        assertParseFailure(parser, "   ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindEventCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validDescriptionArgs_returnsFindEventCommand() {
-        // no leading and trailing whitespaces
+        // EP: valid input no leading and trailing whitespaces
         FindEventCommand expectedFindEventCommand =
                 new FindEventCommand(List.of(new DescriptionContainsKeywordsPredicate("meeting to discuss plans")));
         assertParseSuccess(parser, " desc/meeting to discuss plans", expectedFindEventCommand);
 
-        // whitespaces at edges
+        // EP: valid input with whitespaces at edges
         assertParseSuccess(parser, " desc/ meeting to discuss plans  ", expectedFindEventCommand);
 
-        // alphanumeric input
+        // EP: valid alphanumeric input
         FindEventCommand alphanumericExpectedFindEventCommand =
                 new FindEventCommand(List.of(new DescriptionContainsKeywordsPredicate("5th meeting")));
         assertParseSuccess(parser, " desc/ 5th meeting ", alphanumericExpectedFindEventCommand);
@@ -44,16 +45,16 @@ public class FindEventCommandParserTest {
 
     @Test
     public void parse_invalidDescriptionArgs_throwsParseException() {
-        // empty name input
-        assertParseFailure(parser, " desc/", Description.MESSAGE_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " desc/", Description.MESSAGE_CONSTRAINTS); // Boundary value
 
-        // symbol input
+        // EP: non-alphanumeric input: symbols
         assertParseFailure(parser, " desc/!", Description.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_validDateArgs_returnsFindEventCommand() {
-        // normal input
+        // EP: valid input
         FindEventCommand expectedFindEventCommand =
                 new FindEventCommand(List.of(new EventDateMatchesInputPredicate("2019-05-12")));
         assertParseSuccess(parser, " date/2019-05-12", expectedFindEventCommand);
@@ -61,26 +62,30 @@ public class FindEventCommandParserTest {
 
     @Test
     public void parse_invalidDateArgs_throwsParseException() {
-        // empty input
-        assertParseFailure(parser, " date/", Date.MESSAGE_FORMAT_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " date/", Date.MESSAGE_FORMAT_CONSTRAINTS); // Boundary value
 
-        // incorrect format
+        // EP: non date input
         assertParseFailure(parser, " date/123", Date.MESSAGE_FORMAT_CONSTRAINTS);
+
+        // EP: non numeric input
         assertParseFailure(parser, " date/abc", Date.MESSAGE_FORMAT_CONSTRAINTS);
+
+        // EP: improper date format
         assertParseFailure(parser, " date/1980-123-20", Date.MESSAGE_FORMAT_CONSTRAINTS);
     }
 
     @Test
     public void parse_validNameInEventArgs_returnsFindEventCommand() {
-        // no leading and trailing whitespaces
+        // EP: valid input no leading and trailing whitespaces
         FindEventCommand expectedFindEventCommand =
                 new FindEventCommand(List.of(new NameInEventContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"))));
         assertParseSuccess(parser, " n/Alice Bob", expectedFindEventCommand);
 
-        // multiple whitespaces between keywords
+        // EP: valid input with multiple whitespaces between keywords
         assertParseSuccess(parser, " n/ Alice  Bob  ", expectedFindEventCommand);
 
-        // alphanumeric input
+        // EP: valid alphanumeric input
         FindEventCommand alphanumericExpectedFindEventCommand =
                 new FindEventCommand(List.of(new NameInEventContainsKeywordsPredicate(Arrays.asList("Alice", "123"))));
         assertParseSuccess(parser, " n/ Alice 123 ", alphanumericExpectedFindEventCommand);
@@ -88,10 +93,10 @@ public class FindEventCommandParserTest {
 
     @Test
     public void parse_invalidNameArgs_throwsParseException() {
-        // empty name input
-        assertParseFailure(parser, " n/", Name.MESSAGE_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " n/", Name.MESSAGE_CONSTRAINTS); // Boundary value
 
-        // symbol input
+        // EP: non-alphanumeric input: symbols
         assertParseFailure(parser, " n/!", Name.MESSAGE_CONSTRAINTS);
     }
 }
