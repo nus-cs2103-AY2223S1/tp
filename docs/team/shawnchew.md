@@ -37,7 +37,7 @@ Given below are my contributions to the project.
         * Added implementation details for view commands. (Pull Request [#96](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/96))
 
 * **Community**:
-    * Reviewed 15 Pull Requests on [GitHub](https://github.com/AY2223S1-CS2103T-T17-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me).
-    * Found 13 bugs in team [CS2103-T10-3](https://github.com/shawnchew/ped)'s product during PE-D.
+    * Reviewed 15 Pull Requests on [GitHub](https://github.com/AY2223S1-CS2103T-T17-3/tp/pulls?q=is%3Apr+is%3Aclosed+-author%3AShawnChew).
+    * Found 13 bugs in team [CS2103T-T10-3](https://github.com/shawnchew/ped)'s product during PE-D.
 
 </div>
