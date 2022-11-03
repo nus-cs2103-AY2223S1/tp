@@ -81,10 +81,10 @@ public class AssignCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
         }
 
-        Person personToBeEdit1 = person1.get();
-        Person personToBeEdit2 = person2.get();
-        Person patient = getPatient(personToBeEdit1, personToBeEdit2);
-        Person nurse = getNurse(personToBeEdit1, personToBeEdit2);
+        Person firstPerson = person1.get();
+        Person secondPerson = person2.get();
+        Person patient = getPatient(firstPerson, secondPerson);
+        Person nurse = getNurse(firstPerson, secondPerson);
         markAssign(model, patient, nurse);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getUid().getUid(), nurse.getUid().getUid()));
@@ -96,13 +96,13 @@ public class AssignCommand extends Command {
 
         if (isPerson1Patient && isPerson2Patient) {
             throw new CommandException(MESSAGE_BOTH_PATIENT);
-        } else if (isPerson1Patient) {
-            return person1;
-        } else if (isPerson2Patient) {
-            return person2;
-        } else {
-            throw new CommandException(MESSAGE_BOTH_NURSE);
         }
+        if (isPerson1Patient || isPerson2Patient) {
+            return isPerson1Patient
+                    ? person1
+                    : person2;
+        }
+        throw new CommandException(MESSAGE_BOTH_NURSE);
     }
 
     private Person getNurse(Person person1, Person person2) throws CommandException {
@@ -111,13 +111,13 @@ public class AssignCommand extends Command {
 
         if (isPerson1Nurse && isPerson2Nurse) {
             throw new CommandException(MESSAGE_BOTH_NURSE);
-        } else if (isPerson1Nurse) {
-            return person1;
-        } else if (isPerson2Nurse) {
-            return person2;
-        } else {
-            throw new CommandException(MESSAGE_BOTH_PATIENT);
         }
+        if (isPerson1Nurse || isPerson2Nurse) {
+            return isPerson1Nurse
+                    ? person1
+                    : person2;
+        }
+        throw new CommandException(MESSAGE_BOTH_PATIENT);
     }
 
     private void markAssign(Model model, Person patient, Person nurse) throws CommandException {
