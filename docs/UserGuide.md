@@ -33,7 +33,7 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest TABS.jar.
 3. Copy the file to the folder you want to use as the home folder for your TABS.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
 Note how the app contains some sample data.
 <br><br>
 ![TABS example](images/user-guide/Ui.png)
@@ -73,6 +73,9 @@ Note how the app contains some sample data.
 * Extraneous parameters for commands that do not take in parameters (such as `listpersons`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `listpersons 123`, it will be interpreted as `listpersons`.
 
+* Commands involving the parameter `NAME` is case-sensitive, the `NAME` specified must be 
+exactly the same as the one stored in TABS.
+
 </div>
 
 ### Viewing help: help
@@ -93,9 +96,18 @@ Format: `addperson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 <b>Tip:</b> A person can have any number of tags (including 0)
 </div>
 
+<div markdown="span" class="alert alert-primary">
+<br>
+  :information_source: **Extra note**: 
+
+A person's email can be in the form of `local-part@domain`, where the `domain`
+specified must be at least 2 characters long.
+
+</div>
+
 Examples:
 * `addperson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addperson n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addperson n/Betsy Crowe t/friend e/betsycrowe@example a/Newgate Prison p/1234567 t/criminal`
 
 ### Deleting a person: `deleteperson`
 
@@ -153,19 +165,19 @@ Format: `listpersons`
 
 Adds an empty group with the specified `GROUP` to TABS.
 
-Format: `addgroup GROUP`
+Format: `addgroup g/GROUP`
 
 Examples:
-* `addgroup CS2103T` will create an empty group with the group name `CS2103T`.
+* `addgroup g/CS2103T` will create an empty group with the group name `CS2103T`.
 
 ### Deleting a group: `deletegroup`
 
 Deletes the specified group with the group name `GROUP` from TABS.
 
-Format: `deletegroup GROUP`
+Format: `deletegroup g/GROUP`
 
 Examples:
-* `deletegroup CS2103T` deletes the group `CS2103T` from TABS.
+* `deletegroup g/CS2103T` deletes the group `CS2103T` from TABS.
 
 ### Adding a member to a group: `addmember`
 
@@ -189,15 +201,14 @@ Examples:
 
 ### Display a group: `displaygroup`
 
-Displays the group members allocated to the specified `GROUP`. Instead of details, assigned tasks will be listed.
-
+Displays the group members allocated to the specified `GROUP`.
 ![TABS example](images/user-guide/displaygroup_example.png)
 
 Format: `displaygroup GROUP`
-* Displays the members associated with the `GROUP` and their tasks.
+* Displays the members associated with the `GROUP`.
 
 Examples:
-* `displaygroup CS2103T` displays the members associated with `CS2103T` and their tasks.
+* `displaygroup CS2103T` displays the members associated with `CS2103T`.
 
 ### Listing all groups: `listgroups`
 
@@ -211,7 +222,7 @@ Assigns a task to a member with the given name in a group in TABS.
 
 Format: `assigntask NAME g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]`
 * Assigns a `TASK` to a person with the specified `NAME`, `GROUP`, `WORKLOAD` and `DEADLINE`.
-* `WORKLOAD` specified must be `low`, `medium` or `high`.
+* `WORKLOAD` specified must be `low`, `medium` or `high` and is case-insensitive.
 * `DEADLINE` must be in `yyyy-MM-dd` or `yyyy-MM-dd HH:mm` format.
 
 Examples:
@@ -221,10 +232,10 @@ assigns `John` in group `CS2103T` with a `High` workload task `TeamProject`.
 assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0` and the deadline of the task is `2022-01-01 23:59`.
 
 <div markdown="span" class="alert alert-primary">
-  :information_source: **Extra note:** 
+  :information_source: **Extra note**: 
 
 A workload indicator is shown beside each person in TABS.
-When the workload of the person increase, the workload indicator will gradually change from green to red.
+When the workload of the person increases, the workload indicator will gradually change from green to red.
 
 ![Workload_Indicator](images/user-guide/workload_indicator.png)
 </div>
@@ -244,9 +255,9 @@ Examples:
 
 Assigns a task to all members in a group. Members with the same task are ignored.
 
-Format: `assigntaskall g/GROUP task/TASK w/WORKLOAD d/DEADLINE`
+Format: `assigntaskall g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]`
 * Assigns a `TASK` to all members with the specified `GROUP`, `WORKLOAD` and `DEADLINE`.
-* `WORKLOAD` specified must be `low`, `medium` or `high`.
+* `WORKLOAD` specified must be `low`, `medium` or `high` and is case-insensitive.
 * `DEADLINE` must be in `yyyy-MM-dd` or `yyyy-MM-dd HH:mm` format.
 
 Examples:
@@ -263,12 +274,12 @@ Format: `deletetaskall g/GROUP task/TASK`
 * Deletes a `TASK` from all members with the specified `GROUP`.
 
 Examples:
-* `deletetaskall John g/CS2103T task/TeamProject` deletes task `TeamProject` from all members in group `CS2103T`.
-* `deletetaskall Billy g/Team Delta task/Delta Project` deletes `Delta Project` from all members with in `Team Delta`.
+* `deletetaskall g/CS2103T task/TeamProject` deletes task `TeamProject` from all members in group `CS2103T`.
+* `deletetaskall g/Team Delta task/Delta Project` deletes task `Delta Project` from all members with in `Team Delta`.
 
 ### Clearing all entries: `clear`
 
-Clears all entries from the address book.
+Clears all entries from TABS.
 
 Format: clear
 
@@ -288,17 +299,17 @@ Format: `exit`
 | **Add Person**            | `addperson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`<br> e.g. `addperson n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567` |
 | **Delete Person**         | `deleteperson NAME`<br> e.g. `deleteperson Betsy`                                                                                                           |
 | **Edit Person**           | `editperson NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g. `edituser 2 n/James Lee e/jameslee@example.com`                          |
-| **Find Person**           | `findperson KEYWORD [MORE_KEYWORDS]`<br> e.g. `finduser James Jake`                                                                                         |
+| **Find Person**           | `findperson KEYWORD [MORE_KEYWORDS]`<br> e.g. `findperson James Jake`                                                                                       |
 | **List Persons**          | `listpersons`                                                                                                                                               |
-| **Add Group**             | `addgroup GROUP` <br> e.g. `addgroup CS2103T`                                                                                                               |
-| **Delete Group**          | `deletegroup GROUP` <br/> e.g. `deletegroup CS2103T`                                                                                                        |
+| **Add Group**             | `addgroup g/GROUP` <br> e.g. `addgroup g/CS2103T`                                                                                                           |
+| **Delete Group**          | `deletegroup g/GROUP` <br/> e.g. `deletegroup g/CS2103T`                                                                                                    |
 | **Add Member**            | `addmember g/GROUP n/NAME` <br/> e.g. `addmember g/CS2101 n/Alice`                                                                                          |
 | **Delete Member**         | `deletemember g/GROUP n/NAME` <br/> e.g. `deletemember g/CS2101 n/Alice`                                                                                    |
 | **Display Group**         | `displaygroup GROUP` <br/> e.g. `displaygroup CS2103T`                                                                                                      |
 | **List Groups**           | `listgroups`                                                                                                                                                |
 | **Assign Task**           | `assigntask NAME g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]` <br/> e.g. `assigntask Alice g/Group Alpha task/Coursework 0 w/Low  d/2022-01-01 23:59`         |
 | **Delete Task**           | `deletetask NAME g/GROUP task/TASK` <br/> e.g. `deletetask John g/CS2103T task/TeamProject`                                                                 |
-| **Assign Task <br/> All** | `assigntaskall g/GROUP task/TASKw/WORKLOAD d/DEADLINE` <br/> e.g. `assigntaskall g/Group Alpha task/Coursework 0 w/Low  d/2022-01-01 23:59`                 |
+| **Assign Task <br/> All** | `assigntaskall g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]` <br/> e.g. `assigntaskall g/Group Alpha task/Coursework 0 w/Low  d/2022-01-01 23:59`              |
 | **Delete Task <br/> All** | `deletetaskall g/GROUP task/TASK` <br/> e.g. `deletetaskall John g/CS2103T task/TeamProject`                                                                |
 | **Clear**                 | `clear`                                                                                                                                                     |
 | **Exit**                  | `exit`                                                                                                                                                      |
