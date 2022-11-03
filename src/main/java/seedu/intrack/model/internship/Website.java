@@ -3,8 +3,8 @@ package seedu.intrack.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.AppUtil.checkArgument;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Represents an Internship's website in the internship tracker.
@@ -25,7 +25,7 @@ public class Website {
         requireNonNull(website);
         checkArgument(isValidWebsite(website), MESSAGE_CONSTRAINTS);
 
-        value = addHttp(website);
+        value = website;
     }
 
     /**
@@ -33,25 +33,14 @@ public class Website {
      */
     public static boolean isValidWebsite(String test) {
         try {
-            URI uri = new URI(test);
-            if (test.contains(" ") || test.isBlank()) {
-                return false;
-            }
+            test.matches("^\\w+?://.*");
+            URL url = new URL(test);
             return true;
-        } catch (URISyntaxException use) {
+        } catch (MalformedURLException mue) {
             return false;
         }
     }
 
-    /**
-     * Adds http to the website if valid URI but does not contain protocol
-     */
-    public static String addHttp(String uri) {
-        if (!uri.matches("^\\w+?://.*")) {
-            uri = "http://" + uri;
-        }
-        return uri;
-    }
 
     @Override
     public String toString() {
