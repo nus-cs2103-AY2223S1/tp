@@ -1,5 +1,10 @@
-#copyButton, #assessmentName, #assessmentWeightage, #assessmentTotalScore, #assessmentSubject, #studentClass, #studentName {
+#copyButton, #assessmentName, #assessmentWeightage, #assessmentTotalScore, #assessmentSubject, #studentClass,
+#studentName {
     -fx-text-fill: white;
+}
+
+#errorMessage {
+    -fx-text-fill: red;
 }
 
 #copyButton {

@@ -25,7 +25,7 @@ public class RemarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a remark for a student "
             + "by the index number used in the displayed student list. "
             + "Parameters: INDEX (must be a positive integer) "
-            + "[REMARK]\n"
+            + "[REMARK] (must not be blank)\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "He participates often in class";
 

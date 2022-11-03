@@ -21,7 +21,7 @@
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15"/>
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
@@ -31,16 +31,18 @@
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
             </HBox>
             <FlowPane fx:id="tags"/>
-            <Label fx:id="indexNumber" styleClass="cell_small_label" text="\$indexNumber"/>
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
             <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
             <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
             <Label fx:id="studentClass" styleClass="cell_small_label" text="\$studentClass"/>
             <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance"/>
+            <Label fx:id="blankLine" styleClass="cell_small_label"/>
             <Label fx:id="subjects" styleClass="cell_small_label" text="\$subjects"/>
+            <Label fx:id="remarks" styleClass="cell_small_label" text="\$remarks"/>
         </VBox>
 
     </GridPane>
-    <HBox alignment = "center"><ImageView fitWidth = "120" fitHeight = "120"><Image url = "@/images/reading-book.png"></Image></ImageView></HBox>
+    <HBox alignment = "center"><ImageView fitWidth = "120" fitHeight = "120">
+        <Image url="@/images/reading-book.png"/></ImageView></HBox>
 
 </HBox>

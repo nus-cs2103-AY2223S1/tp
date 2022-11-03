@@ -19,7 +19,21 @@ public class GradeCommand extends Command {
     public static final String COMMAND_WORD = "grade";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Allows for editing of grades by subject and assessment.\n"
-            + "Parameters: ";
+            + "Parameters: "
+            + "SUBJECT_"
+            + "assessmentName_"
+            + "totalScore_"
+            + "assessmentWeightage_"
+            + "assessmentDifficulty\n"
+            + "Example: " + COMMAND_WORD + " "
+            + "MATH_"
+            + "CA1_"
+            + "100_"
+            + "0.4_"
+            + "2";
+
+
+    public static final String NO_STUDENTS_TAKING_SUBJECT = "There are no students taking this subject.";
 
     public static final String MESSAGE_SUCCESS = "Updating Grades...";
 
@@ -45,6 +59,10 @@ public class GradeCommand extends Command {
             person.getSubjectHandler().getSubjectsTaken().toString().contains(subject));
 
         List<Student> studentList = new ArrayList<>(model.getFilteredPersonList());
+
+        if (studentList.isEmpty()) {
+            return new CommandResult(String.format(NO_STUDENTS_TAKING_SUBJECT));
+        }
 
         return new CommandResult(MESSAGE_SUCCESS, true, studentList, assessmentString);
     }

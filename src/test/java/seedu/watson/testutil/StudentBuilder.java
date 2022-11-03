@@ -7,14 +7,11 @@ import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.student.Address;
 import seedu.watson.model.student.Attendance;
 import seedu.watson.model.student.Email;
-import seedu.watson.model.student.IndexNumber;
 import seedu.watson.model.student.Name;
 import seedu.watson.model.student.Phone;
 import seedu.watson.model.student.Remark;
 import seedu.watson.model.student.Student;
 import seedu.watson.model.student.StudentClass;
-import seedu.watson.model.student.subject.Grades;
-import seedu.watson.model.student.subject.Subject;
 import seedu.watson.model.student.subject.SubjectHandler;
 import seedu.watson.model.tag.Tag;
 import seedu.watson.model.util.SampleDataUtil;
@@ -27,20 +24,14 @@ import seedu.watson.model.util.SampleDataUtil;
 public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_INDEX_NUMBER = "3";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STUDENTCLASS = "1.3";
     public static final String DEFAULT_SUBJECTHANDLER = "english: CA1:[80.0, 100.0, 0.2, 1.0], "
                                                         + "CA2:[30.0, 56.0, 0.4, 2.0]";
-    public static final String DEFAULT_PERSONALITY = "Hardworking";
-    public static final String DEFAULT_ATTENDANCE = "9/10";
-    public static final String DEFAULT_SUBJECT = "Math";
-    public static final String DEFAULT_GRADE = "83.4";
 
     private Name name;
-    private IndexNumber indexNumber;
     private Phone phone;
     private Email email;
     private Address address;
@@ -48,8 +39,6 @@ public class StudentBuilder {
     private SubjectHandler subjectHandler;
     private Set<Remark> remarks;
     private Attendance attendance;
-    private Set<Subject> subjects;
-    private Grades grades;
     private Set<Tag> tags;
 
     /**
@@ -57,7 +46,6 @@ public class StudentBuilder {
      */
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
-        indexNumber = new IndexNumber(DEFAULT_INDEX_NUMBER);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -65,7 +53,6 @@ public class StudentBuilder {
         attendance = new Attendance();
         subjectHandler = new SubjectHandler(DEFAULT_SUBJECTHANDLER);
         remarks = new HashSet<>();
-        subjects = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -74,7 +61,6 @@ public class StudentBuilder {
      */
     public StudentBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
-        indexNumber = studentToCopy.getIndexNumber();
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
@@ -82,7 +68,6 @@ public class StudentBuilder {
         attendance = studentToCopy.getAttendance();
         remarks = new HashSet<>(studentToCopy.getRemarks());
         subjectHandler = studentToCopy.getSubjectHandler();
-        subjects = studentToCopy.getSubjectsTaken();
         tags = new HashSet<>(studentToCopy.getTags());
     }
 
@@ -115,14 +100,6 @@ public class StudentBuilder {
      */
     public StudentBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code IndexNumber} of the {@code Student} that we are building.
-     */
-    public StudentBuilder withIndexNumber(String indexNumber) {
-        this.indexNumber = new IndexNumber(indexNumber);
         return this;
     }
 
@@ -174,7 +151,7 @@ public class StudentBuilder {
      * Builds a student object given the attributes
      */
     public Student build() {
-        return new Student(name, indexNumber, phone, email, address, studentClass, attendance, remarks, subjectHandler,
+        return new Student(name, phone, email, address, studentClass, attendance, remarks, subjectHandler,
                           tags);
     }
 }

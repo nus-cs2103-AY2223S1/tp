@@ -53,6 +53,9 @@ public class GradeWindow extends UiPart<Stage> {
     @FXML
     private TextField enteredScore;
 
+    @FXML
+    private Label errorMessage;
+
 
 
     /**
@@ -106,24 +109,23 @@ public class GradeWindow extends UiPart<Stage> {
         logger.fine("Showing the grading page.");
         this.studentList = studentList;
         this.assessmentString = assessmentString;
-        getRoot().show();
-        getRoot().centerOnScreen();
-        updateUI();
-
+        startGrading();
+        updateUiToNextStudent();
     }
 
     /**
      * updates UI Labels to the next student to be updated
      */
-    public void updateUI() {
+    public void updateUiToNextStudent() {
         if (index > studentList.size() - 1) {
-            getRoot().hide();
+            closeWindowAndResetIndex();
             return;
         }
+        errorMessage.setText("");
         // parse assessment string
         String[] parsedString = assessmentString.split("_");
-        String subject = parsedString[0].trim();
-        String name = parsedString[1].trim();
+        String subject = parsedString[0].trim().toUpperCase();
+        String name = parsedString[1].trim().toUpperCase();
         String totalScore = parsedString[2].trim();
         String weightage = parsedString[3].trim();
         Student currentStudent = studentList.get(index);
@@ -139,22 +141,32 @@ public class GradeWindow extends UiPart<Stage> {
      * Updates Grades of current student in focus
      * @param mark score received for the assignment
      */
-    public void updateGradesForCurrentStudent(String mark) throws IOException {
-        String[] parsedString = assessmentString.split("_");
-        String subjectName = parsedString[0].trim();
-        String name = parsedString[1].trim();
-
-        double score = Double.parseDouble(mark);
-        double totalScore = Double.parseDouble(parsedString[2].trim());
-        double weightage = Double.parseDouble(parsedString[3].trim());
-        double difficulty = Double.parseDouble(parsedString[4].trim());
-        Assessment newAssessment = new Assessment(name, weightage, score, totalScore, difficulty);
-        Student currentStudent = studentList.get(index);
-        Subject subject = currentStudent.getSubjectHandler().getSubject(subjectName);
-        subject.updateGradeAssessment(newAssessment);
-
-        logic.getModel().setPerson(currentStudent, currentStudent);
-        storage.saveDatabase(logic.getModel().getDatabase());
+    public void updateGradesForCurrentStudent(String mark) {
+        try {
+            String[] parsedString = assessmentString.split("_");
+            String subjectName = parsedString[0].trim().toUpperCase();
+            String name = parsedString[1].trim().toUpperCase();
+            double score = Double.parseDouble(mark);
+            double totalScore = Double.parseDouble(parsedString[2].trim());
+            double weightage = Double.parseDouble(parsedString[3].trim());
+            double difficulty = Double.parseDouble(parsedString[4].trim());
+            Assessment newAssessment = new Assessment(name, score, totalScore, weightage, difficulty);
+            Student currentStudent = studentList.get(index);
+            Subject subject = currentStudent.getSubjectHandler().getSubject(subjectName);
+            subject.updateGradeAssessment(newAssessment);
+            logic.getModel().setPerson(currentStudent, currentStudent);
+            storage.saveDatabase(logic.getModel().getDatabase());
+            updateIndexToNextStudent();
+            updateUiToNextStudent();
+        } catch (NumberFormatException e) {
+            errorMessage.setText("Please enter a valid number");
+        } catch (IllegalArgumentException e) {
+            errorMessage.setText(e.getMessage());
+        } catch (IOException e) {
+            errorMessage.setText(e.getMessage());
+        } catch (NullPointerException e) {
+            errorMessage.setText("Please enter a number");
+        }
     }
     /**
      * Returns true if the help window is currently being shown.
@@ -176,7 +188,25 @@ public class GradeWindow extends UiPart<Stage> {
     public void focus() {
         getRoot().requestFocus();
     }
+    public void updateIndexToNextStudent() {
+        index += 1;
+    }
 
+    /**
+     * Starts the grading process
+     */
+    public void startGrading() {
+        getRoot().show();
+        getRoot().centerOnScreen();
+        //reset index to 0
+        index = 0;
+    }
+    /**
+     * Closes the GradeWindow and resets the index to 0
+     */
+    public void closeWindowAndResetIndex() {
+        hide();
+    }
     /**
      * Method to handle when a grade is entered for a student
      */
@@ -184,7 +214,5 @@ public class GradeWindow extends UiPart<Stage> {
     public void enterGradeForStudent() throws IOException {
         updateGradesForCurrentStudent(enteredScore.getText());
         enteredScore.clear();
-        index += 1;
-        updateUI();
     }
 }

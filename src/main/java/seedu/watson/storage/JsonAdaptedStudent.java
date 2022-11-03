@@ -13,7 +13,6 @@ import seedu.watson.commons.exceptions.IllegalValueException;
 import seedu.watson.model.student.Address;
 import seedu.watson.model.student.Attendance;
 import seedu.watson.model.student.Email;
-import seedu.watson.model.student.IndexNumber;
 import seedu.watson.model.student.Name;
 import seedu.watson.model.student.Phone;
 import seedu.watson.model.student.Remark;
@@ -30,7 +29,6 @@ class JsonAdaptedStudent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
-    private final String indexNumber;
     private final String phone;
     private final String email;
     private final String address;
@@ -46,7 +44,6 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name,
-                              @JsonProperty("indexNumber") String indexNumber,
                               @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("studentClass") String studentClass,
@@ -55,7 +52,6 @@ class JsonAdaptedStudent {
                               @JsonProperty("remarks") List<JsonAdaptedRemark> remarks,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.indexNumber = indexNumber;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -75,7 +71,6 @@ class JsonAdaptedStudent {
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
-        indexNumber = source.getIndexNumber().indexNumber;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -116,15 +111,6 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-
-        if (indexNumber == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                                                          IndexNumber.class.getSimpleName()));
-        }
-        if (!IndexNumber.isValidIndexNumber(indexNumber)) {
-            throw new IllegalValueException(IndexNumber.MESSAGE_CONSTRAINTS);
-        }
-        final IndexNumber modelIndexNumber = new IndexNumber(indexNumber);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -172,7 +158,7 @@ class JsonAdaptedStudent {
 
         final Set<Remark> modelRemarks = new HashSet<>(personRemarks);
 
-        return new Student(modelName, modelIndexNumber, modelPhone, modelEmail, modelAddress, modelStudentClass,
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelStudentClass,
                           modelAttendance, modelRemarks, modelSubjectHandler, modelTags);
     }
 

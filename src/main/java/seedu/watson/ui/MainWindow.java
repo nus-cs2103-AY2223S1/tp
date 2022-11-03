@@ -170,7 +170,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the prediction window or focuses on it if it's already opened.
+     * Opens the grade window or focuses on it if it's already opened.
      * Displays the predicted grade for the next assessment the student would take
      * for the queried subject.
      */

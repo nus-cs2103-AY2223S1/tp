@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.watson.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.watson.commons.core.index.Index;
-import seedu.watson.logic.commands.FindCommand;
 import seedu.watson.logic.commands.RemarkCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.student.Remark;
@@ -23,9 +22,9 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         requireNonNull(args);
         String trimmedArgs = args.trim();
 
-        if (trimmedArgs.isEmpty()) {
+        if (trimmedArgs.isEmpty() || trimmedArgs.split("\\s+").length < 2) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
         }
 
         String[] remarkKeywords = trimmedArgs.split("\\s+", 2);

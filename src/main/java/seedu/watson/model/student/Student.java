@@ -3,8 +3,11 @@ package seedu.watson.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.watson.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,15 +35,14 @@ public class Student {
     private final Set<Remark> remarksList;
     private final SubjectHandler subjectHandler;
     private final Attendance attendance;
-    private final IndexNumber indexNumber;
 
     /**
      * Every field must be present and not null (except attendance, remark and grade).
      */
-    public Student(Name name, IndexNumber indexNumber, Phone phone, Email email, Address address,
+    public Student(Name name, Phone phone, Email email, Address address,
                    StudentClass studentClass, Attendance attendance, Set<Remark> remarksList,
                    SubjectHandler subjectsTaken, Set<Tag> tags) {
-        requireAllNonNull(name, indexNumber, phone, email, address, studentClass, attendance,
+        requireAllNonNull(name, phone, email, address, studentClass, attendance,
                           remarksList, subjectsTaken, tags);
         this.name = name;
         this.phone = phone;
@@ -53,21 +55,10 @@ public class Student {
         this.attendance = attendance;
         this.remarksList = remarksList;
         this.subjectHandler = subjectsTaken;
-
-        // Added in v1.3
-        this.indexNumber = indexNumber;
     }
 
     public Name getName() {
         return name;
-    }
-
-    public IndexNumber getIndexNumber() {
-        return indexNumber;
-    }
-
-    public String getIndexNumberValue() {
-        return indexNumber.indexNumber;
     }
 
     public Phone getPhone() {
@@ -92,6 +83,15 @@ public class Student {
 
     public Set<Remark> getRemarks() {
         return remarksList;
+    }
+    public String getRemarksString() {
+        List<String> remarksStringList = new ArrayList<>();
+        Iterator<Remark> remarkIterator = remarksList.iterator();
+        while (remarkIterator.hasNext()) {
+            remarksStringList.add(remarkIterator.next().toString());
+        }
+        String remarksString = String.join(", ", remarksStringList);
+        return remarksString;
     }
 
     public SubjectHandler getSubjectHandler() {

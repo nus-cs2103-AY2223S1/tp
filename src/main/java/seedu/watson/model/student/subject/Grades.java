@@ -113,14 +113,22 @@ public class Grades {
             str.append(key).append(":").append(keyValue).append(", ");
         }
         int stringLength = str.length();
-        str = new StringBuilder(str.substring(0, stringLength - 2));
+        if (str.length() >= 2) {
+            str = new StringBuilder(str.substring(0, stringLength - 2));
+        }
         return str.toString();
     }
 
     @Override
     public String toString() {
         currentPercentageObtained = getCurrentPercentageObtained(assessmentMarks);
-        return String.format("Grade = %.1f", currentPercentageObtained);
+        String grade;
+        if (assessmentMarks.isEmpty()) {
+            grade = "There is currently no grade.";
+        } else {
+            grade = String.format("Grade = %.1f", currentPercentageObtained);
+        }
+        return grade;
     }
 
 }

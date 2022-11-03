@@ -17,8 +17,8 @@ import seedu.watson.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private DatabaseStorage databaseStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final DatabaseStorage databaseStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code DatabaseStorage} and {@code UserPrefStorage}.

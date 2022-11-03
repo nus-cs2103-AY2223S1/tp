@@ -4,9 +4,13 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.watson.model.student.Student;
 
 /**
@@ -31,8 +35,6 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label indexNumber;
-    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -47,7 +49,11 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label subjects;
     @FXML
+    private Label blankLine;
+    @FXML
     private FlowPane tags;
+    @FXML
+    private Label remarks;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Student} and index to display.
@@ -55,14 +61,23 @@ public class StudentCard extends UiPart<Region> {
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
-        indexNumber.setText(displayedIndex + ". ");
-        name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
-        email.setText(student.getEmail().value);
+        name.setText(displayedIndex + ". " + student.getName().fullName);
+        phone.setText("Phone: " + student.getPhone().value);
+        address.setText("Address: " + student.getAddress().value);
+        email.setText("Email: " + student.getEmail().value);
         studentClass.setText("Class: " + student.getStudentClass().toString());
-        attendance.setText(student.getAttendance().guiString());
+        remarks.setText("Remarks: " + student.getRemarksString());
+        attendance.setText("Attendance: " + student.getAttendance().guiString());
+        if (student.getAttendance().hasGoodAttendance()) {
+            attendance.setBackground(new Background(new BackgroundFill(Color.GREEN,
+                                                                       new CornerRadii(3), null)));
+        } else {
+            attendance.setBackground(new Background(new BackgroundFill(Color.RED,
+                                                                       new CornerRadii(3), null)));
+        }
+
         subjects.setText(student.getSubjectHandler().toString());
+        blankLine = new Label();
         student.getTags().stream()
               .sorted(Comparator.comparing(tag -> tag.tagName))
               .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -82,7 +97,6 @@ public class StudentCard extends UiPart<Region> {
 
         // state check
         StudentCard card = (StudentCard) other;
-        return indexNumber.getText().equals(card.indexNumber.getText())
-               && student.equals(card.student);
+        return student.equals(card.student);
     }
 }

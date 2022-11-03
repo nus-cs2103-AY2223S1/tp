@@ -96,7 +96,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Student getPersonByName(Name name) {
+    public Student getStudentByName(Name name) {
         requireNonNull(name);
         ObservableList<Student> studentList = database.getPersonList();
         for (Student student : studentList) {

@@ -2,7 +2,6 @@
   "persons": [
     {
       "name": "Hans Muster",
-      "indexNumber": "53",
       "phone": "9482424",
       "email": "invalid@email!3e",
       "address": "4th street",

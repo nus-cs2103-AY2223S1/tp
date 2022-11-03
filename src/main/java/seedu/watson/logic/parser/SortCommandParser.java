@@ -14,6 +14,9 @@ import seedu.watson.logic.parser.exceptions.ParseException;
 public class SortCommandParser implements Parser<SortCommand> {
     @Override
     public SortCommand parse(String userInput) throws ParseException {
+        if (!userInput.contains(PREFIX_SUBJECT.toString())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
         String userInputTrimmed = userInput.trim();
         String[] split = userInputTrimmed.split(PREFIX_SUBJECT.getPrefix());
         String subjectName = split[1].trim().toUpperCase(Locale.ROOT);

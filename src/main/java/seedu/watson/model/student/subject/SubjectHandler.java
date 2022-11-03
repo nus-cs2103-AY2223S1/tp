@@ -73,7 +73,7 @@ public class SubjectHandler {
         String subjectsString = String.join(" ", subjectsSet);
 
         String[] keywordArr = keywords.split(" ");
-        for (String keyword: keywordArr) {
+        for (String keyword : keywordArr) {
             if (StringUtil.containsWordIgnoreCase(subjectsString, keyword)) {
                 return true;
             }
@@ -87,45 +87,47 @@ public class SubjectHandler {
      * @param subjectData String data of the subjects taken by Student.
      */
     public void dataToSubject(String subjectData) {
-        String dataString = subjectData;
-        //System.out.println(dataString + "start");
-        while (!dataString.isEmpty()) {
+        String[] dataString = subjectData.trim().split("%%");
+        if (dataString.length == 0) {
+            return;
+        }
+        for (int i = 0; i < dataString.length; i++) {
+            //System.out.println(dataString[i] + "start");
             String subjectName;
-            if (dataString.contains(":")) {
-                subjectName = dataString.substring(0, dataString.indexOf(":")).toUpperCase(Locale.ROOT);
-                dataString = dataString.substring(dataString.indexOf(":") + 2); //dataString without the subject name
+            subjectName = dataString[i].substring(0, dataString[i].indexOf(":")).toUpperCase(Locale.ROOT);
+            if (dataString[i].substring(subjectName.length()).length() > 2) {
+                dataString[i] =
+                    dataString[i].substring(dataString[i].indexOf(":") + 2); //dataString without the subject name
             } else {
-                subjectName = dataString.toUpperCase(Locale.ROOT);
-                dataString = "";
+                dataString[i] = "";
             }
-            //System.out.println(dataString + "after subjectname");
+            //System.out.println(subjectName + ": " + dataString[i] + "after subjectname");
             Subject subject = new Subject(subjectName);
-            while (!dataString.isEmpty() && dataString.length() != 1 && dataString.charAt(0) != '%') {
-                String assessmentName = dataString.substring(0, dataString.indexOf(":"));
-                dataString = dataString.substring(dataString.indexOf(":") + 2);
-                //System.out.println(dataString + "after assessName");
-                Double assessmentScore = Double.parseDouble(dataString.substring(0, dataString.indexOf(",")));
-                dataString = dataString.substring(dataString.indexOf(",") + 2);
-                //System.out.println(dataString + "after assessScore");
-                Double assessmentTotalScore = Double.parseDouble(dataString.substring(0, dataString.indexOf(",")));
-                dataString = dataString.substring(dataString.indexOf(",") + 2);
-                //System.out.println(dataString + "after assessTotalScore");
-                Double assessmentWeightage = Double.parseDouble(dataString.substring(0, dataString.indexOf(",")));
-                dataString = dataString.substring(dataString.indexOf(",") + 2);
-                //System.out.println(dataString + "after assessWeightage");
-                Double assessmentDifficulty = Double.parseDouble(dataString.substring(0, dataString.indexOf("]")));
-                if (dataString.substring(dataString.indexOf("]")).length() > 2) {
-                    dataString = dataString.substring(dataString.indexOf("]") + 3);
+            while (dataString[i].length() > 5) {
+                String assessmentName = dataString[i].substring(0, dataString[i].indexOf(":"));
+                dataString[i] = dataString[i].substring(dataString[i].indexOf(":") + 2);
+                //System.out.println(assessmentName + ": " + dataString[i] + "after assessName");
+                Double assessmentScore = Double.parseDouble(dataString[i].substring(0, dataString[i].indexOf(",")));
+                dataString[i] = dataString[i].substring(dataString[i].indexOf(",") + 2);
+                //System.out.println(assessmentScore + ": " + dataString[i] + "after assessScore");
+                Double assessmentTotalScore =
+                    Double.parseDouble(dataString[i].substring(0, dataString[i].indexOf(",")));
+                dataString[i] = dataString[i].substring(dataString[i].indexOf(",") + 2);
+                //System.out.println(assessmentTotalScore + ": " + dataString[i] + "after assessTotalScore");
+                Double assessmentWeightage = Double.parseDouble(dataString[i].substring(0, dataString[i].indexOf(",")));
+                dataString[i] = dataString[i].substring(dataString[i].indexOf(",") + 2);
+                //System.out.println(assessmentWeightage + ": " + dataString[i] + "after assessWeightage");
+                Double assessmentDifficulty =
+                    Double.parseDouble(dataString[i].substring(0, dataString[i].indexOf("]")));
+                if (dataString[i].substring(dataString[i].indexOf("]")).length() > 2) {
+                    dataString[i] = dataString[i].substring(dataString[i].indexOf("]") + 3);
                 } else {
-                    dataString = "";
+                    dataString[i] = "";
                 }
                 Assessment assessment = new Assessment(assessmentName, assessmentScore, assessmentTotalScore,
-                        assessmentWeightage, assessmentDifficulty);
+                                                       assessmentWeightage, assessmentDifficulty);
                 subject.updateGradeAssessment(assessment);
-                //System.out.println(dataString + "after assess");
-            }
-            while (!dataString.isEmpty() && dataString.charAt(0) == '%') {
-                dataString = dataString.substring(1);
+                //System.out.println(assessmentDifficulty + ": " + dataString[i] + "after assess");
             }
             subjectsTaken.put(subjectName, subject);
         }

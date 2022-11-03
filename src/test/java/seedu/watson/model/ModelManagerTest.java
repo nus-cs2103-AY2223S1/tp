@@ -117,8 +117,9 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentDatabase, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new FindCommandPredicate(Arrays.asList(keywords)));
+        String keywords = ALICE.getName().fullName;
+        modelManager.updateFilteredPersonList(new FindCommandPredicate(
+            Arrays.asList(new String[]{keywords, "", ""})));
         assertFalse(modelManager.equals(new ModelManager(database, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

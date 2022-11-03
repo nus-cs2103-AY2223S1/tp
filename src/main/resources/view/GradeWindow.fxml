@@ -9,7 +9,7 @@
 <?import javafx.stage.Stage?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" resizable="true" title="Enter Grade" type="javafx.stage.Stage"
+<fx:root xmlns:fx="http://javafx.com/fxml/1" resizable="false" title="Enter Grade" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/11">
 
     <scene>
@@ -20,6 +20,10 @@
 
             <VBox alignment="CENTER" fx:id="helpMessageContainer">
                 <children>
+                    <HBox prefHeight="40.0">
+                        <Label fx:id="errorMessage" wrapText="true"/></HBox>
+                    <Label fx:id="studentName" text="Label">
+                    </Label>
                     <Label fx:id="assessmentSubject" text="Label">
                     </Label>
                     <Label fx:id="assessmentName" text="Label">
@@ -28,11 +32,10 @@
                     </Label>
                     <Label fx:id="assessmentTotalScore" text="Label">
                     </Label>
-                    <Label fx:id="studentName" text="Label">
-                    </Label>
                     <Label fx:id="studentClass" text="Label">
                     </Label>
-                    <HBox fx:id = "inputBox"> <TextField fx:id ="enteredScore" promptText="Enter grade here"></TextField>
+                    <HBox fx:id = "inputBox">
+                        <TextField fx:id="enteredScore" promptText="Enter grade here"/>
                         <Button fx:id="copyButton" mnemonicParsing="false" onAction = "#enterGradeForStudent" text="Enter">
                             <HBox.margin>
                                 <Insets left="5.0"/>

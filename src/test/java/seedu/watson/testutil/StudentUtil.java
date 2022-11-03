@@ -2,7 +2,6 @@ package seedu.watson.testutil;
 
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_INDEX_NUMBERS;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
@@ -32,20 +31,14 @@ public class StudentUtil {
      */
     public static String getPersonDetails(Student student) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + student.getName().fullName + " ");
-        sb.append(PREFIX_INDEX_NUMBERS + student.getIndexNumber().indexNumber + " ");
-        sb.append(PREFIX_PHONE + student.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
-        //        sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
-        //        sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
-        //        sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
-        //        sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
-        //        sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
-        student.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        sb.append(PREFIX_NAME).append(student.getName().fullName).append(" ");
+        sb.append(PREFIX_PHONE).append(student.getPhone().value).append(" ");
+        sb.append(PREFIX_EMAIL).append(student.getEmail().value).append(" ");
+        sb.append(PREFIX_ADDRESS).append(student.getAddress().value).append(" ");
+        student.getTags().forEach(
+            s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")
         );
-        sb.append(PREFIX_STUDENTCLASS + student.getStudentClass().value + " ");
+        sb.append(PREFIX_STUDENTCLASS).append(student.getStudentClass().value).append(" ");
         return sb.toString();
     }
 

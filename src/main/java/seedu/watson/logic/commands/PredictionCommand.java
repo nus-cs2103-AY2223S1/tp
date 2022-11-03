@@ -29,6 +29,8 @@ public class PredictionCommand extends Command {
         + PREFIX_FUTURE_ASSESSMENT_DIFFICULTY + "DIFFICULTY (Difficulty should lie between 0 and 5 (inclusive))";
 
     public static final String SHOWING_PREDICTION_MESSAGE = "Opened prediction window.";
+    public static final String STUDENT_NOT_FOUND_ERROR_MESSAGE =
+        "Student not found! Remember to use the student's full name!";
 
     private static final String MESSAGE_FORMAT = "Grade prediction for %s for their next %s assessment is %.2f percent";
 
@@ -48,9 +50,22 @@ public class PredictionCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Student target = model.getPersonByName(name);
+        Student target;
+        try {
+            target = model.getStudentByName(name);
+        } catch (Exception e) {
+            throw new CommandException(STUDENT_NOT_FOUND_ERROR_MESSAGE);
+        }
         Attendance attendance = target.getAttendance();
-        Subject targetSubject = target.getSubjectHandler().getSubject(subjectName);
+        Subject targetSubject = null;
+        for (Subject subj : target.getSubjectsTaken()) {
+            if (subj.getSubjectName().equalsIgnoreCase(subjectName)) {
+                targetSubject = target.getSubjectHandler().getSubject(subjectName);
+            }
+        }
+        if (targetSubject == null) {
+            throw new CommandException("Student does not take this subject");
+        }
         double gradePredicted = PredictionUtil.predictGrade(targetSubject.getGrades(), attendance, difficulty);
         return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true, false,
             String.format(MESSAGE_FORMAT, name, targetSubject.subjectName, gradePredicted));

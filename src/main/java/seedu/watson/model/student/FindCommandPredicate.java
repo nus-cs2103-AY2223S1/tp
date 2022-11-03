@@ -1,5 +1,6 @@
 package seedu.watson.model.student;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -17,39 +18,23 @@ public class FindCommandPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
-        System.out.println(keywords);
-        boolean checkName = keywords.stream()
-                                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getName().fullName,
+        boolean checkName = keywords.get(0).isBlank()
+                ? false
+                : Arrays.asList(keywords.get(0).split(" ")).stream()
+                                  .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getName().fullName,
                                                                                            keyword));
-        boolean checkClass = keywords.stream()
+        boolean checkClass = keywords.get(1).isBlank()
+                ? false
+                : Arrays.asList(keywords.get(1).split(" ")).stream()
                                      .anyMatch(
                                          keyword -> StringUtil.containsWordIgnoreCase(student.getStudentClass().value,
                                                                                       keyword));
-        boolean checkSubject = keywords.stream()
+        boolean checkSubject = keywords.get(2).isBlank()
+                ? false
+                : Arrays.asList(keywords.get(2).split(" ")).stream()
                                        .anyMatch(keyword ->
-                student.getSubjectsTaken().toString().toLowerCase().contains(keyword));
+                student.getSubjectsTaken().toString().toLowerCase().contains(keyword.toLowerCase()));
         return checkName || checkClass || checkSubject;
-    }
-
-    /**
-     * Checks if a sentence contains any one of the keywords, where keywords are separated by spaces.
-     * Method helps to resolve issue of keyword given after prefix is more than 1 word and
-     * separated by spaces.
-     *
-     * @param sentence Sentence that may contain one or more keywords.
-     * @param keywords Keywords separated by spaces and are given by user using the find command.
-     * @return A boolean for if keyword(s) is contained in sentence.
-     */
-    private boolean stringContainsWord(String sentence, String keywords) {
-        assert sentence != null : "Sentence cannot be null";
-        assert keywords != null : "Keywords cannot be null";
-        String[] keywordArr = keywords.split(" ");
-        for (String keyword: keywordArr) {
-            if (StringUtil.containsWordIgnoreCase(sentence, keyword)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override
