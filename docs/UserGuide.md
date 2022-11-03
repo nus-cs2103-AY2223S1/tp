@@ -81,12 +81,12 @@ Component | Purpose
 
 
 <div markdown="block" class="alert alert-info">
-  
+
 **:information_source: Notes about the command parameters:** <br>
 
 * `NAME`
   * Can only accept alphanumeric characters i.e. "a, b, c..." & "1, 2, 3..."
-* `TAG` names 
+* `TAG` names
   * **Must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
     e.g. `t/sick` will cause an error message.
 * `PHONE_NUMBER`
@@ -126,7 +126,7 @@ Format: `help`
 
 #### Adding a patient: `add`
 
-Adds a patient into idENTify. 
+Adds a patient into idENTify.
 * We allow duplicate names for patients, but distinct patients with the same
   names must have different phone numbers in order to identify them. So you cannot add a patient who has both the
   same name and phone number as some existing patient.
@@ -134,15 +134,15 @@ Adds a patient into idENTify.
 Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
-  
+
 **:bulb: Tip:** <br>
 
-* A patient can have 0 to 3 number of tags. 
-  
+* A patient can have 0 to 3 number of tags.
+
 * `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
 
    e.g. `t/sick` will cause an error message.
-  
+
 </div>
 
 Examples:
@@ -168,7 +168,7 @@ Examples:
 
 Books an appointment for the specified patient at `INDEX` in the patient list.
 
-Inputting a time period allows the appointment to be recurring: Automatically books a new appointment in the future 
+Inputting a time period allows the appointment to be recurring: Automatically books a new appointment in the future
 as given by the time period when the current appointment is marked as completed.
 
 Appointments added are sorted according to their date.
@@ -178,7 +178,7 @@ Format: `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​`
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Dates **must be inputted** in a YYYY-MM-DD HH:MM format or HH:MM YYYY-MM-DD format.
-* Input at least a Y, M or D value for the time period. Value **must be inserted in the order** Y -> M -> D. 
+* Input at least a Y, M or D value for the time period. Value **must be inserted in the order** Y -> M -> D.
 * Time Period Values **must be in the range of** 0-10Y, 0-12M or 0-31D to be considered as valid.
 * Default time period is set to 0Y0M0D if no time period is inputted.
 
@@ -208,7 +208,7 @@ Format: `clear`
 
 #### Editing a patient : `edit patients`
 
-Edits an existing patient in idENTify. 
+Edits an existing patient in idENTify.
 
 Format: `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -219,7 +219,7 @@ Format: `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 * You can remove all the patient’s tags by typing `t/` without
     specifying any tags after it.
 * We allow duplicate names for patients, but distinct patients with the same
-    names must have different phone numbers in order to identify them. So you cannot edit a patient to have both the 
+    names must have different phone numbers in order to identify them. So you cannot edit a patient to have both the
   same name and phone number as some existing patient.
 
 Examples:
@@ -279,10 +279,10 @@ Examples:
 
 Shows a list of all patients or appointments, depending on the parameter given. Previously hidden patients and appointments will be unhidden as well.
 
-If it is a patient list, then patients will be sorted by their names first; if there are people with the same name, they will be sorted by their 
-phone numbers. 
+If it is a patient list, then patients will be sorted by their names first; if there are people with the same name, they will be sorted by their
+phone numbers.
 
-If it is an appointment list, then appointments will be sorted by their datetime first; if there are appointments 
+If it is an appointment list, then appointments will be sorted by their datetime first; if there are appointments
 with the same datetime, they will be sorted by their attached patients' information.
 
 Format:
@@ -294,7 +294,7 @@ Format:
 
 Groups up patients that share the same tag(s).
 
-For example: <br> 
+For example: <br>
 * Patients with no tags will be in the same group.
 * Patients with only 'ear' tag will be in the same group.
 * Patients with both 'ear' and 'nose' tags will be in the same group.
@@ -427,7 +427,7 @@ After hide: (Appointments that are marked are now hidden)
 #### Unhiding appointments by reason, tag or status: `unhide appts`
 
 **By reason:**
-Unhides hidden appointments that contains `REASON` (OR `MORE_REASONS`). 
+Unhides hidden appointments that contains `REASON` (OR `MORE_REASONS`).
 
 Format: `unhide appts r/REASON [r/MORE_REASONS]...`
 
@@ -500,7 +500,7 @@ The history is looped, meaning that when you reach the end, the next cycle will 
 Click Down Arrow to get the most recent command immediately and Up Arrow to get the last command in the history.
 </div>
 
-Controls: 
+Controls:
 * `Up Arrow` on keyboard: Cycle to next command
 * `Down Arrow` on keyboard: Cycle to previous command
 * `Control` on keyboard: Toggle history
