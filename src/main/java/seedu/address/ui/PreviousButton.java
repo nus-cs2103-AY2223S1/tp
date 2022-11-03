@@ -5,7 +5,6 @@ import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
 import seedu.address.logic.CalendarLogic;
 
 /**
@@ -26,11 +25,6 @@ public class PreviousButton extends CalendarButton {
         this.calendarLogic = calendarLogic;
         previousButton.setText(content);
         previousButton.focusedProperty().addListener(this::handleFocusedEvent);
-    }
-
-    @FXML
-    private void handleOnKeyPressed(KeyEvent event) {
-        previousButton.requestFocus();
     }
 
     @FXML
