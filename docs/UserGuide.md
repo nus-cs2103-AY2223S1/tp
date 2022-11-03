@@ -62,6 +62,9 @@ future tasks. With our app, teams management would be easier than ever.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurence of the parameter will be taken.
   e.g. if the command specifies `task/1 task/2`, only `task/2` will be taken.
 
+* Commands are case-sensitive. 
+  e.g. You cannot enter HeLp instead of help
+
 </div>
 
 ### Viewing help: `help`
@@ -86,7 +89,7 @@ person with the following details to the global member list.
 
 ### Editing a member's details: `edit`
 
-Edits a member's details.
+Edits a member's details. Require at least one optional parameters.
 
 Format: `edit INDEX [n/NAME] [p/PHONE-NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -194,6 +197,14 @@ Examples:
 * `taskedit t/1 task/1 n/Finish assignment d/12-12-2022` Updates the first task in the first team with new description 
 'Finish assignment'. Adding a deadline to the task is optional.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: TIP:**<br>
+
+* To add deadline to an already existing task, use the command `taskedit t/TEAM-INDEX task/TASK-INDEX d/NEW DD-MM-YYYY`
+
+</div>
+
 ### Adding a team: `create`
 
 Adds a team with the given name to EZLead.
@@ -202,6 +213,8 @@ Format: `create n/TEAM-NAME`
 
 Examples:
 * `create n/Team1` Adds a team with the name Team1.
+
+Note that names should only contain alphanumerical characters and spaces, and it should not be blank.
 
 ![CreateTeamExample.png](images/CreateTeamExample.png)
 
@@ -248,7 +261,7 @@ Examples:
 | **Task Delete**     | `taskdelete t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskdelete t/1 task/1`                                                                                    |
 | **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                        |
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
-| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX n/NEW-TASK-NAME [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                    |
+| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                  |
 | **Team Add**        | `create n/TEAM-NAME` <br> e.g. `create n/TEAM1`                                                                                                                |
-| **Team Delete**     | `delteam t/TEAM-INDEX` <br> e.g. `delteam t/1`                                                                                                                 |
+| **Team Delete**     | `delteam TEAM-INDEX` <br> e.g. `delteam 1`                                                                                                                     |
 | **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                     |
