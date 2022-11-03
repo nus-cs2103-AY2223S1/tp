@@ -60,7 +60,7 @@ the traditional solution of pen and paper, and even popular GUI applications suc
 (_e.g, Microsoft Excel, Google Sheets, etc._).
 
 Even if you are not _that_ comfortable with typing, fret not! **TrackO** is built with you
-in mind -- the functionalities are beginner-friendly and extremely easy to pick up.
+in mind. The functionalities are beginner-friendly and extremely easy to pick up.
 
 As a broad overview, **TrackO** provides users with the ability to:
 * View and manage inventory data
@@ -144,7 +144,7 @@ You should see this item appear in TrackO at index 5 as shown below:
    <br/>
 2. Next, we move on to order management:
     1. Adding an order: `addo`
-      * Say you have a customer named `Jonathan Chee` living at `43 Clementi Road, 639433` with an email address `JonChee@gmail.com` and phone number of
+      * If you have a customer named `Jonathan Chee` living at `43 Clementi Road, 639433` with an email address `JonChee@gmail.com` and phone number of
         `96785944`. This customer ordered 1 `Teddy bear keychain`.
       * First, enter the customer details into the [command box](link to layout section) using the following command:
         ```
@@ -339,10 +339,10 @@ the parameter will be taken in. Eg. `findo a/Clementi a/Geylang` will search for
 in their address.
 <br><br/>
 * The search keywords used are case-insensitive. e.g. `keychain` will match `Keychain`
-* The order of the keywords does not matter. e.g. `apple keychain` will match `Keychain Apple`
+* The order of the keywords does not matter. e.g. `findo a/Geylang n/Alex` will also give the same results as `findo n/Alex a/Geylang`
 * Only full words will be matched e.g. `keychains` will not match `keychain`
 * Orders matching at least one keyword will be returned (i.e. `OR` search).<br>
-  e.g. `findo apple keychain` will return `apple painting`, `banana keychain`
+  e.g. `findo i/apple keychain` will return `apple painting` and `banana keychain`
 
 Examples:
 * `findo n/Alex` returns all orders with the name Alex 
