@@ -284,10 +284,10 @@ before proceeding!
 
 This command will require two prefixes:
 
-| Field                            | Prefix | Constraints                                             |
-|----------------------------------|--------|---------------------------------------------------------|
-| **Module Code**                  | `m/`   | Can only be non-empty string of alphanumeric characters |
-| **Task Description of New Task** | `td/`  | Can be any string of characters                         |
+| Field                            | Prefix | Constraints                                                                                                                            |
+|----------------------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**                  | `m/`   | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/} |
+| **Task Description of New Task** | `td/`  | Can be any string of characters                                                                                                        |
 
 Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
 * Each task must belong to a specific module.
@@ -320,7 +320,7 @@ This command will require two prefixes:
 
 | Field                   | Prefix | Constraints                                                                                                                                                       |
 |-------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**         | `m/`   | Can only be non-empty string of alphanumeric characters                                                                                                           |
+| **Module Code**         | `m/`   | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/}                            |
 | **Task Number of Task** | `tn/`  | {::nomarkdown}Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul>{:/} |                 
 
 Format: `delete-task m/MODULE_CODE tn/TASK_NUMBER`
@@ -349,7 +349,7 @@ This command will require two prefixes:
 
 | Field                                                     | Prefix | Constraints                                                                                                                                                                                                                                                 |
 |-----------------------------------------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**                                           | `m/`   | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                     |
+| **Module Code**                                           | `m/`   | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/}                                                                                                                      |
 | **Task Numbers of Tasks whose ordering is to be swapped** | `ts/`  | {::nomarkdown}The two task numbers must: <ul><li>be separated by a <code>SPACE</code> character ("<code> </code>") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul>{:/} |
 
 Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
