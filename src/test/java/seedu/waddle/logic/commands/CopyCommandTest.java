@@ -37,7 +37,7 @@ public class CopyCommandTest {
     public void execute_correctStage_firstItinerary() {
         // copy does not work on linux
         if (SystemUtils.IS_OS_LINUX) {
-            assert true;
+            return;
         }
 
         // select first itinerary
