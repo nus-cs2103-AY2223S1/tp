@@ -138,11 +138,11 @@ Example:
 
 ### Sorting contacts : `sort`
 
-Sort the list of contacts displayed by 1 or more parameter(s) chosen by you.
+Sorts the list of contacts displayed by 1 or more parameter(s) chosen by you.
 
 How *names (n/)*, *emails (e/)*, *addresses (a/ )* are sorted:
 * In alphabetical order. (e.g. `Al` comes before `Alfred` which comes before `Brad`)
-* Case differences are ignored. (e.g. `Al`, `al`, `AL`, and `aL` are identical when it comes to sorting)
+* Case insensitive. (e.g. `Al`, `al`, `AL`, and `aL` are identical when it comes to sorting)
 
 How *phone numbers (p/)* are sorted: 
 * In increasing numerical order. (e.g. `123` comes before `125` which comes before `1234`)
@@ -340,7 +340,7 @@ Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​
 * Edits the todo at the specified `INDEX`.
 * At least one of the optional fields must be provided.
 * Parameters given will overwrite the existing values completely.
-  * For example, giving 1 or more tag(s) in the edit command will erase all existing tags except the ones given in the edit command.
+  * For example, giving 1 or more tag(s) in the edit command will replace all existing tags with the ones given in the edit command.
   * `Coming soon in v1.5`, you can use `tag add` and `tag remove` to modify tags in a todo instead of only using `todo edit`.
 
 Examples:
