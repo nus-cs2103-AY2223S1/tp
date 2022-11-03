@@ -13,13 +13,13 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.waddle.commons.core.Messages;
+import seedu.waddle.commons.core.Text;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.UniqueItemList;
-import seedu.waddle.commons.core.Text;
 
 /**
  * Represents a Person in the address book.

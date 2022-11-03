@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.waddle.commons.core.Text;
 import seedu.waddle.commons.exceptions.IllegalValueException;
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
@@ -16,7 +17,6 @@ import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.ItineraryDuration;
 import seedu.waddle.model.itinerary.People;
-import seedu.waddle.commons.core.Text;
 
 /**
  * Jackson-friendly version of {@link Itinerary}.

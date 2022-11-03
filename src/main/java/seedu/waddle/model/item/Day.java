@@ -9,12 +9,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import seedu.waddle.commons.core.Text;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.PdfFieldInfo;
 import seedu.waddle.logic.PdfFiller;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.exceptions.Period;
-import seedu.waddle.commons.core.Text;
 
 /**
  * Encapsulates a day in an itinerary.
