@@ -97,13 +97,13 @@ Notes on symbols in first column:
 
 * `ap n/Bernice Yu a/#11-330, blk 775, Bishan e/b.yu@nus.edu.sg p/80880011 t/NUS t/staff` adds such patient.
 
-<img src="images/addcommand/ap1.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/ap1.png" width="800px" height ="500px">
 
 
 * `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable 
 to add such a patient because Bernice Yu already exists in HealthContact.
 
-<img src="images/addcommand/ap2.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/ap2.png" width="800px" height ="500px">
 
 
 ### 1.1.2 Adding an appointment of a patient `addappointment`, `aa`
@@ -153,17 +153,17 @@ Notes on symbols in first column:
 
 * `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` adds such appointment.
 
-<img src="images/addcommand/aa1.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/aa1.png" width="800px" height ="500px">
 
 * Executing `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` again is unable
 to add such an appointment because the appointment with the combination of the four inputs
 parameters already exists in HealthContact.
 
-<img src="images/addcommand/aa2.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/aa2.png" width="800px" height ="500px">
 
 * `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for Bernice Yu.
 
-<img src="images/addcommand/aa3.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/aa3.png" width="800px" height ="500px">
 
 ### 1.1.3 Adding a bill of an appointment `addbill`, `ab`
 
@@ -203,12 +203,12 @@ Notes on symbols in first column:
 
 * `ab 1 a/1200.00 d/2021-11-11` adds such bill to the first appointment in the displayed list.
 
-<img src="images/addcommand/ab1.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/ab1.png" width="800px" height ="500px">
 
 * Executing `ab 1 a/1500.00 d/2021-11-13` is unable to add such bill because the first appointment
 in the displayed list already has an attached bill.
 
-<img src="images/addcommand/ab2.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/ab2.png" width="800px" height ="500px">
 
 ## 1.2 Edit
 
@@ -297,11 +297,11 @@ Format:
 Examples:
 * ```findpatient n/ale``` returns ``Alex Yeoh`` and ``alex tan``.
 
-<img src="images/findpatientAlex.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findpatientAlex.png" width="800px" height ="500px">
 
 * ```fp t/friends t/colleagues n/bernice``` returns only ``Bernice Yu`` with the tags ``friends`` and ``colleagues``.
 
-<img src="images/findpatientBernice.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findpatientBernice.png" width="800px" height ="500px">
 
 ### 1.3.2 Finding appointments `findappointment` `fa`
 
@@ -324,11 +324,11 @@ Format:
 Examples:
 * ```findappointment t/x-ray``` returns ``Bernice Yu`` with "X-ray" appointment.
 
-<img src="images/findappointmentXray.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findappointmentXray.png" width="800px" height ="500px">
 
 * ```fa d/Dr Tan n/Alex``` returns only ``Alex Yeoh``'s appointment with "Dr Tan".
 
-<img src="images/findappointmentAlex.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findappointmentAlex.png" width="800px" height ="500px">
 
 
 ### 1.3.3 Finding bills `findbill` `fb`
@@ -352,7 +352,7 @@ Format:
 Examples:
 `findbill n/Ber p/unpaid` returns Bernice's unpaid bill
 
-<img src="images/fb.png" width="800px" height ="400px">
+<img src="images/ug/findcommand/fb.png" width="800px" height ="400px">
 
 ## 1.4 Sort
 
@@ -373,11 +373,11 @@ Format:
 Examples:
 * ```sortpatient c/name o/asc``` returns patients sorted by name in ascending order.
 
-<img src="images/sortpatient1.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/sortpatient1.PNG" width="800px" height ="400px">
 
 * ```sortpatient c/phone o/desc``` returns patients sorted by phone number in descending order.
 
-<img src="images/sortpatient2.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/sortpatient2.PNG" width="800px" height ="400px">
 
 ### 1.4.2 Sorting appointments `sortappointment`
 
@@ -396,11 +396,11 @@ Format:
 Examples:
 * ```sortappointment c/test o/asc``` returns appointments sorted by medical test in ascending order.
 
-<img src="images/sortappointment1.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/sortappointment1.PNG" width="800px" height ="400px">
 
 * ```sortappointment c/doctor o/desc``` returns appointments sorted by doctor in descending order.
 
-<img src="images/sortappointment2.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/sortappointment2.PNG" width="800px" height ="400px">
 
 ### 1.4.3 Sorting bills `sortbill`
 
@@ -421,11 +421,11 @@ Format:
 Examples:
 * ```sortbill c/amount o/asc``` returns bills sorted by amount in ascending order.
 
-<img src="images/sortbill1.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/sortbill1.PNG" width="800px" height ="400px">
 
 * ```sortbill c/status o/desc``` returns bills sorted by payment status in descending order.
 
-<img src="images/sortbill2.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/sortbill2.PNG" width="800px" height ="400px">
 
 ## 1.5 Select
 
@@ -458,7 +458,7 @@ Notes on symbols in first column:
 
 * `slp 1` shows the appointments and bills for the first patient in the patient list.
 
-<img src="images/selectcommand/slp1.png" width="800px" height ="500px">
+<img src="images/ug/selectcommand/slp1.png" width="800px" height ="500px">
 
 ### 1.5.2 Selecting an appointment `selectappointment`, `sla`
 
@@ -487,7 +487,7 @@ Notes on symbols in first column:
 
 * `sla 1` shows the bill for the first appointment in the appointment list.
 
-<img src="images/selectcommand/sla1.png" width="800px" height ="500px">
+<img src="images/ug/selectcommand/sla1.png" width="800px" height ="500px">
 
 ## 1.6 Setting Bill Payment Status
 
@@ -543,7 +543,7 @@ Removes all conditions previously applied to the list and shows all patients, ap
 
 * Executing `list`, the program shows all patients, appointments and bills.
 
-<img src="images/othercommands/ls1.png" width="800px" height ="500px">
+<img src="images/ug/othercommands/ls1.png" width="800px" height ="500px">
 
 ## 1.8 Delete
 
@@ -619,7 +619,7 @@ Format:
 Examples:
 * ```undo``` undoes the most recent command.
 
-<img src="images/undo1.PNG" width="800px" height ="400px">
+<img src="images/ug/undoredocommand/undo1.PNG" width="800px" height ="400px">
 
 ## 1.10 Redo `redo`
 
@@ -635,7 +635,7 @@ Format:
 Examples:
 * ```redo``` redoes the most recent undo command.
 
-<img src="images/redo1.PNG" width="800px" height ="400px">
+<img src="images/ug/undoredocommand/redo1.PNG" width="800px" height ="400px">
 
 
 
@@ -654,7 +654,7 @@ Deletes all patients, appointments and bills from HealthContact.
 
 * Executing `clear`, all data is deleted.
 
-<img src="images/othercommands/clear.png" width="800px" height ="500px">
+<img src="images/ug/othercommands/clear.png" width="800px" height ="500px">
 
 ## 1.12 Exit `exit`
 
@@ -680,7 +680,7 @@ Opens the Help Window.
 
 * Executing `help`, the help window pops.
 
-<img src="images/othercommands/help.png" width="800px" height ="180px">
+<img src="images/ug/othercommands/help.png" width="800px" height ="180px">
 
 ## 1.14 Saving the data
 
