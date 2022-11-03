@@ -32,12 +32,12 @@ public class FindCommand extends Command {
             + PREFIX_CLIENTTAG.getPrefix() + " CLIENTTAG [MORE_CLIENTTAGS]...\n"
             + PREFIX_TAG.getPrefix() + " TAG [MORE_TAGS]...\n"
             + PREFIX_PHONE.getPrefix() + " PHONE [MORE_PHONE]...\n"
-            + PREFIX_INCOME.getPrefix() + ">/</= INCOME \n"
+            + PREFIX_INCOME.getPrefix() + " >/</= INCOME \n"
             + "Examples: " + COMMAND_WORD + " " + PREFIX_NAME.getPrefix() + " alice bob charlie\n"
             + COMMAND_WORD + " " + PREFIX_RISKTAG.getPrefix() + " high low\n"
-            + COMMAND_WORD + " " + PREFIX_CLIENTTAG.getPrefix() + "POTENTIAL \n"
-            + COMMAND_WORD + " " + PREFIX_PLANTAG.getPrefix() + " savings plan"
-            + COMMAND_WORD + " " + PREFIX_PHONE.getPrefix() + " 912345678"
+            + COMMAND_WORD + " " + PREFIX_CLIENTTAG.getPrefix() + " potential\n"
+            + COMMAND_WORD + " " + PREFIX_PLANTAG.getPrefix() + " savings plan\n"
+            + COMMAND_WORD + " " + PREFIX_PHONE.getPrefix() + " 91234567\n"
             + COMMAND_WORD + " " + PREFIX_INCOME.getPrefix() + " >1000";
 
     private final List<FindPredicate> predicates;
