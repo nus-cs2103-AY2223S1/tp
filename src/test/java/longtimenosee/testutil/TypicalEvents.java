@@ -51,6 +51,12 @@ public class TypicalEvents {
             .withDuration("12:00__13:00")
             .build();
 
+    public static final Event WITH_AMY = new EventBuilder().withName("Amy Ban")
+            .withDate("2021-03-05")
+            .withDescription("Meet Amy for lunch")
+            .withDuration("12:00__13:00")
+            .build();
+
 
 
     private TypicalEvents() {} // prevents instantiation
