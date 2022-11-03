@@ -249,8 +249,7 @@ Step 3.  `UniquePersonList#syncMeetingTimes()` calls `Person#syncMeetingTimes()`
 Step 4. In `Person#syncMeetingTimes()`, the predicate `MeetingTimePastPredicate()` is passed into `MeetingTimes#removeIf(Predicate)` which removes meetings that are before the time of execution.
 
 #### Design
-
-[//]: # (Add Sequence Diagram)
+<img src="images/MeetingDiagrams/SyncMeetingSequenceDiagram.png" width="900" />
 
 #### Design Considerations
 **Aspect: Sync Meeting**
