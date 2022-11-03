@@ -22,7 +22,8 @@ public class SortCommand extends Command {
             + "" + PREFIX_ATTRIBUTE + "ATTRIBUTE\n"
             + "Example: " + COMMAND_WORD + " asc "
             + PREFIX_ATTRIBUTE + "name\n"
-            + "Supported attributes: name, module, phone, id, git, handle, email, attendance";
+            + "Supported attributes: name, module, phone, id, git, handle, email, attendance, participation, "
+            + "assignment";
 
     public static final String MESSAGE_SORT_SUCCESS = "StudMap has been sorted by %1$s in %2$s order!";
 
@@ -38,7 +39,7 @@ public class SortCommand extends Command {
      */
     public SortCommand(Comparator<Student> comparator, String attributeType, Order sortOrder) {
         this.comparator = comparator;
-        this.attributeType = attributeType;
+        this.attributeType = attributeType.toLowerCase();
         this.sortOrder = sortOrder;
     }
 

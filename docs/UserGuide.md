@@ -187,10 +187,14 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 
 Sorts the list by the specified attribute in the specified order.
 
+When managing your students, you might want to focus on a certain aspect of the module to track. For instance, you may wish to clamp down on absenteeism and identify students who are constantly missing from class. To achieve this, we can sort the StudMap by `ATTENDANCE`.
+
 Format: `sort ORDER a/ATTRIBUTE`
 
-- `ORDER` should be `asc` for ascending and `dsc` for descending order
-- `ATTRIBUTE` currently supported are
+- `ORDER`: You can specify the order you wish to sort your StudMap. 
+  - `asc`: Sort in ascending order.
+  - `dsc`: Sort in descending order.
+- `ATTRIBUTE`: You can specify the attribute which you want to sort the StudMap by. Currently, the following attributes are supported:
   - `NAME`
   - `MODULE`
   - `PHONE`
@@ -202,11 +206,21 @@ Format: `sort ORDER a/ATTRIBUTE`
   - `ASSIGNMENT`
   - `PARTICIPATION`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note 1:** If student has no records for the specified sorting attribute, they will be sorted to the end of the StudMap. <br>
+
+**:information_source: Note 2:** When sorting by `ASSIGNMENT`, we are actually sorting by number of marked assignments. 
+
+**:information_source: Note 3:** When sorting by `ATTENDANCE` and `PARTICIPATION`, we are sorting by percentage of classes attended and percentage of participation components participated correspondingly. <br>
+
+</div>
+
 Examples:
 
+* `sort asc a/attendance` sorts list by `ATTENDANCE` in ascending order
 * `sort asc a/name` sorts list by `NAME` in ascending order
 * `sort dsc a/phone` sorts list by `PHONE` in descending order
-* `sort asc a/attendance` sorts list by `ATTENDANCE` in ascending order
 
 ### Filtering the students: `filter`
 
