@@ -25,17 +25,17 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true" />
         <FlowPane fx:id="surveys" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
-      <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate" />
-      <Label fx:id="race" styleClass="cell_small_label" text="\$race" />
-      <Label fx:id="religion" styleClass="cell_small_label" text="\$religion" />
+      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
+      <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" wrapText="true" />
+      <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate" wrapText="true" />
+      <Label fx:id="race" styleClass="cell_small_label" text="\$race" wrapText="true" />
+      <Label fx:id="religion" styleClass="cell_small_label" text="\$religion" wrapText="true" />
     </VBox>
   </GridPane>
 </HBox>

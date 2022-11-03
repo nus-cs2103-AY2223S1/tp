@@ -19,6 +19,8 @@ public class PersonCard extends UiPart<Region> {
 
     private static final String DATE_FORMAT = "y-M-d";
 
+    private static final int WRAP_STRING_LENGTH = 30;
+
     private static final String ID_DONE = "done";
     private static final String ID_NOT_DONE = "notDone";
 
@@ -79,18 +81,30 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(survey -> {
                     Label label = new Label(survey.survey);
                     label.setId(survey.isDone ? ID_DONE : ID_NOT_DONE);
+                    label.setWrapText(true);
+                    if (survey.survey.length() > WRAP_STRING_LENGTH) {
+                        label.setPrefWidth(350);
+                    }
                     surveys.getChildren().add(label);
                 });
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        gender.setText(person.getGender().gender);
-        birthdate.setText(person.getBirthdate().birthdate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
-        race.setText(person.getRace().race);
-        religion.setText(person.getReligion().religion);
+        phone.setText("Phone: " + person.getPhone().value);
+        address.setText("Address: " + person.getAddress().value);
+        email.setText("Email: " + person.getEmail().value);
+        gender.setText("Gender: " + person.getGender().gender);
+        birthdate.setText("Birthdate: "
+                + person.getBirthdate().birthdate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
+        race.setText("Race: " + person.getRace().race);
+        religion.setText("Religion: " + person.getReligion().religion);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label label = new Label(tag.tagName);
+                    label.setWrapText(true);
+                    if (tag.tagName.length() > WRAP_STRING_LENGTH) {
+                        label.setPrefWidth(350);
+                    }
+                    tags.getChildren().add(label);
+                });
     }
 
     @FXML

@@ -92,6 +92,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Set<Tag>} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(Set<Tag> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
@@ -150,9 +158,9 @@ public class PersonBuilder {
     /**
      * Sets the {@code Survey} of the {@code Person} that we are building.
      */
-    public PersonBuilder withSurvey(String survey) {
+    public PersonBuilder withSurvey(String survey, boolean isDone) {
         Set<Survey> surveyToAdd = new HashSet<>();
-        surveyToAdd.add(new Survey(survey));
+        surveyToAdd.add(new Survey(survey, isDone));
         this.surveys = surveyToAdd;
         return this;
     }

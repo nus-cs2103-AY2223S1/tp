@@ -10,7 +10,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
--   {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ---
 
@@ -40,17 +40,17 @@ Given below is a quick overview of main components and how they interact with ea
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
--   At app launch: Initializes the components in the correct sequence, and connects them up with each other.
--   At shut down: Shuts down the components and invokes cleanup methods where necessary.
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
--   [**`UI`**](#ui-component): The UI of the App.
--   [**`Logic`**](#logic-component): The command executor.
--   [**`Model`**](#model-component): Holds the data of the App in memory.
--   [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
@@ -60,8 +60,8 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
--   defines its _API_ in an `interface` with the same name as the Component.
--   implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -81,10 +81,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
--   executes user commands using the `Logic` component.
--   listens for changes to `Model` data so that the UI can be updated with the modified data.
--   keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
--   depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -97,9 +97,9 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -114,8 +114,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
--   When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
--   All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -125,10 +125,10 @@ How the parsing works:
 
 The `Model` component,
 
--   stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
--   stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
--   stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
--   does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -144,9 +144,9 @@ The `Model` component,
 
 The `Storage` component,
 
--   can save both address book data and user preference data in json format, and read them back into corresponding objects.
--   inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
--   depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+- can save both address book data and user preference data in json format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
@@ -164,9 +164,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
--   `VersionedAddressBook#commit()` — Saves the current address book state in its history.
--   `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
--   `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -227,21 +227,38 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
--   **Alternative 1 (current choice):** Saves the entire address book.
+- **Alternative 1 (current choice):** Saves the entire address book.
+  
+  - Pros: Easy to implement.
+  - Cons: May have performance issues in terms of memory usage.
 
-    -   Pros: Easy to implement.
-    -   Cons: May have performance issues in terms of memory usage.
-
--   **Alternative 2:** Individual command knows how to undo/redo by
-    itself.
-    -   Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    -   Cons: We must ensure that the implementation of each individual command are correct.
+- **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  
+  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### Changing themes
+
+#### Implementation
+
+Implementing this feature will require the `MainWindow` to keep track of the current theme of Survin. This is done with an enum called `Theme` which is kept in a container class called `Themes`. `Themes` also stores static String variables to represent what users should type to swap to that theme.
+
+Currently, since there are only 2 themes, there is a toggle button in GUI to toggle between the 2 themes. The method that is called when the button is pressed is called `handleLightDarkTheme()` in `MainWindow`. When called it simply checks what the current theme is and sets the theme to the other one. To keep things simple, the `theme` command also uses this `handleLightDarkTheme()` command to change the themes. A user invoking the `theme` command will result in the call of the `handeThemeCommand(Theme)` method in `MainWindow` which will only call `handleLightDarkTheme()` if the specified theme to change to is different from the current theme. This gives the expected behavior of the `theme` command using the toggling nature of `handeLightDarkTheme()`.
+
+Below is the sequence diagram that explains how the `theme` command works:
+![ThemeSequenceDiagram](images/ThemeSequenceDiagram.png)
+(Note: Details of the creation of CommandResult is similar to the Delete Command just without the update to model. You can find the sequence diagram for that command under the Logic Component section.)
+
+#### Adding more themes (In the future)
+
+The `theme` command was implemented with the addition of more themes in mind. First, add the names of the new themes in the container class `Themes` and their stylesheets in `resources/view`. Then just edit the `handleThemeCommand(Theme)` method with a simple switch case to change the stylesheet based on the specified theme. And since there is more than 2 themes, a toggle button would no longer work so you might want to replace that with a ComboBox or something similar. This also means that then `handleLightDarkTheme()` command is obsolete and can be removed.
 
 ### Compactable and expandable PersonCard
 
@@ -313,11 +330,11 @@ Note that if the new person we cloned is already in the address book, it will tr
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
--   [Documentation guide](Documentation.md)
--   [Testing guide](Testing.md)
--   [Logging guide](Logging.md)
--   [Configuration guide](Configuration.md)
--   [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
 ---
 
@@ -327,11 +344,11 @@ Note that if the new person we cloned is already in the address book, it will tr
 
 **Target user profile**:
 
--   has a need to manage a significant number of surveyees
--   prefer desktop apps over other types
--   can type fast
--   prefers typing to mouse interactions
--   is reasonably comfortable using CLI apps
+- has a need to manage a significant number of surveyees
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
 **Value proposition**: manage surveyees faster than a typical mouse/GUI driven app
 
@@ -339,16 +356,20 @@ Note that if the new person we cloned is already in the address book, it will tr
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                                               | So that I can…​                                                              |
-| -------- | ------- |----------------------------------------------------------------------------| ---------------------------------------------------------------------------- |
-| `* * *`  | user    | use 'add' in the command line                                              | I can add a new surveyee quickly                                             |
-| `* * *`  | user    | use 'edit' in the command line                                             | I can edit a surveyee quickly                                                |
-| `* * *`  | user    | use 'delete' in the command line                                           | I can delete a surveyee quickly                                              |
-| `* * *`  | user    | use 'view' in the command line                                             | I can view my surveyees' information quickly                                 |
-| `* *`    | user    | use 'clone' in the command line                                            | I can use an existing surveyee as a template for a new surveyee to save time |
-| `* *`    | user    | use 'view <attribute>' to view only surveyees of specific attribute        | I can save time when looking for surveyees with a specific attribute         |
-| `* *`    | user    | use 'delete <attribute>' to delete all surveyees with a specific attribute | I can save time when deleting surveyees with a specific attribute            |
-_{More to be added}_
+| Priority             | As a …​ | I want to …​                                                                             | So that I can…​                                                        |
+| -------------------- | ------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`              | user    | use 'add' in the command line                                                            | add a new surveyee quickly                                             |
+| `* * *`              | user    | use 'edit' in the command line                                                           | edit a surveyee quickly                                                |
+| `* * *`              | user    | use 'delete' in the command line                                                         | delete a surveyee quickly                                              |
+| `* * *`              | user    | use 'view' in the command line                                                           | view my surveyees' information quickly                                 |
+| `* *`                | user    | use 'clone' in the command line                                                          | use an existing surveyee as a template for a new surveyee to save time |
+| `* *`                | user    | add on surveys or tags to existing surveyees without the need to retype everything again | save time and effort when adding on surveys and tags                   |
+| `* *`                | user    | remove existing surveys or tags from surveyees without clearing everything               | save time and effort re-adding the ones I did not want to delete       |
+| `* *`                | user    | hide more detailed information on a surveyee                                             | protect their information and have a less cluttered GUI                |
+| `* *`                | user    | use 'view <attribute>' to view only surveyees of specific attribute                      | save time when looking for surveyees with a specific attribute         |
+| `* *`                | user    | use 'delete <attribute>' to delete all surveyees with a specific attribute               | save time when deleting surveyees with a specific attribute            |
+| `*`                  | user    | change between a 'light' and 'dark' theme                                                | have a GUI that is comfortable to use in the day and at night          |
+| _{More to be added}_ |         |                                                                                          |                                                                        |
 
 ### Use cases
 
@@ -358,39 +379,114 @@ _{More to be added}_
 
 **MSS**
 
-1.  User requests to list surveyees
-2.  Survin shows a list of surveyees
-3.  User requests to delete a specific surveyee in the list
-4.  Survin deletes the surveyee
+1. User requests to list surveyees
 
-    Use case ends.
+2. Survin shows a list of surveyees
+
+3. User requests to delete a specific surveyee in the list
+
+4. Survin deletes the surveyee
+   
+   Use case ends.
 
 **Extensions**
 
--   2a. The list is empty.
+- 2a. The list is empty.
+  
+  Use case ends.
 
-    Use case ends.
+- 3a. The given index is invalid.
+  
+  - 3a1. Survin shows an error message.
+    
+    Use case resumes at step 2.
 
--   3a. The given index is invalid.
+**Use case: Append surveys/tags to a surveyee**
 
-    -   3a1. Survin shows an error message.
+**MSS**
 
-        Use case resumes at step 2.
+1. User requests to list surveyees
+
+2. Survin shows a list of surveyees
+
+3. User requests to append surveys and/or tags to a specific surveyee in the list
+
+4. Survin appends requested surveys and/or tags to the surveyee
+   
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+  
+  Use case ends.
+
+- 4a. The requested surveys and/or tags already exist on the surveyee
+  
+  - 4a1. Survin shows an error message.
+    
+    Use case resumes at step 2.
+
+**Use case: Unappend surveys/tags to a surveyee**
+
+**MSS**
+
+1. User requests to list surveyees
+
+2. Survin shows a list of surveyees
+
+3. User requests to unappend surveys and/or tags from a specific surveyee in the list
+
+4. Survin unappends requested surveys and/or tags from the surveyee
+   
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+  
+  Use case ends.
+
+- 4a. The requested surveys and/or tags does not exist on the surveyee
+  
+  - 4a1. Survin shows an error message.
+    
+    Use case resumes at step 2.
+
+**Use case: Change theme**
+
+**MSS**
+
+1. User requests to change the theme of Survin
+
+2. Survin's theme changes
+   
+   Use case ends.
+
+**Use case: Show/Hide more detailed information**
+
+**MSS**
+
+1. User requests to show/hide more detailed information of surveyees
+
+2. Survin shows/hides more detailed information of surveyees
+   
+   Use case ends.
 
 _{More to be added}_
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-3.  No backend server required since local storage is used.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. No backend server required since local storage is used.
 
 _{More to be added}_
 
 ### Glossary
 
--   **Mainstream OS**: Windows, Linux, Unix, OS-X
--   **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Private contact detail**: A contact detail that is not meant to be shared with others
 
 ---
 
@@ -406,41 +502,106 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
+   
+   1. Download the jar file and copy into an empty folder
+   
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-    1. Download the jar file and copy into an empty folder
+2. Saving window preferences
+   
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   
+   2. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The most recent window size and location is retained.
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
+   
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   
+   2. Test case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   
+   3. Test case: `delete 0`<br>
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+2. _{ more test cases …​ }_
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Appending surveys/tags to a surveyee
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Appending surveys/tags to a surveyee while all surveyees are shown
+   
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   
+   2. Test case: `append 1 s/New Survey`<br>
+      Expected 1: First surveyee in the list has 'New Survey' added to their list of surveys<br>
+      Expected 2: Error shown if first surveyee in the list already has 'New Survey' in their list of surveys before the command.
+   
+   3. Test case: `append 1 s/New Survey s/New Survey2 t/newTag t/newTag2`<br>
+      Expected 1: First surveyee in the list has 'New Survey' and 'New Survey2' added to their list of surveys and has 'newTag' and 'newTag2' added to their list of tags.<br>
+      Expected 2: Error shown if first surveyee in the list already has any of the surveys or tags specified in the command before the command.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+### Unappending surveys/tags from a surveyee
 
-1. _{ more test cases …​ }_
+1. Omitted as it is similar to 'Appending surveys/tags to a surveyee'
+
+### Changing theme
+
+1. Changing theme while in light theme
+   
+   1. Test case: `theme dark`<br>
+      Expected: Survin changes to the dark theme.
+   2. Test case: `theme light`<br>
+      Expected: Survin shows an error message.
+   3. Test case: Click on the `Appearance` tab and select `Dark Theme`<br>
+      Expected: Survin changes to the dark theme.
+
+2. Changing theme while in dark theme
+   
+   1. Test case: `theme light`<br>
+      Expected: Survin changes to the light theme.
+   2. Test case: `theme dark`<br>
+      Expected: Survin changes to the dark theme.
+   3. Test case: Click on the `Appearance` tab and select `Light Theme`<br>
+      Expected: Survin changes to the light theme.
+
+### Showing/Hiding more detailed information
+
+1. Showing more detailed information
+   
+   1. Single surveyee
+      
+      1. Test case: Click on the surveyee you wish to show more details (Note: surveyee should be in the hiding more detailed information state)
+         Expected: Surveyee will have their more detailed information shown.
+   
+   2. All surveyees
+      
+      1. Test case: `toggle-list-mode`<br>
+         Expected: All surveyees have their more detailed information shown. (Note: The mode of the list will change, this means that new `PersonCard` will be created in this showing more detailed information state)
+      
+      2. Test case: Click on the `Appearance` tab and select `Expanded Cards`<br>
+         Expected: All surveyees have their more detailed information shown. (Note: The mode of the list will change, this means that new `PersonCard` will be created in this showing more detailed information state)
+
+2. Hiding more detailed information
+   
+   1. Omitted as it is similar to 'Showing more detailed information'.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
+   
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+2. _{ more test cases …​ }_
 
-1. _{ more test cases …​ }_
+## **Appendix: Effort**
+
+### Challenges faced
+1. Finding out that the `updateItem()` method was the reason for the buggy implementation of the compacted and expanded PersonCard took some time. There was a need to read a lot of documentation to find the fix.
+2. Finding out how to change the stylesheet took some time. AB3 did not seem to use `Scene` due to the use of `FXMLLoader` and I needed to get the scene to get the stylesheet. Took a few hours to find out that the `Stage` class had a `getScene()` method.

@@ -34,6 +34,10 @@ public class AppendCommand extends Command {
 
     public static final String MESSAGE_NOT_APPENDED = "At least one field to append must be provided.";
 
+    public static final String MESSAGE_SURVEY_FOUND = "Person already has one of the surveys that you are appending.";
+
+    public static final String MESSAGE_TAG_FOUND = "Person already has one of the tags that you are appending.";
+
     private final Index index;
     private final Set<Survey> newSurveys;
     private final Set<Tag> newTags;
@@ -71,14 +75,21 @@ public class AppendCommand extends Command {
         return new CommandResult(String.format(MESSAGE_APPEND_SUCCESS, appendedPerson));
     }
 
-    private Person createAppendedPerson(Person personToAppend) {
+    private Person createAppendedPerson(Person personToAppend) throws CommandException {
         assert personToAppend != null;
 
         Set<Survey> oldSurveys = personToAppend.getSurveys();
+        if (doesOldSurveysContainNewSurveys(oldSurveys, newSurveys)) {
+            throw new CommandException(MESSAGE_SURVEY_FOUND);
+        }
         Set<Survey> surveys = new HashSet<Survey>();
         surveys.addAll(oldSurveys);
         surveys.addAll(newSurveys);
+
         Set<Tag> oldTags = personToAppend.getTags();
+        if (doesOldTagsContainNewTags(oldTags, newTags)) {
+            throw new CommandException(MESSAGE_TAG_FOUND);
+        }
         Set<Tag> tags = new HashSet<Tag>();
         tags.addAll(oldTags);
         tags.addAll(newTags);
@@ -87,5 +98,27 @@ public class AppendCommand extends Command {
                 personToAppend.getAddress(), personToAppend.getGender(), personToAppend.getBirthdate(),
                 personToAppend.getRace(), personToAppend.getReligion(),
                 surveys, tags);
+    }
+
+    private boolean doesOldSurveysContainNewSurveys(Set<Survey> oldSurveys, Set<Survey> newSurveys) {
+        for (Survey oldSurvey : oldSurveys) {
+            for (Survey newSurvey : newSurveys) {
+                if (oldSurvey.survey.equals(newSurvey.survey)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean doesOldTagsContainNewTags(Set<Tag> oldTags, Set<Tag> newTags) {
+        for (Tag oldTag : oldTags) {
+            for (Tag newTag : newTags) {
+                if (oldTag.tagName.equals(newTag.tagName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

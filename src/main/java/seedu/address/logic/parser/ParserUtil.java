@@ -25,7 +25,8 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX =
+            "Index is not a non-zero unsigned integer or it exceeds 2147483647.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -126,6 +127,9 @@ public class ParserUtil {
         String trimmedBirthdate = birthdate.trim();
         if (!Birthdate.isValidBirthdate(trimmedBirthdate)) {
             throw new ParseException(Birthdate.MESSAGE_CONSTRAINTS);
+        }
+        if (!Birthdate.isDateInTheFuture(trimmedBirthdate)) {
+            throw new ParseException(Birthdate.BIRTHDATE_AFTER_TODAY);
         }
         return new Birthdate(trimmedBirthdate);
     }

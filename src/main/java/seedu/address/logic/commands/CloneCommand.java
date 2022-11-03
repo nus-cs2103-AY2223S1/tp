@@ -63,9 +63,11 @@ public class CloneCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_CLONE_PERSON_SUCCESS = "Cloned Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one of the unique optional fields (Name, Phone or Email)"
+            + " has to be provided.";
     public static final String MESSAGE_DUPLICATE_CLONED_PERSON = "This person already exists in the address book, "
-            + "try again with different details.";
+            + "try again with different details, at least one of the unique optional fields (Name, Phone or Email) "
+            + "has to be provided.";
 
     private final Index index;
     private final ClonePersonDescriptor clonePersonDescriptor;
@@ -92,7 +94,7 @@ public class CloneCommand extends Command {
         Person personToClone = lastShownList.get(index.getZeroBased());
         Person clonedPerson = createClonedPerson(personToClone, clonePersonDescriptor);
 
-        if (!personToClone.isSamePerson(clonedPerson) && model.hasPerson(clonedPerson)) {
+        if (personToClone.isSamePerson(clonedPerson) && model.hasPerson(clonedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLONED_PERSON);
         }
 

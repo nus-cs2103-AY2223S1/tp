@@ -14,7 +14,8 @@ import java.time.format.DateTimeParseException;
 public class Birthdate {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Birthdate should be in the format of yyyy-mm-dd, and it should not be blank";
+            "Birthdate should be in the format of yyyy-mm-dd, it should be a valid date, and it should not be blank.";
+    public static final String BIRTHDATE_AFTER_TODAY = "Birthdate should not be in the future.";
     private static final String DATE_FORMAT = "y-M-d";
 
     public final LocalDate birthdate;
@@ -28,7 +29,9 @@ public class Birthdate {
     public Birthdate(String birthdate) {
         requireNonNull(birthdate);
         checkArgument(isValidBirthdate(birthdate), MESSAGE_CONSTRAINTS);
-        this.birthdate = LocalDate.parse(birthdate, DateTimeFormatter.ofPattern(DATE_FORMAT));
+        checkArgument(isDateInTheFuture(birthdate), BIRTHDATE_AFTER_TODAY);
+
+        this.birthdate = LocalDate.parse(birthdate, DateTimeFormatter.ofPattern(DATE_FORMAT));;
     }
 
     /**
@@ -41,6 +44,18 @@ public class Birthdate {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if given string which is assumed to be a valid date of the format y-M-d
+     * is in the future. Meaning the date has not passed, and it is not today.
+     * @param test string which is assumed to be a valid date of the format y-M-d
+     * @return true of given date is in the future
+     */
+    public static boolean isDateInTheFuture(String test) {
+        LocalDate dateNow = LocalDate.now();
+        LocalDate parsedDate = LocalDate.parse(test, DateTimeFormatter.ofPattern(DATE_FORMAT));
+        return parsedDate.isBefore(dateNow) || parsedDate.isEqual(dateNow);
     }
 
     @Override
