@@ -211,7 +211,7 @@ Format: `help [COMMAND]`
 Examples:
 
 * `help add -s` - This shows a detailed help message on the `add -s` command.
-* `help` - This shows a message explaining how to access the help page.
+* `help` - This shows an open window revealing the URL to the user guide which could be copied to the user's clipboard.
 
 ### List of FYPs: `list`
 
