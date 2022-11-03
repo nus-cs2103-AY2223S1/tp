@@ -82,6 +82,7 @@ public class TypicalPersons {
             .withCurrentModules("CS2101")
             .withPreviousModules("CS2030S")
             .withPlannedModules("CS2105")
+            .withLessons(new LessonBuilder().build())
             .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withPhone("87652533")

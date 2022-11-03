@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
  * Removed Lesson from contact.
  */
 public class RemoveIndexCommand extends RemoveCommand {
-    public static final String MESSAGE_REMOVE_LESSON_SUCCESS = "Removed Lesson for Person: %1$s";
+    public static final String MESSAGE_REMOVE_LESSON_SUCCESS = "Removed Lesson (%s) for contact at index %d, %s";
 
     private Lesson lesson;
     private Index index;
@@ -48,6 +48,19 @@ public class RemoveIndexCommand extends RemoveCommand {
 
         personToEdit.removeLesson(lesson);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_REMOVE_LESSON_SUCCESS, lesson));
+        return new CommandResult(String.format(MESSAGE_REMOVE_LESSON_SUCCESS, lesson.toFullString(),
+                index.getZeroBased(), personToEdit.getName()));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+
+        if (o instanceof RemoveIndexCommand) {
+            RemoveIndexCommand lesson = (RemoveIndexCommand) o;
+            return lesson.lesson.equals(this.lesson) && lesson.index.equals(this.index);
+        }
+
+        return false;
     }
 }
