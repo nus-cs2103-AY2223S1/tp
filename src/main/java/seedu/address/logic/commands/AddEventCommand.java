@@ -27,9 +27,9 @@ public class AddEventCommand extends Command {
             + PREFIX_PURPOSE + "PURPOSE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EVENT_TITLE + "Shoe Sale "
-            + PREFIX_START_DATE + "20-09-2022 "
+            + PREFIX_START_DATE + "20/09/2022 "
             + PREFIX_START_TIME + "11:00 "
-            + PREFIX_PURPOSE + "50% discount on all shoes store-wide! ";
+            + PREFIX_PURPOSE + "50 dollar discount on all shoes store-wide! ";
 
     public static final String MESSAGE_SUCCESS = "New Event added: %1$s";
 

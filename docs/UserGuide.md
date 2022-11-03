@@ -272,7 +272,7 @@ Format: `listEvents [s/FIELD]`
 </div>
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The sorted result is permanent on the underlying events list.<br><br>
+:information_source: **Note:** The sorted result is permanent on the underlying event list.<br><br>
 
 For example, if `listEvents s/e` and `listEvents` are executed back-to-back, the result of the second `listEvents` command will display the sorted results from the first `listEvents s/e` command since the sorted result is permanent.
 </div>
