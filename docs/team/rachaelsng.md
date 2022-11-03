@@ -25,8 +25,10 @@ Given below are my contributions to the project.
   * Contributed to ideation and team direction.
   * Ensured timely submissions for tasks.
 
-* **Enhancements to existing features**:
-  * Implement storage for lessons.
+* **Enhancements to existing features**: Implement storage for lessons.
+  * What it does: Allows lessons (consultations, mastery checks and studios) to be saved into storage.
+  * Justification: to be added
+  * Highlights: to be added
 
 * **Documentation**:
   * User Guide:
