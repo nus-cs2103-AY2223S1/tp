@@ -44,7 +44,7 @@ public class UnmarkCommand extends Command {
     /**
      * Constructs the given UnmarkCommand.
      *
-     * @param debtorIndex is the index of the {@code Person} in the filtered person list to have debts marked as unpaid
+     * @param debtorIndex is the index of the {@code Person} in the filtered person list to have debts marked as unpaid.
      * @param indexSet is the set of indexes of the {@code Debt}s in the list of debts displayed in the given
      *      person's debt field.
      */
