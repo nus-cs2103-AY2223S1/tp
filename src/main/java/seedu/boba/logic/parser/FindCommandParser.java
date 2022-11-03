@@ -7,7 +7,6 @@ import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import seedu.boba.logic.commands.EditCommand;
 import seedu.boba.logic.commands.FindCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Email;
