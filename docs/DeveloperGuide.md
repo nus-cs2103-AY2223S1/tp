@@ -199,7 +199,7 @@ process as well.
 
 We ultimately went with Alternative 1 since we do not expect `list` to take in many different arguments.
 
-### Cancel Feature 
+### Cancel Feature
 
 #### Implementation
 The implemented cancel feature allows users to cancel a patient's appointment based on its index in the appointment list. <br>
@@ -319,7 +319,7 @@ Step 1. The user launches the application for the first time. The `idENTify` wil
 appointment list.
 
 Step 2. The user executes `group appts k/KEY` command to group appointments by their tags `(k/tag)` or patient `
-(k/patient)`, causing the modified list of appointments after the `group appts k/KEY` command executes to show on 
+(k/patient)`, causing the modified list of appointments after the `group appts k/KEY` command executes to show on
 the screen.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
@@ -356,10 +356,10 @@ Step 2. The user executes `group appts k/KEY` command to group appointments by t
 the screen or executes `group patients` command to group patients by their tags, causing the modified list of
 patients after the `group patients` command executes to show on the screen.
 
-Step 3. The user executes `ungroup appts` command to ungroup appointments or `ungroup patients` command to ungroup 
+Step 3. The user executes `ungroup appts` command to ungroup appointments or `ungroup patients` command to ungroup
 patients.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the use has not group patients or 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the use has not group patients or
 appointments, ungroup commands will make no effect on the current addressbook list on the screen.
 </div>
 
@@ -376,8 +376,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How ungroup executes:**
 
-* **Current choice:** Use the default comparator for appointments or patients so that the specified list will sort 
-  as default settings. To be more specific, the patient list will be sorted by patients' names and the appointemnt 
+* **Current choice:** Use the default comparator for appointments or patients so that the specified list will sort
+  as default settings. To be more specific, the patient list will be sorted by patients' names and the appointemnt
   list will be sorted by datetime.
 
 ### Book Feature
@@ -398,9 +398,9 @@ The newly added `Appointment` object will also be saved in the JSON file through
 
 Given below are some example usage scenarios and how the book feature behaves in each scenario.
 
-Scenario 1: User inputs `book 1 r/Sore Throat d/2022-12-10 12:00`. 
+Scenario 1: User inputs `book 1 r/Sore Throat d/2022-12-10 12:00`.
 
-The `ParserUtil` class will detect that both the given reason and date are valid, and creates an appointment object to be stored in the specified `Person`, 
+The `ParserUtil` class will detect that both the given reason and date are valid, and creates an appointment object to be stored in the specified `Person`,
 only if the `Person` does not have an existing appointment at that date.
 
 Scenario 2: User inputs an empty reason in the `r/` prefix.
@@ -481,7 +481,7 @@ The `find` command,
 the search terms.
 * `CombinedAppointmentPredicate` stores all appointment related search tags and tests for all appointments that
 satisfies all the search terms.
-* These 2 predicates are then used together in `FindCommand#execute()` to create a single predicate that displays all 
+* These 2 predicates are then used together in `FindCommand#execute()` to create a single predicate that displays all
 * the relevant patient and appointments.
 
 #### Design considerations:
@@ -671,7 +671,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 2a1. idENTify shows an error message.
   - 2a2. User enters new data.
   - Steps 2a1-2a2 are repeated until the data entered are correct.
-  
+
     Use case resumes at step 3.
 
 **Use Case: UC06 - cancel an appointment**
@@ -691,7 +691,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. idENTify detects an error in the entered data.
   - 2a1. idENTify shows an error message.
   - 2a2. User enters new data.
-  - Steps 2a1-2a2 are repeated until the data entered are correct. 
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
 
     Use case resumes at step 3.
 
@@ -833,7 +833,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
     Use case ends.
-    
+
 **Use Case: UC14 - sort the appointment list**
 
 **Guarantees:** The appointment list will be sorted in ascending order.
@@ -893,7 +893,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 1a1. idENTify shows an error message.
     - 1a2. User enters new data.
     - Steps 1a1-1a2 are repeated until the data entered are correct.
-  
+
       Use case resumes at step 2.
 
 
@@ -1108,7 +1108,7 @@ testers are expected to do more *exploratory* testing.
    1. Expected results:
       1. An invalid command format error message appears.
       2. No new entries are added.
-      
+   
 ### Deleting a patient
 Section Prerequisites: Completed all the steps in the previous section `Adding a patient`.
 
@@ -1116,7 +1116,7 @@ Section Prerequisites: Completed all the steps in the previous section `Adding a
    1. Expected results:
       1. An acknowledgement message regarding the patient deleted appears.
       2. The patient should no longer appear in the patient list.
-   
+
 2. Test case: `delete 6`. It should be a patient with at least 1 upcoming appointment.
    1. Expected results:
       1. Similar to previous
@@ -1141,7 +1141,7 @@ Section Prerequisite: Completed all the steps in the previous section `Deleting 
       1. Similar to previous, but with a new appointment entry with reason `Rhinitis`, date `2020-10-10` and state `Recurring every 1 year` should appear instead.
 
 3. Test case `book`
-   1. Expected result: 
+   1. Expected result:
       1. An invalid command format error message appears.
       2. No new entries are added.
 
@@ -1181,12 +1181,12 @@ Section Prerequisite: At least 1 appointment exists in the patient list.
    1. Expected results:
        1. An acknowledgement message that the appointment's information was edited appears.
        2. The appointment entry contains the updated reason.
-  
+
 2. Test case: `edit appts`
    1. Expected results:
        1. An invalid command format error message appears.
        2. No entries in the patient or appointment lists were modified.
-      
+   
 ### Marking appointments as complete
 Section Prerequisite: The 2nd appointment in the appointment list should be unmarked. If the appointment is marked or missing, replace the `2` in the following commands with another appointment entry that is currently unmarked.
 
@@ -1203,9 +1203,9 @@ Section Prerequisite: The 2nd appointment in the appointment list should be unma
 ### Marking appointments as incomplete
 Section Prerequisite: Completed all the steps in the previous section `Marking appointments as complete`.
 
-Repeat the same test cases in the previous section, but using `unmark 2` instead. 
+Repeat the same test cases in the previous section, but using `unmark 2` instead.
 
-The expected results should be similar as those in the previous section, but with acknowledgment messages indicating 
+The expected results should be similar as those in the previous section, but with acknowledgment messages indicating
 that the appointment was unmarked, and that the appointment's marked status changes from `[X]` to `[]`.
 
 ### Listing results
@@ -1242,12 +1242,12 @@ attached to them.
    1. Expected results:
       1. An acknowledgement message that all patients are grouped appears.
       2. Entries in the patient list with similar tags should be grouped together, with behaviour as specified in the user guide.
-      
+
 2. Test case: `ungroup patients`
    1. Expected results:
        1. An acknowledgement message that all patients are ungrouped appears.
        2. The changes to the patient list that occurred in the previous test case should be reverted.
-       
+
 3. Test case: `group appts k/tag`
    1. Expected result: Similar to test case 1, but with appointments grouped with their tags instead.
 
@@ -1290,7 +1290,7 @@ displaying the number of filtered results should appear after every valid input.
    1. Expected results:
       1. Only appointments containing the reason `Checkup` appear in the appointment list.
       2. Only patients with at least 1 such appointment will appear in the patient list.
-      
+
 ### Dealing with save data issues
 
 1. Test Case: Dealing with missing files
@@ -1302,19 +1302,19 @@ displaying the number of filtered results should appear after every valid input.
    3. Expected result: A new file will be created with some sample patients and appointments.
 
 2. Test case: Dealing with corrupted files
-   1. If save data is corrupted, the application will open with an empty data file. 
+   1. If save data is corrupted, the application will open with an empty data file.
    2. To simulate a missing file:
       1. Head to the location of your save data, in the same way as the previous test case.
       2. Open the file `idENTify.json`, and corrupt the file (E.g. Delete the very first line of the `idENTify.json` file).
       3. Relaunch the app.
    3. Expected result: A new file will be created with no patients or appointments.
 
-  
+
 ## **Appendix: Effort**
 Our project was harder than Address Book Level3(AB3) because AB3 only deals with Persons, while our project includes Appointments as well. There was a huge learning curve at the start as we were very unfamiliar with what most of the classes do. After familiarizing ourselves with some of the necessary classes to implement our new enhancements, we also had a hard time writing new test cases as our new features caused the existing test cases to fail. It took a long time for us to figure out that the existing static variables used for the test cases were the problem as our new test cases involved altering the list of appointments in those variables.
-   
+
 In v1.2, we updated the GUI to contain 2 listviews: one for patients and one for appointments. We found out that changes to our appointment fields, such as marking them as completed, were not properly reflected on the listviews. We had to spent time researching how to use the Observer pattern(ie. Extractors) to reflect such changes. We also had to differentiate similar commands by using a descriptor word(patients/appts), and spent some time learning regex in order to update the AddressBookParser's pattern checking. As our mark, unmark, edit appts and cancel features also used the same mechanism to retrieve the specified appointment, we had to spent time refactoring our Parser classes to reduce duplication of such code.
-   
+
 In v1.3, we implemented our organisation features: hide, unhide, group, ungroup and find. While they all individually worked as expected, we had a hard time integrating hide/unhide/find to work well together, as these commands all deal with inserting a Predicate into the filtered list. It took some time for us to figure out how to keep track of the current Predicate in each filtered list and to add onto this Predicate while executing any hide/unhide/find command.
-   
+
 Overall, we are satisfied with our project given the time constraints and huge learning curve for the starting weeks. While workload is relatively high, it was an enjoyable experience to be working in a group.
