@@ -35,8 +35,8 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Patient editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withConditions(VALID_CONDITION_BOB).withTags(VALID_TAG_ROOM).build();
+        Patient editedAlice = new PersonBuilder(ALICE).withConditions(VALID_CONDITION_BOB)
+                .withTags(VALID_TAG_ROOM).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
