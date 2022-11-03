@@ -453,7 +453,7 @@ Format: `deleteo INDEX`
 
 * Deletes the order at the specified INDEX.
 * `INDEX` refers to the index number shown in the displayed order list.
-* `INDEX` must be a positive integer 1, 2, 3, …
+* `INDEX` **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `listo` followed by `deleteo 2` deletes the 2nd order from the order list.
