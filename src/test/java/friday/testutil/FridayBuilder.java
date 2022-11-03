@@ -6,7 +6,7 @@ import friday.model.student.Student;
 /**
  * A utility class to help with building Friday objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new FridayBuilder().withStudent("John", "Doe").build();}
+ *     {@code Friday friday = new FridayBuilder().withStudent("John", "Doe").build();}
  */
 public class FridayBuilder {
 
@@ -21,7 +21,7 @@ public class FridayBuilder {
     }
 
     /**
-     * Adds a new {@code Student} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Student} to the {@code Friday} that we are building.
      */
     public FridayBuilder withStudent(Student student) {
         friday.addStudent(student);
