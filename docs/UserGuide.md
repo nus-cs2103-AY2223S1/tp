@@ -134,7 +134,7 @@ Format: `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WA
 * `START DATE` is the date of the first day in the itinerary. It must be given in the format `yyyy-mm-dd`.
 * `DURATION` will determine the number of days in the itinerary, and must be between 1 and 365 days.
   - e.g. `sd/2022-12-10 du/3` would mean that the trip is from 10 Dec 2022 to 12 Dec 2022.
-* `BUDGET` is the budget for the itinerary and must be between $0 and $1,000,000. Please provide the budget in dollars ($), you may include cents too!
+* `BUDGET` is the budget for the itinerary and must be between 0 and 1,000,000. Please provide the budget in dollars ($), you may include cents too!
   - e.g. `b/1000` is $1,000.
   - e.g. `b/1000.50` is $1,000.50.
   
@@ -259,8 +259,8 @@ Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 
 * `PRIORITY` is used to rank the importance of an item. It must be a number from 1 to 5, with 1 being the highest priority.
 
-* `COST` is the cost of the item and must be between $0 to $1,000,000. Please provide the cost in dollars ($), you may include cents too!
-  - e.g. `b/100.20` is $100.20.
+* `COST` is the cost of the item and must be between 0 and 1,000,000. Please provide the cost in dollars ($), you may include cents too!
+  - e.g. `c/100.20` is $100.20.
 
 * You cannot add items with the same description as an existing item in the item list.
 
@@ -283,7 +283,7 @@ Edits an existing item in the item list.
 
 Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 
-* Edits the item at the specified `INDEX`. The index refers to the index number displayed in either the unscheduled item list, or the scheduled items in the day lists.
+* Edits the item at the specified `INDEX`. The index refers to the index number displayed in either the wishlist, or the scheduled items in the day lists.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
