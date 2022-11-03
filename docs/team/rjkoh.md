@@ -20,7 +20,8 @@ Given below are my contributions to the project.
   * What it does: View user's or person's timetable for the week (with the lessons added).
   * Justification: Easily arrange meetings by viewing everyone's schedule to find their free time.
   * Highlights:
-  ![Timetable Window](../images/TimetableWindow.png)
+
+  <img src="../images/TimetableWindow.png" width="300" />
 
 
 * **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=rjkoh&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
