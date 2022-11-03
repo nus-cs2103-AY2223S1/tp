@@ -19,11 +19,9 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.boba.commons.core.Messages;
-import seedu.boba.commons.core.index.Index;
 import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.BobaBotModelManager;
 import seedu.boba.model.UserPrefs;
-import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.NameContainsKeywordsPredicate;
 import seedu.boba.model.customer.Phone;
