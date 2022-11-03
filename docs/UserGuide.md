@@ -85,6 +85,7 @@ Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 
 - The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
 - Date format accepted is: dd/mm/yyyy.
+- Date cannot be after the current date.
 
 Examples:
 * `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
@@ -137,6 +138,7 @@ Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
 - Date format accepted is: dd/mm/yyyy.
+- Date cannot be after the current date.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
