@@ -38,17 +38,17 @@ public class EditItemCommand extends Command {
             + CliSyntax.PREFIX_ITEM + "ITEM NAME "
             + CliSyntax.PREFIX_QUANTITY + "QUANTITY "
             + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION "
-            + CliSyntax.PREFIX_TAG + "TAG... "
             + CliSyntax.PREFIX_SELL_PRICE + "SELL PRICE "
             + CliSyntax.PREFIX_COST_PRICE + "COST PRICE \n"
+            + CliSyntax.PREFIX_TAG + "TAG... "
             + "Example: " + COMMAND_WORD + " 1 "
             + CliSyntax.PREFIX_ITEM + "Paper "
             + CliSyntax.PREFIX_QUANTITY + "1000 "
             + CliSyntax.PREFIX_DESCRIPTION + "White printing paper "
-            + CliSyntax.PREFIX_TAG + "Limited "
-            + CliSyntax.PREFIX_TAG + "New "
             + CliSyntax.PREFIX_SELL_PRICE + "2.00 "
-            + CliSyntax.PREFIX_COST_PRICE + "1.98 ";
+            + CliSyntax.PREFIX_COST_PRICE + "1.98 "
+            + CliSyntax.PREFIX_TAG + "Limited "
+            + CliSyntax.PREFIX_TAG + "New ";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item:\n%1$s";
 
