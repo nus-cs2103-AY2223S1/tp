@@ -56,7 +56,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 
@@ -70,7 +70,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/Main.java) and 
+[`MainApp`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -104,13 +105,15 @@ The sections below give more details of each component.
 
 ### 3.2 UI component
 
-**API** : [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API** : [`Ui.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
+For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -122,7 +125,7 @@ The `UI` component,
 
 ### 3.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -138,7 +141,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -151,10 +155,9 @@ How the parsing works:
 
 
 ### 3.4 Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" />
-
 
 The `Model` component,
 
@@ -172,7 +175,7 @@ The `Model` component,
 
 ### 3.5 Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -326,18 +329,18 @@ The `export` feature allows the user to export the displayed list in InternConne
 #### Implementation
 
 `exportCommand` class is used in the execution of `export` command.
-`Storage#exportDisplayedList(displayedList, filePath)` is called to save the JSON file in `data/export/` folder.
+`Storage#exportDisplayedListAddressBook(displayedListAddressBook, filePath)` is called to save the JSON file in `data/export/` folder.
 
 Given below is an example success scenario and how the `export` mechanism behaves at each step.
 
-1. The user executes `export`.
-2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
-3. `LogicManager` calls `ExportCommand#execute(model, storage)`.
-4. `ExportCommand` gets current DateTime and use it for the output JSON file path.
-5. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`.
-6. `ExportCommand` calls `Storage#exportDisplayedList()`
-7. The displayedList is stored as a JSON file in `data/export/<currentDateTime>.json`.
-8. A `CommandResult` object indicating that the `export` command is successful will be created.
+1. The user executes `export`
+2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`
+3. `LogicManager` calls `ExportCommand#execute(model, storage)`
+4. `ExportCommand` gets current `DateTime` and use it for the output JSON file name
+5. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`
+6. `ExportCommand` calls `Storage#exportDisplayedListAddressBook(displayedListAddressBook, filePath)`
+7. The displayed list is stored as a JSON file in `data/export/<currentDateTime>.json`
+8. A `CommandResult` object indicating that the `export` command is successful will be created
 
 The following sequence diagram shows how the `export` command works:
 
@@ -568,7 +571,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given index is not a positive integer or out of bounds.
 
     * 3a1. InternConnect shows an error message.
 
@@ -593,11 +596,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: Import applicants from an external json file**
+**Use case: Import applicants from an external JSON file**
 
 **MSS**
 
-1.  User requests to import applicants from a json file
+1.  User requests to import applicants from a JSON file
 2.  InternConnect adds all applicants
 3.  InternConnect shows the updated list of applicants
 
@@ -605,7 +608,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given file path is invalid or is not a json file.
+* 1a. The given file path is invalid or is not a JSON file.
 
     * 1a1. InternConnect shows an error message.
 
@@ -617,6 +620,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+
+**Use case: Export displayed list to a JSON file**
+
+**MSS**
+
+1.  User requests to export displayed list to a JSON file
+2.  InternConnect exports displayed list to a JSON file
+
+    Use case ends.
 
 **Use case: Exit**
 
@@ -678,16 +690,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     In addition, the GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for, 
     resolutions 1280x720 and higher, and, for screen scales 150%.
 
-*{More to be added}*
-
 ### 6.5 Glossary
 
-* **Applicant**: An applicant refers to a person who has applied for a role. 
-  Applicant and Person can be used interchangeably as they refer to the same thing.
-* **Role**: Role and Job are used interchangeably. They refer to a job opening that an applicant applied for.
+* **Applicant**: An applicant refers to a person who has applied for a job. 
+  Applicant and Person can be used interchangeably as they refer to the same thing
+* **Job**: A job opening the applicant applied for
 * **Command Line Interface (CLI)**: Text-based user interface
 * **Graphical User Interface (GUI)**: Graphic-based user interface
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X 
+* **Main Success Scenario (MSS)**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -696,8 +707,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: Note: These instructions only provide a starting point for testers to work on;
+testers are expected to do more exploratory testing.
 
 </div>
 
@@ -707,7 +718,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts.
+   2. Double-click the jar file expected: Shows the GUI with a set of sample applicants.
 
 2. Saving window preferences
 
@@ -779,7 +790,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `delete 0`<br>
       Expected: No applicant is deleted. Error details shown in the status message.
 
-3. Other incorrect delete commands to try: `delete`, `delete john`, `delete x`(where `x` is larger than the list size)<br>
+3. Other incorrect `delete` commands to try: `delete`, `delete john`, `delete x`(where `x` is larger than the list size)<br>
    Expected: No applicant is deleted. Error details shown in the status message.
 
 
@@ -825,15 +836,33 @@ testers are expected to do more *exploratory* testing.
    Expected: No applicant is added. Error details shown in the status message.
 
 
-### 7.8 Exporting displayed list
+### 7.8 Exporting displayed list to a JSON file
 
-1. tc description
+1. Exporting empty displayed list 
 
-   1. Prerequisites:
+   1. Test case: `find g/nonbinary` followed by `export`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is 
+      **"persons"** and value is an empty array.
+      
+   2. Test case: `find g/nonbinary` followed by `export 1`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
+      **"persons"** and value is an empty array.
+      
+2. Exporting non-empty displayed list
 
-   2. Test case:
-
-2. more tc
+   1. Prerequisite: currently displayed list is not empty
+      
+   2. Test case: `export`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is 
+      **"persons"** and value is a non-empty array.
+      
+   3. Test case: `export a`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
+      **"persons"** and value is a non-empty array.
 
 
 ### 7.9 Checkout a new or existing list
