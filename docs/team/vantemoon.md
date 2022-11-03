@@ -41,24 +41,26 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=vantemoon&breakdown=true)
 
-* **Project management**:
-    * _{to be added soon}_
-
 * **Enhancements to existing features**:
-    * _{to be added soon}_
+    * Wrote additional tests for existing features to increase coverage by +3.47%: 
+      [#147](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/147)
 
 * **Documentation**:
     * User Guide:
         * Added documentation for features `help`, `show`, `attendance`, `assignments`, `grade`, 
-          `avail`, `roles`, `filter`, `new`, `swap`, and `rename`
+          `avail`, `roles`, `filter`, `new`, `swap`, and `rename`: 
           [#49](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/49), [#96](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/96)
-        * Did cosmetic tweaks to existing documentation of features `add`, `list`, `edit`, `delete`, `clear`, and `exit`
+        * Did cosmetic tweaks to existing documentation of features `add`, `list`, `edit`, `delete`, `clear`, and `exit`:
           [#49](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/49), 
       * Developer Guide:
-        * Added implementation details of the grade feature [#75](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/75)
+        * Added implementation details of the grade feature: [#75](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/75)
 
 * **Community**:
-    * _{to be added soon}_
+    * PRs reviewed (with non-trivial review comments): [#55](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/55), 
+      [148](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/148)
+    * Reported bugs and suggestions for other teams in the class during [ped](https://github.com/vantemoon/ped) and pe
+      (examples: [1](https://github.com/vantemoon/ped/issues/1), [2](https://github.com/vantemoon/ped/issues/2),
+      [3](https://github.com/vantemoon/ped/issues/6), [4](https://github.com/vantemoon/ped/issues/8))
 
-* **Tools**:
-    * _{to be added soon}_
+* **Others**:
+    * Created UI prototype for the product
