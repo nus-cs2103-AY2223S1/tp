@@ -63,7 +63,6 @@ public class ModCommandParser implements Parser<ModCommand> {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        // TODO: Add cases for other mod commands
         switch (commandWord) {
         case ModAddCommand.COMMAND_WORD:
             return parseAddCommand(arguments);
@@ -80,6 +79,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         }
     }
 
+    //@@author jonasgwt
     /**
      * Parses a mod add command from user to construct a ModAddCommand for execution.
      *
@@ -106,6 +106,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return new ModAddCommand(index, mods.get());
     }
 
+    //@@author ElijahS67
     /**
      * Parses a mod delete command from user to construct a ModDeleteCommand for execution.
      *
@@ -133,6 +134,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return new ModDeleteCommand(index, mods.get());
     }
 
+    //@@author carriezhengjr
     /**
      * Parses a mod mark command from user to construct a ModMarkAllCommand or ModMarkCommand for execution.
      *
@@ -166,6 +168,7 @@ public class ModCommandParser implements Parser<ModCommand> {
 
     }
 
+    //@@author carriezhengjr
     /**
      * Parses a mod unmark command from user to construct a ModUnmarkCommand for execution.
      *
@@ -192,6 +195,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return new ModUnmarkCommand(index, mods.get());
     }
 
+    //@@author jonasgwt
     /**
      * Converts a collection of strings representing mod names to a set of mods.
      *
@@ -209,6 +213,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return Optional.of(ParserUtil.parseMods(modSet));
     }
 
+    //@@author jonasgwt
     /**
      * Extracts out the index of the student specified in the user command.
      *
@@ -225,6 +230,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return index;
     }
 
+    //@@author carriezhengjr
     /**
      * Extracts out the word after mod mark, which could be the index of the student or "all".
      *
@@ -248,6 +254,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return indexOrAll;
     }
 
+    //@@author chm252
     /**
      * Parses a mod find command from user to construct a ModFindCommand for execution.
      *
@@ -280,6 +287,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         }
     }
 
+    //@@author jonasgwt
     /**
      * Extracts out the mods specified in the user command.
      *

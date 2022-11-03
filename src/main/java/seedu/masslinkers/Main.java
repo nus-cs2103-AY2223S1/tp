@@ -1,7 +1,7 @@
 package seedu.masslinkers;
 
 import javafx.application.Application;
-
+//@@author
 /**
  * The main entry point to the application.
  *

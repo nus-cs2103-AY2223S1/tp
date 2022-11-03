@@ -76,6 +76,7 @@ Given below are my contributions to the project.
 #### Community:
 * Reviewed other teammate's PRs.
 * Contributed in weekly team meeting.
+* Submitted [bugs and feedback](https://github.com/carriezhengjr/ped/issues) for [ArtBuddy](https://github.com/AY2223S1-CS2103T-W11-3/tp), a project done by another team in the CS2103T module.
 
 #### Tools:
 * JavaFX: Platform which Mass Linkers' UI uses

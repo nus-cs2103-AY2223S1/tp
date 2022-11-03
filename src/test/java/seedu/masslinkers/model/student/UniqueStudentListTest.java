@@ -21,7 +21,8 @@ import org.junit.jupiter.api.Test;
 import seedu.masslinkers.model.student.exceptions.DuplicateStudentException;
 import seedu.masslinkers.model.student.exceptions.StudentNotFoundException;
 import seedu.masslinkers.testutil.StudentBuilder;
-
+//@@author sltsheryl
+//@@author jonasgwt
 public class UniqueStudentListTest {
 
     private final UniqueStudentList uniqueStudentList = new UniqueStudentList();

@@ -16,7 +16,7 @@ import seedu.masslinkers.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.masslinkers.model.interest.Interest;
 import seedu.masslinkers.model.student.Mod;
 import seedu.masslinkers.model.student.Student;
-
+//@@author
 /**
  * A utility class for Student.
  */

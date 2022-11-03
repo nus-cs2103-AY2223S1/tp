@@ -27,6 +27,7 @@ import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.model.student.Telegram;
 import seedu.masslinkers.testutil.StudentBuilder;
 
+//@@author
 public class AddCommandTest {
 
     @Test

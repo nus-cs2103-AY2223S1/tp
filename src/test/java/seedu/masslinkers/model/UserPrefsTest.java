@@ -3,7 +3,7 @@ package seedu.masslinkers.model;
 import static seedu.masslinkers.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
+//@@author
 public class UserPrefsTest {
 
     @Test

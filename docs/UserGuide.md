@@ -20,7 +20,7 @@ In this *User Guide*, we will take you through the many useful features and func
 
 Feeling lost as a first-time user? We advise you to follow the User Guide sequentially, starting from [Getting started](#getting-started), as it provides a natural flow of how the commands should be executed.
 
-If you are more familiar with CLI or Mass Linkers, head over to the [Command Summary](#command-summary) to start using the app.
+If you are more familiar with CLI or Mass Linkers, head over to the [Command summary](#command-summary) to start using the app.
 
 The following icons are used in the _User Guide_ to denote special information to look out for.
 #### Meaning of icons
@@ -103,10 +103,9 @@ The following notes outline several noteworthy format which the [Feature](#featu
 
 </div>
 
-<div markdown="block" class="alert alert-info">
-
 Parameters are the input words that come after a command word to specify how the command should be executed. Click [here](#parameter-requirements) to view the list of parameter requirements.
 
+<div markdown="block" class="alert alert-info">
 **:information_source: Regarding parameters:**<br>
 
 * For all commands involving `INDEX`, `INDEX` refers to the index number shown in the currently displayed list.<br>
@@ -171,20 +170,33 @@ Finds batchmates whose details contain __any__ of the given keywords.
 
 __Format:__ `find KEYWORD [MORE_KEYWORDS]...`
 
-* `NAME`, `TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL` are searched.
-* The search is case-insensitive. e.g `Hans` will return `hans`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will return both `Hans Bo` and `Bo Hans`.
-* To search using `NAME`, only __full words__ will be matched. e.g. `Ha` will _not_ return a batchmate with the name `Hans`.
-* To search using `TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL`, partial words are accepted. E.g. `boh` will return `bohans`.
-* Batchmates matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* `NAME`, `TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL` are searched simultaneously.
+* The search is case-insensitive. e.g `jOnAs` will return `Jonas`, `ivAn` will return `Ivan`.
+* Finding by `NAME`:
+  * The order of the keywords does not matter. e.g. `Ming Qing` will return both `Ming Qing` and `Qing Ming`.
+  * Batchmates matching at least one keyword will be returned. e.g. `Ming Xuan` will return `Ming Qing`, `Yu Xuan`.
+  * Only __full words__ will be matched. e.g. `Qin` will _not_ return a batchmate with the name `Qing`. You need to write `Qing`.
+* Finding by `TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL`:
+  * Partial words are accepted. E.g. `uxu` will return `yuxuan`.
+  * Unlike `NAME`, these items (`TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL`) are not separated by spaces. If full words are needed for matching, you will have to type the full item out each time you search.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+`TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL` are unique. if your partial text input is too common and list too many batchmates, simply type a few more letters! It is still better than typing the entire item!
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: find:**<br>
+`find` command searches `NAME`, `TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL` simultaneously.
+</div>
 
 __Examples:__
-* When you want to search using `NAME`:
-  * `find John` returns `john` and `John Doe`.
-  * `find alex david` returns `Alex Tan`, `David Chua`.
-* When you want to search using `TELEGRAM`, `GITHUB` or `EMAIL`:
-  * `find boh` returns the batchmates with telegram handle, github username or email address containing `boh`, e.g. `bohans`.
-* When you want to search using `PHONE`:
+* When you want to search by `NAME`:
+  * `find ming` returns `Ming`, `Ming Qing` and `Hong Ming`.
+  * `find byron henry` returns `Byron Huang`, `Henry Chuah`.
+* When you want to search by `TELEGRAM`, `GITHUB` or `EMAIL`:
+  * `find ion` returns the batchmates with Telegram handle, GitHub username or email address containing `ion`, e.g. batchmate with telegram handle `liona`, batchmate with GitHub username `thecation47`.
+* When you want to search by `PHONE`:
   * `find 999` returns the batchmates with phone number `69998888`, `89991234` or `99912345`.
 
 #### 5. List all batchmates: `list`
@@ -419,7 +431,7 @@ _Module prefix refers to the first two characters of every module name._
 --------------------------------------------------------------------------------------------------------------------
 
 ## **FAQ**
-Facing an issue? Below are the commonly asked questions, which address technical and privacy concerns.
+Facing an issue? Below are several commonly asked questions, which address technical and privacy concerns.
 
 #### Technical Support
 **Q**: How do I transfer my data to another Computer?<br>

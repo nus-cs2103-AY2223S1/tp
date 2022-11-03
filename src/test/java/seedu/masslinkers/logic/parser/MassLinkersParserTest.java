@@ -32,6 +32,7 @@ import seedu.masslinkers.testutil.EditStudentDescriptorBuilder;
 import seedu.masslinkers.testutil.StudentBuilder;
 import seedu.masslinkers.testutil.StudentUtil;
 
+//@@author
 public class MassLinkersParserTest {
 
     private final MassLinkersParser parser = new MassLinkersParser();
