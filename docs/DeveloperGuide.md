@@ -554,10 +554,16 @@ Priority legend
 
 **Extensions**
 
-* 1a. The given format is invalid.
+* 1a. The format of the given command is invalid.
 
     * 1a1. MineFriends shows an error message.
+  
+      Use case ends.
+    
+* 1b. The friend already exists in the friend list.
 
+    * 1b1. MineFriends shows an error message.
+      
       Use case ends.
 
 **Use case: Delete a friend**
@@ -602,11 +608,82 @@ Priority legend
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. MineFriends shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3b. The format of the given field to edit is invalid.
+
+    * 3b1.  MineFriends shows an error message.
+  
+      Use case resumes at step 2.
+
+* 3c. User requests to edit a friend's username to one that belongs to another friend in the list.
+
+  * 3b1.  MineFriends shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: Find a friend**
+
+**MSS**
+
+1. User requests to find a friend in the list using their name as a keyword.
+2. MineFriends shows a list of the friends matched.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2b. The search does not match the given name to any friend in the list.
+
+  * 2b1. MineFriends returns an empty friend list.
+  
+    Use case ends.
+  
+**Use case: Suggest friends**
+
+**MSS**
+
+1. User requests to suggest friends in the list who matches the given keyword or available time interval.
+2. MineFriends shows the list of friends matched.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The format of the given command is invalid.
+
+    * 1a1. MineFriends shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 2a. The search does not match the given fields to any friend in the list.
+
+    * 2a1. MineFriends returns an empty friend list.
+
+      Use case ends.
+
+**Use case: Enter a command**
+
+**MSS**
+
+1. User attempts to enter a command.
+2. MineFriends shows a drop-down list of auto-completed command suggestions.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a1. User enters an input that does not match any part of the correct commands.
+
+  Use case ends.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
