@@ -77,7 +77,7 @@ Note how the app contains some sample data.
 
 ### Viewing help: help
 
-Shows a list of commands explaining how to use TABS and a message to the TABS' user guide.
+Shows a list of commands explaining how to use TABS and a message to TABS' user guide.
 
 ![Help Example](images/user-guide/Help.png)
 

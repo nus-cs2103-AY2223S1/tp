@@ -31,7 +31,7 @@ public class AddGroupMemberCommand extends Command {
             + "Example: " + COMMAND_WORD + " g/Group Alpha n/Alice Chee";
     public static final String MESSAGE_DUPLICATE_PERSON_IN_GROUP = "%1$s already exists in the group.";
     public static final String MESSAGE_INVALID_GROUP = "This group does not exist.";
-    public static final String MESSAGE_INVALID_PERSON = "%1$s is not in the address book.";
+    public static final String MESSAGE_INVALID_PERSON = "%1$s is not in TABS.";
     public static final String MESSAGE_ASSIGN_GROUP_SUCCESS = "%1$s was added to group: %2$s";
 
     private final Name name;
@@ -41,10 +41,10 @@ public class AddGroupMemberCommand extends Command {
      * @param name of the person in the filtered person list to add to group
      * @param group of the person to be added to
      */
-    public AddGroupMemberCommand(String group, String name) {
+    public AddGroupMemberCommand(PersonGroup group, Name name) {
         requireAllNonNull(name, group);
-        this.name = new Name(name);
-        this.personGroup = new PersonGroup(group);
+        this.name = name;
+        this.personGroup = group;
     }
 
     @Override

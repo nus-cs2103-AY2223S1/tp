@@ -23,10 +23,10 @@ public class DeleteGroupCommand extends Command {
     public static final String COMMAND_WORD = "deletegroup";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the specified group from the address book.\n"
+            + ": Deletes the specified group from TABS.\n"
             + "Parameters: "
             + PREFIX_GROUP + "GROUPNAME "
-            + "(must be one currently in Address Book)\n"
+            + "(must be one currently in TABS)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GROUP + "CS2103T Team Project";
 

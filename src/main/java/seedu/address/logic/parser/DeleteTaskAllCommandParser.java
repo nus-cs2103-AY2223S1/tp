@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.DeleteTaskAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.group.GroupName;
 
 /**
  * Parses input arguments and creates a new {@code DeleteTaskAllCommand} object
@@ -26,23 +27,25 @@ public class DeleteTaskAllCommandParser implements Parser {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_GROUP, PREFIX_TASK);
 
-        String inputGroup;
+        GroupName inputGroup;
         Assignment inputTask;
+        String group;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskAllCommand.MESSAGE_USAGE));
         }
 
         try {
-            inputGroup = argMultimap.getValue(PREFIX_GROUP).get();
+            group = argMultimap.getValue(PREFIX_GROUP).get();
             String task = argMultimap.getValue(PREFIX_TASK).get();
 
+            inputGroup = ParserUtil.parseGroupName(group);
             inputTask = ParserUtil.parseAssignment(task);
         } catch (ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
 
-        return new DeleteTaskAllCommand(inputGroup, inputTask);
+        return new DeleteTaskAllCommand(group, inputTask);
     }
 
     /**
