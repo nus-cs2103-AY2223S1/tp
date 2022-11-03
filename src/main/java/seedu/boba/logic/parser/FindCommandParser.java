@@ -53,7 +53,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
                 findPersonDescriptor.setEmail(email);
             } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
 
             //Checks the assumption that either the Phone_Number or Email should be filled
