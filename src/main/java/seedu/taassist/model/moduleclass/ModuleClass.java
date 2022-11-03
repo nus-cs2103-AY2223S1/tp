@@ -20,8 +20,8 @@ import seedu.taassist.model.uniquelist.Identity;
  */
 public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClass> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric and" +
-            " not exceeding 25 characters.";
+    public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric and"
+            + " not exceeding 25 characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String className;
@@ -56,8 +56,8 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
     /**
      * Returns true if a given string is a valid class name.
      */
-    public static boolean isValidModuleClassName(String test) { // TODO: Ensure that class exists
-        return test.matches(VALIDATION_REGEX) && test.length() <= 25;
+    public static boolean isValidModuleClassName(String className) {
+        return className.matches(VALIDATION_REGEX) && className.length() <= 25;
     }
 
     public String getClassName() {
