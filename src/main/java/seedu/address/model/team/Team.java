@@ -172,12 +172,21 @@ public class Team {
 
     /**
      * Removes {@code Person} from this {@code Team}.
-     * {@code person} must exist in the TruthTable.
+     * {@code person} must exist in the team.
      */
     public void removeMember(Person person) {
         teamMembers.remove(person);
         // when a member is removed from a team, all corresponding tasks have to remove member as assignee.
         taskList.removeAssigneeIfExists(person);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the member list with {@code editedPerson}.
+     * {@code target} must exist in the member list.
+     */
+    public void setMember(Person target, Person editedPerson) {
+        teamMembers.setPerson(target, editedPerson);
+        taskList.setAssigneeIfExists(target, editedPerson);
     }
 
     public ObservableList<Task> getTaskList() {
@@ -194,7 +203,7 @@ public class Team {
 
     /**
      * Removes {@code Task} from this {@code Team}.
-     * {@code task} must exist in the TruthTable.
+     * {@code task} must exist in the team.
      */
     public void removeTask(Task task) {
         taskList.remove(task);
