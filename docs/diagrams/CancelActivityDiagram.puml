@@ -6,6 +6,7 @@ if () then ([valid index])
     :Shows list with cancelled appointment;
 else ([else])
     :Throw exception, list unchanged;
+
 endif
 stop
 @enduml

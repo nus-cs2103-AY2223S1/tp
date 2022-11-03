@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* In order to change the contents page for User Guide and Developer Guide to follow numbering order, we reused code from https://github.com/lesterong/tp/blob/master/docs/assets/css/style.scss with minor modifications.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -234,10 +234,12 @@ Our team decided to change the user input format of the cancel command from `can
 to `cancel APPOINTMENT_INDEX`, so it is faster for
 the user to key in, and also more similar to the other commands with only 1 index.
 
-### \[Implemented\] Hide Patients
-The hide patients command hides patients based on at least 1 tag or name given. If more than 1 tag or name is given,
+### \[Implemented\] Hide patients/appointments
+- The `hide patients` command hides patients based on at least 1 tag or name given. If more than 1 tag or name is given,
 then any patients that match that tag or name will be hidden.
-For example, hide patients t/nose t/ear will hide all patients that has either a nose or ear tag.
+For example, `hide patients t/nose t/ear` will hide all patients that has either a nose or ear tag.
+- The `hide appts` command works in exactly the same way, but the conditions are the reason, tag, and status of
+the appointment. For example, `hide appts s/marked` will hide all appointments that are marked.
 
 #### Implementation
 The key idea of hide and other organisational commands is to allow users to successively filter out patients,
@@ -246,15 +248,30 @@ followed by `hide patients t/ear` should apply both hide commands successively, 
 shown list instead of the entire patient list.
 
 To implement this, and to ensure that hide works well with other organisational features such as find and unhide, we
-maintain an overarching HiddenPredicateSingleton which captures the state of the current patient list. This singleton
-serves as a global predicate which is updated every time an organisational command like `hide patients` is entered.
+maintain an overarching HiddenPredicateSingleton which captures the state of the current patient and appointment list.
+This singleton serves as a global predicate which is updated every time an organisational command is entered.
 
-Each time the command is executed, the current patient predicate will be combined with (AND operation) a predicate
-that is the complement of the given condition, since the predicate is the predicate to show the patients, and thus
-to hide we will have to apply a NOT operation to the given condition e.g `hide patients t/ear` means we should
+Each time the command is executed, the current patient/appointment predicate will be combined with (AND operation)
+a predicate that is the complement of the given condition, since entries that satisfy the model predicate will be shown
+, and thus to hide we will have to apply a NOT operation to the given condition e.g `hide patients t/ear` means we should
 combine the current patient list predicate with a predicate that will fail if the patient tag contains ear.
-The activity diagram below will illustrate a hide patient process.
+The activity diagram below will illustrate a hide patient process. A similar process applies for hide appointment.
 
+![Hide Patients](images/HidePatientsActivityDiagram.png)
+
+
+#### Design considerations:
+**Aspect: How hide patient/appointment executes:**
+
+* **Current choice:** Making use of a singleton class to capture the state of the patient/appointment list at all times.
+
+**Aspect: Whether hide should hide by any match or all match**
+* **Current choice:** Making hide any match, meaning patients/appts that match any of the keywords will be hidden.
+E.g: `hide appts s/unmarked t/ear` will hide all appointments that is either unmarked OR has a ear tag.
+* **Alternative:** Making hide all match meaning `hide appts s/unmarked t/ear` only hides appointments that satisfy
+both the status and tag conditions.
+* We decided to go with any match so that it is easier for users if they want to hide many types of entries at one go,
+as opposed to all match since the user will have to key in hide many times successively.
 
 ### \[Implemented\] Group Patient
 
@@ -1291,3 +1308,4 @@ displaying the number of filtered results should appear after every valid input.
       2. Open the file `idENTify.json`, and corrupt the file (E.g. Delete the very first line of the `idENTify.json` file).
       3. Relaunch the app.
    3. Expected result: A new file will be created with no patients or appointments.
+   
