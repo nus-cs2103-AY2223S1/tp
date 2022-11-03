@@ -36,7 +36,7 @@ public class Cap {
      * @param max A maximum value for the CAP.
      */
     public static boolean isValidCap(double cap, double max) {
-        return cap <= max && cap > MINIMUM;
+        return cap <= max && cap > MINIMUM && max <= 100.0;
     }
 
     public double getValue() {
