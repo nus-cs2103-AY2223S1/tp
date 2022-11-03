@@ -494,7 +494,7 @@ Finds all students with a particular tag.
 Formats: `find t/tagName`
 
 - Only one tag can be searched at each time.
-- The tag is case-sensitive.
+- The tag is case-insensitive.
 
 <div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one tag such as find t/python java.
 </div>
