@@ -59,7 +59,7 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
       - [Redo `[coming in v2.0]`](#redo-coming-in-v20)
   * [FAQ](#faq)
   * [Glossary](#glossary)
-  * [Command summary](#command-summary)
+  * [Summary](#summary)
 
 ---
 
@@ -109,35 +109,27 @@ In addition, for better readability, icons in this guide have been colored black
 
 1. Ensure you have Java `11`<sup>[6](#glossary)</sup> or above installed in your Computer.
 
-2. Download the latest `SectresBook.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-2/tp/releases).
+1. Download the latest `SectresBook.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_<sup>[5](#glossary)</sup> for your SectresBook.
+1. Copy the file to the folder you want to use as the _home folder_<sup>[5](#glossary)</sup> for your SectresBook.
 
-4. Double-click the file to start the app. A GUI<sup>[4](#glossary)</sup> similar to the one below should appear in a few seconds. Note how the app contains some sample data. (Don't worry about the layout of the GUI<sup>[4](#glossary)</sup> yet! It will be explained in the next section.)
+1. Double-click the file to start the app. A GUI<sup>[4](#glossary)</sup> similar to the one below should appear in a few seconds. Note how the app contains some sample data. (Don't worry about the layout of the GUI<sup>[4](#glossary)</sup> yet! It will be explained in the next section.)
+  ![Ui](images/Ui.png)
 
-<br/>
-   
-   ![Ui](images/Ui.png)
+1. We **strongly recommend** you to use this app at a resolution of 1024x768 or greater to experience the greatest level of comfort. You may also click the fullscreen icon at the top right hand corner of the window next to the close icon to maximise the window.
 
-5. We **strongly recommend** you to use this app at a resolution of 1024x768 or greater to experience the greatest level of comfort. You may also click the fullscreen icon at the top right hand corner of the window next to the close icon to maximise the window.
+1. Press your spacebar (recommended), or bring your cursor to the [command box](#command-box) area and click onto it, to access the typing space. The results display will come into view below the command box.
 
-6. Type commands in the command box and press Enter to execute them. For example, typing **`help`** into the command box and pressing Enter will open the [help window](#viewing-help--help).
-
-<br/>
-
-Some example commands you can try:
-
-* **`list`** : Lists all contacts.
-
-* <code><b>add</b> name/John Doe phone/98765432 email/johnd@example.com home/John street, block 123, #01-01 bday/01/01/2000</code> : Adds a contact named `John Doe` to the SectresBook.
-
-* **`delete 3`** : Deletes the 3rd contact shown in the current list.
-
-* **`help`**: Opens a [help window](#viewing-help--help).
-
-* **`clear`** : Deletes all contacts.
-
-* **`exit`** : Exits the app.
+1. Type commands in the [command box](#command-box) and press Enter to execute them. For example, typing **`help`** into the command box and pressing Enter will open the [help window](#viewing-help--help).
+ - Some example commands you can try:
+  - **`list`** : Lists all contacts.
+  - <code><b>add</b> name/John Doe phone/98765432 email/johnd@example.com home/John street, block 123, #01-01 bday/01/01/2000</code> : Adds a contact named `John Doe` to the SectresBook.
+  - **`delete 3`** : Deletes the 3rd contact shown in the current list.
+  - **`help`**: Opens a [help window](#viewing-help--help).
+  - **`clear`** : Deletes all contacts.
+  - **`exit`** : Exits the app.
+  
+1. Once you are done executing commands and want to see the GUI, press the `ESC` key (reccommended), or click on anywhere that is not the command box, to leave the typing space and hide the results display.
 
 Refer to [Features](#features) below for details of each command.
 
@@ -237,7 +229,11 @@ Check [Notes Features](#note-features) to learn more about the commands you can 
 
 #### Name
 
-This is the name of the person to be recorded in the SectresBook. Two persons cannot have exactly the same name, but slight deviations are acceptable. Our team recognizes that many people may share the same name, so it is alright to use close aliases.
+This is the name of the person to be recorded in the SectresBook. Two persons cannot have exactly the same name, but slight deviations are acceptable. Our team recognizes that many people may share the same name, so it is alright to use close aliases. 
+
+This property<sup>[11](#glossary)</sup> is compulsory to declare during initialisation<sup>[11](#glossary)</sup>.
+
+Only alphanumeric characters<sup>[1](#glossary)</sup> are accepted in this property<sup>[1](#glossary)</sup>. Numbers are accepted in use as disambiguation, but may not exist as a standalone word without alphabets immediately before or following it. See examples below for a more specific overview.
 
 This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of the silhouette of a person.
 
@@ -245,6 +241,29 @@ This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#gl
 
 - Identified by the prefix `name`.
 - This is a valid property<sup>[11](#glossary)</sup> to find a person by using the [`find` command](#locating-persons-by-name-or-contact-number--find).
+
+<table>
+  <tr>
+    <th>Valid Examples</th>
+    <td>
+     <code>Samuel West</code><br/>
+     <code>Jonathan Lee Wen Xin</code></br>
+     <code>Jack Robert the 3rd</code></br>
+     <code>3Lite M1k0ch1</code></br>
+     <code>Elizabeth Wong n11</code>
+    </td>
+  </tr>
+  <tr>
+    <th>Invalid Examples</th>
+    <td>
+     <code>@*)^%</code> (Non-alphanumeric characters are not accepted)</br>
+     <code>Jack Robert the 3</code> (Number may not exist as a standalone word)</br>
+     <code>Elizabeth Wong 11</code> (Number may not exist as a standalone word)</br>
+     <code>Jonathan 25 Chin</code> (Number may not exist as a standalone word)</br>
+     <code>(25) Jonathan Chin</code> (Non-alphanumeric characters cannot be used adjacent to numbers)</br>
+    </td>
+  </tr>
+</table>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 It is recommended to include the full name of the person instead of aliases for easier searching.
@@ -254,7 +273,7 @@ It is recommended to include the full name of the person instead of aliases for 
 
 #### Phone
 
-This is the phone number of the person to be recorded in the SectresBook. 
+This is the phone number of the person to be recorded in the SectresBook. It is compulsory to declare this during initialisation<sup>[11](#glossary)</sup>.
 
 This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of a mobile phone.
 
@@ -274,7 +293,7 @@ Ensure that no two persons have the same phone number! This is allowed in the pr
 
 #### Email
 
-This is the email address of the person to be recorded in the SectresBook. It serves mainly as a point of information regarding the person, and has no additional features tied to it.
+This is the email address of the person to be recorded in the SectresBook. It serves mainly as a point of information regarding the person, and has no additional features tied to it. This property<sup>[11](#glossary)</sup> is compulsory to declare during initialisation<sup>[11](#glossary)</sup>.
 
 This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of an envelope.
 
@@ -288,12 +307,12 @@ This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#gl
 | Local part | The local-part should only contain alphanumeric characters<sup>[1](#glossary)</sup> and these special characters `_`, `.`, `+` and `-`. <br><br>The local-part may not start or end with any special characters and special characters may not be adjacent to each other.                                                                              
  Domain name | The domain name is made up of domain labels separated by periods. The domain name must:<br>- end with a domain label at least 2 characters long <br>- have each domain label start and end with alphanumeric characters<sup>[1](#glossary)</sup> <br> - have each domain label consist of alphanumeric characters<sup>[1](#glossary)</sup>, separated only by hyphens, if any.  
 
-The local part and domain part **must** be connected by a `@` symbol.
+The local part and domain part **must** be connected by an `@` symbol.
 
 [Back to Table of Contents](#table-of-contents)
 
 #### Address
-This is the residing address of the person. It serves mainly as a point of information regarding the person, and has no additional features tied to it.
+This is the residing address of the person. It serves mainly as a point of information regarding the person, and has no additional features tied to it. This property<sup>[11](#glossary)</sup> is compulsory to declare during initialisation<sup>[11](#glossary)</sup>.
 
 This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of a house.
 
@@ -325,7 +344,7 @@ This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#gl
 [Back to Table of Contents](#table-of-contents)
 
 #### Loan History
-A loan history is linked to the loans properties and describes the changes to the numeric values of the loans in detail.
+A loan history is linked to the loans properties and describes the changes to the numeric values of the loans in detail. There is no way to declare this during initialisation<sup>[11](#glossary)</sup>, but it can be modified by the [`editLoan` command](#editing-loan-of-a-person--editloan).
 
 This property<sup>[11](#glossary)</sup> is represented as a descending list on the right side of the inspection panel.
 
@@ -353,7 +372,7 @@ Including a reason for every change to a person's loan value reduces the risk of
 [Back to Table of Contents](#table-of-contents)
 
 #### Birthday
-The birthday of the person.
+The birthday date of a person. This property<sup>[11](#glossary)</sup> is compulsory to declare during initialisation<sup>[11](#glossary)</sup>.
 
 This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of a birthday cake.
 
@@ -366,7 +385,7 @@ This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#gl
 [Back to Table of Contents](#table-of-contents)
 
 #### Tags
-Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
+Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes. This property<sup>[11](#glossary)</sup> is completely optional.
 
 This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by tag shaped labels with text inside them. They are usually located at the bottom right of each person card. If there is no such label, then it means this person has no associated tags.
 
@@ -374,6 +393,10 @@ This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#gl
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Choose short, identifiable tag names.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
+There is no limit to how many tags you can apply to an individual person, but applying too many tags increases confusion and decreases user experience. Please choose the most relevant tags to apply only.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -394,6 +417,8 @@ The title serves as the main marker for notes and summarises the important detai
 
 It is the first line of a note card, which is bigger than the rest of the text.
 
+Special characters are allowed in the title, but they will always be treated as a whitespace<sup>[16](#glossary)</sup> during operations. This is because punctuation is not normally a part of a word. This feature is relevant to [`findNote`](#locating-a-note-by-title--findnote).
+
 - This property<sup>[11](#glossary)</sup> is identified by the prefix `title`.
 - Notes can be filtered through with the [`findNote` command](#locating-a-note-by-title--findnote) using the title property<sup>[11](#glossary)</sup>.
 - Titles must be within 100 characters and can contain any ASCII characters<sup>[2](#glossary)</sup>.
@@ -402,7 +427,7 @@ It is the first line of a note card, which is bigger than the rest of the text.
 [Back to Table of Contents](#table-of-contents)
 
 #### Content
-The content serves as the description for notes.
+The content serves as the description for notes. This is a compulsory field for all notes.
 
 This is immediately below the title and is in a smaller font size.
 
@@ -413,9 +438,9 @@ This is immediately below the title and is in a smaller font size.
 
 #### Tags
 
-Notes can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
+Notes can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes. This is an optional property<sup>[11](#glossary)</sup> for all notes.
 
-This is located at the bottom right of the notes card. If there is no such label, then it means this person has no associated tags.
+This is located at the bottom right of the notes card. If there is no such label, then it means this note has no associated tags.
 
 ![img.png](images/NoteTags.png)
 
@@ -520,9 +545,8 @@ Edits an existing club member's loan amount in the SectresBook. Please note that
 The absolute maximum amount for a loan is `$1,000,000,000,000.00` (positive or negative 1 trillion). If you are intending to file more than a trillion dollars in total transactions, this application may not be a suitable one for you, as our expected clients do not normally transfer this much money.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If the total amount after the `editLoan` command adds up to more than a trillion, the program will block the command from going through.
+If the total amount after the `editLoan` command adds up to more than a trillion, the program will block the command from going through. You will be notified by the results display should such a command be attempted.
 </div>
-
 
 Format: `editLoan INDEX <OR> NAME amt/VALUE reason/REASON`
 
@@ -532,12 +556,15 @@ Format: `editLoan INDEX <OR> NAME amt/VALUE reason/REASON`
 * The `VALUE` can be a positive or negative value with up to 2 decimal places.
 * The loan value will be changed by the value given i.e current loan + VALUE.
 
-Examples:
+Examples of usage:
 
 * `editLoan 2 amt/30 reason/bought logistics`
 * `editLoan alex amt/-30 reason/return money from logistics`
-* `list` followed by `editLoan 1 -20 return money` will edit the 1st person in the SectresBook,
-  reducing their loan by $20 and saving the `REASON` as `return money`.
+* `list` followed by `editLoan 1 amt/-20 reason/return money` will edit the 1st person in the SectresBook, reducing their loan by $20 and saving the `REASON` as `return money`.
+  
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+In the second example, if no person is named `Alex`, or if more than one person has `Alex` in their name, then the operation is equivalent to `find alex`.
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -547,23 +574,38 @@ Deletes the specified person from the SectresBook. Delete commands are irreversi
 
 Format: `delete INDEX <OR> NAME`
 
-
-* Deleting by **INDEX**:
-  * Deletes the person at the specified `INDEX`.
-  * The index refers to the index number shown in the displayed person list.
-  * The index **must be a positive integer** 1, 2, 3, …​
-
-
-* Deleting by **NAME**:
-  * Delete the entry of the person by name with the given keyword, only if the keywords specified are unique to that person's name.
-  * Will not perform any operation if the name of the person does not exist.
-  * If the SectresBook contains more than one person that can be found by the keyword specified, the delete command will not execute but will return a list of all people with the given name. From here, you may choose to delete by index.
+<table>
+ <tr>
+  <th>
+   Deleting by <b>INDEX</b>
+  </th>
+  <td>
+   <ul>
+    <li>Deletes the person at the specified <code>INDEX</code>.</li>
+    <li>The index refers to the index number shown in the displayed person list.</li>
+    <li>The index <b>must be a positive integer</b> 1, 2, 3, …​</li>
+   </ul>
+  </td>
+ </tr>
+ <tr>
+  <th>
+   Deleting by <b>NAME</b>
+  </th>
+  <td>
+   <ul>
+    <li>Delete the entry of the person by name with the given keyword, only if the keywords specified are unique to that person's name.</li>
+    <li>Will not perform any operation if the name of the person does not exist, but instead execute <code>find NAME</code></li>
+    <li>If the SectresBook contains more than one person that can be found by the keyword specified, the delete command will not execute but will return a list of all people with the given name. From here, you may choose to delete by index.</li>
+   </ul>
+  </td>
+ </tr>
+</table>
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the SectresBook.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 * `delete Betsy` deletes the entry belonging to Betsy in the SectresBook
-* `delete Lynette` does not perform any operation, as Lynette does not exist in the SectresBook.
+* `delete Lynette` does not perform any operation, if Lynette does not exist in the SectresBook.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To delete everyone at the same time, please refer to the [`clear` command](#clearing-all-entries--clear).
@@ -587,7 +629,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* Phone numbers starting with any of the given keywords(in digits) will be returned.
+* Phone numbers starting with any of the given keywords (in digits), of at least 2 digits, will be returned.
 
 Examples:
 
@@ -597,6 +639,8 @@ Examples:
 
 * `find 86` returns `Theodore`<br>
   <img src="images/find86result.png" width="400">
+  
+* `find 8` will not be accepted as a command, as searching by phone numbers must be of at least 2 digits.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -652,7 +696,7 @@ Example of usage:
 
 #### Deleting Notes : `deleteNote`
 
-Deletes the specified note from the SectresBook.
+Deletes the specified note from the SectresBook. This operation is irreversible, so please ensure that the note you are about to delete is the correct one.
 
 Format: `deleteNote INDEX`
 
@@ -671,21 +715,19 @@ Examples:
 
 Finds the notes whose titles match any of the given keywords. A filtered icon will show to the side of the Notes Panel to indicate that you are now viewing a filtered list.
 
+The search is not case-sensitive. For example, `meeting` will match any notes containing the word `Meeting`. As in find for persons, the order of the keywords also does not matter, and `Meeting Club` will also match a note called `Club Meeting`.
+
+Please be informed that only the title will be search. Contents will not be searched through this command. 
+
+Although the title may contain special characters such as `,`, `.`, `?` or `!`, these special characters are not accepted as part of a keyword. This is because punctuation are not normally associated as part of a word. During the parsing of the [title](#title), special charaters are treated as spaces, so adjacent segments of the word containing it are treated as separate words.
+  * The keywords `?!` and `t-shirt` will not be allowed, as they contain special characters<sup>[11](#glossary)</sup>.
+  * `2` will match `shirt 2` but will not match `shirt2`, as `shirt2` is an entire word by itself.
+  * To search for `Upcoming club meeting!`, `meeting!` is not allowed as a keyword as it contains a special character<sup>[11](#glossary)</sup>, but `meeting` is allowed.
+  * `tshirt` will not match `t–shirt` as `t-shirt` is now treated as two words, `t` and `shirt` with the special character `-` being treated as a spacing.
+
 <img src="images/NotesFilteredIcon.png" width="256">
 
 Format: `findNote KEYWORD [MORE_KEYWORDS]`
-
-* The search is not case-sensitive. e.g. `meeting` will match `Meeting`
-* The order of the keywords does not matter. e.g. `Meeting Club` will match `Club Meeting`
-* Only the title is searched.
-* Only the full words will be matched. e.g. `Meetings` will not match `Meeting`
-* Keyword cannot contain special characters. However, numbers will be allowed.
-  * e.g. The keywords `?!` and `t-shirt` will not be allowed.
-  * e.g. `2` will match `shirt 2` but will not match `shirt2`
-* Keywords will ignore special characters.
-  * e.g. `Meetings` will match `Meetings!!!` and `Meetings 1`
-  * e.g. `shirt` will match `t-shirt`
-  * However, `tshirt` will not match `t–shirt` as special characters are ignored (`t-shirt` is now treated as two words, `t` and `shirt` with the special character `-` being treated as a spacing)
 
 Examples:
 * `findNote Meeting` returns `Club Meeting`, `Meeting!` and `Meeting 2`
@@ -693,11 +735,16 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-#### Listing Notes : `listNotes`
+#### Listing Notes : `listNote`
 
 Shows a list of all notes in the SectresBook. If the notes list was previously filtered, the filter icon will disappear to indicate that you are now looking at the full list.
 
-Format: `listNotes`
+This command, unlike many others, does not take in any parameters<sup>[9](#glossary)</sup>.
+
+Format: `listNote`
+
+Examples:
+* `listNote`
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -747,6 +794,12 @@ After executing `showNotes`:
 
 [Back to Table of Contents](#table-of-contents)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+**Q** Why are `hideNotes` and `showNotes` in plural, but the rest of the operations in singular nouns?<br>
+**A** `hideNotes` and `showNotes` are a separate class of commands that are _UI-Centric_, meaning that they only operate on the user interface, as they only shift a panel in the UI, and do not modify any underlying data of the application. The pluarity of the command disambiguities its usage from the other commands that mutates data. For more information, please read our developer guide.
+
+To ease interpretation, you may read `showNotes` as _"show the **notes panel**"_ or `hideNotes` as _"hide the **notes panel**"_, while `listNote` may be read as _"list each individual **note**"_, `findNote` as _"find each **note** matching"_ and "editNote" as _"edit this **note**"_.
+</div>
 
 ### General Features
 
@@ -781,7 +834,7 @@ Examples:
 
 Updates the Inspect Panel with the basic information and loan history of the person inspected.
 
-Inspection is a UI-centric command that operates on the current filtered person’s list, so you may only inspect those that are presently listed.
+Inspection is a _UI-centric_ command that operates on the currently viewed person’s list, so you may only inspect those that are presently listed.
 
 If you wish to view the properties of anyone in the full list, please remember to specify `list` to clear the filter.
 
@@ -796,6 +849,10 @@ Format: `inspect INDEX <OR> NAME`
 Examples:
 * `inspect 2` inspects the second person in the list of people
 * `inspect Lynette` will attempt to find the first person called `Lynette` in the currently **filtered** persons' list and update the Inspect Panel with her information.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you are trying to inspect a person by name, who does not exist in the currently viewed person list, which may be filtered, it will not be successful. This is because `inspect` only works on the currently viewed list.
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -930,49 +987,128 @@ The definitions in this glossary are context-specific to this application.
 
 No. | Word                             | Definition
 ---|----------------------------------|------------------
- 1 | **Alphanumeric Characters**      | A combination of alphabetical and numerical characters
+1 | **Alphanumeric Characters**      | A combination of alphabetical and numerical characters
 2 | **ASCII Characters**             | Characters from the American Standard Code for Information Interchange character encoding standard
- 3| **Command Line Interface (CLI)** | A text-based interface that recieves typed commands as input and returns textual feedback as output.
- 4| **Graphical User Interface (GUI)** | An image-based interface that is more visually appealing than a command-line interface and encapsulates information through the use of icons and images.
+3| **Command Line Interface (CLI)** | A text-based interface that recieves typed commands as input and returns textual feedback as output.
+4| **Graphical User Interface (GUI)** | An image-based interface that is more visually appealing than a command-line interface and encapsulates information through the use of icons and images.
 5| **Home Folder**                  | The folder that SectresBook is located in. It is also where SectresBook will store its data
 6| **Java 11**                      | Eleventh version of the Java Platform, Standard Edition Development Kit (JDK). SectresBook requires this to be installed to run.
 7| **JSON data file**               | A data file that uses the JavaScript Object Notation format.
 8| **Loan**                         | An amount of money that is borrowed by or owed to a person. A positive value signifies an amount owed by the person and a negative value signifies an amount to be paid to that person.
- 9| **Parameter**                    | A value passed as a section of a command, typically following a prefix.
- 10| **Prefix**                       | A signposting word that indicates the kind of property (i.e. name, email, address, etc), which typically follows immediately after the prefix, that is to be passed as a parameter.
- 11| **Property**                     | An identifiable feature a person or object has that sufficiently distinguishes it from other objects of the same kind.
- 12| **Secretary**                    | A person that manages the tasks and events related to the operations of an organisation.
- 13| **Tag**                          | A label that groups related people together, such that they can be referred to as a single encapsulated entity specified by the tag.
+9| **Parameter**                    | A value passed as a section of a command, typically following a prefix.
+10| **Prefix**                       | A signposting word that indicates the kind of property (i.e. name, email, address, etc), which typically follows immediately after the prefix, that is to be passed as a parameter.
+11| **Property**                     | An identifiable feature a person or object has that sufficiently distinguishes it from other objects of the same kind.
+12| **Secretary**                    | A person that manages the tasks and events related to the operations of an organisation.
+13| **Tag**                          | A label that groups related people together, such that they can be referred to as a single encapsulated entity specified by the tag.
 14| **Terminal**                     |  A text-based interface to the computer
- 15| **Treasurer**                    | A person that manages the finances and monetary transactions related to the operations of an organisation.
+15| **Treasurer**                    | A person that manages the finances and monetary transactions related to the operations of an organisation.
+16| **Whitespace**                   | A space character ` `
 
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-## Command summary
+## Summary
+
+### Person Properties
+
+ <table>
+   <tr>
+    <th colspan="3">Person Properties</th>
+   </tr>
+   <tr>
+    <th></th>
+    <th>Properties</th>
+    <th>Examples</th>
+   </tr>
+   <tr>
+     <th rowspan="5">Compulsory Properties</th>
+     <td>Name</td>
+     <td><code>Captain Daniel Patrick the 5th</code></td>
+   </tr>
+   <tr>
+     <td>Phone</td>
+     <td><code>99123510</code></td>
+   </tr>
+   <tr>
+     <td>Address</td>
+     <td><code>Canopy Street 11 Blk 709, #20-112</code></td>
+   </tr>
+   <tr>
+     <td>Email</td>
+     <td><code>capt_daniel.patrick-the+5th@example.com</code></td>
+   </tr>
+   <tr>
+     <td>Birthday</td>
+     <td><code>09/12/2000</code></td>
+   </tr>
+   <tr>
+     <th rowspan="3">Optional Properties</th>
+     <td>Loan</td>
+     <td>Cannot be declared, used by loan history</td>
+   </tr>
+   <tr>
+     <td>Loan History</td>
+     <td>An amount of <code>$55</code> with a reason of <code>"To buy a porcelain vase"</code></td>
+   </tr>
+   <tr>
+     <td>Tags</td>
+     <td><code>Coworkers</code>; <code>Friends</code>; <code>Operations</code></td>
+   </tr>
+ </table>
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Person Commands
 
 Action | Format | Examples
 --------|----------------------|--------
 **Add a person** | `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS bday/BIRTHDAY [tag/TAG]…​`                | `add name/James Ho phone/22224444 email/jamesho@example.com home/123, Clementi Rd, 1234665 bday/01/01/2000 tag/friend tag/colleague`
-**Edit person** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY][tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
-**Edit loan of a person** | `editLoan INDEX amt/AMOUNT reason/REASON`                                                            | `editLoan 1 amt/-20 reason/Buy Logistics`
-**Delete person** | `delete INDEX`<br>`delete NAME`                                                                      | `delete 3` <br> `delete Jane`
+**Edit a person** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY][tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
+**Edit the loan of a person** | `editLoan INDEX amt/AMOUNT reason/REASON`                                                            | `editLoan 1 amt/-20 reason/Buy Logistics`
+**Delete a person** | `delete INDEX`<br>`delete NAME`                                                                      | `delete 3` <br> `delete Jane`
 **Find a person** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER`                                                    | `find James Jake` <br> `find 8651`
-**List all person** | `list`                                                                                               | `list`
+**List every person** | `list`                                                                                               | `list`
 
+[Back to Table of Contents](#table-of-contents)
+
+### Notes Properties
+
+ <table>
+   <tr>
+    <th colspan="3">Notes Properties</th>
+   </tr>
+   <tr>
+    <th></th>
+    <th>Properties</th>
+    <th>Examples</th>
+   </tr>
+   <tr>
+     <th rowspan="2">Compulsory Properties</th>
+     <td>Title</td>
+     <td><code>Organise a charity to raise money for the foundling hospital</code></td>
+   </tr>
+   <tr>
+     <td>Content</td>
+     <td><code>Target $50,000 - by 23rd of December. We're aiming to attract at least 1000 contributors.</code></td>
+   </tr>
+   <tr>
+     <th>Optional Properties</th>
+     <td>Tags</td>
+     <td><code>Coworkers</code>; <code>Friends</code>; <code>Operations</code></td>
+   </tr>
+ </table>
+ 
 [Back to Table of Contents](#table-of-contents)
 
 ### Notes Commands
 
 Action | Format | Examples
 --------|-------------------|-------------
-**Add Note** | `addNote title/TITLE content/CONTENT [tag/TAG]...`                      | `addNote title/Create Excel Sheet content/Create sheet for blockchain department`
-**Edit Note** | `editNote INDEX <OR> TITLE [title/TITLE] [content/CONTENT] [tag/TAG]...` | `editNote 1 title/Check meeting availability tag/president`
-**Delete Note** | `deleteNote INDEX`                                                      | `deleteNote 1`
-**Find Note** | `findNote KEYWORD [MORE_KEYWORDS]`                                      | `findNote meeting`
-**List Notes** | `listNotes`                                                              | `listNotes`
+**Add a Note** | `addNote title/TITLE content/CONTENT [tag/TAG]...`                      | `addNote title/Create Excel Sheet content/Create sheet for blockchain department`
+**Edit a Note** | `editNote INDEX <OR> TITLE [title/TITLE] [content/CONTENT] [tag/TAG]...` | `editNote 1 title/Check meeting availability tag/president`
+**Delete a Note** | `deleteNote INDEX`                                                      | `deleteNote 1`
+**Find a Note** | `findNote KEYWORD [MORE_KEYWORDS]`                                      | `findNote meeting`
+**List Every Note** | `listNote`                                                              | `listNote`
 **Hide Notes Panel** | `hideNotes`              | `hideNotes`
 **Show Notes Panel** | `showNotes`              | `showNotes`
 
