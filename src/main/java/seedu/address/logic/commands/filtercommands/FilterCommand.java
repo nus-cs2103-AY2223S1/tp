@@ -21,9 +21,10 @@ public abstract class FilterCommand extends Command {
             + "filter-o os/Pending : filters orders that have an order status of Pending.\n"
             + "filter-o os/Negotiating pr/90-900 ar/good with children : filters orders that have an order status of "
             + "Pending, price range of 90 to 900, and additional request of good with children.\n"
-            + "filter-p p_c/white : filters pets that have a color white."
-            + "filter-p p_c/black p_n/doraemon p_p/50 p_s/cat p_v/true : filters pets that have a color black, a name doraemon, "
-            + "the species cat, and vaccination status of true.";
+            + "filter-p p_c/white : filters pets that have a color white. \n"
+            + "filter-p p_c/black p_n/doraemon p_p/50 p_s/cat p_v/true : filters pets that have a color black, "
+            + "the name doraemon, "
+            + "the species cat, and vaccination status of true.\n";
     /**
      * Creates a default base DeleteCommand.
      */
