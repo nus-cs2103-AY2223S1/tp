@@ -6,9 +6,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.buyer.BuyerNameContainsSubstringPredicate;
 import seedu.address.logic.commands.buyer.FindBuyersCommand;
 import seedu.address.logic.parser.buyer.FindBuyersCommandParser;
+import seedu.address.model.buyer.BuyerNameContainsSubstringPredicate;
 
 public class FindBuyersCommandParserTest {
 
