@@ -16,7 +16,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_CLIENT_DISPLAYED_ID = "The client id provided is invalid";
     public static final String MESSAGE_MISSING_ARGUMENTS = "Missing some arguments! \n%1$s";
     public static final String MESSAGE_ISSUE_NOT_FOUND = "This issue id does not exist in the project book";
-    public static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist in the project book";
-    public static final String MESSAGE_CLIENT_NOT_FOUND = "This client id does not exist in the project book";
 
 }
