@@ -1,11 +1,9 @@
 package seedu.address.model.student.predicate;
 
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.model.student.Student;
 
 
