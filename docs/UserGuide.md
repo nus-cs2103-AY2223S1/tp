@@ -176,7 +176,7 @@ To navigate to a specific command, you can just click on any of the commands to 
 
 #### Adding an internship application: `add`
 
-Adds an internship application to the tracker.
+Adds an internship application to FindMyIntern.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -193,10 +193,10 @@ Adds an internship application to the tracker.
 * `INTERVIEW_DATE_TIME` is optional, but if included, will automatically change application status to "Shortlisted".
 * `TAG` is optional, but can be used multiple times.
 * `TAG` can be used to attach keywords to an internship application which may help in your internship application tracking.
-  * Such keywords may include `backend` or `frontend` for the internship role, or `summer` or `off season` for the internship period.
+  * There are no restrictions on what can be a `TAG`, other than containing only alphabets and spaces.
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
-<div class="d-flex alert alert-info">
+<div class="d-flex alert alert-info mb-2">
 <div class="me-3">
   <span class="badge text-bg-info">INFO</span>
 </div>
@@ -221,9 +221,14 @@ Examples:
 * `add c/Grab l/https://grab.careers/teams/campus d/Marketing internship a/11 Oct i/23 Nov, 3:00 pm`
 * `add c/Shopee l/careers.shopee.sg/students d/Data analyst internship a/20 Oct 2022 i/28 Nov 16:00 t/data analyst t/summer`
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 #### Editing an internship application: `edit`
 
-Edits an existing internship application in the tracker.
+Edits an existing internship application in FindMyIntern.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -238,19 +243,14 @@ Edits an existing internship application in the tracker.
 
 * Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
   internship application list. The index **must be a positive integer** 1, 2, 3…
-
 * At least one of the optional fields must be provided.
-
 * When editing `INTERVIEW_DATE_TIME`, the [application status](#application-status) will change to "Shortlisted".
-
 * When editing tags, the existing tags will be removed and replaced with the input tags.
-
 * Tags can be removed by typing `t/` without specifying any tags after it.
-
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
 
-<div class="d-flex alert alert-info">
+<div class="d-flex alert alert-info mb-2">
 <div class="me-3">
   <span class="badge text-bg-info">INFO</span>
 </div>
@@ -278,6 +278,11 @@ Examples:
 * `edit 3 t/frontend t/summer` - Edits the tags of the 3rd internship application, removing existing tags and
   adding `frontend` and `summer` tags
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 #### Marking an internship application status: `mark`
 
 Marks an internship [application status](#application-status).
@@ -295,9 +300,7 @@ Marks an internship [application status](#application-status).
 
 * Updates the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
   internship application list. The index **must be a positive integer** 1, 2, 3…
-
 * Updates the internship application to the specified `APPLICATION_STATUS`.
-
 * [`APPLICATION_STATUS`](#application-status) is case-insensitive.
 
 
@@ -305,6 +308,11 @@ Examples:
 * `mark 3 s/interviewed` - Marks the 3rd internship application status as `interviewed`
 * `mark 2 s/Accepted` - Marks the 2nd internship application status as `accepted`
 * `mark 4 s/rejecteD` - Marks the 4th internship application status as `rejected`
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 #### Listing all internship applications: `list`
 
@@ -319,6 +327,11 @@ Shows a list of all internship applications.
         list
         ```
     </div>
+</div>
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
 #### Deleting an internship application: `delete`
@@ -343,6 +356,11 @@ Deletes an internship application.
 Examples:
 *  `delete 4` - Deletes the 4th internship application in the list.
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 #### Filtering for internship applications of a specific status: `filter`
 
 <div class="d-flex alert alert-secondary">
@@ -357,12 +375,16 @@ Examples:
 </div>
 
 * Filters for internship applications of the specified [`APPLICATION_STATUS`](#application-status).
-
 * `APPLICATION_STATUS` is case-insensitive.
 
 Examples:
 * `filter accepted` - Shows a list of internship applications marked as `accepted`
 * `filter Rejected` - Shows a list of internship applications marked as `rejected`
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 #### Finding for internship applications or tags: `find`
 
@@ -418,6 +440,11 @@ Examples:
     <img src="images/findGoogleBackendResult.png" width="600" />
 </p>
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 #### Sorting the list of internship applications: `sort`
 
 Sorts the internship applications with the latest date at top to earliest at the bottom.
@@ -451,9 +478,14 @@ Applications without interview date will remain in the original order at the bot
 </div>
 </div>
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 #### Clearing all internship applications: `clear`
 
-Clears all internship applications from the tracker.
+Clears all internship applications from FindMyIntern.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -476,13 +508,14 @@ This command will clear the entire list of internships without warning. This com
 </div>
 </div>
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 #### Viewing help: `help`
 
-Shows a message explaining how to access the user guide, and the data file location.
-
-<p align="center">
-    <img src="images/helpMessage.png" width="500"/>
-</p>
+Shows a message with a link to the user guide, and the data file location.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -493,6 +526,15 @@ Shows a message explaining how to access the user guide, and the data file locat
         help
         ```
     </div>
+</div>
+
+<p align="center">
+    <img src="images/helpMessage.png" width="500"/>
+</p>
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
 #### Exiting the program: `exit`
@@ -510,6 +552,11 @@ Exits the program.
     </div>
 </div>
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 ### Saving and Editing
 
 #### Saving the data
@@ -523,16 +570,22 @@ The data file location can also be found in the help message: see [`help` comman
 
 Advanced users are welcome to update data directly by editing that data file.
 
-<div class="d-flex alert alert-warning">
+<div class="d-flex alert alert-danger">
 <div class="me-3">
-  <span class="badge text-bg-warning">WARNING</span>
+  <span class="badge text-bg-danger">DANGER</span>
 </div>
 <div markdown="span">
-If your changes to the data file makes its format invalid, FindMyIntern will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, FindMyIntern will **discard all data** and start with an empty data file at the next run. Your data will **not be recoverable**!
 </div>
 </div>
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 ### UI Elements
+
+This section explains how to use certain elements in the user interface which can enhance your FindMyIntern experience. 
 
 #### Links
 
@@ -546,6 +599,8 @@ A tooltip is shown when the link is hovered.
 
 #### Tags
 
+Tags are displayed in lexicographical order.
+
 A tooltip containing the full tag name is shown when a tag is hovered.
 
 The maximum number of tags that will be displayed is 5. Additional tags that are not displayed will be shown as a count.
@@ -555,6 +610,10 @@ A tooltip containing the additional tags is shown when the count is hovered.
     <img src="images/additionalTagsTooltip.png" />
 </p>
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -562,6 +621,10 @@ A tooltip containing the additional tags is shown when the count is hovered.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FindMyIntern home folder.
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -593,7 +656,7 @@ There are no constraints for a field if the constraints box is empty for that fi
     </tr>
     <tr>
       <td><code>l/LINK</code></td>
-      <td>Links must be of the format `HOSTNAME.PATH`, where both `HOSTNAME` and `PATH` are alphanumeric</td>
+      <td>Links must be of the format <code>HOSTNAME.PATH</code>, where both <code>HOSTNAME</code> and <code>PATH</code> are alphanumeric</td>
     </tr>
     <tr>
       <td><code>d/DESCRIPTION</code></td>
@@ -613,6 +676,11 @@ There are no constraints for a field if the constraints box is empty for that fi
     </tr>
   </tbody>
 </table>
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#appendix" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to appendix</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 ### Application Status
 
@@ -652,11 +720,16 @@ Application status as an input field **must be one of the following**:
     </tr>
     <tr>
       <td><code>rejected</code></td>
-      <td>You have rejected this internship</td>
+      <td>You have rejected or been rejected for this internship</td>
       <td>&nbsp;</td>
     </tr>
   </tbody>
 </table>
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#appendix" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to appendix</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 ### Date/Time Formats
 
@@ -717,6 +790,11 @@ For `INTERVIEW_DATE_TIME`, the formats allowed:
   </tbody>
 </table>
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#appendix" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to appendix</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
@@ -734,3 +812,7 @@ Action | Format, Examples
 **Sort** | `sort CRITERIA`<br> e.g., `sort applied`
 **Clear** | `clear`
 **Exit** | `exit`
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>

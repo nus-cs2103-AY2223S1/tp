@@ -23,7 +23,7 @@ Given below are my contributions to the project.
     * Rearranged and resized elements to better suit users' needs
 
 * **Contributions to the UG**:
-  * Integrated Bootstrap 5 elements
+  * Integrated Bootstrap 5 into user guide
   * Added documentation for `filter` feature
   * Added tutorial section "Adding your first internship application"
     * Useful for new users familiarising themselves with FindMyIntern
