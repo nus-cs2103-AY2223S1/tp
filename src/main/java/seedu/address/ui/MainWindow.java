@@ -103,7 +103,6 @@ public class MainWindow extends UiPart<Stage> {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (calendarTab.isSelected()) {
                 calendarDisplay.handleKeyPressed(event);
-                event.consume();
             }
         });
     }
