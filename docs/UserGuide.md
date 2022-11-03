@@ -166,7 +166,7 @@ TrackO's functionalities!
       
        * This command also helps to add a short description to the item and tags it as `New`.
 
-    You should see this item appear in TrackO at index 5 as shown below:
+         You should see this item appear in TrackO at index 5 as shown below:
    
 
 2. Next, we move on to order management:
@@ -184,7 +184,8 @@ TrackO's functionalities!
         i/teddy bear keychains q/1
         ```
       * Lastly, type `done` to finish adding an order to TrackO!
-    You should see this order appear in TrackO at index 5 as shown below:
+        
+        You should see this order appear in TrackO at index 5 as shown below:
 
     <div markdown="span" class="alert alert-primary">:bulb: **Note:**
     If an item is not in your inventory, TrackO does not allow you to add that item to an order!
@@ -201,7 +202,7 @@ TrackO's functionalities!
    3. Listing order(s): `listo`
        * To view all your orders again, enter `listo`.
 
-   You should see these orders appear in the [order list](#layout).
+         You should see these orders appear in the [order list](#layout).
 
 Now that you're done trying out some commands, you can enter `exit` to leave the application. We hope that this short tutorial was helpful! 
 To check out more commands, you can head over to our [features section](#features).
