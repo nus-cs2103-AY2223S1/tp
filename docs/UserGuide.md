@@ -171,8 +171,10 @@ Note:
 
 
 Examples:
-* `addproj pn/2103T TP pb/100000 pd/2022-01-01`
-* `addproj pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Funtime`
+* `addproj pn/2103T TP pb/100000 pd/2022-01-01` creates a new Project with project name `2103T TP`, a budget of `$100000` and a deadline 
+at `2022-01-01`
+* `addproj pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Funtime` creates a new Project with project name `CS2100` with a budget of 
+`$1000` and a deadline at `2022-01-01`. This project is tagged as `Funtime`. 
 
 [Back to top](#table-of-contents)<br>
 [Back to Project Glossary](#project-glossary)
@@ -192,7 +194,7 @@ Note:
 ```
 
 Examples:
-* `list` followed by `delproj 2` deletes the 2nd Project in Project list.
+* `list` followed by `delproj 2` deletes the 2nd Project in the displayed list of Projects.
 * `findproj 2103T TP` followed by `delproj 1` deletes the 1st Project in the results of the `findproj` command.
 
 [Back to top](#table-of-contents)<br>
@@ -207,7 +209,7 @@ Show all the Projects and Tasks in the Project and Task list respectively.
 :bulb: **Tip:** After using a find command, you can use `list` to return the display to its original state.
 </div>
 
-Format: `list`
+Format: `list` displays a list of all the projects in HR Pro Max++.
 
 [Back to top](#table-of-contents)
 
@@ -226,8 +228,10 @@ Note:
 ```
 
 Examples:
-* `findproj CS2103` returns `CS2103` and `CS2103 TP`.
-* `findproj merge develop` returns `Merger with ABC` and `Develop software`.
+* `findproj CS2103` returns all projects that contain the word `CS2103`. 
+For example, both projects `CS2103` and `CS2103 TP` will be listed. 
+* `findproj merge develop` returns all projects that either contain the word `merge` or the word `develop`. For example, both projects
+Merger with ABC` and `Develop software` will be listed.
 
 [Back to top](#table-of-contents)<br>
 [Back to Project Glossary](#project-glossary)
@@ -242,7 +246,7 @@ Warning !!!:
   * This command is irreversible, you will not be able to get back the original ordering after this command.
 ```
 
-Format: `sortproj`
+Format: `sortproj` sorts all projects in ascending order of deadline. 
 
 [Back to top](#table-of-contents)<br>
 [Back to Project Glossary](#project-glossary)

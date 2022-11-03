@@ -48,10 +48,15 @@ public class StringUtil {
         requireNonNull(name);
         requireNonNull(word);
 
+        // @@author AugustDespair-reused
+        // Reused from https://stackoverflow.com/questions/86780/
+        // with minor modifications
         return !word.isEmpty()
                 && Pattern.compile(Pattern.quote(word), Pattern.CASE_INSENSITIVE)
                           .matcher(name).find();
+        //@@author
     }
+
 
     /**
      * Returns a detailed message of the t, including the stack trace.
