@@ -8,6 +8,7 @@ import java.util.TreeSet;
 import org.junit.jupiter.api.Test;
 
 import jarvis.model.exceptions.InvalidNoteException;
+import jarvis.model.exceptions.NoStudentsInLessonException;
 import jarvis.model.exceptions.StudentNotFoundException;
 import jarvis.model.util.SampleStudentUtil;
 
@@ -17,7 +18,14 @@ class LessonNotesTest {
     private final LessonNotes lessonNotes = new LessonNotes(students);
 
     @Test
-    void addGeneralNote_invalidNote_exceptionThrown() {
+    public void constructor_invalidStudents_exceptionThrown() {
+        assertThrows(NullPointerException.class, () -> new LessonNotes(null));
+
+        assertThrows(NoStudentsInLessonException.class, () -> new LessonNotes(new TreeSet<>()));
+    }
+
+    @Test
+    public void addGeneralNote_invalidNote_exceptionThrown() {
         assertThrows(NullPointerException.class, () -> lessonNotes.addNote(null));
 
         String empty = "";
@@ -28,7 +36,7 @@ class LessonNotesTest {
     }
 
     @Test
-    void addStudentNote_invalidNote_exceptionThrown() {
+    public void addStudentNote_invalidNote_exceptionThrown() {
         Student student = students.first();
         assertThrows(NullPointerException.class, () -> lessonNotes.addNote(student,null));
 
@@ -40,7 +48,7 @@ class LessonNotesTest {
     }
 
     @Test
-    void addStudentNote_invalidStudent_exceptionThrown() {
+    public void addStudentNote_invalidStudent_exceptionThrown() {
         String note = "Valid note";
         assertThrows(NullPointerException.class, () -> lessonNotes.addNote(null, note));
 
@@ -51,7 +59,7 @@ class LessonNotesTest {
     }
 
     @Test
-    void addGeneralNote_validNote() {
+    public void addGeneralNote_validNote() {
         String note1 = "Line 1";
         String note2 = "2nd line: ^*!"; // non-alphanumeric characters
         String note3 = "  text   "; // leading and trailing whitespace
@@ -69,7 +77,7 @@ class LessonNotesTest {
     }
 
     @Test
-    void addStudentNote_validNote() {
+    public void addStudentNote_validNote() {
         Student student = students.first();
         String note1 = "Line 1";
         String note2 = "2nd line: ^*!"; // non-alphanumeric characters
@@ -88,7 +96,7 @@ class LessonNotesTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         LessonNotes sameValues = new LessonNotes(students);
 
         Student studentToRemove = students.first();

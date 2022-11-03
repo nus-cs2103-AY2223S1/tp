@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import jarvis.model.exceptions.InvalidNoteException;
+import jarvis.model.exceptions.NoStudentsInLessonException;
 import jarvis.model.exceptions.NoteNotFoundException;
 import jarvis.model.exceptions.StudentNotFoundException;
 
@@ -25,9 +26,13 @@ public class LessonNotes {
      * @param students Students who are involved in the lesson.
      */
     public LessonNotes(Collection<Student> students) {
-        studentNotes = new TreeMap<>();
+        if (students.size() == 0) {
+            throw new NoStudentsInLessonException();
+        }
 
         generalNotes = new ArrayList<>();
+
+        studentNotes = new TreeMap<>();
         for (Student stu : students) {
             studentNotes.put(stu, new ArrayList<>());
         }

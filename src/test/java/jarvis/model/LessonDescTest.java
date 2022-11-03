@@ -30,7 +30,7 @@ class LessonDescTest {
     }
 
     @Test
-    void isValidLessonDesc() {
+    public void isValidLessonDesc() {
         // invalid desc
         assertFalse(LessonDesc.isValidLessonDesc(null)); // null
         assertFalse(LessonDesc.isValidLessonDesc("")); // empty string
@@ -44,7 +44,7 @@ class LessonDescTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         LessonDesc studio1 = new LessonDesc("Studio 1");
         LessonDesc consult2 = new LessonDesc("Consult 2");
 

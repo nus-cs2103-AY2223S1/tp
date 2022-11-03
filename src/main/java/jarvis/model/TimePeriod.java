@@ -38,6 +38,9 @@ public class TimePeriod {
     }
 
     public static boolean isValidTimePeriod(LocalDateTime start, LocalDateTime end) {
+        if (start == null || end == null) {
+            return false;
+        }
         return start.isBefore(end);
     }
 

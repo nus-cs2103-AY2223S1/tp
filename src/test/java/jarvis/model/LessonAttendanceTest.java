@@ -7,6 +7,7 @@ import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
 
+import jarvis.model.exceptions.NoStudentsInLessonException;
 import jarvis.model.exceptions.StudentNotFoundException;
 import jarvis.model.util.SampleStudentUtil;
 
@@ -16,7 +17,14 @@ class LessonAttendanceTest {
     private final LessonAttendance lessonAttendance = new LessonAttendance(students);
 
     @Test
-    void markAsPresent_invalidStudent_exceptionThrown() {
+    public void constructor_invalidStudents_exceptionThrown() {
+        assertThrows(NullPointerException.class, () -> new LessonAttendance(null));
+
+        assertThrows(NoStudentsInLessonException.class, () -> new LessonAttendance(new TreeSet<>()));
+    }
+
+    @Test
+    public void markAsPresent_invalidStudent_exceptionThrown() {
         assertThrows(NullPointerException.class, () -> lessonAttendance.markAsPresent(null)); // null student
 
         Student studentToRemove = students.first();
@@ -26,7 +34,7 @@ class LessonAttendanceTest {
     }
 
     @Test
-    void markAsAbsent_invalidStudent_exceptionThrown() {
+    public void markAsAbsent_invalidStudent_exceptionThrown() {
         assertThrows(NullPointerException.class, () -> lessonAttendance.markAsAbsent(null)); // null student
 
         Student studentToRemove = students.first();
@@ -36,17 +44,17 @@ class LessonAttendanceTest {
     }
 
     @Test
-    void isPresent_invalidStudent() {
+    public void isPresent_invalidStudent() {
         assertThrows(NullPointerException.class, () -> lessonAttendance.isPresent(null)); // null student
 
         Student studentToRemove = students.first();
         students.remove(studentToRemove);
         LessonAttendance differentStudents = new LessonAttendance(students);
-        assertFalse(differentStudents.isPresent(studentToRemove));
+        assertFalse(differentStudents.isPresent(studentToRemove)); // Returns false if student is not in the lesson
     }
 
     @Test
-    void markAsPresent_validStudent() {
+    public void markAsPresent_validStudent() {
         Student student = students.first();
         assertFalse(lessonAttendance.isPresent(student)); // Students are absent by default
         lessonAttendance.markAsPresent(student); // Mark absent student as present
@@ -56,7 +64,7 @@ class LessonAttendanceTest {
     }
 
     @Test
-    void markAsAbsent_validStudent() {
+    public void markAsAbsent_validStudent() {
         Student student = students.first();
         lessonAttendance.markAsPresent(student);
         assertTrue(lessonAttendance.isPresent(student)); // Student is present
@@ -67,12 +75,12 @@ class LessonAttendanceTest {
     }
 
     @Test
-    void getAllStudents() {
+    public void getAllStudents() {
         assertEquals(students, lessonAttendance.getAllStudents());
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         LessonAttendance sameValues = new LessonAttendance(students);
 
         Student studentToRemove = students.first();
