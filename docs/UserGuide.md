@@ -185,7 +185,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [i/STUDENT_ID] [t/TAG
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
-* This command does not offer editing a student's profile picture. To do this, refer to [upload](#uploading-changing-student-profile-picture-upload-pic)
+* This command does not offer editing a student's profile picture. To do this, refer to [upload](#uploading-changing-student-profile-picture-upload-pic).
 
 Examples:
 * `edit 1 p/91234567 e/studentEmail@example.com` Edits the phone number and email of the 1st student in the list to be `91234567` and `studentEmail@example.com` respectively.
@@ -223,12 +223,6 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the student list.
-
-Format: `clear`
 
 ## Attendance commands
 [Back to Top ↑](#introduction)
@@ -319,6 +313,10 @@ Examples:
 * `task t/Prepare slides for studio d/Topic Environment Model`
 * `task t/Collect robot d/At MakersLab`
 
+Expected outcome: <br>
+![AddingToDo](images/AddingToDo.png) <br>
+After adding a ToDo task
+
 #### Adding a Deadline
 
 Adds a ***Deadline*** (A type of Task) to the Task List.
@@ -332,6 +330,10 @@ Format: `task t/TITLE d/DESC by/YYYY-MM-DD`
 Examples:
 * `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`
 * `task t/Collect robot d/At MakersLab by/2019-09-10`
+
+Expected outcome: <br>
+![AddingDeadline](images/AddingDeadline.png) <br>
+After adding a Deadline task
 
 #### Adding an Assignment
 
@@ -348,11 +350,15 @@ Examples:
 * `task t/Assignment 1 d/Description here addStu/Adam Tan, Wong Zhu Yi, Robin Hood`
 * `task t/Midterm Assignment d/This is a challenging assignment addStu/Alvin, Simon, Theodore`
 
+Expected outcome: <br>
+![AddingAssignment](images/AddingAssignment.png) <br>
+After adding an Assignment task
+
 ### Editing Tasks : `edit-task`
 
 Edits an existing tasks in the task list.
 
-Format: `edit-task [t/TITLE] [d/DESCRIPTION] [deleteStu/STUDENT_1, STUDENT_2]`
+Format: `edit-task [t/TITLE] [d/DESCRIPTION] [by/YYYY-MM-DD] [addStu/STUDENT_1, STUDENT_2] [deleteStu/STUDENT_1, STUDENT_2]`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -380,6 +386,12 @@ Format: `remove-task INDEX`
 Examples:
 * `remove-task 2` deletes the 2nd student in the task list.
 ---
+
+### Clearing all entries : `clear`
+
+Clears all entries from the student list as well as task list.
+
+Format: `clear`
 
 ### Navigating User Input History: `↑`, `↓`
 
