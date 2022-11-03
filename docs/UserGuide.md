@@ -638,9 +638,15 @@ Format: `clear`
 
 ### Undo the last command: `undo`
 
-Undoes the last command executed and restores the Teacher's Pet to the previous state.
+Undoes the last command executed by reverting any recent change in data within the Teacher's Pet.
 
 Format: `undo`
+
+<div markdown="span" class="alert alert-info">ℹ **Note:** Undo command will not change any visual display
+with the latest commands being display-related like
+<a href="#finding-a-student-find">find</a> command. If you wish to remove the filter, the best way is to use
+<a href="#viewing-all-students-list">list</a> command.
+</div>
 
 [↑ Back to top](#table-of-contents)
 
