@@ -18,6 +18,9 @@ public class ResultDisplay extends UiPart<Region> {
 
     public ResultDisplay() {
         super(FXML);
+        resultDisplay.setText("Welcome to Waddle! Try adding a new trip to get started.\n"
+                + "Type \"help\" and press enter to see all commands.");
+        resultDisplay.setWrapText(true);
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
