@@ -187,7 +187,7 @@ public interface Model {
 
     void refreshSummaryVariables();
 
-    void sortBucketList(Comparator<Event> comparator);
+    void sortEvents(Comparator<Event> comparator);
 
     boolean hasEventInBucketList(Event event);
 

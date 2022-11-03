@@ -21,6 +21,9 @@ import seedu.travelr.model.trip.Trip;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
+    private static final String INVALID_DATE_ERROR_MESSAGE = "Invalid date provided.\n"
+            + "Please check if you have accounted for leap years.";
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -40,6 +43,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESC).get());
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         DateField dateField = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+
+        String dateFieldValue = dateField.toString();
+        if (!dateFieldValue.equals(argMultimap.getValue(PREFIX_DATE).get())) {
+            throw new ParseException(INVALID_DATE_ERROR_MESSAGE);
+        }
 
         Trip trip = new Trip(title, description, location, dateField);
 
