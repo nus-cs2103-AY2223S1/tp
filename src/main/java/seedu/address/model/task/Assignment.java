@@ -44,7 +44,6 @@ public class Assignment extends Task {
      */
     public void deleteStudent(List<String> studentsToDelete) {
         this.students.removeAll(studentsToDelete);
-        System.out.println("it works");
     }
 
     @Override
