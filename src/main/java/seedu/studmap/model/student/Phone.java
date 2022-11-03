@@ -48,6 +48,15 @@ public class Phone {
                 : value;
     }
 
+    /**
+     * Returns string used for sorting phone number.
+     */
+    public String toCmpString() {
+        return this.value.isEmpty()
+               ? null
+               : value;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
