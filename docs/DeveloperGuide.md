@@ -117,7 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagramV2.png" width="450" />
+<img src="images/ModelClassDiagramV2. png" width="450" />
 
 
 The `Model` component,
@@ -228,7 +228,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Assigning PDF files feature
 
-The assigning pdf file to a client feature allows the user to store the file path of a pdf stored on the user's device. The filePath in FABook is represented with by a `FilePath` class. A `FilePath` class requires a `String` filePath. A `Person` object Has-A `FilePath` object.
+The assigning pdf file to a client feature allows the user to store the file path of a pdf stored on the user's device. The filePath in FABook is represented with a `FilePath` class. A `FilePath` class requires a `String` filePath. A `Person` object Has-A `FilePath` object.
 
 Implementation of the opening PDF file of client feature is built on top of the way that the PDF filepath is stored.
 
@@ -236,9 +236,9 @@ Implementation of the opening PDF file of client feature is built on top of the 
 
 The mechanism is facilitated by `SetPersonFileCommand` and `FileUtil`.
 
-`SetPersonFileCommand` extends from `Command`. It overwrites the `Command` execute method to determine if the given filepath is valid and create an "EditedPerson" `Person` object.
+`SetPersonFileCommand` extends from `Command`. It overwrites the `Command#execute()` method to determine if the given filepath is valid and create an "EditedPerson" `Person` object.
 
-The `FileUtil::checkValidPdfFilePath` method is used in `SetPersonFileCommand` to check the validity of the file path. The method follows the given filePath to check if the file exists and if the given filepath is of type `.pdf`.
+The `FileUtil#checkValidPdfFilePath()` method is used in `SetPersonFileCommand` to check the validity of the file path. The method follows the given filePath to check if the file exists and if the given filepath is of type `.pdf`.
 
 Given below is an example usage scenario and how the set file mechanism behaves at each step.
 
@@ -246,17 +246,15 @@ Step 1. The user launches the application for the first time.
 
 Step 2. The user decides to add a file path to  the 2nd person in the current list of contacts in the address book using the `filepath 2 f/C:\Users\Eugene Tay\Downloads\Tutorial_8_qns.pdf` command.
 
-Step 3. `LogicManager` calls `LogicManager::execute` method that was implemented from `Logic` interface. Within the method, `AddressBookParser::parseCommand` is called on the user input `filePath` and a `Command` object is returned.
+Step 3. `LogicManager` calls `LogicManager#execute()` method that was implemented from `Logic` interface. Within the method, `AddressBookParser#parseCommand()` is called on the user input `filePath` and a `Command` object is returned.
 
 Step 4. `AddressBookParser::parseCommand` will parse the user input and match the `COMMAND_WORD` to be `filepath` which is `SetPathFileCommand#COMMAND_WORD` `SetPathFileCommandParser` object is instantiated which parses and checks the user arguments. 
 
 Step 5. `SetPathFileCommandParser` object parses the given user arguments. If the `PREFIX_FILEPATH` is present and there is no `IllegalValueException`, a `SetPersonFileCommand` object is instantiated with `index` and `filePath` obtained from the user arguments.
 
-Step 6. `SetPathFileCommand::execute` method is called in `LogicManager`. This method will check if the given PDF filepath is valid with `FileUtil::checkValidPdfFilePath` method.
+Step 6. `SetPathFileCommand#execute()` method is called in `LogicManager`. This method will check if the given PDF filepath is valid with `FileUtil#checkValidPdfFilePath()` method.
 
-Step 7. `FileUtil::checkValidPdfFilePath` method follows the given filePath to check if the file exists and if the given filepath is of type `.pdf`.
-
-Step 8. `SetPathFileCommand::execute` method will instantiate a new `Person` object with the original `Person` object's attributes and the new filePath. This `Person` object be set in `Model` and updated in `filterPersonList`.
+Step 7. `SetPathFileCommand#execute()` method will instantiate a new `Person` object with the original `Person` object's attributes and the new filePath. This `Person` object be set in `Model` and updated in `filterPersonList`.
 
 The following sequence diagram shows how the assigning filepath to a client feature works.
 ![SetPersonFileSequenceDiagram](images/DeveloperGuide/FilePath/FilePathSequenceDiagram.png)
@@ -266,9 +264,17 @@ The following activity diagram shows how the assigning filepath to a client feat
 ![SetPersonFileActivityDiagram](images/DeveloperGuide/FilePath/FilePathActivityDiagram.png)
 
 #### Design Considerations:
-**Would need Peter's Input on this**
-
-
+**Alternative 1 (Current Choice)** Store PDF's absolute path.
+  * Pros:
+    * Absolute path of the PDF would mean that changes to the file location of User's FABook will not affect the ability to open PDF.
+  * Cons:
+    * Changing file location of PDF will render stored filepath useless.
+  
+**Alternative 2** Store PDF files of clients in a folder.
+  * Pros:
+    * Users do not need to input absolute path as it is more technical than relative paths.
+  * Cons:
+    * Changes to the file location of User's FABook will mean that the PDF cannot be opened anymore since it is relative to the filepath of FABook.
 
 ### Person Enhancement
 
@@ -297,18 +303,35 @@ The person model now contains a `Net Worth` field.
     * Cons: No means of comparison between a contact of different currency.
 
 ### Upcoming Meetings
+The upcoming meetings feature allows the users to pull up a list of clients who he has a meeting with in the next 7 days. The upcoming meetings is represented with a `MeetingsWindow` that can be instantiated with the keyboard key `f2`.
+
+Implementation of the upcoming meeting feature is built on top of [Meeting Feature]().
 
 #### Implementation
-The Upcoming Meetings function is facilitated by the `MeetingsWindow`, `MeetingCard` and `MeetingListPane` classes.
-`MeetingsWindow` extends `UIPart<Stage>` and is linked to an FXML Menu Item `meetingsMenuItem` in `MainWindow`
-During construction of `MainWindow` object, a `MeetingsWindow` object is instantiated and `setAccelerator()` is
-called.
 
-The `MainWindow#setAccelerator()` function sets a shortcut that links the call of `MeetingsWindow` to `F2`.
+The mechanism is facilitated by `MeetingsWindow`, `MeetingListPanel` and `MeetingCard`.
 
-The construction of a `MeetingsWindow` object, will create a `MeetingsListPanel` and a `private` `meetingsMessage`
-`label` that takes in a `MEETINGS_MESSAGE`
+`MeetingsWindow` extends `UIPart<Stage>` and is linked to an FXML Menu Item `meetingsMenuItem` in `MainWindow`. This means that `MeetingsWindow` can be accessed from the menu bar as a menu item from the GUI as well.
 
+The construction of `MainWindow` object, instantiates a `MeetingsWindow` object and `MainWindow#setAccelerator()` method is called.
+
+The `MainWindow#setAccelerator()` method sets a shortcut that establishes a shortcut `f2` to the calling of `MainWindow#handleMeetings()` method.
+
+`MainWindow#handleMeetings()` method calls `MeetingsWindow#getMeetings()` method that filters a list with `MeetingsWindow#isWithinOneWeek()` method returning an `ObservableList<Person>` of `Person` objects who have meetings from now till 7 days later.
+
+The `ObservableList<Person>` is used to instantiate `MeetingCard` objects and populate the `MeetingListPanel`. The classes work in conjunction with the `.FXML` files to display the `MeetingCard` on a `MeetingListPanel` in a `MeetingsWindow`.
+
+##### Example Usage
+
+Step 1. User presses `f2` to see upcoming meetings.
+
+Step 2. `f2` is set by `MainWindow#setAccelerator()` to call `MainWindow#handleMeetings()` method which in turn calls `MeetingsWindow#getMeetings()`. 
+
+Step 3. `MeetingsWindow#getMeetings()` method filters a list of `Person` objects by calling `MeetingsWindow#isWithinOneWeek()` method on the `Set<MeetingTime>` of each `Person`. The filtered list will contain `Person` objects that have meetings from now till 7 days later.
+
+Step 4. `MeetingsWindow#getMeetings()` instantiates a `MeetingsListPanel` object where `MeetingsListPanel#updateItem()` method creates a `MeetingCard` for each `Person` in the list and the `MeetingsListPanel` is populated with `MeetingCard` objects.
+
+Step 5. The `MeetingsWindow` contains a `MeetingListPanel` with `MeetingCard` and these objects are linked to `MeetingsWindow.FXML`, `MeetingListPanel.FXML` and `MeetingCard.FXML` which provides the design and UI shown to the user.
 
 #### Design
 <fxml portion>
