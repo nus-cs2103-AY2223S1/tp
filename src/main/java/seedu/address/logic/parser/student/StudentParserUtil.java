@@ -151,7 +151,8 @@ public class StudentParserUtil {
         if (!Grade.isValidGrade(trimmedGrade)) {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
-        return new Grade(trimmedGrade);
+        String formattedGrade = grade.toUpperCase();
+        return new Grade(formattedGrade);
     }
 
     /**
