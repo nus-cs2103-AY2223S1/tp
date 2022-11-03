@@ -52,6 +52,18 @@ public class TypicalApplications {
             .withInterview(new InterviewBuilder().withInterviewDate(LocalDate.now().plusDays(1)).build())
             .build();
 
+    public static final Application STRIPE = new ApplicationBuilder().withCompany("Stripe")
+            .withContact("87879898").withDate("2022-01-02")
+            .withEmail("stripe@example.com").withPosition("Software Engineer").withTags("financialService")
+            .withInterview(new InterviewBuilder().withInterviewDate(LocalDate.now().minusDays(1)).build())
+            .build();
+
+    public static final Application GOVTECH = new ApplicationBuilder().withCompany("GovTech")
+            .withContact("65556444").withDate("2022-05-06")
+            .withEmail("govtech@gov.sg").withPosition("Software Engineer").withTags("publicSector")
+            .withInterview(new InterviewBuilder().withInterviewDate(LocalDate.now().plusDays(8)).build())
+            .build();
+
     // Manually added - Application's details found in {@code CommandTestUtil}
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)
             .withContact(VALID_CONTACT_GOOGLE).withDate(VALID_DATE_GOOGLE).withStatus(VALID_STATUS_GOOGLE)
@@ -72,6 +84,14 @@ public class TypicalApplications {
     public static ApplicationBook getTypicalApplicationBook() {
         ApplicationBook ab = new ApplicationBook();
         for (Application application : getTypicalApplications()) {
+            ab.addApplication(application);
+        }
+        return ab;
+    }
+
+    public static ApplicationBook getTypicalApplicationBookWithNoUpcomingInterview() {
+        ApplicationBook ab = new ApplicationBook();
+        for (Application application : getTypicalApplicationsWithNoUpcomingInterview()) {
             ab.addApplication(application);
         }
         return ab;
@@ -101,6 +121,10 @@ public class TypicalApplications {
 
     public static List<Application> getTypicalApplications() {
         return new ArrayList<>(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET));
+    }
+
+    public static List<Application> getTypicalApplicationsWithNoUpcomingInterview() {
+        return new ArrayList<>(Arrays.asList(STRIPE, GOVTECH));
     }
 
     public static List<Application> getTypicalApplicationsWithUpcomingInterview() {
