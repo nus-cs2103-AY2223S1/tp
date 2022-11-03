@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -50,23 +49,23 @@ public class SampleDataUtil {
 
     public static Team[] getSampleTeams() {
         return new Team[] {
-                new Team(new seedu.address.model.team.Name("Frontend")),
-                new Team(new seedu.address.model.team.Name("Backend"))
+            new Team(new seedu.address.model.team.Name("Frontend")),
+            new Team(new seedu.address.model.team.Name("Backend"))
         };
     }
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-                new Task(new seedu.address.model.task.Name("Create GUI for the app"),
-                        LocalDate.of(2022, 12, 1), true),
-                new Task(new seedu.address.model.task.Name("Beginning of year meeting"),
-                        LocalDate.of(2023, 1, 5)),
-                new Task(new seedu.address.model.task.Name("Meeting with Client A"),
-                        LocalDate.of(2022, 12, 20)),
-                new Task(new seedu.address.model.task.Name("Implement a payment system"),
-                        null),
-                new Task(new seedu.address.model.task.Name("Implement Feature A using javascript"),
-                        null)
+            new Task(new seedu.address.model.task.Name("Create GUI for the app"),
+                LocalDate.of(2022, 12, 1), true),
+            new Task(new seedu.address.model.task.Name("Beginning of year meeting"),
+                LocalDate.of(2023, 1, 5)),
+            new Task(new seedu.address.model.task.Name("Meeting with Client A"),
+                LocalDate.of(2022, 12, 20)),
+            new Task(new seedu.address.model.task.Name("Implement a payment system"),
+                null),
+            new Task(new seedu.address.model.task.Name("Implement Feature A using javascript"),
+                null)
         };
     }
 
