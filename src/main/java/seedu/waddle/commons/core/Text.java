@@ -1,4 +1,4 @@
-package seedu.waddle.model.text;
+package seedu.waddle.commons.core;
 
 import java.text.DecimalFormat;
 

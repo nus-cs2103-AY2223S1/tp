@@ -17,7 +17,7 @@ import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.UniqueItemList;
 import seedu.waddle.model.itinerary.Itinerary;
-import seedu.waddle.model.text.Text;
+import seedu.waddle.commons.core.Text;
 
 /**
  * Class to fill pdf acroform with itinerary details.

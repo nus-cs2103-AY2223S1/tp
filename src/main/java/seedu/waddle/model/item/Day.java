@@ -14,7 +14,7 @@ import seedu.waddle.logic.PdfFieldInfo;
 import seedu.waddle.logic.PdfFiller;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.exceptions.Period;
-import seedu.waddle.model.text.Text;
+import seedu.waddle.commons.core.Text;
 
 /**
  * Encapsulates a day in an itinerary.
