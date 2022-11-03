@@ -167,7 +167,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand, resultDisplay, logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-        this.commandTextField = commandBox.commandTextField;
+        this.commandTextField = commandBox.getCommandTextField();
     }
 
     /**
