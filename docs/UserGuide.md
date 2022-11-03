@@ -77,84 +77,84 @@ This section gives a breakdown of each attribute and its option counterpart.
 
 ### Shared attributes
 #### Name
-Refers to the name of a property or client.
-Each property or client can only have one name.
+* Refers to the name of a property or client.
+* Each property or client can only have one name.
 
-Option: `n/`
-Example: `n/PINNACLE@DUXTON`
+* Option: `n/`
+* Example: `n/PINNACLE@DUXTON`
 
 #### Address
-Refers to the address of a property or client.
-Each property or client can only have one address.
+* Refers to the address of a property or client.
+* Each property or client can only have one address.
 
-Option: `a/`
-Example: `a/Cantonment Rd, #1G, 085301`
+* Option: `a/`
+* Example: `a/Cantonment Rd, #1G, 085301`
 
 #### Tag
-Refers to the given tags of a property or client. Can be used to label a property or client with important details.
-The only requirement for tags is that they have to be alphanumerical.
-Each property or client can have multiple tags.
+* Refers to the given tags of a property or client. Can be used to label a property or client with important details.
+* The only requirement for tags is that they have to be alphanumerical.
+* Each property or client can have multiple tags.
 
-Option: `t/`
-Example: `t/High-end`, `t/Friend`
+* Option: `t/`
+* Example: `t/High-end`, `t/Friend`
 
 #### Image
-Refers to the given image for a property or client.
-Each property or client can only have one image.
-The user will be prompted to select an image in a separate window after successful usage of this option in the context of whichever command the optionwas used for.
+* Refers to the given image for a property or client.
+* Each property or client can only have one image.
+* The user will be prompted to select an image in a separate window after successful usage of this option in the context of whichever command the optionwas used for.
 
-Option: `-i`
+* Option: `-i`
 
 ### Property attributes
 #### Price
-Refers to the general price to purchase a unit for a property.
-Each property can only have one price.
+* Refers to the general price to purchase a unit for a property.
+* Each property can only have one price.
 
-Option: `p/`
-Example: `p/1,000,000`
+* Option: `p/`
+* Example: `p/1,000,000`
 
 #### Property type
-Refers to the type of a property.
-Each property can only have one property type.
-Valid property types:
-* HDB
-* CONDO
-* LANDED
-Arguments for this option are case-insensitive.
+* Refers to the type of a property.
+* Each property can only have one property type.
+* Valid property types:
+  * HDB
+  * CONDO
+  * LANDED
+* Arguments for this option are case-insensitive.
 
-Option: `h/`
-Example: `h/HDB`, `h/Condo`
+* Option: `h/`
+* Example: `h/HDB`, `h/Condo`
 
 #### Property status
-Refers to the status of a property.
-Each property can only have one property status.
-Valid property statuses:
-* AVAILABLE
-* SOLD
-* PENDING
-Arguments for this option are case-insensitive.
+* Refers to the status of a property.
+* Each property can only have one property status.
+* Valid property statuses:
+  * AVAILABLE
+  * SOLD
+  * PENDING
+* Arguments for this option are case-insensitive.
 
-Option: `s/`
-Example: `s/AVAILABLE`, `s/PENDING`
+* Option: `s/`
+* Example: `s/AVAILABLE`, `s/PENDING`
 
 #### Interested clients
-Refers to the clients that are interested in a property.
-Each property can have multiple clients interested in it.
-This option takes in **case-insensitive** arguments and attempts to link it to the name of a client.
-Arguments will not be accepted if it links to no clients, or if it links to more than one client.
+* Refers to the clients that are interested in a property.
+* Each property can have multiple clients interested in it.
+* This option takes in **case-insensitive** arguments and attempts to link it to the name of a client.
+* Arguments will not be accepted if it links to no clients, or if it links to more than one client.
 
-Option: `ic/`
-Example: `ic/Samuel`, `ic/bob`
+* Option: `ic/`
+* Example: `ic/Samuel`, `ic/bob`
 
 ### Client attributes
 #### Interested properties
-Refers to properties that a client is interested in.
-Each client can be interested in multiple properties.
-This option takes in **case-insensitive** arguments and attempts to link it to the name of a property.
-Arguments will not be accepted if it links to no properties, or if it links to more than one property.
+* Refers to properties that a client is interested in.
+* Each client can be interested in multiple properties.
+* This option takes in **case-insensitive** arguments and attempts to link it to the name of a property.
+* Arguments will not be accepted if it links to no properties, or if it links to more than one property.
 
-Option: `ip/`
-Example: `ip/duxton`, `ip/rosewood`
+* Option: `ip/`
+* Example: `ip/duxton`, `ip/rosewood`
 
 --------------------------------------------------------------------------------------------------------------------
 
