@@ -218,7 +218,7 @@ Examples:
 * `findproj CS2103` returns all projects that contain the word `CS2103`. 
 For example, both projects `CS2103` and `CS2103 TP` will be listed. 
 * `findproj merge develop` returns all projects that either contain the word `merge` or the word `develop`. For example, both projects
-Merger with `ABC` and `Develop software` will be listed.
+`Merger with ABC` and `Develop software` will be listed.
 
 [Back to top](#table-of-contents)<br>
 [Back to Project Glossary](#project-glossary)
