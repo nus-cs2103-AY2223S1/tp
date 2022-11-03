@@ -1,0 +1,23 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters tag command;
+if () then ([else])
+  :Error:Invalid command format;
+  stop
+([tag name and item index provided]) elseif () then ([else])
+  :Error: Tag does not exist;
+  stop
+([tag exists in model]) elseif () then ([else])
+  :Error: Invalid item index;
+  stop
+([Item index is in valid range of Item List])elseif () then ([else])
+  :Error: Item has already been tagged;
+   stop
+ else (([Specified Item does not contain tag]))
+endif
+  :Tag Command successfully executes.
+Item gets tagged with tag.;
+stop
+
+@enduml

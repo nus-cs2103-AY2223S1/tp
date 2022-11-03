@@ -92,6 +92,13 @@ The `tag item` command tags an item with the provided tag name in FoodRem. If bo
 
 ##### Feature Details
 
+Here is the activity diagram showing the process of the `tag` command:
+
+![TagItemActivityDiagram](images/TagItemActivityDiagram.png)
+
+
+Here is the sequence diagram showing the interactions between the different components during a `tag` command.
+
 ![TagSequenceDiagram](images/TagSequenceDiagram.png)
 
 1. The user specifies a tag name and the item index (which corresponds to the index of the item displayed on the item list on FoodRem UI).
