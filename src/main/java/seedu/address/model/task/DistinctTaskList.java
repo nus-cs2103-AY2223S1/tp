@@ -91,7 +91,7 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
-     * Unlinks all tasks that are currently linked to {@code exam} and returns a List of these tasks.
+     * Unlinks all tasks that are currently linked to {@code exam} and returns a list of these tasks.
      * @param exam the exam for the tasks to be unlinked from
      */
     public List<Task> unlinkTasksFromExam(Exam exam) {

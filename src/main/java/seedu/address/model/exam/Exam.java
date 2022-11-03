@@ -144,7 +144,10 @@ public class Exam {
         if (newExamDate != null) {
             updatedExamDate = newExamDate;
         }
-        return new Exam(updatedModule, updatedDescription, updatedExamDate);
+        if (!module.isSameModule(updatedModule)) {
+            return new Exam(updatedModule, updatedDescription, updatedExamDate);
+        }
+        return new Exam(updatedModule, updatedDescription, updatedExamDate, totalNumOfTasks, numOfCompletedTasks);
     }
 
 
