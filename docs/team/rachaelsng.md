@@ -9,30 +9,33 @@ JARVIS is a desktop application that allows a CS1101S TA to manage his/her stude
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be added
-  * What it does: to be added
-  * Justification: to be added
+* **New Feature**: Added the ability to view the full list of students.
+  * What it does: Allows the user to see the full list of students.
+  * Justification: The default GUI that the user sees does not show the full list of students. Hence, this feature allows the user to view the full list to see all students in the system and their details recorded.
   * Highlights: to be added
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
-
-* **New Feature**: to be added
+  
+* **New Feature**: Added the ability to view the list of tasks.
+  * What it does: Allows the user to see the full list of tasks.
+  * Justification: The default GUI that the user sees does not show the full list of tasks. Hence, this feature allows the user to view the full list to see all tasks in the system and their details recorded.
+  * Highlights: to be added
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=rachaelsng&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * to be added
+  * Contributed to ideation and team direction.
+  * Ensured timely submissions for tasks.
 
 * **Enhancements to existing features**:
-  * to be added
+  * Implement storage for lessons.
 
 * **Documentation**:
   * User Guide:
-    * to be added
+    * Added tips for the user to differentiate students with the same name.
   * Developer Guide:
-    * to be added
+    * Added implementation details of storage component. 
+    * Updated UML diagrams for storage component.
+    * Added implementation details of the listing of tasks, students and lessons.
 
 * **Community**:
-  * to be added
-
-* **Tools**:
-  * to be added
+  * Helped Team CS2103T-T14-2 find bugs during PE-D
+  
