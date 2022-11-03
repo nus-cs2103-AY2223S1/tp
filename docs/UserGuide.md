@@ -97,8 +97,7 @@ Format: `addperson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 </div>
 
 <div markdown="span" class="alert alert-primary">
-<br>
-  :information_source: **Extra note**: 
+<br>:information_source: **Extra note**: 
 
 A person's email can be in the form of `local-part@domain`, where the `domain`
 specified must be at least 2 characters long.
@@ -202,7 +201,7 @@ Examples:
 ### Display a group: `displaygroup`
 
 Displays the group members allocated to the specified `GROUP`.
-![TABS example](images/user-guide/displaygroup_example.png)
+![TABS example](images/user-guide/displaygroup.PNG)
 
 Format: `displaygroup GROUP`
 * Displays the members associated with the `GROUP`.
@@ -248,8 +247,8 @@ Format: `deletetask NAME g/GROUP task/TASK`
 * Deletes a `TASK` from a person with the specified `NAME` and specified `GROUP`.
 
 Examples:
-* `deletetask John g/CS2103T task/TeamProject` deletes task `TeamProject` from person `John`in group `CS2103T`.
-* `deletetask Billy g/Team Delta task/Delta Project` deletes `Delta Project` from person `Billy` with in group `Team Delta`.
+* `deletetask John g/CS2103T task/TeamProject` deletes task `TeamProject` from person `John` in group `CS2103T`.
+* `deletetask Billy g/Team Delta task/Delta Project` deletes `Delta Project` from person `Billy` within group `Team Delta`.
 
 ### Assigning a task to all members: `assigntaskall`
 
