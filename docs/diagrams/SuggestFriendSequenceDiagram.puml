@@ -2,9 +2,9 @@
 'https://plantuml.com/sequence-diagram
 !include style.puml
 
-participant ":SuggestCommand" as SuggestCommand MODEL_COLOR
+participant ":SuggestCommand" as SuggestCommand LOGIC_COLOR
 participant ":Model" as Model MODEL_COLOR
-participant ":FilteredList" as FilteredList MODEL_COLOR
+participant "filteredPersons:FilteredList" as FilteredList MODEL_COLOR
 
 [-> SuggestCommand: execute(model)
 activate SuggestCommand

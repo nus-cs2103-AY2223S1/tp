@@ -81,7 +81,7 @@ The terms of use can be found [here](https://www.minecraft.net/en-us/terms).
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [Setting up and getting started](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -94,7 +94,7 @@ He is an expert Minecraft player. He has school and extracurricular commitments
 but always finds time to play Minecraft. He plays a variety of multiplayer game modes 
 (eg. creative, survival games, skyblock, KitPvP etc.) and he has different friends who play
 Minecraft with him in different ways. He is familiar with Minecraft commands so he 
-is comfortable with the CLI.
+is comfortable with the command line interface (CLI).
 
 #### Target user profile
 
@@ -102,7 +102,7 @@ is comfortable with the CLI.
 * has many Minecraft friends (online and offline) from all over the world
 * prefer desktop apps over other types
 * prefers typing to mouse interactions and types fast
-* is comfortable with using the Minecraft command line, and by hence extension, using CLI apps
+* is comfortable using the Minecraft command line, and by hence extension, using CLI apps
 
 #### Value proposition
 
@@ -111,7 +111,7 @@ We want to help players find the right people to play the right game mode with a
 
 #### User stories and use cases
 
-The user stories can be found in [Appendix A] and use cases in [Appendix B].
+The user stories can be found in [Appendix A](#appendix-a-user-stories) and use cases in [Appendix B](#appendix-b-use-cases).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -252,8 +252,6 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Edit a Friend
 
-#### Description
-
 The "edit" feature allows users to edit details of their friends.
 
 #### Implementation
@@ -272,25 +270,23 @@ The following class diagram shows the organization of the classes for "edit".
 
 ### Suggest a Friend
 
-#### Description
-
-The "suggest" feature suggests a friend for the user to play Minecraft with based on a given
-set of constraints.
+The `suggest` feature suggests a friend for the user to play Minecraft with based on a given
+set of constraints. A detailed description of its usage can be found [here](https://ay2223s1-cs2103t-t10-4.github.io/tp/UserGuide.html#suggest-me-a-friend-suggest) in the user guide.
 
 #### Implementation
 
-The suggest feature is facilitated through the `SuggestCommand`, `SuggestCommandParser`
+The class diagram below shows the organization of the classes of the `suggest` feature, with explanation provided after.
+
+<img src="images/SuggestFriendClassDiagram.png" width="300" />
+
+The `suggest` feature is facilitated through the `SuggestCommand`, `SuggestCommandParser`
 and `PersonSuggestionPredicate` classes. Once parsed, every `SuggestCommand` will contain
 a `PersonSuggestionPredicate` such that the predicate can be used to filter
 through the list of all friends to get a list of suggested friends.
 
 The `PersonSuggestionPredicate` is made up of two parts, a collection of `DayTimeInWeek` and a collection of `Keyword`. 
-Minefriends will find all persons that is available for *any* of the `DayTimeInWeek` and contains *all* the keywords in 
+Minefriends will find all persons that is available for **any** of the `DayTimeInWeek` and contains **all** the keywords in 
 the collection of `Keyword`.
-
-The following class diagram shows the organization of the classes for "suggest".
-
-<img src="images/SuggestFriendClassDiagram.png" width="550" />
 
 The following sequence diagram shows the flow of the execution of the suggest command.
 Some details related to the general parsing and execution of commands are omitted
@@ -298,9 +294,24 @@ as they have been explained under [logic](#logic-component).
 
 <img src="images/SuggestFriendSequenceDiagram.png" width="550" />
 
-### Autocomplete Commands
+The `filteredPersons` in the instance of `Model` will be filtered according to the `PersonSuggestionPredicate`
+to contain only the friends who satisfy the predicate. More information about `Model` is available [here](#model-component).
 
-#### Description
+#### Rationale for this implementation
+
+Using predicates allows us to decouple the `SuggestCommand` and `Model` instances, by containing the logic
+for deciding who to filter in a separate class `PersonSuggestionPredicate`.
+
+In addition, the use of predicate allows us to exploit the power of Java streams, which makes it easier
+to write simpler and cleaner code.
+
+#### Alternatives considered
+
+1. The `Model` instance can be passed directly to the `SuggestCommand` in which the `SuggestCommand` can
+   modify the `filteredPersons` list directly. However, this leads to tighter coupling which reduces the 
+   maintainability of the code.
+
+### Autocomplete Commands
 
 The "autocomplete" feature matches the current text to all the commands for the user when the user types in the command box.
 
@@ -322,8 +333,6 @@ The following activity diagram shows the workflow for the autocomplete feature.
 <img src="images/AutoCompleteActivityDiagram.png" width="750" />
 
 ### Display Friend Preferences and Socials as Tags
-
-#### Description
 
 Whenever the user enters or modifies the in-game preferences or social handles of a friend, it is displayed as 
 various coloured tags under the friend's profile.
@@ -464,7 +473,6 @@ where users are able to remember various servers by their server names,
 and distinguish servers with the same names by their IP addresses 
 e.g. `Mineplex @ 111.111.111.111`
 
-
 #### Proposed Implementation
 
 The server class currently only allows the server to be documented in the 
@@ -484,7 +492,6 @@ added into the set of Server. <br>
 Substantial changes will be made to the server class with constraints such as
 validation regex being amended.
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -497,75 +504,45 @@ validation regex being amended.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix A: User stories**
 
-### Product scope
+Priority legend
+* High: Must have
+* Medium: Good to have
+* Low: Unlikely to have
 
-**Target user persona**:
+| Priority | As a             | I want to                                          | so that I can                                                                  |
+|---------|------------------|----------------------------------------------------|--------------------------------------------------------------------------------|
+| High    | new user         | see usage instructions                             | learn how to use Minefriends                                                   |
+| High    | Minecraft player | add my friends to Minefriends                      | remember information about them                                                |
+| High    | Minefraft player | remove a friend from Minefriends                   | keep an accurate list of my Minecraft friends                                  |
+| High    | Minecraft player | view all my friends                                | have an overview of my Minecraft social contacts                               |
+| High    | Minecraft player | save all my friends' information                   | retrieve them on subsequent uses of Minefriends                                |
+| High    | Minecraft player | receive suggestions on which friends to play with  | play Minecraft with the right friend at the right time                         |
+| High    | Minecraft player | know my friend's name                              | address them correctly                                                         |
+| High    | Minecraft player | know my friend's Minecraft username                | recognize them on Minecraft servers                                            |
+| High    | Minecraft player | know my friend's phone number                      | call/sms them when I want to play with them                                    |
+| High    | Minecraft player | know my friend's social media handles              | contact them when I want to play with them                                     |
+| High    | Minecraft player | know my friend's preferred game modes              | find friends with compatible game type interests with me at that point in time |
+| High    | Minecraft player | know my friend's preferred Minecraft servers       | find friends with compatible server interests with me at that point in time    |
+| High    | Minecraft player | know my friend's preferred play timings            | find friends who are free at a particular time                                 |
+| Medium  | Minecraft player | know my friend's email address                     | contact them when I want to play with them                                     |
+| Medium  | Minecraft player | know my friend's physical address                  | go to their houses an play together                                            |
+| Medium  | Minecraft player | know my friend's country                           | be mindful of timezone differences when playing                                |
+| Medium  | Minecraft player | note down additional information about my friends  | remember other noteworthy information about them                               |
+| Medium  | Minecraft player | know what servers my friends have been banned from | avoid those servers when playing with them                                     |
+| Low     | Minecraft player | secure my information behind a password            | other people cannot intrude upon my privacy                                    |
+| Low     | Minecraft player | know my friend's in-game skin                      | I can recognize them in game                                                   |
+| Low     | Minecraft player | find new friends through Minefriends               | have more friends to play Minecraft with                                       |
 
-A male 14 year old teenager who plays Minecraft multiplayer with his friends. He is an expert Minecraft player. He has school and extracurricular commitments but always finds time to play Minecraft. He plays a variety of multiplayer game modes (eg. creative, hunger games, skyblock, PvP etc.) and he has different friends who play Minecraft with him in different ways. He is familiar with Minecraft commands and so he is comfortable with the CLI.
 
-**Target user profile**:
 
-* plays Minecraft multiplayer with friends regularly
-* has many Minecraft friends (online and offline) from all over the world
-* prefer desktop apps over other types
-* prefers typing to mouse interactions and types fast
-* is comfortable with using the Minecraft command line, and by hence extension, using CLI apps
+--------------------------------------------------------------------------------------------------------------------
 
-**Value proposition**: 
-
-There are many servers and multiplayer game modes in Minecraft, and players have different schedules to when they can play. We want to help players find the right people to play the right game with at the right time.
-
-### User stories
-
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
-| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-| `*`      | Minecraft multiplayer player               | view all my friends who are online easily                       | save time contacting them individually to start a game together     |
-| `*`      | parent of a young Minecraft player         | ban Minecraft from redirecting my child to third-party websites | protect them from stranger-danger online                            |
-| `* * *`  | Minecraft multiplayer player               | add my friends to the contact list                              | keep track of their information                                     |
-| `* *`    | Minecraft multiplayer player               | search for my friends through the CLI                           | track their current game status and find information about them     |
-| `* * *`  | Minecraft multiplayer player               | view all my friends in the list                                 | know who I have added as a friend already and who I haven’t add yet |
-| `* *`    | Minecraft multiplayer player               | save all the data of my contacts                                | not need to search for them or re-compile them again                |
-| `*`      | Minecraft multiplayer player               | login after typing in a password                                | ensure that nobody else can access my contact list                  |
-| `*`      | Minecraft survival games player            | know my friend's strengths and weaknesses in game               | form a strategic team to increase odds of winning                   |
-| `*`      | Minecraft PvP player                       | find friends to play together at the same time                  | team up and be stronger                                             |
-| `*`      | Experienced Minecraft player               | use the command line interface comfortably                      | do things more efficiently in the application                       |
-| `*`      | Minecraft player                           | change my password                                              | keep my account secure so nobody can hack my account                |
-| `*`      | Long time Minecraft player                 | have a lot of friends                                           | keep track of those friends                                         |
-| `*`      | Beginner Minecraft player                  | learn the controls                                              | play with my friends                                                |
-| `*`      | Minecraft player                           | reset my password                                               | still login in the case I forget my password                        |
-| `*`      | Minecraft PvP player                       | keep track of my friends’ general online (availability) times   | know when to expect them to be online                               |
-| `* * *`  | Minecraft multiplayer player               | know the contact number of my friends                           | can call them to play                                               |
-| `* * *`  | Minecraft multiplayer player               | know the social media handles of my friends                     | can text them to play                                               |
-| `* * *`  | Minecraft multiplayer player               | know the email address of my friends                            | can still communicate with them if all the other ways fail          |
-| `* * *`  | Minecraft multiplayer player               | know the addresses of my friends                                | can play together with them physically                              |
-| `*`      | Minecraft multiplayer player               | see what types of game modes my friends like to play            | call the correct person to play the correct type of game            |
-| `*`      | Minecraft multiplayer player               | remember what servers my friends have been banned on            | call the right person to play the right server                      |
-| `* * *`  | Minecraft multiplayer player               | remember what time zones my friends are in                      | can call them at the right time                                     |
-| `*`      | Minecraft player                           | set up an authentication system                                 | can protect my privacy                                              |
-| `*`      | Adult Minecraft Player                     | keep track of certain details                                   | do not need to remember everything if there are too many details about my friends |
-| `*`      | Tech Savvy Minecraft Player                | customize CLI to their own liking                               | have a good feeling when I use the CLI                              |
-| `*`      | Not so tech-savvy Minecraft Player         | practice their CLI skills                                       | master the CLI inputs                                               |
-| `*`      | Minecraft Fan                              | want everything related about Minecraft                         | feel fulfilled in life                                              |
-| `*`      | Minecraft Player who is banned from certain servers | find those people who his contacts are cut             | play with them on another server                                    |
-| `* * *`  | Minecraft multiplayer players              | know my friends in game username                                | recognize them in game                                              |
-| `* *`    | Minecraft multiplayer players              | know my friends in game skin                                    | recognize them in game                                              |
-
-*{More to be added}*
-
-### Use cases
+## **Appendix B: Use cases**
 
 (For all use cases below, the **System** is the `MineFriends` and the **Actor** is the `friend`, unless specified otherwise)
-      
+
 **Use case: Add a friend**
 
 **MSS**
@@ -605,7 +582,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. MineFriends shows an error message.
 
       Use case resumes at step 2.
-      
+
 **Use case: Edit a friend**
 
 **MSS**
@@ -631,34 +608,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Non-Functional Requirements
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix C: Non-functional requirements**
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Not suitable for platforms with on-screen keyboards as the keyboard popup may block the screen view.
-5.  Should be able to launch multiple instance of the app on the same platform.
-6.  Should be able to be used by a novice who has never used a CLI program before.
+5.  Should be able to launch multiple instance of the app on the same device.
+6.  Should be able to be used by a person who has never used a CLI program before.
 7.  Not required to handle the messaging send between the friends.
 8.  Not required to handle the app on mobile platform.
 
-*{More to be added}*
+--------------------------------------------------------------------------------------------------------------------
 
-### Glossary
+## **Appendix D: Glossary**
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Minecraft**: An openworld sandbox [game](https://www.minecraft.net/en-us)
-* **MineFriends**: The name of our app
-* **Username**: Username of `friend` in Minecraft
-* **Server**: A Minecraft multiplayer server
-* **Socials**: Social Media such as Facebook, Instagram, Snapchat etc.
-* **Player**: A person that plays Minecraft
-* **PvP**: A type of gamemode in minecraft where one player battles another player
+### Minecraft-related terminologies
+| Terminology    | Definition                                                                                       |
+|----------------|--------------------------------------------------------------------------------------------------|
+| Minecraft      | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
+| Minefriends    | The name of our app                                                                              |
+| Username       | The uniquely identifiable Minecraft username of each player                                      |
+| Server         | A multiplayer Minecraft server                                                                   |.                              |
+| Player         | A person who plays Minecraft                                                                     |
+| Mojang Studios | The company that created and owns Minecraft                                                      |
+| Microsoft      | The company that bought over Mojang Studios in 2014                                              |
+| Game mode      | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
+| Game type      | A synonym for game mode                                                                          |
+
+<div markdown="span" class="alert alert-info">
+
+For a complete glossary of Minecraft terms, please visit this page on the
+[Minecraft wiki](https://minecraft.fandom.com/wiki/Tutorials/Game_terms).
+
+</div>
+
+### Other terminologies
+| Terminology   | Definition                                                                 |
+|---------------|----------------------------------------------------------------------------|
+| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X        |
+| Socials       | A person's social media account information, such as their Telegram handle |
+| CLI           | An acronym for "command line interface"                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix E: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -707,4 +703,7 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+## **Appendix F: Effort**
+
