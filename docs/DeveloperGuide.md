@@ -365,19 +365,19 @@ The `ParserUtil#ParseAppointment()` will detect that both the given reason and d
 
 Scenario 2: User inputs an empty reason in the `r/` prefix.
 
-The `ParserUtil#ParseAppointment()` will detect that the given reason is empty and throws a `CommandException`, which will feedback to the user that he has given an invalid reason.
+The `ParserUtil#ParseAppointment()` will detect that the given reason is empty and throws a `ParseException`, which will feedback to the user that he has given an invalid reason.
 
 Scenario 3: User inputs an invalid dateTime in the `d/` prefix, such as `2022-15-10 14:00`.
 
-The `ParserUtil#ParseAppointment()` will detect that the given dateTime is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid dateTime.
+The `ParserUtil#ParseAppointment()` will detect that the given dateTime is invalid and throws a `ParseException`, which will feedback to the user that he has given an invalid dateTime.
 
 Scenario 4: User inputs an invalid recurring time period in the `pe/` prefix, such as `1S`.
 
-The `ParserUtil#ParseAppointment()` will detect that the given time period is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid time period.
+The `ParserUtil#ParseAppointment()` will detect that the given time period is invalid and throws a `ParseException`, which will feedback to the user that he has given an invalid time period.
 
 Scenario 5: User inputs an invalid tag in the `t/` prefix, such as `Sick`.
 
-The `ParserUtil#ParseAppointment()` will detect that the given tag is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid tag.
+The `ParserUtil#ParseAppointment()` will detect that the given tag is invalid and throws a `ParseException`, which will feedback to the user that he has given an invalid tag.
 
 Scenario 6: User tries to book an appointment with the same time as other appointments of the same person.
 
