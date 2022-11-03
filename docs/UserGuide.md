@@ -40,7 +40,7 @@ For advanced user, you can go straight to [command summary](#command-summary).
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ For advanced user, you can go straight to [command summary](#command-summary).
 
 This section provides information on how you can use HackAssist commands for people management and tasks management. 
 
-You can click [General](#general) to learn about general commands, [People Management](#people-management) to learn about commands specific to People Management, or [Task Management](#tasks-management) to learn about commands specific to Task Management.
+You can click [General](#general) to learn about general commands, [Members Management](#members-management) to learn about commands specific to People Management, or [Task Management](#tasks-management) to learn about commands specific to Task Management.
 
 Before you learn any commands, please read the following notes about HackAssist command format.
 
@@ -147,7 +147,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 A person can have any number of tags (including 0)
 </div>
 
-Refer to the [Person Parameters](#person-parameters) section for details about the format of each parameter.
+Refer to the [Member Parameters](#member-parameters) section for details about the format of each parameter.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 `
@@ -219,17 +219,18 @@ The following commands are for viewing and managing your hackathon tasks. These 
 
 #### Adding a task: `addTask`
 
-Adds a task to the task list. 
-* Note: You cannot add a task if another task with the same name already exists in the task list. 
+Adds a task to the task list. Note that you cannot add a task if another task with the same name already exists in the task list. 
 
-Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
+Format: `addTask n/TASK_NAME d/DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
+
+* If the optional parameter `pe/EMAIL_OF_PERSON_ASSIGNED` is provided, the task will be assigned to that member. If not, it will remain unassigned. 
 
 Refer to the [Task Parameters](#task-parameters) section for details about the format of each parameter.
 
 Examples:
 
-* `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` adds task `Fix toggle` to the task list
-* `addTask n/Fix routing d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/john@example.com` adds task `Fix routing` to the task list
+* `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12` adds task `Fix toggle` to the task list
+* `addTask n/Fix routing d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/john@example.com` adds task `Fix routing` to the task list and assigns it to member with email `john@example.com`
 
 #### Deleting a task: `deleteTask`
 
@@ -246,9 +247,9 @@ Examples:
 
 #### Editing a Task: `editTask`
 
-Edits the parameter(s) of an existing task in the task list.
+Edits the parameter(s) of an existing task in the task list. You can also use this command to mark tasks as `completed` or to assign the task to a team member. 
 
-Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]`
+Format: `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]`
 
 * Edits the task at the specified index. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​ and less than or equal to the number of tasks in the task list.
 * At least one of the optional fields must be provided.
@@ -264,7 +265,7 @@ Examples:
 
 #### Viewing all tasks: `listTasks`
 
-Displays all existing tasks in the task list. Use this after using the [`filter`](#filtering-a-task-filter) command to remove the filter.
+Displays all existing tasks in the task list. Use this after using the [`filter`](#filtering-tasks-filter) command to remove the filter.
 
 Format: `listTasks`
 
@@ -285,31 +286,20 @@ Examples:
 *  `filter c/backend` displays only tasks that have `backend` as CATEGORY
 *  `filter c/backend dl/2022-12-12` displays only tasks that have `backend` as CATEGORY and DEADLINE on `2022-12-12` or before
 
-#### Sorting the task list by deadline: `sortByDeadline`
+#### Sorting tasks: `sort`
 
-Sorts the task list by task deadline.
+Sorts the task list by the specified field in the specified order. For instance, you can sort tasks in descending order of PRIORITY to help you decide which tasks should be done first. 
 
-Format: `sortByDeadline [o/ORDER]`
+Format: `sort [pr/ORDER] [dl/ORDER]`
 
-* Order can be `asc` for ascending (earliest first) or `desc` for descending (latest first).
-* If order is not specified, it will default to ascending order.
-
-Examples:
-* `sortByDeadline` sorts tasks by deadline in ascending order.
-* `sortByDeadline o/desc` sorts tasks by deadline in descending order.
-
-#### Sorting the task list by priority: `sortByPriority`
-
-Sorts the task list by task priority.
-
-Format: `sortByPriority [o/ORDER]`
-
-* Order can be `asc` for ascending (LOW to HIGH) or `desc` for descending (HIGH to LOW).
-* If order is not specified, it will default to descending order.
+* Exactly one of the optional parameters must be provided.
+* Use the `pr/` parameter to sort by PRIORITY.
+* Use the `dl/` parameter to sort by DEADLINE. 
+* Order must be either `asc` for ascending or `desc` for descending.
 
 Examples:
-* `sortByPriority` sorts tasks by priority in descending order.
-* `sortByPriority o/asc` sorts tasks by priority in ascending order.
+* `sort pr/asc` sorts tasks by priority in ascending order
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -341,7 +331,7 @@ Examples:
 
 add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 --------------------------------------------------------------------------------------------------------------------
-## Member parameters
+## Member Parameters
 
 | Parameter               | Format                                                                                                                                                 |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -352,7 +342,7 @@ add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Task parameters
+## Task Parameters
 
 | Parameter               | Format                                                                                                                                                 |
 |-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
