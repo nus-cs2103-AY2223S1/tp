@@ -9,6 +9,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.medication.exceptions.DuplicateMedicationException;
@@ -70,11 +71,11 @@ public class AddMedicationCommand extends AddGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedMedicationList);
 
-        model.setPerson(patientToEdit, editedPatient);
+        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_ADD_MEDICATION_SUCCESS, editedPatient.getName(), medication),
-                ADD_MEDICATION_COMMAND_TYPE);
+                ADD_MEDICATION_COMMAND_TYPE, patientListTracker);
     }
 
     @Override

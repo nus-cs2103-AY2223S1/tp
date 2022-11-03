@@ -11,7 +11,7 @@ import seedu.uninurse.model.Model;
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_FAILURE = "No command to redo!";
-    public static final String MESSAGE_SUCCESS = "Redone next command!";
+    public static final String MESSAGE_SUCCESS = "Redone the following command:\n\n";
 
     public static final CommandType REDO_COMMAND_TYPE = CommandType.REDO;
 
@@ -22,8 +22,8 @@ public class RedoCommand extends Command {
             throw new CommandException(MESSAGE_FAILURE);
         }
 
-        model.redo();
+        CommandResult redoneCommandResult = model.redo();
         model.saveCurrentPatientListTracker();
-        return new CommandResult(MESSAGE_SUCCESS, REDO_COMMAND_TYPE);
+        return new CommandResult(MESSAGE_SUCCESS + redoneCommandResult.getFeedbackToUser(), REDO_COMMAND_TYPE);
     }
 }
