@@ -1,32 +1,23 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
 /**
  * Represents an Assignment in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Assignment implements Task {
-    private final TaskDescription taskDescription;
-    private final TaskTitle taskTitle;
+public class Assignment extends Task {
     private final List<String> students;
 
     /**
      * Every field must be present and not null.
      */
     public Assignment(TaskTitle title, TaskDescription desc, List<String> students) {
-        this.taskTitle = title;
-        this.taskDescription = desc;
+        super(title, desc);
+        requireNonNull(students);
         this.students = students;
-    }
-    @Override
-    public TaskTitle getTitle() {
-        return this.taskTitle;
-    }
-
-    @Override
-    public TaskDescription getDescription() {
-        return this.taskDescription;
     }
 
     /**
@@ -50,9 +41,7 @@ public class Assignment implements Task {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        builder.append(getTitle())
-                .append("; Description: ")
-                .append(getDescription())
+        builder.append(super.toString())
                 .append("; Students: ");
         for (int i = 0; i < students.size(); i++) {
             if (i == students.size() - 1) {
@@ -76,8 +65,7 @@ public class Assignment implements Task {
 
         Assignment otherStudent = (Assignment) other;
 
-        return otherStudent.getTitle().equals(getTitle())
-                && otherStudent.getDescription().equals(getDescription())
+        return super.equals(otherStudent)
                 && otherStudent.getStudents().equals(getStudents());
     }
 }

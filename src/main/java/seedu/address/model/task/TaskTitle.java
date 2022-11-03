@@ -49,9 +49,4 @@ public class TaskTitle {
                 && title.equals(((TaskTitle) other).title)); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return title.hashCode();
-    }
-
 }
