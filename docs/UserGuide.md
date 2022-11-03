@@ -9,7 +9,7 @@ title: User Guide
 ## Introduction
 
 ### About GREWZ
-Tired of opening multiple applications for your teaching needs? Look no further!
+Tired of opening multiple applications for your teaching needs? Proficient in typing? Look no further!
 
 GREWZ helps **university teaching assistants** to maintain the information of the students in their classes by collating 
 a list of students' personal details, as well as keeping a task book to help them keep track of their personal work.
@@ -120,7 +120,8 @@ Format: `add n/NAME i/STUDENT_ID [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS_GROUP] [t/T
 * A student can have any number of tags (including 0).
 
 <div markdown="span" class="alert alert-warning">:information_source: **Note:**
-Students CANNOT have the same name. GREWZ is case-insensitive but space-sensitive.
+Students CANNOT have the same name. 
+GREWZ naming convention is [case-insensitive](#glossary), but [whitespace-sensitive](#glossary).
 This means that it does not allow for students with the exact same name to be keyed into the application. 
 Thus trying to add a student with the name `Ben` and `ben` will not work.
 Student ID must also be unique.
@@ -267,8 +268,8 @@ Marks attendance of given student in class list. In this case, we use 0 for abse
 Format: `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-The first lesson starts from 1. GREWZ only accepts 0 and 1 for attendance values which correspond to absent and present respectively.
-As it is faster for you to type numerical values over full words, we adopted such an approach for your convenience.
+The first lesson starts from index 1. GREWZ only accepts 0 and 1 for attendance values which correspond to absent and present respectively.
+We adopted such an approach as it is faster for you to type numerical values over full words.
 </div>
 
 Examples:
@@ -432,7 +433,7 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 
 **Q:** What is the difference between the different types of tasks?
 <br />
-**A:** All the three tasks essentially have a task title and description. What differentiate them is that a deadline task has date property where you can set its deadline and an assignment task has a student property where you can add a list of student who are yet to complete the assignment task. Lastly, the todo task doesn't have either of these fields.
+**A:** All the three tasks essentially have a task title and description. What differentiates them is that a deadline task has date property where you can set its deadline and an assignment task has a student property where you can add a list of student who are yet to complete the assignment task. Lastly, the todo task has neither of these fields.
 
 **Q:** How to add a student if I do not have their student ID?
 <br />
@@ -496,5 +497,7 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 | **Deadline**                               | Deadline is a task with a title, description and due date.                                                                                     |
 | **Assignment**                             | Assignment is a task with title, description and a list of students that needs to finish the task.                                             |
 | **Attendance List**                        | Attendance list is a record of the student's attendance for his class.                                                                         |
+| **Case-sensitive**                         | Case-sensitive is the ability to differentiate between capital and lower case letters                                                          |
+| **Space-insensitive**                      | Space-insensitive is the lack of ability to differentiate between blank spaces in words.                                                       |
 
 [Back to Top ↑](#introduction)
