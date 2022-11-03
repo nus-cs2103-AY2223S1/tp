@@ -196,10 +196,11 @@ public class ParserUtil {
             requireNonNull(cap);
             String trimmedCap = cap.trim();
             String[] capValues = trimmedCap.split(CAP_SEPARATOR);
-            double capValue;
-            double maximumCapValue;
-            capValue = Double.parseDouble(capValues[0]);
-            maximumCapValue = Double.parseDouble(capValues[1]);
+            if (!capValues[0].matches(Cap.VALIDATION_REGEX) || !capValues[1].matches(Cap.VALIDATION_REGEX)) {
+                throw new ParseException(Cap.MESSAGE_NUMERIC_VALUE_REQUIRED);
+            }
+            double capValue = Double.parseDouble(capValues[0]);
+            double maximumCapValue = Double.parseDouble(capValues[1]);
             if (!Cap.isValidCap(capValue, maximumCapValue)) {
                 throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
             }

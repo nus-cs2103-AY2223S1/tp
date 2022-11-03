@@ -12,8 +12,11 @@ public class Cap {
             "CAPs should consist of a positive numeric value less than or equal to its maximum value, e.g. 4.0/5.0";
     public static final String MESSAGE_MAXIMUM_CAP_REQUIRED =
             "CAPs should consist of two values, namely the current CAP value and its maximum value, e.g. 4.0/5.0";
+    public static final String MESSAGE_NUMERIC_VALUE_REQUIRED =
+            "CAP values should only be numeric and should not contain alphabetical characters!";
     public static final double MINIMUM = 0.0;
     public static final String CAP_SEPARATOR = "/";
+    public static final String VALIDATION_REGEX = "[\\s]*[0-9][\\s]*[.]?[\\s]*[0-9]*[\\s]*";
     public final double value;
     public final double maximum;
 
