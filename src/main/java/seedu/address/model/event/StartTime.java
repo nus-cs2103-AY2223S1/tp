@@ -51,7 +51,7 @@ public class StartTime implements Comparable<StartTime> {
      */
     public static boolean isValidStartTimeValue(String test) {
         try {
-            String [] parsedTime = test.split(TIME_DELIMITER, 2);
+            String[] parsedTime = test.split(TIME_DELIMITER, 2);
             LocalTime.of(Integer.parseInt(parsedTime[0]), Integer.parseInt(parsedTime[1]));
         } catch (DateTimeException e) {
             return false;
