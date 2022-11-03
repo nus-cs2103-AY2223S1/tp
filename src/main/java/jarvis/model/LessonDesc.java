@@ -20,7 +20,7 @@ public class LessonDesc {
     public LessonDesc(String desc) {
         requireNonNull(desc);
         checkArgument(isValidLessonDesc(desc), MESSAGE_CONSTRAINTS);
-        lessonDesc = desc;
+        lessonDesc = desc.strip();
     }
 
     /**
@@ -30,7 +30,7 @@ public class LessonDesc {
         if (lessonDesc == null) {
             return false;
         }
-        return !lessonDesc.isEmpty();
+        return !lessonDesc.isBlank();
     }
 
     @Override
