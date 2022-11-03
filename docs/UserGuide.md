@@ -110,6 +110,7 @@ which contains `u`, `nus`, and `edu` as `DOMAIN_LABEL` separated by `.`
 | **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces              |
 
 * `CURRENT_CAP` must be a positive value smaller than or equal to `MAX_CAP`
+* CAP values will be rounded to 2 decimal places, e.g. `3.99999` will be rounded to `4.00`
 * Special punctuations: `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
 
 
