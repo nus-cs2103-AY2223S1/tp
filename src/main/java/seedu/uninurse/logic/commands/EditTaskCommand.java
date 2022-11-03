@@ -70,6 +70,7 @@ public class EditTaskCommand extends EditGenericCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
+        Task initialTask = initialTaskList.get(taskIndex.getZeroBased());
         Task updatedTask;
 
         //TODO: don't use instanceof
@@ -96,7 +97,6 @@ public class EditTaskCommand extends EditGenericCommand {
         }
 
         try {
-            Task initialTask = initialTaskList.get(taskIndex.getZeroBased());
             TaskList updatedTaskList = initialTaskList.edit(taskIndex.getZeroBased(), updatedTask);
 
             Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
