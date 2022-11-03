@@ -459,7 +459,7 @@ Examples:
 * `unhide appts s/marked` unhides all appointments that has been marked.
 * `unhide appts s/UNMARKED` unhides all appointments that has been unmarked.
 
-#### Find results that satisfy certain a criteria: `find`
+#### Find results that satisfy a certain criteria: `find`
 Finds patients and appointments that matches all the given parameters specified.
 
 Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`
