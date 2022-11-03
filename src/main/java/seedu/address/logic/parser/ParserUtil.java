@@ -193,7 +193,7 @@ public class ParserUtil {
         LocalDateTime parsedDeadline;
         try {
             parsedDeadline = NaturalDateParser.parse(trimmedDeadline);
-        } catch (NaturalDateParser.DateTimeNotFoundException e) {
+        } catch (NaturalDateParser.DateTimeNotFoundException | NaturalDateParser.ParseFailureException e) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
 
