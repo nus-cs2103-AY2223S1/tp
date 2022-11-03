@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TEAM;
 import static seedu.address.testutil.TypicalTasks.PACK;
 import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams;
-import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams2;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,9 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.TaskBuilder;
-import seedu.address.testutil.TypicalTeams;
 
 public class TaskMarkCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBookWithTeams(), new UserPrefs());
