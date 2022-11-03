@@ -10,9 +10,10 @@ import static seedu.clinkedin.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Tag names should contain alphanumeric characters and spaces, and it should not be blank";
+            "Tag names should contain alphanumeric characters, spaces, or decimal numbers, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX =
+            "(([\\p{Alnum}]|([+-]?([0-9]*[.])?[0-9]+))([\\p{Alnum} ]|([+-]?([0-9]*[.])?[0-9]+))*)";
 
     public final String tagName;
 
