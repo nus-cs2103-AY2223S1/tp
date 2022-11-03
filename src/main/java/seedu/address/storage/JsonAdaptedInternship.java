@@ -126,8 +126,10 @@ class JsonAdaptedInternship {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AppliedDate.class.getSimpleName()));
         }
-        if (!AppliedDate.isValidAppliedDate(appliedDate)) {
-            throw new IllegalValueException(AppliedDate.MESSAGE_CONSTRAINTS);
+        if (!AppliedDate.isValidFormat(appliedDate)) {
+            throw new IllegalValueException(AppliedDate.FORMAT_CONSTRAINTS);
+        } else if (!AppliedDate.isValidDate(appliedDate)) {
+            throw new IllegalValueException(AppliedDate.DATE_CONSTRAINTS);
         }
         final AppliedDate modelAppliedDate = new AppliedDate(appliedDate);
 

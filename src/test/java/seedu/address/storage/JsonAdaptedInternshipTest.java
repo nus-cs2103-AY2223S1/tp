@@ -98,7 +98,7 @@ public class JsonAdaptedInternshipTest {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_COMPANY, VALID_LINK, VALID_DESCRIPTION,
                         VALID_APPLICATION_STATUS, INVALID_APPLIED_DATE, VALID_INTERVIEW_DATE_TIME, VALID_TAGS);
-        String expectedMessage = AppliedDate.MESSAGE_CONSTRAINTS;
+        String expectedMessage = AppliedDate.FORMAT_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 

@@ -162,7 +162,7 @@ public class AddCommandParserTest {
 
         // invalid applied date
         assertParseFailure(parser, COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK + DESCRIPTION_DESC_TIKTOK
-                + INVALID_APPLIED_DATE_DESC + TAG_DESC_BACKEND + TAG_DESC_FRONTEND, AppliedDate.MESSAGE_CONSTRAINTS);
+                + INVALID_APPLIED_DATE_DESC + TAG_DESC_BACKEND + TAG_DESC_FRONTEND, AppliedDate.FORMAT_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK + DESCRIPTION_DESC_TIKTOK

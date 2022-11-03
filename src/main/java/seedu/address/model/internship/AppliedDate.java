@@ -17,9 +17,11 @@ import java.util.Comparator;
  */
 public class AppliedDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be one of these formats:\n"
+    public static final String FORMAT_CONSTRAINTS = "Date should be one of these formats:\n"
             + "[d MMM yyyy] or [d/M/yyyy]\n"
             + "Year can be omitted to default to current year.";
+
+    public static final String DATE_CONSTRAINTS = "Date provided is invalid.";
 
     /*
      * For the date 23/10/2022, the following formats are accepted:
@@ -48,15 +50,16 @@ public class AppliedDate {
      */
     public AppliedDate(String appliedDate) {
         requireNonNull(appliedDate);
-        checkArgument(isValidAppliedDate(appliedDate), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidFormat(appliedDate), FORMAT_CONSTRAINTS);
+        checkArgument(isValidDate(appliedDate), DATE_CONSTRAINTS);
         this.appliedDate = LocalDate.parse(appliedDate, INPUT_DATE_FORMAT);
         value = this.appliedDate.format(DISPLAY_DATE_FORMAT);
     }
 
     /**
-     * Returns true if a given string is a valid appliedDate.
+     * Returns true if a given string has a valid DateTime format.
      */
-    public static boolean isValidAppliedDate(String appliedDate) {
+    public static boolean isValidFormat(String appliedDate) {
         if (appliedDate.isEmpty()) {
             return false;
         }
@@ -65,8 +68,39 @@ public class AppliedDate {
             INPUT_DATE_FORMAT.parse(appliedDate);
             return true;
         } catch (DateTimeParseException e) {
+            if (e.getMessage().contains("unparsed text")) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    /**
+     * Returns true if a given string represents a valid date.
+     */
+    public static boolean isValidDate(String appliedDate) {
+        if (appliedDate.isEmpty()) {
             return false;
         }
+
+        try {
+            INPUT_DATE_FORMAT.parse(appliedDate);
+            return true;
+        } catch (DateTimeParseException e) {
+            if (e.getMessage().contains("Invalid date")) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    /**
+     * Returns true if a given string is a valid appliedDate.
+     */
+    public static boolean isValidAppliedDate(String appliedDate) {
+        return isValidFormat(appliedDate) && isValidDate(appliedDate);
     }
 
     @Override
