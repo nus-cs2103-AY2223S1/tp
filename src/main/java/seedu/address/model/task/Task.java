@@ -41,7 +41,7 @@ public class Task {
     public Task(Module module, TaskDescription description) {
         this.module = module;
         this.description = description;
-        this.status = TaskStatus.INCOMPLETE;
+        status = TaskStatus.INCOMPLETE;
         priorityTag = null;
         deadlineTag = null;
         linkedExam = null;
@@ -58,9 +58,9 @@ public class Task {
         this.module = module;
         this.description = description;
         this.status = status;
-        this.priorityTag = null;
-        this.deadlineTag = null;
-        this.linkedExam = null;
+        priorityTag = null;
+        deadlineTag = null;
+        linkedExam = null;
     }
 
     /**
@@ -81,7 +81,7 @@ public class Task {
         this.status = status;
         this.priorityTag = priorityTag;
         this.deadlineTag = deadlineTag;
-        this.linkedExam = null;
+        linkedExam = null;
     }
 
     /**
