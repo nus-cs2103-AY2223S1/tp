@@ -87,12 +87,12 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 * `LOCAL_PART` can only contain alphanumeric characters and any of `+` `_` `.` `-`, but must not start or end with these special characters
 * `DOMAIN` refers to the email domain that can be made of numerous `DOMAIN_LABEL`
-    * `DOMAIN_LABEL` can be separated by `.`
-    * `DOMAIN_LABEL` can only contain alphanumeric characters separated by `-`
+    * Each `DOMAIN_LABEL` can be separated by `.`
+    * `DOMAIN_LABEL` can only contain alphanumeric characters and hyphens `-`
     * `DOMAIN_LABEL` must start and end with alphanumeric characters
     * The last `DOMAIN_LABEL` should be at least 2 characters long
-* For example, in `john_doe@u.nus.edu`, `john_doe` is the `LOCAL_PART` and `u.nus.edu` is the `DOMAIN`
-which contains `u`, `nus`, and `edu` as `DOMAIN_LABEL` separated by `.`
+* For example, in `john_doe@workday-nus.edu.sg`, `john_doe` is the `LOCAL_PART` and `workday-nus.edu.sg` is the `DOMAIN`
+which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 
 
 ### 2.2 Data Fields
