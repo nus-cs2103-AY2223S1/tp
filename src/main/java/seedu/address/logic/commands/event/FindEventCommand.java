@@ -33,7 +33,8 @@ public class FindEventCommand extends EventCommand {
 
     public static final String MESSAGE_HELP = "Finds all events matching the dates or keywords.\n"
             + "Keywords are case-insensitive and will return partial matches.\n"
-            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " KEYWORDS_OR_DATE [MORE]";
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
+            + " KEYWORDS_OR_DATE [MORE_KEYWORDS_OR_DATES]";
 
     private final Predicate<Event> predicate;
 
