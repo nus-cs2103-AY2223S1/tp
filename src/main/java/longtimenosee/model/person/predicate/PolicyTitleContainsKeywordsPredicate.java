@@ -1,6 +1,7 @@
 package longtimenosee.model.person.predicate;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import longtimenosee.commons.util.StringUtil;
@@ -26,11 +27,19 @@ public class PolicyTitleContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        for (String keyword : keywords) {
-            for (AssignedPolicy assignedPolicy : person.getAssignedPolicies()) {
-                if (StringUtil.containsWordIgnoreCase(assignedPolicy.getPolicy().getTitle().fullTitle, keyword)) {
-                    return true;
-                }
+        Set<AssignedPolicy> assignedPolicies = person.getAssignedPolicies();
+        for (int i = 0; i < keywords.size(); i++) {
+            if (checkKeywordAgainstTitles(assignedPolicies, keywords.get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean checkKeywordAgainstTitles(Set<AssignedPolicy> assignedPolicies, String keyword) {
+        for (AssignedPolicy assignedPolicy : assignedPolicies) {
+            if (StringUtil.containsWordIgnoreCase(assignedPolicy.getPolicy().getTitle().fullTitle, keyword)) {
+                return true;
             }
         }
         return false;
