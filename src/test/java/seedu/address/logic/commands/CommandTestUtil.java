@@ -24,6 +24,8 @@ import seedu.address.model.HealthContact;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.NameContainsKeywordsPredicateAppointment;
+import seedu.address.model.bill.Bill;
+import seedu.address.model.bill.NameContainsKeywordsPredicateBill;
 import seedu.address.model.patient.NameContainsKeywordsPredicatePatient;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
@@ -194,6 +196,24 @@ public class CommandTestUtil {
         model.updateFilteredAppointmentList(new NameContainsKeywordsPredicateAppointment(predicateName));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the bill at the given {@code targetIndex} in the
+     * {@code model}'s HealthContact.
+     */
+    public static void showBillAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBillList().size());
+
+        Bill bill = model.getFilteredBillList().get(targetIndex.getZeroBased());
+        final String[] splitName = bill.getAppointment().getName().fullName.split("\\s+");
+        String predicateName = splitName[0];
+        for (int i = 1; i < splitName.length; i++) {
+            predicateName += " " + splitName[i];
+        }
+        model.updateFilteredBillList(new NameContainsKeywordsPredicateBill(predicateName));
+
+        assertEquals(1, model.getFilteredBillList().size());
     }
 
 }
