@@ -89,7 +89,7 @@ Given below are my contributions to the project.
 
   - **Contributions to the UG**:
     - Create layout diagram and edited screenshots for better user experience when reading the guide:
-    [Layout Diagram](https://www.canva.com/design/DAFQsG7iwNQ/AF7s8u5uq8cre-kX4JItmw/view?utm_content=DAFQsG7iwNQ&utm_campaign=designshare&utm_medium=link&utm_source=homepage_design_menu), 
+    [Layout Diagram](https://www.canva.com/design/DAFQsG7iwNQ/AF7s8u5uq8cre-kX4JItmw/view?utm_content=DAFQsG7iwNQ&utm_campaign=designshare&utm_medium=link&utm_source=homepage_design_menu),
     [Edited Screenshots](https://www.canva.com/design/DAFQu54YdXA/ROaBm0rcWfeOKzEzCdlPNQ/view?utm_content=DAFQu54YdXA&utm_campaign=designshare&utm_medium=link&utm_source=homepage_design_menu)
     - Made descriptions for `edito`, `listi`, `findi`, `help`
       - Relevant pull request(s): [#41](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/41),
