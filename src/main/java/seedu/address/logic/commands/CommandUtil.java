@@ -52,7 +52,8 @@ public class CommandUtil {
      * edited with {@code editPersonDescriptor}.
      * The tags of th edited person will be the same as the original.
      */
-    public static Person createEditedPersonWithSameTags(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    public static Person createEditedPersonWithSameTags(Person personToEdit,
+                                                        EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         // Person id does not get updated
