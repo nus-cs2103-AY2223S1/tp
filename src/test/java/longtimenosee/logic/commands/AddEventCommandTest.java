@@ -50,7 +50,6 @@ public class AddEventCommandTest {
         assertThrows(CommandException.class, AddEventCommand.MESSAGE_DUPLICATE_EVENT, () ->
                 addEventCommand.execute(modelStub));
     }
-
     @Test
     public void equals() {
         Event withAlice = new EventBuilder().build();
