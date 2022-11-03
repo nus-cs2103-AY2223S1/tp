@@ -83,14 +83,14 @@ public class AssignCommand extends Command {
 
         Person firstPerson = person1.get();
         Person secondPerson = person2.get();
-        Person patient = getPatient(firstPerson, secondPerson);
-        Person nurse = getNurse(firstPerson, secondPerson);
+        Patient patient = getPatient(firstPerson, secondPerson);
+        Nurse nurse = getNurse(firstPerson, secondPerson);
         markAssign(model, patient, nurse);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getUid().getUid(), nurse.getUid().getUid()));
     }
 
-    private Person getPatient(Person person1, Person person2) throws CommandException {
+    private Patient getPatient(Person person1, Person person2) throws CommandException {
         Boolean isPerson1Patient = person1.isPatient();
         Boolean isPerson2Patient = person2.isPatient();
 
@@ -99,13 +99,13 @@ public class AssignCommand extends Command {
         }
         if (isPerson1Patient || isPerson2Patient) {
             return isPerson1Patient
-                    ? person1
-                    : person2;
+                    ? (Patient) person1
+                    : (Patient) person2;
         }
         throw new CommandException(MESSAGE_BOTH_NURSE);
     }
 
-    private Person getNurse(Person person1, Person person2) throws CommandException {
+    private Nurse getNurse(Person person1, Person person2) throws CommandException {
         Boolean isPerson1Nurse = person1.isNurse();
         Boolean isPerson2Nurse = person2.isNurse();
 
@@ -114,17 +114,17 @@ public class AssignCommand extends Command {
         }
         if (isPerson1Nurse || isPerson2Nurse) {
             return isPerson1Nurse
-                    ? person1
-                    : person2;
+                    ? (Nurse) person1
+                    : (Nurse) person2;
         }
         throw new CommandException(MESSAGE_BOTH_PATIENT);
     }
 
-    private void markAssign(Model model, Person patient, Person nurse) throws CommandException {
-        List<DateSlot> patientDateSlotList = ((Patient) patient).getDatesSlots();
+    private void markAssign(Model model, Patient patient, Nurse nurse) throws CommandException {
+        List<DateSlot> patientDateSlotList = patient.getDatesSlots();
         Long nurseUidNo = nurse.getUid().getUid();
-        List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
-        List<Date> nurseFullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
+        List<HomeVisit> nurseHomeVisitList = nurse.getHomeVisits();
+        List<Date> nurseFullyScheduledList = nurse.getFullyScheduledDates();
 
         List<DateSlot> updatedDateSlotList = new ArrayList<>(patientDateSlotList);
         List<HomeVisit> updatedHomeVisitList = new ArrayList<>(nurseHomeVisitList);
@@ -167,7 +167,7 @@ public class AssignCommand extends Command {
         }
     }
 
-    private void checkUnavailability(DateSlot dateSlot, Person nurse) throws CommandException {
+    private void checkUnavailability(DateSlot dateSlot, Nurse nurse) throws CommandException {
         List<Date> unavailabilityDateList = ((Nurse) nurse).getUnavailableDates();
         Optional<Date> date = unavailabilityDateList.stream().filter(
                 d -> d.getDate().equals(dateSlot.getDate())).findFirst();
@@ -176,7 +176,7 @@ public class AssignCommand extends Command {
         }
     }
 
-    private void createHomeVisit(DateSlot date, Person patient, List<HomeVisit> homeVisitList,
+    private void createHomeVisit(DateSlot date, Patient patient, List<HomeVisit> homeVisitList,
             List<Date> updatedFullyScheduledDateList) {
         HomeVisit homeVisit = new HomeVisit(date, patient.getUid().getUid());
         homeVisitList.add(homeVisit);
@@ -193,7 +193,7 @@ public class AssignCommand extends Command {
         }
     }
 
-    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) {
+    private void editPatient(Model model, Patient patient, List<DateSlot> dateSlotList) {
 
         Uid uid = patient.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -206,7 +206,7 @@ public class AssignCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-    private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
+    private void editNurse(Model model, Nurse nurse, List<HomeVisit> homeVisitList,
             List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
@@ -228,7 +228,7 @@ public class AssignCommand extends Command {
 
     private void executeChecksAndActions(DateSlot dateSlot, List<HomeVisit> homeVisitList,
             List<Date> fullyScheduledDate,
-            Person nurse, Long nurseUidNo, Person patient) throws CommandException {
+            Nurse nurse, Long nurseUidNo, Patient patient) throws CommandException {
         checkInvalid(dateSlot);
         checkAssigned(dateSlot);
         checkCrashes(dateSlot, homeVisitList);
