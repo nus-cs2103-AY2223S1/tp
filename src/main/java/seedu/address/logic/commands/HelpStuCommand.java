@@ -24,7 +24,7 @@ public class HelpStuCommand extends Command {
             + "Example: "
             + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_HELP_STU_SUCCESS = "Added help tag to %1$s";
+    public static final String MESSAGE_HELP_STU_SUCCESS = "Added help tag to:\n%1$s";
 
     private final Index index;
 
