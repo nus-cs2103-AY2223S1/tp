@@ -162,6 +162,8 @@ public class Person {
      * @param <T> Generic type of the collection.
      * @return The first item from the collection of type T.
      */
+    // @author ReaganTan00-reused
+    // Reused from https://stackoverflow.com/a/5793039
     @Nullable
     public static <T> T removeFirst(Collection<? extends T> c) {
         Iterator<? extends T> it = c.iterator();
