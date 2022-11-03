@@ -70,8 +70,8 @@ As a broad overview, **TrackO** provides users with the ability to:
 * Ensure consistency between inventory and order data
 _(e.g, automatically updating in-stock quantities on marking orders as paid/delivered)_
 
-Currently, **TrackO** only supports tracking inventory items that are countable by units _(e.g. 1 apple, 2 cookies, etc)_.
-Our development team will introduce more powerful inventory tracking functionalities _(e.g. by weight, by litres, etc)_
+Currently, **TrackO** only supports tracking inventory items that are countable by units _(e.g. 1 apple, 2 cookies, etc.)_.
+Our development team will introduce more powerful inventory tracking functionalities _(e.g. by weight, by litres, etc.)_
 in future enhancements of the product (stay tuned!).
 
 Interested? Jump straight to our [Quick Start section](#quick-start) to get started now! 
@@ -125,7 +125,7 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 
 5. To start out with some commands, head over to the [tutorial section](#tutorial) of this user guide!
 
-6. If you'd like to skip the tutorial, head over to the [features section](#features) below for some of the 
+6. If you'd like to skip the tutorial, head over to the [feature section](#features) below for some of the 
 more technical specifications of each command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -155,7 +155,7 @@ TrackO's functionalities!
 
    1. Adding an item: `addi`
        * If your small business has `350` units of the new item, `Teddy bear keychain` currently in your physical inventory.
-         It costs `$0.89` to make these keychains and you will be selling them at `$3.50` each.
+         It costs `$0.89` to make these keychains, and you will be selling them at `$3.50` each.
        * You can add these items to TrackO, with the following command:
       
       ```
@@ -190,7 +190,7 @@ TrackO's functionalities!
     </div>
 
    2. Finding order(s): `findo`
-      * Our application allows you to search for orders by different fields (eg. payment status, delievery status, customer details).
+      * Our application allows you to search for orders by different fields (e.g. payment status, delivery status, customer details).
       * To find orders to be delivered to `Clementi` which have not been paid for, enter the following command to the [command box](#layout):
       ```
       findo -P a/Clementi
@@ -403,7 +403,7 @@ Format: `findo [-d OR -D] [-p OR -P]` <br>
   * `n/`: searches by name
   * `i/`: searches by order item
 * A prefix is only expected once in the command but if specified multiple times, only the last occurrence of 
-the parameter will be taken in. Eg. `findo a/Clementi a/Geylang` will search for orders with `Geylang` 
+the parameter will be taken in, e.g. `findo a/Clementi a/Geylang` will search for orders with `Geylang` 
 in their address.
 
 
@@ -609,7 +609,7 @@ the typed in command in response.
 
 ### GUI
 
-`GUI` stands for `Graphical User Interface`. A `GUI` is a user interface that provides interactive visual components _(e.g. icons, etc)_.
+`GUI` stands for `Graphical User Interface`. A `GUI` is a user interface that provides interactive visual components _(e.g. icons, etc.)_.
 Through a `GUI`, users interact with a system or application by clicking on these elements. The system then responds to the user's actions
 by updating the user interface.
 
