@@ -6,6 +6,7 @@ import static soconnect.logic.commands.customise.CustomiseCommand.NUMBER_OF_CUST
 
 import java.util.Comparator;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -73,24 +74,34 @@ public class PersonCard extends UiPart<Region> {
         flowpanes[order[3]] = attributeD;
 
         if (flowpanes[0] != null) {
-            flowpanes[0].getChildren().add(new Label(person.getAddress().value));
-            flowpanes[0].getChildren().forEach(label -> label.setStyle(
-                    "-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; -fx-wrap-text: true;"));
+            flowpanes[0].maxWidthProperty().bind(Bindings.add(-100, cardPane.widthProperty()));
+            Label address = new Label(person.getAddress().value);
+            address.maxWidthProperty().bind(flowpanes[0].maxWidthProperty());
+            address.setStyle("-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; "
+                    + "-fx-wrap-text: true;");
+            flowpanes[0].getChildren().add(address);
         }
         if (flowpanes[1] != null) {
-            flowpanes[1].getChildren().add(new Label(person.getEmail().value));
-            flowpanes[1].getChildren().forEach(label -> label.setStyle(
-                    "-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; -fx-wrap-text: true;"));
+            flowpanes[1].maxWidthProperty().bind(Bindings.add(-100, cardPane.widthProperty()));
+            Label email = new Label(person.getEmail().value);
+            email.maxWidthProperty().bind(flowpanes[0].maxWidthProperty());
+            email.setStyle("-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; "
+                    + "-fx-wrap-text: true;");
+            flowpanes[1].getChildren().add(email);
         }
         if (flowpanes[2] != null) {
-            flowpanes[2].getChildren().add(new Label(person.getPhone().value));
-            flowpanes[2].getChildren().forEach(label -> label.setStyle(
-                    "-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; -fx-wrap-text: true;"));
+            flowpanes[2].maxWidthProperty().bind(Bindings.add(-100, cardPane.widthProperty()));
+            Label phone = new Label(person.getPhone().value);
+            phone.maxWidthProperty().bind(flowpanes[0].maxWidthProperty());
+            phone.setStyle("-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; "
+                    + "-fx-wrap-text: true;");
+            flowpanes[2].getChildren().add(phone);
         }
         if (flowpanes[3] != null) {
             person.getTags().stream()
                     .sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> flowpanes[3].getChildren().add((new Label(tag.tagName))));
+            flowpanes[3].maxWidthProperty().bind(Bindings.add(-100, cardPane.widthProperty()));
             flowpanes[3].getChildren().forEach(label -> label.setStyle("-fx-background-color: #3142D3;"
                     + "-fx-font-size: 12; -fx-label-padding: 3 7 3 7; -fx-background-radius: 15;"
                     + "-fx-font-family: \"Karla\"; -fx-border-radius: 2;"
