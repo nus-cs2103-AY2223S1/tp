@@ -111,7 +111,7 @@ to add such a patient because Bernice Yu already exists in HealthContact.
 Adds an appointment to HealthContact with input information including patient name, medical test,
 slot, and doctor.
 
-* Patient name input must strictly match the name of an existing patient.
+* Patient name input must strictly match the name of an existing patient, even the casing.
 
 * Slot must be in the format `yyyy-MM-dd HH:mm`, eg. `2022-11-12 13:00`.
 
@@ -221,6 +221,7 @@ Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. 
   The index **must be a positive integer** 1, 2, 3, …​
+* User input should be different from the previous information that the patient has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -245,6 +246,7 @@ Format: `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:m
 * Edits the appointment at the specified `INDEX`.
   The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* User input should be different from the previous information that the appointment has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -261,6 +263,7 @@ Format: `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill d
 
 * Edits the bill at the specified `INDEX`. The index refers to the index number shown in the displayed bill list. 
   The index **must be a positive integer** 1, 2, 3, …​
+* User input should be different from the previous information that the bill has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -611,6 +614,7 @@ Format:
 * The command word is `undo`.
 * The command can be used multiple times to undo multiple commands.
 * If there are no commands to undo, an error message will be shown.
+* Only commands that change the state of HealthContact can be undone. (Commands such as list, find, select cannot be undone)
 
 Examples:
 * ```undo``` undoes the most recent command.

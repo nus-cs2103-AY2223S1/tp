@@ -414,14 +414,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to find a patient
+1.  User requests to edit a patient
 2.  HealthContact shows the detailed information about the patient
 3.  User requests to edit specific information about the patient
 4.  HealthContact edits the patient
 
     Use case ends.
-
-
 
 **Extensions**
 

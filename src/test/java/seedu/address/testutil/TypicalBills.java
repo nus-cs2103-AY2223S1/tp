@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_7;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_8;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BILL_DATE_7;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BILL_DATE_8;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_1;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_2;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_3;
@@ -33,13 +37,10 @@ public class TypicalBills {
     public static final Bill BILL_6 = new BillBuilder().withAppointment(APPOINTMENT_6).withBillDate("2023-08-20")
             .withAmount("1101.23").withPaymentStatus("unpaid").build();
 
-    //    // Manually added - Appointment's details found in {@code CommandTestUtil}
-    //    public static final Appointment APPOINTMENT_7 = new AppointmentBuilder().withName(VALID_NAME_AMY)
-    //            .withMedicalTest(VALID_MEDICAL_TEST_7).withSlot(VALID_SLOT_7)
-    //            .withDoctor(VALID_DOCTOR_CAITIE).build();
-    //    public static final Appointment APPOINTMENT_8 = new AppointmentBuilder().withName(VALID_NAME_BOB)
-    //            .withMedicalTest(VALID_MEDICAL_TEST_8).withSlot(VALID_SLOT_8)
-    //            .withDoctor(VALID_DOCTOR_DECKER).build();
+    public static final Bill BILL_7 = new BillBuilder().withAppointment(APPOINTMENT_1).withBillDate(VALID_BILL_DATE_7)
+            .withAmount(VALID_AMOUNT_7).withPaymentStatus("paid").build();
+    public static final Bill BILL_8 = new BillBuilder().withAppointment(APPOINTMENT_2).withBillDate(VALID_BILL_DATE_8)
+            .withAmount(VALID_AMOUNT_8).withPaymentStatus("paid").build();
 
     private TypicalBills() {} // prevents instantiation
 
