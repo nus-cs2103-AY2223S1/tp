@@ -51,4 +51,22 @@ public class LessonIndexCommand extends LessonCommand {
         return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, lesson.toFullString(),
                 index.getZeroBased(), personToEdit.getName()));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof LessonIndexCommand) {
+            LessonIndexCommand lesson = (LessonIndexCommand) o;
+            return lesson.lesson.equals(this.lesson) && lesson.index.equals(this.index);
+        }
+
+        return false;
+    }
 }

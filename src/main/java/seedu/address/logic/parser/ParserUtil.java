@@ -268,7 +268,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code time} is invalid.
      */
-    private static LocalTime parseTime(String time) throws ParseException {
+    public static LocalTime parseTime(String time) throws ParseException {
         requireNonNull(time);
         String timeTrim = time.trim();
         try {
@@ -284,14 +284,21 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code day} is invalid.
      */
-    private static int parseDay(String day) throws ParseException {
+    public static int parseDay(String day) throws ParseException {
         requireNonNull(day);
         String dayTrim = day.trim();
-        int dayNumber = Integer.parseInt(dayTrim);
-        if (dayNumber < 1 || dayNumber > 7) {
+        try {
+            int dayNumber = Integer.parseInt(dayTrim);
+
+            if (dayNumber < 1 || dayNumber > 7) {
+                throw new ParseException(LessonCommand.MESSAGE_INVALID_DAY);
+            }
+
+            return dayNumber;
+
+        } catch (NumberFormatException e) {
             throw new ParseException(LessonCommand.MESSAGE_INVALID_DAY);
         }
-        return dayNumber;
     }
 
     /**
@@ -308,6 +315,11 @@ public class ParserUtil {
         int dayNumber = parseDay(day);
         LocalTime start = parseTime(startTime);
         LocalTime end = parseTime(endTime);
+
+        String mod = module.trim().toUpperCase();
+        if (!Lesson.isValidLesson(mod)) {
+            throw new ParseException(Lesson.MESSAGE_CONSTRAINTS);
+        }
 
         int compareTime = start.compareTo(end);
         if (compareTime >= 0) {

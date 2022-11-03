@@ -3,7 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
@@ -35,6 +37,7 @@ public class PersonBuilder {
     private Set<CurrentModule> currModules;
     private Set<PreviousModule> prevModules;
     private Set<PlannedModule> planModules;
+    private Set<Lesson> lessons;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -49,6 +52,7 @@ public class PersonBuilder {
         currModules = new HashSet<>();
         prevModules = new HashSet<>();
         planModules = new HashSet<>();
+        lessons = new HashSet<>();
     }
 
     /**
@@ -64,6 +68,7 @@ public class PersonBuilder {
         currModules = new HashSet<>(personToCopy.getCurrModules());
         prevModules = new HashSet<>(personToCopy.getPrevModules());
         planModules = new HashSet<>(personToCopy.getPlanModules());
+        lessons = new HashSet<>(personToCopy.getLessons());
     }
 
     /**
@@ -141,8 +146,30 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code lessons} into a {@code Set<Lesson>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withLessons(Lesson ... lessons) {
+        this.lessons = SampleDataUtil.getLessonSet(lessons);
+        return this;
+    }
+
+    /**
+     * Builds a person with the data stored in the builder.
+     *
+     * @return a Person with the stored fields, tags, modules and lessons.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, github, tags, currModules, prevModules, planModules);
+        Person person = new Person(name, phone, email, address, github, tags, currModules, prevModules, planModules);
+        for (Lesson lesson : lessons) {
+            try {
+                person.addLesson(lesson);
+            } catch (CommandException c) {
+                System.out.println(c);
+            }
+        }
+        return person;
     }
 
 }

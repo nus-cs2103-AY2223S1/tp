@@ -39,6 +39,24 @@ public class RemoveUserCommand extends RemoveCommand {
 
         model.removeLessonToUser(lesson);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_REMOVE_LESSON_SUCCESS, lesson));
+        return new CommandResult(String.format(MESSAGE_REMOVE_LESSON_SUCCESS, lesson.toFullString()));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof RemoveUserCommand) {
+            RemoveUserCommand command = (RemoveUserCommand) o;
+            return command.lesson.equals(this.lesson);
+        }
+
+        return false;
     }
 }
