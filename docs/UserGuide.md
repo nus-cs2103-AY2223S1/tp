@@ -64,7 +64,6 @@ To navigate to see a particular command, you can click on the link in blue.
 <div markdown="block" class="alert alert-info">
 
 **Important Note:**<br>
-<br>
 The window is empty because no friends have been added yet. Adding more friends will change the look of the window.
 </div>
 <ol start="5">
@@ -173,8 +172,7 @@ as well as provide you with additional information for your understanding.
 
 <div markdown="block" class="alert alert-info">
 
-**Important note:**
-
+**Important note:**<br>
 If more than one of the non-multiple fields are provided<br>
 eg. `add m/vicky n/Victor n/Victoria`<br>
 only the last one `Victoria` will be taken.
@@ -227,8 +225,7 @@ The following explains what you should do to edit a particular person.
   * If you have three friends in your friend list, `edit 4 ...` will result in an error. 
 <div markdown="block" class="alert alert-info">
 
-**Important Note:**
-
+**Important Note:**<br>
 * Editing a field with multiple entries will **overwrite all existing values of that field**.<br>
   e.g. `edit 1 t/amiga` will remove all existing tag of the first person and replace them with only `amiga`
 
@@ -330,7 +327,6 @@ Format: `suggest [dt/DAY_TIME_IN_WEEK]* [k/KEYWORD]*`
 <div markdown="block" class="alert alert-info"> 
 
 **Important Note:**<br>
-<br>
 When you type in `suggest dt/now`, Minefriends uses the current time shown on your computer/device
 to search for friends playing at that current time.
 
