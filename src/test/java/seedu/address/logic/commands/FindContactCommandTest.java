@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -74,6 +75,12 @@ public class FindContactCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void withoutArgs_noArgs_returnFindContactByTaskCommand() {
+        FindContactCommand expectedCommand = new FindContactCommand(new CanHelpWithTaskPredicate((1)));
+        assertEquals(expectedCommand, FindContactCommand.withoutArgs());
     }
 
     /**
