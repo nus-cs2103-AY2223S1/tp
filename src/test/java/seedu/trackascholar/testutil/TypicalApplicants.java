@@ -40,21 +40,21 @@ public class TypicalApplicants {
             .withPhone("87652533").withEmail("cornelia@example.com")
             .withScholarship("Arts").withApplicationStatus("rejected").withMajors("friends").build();
     public static final Applicant ELLE = new ApplicantBuilder().withName("Elle Meyer")
-            .withPhone("9482224").withEmail("werner@example.com")
+            .withPhone("94821224").withEmail("werner@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending").build();
     public static final Applicant FIONA = new ApplicantBuilder().withName("Fiona Kunz")
-            .withPhone("9482427").withEmail("lydia@example.com")
+            .withPhone("94824427").withEmail("lydia@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending").build();
     public static final Applicant GEORGE = new ApplicantBuilder().withName("George Best")
-            .withPhone("9482442").withEmail("anna@example.com")
+            .withPhone("94824425").withEmail("anna@example.com")
             .withScholarship("Global Merit").withApplicationStatus("accepted").build();
 
     // Manually added
     public static final Applicant HOON = new ApplicantBuilder().withName("Hoon Meier")
-            .withPhone("8482424").withEmail("stefan@example.com")
+            .withPhone("84812424").withEmail("stefan@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending").build();
     public static final Applicant IDA = new ApplicantBuilder().withName("Ida Mueller")
-            .withPhone("8482131").withEmail("hans@example.com")
+            .withPhone("84821531").withEmail("hans@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending").build();
 
     // Manually added - Applicant's details found in {@code CommandTestUtil}
