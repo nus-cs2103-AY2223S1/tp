@@ -34,7 +34,7 @@ Friendnancial is a **desktop application, optimized for use by financial advisor
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com c/family a/John street, block 123, #01-01 b/01-01-2001` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/01-01-2001 t/friends` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list along with the reminders linked to the contact.
 
@@ -72,14 +72,7 @@ Friendnancial is a **desktop application, optimized for use by financial advisor
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the User Guide page. The link can be copied by clicking the `Copy URL` button.
-
-![help message](images/helpMessageUpdated.png)
-
-Format: `help`
-
+## Contact Management
 
 ### Adding a person: `add`
 
@@ -98,12 +91,6 @@ Names should only have alphabet letters or numbers in them
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/18-08-2000`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/01-01-1999`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
 
 ### Editing a person : `edit`
 
@@ -125,32 +112,6 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by keyword: `find`
-
-Finds persons by the given keywords.
-
-Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [b/BIRTHDAY]`
-
-* Entering `find` without any prefixes will display all contacts.
-* Users can only find contacts by one field at each time. <br>e.g. `find n/Alex a/Geylang` will result in an error. 
-* The keywords are case-insensitive. <br>e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. <br>e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched <br>e.g. `Han` will not match `Hans`
-<br>e.g. `alex` will not match `alexyeoh@example.com`
-* Any contact matching at least one keyword will be returned.
-  e.g. `find n/Hans Bo` will display contacts named `Hans Gruber` and `Bo Yang`
-
-<div markdown="span" class="alert alert-warning">:warning: **Note:**
-When finding a contact based off address, all non-alphanumeric characters (excluding # and -) will be ignored
-</div>
-
-Examples:
-* `find n/John` displays contacts named `john` and `John Doe`
-* `find n/alex david` returns `Alex Yeoh`, `David Li`
-* `find a/gardens` will display a contact with the address `Serangoon Gardens, #06-40`
-* `find a/#06-40` will display a contact with the address `Serangoon Gardens, #06-40`
-* `find a/06` or `find a/06-40` will not display a contact with the address `Serangoon Gardens, #06-40`
-
 ### Deleting a person : `delete`
 
 Deletes the specified person from Friendnancial.
@@ -168,13 +129,33 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 * `delete n/Edric` deletes the contact with the `NAME` matching `Edric` unless more than one match is found.
 
+### Updating insurance information about a contact : `insurance`
 
-### Clearing all entries : `clear`
+Edits whether a contact has the four main types of insurance, namely health, disability, critical illness and life insurance.
 
-Clears all entries from Friendnancial, which includes the contacts and the reminders.
+Prefixes:
+* "hi" - health insurance
+* "di" - disability insurance
+* "ci" - critical illness insurance
+* "li" - life insurance
 
-Format: `clear`
+Format: `insurance INDEX [hi/] [di/] [ci/] [li/]` (Number of insurance prefixes can range from 0-4)
 
+<div markdown="span" class="alert alert-warning">:warning: **Note:**
+When editing insurances, the existing insurances of the person will be removed.
+You can remove all the person’s tags by typing `insurance [INDEX]` without
+    specifying any insurances after it.
+</div>
+
+Examples:
+* `insurance 1 hi/ ci/` sets the 1st person to have health insurance and critical illness insurance.
+* `insurance 2` sets the 2nd person to not have any of the insurances.
+* `insurance 3 hi/ ci/ di/ li/` sets the 3rd person to have all the insurances.
+
+![result for 'insurance hi/ di/ ci/ li/'](images/insuranceUpdate.png)
+
+
+## Reminder
 
 ### Adding a reminder : `remind`
 
@@ -204,30 +185,57 @@ Format: `deleteR INDEX`
 Examples:
 * `deleteR 2` deletes the 2nd reminder in the reminder list.
 
-### Updating insurance information about a contact : `insurance`
 
-Edits whether a contact has the four main types of insurance, namely health, disability, critical illness and life insurance.
+## Utilities
 
-Prefixes:
-* "hi" - health insurance
-* "di" - disability insurance
-* "ci" - critical illness insurance
-* "li" - life insurance
+### Listing all persons : `list`
 
-Format: `insurance INDEX [hi/] [di/] [ci/] [li/]` (Number of insurance prefixes can range from 0-4)
+Shows a list of all persons in the address book.
+
+Format: `list`
+
+### Locating persons by keyword: `find`
+
+Finds persons by the given keywords.
+
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [b/BIRTHDAY]`
+
+* Entering `find` without any prefixes will display all contacts.
+* Users can only find contacts by one field at each time. <br>e.g. `find n/Alex a/Geylang` will result in an error.
+* The keywords are case-insensitive. <br>e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. <br>e.g. `Hans Bo` will match `Bo Hans`
+* Only full words will be matched <br>e.g. `Han` will not match `Hans`
+  <br>e.g. `alex` will not match `alexyeoh@example.com`
+* Any contact matching at least one keyword will be returned.
+  e.g. `find n/Hans Bo` will display contacts named `Hans Gruber` and `Bo Yang`
 
 <div markdown="span" class="alert alert-warning">:warning: **Note:**
-When editing insurances, the existing insurances of the person will be removed.
-You can remove all the person’s tags by typing `insurance [INDEX]` without
-    specifying any insurances after it.
+When finding a contact based off address, all non-alphanumeric characters (excluding # and -) will be ignored
 </div>
 
 Examples:
-* `insurance 1 hi/ ci/` sets the 1st person to have health insurance and critical illness insurance.
-* `insurance 2` sets the 2nd person to not have any of the insurances.
-* `insurance 3 hi/ ci/ di/ li/` sets the 3rd person to have all the insurances.
+* `find n/John` displays contacts named `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`
+* `find a/gardens` will display a contact with the address `Serangoon Gardens, #06-40`
+* `find a/#06-40` will display a contact with the address `Serangoon Gardens, #06-40`
+* `find a/06` or `find a/06-40` will not display a contact with the address `Serangoon Gardens, #06-40`
 
-![result for 'insurance hi/ di/ ci/ li/'](images/insuranceUpdate.png)
+### Clearing all entries : `clear`
+
+Clears all entries from Friendnancial, which includes the contacts and the reminders.
+
+Format: `clear`
+
+
+## Others
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the User Guide page. The link can be copied by clicking the `Copy URL` button.
+
+![help message](images/helpMessageUpdated.png)
+
+Format: `help`
 
 ### Exiting the program : `exit`
 
