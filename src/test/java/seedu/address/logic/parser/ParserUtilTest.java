@@ -15,8 +15,12 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.*;
+import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
+import seedu.address.model.module.Tutorial;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
