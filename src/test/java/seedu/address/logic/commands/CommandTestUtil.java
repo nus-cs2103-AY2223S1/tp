@@ -19,8 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.exam.Exam;
-import seedu.address.model.exam.ExamDescriptionContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
@@ -170,19 +168,5 @@ public class CommandTestUtil {
         model.updateFilteredTaskList(new DescriptionContainsKeywordsPredicate(Arrays.asList(description)));
 
         assertEquals(1, model.getFilteredTaskList().size());
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show only the exam at the given {@code targetIndex} in the
-     * {@code model}'s address book.
-     */
-    public static void showExamAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredExamList().size());
-
-        Exam exam = model.getFilteredExamList().get(targetIndex.getZeroBased());
-        final String[] description = {exam.getDescription().description.toLowerCase()};
-        model.updateFilteredExamList(new ExamDescriptionContainsKeywordsPredicate(Arrays.asList(description)));
-
-        assertEquals(1, model.getFilteredExamList().size());
     }
 }
