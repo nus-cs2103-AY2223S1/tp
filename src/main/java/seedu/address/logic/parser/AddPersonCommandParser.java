@@ -44,7 +44,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
-        Date dob = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DOB).get());
+        Date dob = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DOB).get(), Boolean.FALSE);
         Uid uid = new Uid();
         Person person = new Person(name, phone, email, address, gender, dob, uid);
         return new AddPersonCommand(person);

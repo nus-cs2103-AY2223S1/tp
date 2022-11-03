@@ -56,7 +56,7 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
             editPersonDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
         }
         if (argMultimap.getValue(PREFIX_DOB).isPresent()) {
-            editPersonDescriptor.setDob(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DOB).get()));
+            editPersonDescriptor.setDob(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DOB).get(), Boolean.FALSE));
         }
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditPersonCommand.MESSAGE_NOT_EDITED);

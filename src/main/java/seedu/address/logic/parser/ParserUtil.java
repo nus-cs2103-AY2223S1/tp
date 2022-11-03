@@ -172,11 +172,20 @@ public class ParserUtil {
      * Parses a {@code String Date} into a {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Date parseDate(String date) throws ParseException {
+    public static Date parseDate(String date, boolean isFutureDateAllowed) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
+
+        //Check if date format is valid.
+
         if (!Date.isValidDate(date)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+
+        //Check if date is after current date and if it is allowed.
+
+        if (Date.isAfterCurrentDate(date) & !isFutureDateAllowed) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS_DOB);
         }
         return new Date(trimmedDate);
     }
