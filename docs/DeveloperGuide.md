@@ -1269,3 +1269,13 @@ displaying the number of filtered results should appear after every valid input.
       2. Open the file `idENTify.json`, and corrupt the file (E.g. Delete the very first line of the `idENTify.json` file).
       3. Relaunch the app.
    3. Expected result: A new file will be created with no patients or appointments.
+
+
+## **Appendix: Effort**
+Our project was harder than Address Book Level3(AB3) because AB3 only deals with Persons, while our project includes Appointments as well. There was a huge learning curve at the start as we were very unfamiliar with what most of the classes do. After familiarizing ourselves with some of the necessary classes to implement our new enhancements, we also had a hard time writing new test cases as our new features caused the existing test cases to fail. It took a long time for us to figure out that the existing static variables used for the test cases were the problem as our new test cases involved altering the list of appointments in those variables.
+   
+In v1.2, we updated the GUI to contain 2 listviews: one for patients and one for appointments. We found out that changes to our appointment fields, such as marking them as completed, were not properly reflected on the listviews. We had to spent time researching how to use the Observer pattern(ie. Extractors) to reflect such changes. We also had to differentiate similar commands by using a descriptor word(patients/appts), and spent some time learning regex in order to update the AddressBookParser's pattern checking. As our mark, unmark, edit appts and cancel features also used the same mechanism to retrieve the specified appointment, we had to spent time refactoring our Parser classes to reduce duplication of such code.
+   
+In v1.3, we implemented our organisation features: hide, unhide, group, ungroup and find. While they all individually worked as expected, we had a hard time integrating hide/unhide/find to work well together, as these commands all deal with inserting a Predicate into the filtered list. It took some time for us to figure out how to keep track of the current Predicate in each filtered list and to add onto this Predicate while executing any hide/unhide/find command.
+   
+Overall, we are satisfied with our project given the time constraints and huge learning curve for the starting weeks. While workload is relatively high, it was an enjoyable experience to be working in a group.
