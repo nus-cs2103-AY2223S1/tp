@@ -46,9 +46,6 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=sjoann&tabRepo=AY2223S1-CS2103T-T09-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* **Project management**:
-  * to be added soon
-
 * **Enhancements to existing features**:
   * Updated parser for phone to ignore white-spaces ([\#178](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/178))
   * Updated parser for add command to throw exceptions([\#144](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/144))
@@ -75,6 +72,7 @@ Given below are my contributions to the project.
     [\#93](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/93),
     [\#194](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/194),
     [\#203](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/203)
-  * Included v1.3 feature demo inside project notes document. Added descriptions and screenshots for the features.
-  * Reported bugs for other teams during PE-D: [#ped issues github](https://github.com/sjoann/ped)
+  * Included v1.3 feature demo inside project notes document. Added descriptions and screenshots for the features:
+    [\#document](https://docs.google.com/document/d/18XgQeugctKcNy1_1Fay5zRtmfvYsSSdNzT-hTWjukho/edit#bookmark=id.6807tavlcx8a)
+  * Reported bugs for other teams during PE-D: [\#ped issues github](https://github.com/sjoann/ped)
 
