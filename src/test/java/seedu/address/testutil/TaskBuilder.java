@@ -10,11 +10,12 @@ import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskStatus;
 
 /**
- * A utility class to help with building Task objects
+ * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
-    public static final String DEFAULT_MODULE = "CS2103T";
+
     public static final String DEFAULT_TASK_DESCRIPTION = "task description";
+    public static final String DEFAULT_MODULE = "CS2103T";
 
     private Module module;
     private TaskDescription taskDescription;
@@ -48,7 +49,15 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code module} of the {@code Task} that we are building.
+     * Sets the {@code TaskDescription} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withTaskDescription(String description) {
+        this.taskDescription = new TaskDescription(description);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Module} of the {@code Task} that we are building.
      */
     public TaskBuilder withModule(String module) {
         this.module = new Module(new ModuleCode(module));
@@ -56,10 +65,40 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code taskDescription} of the {@code Task} that we are building.
+     * Sets the {@code TaskStatus} of the {@code Task} that we are building.
      */
-    public TaskBuilder withTaskDescription(String taskDescription) {
-        this.taskDescription = new TaskDescription(taskDescription);
+    public TaskBuilder withStatus(String complete) {
+        this.taskStatus = TaskStatus.of(complete);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Exam} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withExam(Exam exam) {
+        this.linkedExam = exam;
+        return this;
+    }
+
+    /**
+     * Sets the {@code PriorityTag} of the {@code Task} which is being built.
+     *
+     * @param priorityTag The priority tag being set.
+     * @return The task builder which now contains the priority tag.
+     */
+    public TaskBuilder withPriorityTag(PriorityTag priorityTag) {
+        this.priorityTag = priorityTag;
+        return this;
+    }
+
+    /**
+     * Sets the {@code DeadlineTag} of the {@code Task} which is being built.
+     *
+     * @param deadlineTag The deadline tag being set.
+     * @return The task builder which now contains the deadline tag.
+     */
+    public TaskBuilder withDeadlineTag(DeadlineTag deadlineTag) {
+        this.deadlineTag = deadlineTag;
         return this;
     }
 
