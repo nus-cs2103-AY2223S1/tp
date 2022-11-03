@@ -160,6 +160,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The keywords are only searched for inside the applications' companies and positions.
 * Only full words will be matched e.g. `ByteDance` will not match `ByteDances`.
 * Applications matching at least one keyword will be returned (i.e. `OR` search). e.g. `Google Shopee` will match `Shopee HQ` and `Google Singapore`.
+* `find` command is also able to search for archived applications with matching keywords and  `retrieve` command can be used on the last shown list. However, please ensure that the index provided is within the last shown list and the selected application is archived.
 
 Example:
 * `find Software` returns the `Google` and `Wise` applications since their positions contain the keyword "software".
@@ -250,6 +251,7 @@ Format: `archive INDEX`
 * The index refers to the index number shown in the displayed internship application list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index cannot be greater than the number of applications in the displayed list.
+* Interview related to the archived application will also be updated in the interview list once the application is archived.
 
 Example:
 * `list` followed by `archive 2` archives the 2nd internship application in the list.
