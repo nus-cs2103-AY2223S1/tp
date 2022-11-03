@@ -57,7 +57,6 @@ Student *--> "1" Name
 Student *--> "1" StudentId
 Student *--> "0..1" Phone
 Student *--> "0..1" Email
-Student *--> "0..1" Picture
 Student *--> "0..1" ClassGroup
 Student *--> "*" Tag
 Student *--> "1" AttendanceList
@@ -84,8 +83,7 @@ UserPrefs -[hidden]right-> TaskBook
 Name -[hidden]right-> StudentId
 StudentId -[hidden]right-> Email
 Email -[hidden]right-> Phone
-Phone -[hidden]right-> Picture
-Picture -[hidden]right-> ClassGroup
+Phone -[hidden]right-> ClassGroup
 ClassGroup -[hidden]right-> AttendanceList
 AttendanceList -[hidden]right-> Tag
 
