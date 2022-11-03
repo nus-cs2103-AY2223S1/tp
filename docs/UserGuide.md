@@ -148,35 +148,42 @@ To get you started, here are some simple commands you can try out on our sample 
 TrackO's functionalities! 
 
 1. We start off by getting to know how to manage your **inventory**!
+
    1. Adding an item: `addi`
        * If your small business has `350` units of the new item, `Teddy bear keychain` currently in your physical inventory.
          It costs `$0.89` to make these keychains and you will be selling them at `$3.50` each.
        * You can add these items to TrackO, with the following command:
-         `addi i/Teddy bear keychains q/350 d/Great for kids! t/New sp/3.50 cp/0.89`
+      
+      ```
+      addi i/Teddy bear keychains q/350 
+      d/Great for kids! t/New sp/3.50 cp/0.89
+      ```
+      
        * This command also helps to add a short description to the item and tags it as `New`.
 
-You should see this item appear in TrackO at index 5 as shown below:
-   <br/>
+    You should see this item appear in TrackO at index 5 as shown below:
+   
+
 2. Next, we move on to order management:
+
     1. Adding an order: `addo`
       * If you have a customer named `Jonathan Chee` living at `43 Clementi Road, 639433` with an email address `JonChee@gmail.com` and phone number of
         `96785944`. This customer has ordered 1 `Teddy bear keychain`.
       * First, enter the customer details into the [command box](link to layout section) using the following command:
         ```
-        addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com a/43 Clementi Road, 639433
+        addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com  
+        a/43 Clementi Road, 639433
         ```
-   
       * Next, to add the items ordered by the customer, enter the following command into the [command box](link to layout section):
         ```
-        i/teddy bear keychain q/1
+        i/teddy bear keychains q/1
         ```
       * Lastly, type `done` to finish adding an order to TrackO!
-      
-   You should see this order appear in TrackO at index 5 as shown below:
+    You should see this order appear in TrackO at index 5 as shown below:
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-If an item is not in your inventory, TrackO does not allow you to add that item to an order!
-</div>
+    <div markdown="span" class="alert alert-primary">:bulb: **Note:**
+    If an item is not in your inventory, TrackO does not allow you to add that item to an order!
+    </div>
 
    2. Finding order(s): `findo`
       * Our application allows you to search for orders by different fields (eg. payment status, delievery status, customer details).
