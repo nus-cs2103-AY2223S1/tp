@@ -57,9 +57,9 @@ public class EditProfileCommand extends ProfileCommand {
     public static final String MESSAGE_HELP = "Edits an existing profile in NUScheduler.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " INDEX "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_PHONE + "PHONE_NUMBER] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TELEGRAM + "TELEGRAM USERNAME] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM_USERNAME] "
             + "[" + PREFIX_TAG + "TAG]...\n";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
