@@ -38,7 +38,7 @@ public class EditEventCommand extends Command {
             + "[" + PREFIX_PURPOSE + "PURPOSE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EVENT_TITLE + "Banana Sale "
-            + PREFIX_PURPOSE + "20% discount on all bananas store-wide";
+            + PREFIX_PURPOSE + "20 cent discount on all bananas";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
 
