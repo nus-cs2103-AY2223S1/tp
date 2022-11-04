@@ -173,9 +173,9 @@ class JsonAdaptedPerson {
             nurseUnavailableDate.add(date.toModelType());
         }
 
-        final List<Date> nurseFullySchedulledDates = new ArrayList<>();
+        final List<Date> nurseFullyScheduledDates = new ArrayList<>();
         for (JsonAdaptedDate date : fullyAssignedDates) {
-            nurseFullySchedulledDates.add(date.toModelType());
+            nurseFullyScheduledDates.add(date.toModelType());
         }
 
         final List<DateSlot> patientHomeVisitDatesSlots = new ArrayList<>();
@@ -238,7 +238,7 @@ class JsonAdaptedPerson {
 
         if (category.equals(NURSE_SYMBOL)) {
             return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags,
-                    nurseUnavailableDate, nurseHomeVisitList, nurseFullySchedulledDates);
+                    nurseUnavailableDate, nurseHomeVisitList, nurseFullyScheduledDates);
 
         } else if (category.equals(PATIENT_SYMBOL)) {
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
