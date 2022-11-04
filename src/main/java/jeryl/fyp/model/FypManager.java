@@ -72,6 +72,14 @@ public class FypManager implements ReadOnlyFypManager {
     }
 
     /**
+     * Returns true if the email of new student is used by other {@code student} in the FYP manager.
+     */
+    public boolean hasSameEmail(Student student) {
+        requireNonNull(student);
+        return students.containsEmail(student);
+    }
+
+    /**
      * Adds a student to the FYP manager.
      * The student must not already exist in the FYP manager.
      */

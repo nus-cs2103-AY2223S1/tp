@@ -112,6 +112,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSameEmail(Student student) {
+        requireNonNull(student);
+        return fypManager.hasSameEmail(student);
+    }
+
+    @Override
     public void deleteStudent(Student target) {
         fypManager.removeStudent(target);
     }

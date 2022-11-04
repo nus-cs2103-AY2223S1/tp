@@ -47,7 +47,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the FYP manager.";
-
+    public static final String MESSAGE_EMAIL_USED = "This email is used by another student in the list already.";
     private final StudentId studentId;
     private final EditStudentDescriptor editStudentDescriptor;
 
@@ -78,6 +78,10 @@ public class EditCommand extends Command {
 
         if (!studentToEdit.isSameStudentId(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
+        // Check if email is used
+        if (model.hasSameEmail(editedStudent)) {
+            throw new CommandException(MESSAGE_EMAIL_USED);
         }
 
         model.setStudent(studentToEdit, editedStudent);
