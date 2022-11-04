@@ -65,15 +65,15 @@ public class FindCommandTest {
     // Hmmm, with the changed implementation no keywords no tags will result in invalid
     // command, so the filtered list doesn't change. I will update this test case shortly
     // @James.
-    //        @Test
-    //        public void execute_zeroKeywords_noCustomerFound() {
-    //            String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 0);
-    //            CompositeCustomerPredicate predicate = preparePredicate(" ");
-    //            FindCommand command = new FindCommand(predicate);
-    //            expectedModel.updateFilteredCustomerList(predicate);
-    //            assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //            assertEquals(Collections.emptyList(), model.getSortedFilteredCustomerList());
-    //        }
+    @Test
+    public void execute_zeroKeywords_noCustomerFound() {
+        String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 0);
+        CompositeCustomerPredicate predicate = preparePredicate(" ");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredCustomerList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getSortedFilteredCustomerList());
+    }
 
     @Test
     public void execute_multipleKeywords_multipleCustomersFound() {
