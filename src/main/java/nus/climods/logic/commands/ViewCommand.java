@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.openapitools.client.ApiException;
 
 import nus.climods.logic.commands.exceptions.CommandException;
+import nus.climods.logic.parser.parameters.ModuleCodeParameter;
 import nus.climods.model.Model;
 import nus.climods.model.module.Module;
 
@@ -16,7 +17,7 @@ public class ViewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": View details for a module.\n"
             + "Parameters: MODULE-CODE [LESSON-TYPE...]\n"
             + "Example: " + COMMAND_WORD + " " + "CS2103";
-    public static final String MESSAGE_MODULE_NOT_FOUND = "'%s' not in current NUS curriculum";
+    public static final String MESSAGE_MODULE_NOT_FOUND = ModuleCodeParameter.PARSE_EXCEPTION_MESSAGE;
     public static final String MESSAGE_API_ERROR = "Error retrieving module details";
     public static final String MESSAGE_SUCCESS = "Viewing details for module %s";
 
