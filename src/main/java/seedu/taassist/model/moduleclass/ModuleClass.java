@@ -25,7 +25,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
 
     private final String className;
 
-    private final UniqueList<Session> sessions;
+    private final UniqueList<Session> sessions = new UniqueList<>();
 
     /**
      * Constructs a {@code ModuleClass}.
@@ -36,7 +36,6 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         requireNonNull(className);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
         this.className = className;
-        this.sessions = new UniqueList<>();
     }
 
     /**
@@ -49,8 +48,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         requireAllNonNull(className, sessions);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
         this.className = className;
-        this.sessions = new UniqueList<>();
-        this.sessions.addAll(sessions);
+        this.sessions.setElements(sessions);
     }
 
     /**
@@ -63,7 +61,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         requireAllNonNull(className, sessions);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
         this.className = className;
-        this.sessions = sessions;
+        this.sessions.setElements(sessions);
     }
 
 
@@ -71,6 +69,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      * Returns true if a given string is a valid class name.
      */
     public static boolean isValidModuleClassName(String className) {
+        requireNonNull(className);
         return className.matches(VALIDATION_REGEX) && className.length() <= 25;
     }
 
@@ -101,7 +100,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
             return this;
         }
         UniqueList<Session> newSessions = new UniqueList<>();
-        newSessions.addAll(sessions);
+        newSessions.setElements(sessions);
         newSessions.add(session);
         return new ModuleClass(className, newSessions);
     }
@@ -148,7 +147,11 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
                 || (otherModule != null && caseInsensitiveEquals(this.className, otherModule.className));
     }
 
+    /**
+     * Returns true if the module class contains the session {@code toCheck}.
+     */
     public boolean hasSession(Session toCheck) {
+        requireNonNull(toCheck);
         return sessions.contains(toCheck);
     }
 
@@ -166,6 +169,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
 
     @Override
     public int compareTo(ModuleClass other) {
+        requireNonNull(other);
         return className.compareTo(other.className);
     }
 
