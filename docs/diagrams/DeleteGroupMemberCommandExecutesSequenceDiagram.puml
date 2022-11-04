@@ -11,10 +11,9 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR_T1
 end box
 
-DeleteGroupMemberCommand -[hidden]-> Model
+[-> DeleteGroupMemberCommand : execute()
 activate DeleteGroupMemberCommand
 
-group sd [DeleteGroupMemberCommand executes]
 DeleteGroupMemberCommand -> Model : setPerson(personToGroup, editedPerson)
 activate Model
 
@@ -32,6 +31,8 @@ activate CommandResult
 
 CommandResult --> DeleteGroupMemberCommand
 deactivate CommandResult
-end
+
+[<-- DeleteGroupMemberCommand: CommandResult
+deactivate DeleteGroupMemberCommand
 
 @enduml

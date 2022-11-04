@@ -227,9 +227,8 @@ in the app. Below is an activity diagram reflecting this:
 
 <img src="images/DeleteGroupActivityDiagram.png" width="550" />
 
-For simplicity, only the `deletegroup` command sequence diagram is shown below. Both commands operate via a similar sequence:
+For simplicity, only the `DeleteGroupCommand`'s execution is shown below. Both commands operate via a similar sequence:
 
-<img src="images/DeleteGroupSequenceDiagram.png" width="800" />
 <img src="images/DeleteGroupCommandExecutesSequenceDiagram.png" width="400" />
 
 -----
@@ -284,9 +283,8 @@ The `AddressBook` model now looks like this:
 **Note:** The command itself `DeleteGroupMemberCommand` checks that both person `Alice` and group
 `CS2103T` exist in the app, and that `Alice` is a member of `CS2103T` prior to deletion.
 
-For simplicity, only the `deletemember` command sequence diagram is shown below. Both commands operate via a similar sequence:
+For simplicity, only the `DeleteGroupMemberCommand`'s execution is shown below. Both commands operate via a similar sequence:
 
-<img src="images/DeleteMemberSequenceDiagram.png" width="800" />
 <img src="images/DeleteGroupMemberCommandExecutesSequenceDiagram.png" width="400" />
 
 
@@ -321,9 +319,8 @@ to a group in this list, a `CommandException` will be thrown notifying the user 
 User executes `listgroups`. The associated command `ListGroupsCommand` calls
 `Model#updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS)`to display all groups in the app.
 
-For simplicity, only the `displaygroup` command sequence diagram is shown below. Both commands operate via a similar sequence:
+For simplicity, only the `DisplayGroupCommand`'s execution is shown below. Both commands operate via a similar sequence:
 
-<img src="images/DisplayGroupSequenceDiagram.png" width="800" />
 <img src="images/DisplayGroupCommandExecutesSequenceDiagram.png" width="400" />
 
 ----
@@ -386,9 +383,8 @@ The `AddressBook` model is reflected below:
 exist in the app, that the person is a member of the group, and the person has the specified task under
 the group.
 
-For simplicity, only the `deletetask` command sequence diagram is shown below. Both commands operate via a similar sequence:
+For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both commands operate via a similar sequence:
 
-<img src="images/DeleteTaskSequenceDiagram.png" width="1000" />
 <img src="images/DeleteTaskCommandExecuteSequenceDiagram.png" width="400" />
 
 ----
@@ -451,9 +447,8 @@ The `AddressBook` model is reflected below:
 is handled in a for loop. Members who do not have the assignment enter a `continue` block to the next iteration
 and are not edited.
 
-For simplicity, only the `deletetaskall` command sequence diagram is shown below. Both commands operate via a similar sequence:
+For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both commands operate via a similar sequence:
 
-<img src="images/DeleteTaskAllSequenceDiagram.png" width="800" />
 <img src="images/DeleteTaskAllCommandExecuteSequenceDiagram.png" width="400" />
 
 --------------------------------------------------------------------------------------------------------------------
