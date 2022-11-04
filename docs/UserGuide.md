@@ -136,10 +136,10 @@ Using the [`select` command](#selecting-an-itinerary--select)  will bring you to
 
 Adds an itinerary to Waddle.
 
-Format: `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WADDLERS] [b/BUDGET]`
+Format: `add d/DESCRIPTION sd/START_DATE du/DURATION [c/COUNTRY] [p/NUMBER_OF_WADDLERS] [b/BUDGET]`
 
 * Adds a new itinerary named `DESCRIPTION` to the itinerary list.
-* `START DATE` is the date of the first day in the itinerary. It must be given in the format `yyyy-mm-dd`.
+* `START_DATE` is the date of the first day in the itinerary. It must be given in the format `yyyy-mm-dd`.
 * `DURATION` will determine the number of days in the itinerary, and must be between 1 and 365 days.
   - e.g. `sd/2022-12-10 du/3` would mean that the trip is from 10 Dec 2022 to 12 Dec 2022.
 * `BUDGET` is the budget for the itinerary and must be between 0 and 1,000,000. Please provide the budget in dollars ($), you may include cents too!
@@ -195,7 +195,7 @@ Examples:
 
 Edits an existing itinerary in Waddle.
 
-Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START DATE] [du/DURATION] [p/NUMBER OF WADDLERS] [b/BUDGET]`
+Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START_DATE] [du/DURATION] [p/NUMBER_OF_WADDLERS] [b/BUDGET]`
 
 * Edits the itinerary at the specified `INDEX`. The index refers to the index number shown in the displayed itinerary list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -335,12 +335,12 @@ Format: `free`
 
 Schedules an item from the wishlist.
 
-Format: `plan INDEX d/DAY NUMBER st/START TIME`
+Format: `plan INDEX d/DAY_NUMBER st/START_TIME`
 
 * Schedules the item at the specified `INDEX`. The index refers to the index number displayed in the unscheduled item list.
-* `DAY NUMBER` must be an integer from 1 to the duration (in days) of the trip.
-* `START TIME` should be given in the format `hh:mm`, or `hh:mm:ss` where `hh` is the hour in 24-hour format, `mm` is the minute, and `ss` is the seconds.
-* The end time of the item is automatically calculated by adding the `DURATION` of the item to the `START TIME`.
+* `DAY_NUMBER` must be an integer from 1 to the duration (in days) of the trip.
+* `START_TIME` should be given in the format `hh:mm`, or `hh:mm:ss` where `hh` is the hour in 24-hour format, `mm` is the minute, and `ss` is the seconds.
+* The end time of the item is automatically calculated by adding the `DURATION` of the item to the `START_TIME`.
 * You can only add an item if there is no clash in timing between the start and end time of the new item, and the start and end time of any existing scheduled item.
 * When an item is scheduled, the cost of the item will be automatically deducted from the budget of the itinerary.
 
