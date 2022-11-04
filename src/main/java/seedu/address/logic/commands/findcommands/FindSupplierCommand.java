@@ -31,6 +31,7 @@ public class FindSupplierCommand extends FindCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredSupplierList(getSupplierPredicate());
+        model.switchToSupplierList();
         return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
                 model.getFilteredSupplierList().size()));
     }

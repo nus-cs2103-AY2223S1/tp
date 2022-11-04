@@ -138,9 +138,6 @@ public class AddressBookParser {
         case FindSupplierCommandParser.PARSE_WORD:
             return new FindSupplierCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 

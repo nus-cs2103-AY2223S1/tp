@@ -30,6 +30,7 @@ public class FindBuyerCommand extends FindCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredBuyerList(getBuyerPredicate());
+        model.switchToBuyerList();
         return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
                 model.getFilteredBuyerList().size()));
     }
