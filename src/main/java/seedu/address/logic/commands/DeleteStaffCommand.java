@@ -73,7 +73,7 @@ public class DeleteStaffCommand extends Command {
         Staff staff = getStaffFrom(staffList, staffName);
 
         staffList.remove(staff);
-        model.setFilteredStaffList(project);
+        model.setFilteredStaffList(project.getStaffList());
         model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
         return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName, project.getProjectName()));
     }

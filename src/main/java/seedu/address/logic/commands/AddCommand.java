@@ -17,6 +17,8 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "addproj";
 
+    public static final String MESSAGE_SUCCESS = "New project added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in HR Pro Max++!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to HR Pro Max++.\n"
             + "Parameters: "
             + PREFIX_PROJECT_NAME + "PROJECT_NAME "
@@ -29,9 +31,6 @@ public class AddCommand extends Command {
             + PREFIX_DEADLINE + "2022-01-01 "
             + PREFIX_TAG + "Important "
             + PREFIX_TAG + "busy";
-
-    public static final String MESSAGE_SUCCESS = "New project added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in HR Pro Max++!";
 
     private final Project toAdd;
 

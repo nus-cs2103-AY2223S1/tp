@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.project.Project;
 import seedu.address.model.staff.Staff;
+import seedu.address.model.staff.UniqueStaffList;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -150,7 +151,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void setFilteredStaffList(Project target) {
+        public void setFilteredStaffList(UniqueStaffList staffList) {
             throw new AssertionError("This method should not be called.");
         }
 

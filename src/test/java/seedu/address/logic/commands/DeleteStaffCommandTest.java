@@ -43,7 +43,7 @@ public class DeleteStaffCommandTest {
                 staffName, projectName);
         project.getStaffList().add(staff);
         Index index = Index.fromOneBased(1);
-        model.setFilteredStaffList(project);
+        model.setFilteredStaffList(project.getStaffList());
 
 
         DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(index, projectName);
@@ -52,7 +52,7 @@ public class DeleteStaffCommandTest {
         Project tempProject = new ProjectBuilder(project).build();
         tempProject.getStaffList().remove(staff);
         expectedModel.setProject(project, tempProject);
-        expectedModel.setFilteredStaffList(tempProject);
+        expectedModel.setFilteredStaffList(tempProject.getStaffList());
         expectedModel.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
 
         assertCommandSuccess(deleteStaffCommand, model, expectedMessage, expectedModel);
@@ -64,7 +64,7 @@ public class DeleteStaffCommandTest {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         Staff staff = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
         project.getStaffList().add(staff);
-        model.setFilteredStaffList(project);
+        model.setFilteredStaffList(project.getStaffList());
         ProjectName projectName = new ProjectName("WRONG PROJECT NAME");
         DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_FIRST_STAFF, projectName);
 
@@ -84,7 +84,7 @@ public class DeleteStaffCommandTest {
         Staff staff = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
         project.getStaffList().add(staff);
         ProjectName projectName = project.getProjectName();
-        model.setFilteredStaffList(project);
+        model.setFilteredStaffList(project.getStaffList());
         int len = model.getFilteredStaffList().size();
         Index index = Index.fromZeroBased(len + 1);
         DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(index, projectName);

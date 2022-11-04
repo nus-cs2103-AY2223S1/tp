@@ -11,21 +11,23 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
 /**
- * Lists all staff members for a given project in the address book to the user.
+ * Display all staff members for a given project in HR Pro Max++ to the user.
  */
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
+    public static final String MESSAGE_SUCCESS = "Listed all Staff members from: %1$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays the staff list of the project identified by the index number used.\n"
             + "Parameters: INDEX (must be a number from 1 to 2147483647)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Listed all Staff members from: %1$s";
-
     private final Index targetIndex;
 
+    /**
+     * Creates a view command to put the specified {@code UniqueStaffList} on display
+     */
     public ViewCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -40,7 +42,7 @@ public class ViewCommand extends Command {
         }
 
         Project projectToView = lastShownList.get(targetIndex.getZeroBased());
-        model.setFilteredStaffList(projectToView);
+        model.setFilteredStaffList(projectToView.getStaffList());
         model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
         return new CommandResult(String.format(MESSAGE_SUCCESS, projectToView));
     }
