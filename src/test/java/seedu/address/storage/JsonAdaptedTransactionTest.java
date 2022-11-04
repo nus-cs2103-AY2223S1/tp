@@ -19,7 +19,9 @@ public class JsonAdaptedTransactionTest {
     private static final String INVALID_GOODS = "@pple";
     private static final String INVALID_PRICE = "Eighteen Dollars";
     private static final String INVALID_QUANTITY = "Fifteen";
-    private static final String INVALID_DATE = "5th January 2021";
+    private static final String INVALID_DATE_FORMAT = "5th January 2021";
+
+    private static final String INVALID_DATE_WRONG_DATE = "31/02/2000";
 
     private static final String VALID_GOODS = BUY_SHELVES.getGoods().toString();
     private static final String VALID_PRICE = Double.toString(BUY_SHELVES.getPrice().value());
@@ -87,10 +89,15 @@ public class JsonAdaptedTransactionTest {
 
     @Test
     public void toModelType_invalidDate_throwsIllegalValueException() {
-        JsonAdaptedTransaction transaction =
-                new JsonAdaptedTransaction(VALID_GOODS, VALID_PRICE, VALID_QUANTITY, TransactionType.BUY, INVALID_DATE);
-        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, transaction::toModelType);
+        JsonAdaptedTransaction transaction1 =
+                new JsonAdaptedTransaction(VALID_GOODS, VALID_PRICE, VALID_QUANTITY, TransactionType.BUY,
+                        INVALID_DATE_FORMAT);
+        String expectedMessage1 = Date.MESSAGE_CONSTRAINTS_WRONG_FORMAT;
+        JsonAdaptedTransaction transaction2 =
+                new JsonAdaptedTransaction(VALID_GOODS, VALID_PRICE, VALID_QUANTITY, TransactionType.BUY,
+                        INVALID_DATE_WRONG_DATE);
+        String expectedMessage2 = Date.MESSAGE_CONSTRAINTS_WRONG_DATE;
+        assertThrows(IllegalValueException.class, expectedMessage2, transaction2::toModelType);
     }
 
     @Test

@@ -91,8 +91,11 @@ public class JsonAdaptedTransaction {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Date.class.getSimpleName()));
         }
-        if (!Date.isValidDate(date)) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        if (!Date.isValidDateFormat(date)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS_WRONG_FORMAT);
+        }
+        if (!Date.isValidDateInput(date)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS_WRONG_DATE);
         }
         final Date modelDate = new Date(date);
 

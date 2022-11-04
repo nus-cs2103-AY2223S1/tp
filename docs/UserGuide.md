@@ -287,9 +287,9 @@ Parameter constraints:
 | Parameter  | Constraints                                                                                                                                                                                                   |
 |:-----------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `INDEX`    | - Refers to the index number shown in the displayed client list. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​                                 |
-| `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - should only contain non-negative unsigned integers and be at least 1 digit long.                                                                      |
+| `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - Should only contain non-negative unsigned integers and be at least 1 digit long.                                                                      |
 | `GOODS`    | - Refers to the name of the goods transacted. <br/> - Should only contain alphanumeric characters, and it should not be blank.                                                                                |
-| `PRICE`    | - Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                   |
+| `PRICE`    | - Refers to the price of the goods transacted. <br/> - Should only contain non-negative unsigned numbers, and it should be at least 1 digit long. <br/> - Prices will be rounded off to 2 decimal places.     |
 | `DATE`     | - Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction. |
 
 Examples:

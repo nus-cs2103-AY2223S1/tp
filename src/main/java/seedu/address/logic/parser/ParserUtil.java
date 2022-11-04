@@ -197,8 +197,11 @@ public class ParserUtil {
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!Date.isValidDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        if (!Date.isValidDateFormat(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS_WRONG_FORMAT);
+        }
+        if (!Date.isValidDateInput(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS_WRONG_DATE);
         }
         return new Date(date);
     }

@@ -23,7 +23,9 @@ import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
 
-    private static final String INVALID_DATE = "00/09/2000";
+    private static final String INVALID_DATE_INPUT = "00/09/2000";
+
+    private static final String INVALID_DATE_FORMAT = "eeeeee";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -281,7 +283,8 @@ public class ParserUtilTest {
     @Test
 
     public void parseDate_invalidDate_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_INPUT));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_FORMAT));
     }
 
     @Test

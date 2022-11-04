@@ -27,26 +27,38 @@ class DateTest {
     }
 
     @Test
-    public void isValidDate() {
+    public void isValidDateFormat() {
         // null name
-        assertThrows(NullPointerException.class, () -> Date.isValidDate(null));
+        assertThrows(NullPointerException.class, () -> Date.isValidDateFormat(null));
 
         // invalid date
-        assertFalse(Date.isValidDate("")); // empty string
-        assertFalse(Date.isValidDate(" ")); // spaces only
-        assertFalse(Date.isValidDate("11/09/200*")); // contains non-integers
-        assertFalse(Date.isValidDate("11/13/2000")); // invalid month
-        assertFalse(Date.isValidDate("39/10/2000")); // invalid day
-        assertFalse(Date.isValidDate("-11/11/2000")); // negative integers
-        assertFalse(Date.isValidDate("11.223/09/2000.0")); // non-integer values
-        assertFalse(Date.isValidDate("31/02/2000")); // Invalid day in february
-        assertFalse(Date.isValidDate("31/11/2022")); // Invalid day in november
+        /*assertFalse(Date.isValidDateFormat("")); // empty string
+        assertFalse(Date.isValidDateFormat(" ")); // spaces only
+
+         */
+        assertFalse(Date.isValidDateFormat("11/09/200*")); // contains non-integers
+
 
         // valid date
-        assertTrue(Date.isValidDate("11/09/2000")); // integers only
-        assertTrue(Date.isValidDate("29/02/2004")); // leap year
+        assertTrue(Date.isValidDateFormat("11/09/2000")); // integers only
+        assertTrue(Date.isValidDateFormat("29/02/2004")); // leap year
     }
 
+    @Test
+    public void isValidDateInput() {
+
+        assertThrows(NullPointerException.class, () -> Date.isValidDateInput(null));
+        assertFalse(Date.isValidDateInput("11/13/2000")); // invalid month
+        assertFalse(Date.isValidDateInput("39/10/2000")); // invalid day
+        assertFalse(Date.isValidDateInput("-11/11/2000")); // negative integers
+        assertFalse(Date.isValidDateInput("11.223/09/2000.0")); // non-integer values
+        assertFalse(Date.isValidDateInput("31/02/2000")); // Invalid day in february
+        assertFalse(Date.isValidDateInput("31/11/2022")); // Invalid day in november
+
+        // valid date
+        assertTrue(Date.isValidDateInput("11/09/2000")); // integers only
+        assertTrue(Date.isValidDateInput("29/02/2004")); // leap year
+    }
 
     @Test
     public void toString_returnsValueInName() {
