@@ -24,7 +24,9 @@ Given below are my contributions to the project.
     * https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tin-jy&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other
 
 * **Project management**:
-    * _(to be added soon)_
+    * Reviewed other PRs and merged them.
+    * Helped group mates resolve bugs.
+    * Contributed to product design and features proposed.
 
 * **Enhancements to existing features**: <br>
 
@@ -39,14 +41,13 @@ Given below are my contributions to the project.
         * Added links throughout the document and to the summary tables.
         * Added FAQ
         * Fixed formatting errors with icons and PDF conversion
+        * Fixed bugs including some highlighted in the PE-D
     * Developer Guide:
         * Updated UML class diagrams for Persons and Modules to display the updated fields
         * Added explanation for local storage of Module data.
         * Added explanation for optionality of fields.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): _(to be added soon)_
-    * Contributed to forum discussions: _(to be added soon)_
     * Reported bugs and suggestions for other teams in the class: Found 11 bugs in mock PE peer review, including a number of non-trivial functionality bugs
 
 * **Tools**:
