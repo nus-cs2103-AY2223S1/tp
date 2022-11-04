@@ -5,7 +5,7 @@ title: Marcus Pang's Project Portfolio Page
 
 ### Project: TruthTable
 
-TruthTable is a task-management software specially targeted towards tech-savy university students leading teams in
+TruthTable is a task-management software specially targeted towards tech-savvy university students leading teams in
 software engineering modules to build projects. It helps track the team's progress and delegate tasks effectively.
 
 Given below are my contributions to the project.
