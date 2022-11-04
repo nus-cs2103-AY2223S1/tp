@@ -45,8 +45,8 @@ Given below are my contributions to the project.
 - **Contributions to the DG**:
   - Updated design considerations on the Remark and Tag command.
   ([#75](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/75), [#80](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/80))
-  - Updated user stories. ([#176]https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/176)
-  - Updated glossary. ([#175]https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/175)
+  - Updated user stories. ([#176](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/176))
+  - Updated glossary. ([#175](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/175))
 - **Contributions beyond the project team**
   - Reported 13 bugs and left suggestions to the reviewed project in PE-D.
   ([link to PE-D](https://github.com/craeyeons/ped/issues))
