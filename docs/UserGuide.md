@@ -114,7 +114,9 @@ the parameter will be taken.<br>
 ### 2.1. Modules
 
 #### 2.1.1. Add module
-You can add a module into Plannit.
+You can add a module into Plannit. In Plannit, you will organise tasks and links by academic 
+module. You can also add study buddies to a module so that you can keep track of who could 
+potentially be your study buddy.
 
 This command will require one flag, and one flag is optional:
 
@@ -152,7 +154,9 @@ Adding a module will bring you back to the home page.
 </div>
 
 #### 2.1.2. Delete module
-You can delete the module with the indicated module code from Plannit.
+You can delete the module with the indicated module code from Plannit. This could be useful at 
+the end of the semester when you would want to do some cleanup and prepare for the modules for 
+next semester.
 
 This command will require one flag:
 
@@ -175,7 +179,9 @@ Deleting a module will bring you back to the home page.
 </div>
 
 #### 2.1.3. Edit module
-You can edit a module on Plannit using the `edit-module` command.
+You can edit a module on Plannit using the `edit-module` command. This is useful when you want 
+to add a module title when it is available, or make corrections due to an accidental typo in one 
+of the modules, without having to delete the entire module with links and tasks, and recreating it.
 
 This command will require an index and at least one of the following flags:
 
