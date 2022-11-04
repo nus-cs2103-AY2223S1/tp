@@ -50,14 +50,6 @@ class HistoryListTest {
     }
 
     @Test
-    void isEmpty_correct() {
-
-        //Initialize the historyList with nothing
-        HistoryList history = new HistoryList();
-        assertTrue(history.isEmpty());
-    }
-
-    @Test
     void isEmpty_wrong() {
 
         //Initialize the historyList with a command
