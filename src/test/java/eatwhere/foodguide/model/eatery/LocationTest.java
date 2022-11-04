@@ -47,5 +47,6 @@ public class LocationTest {
 
         assertFalse(baseLocation.similarTo(new Location("Location "))); // extra trailing whitespace
         assertFalse(baseLocation.similarTo(new Location("Locationn"))); // different spelling
+        assertFalse(baseLocation.similarTo(null)); // null object
     }
 }

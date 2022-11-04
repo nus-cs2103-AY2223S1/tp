@@ -50,5 +50,6 @@ public class NameTest {
 
         assertFalse(baseName.similarTo(new Name("Alice "))); // extra trailing whitespace
         assertFalse(baseName.similarTo(new Name("Alicee"))); // different spelling
+        assertFalse(baseName.similarTo(null)); // null object
     }
 }
