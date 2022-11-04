@@ -557,7 +557,7 @@ This command will require three flags:
 | Field     | Flag | Constraints                                                                                                                       |
 |-----------|------|-----------------------------------------------------------------------------------------------------------------------------------|
 | **Name**  | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
-| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)                                                                      |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#4-glossary)                                                                      |
 | **Phone** | `p/` | Can only be 8 digits long                                                                                                         |
 
 Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
@@ -661,7 +661,7 @@ This command will require an index and minimally any of the three flags:
 | Field     | Flag | Constraints                                                                                                                       |
 |-----------|------|-----------------------------------------------------------------------------------------------------------------------------------|
 | **Name**  | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
-| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)                                                                      |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#4-glossary)                                                                      |
 | **Phone** | `p/` | Can only be 8 digits long                                                                                                         |
 
 Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
@@ -805,11 +805,7 @@ all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. Landing Page Visual Guide
-[coming soon]
-
---------------------------------------------------------------------------------------------------------------------
-## 4. FAQ
+## 3. FAQ
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with
 the file that contains the data of your previous Plannit home folder.
@@ -818,7 +814,7 @@ the file that contains the data of your previous Plannit home folder.
 [More questions coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
-# 5. Glossary
+# 4. Glossary
 
 | Term                  | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
