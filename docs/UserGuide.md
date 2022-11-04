@@ -132,7 +132,7 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 
 **:information_source: Notes about the command format:**<br>
 
-* An address book cannot have multiple persons with the exact same identity fields (`EMAIL` and `JOB_ID`)
+* An address book cannot have multiple applicants with the exact same identity fields (`EMAIL` and `JOB_ID`)
   e.g., `n/John e/j@example.com ji/J12332` and `n/Jason e/j@example.com ji/J12332` are considered the same applicant.
 
 * Words in `UPPER_CASE` are the parameter details to be supplied by the user.
