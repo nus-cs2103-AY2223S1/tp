@@ -745,7 +745,7 @@ Format:  `home`
 You may click on a module to ["peek"](#224-peeking-at-tasks) at a module's task while on the home page. <br> <br>
 For more detailed information regarding a specific module, you may navigate to that
 module using the [`goto`](#252-navigate-between-modules) command. <br> <br>
-The following commands also navigates you back to the home page: <br>
+The following commands also navigate you back to the home page: <br>
 [`add-module`](#211-add-module), [`delete-module`](#212-delete-module), [`add-person`](#241-add-person).
 </div>
 
@@ -792,7 +792,7 @@ open a window with a link that directs you to our user guide!
 Format: `help`
 
 #### Minor enhancement [coming in v1.5] <br>
-Stay tuned for Plannit v2.0, where we will be including a table showing all commands
+Stay tuned for Plannit v1.5, where we will be including a table showing all commands
 within the help window!
 
 <br>
