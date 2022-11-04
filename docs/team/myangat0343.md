@@ -3,29 +3,32 @@ layout: page
 title: YANG Mingyang's Project Portfolio Page
 ---
 
-### Project: ProfNUS
 
-ProfNUS is a **desktop application which helps SOC Professors who have many modules with many students/TAs to manage.** It is optimized for users who prefer CLI over GUI so that frequent tasks can be done faster by typing in commands.
+**ProfNUS** is a desktop application designed for NUS SoC professors to manage modules, students, TAs, and schedules more efficiently. ProfNUS mainly uses Command Line Interface (CLI), while also provides Graphical User Interface for users. Java is the programming language for developing.
 
-Given below are my contributions to the project.
+* **Code contributed**: [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=myangat&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **New Feature**:
-    * `to be added soon`
+* **New features implemented**:
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=leongdl135&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-
-* **Project management**:
-    * `to be added soon`
+  * Implemented view schedule command that allows a user to add a new schedule.
+  * Implemented clear schedule command that allows a user to edit a new schedule.
+  * Implemented view timetable command that allows a user to view his schedule table.
 
 * **Enhancements to existing features**:
-    * `to be added soon`
+
+  * Added more test code that increased code coverage.
+  * Improve timetable GUI.
 
 * **Documentation**:
-    * `to be added soon`
+
+  * User Guide:
+    * Add documentation for features `sclear`, `view`, `tview`
+    * Added ProfNUS introduction to the documentation.
+  * Developer Guide:
+    * Added documentation for features
 
 * **Community**:
-    * `to be added soon`
 
-* **Tools**:
-    * `to be added soon`
+  * PRs reviewed:
+
 
