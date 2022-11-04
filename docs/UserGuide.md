@@ -208,7 +208,13 @@ Examples:
 
 Finds clients whose names contain any of the given keywords.
 
-Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]
+[n/ NAME [MORE_NAMES]]
+[r/ RISK_APPETITE [MORE_RISK_APPETITE]]
+[c/ CLIENT_TYPE [MORE_CLIENT_TYPE]]
+[t/ TAG [MORE_TAGS]]
+[p/ PHONE [MORE_PHONE]]
+[i/ >/</= INCOME]…​`
 
 Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 
