@@ -471,10 +471,10 @@ For ease of understanding, many of these common use cases have been detailed bel
 - `task list before/ next Monday after/ tomorrow` returns all tasks whose deadline is after tomorrow but before next Monday.
 - `task list before/ end of the month` returns all tasks whose deadline is before the end of the month.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 **:bulb: Tips for Advanced Users:**<br>
 * You can use any combination of the parameters above to build a query that matches your unique requirements!<br>
-* Do note that the `KEYWORD` parameter **must** come first, if any other parameters are used.
+* Do note that the `KEYWORD` parameter **must** come first, if any other parameters are used.<br>
 </div>
 
 ---
