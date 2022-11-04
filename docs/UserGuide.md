@@ -65,8 +65,8 @@ Required Arguments:
 
 - `KEYWORD`
     - Any keyword to search against the list of modules
-    - A keyword can be a regex expression
-        - e.g. `^CS20\d0$`
+    - A keyword must be a regex expression
+        - e.g. `^CS20\d0$` or `CS2103`
         - Refer to the FAQ section to learn more about regex!
 
 Search for a (list of) module in the entire list of modules offered by NUS.
