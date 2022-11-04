@@ -48,7 +48,7 @@
         </padding>
       </VBox>
         <!-- Lesson Info -->
-        <VBox fx:id="lessonInfo" maxHeight="600">
+        <VBox fx:id="lessonInfo">
 
         </VBox>
       <padding>
