@@ -82,7 +82,7 @@ Given below are my contributions to the project.
   * Helped to report the bugs for another team's project during PED
     Link to issues raised is below: <br>
     [PED bug report](https://github.com/JordanChua/ped/tree/main/files)
-
-* **Tools**:
-  * Draw.io for drawing my UML diagrams for both `MarkCommand` and `SortCommand`
+    
+* **Tools**
+  * Draw.io for drawing my UML diagrams for both `MarkCommand` and `SortCommand
   
