@@ -163,7 +163,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String findInternshipNameById(InternshipId internshipId) {
         Internship i = findInternshipById(internshipId);
-        return i == null ? null : i.getDisplayName().toString();
+        return i == null ? null : i.getDisplayName();
     }
 
     /**
@@ -277,7 +277,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons\n"
                 + internships.asUnmodifiableObservableList().size() + " internships\n";
-        // TODO: refine later
     }
 
     @Override
