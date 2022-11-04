@@ -44,8 +44,16 @@ public class Customer {
         phone = builder.phone;
         email = builder.email;
         tags = builder.tags;
-        commissions = builder.commissions;
         address = builder.address;
+        commissions = new UniqueCommissionList();
+        builder.commissions.forEach(commission -> {
+            commissions.add(new Commission.CommissionBuilder(
+                    commission.getTitle(),
+                    commission.getFee(),
+                    commission.getDeadline(),
+                    commission.getCompletionStatus(),
+                    commission.getTags()).setIterations(commission.getIterations()).build(this));
+        });
     }
 
     public Name getName() {
