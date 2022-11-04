@@ -1,6 +1,12 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_OCCUPATION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.SocialTestUtil.INVALID_SOCIALS;
 import static seedu.address.logic.commands.SocialTestUtil.VALID_EMAIL;
@@ -13,6 +19,7 @@ import static seedu.address.logic.commands.SocialTestUtil.VALID_WHATSAPP;
 import static seedu.address.logic.commands.SocialTestUtil.VALID_WHATSAPP_AMY;
 import static seedu.address.logic.commands.SocialTestUtil.getAmySocial;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersons.getSocialAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -49,13 +56,11 @@ public class IncludeCommandTest {
 
     @Test
     public void execute_equalTest() throws CommandException {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Person editedPerson = new PersonBuilder().withName("Alice Pauline")
-                .withOccupation("STUDENT").withAddress("123, Jurong West Ave 6, #08-111")
-                .withEmail("alice@example.com").withTutorial("T08")
-                .withPhone("94351253").withTags("friends").withGroups("friends")
-                .withSocial(getAmySocial()).build();
+        Model model = new ModelManager(getSocialAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getSocialAddressBook(), new UserPrefs());
+        Person editedPerson = new PersonBuilder().withOccupation(VALID_OCCUPATION_AMY).withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(CommandTestUtil.VALID_EMAIL_AMY).withTutorial(VALID_TUTORIAL_AMY)
+                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).withSocial(getAmySocial()).build();
         IncludeCommand includeWhatsapp = new IncludeCommand(INDEX_FIRST_PERSON, VALID_WHATSAPP, VALID_WHATSAPP_AMY);
         IncludeCommand includeTelegram = new IncludeCommand(INDEX_FIRST_PERSON, VALID_TELEGRAM, VALID_TELEGRAM_AMY);
         IncludeCommand includeEmail = new IncludeCommand(INDEX_FIRST_PERSON, VALID_EMAIL, VALID_EMAIL_AMY);
