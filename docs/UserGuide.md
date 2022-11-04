@@ -104,7 +104,7 @@ The following is the main user interface of NUScheduler.
 
 * For `Event` and `Profile` commands which require an `Index`, the `Index` must be provided after the option flag.
 
-* In addition, the `Index` provided must be a positive number less than 10000 as NUScheduler is designed to handle a maximum of 9999 entries for `Profile`s and `Event`s which covers the needs for most NUS students.
+* In addition, the `INDEX` provided must be a positive number less than 10000 as NUScheduler is designed to handle a maximum of 9999 entries for `Profile`s and `Event`s which covers the needs for most NUS students.
 
 * The other parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
