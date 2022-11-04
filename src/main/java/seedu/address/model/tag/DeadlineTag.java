@@ -52,7 +52,7 @@ public class DeadlineTag implements Comparable<DeadlineTag> {
      */
     public static boolean isValidDeadline(LocalDate testDateAdded) {
         if (testDateAdded == null) {
-            return true;
+            return false;
         }
         return testDateAdded.compareTo(LocalDate.now()) >= 0;
     }

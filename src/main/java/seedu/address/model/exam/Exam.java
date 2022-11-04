@@ -128,7 +128,7 @@ public class Exam {
 
     /**
      * Creates and returns a {@code Exam} with the details of {@code this}
-     * edited with {@code editExamDescriptor}.
+     * edited with {@code newModule}, {@code newDescription}, {@code newExamDate}.
      */
     public Exam edit(Module newModule, ExamDescription newDescription, ExamDate newExamDate) {
         requireAnyNonNull(newModule, newDescription, newExamDate);
@@ -144,7 +144,10 @@ public class Exam {
         if (newExamDate != null) {
             updatedExamDate = newExamDate;
         }
-        return new Exam(updatedModule, updatedDescription, updatedExamDate);
+        if (!module.isSameModule(updatedModule)) {
+            return new Exam(updatedModule, updatedDescription, updatedExamDate);
+        }
+        return new Exam(updatedModule, updatedDescription, updatedExamDate, totalNumOfTasks, numOfCompletedTasks);
     }
 
 

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -46,6 +47,7 @@ public class AddModuleCommand extends Command {
             throw new CommandException(DUPLICATE_MODULE_DETECTED);
         }
         model.addModule(moduleAdded);
+        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(MODULE_ADDED_SUCCESS);
     }
 

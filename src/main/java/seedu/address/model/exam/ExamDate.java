@@ -1,6 +1,7 @@
 package seedu.address.model.exam;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -37,6 +38,8 @@ public class ExamDate {
      */
     public ExamDate(String date) {
         requireNonNull(date);
+        checkArgument(isExistingDate(date), DATE_CONSTRAINTS);
+        checkArgument(isCorrectDateFormat(date), DATE_CONSTRAINTS);
         examDate = date;
     }
 
@@ -54,6 +57,10 @@ public class ExamDate {
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    public static boolean isValidDate(String date) {
+        return isCorrectDateFormat(date) && isExistingDate(date) && isNotAPastDate(date);
     }
 
     /**

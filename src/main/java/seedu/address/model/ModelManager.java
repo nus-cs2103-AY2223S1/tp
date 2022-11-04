@@ -160,9 +160,6 @@ public class ModelManager implements Model {
         addressBook.removeTask(target);
     }
 
-
-
-
     //========== Exam List ==================================================================================
     @Override
     public boolean hasExam(Exam exam) {
@@ -319,4 +316,10 @@ public class ModelManager implements Model {
         addressBook.deleteExamsWithModule(module);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+               || (other instanceof ModelManager
+               && this.addressBook.equals(((ModelManager) other).addressBook));
+    }
 }

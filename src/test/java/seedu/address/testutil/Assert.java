@@ -31,4 +31,5 @@ public class Assert {
         Throwable thrownException = Assertions.assertThrows(expectedType, executable);
         Assertions.assertEquals(expectedMessage, thrownException.getMessage());
     }
+
 }

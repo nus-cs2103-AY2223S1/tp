@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY_STATUS;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -12,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
+import seedu.address.model.tag.exceptions.BothTagsCannotBeNullException;
 import seedu.address.model.task.Task;
 
 /**
@@ -31,7 +33,7 @@ public class EditTagCommand extends Command {
             + "the same as the current priority status for the task.";
     public static final String DEADLINE_TAG_UNCHANGED = "The deadline provided is"
             + " the same as the current deadline for the task.";
-    private static final String TAG_EDITED_SUCCESSFULLY = "The tag(s) has/have been edited successfully.";
+    public static final String TAG_EDITED_SUCCESSFULLY = "The tag(s) has/have been edited successfully.";
 
     private final Index index;
     private final PriorityTag priorityTag;
@@ -48,6 +50,9 @@ public class EditTagCommand extends Command {
     public EditTagCommand(Index index, PriorityTag priorityTag,
             DeadlineTag deadlineTag) {
         requireNonNull(index);
+        if (priorityTag == null && deadlineTag == null) {
+            throw new BothTagsCannotBeNullException();
+        }
         this.index = index;
         this.deadlineTag = deadlineTag;
         this.priorityTag = priorityTag;
@@ -95,5 +100,14 @@ public class EditTagCommand extends Command {
                 && currTaskDeadlineTag.compareTo(deadlineTag) == 0) {
             throw new CommandException(DEADLINE_TAG_UNCHANGED);
         }
+    }
+
+    @Override
+    public boolean equals(Object otherEditTagCommand) {
+        return otherEditTagCommand == this
+                || (otherEditTagCommand instanceof EditTagCommand
+                && Objects.equals(priorityTag, ((EditTagCommand) otherEditTagCommand).priorityTag)
+                && Objects.equals(deadlineTag, ((EditTagCommand) otherEditTagCommand).deadlineTag)
+                && index.equals(((EditTagCommand) otherEditTagCommand).index));
     }
 }

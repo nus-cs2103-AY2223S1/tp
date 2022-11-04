@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.EditExamCommand.MESSAGE_NO_FIELDS_PRO
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.ParserUtil.parseIndex;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditExamCommand;
@@ -36,7 +37,7 @@ public class EditExamCommandParser implements Parser<EditExamCommand> {
         }
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(MESSAGE_INVALID_EXAM_INDEX);
         }
