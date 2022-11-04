@@ -1,7 +1,4 @@
----
-layout: page
-title: En Hao's Project Portfolio Page
----
+#  En Hao's Project Portfolio Page
 
 ### Project: Yellow Pages
 
