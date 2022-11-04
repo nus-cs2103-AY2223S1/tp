@@ -31,7 +31,7 @@ Given below are my contributions to the project.
   * [Minor JavaFX Edit](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/196) for window size.
 
 * **Enhancements to Existing Features**:
-  * [Add JUnit testcases](https://github.com/Tan-Jin-Waye/tp/tree/branch_testing) for `LogicManager`, `AddressBook` and `ModelManager` classes. 
+  * [Add JUnit testcases](https://github.com/Tan-Jin-Waye/tp/tree/branch_testing) for `LogicManager`, `AddressBook` and `ModelManager` classes.
 
 * **Documentation**:
   * Developer Guide
