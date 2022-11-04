@@ -3,10 +3,10 @@ package seedu.address.logic.parser.consultation;
 import java.util.Objects;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.ConsultationDescription;
-import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationVenue;
 
 
 /**
@@ -29,33 +29,33 @@ public class ConsultationParserUtil {
     }
 
     /**
-     * Parses a {@code String moduleName} into a {@code ConsultationModule}.
+     * Parses a {@code String moduleName} into a {@code ModuleCode}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code moduleName} is invalid.
      */
-    public static ConsultationModule parseConsultationModule(String moduleName) throws ParseException {
+    public static ModuleCode parseConsultationModule(String moduleName) throws ParseException {
         Objects.requireNonNull(moduleName);
         String trimmedName = moduleName.trim();
-        if (!ConsultationModule.isValidModule(trimmedName)) {
-            throw new ParseException(ConsultationModule.MESSAGE_CONSTRAINTS);
+        if (!ModuleCode.isValidModule(trimmedName)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
-        return new ConsultationModule(trimmedName);
+        return new ModuleCode(trimmedName);
     }
 
     /**
-     * Parses a {@code String venue} into a {@code ConsultationVenue}.
+     * Parses a {@code String venue} into a {@code Venue}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code venue} is invalid.
      */
-    public static ConsultationVenue parseConsultationVenue(String venue) throws ParseException {
+    public static Venue parseConsultationVenue(String venue) throws ParseException {
         Objects.requireNonNull(venue);
         String trimmedName = venue.trim();
-        if (!ConsultationVenue.isValidVenue(trimmedName)) {
-            throw new ParseException(ConsultationVenue.MESSAGE_CONSTRAINTS);
+        if (!Venue.isValidVenue(trimmedName)) {
+            throw new ParseException(Venue.MESSAGE_CONSTRAINTS);
         }
-        return new ConsultationVenue(trimmedName);
+        return new Venue(trimmedName);
     }
 
     /**
@@ -67,9 +67,6 @@ public class ConsultationParserUtil {
     public static ConsultationDescription parseConsultationDescription(String name) throws ParseException {
         Objects.requireNonNull(name);
         String trimmedName = name.trim();
-        if (!ConsultationDescription.isValidDescription(trimmedName)) {
-            throw new ParseException(ConsultationDescription.MESSAGE_CONSTRAINTS);
-        }
         return new ConsultationDescription(trimmedName);
     }
 }

@@ -42,7 +42,7 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_TELEGRAM = BENSON.getTelegram().toString();
     private static final String VALID_TUTORIAL = BENSON.getTutorialName().toString();
-    private static final String VALID_MODULE = BENSON.getTutorialModule().toString();
+    private static final String VALID_MODULE = BENSON.getModuleCode().toString();
     private static final String VALID_ATTENDANCE = BENSON.getAttendance().toString();
     private static final String VALID_PARTICIPATION = BENSON.getParticipation().toString();
     private static final String VALID_GRADE = BENSON.getGrade().toString();

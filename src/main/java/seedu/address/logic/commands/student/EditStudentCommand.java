@@ -60,9 +60,11 @@ public class EditStudentCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in ModQuik.";
+    public static final String MESSAGE_NON_EXISTING_MODULE = "The module does not exist in Modquik";
+    public static final String MESSAGE_NON_EXISTING_TUTORIAL = "The tutorial does not exist in Modquik";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -95,6 +97,14 @@ public class EditStudentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        if (!model.hasModuleCode(editedStudent.getModuleCode())) {
+            throw new CommandException(MESSAGE_NON_EXISTING_MODULE);
+        }
+
+        if (!model.hasTutorialName(editedStudent.getTutorialName())) {
+            throw new CommandException(MESSAGE_NON_EXISTING_TUTORIAL);
+        }
+
         model.setPerson(studentToEdit, editedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent), ModelType.STUDENT);
@@ -114,7 +124,7 @@ public class EditStudentCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
         TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegram().orElse(studentToEdit.getTelegram());
         ModuleCode updatedModuleCode = editPersonDescriptor.getTutorialModule()
-                .orElse(studentToEdit.getTutorialModule());
+                .orElse(studentToEdit.getModuleCode());
         TutorialName updatedTutorialName = editPersonDescriptor.getTutorialName()
                 .orElse(studentToEdit.getTutorialName());
         Attendance updatedAttendance = editPersonDescriptor.getAttendance()

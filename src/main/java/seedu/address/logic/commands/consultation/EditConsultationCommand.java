@@ -19,11 +19,11 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
-import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.datetime.DatetimeRange;
 
 /**
@@ -50,6 +50,9 @@ public class EditConsultationCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CONSULTATION = "There is already a consultation at that timing.";
     public static final String MESSAGE_DATETIME_CONSULTATION = "Both new day and new timeslot must be inputted.";
+    public static final String MESSAGE_CLASH_CONSULTATION =
+            "There exists a consultation with overlapping timeslot in the ModQuik";
+    public static final String MESSAGE_NON_EXISTING_MODULE = "The module does not exist in Modquik";
 
     private final Index index;
     private final EditConsultDescriptor editConsultDescriptor;
@@ -82,6 +85,14 @@ public class EditConsultationCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULTATION);
         }
 
+        if (model.hasClashingConsultationExcept(editedConsult, consultToEdit)) {
+            throw new CommandException(MESSAGE_CLASH_CONSULTATION);
+        }
+
+        if (!model.hasModuleCode(editedConsult.getModule())) {
+            throw new CommandException(MESSAGE_NON_EXISTING_MODULE);
+        }
+
         model.setConsultation(consultToEdit, editedConsult);
         model.updateFilteredConsultationList(Model.PREDICATE_SHOW_ALL_CONSULTATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_CONSULTATION_SUCCESS, editedConsult));
@@ -97,8 +108,8 @@ public class EditConsultationCommand extends Command {
         assert consultToEdit != null;
 
         ConsultationName updatedName = editConsultDescriptor.getName().orElse(consultToEdit.getName());
-        ConsultationModule updatedModule = editConsultDescriptor.getModule().orElse(consultToEdit.getModule());
-        ConsultationVenue updatedVenue = editConsultDescriptor.getVenue().orElse(consultToEdit.getVenue());
+        ModuleCode updatedModule = editConsultDescriptor.getModule().orElse(consultToEdit.getModule());
+        Venue updatedVenue = editConsultDescriptor.getVenue().orElse(consultToEdit.getVenue());
         DatetimeRange updatedTimeSlot = editConsultDescriptor.getTimeslot().orElse(consultToEdit.getTimeslot());
         ConsultationDescription updatedDescription = editConsultDescriptor.getDescription()
                 .orElse(consultToEdit.getDescription());
@@ -136,8 +147,8 @@ public class EditConsultationCommand extends Command {
      */
     public static class EditConsultDescriptor {
         private ConsultationName name;
-        private ConsultationModule module;
-        private ConsultationVenue venue;
+        private ModuleCode module;
+        private Venue venue;
         private DatetimeRange timeslot;
         private ConsultationDescription description;
 
@@ -170,19 +181,19 @@ public class EditConsultationCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setModule(ConsultationModule module) {
+        public void setModule(ModuleCode module) {
             this.module = module;
         }
 
-        public Optional<ConsultationModule> getModule() {
+        public Optional<ModuleCode> getModule() {
             return Optional.ofNullable(module);
         }
 
-        public void setVenue(ConsultationVenue venue) {
+        public void setVenue(Venue venue) {
             this.venue = venue;
         }
 
-        public Optional<ConsultationVenue> getVenue() {
+        public Optional<Venue> getVenue() {
             return Optional.ofNullable(venue);
         }
 

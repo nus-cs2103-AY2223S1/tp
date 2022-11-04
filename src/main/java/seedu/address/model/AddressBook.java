@@ -253,11 +253,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a Consultation with the same venue and timeslot as {@code Consultation} exists in ModQuik.
+     * Returns the true if there exists consultations in ModQuik having timeslot overlapping
+     * with an {@code consultation}.
      */
-    public boolean hasConsultationClashingWith(Consultation consultation) {
-        requireNonNull(consultation);
-        return consultations.containsClashingWith(consultation);
+    public boolean hasClashingConsultation(Consultation toCheck) {
+        requireNonNull(toCheck);
+        return consultations.hasClashingConsultation(toCheck);
+    }
+
+    /**
+     * Returns true if there exists consultations exclude {@code exception} in ModQuik having timeslot overlapping with
+     * an {@code consultation}
+     */
+    public boolean hasClashingConsultationExcept(Consultation toCheck, Consultation exception) {
+        requireNonNull(toCheck);
+        requireNonNull(exception);
+        return consultations.hasClashingConsultationExcept(toCheck, exception);
     }
 
     /**

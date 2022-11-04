@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
+import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
-import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.datetime.DatetimeRange;
 
 /**
@@ -21,8 +21,8 @@ public class ConsultationBuilder {
     public static final String DEFAULT_DESCRIPTION = "Testing";
 
     private ConsultationName consultationName;
-    private ConsultationModule consultationModule;
-    private ConsultationVenue consultationVenue;
+    private ModuleCode consultationModule;
+    private Venue consultationVenue;
     private DatetimeRange consultationTimeslot;
     private ConsultationDescription consultationDescription;
 
@@ -31,8 +31,8 @@ public class ConsultationBuilder {
      */
     public ConsultationBuilder() {
         consultationName = new ConsultationName(DEFAULT_NAME);
-        consultationModule = new ConsultationModule(DEFAULT_MODULE);
-        consultationVenue = new ConsultationVenue(DEFAULT_VENUE);
+        consultationModule = new ModuleCode(DEFAULT_MODULE);
+        consultationVenue = new Venue(DEFAULT_VENUE);
         consultationTimeslot = DatetimeRange.fromFormattedString(DEFAULT_TIMESLOT_START, DEFAULT_TIMESLOT_END);
         consultationDescription = new ConsultationDescription(DEFAULT_DESCRIPTION);
     }
@@ -57,18 +57,18 @@ public class ConsultationBuilder {
     }
 
     /**
-     * Sets the {@code ConsultationModule} of the {@code Consultation} that we are building.
+     * Sets the {@code ModuleCode} of the {@code Consultation} that we are building.
      */
     public ConsultationBuilder withModule(String module) {
-        this.consultationModule = new ConsultationModule(module);
+        this.consultationModule = new ModuleCode(module);
         return this;
     }
 
     /**
-     * Sets the {@code ConsultationVenue} of the {@code Consultation} that we are building.
+     * Sets the {@code Venue} of the {@code Consultation} that we are building.
      */
     public ConsultationBuilder withVenue(String venue) {
-        this.consultationVenue = new ConsultationVenue(venue);
+        this.consultationVenue = new Venue(venue);
         return this;
     }
 

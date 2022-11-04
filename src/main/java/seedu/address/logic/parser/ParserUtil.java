@@ -92,6 +92,7 @@ public class ParserUtil {
         if (!ModuleCode.isValidModule(trimmedName)) {
             throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
-        return new ModuleCode(trimmedName);
+        String formattedName = trimmedName.toUpperCase();
+        return new ModuleCode(formattedName);
     }
 }

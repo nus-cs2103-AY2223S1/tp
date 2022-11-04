@@ -41,7 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
         descriptor.setId(student.getId());
-        descriptor.setTutorialModule(student.getTutorialModule());
+        descriptor.setTutorialModule(student.getModuleCode());
         descriptor.setTutorialName(student.getTutorialName());
         descriptor.setTelegram(student.getTelegram());
         descriptor.setAttendance(student.getAttendance());

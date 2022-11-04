@@ -195,7 +195,7 @@ Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* `find` across different parameters is a `AND` search.
+* `find` across different prefixes is a `AND` search.
 e.g. `find n/John m/CS2105` will return students matching `John` who are also in `CS2105`, if the students exist in ModQuik.
 * `find` works on the entire list of students and successive find commands are independent of each other.
 e.g. `find n/John` followed by find `find m/CS2103` will not find students matching `John` in `CS2103`.
@@ -336,6 +336,7 @@ Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
 * `DATE` and `TIME` inputted must be after the current date and time as shown in your local PC.
 * You cannot add 2 reminders of the same name, date, time and description as they are considered duplicate.
+* Whenever a reminded is added, it will be automatically sorted by priority, just like when `sort reminder by/priority` is used so that the tasks deemed most important are shown at the top of the list.
 
 
 Examples:
@@ -418,7 +419,8 @@ Format: `sort reminder by/SORT_CRITERIA`
   Reminders with the same priority will then be sorted by date, from earliest to latest chronologically.
 * Specifying `deadline` will sort reminders by their deadline, with the earliest date on top of the list.
   Reminders with the same deadline will then be sorted by descending priority level, with the same order as stated above.
-* Reminders with the same priority and deadline will then be sorted lexicographically.
+* Reminders with the same priority and deadline will then be sorted lexicographically. 
+* Sorting does not take reminders' status into account since users may mark or unmark tasks accidentally and editing reminders that are constantly jumping in order is inconvenient.
 
 Examples:
 * `sort reminder by/priority`
@@ -513,11 +515,11 @@ _Details coming soon..._
 | [**Edit Consultation**][`edit consultation`]     | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                                                         |
 | [**Delete Consultation**][`delete consultation`] | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                                                              |
 | [**Add Reminder**][`add reminder`]               | `add reminder n/NAME D/DATE T/TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2023-03-21 T/13:00 p/HIGH d/300 papers to mark`                                                                                                       |
-| [**Edit Reminder**][`edit reminder`]             | `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPTION]`<br> e.g., `delete reminder 1 D/2023-01-01 T/14:00`                                                                                                                           |
+| [**Edit Reminder**][`edit reminder`]             | `edit reminder INDEX [n/NAME] [D/DATE] [T/TIME] [p/PRIORITY] [d/DESCRIPTION]`<br> e.g., `edit reminder 1 D/2023-01-01 T/14:00`                                                                                                                           |
 | [**Mark Reminder**][`mark reminder`]             | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                                                          |
 | [**Unmark Reminder**][`unmark reminder`]         | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                                                      |
 | [**Delete Reminder**][`delete reminder`]         | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                                                      |
-| [**Sort Reminder**][`sort reminder`]             | `sort reminder by/SORT_CRITERIA`<br> e.g., `sort reminder by/priority`                                                                                                                                                                                     |
+| [**Sort Reminder**][`sort reminder`]             | `sort reminder by/SORT_CRITERIA`<br> e.g., `sort reminder by/deadline`                                                                                                                                                                                     |
 | [**Switch Tabs**][`switch`]                      | `switch f/FIELD`<br> e.g., `switch f/tutorial`                                                                                                                                                                                                             |
 | [**Clear**][`clear`]                             | `clear f/FIELD`<br> e.g., `clear f/student`                                                                                                                                                                                                                |
 | [**Help**][`help`]                               | `help`                                                                                                                                                                                                                                                     |

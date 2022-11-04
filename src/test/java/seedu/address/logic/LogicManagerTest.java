@@ -29,7 +29,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
+import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.student.Student;
+import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialName;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -87,6 +92,8 @@ public class LogicManagerTest {
                 + TELEGRAM_DESC_AMY + MODULE_DESC_AMY + TUTORIAL_DESC_AMY;
         Student expectedStudent = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
+        model.addTutorial(new Tutorial(new TutorialName("F01"), new ModuleCode("CS2103T"), new Venue("Zoom"),
+                WeeklyTimeslot.fromFormattedString("1", "15:00", "17:00")));
         expectedModel.addPerson(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

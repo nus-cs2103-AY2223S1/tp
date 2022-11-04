@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.datetime.DatetimeRange;
 
 /**
@@ -12,15 +14,15 @@ import seedu.address.model.datetime.DatetimeRange;
  */
 public class Consultation {
     private final ConsultationName name;
-    private final ConsultationModule module;
-    private final ConsultationVenue venue;
+    private final ModuleCode module;
+    private final Venue venue;
     private final DatetimeRange timeslot;
     private final ConsultationDescription description;
 
     /**
      * Every field must be present and not null.
      */
-    public Consultation(ConsultationName name, ConsultationModule module, ConsultationVenue venue,
+    public Consultation(ConsultationName name, ModuleCode module, Venue venue,
                         DatetimeRange timeslot, ConsultationDescription description) {
         requireAllNonNull(name, module, venue, timeslot, description);
         this.name = name;
@@ -34,11 +36,11 @@ public class Consultation {
         return name;
     }
 
-    public ConsultationModule getModule() {
+    public ModuleCode getModule() {
         return module;
     }
 
-    public ConsultationVenue getVenue() {
+    public Venue getVenue() {
         return venue;
     }
 
@@ -60,11 +62,12 @@ public class Consultation {
         }
 
         return otherConsultation != null
-                && otherConsultation.getName().equals(getName());
+                && otherConsultation.getTimeslot().equals(getTimeslot())
+                && otherConsultation.getVenue().equals(getVenue());
     }
 
     /**
-     * Returns true if both Consultations have the same venue and timeslot.
+     * Returns true if given consultation's timeslot overlaps with other's timeslot.
      */
     public boolean isClashConsultation(Consultation otherConsultation) {
         if (otherConsultation == this) {
@@ -72,8 +75,7 @@ public class Consultation {
         }
 
         return otherConsultation != null
-                && otherConsultation.getVenue().equals(getVenue())
-                && otherConsultation.getTimeslot().equals(getTimeslot());
+                && otherConsultation.getTimeslot().isOverlapping(getTimeslot());
     }
 
     /**
@@ -94,7 +96,8 @@ public class Consultation {
         return otherConsultation.getName().equals(getName())
                 && otherConsultation.getModule().equals(getModule())
                 && otherConsultation.getVenue().equals(getVenue())
-                && otherConsultation.getTimeslot().equals(getTimeslot());
+                && otherConsultation.getTimeslot().equals(getTimeslot())
+                && otherConsultation.getDescription().equals(getDescription());
     }
 
     @Override

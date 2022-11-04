@@ -6,10 +6,12 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialName;
 
 /**
  * The API of the Model component.
@@ -179,14 +181,20 @@ public interface Model {
     void updateFilteredTutorialList(Predicate<Tutorial> predicate);
 
     /**
-     * Returns true if a consultation with the same identity as {@code tutorial} exists in ModQuik.
+     * Returns true if a consultation with the same identity as {@code consultation} exists in ModQuik.
      */
     boolean hasConsultation(Consultation consultation);
 
     /**
-     * Returns true if a tutorial with the same venue and timeslot as {@code tutorial} exists in ModQuik.
+     * Returns the true if there exists tutorials in ModQuik having timeslot overlapping with an {@code tutorial}.
      */
-    boolean hasConsultationClashingWith(Consultation consultation);
+    boolean hasClashingConsultation(Consultation toCheck);
+
+    /**
+     * Returns true if there exists tutorials exclude {@code exception} in ModQuik having timeslot overlapping with
+     * an {@code tutorial}
+     */
+    boolean hasClashingConsultationExcept(Consultation toCheck, Consultation exception);
 
     /**
      * Deletes the given consultation.
@@ -242,4 +250,7 @@ public interface Model {
 
     void unmarkReminder(Reminder reminderToUnmark);
 
+    boolean hasModuleCode(ModuleCode moduleCode);
+
+    boolean hasTutorialName(TutorialName tutorialName);
 }

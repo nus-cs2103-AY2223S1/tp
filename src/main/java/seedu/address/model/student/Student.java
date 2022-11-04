@@ -74,7 +74,7 @@ public class Student {
         return telegramHandle;
     }
 
-    public ModuleCode getTutorialModule() {
+    public ModuleCode getModuleCode() {
         return moduleCode;
     }
 
@@ -135,7 +135,7 @@ public class Student {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getTelegram().equals(getTelegram())
-                && otherStudent.getTutorialModule().equals(getTutorialModule())
+                && otherStudent.getModuleCode().equals(getModuleCode())
                 && otherStudent.getTutorialName().equals(getTutorialName())
                 && otherStudent.getAttendance().equals(getAttendance())
                 && otherStudent.getParticipation().equals(getParticipation())
@@ -163,7 +163,7 @@ public class Student {
                 .append("; Telegram Handle: ")
                 .append(getTelegram())
                 .append("; Module: ")
-                .append(getTutorialModule())
+                .append(getModuleCode())
                 .append("; Tutorial: ")
                 .append(getTutorialName())
                 .append("; Attendance: ")

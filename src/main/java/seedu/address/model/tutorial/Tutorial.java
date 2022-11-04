@@ -59,7 +59,8 @@ public class Tutorial {
         }
 
         return otherTutorial != null
-                && otherTutorial.getName().equals(getName());
+                && otherTutorial.getName().equals(getName())
+                && otherTutorial.getModule().equals(getModule());
     }
 
     /**

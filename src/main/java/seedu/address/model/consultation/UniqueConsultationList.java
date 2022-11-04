@@ -37,11 +37,21 @@ public class UniqueConsultationList implements Iterable<Consultation> {
     }
 
     /**
-     * Returns true if the list contains a clashing Consultation as the given argument.
+     * Returns true if there exists consultation clashing with the given argument.
      */
-    public boolean containsClashingWith(Consultation toCheck) {
+    public boolean hasClashingConsultation(Consultation toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isClashConsultation);
+    }
+
+    /**
+     * Returns true if there exists consultation except {@code exception} clashing with {@code toCheck}
+     */
+    public boolean hasClashingConsultationExcept(Consultation toCheck, Consultation exception) {
+        requireAllNonNull(toCheck, exception);
+        long indicator = exception.isClashConsultation(toCheck) ? 1 : 0;
+        long totalClashing = internalList.stream().filter(toCheck::isClashConsultation).count();
+        return totalClashing - indicator > 0;
     }
 
     /**

@@ -14,10 +14,12 @@ import javafx.collections.transformation.FilteredList;
 import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialName;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -287,6 +289,30 @@ public class ModelManager implements Model {
         addressBook.setTutorial(target, editedTutorial);
     }
 
+
+    /**
+     * Returns if there exists a moduleCode.
+     */
+    public boolean hasModuleCode(ModuleCode moduleCode) {
+        for (Tutorial tutorial : addressBook.getTutorialList()) {
+            if (tutorial.getModule().equals(moduleCode)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns if there exists a tutorial name.
+     */
+    public boolean hasTutorialName(TutorialName tutorialName) {
+        for (Tutorial tutorial : addressBook.getTutorialList()) {
+            if (tutorial.getName().equals(tutorialName)) {
+                return true;
+            }
+        }
+        return false;
+    }
     //=========== Filtered Tutorial List Accessors =============================================================
 
     /**
@@ -318,9 +344,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasConsultationClashingWith(Consultation consultation) {
-        requireNonNull(consultation);
-        return addressBook.hasConsultationClashingWith(consultation);
+    public boolean hasClashingConsultation(Consultation toCheck) {
+        requireNonNull(toCheck);
+        return addressBook.hasClashingConsultation(toCheck);
+    }
+
+    @Override
+    public boolean hasClashingConsultationExcept(Consultation toCheck, Consultation exception) {
+        requireNonNull(toCheck);
+        requireNonNull(exception);
+        return addressBook.hasClashingConsultationExcept(toCheck, exception);
     }
 
     @Override

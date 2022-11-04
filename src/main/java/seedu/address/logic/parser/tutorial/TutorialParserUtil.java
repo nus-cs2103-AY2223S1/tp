@@ -23,7 +23,8 @@ public class TutorialParserUtil {
         if (!TutorialName.isValidName(trimmedName)) {
             throw new ParseException(TutorialName.MESSAGE_CONSTRAINTS);
         }
-        return new TutorialName(trimmedName);
+        String formattedName = trimmedName.toUpperCase();
+        return new TutorialName(formattedName);
     }
 
     /**
