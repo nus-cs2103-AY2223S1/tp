@@ -34,7 +34,7 @@
     "hasPinned" : false
   }, {
     "name" : "Elle Meyer",
-    "phone" : "9482224",
+    "phone" : "94821224",
     "email" : "werner@example.com",
     "scholarship" : "Global Merit",
     "applicationStatus": "pending",
@@ -42,7 +42,7 @@
     "hasPinned" : false
   }, {
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "phone" : "94824427",
     "email" : "lydia@example.com",
     "scholarship" : "Global Merit",
     "applicationStatus": "pending",
@@ -50,7 +50,7 @@
     "hasPinned" : false
   }, {
     "name" : "George Best",
-    "phone" : "9482442",
+    "phone" : "94824425",
     "email" : "anna@example.com",
     "scholarship" : "Global Merit",
     "applicationStatus": "accepted",

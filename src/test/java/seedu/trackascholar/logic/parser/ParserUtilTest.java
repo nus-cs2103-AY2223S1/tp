@@ -22,13 +22,13 @@ import seedu.trackascholar.model.major.Major;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_PHONE = "+65123456";
     private static final String INVALID_SCHOLARSHIP = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_MAJOR = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "12345678";
     private static final String VALID_SCHOLARSHIP = "NUS Global Merit";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_MAJOR_1 = "friend";
