@@ -55,6 +55,7 @@ public class HistoryList {
         }
     }
 
+
     /**
      * Prints out the contents of the list.
      */
