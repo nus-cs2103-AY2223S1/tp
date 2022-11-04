@@ -33,6 +33,9 @@ Given below are my contributions to the project.
   * User Guide:
     * List feature
     * Update emergency contact feature
+    * Help feature
+    * Find feature
+    * Enhance overall grammar and readability
   * Developer Guide:
     * List feature
     * Update emergency contact feature

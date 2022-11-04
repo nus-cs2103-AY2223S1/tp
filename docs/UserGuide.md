@@ -5,8 +5,6 @@ title: User Guide
 
 Healthcare Xpress is a **desktop app for managing patients that require home-visits and nurses, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Healthcare Xpress can get your contact management tasks done faster than traditional GUI apps.
 
-- Table of Contents
-  {:toc}
 
 ---
 
@@ -84,7 +82,7 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Opens the help dialog, where help info for each command can be viewed.
 
 Format: `help`
 
@@ -121,6 +119,7 @@ Examples:
 
 ![add patient](images/AddPatient.png)
 
+
 2. Adds a nurse to the Healthcare Xpress Record System
 
 Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [ud/UNAVAILABLE_DATE]…​`
@@ -152,20 +151,12 @@ Examples:
 
 Shows a list of specified nurses or patients, or all nurses and patients if no specifications were provided.
 
-Format: `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS] [as/ASSIGNED] [v/VISITSTATUS]`
+Format: `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`
 
 Examples:
 
 - `list c/P t/DIABETIC g/M` - Lists all the male diabetic patients enrolled in the database.
 - `list c/P a/Bugis t/heartDisease` - Lists all the patients tagged with heart disease in the Bugis region.
-- `list c/P as/true` - Lists all the patients that have all required timeslots assigned to a nurse.
-- `list c/P as/false` - Lists all the patients that have at least 1 timeslot without an assigned nurse.
-- `list c/N as/true` - Lists all the nurses that have all timeslots fully assigned to an appointment.
-- `list c/N as/false` - Lists all the nurses that have at least 1 timeslot not assigned to an appointment.
-- `list c/P v/true` - Lists all the patients that have been visited by nurses in all their scheduled appointments.
-- `list c/P v/false` - Lists all the patients that have at least one appointment that has yet to be visited by a nurse.
-- `list c/N v/true` - Lists all the nurses that have visited all scheduled appointments in the upcoming week.
-- `list c/N v/false` - Lists all the nurses that have at least one scheduled appointment pending a visit in the upcoming week.
 - `list c/N` - Lists all the nurses enrolled in the database.
 
 ![list nurse](images/ListNurse.png)
@@ -189,8 +180,8 @@ Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ds/D
   2. To delete a specific date and slot of a patient: you can type `ds/ dsi/TO_BE_DELETED_DATE_AND_TIME_INDEX` or `dsi/TO_BE_DELETED_DATE_AND_TIME_INDEX`. The to be deleted date and slot index is the index of the specific date and slot you want to delete.
   3. To add a new date and slot of a patient: you can type `ds/NEW_DATE_AND_SLOT dsi/` or `ds/NEW_DATE_AND_SLOT`.
   4. To change a specific date and slot of a patient: you can type `ds/UPDATE_DATE_AND_SLOT dsi/TO_BE_UPDATED_DATE_AND_SLOT_INDEX`. The date and slot at this index in the list will be updated to the new date and slot given by you.
-- You can only use `ds/` and `dsi/` for **patient**. Nurse do not have any home-visit dates and slots.
-- The unavailable date works similar to the date and time edit excepts using different indicator `ud/` and `udi/` to indicate the date and the index.
+- You can only use `ds/` and `dsi/` for **patients**. Nurses do not have any home-visit dates and slots.
+- The unavailable date works similar to the date and time edit, only using different indicators `ud/` and `udi/` to indicate the date and the index.
 - The **unavailable date** is only applicable to **nurse**.
 
 <div markdown="block" class="alert alert-warning">
@@ -212,9 +203,9 @@ Examples:
 
 ![edit](images/Edit.png)
 
-### Locating persons by name: `find`
+### Locating patients or nurses by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds patients or nurses in the database whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -235,7 +226,7 @@ Examples:
 
 ### Deleting a nurse or a patient : `delete`
 
-Deletes the specified nurse or patient from the records system.
+Deletes the specified nurse or patient from the record system.
 
 Format: `delete id/ID`
 
@@ -246,26 +237,25 @@ Format: `delete id/ID`
 Examples:
 
 - `list` followed by `delete id/2` deletes the nurse/patient with an id of 2.
-- `find Betsy` followed by `delete id/1` deletes the nurse/patient with an id of 1.
 - `delete id/10` deletes the nurse/patient with an id of 10.
 
 ![delete](images/Delete.png)
 
 ### Assigning a patient's homevisit date slot to a nurse : `assign`
 
-Assign a specific patient's date slot/date slots to a nurse.
+Assign a specific patient's date slot(s) to a nurse.
 
-Format `assign id/NURSE_ID id/PATIENT_ID [dsi/DATE_AND_SLOT_INDEX]…​`
+Format `assign id/NURSE'S_ID id/PATIENT'S_ID [dsi/DATE_AND_SLOT_INDEX]…​`
 
-- Assign the dateslots of the patient with the specified 'PATIENT_ID' to the nurse with the specified 'NURSE_ID'.
+- Assign the date slots of the patient with the specified 'PATIENT'S_ID' to the nurse with the specified 'NURSE'S_ID'.
 - The ID refers to the unique ID shown in the displayed person list.
 - The ID **must be a positive integer** 1, 2, 3, ...
-- There **must be 2 IDs (only 2), 1 indicating a patient and 1 indicating a nurse**.
-- There is no specific order for the 2 IDs.
+- There **must be 2 (and only 2) IDs, 1 belonging to a patient and 1 belonging to a nurse**.
+- There is no specific order for the 2 IDs. (i.e. The patient's id or the nurse's id can come first, as long as one belongs to a patient and the other belongs to a nurse.)
 - The assign command can have any number of date and slot index (including 0).
 - If the **'DATE_AND_SLOT_INDEX' is not indicated** (0), then all the date slot of the patients will be assigned to the nurse.
 - If the **'DATE_AND_SLOT_INDEX(ES)' is indicated**, then the date slot with the respective index(es) in the displayed dateslot list will be assigned to the nurse.
-- When assigning, it will check whether there are **time crashes** and check whether the nurse are **unavailable** on that day.
+- When assigning, it will check whether there are **time clashes** and ensures that the nurse is not **unavailable** on that day.
 
 Examples:
 
@@ -281,12 +271,12 @@ Deassign a specific patient's date slot from a nurse.
 
 Format `deassign id/ID [dsi/DATE_AND_SLOT_INDEX]…​`
 
-- The 'ID' can be either a patient id or nurse id.
+- The 'ID' can belong to either a patient or a nurse.
 - The deassign command can have any number of date and slot index (including 0).
-- If it is a **patient id and no date and slot index** indicated, it will deassign all the date slots of the patient from the respective nurse.
-- If it is a **patient id and date and slot index** indicated, it will deassign the specific date slots (with the date and slot index indicated) of the patient from the respective nurse.
-- If it is a **nurse id and no date and slot index** indicated, it will deassign all the homevisits of the nurse and the respective patient's date slot will change `not assigned` status.
-- If it is a **nurse id and no date and slot index** indicated, it will deassign the specific homevisits of the nurse (with the date and slot index indicated) and the respective patient's date slot will change `not assigned` status.
+- If it is a **patient id and no date and slot index is** indicated, it will deassign all the date slots of the patient from the respective nurse.
+- If it is a **patient id and date and slot index is** indicated, it will deassign the specific date slots (with the date and slot index indicated) of the patient from the respective nurse.
+- If it is a **nurse id and no date and slot index is** indicated, it will deassign **all** the homevisits of the nurse and the respective patient's date slot will change to `not assigned` status.
+- If it is a **nurse id and date and slot index is** indicated, it will deassign the specified homevisits of the nurse (with the date and slot index indicated) and the respective patient's date slot will change to `not assigned` status.
 
 Examples:
 
@@ -296,37 +286,37 @@ Examples:
 
 ![deassign](images/Deassign.png)
 
-### Unmarking a patient's dateslot as fail visited : `unmark`
+### Unmarking a patient's dateslot : `unmark`
 
-Unmarks a specific patient's specific dateslot in the records system as failed visited.
+Unmarks a specific patient's specific dateslot in the records system, indicating a failed visit.
 
 Format: `unmark id/PATIENT_ID dsi/DATE_AND_SLOT_INDEX`
 
-- Unmarks the patient with the specified 'ID' as having been failed visited.
+- Unmarks the patient with the specified 'ID' as having a failed visit.
 - The ID refers to the unique ID shown in the displayed person list.
 - The ID **must be a positive integer** 1, 2, 3, ...
 - The ID **must belong to a patient**.
-- The **DATE_AND_SLOT_INDEX must be indicated** and can have only **1**.
-- The **date that is to be unmarked as failed visited must be a date that have passed**. eg, if today is 2022-11-11, the date to be unmark as fail visited must be the date before 2022-11-11.
+- The **DATE_AND_SLOT_INDEX must be indicated** and only **1** can be indicated.
+- The **date that is to be unmarked must be a date that has passed**. eg, if today is 2022-11-11, the date to be unmarked must be a date before 2022-11-11.
 
 Examples:
 
-- `unmark id/7 dsi/1` unmarks the dateslots of index 1 in the dateslot list of the patient with id of 7 as having been failed visited.
+- `unmark id/7 dsi/1` unmarks the dateslots of index 1 in the dateslot list of the patient with id of 7.
 
 ![unmark](images/Unmark.png)
 
 ### Undo unmarking a patient as visited : `undounmark`
 
-Undo Unmarks a specific patient's specific dateslot in the records system as having been visited.
+Undoes the unmarking of a specific patient's specific dateslot in the records system, indicating that the visit was successful.
 
 Format: `undounmark id/ID dsi/DATE_SLOT_INDEX`
 
-- Undo unmarks the specific dateslot with specified 'DATE_SLOT_INDEX' of a patient with the specified 'ID' as having been visited.
-- This feature is for user to undo the unmark fail visit date slot so that if you accidentally unmark a wrong patient's dateslot as failed visited status, you can undo it using this command and the dateslot will change to visited status.
+- Undo unmark of the specific dateslot with specified 'DATE_SLOT_INDEX' of a patient with the specified 'ID' as having been visited.
+- This feature is for user to undo the unmark fail visit date slot so that if a patient was marked as failed visit by accident, this command can be used to undo that and the dateslot's status will be reverted to `visited`.
 - The ID refers to the unique ID shown in the displayed person list.
 - The ID **must be a positive integer** 1, 2, 3, ...
 - `list` or `find` operations can be performed first to get the ID of the desired patient.
-- If the 'Date_Slot_Index' gives a dateslot that has not pass or it is already in visit status, the system will not do anything.
+- If the 'Date_Slot_Index' refers to a dateslot that has not passed, or its status is already `visited`, **the command will be ignored**.
 
 Examples:
 
@@ -340,7 +330,7 @@ Checks and returns a list of similar persons so that the user can check if any e
 
 Format: `checkSimilar`
 
-> Tip: `checkSimilar` checks for `name`, `phone`, `email`, `gender`, `tags`, `address` and return both person if 
+> Tip: `checkSimilar` checks for `name`, `phone`, `email`, `gender`, `tags`, `address` and returns both people if 
 > they match 5 out of 6 conditions.
 
 ![checksimilar](images/checkSimilar.png)
@@ -349,17 +339,16 @@ Format: `checkSimilar`
 
 Updates a patient's contact information for next-of-kin or attending physician.
 
-Format: `updatecontact id/PATIENT_ID c/CATEGORY n/CONTACT_NAME p/CONTACT_PHONE e/CONTACT_EMAIL`
+Format: `updatecontact id/PATIENT'S_ID c/CATEGORY n/CONTACT_NAME p/CONTACT_PHONE e/CONTACT_EMAIL`
 
-- PATIENT_ID: Unique ID of the patient whose emergency contact is to be updated.
+- PATIENT'S_ID: Unique ID of the patient whose emergency contact is to be updated.
 - CATEGORY: Only accepts `K` for next-of-kin or `D` for attending physician.
 - CONTACT_NAME: Name of the emergency contact.
 - CONTACT_PHONE: Phone number of the emergency contact.
 - CONTACT_EMAIL: Email address of the emergency contact.
 - Note: The UID must belong to a **patient**.
-- Note: Only `K` or `D` are accepted.
-- Note: This command replaces the current next-of-kin or attending physician contact info,
-  - if there is already an existing one.
+- Note: Only `K` or `D` are accepted for category.
+- Note: This command replaces the current next-of-kin or attending physician contact info, if there is already an existing one.
 
 Examples:
 
@@ -384,11 +373,11 @@ Format: `exit`
 
 ### Saving the data
 
-Healthcare Xpress data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Healthcare Xpress data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-Healthcare Xpress data are saved as a JSON file `[JAR file location]/data/healthcarexpress.json`. Advanced users are welcome to update data directly by editing that data file.
+Healthcare Xpress data is saved as a JSON file `[JAR file location]/data/healthcarexpress.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -396,7 +385,7 @@ Healthcare Xpress data are saved as a JSON file `[JAR file location]/data/health
 
 - If your changes to the data file makes its format invalid, Healthcare Xpress Record System will discard all data and start with an empty data file at the next run.
 
-- NOT RECOMMENDED : It is not recommended to change the 'date slot' of a patient and 'homevisits', 'unavailable date' and 'fully scheduled date' of a nurse in the file. The system is unable to check the correctness and whether there is time crash and other issues if you change it manually in the data file.
+- NOT RECOMMENDED : It is not recommended to change the 'date slot' of a patient and 'homevisits', 'unavailable date' and 'fully scheduled date' of a nurse in the file. The system is unable to check the correctness and whether there is time clash and other issues if you change it manually in the data file.
 
 </div>
 
@@ -426,7 +415,7 @@ _Details coming soon ..._
 | **Edit**          | `edit id/ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ds/DATE_SLOT]…​ [dsi/DATE_SLOT_INDEX]…​ [ud/UNAVAILABLE_DATE]…​ [udi/UNAVAILABLE_DATE_INDEX]…​`<br> e.g.,`edit id/2 n/James Lee e/jameslee@example.com` |
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                     |
 | **Help**          | `help`                                                                                                                                                                                                                         |
-| **List**          | `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS] [as/ASSIGNED] [v/VISITSTATUS]`<br> e.g., `list c/NURSE`                                                                                                                      |     |
+| **List**          | `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`<br> e.g., `list c/n`                                                                                                                      |     |
 | **Unmark**        | `unmark id/PATIENT_ID dsi/DATE_SLOT_INDEX` <br> e.g., `unmark id/1 dsi/1`                                                                                                                                                      |
 | **UndoUnmark**    | `undounmark id/PATIENT_ID dsi/DATE_SLOT_INDEX` <br> e.g., `undounmark id/1 dsi/1`                                                                                                                                              |
 | **CheckSimilar**  | `checkSimilar`                                                                                                                                                                                                                 |
