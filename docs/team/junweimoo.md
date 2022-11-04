@@ -8,20 +8,24 @@ title: Moo Jun Wei's Project Portfolio Page
 *MyInsuRec* is a desktop app for financial advisors to manage and organize their clients and meetings, helping
 financial advisors stay connected with their clients. *MyInsuRec* is best suited for the quick typist, as it is
 optimized for use via a Command Line Interface (CLI), with all the benefits of a Graphical User Interface (GUI).
+
 Given below are my contributions to the project.
 
 * **Code contributed**:
   * Modified storage package to serialize program data.
   * Revamped the JavaFX GUI to fit our program.
-  * Added new commands.
+  * Added new commands such as `addMeeting` and `listMeeting`.
+  * Wrote test cases for new code.
 
 * **Project management**:
   * Made use of pull requests as part of branching and forking workflows.
   * Tracked goals using issues.
 
 * **Enhancements to existing features**:
-  * Improved error handling.
+  * Improved error handling
     * Added ability to handle more types of invalid inputs.
+  * More GUI panels
+    * Added ability to switch between various GUI panels for different commands.
 
 * **Documentation**:
   * User Guide
