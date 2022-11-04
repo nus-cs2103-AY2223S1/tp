@@ -121,7 +121,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public Map<Prefix, TagType> getPrefixMap() {
-        return UniqueTagTypeMap.getPrefixMap();
+//        return UniqueTagTypeMap.getPrefixMap();
+        return prefixMap;
     }
 
     public void setPrefixMap(Map<Prefix, TagType> prefixMap) {
