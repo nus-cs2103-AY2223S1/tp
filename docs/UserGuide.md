@@ -21,7 +21,7 @@ work done faster than a traditional GUI apps.
 ---
 ## About
 This user guide provides a detailed documentation of how to install and use myStudent. It provides explanations of how 
-to use and what it does for all the features available in myStudent. 
+to use and what it does for all the features available in myStudent. You don't have to have any technical knowledge to be able to use this guide.
 
 <div markdown="block" class="alert alert-info">
 
@@ -31,21 +31,21 @@ to use and what it does for all the features available in myStudent.
   e.g. `n/` or `p/`
 
 
-* `< >` - represent parameters that are supplied by the user.  
-  e.g. `add n/<name>, where <name>` is just the name of the parameter and users can input `add n/John Doe`. <br>
+* `< >` - represents the details of the entry that are supplied by the user.  
+  e.g. `add n/<name>, where <name>` is just the name of the detail and users can input `add n/John Doe`. <br>
 
 
-* `[ ]` - represent parameters that are optional.  
+* `[ ]` - represents the details of the entry that are optional.  
         e.g `n/<name> [#/<tag>]`, users can input `add n/John Doe` or `n/John Doe #/male`.
 
 
-* Users can input parameters of prefixes in any order.  
+* Users can input the values of prefixes in any order.  
   e.g. `nok <index> n/<name> p/<phone>`, users can either input `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`.  
   However, `nok n/John Doe p/91234567 2` where the `<index>` is at the end of the input, is not a valid command.
 
 
-* Extra input from the user for commands that do not take in parameters will be ignored.  
-  e.g. the `clear` command does not have any other parameters, thus the user input `clear asdfghjkl` is logically the same as if the user typed in `clear`.
+* Extra input from the user for commands that do not require additional details will be ignored.  
+  e.g. the `clear` command does not have any other details to be added, thus typing in `clear asdfghjkl` into the command box is exactly the same as if you enter `clear`.
 
 </div>
 
@@ -58,14 +58,14 @@ Below is a quick guide on how to get started.
 2. Download the latest `myStudent.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/releases).
 3. Copy the file to the folder you want to use as the home folder for the application.
 
-<div markdown="block" class="alert alert-info">
-
-:information_source: **Home Folder**
-Home folder refers to the particular folder that will be containing the `myStudent.jar` file and its relevant files.
-Since myStudent will need to read and write files, it is recommended to put `myStudent.jar` in a new folder 
-to ensure a smooth experience for using myStudent.
-
-</div>
+    <div markdown="block" class="alert alert-info">
+    
+    :information_source: **Home Folder**  
+    Home folder refers to the particular folder that will be containing the `myStudent.jar` file and its relevant files.
+    Since myStudent will need to load and save files, it is recommended that you to put `myStudent.jar` in a new folder 
+    to ensure a smooth experience when using myStudent.
+    
+    </div>
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. 
 
@@ -74,10 +74,10 @@ to ensure a smooth experience for using myStudent.
 <div markdown="block" class="alert alert-info">
 
 :pencil2: **Configuring the app**  
-Users can change the default configurations of the app in the `preference.json` file located in the same place where they download the app into.  
-A `preference.json` file will be created when you first run the application. Users can then edit the file to suit their needs.  
+You can change the default configurations of the app in the `preference.json` file which is located in the home folder.  
+A `preference.json` file will be created when you first run the application, if it doesn't exist initially.  You can then edit the file to customize mystudent to your needs.  
 
-**What users can change:**
+**What you can change:**
 * The size of the window such as its height and width (in pixels).
 * At which part of the screen the app will be displayed.
 * The default theme.
@@ -111,7 +111,7 @@ This is where you key in commands. After typing the commands, simply press <kbd>
 
 ### 2. Feedback Box
 
-This is where the feedback information would be displayed after you execute a command. For example, after you keyed in an invalid command, the feedback “Unknown command” would be shown in the box for your reference.
+This is where the feedback information is displayed after you execute a command. For example, if you keyed in an invalid command, the feedback “Unknown command” would be shown in the box for your reference.
 
 <p align="center">
 
@@ -121,9 +121,9 @@ This is where the feedback information would be displayed after you execute a co
 
 ### 3. List Display Panel
 
-This is where the current list of entities is shown. Only one of the three entities, student, tutor and class will be shown at one time.
+This is where the current list of entities is shown. Only one of the three entities, student, tutor, or class will be shown at one time.
 
-In student and tutor lists, you could click at the student or tutor cards to show their description in the description panel.
+In the student and tutor lists, clicking on the individual student or tutor cards to show their description in the description panel.
 
 <p align="center">
 
@@ -131,19 +131,20 @@ In student and tutor lists, you could click at the student or tutor cards to sho
 
 </p>
 
-Note that in the list the displayed person will be highlighted.
+Note that the card for the person being displayed will be highlighted as well.
 
 ### 4. List Tabs
 
-There are three list tabs: Student, Tutor and Class indicating the current displayed list showing in the list display panel.
+There are three list tabs: Student, Tutor and Class.  
+There will be an indication for which list is currently being displayed.
 
-<p align="center">
+<p>
 
-<img src="images/list_tabs.png"/>
+<img src="images/list_tabs.png" />
+The above shows that the student list is the one that is currently being displayed.
 
 </p>
 
-This shows that the current displaying list is the student list.
 
 ### 5. Description Panel
 
@@ -153,7 +154,7 @@ This shows that the current displaying list is the student list.
 
 </p>
 
-This is where the description of a specified student or tutor is shown. When there is no person on display, the line “No Person Displayed” would be shown.
+This is an example of a description being displayed in the description panel. When there is no person being display, the line “No Person Displayed” would be shown.
 
 
 ### 6. Toolbar 
@@ -165,19 +166,20 @@ This is where the description of a specified student or tutor is shown. When the
 </p>
 
 #### File
-The ` File`  menu contains `Export` and `Exit`.
+The `File`  menu contains `Export` and `Exit`.
 
-`Export` allows you to export your data into a `.csv` file.
-
+* `Export` allows you to export your data into a `.csv` file.  
 For more information regarding `Export`, you can click [here](#exporting-address-books-to-csv).
 
-`Exit` allows the software to exit after three seconds of pause.
+
+* `Exit` allows the software to exit after three seconds of pause.
 
 #### Help
-`Help` allows you to view the help information regarding the software.
+`Help` allows you to view the help information regarding our software.
 
 #### Theme
- `Theme` allows you to change the color scheme of the software. There are four themes provided: `Light Theme`, `Dark Theme`,  `Green Theme` and `Pink Theme`.
+ `Theme` allows you to change the color scheme of the software.  
+ There are four themes provided: `Light Theme`, `Dark Theme`,  `Green Theme` and `Pink Theme`.
 
 ---
 
@@ -220,8 +222,8 @@ Formats:
 
 `add tutor n/<name> p/<phone> e/<email> a/<address> q/<qualification> i/<institution> [#/<tag>]…`
 
-* All fields as per the kind of person being added must be present, except for the optional `<tag>` field.
-* If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+* All fields of a person being added must be present, except for the optional `<tag>` field.
+* If a specific field is repeated, the last occurrence of the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 * Generally,
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
@@ -237,7 +239,7 @@ Formats:
 * For students,
   * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
 * For tutors,
-  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
+  * `<qualification>` field should only contain alphanumeric characters, commas, and spaces, and should not be left blank.
   * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
   
 Examples:
@@ -264,7 +266,7 @@ Adds a class to the myStudent database.
 
 Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 
-* All fields must be present , except for the optional `<tag>` field.
+* All fields must be present, except for the optional `<tag>` field.
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 * Generally,
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
@@ -747,8 +749,8 @@ They are named `students.csv`, `tutors.csv`, and `tuitionClasses.csv` respective
 Format: Click on the "*File*" tab located at the top-left corner of `myStudent` and click on "*Export*" in the dropdown menu, as shown in the image above.
 
 * The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
-* The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
-* Exporting will replace any csv files that were exported previously, if they exist.
+* The default location is in a folder named `data` in the [home folder](#quick-start) where you downloaded the `myStudent.jar` file.
+* Exporting will replace any .csv files that were exported previously, if they exist.
 
 <div markdown="block" class="alert alert-warning">
 
