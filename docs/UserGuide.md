@@ -327,8 +327,8 @@ Format: `emailall GROUPNAME`
 
 Examples:
 * `emailall friends` opens the email client to all persons in the group `friends`.
-![help message](images/EmailAllExample1.png)
-![help message](images/EmailAllExample2.png)
+![EmailAllExample1](images/EmailAllExample1.png)
+![EmailAllExample2](images/EmailAllExample2.png)
 
 ### g. Add a person's socials : `include`
 
