@@ -98,9 +98,9 @@ Notice there are two counts under the list.
 There are multiple "Squat" entries in the picture. They are registered under the same name "Squat" by the system, which is reflected by the first count. The second count includes duplicates and hence, it counts each exercise entry individually even if they are registered under the same name.
 
 <div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** Use the list circled in green to identify any mispellings in your exercise entries! <br> 
+**Tip:** Use the list circled in green to identify any mispellings in your exercise entries!<br><br>
 
-e.g. If you see an entry for "Squatz" in the green list when you normally name your exercise "Squat", it means you have at least one entry that is spelled wrongly.
+E.g. If you see an entry for "Squatz" in the green list when you normally name your exercise "Squat", it means you have at least one entry that is spelled wrongly.
 </div> 
 
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
