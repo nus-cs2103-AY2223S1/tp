@@ -46,7 +46,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list users`** : 
+    * **`list users`** :
 
     * **`add user n/John Smith p/87006163 e/student123@gmail.com`** :
 
@@ -179,7 +179,7 @@ Examples:
 
 ### Finding books : `find book`
 
-Finds a book using keywords. 
+Finds a book using keywords.
 
 Format: `find book KEYWORD [KEYWORD]...`
 
@@ -189,7 +189,7 @@ e.g. `computer` will find `Computer`
 * The keywords do not need to be an exact match of the title or author. <br>
 e.g. `rith` will find `algorithms`
 * The search will return all books that match at least one keyword. <br>
-e.g. `Introduction to` will find `Introduction for dummies` and `How to Cook`   
+e.g. `Introduction to` will find `Introduction for dummies` and `How to Cook`
 
 Examples:
 * `find book ss` will find `Ulysses` and `Darkness within`.
@@ -263,7 +263,7 @@ Format: `theme <supported theme>`
 
 Examples: `theme light`
 
-### Exit BookFace: `exit`
+### Exit BookFace : `exit`
 
 Exit the BookFace program.
 
