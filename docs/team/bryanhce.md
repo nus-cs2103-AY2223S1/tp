@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added markroomsunclean command.
   * Allows the user to set the room clean status of all the guest in the hotel to `no` in a single command.
   * This feature greatly aids with GuestBook's efficiency. Typing in one command to change all guests' room
-clean statuses saves the user an incredible amount of time compared to individually editing each guest's 
+clean statuses saves the user an incredible amount of time compared to individually editing each guest's
 details.
 
 
@@ -64,7 +64,7 @@ details.
 
 * **Review/mentoring contributions**:
   * Team members' PR reviews (with non-trivial review comments): pull request #148, #147, #139, #134, #133, #132
-,#126, #119, #117, #116, #109, #102, #100, #70, #68, #65 
+,#126, #119, #117, #116, #109, #102, #100, #70, #68, #65
   * Reported bugs for other teams [ped](https://github.com/bryanhce/ped).
 
 

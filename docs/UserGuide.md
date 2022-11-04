@@ -8,16 +8,16 @@ title: User Guide
 ## Introduction
 
 GuestBook is a **hotel management application** that aims to revolutionise the small
-hotel and backpacker's inn industry. 
+hotel and backpacker's inn industry.
 As a **hotel manager**, capitalise on
 GuestBook's **efficient management style** to save you time. You can use GuestBook to manage your guests and
-their details with just your keyboard, literally all in the palm of your hands! 
+their details with just your keyboard, literally all in the palm of your hands!
 By using our features, your essential hotel management needs are taken care of.
-With GuestBook, managing guests have never been easier. 
+With GuestBook, managing guests have never been easier.
 
 This user guide will ease you in using GuestBook and guide you along to incorporate GuestBook
-in your management workflow. It provides an in-depth description of GuestBook's core features 
-and how to best use them to suite your needs. With our intuitive design, you will become 
+in your management workflow. It provides an in-depth description of GuestBook's core features
+and how to best use them to suite your needs. With our intuitive design, you will become
 a master at using GuestBook in no time!
 
 <div style="page-break-after: always;"></div>
@@ -51,7 +51,7 @@ By following this incremental approach, we hope to make the content more digesti
 
 These styles below are consistently used throughout this user guide. This section hopes to provide
 you with a better understanding on how to interpret these formats.
-* [Phrases in blue](#style-guide) mean that they are hyperlinked to a 
+* [Phrases in blue](#style-guide) mean that they are hyperlinked to a
 section of this user guide or to an external website.
 * `Coded phrases` surrounded by a block indicate they are technical terms such as GuestBook commands.
 * **Bolded phrases** are key terms that you should pay attention to.
@@ -93,9 +93,9 @@ section of this user guide or to an external website.
    * If you are using Mac, open the `Terminal` and enter `java --version`.
      * To open the `Terminal`, press `command` and `space bar` together to launch Spotlight.
      * Following, enter `terminal` in the search bar.
-   * If you are using Windows, open the `Command Prompt` and enter `java -version`. 
+   * If you are using Windows, open the `Command Prompt` and enter `java -version`.
      * To open the `Command Prompt`, press `Windows` and `R` together to launch the "Run" box.
-     * Following, enter `cmd` and click `OK`. 
+     * Following, enter `cmd` and click `OK`.
    * If java is installed, you would get a similar output as shown below. You can continue to step 2.
    (Do not worry about what the message says, it is not crucial to learn how to use GuestBook.)
    ```
@@ -104,11 +104,11 @@ section of this user guide or to an external website.
     OpenJDK 64-Bit Server VM Zulu11.58+23-CA (build 11.0.16.1+1-LTS, mixed mode)
    ```
    * Else, if `Java 11` is not installed, an error message will appear as shown below.
-   ``` 
+   ```
    'java' is not recognized as an internal or external command, operable
     program or batch file.
    ```
-   * Follow these [instructions](https://www.oracle.com/sg/java/technologies/downloads/) to 
+   * Follow these [instructions](https://www.oracle.com/sg/java/technologies/downloads/) to
    download Java and return to step 1 once you have completed them. <br><br>
 
 2. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases). <br> <br>
@@ -117,9 +117,9 @@ section of this user guide or to an external website.
 3. Copy the file to the folder you want to use as the **home folder** for your GuestBook. <br> <br>
    ![Ui](images/GuestBookIcon.png) <br><br>
 
-4. Double-click on `guestbook.jar` to start the app. 
-   * Alternatively, if you wish to use the `Terminal` or `Command Prompt`, navigate to the **home folder** and enter 
-   `java -jar guestbook.jar` to start the app. 
+4. Double-click on `guestbook.jar` to start the app.
+   * Alternatively, if you wish to use the `Terminal` or `Command Prompt`, navigate to the **home folder** and enter
+   `java -jar guestbook.jar` to start the app.
 
    The GUI, similar to the image below, should pop up in a few seconds. Note that the GuestBook
    comes prepackaged with **sample data**.<br><br>
@@ -128,9 +128,9 @@ section of this user guide or to an external website.
 5. Type your commands in the command box and press Enter to execute it. E.g., typing **`help`** and pressing Enter will open the help window.<br><br>
 
 6. To kickstart your journey, you can add a guest, _John Doe_, to GuestBook using the **`add`** command.
-   * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named _John Doe_ to GuestBook along with the necessary information such as his particulars. 
+   * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named _John Doe_ to GuestBook along with the necessary information such as his particulars.
 <br><br>
-    
+
 7. To find _John Doe_, you can use the **`find`** command, and search through **any of _John Doe's_ fields**,
    such as his `name` or `room`. The command below can help you find guests that match the keywords you entered. For example,
    * `find John Doe` : Finds all the guests who have at least one field containing _John_ or _Doe_ (case-insensitive).
@@ -140,7 +140,7 @@ section of this user guide or to an external website.
 For example, if _John Doe_ is the second guest in the list, and you want to change his room number to _05-55_, you can execute the following command.
     * `edit 2 rm/05-55`: Changes the `Room` of _John Doe_ to _05-55_ in GuestBook.
       <br><br>
-   
+
 9. After executing a **`find`** command, you might realise that some of your guests are no longer visible, as they are not in the current list.<br>
 To see a list of all your guests, you can use the **`list`** command.
       * `list`: List all the guests in GuestBook.
@@ -159,17 +159,17 @@ For example, you can check out the third guest by executing the command below.
 12. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
     * `clear` : Deletes all guests.
     <div markdown="block" class="alert alert-danger">
-    
+
     :bangbang: **Warning:**<br>
     * Do note that this command is **irreversible**. Once cleared, all the
       guest data cannot be retrieved. Please use this command
       with utmost caution.
     </div>
-    
+
 13. Finally, to quit GuestBook, you can run the **`exit`** command.
     * `exit` : Exits the app.
       <br><br>
-    
+
 14. For more details, you can refer to the [Features](#features) below for the exact specifications of each command. Thank you and we hope you enjoy using GuestBook!
     <br><br>
 [Return to Table of Contents](#table-of-contents)
@@ -180,7 +180,7 @@ For example, you can check out the third guest by executing the command below.
 
 From this glossary section onwards, we will go into a deep dive of the commands of GuestBook. As there are
 some technical terms present in the descriptions below, we have provided their definitions (contextualised
-to GuestBook) for you to get acquainted with. 
+to GuestBook) for you to get acquainted with.
 
 | Term             | Definition                                                                                                                                       |
 |------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -245,7 +245,7 @@ This command is typically used to **check a guest in** to your hotel with their 
 
 **Examples**:
 * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/22 - 24/05/22 ng/3` Adds the guest _John Doe_, with his details, to GuestBook.
-* `add n/Betsy Crowe p/82297553 e/betsycrowe@example.com rm/Aloha5 dr/10/01/12 - 11/01/12 ng/1 rq/Extra towels` 
+* `add n/Betsy Crowe p/82297553 e/betsycrowe@example.com rm/Aloha5 dr/10/01/12 - 11/01/12 ng/1 rq/Extra towels`
 Adds the guest _Betsy Crowe_ to GuestBook, with the `request` to have _extra towels in her room_.
 
 
@@ -281,7 +281,7 @@ you provide. The values that you **did not specify** to edit will remain **uncha
 
 **:bulb: Tip:**<br>
 
-* You can more accurately edit your guests by first searching for them 
+* You can more accurately edit your guests by first searching for them
 using the [find command](#locating-guests) and then editing them accordingly!
 </div>
 
@@ -293,8 +293,8 @@ using the [find command](#locating-guests) and then editing them accordingly!
 
 This command updates the bill of a guest in GuestBook. This command is typically used to **charge a guest** for services, such as room service.
 
-This command updates the bill of the guest at the specified `INDEX` of the current list. 
-Depending on the sign (`+` or `-`) of your input, the existing bill value will be **increased** 
+This command updates the bill of the guest at the specified `INDEX` of the current list.
+Depending on the sign (`+` or `-`) of your input, the existing bill value will be **increased**
 or **decreased** respectively by the value you provide.
 
 **Format**: `bill INDEX b/BILL`
@@ -327,13 +327,13 @@ or **decreased** respectively by the value you provide.
 
 ### Locating guests: `find`
 
-This command locates guests whose details contain any of the given keywords. 
+This command locates guests whose details contain any of the given keywords.
 This allows you to search through all guests' fields.
 
 This command is typically used when searching for a guest of a **specific characteristic**.
-For example, the command `find no` will display all 
+For example, the command `find no` will display all
 the rooms that have room clean statuses set to `no`. Likewise, the command `find yes`
-will display all rooms that have been cleaned. 
+will display all rooms that have been cleaned.
 
 **Format**: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -395,15 +395,15 @@ using the `find` command as a filter.
 
 This command deletes an existing guest in GuestBook from the current list.
 
-The guest specified at the `INDEX` is the guest you wish to delete. 
+The guest specified at the `INDEX` is the guest you wish to delete.
 
-This command is typically used to **check a guest out** of the hotel. 
+This command is typically used to **check a guest out** of the hotel.
 
 <div markdown="block" class="alert alert-danger">
 
 :bangbang: **Warning:**<br>
 
-* Do note that the `delete` command is **irreversible**. Once deleted, the specific 
+* Do note that the `delete` command is **irreversible**. Once deleted, the specific
 guest's data cannot be retrieved. Please use this
 command with caution.
 </div>
@@ -423,8 +423,8 @@ command with caution.
 
 This command functions to mark the room clean statuses of all guests as `no`.
 
-This command is typically used at the **end or the start** of the day when the hotel manager wishes to 
-update **all the room clean statuses** to `no` efficiently. This clean slate would allow the hotel 
+This command is typically used at the **end or the start** of the day when the hotel manager wishes to
+update **all the room clean statuses** to `no` efficiently. This clean slate would allow the hotel
 managers to keep track of the rooms that are cleaned or uncleaned for the day.
 
 **Format**: `markroomsunclean`
@@ -443,7 +443,7 @@ managers to keep track of the rooms that are cleaned or uncleaned for the day.
 
 ### Clearing all entries: `clear`
 
-This command clears **all entries** from GuestBook. 
+This command clears **all entries** from GuestBook.
 
 This command is typically used as a **hard reset** of all guest data in GuestBook. You **should not** be using
 this command unless you want to start the GuestBook on a **clean slate**.
@@ -452,7 +452,7 @@ this command unless you want to start the GuestBook on a **clean slate**.
 
 :bangbang: **Warning:**<br>
 
-* Do note that this command is **irreversible**. Once cleared, all the 
+* Do note that this command is **irreversible**. Once cleared, all the
 guest data cannot be retrieved. Please use this command
 with utmost caution.
 </div>
@@ -482,7 +482,7 @@ save time, we have provided quick access to this user guide by entering the `hel
 
 This command exits the program.
 
-This command is used once you have finished with the administrative tasks on GuestBook. Do not worry, 
+This command is used once you have finished with the administrative tasks on GuestBook. Do not worry,
 **all the data have already been saved by GuestBook** and there is no further action needed.
 
 **Format**: `exit`
@@ -557,8 +557,8 @@ In the case where GuestBook rejects your field inputs, you can refer to this sec
 
 :exclamation: **Caution:**<br>
 
-* If you are specifying the `name`/`request` fields, ensure that they do not contain any field prefixes after whitespace in their content 
-(e.g., `rq/Extra bed & p/c`), as GuestBook may mistake part of your input as another field. 
+* If you are specifying the `name`/`request` fields, ensure that they do not contain any field prefixes after whitespace in their content
+(e.g., `rq/Extra bed & p/c`), as GuestBook may mistake part of your input as another field.
 Consider using capital letters as this check is case-sensitive (`rq/Extra bed & P/C` will be understood correctly).
 </div>
 
