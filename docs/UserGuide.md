@@ -392,8 +392,8 @@ Format: `sort -i [c/] [d/] [s/]`
 - When sorted by interview date, internships with no interview dates are listed at the bottom of the list.
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note: ** <br>
-Both the person list and internship list will remain sorted by the last given criterion until InterNUS is closed. The sorted order persists during additions, deletions and editing of persons and internships.
+**:information_source: Note:** Both the person list and internship list will remain sorted by the last given criterion 
+until InterNUS is closed. The sorted order persists during additions, deletions and editing of persons and internships.
 </div>
 
 ## 4.8. General
