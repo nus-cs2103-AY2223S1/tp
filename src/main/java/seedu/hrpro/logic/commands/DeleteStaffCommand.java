@@ -2,7 +2,6 @@ package seedu.hrpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_PROJECT;
-import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_STAFF;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_NO_STAFF_DISPLAYED;
 import static seedu.hrpro.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
@@ -16,8 +15,6 @@ import seedu.hrpro.model.Model;
 import seedu.hrpro.model.project.Project;
 import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.staff.Staff;
-import seedu.hrpro.model.staff.StaffName;
-import seedu.hrpro.model.staff.UniqueStaffList;
 
 /**
  * Delete a staff from a project.
