@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.uninurse.logic.commands.EditTagCommand.EDIT_TAG_COMMAND_TYPE;
-import static seedu.uninurse.logic.commands.EditTagCommand.MESSAGE_EDIT_TAG_SUCCESS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -32,7 +30,7 @@ import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for {@code EditTagCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for EditTagCommand.
  */
 public class EditTagCommandTest {
     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
@@ -75,14 +73,14 @@ public class EditTagCommandTest {
         EditTagCommand editTagCommand =
                 new EditTagCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE, TAG_ELDERLY);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_TAG_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+        String expectedMessage = String.format(EditTagCommand.MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName(), initialTag, TAG_ELDERLY);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editTagCommand, model, expectedMessage, EDIT_TAG_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(editTagCommand, model, expectedMessage, EditTagCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -106,7 +104,7 @@ public class EditTagCommandTest {
         EditTagCommand editTagCommand =
                 new EditTagCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, TAG_ELDERLY);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_TAG_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+        String expectedMessage = String.format(EditTagCommand.MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName(), initialTag, TAG_ELDERLY);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
@@ -115,7 +113,7 @@ public class EditTagCommandTest {
         expectedModel.setPerson(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editTagCommand, model, expectedMessage, EDIT_TAG_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(editTagCommand, model, expectedMessage, EditTagCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -139,7 +137,7 @@ public class EditTagCommandTest {
         EditTagCommand editTagCommand =
                 new EditTagCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, tag);
         assertCommandFailure(editTagCommand, model,
-                String.format(EditTagCommand.MESSAGE_EDIT_DUPLICATE_TAG, patientToEdit.getName()));
+                String.format(Messages.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
     }
 
     @Test

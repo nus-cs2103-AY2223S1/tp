@@ -19,7 +19,6 @@ import seedu.uninurse.logic.commands.AddConditionCommand;
  * Contains unit tests for AddConditionCommandParser.
  */
 public class AddConditionCommandParserTest {
-
     private final AddConditionCommandParser parser = new AddConditionCommandParser();
 
     @Test

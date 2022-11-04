@@ -1,6 +1,7 @@
 package seedu.uninurse.model.tag;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,25 +24,25 @@ public class TagList implements GenericList<Tag> {
     private final List<Tag> internalTagList;
 
     /**
-     * Constructs an empty {@code TagList}.
+     * Constructs an empty TagList.
      */
     public TagList() {
-        internalTagList = new ArrayList<>();
+        this.internalTagList = new ArrayList<>();
     }
 
     /**
-     * Constructs a {@code TagList}.
+     * Constructs a TagList.
      * @param tags The given list of tags.
      */
     public TagList(List<Tag> tags) {
         requireNonNull(tags);
         // sorts the list of tags by lexicographical order
-        internalTagList = tags.stream().sorted(Comparator.comparing(Tag::getValue)).collect(Collectors.toList());
+        this.internalTagList = tags.stream().sorted(Comparator.comparing(Tag::getValue)).collect(Collectors.toList());
     }
 
     @Override
     public TagList add(Tag tag) {
-        requireNonNull(tag);
+        requireAllNonNull(tag);
         if (internalTagList.contains(tag)) {
             throw new DuplicateTagException();
         }
@@ -64,6 +65,7 @@ public class TagList implements GenericList<Tag> {
 
     @Override
     public TagList edit(int index, Tag tag) {
+        requireAllNonNull(tag);
         try {
             List<Tag> updatedTags = new ArrayList<>(internalTagList);
             updatedTags.set(index, tag);
@@ -139,9 +141,9 @@ public class TagList implements GenericList<Tag> {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        internalTagList.forEach(t -> builder.append("[").append(t).append("]"));
-        return builder.toString();
+        final StringBuilder sb = new StringBuilder();
+        internalTagList.forEach(t -> sb.append("[").append(t).append("]"));
+        return sb.toString();
     }
 
     @Override

@@ -1,6 +1,5 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TAG_INDEX;
@@ -27,16 +26,14 @@ public class DeleteTagCommand extends DeleteGenericCommand {
             + PREFIX_OPTION_TAG_INDEX + " TAG_INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
             + PREFIX_OPTION_TAG_INDEX + " 1";
-
-    public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag %1$d from %2$s: %3$s";
-
-    public static final CommandType DELETE_TAG_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final String MESSAGE_SUCCESS = "Deleted tag %1$d from %2$s: %3$s";
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index patientIndex;
     private final Index tagIndex;
 
     /**
-     * Creates an DeleteTagCommand to delete a {@code Tag} from the specified patient.
+     * Creates an DeleteTagCommand to delete a tag from the specified patient.
      *
      * @param patientIndex The index of the patient in the filtered person list to delete the tag.
      * @param tagIndex The index of the tag in the patient's tag list.
@@ -50,7 +47,7 @@ public class DeleteTagCommand extends DeleteGenericCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model);
         List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
@@ -73,8 +70,8 @@ public class DeleteTagCommand extends DeleteGenericCommand {
         PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagIndex.getOneBased(),
-                editedPatient.getName(), deletedTag), DELETE_TAG_COMMAND_TYPE, patientListTracker);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, tagIndex.getOneBased(),
+                editedPatient.getName(), deletedTag), COMMAND_TYPE, patientListTracker);
     }
 
     @Override
@@ -90,7 +87,7 @@ public class DeleteTagCommand extends DeleteGenericCommand {
         }
 
         // state check
-        DeleteTagCommand e = (DeleteTagCommand) other;
-        return patientIndex.equals(e.patientIndex) && tagIndex.equals((e.tagIndex));
+        DeleteTagCommand o = (DeleteTagCommand) other;
+        return patientIndex.equals(o.patientIndex) && tagIndex.equals((o.tagIndex));
     }
 }
