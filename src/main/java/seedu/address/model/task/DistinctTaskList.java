@@ -229,22 +229,6 @@ public class DistinctTaskList implements Iterable<Task> {
         //@@author
     }
 
-    /*
-    /**
-     * Checks whether the criteria given by the user is valid.
-     *
-     * @param criteria The criteria that is being checked for validity.
-     * @return true if the criteria is valid; else return false.
-     */
-    /*
-    public static boolean isValidCriteria(String criteria) {
-        return criteria.equalsIgnoreCase("priority")
-                || criteria.equalsIgnoreCase("deadline")
-                || criteria.equalsIgnoreCase("module")
-                || criteria.equalsIgnoreCase("description");
-    }
-     */
-
     @Override
     public Iterator<Task> iterator() {
         return taskList.iterator();

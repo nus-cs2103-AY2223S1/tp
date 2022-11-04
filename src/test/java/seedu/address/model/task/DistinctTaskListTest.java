@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalExams.FINAL_EXAM;
@@ -13,15 +14,23 @@ import static seedu.address.testutil.TypicalTasks.TASK_A;
 import static seedu.address.testutil.TypicalTasks.TASK_B;
 import static seedu.address.testutil.TypicalTasks.TASK_C;
 import static seedu.address.testutil.TypicalTasks.TASK_D;
+import static seedu.address.testutil.TypicalTasks.TASK_H;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.commons.Criteria;
+import seedu.address.model.exam.Exam;
+import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.model.task.exceptions.WrongTaskModifiedException;
+import seedu.address.testutil.ExamBuilder;
+import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.TaskBuilder;
 
 public class DistinctTaskListTest {
@@ -233,6 +242,158 @@ public class DistinctTaskListTest {
 
         // no tasks with exam
         assertEquals(distinctTaskList.getTotalNumOfExamTasks(FINAL_EXAM), 0);
+    }
+
+    @Test
+    public void deleteTasksWithModule_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> distinctTaskList.deleteTasksWithModule(null));
+    }
+
+    @Test
+    public void deleteTasksWithModule_hasTasksWithModule_success() {
+        distinctTaskList.addTask(TASK_A);
+        distinctTaskList.addTask(TASK_C);
+        distinctTaskList.deleteTasksWithModule(CS2030);
+        DistinctTaskList expectedList = new DistinctTaskList();
+        expectedList.addTask(TASK_C);
+        assertEquals(distinctTaskList, expectedList);
+    }
+
+    @Test
+    public void deleteTasksWithModule_noTasksWithModule_success() {
+        distinctTaskList.addTask(TASK_A);
+        distinctTaskList.deleteTasksWithModule(CS2040);
+        DistinctTaskList expectedList = new DistinctTaskList();
+        expectedList.addTask(TASK_A);
+        assertEquals(distinctTaskList, expectedList);
+    }
+
+    @Test
+    public void unlinkTasksFromExam_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> distinctTaskList.unlinkTasksFromExam(null));
+    }
+
+    @Test
+    public void unlinkTasksFromExam_success() {
+        distinctTaskList.addTask(TASK_D);
+        distinctTaskList.unlinkTasksFromExam(MIDTERM_EXAM);
+        assertFalse(distinctTaskList.taskList.get(0).isLinked());
+    }
+
+    @Test
+    public void isExamLinkedToTask() {
+        // null
+        assertThrows(NullPointerException.class, () -> distinctTaskList.isExamLinkedToTask(null));
+
+        // empty list
+        assertFalse(distinctTaskList.isExamLinkedToTask(FINAL_EXAM));
+
+        // no tasks linked to exam
+        distinctTaskList.addTask(TASK_D);
+        assertFalse(distinctTaskList.isExamLinkedToTask(FINAL_EXAM));
+
+        // 1 task linked to exam
+        assertTrue(distinctTaskList.isExamLinkedToTask(MIDTERM_EXAM));
+    }
+
+    @Test
+    public void sortTasks_byPriority() {
+        Criteria priority = new Criteria("priority");
+        distinctTaskList.addTask(TASK_B); // task with low priority
+        distinctTaskList.addTask(TASK_D); // task with high priority
+        DistinctTaskList expectedList = new DistinctTaskList();
+        expectedList.setTasks(new ArrayList<>(Arrays.asList(TASK_D, TASK_B)));
+        distinctTaskList.sortTasks(priority);
+        assertEquals(expectedList, distinctTaskList);
+    }
+
+    @Test
+    public void sortTasks_byDeadline() {
+        Criteria deadline = new Criteria("deadline");
+        distinctTaskList.addTask(TASK_H); // task with a further deadline
+        distinctTaskList.addTask(TASK_D); // task with a closer deadline
+        DistinctTaskList expectedList = new DistinctTaskList();
+        expectedList.setTasks(new ArrayList<>(Arrays.asList(TASK_D, TASK_H)));
+        distinctTaskList.sortTasks(deadline);
+        assertEquals(expectedList, distinctTaskList);
+    }
+
+    @Test
+    public void sortTasks_byModule() {
+        Criteria module = new Criteria("module");
+        distinctTaskList.addTask(TASK_H);
+        distinctTaskList.addTask(TASK_D);
+        distinctTaskList.addTask(TASK_A);
+        DistinctTaskList expectedList = new DistinctTaskList();
+        expectedList.setTasks(new ArrayList<>(Arrays.asList(TASK_A, TASK_D, TASK_H)));
+        distinctTaskList.sortTasks(module);
+        assertEquals(expectedList, distinctTaskList);
+    }
+
+    @Test
+    public void sortTasks_byDescription() {
+        Criteria description = new Criteria("description");
+        distinctTaskList.addTask(TASK_H);
+        distinctTaskList.addTask(TASK_D);
+        distinctTaskList.addTask(TASK_A);
+        DistinctTaskList expectedList = new DistinctTaskList();
+        expectedList.setTasks(new ArrayList<>(Arrays.asList(TASK_A, TASK_D, TASK_H)));
+        distinctTaskList.sortTasks(description);
+        assertEquals(expectedList, distinctTaskList);
+    }
+
+    @Test
+    public void updateExamFieldForTask_null_throwsNullPointerException() {
+        // null previousExam
+        assertThrows(NullPointerException.class, () ->
+            distinctTaskList.updateExamFieldForTask(null, MIDTERM_EXAM));
+
+        // null newExam
+        assertThrows(NullPointerException.class, () ->
+            distinctTaskList.updateExamFieldForTask(MIDTERM_EXAM, null));
+    }
+
+    @Test
+    public void updateExamFieldForTask_success() {
+        // task linked to previousExam
+        Task taskLinkedToPreviousExam = new TaskBuilder(TASK_A).withExam(FINAL_EXAM).build();
+        distinctTaskList.addTask(taskLinkedToPreviousExam);
+
+        // task linked to a different exam
+        Task taskLinkedToDifferentExam = new TaskBuilder(TASK_C).withExam(MIDTERM_EXAM).build();
+        distinctTaskList.addTask(taskLinkedToDifferentExam);
+
+        // task not linked
+        distinctTaskList.addTask(TASK_B);
+
+        Exam editedExam = new ExamBuilder(FINAL_EXAM).withDescription("edited name").build();
+        distinctTaskList.updateExamFieldForTask(FINAL_EXAM, editedExam);
+        assertEquals(distinctTaskList.taskList.get(0).getExam(), editedExam);
+        assertNotEquals(distinctTaskList.taskList.get(1).getExam(), editedExam);
+        assertNotEquals(distinctTaskList.taskList.get(2).getExam(), editedExam);
+    }
+
+    @Test
+    public void updateModuleFieldForTask_null_throwsNullPointerException() {
+        // null previousModule
+        assertThrows(NullPointerException.class, () -> distinctTaskList.updateModuleFieldForTask(null, CS2030));
+
+        // null newModule
+        assertThrows(NullPointerException.class, () -> distinctTaskList.updateModuleFieldForTask(CS2030, null));
+    }
+
+    @Test
+    public void updateModuleFieldForTask_success() {
+        // task with same module
+        distinctTaskList.addTask(TASK_A);
+
+        // task with different module
+        distinctTaskList.addTask(TASK_C);
+
+        Module editedModule = new ModuleBuilder(CS2030).withModuleName("edited name").build();
+        distinctTaskList.updateModuleFieldForTask(CS2030, editedModule);
+        assertTrue(distinctTaskList.taskList.get(0).getModule().hasAllSameFields(editedModule));
+        assertFalse(distinctTaskList.taskList.get(1).getModule().hasAllSameFields(editedModule));
     }
 
     @Test

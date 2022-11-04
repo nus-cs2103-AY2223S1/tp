@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAnyNonNull;
 
 import seedu.address.logic.commands.EditExamCommand;
+import seedu.address.model.exam.exceptions.NoLinkedTaskForExamException;
 import seedu.address.model.module.Module;
 
 /**
@@ -13,7 +14,7 @@ import seedu.address.model.module.Module;
  */
 public class Exam {
 
-    private static final String MESSAGE_NO_TASKS_FOR_EXAM = "You have no tasks for this exam";
+    public static final String MESSAGE_NO_TASKS_FOR_EXAM = "You have no tasks for this exam";
 
     private final Module module;
     private final ExamDescription examDescription;
@@ -71,6 +72,13 @@ public class Exam {
         return examDate;
     }
 
+    public int getNumOfCompletedTasks() {
+        return numOfCompletedTasks;
+    }
+    public int getTotalNumOfTasks() {
+        return totalNumOfTasks;
+    }
+
     /**
      * Returns true if both exams have the same data fields.
      */
@@ -92,6 +100,11 @@ public class Exam {
      * Returns the percentage of tasks completed for the exam.
      */
     public double getPercentageCompleted() {
+        assert(numOfCompletedTasks >= 0);
+        assert(totalNumOfTasks >= 0);
+        if (totalNumOfTasks == 0) {
+            throw new NoLinkedTaskForExamException();
+        }
         return (double) numOfCompletedTasks / (double) totalNumOfTasks;
     }
 
@@ -147,6 +160,21 @@ public class Exam {
         return new Exam(updatedModule, updatedDescription, updatedExamDate);
     }
 
+    /**
+     * Checks whether the two exams have the exact same fields.
+     *
+     * @param otherExam The other exam being compared against.
+     * @return true if the two Exam objects have the same module, exam description, exam date, number of completed tasks
+     *      and total number of tasks.
+     */
+    public boolean hasAllSameFields(Exam otherExam) {
+        requireNonNull(otherExam);
+        return this.module.equals(otherExam.module)
+            && this.examDescription.equals(otherExam.examDescription)
+            && this.examDate.equals(otherExam.examDate)
+            && this.numOfCompletedTasks == otherExam.numOfCompletedTasks
+            && this.totalNumOfTasks == otherExam.totalNumOfTasks;
+    }
 
     @Override
     public boolean equals(Object other) {
