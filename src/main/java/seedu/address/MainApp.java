@@ -47,6 +47,7 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
     protected ClassStorage classStorage;
+    protected static boolean isInInvalidFormat;
 
     @Override
     public void init() throws Exception {
@@ -62,6 +63,7 @@ public class MainApp extends Application {
         storage = new StorageManager(teachersPetStorage, userPrefsStorage);
 
         initLogging(config);
+        isInInvalidFormat = false;
 
         Model initializedModel = initModelManager(storage, userPrefs);
         try {
@@ -72,6 +74,7 @@ public class MainApp extends Application {
                     + " Will be starting with an empty TeachersPet");
             model = new ModelManager(new TeachersPet(), userPrefs);
             classStorage = new ClassStorage(model);
+            isInInvalidFormat = true;
         }
         logic = new LogicManager(model, storage);
 
@@ -95,9 +98,11 @@ public class MainApp extends Application {
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TeachersPet");
             initialData = new TeachersPet();
+            isInInvalidFormat = true;
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty TeachersPet");
             initialData = new TeachersPet();
+            isInInvalidFormat = true;
         }
         return new ModelManager(initialData, userPrefs);
     }
@@ -162,6 +167,7 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty TeachersPet");
             initializedPrefs = new UserPrefs();
+            isInInvalidFormat = true;
         }
 
         //Update prefs file in case it was missing to begin with or there are new/unused fields
@@ -174,6 +180,10 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
+    public static boolean isInInvalidFormat() {
+        return isInInvalidFormat;
+    }
+
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting TeachersPet " + MainApp.VERSION);
@@ -184,7 +194,9 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Address Book ] =============================");
         try {
-            storage.saveUserPrefs(model.getUserPrefs());
+            if (!isInInvalidFormat) {
+                storage.saveUserPrefs(model.getUserPrefs());
+            }
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

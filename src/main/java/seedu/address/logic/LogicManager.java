@@ -19,6 +19,7 @@ import seedu.address.model.StatisticsCalculator;
 import seedu.address.model.student.Student;
 import seedu.address.storage.ClassStorage;
 import seedu.address.storage.Storage;
+import seedu.address.MainApp;
 
 /**
  * The main LogicManager of the app.
@@ -61,7 +62,9 @@ public class LogicManager implements Logic {
         ClassStorage.refresh(model);
 
         try {
-            storage.saveTeachersPet(model.getTeachersPet());
+            if (!MainApp.isInInvalidFormat()) {
+                storage.saveTeachersPet(model.getTeachersPet());
+            }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
