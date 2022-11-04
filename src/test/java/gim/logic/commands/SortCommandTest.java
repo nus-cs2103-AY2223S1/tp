@@ -1,12 +1,6 @@
 package gim.logic.commands;
 
-import static gim.testutil.TypicalExercises.getSampleUnsortedExercisesExerciseTracker;
-import static gim.testutil.TypicalExercises.getSortedDifferentExercisesDifferentDatesExerciseTracker;
-import static gim.testutil.TypicalExercises.getSortedDifferentExercisesSameDatesExerciseTracker;
-import static gim.testutil.TypicalExercises.getSortedSameExercisesDifferentDatesExerciseTracker;
-import static gim.testutil.TypicalExercises.getUnsortedDifferentExercisesDifferentDatesExerciseTracker;
-import static gim.testutil.TypicalExercises.getUnsortedDifferentExercisesSameDatesExerciseTracker;
-import static gim.testutil.TypicalExercises.getUnsortedSameExercisesDifferentDatesExerciseTracker;
+import static gim.testutil.TypicalExercises.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
@@ -22,6 +16,15 @@ import gim.model.exercise.NameContainsKeywordsPredicate;
 public class SortCommandTest {
     private Model model;
     private Model expectedModel;
+
+    @Test
+    public void execute_sortedList_showsSameList() {
+        model = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
+        CommandResult result = new SortCommand().execute(model);
+        assertEquals(new CommandResult(SortCommand.MESSAGE_SUCCESS), result);
+        assertEquals(model.getFilteredExerciseList(), expectedModel.getFilteredExerciseList());
+    }
 
     @Test
     public void execute_sameExercisesDifferentDates_showsSameList() {
@@ -51,7 +54,7 @@ public class SortCommandTest {
     }
 
     @Test
-    public void execute_sortExercisesAfterFindCommand_showsSameList() {
+    public void execute_sortExercisesAfterFilterCommand_showsSameList() {
         model = new ModelManager(getSampleUnsortedExercisesExerciseTracker(), new UserPrefs());
         expectedModel = new ModelManager(getSortedSameExercisesDifferentDatesExerciseTracker(), new UserPrefs());
         NameContainsKeywordsPredicate predicate = preparePredicate("Arm Curls");
