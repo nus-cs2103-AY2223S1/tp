@@ -31,6 +31,6 @@ public class PriceComparator implements Comparator<Price> {
 
     @Override
     public String toString() {
-        return "Sorted by price in " + order;
+        return "Price, " + order;
     }
 }

@@ -59,9 +59,9 @@ public class Owner {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Owner: ")
+        sb.append("Owner Name: ")
                 .append(getName())
-                .append("; Phone: ")
+                .append("\nOwner Phone: ")
                 .append(getPhone());
         return sb.toString();
     }

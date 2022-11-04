@@ -26,18 +26,18 @@ public class FilterPropertiesCommand extends Command {
 
     public static final String COMMAND_WORD = "filterprops";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties in the database that"
-            + " either has a price that is within the given price range, contains all characteristics in the given"
-            + " characteristics list, or has the given seller. You can filter by more than one criteria at a time.\n"
-            + " Pass in " + PREFIX_FUZZY + " for fuzzy filtering, i.e. filtered properties will only need to satisfy"
-            + " at least one of the conditions specified. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all properties in Cobb that satisfy ALL the"
+            + " conditions provided for price range, characteristics and owner name.\n"
+            + "Pass in " + PREFIX_FUZZY + " to loosen the filtering criteria, meaning filtered properties will only"
+            + " need to satisfy the given price range OR contain at least one given characteristic OR have the given"
+            + " owner name.\n"
             + "Parameters: "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
-            + "[" + PREFIX_OWNER_NAME + " OWNER NAME]\n"
+            + "[" + PREFIX_OWNER_NAME + " OWNER NAME]"
             + "[" + PREFIX_FUZZY + "]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PRICE_RANGE + " 200000 - 500000 ";
+            + PREFIX_CHARACTERISTICS + " Near MRT; Kid-Friendly " + PREFIX_FUZZY;
 
     private final Predicate<Property> predicate;
 

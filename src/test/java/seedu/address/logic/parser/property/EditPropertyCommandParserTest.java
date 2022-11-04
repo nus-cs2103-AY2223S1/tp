@@ -37,6 +37,7 @@ import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_PRICE_H
 import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_PRICE_PROPERTY1;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
@@ -76,17 +77,17 @@ public class EditPropertyCommandParserTest {
     @Test
     public void parse_invalidIndex_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_PROPERTY1, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_PROPERTY1, MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_PROPERTY1, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_PROPERTY1, MESSAGE_INVALID_INDEX);
 
         // random text in preamble
-        assertParseFailure(parser, "1 some random string" + NAME_DESC_PROPERTY1, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string" + NAME_DESC_PROPERTY1, MESSAGE_INVALID_INDEX);
 
         // overflow index
         assertParseFailure(parser, "99999999999999999999999999" + NAME_DESC_PROPERTY1,
-                MESSAGE_INVALID_FORMAT);
+                MESSAGE_INVALID_INDEX);
     }
 
     @Test

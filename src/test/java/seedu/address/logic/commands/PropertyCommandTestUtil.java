@@ -79,13 +79,15 @@ public class PropertyCommandTestUtil {
                 .withPrice(VALID_PRICE_PROPERTY1).withAddress(VALID_ADDRESS_PROPERTY1)
                 .withDescription(VALID_DESCRIPTION_PROPERTY1)
                 .withCharacteristics(VALID_CHARACTERISTICS_PROPERTY1)
-                .withOwner(VALID_OWNER_NAME_PROPERTY1, VALID_OWNER_PHONE_PROPERTY1).build();
+                .withOwnerName(VALID_OWNER_NAME_PROPERTY1)
+                .withOwnerPhone(VALID_OWNER_PHONE_PROPERTY1).build();
 
         DESC_HOME = new EditPropertyDescriptorBuilder().withName(VALID_NAME_HOME)
                 .withPrice(VALID_PRICE_HOME).withAddress(VALID_ADDRESS_HOME)
                 .withDescription(VALID_DESCRIPTION_HOME)
                 .withCharacteristics(VALID_CHARACTERISTICS_HOME)
-                .withOwner(VALID_OWNER_NAME_HOME, VALID_OWNER_PHONE_HOME).build();
+                .withOwnerName(VALID_OWNER_NAME_HOME)
+                .withOwnerPhone(VALID_OWNER_PHONE_HOME).build();
     }
 
     /**
