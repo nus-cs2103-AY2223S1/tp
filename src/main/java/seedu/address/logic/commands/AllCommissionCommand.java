@@ -18,6 +18,7 @@ public class AllCommissionCommand extends Command {
         requireNonNull(model);
         model.selectCustomer(null);
         model.selectTab(GuiTab.COMMISSION);
+        model.updateFilteredCommissionList(Model.PREDICATE_SHOW_ALL_COMMISSIONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
