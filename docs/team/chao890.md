@@ -19,9 +19,9 @@ Given below are my contributions to the project.
     and `AddLeaveCommandParser` class to handle the parsing of the user input (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/parser/AddLeaveCommandParser.java)).
     * Use Case: User can add leave periods for employees.
     * Justification: With this command, users of Coydir will be able to keep track of employee leave periods and their availability at all times.
-    * Highlights: This command was slightly tricky to implement, as there were many cases to consider, such as overlapping leaves, or insufficient leaves. 
+    * Highlights: This command was slightly tricky to implement, as there were many cases to consider, such as overlapping leaves, or insufficient leaves.
   * Implemented `delete-leave` feature
-    * Created a `DeleteLeaveCommand` class to handle the logic (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/commands/DeleteLeaveCommand.java)) 
+    * Created a `DeleteLeaveCommand` class to handle the logic (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/commands/DeleteLeaveCommand.java))
     and `DeleteLeaveCommandParser` class to handle the parsing of the user input (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/parser/DeleteLeaveCommandParser.java)).
     * Use Case: User can delete leave periods for employees.
     * Justification: With this command, users of Coydir will be able to make changes easily when employees change their leave periods.
@@ -32,7 +32,7 @@ Given below are my contributions to the project.
   * Refactored `Delete` command.
   * Fixed multiple bugs (Refer to #109, #130, #140, #235).
 
-#### Contributions to the UG 
+#### Contributions to the UG
 * Added documentation for following parts:
   * `add-leave` command
   * `delete-leave` command
@@ -49,7 +49,7 @@ Given below are my contributions to the project.
   * [To Be Updated]
 
 #### Contributions to the team-based tasks
-* Helped to create and distribute issues. 
+* Helped to create and distribute issues.
 * Contributed to manual testing of application to find bugs.
 * Oversaw documentation work.
 
