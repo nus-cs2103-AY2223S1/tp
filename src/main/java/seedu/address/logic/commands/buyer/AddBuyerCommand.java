@@ -37,7 +37,7 @@ public class AddBuyerCommand extends Command {
             + PREFIX_EMAIL + " john@gmail.com "
             + PREFIX_ADDRESS + " 311 Clementi Ave 2, #02-25"
             + PREFIX_PRICE_RANGE + " 600000 - 800000 "
-            + PREFIX_CHARACTERISTICS + " 5-ROOM; SOUTH-FACING; "
+            + PREFIX_CHARACTERISTICS + " 5-ROOM; SOUTH-FACING"
             + PREFIX_PRIORITY + " high ";
 
     public static final String MESSAGE_SUCCESS = "New buyer added!\n%1$s";

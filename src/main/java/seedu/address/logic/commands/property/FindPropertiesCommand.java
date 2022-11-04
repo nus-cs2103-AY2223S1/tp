@@ -17,7 +17,7 @@ public class FindPropertiesCommand extends Command {
     public static final String COMMAND_WORD = "findprops";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all properties whose property name contain the specified string.\n"
+            + ": Finds all properties whose property name contain the specified string (case insensitive).\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " college";
 

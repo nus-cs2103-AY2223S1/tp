@@ -26,8 +26,8 @@ public class FilterBuyersCommand extends Command {
 
     public static final String COMMAND_WORD = "filterbuyers";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all buyers in Cobb that satisfy the"
-            + " given price AND contain all the given characteristics AND has the given priority.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all buyers in Cobb that satisfy"
+            + " ALL the conditions provided for price, characteristics and priority.\n"
             + "Pass in " + PREFIX_FUZZY + " to loosen the filtering criteria, meaning filtered buyers will only need"
             + " to satisfy the given price OR contain at least one given characteristic OR have the given priority.\n"
             + "Parameters: [" + PREFIX_PRICE + " PRICE] "
