@@ -55,4 +55,4 @@ It is written in Java.
   * PR reviews: Pull Requests [#107](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/107), [#70](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/70)
 
 * **Contributions beyond the project team**:
-  * [Bugs Reported](https://github.com/AshiqurRah/ped)
+  * [Bugs Reported](https://github.com/AshiqurRah/ped/issues)
