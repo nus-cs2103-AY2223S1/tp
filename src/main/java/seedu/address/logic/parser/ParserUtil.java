@@ -11,14 +11,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.CompanyName;
-import seedu.address.model.internship.InternshipId;
 import seedu.address.model.internship.InternshipRole;
 import seedu.address.model.internship.InternshipStatus;
 import seedu.address.model.internship.InterviewDate;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.PersonId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -43,40 +41,6 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
-    // TODO: Remove this method.
-    /**
-     * Parses {@code zeroBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     *
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Index parseLinkIndex(String zeroBasedIndex) throws ParseException {
-        if (zeroBasedIndex == null) {
-            return null;
-        }
-        String trimmedIndex = zeroBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Index.fromZeroBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses a {@code String personId} into a {@code PersonId}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code personId} is invalid.
-     */
-    public static PersonId parsePersonId(String personId) throws ParseException {
-        if (personId == null) {
-            return null;
-        }
-        String trimmedPersonId = personId.trim();
-        if (!PersonId.isValidId(trimmedPersonId)) {
-            throw new ParseException(PersonId.MESSAGE_CONSTRAINTS);
-        }
-        return new PersonId(trimmedPersonId);
-    }
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -172,24 +136,6 @@ public class ParserUtil {
             throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(trimmedCompany);
-    }
-
-    // TODO: Remove this method.
-    /**
-     * Parses a {@code String internshipId} into a {@code InternshipId}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code internshipId} is invalid.
-     */
-    public static InternshipId parseInternshipId(String internshipId) throws ParseException {
-        if (internshipId.isBlank()) {
-            return null;
-        }
-        String trimmedInternshipId = internshipId.trim();
-        if (!InternshipId.isValidId(trimmedInternshipId)) {
-            throw new ParseException(InternshipId.MESSAGE_CONSTRAINTS);
-        }
-        return new InternshipId(trimmedInternshipId);
     }
 
     /**

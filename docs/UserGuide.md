@@ -3,21 +3,64 @@ layout: page
 title: InterNUS User Guide
 ---
 
-* Table of Contents
-{:toc}
+# Table of Contents
+
+1. [Introduction](#1-introduction)<br>
+   1.1. [What is InterNUS?](#11-what-is-internus)<br>
+   1.2. [Person List](#12-person-list)<br>
+   1.3. [Internship List](#13-internship-list)<br>
+2. [How to use this User Guide?](#2-how-to-use-this-user-guide)<br>
+   2.1. [Icons and symbols](#21-icons-and-symbols)<br>
+   2.2. [Graphical User Interface (GUI) of InterNUS](#22-graphical-user-interface-gui-of-internus)<br>
+   2.3. [Command format](#23-command-format)<br>
+3. [Quick Start](#3-quick-start)<br>
+4. [Features](#4-features)<br>
+   4.1. [Add Command](#41-add-command)<br>
+   &emsp; 4.1.1. [Adding a person: `add -p`](#411-adding-a-person-add--p)<br>
+   &emsp; 4.1.2. [Adding an internship: `add -i`](#412-adding-an-internship-add--i)<br>
+   4.2. [List Command](#42-list-command)<br>
+   &emsp; 4.2.1. [Listing all persons : `list -p`](#421-listing-all-persons--list--p)<br>
+   &emsp; 4.2.2. [Listing all internships : `list -i`](#422-listing-all-internships--list--i)<br>
+   4.3. [Edit Command](#43-edit-command)<br>
+   &emsp; 4.3.1. [Editing a person : `edit -p`](#431-editing-a-person--edit--p)<br>
+   &emsp; 4.3.2. [Editing an internship : `edit -i`](#432-editing-an-internship--edit--i)<br>
+   4.4. [Link and Unlink Command](#44-link-and-unlink-command)<br>
+   &emsp; 4.4.1. [Linking a person and an internship : `link`](#441-linking-a-person-and-an-internship--link)<br>
+   &emsp; 4.4.2. [Unlinking a person and an internship : `unlink`](#442-unlinking-a-person-and-an-internship--unlink)<br>
+   4.5. [Find Command](#45-find-command)<br>
+   &emsp; 4.5.1. [Locating persons by name : `find -p`](#451-locating-persons-by-name--find--p)<br>
+   &emsp; 4.5.2. [Locating internships by name : `find -i`](#452-locating-internships-by-name--find--i)<br>
+   4.6. [Delete Command](#46-delete-command)<br>
+   &emsp; 4.6.1. [Deleting a person by index : `delete -p`](#461-deleting-a-person-by-index--delete--p)<br>
+   &emsp; 4.6.2. [Deleting an internship by index : `delete -i`](#462-deleting-an-internship-by-index--delete--i)<br>
+   4.7. [Sort Command](#47-sort-command)<br>
+   &emsp; 4.7.1. [Sorting persons in the list: `sort -p`](#471-sorting-persons-in-the-list-sort--p)<br>
+   &emsp; 4.7.2. [Sorting internships in the list: `sort -i`](#472-sorting-internships-in-the-list-sort--i)<br>
+   4.8. [General](#48-general)<br>
+   &emsp; 4.8.1. [Viewing help : `help`](#481-viewing-help--help)<br>
+   &emsp; 4.8.2. [Clearing all entries : `clear`](#482-clearing-all-entries--clear)<br>
+   &emsp; 4.8.3. [Exiting the program : `exit`](#483-exiting-the-program--exit)<br>
+   4.9. [User Interface](#49-user-interface)<br>
+   &emsp; 4.9.1. [Dark Mode](#491-dark-mode)<br>
+   &emsp; 4.9.2. [Light Mode](#492-light-mode)<br>
+   4.10. [Data files](#410-data-files)<br>
+   &emsp; 4.10.1. [Saving the data](#4101-saving-the-data)<br>
+   &emsp; 4.10.2. [Editing the data file](#4102-editing-the-data-file)<br>
+5. [FAQ](#5-faq)
+6. [Command summary](#6-command-summary) 
 
 --------------------------------------------------------------------------------------------------------------------
-# 1 Introduction
+# 1. Introduction
 
-## 1.1 What is InterNUS?
+## 1.1. What is InterNUS?
 
 Welcome to the InterNUS user guide!
 
-InterNUS is a convenient and powerful desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design to track your internship status at one glance. 
+InterNUS is a convenient and powerful desktop app for NUS CS students to **manage internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design to track your internship status at one glance. 
 
 Having troubles finding who to contact for your various internship applications? Don’t worry! InterNUS also allows you to manage contact person during your applications. After your internship, InterNUS can still be used to manage your work contact list!
 
-## 1.2 Person List
+## 1.2. Person List
 
 Store the information of key contacts in InterNUS. During the internship-hunting period, add the contacts of hiring managers and link them to your bookmarked internship positions. What about the multiple colleagues you'll meet during your internship stints? InterNUS makes it easy to manage these contacts and lets you see at a glance where you worked at together.
 
@@ -25,39 +68,44 @@ Store the information of key contacts in InterNUS. During the internship-hunting
 **:information_source: Note:** Each person can be linked to a maximum of one internship, and vice  versa.
 </div>
 
-## 1.3 Internship List
+## 1.3. Internship List
 
 Track the internships you're interested in and all the relevant information -- the company, role, contact person and interview date. Awaiting a reply, or have you been accepted? With InterNUS, you can monitor and update the statuses of your internship applications effortlessly.
 
 --------------------------------------------------------------------------------------------------------------------
-# 2 How to use this User Guide?
+# 2. How to use this User Guide?
 
-1. For new users, proceed to our [Quick start](#3-quick-start). 
+We have created this user manual for new users who want to use our app and returning users who need reference to the command summary. 
+For new users you can proceed to our [Quick start](#3-quick-start) while returning users can skip to our [Command summary](#6-command-summary).
 
-1. For returning users, skip to our [Command summary](#6-command-summary) for a summary of our feature.
+
+## 2.1. Icons and symbols
+
+| Symbol               | Meaning                                                                            |
+|----------------------|------------------------------------------------------------------------------------|
+| :information_source: | Additional information that may be useful to know when using InterNUS              |
+| :exclamation:        | Important information or warnings that you should take note of when using InterNUS | 
+
+## 2.2. Graphical User Interface (GUI) of InterNUS
+
+|    ![Ui](images/interNUS.png)     |
+|:---------------------------------:|
+| InterNUS GUI component annotation |
 
 
-## 2.1 Icons and symbols
-| Symbol               | Meaning                                                                                      |
-|----------------------|----------------------------------------------------------------------------------------------|
-| :information_source: | Additional information that may be useful to know when using InterNUS                        |
-| :exclamation:        | Important information or warnings that you should take note of when using InterNUS           |
-
-## 2.2 Graphical User Interface (GUI) of InterNUS
-![Ui](images/interNUS.png)
 
 The UI component description:
 
-| Components             | Purpose                                |
-|------------------------|----------------------------------------|
-| Menu Bar               | Consists of File, Help and Color Theme |
-| Color Theme Button     | To switch between Light/Dark mode      | 
-| Command Input          | To enter commands to be executed       |
-| System Message Display | Displays results of executed command   |
-| Person List            | Displays contact information of person |
-| Internship List        | Displays information of internship     |
+| Components             | Purpose                                                  |
+|------------------------|----------------------------------------------------------|
+| Menu Bar               | Consists of File, Help and Color Theme                   |
+| Color Theme Button     | To switch between light mode and dark mode               | 
+| Command Input          | To enter commands to be executed                         |
+| System Message Display | Displays results of executed commands and error messages |
+| Person List            | Displays contact information of persons                  |
+| Internship List        | Displays information of internships                      |
 
-## 2.3 Command format
+## 2.3. Command format
 
 <div markdown="block" class="alert alert-info">
 
@@ -84,30 +132,37 @@ The UI component description:
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-# 3 Quick start
+# 3. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
-1. Download the latest `InterNUS.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-1/tp/releases).
+2. Download the latest `InterNUS.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your app.
+3. Copy the file to the folder which you want to use as the _home folder_ for your app.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the jar file to open the app. If the app does not respond, open your terminal in the current folder where `InterNUS.jar` is located and enter `java -jar InterNUS.jar` to open the app.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. The screen should appear in a few seconds when the app first launches as shown in the figure below. Note how the app contains some sample data.
 
-1. Refer to the [Features](#features) below for details of each command.
+|     ![Ui](images/Ui.png)      |
+|:-----------------------------:|
+| InterNUS GUI with sample data |
+
+   
+
+7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+
+8. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 4 Features
+# 4. Features
 
-## 4.1 Add Command
+## 4.1. Add Command
 
-### 4.1.1 Adding a person: `add -p`
+### 4.1.1. Adding a person: `add -p`
 
-Saves a contact person into InterNUS, from the hiring manager you liase with 
+Saves a contact person into InterNUS, from the hiring manager you liaise with 
 during the application process to the senior engineer you work with during the internship.
 
 Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c/[COMPANY]`
@@ -115,19 +170,22 @@ Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c
 * The company refers to the company the contact person is working at.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0). 
+A person can have any number of tags (including 0).
 Adding persons maintains the current sorted order of the display list (as opposed to adding to the back of the list). By default, the list is sorted by date of creation.
 A person is assumed to be in charge of at most one internship position.
 A phone number is considered valid if it consists of at least 3 numbers (spaces, special characters, and letters are not allowed).
 Duplicate persons are not allowed.
 A person is considered to be duplicate if there already exists a person in the list with the exact same name (case-sensitive).
+Tags must be alphanumeric and can only be one word.
 </div>
 
 Examples:
-* `add -p n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta`
-* `add -p n/Betsy Crowe t/friend e/betsycrowe@example.com`
+* `add -p` followed by `n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta` 
+adds the name, email, phone number and company and link to the internship with index **1**.
+* `add -p` followed `n/Betsy Crowe t/friend e/betsycrowe@example.com` 
+adds the name, tags and email.
 
-### 4.1.2 Adding an internship: `add -i`
+### 4.1.2. Adding an internship: `add -i`
 
 Saves an internship into InterNUS. InterNUS will keep track of important details such as
 the internship's contact person, application status and interview date (if any).
@@ -151,23 +209,23 @@ Examples:
 * `add -i c/TikTok r/Data Engineer s/rejected l/1`
 * `add -i c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00`
 
-## 4.2 List Command
+## 4.2. List Command
 
-### 4.2.1 Listing all persons : `list -p`
+### 4.2.1. Listing all persons : `list -p`
 
 Removes all filters on the person list and lists all persons in InterNUS in the current sorted order.
 
 Format: `list -p`
 
-### 4.2.2 Listing all internships : `list -i`
+### 4.2.2. Listing all internships : `list -i`
 
 Removes all filters on the internship list and lists all internships in InterNUS in the current sorted order.
 
 Format: `list -i`
 
-## 4.3 Edit Command
+## 4.3. Edit Command
 
-### 4.3.1 Editing a person : `edit -p`
+### 4.3.1. Editing a person : `edit -p`
 
 Edits an existing person in InterNUS.
 
@@ -183,7 +241,7 @@ Examples:
 - `list -p` followed by `edit -p 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `list -p` followed by `edit -p 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### 4.3.2 Editing an internship : `edit -i`
+### 4.3.2. Editing an internship : `edit -i`
 
 Edits an existing internship in InterNUS.
 
@@ -197,9 +255,9 @@ Examples:
 - `list -i` followed by `edit -i 1 s/ACCEPTED` Edits the status of the 1st internship to be `ACCEPTED`.
 - `list -i` followed by `edit -i 2 s/REJECTED` Edits the status of the 2nd internship to `REJECTED`.
 
-## 4.4 Link and Unlink Command
+## 4.4. Link and Unlink Command
 
-### 4.4.1 Linking a person and an internship : `link`
+### 4.4.1. Linking a person and an internship : `link`
 
 Links an existing person and internship together in InterNUS.
 
@@ -211,7 +269,7 @@ Format: `link p/PERSON_INDEX i/INTERNSHIP_INDEX`
 Examples:
 - `link p/1 i/1` will link the person at index **1** to the internship at index **1**
 
-### 4.4.2 Unlinking a person and an internship : `unlink`
+### 4.4.2. Unlinking a person and an internship : `unlink`
 
 Unlinks an existing person and internship together in InterNUS.
 
@@ -226,9 +284,9 @@ Examples:
 - `unlink p/1` will unlink person at index **1** and its linked internship
 - `unlink i/1` will unlink internship at index **1** and its linked person
 
-## 4.5 Find Command
+## 4.5. Find Command
 
-### 4.5.1 Locating persons by name : `find -p`
+### 4.5.1. Locating persons by name : `find -p`
 
 Finds persons whose fields contain any of the given keywords.
 
@@ -244,7 +302,7 @@ Examples:
 - `find -p n/John` returns **john**, **John Doe** and **Johnny**
 
 
-### 4.5.2 Locating internships by name : `find -i`
+### 4.5.2. Locating internships by name : `find -i`
 
 Finds internships whose fields contain any of the given keywords.
 
@@ -275,9 +333,9 @@ Then,
 since partial words will be matched. e.g. `e` will match with `ACCEPTED`,`REJECTED`, `PENDING`, `COMPLETED` and `BOOKMARKED` since they all contain the letter `e`.
 </div>
 
-## 4.6 Delete Command
+## 4.6. Delete Command
 
-### 4.6.1 Deleting a person by index : `delete -p`
+### 4.6.1. Deleting a person by index : `delete -p`
 
 Deletes the specified person from InterNUS.
 
@@ -291,7 +349,7 @@ Examples:
 * `list -p` followed by `delete -p 2` deletes the 2nd person in InterNUS.
 * `find -p Betsy` followed by `delete -p 1` deletes the 1st person in the results of the `find` command.
 
-### 4.6.2 Deleting an internship by index : `delete -i`
+### 4.6.2. Deleting an internship by index : `delete -i`
 
 Deletes the specified internship from InterNUS.
 
@@ -305,9 +363,9 @@ Examples:
 * `list -i` followed by `delete -i 2` deletes the 2nd internship in InterNUS.
 * `find -i Meta` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
 
-## 4.7 Sort Command
+## 4.7. Sort Command
 
-### 4.7.1 Sorting persons in the list: `sort -p`
+### 4.7.1. Sorting persons in the list: `sort -p`
 
 Sorts the persons list given a sorting criterion.
 
@@ -322,7 +380,7 @@ Example:
 - `sort -p n/` would sort the persons list by their names in alphabetical order, ignoring upper and lower cases.
 - `sort -p c/` would sort the persons list by their attached company names in alphabetical order, ignoring upper and lower cases. Persons without an attached company name would be listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
 
-### 4.7.2 Sorting internships in the list: `sort -i`
+### 4.7.2. Sorting internships in the list: `sort -i`
 
 Sorts the internship list given a sorting criterion.
 
@@ -338,47 +396,50 @@ Format: `sort -i [c/] [d/] [s/]`
 Both the person list and internship list will remain sorted by the last given criterion until InterNUS is closed. The sorted order persists during additions, deletions and editing of persons and internships.
 </div>
 
-## 4.8 General
+## 4.8. General
 
-### 4.8.1 Viewing help : `help`
+### 4.8.1. Viewing help : `help`
 
 Displays a list of commands and a link to the user guide.
 
 Format: `help`
 
-### 4.8.2 Clearing all entries : `clear`
+### 4.8.2. Clearing all entries : `clear`
 
 Clears all person and internship entries from InterNUS.
 
 Format: `clear`
 
-### 4.8.3 Exiting the program : `exit`
+### 4.8.3. Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-## 4.9 User Interface
+## 4.9. User Interface
 
-### 4.9.1 Light and Dark Mode
+Click on the Color Theme button in the Menu Bar to display a dropdown list to select between Light/Dark mode.
 
-Clicking on the Color Theme button in the Menu Bar displays a dropdown list to select between Light/Dark mode.
+### 4.9.1 Dark Mode
 
-- Dark Mode GUI
+|     ![Ui](images/darktheme.png)     |
+|:-----------------------------------:|
+| InterNUS dark mode with sample data |
 
-![Ui](images/darktheme.png)
 
-- Light Mode GUI
+### 4.9.2 Light Mode
 
-![Ui](images/lightheme.png)
+|     ![Ui](images/lightheme.png)      |
+|:------------------------------------:|
+| InterNUS light mode with sample data |
 
-## 4.10 Data files
+## 4.10. Data files
 
-### 4.10.1 Saving the data
+### 4.10.1. Saving the data
 
 InterNUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 4.10.2 Editing the data file
+### 4.10.2. Editing the data file
 
 InterNUS data is saved as a JSON file. `[JAR file location]`/data/addressbook.json.
 Advanced users are welcome to update data directly by editing that data file.
@@ -389,14 +450,14 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5 FAQ
+## 5. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InterNUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6 Command summary
+## 6. Command summary
 
 | Action                | Format, Examples                                                                                                                                                                                                                       |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

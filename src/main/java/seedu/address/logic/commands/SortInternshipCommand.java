@@ -33,7 +33,7 @@ public class SortInternshipCommand extends Command {
             this.name = name;
         }
 
-        private String getName() {
+        private String getCriteriaName() {
             return name;
         }
     }
@@ -47,7 +47,7 @@ public class SortInternshipCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        assert (criteria != null);
+        assert criteria != null;
         switch (criteria) {
         case COMPANY_NAME:
             model.sortInternshipList(Internship.compareByCompanyName());
@@ -59,9 +59,11 @@ public class SortInternshipCommand extends Command {
             model.sortInternshipList(Internship.compareByInternshipStatus());
             break;
         default:
+            // No CommandException needs to be thrown as this case is never reached.
+            // criteria is never null and will be one of the above 3 cases.
             break;
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, criteria.getName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, criteria.getCriteriaName()));
     }
 
     @Override
