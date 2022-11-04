@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -12,6 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +26,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientInListPredicate;
+import seedu.address.model.client.NameEqualsKeywordPredicate;
 import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.EditClientDescriptorBuilder;
 
@@ -81,7 +86,7 @@ public class EditClientCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_oneClientInFilteredList_success() {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
 
         Client clientInFilteredList = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
@@ -93,6 +98,27 @@ public class EditClientCommandTest {
 
         Model expectedModel = new ModelManager(new JeeqTracker(model.getJeeqTracker()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
+        expectedModel.updateFilteredClientList(new NameEqualsKeywordPredicate(editedClient));
+
+        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_multipleClientInFilteredList_success() {
+        List<Client> filteredList = model.getFilteredClientList();
+
+        Client clientToEdit = filteredList.get(INDEX_SECOND_CLIENT.getZeroBased());
+        Client editedClient = new ClientBuilder(clientToEdit).withName(VALID_NAME_AMY).build();
+        EditClientCommand editClientCommand = new EditClientCommand(INDEX_SECOND_CLIENT,
+                new EditClientDescriptorBuilder().withName(VALID_NAME_AMY).build(), "");
+
+        String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
+
+        Model expectedModel = new ModelManager(new JeeqTracker(model.getJeeqTracker()), new UserPrefs());
+        expectedModel.setClient(model.getFilteredClientList().get(1), editedClient);
+        ClientInListPredicate predicate = new ClientInListPredicate(filteredList);
+        predicate.addToList(editedClient);
+        expectedModel.updateFilteredClientList(predicate);
 
         assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
     }
