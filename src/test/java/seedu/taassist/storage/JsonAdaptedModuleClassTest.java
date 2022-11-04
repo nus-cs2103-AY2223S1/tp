@@ -46,7 +46,7 @@ public class JsonAdaptedModuleClassTest {
         List<JsonAdaptedSession> sessions = getValidSessions();
         JsonAdaptedModuleClass moduleClass =
                 new JsonAdaptedModuleClass(null, sessions);
-        assertThrows(IllegalValueException.class, JsonAdaptedModuleClass.MISSING_NAME_MESSAGE,
+        assertThrows(IllegalValueException.class, JsonAdaptedModuleClass.MESSAGE_MISSING_NAME,
                 moduleClass::toModelType);
     }
 

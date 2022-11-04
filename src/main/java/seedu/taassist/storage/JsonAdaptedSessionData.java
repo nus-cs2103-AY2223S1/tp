@@ -12,9 +12,9 @@ import seedu.taassist.model.student.SessionData;
  */
 class JsonAdaptedSessionData {
 
-    public static final String MISSING_NAME_MESSAGE = "Session's name field is missing!";
-    public static final String MISSING_GRADE_MESSAGE = "Session's grade field is missing!";
-    public static final String INVALID_GRADE_MESSAGE = "Session's grade field is invalid!";
+    public static final String MESSAGE_MISSING_NAME = "Session's name field is missing!";
+    public static final String MESSAGE_MISSING_GRADE = "Session's grade field is missing!";
+    public static final String MESSAGE_INVALID_GRADE = "Session's grade field is invalid!";
 
     @JsonProperty("session")
     private final String sessionName;
@@ -46,16 +46,16 @@ class JsonAdaptedSessionData {
      */
     public SessionData toModelType() throws IllegalValueException {
         if (sessionName == null) {
-            throw new IllegalValueException(MISSING_NAME_MESSAGE);
+            throw new IllegalValueException(MESSAGE_MISSING_NAME);
         }
         if (!Session.isValidSessionName(sessionName)) {
             throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
         }
         if (grade == null) {
-            throw new IllegalValueException(MISSING_GRADE_MESSAGE);
+            throw new IllegalValueException(MESSAGE_MISSING_GRADE);
         }
         if (!SessionData.isValidGrade(grade)) {
-            throw new IllegalValueException(INVALID_GRADE_MESSAGE);
+            throw new IllegalValueException(MESSAGE_INVALID_GRADE);
         }
         return new SessionData(new Session(sessionName), Double.parseDouble(grade));
     }

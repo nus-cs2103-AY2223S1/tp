@@ -31,7 +31,7 @@ class JsonAdaptedStudentModuleDataTest {
     public void toModelType_nullModuleName_throwsIllegalValueException() {
         JsonAdaptedStudentModuleData jsonAdaptedStudentModuleData =
                 new JsonAdaptedStudentModuleData(null, null);
-        assertThrows(IllegalValueException.class, JsonAdaptedStudentModuleData.MISSING_NAME_MESSAGE,
+        assertThrows(IllegalValueException.class, JsonAdaptedStudentModuleData.MESSAGE_MISSING_NAME,
                 jsonAdaptedStudentModuleData::toModelType);
     }
 }

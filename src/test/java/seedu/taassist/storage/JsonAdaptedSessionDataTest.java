@@ -29,7 +29,21 @@ class JsonAdaptedSessionDataTest {
     @Test
     public void toModelType_nullSessionName_throwsIllegalValueException() {
         JsonAdaptedSessionData jsonAdaptedSessionData = new JsonAdaptedSessionData(null, "100");
-        assertThrows(IllegalValueException.class, JsonAdaptedSessionData.MISSING_NAME_MESSAGE,
+        assertThrows(IllegalValueException.class, JsonAdaptedSessionData.MESSAGE_MISSING_NAME,
+                jsonAdaptedSessionData::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidGrade_throwsIllegalValueException() {
+        JsonAdaptedSessionData jsonAdaptedSessionData = new JsonAdaptedSessionData("Lab 1", "abcd");
+        assertThrows(IllegalValueException.class, JsonAdaptedSessionData.MESSAGE_INVALID_GRADE,
+                jsonAdaptedSessionData::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullGrade_throwsIllegalValueException() {
+        JsonAdaptedSessionData jsonAdaptedSessionData = new JsonAdaptedSessionData("Lab 1", null);
+        assertThrows(IllegalValueException.class, JsonAdaptedSessionData.MESSAGE_MISSING_GRADE,
                 jsonAdaptedSessionData::toModelType);
     }
 }
