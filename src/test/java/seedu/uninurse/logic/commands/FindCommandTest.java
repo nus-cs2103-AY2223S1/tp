@@ -58,7 +58,7 @@ public class FindCommandTest {
         PatientMatchPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, FindCommand.FIND_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, FindCommand.COMMAND_TYPE, expectedModel);
         assertNotEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -68,7 +68,7 @@ public class FindCommandTest {
         PatientMatchPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, FindCommand.FIND_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, FindCommand.COMMAND_TYPE, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 

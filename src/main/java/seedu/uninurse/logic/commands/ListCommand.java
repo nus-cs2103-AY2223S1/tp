@@ -11,12 +11,12 @@ import seedu.uninurse.model.Model;
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String MESSAGE_SUCCESS = "Listed all persons";
-    public static final CommandType LIST_COMMAND_TYPE = CommandType.LIST;
+    public static final CommandType COMMAND_TYPE = CommandType.LIST;
 
     @Override
     public CommandResult execute(Model model) {
         requireAllNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS, CommandType.LIST);
+        return new CommandResult(MESSAGE_SUCCESS, COMMAND_TYPE);
     }
 }

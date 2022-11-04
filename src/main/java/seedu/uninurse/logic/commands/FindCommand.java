@@ -16,7 +16,7 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
     public static final String MESSAGE_SUCCESS = "%1$d persons listed!";
-    public static final CommandType FIND_COMMAND_TYPE = CommandType.FIND;
+    public static final CommandType COMMAND_TYPE = CommandType.FIND;
 
     private final PatientMatchPredicate predicate;
 
@@ -29,7 +29,7 @@ public class FindCommand extends Command {
         requireAllNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredPersonList().size()),
-                FIND_COMMAND_TYPE);
+                COMMAND_TYPE);
     }
 
     @Override
