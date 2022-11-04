@@ -10,30 +10,30 @@ It helps to keep track of patient data, patient appointments and patient bills f
 
 ## Features
 * [Add a patient (addpatient)](#111-adding-a-patient-addpatient-ap)
-* [Add an appointment of a patient (addappointment)](#112-adding-an-appointment-of-a-patient-addappointment-ap)
-* [Add a bill of an appointment (addbill)](#113-adding-a-bill-of-an-appointment-addbill-ap)
-* [Edit a patient (editpatient)](#121-editing-a-patient-editpatient-ap)
-* [Edit an appointment of a patient (editappointment)](#122-editing-an-appointment-of-a-patient-editappointment-ap)
-* [Edit a bill of an appointment (editbill)](#123-editing-a-bill-of-an-appointment-editbill-ap)
-* [Find patient(s) (findpatient)](#131-finding-patient-findpatient-ap)
-* [Find appointment(s) (findappointment)](#132-finding-appointment-findappointment-ap)
-* [Find bill(s) (findbill)](#133-finding-bill-findbill-ap)
-* [Sort patients (sortpatient)](#141-sorting-patients-sortpatient-ap)
-* [Sort appointments (sortappointment)](#142-sorting-appointments-sortappointment-ap)
-* [Sort bills (sortbill)](#143-sorting-bills-sortbill-ap)
-* [Select a patient (selectpatient)](#151-selecting-a-patient-selectpatient-ap)
-* [Select an appointment (selectappointment)](#152-selecting-an-appointment-selectappointment-ap)
-* [Set a bill to be paid (setpaid)](#161-setting-a-bill-to-be-paid-setpaid-ap)
-* [Set a bill to be unpaid (setunpaid)](#162-setting-a-bill-to-be-unpaid-setunpaid-ap)
-* [List all patients, bills and appointments (list)](#171-listing-all-patients-bills-and-appointments-list-ap)
-* [Delete a patient (deletepatient)](#181-deleting-a-patient-deletepatient-ap)
-* [Delete an appointment (deleteappointment)](#182-deleting-an-appointment-deleteappointment-ap)
-* [Delete a bill (deletebill)](#183-deleting-a-bill-deletebill-ap)
-* [Undo previous command (undo)](#19-undoing-previous-command-undo-ap)
-* [Redo previous command (redo)](#110-redoing-previous-command-redo-ap)
-* [Clear all data (clear)](#111-clearing-all-data-clear-ap)
-* [Exit the program (exit)](#112-exiting-the-program-exit-ap)
-* [Help (help)](#113-help-help-ap)
+* [Add an appointment of a patient (addappointment)](#112-adding-an-appointment-of-a-patient-addappointment-aa)
+* [Add a bill of an appointment (addbill)](#113-adding-a-bill-of-an-appointment-addbill-ab)
+* [Edit a patient (editpatient)](#121-editing-a-patient-editpatient-ep)
+* [Edit an appointment of a patient (editappointment)](#122-editing-an-appointment-of-a-patient-editappointment-ea)
+* [Edit a bill of an appointment (editbill)](#123-editing-a-bill-of-an-appointment-editbill-eb)
+* [Find patient(s) (findpatient)](#131-finding-patients-findpatient-fp)
+* [Find appointment(s) (findappointment)](#132-finding-appointments-findappointment-fa)
+* [Find bill(s) (findbill)](#133-finding-bills-findbill-fb)
+* [Sort patients (sortpatient)](#141-sorting-patients-sortpatient-sop)
+* [Sort appointments (sortappointment)](#142-sorting-appointments-sortappointment-soa)
+* [Sort bills (sortbill)](#143-sorting-bills-sortbill-sob)
+* [Select a patient (selectpatient)](#151-selecting-a-patient-selectpatient-slp)
+* [Select an appointment (selectappointment)](#152-selecting-an-appointment-selectappointment-sla)
+* [Set a bill to be paid (setpaid)](#161-setting-bill-as-paid-setpaid-sp)
+* [Set a bill to be unpaid (setunpaid)](#162-setting-bill-as-unpaid-setunpaid-sup)
+* [List all patients, bills and appointments (list)](#17-list-list-ls)
+* [Delete a patient (deletepatient)](#181-deleting-a-patient-deletepatient-dp)
+* [Delete an appointment (deleteappointment)](#182-deleting-an-appointment-of-a-patient-deleteappointment-da)
+* [Delete a bill (deletebill)](#183-deleting-a-bill-of-an-appointment-deletebill-db)
+* [Undo previous command (undo)](#19-undo-undo)
+* [Redo previous command (redo)](#110-redo-redo)
+* [Clear all data (clear)](#111-clear-clear)
+* [Exit the program (exit)](#112-exit-exit)
+* [Help (help)](#113-help-help)
 * [Saving the data](#114-saving-the-data)
 * [Editing the data file](#115-editing-the-data-file)
 
@@ -217,7 +217,7 @@ in the displayed list already has an attached bill.
 
 ## 1.2 Edit
 
-### 1.2.1 Editing a patient `editpatient` `ep`
+### 1.2.1 Editing a patient `editpatient`, `ep`
 
 Edits a patient's information, such as name, phone number, address, email, remarks, and tags.
 
@@ -241,7 +241,7 @@ Examples:
 * `editpatient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 <img src = "images/ug/editcommand/editpatient2.png" width="800px" height ="400px">
 
-### 1.2.2 Editing an appointment of a patient
+### 1.2.2 Editing an appointment of a patient `editappointment`, `ea`
 
 Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 
@@ -260,7 +260,7 @@ Examples:
    and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
 <img src = "images/ug/editcommand/editappointment.png" width="800px" height ="400px">
 
-### 1.2.3 Editing a bill of an appointment
+### 1.2.3 Editing a bill of an appointment `editbill`, `eb`
 
 Edits a bill of an appointment.
 
@@ -281,7 +281,7 @@ Examples:
 
 ## 1.3 Find
 
-### 1.3.1 Finding patients `findpatient` `fp`
+### 1.3.1 Finding patients `findpatient`, `fp`
 
 Filters patients by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -308,7 +308,7 @@ Examples:
 
 <img src="images/ug/findcommand/findpatientBernice.png" width="800px" height ="500px">
 
-### 1.3.2 Finding appointments `findappointment` `fa`
+### 1.3.2 Finding appointments `findappointment`, `fa`
 
 Filters appointments by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -336,7 +336,7 @@ Examples:
 <img src="images/ug/findcommand/findappointmentAlex.png" width="800px" height ="500px">
 
 
-### 1.3.3 Finding bills `findbill` `fb`
+### 1.3.3 Finding bills `findbill`, `fb`
 
 Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -361,7 +361,7 @@ Examples:
 
 ## 1.4 Sort
 
-### 1.4.1 Sorting patients `sortpatient`
+### 1.4.1 Sorting patients `sortpatient`, `sop`
 
 Sorts patients by a single field
 
@@ -384,7 +384,7 @@ Examples:
 
 <img src="images/ug/sortcommand/sortpatient2.PNG" width="800px" height ="400px">
 
-### 1.4.2 Sorting appointments `sortappointment`
+### 1.4.2 Sorting appointments `sortappointment`, `soa`
 
 Sorts appointments by a single field
 
@@ -407,7 +407,7 @@ Examples:
 
 <img src="images/ug/sortcommand/sortappointment2.PNG" width="800px" height ="400px">
 
-### 1.4.3 Sorting bills `sortbill`
+### 1.4.3 Sorting bills `sortbill`, `sob`
 
 Sorts bills by a single field
 
@@ -496,7 +496,7 @@ Notes on symbols in first column:
 
 ## 1.6 Setting Bill Payment Status
 
-### 1.6.1 Setting Bill As Paid `setpaid` `sp`
+### 1.6.1 Setting Bill As Paid `setpaid`, `sp`
 
 Sets the payment status of a bill to "paid".
 
@@ -552,7 +552,7 @@ Removes all conditions previously applied to the list and shows all patients, ap
 
 ## 1.8 Delete
 
-### 1.8.1 Deleting a patient `deletepatient` `dp`
+### 1.8.1 Deleting a patient `deletepatient`, `dp`
 
 Deletes a patient by the index number of the patient in the list.
 
@@ -571,7 +571,7 @@ Examples:
 `deletepatient 2` deletes patient Bernice Yu and all their related appointments and bills.
 <img src="images/ug/deletecommand/dp.png" width="800px" height ="400px">
 
-### 1.8.2 Deleting an appointment of a patient `deleteappointment` `da`
+### 1.8.2 Deleting an appointment of a patient `deleteappointment`, `da`
 
 Deletes an appointment by the index number of the appointment in the list.
 
@@ -591,7 +591,7 @@ Examples:
   knee exam.
   <img src="images/ug/deletecommand/da.png" width="800px" height ="400px">
 
-### 1.8.3 Deleting a bill of an appointment `deletebill` `db`
+### 1.8.3 Deleting a bill of an appointment `deletebill`, `db`
 
 Deletes a bill by the index number of the bill in the list.
 
