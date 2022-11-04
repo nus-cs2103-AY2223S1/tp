@@ -55,4 +55,11 @@ public class Prefix {
     public static boolean isValidPrefixName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+    /**
+     * Returns a copy of the prefix.
+     */
+    public Prefix copy() {
+        return new Prefix(prefix);
+    }
 }

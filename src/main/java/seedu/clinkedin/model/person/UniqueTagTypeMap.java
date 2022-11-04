@@ -3,6 +3,7 @@ package seedu.clinkedin.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -36,9 +37,8 @@ import seedu.clinkedin.model.tag.exceptions.TagTypePrefixPairNotFoundException;
  * a tag type also uses TagType#equals(Object) so
  * as to ensure that the tag type with exactly the same fields will be removed.
  *
- * Supports a minimal set of list operations.
+ * Supports a minimal set of map operations.
  *
- * @see TagType#equals(Object)
  */
 public class UniqueTagTypeMap implements Iterable<TagType> {
     private static final Map<Prefix, TagType> initialTagTypeMap = Map.of(
@@ -123,7 +123,9 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
         for (TagType t: tagTypeMap) {
             if (this.contains(t)) {
-                this.getTagList(t).merge(tagTypeMap.getTagList(t));
+                UniqueTagList curr = this.getTagList(t);
+                curr.merge(tagTypeMap.getTagList(t));
+                internalMap.put(t, curr);
             } else {
                 internalMap.put(t, tagTypeMap.getTagList(t));
             }
@@ -147,8 +149,10 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             if (!this.contains(t)) {
                 throw new TagTypeNotFoundException();
             }
-            this.getTagList(t).removeAll(tagTypeMap.getTagList(t));
-            if (this.getTagList(t).getCount() == 0) {
+            UniqueTagList removeFrom = this.getTagList(t);
+            removeFrom.removeAll(tagTypeMap.getTagList(t));
+            this.internalMap.put(t, removeFrom);
+            if (removeFrom.getCount() == 0) {
                 this.removeTagType(t);
             }
         }
@@ -161,7 +165,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         requireAllNonNull(tagType, tagName);
         boolean isExisting = this.contains(tagType);
         if (isExisting) {
-            this.getTagList(tagType).add(tagName);
+            this.internalMap.get(tagType).add(tagName);
         } else {
             UniqueTagList tagList = new UniqueTagList();
             tagList.add(tagName);
@@ -185,8 +189,8 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             throw new DuplicateTagTypeException();
         }
         UniqueTagList tagList = internalMap.get(target);
-        internalMap.put(editedTagType, tagList);
         this.removeTagType(target);
+        internalMap.put(editedTagType, tagList);
     }
     /**
      * Removes the equivalent tag type from the list.
@@ -205,7 +209,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         if (!this.contains(toGet)) {
             throw new TagTypeNotFoundException();
         }
-        return internalMap.get(toGet);
+        return internalMap.get(toGet).copy();
     }
 
     public void setTagTypeMap(UniqueTagTypeMap replacement) {
@@ -254,12 +258,16 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     }
 
     public static Map<Prefix, TagType> getPrefixMap() {
-        return prefixMap;
+        return Collections.unmodifiableMap(prefixMap);
     }
 
     public static void setPrefixMap(Map<Prefix, TagType> map) {
-        prefixMap = map;
-        CliSyntax.setTagPrefix(map.keySet().stream().collect(Collectors.toList()));
+        Map<Prefix, TagType> newMap = new HashMap<>();
+        for (Prefix p: map.keySet()) {
+            newMap.put(p.copy(), map.get(p).copy());
+        }
+        prefixMap = newMap;
+        CliSyntax.setTagPrefix(newMap.keySet().stream().collect(Collectors.toList()));
     }
 
     @Override
@@ -277,7 +285,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         return StreamSupport.stream(this.spliterator(), false);
     }
     public static TagType getTagType(Prefix pref) {
-        return prefixMap.get(pref);
+        return prefixMap.get(pref).copy();
     }
     @Override
     public String toString() {
