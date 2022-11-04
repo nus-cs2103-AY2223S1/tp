@@ -68,7 +68,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
     public static final String MESSAGE_CLASS_CONFLICT = "There is a conflict between the class timings.";
     private static final String MESSAGE_MULTIPLE_CLASSES_PER_DAY = "A student cannot have multiple classes per day";
-
+    public static final String MESSAGE_PHONE_SAME_AS_NOK_PHONE = "Please be advised that the student's " +
+            "phone number is the same as the next-of-kin's, but the student will still be updated.\n";
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
 
@@ -120,6 +121,10 @@ public class EditCommand extends Command {
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_STUDENTS);
+        if (editedStudent.hasSharedPhone()) {
+            return new CommandResult(MESSAGE_PHONE_SAME_AS_NOK_PHONE
+                    + String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
