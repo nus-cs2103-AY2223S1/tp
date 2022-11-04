@@ -7,27 +7,32 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## 1. Preface
 
-*The project is based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) by
+### 1.1 Product description
+
+MyInsuRec is a desktop app for financial advisors. It provides financial advisors with clients, meetings and products management abilities to ease their mental load. It also provides some CRM features such as the ability to look up clients with upcoming birthdays.
+
+### 1.2 Acknowledgements
+
+* _MyInsuRec_ is a brown-field project based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) by
   [se-education.org](https://se-education.org).
+  * Libraries used: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://junit.org/junit5/)
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Setting up, getting started**
+## 1.3 Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 2. Design
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/MyInsuRec-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W16-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### 2.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -35,9 +40,9 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+#### 2.1.1 Main components of the architecture
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -51,9 +56,9 @@ The rest of the App consists of four components.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
-**How the architecture components interact with each other**
+#### 2.1.2 How the architecture components interact with each other
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delClient 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delClient i/1` ([deletes the client](https://ay2223s1-cs2103t-w16-4.github.io/tp/UserGuide.html#714-delete-client-delclient) found at index 1).
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -68,15 +73,15 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 2.2 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -85,9 +90,9 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
 
-### Logic component
+### 2.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -99,9 +104,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a client).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delClient 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delClient i/1")` API call.
 
-![Interactions Inside the Logic Component for the `delClient 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delClient i/1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -114,8 +119,8 @@ How the parsing works:
 * When called upon to parse a user command, the `MyInsuRecParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddClientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddClientCommand`) which the `MyInsuRecParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddClientCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
-**API** : [`Model.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+### 2.4 Model component
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="600" />
 
@@ -127,16 +132,9 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `MyInsuRec`, which `Client` references. This allows `MyInsuRec` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
+### 2.5 Storage component
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
-### Storage component
-
-**API** : [`Storage.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -145,23 +143,66 @@ The `Storage` component,
 * inherits from both `MyInsuRecStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 3. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Delete Meeting Feature
+### 3.1 `Client`-related features
+
+### 3.2 `Meeting`-related features
+
+#### 3.2.1 Add Meeting feature
+
+Syntax: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Purpose: Adds a meeting with the given information to the internal model and storage
+
+##### Implementation
+
+In keeping with the command execution structure of the overall program, the command
+specific classes `AddMeetingCommand` and `AddMeetingCommandParser` were added to the commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
+to accept the new command word, `addMeeting`.
+
+The following sequence diagram offers a high-level overview of how
+the command is executed.
+
+![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.png)
+
+##### Design Considerations
+
+**Aspect: What the addMeeting command accepts as a reference to a client:**
+
+- **Alternative 1 (current choice):** Accept the client's list index.
+    - Pros: Each valid index is guaranteed to refer to a unique client.
+    - Cons: It is less intuitive for the user compared to typing in a name.
+- **Alternative 2:** Accept the client's name.
+    - Pros: It is intuitive for the user to enter a name.
+    - Cons: Names have to be spelt exactly as stored, otherwise the name.
+      could be referencing more than one client.
+
+**Aspect: The parameters that the AddMeetingCommand constructor should accept:**
+
+- **Alternative 1 (current choice):** Accept the parsed command arguments separately.
+    - Pros: The logic and operations on the model that are associated with
+      command execution are inside the AddMeetingCommand.
+    - Cons: The design of AddMeetingCommand is less intuitive.
+- **Alternative 2:** Accept a completed Meeting.
+    - Pros: The design of AddMeetingCommand is simpler.
+    - Cons: The parser will need to have access to the model in order to
+      obtain the referenced client.
+
+#### 3.2.2 Delete Meeting Feature
 
 Syntax: `delMeeting i/x`, where x is an index shown in the Meeting List.
 
 Purpose: Delete a specified `Meeting` from the Meeting List in `Model`
 
-#### Implementation
+##### Implementation
 
 Usage Scenario of `delMeeting`:
 
@@ -176,27 +217,45 @@ Below is an activity diagram that summarises the execution of `delMeeting`.
 
 ![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
 
-#### Design Considerations
+##### Design Considerations
 
 Aspect: How many meetings to delete in one command
 
 - Alternative Solution 1 (Current Choice): Allows only one deletion
-  - Pros: Easy to implement
-  - Cons: Troublesome in the event where multiple meetings
+    - Pros: Easy to implement
+    - Cons: Troublesome in the event where multiple meetings
 - Alternative Solution 2: Allows multiple deletion
-  - Pros: Convenient to delete multiple meetings when needed.
-  - Cons: Complex to implement
+    - Pros: Convenient to delete multiple meetings when needed.
+    - Cons: Complex to implement
 - Considering that the approach taken to develop MyInsuRec is a breath first approach,
-where we should only build to the point where every iteration is a working product,
-**Solution 1** is thus chosen as it is easier to implement.
+  where we should only build to the point where every iteration is a working product,
+  **Solution 1** is thus chosen as it is easier to implement.
 
-### List Meeting feature
+#### 3.2.3 View Meeting feature
+
+Syntax: `viewMeeting i/INDEX`
+
+Purpose: View details associated with a meeting, such as meeting’s date and time.
+
+##### Implementation
+
+Usage Scenario of `viewMeeting`:
+
+1) User inputs `viewMeeting i/1` to view the first meeting in the `Model`.
+
+:information_source: **Note:** If `INDEX` is larger than the current meeting list's size or `INDEX` is negative, then it will not show any meeting details. It will return an error to the user.
+
+Below is a sequence diagram that illustrates the execution of `viewMeeting` command and the interaction with `Model`.
+
+![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
+
+#### 3.2.4 List Meeting feature
 
 Syntax: `listMeeting`
 
 Purpose: View all `Meeting` from the Meeting List in `Model`.
 
-#### Implementation
+##### Implementation
 
 Usage Scenario of `listMeeting`:
 
@@ -206,13 +265,17 @@ Below is a sequence diagram that illustrates the execution of `listMeeting` comm
 
 ![ListMeetingSequenceDiagram](images/ListMeetingSequenceDiagram.png)
 
-### Different view panels
+### 3.3 `Product`-related features
+
+### 3.4 UI
+
+#### 3.4.1 Different view panels
 
 The GUI changes view panels depending on the last executed command. For example, a `listMeeting` will cause the meeting list view panel to be displayed, while `viewClient i/1` will cause a detailed client view panel to be displayed.
 
 #### Implementation
 
-Below is a sequence diagram that illustrates the execution of `listMeeting` command and the interaction with `Model`.
+Below is a sequence diagram that illustrates the execution of `listMeeting` command and the interaction with `Model`, which demonstrates how a view panel changes to `MeetingListPanel`.
 
 ![DifferentViewPanelsSequenceDiagram](images/DifferentViewPanelsSequenceDiagram.png)
 
@@ -225,25 +288,12 @@ We chose to implement the changing of view panels through `CommandResult` due to
 We feel that there is a way for us to cut down on repetition of code. More specifically, the methods for setting the view panels which is currently done through four very similar methods in `MainWindow#setListPanelToXYZ`. We are currently exploring the use of event listeners on the Model, such that when a command is executed, the Model can listen for the specific view for the UI to display. This however causes the Model to have to depend on UI which results in more coupling of compartments. Another possibility is to have a general `MainWindow#setListPanelToXYZ` which takes in some input to specify which view to show. It will behave much like how `MyInsuRecParser#parseCommand` works, using switch cases to decide which panels to use.
 
 
-### View Meeting feature
 
-Syntax: `viewMeeting i/INDEX`
 
-Purpose: View details associated with a meeting, such as meeting’s date and time.
 
-#### Implementation
+<!-- problematic, rmb to update the header hashs after complete -->
 
-Usage Scenario of `viewMeeting`:
-
-1) User inputs `viewMeeting i/1` to view the first meeting in the `Model`.
-
-:information_source: **Note:** If `INDEX` is larger than the current meeting list's size or `INDEX` is negative, then it will not show any meeting details. It will return an error to the user.
-
-Below is a sequence diagram that illustrates the execution of `viewMeeting` command and the interaction with `Model`.
-
-![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
-
-#### `editClient` and `editMeeting` feature
+### Edit Client and Edit Meeting feature
 
 `editClient` and `editMeeting` execute in a similar manner to each other.
 Let the term entity refer to either a client or a meeting.
@@ -299,11 +349,11 @@ Aspect: How prefixes are stored:
 - Pros: Matcher has several useful methods for validating a match.
 - Case-insensitive matches can be made easily by setting a flag in the Pattern.
 - Cons: Regex string used to define a pattern may be difficult to read.
-e.g. String regexForBirthday = "[b|d|birthday|birthdate][\\\\]" is not as clear as Alternative 2
+  e.g. String regexForBirthday = "[b|d|birthday|birthdate][\\\\]" is not as clear as Alternative 2
 
 - Alternative Solution 2: Store each possible prefix as a String in a List maintained by Prefix.
 - Pros:   String matches are easier to understand than regexes
-e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
+  e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
 - Cons: List of String returned is cumbersome for pattern matching, i.e. Iterate through every String in patternsForBirthday to look for a match.
 
 #### Rationale
@@ -311,48 +361,9 @@ e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
 - No need to iterate through a list of Strings to find a match.
 - Matches can be made using pre-existing methods in Matcher (no need to rely on String methods)
 
-### Add Meeting Feature
-
-Syntax: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
-Purpose: Adds a meeting with the given information to the internal model and storage
-
-#### Implementation
-
-In keeping with the command execution structure of the overall program, the command
-specific classes `AddMeetingCommand` and `AddMeetingCommandParser` were added to the commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
-to accept the new command word, `addMeeting`.
-
-The following sequence diagram offers a high-level overview of how
-the command is executed.
-
-![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.png)
-
-#### Design Considerations
-
-**Aspect: What the addMeeting command accepts as a reference to a client:**
-
-- **Alternative 1 (current choice):** Accept the client's list index.
-  - Pros: Each valid index is guaranteed to refer to a unique client.
-  - Cons: It is less intuitive for the user compared to typing in a name.
-- **Alternative 2:** Accept the client's name.
-  - Pros: It is intuitive for the user to enter a name.
-  - Cons: Names have to be spelt exactly as stored, otherwise the name.
-could be referencing more than one client.
-
-**Aspect: The parameters that the AddMeetingCommand constructor should accept:**
-
-- **Alternative 1 (current choice):** Accept the parsed command arguments separately.
-  - Pros: The logic and operations on the model that are associated with
-command execution are inside the AddMeetingCommand.
-  - Cons: The design of AddMeetingCommand is less intuitive.
-- **Alternative 2:** Accept a completed Meeting.
-  - Pros: The design of AddMeetingCommand is simpler.
-  - Cons: The parser will need to have access to the model in order to
-obtain the referenced client.
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 4. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -362,9 +373,9 @@ obtain the referenced client.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 5. Appendix: Requirements
 
-### Product scope
+### 5.1 Product scope
 
 **Target user profile**:
 
@@ -384,7 +395,7 @@ obtain the referenced client.
 * view scheduled meetings with client's details in one glance
 * less effort to recall client's information, more effort to satisfy client's needs
 
-### User stories
+### 5.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
@@ -405,11 +416,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 
 
-### Use cases
+### 5.3 Use cases
 
 (For all use cases below, the **System** is the `MyInsuRec` and the **Actor** is the `insurance agent`, unless specified otherwise)
 
-#### Use case: UC1 - Add a client
+#### 5.3.1 Use case: UC1 - Add a client
 
 **MSS**
 
@@ -426,7 +437,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### Use case: UC2 - View a client
+#### 5.3.2 Use case: UC2 - View a client
 
 **MSS**
 
@@ -443,7 +454,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### Use case: UC3 - List all clients
+#### 5.3.3 Use case: UC3 - List all clients
 
 **MSS**
 
@@ -452,7 +463,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
-#### Use case: UC4 - List all meetings
+#### 5.3.4 Use case: UC4 - List all meetings
 
 **MSS**
 
@@ -461,7 +472,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
-#### Use case: UC5 - Delete a meeting
+#### 5.3.5 Use case: UC5 - Delete a meeting
 
 **MSS**
 
@@ -481,27 +492,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-
-**MSS**
-
-1. User requests for a [list of all meetings (UC4)](#use-case-uc4---list-all-meetings).
-2. System shows a list of all meetings.
-3. User requests to delete one meeting from the list.
-4. System deletes the meeting specified by the user.
-5. System informs user that the specified meeting is deleted.
-
-   Use case ends.
-
-**Extensions**
-
-* 3a. User deletes a meeting that was not shown in the list.
-
-    * 3a1. System shows an error message.
-
-      Use case ends.
-
-
-### Non-Functional Requirements
+### 5.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
@@ -510,14 +501,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 5.  Common actions should require 5 or less input phrases to accomplish.
 6.  UI should be intuitive and easy to understand.
 
-### Glossary
+### 5.5 Glossary
 
 * **Mainstream OS**: Windows, MacOS, Unix
 * **Meeting**: An event that the user with the client at a specific date and time.
 * **Timing conflict**: Time periods that overlap. e.g. meetings should not be happening on the same time.
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 6. Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -526,7 +517,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 6.1 Launch and shutdown
 
 1. Initial launch
 
@@ -543,7 +534,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …  }_
 
-### Deleting a client
+### 6.2 Deleting a client
 
 1. Deleting a client while all clients are being shown
 
@@ -560,7 +551,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …  }_
 
-### Saving data
+### 6.3 Saving data
 
 1. Dealing with missing/corrupted data files
 

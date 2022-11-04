@@ -10,6 +10,7 @@ import seedu.address.model.client.ClientRebuilder;
 import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.NoConflictMeetingList;
+import seedu.address.model.meeting.exceptions.ConflictingMeetingException;
 import seedu.address.model.product.Product;
 import seedu.address.model.product.UniqueProductList;
 
@@ -58,7 +59,7 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
 
     /**
      * Replaces the contents of the client list with {@code meetings}.
-     * {@code meetings} must not contain duplicate meetings.
+     * {@code meetings} must not contain meetings with timing conflicts.
      */
     public void setMeetings(List<Meeting> meetings) {
         this.meetings.setMeetings(meetings);
@@ -110,8 +111,6 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
         requireNonNull(editedClient);
 
         clients.setClient(target, editedClient);
-
-        // this part is necessary to affect the noconflictmeetinglist
         target.getMeetings().forEach(meetings::remove);
         editedClient.getMeetings().forEach(meetings::add);
     }
@@ -170,7 +169,7 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
      * The Meeting identity of {@code editedMeeting} must not be the same as
      * another existing Meeting in MyInsuRec.
      */
-    public void setMeeting(Meeting target, Meeting editedMeeting) {
+    public void setMeeting(Meeting target, Meeting editedMeeting) throws ConflictingMeetingException {
         requireNonNull(editedMeeting);
 
         meetings.setMeeting(target, editedMeeting);

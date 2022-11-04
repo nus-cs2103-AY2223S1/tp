@@ -18,8 +18,8 @@ import seedu.address.model.meeting.Meeting;
  */
 public class TypicalMeetings {
     public static final Meeting MEETING1 = new MeetingBuilder().withDescription("meeting1")
-            .withMeetingDate(LocalDate.of(2020, 1, 8))
-            .withMeetingStartTime(LocalTime.of(7, 20))
+            .withMeetingDate(LocalDate.of(2023, 1, 8))
+            .withMeetingStartTime(LocalTime.of(7, 20, 45, 342123342))
             .withClient(ALICE).build();
 
     public static final Meeting MEETING2 = new MeetingBuilder().withDescription("meeting2")

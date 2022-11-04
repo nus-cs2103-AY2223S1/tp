@@ -38,6 +38,16 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
     }
 
     /**
+     * Returns true if the list contains a meeting that is not the given {@code except} and
+     * conflicts with {@code toCheck}.
+     */
+    public boolean containsExcept(Meeting toCheck, Meeting except) {
+        requireAllNonNull(toCheck, except);
+        return internalList.stream().anyMatch(meeting ->
+                toCheck.willConflict(meeting) && except != meeting);
+    }
+
+    /**
      * Returns true if the list contains an identical meeting as the given argument.
      */
     public boolean containsSpecific(Meeting toCheck) {
@@ -62,7 +72,7 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
      * {@code target} must exist in the list.
      * The {@code editedMeeting} must not conflict with another existing meeting in the list.
      */
-    public void setMeeting(Meeting target, Meeting editedMeeting) {
+    public void setMeeting(Meeting target, Meeting editedMeeting) throws ConflictingMeetingException {
         requireAllNonNull(target, editedMeeting);
 
         int index = internalList.indexOf(target);
@@ -70,8 +80,7 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
             throw new MeetingNotFoundException();
         }
 
-        if (contains(editedMeeting) && !target.willConflict(editedMeeting)) {
-            // Any timing conflicts with the original timing is okay
+        if (containsExcept(editedMeeting, target)) {
             throw new ConflictingMeetingException();
         }
 
@@ -100,7 +109,7 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
      */
     public void setMeetings(List<Meeting> meetings) {
         requireAllNonNull(meetings);
-        if (!meetingsDoNotConflict(meetings)) {
+        if (!hasNoConflictingMeetings(meetings)) {
             throw new ConflictingMeetingException();
         }
 
@@ -138,7 +147,7 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
     /**
      * Returns true if {@code meetings} do not contain conflicting meetings.
      */
-    private boolean meetingsDoNotConflict(List<Meeting> meetings) {
+    private boolean hasNoConflictingMeetings(List<Meeting> meetings) {
         for (int i = 0; i < meetings.size() - 1; i++) {
             for (int j = i + 1; j < meetings.size(); j++) {
                 if (meetings.get(i).willConflict(meetings.get(j))) {

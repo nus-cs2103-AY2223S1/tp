@@ -81,10 +81,6 @@ public class Client {
         return birthday;
     }
 
-    public boolean hasMeeting(Meeting meeting) {
-        return meetings.contains(meeting);
-    }
-
     public List<Meeting> getMeetings() {
         return Collections.unmodifiableList(meetings);
     }
