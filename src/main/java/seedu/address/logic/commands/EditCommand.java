@@ -106,7 +106,7 @@ public class EditCommand extends Command {
         }
 
 
-        for(Task task : personToEdit.getTasks()) {
+        for (Task task : personToEdit.getTasks()) {
             task.setPerson(editedPerson);
         }
 
