@@ -271,6 +271,7 @@ Format: `markq INDEX`
 * The index must be a positive integer 1, 2, 3, ...
 * The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
   indexes are 1, 2, 3 and 4.
+* Note: A marked question can be marked again.
 
 Example:
 
@@ -289,6 +290,7 @@ Format: `unmarkq INDEX`
 * The index must be a positive integer 1, 2, 3, ...
 * The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
   indexes are 1, 2, 3 and 4.
+* Note: An unmarked question can be unmarked again.
 
 Example:
 

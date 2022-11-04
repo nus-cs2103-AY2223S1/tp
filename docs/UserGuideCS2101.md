@@ -12,9 +12,12 @@ needs as a CS2103T TA.
 
 **:information_source: What is a Command Line Interface (CLI)?**<br>
 
-It is a programme that allows you to create, modify and delete files using a text-based user interface. In SETA, all 
-you have to do is to type in the command box and press enter to track your students and manage your questions and 
+It is a programme that allows you to create, modify and delete files using a text-based display. In SETA, all 
+you have to do is to type in the command box (red rectangle in the image below) and press enter to track your students 
+and manage your questions and 
 tutorials.
+
+![CommandBox](images/ug-screenshots/commandbox.png)
 
 </div>
 
@@ -47,7 +50,9 @@ tutorials.
 
 ## Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or 
+   above installed in your Computer. If you have issues doing so, refer to the troubleshooting guide [here]
+   (https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-0DB9580B-1ACA-4C13-8A83-9780BEDF30BB).
 
 1. Download the latest `SETA.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-4/tp/releases).
 
@@ -55,7 +60,7 @@ tutorials.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/ug-screenshots/UiStartup.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`liststu`** and pressing Enter will
    list all the students in the 'Student' column.<br>
@@ -75,7 +80,7 @@ Refer to the [Features](#features) below for details of each command.
 
 ## Features
 
-SETA contains features that allow you to manage 3 kinds of lists:
+SETA contains features that allow you to manage 3 things:
 1. [Students](#students)
 2. [Questions](#questions)
 3. [Tutorials](#tutorials)
@@ -253,7 +258,7 @@ rest of the module's students can benefit from knowing this question.
 ### Adding a question : `addq`
 
 Adds a question to the question list.
-This feature allows you to keep track of the students' questions.
+This feature allows you to keep track of your students' questions.
 
 Format: `addq QUESTION_DESCRIPTION`
 
@@ -281,7 +286,7 @@ Example:
 
 ### Unmarking a question : `unmarkq`
 
-Marks a question as unimportant. (If the question was previously or mistakenly marked as important)
+Allows you to mark a question as unimportant if the question was previously or mistakenly marked as important.
 
 Format: `unmarkq INDEX`
 
@@ -312,7 +317,8 @@ Example:
 * `deleteq 1` deletes the first question from the question list
 
 ### Tutorials
-Tutorials contain a `group number`, `content` to be taught, and its `date and time`. 
+Each tutorial has a group number, a topic to focus on and a date and time. These correspond to the `GROUP_NUMBER`, 
+`CONTENT` and `DATE TIME` parameters accordingly.
 
 
 ### Adding a tutorial : `addtut`
@@ -345,7 +351,7 @@ Example:
 
 ### Marking a tutorial: `marktut`
 
-Marks content in the tutorial as done.
+Marks the tutorial and its content as done.
 When the tutorial is over, you can indicate on the user interface that it is done.
 
 Format: `marktut INDEX`
@@ -373,7 +379,14 @@ Example:
 
 * `unmarktut 1` marks the first tutorial from the tutorial list as undone.
 
-### Exiting the program : `exit`
+### Clearing data in SETA : `clear`
+
+Clears the data in SETA. This is used when you just started using SETA (to clear the sample data given) or when you 
+want to start adding students, questions and tutorials from scratch again.
+
+Format: `clear `
+
+### Exiting the SETA : `exit`
 
 Exits the program.
 
@@ -392,11 +405,6 @@ directly by editing that data file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, SETA will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -421,4 +429,6 @@ the data of your previous SETA home folder.
 | **List**       | `liststu`                                  |
 | **Mark**       | `markq`, `unmarkq`, `marktut`, `unmarktut` |
 | **Tag**        | `helpstu`                                  |
+| **Clear**      | `clear`                                    |
 | **Exit**       | `exit`                                     |
+
