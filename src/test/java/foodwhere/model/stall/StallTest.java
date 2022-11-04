@@ -1,8 +1,10 @@
 package foodwhere.model.stall;
 
 import static foodwhere.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -93,5 +95,32 @@ public class StallTest {
         Stall alice = new StallBuilder(TypicalStalls.ALICE).withReviews(TypicalReviews.ALICE).build();
         editedAlice = new StallBuilder(TypicalStalls.ALICE).withReviews(TypicalReviews.BOB).build();
         assertFalse(alice.equals(editedAlice));
+    }
+
+    @Test
+    public void getTagString_generalTesting_success() {
+        String testString = "test";
+        Stall testStallNoTag = new StallBuilder().withName(testString).withAddress(testString).build();
+        assertEquals("", testStallNoTag.getTagString());
+
+        Stall testStallWOneTag = new StallBuilder(testStallNoTag).withTags("tag").build();
+        assertEquals("tag", testStallWOneTag.getTagString());
+
+        String[] tags = new String[] {"tag", "tag2", "tag3", "tag4", "tag5", "tag6"};
+        Stall testStallWManyTag = new StallBuilder(testStallNoTag).withTags(tags).build();
+        String tagString = testStallWManyTag.getTagString();
+        assertEquals(6, tagString.split(",").length);
+        for (String s: tagString.split(",")) {
+            String trimmed = s.trim();
+            if (!trimmed.equals(tags[0])
+                    && !trimmed.equals(tags[1])
+                    && !trimmed.equals(tags[2])
+                    && !trimmed.equals(tags[3])
+                    && !trimmed.equals(tags[4])
+                    && !trimmed.equals(tags[5])) {
+                // not valid tag
+                fail();
+            }
+        }
     }
 }

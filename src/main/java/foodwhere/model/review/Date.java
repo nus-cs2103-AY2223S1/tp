@@ -70,10 +70,8 @@ public class Date implements Comparable<Date> {
     private static LocalDate parseDate(String date, DateTimeFormatter[] formats) {
         for (DateTimeFormatter format : formats) {
             try {
+                // does not return null
                 LocalDate result = LocalDate.parse(date, format);
-                if (result == null) {
-                    continue;
-                }
                 return result;
             } catch (DateTimeParseException ex) {
                 // fallthrough - try another parser

@@ -8,6 +8,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+
+    @Test
+    public void testBooleanMethods_success() {
+        CommandResult commandResult = new CommandResult("feedback");
+        assertFalse(commandResult.isExit());
+        assertFalse(commandResult.isShowHelp());
+
+        CommandResult commandResultWHelp = new CommandResult("feedback", true, false);
+        assertFalse(commandResultWHelp.isExit());
+        assertTrue(commandResultWHelp.isShowHelp());
+
+        CommandResult commandResultWExit = new CommandResult("feedback", false, true);
+        assertTrue(commandResultWExit.isExit());
+        assertFalse(commandResultWExit.isShowHelp());
+
+        CommandResult commandResultWBoth = new CommandResult("feedback", true, true);
+        assertTrue(commandResultWBoth.isExit());
+        assertTrue(commandResultWBoth.isShowHelp());
+    }
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
