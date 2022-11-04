@@ -81,6 +81,14 @@ public class TaskBuilder {
     }
 
     /**
+     * Removes the {@code Exam} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withNoExam() {
+        this.linkedExam = null;
+        return this;
+    }
+
+    /**
      * Sets the {@code PriorityTag} of the {@code Task} which is being built.
      *
      * @param priorityTag The priority tag being set.
