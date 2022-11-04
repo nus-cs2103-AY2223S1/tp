@@ -60,7 +60,7 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Long Time No See application.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
 ![GUI.png](./images/GUI.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -309,6 +309,10 @@ Sorting **KEYWORDS** are shown in the table below:
 | `income`         | From highest to lowest income                                                                                        |
 | `risk appetite`  | From highest to lowest ie. "H" to "M" to "L"                                                                         |
 
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+If your client's name contains non-alphanumeric characters, sorting by name might not function properly!
+</div>
 
 Examples:
 * `sort name` will display your address book in alphabetical order based on their name
