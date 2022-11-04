@@ -291,6 +291,7 @@ Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTIO
 * `DATE` should be given in the format yyyy-MM-dd, e.g. 2022-10-24.
 * `TIMESLOT` takes in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
 * You can add consultations from the past to keep track of all your consultations and progress throughout the semester.
+* In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 Examples:
 * `add consultation n/JakeKim m/CS2103T D/2023-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
@@ -306,6 +307,7 @@ Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/D
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing the timeslot or the date, both fields must be given.
+* In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 Examples:
 * `edit consultation 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
@@ -340,6 +342,7 @@ Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 * You can add reminders from the past to keep track of all your tasks and progress throughout the semester.
 * You cannot add 2 reminders of the same name, date, time and description as they are considered duplicate.
 * Whenever a reminded is added, it will be **automatically sorted by priority**, just like when `sort reminder by/priority` is used so that the tasks deemed most important are shown at the top of the list.
+* In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 
 Examples:
@@ -358,6 +361,7 @@ Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPT
 * Existing values will be updated to the input values.
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
 * When editing the `DATE` or `TIME`, both fields must be given.
+* In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 
 Examples:
@@ -515,6 +519,20 @@ _Details coming soon..._
 | **Parameter**                      | A component of the command that the user will need to input.<br> e.g., `sort reminder by/deadline` where deadline is the parameter.                                                            |
 | **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix. |
 | **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                   |
+
+### 6.2 Notes
+
+<a name="notes-autocorrect-dates"></a>
+#### 6.2.1 Note on autocorrecting invalid dates
+
+ModQuik will assume some invalid dates to be correct and autocorrect the date to the last valid day of that month. See the below examples for a better explanation.
+
+Examples:
+* `add reminder n/mark papers D/2022-11-31 T/13:00 p/HIGH d/300 papers to mark` will set a reminder on 2022 Nov 30 instead. ModQuik reasonably assumes that the user wishes to set the date on the last day of November.
+* `add reminder n/mark papers D/2023-02-29 T/13:00 p/HIGH d/300 papers to mark` will set a reminder on 2023 Feb 28 instead, since 2023 is not a leap year, with 2023 February having 28 days.
+* `add reminder n/mark papers D/2024-02-30 T/13:00 p/HIGH d/300 papers to mark` will set a reminder on 2024 Feb 29 instead, since 2024 is a leap year, with 2024 February having 29 days.
+* `add reminder n/mark papers D/2022-11-32 T/13:00 p/HIGH d/300 papers to mark` will show an error instead. This is because none of the months have 32 days, and the date is more likely to be a user typo.
+
 
 ### 6.2 Command summary
 
