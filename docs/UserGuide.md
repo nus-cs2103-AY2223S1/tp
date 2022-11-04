@@ -9,7 +9,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 -------------------------------------------------------------------------------------------------------------------------
 
 ## Features
-* [Add a patient (addpatient)](#1.1.1-adding-a-patient)
+* [Add a patient (addpatient)](#111-adding-a-patient-addpatient-ap)
 * Add an appointment of a patient (addappointment)
 * Add a bill of an appointment (addbill)
 * Edit a patient (editpatient)
