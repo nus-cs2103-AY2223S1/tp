@@ -78,4 +78,8 @@ public class Date {
         return this.date;
     }
 
+    public static Date today() {
+        return new Date(LocalDate.now());
+    }
+
 }

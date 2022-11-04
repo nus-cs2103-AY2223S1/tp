@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,7 +23,7 @@ public class Nurse extends Person {
     private final List<HomeVisit> homeVisitList = new ArrayList<>();
     private final List<Date> unavailableDateList = new ArrayList<>();
     private final List<Date> fullyScheduledDateList = new ArrayList<>();
-    private final Set<Appointment> appointments = new HashSet<>();
+    private final List<Appointment> appointments = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -37,6 +36,18 @@ public class Nurse extends Person {
         this.fullyScheduledDateList.addAll(fullyScheduledDates);
     }
 
+    /**
+     * Nurse Constructor used when first creating the nurse object
+     *
+     * @param uid              The nurse's uid
+     * @param name             The nurse's name
+     * @param gender           The nurse's gender
+     * @param phone            The nurse's phone number
+     * @param email            The nurse's email
+     * @param address          The nurse's address
+     * @param tags             The nurse's tags
+     * @param unavailableDates The nurse's unavailable dates
+     */
     public Nurse(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags,
             List<Date> unavailableDates) {
         super(uid, name, gender, phone, email, address, tags);
@@ -126,6 +137,7 @@ public class Nurse extends Person {
      */
     public void addAppointment(Appointment newAppointment) {
         this.appointments.add(newAppointment);
+        updateFullyScheduledDateList();
     }
 
     /**
@@ -178,5 +190,21 @@ public class Nurse extends Person {
 
     public String toLiteString() {
         return String.format("Nurse [Uid:%s]", this.getUid());
+    }
+
+    private void updateFullyScheduledDateList() {
+        Long appointmentTodayCount = appointments.stream()
+                .filter(Appointment::isToday).count();
+        if (appointmentTodayCount > 4L) {
+            fullyScheduledDateList.add(Date.today());
+        }
+    }
+
+    public boolean isFreeDuring(AppointmentDateTime appointmentDateTime) {
+        return !(hasAppointment(appointmentDateTime) || isUnavailableDuring(appointmentDateTime));
+    }
+
+    private boolean isUnavailableDuring(AppointmentDateTime appointmentDateTime) {
+        return unavailableDateList.contains(appointmentDateTime.getDate());
     }
 }

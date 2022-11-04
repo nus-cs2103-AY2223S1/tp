@@ -5,15 +5,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.NURSE;
 import static seedu.address.testutil.TypicalPersons.PATIENT;
 
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.appointment.enums.AppointmentSlotNumber;
+import seedu.address.model.person.Date;
 
 public class AppointmentTest {
 
-    private AppointmentDateTime testAppointmentDateTime = new AppointmentDateTime(LocalDate.now(),
+    private AppointmentDateTime testAppointmentDateTime = new AppointmentDateTime(Date.today(),
             AppointmentSlotNumber.ONE);
 
     @Test

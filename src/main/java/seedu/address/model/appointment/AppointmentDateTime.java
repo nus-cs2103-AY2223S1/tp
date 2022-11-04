@@ -1,15 +1,15 @@
 package seedu.address.model.appointment;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import seedu.address.model.appointment.enums.AppointmentSlotNumber;
+import seedu.address.model.person.Date;
 
 /**
  * Represents the datetime of an appointment between a patient and a nurse.
  */
 public class AppointmentDateTime implements Comparable<AppointmentDateTime> {
-    private final LocalDate date;
+    private final Date date;
     private final AppointmentSlotNumber slotNumber;
 
     /**
@@ -18,7 +18,7 @@ public class AppointmentDateTime implements Comparable<AppointmentDateTime> {
      * @param date       The date of the appointment
      * @param slotNumber The slot number of the appointment
      */
-    public AppointmentDateTime(LocalDate date, AppointmentSlotNumber slotNumber) {
+    public AppointmentDateTime(Date date, AppointmentSlotNumber slotNumber) {
         this.date = date;
         this.slotNumber = slotNumber;
     }
@@ -29,11 +29,19 @@ public class AppointmentDateTime implements Comparable<AppointmentDateTime> {
      * @return The corresponding LocalDateTime object
      */
     public LocalDateTime export() {
-        return LocalDateTime.of(date, slotNumber.getTime());
+        return LocalDateTime.of(date.getDate(), slotNumber.getTime());
     }
 
     @Override
     public int compareTo(AppointmentDateTime o) {
-        return this.export().compareTo(o.export());
+        return export().compareTo(o.export());
+    }
+
+    public boolean isToday() {
+        return date.equals(Date.today());
+    }
+
+    public Date getDate() {
+        return date;
     }
 }

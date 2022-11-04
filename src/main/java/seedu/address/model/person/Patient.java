@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -26,7 +25,7 @@ public class Patient extends Person {
     public final List<DateSlot> dateSlots = new ArrayList<>();
     private final Optional<Physician> attendingPhysician;
     private final Optional<NextOfKin> nextOfKin;
-    private final Set<Appointment> appointments = new HashSet<>();
+    private final List<Appointment> appointments = new ArrayList<>();
 
     /**
      * Initialise patient with no attending physician and no next of kin.
@@ -193,6 +192,10 @@ public class Patient extends Person {
      *         time
      */
     public boolean hasAppointment(AppointmentDateTime appointmentDateTime) {
-        return appointments.stream().anyMatch(appt -> appt.getAppointmentDateTime().equals(appointmentDateTime));
+        return appointments.stream().anyMatch(appt -> appt.isDuring(appointmentDateTime));
+    }
+
+    public boolean isFreeDuring(AppointmentDateTime appointmentDateTime) {
+        return !hasAppointment(appointmentDateTime);
     }
 }

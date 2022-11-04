@@ -33,12 +33,15 @@ public class AppointmentManager {
     public Appointment createNewAppointment(Patient patient, Nurse nurse, AppointmentDateTime appointmentDateTime)
             throws NurseIsBusyException, PatientIsBusyException {
         requireAllNonNull(patient, nurse, appointmentDateTime);
-        if (hasAppointment(patient, appointmentDateTime)) {
+
+        if (!patient.isFreeDuring(appointmentDateTime)) {
             throw new PatientIsBusyException();
         }
-        if (hasAppointment(nurse, appointmentDateTime)) {
+
+        if (!nurse.isFreeDuring(appointmentDateTime)) {
             throw new NurseIsBusyException();
         }
+
         Appointment newAppointment = new Appointment(patient, nurse, appointmentDateTime);
         newAppointment.create();
         return newAppointment;
@@ -59,8 +62,10 @@ public class AppointmentManager {
     public void removeAppointment(Patient patient, Nurse nurse, AppointmentDateTime appointmentDateTime)
             throws AppointmentNotFoundException {
         requireAllNonNull(patient, nurse, appointmentDateTime);
+
         Appointment appointment = findAppointment(nurse, patient, appointmentDateTime)
                 .orElseThrow(AppointmentNotFoundException::new);
+
         appointment.delete();
     }
 
@@ -107,14 +112,18 @@ public class AppointmentManager {
         if (Objects.isNull(appointmentDateTime)) {
             throw new IllegalArgumentException("Appointment start datetime must be given");
         }
+
         if (Objects.isNull(oldNurse) || Objects.isNull(newNurse)) {
             throw new IllegalArgumentException("Both Nurses must be given");
         }
+
         Appointment appointment = findAppointment(oldNurse, appointmentDateTime)
                 .orElseThrow(AppointmentNotFoundException::new);
-        if (hasAppointment(newNurse, appointmentDateTime)) {
+
+        if (!newNurse.isFreeDuring(appointmentDateTime)) {
             throw new NurseIsBusyException("The new nurse is busy");
         }
+
         appointment.changeNurseTo(newNurse);
     }
 
@@ -161,29 +170,4 @@ public class AppointmentManager {
         requireAllNonNull(nurse, patient, appointmentDateTime);
         return patient.findAppointment(nurse, appointmentDateTime);
     }
-
-    // /**
-    // * Returns the set of appointments of a given patient
-    // *
-    // * @param patient The given patient
-    // * @return The set of appointments of the given patient
-    // */
-    // public Set<Appointment> getAppointmentsByPatient(Patient patient) {
-    // return this.appointments.stream().filter(appointment ->
-    // appointment.hasPatient(patient))
-    // .collect(Collectors.toSet());
-    // }
-
-    // /**
-    // * Returns the set of appointments of a given patient
-    // *
-    // * @param nurse The given nurse
-    // * @return The set of appointments of the given nurse
-    // */
-    // public Set<Appointment> getAppointmentsByNurse(Nurse nurse) {
-    // return this.appointments.stream().filter(appointment ->
-    // appointment.hasNurse(nurse))
-    // .collect(Collectors.toSet());
-    // }
-
 }

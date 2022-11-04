@@ -5,7 +5,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.NURSE;
 import static seedu.address.testutil.TypicalPersons.PATIENT;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -14,12 +13,13 @@ import seedu.address.model.appointment.enums.AppointmentSlotNumber;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.NurseIsBusyException;
 import seedu.address.model.appointment.exceptions.PatientIsBusyException;
+import seedu.address.model.person.Date;
 
 public class AppointmentManagerTest {
 
     private final AppointmentManager appointmentManager = new AppointmentManager();
 
-    private final AppointmentDateTime testDateTime = new AppointmentDateTime(LocalDate.now(),
+    private final AppointmentDateTime testDateTime = new AppointmentDateTime(Date.today(),
             AppointmentSlotNumber.ONE);
 
     private Appointment createMockAppointment() {

@@ -156,4 +156,12 @@ public class Appointment implements Comparable<Appointment> {
         setNurse(newNurse);
         nurse.addAppointment(this);
     }
+
+    public boolean isToday() {
+        return appointmentDateTime.isToday();
+    }
+
+    public boolean isDuring(AppointmentDateTime apptDateTime) {
+        return appointmentDateTime.equals(apptDateTime);
+    }
 }
