@@ -52,7 +52,7 @@ It is written in Java.
   * Release of Pupilist `v1.3.0` and `v1.3.1` 
 
 * **Review/mentoring contributions**:
-  * PR reviews: Pull Requests [#107](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/107), [#70](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/70)
+  * [PR reviews](https://github.com/AY2223S1-CS2103T-W09-4/tp/pulls?q=is%3Apr+reviewed-by%3AAshiqurrah+)
 
 * **Contributions beyond the project team**:
   * [Bugs Reported](https://github.com/AshiqurRah/ped/issues)
