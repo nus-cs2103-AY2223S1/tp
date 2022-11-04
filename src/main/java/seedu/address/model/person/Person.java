@@ -41,7 +41,10 @@ public class Person extends AbstractDisplayItem {
         }
 
         return otherPerson != null
-            && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && ((!isBothEmailNull(otherPerson) && isSameEmail(otherPerson))
+                    || (!isBothPhoneNull(otherPerson) && isSamePhone(otherPerson))
+                    || (isSameEmail(otherPerson) && isSamePhone(otherPerson)));
     }
 
     @Override

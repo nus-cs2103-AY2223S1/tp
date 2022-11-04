@@ -58,4 +58,17 @@ public class Email extends AbstractAttribute<String> implements PrefixedAttribut
     public Prefix getPrefix() {
         return PREFIX_EMAIL;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true; // short circuit if same object
+        } else if (o instanceof Email) {
+            Email email = (Email) o;
+            String currEmail = value.replaceAll("\\s+", "");
+            String otherEmail = email.value.replaceAll("\\s+", "");
+            return currEmail.equalsIgnoreCase(otherEmail);
+        }
+        return false;
+    }
 }

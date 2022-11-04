@@ -45,4 +45,17 @@ public class Name extends AbstractAttribute<String> implements PrefixedAttribute
     public Prefix getPrefix() {
         return PREFIX_NAME;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true; // short circuit if same object
+        } else if (o instanceof Name) {
+            Name n = (Name) o;
+            String currName = fullName.replaceAll("\\s+", "");
+            String otherName = n.fullName.replaceAll("\\s+", "");
+            return currName.equalsIgnoreCase(otherName);
+        }
+        return false;
+    }
 }

@@ -41,4 +41,15 @@ public class Phone extends AbstractAttribute<String> implements PrefixedAttribut
     public Prefix getPrefix() {
         return PREFIX_PHONE;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        } else if (o instanceof Phone) {
+            Phone otherPhone = (Phone) o;
+            return value.equals(otherPhone.value);
+        }
+        return false;
+    }
 }

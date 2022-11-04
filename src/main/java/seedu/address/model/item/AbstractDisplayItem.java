@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.attribute.AbstractAttribute;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;
@@ -167,5 +168,39 @@ public abstract class AbstractDisplayItem implements DisplayItem {
             return false;
         }
         return stronglyEqual((AbstractDisplayItem) obj);
+    }
+
+    public boolean isSameEmail(AbstractDisplayItem displayItem) {
+        Attribute<?> currentEmail = attributes.findAttribute("Email");
+        Attribute<?> otherEmail = displayItem.attributes.findAttribute("Email");
+        if (currentEmail == otherEmail) {
+            return true;
+        } else if (currentEmail == null || otherEmail == null) {
+            return false;
+        }
+        return currentEmail.equals(otherEmail);
+    }
+
+    public boolean isBothEmailNull(AbstractDisplayItem displayItem) {
+        Attribute<?> currentEmail = attributes.findAttribute("Email");
+        Attribute<?> otherEmail = displayItem.attributes.findAttribute("Email");
+        return currentEmail == null && otherEmail == null;
+    }
+
+    public boolean isSamePhone(AbstractDisplayItem displayItem) {
+        Attribute<?> currentPhone = attributes.findAttribute("Phone");
+        Attribute<?> otherPhone = displayItem.attributes.findAttribute("Phone");
+        if (currentPhone == otherPhone) {
+            return true;
+        } else if (currentPhone == null || otherPhone == null) {
+            return false;
+        }
+        return currentPhone.equals(otherPhone);
+    }
+
+    public boolean isBothPhoneNull(AbstractDisplayItem displayItem) {
+        Attribute<?> currentPhone = attributes.findAttribute("Phone");
+        Attribute<?> otherPhone = displayItem.attributes.findAttribute("Phone");
+        return currentPhone == null && otherPhone == null;
     }
 }
