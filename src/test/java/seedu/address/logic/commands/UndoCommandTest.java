@@ -17,6 +17,7 @@ public class UndoCommandTest {
     public void execute_success() {
         UndoCommand undoCommand = new UndoCommand();
         String expectedMessage = UndoCommand.MESSAGE_SUCCESS;
+        // history of two commands added: the first one is an arbitrary command, the second is the undo command
         model.updateTeachersPetHistory();
         model.updateTeachersPetHistory();
         ModelManager expectedModel = new ModelManager(getTypicalTeachersPet(), new UserPrefs());
