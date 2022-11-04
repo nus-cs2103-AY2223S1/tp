@@ -254,6 +254,12 @@ public class ModelManager implements Model {
     public void updateFilteredCommissionList(Predicate<Commission> predicate) {
         requireAllNonNull(getFilteredCommissionList(), predicate);
         getFilteredCommissionList().setPredicate(predicate);
+        if (getFilteredCommissionList().size() == 0) {
+            selectCommission(null);
+        } else if (hasSelectedCommission() && getFilteredCommissionList().stream()
+                .noneMatch(selectedCommission.getValue()::isSameCommission)) {
+            selectCommission(getFilteredCommissionList().get(0));
+        }
     }
 
     //=========== Filtered Commission List Statistic Aggregator ==================================================
