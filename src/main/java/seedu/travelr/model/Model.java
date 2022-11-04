@@ -127,20 +127,6 @@ public interface Model {
     void updateSelectedTrip(Trip trip);
 
     /**
-     * Replaces the given trip {@code target} with {@code editedTrip}.
-     * {@code target} must exist in the Travelr.
-     * The trip identity of {@code editedTrip} must not be the same as another existing trip in Travelr.
-     */
-    void setTrip(Trip target, Trip editedTrip);
-
-    /**
-     * Replaces the given event {@code target} with {@code editedEvent}.
-     * {@code target} must exist in Travelr.
-     * The event must not already exist in Travelr.
-     */
-    void setEvent(Event target, Event editedEvent);
-
-    /**
      * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Trip> getFilteredTripList();
