@@ -24,11 +24,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
     public static final int MAX_INDEX = 1000;
     public static final int MAX_DAYS = 9999;
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer less than or equal to "
-            + "1000.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INDEX_GREATER_THAN_MAX = "Index provided is greater than max value allowed.";
-    public static final String MESSAGE_INVALID_DAYS = "Days provided is not a non-zero unsigned integer less than "
-            + "10000.";
+    public static final String MESSAGE_INVALID_DAYS = "Days provided is not a non-zero unsigned integer.";
     public static final String MESSAGE_DAYS_GREATER_THAN_MAX = "Days provided is greater than max value allowed.";
 
     /**
