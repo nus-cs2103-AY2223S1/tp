@@ -28,7 +28,7 @@ import seedu.address.model.person.PersonId;
 public class AddInternshipCommand extends Command {
     public static final String COMMAND_WORD = "add -i";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a internship to InterNUS. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a internship to InterNUS.\n"
             + "Parameters: "
             + PREFIX_COMPANY_NAME + "COMPANY_NAME "
             + PREFIX_INTERNSHIP_ROLE + "INTERNSHIP_ROLE "
@@ -96,10 +96,11 @@ public class AddInternshipCommand extends Command {
         PersonId idToLink = contactPersonId;
 
         List<Person> lastShownList = model.getFilteredPersonList();
+        Person contactPerson = null;
         // If a linkIndex is supplied to the command,
         // attempt to find a contactPerson via the provided index in the filtered person list
         if (linkIndex != null && linkIndex.getZeroBased() < lastShownList.size()) {
-            Person contactPerson = lastShownList.get(linkIndex.getZeroBased());
+            contactPerson = lastShownList.get(linkIndex.getZeroBased());
 
             // The person to link to must not already be linked to an internship
             if (contactPerson.getInternshipId() == null) {
@@ -120,8 +121,21 @@ public class AddInternshipCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
+        String linkMessage = "";
+        if (contactPerson != null) {
+            if (contactPerson.getInternshipId() == null) {
+                linkMessage = String.format("\nContact person linked successfully: "
+                        + LinkCommand.MESSAGE_SUCCESS, contactPerson.getName(), toAdd.getDisplayName());
+            } else {
+                linkMessage = String.format("\nWarning: Failed to link contact person: "
+                        + LinkCommand.MESSAGE_LINKED_PERSON,
+                        contactPerson.getName(),
+                        model.findInternshipById(contactPerson.getInternshipId()).getDisplayName());
+            }
+        }
+
         model.addInternship(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd) + linkMessage);
     }
 
     @Override

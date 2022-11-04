@@ -132,8 +132,6 @@ public class Internship {
         }
 
         Internship otherInternship = (Internship) other;
-        // solution adapted from
-        // https://stackoverflow.com/a/36716166
         return otherInternship.getInternshipId().equals(getInternshipId())
                 && otherInternship.getCompanyName().equals(getCompanyName())
                 && otherInternship.getInternshipRole().equals(getInternshipRole())
@@ -157,7 +155,7 @@ public class Internship {
                 .append(getInternshipRole())
                 .append("; Status: ")
                 .append(getInternshipStatus())
-                .append("; InterviewDate: ")
+                .append("; Interview Date: ")
                 .append(getInterviewDate());
 
         return builder.toString();

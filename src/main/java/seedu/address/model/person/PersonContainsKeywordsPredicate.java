@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import seedu.address.model.tag.Tag;
-
 /**
  * Tests that a {@code Person}'s {@code Name}, {@code Phone},
  * {@code Email}, and {@code Tags} match any of the keywords given.
@@ -46,7 +44,8 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
                     keyword -> person.getEmail().value != null
                             && person.getEmail().value.toLowerCase().contains(keyword.toLowerCase())))
                 && (tagKeywords.isEmpty() || tagKeywords.stream().anyMatch(
-                        keyword -> person.getTags() != null && person.getTags().contains(new Tag(keyword))))
+                    keyword -> person.getTags() != null
+                            && person.getTags().stream().anyMatch(t -> t.tagName.toLowerCase().contains(keyword))))
                 && (companyKeywords.isEmpty() || companyKeywords.stream().anyMatch(
                     keyword -> person.getCompany().fullName != null
                             && person.getCompany().fullName.toLowerCase().contains(keyword.toLowerCase())));
@@ -64,8 +63,6 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
 
         PersonContainsKeywordsPredicate otherPredicate = (PersonContainsKeywordsPredicate) other;
 
-        // solution adapted from
-        // https://stackoverflow.com/a/36716166
         return Objects.equals(nameKeywords, otherPredicate.nameKeywords)
                 && Objects.equals(phoneKeywords, otherPredicate.phoneKeywords)
                 && Objects.equals(emailKeywords, otherPredicate.emailKeywords)

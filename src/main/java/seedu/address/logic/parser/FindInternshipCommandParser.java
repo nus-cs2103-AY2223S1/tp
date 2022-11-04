@@ -32,7 +32,13 @@ public class FindInternshipCommandParser implements Parser<FindInternshipCommand
                         PREFIX_INTERNSHIP_STATUS,
                         PREFIX_INTERVIEW_DATE);
 
-        if (!argMultimap.getPreamble().isEmpty()) {
+        if (!ParserUtil.isAnyPrefixPresent(
+                argMultimap,
+                PREFIX_COMPANY_NAME,
+                PREFIX_INTERNSHIP_ROLE,
+                PREFIX_INTERNSHIP_STATUS,
+                PREFIX_INTERVIEW_DATE)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindInternshipCommand.MESSAGE_USAGE));
         }
