@@ -70,7 +70,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/Main.java) and 
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/Main.java) and
 [`MainApp`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -111,8 +111,8 @@ The sections below give more details of each component.
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `PersonViewPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
-For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -144,7 +144,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -220,9 +220,9 @@ default list.
 ![CheckoutState0](images/CheckoutState0.png)
 
 Step 2. The user executes `checkout june-2022` command to load the JSON `june-2022.json` to the storage.
-The `checkout` command calls `CheckoutCommandParser#parse()`, which checks if the user input is valid, which in turn 
-calls `CheckoutCommand#execute()` if it is valid. If the list does not exist in the `data` folder, the list be created 
-and populated with sample data. `Model` and `Storage` are then loaded with the specified list and the call returns a 
+The `checkout` command calls `CheckoutCommandParser#parse()`, which checks if the user input is valid, which in turn
+calls `CheckoutCommand#execute()` if it is valid. If the list does not exist in the `data` folder, the list be created
+and populated with sample data. `Model` and `Storage` are then loaded with the specified list and the call returns a
 `CommandResult` to `Logic`.
 
 ![CheckoutState1](images/CheckoutState1.png)
@@ -249,7 +249,7 @@ The following activity diagram summarizes what happens when a user executes a ch
 
 * **Alternative 1 (current choice):** Tell the instance of Storage and Model to load the specified AddressBook.
     * Pros: Will use less memory (e.g. for each AddressBook, just reuse the current instance of Storage and Model).
-    * Cons: We must ensure that there are no unintended side effects to the modification of both instances. 
+    * Cons: We must ensure that there are no unintended side effects to the modification of both instances.
       (e.g. Coupling and Dependencies)
 
 * **Alternative 2 (previous choice):** Create a new instance of Storage and Model that loads the specified AddressBook
@@ -315,7 +315,7 @@ The `import` feature allows the user to append their list with another list impo
 
 #### Implementation
 
-The import feature is done through a `ImportCommand` that extends `Command`. It is supported by `ImportCommandParser` 
+The import feature is done through a `ImportCommand` that extends `Command`. It is supported by `ImportCommandParser`
 and `JsonAddressBookStorage`.
 
 Given below is an example success scenario and how the `import` mechanism behaves at each step.
@@ -323,9 +323,9 @@ Given below is an example success scenario and how the `import` mechanism behave
 1. The user executes `import fileName.json`.
 2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
 3. `LogicManager` calls `ImportCommand#execute(model, storage)`.
-4. `ImportCommand` creates a`JsonAddressBookStorage` object using the specified file, and calls 
+4. `ImportCommand` creates a`JsonAddressBookStorage` object using the specified file, and calls
    `JsonAddressBookStorage#readAddressBook()` to create the `AddressBook` that is going to be appended.
-5. `ImportCommand` then calls `Model#appendAddressBook(toAppend)` to append it to the original list. 
+5. `ImportCommand` then calls `Model#appendAddressBook(toAppend)` to append it to the original list.
 6. A `CommandResult` object indicating that the `import` command is successful will be created.
 
 The following sequence diagram shows how the `import` command works:
@@ -503,10 +503,10 @@ The following sequence diagram shows how the `find` command works:
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
-a one-stop, convenient, and efficient platform to manage and empower 
-how internship campus recruiters work with their applicants’ data. 
-Say goodbye to opening multiple windows to retrieve the information you need and 
+**Value proposition**:
+a one-stop, convenient, and efficient platform to manage and empower
+how internship campus recruiters work with their applicants’ data.
+Say goodbye to opening multiple windows to retrieve the information you need and
 focus on what matters more: matching the right people for the right job.
 
 
@@ -519,7 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | potential user exploring the app  | see the sample data                                                                      | easily play around and understand how the app works                                                                              |
 | `* * *`  | new user                          | see the list of available things I can do with the app                                   | learn how to use the app fully                                                                                                   |
 | `* * *`  | new user                          | read the user guide                                                                      | I understand all the commands and features available in the app before using it                                                  |
-| `* * *`  | user                              | delete fields and data                                                                   |                                                                                                                                  | 
+| `* * *`  | user                              | delete fields and data                                                                   |                                                                                                                                  |
 | `* * *`  | user                              | add applicants                                                                           |                                                                                                                                  |
 | `* * *`  | user                              | mass add applicants' data                                                                | conveniently import my data quickly and without hassle                                                                           |
 | `* * *`  | user                              | view all details of my selected Applicant                                                | avoid opening and working with multiple files                                                                                    |
@@ -696,7 +696,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests for help
 2. InternConnect shows a pop-up window with the link to the User Guide
-    
+
     Use case ends.
 
 **Use case: Find an applicant**
@@ -726,7 +726,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 applicants without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
     should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  GUI should be color-blind friendly
 5.  Data should be stored locally and not use any database management system.
@@ -735,19 +735,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8.  Application should not use more than 4GB of RAM.
 9.  The product should be for a single user i.e. (not a multi-user product).
 10. The data should be stored locally and should be in a human editable text file.
-11. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for, 
-    standard screen resolutions 1920x1080 and higher, and, for screen scales 100% and 125%. 
-    
-    In addition, the GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for, 
-    resolutions 1280x720 and higher, and, for screen scales 150%.
+11. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for
+    standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%. 
+
+    In addition, the GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for
+    resolutions 1280x720 and higher, and for screen scales 150%.
 
 ### 6.5 Glossary
 
-* **Applicant**: An applicant refers to a person who has applied for a job. 
+* **Applicant**: An applicant refers to a person who has applied for a job.
 * **Job**: A job opening the applicant applied for
 * **Command Line Interface (CLI)**: Text-based user interface
 * **Graphical User Interface (GUI)**: Graphic-based user interface
-* **Mainstream OS**: Windows, Linux, Unix, OS-X 
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Main Success Scenario (MSS)**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 
 
@@ -758,7 +758,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">
-:information_source: Note: These instructions only provide a starting 
+:information_source: Note: These instructions only provide a starting
 point for testers to work on; testers are expected to do more exploratory testing.
 </div>
 
@@ -784,15 +784,15 @@ point for testers to work on; testers are expected to do more exploratory testin
 
    1. Prerequisites: No applicant with the email `johnd@example.com`
 
-   2. Test case: `add add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male 
+   2. Test case: `add add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male
       u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/J12300 jt/Software Engineer Intern t/rejected t/KIV`<br>
-      Expected: An applicant named John Doe is added. Details of the added applicant shown in the right panel. Success 
+      Expected: An applicant named John Doe is added. Details of the added applicant shown in the right panel. Success
       message shown in the status message.
 
 2. Adding a duplicate applicant to InternConnect
 
    1. Prerequisites: There exists an applicant with email `johndoe@example.com` and jobID `J12300`
-   
+
    2. Test case: `add add n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male
       u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/J12300 jt/Software Engineer Intern t/rejected t/KIV`<br>
       Expected: No applicant is added. Error details shown in the status message.
@@ -805,9 +805,9 @@ point for testers to work on; testers are expected to do more exploratory testin
 
 1. tc description
 
-   1. Prerequisites: 
+   1. Prerequisites:
 
-   2. Test case: 
+   2. Test case:
 
 2. more tc
 
@@ -826,7 +826,7 @@ point for testers to work on; testers are expected to do more exploratory testin
     1. Prerequisites: One applicant in the application.
 
     2. Test case: `edit 1 u/NUS p/12345678 g/male`<br>
-       Expected: The university, phone number, and gender of the applicant in the first index is changed to 
+       Expected: The university, phone number, and gender of the applicant in the first index is changed to
        `NUS`, `12345678`, and `male` respectively.
 
 
@@ -837,16 +837,16 @@ point for testers to work on; testers are expected to do more exploratory testin
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    2. Test case: `delete 1`<br>
-   
+
       Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
       Success message shown in the status message.
 
 2. Deleting a non-positive index
-   
+
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
-      
+
    2. Test case: `delete 0`<br>
-   
+
       Expected: No applicant is deleted. Error details shown in the status message.
 
 3. Other incorrect `delete` commands to try: `delete`, `delete john`, `delete x`(where `x` is larger than the list size)<br>
@@ -867,7 +867,7 @@ point for testers to work on; testers are expected to do more exploratory testin
 2. No applicants to search for
 
    1. Prerequisites: There is an empty list of applicants in InternConnect
-   
+
    2. Test case: `find specifer/SPECIFER_KEYWORD` <br>
      Expected: No applicants will be listed in the left display panel. 0 applicants found will be shown in the status message.
 
@@ -876,7 +876,7 @@ point for testers to work on; testers are expected to do more exploratory testin
 
 1. Importing several applicants from an external JSON file
 
-   1. Prerequisites: There exists a valid file named `test.json` with the correct formatting, no duplicate applicants, 
+   1. Prerequisites: There exists a valid file named `test.json` with the correct formatting, no duplicate applicants,
       and valid data values.
 
    2. Test case: `import test.json`<br>
@@ -884,17 +884,17 @@ point for testers to work on; testers are expected to do more exploratory testin
 
 2. Importing an external JSON file with invalid format, duplicate applicant, or invalid data values
 
-   1. Prerequisites: There exists a file named `format.json` with incorrect formatting, `duplicate.json` with 
+   1. Prerequisites: There exists a file named `format.json` with incorrect formatting, `duplicate.json` with
       duplicate applicants, and `invalid.json` with invalid data values.
 
    2. Test case: `import format.json`<br>
-      Expected: No applicant is added. Template file created in `data/template/template.json`. Error details shown in 
+      Expected: No applicant is added. Template file created in `data/template/template.json`. Error details shown in
       the status message.
-   
+
    3. Test case: `import duplicate.json`<br>
       Expected: No applicant is added. Template file created in `data/template/template.json`. Error details shown in
       the status message.
-   
+
    4. Test case: `import invalid.json`<br>
       Expected: No applicant is added. Template file created in `data/template/template.json`. Error details shown in
       the status message.
@@ -905,29 +905,29 @@ point for testers to work on; testers are expected to do more exploratory testin
 
 ### 7.8 Exporting displayed list to a JSON file
 
-1. Exporting empty displayed list 
+1. Exporting empty displayed list
 
    1. Test case: `find g/nonbinary` followed by `export`
-      
-      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is 
-      **"persons"** and value is an empty array.
-      
-   2. Test case: `find g/nonbinary` followed by `export 1`
-      
+
       Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
       **"persons"** and value is an empty array.
-      
+
+   2. Test case: `find g/nonbinary` followed by `export 1`
+
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
+      **"persons"** and value is an empty array.
+
 2. Exporting non-empty displayed list
 
    1. Prerequisite: currently displayed list is not empty
-      
+
    2. Test case: `export`
-      
-      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is 
+
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
       **"persons"** and value is a non-empty array.
-      
+
    3. Test case: `export a`
-      
+
       Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
       **"persons"** and value is a non-empty array.
 

@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 
   * Justification:
 
-    * This feature improves the product significantly because it empowers to user to search for applicants not just by name, but by whatever field that they want to search for, its' relevant keywords, all in 1 command. 
+    * This feature improves the product significantly because it empowers to user to search for applicants not just by name, but by whatever field that they want to search for, its' relevant keywords, all in 1 command.
     * This makes the `find` command much more powerful, robust, useful and customizable for the user to narrow down and find that specific applicant they are looking for.
 
   * Highlights:

@@ -15,13 +15,13 @@ Given below are my contributions to the project.
       Allows the user to view the details of an applicant in a separate panel.
 
     * Justification:
-      
+
       This feature significantly improves the user experience as after the implementaiton, the currently displayed list is less cluttered that it only contains name, job, email, and tags of an applicant. This is considering the amount of details that one applicant has (name, email, address, gender, phone, job, CAP, major, university, graduation date, tags).
 
       This feature also improves the user experience not only upon viewing an applicant, but also upon adding and editing an applicant where the modified applicant will also be shown in the view panel.
 
     * Highlights:
-      
+
       Difficulties were faced when I was trying to integrate `PersonViewPanel` to `MainWindow`, both in the respective `.java` and `.fxml` files. This is especially in the `.fxml` file, when I implemented the splitting of the panels in `MainWindow.fxml`. In the first iteration (`v1.2`), this worked out, but with some minor resizing where the application window cannot be maximized, and upon dragging the window to another screen (e.g. from laptop screen to a monitor screen) each panel was not resized, resulting in some white area. I managed to fix this resizing issue in the second iteration (`v1.3`).
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=maryjess&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
