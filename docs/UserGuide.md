@@ -27,13 +27,13 @@ If you are looking to help develop this project, take a look at our [Developer G
 * [**Quick start**](#quick-start)
 * [**Tutorial**](#tutorial)
 * [**Features**](#features)
-  * [**Inventory management**](#uinventory-managementu)
+  * [**Inventory management**](#inventory-management)
     * [Adding an inventory item: `addi`](#adding-an-inventory-item-addi)
     * [Listing all inventory items: `listi`](#listing-all-inventory-items-listi)
     * [Finding an inventory item: `findi`](#finding-an-inventory-item-findi)
     * [Deleting an inventory item: `deletei`](#deleting-an-inventory-item-deletei)
     * [Editing an inventory item: `editi`](#editing-an-inventory-item-editi)
-  * [**Order management**](#uorder-managementu)
+  * [**Order management**](#order-management)
     * [Adding an order: `addo`](#adding-an-order-addo)
     * [Listing all orders: `listo`](#listing-all-orders-listo)
     * [Finding order(s): `findo`](#finding-orders-findo)
@@ -41,7 +41,7 @@ If you are looking to help develop this project, take a look at our [Developer G
     * [Deleting an order: `deleto`](#deleting-an-order-deleteo)
     * [Editing an order: `edito`](#editing-an-order-edito)
     * [Marking an order as paid/delivered: `marko`](#marking-an-order-as-paiddelivered-marko)
-  * [**General features**](#ugeneral-featuresu)
+  * [**General features**](#general-features)
     * [Getting help: `help`](#getting-help-help)
     * [Clearing data in TrackO: `clear`](#clearing-all-data-in-tracko-clear)
     * [Exiting TrackO: `exit`](#exiting-tracko--exit)
@@ -98,9 +98,9 @@ example commands to play around with some of our sample data and get to know Tra
 Following that, as our application uses commands which require specific inputs. To help you out with learning the command formats used
 in this guide, you can head over to the [Command Guide](#command-guide) section of this guide. This will come in handy for you when 
 you're ready to get some in-depth exposure to our [features](#features). Because our applications helps your business handle 
-orders and inventory, we have split our commands into 2 sections. You can click [here](#uorder-managementu) to find commands 
-related to **managing orders** and click [here](#uinventory-managementu) to find commands which help with **inventory management**. For more **general features**, 
-you can go to [this section](#ugeneral-featuresu) as well!
+orders and inventory, we have split our commands into 2 sections. You can click [here](#order-management) to find commands 
+related to **managing orders** and click [here](#inventory-management) to find commands which help with **inventory management**. For more **general features**, 
+you can go to [this section](#general-features) as well!
 
 Lastly, we have included a handy [command summary](#command-summary) for when you're proficient at using TrackO and just want to take a quick look
 at any commands you need!
@@ -156,13 +156,9 @@ TrackO's functionalities!
 
    1. Adding an item: `addi`
        * If your small business has `350` units of the new item, `Teddy bear keychain` currently in your physical inventory.
-         It costs `$0.89` to make these keychains, and you will be selling them at `$3.50` each.
-       * You can add these items to TrackO, with the following command:
-      
-         ```
-         addi i/Teddy bear keychains q/350 
-         d/Great for kids! t/New sp/3.50 cp/0.89
-         ```
+         It costs `$0.89` to make these keychains, and you will be selling them at `$3.50` each. You can add these items 
+         to TrackO, with the following command:
+         `addi i/Teddy bear keychains q/350 d/Great for kids! t/New sp/3.50 cp/0.89`
       
        * This command also helps to add a short description to the item and tags it as `New`.
 
@@ -173,16 +169,11 @@ TrackO's functionalities!
 
     1. Adding an order: `addo`
        * If you have a customer named `Jonathan Chee` living at `43 Clementi Road, 639433` with an email address `JonChee@gmail.com` and phone number of
-        `96785944`. This customer has ordered 1 `Teddy bear keychain`.
-       * First, enter the customer details into the [command box](#layout) using the following command:
-         ```
-         addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com  
-         a/43 Clementi Road, 639433
-         ```
-       * Next, to add the items ordered by the customer, enter the following command into the [command box](#layout):
-         ```
-         i/teddy bear keychains q/1
-         ```
+        `96785944`. You can enter the customer details into the [command box](#layout) using the following command: <br>
+         `addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com a/43 Clementi Road, 639433`
+       * This customer has ordered 1 `Teddy bear keychain`. To add the items ordered by the customer, enter the 
+         following command into the [command box](#layout): <br>
+         `i/teddy bear keychains q/1`
        * Lastly, type `done` to finish adding an order to TrackO!
         
          You should see this order appear in TrackO at index 5 as shown below:
@@ -194,10 +185,10 @@ TrackO's functionalities!
    2. Finding order(s): `findo`
       * Our application allows you to search for orders by different fields (e.g. payment status, delivery status, customer details).
       * To find orders to be delivered to `Clementi` which have not been paid for, enter the following command to the [command box](#layout):
-         ```
-         findo -P a/Clementi
-         ```
-   You should see these orders appear in the [order list](#layout).
+         <br>
+         `findo -P a/Clementi`
+   
+        You should see these orders appear in the [order list](#layout).
 
    3. Listing order(s): `listo`
        * To view all your orders again, enter `listo`.
@@ -212,6 +203,7 @@ To check out more commands, you can head over to our [features section](#feature
 -------
 
 ## Command guide
+
 This section of the user guide helps to break down the formatting used for commands in this user guide.
 
 * Words in `UPPER_CASE` are the [parameters](#parameter) to be supplied by the user.<br>
@@ -581,23 +573,23 @@ Format: `exit`
 
 ## Command summary
 
-| Action                                                              | Format, Examples                                                                                                                                                                                                                                        |
-|---------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add An Inventory Item**](#adding-an-inventory-item-addi)         | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g. `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79.99 cp/50.00 [t/TAG]…​`                                                                               |
-| [**Delete An Inventory Item**](#deleting-an-inventory-item-deletei) | `deletei INDEX`<br> e.g. `deletei 3`                                                                                                                                                                                                                    |
-| [**List All Inventory Items**](#listing-all-inventory-items-listi)  | `listi`                                                                                                                                                                                                                                                 |
-| [**Find Inventory Item(s)**](#finding-an-inventory-item-findi)      | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g. `findi blue shirt`                                                                                                                                                                                           |
-| [**Edit An Inventory Item**](#editing-an-inventory-item-editi)      | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [sp/SELL_PRICE] [cp/COST_PRICE] [t/TAG]…​`<br> e.g. `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                                                             |
-| [**Add An Order**](#adding-an-order-addo)                           | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g. `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br> e.g. `i/Pillow q/2` <br>followed by `done` or `cancel`    |
-| [**List All Orders**](#listing-all-orders-listo)                    | `listo`                                                                                                                                                                                                                                                 |
-| [**Find Order(s)**](#finding-orders-findo)                          | `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] [n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`, where all flags are optional and only 1 prefix is compulsory <br> e.g. `findo -d i/keychain n/Alex` |
-| [**Delete An Order**](#deleting-an-order-deleteo)                   | `deleteo INDEX` <br> e.g. `deleteo 2`                                                                                                                                                                                                                   |
-| [**Edit An Order**](#editing-an-order-edito)                        | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]` <br> e.g. `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                                                   |
-| [**Mark An Order**](#marking-an-order-as-paiddelivered-marko)       | `marko INDEX [-p] [-d]` <br> e.g. `marko 2 -d`, `marko 3 -p -d`                                                                                                                                                                                         |
-| [**Sort Orders**](#sorting-orders-by-time-created-sorto)            | `sorto new` or `sorto old`                                                                                                                                                                                                                              |
-| [**Getting Help**](#getting-help-help)                              | `help`                                                                                                                                                                                                                                                  |
-| [**Clear**](#clearing-all-data-in-tracko-clear)                     | `clear`<br/> followed by `confirm` or `cancel` when prompted                                                                                                                                                                                            |
-| [**Exit**](#exiting-tracko-exit)                                    | `exit`                                                                                                                                                                                                                                                  |
+| Action                                                              | Format, Examples                                                                                                                                                                                                                                                                |
+|---------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add An Inventory Item**](#adding-an-inventory-item-addi)         | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g. `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79.99 cp/50.00 [t/TAG]…​`                                                                                                       |
+| [**Delete An Inventory Item**](#deleting-an-inventory-item-deletei) | `deletei INDEX`<br> e.g. `deletei 3`                                                                                                                                                                                                                                            |
+| [**List All Inventory Items**](#listing-all-inventory-items-listi)  | `listi`                                                                                                                                                                                                                                                                         |
+| [**Find Inventory Item(s)**](#finding-an-inventory-item-findi)      | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g. `findi blue shirt`                                                                                                                                                                                                                   |
+| [**Edit An Inventory Item**](#editing-an-inventory-item-editi)      | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [sp/SELL_PRICE] [cp/COST_PRICE] [t/TAG]…​`<br> e.g. `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                                                                                     |
+| [**Add An Order**](#adding-an-order-addo)                           | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g. `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br> e.g. `i/Pillow q/2` <br>followed by `done` or `cancel`                            |
+| [**List All Orders**](#listing-all-orders-listo)                    | `listo`                                                                                                                                                                                                                                                                         |
+| [**Find Order(s)**](#finding-orders-findo)                          | `findo [-d OR -D] [-p OR -P]` <br> `[i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]]` <br> `[a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]]` <br> `[n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`, where all flags are optional and only 1 prefix is compulsory <br> e.g. `findo -d i/keychain n/Alex` |
+| [**Delete An Order**](#deleting-an-order-deleteo)                   | `deleteo INDEX` <br> e.g. `deleteo 2`                                                                                                                                                                                                                                           |
+| [**Edit An Order**](#editing-an-order-edito)                        | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]` <br> e.g. `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                                                                           |
+| [**Mark An Order**](#marking-an-order-as-paiddelivered-marko)       | `marko INDEX [-p] [-d]` <br> e.g. `marko 2 -d`, `marko 3 -p -d`                                                                                                                                                                                                                 |
+| [**Sort Orders**](#sorting-orders-by-time-created-sorto)            | `sorto new` or `sorto old`                                                                                                                                                                                                                                                      |
+| [**Getting Help**](#getting-help-help)                              | `help`                                                                                                                                                                                                                                                                          |
+| [**Clear**](#clearing-all-data-in-tracko-clear)                     | `clear`<br/> followed by `confirm` or `cancel` when prompted                                                                                                                                                                                                                    |
+| [**Exit**](#exiting-tracko-exit)                                    | `exit`                                                                                                                                                                                                                                                                          |
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
