@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_COMPUTER_SCIENCE;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -55,10 +55,10 @@ public class EditCommandTest {
 
         ApplicantBuilder applicantInList = new ApplicantBuilder(lastApplicant);
         Applicant editedApplicant = applicantInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withMajors(VALID_MAJOR_HUSBAND).build();
+                .withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
 
         EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withMajors(VALID_MAJOR_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
         EditCommand editCommand = new EditCommand(indexLastApplicant, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_APPLICANT_SUCCESS, editedApplicant);

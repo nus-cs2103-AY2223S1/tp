@@ -11,8 +11,8 @@ import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_MAJOR_D
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_SCHOLARSHIP_DESC;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_FRIEND;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_HUSBAND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_COMPUTER_SCIENCE;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_MATHEMATICS;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -23,8 +23,8 @@ import static seedu.trackascholar.logic.commands.CommandTestUtil.SCHOLARSHIP_DES
 import static seedu.trackascholar.logic.commands.CommandTestUtil.SCHOLARSHIP_DESC_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_APPLICATION_STATUS_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_FRIEND;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_COMPUTER_SCIENCE;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_MATHEMATICS;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
@@ -50,43 +50,43 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Applicant expectedApplicant = new ApplicantBuilder(BOB).withMajors(VALID_MAJOR_FRIEND).build();
+        Applicant expectedApplicant = new ApplicantBuilder(BOB).withMajors(VALID_MAJOR_MATHEMATICS).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SCHOLARSHIP_DESC_BOB + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_FRIEND,
+                + SCHOLARSHIP_DESC_BOB + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_MATHEMATICS,
                 new AddCommand(expectedApplicant));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SCHOLARSHIP_DESC_BOB + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_FRIEND,
+                + SCHOLARSHIP_DESC_BOB + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_MATHEMATICS,
                 new AddCommand(expectedApplicant));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SCHOLARSHIP_DESC_BOB + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_FRIEND,
+                + SCHOLARSHIP_DESC_BOB + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_MATHEMATICS,
                 new AddCommand(expectedApplicant));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + SCHOLARSHIP_DESC_BOB + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_FRIEND,
+                + SCHOLARSHIP_DESC_BOB + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_MATHEMATICS,
                 new AddCommand(expectedApplicant));
 
         // multiple scholarships - last scholarship accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_AMY
-                + SCHOLARSHIP_DESC_BOB + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_FRIEND,
+                + SCHOLARSHIP_DESC_BOB + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_MATHEMATICS,
                 new AddCommand(expectedApplicant));
 
         // multiple application status - last application status accepted (doesn't work)
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
-                + APPLICATION_STATUS_DESC_AMY + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_FRIEND,
+                + APPLICATION_STATUS_DESC_AMY + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_MATHEMATICS,
                 new AddCommand(expectedApplicant));
 
         // multiple majors - all accepted
         Applicant expectedApplicantMultipleMajors = new ApplicantBuilder(BOB)
-                .withMajors(VALID_MAJOR_FRIEND, VALID_MAJOR_HUSBAND).build();
+                .withMajors(VALID_MAJOR_MATHEMATICS, VALID_MAJOR_COMPUTER_SCIENCE).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
-                + MAJOR_DESC_HUSBAND + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_FRIEND,
+                + MAJOR_DESC_COMPUTER_SCIENCE + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_MATHEMATICS,
                 new AddCommand(expectedApplicantMultipleMajors));
     }
 
@@ -131,28 +131,32 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
-                + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_HUSBAND + MAJOR_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_COMPUTER_SCIENCE + MAJOR_DESC_MATHEMATICS,
+                Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
-                + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_HUSBAND + MAJOR_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_COMPUTER_SCIENCE + MAJOR_DESC_MATHEMATICS,
+                Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + SCHOLARSHIP_DESC_BOB
-                + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_HUSBAND + MAJOR_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_COMPUTER_SCIENCE + MAJOR_DESC_MATHEMATICS,
+                Email.MESSAGE_CONSTRAINTS);
 
         // invalid scholarship
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_SCHOLARSHIP_DESC
-                + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_HUSBAND + MAJOR_DESC_FRIEND,
+                + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_COMPUTER_SCIENCE + MAJOR_DESC_MATHEMATICS,
             Scholarship.MESSAGE_CONSTRAINTS);
 
         // invalid application status
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
-                + INVALID_APPLICATION_STATUS_DESC + VALID_MAJOR_FRIEND, ApplicationStatus.MESSAGE_CONSTRAINTS);
+                + INVALID_APPLICATION_STATUS_DESC + VALID_MAJOR_MATHEMATICS, ApplicationStatus.MESSAGE_CONSTRAINTS);
 
         // invalid major
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
-                + APPLICATION_STATUS_DESC_BOB + INVALID_MAJOR_DESC + VALID_MAJOR_FRIEND, Major.MESSAGE_CONSTRAINTS);
+                + APPLICATION_STATUS_DESC_BOB + INVALID_MAJOR_DESC + VALID_MAJOR_MATHEMATICS,
+                Major.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -160,7 +164,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SCHOLARSHIP_DESC_BOB + MAJOR_DESC_HUSBAND + MAJOR_DESC_FRIEND,
+                + SCHOLARSHIP_DESC_BOB + MAJOR_DESC_COMPUTER_SCIENCE + MAJOR_DESC_MATHEMATICS,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
