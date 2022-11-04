@@ -116,6 +116,9 @@ public interface Model {
     /** Returns an unmodifiable view of the pinned applicant list */
     ObservableList<Applicant> getPinnedApplicantList();
 
+    /** Returns an unmodifiable view of all applicants */
+    ObservableList<Applicant> getAllApplicants();
+
     /**
      * Updates the filter of the filtered applicant list to filter by the given {@code predicate}.
      *

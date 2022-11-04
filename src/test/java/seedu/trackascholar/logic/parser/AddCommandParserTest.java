@@ -46,7 +46,9 @@ import seedu.trackascholar.model.major.Major;
 import seedu.trackascholar.testutil.ApplicantBuilder;
 
 public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private static final AddCommandParser parser = new AddCommandParser();
+    private static final String MISSING_FIELD_ERROR_MESSAGE =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -100,31 +102,30 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
-                + APPLICATION_STATUS_DESC_BOB, expectedMessage);
+                + APPLICATION_STATUS_DESC_BOB, MISSING_FIELD_ERROR_MESSAGE);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
-                + APPLICATION_STATUS_DESC_BOB, expectedMessage);
+                + APPLICATION_STATUS_DESC_BOB, MISSING_FIELD_ERROR_MESSAGE);
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + SCHOLARSHIP_DESC_BOB
-                + APPLICATION_STATUS_DESC_BOB, expectedMessage);
+                + APPLICATION_STATUS_DESC_BOB, MISSING_FIELD_ERROR_MESSAGE);
 
         // missing scholarship prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_SCHOLARSHIP_BOB
-                + APPLICATION_STATUS_DESC_BOB, expectedMessage);
+                + APPLICATION_STATUS_DESC_BOB, MISSING_FIELD_ERROR_MESSAGE);
 
         // missing application status prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
-                + VALID_APPLICATION_STATUS_BOB, expectedMessage);
+                + VALID_APPLICATION_STATUS_BOB, MISSING_FIELD_ERROR_MESSAGE);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_SCHOLARSHIP_BOB
-                + VALID_APPLICATION_STATUS_BOB, expectedMessage);
+                + VALID_APPLICATION_STATUS_BOB, MISSING_FIELD_ERROR_MESSAGE);
     }
 
     @Test

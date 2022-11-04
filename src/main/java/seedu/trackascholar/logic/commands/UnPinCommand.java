@@ -41,7 +41,7 @@ public class UnPinCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Applicant> lastShownList = model.getPinnedApplicantList();
+        List<Applicant> lastShownList = model.getAllApplicants();
 
         int indexOfApplicant = getApplicantIndex(lastShownList, name);
 
