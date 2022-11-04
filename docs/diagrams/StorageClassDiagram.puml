@@ -20,6 +20,10 @@ Class JsonUninurseBookStorage
 Class JsonSerializableUninurseBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
+Class JsonAdaptedCondition
+Class JsonAdaptedMedication
+Class JsonAdaptedTask
+Class JsonAdaptedRemark
 }
 
 }
@@ -39,5 +43,10 @@ JsonUninurseBookStorage .up.|> UninurseBookStorage
 JsonUninurseBookStorage ..> JsonSerializableUninurseBook
 JsonSerializableUninurseBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+
+JsonAdaptedPerson --> "*" JsonAdaptedCondition
+JsonAdaptedPerson --> "*" JsonAdaptedMedication
+JsonAdaptedPerson --> "*" JsonAdaptedTask
+JsonAdaptedPerson --> "*" JsonAdaptedRemark
 
 @enduml
