@@ -6,7 +6,6 @@ import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.ListCommissionCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -28,6 +27,6 @@ public class ListCommissionCommandTest {
 
     @Test
     public void execute_listCommissionIsNotFiltered_showsSameList() {
-        CommandTestUtil.assertCommandSuccess(new ListCommissionCommand(), model, ListCommissionCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommissionCommand(), model, ListCommissionCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

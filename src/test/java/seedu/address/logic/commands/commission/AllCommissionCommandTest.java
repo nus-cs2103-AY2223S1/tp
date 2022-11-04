@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AllCommissionCommand;
-import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.ListCommissionCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -30,13 +29,13 @@ public class AllCommissionCommandTest {
 
     @Test
     public void execute_listCommissionIsNotFiltered_showsSameList() {
-        CommandTestUtil.assertCommandSuccess(new ListCommissionCommand(), model, ListCommissionCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommissionCommand(), model, ListCommissionCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         model.selectCustomer(model.getSortedFilteredCustomerList().get(1));
-        CommandTestUtil.assertCommandSuccess(new AllCommissionCommand(), model, AllCommissionCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new AllCommissionCommand(), model, AllCommissionCommand.MESSAGE_SUCCESS, expectedModel);
         assertNull(model.getSelectedCustomer().getValue());
     }
 }

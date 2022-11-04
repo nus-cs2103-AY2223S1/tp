@@ -56,7 +56,7 @@ public class UniqueCustomerList implements Iterable<Customer> {
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireAllNonNull(target, editedCustomer);
 
-         int index = internalList.indexOf(target);
+        int index = internalList.indexOf(target);
         if (index == -1) {
             throw new CustomerNotFoundException();
         }
