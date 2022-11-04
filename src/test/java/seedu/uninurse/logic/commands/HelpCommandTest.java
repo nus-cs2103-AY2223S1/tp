@@ -1,7 +1,6 @@
 package seedu.uninurse.logic.commands;
 
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.uninurse.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,8 @@ public class HelpCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, HelpCommand.HELP_COMMAND_TYPE);
+        CommandResult expectedCommandResult = new CommandResult(HelpCommand.MESSAGE_SUCCESS,
+                HelpCommand.COMMAND_TYPE);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
 }
