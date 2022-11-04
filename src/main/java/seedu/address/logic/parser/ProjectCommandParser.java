@@ -134,7 +134,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
             clientId = ClientId.EmptyClientId.EMPTY_CLIENT_ID;
         } else {
-            clientId = ParserUtil.parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+            clientId = ParserUtil.parseClientId(argMultimap.getFirstWordValue(PREFIX_CLIENT_ID).get());
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_REPOSITORY)) {
@@ -171,7 +171,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         ClientId newClientId = null;
         Repository newRepository = null;
         Deadline newDeadline = null;
-        ProjectId newProjectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+        ProjectId newProjectId = ParserUtil.parseProjectId(argMultimap.getFirstWordValue(PREFIX_PROJECT_ID).get());
 
         if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT_ID, PREFIX_REPOSITORY, PREFIX_DEADLINE)) {
             throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
@@ -183,7 +183,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
-            newClientId = ParserUtil.parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+            newClientId = ParserUtil.parseClientId(argMultimap.getFirstWordValue(PREFIX_CLIENT_ID).get());
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_REPOSITORY)) {
@@ -228,7 +228,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
 
         if (arePrefixesPresent(argMultimap, PREFIX_PROJECT_ID)) {
             sortPrefix = PREFIX_PROJECT_ID;
-            key = ParserUtil.parseProjectIdSort(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+            key = ParserUtil.parseProjectIdSort(argMultimap.getFirstWordValue(PREFIX_PROJECT_ID).get());
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
@@ -276,17 +276,18 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
-            parseIndexValidity(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+            parseIndexValidity(argMultimap.getFirstWordValue(PREFIX_CLIENT_ID).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_PROJECT_ID)) {
-            parseIndexValidity(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+            parseIndexValidity(argMultimap.getFirstWordValue(PREFIX_PROJECT_ID).get());
         }
 
         ProjectContainsKeywordsPredicate predicate =
                 new ProjectContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_NAME),
                         argMultimap.getAllValues(PREFIX_REPOSITORY), argMultimap.getAllValues(PREFIX_CLIENT_LABEL),
-                        argMultimap.getAllValues(PREFIX_CLIENT_ID), argMultimap.getAllValues(PREFIX_PROJECT_ID));
+                        argMultimap.getAllFirstWordValues(PREFIX_CLIENT_ID),
+                        argMultimap.getAllFirstWordValues(PREFIX_PROJECT_ID));
 
 
         return new FindProjectCommand(predicate);

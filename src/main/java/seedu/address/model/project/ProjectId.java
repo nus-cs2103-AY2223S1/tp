@@ -7,7 +7,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class ProjectId {
 
-    public static final String MESSAGE_CONSTRAINTS = "Project ID must be a positive integer";
+    public static final String MESSAGE_CONSTRAINTS = "Project ID must be a positive integer, less than "
+            + Integer.MAX_VALUE + ".";
     public static final String MESSAGE_INVALID = "Project ID must be an integer. "
             + "No existing project with this project ID";
     private int projectId;
@@ -19,9 +20,16 @@ public class ProjectId {
      */
     public ProjectId(int id) {
         requireNonNull(id);
+
         this.projectId = id;
     }
 
+    /**
+     * Checks if this ProjectID is valid.
+     */
+    public boolean isValid() {
+        return projectId > 0;
+    }
 
     /**
      * Checks if this ProjectID is empty.
