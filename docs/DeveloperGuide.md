@@ -837,7 +837,33 @@ testers are expected to do more *exploratory* testing.
         Expected: The most recent window size and location is retained.
 
 
+## Student class tests
 
+### Adding a student
+1. Adding a student while all students are being shown
+
+   1. Prerequisites: List all students using the `liststu` command. Multiple students in the
+      list.
+   2. Test case: `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com` <br>
+      Expected: Student with the relevant details added into the list. Details of the added student shown in the status
+      message.
+   3. Test case: `addstu` <br>
+      Expected: No student added. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect addstu commands to try: `addstu n/John Lim Jun Jie`, 
+      `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlimexample.com`
+
+### Editing a student
+1. Editing a student while all students are being shown
+
+   1. Prerequisites: List all students using the `liststu` command. Multiple students in the
+      list.
+   2. Test case: `editstu 1 n/Mary Doe` <br>
+      Expected: First student's name is edited to Mary Doe. Details of edited student shown in the status message.
+   3. Test case: `editstu 1` <br>
+      Expected: No student is edited. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect editstu commands to try: `editstu`, `editstu -1` <br>
+      Expected: Similar to previous
+   
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -852,6 +878,13 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect deletestu commands to try: `deletestu`, `deletestu x` (where x is larger than the list size) <br>
        Expected: Similar to previous.
+
+### Add attendance for a student
+
+1. Add on the attendance count for a student while all students are being shown
+
+   1. Prerequisites: List all students using the `liststu` command. Multiple students in the list.
+   2. Test case: `attendance 1`
 
 ### Add response count to a student 
 
