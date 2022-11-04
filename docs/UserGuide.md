@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+<a id="back-to-topt"></a>
 * Table of Contents
 {:toc}
 ---
