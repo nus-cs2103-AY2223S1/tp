@@ -14,12 +14,12 @@ Given below are my contributions to the project.
 * **Code contributed**: Refer to https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master
   and https://github.com/AY2223S1-CS2103T-W10-3/tp/pulls?q=is%3Apr+author%3Ashummyownzyou+.
 
-* **Enhancements to existing features**: 
-  * Added `StatusPredicate` class under `model` with Benjy.
+* **Enhancements to existing features**:
   * Refactored `AddressBook` to `TrackAScholar` and `Person` to `Applicant`, 
 along with all related methods and parameter names.
   * Updated `LogicManager` to display pinned applicants on the UI.
   * Changed `Unpin` command to unpin by name instead of index.
+  * Updated test cases in `commands/parser` package. 
 
 * **Documentation**:
     * User Guide: Added pin command in features.

@@ -9,12 +9,9 @@ import seedu.trackascholar.logic.commands.FindCommand;
 
 public class FindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
-
-    @Test
-    public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-    }
+    private static final FindCommandParser parser = new FindCommandParser();
+    private static final String ERROR_MESSAGE =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
 
     //    @Test
     //    public void parse_validArgs_returnsFindCommand() {
@@ -27,5 +24,11 @@ public class FindCommandParserTest {
     //        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
     //    }
     // Todo soon
+
+    @Test
+    public void parse_emptyArg_throwsParseException() {
+        assertParseFailure(parser, "", ERROR_MESSAGE);
+        assertParseFailure(parser, "     ", ERROR_MESSAGE);
+    }
 
 }
