@@ -34,4 +34,3 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
 ## Acknowledgments
   * This project is a part of the **se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
-  
