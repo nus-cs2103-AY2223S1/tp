@@ -10,6 +10,7 @@ title: Developer Guide
 
 * [NUSMods API](https://api.nusmods.com/v2/) for providing information on NUS modules
 * [Open API](https://www.openapis.org/) for generating boiler plate API classes
+* Our Developer Guide is inspired by [AB3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 --------------------------------------------------------------------------------------------------------------------
 
