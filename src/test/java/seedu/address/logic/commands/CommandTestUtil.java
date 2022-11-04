@@ -24,6 +24,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NameIsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.MarkPersonDescriptorBuilder;
 import seedu.address.testutil.RemovePersonDescriptorBuilder;
 
 /**
@@ -62,7 +63,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-    //used in remove
+    //used in remove and for mark & unmark
     public static final String HOMEWORK_DESC_AMY_REM = " " + PREFIX_HOMEWORK + "1";
     public static final String GRADE_PROGRESS_DESC_AMY_REM = " " + PREFIX_GRADE_PROGRESS + "1";
     public static final String ATTENDANCE_DESC_AMY_REM = " " + PREFIX_ATTENDANCE + "1";
@@ -93,6 +94,9 @@ public class CommandTestUtil {
     public static final RemoveCommand.RemovePersonDescriptor DESC_AMY_REM;
     public static final RemoveCommand.RemovePersonDescriptor DESC_BOB_REM;
 
+    public static final MarkPersonDescriptor DESC_AMY_MARK;
+    public static final MarkPersonDescriptor DESC_BOB_MARK;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withLessonPlan(VALID_LESSON_PLAN_AMY)
@@ -113,6 +117,16 @@ public class CommandTestUtil {
                 .withHomeworkIndex(VALID_INDEX).withGradeProgress(VALID_GRADE_PROGRESS_BOB)
                 .withGradeProgressIndex(VALID_INDEX).withAttendance(VALID_ATTENDANCE_BOB)
                 .withAttendanceIndex(VALID_INDEX).build();
+    }
+
+    static {
+        DESC_AMY_MARK = new MarkPersonDescriptorBuilder().withAttendance(VALID_ATTENDANCE_AMY)
+                .withAttendanceIndex(VALID_INDEX).withHomework(VALID_HOMEWORK_AMY)
+                .withHomeworkIndex(VALID_INDEX).build();
+
+        DESC_BOB_MARK = new MarkPersonDescriptorBuilder().withAttendance(VALID_ATTENDANCE_BOB)
+                .withAttendanceIndex(VALID_INDEX).withHomework(VALID_HOMEWORK_BOB)
+                .withHomeworkIndex(VALID_INDEX).build();
     }
 
     /**

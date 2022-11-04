@@ -159,4 +159,24 @@ public class MarkPersonDescriptor {
     public Optional<Set<Tag>> getTags() {
         return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // for same object
+        if (other == this) {
+            return true;
+        }
+
+        // checks for null object
+        if (!(other instanceof MarkPersonDescriptor)) {
+            return false;
+        }
+
+        // check for same values in fields
+        MarkPersonDescriptor m = (MarkPersonDescriptor) other;
+        return getHomework().equals(m.getHomework())
+                && getHomeworkIndex().equals(m.getHomeworkIndex())
+                && getAttendance().equals(m.getAttendance())
+                && getAttendanceIndex().equals(m.getAttendanceIndex());
+    }
 }

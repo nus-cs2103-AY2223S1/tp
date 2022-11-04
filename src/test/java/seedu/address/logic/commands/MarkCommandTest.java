@@ -1,17 +1,18 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code MarkCommand}.
@@ -36,6 +37,20 @@ public class MarkCommandTest {
     }
 
     @Test
+    public void execute_noFieldSpecifiedUnfilteredList_success() {
+        setFullView(INDEX_FIRST_PERSON);
+        MarkCommand markCommand = new MarkCommand(new MarkPersonDescriptor());
+        Person markedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARKED_PERSON_SUCCESS, markedPerson);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        setModelFullView(expectedModel, markedPerson.getName().fullName);
+
+        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_inListView_failure() {
         setListView();
         MarkCommand markCommand = new MarkCommand(new MarkPersonDescriptor());
@@ -56,11 +71,13 @@ public class MarkCommandTest {
     @Test
     public void equals() {
         setFullView(INDEX_FIRST_ITEM);
-        final MarkCommand standardCommand = new MarkCommand(new MarkPersonDescriptor());
+        final MarkCommand standardCommand = new MarkCommand(DESC_AMY_MARK);
+        MarkPersonDescriptor copyDescriptor = new MarkPersonDescriptor(DESC_AMY_MARK);
+        MarkCommand commandWithSameValues = new MarkCommand(copyDescriptor);
+        assertTrue(standardCommand.equals(commandWithSameValues));
 
-
-        // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        // same object
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
         assertFalse(standardCommand.equals(null));
