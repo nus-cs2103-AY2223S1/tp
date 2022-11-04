@@ -101,7 +101,7 @@ public class EditStaffCommand extends Command {
         checkForDuplicateStaff(toEdit, editedStaff, toFindIn);
 
         toFindIn.getStaffList().setStaff(toEdit, editedStaff);
-        model.setFilteredStaffList(toFindIn);
+        model.setFilteredStaffList(toFindIn.getStaffList());
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
         return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff, foundProjectName));
     }

@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.project.Project;
 import seedu.address.model.staff.Staff;
+import seedu.address.model.staff.UniqueStaffList;
 import seedu.address.model.task.Task;
 
 /**
@@ -127,8 +128,8 @@ public interface Model {
      */
     void updateFilteredStaffList(Predicate<Staff> predicate);
 
-    /** Sets filtered Staff list to be the staff list of {@code project} specified by the view command */
-    void setFilteredStaffList(Project project);
+    /** Sets filtered Staff list to be {@code uniqueStaffList} specified by the view command */
+    void setFilteredStaffList(UniqueStaffList uniqueStaffList);
 
     //=========== Tasks ================================================================================
     /**

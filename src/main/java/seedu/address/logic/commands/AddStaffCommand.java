@@ -18,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.Staff;
+import seedu.address.model.staff.UniqueStaffList;
 
 /**
  * Adds a staff to HR Pro Max++.
@@ -75,8 +76,9 @@ public class AddStaffCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_STAFF, projectName));
         }
 
-        targetProject.getStaffList().add(toAdd);
-        model.setFilteredStaffList(targetProject);
+        UniqueStaffList targetStaffList = targetProject.getStaffList();
+        targetStaffList.add(toAdd);
+        model.setFilteredStaffList(targetStaffList);
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
         return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, toAdd, projectName));
     }

@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
+import seedu.address.model.staff.UniqueStaffList;
 
 /**
  * Deletes a project identified using it's displayed index from HR Pro Max++.
@@ -41,7 +42,7 @@ public class DeleteCommand extends Command {
 
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteProject(projectToDelete);
-        model.setFilteredStaffList(null);
+        model.setFilteredStaffList(new UniqueStaffList());
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
     }
 

@@ -221,12 +221,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setFilteredStaffList(Project project) {
-        if (project == null) {
-            addressBook.setStaffList(new UniqueStaffList());
-        } else {
-            addressBook.setStaffList(project.getStaffList());
-        }
+    public void setFilteredStaffList(UniqueStaffList staffList) {
+        requireNonNull(staffList);
+        addressBook.setStaffList(staffList);
     }
 
     //=========== Filtered Task List Accessors =============================================================
