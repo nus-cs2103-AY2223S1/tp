@@ -12,8 +12,5 @@ public class DatetimeCommonUtilsTest {
     public void invalidDatetime_throwsParseException() {
         //invalid datetime format
         assertThrows(ParseException.class, () -> DatetimeCommonUtils.assertDatetimeValid("2023-01- 08:00"));
-
-        //datetime before current
-        assertThrows(ParseException.class, () -> DatetimeCommonUtils.assertDatetimeValid("2021-01-01 08:00"));
     }
 }

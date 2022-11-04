@@ -26,6 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.consultation.EditConsultationCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.reminder.EditReminderCommand;
 import seedu.address.logic.commands.reminder.SortReminderCommand;
@@ -35,6 +36,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
+import seedu.address.testutil.EditConsultationDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditReminderDescriptorBuilder;
 
@@ -76,8 +78,8 @@ public class CommandTestUtil {
     public static final String VALID_TIMESLOT_TUT2_END = "15:00";
 
     // Consultation
-    public static final String VALID_NAME_CONSULT1 = "John";
-    public static final String VALID_NAME_CONSULT2 = "Anna";
+    public static final String VALID_NAME_CONSULT1 = "Review Past Year Paper";
+    public static final String VALID_NAME_CONSULT2 = "Clear doubts";
     public static final String VALID_MODULE_CONSULT1 = "CS2103T";
     public static final String VALID_MODULE_CONSULT2 = "CS2101";
     public static final String VALID_VENUE_CONSULT1 = "COM2-0105";
@@ -173,6 +175,8 @@ public class CommandTestUtil {
     public static final EditStudentCommand.EditPersonDescriptor DESC_BOB;
     public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER1;
     public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER2;
+    public static final EditConsultationCommand.EditConsultDescriptor DESC_CONSULTATION1;
+    public static final EditConsultationCommand.EditConsultDescriptor DESC_CONSULTATION2;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -199,6 +203,20 @@ public class CommandTestUtil {
                 .withDeadline(VALID_DEADLINE_REMINDER2)
                 .withPriority(VALID_PRIORITY_REMINDER2)
                 .withDescription(VALID_DESCRIPTION_REMINDER2)
+                .build();
+
+        DESC_CONSULTATION1 = new EditConsultationDescriptorBuilder().withName(VALID_NAME_CONSULT1)
+                .withModuleCode(VALID_MODULE_CONSULT1)
+                .withVenue(VALID_VENUE_CONSULT1)
+                .withTimeSlot(VALID_TIMESLOT_CONSULT1_START, VALID_TIMESLOT_CONSULT1_END)
+                .withDescription(VALID_DESCRIPTION_CONSULT1)
+                .build();
+
+        DESC_CONSULTATION2 = new EditConsultationDescriptorBuilder().withName(VALID_NAME_CONSULT2)
+                .withModuleCode(VALID_MODULE_CONSULT2)
+                .withVenue(VALID_VENUE_CONSULT2)
+                .withTimeSlot(VALID_TIMESLOT_CONSULT2_START, VALID_TIMESLOT_CONSULT2_END)
+                .withDescription(VALID_DESCRIPTION_CONSULT2)
                 .build();
     }
 

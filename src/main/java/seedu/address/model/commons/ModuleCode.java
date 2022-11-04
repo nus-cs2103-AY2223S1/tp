@@ -25,7 +25,7 @@ public class ModuleCode {
     public ModuleCode(String moduleCode) {
         requireNonNull(moduleCode);
         checkArgument(isValidModule(moduleCode), MESSAGE_CONSTRAINTS);
-        this.moduleCode = moduleCode;
+        this.moduleCode = moduleCode.toUpperCase();
     }
 
     /**

@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class TutorialName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Tutorial name can take any values, and it should not be blank";
 
     /*
      * The first character of the name must not be a whitespace,
@@ -28,7 +28,7 @@ public class TutorialName {
     public TutorialName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        fullName = name.toUpperCase();
     }
 
     /**

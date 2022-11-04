@@ -49,7 +49,7 @@ public class SampleDataUtil {
                     new Phone("99272758"), new Email("berniceyu@example.com"),
                     new TelegramHandle("berniceyu"),
                     new ModuleCode("CS2103T"), new TutorialName("W17"),
-                    new Attendance("0"), new Participation("0"), new Grade(""),
+                    new Attendance("0"), new Participation("0"), new Grade("PENDING..."),
                 getTagSet("active", "strong")),
             new Student(new Name("Charlotte Oliveiro"),
                     new StudentId("A0000000C"),
@@ -77,7 +77,7 @@ public class SampleDataUtil {
                     new Phone("92624417"), new Email("royb@example.com"),
                     new TelegramHandle("royb"),
                     new ModuleCode("CS2103T"), new TutorialName("W17"),
-                    new Attendance("0"), new Participation("0"), new Grade(""),
+                    new Attendance("0"), new Participation("0"), new Grade("PENDING..."),
                     getTagSet("newbie"))
         };
     }

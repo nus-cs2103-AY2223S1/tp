@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Venue {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Venue should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Venue can take any values, and it should not be blank";
 
     /*
      * The first character of the venue must not be a whitespace,

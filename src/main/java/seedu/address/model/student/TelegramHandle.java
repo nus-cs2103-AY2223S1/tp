@@ -12,7 +12,7 @@ public class TelegramHandle {
     public static final String MESSAGE_CONSTRAINTS =
             "Telegram handles should only contain alphanumeric characters and underscores, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "[a-zA-Z0-9_]*";
+    public static final String VALIDATION_REGEX = "[a-zA-Z0-9_]+";
 
     public final String telegram;
 

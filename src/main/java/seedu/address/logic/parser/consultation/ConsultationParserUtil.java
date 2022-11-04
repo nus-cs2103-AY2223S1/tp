@@ -3,8 +3,6 @@ package seedu.address.logic.parser.consultation;
 import java.util.Objects;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.commons.ModuleCode;
-import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationName;
 
@@ -14,7 +12,7 @@ import seedu.address.model.consultation.ConsultationName;
  */
 public class ConsultationParserUtil {
     /**
-     * Parses a {@code String name} into a {@code TutorialName}.
+     * Parses a {@code String name} into a {@code ConsultationName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -29,42 +27,12 @@ public class ConsultationParserUtil {
     }
 
     /**
-     * Parses a {@code String moduleName} into a {@code ModuleCode}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code moduleName} is invalid.
-     */
-    public static ModuleCode parseConsultationModule(String moduleName) throws ParseException {
-        Objects.requireNonNull(moduleName);
-        String trimmedName = moduleName.trim();
-        if (!ModuleCode.isValidModule(trimmedName)) {
-            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
-        }
-        return new ModuleCode(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String venue} into a {@code Venue}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code venue} is invalid.
-     */
-    public static Venue parseConsultationVenue(String venue) throws ParseException {
-        Objects.requireNonNull(venue);
-        String trimmedName = venue.trim();
-        if (!Venue.isValidVenue(trimmedName)) {
-            throw new ParseException(Venue.MESSAGE_CONSTRAINTS);
-        }
-        return new Venue(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String name} into a {@code TutorialName}.
+     * Parses a {@code String name} into a {@code ConsultationDescription}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static ConsultationDescription parseConsultationDescription(String name) throws ParseException {
+    public static ConsultationDescription parseConsultationDescription(String name) {
         Objects.requireNonNull(name);
         String trimmedName = name.trim();
         return new ConsultationDescription(trimmedName);
