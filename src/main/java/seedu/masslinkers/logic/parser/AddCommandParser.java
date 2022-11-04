@@ -38,11 +38,15 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME,
                 PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_GITHUB, PREFIX_INTEREST, PREFIX_MOD);
+
+        // if there are words added after the "add" which is not a valid prefix
         if (!argMultimap.getPreamble().isEmpty()) {
             String invalidArgs = argMultimap.getPreamble();
             throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENTS, invalidArgs) + "\n"
                     + AddCommand.MESSAGE_USAGE);
         }
+
+        // if name and telegram is not provided
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TELEGRAM)) {
             throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS, AddCommand.MESSAGE_USAGE));
         }

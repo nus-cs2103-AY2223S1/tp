@@ -9,7 +9,6 @@ import static seedu.masslinkers.logic.parser.ParserUtil.parseIndex;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import seedu.masslinkers.commons.core.index.Index;
@@ -21,9 +20,6 @@ import seedu.masslinkers.model.interest.Interest;
  * Parses input arguments and creates a new DeleteInterestCommand object
  */
 public class DeleteInterestCommandParser implements Parser<DeleteInterestCommand> {
-
-    private static final Pattern INDEX_FORMAT = Pattern.compile("-?\\d+");
-    private static final String MESSAGE_INDEX_EMPTY = "Index cannot be empty!";
     private static final String MESSAGE_INTERESTS_EMPTY = "Interests cannot be empty!";
 
     /**

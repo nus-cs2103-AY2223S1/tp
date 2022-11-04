@@ -65,7 +65,7 @@ public class EditCommandParserTest {
     public void parse_missingParts_failure() {
         // no index specified
         assertParseFailure(parser, VALID_NAME_AMY, String.format(MESSAGE_INVALID_ARGUMENTS,
-                VALID_NAME_AMY.split("\\s+")[1]) + "\n" + EditCommand.MESSAGE_USAGE);
+                VALID_NAME_AMY.split("\\s+")[0]) + "\n" + EditCommand.MESSAGE_USAGE);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);

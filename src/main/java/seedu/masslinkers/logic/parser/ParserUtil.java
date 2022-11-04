@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_ARGUMENTS;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INPUT;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_MORE_THAN_ONE_INDEX;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_UNEXPECTED_PREFIX;
 import static seedu.masslinkers.logic.parser.ModCommandParser.INDEX_FORMAT;
 
@@ -37,8 +38,9 @@ public class ParserUtil {
     public static final String PREFIX_REGEX = "(?i)[a-z]/.*";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses the preamble, {@code oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -48,10 +50,14 @@ public class ParserUtil {
         // checks if index has extraneous characters
         String[] splittedArgs = trimmedIndex.split("\\s+");
         if (splittedArgs.length > 1) {
-            Set<String> illegalChars = Arrays.stream(splittedArgs)
+            List<String> illegalChars = Arrays.stream(splittedArgs)
                     .filter(x -> !StringUtil.isNonZeroUnsignedInteger(x))
-                    .collect(Collectors.toSet());
-            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENTS, illegalChars.iterator().next()));
+                    .collect(Collectors.toList());
+            // if there is more than 2 valid indexes
+            if (illegalChars.isEmpty()) {
+                throw new ParseException(MESSAGE_MORE_THAN_ONE_INDEX);
+            }
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENTS, illegalChars.get(0)));
         }
 
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {

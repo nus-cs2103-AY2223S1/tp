@@ -45,8 +45,7 @@ public class AddInterestCommandParser implements Parser<AddInterestCommand> {
         try {
             interestSet = getInterestsFromCommand(trimmedArgs);
         } catch (IllegalArgumentException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_INTERESTS,
-                    AddInterestCommand.MESSAGE_USAGE), e);
+            throw new ParseException(MESSAGE_INVALID_INTERESTS, e);
         }
 
         try {
