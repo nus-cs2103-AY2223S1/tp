@@ -11,8 +11,8 @@ import seedu.trackascholar.model.applicant.ApplicationStatus;
 import seedu.trackascholar.model.applicant.UniqueApplicantList;
 
 /**
- * Wraps all data at the TrackAScholar level
- * Duplicates are not allowed (by .isSameApplicant comparison)
+ * Wraps all data at the TrackAScholar level.
+ * Duplicates are not allowed (by .isSameApplicant comparison).
  */
 public class TrackAScholar implements ReadOnlyTrackAScholar {
 
@@ -32,7 +32,7 @@ public class TrackAScholar implements ReadOnlyTrackAScholar {
     public TrackAScholar() {}
 
     /**
-     * Creates an TrackAScholar using the Applicants in the {@code toBeCopied}
+     * Creates an TrackAScholar using the Applicants in the {@code toBeCopied}.
      */
     public TrackAScholar(ReadOnlyTrackAScholar toBeCopied) {
         this();
@@ -130,7 +130,7 @@ public class TrackAScholar implements ReadOnlyTrackAScholar {
 
     @Override
     public String toString() {
-        return applicants.asUnmodifiableObservableList().size() + " persons";
+        return applicants.asUnmodifiableObservableList().size() + " applicants";
         // TODO: refine later
     }
 

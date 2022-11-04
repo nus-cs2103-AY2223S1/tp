@@ -52,7 +52,7 @@ public interface Model {
      */
     void setTrackAScholar(ReadOnlyTrackAScholar trackAScholarData);
 
-    /** Returns the TrackAScholar */
+    /** Returns the TrackAScholar. */
     ReadOnlyTrackAScholar getTrackAScholar();
 
     /**
@@ -106,7 +106,7 @@ public interface Model {
     void setApplicant(Applicant target, Applicant editedApplicant);
 
     /**
-     * Sorts the applicant list with the given {@code comparator}
+     * Sorts the applicant list with the given {@code comparator}.
      */
     void sortApplicants(Comparator<Applicant> comparator);
 
@@ -118,6 +118,7 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered applicant list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicantList(Predicate<Applicant> predicate);

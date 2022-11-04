@@ -8,13 +8,14 @@ import seedu.trackascholar.model.applicant.Name;
 
 
 /**
- * Parses input arguments and creates a new UnPinCommand object
+ * Parses input arguments and creates a new UnPinCommand object.
  */
 public class UnPinCommandParser implements Parser<UnPinCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the PinCommand
      * and returns a PinCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public UnPinCommand parse(String args) throws ParseException {
         try {

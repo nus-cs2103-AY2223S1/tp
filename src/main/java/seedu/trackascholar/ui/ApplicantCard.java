@@ -12,16 +12,16 @@ import seedu.trackascholar.model.applicant.Applicant;
 /**
  * An UI component that displays information of a {@code Applicant}.
  */
-public class PersonCard extends UiPart<Region> {
+public class ApplicantCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ApplicantListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on TrackAScholar level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on TrackAScholar</a>
      */
 
     public final Applicant applicant;
@@ -44,9 +44,9 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane majors;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Applicant} and index to display.
+     * Creates a {@code ApplicantCode} with the given {@code Applicant} and index to display.
      */
-    public PersonCard(Applicant applicant, int displayedIndex) {
+    public ApplicantCard(Applicant applicant, int displayedIndex) {
         super(FXML);
         this.applicant = applicant;
         id.setText(displayedIndex + ". ");
@@ -69,12 +69,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ApplicantCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        ApplicantCard card = (ApplicantCard) other;
         return id.getText().equals(card.id.getText())
                 && applicant.equals(card.applicant);
     }

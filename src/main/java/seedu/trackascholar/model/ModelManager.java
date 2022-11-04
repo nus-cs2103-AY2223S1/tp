@@ -158,7 +158,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Applicant} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedTrackAScholar}.
      */
     @Override
     public ObservableList<Applicant> getFilteredApplicantList() {

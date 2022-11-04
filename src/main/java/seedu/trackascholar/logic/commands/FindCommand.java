@@ -12,14 +12,14 @@ import seedu.trackascholar.model.Model;
 import seedu.trackascholar.model.applicant.Applicant;
 
 /**
- * Finds and lists all applicants in TrackAScholar whose name contains any of the argument keywords.
+ * Finds and lists all applicants in TrackAScholar whose details contain any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all applicants who contain any of the "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all applicants whose detail contain any of the "
             + "specified attribute keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: must contain at least one prefix with non empty input "
             + "[" + PREFIX_NAME + "NAME]... "

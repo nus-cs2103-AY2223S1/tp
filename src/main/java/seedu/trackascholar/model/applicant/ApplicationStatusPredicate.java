@@ -6,7 +6,7 @@ import seedu.trackascholar.commons.util.StringUtil;
 
 
 /**
- * Tests that a {@code Applicant}'s {@code Status} matches the keyword given.
+ * Tests that a {@code Applicant}'s {@code ApplicationStatus} matches the keyword given.
  */
 public class ApplicationStatusPredicate implements Predicate<Applicant> {
     private final String keyword;

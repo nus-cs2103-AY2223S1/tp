@@ -10,7 +10,7 @@ import seedu.trackascholar.model.ReadOnlyUserPrefs;
 import seedu.trackascholar.model.UserPrefs;
 
 /**
- * API of the Storage component
+ * API of the Storage component.
  */
 public interface Storage extends TrackAScholarStorage, UserPrefsStorage {
 

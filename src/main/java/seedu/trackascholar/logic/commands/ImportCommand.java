@@ -39,7 +39,7 @@ public class ImportCommand extends Command {
 
     /**
      * Create a new instance of ImportCommand which will either replace or keep duplicate applicants
-     * in the current model
+     * in the current model.
      *
      * @param str to input 'k' or 'r'
      */
@@ -49,7 +49,7 @@ public class ImportCommand extends Command {
     }
 
     /**
-     * ImportCommand only used for testing to import specific files instead of the expected file
+     * ImportCommand only used for testing to import specific files instead of the expected file.
      *
      * @param str to input 'k' or 'r'
      * @param newPath filePath of the imported file
