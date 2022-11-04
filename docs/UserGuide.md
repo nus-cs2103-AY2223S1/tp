@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide
+title: WorkBook User Guide
 ---
 
 <div class="toc-no-bullet-points">
@@ -9,61 +9,40 @@ title: User Guide
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-## 1. Introduction to WorkBook
+## 1. Introducing WorkBook
 
-Are you a Computing student that finds it really hard to collate and manage all your internship progress together?
-Do you find it really hard to get an internship because you do not know how to prepare for the different interview stages? Fret not<br><br>
+Welcome to WorkBook! :wave:
 
-WorkBook is just the right tool for you! :wave: <br><br>WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
-We also ensure that you never miss an interview or an application deadline ever again! 
-Workbook is optimized for fast typists and utilizes a **Command Line Interface (CLI)** style while still having the benefits of a 
-**Graphical User Interface (GUI)**. <br><br> So what are you waiting for? Transform your internship hunt with WorkBook today!
+WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to secure that internship.
+This minimalistic tool allows you to effortlessly collate and easily manage all of your internship application progress.
+Furthermore, tips are given for relevant stages of your internship applications to give you an edge over other applicants!
+
+This guide provides a step-by-step guide on how you can get started using WorkBook, gives an overview of what you can do in WorkBook and how you can best utilise it to transform your internship hunt positively.
+Each documented feature introduces a potential problem you face, how it can be resolved and examples on using the feature.
+
+No time to waste, let's start _Working_! :muscle:
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Getting started
 
-1. Ensure you have [Java 11 or above](https://www.oracle.com/sg/java/technologies/downloads/#java11) installed on your Computer.
+1. Ensure you have [Java 11 or above](https://www.oracle.com/sg/java/technologies/downloads/#java11) installed on your computer.
 
 2. Download the latest `WorkBook.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-3/tp/releases/).
 
-3. Copy the file to a folder of your choice to store data from your WorkBook.
+3. Copy the downloaded `WorkBook.jar` to a folder of your choice.
 
-4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.jar` in your terminal. <br> The GUI with sample data should appear in a few seconds. Depending on the window width, you will see one of the two layouts shown below.<br>
+4. Using your command terminal:
+   1. Navigate to the folder where you placed your WorkBook at.
+   2. Fire it up by running: `java -jar WorkBook.jar`. <br>The GUI, as shown below, should appear within seconds.<br>
+   ![Ui](images/AnnotatedUi.png)
 
-Narrow Layout            |  Wide Layout
-:-------------------------:|:-------------------------:
-![narrow layout](images/UiNarrow.png) |   ![wide layout](images/Ui.png)
-
-<br>
-5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute. <br>
-   Some example commands you can try:
-
-   * `add c/Meta d/18-Oct-2022 12:00 e/hrmonkey@example.com r/Frontend` : Adds an internship application from `Meta` to the WorkBook.
-
-   * `delete 3` : Deletes the 3rd internship shown in the current list.
-
-   * **`help`** : Displays the help window for easy reference to the list of commands.
-
-   * **`exit`** : Exits the app.
-
-6. You can jump straight to [here](#6-what-you-can-do) for a summary of the commands.
-
---------------------------------------------------------------------------------------------------------------------
-## 3. About this guide
-
-This guide serves to:<br>
-
-1. Educate new users on how to get started with WorkBook.
-2. Explain the purpose and how to use each and every command.
-3. Display a summary of all the commands you can utilize.
-
-
-
+5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute it.
+6. Before diving right into using WorkBook, familiarise yourself with the [things to note](#4-things-to-note) to not hinder your tracking process!
 
 
 --------------------------------------------------------------------------------------------------------------------
-## 4. Exploring our guide
+## 3. Exploring our guide
 
 
 **Information Box**
@@ -91,7 +70,7 @@ This guide serves to:<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Things to note
+## 4. Things to note
 
 <div markdown="block" class="alert alert-info">
 
@@ -137,29 +116,35 @@ This guide serves to:<br>
 
 * Otherwise, WorkBook will be in the wide layout which has an extra right panel for displaying tips.
 
-Narrow Layout            |  Wide Layout
-:-------------------------:|:-------------------------:
-![narrow layout](images/UiNarrow.png) |   ![wide layout](images/Ui.png)
+|       Narrow Layout       |  
+|:-------------------------:|
+|![narrow layout](images/UiNarrow.png) |
 
-![ResponsiveUI](images/ResponsiveUi.gif)
+|       Wide Layout         |
+|:-------------------------:|
+|![wide layout](images/AnnotatedUi.png) |
+
+|     Resizing Example      |
+|:-------------------------:|
+|![ResponsiveUI](images/ResponsiveUi.gif) |
 
 
 </div>
 
-## 6. What you can do
+## 5. What you can do
 
-| Action     | Command format <br> e.g. `Example command`                                                                                                                                                                |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
-| **Edit**   | `edit INDEX [c/COMPANY] [d/DATETIME] [e/COMPANY_EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                      |
-| **Find**   | `find [c/COMPANY] [r/ROLE] [s/STAGE]`<br> e.g., `find c/Meta`                                                                                                                                             |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                       |
-| **List**   | `list`                                                                                                                                                                                                    |
-| **Undo**   | `undo`                                                                                                                                                                                                    |
-| **Redo**   | `redo`                                                                                                                                                                                                    |
-| **Clear**  | `clear`                                                                                                                                                                                                   |
-| **Help**   | `help`                                                                                                                                                                                                    |
-| **Exit**   | `exit`                                                                                                                                                                                                    |
+| Your action | Command format <br> e.g. `Example command`                                                                                                                                                                |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**     | `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
+| **Edit**    | `edit INDEX [c/COMPANY] [d/DATETIME] [e/COMPANY_EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                      |
+| **Find**    | `find [c/COMPANY] [r/ROLE] [s/STAGE]`<br> e.g., `find c/Meta`                                                                                                                                             |
+| **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                       |
+| **List**    | `list`                                                                                                                                                                                                    |
+| **Undo**    | `undo`                                                                                                                                                                                                    |
+| **Redo**    | `redo`                                                                                                                                                                                                    |
+| **Clear**   | `clear`                                                                                                                                                                                                   |
+| **Help**    | `help`                                                                                                                                                                                                    |
+| **Exit**    | `exit`                                                                                                                                                                                                    |
 
 <div markdown="block" class="alert alert-info">
 
@@ -170,7 +155,7 @@ Narrow Layout            |  Wide Layout
 
 </div>
 
-### 6.1. Adding your internship application:
+### 5.1. Adding your internship application
 
 Congrats! You have already done the hard work - applying for that internship you've always wanted. 
 Now, simply add the details into WorkBook and we can begin tracking your application!
@@ -189,7 +174,7 @@ Examples:
 * `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com`
 * `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Java l/Python`
 
-### 6.2. Editing your internship application:
+### 5.2. Editing your internship application
 
 Good job! You've passed the Resume Screening and have been invited to complete an Online Assessment for your internship application.
 Now's a good time to use this command to update the application so that WorkBook can continue to give you relevant tips and reminders!
@@ -211,7 +196,7 @@ Examples:
 * `edit 1 s/Behavioural Interview e/hr@meta.com` Edits the stage and email address of the first internship to be `Behavioural Interview` and `hr@meta.com` respectively.
 * `edit 2 l/golang t/` Adds `golang` as the only language tag for the second internship and clears all existing tags.
 
-### 6.3. Listing all existing internship applications: 
+### 5.3. Listing all existing internship applications
 
 Lists all of your internship applications in WorkBook in a [sorted order](#3-things-to-note).
 
@@ -220,7 +205,7 @@ Lists all of your internship applications in WorkBook in a [sorted order](#3-thi
 </div>
 
 Format: `list`
-### 6.4. Viewing tips for your applications:
+### 5.4. Viewing tips for your applications:
 
 For some application stages, we have included a list of useful tips to help you prepare for and ace the deliverables.
 
@@ -244,8 +229,7 @@ Light Bulb Button            |  Tips Window
 
 To view the tips in the [wide layout](#responsive-ui-when-window-resizing), simply click and select the application you would like to view the tips for. The tips will appear in the right panel.
 
-![Tips Panel](images/TipsPanel.png)
-### 6.5. Finding your internships:
+### 5.5. Finding your internships
 
 If you wanted to view all your internship applications corresponding to a particular company, stage or role,
 then this command is for you! <br>
@@ -273,7 +257,7 @@ Examples:
 * `find r/Engineer` returns `Software Engineer` and `Backend Engineer`.
 * `find s/Interview` returns `Technical Interview` and `Behavioural Interview`.
 
-### 6.6. Deleting your internship application:
+### 5.6. Deleting your internship application
 
 If you wanted to remove an internship application then this command
 deletes the specified internship application from WorkBook.
@@ -293,7 +277,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd internship application in WorkBook.
 * `find Meta` followed by `delete 1` deletes the 1st internship application within the results of the `find` command.
 
-### 6.7. Clearing your existing internship applications:
+### 5.7. Clearing your existing internship applications
 
 It's a new cycle of summer internship applications and that means it's time for some spring-cleaning! 
 Use this command to clear all the applications you've previously saved in WorkBook!
@@ -307,7 +291,7 @@ Example:
 **:bulb: Tip:** If you cleared your internship applications by mistake, fret not as you can easily undo this!
 </div>
 
-### 6.8. Undoing your previous command:
+### 5.8. Undoing your previous command
 
 Restores the WorkBook to the state before the previous <em>undoable</em> command was executed
 
@@ -340,7 +324,7 @@ Examples:
 
     `undo` (reverses the `delete 1` command )
 
-### 6.9. Redoing your previous command:
+### 5.9. Redoing your previous command
 
 Reverses the most recent `undo` command.
 
@@ -373,30 +357,34 @@ Examples:
 
   `redo`(reapplies the `clear` command)
 
-### 6.10. Viewing help:
+### 5.10. Viewing help
 
 Shows a summary of the commands as well as a link to this User Guide.
 
 Format: `help`
 
-### 6.11. Exiting the program:
+### 5.11. Exiting the program
 
 Exits the program.
 
 Format: `exit`
 
+### 5.12. Viewing daily tips
+
+_Details coming soon ..._
+
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Managing your data
+## 6. Managing your data
 
-### 7.1. Saving
+### 6.1. Saving
 
 Conveniently, any inputted command that changes any part of your internship application is **automatically saved**!
-Hence, you need not worry about pressing `ctrl` and `s` everytime you update your list of internship applications.
+Hence, you need not worry about pressing <kbd>ctrl</kbd> + <kbd>s</kbd> everytime you update your list of internship applications.
 
-### 7.2. Editing
+### 6.2. Editing
 
-All your internship applications are saved in a JSON file under the `data` subfolder. 
+All of your internship applications are saved in a JSON file under the `data` subfolder. 
 You are free to update any internship application directly by editing that JSON file.
 
 <div markdown="block" class="alert alert-info">
@@ -412,7 +400,7 @@ If your changes to the data file makes its format invalid, WorkBook will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 8. Frequently asked questions
+## 7. Frequently asked questions
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: [Install](#2-get-started) the app in the other computer, copy and override the JSON file in the new `data` subfolder, and you are done!
@@ -422,9 +410,9 @@ If your changes to the data file makes its format invalid, WorkBook will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 9. Prefix Summary
+## 8. Prefix summary
 
-| Prefix | Symbolize    |
+| Prefix | Symbolizes   |
 |--------|--------------|
 | **n/** | Company Name |
 | **s/** | Stage        |
@@ -436,7 +424,7 @@ If your changes to the data file makes its format invalid, WorkBook will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 10. Glossary
+## 9. Glossary
 
 | Term                           | Description                                                                                                                                        |
 |--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -446,4 +434,5 @@ If your changes to the data file makes its format invalid, WorkBook will discard
 | Parameter                      | A component of a command for the user to input information. For WorkBook's context, this refers to the internship application details.             |
 | Prefix                         | An abbreviation for the name of the parameter. Prefix should be entered before the actual parameter in a command and always ends with a slash (/). |
 | Alphanumeric                   | Characters that are either a number or a letter.                                                                                                   |
+| Subfolder                      | A folder within a folder.                                                                                                                          |
 
