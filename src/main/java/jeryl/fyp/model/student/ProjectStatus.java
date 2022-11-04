@@ -9,7 +9,7 @@ import static jeryl.fyp.commons.util.AppUtil.checkArgument;
  */
 public class ProjectStatus {
     public static final String MESSAGE_CONSTRAINTS =
-            "Status should only be of the form YTS, IP OR DONE";
+            "Status should only be of the form YTS, IP or DONE";
 
     public final String projectStatus;
 

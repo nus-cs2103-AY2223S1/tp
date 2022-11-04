@@ -248,6 +248,11 @@ Format for each variant of `sort`:
 1. `ProjectName`: `sort [-p]`
 2. `ProjectStatus`: `sort -s`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Note that we may also call the command `sort`, which is equivalent to the command `sort -p` and 
+will thus automatically sort the FYP projects by their project name
+</div>
+
 ### Clearing the FYP list: `clear`
 
 Clears the FYP list.
