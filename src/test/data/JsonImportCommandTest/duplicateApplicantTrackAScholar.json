@@ -30,7 +30,7 @@
     "email" : "cornelia@example.com",
     "scholarship" : "Arts",
     "applicationStatus": "rejected",
-    "majors" : [ "friends" ],
+    "majors" : [ "Software Engineering" ],
     "hasPinned" : false
   }, {
     "name" : "Elle Meyer",
