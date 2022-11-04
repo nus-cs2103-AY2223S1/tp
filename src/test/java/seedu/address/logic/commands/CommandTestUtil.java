@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BILL_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TEST;
@@ -14,15 +16,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.HealthContact;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.NameContainsKeywordsPredicateAppointment;
+import seedu.address.model.bill.Bill;
+import seedu.address.model.bill.NameContainsKeywordsPredicateBill;
 import seedu.address.model.patient.NameContainsKeywordsPredicatePatient;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
@@ -52,6 +55,12 @@ public class CommandTestUtil {
     public static final String VALID_SLOT_7 = "2024-03-19 15:45";
     public static final String VALID_SLOT_8 = "2023-05-10 09:15";
 
+    public static final String VALID_AMOUNT_7 = "10";
+    public static final String VALID_BILL_DATE_7 = "2019-12-24";
+    public static final String VALID_BILL_DATE_8 = "2019-12-25";
+    public static final String VALID_AMOUNT_8 = "11.00";
+    public static final String VALID_PAYMENT_STATUS_7 = "PAID";
+    public static final String VALID_PAYMENT_STATUS_8 = "UNPAID";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -73,6 +82,11 @@ public class CommandTestUtil {
     public static final String SLOT_DESC_7 = " " + PREFIX_SLOT + VALID_SLOT_7;
     public static final String SLOT_DESC_8 = " " + PREFIX_SLOT + VALID_SLOT_8;
 
+    public static final String BILL_DATE_DESC_7 = " " + PREFIX_BILL_DATE + VALID_BILL_DATE_7;
+    public static final String BILL_DATE_DESC_8 = " " + PREFIX_BILL_DATE + VALID_BILL_DATE_8;
+    public static final String AMOUNT_DESC_7 = " " + PREFIX_AMOUNT + VALID_AMOUNT_7;
+    public static final String AMOUNT_DESC_8 = " " + PREFIX_AMOUNT + VALID_AMOUNT_8;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -82,6 +96,11 @@ public class CommandTestUtil {
     public static final String INVALID_DOCTOR_DESC = " " + PREFIX_DOCTOR + "John!";
     public static final String INVALID_MEDICAL_TEST_DESC = " " + PREFIX_MEDICAL_TEST;
     public static final String INVALID_SLOT_DESC = " " + PREFIX_SLOT + "2023-1-1 9:00";
+
+
+    public static final String INVALID_BILL_DATE_DESC = " " + PREFIX_BILL_DATE + "2012-12-36";
+    public static final String INVALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + "-5";
+    public static final String INVALID_PAYMENT_STATUS = " ";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -135,44 +154,79 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered patient list and selected patient in {@code actualModel} remain unchanged
+     *
+     * @param expectedMessage The message that is expected to be thrown.
+     * @param command        The command that is expected to throw the exception.
+     * @param actualModel   The model that the command is executed on.
+     */
+    public static void assertCommandFailure(String expectedMessage, Command command, Model actualModel) {
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the HealthContact, filtered patient list and selected patient in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        HealthContact expectedHealthContact = new HealthContact(actualModel.getHealthContact());
         List<Patient> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPatientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedHealthContact, actualModel.getHealthContact());
         assertEquals(expectedFilteredList, actualModel.getFilteredPatientList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s HealthContact.
      */
     public static void showPatientAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
 
         Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
         final String[] splitName = patient.getName().fullName.split("\\s+");
-        model.updateFilteredPatientList(new NameContainsKeywordsPredicatePatient(Arrays.asList(splitName[0])));
+        model.updateFilteredPatientList(new NameContainsKeywordsPredicatePatient(splitName[0]));
 
         assertEquals(1, model.getFilteredPatientList().size());
     }
 
     /**
      * Updates {@code model}'s filtered list to show only the appointment at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s HealthContact.
      */
     public static void showAppointmentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
         final String[] splitName = appointment.getName().fullName.split("\\s+");
-        model.updateFilteredAppointmentList(new NameContainsKeywordsPredicateAppointment(Arrays.asList(splitName[0])));
+        String predicateName = splitName[0];
+        for (int i = 1; i < splitName.length; i++) {
+            predicateName += " " + splitName[i];
+        }
+        model.updateFilteredAppointmentList(new NameContainsKeywordsPredicateAppointment(predicateName));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the bill at the given {@code targetIndex} in the
+     * {@code model}'s HealthContact.
+     */
+    public static void showBillAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBillList().size());
+
+        Bill bill = model.getFilteredBillList().get(targetIndex.getZeroBased());
+        final String[] splitName = bill.getAppointment().getName().fullName.split("\\s+");
+        String predicateName = splitName[0];
+        for (int i = 1; i < splitName.length; i++) {
+            predicateName += " " + splitName[i];
+        }
+        model.updateFilteredBillList(new NameContainsKeywordsPredicateBill(predicateName));
+
+        assertEquals(1, model.getFilteredBillList().size());
     }
 
 }

@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Patient in the address book.
+ * Represents a Patient in the HealthContact.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient {
@@ -76,7 +76,7 @@ public class Patient {
         }
 
         return otherPatient != null
-                && otherPatient.getName().equals(getName());
+                && otherPatient.getName().isSameName(getName());
     }
 
     /**
@@ -94,7 +94,7 @@ public class Patient {
         }
 
         Patient otherPatient = (Patient) other;
-        return otherPatient.getName().equals(getName())
+        return otherPatient.getName().isSameName(getName())
                 && otherPatient.getPhone().equals(getPhone())
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getAddress().equals(getAddress())
@@ -119,8 +119,7 @@ public class Patient {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Remark: ")
-                .append(getRemark())
-                .append("; Tags: ");
+                .append(getRemark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

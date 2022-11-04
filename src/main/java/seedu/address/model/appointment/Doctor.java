@@ -3,7 +3,7 @@ package seedu.address.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
- * Represents an Appointment's doctor in the address book.
+ * Represents an Appointment's doctor in the HealthContact.
  * Guarantees: immutable; is valid as declared in {@link #isValidDoctorName (String)}
  */
 public class Doctor {
@@ -35,6 +35,13 @@ public class Doctor {
      */
     public static boolean isValidDoctorName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if two doctors has same names.
+     */
+    public boolean isSameDoctor(Doctor doctor) {
+        return this.doctorName.toLowerCase().equals(doctor.doctorName.toLowerCase());
     }
 
     @Override

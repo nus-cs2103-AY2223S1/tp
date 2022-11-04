@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Guok Wei Jie
 
-<img src="images/guokweijie.png" width="200px">
+<img src="images/developers/guokweijie.png" width="200px">
 
 [[github](https://github.com/guokweijie)]
 
@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wadia Ganim
 
-<img src="images/wadia82.png" width="200px">
+<img src="images/developers/wadia82.png" width="200px">
 
 [[github](http://github.com/wadia82)]
 
@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Fu Zanwen
 
-<img src="images/fuzanwenn.png" width="200px">
+<img src="images/developers/fuzanwenn.png" width="200px">
 
 [[github](http://github.com/Fuzanwenn)]
 
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Gregory Wong Twee Loong
 
-<img src="images/specops2016.png" width="200px">
+<img src="images/developers/specops2016.png" width="200px">
 
 [[github](http://github.com/SpecOps2016)]
 
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Li Tianze
 
-<img src="images/tzl0.png" width="200px">
+<img src="images/developers/tzl0.png" width="200px">
 
 [[github](http://github.com/TZL0)]
 

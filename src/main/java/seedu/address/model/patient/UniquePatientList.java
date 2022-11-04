@@ -71,7 +71,9 @@ public class UniquePatientList implements Iterable<Patient> {
             throw new PatientNotFoundException();
         }
 
-        if (!target.isSamePatient(editedPatient) && contains(editedPatient)) {
+        boolean hasNewPatient = internalList.stream().filter(p -> !p.equals(target))
+                .anyMatch(p -> p.equals(editedPatient));
+        if (hasNewPatient) {
             throw new DuplicatePatientException();
         }
 
@@ -148,7 +150,11 @@ public class UniquePatientList implements Iterable<Patient> {
     /**
      * Sorts the list of patients in alphabetical order by given criteria.
      */
-    public void sort(Comparator<Patient> compatator) {
-        FXCollections.sort(internalList, compatator);
+    public void sort(Comparator<Patient> comparator, boolean isAscending) {
+        if (isAscending) {
+            FXCollections.sort(internalList, comparator);
+        } else {
+            FXCollections.sort(internalList, comparator.reversed());
+        }
     }
 }

@@ -12,7 +12,11 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class PatientListPanel
+Class AppointmentListPanel
+Class BillListPanel
 Class PatientCard
+Class AppointmentCard
+Class BillCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -33,10 +37,14 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PatientListPanel
+MainWindow *-down-> "1" AppointmentListPanel
+MainWindow *-down-> "1" BillListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 PatientListPanel -down-> "*" PatientCard
+AppointmentListPanel -down-> "*" AppointmentCard
+BillListPanel -down-> "*" BillCard
 
 MainWindow -left-|> UiPart
 
@@ -44,10 +52,16 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PatientListPanel --|> UiPart
 PatientCard --|> UiPart
+BillListPanel --|> UiPart
+BillCard --|> UiPart
+AppointmentListPanel --|> UiPart
+AppointmentCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-PatientCard ..> Model
+PatientCard .down.> Model
+AppointmentCard .down.> Model
+BillCard .down.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.HealthContact;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -26,7 +26,7 @@ public class TypicalPatients {
 
     public static final Patient ALICE = new PatientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withRemark("She likes aardvarks.")
+            .withPhone("94351253").withRemark(PatientBuilder.DEFAULT_REMARK)
             .withTags("friends").build();
     public static final Patient BENSON = new PatientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withRemark("He can't take beer!")
@@ -66,10 +66,10 @@ public class TypicalPatients {
     private TypicalPatients() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical patients.
+     * Returns an {@code HealthContact} with all the typical patients.
      */
-    public static AddressBook getTypicalPatientsAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static HealthContact getTypicalPatientsHealthContact() {
+        HealthContact ab = new HealthContact();
         for (Patient patient : getTypicalPatients()) {
             ab.addPatient(patient);
         }

@@ -17,9 +17,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.HealthContact;
+import seedu.address.model.History;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHealthContact;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.bill.Bill;
@@ -104,12 +105,12 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getHealthContactFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setHealthContactFilePath(Path healthContactFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,12 +125,17 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void selectAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public void setHealthContact(ReadOnlyHealthContact newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyHealthContact getHealthContact() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -159,7 +165,7 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void updateFilteredPatientList(Predicate<Patient> predicate) {
+        public void updateFilteredPatientList(Predicate<? super Patient> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -189,12 +195,22 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        public void updateFilteredAppointmentList(Predicate<? super Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void sort(Comparator<Patient> comparator) {
+        public void sortPatients(Comparator<Patient> comparator, boolean isAscending) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortAppointments(Comparator<Appointment> comparator, boolean isAscending) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortBills(Comparator<Bill> comparator, boolean isAscending) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -229,12 +245,57 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void updateFilteredBillList(Predicate<Bill> predicate) {
+        public void updateFilteredBillList(Predicate<? super Bill> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBillAsUnpaid(Bill bill) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteRelativeBills(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateHealthContactHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateRedoHealthContactHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBillAsPaid(Bill bill) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public History getHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPatientWithExactlySameName(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPatientWithExactlySameName(Name name) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -276,8 +337,8 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyHealthContact getHealthContact() {
+            return new HealthContact();
         }
     }
 

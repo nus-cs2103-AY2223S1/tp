@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Appointment's Medical Test in the address book.
+ * Represents an Appointment's Medical Test in the HealthContact.
  * Guarantees: immutable; is valid as declared in {@link #isValidMedicalTest (String)}
  */
 public class MedicalTest {
@@ -36,6 +36,13 @@ public class MedicalTest {
      */
     public static boolean isValidMedicalTest(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if two medical tests are same.
+     */
+    public boolean isSameMedicalTest(MedicalTest medicalTest) {
+        return this.medicalTestName.toLowerCase().equals(medicalTest.medicalTestName.toLowerCase());
     }
 
     @Override

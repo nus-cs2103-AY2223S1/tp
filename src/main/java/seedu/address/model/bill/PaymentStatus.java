@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents bill's payment state in the address book.
+ * Represents bill's payment state in the HealthContact.
  * Guarantees: immutable; is valid as declared in {@link #isValidPaymentStatus  (String)}
  */
 public class PaymentStatus {
@@ -21,7 +21,7 @@ public class PaymentStatus {
 
     public static final String VALIDATION_REGEX = "PAID|UNPAID";
 
-    public final Status status;
+    private Status status;
 
     /**
      * Constructs a {@code Slot}.
@@ -49,6 +49,10 @@ public class PaymentStatus {
         return status.equals(Status.PAID);
     }
 
+    public void setAsPaid() {
+        this.status = Status.PAID;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(status);
@@ -64,5 +68,9 @@ public class PaymentStatus {
     @Override
     public int hashCode() {
         return status.hashCode();
+    }
+
+    public void setAsUnpaid() {
+        this.status = Status.UNPAID;
     }
 }

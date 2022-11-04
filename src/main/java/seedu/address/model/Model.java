@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.bill.Bill;
 import seedu.address.model.patient.Name;
@@ -41,58 +42,65 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' HealthContact file path.
      */
-    Path getAddressBookFilePath();
+    Path getHealthContactFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' HealthContact file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setHealthContactFilePath(Path healthContactFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces HealthContact data with the data in {@code healthContact}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setHealthContact(ReadOnlyHealthContact healthContact);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the HealthContact */
+    ReadOnlyHealthContact getHealthContact();
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the HealthContact.
      */
     boolean hasPatient(Patient patient);
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the HealthContact.
      */
     boolean hasPatient(Name name);
 
     /**
      * Deletes the given patient.
-     * The patient must exist in the address book.
+     * The patient must exist in the HealthContact.
      */
     void deletePatient(Patient target);
 
     /**
      * Adds the given patient.
-     * {@code patient} must not already exist in the address book.
+     * {@code patient} must not already exist in the HealthContact.
      */
     void addPatient(Patient patient);
 
     /**
      * Replaces the given patient {@code target} with {@code editedPatient}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the HealthContact.
      * The patient identity of {@code editedPatient} must not be the same as
-     * another existing patient in the address book.
+     * another existing patient in the HealthContact.
      */
     void setPatient(Patient target, Patient editedPatient);
 
     /**
-     * Updates the FilteredAppointmentList so that it includes the given patient's appointments only.
+     * Updates the FilteredAppointmentList and FilteredBillList
+     * so that it includes the given patient's appointments and bills only.
      * @param patient The given patient.
      */
     void selectPatient(Patient patient);
+
+    /**
+     * Updates the FilteredBillList so that it includes the given appointments' bill only.
+     * @param appointment The given patient.
+     */
+    void selectAppointment(Appointment appointment);
 
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableList<Patient> getFilteredPatientList();
@@ -101,30 +109,30 @@ public interface Model {
      * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPatientList(Predicate<Patient> predicate);
+    void updateFilteredPatientList(Predicate<? super Patient> predicate);
 
     /**
-     * Returns true if an appointment with the same identity as {@code appointment} exists in the address book.
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the HealthContact.
      */
     boolean hasAppointment(Appointment appointment);
 
     /**
      * Deletes the given appointment.
-     * The appointment must exist in the address book.
+     * The appointment must exist in the HealthContact.
      */
     void deleteAppointment(Appointment target);
 
     /**
      * Adds the given appointment.
-     * {@code appointment} must not already exist in the address book.
+     * {@code appointment} must not already exist in the HealthContact.
      */
     void addAppointment(Appointment appointment);
 
     /**
      * Replaces the given appointment {@code target} with {@code editedAppointment}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the HealthContact.
      * The appointment identity of {@code editedAppointment} must not be the same as
-     * another existing appointment in the address book.
+     * another existing appointment in the HealthContact.
      */
     void setAppointment(Appointment target, Appointment editedAppointment);
 
@@ -135,32 +143,32 @@ public interface Model {
      * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+    void updateFilteredAppointmentList(Predicate<? super Appointment> predicate);
 
     void deleteRelativeAppointments(Patient patient);
 
     /**
-     * Returns true if a bill with the same identity as {@code bill} exists in the address book.
+     * Returns true if a bill with the same identity as {@code bill} exists in the HealthContact.
      */
     boolean hasBill(Bill bill);
 
     /**
      * Deletes the given bill.
-     * The bill must exist in the address book.
+     * The bill must exist in the HealthContact.
      */
     void deleteBill(Bill target);
 
     /**
      * Adds the given bill.
-     * {@code bill} must not already exist in the address book.
+     * {@code bill} must not already exist in the HealthContact.
      */
     void addBill(Bill bill);
 
     /**
      * Replaces the given bill {@code target} with {@code editedBill}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the HealthContact.
      * The bill identity of {@code editedBill} must not be the same as
-     * another existing bill in the address book.
+     * another existing bill in the HealthContact.
      */
     void setBill(Bill target, Bill editedBill);
 
@@ -171,7 +179,7 @@ public interface Model {
      * Updates the filter of the filtered bill list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredBillList(Predicate<Bill> predicate);
+    void updateFilteredBillList(Predicate<? super Bill> predicate);
 
     void deleteRelativeBills(Appointment appointment);
 
@@ -179,5 +187,60 @@ public interface Model {
      * Sorts the namelist by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void sort(Comparator<Patient> comparator);
+    void sortPatients(Comparator<Patient> comparator, boolean isAscending);
+
+    /**
+     * Sorts the appointments by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortAppointments(Comparator<Appointment> comparator, boolean isAscending);
+
+    /**
+     * Sets the Status of PaymentStatus of the given bill to UNPAID.
+     * @param bill
+     */
+    void setBillAsUnpaid(Bill bill);
+
+    /**
+     * Sorts the bills by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortBills(Comparator<Bill> comparator, boolean isAscending);
+
+    /**
+     * Updates previous state of the HealthContact.
+     */
+    void updateHealthContactHistory();
+
+    /**
+     * Updates state of the HealthContact when undo command is executed.
+     */
+    void updateRedoHealthContactHistory();
+
+    /**
+     * Undo last change made to state of HealthContact.
+     */
+    void undo() throws CommandException;
+
+
+    /**
+     * Redo last change made to state of HealthContact.
+     */
+    void redo() throws CommandException;
+
+
+    /**
+     * Sets the Status of PaymentStatus of the given bill to PAID.
+     * @param bill
+     */
+    void setBillAsPaid(Bill bill);
+
+    /**
+     * Gets History in Model.
+     */
+    History getHistory();
+
+    public boolean hasPatientWithExactlySameName(Patient patient);
+
+    public boolean hasPatientWithExactlySameName(Name name);
 }

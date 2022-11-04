@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Patient's name in the address book.
+ * Represents a Patient's name in the HealthContact.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
@@ -36,6 +36,13 @@ public class Name {
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if two names are same
+     */
+    public boolean isSameName(Name otherName) {
+        return this.fullName.toLowerCase().equals(otherName.fullName.toLowerCase());
     }
 
 

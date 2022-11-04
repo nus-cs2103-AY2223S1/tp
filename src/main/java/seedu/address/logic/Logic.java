@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHealthContact;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.bill.Bill;
 import seedu.address.model.patient.Patient;
@@ -26,11 +26,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the HealthContact.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getHealthContact()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyHealthContact getHealthContact();
 
     /** Returns an unmodifiable view of the filtered list of patients */
     ObservableList<Patient> getFilteredPatientList();
@@ -42,9 +42,9 @@ public interface Logic {
     ObservableList<Bill> getFilteredBillList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' HealthContact file path.
      */
-    Path getAddressBookFilePath();
+    Path getHealthContactFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

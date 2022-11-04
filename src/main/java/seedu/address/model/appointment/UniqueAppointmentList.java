@@ -3,6 +3,7 @@ package seedu.address.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
      */
     public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameAppointment);
     }
 
     /**
@@ -48,9 +49,10 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Replaces the patient {@code target} in the list with {@code editedPatient}.
+     * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
-     * The patient identity of {@code editedPatient} must not be the same as another existing patient in the list.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing
+     * appointment in the list.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
@@ -60,7 +62,9 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             throw new AppointmentNotFoundException();
         }
 
-        if (!target.equals(editedAppointment) && contains(editedAppointment)) {
+        boolean hasNewAppointment = internalList.stream().filter(a -> !a.equals(target))
+                .anyMatch(a -> a.equals(editedAppointment));
+        if (hasNewAppointment) {
             throw new DuplicateAppointmentException();
         }
 
@@ -132,5 +136,16 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             }
         }
         return true;
+    }
+
+    /**
+     * Sorts the list of appointments in alphabetical order by given criteria.
+     */
+    public void sort(Comparator<Appointment> comparator, boolean isAscending) {
+        if (isAscending) {
+            FXCollections.sort(internalList, comparator);
+        } else {
+            FXCollections.sort(internalList, comparator.reversed());
+        }
     }
 }

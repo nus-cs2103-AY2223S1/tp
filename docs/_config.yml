@@ -1,4 +1,4 @@
-title: "HealthConnect"
+title: "HealthContact"
 theme: minima
 
 header_pages:
@@ -8,7 +8,7 @@ header_pages:
 
 markdown: kramdown
 
-repository: "https://ay2223s1-cs2103-w08-1.github.io/tp"
+repository: "https://ay2223s1-cs2103t-w08-1.github.io/tp"
 github_icon: "images/github-icon.png"
 
 plugins:

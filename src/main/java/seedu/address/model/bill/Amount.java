@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents amount of bill in the address book.
+ * Represents amount of bill in the HealthContact.
  * Guarantees: immutable; is valid as declared in {@link #isValidAmount (String)}
  */
 public class Amount {
@@ -38,7 +38,7 @@ public class Amount {
 
     @Override
     public String toString() {
-        return String.valueOf(amount);
+        return String.format("%.2f", amount);
     }
 
     @Override
