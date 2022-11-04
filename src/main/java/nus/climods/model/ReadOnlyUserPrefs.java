@@ -11,7 +11,7 @@ public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
 
-    Path getAddressBookFilePath();
-
     String getAcademicYear();
+
+    Path getUserModuleListFilePath();
 }

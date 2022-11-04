@@ -33,7 +33,6 @@ class ModuleContainsKeywordsPredicateTest {
         ModuleContainsKeywordsPredicate firstPredicateCopy = new ModuleContainsKeywordsPredicate(firstSearchRegexList);
         assertEquals(firstPredicate, firstPredicateCopy);
 
-        // different person -> returns false
         assertNotEquals(firstPredicate, secondPredicate);
     }
 

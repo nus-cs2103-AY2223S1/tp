@@ -14,9 +14,8 @@ import nus.climods.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private final Path userModuleListFilePath = Paths.get("data", "userModuleList.json");
+    private Path userModuleListFilePath = Paths.get("data", "userModuleList.json");
 
-    private Path addressBookFilePath = Paths.get("data", "addressbook.json");
     private String academicYear = "2022-2023";
 
     /**
@@ -39,7 +38,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -55,26 +53,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return userModuleListFilePath;
     }
 
-    public void setUserModuleListFilePath(Path userModuleListFilePath) {
-        requireNonNull(userModuleListFilePath);
-        this.addressBookFilePath = userModuleListFilePath;
-    }
-
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
-    }
-
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
-    }
-
     public String getAcademicYear() {
         return academicYear;
-    }
-
-    public void setAcademicYear(String academicYear) {
-        this.academicYear = academicYear;
     }
 
     @Override
@@ -89,20 +69,17 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-            && Objects.equals(addressBookFilePath.toAbsolutePath(), o.addressBookFilePath.toAbsolutePath());
+            && Objects.equals(userModuleListFilePath.toAbsolutePath(), o.userModuleListFilePath.toAbsolutePath());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, userModuleListFilePath);
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
-        return sb.toString();
+        return "Gui Settings : " + guiSettings
+            + "\nLocal data file location : " + userModuleListFilePath;
     }
-
 }

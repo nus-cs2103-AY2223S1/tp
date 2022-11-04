@@ -138,6 +138,18 @@
   -fx-border-top-width: 1px;
 }
 
+.button:disabled, .button:default:disabled {
+  -fx-opacity: 1.0;
+  -fx-background-color: #1d1d1d;
+  -fx-text-fill: white;
+}
+
+.region:disabled, .region:default:disabled {
+  -fx-opacity: 1.0;
+  -fx-background-color: #1d1d1d;
+  -fx-text-fill: white;
+}
+
 .status-bar {
   -fx-background-color: derive(#1d1d1d, 30%);
 }
@@ -237,11 +249,6 @@
   -fx-border-insets: 1 1 1 1, 0;
 }
 
-.button:disabled, .button:default:disabled {
-  -fx-opacity: 0.4;
-  -fx-background-color: #1d1d1d;
-  -fx-text-fill: white;
-}
 
 .button:default {
   -fx-background-color: -fx-focus-color;
