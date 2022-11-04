@@ -163,23 +163,21 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// task-level operations
 
+    public boolean teamHasTask(Index index, Task task) {
+        return teams.teamHasTask(index.getZeroBased(), task);
+    }
+
     public void addTask(Index index, Task task) {
         teams.addTask(index.getZeroBased(), task);
     }
-
-    //// task-level operations
 
     public void markTask(Index teamIndex, Index taskIndex) {
         teams.markTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
     }
 
-    //// task-level operations
-
     public void unmarkTask(Index teamIndex, Index taskIndex) {
         teams.unmarkTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
     }
-
-    //// task-level operations
 
     public void deleteTask(Index teamIndex, Index taskIndex) {
         teams.deleteTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());

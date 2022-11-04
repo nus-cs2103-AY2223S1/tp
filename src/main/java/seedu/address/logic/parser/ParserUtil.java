@@ -171,11 +171,13 @@ public class ParserUtil {
      * @throws ParseException if the given task {@code deadline} is in an invalid format.
      */
     public static Optional<LocalDate> parseDeadline(String deadline) throws ParseException {
-        if (deadline == null) {
+        String trimmedDeadline;
+
+        try {
+            trimmedDeadline = deadline.trim();
+        } catch (NullPointerException e) {
             return Optional.empty();
         }
-
-        String trimmedDeadline = deadline.trim();
 
         try {
             LocalDate date = LocalDate.parse(trimmedDeadline, DATE_TIME_FORMAT);

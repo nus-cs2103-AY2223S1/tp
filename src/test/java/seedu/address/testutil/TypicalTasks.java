@@ -15,6 +15,7 @@ public class TypicalTasks {
     public static final Task COOK = new TaskBuilder().withName("Cook for 4 people").withDeadline("24-10-2022")
             .withIsDone(true).build();
     public static final Task REVIEW = new TaskBuilder().withName("Review PR").withIsDone(false).build();
+    public static final Task PACK = new TaskBuilder().withName("Pack Table").withIsDone(true).build();
 
     private TypicalTasks() {} // prevents instantiation
 

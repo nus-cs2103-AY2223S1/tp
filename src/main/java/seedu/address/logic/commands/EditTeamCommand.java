@@ -31,6 +31,8 @@ public class EditTeamCommand extends Command {
             + PREFIX_TEAM_NAME + "TeamNew ";
 
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited Team: %1$s";
+    public static final String MESSAGE_DUPLICATE_TEAM_NAME = "This team name already exists";
+
 
     private final Index targetIndex;
     private final Name newTeamName;
@@ -55,6 +57,10 @@ public class EditTeamCommand extends Command {
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
+        }
+
+        if (model.teamNameExists(newTeamName)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TEAM_NAME);
         }
 
         model.setTeamName(targetIndex, newTeamName);

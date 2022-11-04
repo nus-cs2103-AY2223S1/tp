@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -63,6 +64,9 @@ public class CommandTestUtil {
     public static final String TEAM_INDEX_1 = " " + PREFIX_TEAM_INDEX + "1";
     public static final String TEAM_INDEX_2 = " " + PREFIX_TEAM_INDEX + "2";
 
+    public static final String TASK_INDEX_1 = " " + PREFIX_TASK_INDEX + "1";
+    public static final String TASK_INDEX_2 = " " + PREFIX_TASK_INDEX + "2";
+
     public static final String VALID_TASK_NAME_STUDY = "Study for exam";
     public static final String VALID_TASK_NAME_COOK = "Cook for 4 people";
     public static final String VALID_TASK_NAME_REVIEW = "Review PR";
@@ -76,6 +80,8 @@ public class CommandTestUtil {
     public static final String TASK_DEADLINE_DESC_COOK = " " + PREFIX_TASK_DEADLINE + VALID_TASK_DEADLINE_COOK;
 
     public static final String INVALID_TEAM_INDEX = " " + PREFIX_TEAM_INDEX + "A"; // only positive integers are allowed
+    public static final String INVALID_TASK_INDEX = " " + PREFIX_TASK_INDEX + "A"; // only positive integers are allowed
+
     public static final String INVALID_TASK_NAME_DESC = " " + PREFIX_TASK_NAME
             + "Fix bugs&"; // '&' not allowed in names
     public static final String INVALID_TASK_DEADLINE_DESC_1 = " " + PREFIX_TASK_DEADLINE

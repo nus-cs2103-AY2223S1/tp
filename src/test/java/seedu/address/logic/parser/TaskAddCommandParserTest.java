@@ -17,8 +17,8 @@ import static seedu.address.logic.commands.CommandTestUtil.TEAM_INDEX_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_STUDY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAM;
 import static seedu.address.testutil.TypicalTasks.REVIEW;
 import static seedu.address.testutil.TypicalTasks.STUDY;
 
@@ -38,19 +38,19 @@ public class TaskAddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TEAM_INDEX_1 + TASK_NAME_DESC_STUDY
-                + TASK_DEADLINE_DESC_STUDY, new TaskAddCommand(INDEX_FIRST_PERSON, expectedTask));
+                + TASK_DEADLINE_DESC_STUDY, new TaskAddCommand(INDEX_FIRST_TEAM, expectedTask));
 
         // multiple team index - last team index accepted
         assertParseSuccess(parser, TEAM_INDEX_1 + TEAM_INDEX_2 + TASK_NAME_DESC_STUDY
-                + TASK_DEADLINE_DESC_STUDY, new TaskAddCommand(INDEX_SECOND_PERSON, expectedTask));
+                + TASK_DEADLINE_DESC_STUDY, new TaskAddCommand(INDEX_SECOND_TEAM, expectedTask));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, TEAM_INDEX_1 + TASK_NAME_DESC_COOK + TASK_NAME_DESC_STUDY
-                + TASK_DEADLINE_DESC_STUDY, new TaskAddCommand(INDEX_FIRST_PERSON, expectedTask));
+                + TASK_DEADLINE_DESC_STUDY, new TaskAddCommand(INDEX_FIRST_TEAM, expectedTask));
 
         // multiple deadline - last deadline accepted
         assertParseSuccess(parser, TEAM_INDEX_1 + TASK_NAME_DESC_STUDY + TASK_DEADLINE_DESC_COOK
-                + TASK_DEADLINE_DESC_STUDY, new TaskAddCommand(INDEX_FIRST_PERSON, expectedTask));
+                + TASK_DEADLINE_DESC_STUDY, new TaskAddCommand(INDEX_FIRST_TEAM, expectedTask));
     }
 
     @Test
@@ -58,7 +58,7 @@ public class TaskAddCommandParserTest {
         // no deadline given
         Task expectedTask = new TaskBuilder(REVIEW).build();
         assertParseSuccess(parser, TEAM_INDEX_1 + TASK_NAME_DESC_REVIEW,
-                new TaskAddCommand(INDEX_FIRST_PERSON, expectedTask));
+                new TaskAddCommand(INDEX_FIRST_TEAM, expectedTask));
     }
 
     @Test

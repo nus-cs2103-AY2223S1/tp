@@ -121,13 +121,16 @@ public class Team {
         return members.contains(p);
     }
 
-
     public UniquePersonList getMembers() {
         return members;
     }
 
     public ObservableList<Person> getMemberList() {
         return members.asUnmodifiableObservableList();
+    }
+
+    public boolean containTask(Task t) {
+        return tasks.contains(t);
     }
 
     /**

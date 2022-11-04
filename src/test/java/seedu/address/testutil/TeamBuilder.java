@@ -12,7 +12,7 @@ import seedu.address.model.team.Team;
  */
 public class TeamBuilder {
 
-    public static final String DEFAULT_TEAM_NAME = "Frontend";
+    public static final String DEFAULT_TEAM_NAME = "GUI";
 
     private Name name;
     private UniquePersonList members = new UniquePersonList();
@@ -59,7 +59,8 @@ public class TeamBuilder {
     public TeamBuilder withTasks(Task... tasks) {
         this.tasks = new UniqueTaskList();
         for (Task t : tasks) {
-            this.tasks.add(t);
+            TaskBuilder builder = new TaskBuilder(t);
+            this.tasks.add(builder.build());
         }
         return this;
     }

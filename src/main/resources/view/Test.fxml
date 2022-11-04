@@ -8,25 +8,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Font?>
 
-<HBox spacing="15.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox.margin>
-        <Insets bottom="10.0" top="10.0" />
-    </VBox.margin>
-   <children>
-       <Label />
-       <Label fx:id="id" styleClass="cell_big_label">
-           <minWidth>
-               <!-- Ensures that the label text is never truncated -->
-               <Region fx:constant="USE_PREF_SIZE" />
-           </minWidth>
-       </Label>
-       <Label fx:id="name" text="\$first" textFill="WHITE">
-           <font>
-               <Font size="18.0" />
-           </font>
-       </Label>
-      <Region prefHeight="0.0"  HBox.hgrow="ALWAYS" />
-       <Label>Task progress</Label>
-       <ProgressBar fx:id="taskProgressBar" />
-   </children>
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="name" text="\$first" textFill="WHITE">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <Region prefHeight="0.0"  HBox.hgrow="ALWAYS" />
+    <Label>Task progress:</Label>
+    <ProgressBar styleClass="my-progress-bar" fx:id="taskProgressBar" />
 </HBox>
