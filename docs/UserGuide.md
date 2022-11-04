@@ -51,6 +51,7 @@ FYP projects in a concise manner.
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -75,12 +76,19 @@ FYP projects in a concise manner.
 * Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
   e.g. if the command specifies `list 456`, it will be interpreted as `list`.
 
+* Invalid parameters for `help` command will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.<br>
+  e.g. if the command specifies `help sort -p 456`, it will be interpreted as `help sort -p'.
+
+* If flag is not specified for `help certainCommand` command, the default help message will show for `certainCommand`.<br>
+  e.g. if the command specifies `help sort`, it will be interpreted as `help sort -p`.
+
 * `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 uppercase letter)**. <br>
   e.g. `A0123456G`.
 
 * `FYP_NAME` and `DEADLINE_NAME` should only include alphanumeric characters and spaces but
 **cannot start with a space**.<br>
-  e.g. `Support vector machine: some improvements` is invalid
+  e.g. ` Support vector machine: some improvements` is invalid
 
 * `DEADLINE_DATETIME` can be in the format of **"DD-MM-YYYY HH:mm"** or **"YYYY-MM-DD HH:mm"**.<br>
   e.g. `05-11-2022 08:00`, `2022-11-05 08:00`.
@@ -90,6 +98,8 @@ FYP projects in a concise manner.
   ID of A0123456X.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding students FYP: `add`
 
@@ -156,7 +166,7 @@ Examples:
 
 ### Searching keyword: `find`
 
-Find projects whose field (to be specified by user) contains any of the given keyword(s).
+Finds projects whose field (as specified by user) contains any of the given keyword(s).
 The four fields that the user can search by are:
 
 1. `ProjectName`
@@ -172,7 +182,7 @@ Format for each variant of `find`:
 4. `Tags`: `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
 * the `/` in the above examples shows multiple input parameters. <br>
-  e.g. `find -i/A0123456X A0123456G` will search for all students with either student ID of *A0123456X* or *A0123456G*.
+  e.g. `find -i A0123456X/A0123456G` will search for all students with either student ID of *A0123456X* or *A0123456G*.
 * Only the four specified fields above could be searched, and only one field can be searched at any one time.
 * The keyword is case-insensitive, e.g. `Neural NetWORK` will match `neural network`.
 * The keyword could contain spaces, e.g. `practical guide of machine learning` is allowed.
@@ -186,9 +196,14 @@ Examples:
 * `find -t Neural Network` searches for all projects with at least one tag containing `Neural Network`.
 * `find -p Neural/Network / Data` searches for all projects with `Neural` or `Network` or `Data` in their titles.
 
+Remark: 
+
+* A neat alternative to `list`: `find -i a` or `find -i /a` will function the same way as `list` and returns a list 
+  of all students, as student ID always begins with letter 'a'.
+
 ### Edit student details: `edit`
 
-Edit student details according to the input.
+Edits student details according to the input.
 
 Format: `edit STUDENT_ID [n/STUDENT_NAME] [p/FYP_NAME] [e/EMAIL] [t/TAG]…​`
 
@@ -211,7 +226,7 @@ Format: `help [COMMAND]`
 Examples:
 
 * `help add -s` - This shows a detailed help message on the `add -s` command.
-* `help` - This shows a message explaining how to access the help page.
+* `help` - This shows an open window revealing the URL to the user guide which could be copied to the user's clipboard.
 
 ### List of FYPs: `list`
 
@@ -246,6 +261,8 @@ Exits the program.
 Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
