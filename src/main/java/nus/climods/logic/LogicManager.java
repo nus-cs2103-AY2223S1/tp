@@ -1,5 +1,6 @@
 package nus.climods.logic;
 
+import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -21,8 +22,6 @@ import nus.climods.storage.exceptions.StorageException;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
-
-    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -66,8 +65,12 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<UserModule> getFilteredUserModuleList() {
-        // TODO Add implementation for user module list
         return model.getFilteredUserModuleList();
+    }
+
+    @Override
+    public Path getUserModuleListPath() {
+        return storage.getUserModuleListPath();
     }
 
     @Override

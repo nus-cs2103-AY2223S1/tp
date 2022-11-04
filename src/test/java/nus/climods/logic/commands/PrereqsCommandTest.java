@@ -21,8 +21,6 @@ public class PrereqsCommandTest {
     private static final String testAcademicYear = "2022-2023";
     private static final String INVALID_CODE = "CS9999";
     private static final String VALID_CODE_NULL_PREQ = "AC5001";
-    private static final String VALID_CODE_PREQ_NO_MODULES = "MA1301X";
-    private static final String VALID_CODE_HAS_MODULES = "CS2106";
     private final Model model = new ModelManager(new ModuleList(testAcademicYear), new UniqueUserModuleList(),
             new UserPrefs());
 
@@ -38,7 +36,7 @@ public class PrereqsCommandTest {
         PrereqsCommand cmd = new PrereqsCommand(VALID_CODE_NULL_PREQ);
         try {
             CommandResult res = cmd.execute(model);
-            Assertions.assertEquals(String.format(PrereqsCommand.MESSAGE_MODULE_NO_PREREQUISITES,
+            Assertions.assertEquals(String.format(PrereqsCommand.MESSAGE_MODULE_NULL_PREREQUISITES,
                     VALID_CODE_NULL_PREQ), res.getFeedbackToUser());
         } catch (CommandException e) {
             throw new RuntimeException(e);
@@ -47,11 +45,12 @@ public class PrereqsCommandTest {
 
     @Test
     public void execute_prereqNoValidModules_returnsNoPrereqMessage() {
-        PrereqsCommand cmd = new PrereqsCommand(VALID_CODE_PREQ_NO_MODULES);
+        PrereqsCommand cmd = new PrereqsCommand("MA1301X");
+        String errMsg = "Prerequisite description: Pass in GCE ‘O’ Level Additional Mathematics or GCE ‘AO’ Level or "
+                + "H1 Mathematics\n" + "Unable to show prerequisites for MA1301X.";
         try {
             CommandResult res = cmd.execute(model);
-            Assertions.assertEquals(String.format(PrereqsCommand.MESSAGE_MODULE_NO_PREREQUISITES,
-                    VALID_CODE_PREQ_NO_MODULES), res.getFeedbackToUser());
+            Assertions.assertTrue(res.getFeedbackToUser().equals(errMsg));
         } catch (CommandException e) {
             throw new RuntimeException(e);
         }
@@ -59,11 +58,12 @@ public class PrereqsCommandTest {
 
     @Test
     public void execute_prereqHasValidModules_returnsSuccess() {
-        PrereqsCommand cmd = new PrereqsCommand(VALID_CODE_HAS_MODULES);
+        PrereqsCommand cmd = new PrereqsCommand("CS2106");
+        String errMsg = "Prerequisite description: CS2100 or EE2007 or EE2024 or EE2028\n"
+                + "Showing available prerequisites for CS2106";
         try {
             CommandResult res = cmd.execute(model);
-            Assertions.assertEquals(String.format(PrereqsCommand.MESSAGE_SUCCESS,
-                    VALID_CODE_HAS_MODULES), res.getFeedbackToUser());
+            Assertions.assertTrue(res.getFeedbackToUser().equals(errMsg));
             List<String> codes = model.getFilteredModuleList()
                     .stream().map(Module::getCode).collect(Collectors.toList());
             Assertions.assertEquals(codes, Arrays.asList("CS2100", "EE2024", "EE2028"));

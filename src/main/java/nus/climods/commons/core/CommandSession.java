@@ -2,7 +2,6 @@ package nus.climods.commons.core;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import nus.climods.logic.Logic;
 import nus.climods.logic.commands.CommandResult;
@@ -16,9 +15,8 @@ import nus.climods.storage.exceptions.StorageException;
 public class CommandSession {
 
     private final CommandExecutor commandExecutor;
-
     private final List<String> commandHistory;
-    private ListIterator<String> commandScroller;
+    private int commandHistoryPos;
 
     /**
      * Constructor for CommandSession class.
@@ -28,10 +26,11 @@ public class CommandSession {
     public CommandSession(CommandExecutor commandExecutor) {
         this.commandHistory = new ArrayList<>();
         this.commandExecutor = commandExecutor;
+        resetCommandScroller();
     }
 
     private void resetCommandScroller() {
-        commandScroller = commandHistory.listIterator(commandHistory.size());
+        commandHistoryPos = commandHistory.size();
     }
 
     private void addCommand(String command) {
@@ -43,11 +42,16 @@ public class CommandSession {
         resetCommandScroller();
     }
 
+    private String getCommand() {
+        return (commandHistoryPos >= 0 && commandHistoryPos < commandHistory.size()) ? commandHistory.get(
+            commandHistoryPos) : "";
+    }
+
     /**
      * Get the previous command in the command history.
      * <p>
      * Note that there is a side effect to each call to <code>getPreviousCommand</code>, where the internal
-     * <code>commandScroller</code> will be updated to point to the position of the previous command in
+     * <code>commandHistoryPos</code> will be updated to point to the position of the previous command in
      * <code>commandHistory</code>.
      * <p>
      * This means that each function call to <code>getPreviousCommand</code> returns a different value based on the
@@ -57,14 +61,15 @@ public class CommandSession {
      * @return previous command in command history
      */
     public String getPreviousCommand() {
-        return commandScroller.hasPrevious() ? commandScroller.previous() : "";
+        commandHistoryPos = Math.max(commandHistoryPos - 1, -1);
+        return getCommand();
     }
 
     /**
      * Get the next command in the command history.
      * <p>
      * Note that there is a side effect to each call to <code>getNextCommand</code>, where the internal
-     * <code>commandScroller</code> will be updated to point to the position of the next command in
+     * <code>commandHistoryPos</code> will be updated to point to the position of the next command in
      * <code>commandHistory</code>.
      * <p>
      * This means that each function call to <code>getNextCommand</code> returns a different value based on the
@@ -74,7 +79,8 @@ public class CommandSession {
      * @return next command in command history
      */
     public String getNextCommand() {
-        return commandScroller.hasNext() ? commandScroller.next() : "";
+        commandHistoryPos = Math.min(commandHistoryPos + 1, commandHistory.size());
+        return getCommand();
     }
 
     /**

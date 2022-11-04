@@ -1,5 +1,7 @@
 package nus.climods.logic;
 
+import java.nio.file.Path;
+
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.logic.commands.CommandResult;
@@ -33,6 +35,11 @@ public interface Logic {
     ObservableList<Module> getFilteredModuleList();
 
     /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getUserModuleListPath();
+
+    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
@@ -41,5 +48,4 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
-
 }

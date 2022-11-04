@@ -12,17 +12,17 @@ plan and manage their modules much faster than doing it on [nusmods.com](https:/
 
 Given below are my contributions to the project.
 
-_To be updated soon_
+
+* **New Feature**: Added the ability to find modules starting with the same `[department code]`
+
+  * What it does: Allows users to find the modules offered in NUS under the same department
+  * Justification: The feature provides the user with the ability to view modules under the same department.
+  This is beneficial for users who want to find out the modules offered under the same department. In particular,
+  users who are planning their major requirement may use this to search for potential modules to take.
+  * Highlights: The feature is case-insensitive and differentiates against department codes that are share the same prefix.
 
 
-* **New Feature**: 
-
-  * What it does: 
-  * Justification: 
-  * Highlights:
-  * Credits: 
-
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=seeksaveserve&breakdown=true)
 
 
 * **Project management**:
@@ -32,9 +32,11 @@ _To be updated soon_
 
 * **Enhancements to existing features**:
 
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
+  * Implemented storage for `add` and `delete` commands (Pull requests [\#82](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/82))
 
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Wrote additional tests for `add` and `delete` to increase coverage from 28.88% to 30.86% (Pull requests [\#82](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/82))
+  
+  * Implemented UI for all lesson types under the `view` command (Pull requests [\#100](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/100))
 
 
 * **Documentation**:
