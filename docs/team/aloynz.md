@@ -5,7 +5,8 @@ title: Aloysius Neo Ze En's Project Portfolio Page
 
 ### Project: TABS
 
-TABS is a desktop scheduler application used by people managing team projects. It allows the user to view a project's members and their workload, allocate tasks to them and get reminders on upcoming deadlines or deliverables.
+TABS is a desktop scheduler application used by students managing team projects. It allows the user who is a student to view a project's members and their workload, allocate tasks to them
+and get reminders on upcoming deadlines or deliverables.
 
 Given below are my contributions to the project.
 
