@@ -438,6 +438,16 @@ It is necessary for a trackAScholar file to be named as a readable format (track
 Otherwise, file cannot be read.
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When the trackAScholar program is being run, it will create a new ./data/ folder with the trackAScholar.json data
+file in the same folder. Please insert the trackAScholarImport.json file there.
+
+For testers, please refer to the Developer Guide for the testing files.
+</div>
+
+[Testing Import function](https://github.com/samuelcheongws/tp/blob/master/docs/DeveloperGuide.md#import-trackascholarimport-file)
+
+
 Examples:
 * `import r` applicants with the same name will be replaced with application data from imported file
 * `import k` applicants with the same name will be kept instead of being replaced with application data from imported file
