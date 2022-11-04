@@ -28,6 +28,7 @@ import seedu.clinkedin.model.ReadOnlyUserPrefs;
 import seedu.clinkedin.model.UserPrefs;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
+import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 
 public class AddTagCommandTest {
@@ -66,8 +67,10 @@ public class AddTagCommandTest {
         Person personToEdit = model.getFilteredPersonList().get(0);
         AddTagCommand addTagCommand = new AddTagCommand(Index.fromZeroBased(0), new UniqueTagTypeMap());
         String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, personToEdit.toString());
+        UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
+        tagMap.setTagTypeMap(personToEdit.getTags());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTagTypeMap(), personToEdit.getStatus(),
+                personToEdit.getAddress(), tagMap, personToEdit.getStatus(),
                 personToEdit.getNote(),
                 personToEdit.getRating(), personToEdit.getLinks());
         expectedModel.setPerson(personToEdit, editedPerson);
@@ -78,36 +81,33 @@ public class AddTagCommandTest {
     public void execute_duplicateTag_duplicateTagExceptionThrown() {
         Person personToEdit = model.getFilteredPersonList().get(0);
         UniqueTagTypeMap toAdd = new UniqueTagTypeMap();
-        toAdd.setTagTypeMap(personToEdit.getTagTypeMap());
+        toAdd.setTagTypeMap(personToEdit.getTags());
         AddTagCommand addTagCommand = new AddTagCommand(Index.fromZeroBased(0), toAdd);
         assertThrows(CommandException.class, () -> addTagCommand.execute(model));
     }
 
-    // TODO: Fix valid tag test case
-    // @Test
-    // public void execute_validTag_success() {
-    // Person personToEdit = model.getFilteredPersonList().get(0);
-    // UniqueTagTypeMap toAdd = new UniqueTagTypeMap();
-    // toAdd.mergeTag(new TagType("Skills"), new Tag("Test Tag"));
-    // AddTagCommand addTagCommand = new AddTagCommand(Index.fromZeroBased(0),
-    // toAdd);
-    // String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS,
-    // personToEdit.toString());
+    @Test
+    public void execute_validTag_success() {
+        Person personToEdit = model.getFilteredPersonList().get(0);
+        UniqueTagTypeMap toAdd = new UniqueTagTypeMap();
+        toAdd.mergeTag(new TagType("Skills"), new Tag("Test Tag"));
 
-    // UniqueTagTypeMap editedTagTypeMap = new UniqueTagTypeMap();
-    // Map<TagType, UniqueTagList> tagTypeMap = new HashMap<>();
-    // tagTypeMap.putAll(personToEdit.getTagTypeMap().asUnmodifiableObservableMap());
-    // editedTagTypeMap.setTagTypeMap(toAdd);
-    // editedTagTypeMap.mergeTagTypeMap(personToEdit.getTagTypeMap());
+        AddTagCommand addTagCommand = new AddTagCommand(Index.fromZeroBased(0), toAdd);
 
-    // Person editedPerson = new Person(personToEdit.getName(),
-    // personToEdit.getPhone(), personToEdit.getEmail(),
-    // personToEdit.getAddress(), editedTagTypeMap, personToEdit.getStatus(),
-    // personToEdit.getNote(),
-    // personToEdit.getRating(), personToEdit.getLinks());
-    // expectedModel.setPerson(personToEdit, editedPerson);
-    // assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
-    // }
+        UniqueTagTypeMap oldTagTypeMap = new UniqueTagTypeMap();
+        oldTagTypeMap.setTagTypeMap(personToEdit.getTags());
+
+        UniqueTagTypeMap editedTagTypeMap = new UniqueTagTypeMap();
+        editedTagTypeMap.setTagTypeMap(oldTagTypeMap);
+        editedTagTypeMap.mergeTagTypeMap(toAdd);
+
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), editedTagTypeMap, personToEdit.getStatus(), personToEdit.getNote(),
+                personToEdit.getRating(), personToEdit.getLinks());
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, editedPerson);
+        expectedModel.setPerson(personToEdit, editedPerson);
+        assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void equals() {
