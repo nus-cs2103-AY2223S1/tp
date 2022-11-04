@@ -391,6 +391,12 @@ Format: `clear`
 
 <img src="images/ug-screenshots/clear.png" alt="clear" width="1100">
 
+### Clearing data in SETA : `clear`
+
+Clears the data in SETA.
+
+Format: `clear `
+
 ### Exiting the program : `exit`
 
 Exits the program.
