@@ -268,44 +268,36 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Current Implementation
 
-The FindPatientCommand, FindAppointmentCommand and FindBillCommand make use of predicates to filter the list of patients, appointments and bills respectively.
+The `FindPatientCommand`, `FindAppointmentCommand` and `FindBillCommand` make use of predicates to filter the list of patients, appointments and bills respectively.
 Each command's parser parses the field prefixes and filter inputs keyed in by the user to create the command with Optional predicates for each field passed in as parameters.
 The command then creates a combined predicate and upon execution, updates the filtered list of patients, appointments or bills in the model by setting the new predicate.
 
 Given below is an example usage scenario for __FindPatientCommand__ and how the find mechanism behaves at each step.
 
-Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
-of the application as indexed lists.
+Step 1. The user launches the application. The `filteredPatients` list is initialized with an "always true" predicate for all the patient fields and all patients are shown to the user as an indexed list on the patient list panel.
 
-Step 2. The user keys in `findpatient n/John` or `fp n/John` to find all patients with names containing "John".
-The `FindPatientCommand` calls `Model#updateFilteredPatientList(predicate)` to update the list of patients in the application.
+Step 2. The user executes the `findpatient n/John` or `fp n/John` command to find all patients with the name field containing "John". 
+The `FindPatientCommand` calls `Model#updateFilteredPatientList(predicate)` to set the predicate of the `filteredPatients` list to the new predicate created by the command. 
+The application displays the list of patients with names containing "John" on the patient list panel.
 
-Step 3. The application displays the list of patients with names containing "John" on the patient list panel.
-
-The following sequence diagram shows how the FindPatientCommand works:
+The following sequence diagram shows how the `FindPatientCommand` works:
 
 ![FindPatientCommandSequenceDiagram](images/dg/FindPatientCommandSequenceDiagram.png)
 
-The find feature is now seperated for the patients, appointments and bills sections.
+The `FindAppointmentCommand` and `FindBillCommand` works similarly to the `FindPatientCommand`.
 
 Design considerations:
-1. Length of command word
+1. Usage of command word
 2. Usage of prefixes for each field
+3. Usage of Optional predicates
 
 Alternatives:
-
-1. Use a shorter command word (e.g. find instead of findpatient)
-    - Pros: Easy to type
-    - Cons: May be confused with the find command for appointments and bills
-    - Cons: May be confused with the find command for patients
-2. Use a prefix for the search term (e.g. find n/John)
-    - Pros: Easy to type
-    - Pros: Easy to remember
-    - Cons: May be confused with the find command for appointments and bills
-3. Combine find feature for patients, appointments and bills into one command
-    - Pros: Easy to type
-    - Pros: Easy to remember
-    - Cons: May be confusing to the user
+1. Use `find` as the command word for patients, appointments and bills
+    - Pros: Easy to remember and type the command word
+    - Cons: Too many prefixes to type in one command if we want to search by multiple fields, which can make the command very long
+2. Create a new predicate class for each field instead of using Optional predicates
+    - Pros: Predicates are more clearly separated and defined 
+    - Cons: More classes to maintain
 
 ###Delete Feature
 
