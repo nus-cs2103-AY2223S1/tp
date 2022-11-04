@@ -725,20 +725,10 @@ Format: `view DATE`
 * The DATE **must be of the specified format** dd-MM-yy
 
 Examples:
-* `view 25-12-22` lists the tasks on 25th December 2022
+* `view 25-11-22` lists the tasks on 25th November 2022
 
-_Add screenshot here_
-
-Examples:
-
-Let's say you added the following patients and their tasks:
-* **Physiotherapy appointment** for **Alex Yeoh** at 12:00pm on 2022-11-04
-* **Administer insulin dose** for **Charlotte Oliveiro** at 11:45am on 2022-11-04
-
-If today's date is 2022-11-04, `view --today` will display those 2 tasks.
-
-![result for `view --today`](images/viewTodayResult.png)
-_<div align="center"> Patient and task list displayed after running the `view --today` command </div>_
+![result for `view 25-11-22`](images/viewSpecificDayResult.png)
+_<div align="center"> Patient and task list displayed after running the `view 25-11-22` command </div>_
 
 
 <br>
