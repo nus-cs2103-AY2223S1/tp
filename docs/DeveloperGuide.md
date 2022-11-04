@@ -186,8 +186,6 @@ An exception will be thrown if semester code is invalid.
 - Create a `SemesterParameter` class
 - Modify `AddCommand` class
 
-// Keep this part for future reference
-
 ### Command History - `<Up>/<Down>` command
 
 The command history feature allows user to traverse and scroll through the command history that is
