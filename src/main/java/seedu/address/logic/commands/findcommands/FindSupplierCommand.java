@@ -1,9 +1,12 @@
 package seedu.address.logic.commands.findcommands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Buyer;
-import seedu.address.model.person.Deliverer;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.Model;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Supplier;
 
@@ -17,13 +20,18 @@ public class FindSupplierCommand extends FindCommand {
      * Constructs a FindSupplierCommand, which has three predicates.
      * Keyword matching is case insensitive.
      *
-     * @param bPredicate A Predicate for Buyers.
-     * @param dPredicate A Predicate for Deliverers.
      * @param sPredicate A Predicate for Suppliers.
      * @return FindBuyerCommand.
      */
-    public FindSupplierCommand(Predicate<Buyer> bPredicate, Predicate<Deliverer> dPredicate,
-                            Predicate<Supplier> sPredicate) {
-        super(bPredicate, dPredicate, sPredicate, PersonCategory.SUPPLIER);
+    public FindSupplierCommand(Predicate<Supplier> sPredicate) {
+        super(null, null, sPredicate, PersonCategory.SUPPLIER);
+    }
+
+    @Override
+    public CommandResult execute(Model model) {
+        requireNonNull(model);
+        model.updateFilteredSupplierList(getSupplierPredicate());
+        return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                model.getFilteredSupplierList().size()));
     }
 }

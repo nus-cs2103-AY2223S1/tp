@@ -60,6 +60,18 @@ public class FindCommand extends Command {
         this.type = type;
     }
 
+    public Predicate<Buyer> getBuyerPredicate() {
+        return buyerPredicate;
+    }
+
+    public Predicate<Deliverer> getDelivererPredicate() {
+        return delivererPredicate;
+    }
+
+    public Predicate<Supplier> getSupplierPredicate() {
+        return supplierPredicate;
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

@@ -9,8 +9,6 @@ import seedu.address.logic.commands.findcommands.FindSupplierCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.PredicateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Buyer;
-import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 
 /**
@@ -30,26 +28,8 @@ public class FindSupplierCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        Predicate<Buyer> buyerPredicate = new Predicate<Buyer>() {
-            @Override
-            public boolean test(Buyer buyer) {
-                return false;
-            }
-            public boolean equals(Object object) {
-                return object instanceof Predicate;
-            }
-        };
-        Predicate<Deliverer> delivererPredicate = new Predicate<Deliverer>() {
-            @Override
-            public boolean test(Deliverer deliverer) {
-                return false;
-            }
-            public boolean equals(Object object) {
-                return object instanceof Predicate;
-            }
-        };
         Predicate<Supplier> supplierPredicate = PredicateParser.parseSupplier(trimmedArgs);
 
-        return new FindSupplierCommand(buyerPredicate, delivererPredicate, supplierPredicate);
+        return new FindSupplierCommand(supplierPredicate);
     }
 }

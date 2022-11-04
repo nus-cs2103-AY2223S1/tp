@@ -10,8 +10,6 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.PredicateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Buyer;
-import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.Supplier;
 
 /**
  * Parses input arguments and creates a new FindCommand object.
@@ -32,25 +30,7 @@ public class FindBuyerCommandParser implements Parser<FindCommand> {
         }
 
         Predicate<Buyer> buyerPredicate = PredicateParser.parseBuyer(trimmedArgs);
-        Predicate<Deliverer> delivererPredicate = new Predicate<Deliverer>() {
-            @Override
-            public boolean test(Deliverer deliverer) {
-                return false;
-            }
-            public boolean equals(Object object) {
-                return object instanceof Predicate;
-            }
-        };
-        Predicate<Supplier> supplierPredicate = new Predicate<Supplier>() {
-            @Override
-            public boolean test(Supplier supplier) {
-                return false;
-            }
-            public boolean equals(Object object) {
-                return object instanceof Predicate;
-            }
-        };
 
-        return new FindBuyerCommand(buyerPredicate, delivererPredicate, supplierPredicate);
+        return new FindBuyerCommand(buyerPredicate);
     }
 }
