@@ -20,12 +20,17 @@ public class ReminderCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "12-09-2022";
 
-    public static final String REMINDER_SUCCESS = "Here are your tasks with deadlines up to including the "
+    public static final String MESSAGE_REMINDER_SUCCESS = "Here are your tasks with deadlines up to including the "
                                                     + "specified date.";
 
     private final TaskUntilDeadlinePredicate predicate;
 
+    /**
+     * Creates a ReminderCommand to with the specified {@code TaskUntilDeadlinePredicate}
+     * @param predicate
+     */
     public ReminderCommand(TaskUntilDeadlinePredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 
@@ -33,7 +38,7 @@ public class ReminderCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
-        return new CommandResult(REMINDER_SUCCESS);
+        return new CommandResult(MESSAGE_REMINDER_SUCCESS);
     }
 
     @Override

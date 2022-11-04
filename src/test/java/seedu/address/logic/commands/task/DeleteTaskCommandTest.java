@@ -58,7 +58,7 @@ public class DeleteTaskCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
-        showNoTask(expectedModel);
+        showNoTasks(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -101,7 +101,8 @@ public class DeleteTaskCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoTask(Model model) {
+    private void showNoTasks(Model model) {
+
         model.updateFilteredTaskList(p -> false);
 
         assertTrue(model.getFilteredTaskList().isEmpty());
