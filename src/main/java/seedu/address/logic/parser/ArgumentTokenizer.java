@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.DEFAULT_PREFIX_DELIMITER;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
@@ -17,43 +19,45 @@ public class ArgumentTokenizer {
 
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
-     * respective argument values. Only the given prefixes will be recognized in the arguments string.
+     * respective argument values. Only the provided prefixes will be returned.
+     * <p>
+     * All other "prefixes" that start with {@code CliSyntax.DEFAULT_PREFIX_DELIMITER} will be silently discarded. No
+     * error will be thrown as v1.4 feature freeze prevents us from changing the current default behaviour.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
      * @param prefixes   Prefixes to tokenize the arguments string with
      * @return           ArgumentMultimap object that maps prefixes to their arguments
      */
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
-        List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
-        return extractArguments(argsString, positions);
+        // Ensure that all the provided prefixes start with the default prefix delimiter
+        for (var p : prefixes) {
+            assert p.getPrefix().startsWith(DEFAULT_PREFIX_DELIMITER.getPrefix());
+        }
+        List<PrefixPosition> positions = findAllDelimiters(argsString, DEFAULT_PREFIX_DELIMITER);
+        return extractArguments(argsString, positions, Arrays.asList(prefixes));
     }
 
     /**
-     * Finds all zero-based prefix positions in the given arguments string.
+     * Finds all zero-based prefix delimiter positions in the given arguments string.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixes   Prefixes to find in the arguments string
-     * @return           List of zero-based prefix positions in the given arguments string
+     * @param delimiter  Delimiter to find in the arguments string
+     * @return           List of zero-based delimiter positions in the given arguments string
      */
-    private static List<PrefixPosition> findAllPrefixPositions(String argsString, Prefix... prefixes) {
-        return Arrays.stream(prefixes)
-                .flatMap(prefix -> findPrefixPositions(argsString, prefix).stream())
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * {@see findAllPrefixPositions}
-     */
-    private static List<PrefixPosition> findPrefixPositions(String argsString, Prefix prefix) {
+    private static List<PrefixPosition> findAllDelimiters(String argsString, Prefix delimiter) {
         List<PrefixPosition> positions = new ArrayList<>();
-
-        int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);
-        while (prefixPosition != -1) {
-            PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);
-            positions.add(extendedPrefix);
-            prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
+        int delimiterPosition = findPrefixPosition(argsString, delimiter.getPrefix(), 0);
+        while (delimiterPosition != -1) {
+            int spacePosition = argsString.indexOf(' ', delimiterPosition);
+            Prefix currentPrefix;
+            if (spacePosition == -1) {
+                currentPrefix = new Prefix(argsString.substring(delimiterPosition));
+            } else {
+                currentPrefix = new Prefix(argsString.substring(delimiterPosition, spacePosition));
+            }
+            positions.add(new PrefixPosition(currentPrefix, delimiterPosition));
+            delimiterPosition = findPrefixPosition(argsString, delimiter.getPrefix(), delimiterPosition);
         }
-
         return positions;
     }
 
@@ -80,11 +84,15 @@ public class ArgumentTokenizer {
      * extracted prefixes to their respective arguments. Prefixes are extracted based on their zero-based positions in
      * {@code argsString}.
      *
+     * Prefixes that are not in the {@code prefixes} varargs will be silently removed.
+     *
      * @param argsString      Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
      * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}
+     * @param prefixes        Prefixes to tokenize the arguments string with
      * @return                ArgumentMultimap object that maps prefixes to their arguments
      */
-    private static ArgumentMultimap extractArguments(String argsString, List<PrefixPosition> prefixPositions) {
+    private static ArgumentMultimap extractArguments(String argsString,
+                                                 List<PrefixPosition> prefixPositions, List<Prefix> prefixes) {
 
         // Sort by start position
         prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
@@ -102,6 +110,11 @@ public class ArgumentTokenizer {
         for (int i = 0; i < prefixPositions.size() - 1; i++) {
             // Extract and store prefixes and their arguments
             Prefix argPrefix = prefixPositions.get(i).getPrefix();
+
+            // Check if it's a valid prefix
+            if (!Objects.equals(argPrefix.getPrefix(), "") && !prefixes.contains(argPrefix)) {
+                continue;
+            }
             String argValue = extractArgumentValue(argsString, prefixPositions.get(i), prefixPositions.get(i + 1));
             argMultimap.put(argPrefix, argValue);
         }

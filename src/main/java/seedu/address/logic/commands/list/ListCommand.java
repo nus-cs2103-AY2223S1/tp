@@ -21,15 +21,15 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
     public static final String MESSAGE_USAGE = "To list all tasks in list: ls -a\n"
-            + "To list all task under <module>: ls --module <module>\n"
+            + "To list all task under module: ls --module MODULE\n"
             + "EXAMPLE: ls --module cs2103t (case-insensitive for module name)\n"
             + "To list all unmarked (uncompleted tasks): ls -u\n"
             + "To list all marked (completed tasks): ls -m\n"
-            + "To list all task with <tag>: \n"
+            + "To list all task with tag: ls -t TAG \n"
             + "EXAMPLE: ls -t urgent \n"
-            + "To list all tasks with deadline on or after <date>: \n"
-            + "EXAMPLE: ls -d 2022-10-28"
-            + "To list all tasks with matching keywords: ls -n KEYWORD [MORE_KEYWORD] \n"
+            + "To list all tasks with deadline on or after a date: ls -d DATE \n"
+            + "EXAMPLE: ls -d 2022-10-28 \n"
+            + "To list all tasks with matching keywords: ls -n KEYWORD [MORE_KEYWORD*] \n"
             + "EXAMPLE: ls -n task task1";
 
     public final List<Predicate<Task>> predicates;

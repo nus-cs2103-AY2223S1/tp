@@ -36,9 +36,9 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_MODULE + "PHONE] "
-            + "[" + PREFIX_DEADLINE + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MODULE + "MODULE] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_TAG + "TAG*]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE + "CS1231S "
             + PREFIX_DEADLINE + "2022-11-11";
@@ -79,6 +79,7 @@ public class EditCommand extends Command {
 
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilterStatus("Showing all tasks", true);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedTask));
     }
 

@@ -329,7 +329,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#FFFFFF, 50%);
+    -fx-background-color: -cell-even-selected;
     -fx-background-insets: 3;
 }
 
@@ -394,4 +394,8 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+.pane-with-border .custom-menu-item > .label {
+    -fx-pref-width: 100;
 }
