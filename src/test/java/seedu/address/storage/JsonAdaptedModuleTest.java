@@ -1,14 +1,15 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalModules.CS2040;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleCredit;
 import seedu.address.model.module.ModuleName;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalModules.CS2040;
 
 public class JsonAdaptedModuleTest {
     private static final String INVALID_MODULE_CODE = "cs1";
