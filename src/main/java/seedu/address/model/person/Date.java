@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a date (can be nurse's unavailable date or fully-scheduled date).
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date {
+public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS = "Date should be in YYYY-MM-DD."
             + " For example, 2022-11-11";
@@ -76,6 +76,11 @@ public class Date {
 
     public LocalDate getDate() {
         return this.date;
+    }
+
+    @Override
+    public int compareTo(Date o) {
+        return this.date.compareTo(o.getDate());
     }
 
 }

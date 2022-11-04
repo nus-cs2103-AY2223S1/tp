@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -101,9 +102,8 @@ public class Patient extends Person {
      * Returns a sorted date and slot list
      */
     public List<DateSlot> getDatesSlots() {
-        DateSlotComparator comp = new DateSlotComparator();
-        this.dateSlots.sort(comp);
-        return this.dateSlots;
+        Collections.sort(dateSlots);
+        return dateSlots;
     }
 
     public String getDatesSlotsInString() {

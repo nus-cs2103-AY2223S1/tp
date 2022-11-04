@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -51,31 +52,29 @@ public class Nurse extends Person {
      * Returns a sorted home visit list
      */
     public List<HomeVisit> getHomeVisits() {
-        HomeVisitComparator comp = new HomeVisitComparator();
-        this.homeVisitList.sort(comp);
-        return this.homeVisitList;
+        Collections.sort(homeVisitList);
+        return homeVisitList;
     }
 
     /**
      * Returns a sorted unavailable dates
      */
     public List<Date> getUnavailableDates() {
-        DateComparator comp = new DateComparator();
-        this.unavailableDateList.sort(comp);
-        return this.unavailableDateList;
+        Collections.sort(unavailableDateList);
+        return unavailableDateList;
     }
 
     /**
      * Returns a sorted fully scheduled dates
      */
     public List<Date> getFullyScheduledDates() {
-        DateComparator comp = new DateComparator();
-        this.fullyScheduledDateList.sort(comp);
-        return this.fullyScheduledDateList;
+        Collections.sort(fullyScheduledDateList);
+        return fullyScheduledDateList;
     }
 
     public String getHomesVisitsInString() {
-        String homeVisitsString = homeVisitList.stream().map(x -> x.toString()).collect(Collectors.joining(","));
+        String homeVisitsString = homeVisitList.stream()
+                .map(x -> x.toString()).collect(Collectors.joining(","));
         if (homeVisitsString.length() == 0) {
             return MESSAGE_FOR_EMPTY_HOMEVISITLIST;
         }
@@ -83,7 +82,8 @@ public class Nurse extends Person {
     }
 
     public String getUnavailableDatesInString() {
-        String unavailableString = unavailableDateList.stream().map(x -> x.toString()).collect(Collectors.joining(","));
+        String unavailableString = unavailableDateList.stream()
+                .map(x -> x.toString()).collect(Collectors.joining(","));
         if (unavailableString.length() == 0) {
             return MESSAGE_FOR_EMPTY_UNAVAILABLEDATE;
         }

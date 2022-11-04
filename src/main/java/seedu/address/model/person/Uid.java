@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.concurrent.atomic.AtomicLong;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's Uid in the records system.
