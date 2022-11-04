@@ -43,4 +43,4 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed: [\#42](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/42), [\#88](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/88), [\#184](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/183)
-  * Reported bugs and suggestions for other teams in the class (Total issues: [14](https://github.com/paotheroo/ped/issues))
+  * Reported bugs and suggestions for other teams (Total issues: [14](https://github.com/paotheroo/ped/issues))
