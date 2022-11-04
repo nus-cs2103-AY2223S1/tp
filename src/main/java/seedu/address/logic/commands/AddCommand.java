@@ -48,8 +48,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists.";
 
-    public static final String MESSAGE_PHONE_SAME_AS_NOK_PHONE = "Please be advised that the student's " +
-            "phone number is the same as the next-of-kin's, but the student will still be added.\n";
+    public static final String MESSAGE_PHONE_SAME_AS_NOK_PHONE = "Please be advised that the student's "
+            + "phone number is the same as the next-of-kin's, but the student will still be added.\n";
 
     private final Student toAdd;
 

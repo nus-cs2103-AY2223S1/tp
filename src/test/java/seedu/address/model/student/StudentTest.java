@@ -298,7 +298,7 @@ public class StudentTest {
     }
 
     @Test
-    public void shareSameNumberAsNOKTest() {
+    public void shareSameNumberAsNokTest() {
         Student alice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_AMY).withNokPhone(VALID_NOK_PHONE_BOB).build();
         assertFalse(alice.hasSharedPhone());
 
