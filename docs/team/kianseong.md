@@ -1,11 +1,16 @@
 # Kian Seong's Project Portfolio Page
 
 ## Arrow
-Overview: A short overview of your product to provide some context to the reader. The opening 1-2 sentences may be reused by all team members. If your product overview extends beyond 1-2 sentences, the remainder should be written by yourself.
+Arrow is a desktop app that help software project managers keep track of their members’ tasks and deliverables. It helps track the team's progress and delegate tasks effectively.
 
-### Summary of Contributions:
-- Code contributed: Give a link to your code on tP Code Dashboard. The link is available in the Project List Page -- linked to the  icon under your profile picture.
-- Enhancements implemented: A summary of the enhancements you implemented.
+Given below are my contributions to the project.
+
+## Contributions
+
+### Features
+- `task add` - Command to add a new task to the task panel
+- Quality of Life features including using arrow keys to navigate between previously entered command.
+- Code contributed: [RepoSense](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kianseong&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 - Contributions to the UG: Which sections did you contribute to the UG?
 - Contributions to the DG: Which sections did you contribute to the DG? Which UML diagrams did you add/updated?
 - Documentation

@@ -1,15 +1,28 @@
 # Yilin's Project Portfolio Page
 
-## Arrow
-Overview: A short overview of your product to provide some context to the reader. The opening 1-2 sentences may be reused by all team members. If your product overview extends beyond 1-2 sentences, the remainder should be written by yourself.
+## Software Product: `Arrow`
+**Arrow** is a **desktop app** that **help software project managers keep track of their members’ tasks and deliverables**.
+By associating tasks to specific team members, users can **keep track of what needs to be done and have quick access to
+contact information should they wish to reach out to the member**.
+
+**Arrow** uses a _Command Line Interface_ (CLI)at the same time possessing convenience of a _Graphical User Interface_ (GUI).
+The main target audiences are software
+project managers, which assumptively equipped with _Command Line Interface_ (CLI) skills.
 
 ### Summary of Contributions:
-- Code contributed: Give a link to your code on tP Code Dashboard. The link is available in the Project List Page -- linked to the  icon under your profile picture.
-- Enhancements implemented: A summary of the enhancements you implemented.
-- Contributions to the UG: Which sections did you contribute to the UG?
-- Contributions to the DG: Which sections did you contribute to the DG? Which UML diagrams did you add/updated?
-- Documentation
-- Contributions to team-based tasks
-    - Review/mentoring contributions: Links to PRs reviewed, instances of helping team members in other ways.
-- Contributions to the Developer Guide (Extracts): Reproduce the parts in the Developer Guide that you wrote.
-- Contributions to the User Guide (Extracts): Reproduce the parts in the User Guide that you wrote.
+#### [Code contributed](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=yilinzyl&breakdown=true)
+
+#### Enhancements implemented
+- **New feature**: Added the ability to assign contacts to tasks.
+  - What it does: Allows the user to assign contacts to tasks by full name or index of contact, for delegation of work. Also modified EditCommand and DeleteCommand to edit the name of/delete the contact tagged under tasks.
+- **New feature**: Added the ability to tag projects under tasks.
+  - What it does: Allows the user to group tasks under projects.
+- **New feature**: Added the ability to filter persons by tags.
+  - What it does: Allows the user to find all persons with the same tag.
+
+#### Documentation
+- UG: Added`task assign`
+- DG: Added `task assign` and Use cases. Updated UI, Model, Storage diagram to reflect additional fields in Task.
+
+#### Community
+- PRs reviewed: [#73](https://github.com/AY2223S1-CS2103T-T08-2/tp/pull/73), [#75](https://github.com/AY2223S1-CS2103T-T08-2/tp/pull/75), [#108](https://github.com/AY2223S1-CS2103T-T08-2/tp/pull/108), [#118](https://github.com/AY2223S1-CS2103T-T08-2/tp/pull/118)
