@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [NUSMods API](https://api.nusmods.com/v2/) for providing information on NUS modules
+* [Open API](https://www.openapis.org/) for generating boiler plate API classes
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103-F14-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -52,7 +53,8 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user 
+issues the command `rm CS2103`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -69,20 +71,23 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103-F14-1/tp/blob/master/src/main/java/nus/climods/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`,  `SavedModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+Modules are represented by `ModuleCard` and `SavedModuleCard` respectively. These parts encapsulate `Pill`s to capture information such as the semester that the mod is available in and the Module Credits of that mod.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the 
+[`MainWindow`](https://github.com/AY2223S1-CS2103-F14-1/tp/blob/master/src/main/java/nus/climods/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F14-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `ModuleCard` object residing in the `Model`.
 
 ### Logic component
 
@@ -209,7 +214,7 @@ generator-like method to update and retrieve the user position in the command hi
       the next position (downwards) in the command history.
 
 > Note that both of these operations are not pure, since the internal `ListIterator`
-> is updated after an invocation of either operations.t p
+> is updated after an invocation of either operations.
 
 #### Design considerations
 
@@ -443,14 +448,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: Selecting Lesson Slot**
+
+**MSS**
+
+1.  User requests to view a specific module
+2.  CLIMods shows detailed information of that module
+3.  User clicks on the desired lesson type
+4.  CLIMods shows all lesson slots under that lesson type for the module
+5.  User picks a lesson slot using the `pick` command
+6.  CLIMods adds the lesson slot under the `My Modules` list
+
+
+    Use case ends.
+
+**Extensions**
+
+* 5a. The module has not been added
+
+    * 5a1. CLIMods shows an error message.
+
+* 1a. The given module code is invalid
+
+    * 3a1. CLIMods shows an error message.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
-
-*{More to be added}*
+3. For functions that allows regex commands, the user is expected to understand regex to take full advantage of these features.
 
 ### Glossary
 * **Student**: The person who uses the app
