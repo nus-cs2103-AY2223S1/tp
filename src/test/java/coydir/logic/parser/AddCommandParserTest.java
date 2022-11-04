@@ -41,19 +41,13 @@ import static coydir.testutil.TypicalPersons.AMY;
 import static coydir.testutil.TypicalPersons.BOB;
 import static coydir.testutil.TypicalPersons.PRITTAM;
 
+import coydir.model.person.*;
 import org.junit.jupiter.api.Test;
 
 import coydir.logic.commands.AddCommand;
-import coydir.model.person.Address;
-import coydir.model.person.Department;
-import coydir.model.person.Email;
-import coydir.model.person.EmployeeId;
-import coydir.model.person.Name;
-import coydir.model.person.Person;
-import coydir.model.person.Phone;
-import coydir.model.person.Position;
 import coydir.model.tag.Tag;
 import coydir.testutil.PersonBuilder;
+import coydir.testutil.TestUtil;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -61,56 +55,56 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         // whitespace only preamble
-        String newId = String.valueOf(EmployeeId.getCount());
+        String newId = String.valueOf(TestUtil.getMaxEmployeeId());
         Person expectedPerson = new PersonBuilder(BOB).withEmployeeId(newId).withTags(VALID_TAG_FRIEND).build();
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + POSITION_DESC_BOB + DEPARTMENT_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
-        newId = String.valueOf(EmployeeId.getCount());
+        newId = String.valueOf(TestUtil.getMaxEmployeeId());
         expectedPerson = new PersonBuilder(BOB).withEmployeeId(newId).withTags(VALID_TAG_FRIEND).build();
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + POSITION_DESC_BOB + DEPARTMENT_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
-        newId = String.valueOf(EmployeeId.getCount());
+        newId = String.valueOf(TestUtil.getMaxEmployeeId());
         expectedPerson = new PersonBuilder(BOB).withEmployeeId(newId).withTags(VALID_TAG_FRIEND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + POSITION_DESC_BOB + DEPARTMENT_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
-        newId = String.valueOf(EmployeeId.getCount());
+        newId = String.valueOf(TestUtil.getMaxEmployeeId());
         expectedPerson = new PersonBuilder(BOB).withEmployeeId(newId).withTags(VALID_TAG_FRIEND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + POSITION_DESC_BOB + DEPARTMENT_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
         // multiple positions - last position accepted
-        newId = String.valueOf(EmployeeId.getCount());
+        newId = String.valueOf(TestUtil.getMaxEmployeeId());
         expectedPerson = new PersonBuilder(BOB).withEmployeeId(newId).withTags(VALID_TAG_FRIEND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + POSITION_DESC_AMY
                 + POSITION_DESC_BOB + DEPARTMENT_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
         // multiple departments - last department accepted
-        newId = String.valueOf(EmployeeId.getCount());
+        newId = String.valueOf(TestUtil.getMaxEmployeeId());
         expectedPerson = new PersonBuilder(BOB).withEmployeeId(newId).withTags(VALID_TAG_FRIEND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + POSITION_DESC_BOB
                 + DEPARTMENT_DESC_AMY + DEPARTMENT_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
-        newId = String.valueOf(EmployeeId.getCount());
+        newId = String.valueOf(TestUtil.getMaxEmployeeId());
         expectedPerson = new PersonBuilder(BOB).withEmployeeId(newId).withTags(VALID_TAG_FRIEND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + POSITION_DESC_BOB
                 + DEPARTMENT_DESC_BOB + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        newId = String.valueOf(EmployeeId.getCount());
+        newId = String.valueOf(TestUtil.getMaxEmployeeId());
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withEmployeeId(newId)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + POSITION_DESC_BOB
@@ -121,13 +115,14 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // missing tags, leave
+        PersonBuilder expectedPersonBuilder = new PersonBuilder(AMY);
         String newId = String.valueOf(EmployeeId.getCount());
-        Person expectedPerson = new PersonBuilder(AMY).withEmployeeId(newId).withTags().build();
+        Person expectedPerson = expectedPersonBuilder.withEmployeeId(newId).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + POSITION_DESC_AMY + DEPARTMENT_DESC_AMY + ADDRESS_DESC_AMY, new AddCommand(expectedPerson));
 
         // only compulsory fields
-        newId = String.valueOf(EmployeeId.getCount());
+        newId = String.valueOf(TestUtil.getMaxEmployeeId());
         Person expectedPersonMissingOptional = new PersonBuilder(PRITTAM).withEmployeeId(newId).withTags().build();
         assertParseSuccess(parser, NAME_DESC_PRITTAM + POSITION_DESC_PRITTAM + DEPARTMENT_DESC_PRITTAM,
                 new AddCommand(expectedPersonMissingOptional));

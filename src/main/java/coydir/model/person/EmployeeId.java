@@ -47,9 +47,9 @@ public class EmployeeId {
         this.value = String.valueOf(Integer.parseInt(id));
     }
 
-    public static void restart() {
+    public static void restart(int count) {
         allIds.clear();
-        count = 1;
+        EmployeeId.count = count;
     }
 
     public static EmployeeId addEmployeeId(String id) {

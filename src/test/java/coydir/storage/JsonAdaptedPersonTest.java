@@ -34,7 +34,6 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String ORIGINAL_EMPLOYEE_ID = BENSON.getEmployeeId().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_POSITION = BENSON.getPosition().toString();
@@ -49,14 +48,14 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        TestUtil.restartEmployeeId(Integer.parseInt(ORIGINAL_EMPLOYEE_ID) + 1);
+        TestUtil.restartEmployeeId(Integer.parseInt(BENSON.getEmployeeId().value) + 1);
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
         assertEquals(BENSON, person.toModelType());
     }
 
     @Test
     public void toModelType_validPersonDetailsNaValues_returnsPerson() throws IllegalValueException {
-        TestUtil.restartEmployeeId(Integer.parseInt(CommandTestUtil.VALID_EMPLOYEE_ID_PRITTAM) + 1);
+        TestUtil.restartEmployeeId(Integer.parseInt(PRITTAM.getEmployeeId().value) + 1);
         JsonAdaptedPerson person = new JsonAdaptedPerson(PRITTAM);
         assertEquals(PRITTAM, person.toModelType());
     }
@@ -101,7 +100,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidEmployeeId_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
-                VALID_NAME, CommandTestUtil.VALID_EMPLOYEE_ID_PRITTAM, VALID_PHONE, VALID_EMAIL, VALID_POSITION, VALID_DEPARTMENT, VALID_ADDRESS,
+                VALID_NAME, String.valueOf(TestUtil.getMaxEmployeeId()), VALID_PHONE, VALID_EMAIL, VALID_POSITION, VALID_DEPARTMENT, VALID_ADDRESS,
                 "14", "14", VALID_TAGS, VALID_LEAVE, VALID_RATING, VALID_PERFORMANCEHISTORY);
         String expectedMessage = EmployeeId.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);

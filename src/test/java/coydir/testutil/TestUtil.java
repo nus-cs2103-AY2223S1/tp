@@ -54,13 +54,16 @@ public class TestUtil {
         return model.getFilteredPersonList().get(index.getZeroBased());
     }
 
+    public static int getMaxEmployeeId() {
+        return EmployeeId.getCount();
+    }
+
     public static void setMaxEmployeeId(int count) {
         EmployeeId.setCount(count);
     }
 
     public static void restartEmployeeId(int count) {
-        EmployeeId.restart();
-        setMaxEmployeeId(count);
+        EmployeeId.restart(count);
     }
 
     public static String getNextEmployeeId() {
