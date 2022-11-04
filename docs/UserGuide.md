@@ -233,13 +233,6 @@ Format: `:filter KEYWORD [KEYWORD]...`
 
 <div markdown="block" class="alert alert-info">
 
-**:thinking: When should I use this?**<br>
-I should use this if I am looking to find the instances of a specific exercise.
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about filter:**<br>
 
 * Only the exercise name is searched.
@@ -247,6 +240,13 @@ I should use this if I am looking to find the instances of a specific exercise.
 * The order of the keywords does not matter. e.g. Deadlift Squat will match Squat Deadlift.
 * Only full words will be matched e.g. Squat will not match Squats.
 * Exercises matching at least one keyword will be returned e.g. `:filter Bench press` will return Bench press and Leg press.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**:thinking: When should I use this?**<br>
+I should use this if I am looking to find the instances of a specific exercise.
 
 </div>
 
@@ -261,7 +261,7 @@ Sorts the exercises, in the current [Exercise List](#42-exercise-list), accordin
 
 Format: `:sort`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:thinking: When should I use this?**<br>
 I should use this if I am looking to find the instances of a specific exercise.
@@ -323,7 +323,7 @@ Example:
 
 Shows a list of all exercises.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:thinking: When should I use this?**<br>
 I should use this when I want to reset my search settings back to the default.
@@ -389,6 +389,7 @@ Parameter constraints:
 * The difficulty level must be supported; currently supported are: easy, medium, hard.
 
 Example:
+* `:gen 4, 5 level/easy` Generates a sample workout for Squat; this command is equivalent to `:gen 4 level/easy` since both index 4 and 5 in the displayed list are Squat exercises.
 * `:gen 1, 2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Deadlift and Incline Bench.
 
 ![GenerateCommandExample1](images/GenerateCommandExample1.png)
@@ -402,10 +403,12 @@ Parameter constraints:
 * The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:** <br>
-Redundant inputs (before the first `n/` flag) will be ignored. <br> e.g. if the command specifies `:gen 1,2,3 n/Squat level/easy`, it will be interpreted as `:gen n/Squat level/easy`.
+Redundant inputs (before the first `n/` flag) will be ignored.<br>
+E.g. if the command specifies `:gen 1,2,3 n/Squat level/easy`, it will be interpreted as `:gen n/Squat level/easy`.
 </div>
 
 Example:
+* `:gen n/Squat n/Squat level/easy` Generates a sample workout for Squat; this command is equivalent to `:gen n/Squat level/easy` since both exercise names are the same.
 * `:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift.
 
 ![GenerateCommandNameExample1](images/GenerateCommandNameExample1.png)
