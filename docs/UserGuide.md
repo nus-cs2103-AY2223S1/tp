@@ -287,7 +287,7 @@ Displays a list of upcoming events, ordered by the date, which starts in the nex
 
 Format: `event -u DAYS`
 
-* The days refer to the number of days after the current date. All events that start within this time frame will be displayed. Events occurring on the day the command is entered will not be displayed.
+* The days refer to the number of days after the current date. All events that start within this time frame will be displayed. Events starting and occurring on the day the command is entered will not be displayed.
 * The days **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999.
 
 <div markdown="block" class="alert alert-info">
