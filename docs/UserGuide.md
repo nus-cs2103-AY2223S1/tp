@@ -44,25 +44,22 @@ you can jump to our [Features](#features) section to learn more about the featur
 
 4. Double-click the file to start the app. You can start typing to input your commands. If you click away, you can click on the top box to start typing again.
 5. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/UiCustomerList.png)
-   Note that the images are to help with interface only. The actual details of the data may differ in your application.
+Note that the images are to help with interface only. The actual details of the data may differ in your application.
 6. You can use the following commands in the Customer View:
 
-    * `addcus n/Betsy Crowe e/betsycrowe@example.com p/1234586` :  Creates a new customer named Betsy Crowe.
-    * `delcus 2` :  Deletes the 2nd customer displayed on the list.
-    * `opencus 2` : Selects the 2nd customer (Bernice Yu) on the list.
+   * `addcus n/Betsy Crowe e/betsycrowe@example.com p/1234586` :  Creates a new customer named Betsy Crowe.
+   * `delcus 2` :  Deletes the 2nd customer displayed on the list.
+   * `opencus 2` : Selects the 2nd customer (Bernice Yu) on the list.
 
 7. In the Commission View, the list of all commissions from the opened customer (Alex Yeoh) is displayed. <br> ![Ui](images/UiCommissionList.png)
 8. You can use the following commands in the Commission View:
     * `addcom n/Fate Archer f/60 d/2022-10-15 s/true p/Archery t/night t/city` : Creates a new commission titled "Fate Archer" under Meg.
     * `delcom 2` : Deletes the 2nd commission from Alex Yeoh on the list.
     * `opencom 1` : Opens the 1st commission titled "Alex Yeoh Commission 1" and updates the Commission Details View.
-
-8. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Digital half-body portrait) is displayed. ![Ui](images/UiCommissionDetail.png)
-9. The following commands are available in Commission Details View:
-   * **`additer`**`/Users/Joseph/CSP/Devil-sketch.png` : Attaches the image at the specified file path to the opened commission.
-
-
-10. Refer to the [Features](#features) below for details of each command.
+9. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Alex Yeoh Commission 1) is displayed. <br> ![Ui](images/UiCommissionDetail.png)
+10. You can use the following commands in the Commission Details View:
+   * `additer d/2022-10-11 n/Add lighting p//Users/Joseph/CSP/sunshine_highlight.png f/Warmer tone might be better` : Adds an iteration to the selected commission and attaches the image at the specified file path to the iteration.
+11. Refer to the [Features](#features) below for details of each command.
 
 
 --------------------------------------------------------------------------------------------------------------------
