@@ -16,6 +16,8 @@ import java.time.format.DateTimeFormatter;
 public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS = "Dates must be in format: DD/MM/YYYY";
 
+    public static final String MESSAGE_CONSTRAINTS_DOB = "Date must be before current date for date of births";
+
     public static final String MESSAGE_VALUE_CONSTRAINTS = "%s exceeds the range of valid date values.";
 
     private static final String VALIDATION_REGEX = "\\d{2}/\\d{2}/\\d{4}";
@@ -75,6 +77,14 @@ public class Date implements Comparable<Date> {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if the {@code LocalDate} specified is after the current date, false otherwise.
+     */
+    public static boolean isAfterCurrentDate(String date) {
+        LocalDate dateToCheck = LocalDate.parse(date, logFormatter);
+        return dateToCheck.isAfter(LocalDate.now());
     }
 
     @Override
