@@ -341,25 +341,25 @@ The following activity diagram summarizes what happens when a user enters an `ed
 In GuestBook, the user can mark all the rooms as unclean. This feature was added to make it easier for the hotel to transit to a new working day, as they would usually have to clean all the rooms when a new day starts.
 
 <span style="font-size: large; color: #e46c0a">Implementation:</span>
-* The `markroomsunclean` command edits all the guests in GuestBook and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields.
+* The `markroomsunclean` command edits all the guests in GuestBook and changes their `isRoomClean` statuses to `no`. It takes in no additional inputs or fields.
 
 The following activity diagram summarises what happens when a user enters a `markroomsunclean` command.
 
 ![MarkRoomsUncleanActivityDiagram](images/MarkRoomsUncleanActivityDiagram.png)
-* When the user executes the `markroomsunclean` command, GuestBook will retrieve the list of all the guests that requires editing of the isRoomClean status.
-* A new list of guests will be created with isRoomClean fields set to "no". The other details of the guests will remain unchanged.
+* When the user executes the `markroomsunclean` command, GuestBook will retrieve the list of all the guests that requires editing of the `isRoomClean` status.
+* A new list of guests will be created with `isRoomClean` fields set to `no`. The other details of the guests will remain unchanged.
 * Finally, the new list of guests is set to the model.
 
 <span style="font-size: large; color: #e46c0a">Design Considerations:</span>
-**Aspect: The scope at which the command changes all guests' isRoomClean statuses**
-* Alternative 1: Allow `markroomsunclean` command to operate only on the last shown list instead of the entire list. This is to standardise how edits are made across the commands (e.g. edit and delete).
+**Aspect: The scope at which the command changes all guests' `isRoomClean` statuses**
+* Alternative 1: Allow `markroomsunclean` command to operate only on the last shown list instead of the entire list. This is to standardise how edits are made across the commands (e.g. `edit` and `delete`).
   * Pros: This might be more intuitive for users, as `edit` and `delete` commands work only on the last shown lists.
-  * Cons: User is unable to change all the guests' isRoomClean statuses in a single command.
-* Alternative 2 (current choice): Allow `markroomsunclean` command to change all guests' isRoomClean statuses in GuestBook instead of the last shown list.
-  * Pros: User is able to change all the guests' isRoomClean statuses in a single command.
-  * Cons: There is less flexibility in marking groups of guests' room as unclean.
+  * Cons: User is unable to change all the guests' `isRoomClean` statuses in a single command.
+* Alternative 2 (current choice): Allow `markroomsunclean` command to change all guests' `isRoomClean` statuses in GuestBook instead of the last shown list.
+  * Pros: User is able to change all the guests' `isRoomClean` statuses in a single command.
+  * Cons: There is less flexibility in marking groups of guests' rooms as unclean.
 
-Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' isRoomClean statuses differently as the types of rooms as mostly homogenous. Hence, we decided to proceed with Alternative 2.
+Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' `isRoomClean` statuses differently as the types of rooms as mostly homogenous. Hence, we decided to proceed with Alternative 2.
 
 **Aspect: Naming of the `markroomsunclean` command**
 * Alternative 1: Using camel case for the command, i.e., `markRoomsUnclean`.
@@ -483,18 +483,18 @@ As the users of this application would be hotel mangers of small hotels, there w
 
 This is a quick overview of all the commands and their functionalities.
 
-| Action                 | Format                                                                                                                    | Examples                                                                                                                                                  |
-|------------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`                                       | `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3` <br> Adds guest John Doe to GuestBook with his relevant details.     |
+| Action                 | Format                                                                                                                    | Examples                                                                                                                                                |
+|------------------------|---------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`                                       | `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3` <br> Adds guest John Doe to GuestBook with his relevant details.   |
 | **Bill**               | `bill INDEX b/BILL`                                                                                                       | `bill 2 b/99.99` <br> Increases the bill of guest at the second index by 99.99. <br><br> `bill 1 b/-10` <br> Decreases the bill of the first guest by 10. |
-| **Clear**              | `clear`                                                                                                                   | Clears all guest entries in GuestBook.                                                                                                                    |                                                                                                                                                      |
-| **Delete**             | `delete INDEX`                                                                                                            | `delete 3`<br> Deletes the third guest in the current list.                                                                                               |
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]` | `edit 2 rc/yes` <br> Edits the second guest in the current list by changing the guest's the room clean status to "yes".                                   |
-| **Exit**               | `exit`                                                                                                                    | Exits and closes the GuestBook application.                                                                                                               |
-| **Find**               | `find KEYWORD [MORE_KEYWORDS]`                                                                                            | `find James Jake` <br> Searches the entire GuestBook for fields matching "James" and "Jake" and returns the matching guests.                              |
-| **Help**               | `help`                                                                                                                    | Shows a popup on how to get help with GuestBook.                                                                                                          |
-| **List**               | `list`                                                                                                                    | Displays a list containing all the guest in GuestBook.                                                                                                    |
-| **Mark Rooms Unclean** | `markroomsunclean`                                                                                                        | Changes the room clean statuses of all guests to "no".                                                                                                    |                                                                                                                                                       |
+| **Clear**              | `clear`                                                                                                                   | Clears all guest entries in GuestBook.                                                                                                                  |                                                                                                                                                      |
+| **Delete**             | `delete INDEX`                                                                                                            | `delete 3`<br> Deletes the third guest in the current list.                                                                                             |
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]` | `edit 2 rc/yes` <br> Edits the second guest in the current list by changing the guest's room clean status to `yes`.                                     |
+| **Exit**               | `exit`                                                                                                                    | Exits and closes the GuestBook application.                                                                                                             |
+| **Find**               | `find KEYWORD [MORE_KEYWORDS]`                                                                                            | `find James Jake` <br> Searches the entire GuestBook for fields matching `James` and `Jake` and returns the matching guests.                              |
+| **Help**               | `help`                                                                                                                    | Shows a popup on how to get help with GuestBook.                                                                                                        |
+| **List**               | `list`                                                                                                                    | Displays a list containing all the guest in GuestBook.                                                                                                  |
+| **Mark Rooms Unclean** | `markroomsunclean`                                                                                                        | Changes the room clean statuses of all guests to `no`.                                                                                                  |                                                                                                                                                       |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -590,28 +590,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The input data is invalid.
 
   * 1b1. System shows an error message.
-
-    Use case resumes at step 2.
+  
+    Use case ends.
 
 **Use case 2: Search for a guest**
 
 **MSS**
 
-1. User requests to search for a guest.
-2. System returns the guest.
+1. User requests to search for a guest by specifying keywords from any of the target guest's details.
+2. System returns a list of matching guests including the target guest.
 
    Use case ends.
 
 **Extensions**
-* 1a. The guest is does not exist in the system.
+* 1a. The target guest's details do not contain matching keywords with the query.
 
-  Use case ends.
+    * 1a1. System does not return the target guest in the results.
+
+      Use case ends.
 
 * 1b. The search data is invalid.
 
     * 1b1. System shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 **Use case 3: Update a guest's details**
 
@@ -619,88 +621,98 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User <u>searches for guest (Use case 2)</u>.
 2. User requests to edit a guest's details.
-3. System updates the guest.
+3. System updates the guest's details.
 
    Use case ends.
 
 **Extensions**
-* 2a. The edit data is invalid.
+* 2a. The new name provided already belongs to another existing guest.
 
     * 2a1. System shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
-**Use case 4: Delete a guest**
+* 2b. The new room provided has already been assigned to another guest.
+
+    * 2b1. System shows an error message.
+
+      Use case ends.
+
+* 2c. The new data provided is invalid.
+
+    * 2c1. System shows an error message.
+
+      Use case ends.
+
+**Use case 4: Get list of all guests**
 
 **MSS**
 
 1.  User requests to list guests.
-2.  System shows a list of guests.
-3.  User requests to delete a specific guest in the list.
-4.  System deletes the guest.
+2.  System shows a list of all guests.
+
+    Use case ends.
+
+**Use case 5: Delete a guest**
+
+**MSS**
+
+1.  User <u>gets a list of all guests (Use case 4)</u>
+2.  User requests to delete a specific guest in the list.
+3.  System deletes the guest.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. System shows an error message.
+    * 2a1. System shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
-**Use case 5: Get list of all guests**
-
-**MSS**
-
-1.  User requests to list guests.
-2.  System shows a list of guests.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-
-**Use case 6: Mark room clean status to "no" of all guests**
+**Use case 6: Mark all guests' room clean status to `no`**
 
 **MSS**
 
-1. User requests to mark all guests' room clean statuses to "no".
-2. System updates all guests' room clean statuses to "no".
+1. User requests to mark all guests' room clean statuses to `no`.
+2. System updates all guests' room clean statuses to `no`.
 
     Use case ends.
 
-**Use case 7: Add or deduct to a guest's bill**
+**Use case 7: Add to or deduct from a guest's bill**
 
 **MSS**
 
 1. User <u>searches for guest (Use case 2)</u>.
-2. User requests to add or deduct to a guest's bill.
-3. System add or deduct to original guest's bill.
+2. User requests to add to or deduct from a guest's bill.
+3. System adds to or deducts from the original guest's bill.
 
    Use case ends.
 
 **Extensions**
-* 2a. The update data is invalid.
+* 2a. The guest's updated bill is negative.
 
     * 2a1. System shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
+
+* 2b. The value provided is invalid.
+
+    * 2b1. System shows an error message.
+
+      Use case ends.
 
 **Use case 8: Exit the program**
 
 **MSS**
 
 1. User requests exit the program
-3. System exits the program
+2. System exits the program
 
     Use case ends.
 
