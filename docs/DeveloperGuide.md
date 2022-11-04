@@ -791,3 +791,50 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+A significant volume of effort was expended to develop ArtBuddy from the original AB3.
+This is due to AB3 dealing primarily with only one entity Person while ArtBuddy deals with three entities, `Customer`,
+`Commission` and `Iteration`.
+
+### Major changes:
+* Adding two entirely new entity types, `Commission` and `Iteration`
+* Refactoring `Customer` and `Commission` to use the Builder Pattern to support optional arguments
+* Supporting Images for `Iteration`
+* Creating CRUD commands for the two completely new models, `Commission` and `Iteration`
+* Designing `sort` command for `Customer` with many options for the user
+* Implementing `find` commands for both `Customer` and `Commission` with added tag filtering functionality
+* Redesigning the GUI
+
+### Challenges faced:
+
+#### Revamping the GUI
+Amongst these changes, the most challenging change must be updating the GUI.
+
+Firstly, ArtBuddy's three entities are very closely linked, with `Commission`s belonging to a `Customer` and
+`Iteration`s belonging to a `Commission`. As a result, a lot of effort was expended to ensure the UI can properly
+observe the models and filtered list. This is mostly facilitated by ArtBuddy's custom `ObservableObject` class.
+A lot of listeners also had to be added in many parts of `Model` and `Ui` to ensure changes are properly propagated.
+
+Secondly, ArtBuddy's GUI has changed significantly from the original AB3 GUI. Multiple new components have been added,
+including tabs and split panes, pie charts for statistics, and even pop up windows and image drag and drop as an
+alternate way of adding customers, commissions and iterations. There are also a lot of CSS changes to make the product
+look more appealing to the user.
+
+#### Creating new entities
+`Commission` and `Iteration` are new entities and had to be written from scratch and integrated properly into all of
+AB3's components, such as `Ui`, `Model`, `Storage` without breaking existing abstractions. The design had to clearly
+thought out (e.g. which classes should help store the model and what methods are necessary) for easier implementation
+of commands.
+
+#### Implementing Images
+Images for Iterations are a novel feature for ArtBuddy. There were many complications to consider:
+* What if the file path is invalid?
+* What if the file is not an image?
+* What if the file is an image but not supported by JavaFx?
+* What if the image file name is the same as another image?
+* Images can have different dimensions. How should this be rendered in the GUI?
+
+As a result, the implementation for this had to keep evolving in ArtBuddy, from a naive file copy to a more robust
+implementation, a `SimpleImageStorage` class using classes such as `ImageIO` and `BufferedImage`.
