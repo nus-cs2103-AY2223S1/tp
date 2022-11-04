@@ -18,14 +18,14 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_CLEAR_CONFIRMATION =
             "Are you sure that you want to terminate all data from TrackAScholar?";
 
-    private boolean hasConfirmed;
+    private boolean isConfirmed;
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         promptUserConfirmation(MESSAGE_CLEAR_CONFIRMATION);
-        if (hasConfirmed) {
+        if (isConfirmed) {
             return confirmClear(model);
         } else {
             return cancelClear();
@@ -53,6 +53,6 @@ public class ClearCommand extends Command {
      */
     public void promptUserConfirmation(String message) {
         AlertWindow window = new AlertWindow();
-        this.hasConfirmed = window.display(message);
+        this.isConfirmed = window.display(message);
     }
 }

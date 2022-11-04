@@ -50,15 +50,6 @@ public class RemoveCommand extends Command {
     }
 
     /**
-     * Prompts user for confirmation before proceeding with removing of data
-     * @param  message prompted to user
-     */
-    public void promptUserConfirmation(String message) {
-        AlertWindow window = new AlertWindow();
-        this.isConfirmed = window.display(message);
-    }
-
-    /**
      * After confirmation from user, all data from TrackAScholar is purged.
      */
     public CommandResult confirmRemove(Model model) {
@@ -71,5 +62,14 @@ public class RemoveCommand extends Command {
      */
     public CommandResult cancelRemove() {
         return new CommandResult(MESSAGE_REMOVE_APPLICANTS_TERMINATION);
+    }
+
+    /**
+     * Prompts user for confirmation before proceeding with removing of data
+     * @param  message prompted to user
+     */
+    public void promptUserConfirmation(String message) {
+        AlertWindow window = new AlertWindow();
+        this.isConfirmed = window.display(message);
     }
 }

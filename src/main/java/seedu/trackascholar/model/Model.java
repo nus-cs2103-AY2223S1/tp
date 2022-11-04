@@ -15,8 +15,7 @@ import seedu.trackascholar.model.applicant.ApplicationStatus;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Applicant> PREDICATE_SHOW_ALL_APPLICANTS = unused -> true;
-    Predicate<Applicant> PREDICATE_SHOW_PINNED_APPLICANTS =
-            applicant -> applicant.getHasPinned();
+    Predicate<Applicant> PREDICATE_SHOW_PINNED_APPLICANTS = applicant -> applicant.getHasPinned();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
