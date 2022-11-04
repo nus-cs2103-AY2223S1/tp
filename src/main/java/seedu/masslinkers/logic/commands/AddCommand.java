@@ -51,11 +51,12 @@ public class AddCommand extends Command {
         if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
+
         model.addStudent(toAdd);
-        if (toAdd.hasIncorrectPhone()) { //if phone is "incorrect", successfully add it in but warn student
-            return new CommandResult(String.format(MESSAGE_SUCCESS_WARN, toAdd));
-        }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        String message = toAdd.hasIncorrectPhone() ? MESSAGE_SUCCESS_WARN : MESSAGE_SUCCESS;
+
+        return new CommandResult(String.format(message, toAdd),
+                false, false, true, true);
     }
 
     @Override

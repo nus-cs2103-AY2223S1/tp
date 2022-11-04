@@ -21,6 +21,7 @@ import seedu.masslinkers.model.UserPrefs;
 import seedu.masslinkers.model.interest.Interest;
 import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.testutil.StudentBuilder;
+
 //@@author sltsheryl
 public class AddInterestCommandTest {
     private static final Interest VALID_INTEREST_AI = new Interest("AI");

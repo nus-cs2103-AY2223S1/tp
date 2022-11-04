@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.ModelManager;
 import seedu.masslinkers.model.UserPrefs;
+
 //@@author
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.

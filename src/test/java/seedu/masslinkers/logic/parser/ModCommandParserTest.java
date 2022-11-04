@@ -33,6 +33,7 @@ public class ModCommandParserTest {
     private static final String VALID_MOD_STRING_CS2100 = "CS2100";
     private static final String WHITESPACE = " ";
     private final ModCommandParser parser = new ModCommandParser();
+
     //@@author jonasgwt
     /**
      * Tests the behaviour of mod commands when there is an empty command input by user.
@@ -171,7 +172,8 @@ public class ModCommandParserTest {
 
 
     //// ------------------------------------ MOD DELETE COMMAND -----------------------------------------------////
-    //@@author ElijahS67
+
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod delete when index is absent.
      */
@@ -181,6 +183,7 @@ public class ModCommandParserTest {
                 ModCommand.MESSAGE_INDEX_EMPTY);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod delete when mod is absent.
      */
@@ -190,6 +193,7 @@ public class ModCommandParserTest {
                 ModCommand.MESSAGE_MODS_EMPTY);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod delete when mod is invalid.
      */
@@ -202,6 +206,7 @@ public class ModCommandParserTest {
                 Mod.MESSAGE_CONSTRAINTS);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod delete when index is invalid.
      */
@@ -211,6 +216,7 @@ public class ModCommandParserTest {
                 MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of deleting 1 mod.
      */
@@ -226,6 +232,7 @@ public class ModCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of deleting multiple mods.
      */
@@ -357,6 +364,7 @@ public class ModCommandParserTest {
     }
 
     //// ------------------------------------ MOD MARK COMMAND -----------------------------------------------////
+
     //@@author carriezhengjr
     /**
      * Tests the behaviour of mod mark when index is absent.
@@ -367,6 +375,7 @@ public class ModCommandParserTest {
                 ModCommand.MESSAGE_INDEX_EMPTY);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod mark when mod is absent.
      */
@@ -376,6 +385,7 @@ public class ModCommandParserTest {
                 ModCommand.MESSAGE_MODS_EMPTY);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod mark when mod is invalid.
      */
@@ -388,6 +398,7 @@ public class ModCommandParserTest {
                 Mod.MESSAGE_CONSTRAINTS);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod mark when index is invalid.
      */
@@ -397,6 +408,7 @@ public class ModCommandParserTest {
                 MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of marking 1 mod as taken.
      */
@@ -428,6 +440,7 @@ public class ModCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of marking multiple mods as taken.
      */
@@ -471,6 +484,7 @@ public class ModCommandParserTest {
 
     //// ------------------------------------ MOD UNMARK COMMAND -----------------------------------------------////
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod unmark when index is absent.
      */
@@ -480,6 +494,7 @@ public class ModCommandParserTest {
                 ModCommand.MESSAGE_INDEX_EMPTY);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod unmark when mod is absent.
      */
@@ -489,6 +504,7 @@ public class ModCommandParserTest {
                 ModCommand.MESSAGE_MODS_EMPTY);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod unmark when mod is invalid.
      */
@@ -501,6 +517,7 @@ public class ModCommandParserTest {
                 Mod.MESSAGE_CONSTRAINTS);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod unmark when index is invalid.
      */
@@ -510,6 +527,7 @@ public class ModCommandParserTest {
                 MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of unmarking 1 mod as not taken.
      */
@@ -525,6 +543,7 @@ public class ModCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of unmarking multiple mods as not taken.
      */

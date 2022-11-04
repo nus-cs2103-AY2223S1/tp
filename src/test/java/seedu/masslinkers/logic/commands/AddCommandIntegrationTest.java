@@ -13,6 +13,7 @@ import seedu.masslinkers.model.UserPrefs;
 import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.testutil.StudentBuilder;
 
+//@@author
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
@@ -34,7 +35,7 @@ public class AddCommandIntegrationTest {
 
         assertCommandSuccess(new AddCommand(validStudent), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validStudent), expectedModel,
-                false, false, false, false);
+                false, false, true, true);
     }
 
     @Test
