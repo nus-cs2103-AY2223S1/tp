@@ -19,13 +19,13 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to filter tasks by deadline.
   * What it does: allows the user to filter the task list to only display tasks that have deadlines specific to and before the input date.
   * Justification: This feature improves the product significantly because a user can now modify the task list and quickly identify specific tasks based on input deadline, without having to search through the entire task list.
-  * Credits: Inspiration was taken from the 'find' feature.
+  * Credits: Inspiration was taken from the `find` feature.
   * Pull request: [\#84](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/84)
 
 * **New Feature**: Added the ability to find tasks using keywords.
   * What it does: allows the user to find and list all tasks that have names or descriptions that contain any of the input keywords. Keyword matching is case-insensitive.
   * Justification: This feature improves the product significantly because a user can now modify the task list and quickly identify specific tasks based on input keywords, without having to search through the entire task list.
-  * Credits: Inspiration was taken from the 'find' feature.
+  * Credits: Inspiration was taken from the `find` feature.
   * Pull request: [\#114](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/114)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=paotheroo&tabRepo=AY2223S1-CS2103T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
