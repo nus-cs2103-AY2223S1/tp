@@ -15,7 +15,7 @@ import seedu.waddle.model.itinerary.Itinerary;
 
 
 /**
- * Adds an item to an itinerary.
+ * Adds an item to the itinerary.
  */
 public class AddItemCommand extends Command {
 

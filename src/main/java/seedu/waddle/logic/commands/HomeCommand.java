@@ -6,7 +6,7 @@ import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Brings the user back to the main page of Waddle.
  */
 public class HomeCommand extends Command {
 

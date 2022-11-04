@@ -15,7 +15,7 @@ import seedu.waddle.model.itinerary.DayNumber;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Plans an item in the itinerary wish list.
+ * Plans an item in the itinerary Wishlist, moving it to the specified day list.
  */
 public class PlanCommand extends Command {
 
@@ -23,15 +23,16 @@ public class PlanCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedules an item identified "
             + "by the index number used in the item list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_DAY_NUMBER + "DAY NUMBER "
-            + PREFIX_START_TIME + "START TIME "
+            + "Parameters: INDEX (must exist in the wishlist) "
+            + PREFIX_DAY_NUMBER + "DAY_NUMBER "
+            + PREFIX_START_TIME + "START_TIME "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DAY_NUMBER + "1 "
             + PREFIX_START_TIME + "12:00 ";
 
     public static final String MESSAGE_SUCCESS = "Item scheduled: %1$s";
     public static final String MESSAGE_INVALID_DAY_NUMBER = "The day you have selected does not exist";
+    public static final String MESSAGE_INVALID_ITEM_NUMBER = "The item you have selected does not exist";
 
     private final Index itemIndex;
     private final DayNumber dayNumber;
@@ -61,7 +62,6 @@ public class PlanCommand extends Command {
         Item plannedItem;
 
         plannedItem = itinerary.planItem(itemIndex, dayNumber, startTime);
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, plannedItem.getDescription()));
     }
 
