@@ -117,8 +117,7 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 
 2. Download the latest `TrackO.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your TrackO. 
-
+3. Copy the file to the folder you want to use as the _home folder_ for your TrackO. <br>
     <img src="./images/user-guide/HomeFolder.png" alt="HomeFolder">
 
     <div markdown="span" class="alert alert-primary">
@@ -379,7 +378,7 @@ Examples:
   
   <img src="./images/user-guide/EditiExample1.png" alt="EditiExample1">
   
-* When you enter `editi 1 t/`, TrackO removes the tags of the item at index 1.
+* When you enter `editi 1 t/`, TrackO removes the tags of the item at index `1`.
 
   <img src="./images/user-guide/EditiExample2.png" alt="EditiExample2">
 
@@ -636,14 +635,14 @@ Examples:
 * For this example, let us follow the steps described below:
   1. When you enter `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`, TrackO will edit the name, 
      phone, email, and address of the second order in the list to `Peter`,`98765432`, `peter@email.com`, and 
-     `123 Apartment Unit, #05-11` respectively. It will display this result when executed on our sample data:
+     `123 Apartment Unit, #05-11` respectively. It will display this result when executed on our sample data: <br>
      <img src="./images/user-guide/EditoExample1-1.png" alt="EditoExample1-1">
-  2. Next, entering `edito 4 i/Chair q/5` will add `5 Chairs` to the fourth order's list of ordered items, as shown below:
+  2. Next, entering `edito 4 i/Chair q/5` will add `5 Chairs` to the fourth order's list of ordered items, as shown below: <br>
      <img src="./images/user-guide/EditoExample1-2.png" alt="EditoExample1-2">
   3. Now, let us try entering `edito 4 i/mattress q/0`. Doing this will remove the item `Mattress` from the fourth order's 
-     list of ordered items.
+     list of ordered items. <br>
      <img src="./images/user-guide/EditoExample1-3.png" alt="EditoExample1-3">
-  4. Finally, try entering `edito 4 i/Chair q/10`. TrackO will update the `Quantity` of ordered `Chairs` in the fourth order to `10`.
+  4. Finally, try entering `edito 4 i/Chair q/10`. TrackO will update the `Quantity` of ordered `Chairs` in the fourth order to `10`. <br>
      <img src="./images/user-guide/EditoExample1-4.png" alt="EditoExample1-4">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
@@ -678,12 +677,12 @@ mark an order as **delivered** if there is **insufficient stock** of the item(s)
 
 Examples:
 * When you enter `marko 4 -p` on our sample data, TrackO will mark the order at index `4` in the currently displayed 
-  list as `paid`, as shown below:
+  list as `paid`, as shown below: <br>
   <img src="./images/user-guide/MarkoExample1.png" alt="MarkoExample1">
 
 * When you enter `marko 2 -d` on our sample data, TrackO will mark the order at index `2` in the currently displayed
   list as `delivered`. However, because the order was previously marked as `paid`, the label will show `Completed` and 
-  the color of the [order card](#layout) is tinted gray.
+  the color of the [order card](#layout) is tinted gray. <br>
   <img src="./images/user-guide/MarkoExample2.png" alt="MarkoExample2">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
