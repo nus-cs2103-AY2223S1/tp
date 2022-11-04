@@ -1,6 +1,8 @@
 package hobbylist.model.activity;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -15,8 +17,8 @@ public class NameOrDescContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        List<String> firstPredicateKeywordList = Collections.singletonList("Soccer");
+        List<String> secondPredicateKeywordList = Arrays.asList("Badminton", "Soccer");
 
         NameOrDescContainsKeywordsPredicate firstPredicate =
                 new NameOrDescContainsKeywordsPredicate(firstPredicateKeywordList);
@@ -24,45 +26,44 @@ public class NameOrDescContainsKeywordsPredicateTest {
                 new NameOrDescContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
-        assertTrue(firstPredicate.equals(firstPredicate));
+        assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
         NameOrDescContainsKeywordsPredicate firstPredicateCopy =
                 new NameOrDescContainsKeywordsPredicate(firstPredicateKeywordList);
-        assertTrue(firstPredicate.equals(firstPredicateCopy));
-
-        // different types -> returns false
-        assertFalse(firstPredicate.equals(1));
+        assertEquals(firstPredicate, firstPredicateCopy);
 
         // null -> returns false
-        assertFalse(firstPredicate.equals(null));
+        assertNotEquals(null, firstPredicate);
 
         // different activity -> returns false
-        assertFalse(firstPredicate.equals(secondPredicate));
+        assertNotEquals(firstPredicate, secondPredicate);
     }
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         NameOrDescContainsKeywordsPredicate predicate =
-                new NameOrDescContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new ActivityBuilder().withName("Alice Bob").build()));
+                new NameOrDescContainsKeywordsPredicate(Collections.singletonList("Battlefield"));
+        assertTrue(predicate.test(new ActivityBuilder().withName("Battlefield 4").build()));
 
         // Multiple keywords
-        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new ActivityBuilder().withName("Alice Bob").build()));
+        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Battlefield", "4"));
+        assertTrue(predicate.test(new ActivityBuilder().withName("Battlefield 4").build()));
 
         // Only one matching keyword
-        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new ActivityBuilder().withName("Alice Carol").build()));
+        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Battlefield", "5"));
+        assertTrue(predicate.test(new ActivityBuilder().withName("Battlefield 4").build()));
 
         // Mixed-case keywords
-        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new ActivityBuilder().withName("Alice Bob").build()));
+        predicate = new NameOrDescContainsKeywordsPredicate(Collections.singletonList("Battlefield"));
+        assertTrue(predicate.test(new ActivityBuilder().withName("Battlefield 4").build()));
 
         // Matching description
-        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Main", "Street"));
-        assertTrue(predicate.test(new ActivityBuilder().withName("Alice").withDescription("Main Street").build()));
+        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("First", "person", "shooter"));
+        assertTrue(predicate.test(new ActivityBuilder().withName("Battlefield 4")
+                .withDescription("First person shooter by EA")
+                .build()));
     }
 
     @Test
@@ -70,15 +71,25 @@ public class NameOrDescContainsKeywordsPredicateTest {
         // Zero keywords
         NameOrDescContainsKeywordsPredicate predicate =
                 new NameOrDescContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new ActivityBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new ActivityBuilder().withName("Battlefield 4").build()));
 
         // Non-matching keyword
-        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new ActivityBuilder().withName("Alice Bob").build()));
+        predicate = new NameOrDescContainsKeywordsPredicate(List.of("CSGO"));
+        assertFalse(predicate.test(new ActivityBuilder().withName("Battlefield 4").build()));
 
         // Non-matching keyword in name and description
-        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new ActivityBuilder().withName("Alice Bob")
-                .withDescription("Charlie David").build()));
+        predicate = new NameOrDescContainsKeywordsPredicate(List.of("CSGO"));
+        assertFalse(predicate.test(new ActivityBuilder().withName("Battlefield 4")
+                .withDescription("First person shooter by EA").build()));
+
+        // Date keyword
+        predicate = new NameOrDescContainsKeywordsPredicate(List.of("date/2022-02-02"));
+        assertFalse(predicate.test(new ActivityBuilder().withName("Battlefield 4")
+                .withDescription("First person shooter by EA").build()));
+
+        // Rating keyword
+        predicate = new NameOrDescContainsKeywordsPredicate(List.of("rate/1"));
+        assertFalse(predicate.test(new ActivityBuilder().withName("Battlefield 4")
+                .withDescription("First person shooter by EA").build()));
     }
 }

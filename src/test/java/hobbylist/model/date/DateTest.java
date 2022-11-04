@@ -72,8 +72,33 @@ public class DateTest {
     }
 
     @Test
+    public void isValidDateString_validDate_returnsTrue() {
+        assertTrue(Date.isValidDateString("1999-10-12"));
+    }
+
+    @Test
     public void isValidDateString_invalidDate_returnsFalse() {
         assertFalse(Date.isValidDateString("test"));
+    }
+
+    @Test
+    public void isValidMonthString_validMonth_returnTrue() {
+        assertTrue(Date.isValidMonthString("2012-12"));
+    }
+
+    @Test
+    public void isValidMonthString_invalidMonth_returnFalse() {
+        assertFalse(Date.isValidMonthString("2012-13"));
+    }
+
+    @Test
+    public void isValidYearString_validYear_returnTrue() {
+        assertTrue(Date.isValidYearString("2010"));
+    }
+
+    @Test
+    public void isValidYearString_invalidYear_returnFalse() {
+        assertFalse(Date.isValidYearString("20123"));
     }
 
     @Test
@@ -81,8 +106,5 @@ public class DateTest {
         assertFalse(Date.isValidDateString("0000-10-12"));
     }
 
-    @Test
-    public void isValidDateString_validDate_returnsTrue() {
-        assertTrue(Date.isValidDateString("1999-10-12"));
-    }
+
 }
