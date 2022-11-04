@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Added five unique lists in the application, added and updated relevant methods in logic, model, storage and other class to fit the changes [\#90](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/90) [\#94](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/94)
-    * Added UI interactions for all commands, allowing every command to change the UI display to provide instant feedback to the user. [\#352](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/352)
+    * Improved UI interactions for all commands. [\#352](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/352)
     * Extended the list command to support five different lists, enhanced the list command by adding the functionality to display different lists [\#164](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/164)
     * Extended the edit command to support three different lists [\#202](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/202)
     * Fixed several bugs [\#222](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/222), [\#234](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/234), [\#237](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/237), [\#239](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/239), [\#244](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/244), [\#261](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/261), [\#262](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/262), [\#264](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/264), [\#265](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/265)
