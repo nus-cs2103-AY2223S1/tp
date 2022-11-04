@@ -1,6 +1,7 @@
 package modtrekt.logic.commands;
 
 import static modtrekt.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -10,10 +11,17 @@ import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.Test;
 
 import modtrekt.commons.core.index.Index;
+import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.ModtrektParser;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.module.ModCode;
+import modtrekt.model.module.Module;
 import modtrekt.model.task.Description;
+import modtrekt.model.task.Task;
+import modtrekt.testutil.DeadlineBuilder;
+import modtrekt.testutil.ModelStub;
+import modtrekt.testutil.ModuleBuilder;
+import modtrekt.testutil.TaskBuilder;
 
 class EditTaskCommandTest {
 
@@ -132,6 +140,12 @@ class EditTaskCommandTest {
         assertThrows(NullPointerException.class, () -> new ModtrektParser().parseCommand(null));
     }
 
+    @Test
+    public void testParser_nullModel() {
+        assertThrows(NullPointerException.class, () -> new ModtrektParser()
+                .parseCommand("edit task 1").execute(null));
+    }
+
     // FLAGS
 
     @Test
@@ -207,7 +221,8 @@ class EditTaskCommandTest {
 
     @Test
     public void testParser_multipleIndices_throwsParseException() {
-        assertThrows(ParseException.class, () -> new ModtrektParser().parseCommand("edit task 1 2 3 -c CS2103T"));
+        assertThrows(ParseException.class, () -> new ModtrektParser()
+                .parseCommand("edit task 1 2 3 -c CS2103T"));
     }
 
     @Test
@@ -215,4 +230,107 @@ class EditTaskCommandTest {
         assertThrows(ParseException.class, () -> new ModtrektParser().parseCommand("edit task -c CS2103T"));
         assertThrows(ParseException.class, () -> new ModtrektParser().parseCommand("edit -c CS2103T"));
     }
+
+
+    // With ModelStub
+
+    @Test
+    public void testParser_unsuccessfulTaskEditNoTasks() {
+        ModelStub model = new ModelStub();
+        assertThrows(CommandException.class, "There are no tasks.", () -> new ModtrektParser()
+                .parseCommand("edit task 1").execute(model));
+    }
+
+    @Test
+    public void testParser_unsuccessfulTaskEditNoChanges() {
+        ModelStub model = new ModelStub();
+        Task task = new TaskBuilder().build();
+        model.addTask(task);
+        assertThrows(CommandException.class, () -> new ModtrektParser()
+                .parseCommand("edit task 1").execute(model));
+    }
+
+    @Test
+    public void testParser_unsuccessfulTaskEditNonExistentIndex() {
+        ModelStub model = new ModelStub();
+        Task task = new TaskBuilder().build();
+        model.addTask(task);
+        assertThrows(CommandException.class, "Task index must an integer between 1 and 1 inclusive.", ()
+                -> new ModtrektParser().parseCommand("edit task 600").execute(model));
+    }
+
+    @Test
+    public void testParser_unsuccessfulTaskEditModCode() {
+        ModelStub model = new ModelStub();
+        Task task = new TaskBuilder().build();
+        model.addTask(task);
+        assertEquals(model.hasModuleWithModCode(new ModCode("CS2109S")), false);
+        assertThrows(CommandException.class, () -> new ModtrektParser()
+                .parseCommand("edit task 1 -c CS2109S").execute(model));
+    }
+
+    @Test
+    public void testParser_unsuccessfulTaskEditPriorityNone() {
+        ModelStub model = new ModelStub();
+        Task task = new TaskBuilder().build();
+        model.addTask(task);
+        assertThrows(CommandException.class, () -> new ModtrektParser()
+                .parseCommand("edit task 1 -p NONE").execute(model));
+    }
+
+    @Test
+    public void testParser_unsuccessfulTaskEditPrioritySamePriority() {
+        ModelStub model = new ModelStub();
+        Task task = new TaskBuilder().withPriority(Task.Priority.HIGH).build();
+        model.addTask(task);
+        assertThrows(CommandException.class, () -> new ModtrektParser()
+                .parseCommand("edit task 1 -p HIGH").execute(model));
+    }
+
+    /**
+     * Utility function to set up for an edit command execution.
+     */
+    private ModelStub successfulTestSetup() {
+        ModelStub model = new ModelStub();
+        Module module = new ModuleBuilder().withCode("CS2103T")
+                .withCredit("4").withName("Software Engineering").build();
+        model.addModule(module);
+        Task task = new TaskBuilder().build();
+        model.addTask(task);
+        return model;
+    }
+
+    @Test
+    public void testParser_successfulTaskEditDescription() {
+        ModelStub model = successfulTestSetup();
+        assertDoesNotThrow(() -> new ModtrektParser()
+                .parseCommand("edit task 1 -ds Tutorial").execute(model));
+
+    }
+
+    @Test
+    public void testParser_successfulTaskEditDate() {
+        ModelStub model = successfulTestSetup();
+        assertDoesNotThrow(() -> new ModtrektParser()
+                .parseCommand("edit task 1 -d 2022-09-09").execute(model));
+        assertEquals(1, model.getFilteredTaskList().size());
+        Task editedTask = new DeadlineBuilder().withDueDate(LocalDate.of(2022, 9, 9)).build();
+        assertEquals(editedTask, model.getFilteredTaskList().get(0));
+    }
+
+    @Test
+    public void testParser_successfulTaskEditModCode() {
+        ModelStub model = successfulTestSetup();
+        Module module = new ModuleBuilder().build();
+        String code = module.getCode().toString();
+        model.addModule(module);
+        assertDoesNotThrow(() -> new ModtrektParser()
+                .parseCommand(String.format("edit task 1 -c %s", code)).execute(model));
+        assertEquals(1, model.getFilteredTaskList().size());
+        Task editedTask = new TaskBuilder().withModCode(code).build();
+        assertEquals(editedTask, model.getFilteredTaskList().get(0));
+    }
+
+
+
 }

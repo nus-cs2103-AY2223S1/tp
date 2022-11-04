@@ -1,6 +1,8 @@
 package modtrekt.logic.commands;
 
 import static modtrekt.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +32,59 @@ public class CdModuleCommandTest {
         CdModuleCommand command = CdModuleCommandBuilder.build("CS2103");
         assertThrows(CommandException.class, () -> command.execute(new ModelStub()));
     }
+
+    @Test
+    public void cdOutOfModule_notInAModule_throws() {
+        CdModuleCommand command = CdModuleCommandBuilder.build("..");
+        assertThrows(CommandException.class, "Already showing all modules.", ()
+                -> command.execute(new ModelStub()));
+    }
+
+    @Test
+    public void cdOutOfModuleInAModule_successful() {
+        ModelStub model = new ModelStub();
+        Module module = new ModuleBuilder().build();
+        model.addModule(module);
+        model.setCurrentModule(new ModCode("CS1231S"));
+        CdModuleCommand command = CdModuleCommandBuilder.build("..");
+        assertDoesNotThrow(() -> command.execute(model));
+        assertEquals(null, model.getCurrentModule());
+    }
+
+    @Test
+    public void cdIntoModuleNotInAModule_successful() {
+        ModelStub model = new ModelStub();
+        Module module = new ModuleBuilder().build();
+        model.addModule(module);
+        CdModuleCommand command = CdModuleCommandBuilder.build("CS1231S");
+        assertDoesNotThrow(() -> command.execute(model));
+        assertEquals(new ModCode("CS1231S"), module.getCode());
+    }
+
+
+    @Test
+    public void cdIntoModuleInAModule_successful() {
+        ModelStub model = new ModelStub();
+        Module module = new ModuleBuilder().build();
+        model.addModule(module);
+        model.setCurrentModule(new ModCode("CS1231S"));
+        Module secondModule = new ModuleBuilder().withCode("CS1231").build();
+        model.addModule(secondModule);
+        CdModuleCommand command = CdModuleCommandBuilder.build("CS1231");
+        assertDoesNotThrow(() -> command.execute(model));
+        assertEquals(new ModCode("CS1231"), model.getCurrentModule());
+    }
+
+    @Test
+    public void cdIntoModuleInvalidModuleCode_throws() {
+        CdModuleCommand command = CdModuleCommandBuilder.build("CS201919191991");
+        assertThrows(CommandException.class, "Invalid module code. Usage:\n"
+                        + "cd <alphanumeric mod code of 6-9 characters>: "
+                        + "cds into specified module.\n"
+                        + "cd ..: cds out of current module.", () -> command.execute(new ModelStub()));
+    }
+
+
 
     /**
      * A model stub that returns true for the hasModuleWithModCode method and parseModuleFromCode returns a

@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import modtrekt.commons.core.GuiSettings;
 import modtrekt.model.Model;
@@ -84,7 +85,7 @@ public class ModelStub implements Model {
 
     @Override
     public void deleteTask(Task target) {
-
+        taskBook.remove(target);
     }
 
     @Override
@@ -114,7 +115,7 @@ public class ModelStub implements Model {
 
     @Override
     public void addTask(Task t) {
-
+        taskBook.add(t);
     }
 
     @Override
@@ -159,7 +160,7 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<Task> getFilteredTaskList() {
-        return null;
+        return FXCollections.observableList(taskBook);
     }
 
     @Override
