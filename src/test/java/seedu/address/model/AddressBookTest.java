@@ -91,7 +91,7 @@ public class AddressBookTest {
     @Test
     public void hasPersonWithSameAppointmentDateTime_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPersonWithSameAppointmentDateTime(new AppointmentBuilder()
-                                                    .withDateTime("01-Jan-1800 12:00 AM")
+                                                    .withDateTime("01-01-1800 12:00")
                                                     .withLocation("UniqueLocation").build()));
     }
 

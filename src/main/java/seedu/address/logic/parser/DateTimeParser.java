@@ -10,7 +10,7 @@ import java.time.format.ResolverStyle;
  * a new LocalDateTime object
  */
 public class DateTimeParser {
-    public static final String DATE_TIME_FORMAT = "d-MM-uuuu HH:mm";
+    public static final String DATE_TIME_FORMAT = "d-M-uuuu HH:mm";
 
     private static final DateTimeFormatter dateTimeFormatter = java.time.format
             .DateTimeFormatter.ofPattern(DATE_TIME_FORMAT).withResolverStyle(ResolverStyle.STRICT);

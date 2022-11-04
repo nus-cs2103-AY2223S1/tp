@@ -14,7 +14,8 @@ import seedu.address.model.util.MaximumSortedList;
  */
 public class Appointment implements Comparable<Appointment> {
     public static final String MESSAGE_CONSTRAINTS = "Appointments can only take in a date and "
-            + "time in the format, d-MMM-yyyy hh:mm a, and it should not be blank";
+            + "time in the format, dd-MM-yyyy hh:mm, and it should not be blank. \n"
+            + "e.g \"d/01-03-2023 18:00\" represents 1-Mar-2022, 6:00 PM";
     public static final MaximumSortedList<Appointment> EMPTY_APPOINTMENTS =
             new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
 

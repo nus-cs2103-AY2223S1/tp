@@ -56,12 +56,12 @@ public class CommandTestUtil {
     public static final String VALID_MONTHLY_AMY = "200";
     public static final String VALID_MONTHLY_BOB = "1000";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_DATETIME_21_JAN_2023 = "21-Jan-2023 01:00 AM";
-    public static final String VALID_DATETIME_22_JAN_2023 = "22-Jan-2023 01:00 AM";
-    public static final String VALID_DATETIME_23_JAN_2023 = "23-Jan-2023 01:00 AM";
+    public static final String VALID_DATETIME_21_JAN_2023 = "21-01-2023 01:00";
+    public static final String VALID_DATETIME_22_JAN_2023 = "22-01-2023 01:00";
+    public static final String VALID_DATETIME_23_JAN_2023 = "23-01-2023 01:00";
 
-    public static final String VALID_DATETIME_23_MAR_2024 = "23-Mar-2024 01:00 AM";
-    public static final String INVALID_DATETIME_210_JAN_2023 = "210-Jan-2023 01:00 AM";
+    public static final String VALID_DATETIME_23_MAR_2024 = "23-03-2024 01:00";
+    public static final String INVALID_DATETIME_210_JAN_2023 = "210-01-2023 01:00";
 
     public static final String VALID_LOCATION_NUS = "NUS";
     public static final String VALID_LOCATION_JURONGPOINT = "Jurong Point";

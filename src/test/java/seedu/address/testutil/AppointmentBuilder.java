@@ -12,7 +12,7 @@ import seedu.address.model.person.Location;
  */
 public class AppointmentBuilder {
 
-    public static final String DEFAULT_DATETIME = "21-Jan-2023 01:00 AM";
+    public static final String DEFAULT_DATETIME = "21-01-2023 01:00";
     public static final String DEFAULT_LOCATION = "301 Upper Thomson Rd, Singapore 574408";
 
     private DateTime dateTime;

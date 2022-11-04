@@ -18,7 +18,7 @@ public class AppointmentTest {
         }
         @Override
         public String toString() {
-            return "20/Jan-2023 9:00 AM";
+            return "20/01-2023 9:00";
         }
     }
 
@@ -28,7 +28,7 @@ public class AppointmentTest {
         }
         @Override
         public String toString() {
-            return "21-Jan-2023 09:00 AM";
+            return "21-01-2023 09:00";
         }
     }
 
@@ -38,7 +38,7 @@ public class AppointmentTest {
         }
         @Override
         public String toString() {
-            return "09:00 AM";
+            return "09:00";
         }
     }
 
@@ -48,7 +48,7 @@ public class AppointmentTest {
         }
         @Override
         public String toString() {
-            return "21-Jan-2023";
+            return "21-01-2023";
         }
     }
 
@@ -58,12 +58,12 @@ public class AppointmentTest {
      */
     private static class DateTimeStub extends DateTime {
         DateTimeStub() {
-            super(DateTimeParser.parseLocalDateTimeFromString("1-Apr-2023 12:30 PM"));
+            super(DateTimeParser.parseLocalDateTimeFromString("1-04-2023 12:30"));
         }
 
         @Override
         public String toString() {
-            return "1-Apr-2023 12:30 PM";
+            return "1-04-2023 12:30";
         }
     }
 
@@ -99,7 +99,7 @@ public class AppointmentTest {
     @Test
     public void versionToString_validVersion_correctStringRepresentation() {
         Appointment newAppointment = new Appointment(new DateTimeStub(), new ValidLocationStub());
-        Assertions.assertEquals("1-Apr-2023 12:30 PM, NUS TechnoEdge", newAppointment.toString());
+        Assertions.assertEquals("1-04-2023 12:30, NUS TechnoEdge", newAppointment.toString());
     }
 
     @Test

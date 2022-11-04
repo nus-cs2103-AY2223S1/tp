@@ -16,7 +16,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.MUSAB_WITH_NO_APPT;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +33,6 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new CommandHistory());
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {

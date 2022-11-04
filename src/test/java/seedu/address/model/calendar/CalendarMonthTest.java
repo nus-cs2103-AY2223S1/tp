@@ -21,13 +21,13 @@ public class CalendarMonthTest {
     private static final Name AMY = new Name("Amy");
     private static final Name BOB = new Name("Bob");
     private static final Appointment firstAppointment = new Appointment(new DateTime(
-            DateTimeParser.parseLocalDateTimeFromString("1-Apr-2023 01:00 PM")),
+            DateTimeParser.parseLocalDateTimeFromString("1-4-2023 01:00")),
             new Location("NUS TechnoEdge"));
     private static final Appointment secondAppointment = new Appointment(new DateTime(
-            DateTimeParser.parseLocalDateTimeFromString("1-May-2023 01:00 PM")),
+            DateTimeParser.parseLocalDateTimeFromString("1-5-2023 01:00")),
             new Location("NUS TechnoEdge"));
     private static final Appointment thirdAppointment = new Appointment(new DateTime(
-            DateTimeParser.parseLocalDateTimeFromString("1-Apr-2024 01:00 PM")),
+            DateTimeParser.parseLocalDateTimeFromString("1-4-2024 01:00")),
             new Location("NUS TechnoEdge"));
 
 

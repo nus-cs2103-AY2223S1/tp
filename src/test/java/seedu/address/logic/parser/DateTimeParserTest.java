@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,17 +14,16 @@ import org.junit.jupiter.api.Test;
 
 public class DateTimeParserTest {
 
-    public static final String FIRST_VALID_DATE_TIME = "1-Apr-2023 12:30 PM";
-    public static final String SECOND_VALID_DATE_TIME = "2-Apr-2023 12:30 PM";
-    public static final String THIRD_VALID_DATE_TIME = "3-Apr-2023 12:30 PM";
-    private static final String INVALID_YEAR = "1-Apr-23 12:30 PM";
-    private static final String INVALID_MONTH = "1-January-2023 12:30 PM";
-    private static final String INVALID_DAY = "1000-Apr-2023 12:30 PM";
-    private static final String INVALID_DAY_ERROR_MESSAGE = "Text '1000-Apr-2023 12:30 PM' could not be parsed: "
+    public static final String FIRST_VALID_DATE_TIME = "01-04-2023 12:30";
+    public static final String SECOND_VALID_DATE_TIME = "02-04-2023 12:30";
+    public static final String THIRD_VALID_DATE_TIME = "03-04-2023 12:30";
+    private static final String INVALID_YEAR = "01-04-23 12:30";
+    private static final String INVALID_MONTH = "01-13-2023 12:30";
+    private static final String INVALID_DAY = "1000-04-2023 12:30";
+    private static final String INVALID_DAY_ERROR_MESSAGE = "Text '1000-04-2023 12:30' could not be parsed: "
             + "Invalid value for DayOfMonth (valid values 1 - 28/31): 1000";
-    private static final String INVALID_MONTH_ERROR_MESSAGE = "Text '1-January-2023 12:30 PM' could not be parsed at "
-            + "index 5";
-    private static final String INVALID_YEAR_ERROR_MESSAGE = "Text '1-Apr-23 12:30 PM' could not be parsed at index 6";
+    private static final String INVALID_MONTH_ERROR_MESSAGE = "Text '01-13-2023 12:30' could not be parsed: Invalid value for MonthOfYear (valid values 1 - 12): 13";
+    private static final String INVALID_YEAR_ERROR_MESSAGE = "Text '01-04-23 12:30' could not be parsed at index 6";
     private DateTimeParser parser = new DateTimeParser();
 
 
@@ -37,7 +38,7 @@ public class DateTimeParserTest {
     public void parse_dateTimeInvalidDayOfMonthFormat_exceptionThrown() {
         try {
             LocalDateTime parsedLocalDateTime = parser.parseLocalDateTimeFromString(INVALID_DAY);
-        } catch (Exception e) {
+        } catch (DateTimeException e) {
             assertEquals(INVALID_DAY_ERROR_MESSAGE, e.getMessage());
         }
     }
@@ -46,7 +47,7 @@ public class DateTimeParserTest {
     public void parse_dateTimeInvalidMonthFormat_exceptionThrown() {
         try {
             LocalDateTime parsedLocalDateTime = parser.parseLocalDateTimeFromString(INVALID_MONTH);
-        } catch (Exception e) {
+        } catch (DateTimeException e) {
             assertEquals(INVALID_MONTH_ERROR_MESSAGE, e.getMessage());
         }
     }
@@ -55,7 +56,7 @@ public class DateTimeParserTest {
     public void parse_dateTimeInvalidYearFormat_exceptionThrown() {
         try {
             LocalDateTime parsedLocalDateTime = parser.parseLocalDateTimeFromString(INVALID_YEAR);
-        } catch (Exception e) {
+        } catch (DateTimeException e) {
             assertEquals(INVALID_YEAR_ERROR_MESSAGE, e.getMessage());
         }
     }
