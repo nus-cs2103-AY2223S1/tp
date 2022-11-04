@@ -29,7 +29,7 @@ public class EditConditionCommand extends EditGenericCommand {
     public static final String MESSAGE_SUCCESS = "Edited condition %1$d of %2$s:\n"
             + "Before: %3$s\n"
             + "After: %4$s";
-    public static final CommandType EDIT_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index patientIndex;
     private final Index conditionIndex;
@@ -78,7 +78,7 @@ public class EditConditionCommand extends EditGenericCommand {
 
             return new CommandResult(String.format(MESSAGE_SUCCESS,
                     conditionIndex.getOneBased(), editedPatient.getName(), initialCondition, editedCondition),
-                    EDIT_CONDITION_COMMAND_TYPE, patientListTracker);
+                    COMMAND_TYPE, patientListTracker);
         } catch (DuplicateConditionException dce) {
             throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
         }

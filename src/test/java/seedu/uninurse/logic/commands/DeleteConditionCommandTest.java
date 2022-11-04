@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.uninurse.logic.commands.DeleteConditionCommand.DELETE_CONDITION_COMMAND_TYPE;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -69,7 +68,7 @@ public class DeleteConditionCommandTest {
         expectedModel.setPerson(patientToDeleteCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(deleteConditionCommand, model, expectedMessage, DELETE_CONDITION_COMMAND_TYPE,
+        assertCommandSuccess(deleteConditionCommand, model, expectedMessage, DeleteConditionCommand.COMMAND_TYPE,
                 expectedModel);
     }
 
@@ -101,7 +100,7 @@ public class DeleteConditionCommandTest {
         expectedModel.setPerson(patientToDeleteCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(deleteConditionCommand, model, expectedMessage, DELETE_CONDITION_COMMAND_TYPE,
+        assertCommandSuccess(deleteConditionCommand, model, expectedMessage, DeleteConditionCommand.COMMAND_TYPE,
                 expectedModel);
     }
 

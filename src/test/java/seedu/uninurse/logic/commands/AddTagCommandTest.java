@@ -63,7 +63,7 @@ public class AddTagCommandTest {
         expectedModel.setPerson(patientToAddTag, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addTagCommand, model, expectedMessage, AddTagCommand.ADD_TAG_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(addTagCommand, model, expectedMessage, AddTagCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -101,7 +101,7 @@ public class AddTagCommandTest {
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addTagCommand, model, expectedMessage,
-                AddTagCommand.ADD_TAG_COMMAND_TYPE, expectedModel);
+                AddTagCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test

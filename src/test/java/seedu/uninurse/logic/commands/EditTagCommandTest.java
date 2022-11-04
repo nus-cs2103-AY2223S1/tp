@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.uninurse.logic.commands.EditTagCommand.EDIT_TAG_COMMAND_TYPE;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -81,7 +80,7 @@ public class EditTagCommandTest {
         expectedModel.setPerson(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editTagCommand, model, expectedMessage, EDIT_TAG_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(editTagCommand, model, expectedMessage, EditTagCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -114,7 +113,7 @@ public class EditTagCommandTest {
         expectedModel.setPerson(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editTagCommand, model, expectedMessage, EDIT_TAG_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(editTagCommand, model, expectedMessage, EditTagCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test

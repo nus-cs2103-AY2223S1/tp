@@ -25,7 +25,7 @@ public class DeleteTagCommand extends DeleteGenericCommand {
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_OPTION_TAG_INDEX
             + " 2";
     public static final String MESSAGE_SUCCESS = "Deleted tag %1$d from %2$s: %3$s";
-    public static final CommandType DELETE_TAG_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index patientIndex;
     private final Index tagIndex;
@@ -69,7 +69,7 @@ public class DeleteTagCommand extends DeleteGenericCommand {
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tagIndex.getOneBased(),
-                editedPatient.getName(), deletedTag), DELETE_TAG_COMMAND_TYPE, patientListTracker);
+                editedPatient.getName(), deletedTag), COMMAND_TYPE, patientListTracker);
     }
 
     @Override

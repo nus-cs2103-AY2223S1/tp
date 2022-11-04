@@ -29,7 +29,7 @@ public class EditTagCommand extends EditGenericCommand {
     public static final String MESSAGE_SUCCESS = "Edited tag %1$d of %2$s:\n"
             + "Before: %3$s\n"
             + "After: %4$s";
-    public static final CommandType EDIT_TAG_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index patientIndex;
     private final Index tagIndex;
@@ -77,7 +77,7 @@ public class EditTagCommand extends EditGenericCommand {
             model.setPatientOfInterest(editedPatient);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, tagIndex.getOneBased(),
-                    editedPatient.getName(), initialTag, editedTag), EDIT_TAG_COMMAND_TYPE, patientListTracker);
+                    editedPatient.getName(), initialTag, editedTag), COMMAND_TYPE, patientListTracker);
         } catch (DuplicateTagException dte) {
             throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
         }

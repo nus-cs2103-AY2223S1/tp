@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.uninurse.logic.commands.EditConditionCommand.EDIT_CONDITION_COMMAND_TYPE;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalConditions.CONDITION_DIABETES;
 import static seedu.uninurse.testutil.TypicalConditions.CONDITION_OSTEOPOROSIS;
@@ -81,7 +80,7 @@ public class EditConditionCommandTest {
         expectedModel.setPerson(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editConditionCommand, model, expectedMessage, EDIT_CONDITION_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(editConditionCommand, model, expectedMessage, EditConditionCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -114,7 +113,7 @@ public class EditConditionCommandTest {
         expectedModel.setPerson(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editConditionCommand, model, expectedMessage, EDIT_CONDITION_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(editConditionCommand, model, expectedMessage, EditConditionCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test

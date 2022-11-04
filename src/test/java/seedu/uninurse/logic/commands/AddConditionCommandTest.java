@@ -3,7 +3,6 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.uninurse.logic.commands.AddConditionCommand.ADD_CONDITION_COMMAND_TYPE;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -66,7 +65,8 @@ public class AddConditionCommandTest {
         expectedModel.setPerson(patientToAddCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addConditionCommand, model, expectedMessage, ADD_CONDITION_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(addConditionCommand, model, expectedMessage, AddConditionCommand.COMMAND_TYPE,
+                expectedModel);
     }
 
     @Test
@@ -95,7 +95,8 @@ public class AddConditionCommandTest {
         expectedModel.setPerson(patientToAddCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addConditionCommand, model, expectedMessage, ADD_CONDITION_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(addConditionCommand, model, expectedMessage, AddConditionCommand.COMMAND_TYPE,
+                expectedModel);
     }
 
     @Test

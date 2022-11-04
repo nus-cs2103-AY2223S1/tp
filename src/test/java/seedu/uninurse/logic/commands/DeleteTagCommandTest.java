@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.uninurse.logic.commands.DeleteTagCommand.DELETE_TAG_COMMAND_TYPE;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -69,7 +68,7 @@ public class DeleteTagCommandTest {
         expectedModel.setPerson(patientToDeleteTag, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(deleteTagCommand, model, expectedMessage, DELETE_TAG_COMMAND_TYPE,
+        assertCommandSuccess(deleteTagCommand, model, expectedMessage, DeleteConditionCommand.COMMAND_TYPE,
                 expectedModel);
     }
 
@@ -101,7 +100,7 @@ public class DeleteTagCommandTest {
         expectedModel.setPerson(patientToDeleteTag, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(deleteTagCommand, model, expectedMessage, DELETE_TAG_COMMAND_TYPE,
+        assertCommandSuccess(deleteTagCommand, model, expectedMessage, DeleteConditionCommand.COMMAND_TYPE,
                 expectedModel);
     }
 
