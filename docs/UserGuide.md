@@ -41,7 +41,7 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
 
 1. YellowBook comes with a list of sample contacts and tasks by default.
 
-2. Let's start by listing all the contacts in YellowBook. Type `listC` in the command box and press Enter to execute it. You should see a list of contacts. Try using `listT` to list all the tasks. 
+2. Let's start by listing all the contacts in YellowBook. Type `listC` in the command box and press Enter to execute it. You should see a list of contacts. Try using `listT` to list all the tasks.
 
 3. More to be added
 
@@ -103,7 +103,7 @@ Redoes the last command.
 
 Format: `redo`
 
-* For exceptionally large contact/task lists, it may take a few seconds to redo the command. 
+* For exceptionally large contact/task lists, it may take a few seconds to redo the command.
 
 * Redo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
 
@@ -263,11 +263,15 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 
 * Tasks are unique. There cannot be more than one task with the same description, deadline and tag list in the task list.
 
-* The description and deadline of the task are not allowed to be empty. 
+* The description and deadline of the task are not allowed to be empty.
+
+* The command parameters cannot be rearranged.
 
 * Newly added tasks are marked as not done by default.
 
 * Tasks have no tags when first created.
+
+* Tasks that are past their deadline can still be added since overdue tasks might have to be completed still.
 
 The following scenarios should not happen for your command to run successfully:
 - If the description of the task is empty.
@@ -292,7 +296,7 @@ Examples:
 
 * `listT` followed by `deleteT 1` deletes the first task in the task list.
 
-* `findT milk` followed by `deleteT 1` deletes the first result of the `findT` command.
+* `findT d/book` followed by `deleteT 1` deletes the first result of the `findT` command.
 
 ### Editing a task: `editT`
 
@@ -326,7 +330,7 @@ Examples:
 
 * `listT` followed by `markT 1` marks the first task in the displayed task list as done.
 
-* `findT book` followed by `markT 1` marks the first result of the `findT` command as done.
+* `findT d/book` followed by `markT 1` marks the first result of the `findT` command as done.
 
 ### Marking task as incomplete: `unmarkT`
 
@@ -341,7 +345,7 @@ Format: `unmarkT INDEX`
 Examples:
 
 * `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
-* `findT book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
+* `findT d/book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
 
 ### Finding a task: `findT`
 
@@ -411,7 +415,9 @@ Show the percentage of tasks whose label(s) contain any of the given keywords th
 
 Format: `progressT KEYWORD [MORE_KEYWORDS]`
 
-* Both complete and incomplete tasks are listed. 
+* The filter is case-sensitive, e.g. `cs2103t` will not match `CS2103T`.
+
+* Both complete and incomplete tasks are listed.
 
 * Tasks with deadlines that are already past are also listed.
 
@@ -478,11 +484,11 @@ Shows a list of all existing labels in the address book.
 
 ### Adding a label to a contact/task: `addL`
 
-Adds a label to an existing contact/task in YellowBook. Each contact/task can have multiple labels. 
-At the same time, the label is added to the label list, shown under the "tags" tab of the app. 
+Adds a label to an existing contact/task in YellowBook. Each contact/task can have multiple labels.
+At the same time, the label is added to the label list, shown under the "tags" tab of the app.
 This list is unique, meaning each label with a distinct name is only shown once, even if more than one contact/task has the same label.
 
-Multiple labels can be added in the same command. 
+Multiple labels can be added in the same command.
 However, only a maximum of one contact and one task can be labelled within the same command.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -506,12 +512,12 @@ Example:
 
 ### Removing a label from a contact/task: `deleteL`
 
-Removes a label from an existing contact/task in YellowBook. 
+Removes a label from an existing contact/task in YellowBook.
 
-If contact/task is last remaining contact/task with said label, label is removed from the label list. 
+If contact/task is last remaining contact/task with said label, label is removed from the label list.
 Otherwise, it is only removed from the specified contact/task label list.
 
-Multiple labels can be deleted in the same command. 
+Multiple labels can be deleted in the same command.
 However, only a maximum of one contact and one task can be edited within the same command.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -545,11 +551,11 @@ Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 
 * The label is case-sensitive, e.g. `cs2103t` will not delete labels named `CS2103T`.
 
-* Multiple labels can be specified. 
+* Multiple labels can be specified.
 
 * If a contact/task has multiple labels, it will not be deleted as long as it has at least one label.
   Instead, the labels will be removed from the contact/task.
-  
+
 The following scenarios should not happen for your command to run successfully:
 - Label does not exist
 - No label is provided
