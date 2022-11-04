@@ -172,6 +172,7 @@ Required Arguments:
     - `REC`: Recitations
     - `SEC`: Sectional Teaching
     - `LEC`: Lecture
+    - `OTHERS`: Others
   > More lesson types coming soon 😃
 
 - `LESSON-ID`
