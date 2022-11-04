@@ -185,6 +185,10 @@ public class FypManager implements ReadOnlyFypManager {
     public ObservableList<Student> getCompletedStudentList() {
         return students.filter(student -> student.getProjectStatus().projectStatus.equals("DONE"));
     }
+    
+    public DeadlineList getDeadlineList(Student student) {
+        return student.getDeadlineList();
+    }
 
     @Override
     public ObservableList<Student> getSortedByProjectNameUncompletedStudentList() {
