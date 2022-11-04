@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 
@@ -18,6 +19,7 @@ import seedu.address.model.iteration.IterationDescription;
 public class JsonAdaptedIteration {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Iteration's %s field is missing!";
+    public static final String MISSING_IMAGE_MESSAGE_FORMAT = "Iteration image could not be found!";
 
     private final LocalDate date;
     private final String description;
@@ -75,6 +77,10 @@ public class JsonAdaptedIteration {
                     Path.class.getSimpleName()));
         }
         Path modelImagePath = Path.of(path);
+
+        if (Files.notExists(modelImagePath)) {
+            throw new IllegalValueException(MISSING_IMAGE_MESSAGE_FORMAT);
+        }
 
         final Feedback modelFeedback = new Feedback(feedback);
 
