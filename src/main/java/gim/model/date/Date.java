@@ -21,7 +21,7 @@ public class Date {
             + "DAY MONTH YEAR or YEAR MONTH DAY\n\n"
             + "DAY: 1 or 2 digits allowed\n"
             + "MONTH: 1 or 2 digits allowed\n"
-            + "YEAR: 2 or 4 digits allowed\n";
+            + "YEAR: 4 digits allowed\n";
 
     public static final FormatterList FORMATTER_LIST = FormatterList.getFormatterList();
     public static final RegexList REGEX_LIST = RegexList.getRegexList();
@@ -47,6 +47,10 @@ public class Date {
         if (parsedDate == null) {
             // may change to DateTimeParseException
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS_FORMAT);
+        }
+        // The year 0000 does not exist in the Gregorian calendar.
+        if (parsedDate.getYear() == 0) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS_INVALID);
         }
         this.date = parsedDate;
     }
