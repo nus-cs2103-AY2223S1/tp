@@ -42,24 +42,22 @@ you can jump to our [Features](#features) section to learn more about the featur
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ArtBuddy.
 
-4. Double-click the file to start the app. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/CustomerView.png)
+4. Double-click the file to start the app. You can start typing to input your commands. If you click away, you can click on the top box to start typing again.
+5. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/UiCustomerList.png)
+   Note that the images are to help with interface only. The actual details of the data may differ in your application.
+6. You can use the following commands in the Customer View:
 
-5. The following commands are available in Customer View:
+    * `addcus n/Betsy Crowe e/betsycrowe@example.com p/1234586` :  Creates a new customer named Betsy Crowe.
+    * `delcus 2` :  Deletes the 2nd customer displayed on the list.
+    * `opencus 2` : Selects the 2nd customer (Bernice Yu) on the list.
 
-   * **`addcus`**`n/John Doe e/johnd@example.com a/John t/animal cartoons t/vip` :  Creates a new customer named John Doe.
-   * **`delcus`**`4` :  Deletes the 4th customer displayed on the list.
-   * **`opencus`**`1` : Opens the 1st customer (Alex) on the list and brings you to the Commission View for Alex.
+7. In the Commission View, the list of all commissions from the opened customer (Alex Yeoh) is displayed. <br> ![Ui](images/UiCommissionList.png)
+8. You can use the following commands in the Commission View:
+    * `addcom n/Fate Archer f/60 d/2022-10-15 s/true p/Archery t/night t/city` : Creates a new commission titled "Fate Archer" under Meg.
+    * `delcom 2` : Deletes the 2nd commission from Alex Yeoh on the list.
+    * `opencom 1` : Opens the 1st commission titled "Alex Yeoh Commission 1" and updates the Commission Details View.
 
-
-6. In the Commission View, the list of all commissions from the opened customer (Alex) is displayed. <br> ![Ui](images/CommissionView.png)
-
-7. The following commands are available in Commission View:
-    * **`addcom`**` n/Tokyo Ghoul Fan art f/50 d/2022-10-10` : Creates a new commission titled Tokyo Ghoul Fan art under Simon.
-    * **`delcom`**`5` : Deletes the 5th commission from Simon on the list.
-    * **`opencom`**`4` : Opens the 4th commission titled Berserk and brings you to the Commission Details View.
-
-
-8. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Digital half-body portrait) is displayed. ![Ui](images/CommissionDetailsView.png)
+8. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Digital half-body portrait) is displayed. ![Ui](images/UiCommissionDetail.png)
 9. The following commands are available in Commission Details View:
    * **`additer`**`/Users/Joseph/CSP/Devil-sketch.png` : Attaches the image at the specified file path to the opened commission.
 
