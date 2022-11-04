@@ -21,11 +21,13 @@ import seedu.uninurse.model.person.Patient;
  * Edits the details of an existing condition for a patient.
  */
 public class EditConditionCommand extends EditGenericCommand {
-    public static final String MESSAGE_USAGE = "Command: Edit a medical condition of a patient.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
+            + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_CONDITION_INDEX
+            + ": Edits a medical condition of a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_OPTION_CONDITION_INDEX + " CONDITION_INDEX " + PREFIX_CONDITION + "CONDITION\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_OPTION_CONDITION_INDEX
-            + " 2 " + PREFIX_CONDITION + "Hypertension";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_CONDITION_INDEX
+            + " 1 " + PREFIX_CONDITION + "Hypertension";
     public static final String MESSAGE_EDIT_CONDITION_SUCCESS = "Edited condition %1$d of %2$s:\n"
             + "Before: %3$s\n"
             + "After: %4$s";

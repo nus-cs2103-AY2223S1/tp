@@ -2,6 +2,8 @@ package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TASK_INDEX;
 
 import java.util.List;
 
@@ -18,12 +20,13 @@ import seedu.uninurse.model.task.TaskList;
  * Deletes a task from a person identified using its displayed index from the person list.
  */
 public class DeleteTaskCommand extends DeleteGenericCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task identified by the index number in the task list of the person "
-            + "identified by the index number used in the displayed person list.\n"
-            + "Parameters: PATIENT_INDEX (must be a positive integer) "
-            + "TASK_INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 2";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
+            + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_TASK_INDEX
+            + ": Deletes a task from a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
+            + PREFIX_OPTION_TASK_INDEX + " TASK_INDEX\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_OPTION_TASK_INDEX + " 1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task %1$d from %2$s: %3$s";
 

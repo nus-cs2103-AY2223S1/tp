@@ -20,10 +20,11 @@ import seedu.uninurse.model.person.Patient;
  * Add a medical condition to an existing patient in the patient list.
  */
 public class AddConditionCommand extends AddGenericCommand {
-    public static final String MESSAGE_USAGE = "Command: Add a medical condition to a patient.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
+            + ": Adds a medical condition to a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_CONDITION + "CONDITION\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
             + PREFIX_CONDITION + "Hypertension";
     public static final String MESSAGE_ADD_CONDITION_SUCCESS = "New condition added to %1$s: %2$s";
     public static final CommandType ADD_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
