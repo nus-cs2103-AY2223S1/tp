@@ -214,7 +214,7 @@ generator-like method to update and retrieve the user position in the command hi
       the next position (downwards) in the command history.
 
 > Note that both of these operations are not pure, since the internal `ListIterator`
-> is updated after an invocation of either operations.t p
+> is updated after an invocation of either operations.
 
 #### Design considerations
 
@@ -448,14 +448,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: Selecting Lesson Slot**
+
+**MSS**
+
+1.  User requests to view a specific module
+2.  CLIMods shows detailed information of that module
+3.  User clicks on the desired lesson type
+4.  CLIMods shows all lesson slots under that lesson type for the module
+5.  User picks a lesson slot using the `pick` command
+6.  CLIMods adds the lesson slot under the `My Modules` list
+
+
+    Use case ends.
+
+**Extensions**
+
+* 5a. The module has not been added
+
+    * 5a1. CLIMods shows an error message.
+
+* 1a. The given module code is invalid
+
+    * 3a1. CLIMods shows an error message.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
-
-*{More to be added}*
+3. For functions that allows regex commands, the user is expected to understand regex to take full advantage of these features.
 
 ### Glossary
 * **Student**: The person who uses the app
