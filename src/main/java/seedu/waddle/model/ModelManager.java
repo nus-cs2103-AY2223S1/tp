@@ -14,7 +14,7 @@ import seedu.waddle.commons.core.LogsCenter;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of Waddle data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -24,12 +24,12 @@ public class ModelManager implements Model {
     private final FilteredList<Itinerary> filteredItineraries;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given waddle and userPrefs.
      */
     public ModelManager(ReadOnlyWaddle waddle, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(waddle, userPrefs);
 
-        logger.fine("Initializing with address book: " + waddle + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Waddle: " + waddle + " and user prefs " + userPrefs);
 
         this.waddle = new Waddle(waddle);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -75,7 +75,7 @@ public class ModelManager implements Model {
         userPrefs.setWaddleFilePath(waddleFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Waddle ================================================================================
 
     @Override
     public void setWaddle(ReadOnlyWaddle waddle) {
@@ -111,11 +111,11 @@ public class ModelManager implements Model {
         waddle.setItinerary(target, editedItinerary);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Itinerary List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Itinerary} backed by the internal list of
+     * {@code versionedWaddle}
      */
     @Override
     public ObservableList<Itinerary> getFilteredItineraryList() {

@@ -8,7 +8,7 @@ import static seedu.waddle.commons.util.AppUtil.checkArgument;
  */
 public class ItineraryDuration {
     public static final String MESSAGE_CONSTRAINTS =
-            "Duration must be between 1 and 365 days.";
+            "Duration must be at least 1 day, and not more than 365 days.";
     public static final String VALIDATION_REGEX = "\\d+";
 
     private final int duration;
