@@ -63,7 +63,7 @@ public class StringUtil {
                 .anyMatch(keyword -> containsIgnoreCase(keyword, word));
     }
 
-    // Code for parsing lower case strings safely is
+    //@@author parth-io-reused
     // referenced from https://stackoverflow.com/a/14018549/13742805
     /**
      * Returns true if the {@code stringToSearchIn} contains the {@code keyword} partially.
@@ -75,12 +75,10 @@ public class StringUtil {
         if (keyword == null || stringToSearchIn == null) {
             return false;
         }
-
         final int length = keyword.length();
         if (length == 0) {
             return true;
         }
-
         for (int i = stringToSearchIn.length() - length; i >= 0; i--) {
             if (stringToSearchIn.regionMatches(true, i, keyword, 0, length)) {
                 return true;
@@ -88,6 +86,7 @@ public class StringUtil {
         }
         return false;
     }
+    //@@author
 
     /**
      * Returns a detailed message of the t, including the stack trace.
