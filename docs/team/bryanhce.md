@@ -56,8 +56,8 @@ details.
 
 
 * **Project management**:
-  * Added Github tags, milestones, assignee.
-  * Used Github issue tracker.
+  * Added GitHub tags, milestones, assignee.
+  * Used GitHub issue tracker.
   * Followed the forking workflow.
   * Contributed to meetings by sharing screen and facilitating discussions.
 

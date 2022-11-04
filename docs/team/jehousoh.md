@@ -57,8 +57,8 @@ Given below are my contributions to the project.
   * Maintained issue trackers.
 
 * **Project management**:
-  * Added Github tags, milestones, assignee.
-  * Used Github issue tracker.
+  * Added GitHub tags, milestones, assignee.
+  * Used GitHub issue tracker.
   * Followed the forking workflow.
   * Contributed to meetings by sharing screen and facilitating discussions.
 
