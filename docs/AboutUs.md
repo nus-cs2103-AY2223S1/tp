@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jonaspng.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibility: DevOps
 
 ### Joe Yi
 
@@ -39,7 +39,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jjoeyi.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
 ### Norman Koh
 
@@ -50,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/normkoh.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI
 
 ### Gareth Ong
 
@@ -61,4 +60,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/garethong.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Data

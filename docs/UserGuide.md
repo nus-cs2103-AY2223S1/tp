@@ -3,13 +3,11 @@ layout: page
 title: User Guide
 ---
 SOConnect is a **desktop application for NUS SOC students to keep track of their University social circle** which includes peers, Teaching Assistants and Professors.
-Since it is designed for SOC students, it is **optimized for use via a Command Line Interface (CLI)**
-but it also has a Graphical User Interface for simpler and quicker task.
+Since it is designed for people with some computing background, it is **optimized for use via a Command Line Interface (CLI)**
+but it also has a Graphical User Interface (GUI) for simpler and quicker task.
 
 * Table of Contents
 {:toc}
-
---------------------------------------------------------------------------------------------------------------------
 
 # 1. About the User Guide
 
@@ -35,16 +33,13 @@ This section will explain the parameters and the format of commands.
 | []()   | INDEX           | Index of item in the recent displayed item list                                                                |
 |        | FILENAME        | Name that you wish to name the export file or Name of file you wish to import from                             |
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 # 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `SoConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W08-3/tp).
+1. Download the latest `SoConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W08-3/tp/releases).
 
   1. **Double-click** the file to start the app or  using **CLI** and type `java -jar SoConnect.jar`. The GUI similar to the below should appear in a few seconds. Below is an UI mockup.
      ![Ui](images/Ui.png)
@@ -62,7 +57,7 @@ This section will explain the parameters and the format of commands.
 * All prefixes must be preceded by a space.<br>
   e.g <code> t/</code>, <code> g/</code>
 
-* All commands are **lower-sensitive**.<br>
+* All commands are **lowercase-sensitive**.<br>
   e.g. `Find` will **not** be recognised as a valid syntax.
 
 * Words in `UPPER_CASE` are the parameters to be **supplied by you** and must be in **English Characters**.<br>
@@ -118,6 +113,8 @@ A student can have multiple module codes and tags. But a student must have at le
 Examples:
 * `student n/John Doe y/1 m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M t/friends t/owesMoney l/UTown Residences git/johnnyd`
 * `student n/Betsy Crowe t/friend m/CS2100 g/F e/betsycrowe@example.com p/1234567 t/criminal`
+
+<div style="page-break-after: always;"></div>
 
 ### 3.1.2 Add a new Professor Contact: `prof`
 
@@ -186,7 +183,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE] [e/EMA
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * When editing a Student's module codes, the existing module codes of the student will be removed i.e adding of module codes is not cumulative.
 * You can remove all the person’s tags by typing t/ without specifying any tags after it.
-* You can remove Person's GitHub Username, Teaching Assistant's and Professor's Rating, Professor's Office Hour, Professor's Specialisation by typing `git/`, `r/`, `o/` or `s/` respectively.
+* Similar to tags you can remove Person's GitHub Username, Teaching Assistant's and Professor's Rating, Professor's Office Hour, Professor's Specialisation by typing `git/`, `r/`, `o/` or `s/` without any inputs respectively.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 An error will be thrown if you attempt to edit a field that does not exist for the contact. E.g editing year field of a professor contact will throw an error as professor does not have a year field.
@@ -341,12 +338,13 @@ Module Codes sorted descending order.
 
 ## 3.4 GitHub Command: `github`
 
-Opens the GitHub profile page associated with the specified person in the address book.
+Opens the GitHub profile page associated with the specified person in the contact list, through user's default browser.
 
 Format: `github INDEX`
 * Opens the GitHub profile page associated with the person at the specified `INDEX'
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …
+* If the GitHub username is not a registered username on GitHub, this command will open the GitHub 404 page
 
 Examples:
 * `github 1`
@@ -356,8 +354,11 @@ Examples:
 If there is no GitHub username associated with the person at the specified `INDEX', an error will be thrown.
 </div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+</div>
+
+
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 3.5 Pie Chart Feature
 
@@ -504,4 +505,4 @@ Example Command: `clear-confirm`
 | **Help**                                | `help`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **Generation of Person's Template**     | `tt PERSON` where PERSON is `prof / student / ta` <br> e.g. `tt prof`, `tt ta`, `tt student`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **Export**                              | `export FILENAME` <br> e.g. `export contacts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **Import**                              | `import FILENAME` <br> e.g. `import contacts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Import**                              | `import FILENAME.csv` <br> e.g. `import contacts.csv`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |

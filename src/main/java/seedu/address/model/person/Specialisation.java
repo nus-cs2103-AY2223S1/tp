@@ -11,7 +11,7 @@ public class Specialisation {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Specialisation can take any values, and it should not be blank.\n"
-            + "However when you are editing Specialisation field, s/ can be empty";
+            + "However when you are editing Specialisation of an existing contact, it can be blank.";
 
     /*
      * The first character of the specialisation must not be a whitespace,
