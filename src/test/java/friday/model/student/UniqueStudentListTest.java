@@ -50,28 +50,33 @@ public class UniqueStudentListTest {
 
     @Test
     public void add_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudentList.add(null));
+        assertThrows(NullPointerException.class, () ->
+                uniqueStudentList.add(null));
     }
 
     @Test
     public void add_duplicateStudent_throwsDuplicateStudentException() {
         uniqueStudentList.add(ALICE);
-        assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.add(ALICE));
+        assertThrows(DuplicateStudentException.class, () ->
+                uniqueStudentList.add(ALICE));
     }
 
     @Test
     public void setStudent_nullTargetStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudentList.setStudent(null, ALICE));
+        assertThrows(NullPointerException.class, () ->
+                uniqueStudentList.setStudent(null, ALICE));
     }
 
     @Test
     public void setStudent_nullEditedStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudentList.setStudent(ALICE, null));
+        assertThrows(NullPointerException.class, () ->
+                uniqueStudentList.setStudent(ALICE, null));
     }
 
     @Test
     public void setStudent_targetStudentNotInList_throwsStudentNotFoundException() {
-        assertThrows(StudentNotFoundException.class, () -> uniqueStudentList.setStudent(ALICE, ALICE));
+        assertThrows(StudentNotFoundException.class, () ->
+                uniqueStudentList.setStudent(ALICE, ALICE));
     }
 
     @Test
@@ -107,17 +112,20 @@ public class UniqueStudentListTest {
     public void setStudent_editedStudentHasNonUniqueIdentity_throwsDuplicateStudentException() {
         uniqueStudentList.add(ALICE);
         uniqueStudentList.add(BOB);
-        assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.setStudent(ALICE, BOB));
+        assertThrows(DuplicateStudentException.class, () ->
+                uniqueStudentList.setStudent(ALICE, BOB));
     }
 
     @Test
     public void remove_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudentList.remove(null));
+        assertThrows(NullPointerException.class, () ->
+                uniqueStudentList.remove(null));
     }
 
     @Test
     public void remove_studentDoesNotExist_throwsStudentNotFoundException() {
-        assertThrows(StudentNotFoundException.class, () -> uniqueStudentList.remove(ALICE));
+        assertThrows(StudentNotFoundException.class, () ->
+                uniqueStudentList.remove(ALICE));
     }
 
     @Test
@@ -130,7 +138,8 @@ public class UniqueStudentListTest {
 
     @Test
     public void setStudents_nullUniqueStudentList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudentList.setStudents((UniqueStudentList) null));
+        assertThrows(NullPointerException.class, () ->
+                uniqueStudentList.setStudents((UniqueStudentList) null));
     }
 
     @Test
@@ -144,7 +153,8 @@ public class UniqueStudentListTest {
 
     @Test
     public void setStudents_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudentList.setStudents((List<Student>) null));
+        assertThrows(NullPointerException.class, () ->
+                uniqueStudentList.setStudents((List<Student>) null));
     }
 
     @Test
@@ -160,12 +170,13 @@ public class UniqueStudentListTest {
     @Test
     public void setStudents_listWithDuplicateStudents_throwsDuplicateStudentException() {
         List<Student> listWithDuplicateStudents = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.setStudents(listWithDuplicateStudents));
+        assertThrows(DuplicateStudentException.class, () ->
+                uniqueStudentList.setStudents(listWithDuplicateStudents));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueStudentList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                uniqueStudentList.asUnmodifiableObservableList().remove(0));
     }
 }
