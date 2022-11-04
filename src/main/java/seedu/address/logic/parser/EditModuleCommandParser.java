@@ -44,8 +44,8 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
             editModuleDescriptor.setName(ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
-            editModuleDescriptor.setModuleCode(ParserUtil
-                    .parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get()));
+            editModuleDescriptor.setModuleCode(new ModuleCode(ParserUtil
+                    .parseModule(argMultimap.getValue(PREFIX_MODULE_CODE).get()).toUpperCase()));
         }
         if (argMultimap.getValue(PREFIX_MODULE_DESCRIPTION).isPresent()) {
             editModuleDescriptor.setModuleDescription(ParserUtil
