@@ -3,9 +3,8 @@ layout: page
 title: Tan Jia Rong's Project Portfolio Page
 ---
 
-## Project: Plannit
+### Project: Plannit
 
-### Overview
 **Plannit** is an **all-in-one application** that streamlines the execution of module
 deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
 **module-mates** (i.e., students in the same module) to increase their productivity.
@@ -15,10 +14,10 @@ Given below are my contributions to the project.
 
 #### Navigation ([#64](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/64))
 
-* **New Feature:** Added `goto` command.
+* **New Features:** Added `goto` and `home` commands.
   * What it does: <br>
-    Allows users to navigate to specific module to
-    view information relevant to the particular module.
+    To allows users to navigate to specific module to view information relevant to the particular module and
+    navigate back to the home page to have an overview of details stored in Plannit.
   * Justification: <br>
     Initial implementation of AB3 consisted of only contacts, while Plannit features
     many more components, with the main components being `Module` and `Person`.
@@ -26,14 +25,6 @@ Given below are my contributions to the project.
     the `goto` command is implemented to allow users to view precise information
     relevant to the particular module such as the tasks, links and person which
     are tied to that module, which is critical for our value proposition.
-
-* **New Feature:** Added `home` command.
-  * What it does:
-    Allows users to navigate back to home page after using `goto` to
-    have an overview of details stored in Plannit.
-  * Justification: <br>
-    A consequence of `goto` so that users can return to the home page
-    to have an overview of all modules and persons.
 
 **Highlights** <br>
 * The navigation function introduces a new concept of home page and module page which is previously not found
@@ -48,36 +39,10 @@ Given below are my contributions to the project.
 
 #### Search ([#81](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/81))
 
-* **New Feature:** Added `find-module` command.
-  * What it does: <br>
-    Allows users to search for modules on the home page.
-  * Justification: <br>
-    All modules are listed in the home page. Hence, `find-module` is implemented to allow users to filter
-    modules by module code prefix. <br>
-    Additionally, it is a design decision to disable it after using `goto` command to prevent
-    confusion between usage of `goto` command and `find-module` command.
-
-
-* **New Feature:** Added `list-module` command.
-  * What it does: <br>
-    Allows users to list every module on the home page.
-  * Justification: <br>
-    A consequence of `find-module` so that users can reset the list of modules back to its
-    original state.
-
-
-* **New Feature:** Added `find-person` command.
-  * What it does: <br>
-    Allows users to find persons on the home page.
-  * Justification: <br>
-    Similar to `find-module`, all person details are listed in
-    the home page. Hence, `find-person` is implemented to allow users to filter the persons
-    list by the person name prefix. <br>
-    Additionally, it is a design decision to disable it after using `goto` command
-    as relevant person added to a module is likely to be small as it should only comprise of
-    people whom the user needs to interact with in the module
-    (i.e. friends, project mates, teaching assistant, professors).
-
+* **Enhancements to existing features:** `find` and `list` commands.
+  * Implemented `find-module`, `find-person`, `list-module` and `list-person` commands.
+  * Modified existing AB3's predicate to allow users to search by module and person name prefixes to better suit our project needs.
+  * Added constraints that users can only use `find` and `list` at the home page for better user experience.
 
 * **New Feature:** Added `list-person` command.
   * What it does: <br>
@@ -87,10 +52,15 @@ Given below are my contributions to the project.
     original state.
 
 **Highlights** <br>
-* Slight modification to existing AB3's predicate to allow users to search by prefixes for better user experience.
-* Much thoughts have to be put into considering on whether to implement search functionalities as `home` and `goto`
-  command is sufficient in showing the modules. However, we chose to include it to improve user experience by allowing
-  them to search for modules and contacts from the home page.
+* Much thoughts have to be put into considering whether to implement search functionalities as navigation
+  functionalities such as `home` and `goto` command are sufficient in showing the modules.
+  However, we chose to include it to improve user experience by allowing them to search for modules and contacts
+  from the home page.
+
+* Additionally, it is a design decision to disable `find` and `list` commands after usage of `goto` command as 
+  * for modules: `find` and `list` is irrelevant when there is only one module and may result in confusion instead.
+  * for persons: Relevant person associated with a module is likely to be small as it should only comprise of 
+  people whom the user needs to interact with in the module (i.e. friends, project mates, teaching assistant, professors).
 
 **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tan-jia-rong&breakdown=true)
 
