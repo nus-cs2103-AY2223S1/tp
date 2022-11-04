@@ -264,6 +264,77 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### ADD Feature
+
+#### Current Implementation
+
+The add mechanism is facilitated by `AddCommandParser` and `AddCommand`. It extends `Command` with an undo/redo history, 
+stored internally as an `healthContactStateList` and `currentStatePointer`.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedHealthContact` will be initialized with the initial HealthContact state, 
+and the `currentStatePointer` pointing to that single HealthContact state.
+
+Step 2. The user executes `add n/David …​` to add a new patient. The `add` command calls `Model#commitHealthContact()`, 
+causing another modified HealthContact state to be saved into the `healthContactStateList`.
+
+Step 3. The application will then save the patient into the `patientList` and display the patient added.
+
+The add feature is now separated for the patients, appointments and bills sections.
+
+Design considerations:
+1. Length of command word
+2. Whether to use a prefix for the name of the patient
+3. Number of parameters for the command
+
+Alternatives:
+
+1. Use a shorter command word (eg. ap instead of addpatient)
+    - Pros: Easy to type
+    - Cons: Might be confusing for the user
+2. Use a prefix for the name of the patient (eg. n/ instead of just the name)
+    - Pros: Easier to implement
+    - Cons: Might be confusing for the user
+3. Combine add feature for patients, appointments and bills into one command
+    - Pros: Easier to implement
+    - Cons: Might be confusing for the user
+
+### Edit Feature
+
+#### Current Implementation
+
+The edit mechanism is facilitated by `EditCommandParser` and `EditCommand`. It extends `Command` with an undo/redo history.
+The edition is done through `EditPatient`, `EditAppointment` and `EditBill` functions.
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. All patients, appointments and bills are shown on different sections
+of the application as indexed lists.
+
+Step 2. The user executes `editpatient 1 n/John` to edit the first patient in the list to have the name John. The `editpatient` command
+calls `Model#commitHealthContact()`, causing another modified HealthContact state to be saved into the `healthContactStateList`.
+
+Step 3. The application will then save the edited patient into the `patientList` and display the edited patient.
+
+The edit feature is now separated for the patients, appointments and bills sections.
+
+Design considerations:
+1. Length of command word
+2. Whether to use a prefix for the name of the patient
+3. Number of parameters for the command
+
+Alternatives:
+1. Use a shorter command word (eg. ep instead of editpatient)
+    - Pros: Easy to type
+    - Cons: Might be confusing for the user
+2. Use a prefix for the name of the patient (eg. n/ instead of just the name)
+    - Pros: Easier to implement
+    - Cons: Might be confusing for the user
+3. Combine edit feature for patients, appointments and bills into one command
+    - Pros: Easier to implement
+    - Cons: Might be confusing for the user
+
 ### Find Feature
 
 #### Current Implementation
@@ -281,7 +352,7 @@ The `find` command calls `Model#updateFilteredPatientList(predicate)` to update 
 
 Step 3. The application displays the list of patients with the name "John" on the patient list panel.
 
-The find feature is now seperated for the patients, appointments and bills sections.
+The find feature is now separated for the patients, appointments and bills sections.
 
 Design considerations:
 1. Length of command word
@@ -318,7 +389,7 @@ of the application as indexed lists.
 Step 2. The user executes `deletePatient 2` command to delete the patient at index 2 in the list.
 The `delete` command calls `Model#deletePatient` to delete the patient from the list of patients.
 
-The delete feature is now seperated for the patients, appointments and bills sections. Deleting a patient also deletes
+The delete feature is now separated for the patients, appointments and bills sections. Deleting a patient also deletes
 related appointments.
 
 
@@ -350,7 +421,7 @@ and bills in the application.
 Step 2. The application displays the list of appointments and bills with the name equals to
 the first patient on the patient list panel.
 
-The select feature is now seperated for the patients and appointments sections.
+The select feature is now separated for the patients and appointments sections.
 
 Design considerations:
 1. Length of command word
