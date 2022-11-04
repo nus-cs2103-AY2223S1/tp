@@ -20,7 +20,7 @@ public class DeleteUserCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = DeleteCommand.generateMessage(COMMAND_WORD);
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted User: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted user: %1$s";
 
     private final Index targetIndex;
 
