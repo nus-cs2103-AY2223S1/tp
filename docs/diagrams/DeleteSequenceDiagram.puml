@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":CliModsParser" as AddressBookParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("rm CS2103")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
+LogicManager -> AddressBookParser : parseCommand("rm CS2103")
 activate AddressBookParser
 
 create DeleteCommandParser
@@ -26,7 +26,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+AddressBookParser -> DeleteCommandParser : parse("CS2103")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -48,7 +48,7 @@ deactivate AddressBookParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deleteUserModule("CS2103")
 activate Model
 
 Model --> DeleteCommand
