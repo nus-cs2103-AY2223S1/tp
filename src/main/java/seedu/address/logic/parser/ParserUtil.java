@@ -231,7 +231,7 @@ public class ParserUtil {
         String[] arr = students.split(",");
         ArrayList<String> result = Arrays.stream(arr).map(String::trim).filter(str -> !str.isBlank())
                 .collect(Collectors.toCollection(ArrayList::new));
-        if (result.size() == 0) {
+        if (result.isEmpty()) {
             throw new ParseException(BLANK_STUDENT_LIST);
         }
         return result;
