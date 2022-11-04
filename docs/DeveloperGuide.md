@@ -118,7 +118,7 @@ How the parsing works:
 
 #### Model
 
-<img src="images/dg/ModelClassDiagram.png" width="450" />
+<img src="images/dg/ModelClassDiagram.png" width="600" />
 
 The `Model` component,
 
@@ -268,25 +268,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Current Implementation
 
-The find mechanism makes use of a predicate to filter the list of patients through `updateFilteredPatientList` method in the `ModelManager` class.
-The `FindCommandParser` gets the user input to set it as the predicate. The user can find all fields of patients, appointments and bills.
+The FindPatientCommand, FindAppointmentCommand and FindBillCommand make use of predicates to filter the list of patients, appointments and bills respectively.
+Each command's parser parses the field prefixes and filter inputs keyed in by the user to create the command with Optional predicates for each field passed in as parameters.
+The command then creates a combined predicate and upon execution, updates the filtered list of patients, appointments or bills in the model by setting the new predicate.
 
-Given below is an example usage scenario and how the find mechanism behaves at each step.
+Given below is an example usage scenario for __FindPatientCommand__ and how the find mechanism behaves at each step.
 
 Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
 of the application as indexed lists.
 
-Step 2. The user executes `find n/John` command to find all patients with the name "John".
-The `find` command calls `Model#updateFilteredPatientList(predicate)` to update the list of patients in the application.
+Step 2. The user keys in `findpatient n/John` or `fp n/John` to find all patients with names containing "John".
+The `FindPatientCommand` calls `Model#updateFilteredPatientList(predicate)` to update the list of patients in the application.
 
-Step 3. The application displays the list of patients with the name "John" on the patient list panel.
+Step 3. The application displays the list of patients with names containing "John" on the patient list panel.
+
+The following sequence diagram shows how the FindPatientCommand works:
+
+![FindPatientCommandSequenceDiagram](images/dg/FindPatientCommandSequenceDiagram.png)
 
 The find feature is now seperated for the patients, appointments and bills sections.
 
 Design considerations:
 1. Length of command word
-2. Whether to use a prefix for the search term
-3. Number of keywords used for the search term
+2. Usage of prefixes for each field
 
 Alternatives:
 
@@ -603,3 +607,8 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+-----------------------------------------------------------------------------------------------------------------
+
+## Appendix: Effort
+
