@@ -19,8 +19,7 @@ Given below are my contributions to the project.
       of any FYP project so that he/she can identify which projects may need more attention or help, especially
       those that are `YTS` or `IP`.
   * Highlights:
-    * This enhancement was challenging to implement everything
-      from scratch. It required an in-depth analysis of the current code base, and I had to do extensive
+    * This enhancement was challenging to implement everything from scratch. It required an in-depth analysis of the current code base, and I had to do extensive
       code-tracing to implement the feature.
   * Credits:
     * Would like to thank @russelldash332 for the help in implementing the status as a coloured box
@@ -29,16 +28,13 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to sort the projects by their specialisation, or by their project status
   * What it does:
     * Allows the user to either sort the Projects by their name in alphabetical order, or
-      by the project status, specifically those with the status `YTS` are sorted in front of those with the
-      status `IP`. Projects with the status `DONE` are listed on the Completed panel.
+      by the project status, specifically in the order {`YTS`, `IP`, `DONE`}.
   * Justification:
-    * This feature improves the product since the user can now sort the FYP projects according to alphabetical order,
-      which could be useful if the user is trying to search for a specific topic, *OR* by their project status, 
-      since projects that are `YTS` may be more urgent than those `IP`.
+    * This feature improves the product since users may be searching for a specific topic, or for projects of a 
+      specific project status
   * Highlights:
-    * This enhancement was challenging since it required an in depth analysis of the classes
-      related to the UI display, which necessitated the introduction of new methods to existing classes
-      , as well as the modification if existing ones
+    * This enhancement was challenging since it required the introduction of new methods to existing classes
+      , as well as the modification of existing ones
   * Credits:
     * Would like to thank @russelldash332 for the help with the UI panel
 
