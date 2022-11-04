@@ -10,14 +10,19 @@ software engineering modules to build projects. It helps track the team's progre
 
 Given below are my contributions to the project.
 
-* **New Feature**: To be added soon.
+* **New Feature**: Add, delete, edit and set teams.
 
-* **New Feature**: To be added soon.
+* **New Feature**: Add, delete edit link in teams.
 
-* **Code contributed**: Link to be added soon. [RepoSense link]()
+* **New Feature**: Find members and tasks in teams.
+
+* **New Feature**: Sort members and tasks in teams. 
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=changjy44&tabRepo=AY2223S1-CS2103T-W13-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-    * To be added soon.
+    * Set up team repo for group
+    * Set up codecov for group
 
 
 * **Enhancements to existing features**:
@@ -25,12 +30,12 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * To be added soon.
+        * Documented commands for teams, links, find and sort functions. 
     * Developer Guide:
-        * To be added soon.
+        * Documented implementation of teams functions.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): To be added soon.
+    * PRs reviewed (with non-trivial review comments): Reviewed 12 PRS.
     * Contributed to forum discussions (examples: To be added soon).
     * Reported bugs and suggestions for other teams in the class (examples: To be added soon).
 
