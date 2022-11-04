@@ -178,7 +178,14 @@ Examples:
 
 ### 5.2. Deleting an exercise : `:del`
 
-Deletes a particular exercise from our list. The index refers to the index number shown in the displayed exercise list. If the deleted exercise was the last exercise with the same name, then the exercise is automatically un-registered from the list of unique exercises.
+Deletes a particular exercise from our list. The index refers to the index number shown in the displayed exercise list.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about delete:**<br>
+If the deleted exercise was the last exercise with the same name, then the exercise is automatically un-registered from the list of unique exercises.
+
+</div>
 
 Format: `:del INDEX`
 
