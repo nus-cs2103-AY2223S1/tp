@@ -19,7 +19,7 @@ TABS aim to reduce the amount of time spent on managing team projects for **stud
 2. [Quick start](#quick-start)
 3. [GUI interface](#gui-interface)
 4. [Features](#features)
-  - [Viewing help: `help`](#viewing-help-help)
+   - [4.1 Viewing help: `help`](#viewing-help-help)
   - [Adding a person: `addperson`](#adding-a-person-addperson)
   - [Deleting a person : `deleteperson`](#deleting-a-person-deleteperson)
   - [Editing a person: `editperson`](#editing-a-person-editperson)
@@ -55,10 +55,34 @@ Note how the app contains some sample data.
 
 ---
 # 3. GUI interface<a id="gui-interface"></a>
+The images below show the sections of the TABS user interface.
+
+![TABS example](images/user-guide/Ui2.png)
+
+Overview of the sections in the main window:
+
+Section | Role
+--------|------------------
+Menu Bar | Display menu items File and Help
+Command Box | To type the commands
+Result Window | Displays the result of user input
+Contacts Pane | Contains the list of persons in TABS
+Group Pane | Contains the list of groups in TABS
+
+![TABS example](images/user-guide/Ui3 persontab.png)
+
+Overview of the sections in the contacts pane:
+
+Section | Role
+--------|------------------
+Tab Buttons | Switch between Contact details and Assignments
+Assignments | Contains the assignment allocated to the person sorted by group
+Contact details | Contains the person's information
+Workload indicator | Calculated workload of the person's assignments based on priority
 
 
 ---
-## Features
+## Features<a id="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
