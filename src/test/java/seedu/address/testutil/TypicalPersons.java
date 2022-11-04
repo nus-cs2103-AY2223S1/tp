@@ -22,6 +22,7 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.social.Social;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -31,27 +32,27 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withOccupation("STUDENT")
             .withName("Alice Pauline").withPhone("94351253").withEmail("alice@example.com")
             .withTutorial("T08").withAddress("123, Jurong West Ave 6, #08-111")
-            .withTags("friends").withGroups("friends").build();
+            .withTags("friends").withGroups("friends").withSocial(new Social()).build();
     public static final Person BENSON = new PersonBuilder().withOccupation("STUDENT")
             .withName("Benson Meier").withPhone("98765432").withEmail("johnd@example.com")
             .withTutorial("T09").withAddress("311, Clementi Ave 2, #02-25")
-            .withTags("owesMoney", "friends").withGroups("friends").build();
+            .withTags("owesMoney", "friends").withGroups("friends").withSocial(new Social()).build();
     public static final Person CARL = new PersonBuilder().withOccupation("STUDENT")
             .withName("Carl Kurz").withPhone("95352563").withEmail("heinz@example.com")
-            .withTutorial("T10").withAddress("wall street").build();
+            .withTutorial("T10").withAddress("wall street").withSocial(new Social()).build();
     public static final Person DANIEL = new PersonBuilder().withOccupation("STUDENT")
             .withName("Daniel Meier").withPhone("87652533").withEmail("cornelia@example.com")
             .withTutorial("T11").withAddress("10th street")
-            .withTags("friends").withGroups("friends").build();
+            .withTags("friends").withGroups("friends").withSocial(new Social()).build();
     public static final Person ELLE = new PersonBuilder().withOccupation("STUDENT")
             .withName("Elle Meyer").withPhone("9482224").withEmail("werner@example.com")
-            .withTutorial("T12").withAddress("michegan ave").build();
+            .withTutorial("T12").withAddress("michegan ave").withSocial(new Social()).build();
     public static final Person FIONA = new PersonBuilder().withOccupation("STUDENT")
             .withName("Fiona Kunz").withPhone("9482427").withEmail("lydia@example.com")
-            .withTutorial("T13").withAddress("little tokyo").build();
+            .withTutorial("T13").withAddress("little tokyo").withSocial(new Social()).build();
     public static final Person GEORGE = new PersonBuilder().withOccupation("STUDENT")
             .withName("George Best").withPhone("9482442").withEmail("anna@example.com")
-            .withTutorial("F08").withAddress("4th street").build();
+            .withTutorial("F08").withAddress("4th street").withSocial(new Social()).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withOccupation("STUDENT")
