@@ -1,0 +1,23 @@
+@startuml
+start
+:User inputs Modules Left command;
+:Parser reads user command and recognises the command prefix modsleft;
+:ModulesLeftCommandParser reads preamble;
+->chooseFocusArea();
+:Command goes to the desired case;
+note right: focus area decided by \nindex entered by user
+->createXYZModules();
+:Created list gets saved into modulesChecker;
+:Set of modules left generated;
+note right
+modules left set is generated
+by taking the set difference of
+modulesChecker and the user's
+current and previous modules
+end note
+->moduleSetToString();
+:Modules left set is sorted and output as a string;
+stop
+
+
+@enduml

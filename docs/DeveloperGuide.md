@@ -389,6 +389,11 @@ can never be null thus when the user profile is deleted or has yet to be added, 
 to the application that there is no user profile currently stored. Unlike `Person`, `User` does not contain `Tags` as the `Tags`
 feature should be used by the user to indicate each `Person`'s relation to the user instead.
 
+Commands that affect both `Person` and `User` (e.g. `edit`, `delete`, `module`, `lesson` and `remove`) have been implemented very similarly as `User` has been implemented in a
+similar way to a `Person` thus many commands that affect each individual contact are similarly designed to commands that
+affect the user. Additionally, both `Person` and `User` use the same `Module` classes to store modules hence the similarity
+in design.
+
 ### Module class
 `CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
 
@@ -398,35 +403,48 @@ All implementations of `Module`s have a name.
 
 #### Design considerations
 
-why we chose to have planned, curr and prev mods as own classes or wtv
-
+We chose to split `Module` into `CurrentModule`, `PreviousModule` and `PlannedModule` so that users would be able to track what modules
+themselves and their friends have taken/are taking so that they can collaborate with them in projects and schoolwork.
 Multiple instances of the same module can be added and stored as iterating through each module list everytime a new module is added
 to check for similarity makes the program slower. Additionally, the same module may appear in different lists due to the possibility
 of repeating the module. The application does not check the modules added against a list of actual registered modules in NUS
 because NUS has over 6000 registered modules and iterating through this list to check if the module is valid would
 make the program slow.
 
-### Edit contact modules
+### Edit modules
 
-Editing contact modules is implemented such that you can directly add modules into each list of current, previous or planned modules.
+Editing modules is implemented such that you can directly add modules into each list of current, previous or planned modules.
 Users can also use this command to remove all instances of the same module from each list.
 
-### Edit user modules
+The command has the prefix `module` and has the parameters `user / INDEX (must be a positive integer) [curr/CURRENT_MODULE]
+[prev/PREVIOUS_MODULE] [plan/PLANNED_MODULE] [rm/MODULE_TO_REMOVE]`
 
-Editing user modules has been implemented very similarly to editing contact modules as `User` has been implemented in a
-similar way to a `Person` thus many commands that affect each individual contact are similarly designed to commands that
-affect the user. Additionally, both `Person` and `User` use the same `Module` classes to store modules hence the similarity
-in design.
+#### Implementation flow
+
+Given below is a sequence diagram to illustrate how the module lists are updated after the user attempts to edit module list.
+
+![Module Command Sequence Diagram](images/ModuleCommandSequenceDiagram.png)
+
+Given below is an activity diagram to illustrate the behaviour of editing Modules within `Logic`.
+
+![Module Activity Diagram](images/ModuleActivityDiagram.png)
 
 #### Design considerations of editing module commands
 
 Removal of modules has been implemented such that modules are removed from all 3 lists at once as it is simpler to have to use only one
 prefix for both the user and the program, and the user does not need to worry about mistyping multiple prefixes when keying in the command.
+Removal of modules does not check the module lists to see if the module is present as iterating through all module lists it makes the program slow.
 
 ### Checking modules left
 
 This feature compares the user's current and previous modules list with a fixed list of CS Core Requirements or focus area
 modules. The program then finds the difference between the user's lists and the fixed list and outputs it onto the ResultDisplay. 
+
+#### Implementation flow
+
+Given below is an activity diagram to illustrate the behaviour of checking Modules left within `Logic`.
+
+![Modules Left Activity Diagram](images/ModulesLeftActivityDiagram.png)
 
 #### Design considerations
 
@@ -1194,9 +1212,65 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a user
 
-1. Deleting a person while all persons are being shown
+1. Adding a user when there is no existing user profile
+
+   1. Prerequisites: There is currently no user profile stored in the application.
+
+   2. Test case: `user n/John Doe p/98765432 e/johndoe@example.com a/1 John Street g/john-doe`<br>
+      Expected: User 'John Doe' is added into the User Profile card at the top of the application with the given details.
+
+   3. Test case: `user n/John-Doe p/98765432 e/johndoe@example.com a/1 John Street g/john-doe`<br>
+      Expected: No user is added. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect user commands to try: `user`, `user x/John Doe`, `...` <br>
+      Expected: Similar to previous.
+
+### Editing a user or person
+
+1. Editing a user when there is an existing user profile
+
+   1. Prerequisites: There is currently a user profile stored in the application.
+
+   2. Test case: `edit user p/92345678 a/5 John Avenue`<br>
+      Expected: User 'John Doe' is edited with the given details.
+
+   3. Test case: `edit user p/9ec0sp32 a/5 John Avenue`<br>
+      Expected: User is not edited. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect edit commands to try: `edit user curr/CS2100`, `edit user x/John Doe`, `...` <br>
+      Expected: Similar to previous.
+   
+2. Editing a person while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+   2. Test case: `edit 1 e/example@yahoo.com g/bigChungus`<br>
+      Expected: First contact is edited with the given details.
+
+   3. Test case: `edit 0 e/example@yahoo.com g/bigChungus`<br>
+      Expected: No person is not edited. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Deleting a user or person
+
+1. Deleting an existing user profile
+
+   1. Prerequisites: There is currently a user profile stored in the application.
+
+   2. Test case: `delete user`<br>
+      Expected: Current user is deleted.
+
+   3. Test case: `delete user 5`<br>
+      Expected: User is not deleted. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect delete commands to try: `delete use`, `...` <br>
+      Expected: Similar to previous.
+
+2. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
@@ -1207,6 +1281,46 @@ testers are expected to do more *exploratory* testing.
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Editing a user's or person's modules
+
+1. Editing a user's modules when there is an existing user profile
+
+   1. Prerequisites: There is currently a user profile stored in the application.
+
+   2. Test case: `module user curr/CS2103T prev/CS1101S plan/CS3230 rm/GESS1025`<br>
+      Expected: User's modules are edited with the given details.
+
+   3. Test case: `module user curr/CS21R4`<br>
+      Expected: User's modules are not edited. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect module commands to try: `module user`, `module user p/98887777`, `...` <br>
+      Expected: Similar to previous.
+
+2. Editing a person's modules while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+   2. Test case: `module 1 curr/CS2103T prev/CS1101S plan/CS3230 rm/GESS1025`<br>
+      Expected: First contact's modules are edited with the given details.
+
+   3. Test case: `module 0 ecurr/CS2103T prev/CS1101S plan/CS3230 rm/GESS1025`<br>
+      Expected: No contact's modules are not edited. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect module commands to try: `module`, `module x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Checking modules left
+
+1. Checking modules left when there is an existing user profile
+
+   1. Prerequisites: There is currently a user profile stored in the application.
+   2. Test case: `modsleft 1` <br>
+      Expected: CS core modules left to clear by the user is listed out.
+   3. Test case: `modsleft 0` <br>
+      Expected: Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect modules left commands to try: `modsleft hi`, `module x`, `...` (where x is larger than 11)<br>
       Expected: Similar to previous.
 
 
