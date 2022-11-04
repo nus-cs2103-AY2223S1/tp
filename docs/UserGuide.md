@@ -92,7 +92,7 @@ Required Arguments:
 Search for a (list of) module in the entire list of modules offered by NUS.
 
 <div markdown="block" class="alert alert-danger">
-Regex is difficult, and is intended to be used by more experienced users. This function works fine even without using regex in the query!
+:warning: Regex is difficult, and is intended to be used by more experienced users. This function works fine even without using regex in the query!
 </div>
 
 > Click [here](https://regex101.com/) to check that your regex statement is compatible with Java 8
@@ -126,7 +126,7 @@ Show the list of modules that are the given module's prerequisites.
 
 
 <div markdown="block" class="alert alert-danger">
-Preclusions to prerequisite mods will not be shown due to a limitation with the NUSMods API. (E.g. Only CS1010 will be shown for `preq cs2040`)
+:warning: Preclusions to prerequisite mods will not be shown due to a limitation with the NUSMods API. (E.g. Only CS1010 will be shown for `preq cs2040`)
 </div>
 
 **Note**: `preq` is not always able to show prerequisites for all modules due to limitations of the NUSMods API.
@@ -247,7 +247,7 @@ Ans: No! Do not edit the json files on your own! Instead, you should use the com
 CLIMods. We do not take any responsibility for any unexpected behaviour if you insist on editing the json files.
 
 <div markdown="block" class="alert alert-danger">
-If the file is corrupted, please manually delete the file from the directory. 
+:warning: If the file is corrupted, please manually delete the file from the directory. 
 Automatic deletion of files is not a feature due to security concerns (e.g. malicious hackers can set the file preference to local files that are not json compatible. Enabling auto-deletion of corrupted files will enable hackers to delete these files.)
 </div>
 
