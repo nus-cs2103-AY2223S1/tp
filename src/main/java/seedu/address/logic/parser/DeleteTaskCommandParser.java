@@ -18,6 +18,7 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteTaskCommand parse(String args) throws ParseException {
+
         try {
             Integer.parseInt(args.strip());
         } catch (NumberFormatException ne) {
