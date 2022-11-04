@@ -205,8 +205,8 @@ This section describes some noteworthy details on how certain features are imple
 * In GuestBook, a user can add a guest using the `add` command. This feature is necessary for hotel operations.
 
 #### Implementation:
-* The `add` command takes in 6 compulsory fields (`Name`, `Phone`, `Email`, `Room`, `Date Range` and `Number Of Guests`) 
-and 1 optional field (`Request`) and is supported by the `AddCommandParser` that extracts out each of the fields 
+* The `add` command takes in 6 compulsory fields (`Name`, `Phone`, `Email`, `Room`, `Date Range` and `Number Of Guests`)
+and 1 optional field (`Request`) and is supported by the `AddCommandParser` that extracts out each of the fields
 from their respective prefixes.
 
 The following activity diagram summarizes what happens when a user enters an `add` command.
@@ -283,7 +283,7 @@ and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE
 
 ### Editing a Guest's Details
 
-* In GuestBook, the user can edit the details of a guest using the `edit` command. Details that do not have values inputted in the `edit` command will remain unchanged. 
+* In GuestBook, the user can edit the details of a guest using the `edit` command. Details that do not have values inputted in the `edit` command will remain unchanged.
 This feature was implemented so that it is easy for the user to change a guest's details according to different scenarios, such as the changing the guest's rooms, or the guest providing incorrect details.
 
 #### Implementation:
@@ -340,8 +340,8 @@ Taking into consideration the context of GuestBook that operates for small hotel
   commands have greater standardisation.
   * Cons: Might be harder to read the command.
 
-Taking into consideration how GuestBook is optimised for fast-typist, we prefer if the command could be typed faster with lesser chance of mistakes. The readability of the command is also 
-rather insignificant as once the user gets acquainted with the command, reading it would not be a problem. 
+Taking into consideration how GuestBook is optimised for fast-typist, we prefer if the command could be typed faster with lesser chance of mistakes. The readability of the command is also
+rather insignificant as once the user gets acquainted with the command, reading it would not be a problem.
 
 ### Finding Guests
 
@@ -540,7 +540,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The input data is invalid.
 
   * 1b1. System shows an error message.
-  
+
     Use case resumes at step 2.
 
 **Use case 2: Search for a guest**
@@ -748,7 +748,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No guest is added,
       because the name is already in GuestBook. Error details shown in the status message.
          Status bar remains the same.
-   
+
    4. Test case: `add n/Peter p/98765431 e/johnd@nus.com rm/05-73
          dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
          Expected: No guest is added,
@@ -791,7 +791,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No guest is added, because the is room clean is invalid. Error details shown in the status message.
        Status bar remains the same.
 
-   
+
    12. Let INVALID_REQUEST be a string of 501 characters long. <br>
        Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
        dr/13/09/22 - 15/09/23 ng/1 rq/INVALID_REQUEST `<br>
@@ -801,7 +801,7 @@ testers are expected to do more *exploratory* testing.
 ### Editing a guest
 
 1. Editing a guest
-   
+
    1. Prerequisite: Only 1 guest to be edited. The guest's index should exist.
    The guest should exist in GuestBook. The format and content of the command should be valid.
 
