@@ -180,6 +180,8 @@ Examples:
 * `tag create potential` Creates a tag called `potential`
 * `tag create potential highPriority lowPriority` Creates 3 tags called `potential`, `highPriority` and `lowPriority`.
 
+![imageedit_2_2454502168.png](/Users/cyanaspect/Downloads/imageedit_2_2454502168.png)
+
 ### Tagging clients : `tag`
 
 Tags a client entry for categorising purposes.
@@ -199,11 +201,15 @@ Examples:
 * `tag 5 potential` Assigns the `potential` tag to the client entry at index 5.
 * `tag 5 potential highPriority` Assigns the `potential` and `highPriority` tags to the client entry at index 5.
 
+![imageedit_3_5522601060.png](/Users/cyanaspect/Downloads/imageedit_3_5522601060.png)
+
 ### Listing tags : `tag list`
 
 View all available tags.
 
 Format: `tag list`
+
+![imageedit_4_6370390561.png](/Users/cyanaspect/Downloads/imageedit_4_6370390561.png)
 
 ### Removing tags from a client : `tag remove`
 
@@ -220,6 +226,8 @@ Examples:
 * `tag remove 5 potential` Removes the `potential` tag from the client entry at index 5.
 * `tag remove 5 potential highPriority` Removes the `potential` and `highPriority` tags from the client entry at index 5.
 
+![imageedit_5_4642324925.png](/Users/cyanaspect/Downloads/imageedit_5_4642324925.png)
+
 ### Deleting tags : `tag delete`
 
 Deletes tag(s) from the address book.
@@ -234,6 +242,8 @@ Example:
 
 - `tag delete potential` Deletes the `potential` tag from the address book.
 - `tag delete potential highPriority` Deletes the `potential` and `highPriority` tags from address book.
+
+![imageedit_8_4864780781.png](/Users/cyanaspect/Downloads/imageedit_8_4864780781.png)
 
 ### Filtering client entries : `filter`
 
