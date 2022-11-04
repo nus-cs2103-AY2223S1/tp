@@ -236,7 +236,7 @@ Step 5: The execution ends, returning a `CommandResult` object that has the succ
 - **Alternative 2:** Individual attributes of the tutor have their own find command (E.g. `findbyname`, `findbyemail`)
     - Pros: Easier to implement individual commands for each attribute.
     - Cons: Poor OOP practice the individual commands are all `find` commands and should not be a different class on its own. User also have more commands to remeber.
-    
+
 ### View Feature
 <ins>Implementation</ins>
 
@@ -269,7 +269,7 @@ The following sequence diagram demonstrates the above operations (excluding the 
 - **Alternative 2:** Store the tutor in `CommandResult`.
   - Pros: Easier to implement and fewer methods may be needed in `Logic` and `Model` as the tutor can be passed to
   the `MainWindow` directly through `CommandResult`.
-  - Cons: Poor OOP practice as it does not make sense for `CommandResult` to store a `Tutor`, and other commands do not 
+  - Cons: Poor OOP practice as it does not make sense for `CommandResult` to store a `Tutor`, and other commands do not
   require a `Tutor` object to be stored.
 
 ### Sort Feature
@@ -279,7 +279,7 @@ This command sorts `Tuthub`'s displayed list based on quantitative measures, suc
 <ins>Implementation</ins>
 
 The `sort` command involves the logic, model, and UI part of Tuthub. Most updates are made within the `ModelManager`, which are:
-- `ModelManager#sortedFilteredTutors` - A `javafx.collections.transformation.SortedList` that contains `ModelManager#filteredTutors`. 
+- `ModelManager#sortedFilteredTutors` - A `javafx.collections.transformation.SortedList` that contains `ModelManager#filteredTutors`.
 - `ModelManager#getFilteredTutorList()` - Now returns the `sortedFilteredTutors` list.
 - `ModelManager#updateSortedTutorList(Comparator<Tutor>)` - Similar to `ModelManager#updateFilteredTutorList`, but updates the Comparator instead of predicate.
 
@@ -289,13 +289,13 @@ Step 1: The user enters the command `sort a r/`.
 
 Step 2: The `TuthubParser` verifies the `SortCommand#COMMAND_WORD`, and requests `SortCommandParser` to parse. The `SortCommandParser` verifies the appropriateness of the user input (`order` and `prefix`) and creates the proper `Comparator` based on the user request.
 
-Step 3: Upon parsing, a new `SortCommand` is created based on the order, prefix, and comparator. 
+Step 3: Upon parsing, a new `SortCommand` is created based on the order, prefix, and comparator.
 
 Step 4: In the `SortCommand` execution, the `model#updateSortedTutorList(Comparator<Tutor>)` is called upon with the proper `Comparator`. Then, a new `CommandResult` is created and stored in `LogicManager`.
 
 Step 5: Upon recognising the `CommandResult`, `MainWindow` calls `logic#getFilteredTutorList()` to get the tutor cards to be displayed, which is passed as a constructor variable into `TutorListPanel`.
 
-Step 6: Then, the `TutorListPanel` sets the items to view as the new and updated `sortedFilteredTutors` list. 
+Step 6: Then, the `TutorListPanel` sets the items to view as the new and updated `sortedFilteredTutors` list.
 
 The following sequence diagram demonstrates the above operations (excluding the parsing details):
 
@@ -327,14 +327,14 @@ This command adds a comment to a tutor in `Tuthub`'s displayed list.
 
 <ins>Implementation</ins>
 
-The `comment` command involves the logic and model part of Tuthub. 
+The `comment` command involves the logic and model part of Tuthub.
 Most updates are made within the `ModelManager`, which are:
 
 Given below is an example usage scenario when the user enters a `comment` command in the command box and how the comment is added to the tutor.
 
 Step 1: The user enters the command `comment 1 c/Often late`.
 
-Step 2: The `TuthubParser` verifies the `CommentCommand#COMMAND_WORD`, and requests `CommentCommandParser` to parse. 
+Step 2: The `TuthubParser` verifies the `CommentCommand#COMMAND_WORD`, and requests `CommentCommandParser` to parse.
 The `CommentCommandParser` verifies the appropriateness of the user input (`index` and `comment`).
 
 Step 3: Upon parsing, a new `CommentCommand` is created based on the index and the comment.
@@ -437,7 +437,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The input index is invalid.
     * Tuthub displays an error message.
-  
+
       Use case resumes from step 2.
 
 **Use case: UC3 - Add a tutor**
@@ -572,7 +572,7 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: Click on the first tutor card in the list with mouse.<br>
        Expected: Details panel of the first tutor in the list is displayed. Details of the tutor viewed shown in the status message.
-   
+
     4. Test case: `view 0`<br>
        Expected: No tutor panel displayed. Error details shown in the status message.
 
