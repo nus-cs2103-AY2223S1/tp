@@ -6,7 +6,7 @@ import seedu.waddle.model.Model;
 import seedu.waddle.model.Waddle;
 
 /**
- * Clears the address book.
+ * Clears Waddle.
  */
 public class ClearCommand extends Command {
 

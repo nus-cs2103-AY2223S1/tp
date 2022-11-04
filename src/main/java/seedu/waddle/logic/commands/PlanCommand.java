@@ -15,7 +15,7 @@ import seedu.waddle.model.itinerary.DayNumber;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Plans an item in the itinerary wish list.
+ * Plans an item in the itinerary Wishlist, moving it to the specified day list.
  */
 public class PlanCommand extends Command {
 

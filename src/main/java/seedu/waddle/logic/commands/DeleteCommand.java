@@ -11,7 +11,7 @@ import seedu.waddle.model.Model;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes an itinerary identified using it's displayed index.
  */
 public class DeleteCommand extends Command {
 

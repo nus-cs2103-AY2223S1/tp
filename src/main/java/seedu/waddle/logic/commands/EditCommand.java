@@ -41,7 +41,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_START_DATE + "START_DATE] "
             + "[" + PREFIX_ITINERARY_DURATION + "DURATION] "
             + "[" + PREFIX_PEOPLE + "NUMBER_OF_WADDLERS] "
-            + "[" + PREFIX_BUDGET + "BUDGET]...\n"
+            + "[" + PREFIX_BUDGET + "BUDGET]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COUNTRY + "Australia "
             + PREFIX_START_DATE + "2022-07-30 ";

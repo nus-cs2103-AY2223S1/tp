@@ -13,7 +13,7 @@ import seedu.waddle.model.Model;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Adds an itinerary to waddle.
+ * Adds an itinerary to Waddle.
  */
 public class AddCommand extends Command {
 
@@ -26,7 +26,7 @@ public class AddCommand extends Command {
             + PREFIX_ITINERARY_DURATION + "DURATION "
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
             + "[" + PREFIX_PEOPLE + "NUMBER_OF_WADDLERS] "
-            + "[" + PREFIX_BUDGET + "BUDGET]...\n"
+            + "[" + PREFIX_BUDGET + "BUDGET]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Summer Trip "
             + PREFIX_COUNTRY + "India "

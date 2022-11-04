@@ -6,7 +6,7 @@ import seedu.waddle.logic.StageManager;
 import seedu.waddle.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all free timeslots in the itinerary to the user.
  */
 public class FreeCommand extends Command {
 
