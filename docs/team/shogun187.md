@@ -43,7 +43,6 @@ Added the ability to track patients added and deleted during an undo/redo comman
 * Added documentation for the `findPatient` feature [\#50]()
 
 ### Contributions to Developer Guide
-
 * Added documentation and class diagrams for UI component
 * Added implementation details for displaying added/edited/deleted patients
 
