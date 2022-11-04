@@ -539,7 +539,7 @@ _Details coming soon ..._
 | help                                  | `help`                                                                                                             | `help`                                                                                                                                                                      |
 | exit                                  | `exit`                                                                                                             | `exit`                                                                                                                                                                      |
 
-### 5.4 Schedule Manager Command Summary
+### 6.4 Schedule Manager Command Summary
 
 | Action                                                    | Format                                                       | Example                                                      |
 |-----------------------------------------------------------| ------------------------------------------------------------ | ------------------------------------------------------------ |
