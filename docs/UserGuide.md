@@ -104,7 +104,7 @@ The following is the main user interface of NUScheduler.
 
 * For `Event` and `Profile` commands which require an `INDEX`, the `INDEX` must be provided after the option flag.
 
-* In addition, the `INDEX` provided must be a positive number less than 10000 as NUScheduler is designed to handle a maximum of 9999 entries for `Profile`s and `Event`s which covers the needs for most NUS students.
+* In addition, the `INDEX` provided must be a positive number less than or equal to 1000 as NUScheduler is designed to handle a maximum of 1000 entries for `Profile`s and `Event`s which covers the needs for most NUS students.
 
 * The other parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -164,7 +164,7 @@ Edits an existing profile in NUScheduler.
 
 Format: `profile -e INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…`
 
-* Edits the profile at the specified `INDEX`. The index refers to the index number shown in the displayed profile list. The index **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999
+* Edits the profile at the specified `INDEX`. The index refers to the index number shown in the displayed profile list. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * You can remove the profile's telegram username by typing `tg/` without specifying any username after it.
@@ -203,7 +203,7 @@ Format: `profile -d INDEX`
 
 * Deletes the profile at the specified `INDEX`.
 * The index refers to the index number shown in the displayed profile list.
-* The index **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999
+* The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 
 Example:
 * `profile -d 1` deletes the first profile listed.
@@ -252,7 +252,7 @@ Adds one or more existing profiles as attendees to an existing event in NUSchedu
 
 Format: `event -ap EVENT_INDEX pr/PROFILE_INDEX…`
 
-* Adds profiles at the specified `PROFILE_INDEX`. This index refers to the index number shown in the displayed profile list. The index **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999
+* Adds profiles at the specified `PROFILE_INDEX`. This index refers to the index number shown in the displayed profile list. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * Profiles are added to the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `PROFILE_INDEX`.
 * At least one `PROFILE_INDEX` must be provided.
 * Existing attendees will not be overwritten i.e. adding of profiles is cumulative.
@@ -271,7 +271,7 @@ Removes one or more attendees from an existing event in NUScheduler.
 
 Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`
 
-* Removes attendees at the specified `ATTENDEE_INDEX`. This index refers to the index number shown in the displayed attendee list of the event. The index **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999
+* Removes attendees at the specified `ATTENDEE_INDEX`. This index refers to the index number shown in the displayed attendee list of the event. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * Attendees are removed from the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `ATTENDEE_INDEX`.
 * At least one `ATTENDEE_INDEX` must be provided.
 
@@ -313,7 +313,7 @@ Edits an existing event in NUScheduler.
 
 Format: `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`
 
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the event will be removed i.e adding of tags is not cumulative.
@@ -348,7 +348,7 @@ Format: `event -d INDEX`
 
 * Deletes the events at the specified `INDEX`.
 * The index refers to the index number shown in the displayed event list.
-* The index **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999
+* The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 
 Example:
 * `event -v` followed by `event -d 2` deletes the 2nd event displayed.

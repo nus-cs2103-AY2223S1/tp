@@ -41,7 +41,7 @@ public class EditProfileCommand extends ProfileCommand {
             + ": Edits the details of the profile identified "
             + "by the index number used in the displayed profile list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer less than 10000) "
+            + "Parameters: INDEX (must be a positive integer less than or equal to 1000) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "

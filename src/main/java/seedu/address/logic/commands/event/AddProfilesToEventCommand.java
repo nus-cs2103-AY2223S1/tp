@@ -27,7 +27,7 @@ public class AddProfilesToEventCommand extends EventCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
             + ": Adds profiles in the displayed profile list to an event identified by the index "
             + "in the displayed event list.\n"
-            + "Parameters: EVENT_INDEX (must be a positive integer less than 10000) "
+            + "Parameters: EVENT_INDEX (must be a positive integer less than or equal to 1000) "
             + PREFIX_PROFILE + "PROFILE_INDEX...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 1 "
             + PREFIX_PROFILE + "1 "

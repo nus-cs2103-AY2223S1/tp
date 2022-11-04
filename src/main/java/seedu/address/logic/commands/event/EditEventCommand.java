@@ -37,7 +37,7 @@ public class EditEventCommand extends EventCommand {
             + ": Edits the details of the event identified "
             + "by the index number used in the displayed event list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer less than 10000) "
+            + "Parameters: INDEX (must be a positive integer less than or equal to 1000) "
             + "[" + PREFIX_NAME + "TITLE] "
             + "[" + PREFIX_START_DATE + "START] "
             + "[" + PREFIX_END_DATE + "END] "
