@@ -78,16 +78,9 @@ public class FindCommand extends Command {
         model.updateFilteredBuyerList(buyerPredicate);
         model.updateFilteredDelivererList(delivererPredicate);
         model.updateFilteredSupplierList(supplierPredicate);
-        if (type.equals(PersonCategory.BUYER)) {
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredBuyerList().size()));
-        } else if (type.equals(PersonCategory.DELIVERER)) {
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredDelivererList().size()));
-        } else {
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredMainList().size()));
-        }
+
+        return new CommandResult(
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredMainList().size()));
     }
 
     @Override
