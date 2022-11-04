@@ -309,7 +309,7 @@ The edition is done through `EditPatient`, `EditAppointment` and `EditBill` func
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. All patients, appointments and bills are shown on different sections
+Step 1. The user launches the application for the first time. All patients, appointments and bills are shown in different sections
 of the application as indexed lists.
 
 Step 2. The user executes `editpatient 1 n/John` to edit the first patient in the list to have the name John. The `editpatient` command
@@ -344,7 +344,7 @@ The `FindCommandParser` gets the user input to set it as the predicate. The user
 
 Given below is an example usage scenario and how the find mechanism behaves at each step.
 
-Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
+Step 1. The user launches the application. All patients, appointments and bills are shown in different sections
 of the application as indexed lists.
 
 Step 2. The user executes `find n/John` command to find all patients with the name "John".
