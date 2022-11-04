@@ -4,12 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingLocation;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
@@ -27,6 +29,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_INCOME = "$5230";
     public static final String DEFAULT_MEETINGDATE = "20 Nov 2022";
+    public static final String DEFAULT_MEETINGLOCATION = "13 Computing Drive";
     public static final String DEFAULT_RISK = "";
 
     private Name name;
@@ -35,9 +38,11 @@ public class PersonBuilder {
     private Address address;
     private Income income;
     private MeetingDate meetingDate;
+    private MeetingLocation meetingLocation;
     private Set<Tag> tags;
     private Risk risk;
     private Set<Plan> plans;
+    private Set<Note> note;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -49,9 +54,11 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         income = new Income(DEFAULT_INCOME);
         meetingDate = new MeetingDate(DEFAULT_MEETINGDATE);
+        meetingLocation = new MeetingLocation(DEFAULT_MEETINGLOCATION);
         tags = new HashSet<>();
         risk = new Risk(DEFAULT_RISK);
         plans = new HashSet<>();
+        note = new HashSet<>();
     }
 
     /**
@@ -64,10 +71,12 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         income = personToCopy.getIncome();
-        meetingDate = personToCopy.getMeetingDate();
+        meetingDate = personToCopy.getMeeting().getMeetingDate();
+        meetingLocation = personToCopy.getMeeting().getMeetingLocation();
         tags = new HashSet<>(personToCopy.getTags());
         risk = portfolio.getRisk();
         plans = new HashSet<>(portfolio.getPlans());
+        note = portfolio.getNotes();
     }
 
     /**
@@ -81,7 +90,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -127,6 +136,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code MeetingLocation} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeetingLocation(String meetingLocation) {
+        this.meetingLocation = new MeetingLocation(meetingLocation);
+        return this;
+    }
+
+    /**
      * Sets the {@code Risk} of the {@code Person} that we are building.
      */
     public PersonBuilder withRisk(String risk) {
@@ -137,13 +154,21 @@ public class PersonBuilder {
     /**
      * Parses the {@code plans} into a {@code Set<Plan>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withPlans(String ... plans) {
+    public PersonBuilder withPlans(String... plans) {
         this.plans = SampleDataUtil.getPlanSet(plans);
         return this;
     }
 
+    /**
+     * Sets the {@code Note} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNotes(String... notes) {
+        this.note = SampleDataUtil.getNoteSet(notes);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, income, meetingDate, tags, risk, plans);
+        return new Person(name, phone, email, address, income, meetingDate, meetingLocation, tags, risk, plans, note);
     }
 
 }

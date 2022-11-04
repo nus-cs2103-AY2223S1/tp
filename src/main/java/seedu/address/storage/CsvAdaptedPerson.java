@@ -10,12 +10,14 @@ import com.opencsv.bean.CsvBindByName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingLocation;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
@@ -40,14 +42,19 @@ public class CsvAdaptedPerson {
     private final String income;
     @CsvBindByName(column = "meeting date")
     private final String meetingDate;
+    @CsvBindByName(column = "meeting location")
+    private final String meetingLocation;
     @CsvBindAndSplitByName(column = "tags",
-            elementType = Tag.class, splitOn = ",", converter = StringToTag.class, writeDelimiter = ",")
+        elementType = Tag.class, splitOn = ",", converter = StringToTag.class, writeDelimiter = ",")
     private final List<Tag> tagged = new ArrayList<>();
     @CsvBindByName(column = "risk")
     private final String risk;
     @CsvBindAndSplitByName(column = "plans",
-            elementType = Plan.class, splitOn = ",", converter = StringToPlan.class, writeDelimiter = ",")
+        elementType = Plan.class, splitOn = ",", converter = StringToPlan.class, writeDelimiter = ",")
     private final List<Plan> planned = new ArrayList<>();
+    @CsvBindAndSplitByName(column = "notes",
+        elementType = Note.class, splitOn = ",", converter = StringToNote.class, writeDelimiter = ",")
+    private final List<Note> noted = new ArrayList<>();
 
     /**
      * OpenCSV requires a public nullary constructor
@@ -59,6 +66,7 @@ public class CsvAdaptedPerson {
         this.address = null;
         this.income = null;
         this.meetingDate = null;
+        this.meetingLocation = null;
         this.risk = null;
     }
 
@@ -69,9 +77,11 @@ public class CsvAdaptedPerson {
                             String email, String address,
                             String income,
                             String meetingDate,
+                            String meetingLocation,
                             List<Tag> tagged,
                             String risk,
-                            List<Plan> planned) {
+                            List<Plan> planned,
+                            List<Note> noted) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -81,6 +91,11 @@ public class CsvAdaptedPerson {
             this.meetingDate = meetingDate;
         } else {
             this.meetingDate = "";
+        }
+        if (meetingLocation != null) {
+            this.meetingLocation = meetingLocation;
+        } else {
+            this.meetingLocation = "";
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -93,6 +108,10 @@ public class CsvAdaptedPerson {
         if (planned != null) {
             this.planned.addAll(planned);
         }
+        if (noted != null) {
+            this.noted.addAll(noted);
+        }
+
     }
 
     /**
@@ -105,10 +124,12 @@ public class CsvAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         income = source.getIncome().value;
-        meetingDate = source.getMeetingDate().value;
+        meetingDate = source.getMeeting().getMeetingDate().get();
+        meetingLocation = source.getMeeting().getMeetingLocation().get();
         tagged.addAll(source.getTags());
-        risk = portfolio.getRisk().value;
+        risk = portfolio.getRisk().get();
         planned.addAll(portfolio.getPlans());
+        noted.addAll(portfolio.getNotes());
     }
 
     /**
@@ -128,6 +149,13 @@ public class CsvAdaptedPerson {
         for (Plan plan : planned) {
             if (!plan.value.equals("null")) {
                 personPlans.add(plan);
+            }
+        }
+
+        final List<Note> personNotes = new ArrayList<>();
+        for (Note note : noted) {
+            if (!note.value.equals("null")) {
+                personNotes.add(note);
             }
         }
 
@@ -182,6 +210,17 @@ public class CsvAdaptedPerson {
             modelMeetingDate = new MeetingDate("");
         }
 
+        if (meetingLocation != null && !MeetingLocation.isValidMeetingLocation(meetingLocation)) {
+            throw new IllegalValueException(MeetingLocation.MESSAGE_CONSTRAINTS);
+        }
+        final MeetingLocation modelMeetingLocation;
+
+        if (meetingLocation != null) {
+            modelMeetingLocation = new MeetingLocation(meetingLocation);
+        } else {
+            modelMeetingLocation = new MeetingLocation("");
+        }
+
         if (risk != null && !Risk.isValidRisk(risk)) {
             throw new IllegalValueException(Risk.MESSAGE_CONSTRAINTS);
         }
@@ -196,8 +235,11 @@ public class CsvAdaptedPerson {
         final Set<Plan> modelPlan = new HashSet<>(personPlans);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate, modelTags,
-                modelRisk, modelPlan);
+
+        final Set<Note> modelNotes = new HashSet<>(personNotes);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate,
+            modelMeetingLocation, modelTags, modelRisk, modelPlan, modelNotes);
     }
 
 }

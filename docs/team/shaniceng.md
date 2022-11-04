@@ -4,8 +4,9 @@ title: Shanice Ng Wen Yi's Project Portfolio Page
 ---
 
 ### Project: FinBook
+
 FinBook is a desktop app for Financial Assistant (FA) to manage their client details and ensure that your data is
-secured. With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well 
+secured. With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well
 as many other features to make your daily workflow much more efficient!
 
 ### Overview
@@ -19,11 +20,11 @@ FinBook is optimized for use via a Command Line Interface (CLI), which means mos
 
 * **Enhancements implemented**:
     * New feature: View command
-      * What it does: allows the user to view a specific client portfolio by using `view INDEX` command
-      * Portfolio details include: Risk level, current plans purchased by client, additional notes
-      * Justification: Since Financial Advisor spents majority of time doing administrative work, this feature would 
-      greatly reduce the time spent taking notes and referring to notes from other platforms (eg. Notes app) as this 
-      feature provides the ability to organise these clients neatly in one application.
+        * What it does: allows the user to view a specific client portfolio by using `view INDEX` command
+        * Portfolio details include: Risk level, current plans purchased by client, additional notes
+        * Justification: Since Financial Advisor spents majority of time doing administrative work, this feature would
+          greatly reduce the time spent taking notes and referring to notes from other platforms (eg. Notes app) as this
+          feature provides the ability to organise these clients neatly in one application.
 
 * **Contributions to the UG**:
     * Update Add command to include Risk, Plans and Notes

@@ -1,7 +1,7 @@
-name,phone,email,address,income,meeting date,tags,risk,plans
-Alex Yeoh,87438807,alexyeoh@example.com,"Blk 30 Geylang Street 29, #06-40",$1000,12 Nov 2022,friends,low,"Prudential retirement plan"
-Bernice Yu,99272758,berniceyu@example.com,"Blk 30 Lorong 3 Serangoon Gardens, #07-18",$5300,20 Nov 2022,"colleagues,friends",high,"NTUC Income plan"
-Charlotte Oliveiro,93210283,charlotte@example.com,"Blk 11 Ang Mo Kio Street 74, #11-04",$3080,08 Nov 2022,neighbours,low,"Prudential retirement plan"
-David Li,91031282,lidavid@example.com,"Blk 436 Serangoon Gardens Street 26, #16-43",$440,13 Dec 2022,family,high,"Singapore Medishield"
-Irfan Ibrahim,92492021,irfan@example.com,"Blk 47 Tampines Street 20, #17-35",$12000,15 Nov 2022,classmates,medium,"DBS investment plan"
-Roy Balakrishnan,92624417,royb@example.com,"Blk 45 Aljunied Street 85, #11-31",$800,03 Oct 2022,colleagues,low,"Singapore Savings Bond"
+name,phone,email,address,income,meeting date,meeting location,tags,risk,plans,notes
+Alex Yeoh,87438807,alexyeoh@example.com,"Blk 30 Geylang Street 29, #06-40",$1000,12 Nov 2022 10:30,https://nus-sg.zoom.us/rec/share/_21WoGzdc7ZR5lIEwr0X8DyEzmVVT2aHM-KeJxRt9xeviQn8yhOGewQ2GuHREm4.O7O8TjGUf0SET6OH,VIPClient,low,"NTUC Income Health,OCBC Trust Plan,Prudential retirement plan","Currently paying for Car loan and wants to save for Retirement. Is currently having COVID"
+Bernice Yu,99272758,berniceyu@example.com,"Blk 30 Lorong 3 Serangoon Gardens, #07-18",$5300,20 Nov 2022,"21 Lower Kent Ridge Rd, Singapore 119077","VIPClient,YuFamily",high,"Education Savings Plan","Plans to save for College Education"
+Charlotte Oliveiro,93210283,charlotte@example.com,"Blk 11 Ang Mo Kio Street 74, #11-04",$3080,08 Nov 2022 18:00,https://meet.google.com/vim-ejvu-sdh,NewClient,low,"Prudential retirement plan","Is currently retired"
+David Li,91031282,lidavid@example.com,"Blk 436 Serangoon Gardens Street 26, #16-43",$440,13 Dec 2022,13 Computing Drive,VIPClient,high,"Singapore Medishield","Financially supports parents. Plans to save for emergency fund"
+Irfan Ibrahim,92492021,irfan@example.com,"Blk 47 Tampines Street 20, #17-35",$12000,15 Nov 2022,,NewClient,medium,"DBS investment plan","is having terminal illness"
+Roy Balakrishnan,92624417,royb@example.com,"Blk 45 Aljunied Street 85, #11-31",$800,03 Oct 2022,"Blk 45 Aljunied Street 85, #11-31",NewClient,low,"Singapore Savings Bond","Currently paying of debt"

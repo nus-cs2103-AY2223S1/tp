@@ -17,11 +17,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingLocation;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
@@ -34,7 +36,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_REPEATED_INDEX = "Index cannot be repeated";
     public static final String MESSAGE_INVALID_RANGE_INDEX =
-            "Range index should be in the form of startIndex - endIndex, where startIndex < endIndex";
+        "Range index should be in the form of startIndex - endIndex, where startIndex < endIndex";
 
     public static final String MESSAGE_INVALID_PATH = "Path is invalid.";
 
@@ -79,6 +81,7 @@ public class ParserUtil {
 
     /**
      * Checks if list contains repeated indexes in a descending list.
+     *
      * @param index of client to be deleted.
      * @return true if there is not duplicated index, false otherwise.
      */
@@ -217,9 +220,29 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String meetingLocation} into an {@code MeetingLocation}.
+     * Leading and trailing whitespaces will be trimmed.
+     * MeetingLocation can be null.
+     *
+     * @throws ParseException if the given {@code meetingLocation} is invalid.
+     */
+    public static MeetingLocation parseMeetingLocation(String meetingLocation) throws ParseException {
+        if (meetingLocation != null) {
+            String trimmedMeetingLocation = meetingLocation.trim();
+            if (!MeetingLocation.isValidMeetingLocation(trimmedMeetingLocation)) {
+                throw new ParseException(MeetingLocation.MESSAGE_CONSTRAINTS);
+            }
+            return new MeetingLocation(trimmedMeetingLocation);
+        } else {
+            return new MeetingLocation(null);
+        }
+    }
+
+    /**
      * Parses a {@code String risk} into an {@code Risk}.
      * Leading and trailing whitespaces will be trimmed.
      * Risk can be null.
+     *
      * @throws ParseException if the given {@code risk} is invalid.
      */
     public static Risk parseRisk(String risk) throws ParseException {
@@ -237,6 +260,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String plan} into an {@code Plan}.
      * Plan can be null.
+     *
      * @throws ParseException if the given {@code plan} is invalid.
      */
     public static Plan parsePlan(String plan) throws ParseException {
@@ -258,6 +282,35 @@ public class ParserUtil {
         }
         return planSet;
     }
+
+    /**
+     * Parses a {@code String note} into an {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Note can be null.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        if (!Note.isValidNote(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+        }
+        return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses {@code Collection<String> Plans} into a {@code Set<Plan>}.
+     */
+    public static Set<Note> parseNotes(Collection<String> notes) throws ParseException {
+        requireNonNull(notes);
+        final Set<Note> noteSet = new HashSet<>();
+        for (String noteName : notes) {
+            noteSet.add(parseNote(noteName));
+        }
+        return noteSet;
+    }
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
@@ -296,7 +349,7 @@ public class ParserUtil {
         String trimmedPath = filePath.trim();
         File file = new File(trimmedPath);
         if (!(file.getName().toLowerCase().endsWith(".json") || file.getName().toLowerCase().endsWith(".csv"))
-                || !Files.isReadable(file.toPath())) {
+            || !Files.isReadable(file.toPath())) {
             throw new ParseException(MESSAGE_INVALID_PATH);
         }
         return file.toPath();
@@ -315,5 +368,17 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_PATH);
         }
         return file.toPath();
+    }
+
+    /**
+     * Parses a {@code String sortParam} into a {@code sortParam}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sortParam} is invalid.
+     */
+    public static String parseSort(String sortParam) throws ParseException {
+        requireNonNull(sortParam);
+        String trimmedSortParam = sortParam.trim();
+        return trimmedSortParam;
     }
 }

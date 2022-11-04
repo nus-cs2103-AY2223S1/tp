@@ -450,9 +450,24 @@
     -fx-border-radius: 7;
 }
 
-#risk, #plan, #plans .label {
+#risk, #plan, #plans .label, #notes, #note{
     -fx-text-fill: -contrast-background;
 }
+
+#plans .label, #notes .label, #emptyLabel {
+    -fx-text-fill: -text;
+    -fx-padding: 3 5 3 5;
+    -fx-font-size: 16;
+    -fx-word-wrap: break-word;
+    -fx-wrap-text: true;
+}
+
+#scroller, #portfolioGridPane {
+    -fx-background-color: transparent;
+    -fx-border-color: -second-background;
+}
+
+
 
 
 

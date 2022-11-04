@@ -30,6 +30,19 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
+     * Creates a hidden {@code PersonListPanel} with the given {@code ObservableList}.
+     */
+    public PersonListPanel(ObservableList<Person> personList, Boolean hide) {
+        super(FXML);
+        personListView.setItems(personList);
+        if (hide) {
+            personListView.setCellFactory(listView -> new HiddenPersonListViewCell());
+        } else {
+            personListView.setCellFactory(listView -> new PersonListViewCell());
+        }
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
@@ -42,6 +55,24 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+            }
+        }
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code HiddenPersonCard}.
+     */
+    class HiddenPersonListViewCell extends ListCell<Person> {
+        @Override
+        protected void updateItem(Person person, boolean empty) {
+            super.updateItem(person, empty);
+
+            if (empty || person == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                PersonCard hiddenPersonCard = new PersonCard(person, getIndex() + 1, true);
+                setGraphic(hiddenPersonCard.getRoot());
             }
         }
     }

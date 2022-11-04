@@ -411,8 +411,8 @@
      -fx-font-size: 20px;
 }
 
-#personDetails, #personDetails2, #riskLevel, #currentPlans {
-    -fx-background-color: #EEF4ED;
+#personDetails, #personDetails2, #riskLevel, #currentPlans, #notesBox, #emptyVbox {
+    -fx-background-color: -white-background;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
 }
@@ -440,18 +440,19 @@
     -fx-border-radius: 7;
 }
 
-#plans .label {
+#plans .label, #notes .label {
     -fx-text-fill: #0B2545;
     -fx-padding: 3 5 3 5;
     -fx-font-size: 16;
     -fx-word-wrap: break-word;
+    -fx-wrap-text: true;
 }
 
-#scroller {
-    -fx-background-color: transparent;
+#cardPanePortfolio {
+    -fx-background-color: -second-background;
 }
 
-#portfolio {
+#portfolioVBox, #portfolioEmptyBox {
     -fx-background-color: -second-background;
 }
 
@@ -462,6 +463,14 @@
 #personDetailsSplitPane {
     -fx-background-color: -white-background;
 }
+
+#scroller, #portfolioGridPane {
+    -fx-background-color: transparent;
+    -fx-border-color: -second-background;
+}
+
+
+
 
 
 

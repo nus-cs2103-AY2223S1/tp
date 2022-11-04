@@ -149,9 +149,15 @@ public class ModelManager implements Model {
     @Override
     public void updatePassword(String oldPassword, String newPassword) {
         if ((userPrefs.getPasswordHash().equals("") && oldPassword.equals(""))
-                || Password.check(oldPassword, userPrefs.getPasswordHash()).withArgon2()) {
+            || Password.check(oldPassword, userPrefs.getPasswordHash()).withArgon2()) {
             userPrefs.setPasswordHash(Password.hash(newPassword).addRandomSalt().withArgon2().getResult());
         }
+    }
+
+    @Override
+    public void sort(String sortParam) {
+        requireNonNull(sortParam);
+        addressBook.sort(sortParam);
     }
 
     @Override
@@ -169,8 +175,12 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons);
     }
 
+    @Override
+    public String toString() {
+        return addressBook.toString();
+    }
 }

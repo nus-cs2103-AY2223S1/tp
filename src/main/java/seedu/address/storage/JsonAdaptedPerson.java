@@ -11,12 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingLocation;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
@@ -35,21 +37,25 @@ class JsonAdaptedPerson {
     private final String address;
     private final String income;
     private final String meetingDate;
+    private final String meetingLocation;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String risk;
     private final List<JsonAdaptedPlan> planned = new ArrayList<>();
+    private final List<JsonAdaptedNote> noted = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("income") String income,
                              @JsonProperty("meetingDate") String meetingDate,
+                             @JsonProperty("meetingLocation") String meetingLocation,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("risk") String risk,
-                             @JsonProperty("plan") List<JsonAdaptedPlan> planned) {
+                             @JsonProperty("plan") List<JsonAdaptedPlan> planned,
+                             @JsonProperty("note") List<JsonAdaptedNote> noted) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -59,6 +65,11 @@ class JsonAdaptedPerson {
             this.meetingDate = meetingDate;
         } else {
             this.meetingDate = "";
+        }
+        if (meetingLocation != null) {
+            this.meetingLocation = meetingLocation;
+        } else {
+            this.meetingLocation = "";
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -70,6 +81,9 @@ class JsonAdaptedPerson {
         }
         if (planned != null) {
             this.planned.addAll(planned);
+        }
+        if (noted != null) {
+            this.noted.addAll(noted);
         }
     }
 
@@ -83,14 +97,18 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         income = source.getIncome().value;
-        meetingDate = source.getMeetingDate().value;
+        meetingDate = source.getMeeting().getMeetingDate().get();
+        meetingLocation = source.getMeeting().getMeetingLocation().get();
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
-        risk = portfolio.getRisk().value;
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
+        risk = portfolio.getRisk().get();
         planned.addAll(portfolio.getPlans().stream()
-                .map(JsonAdaptedPlan::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedPlan::new)
+            .collect(Collectors.toList()));
+        noted.addAll(portfolio.getNotes().stream()
+            .map(JsonAdaptedNote::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -107,6 +125,11 @@ class JsonAdaptedPerson {
         final List<Plan> personPlans = new ArrayList<>();
         for (JsonAdaptedPlan plan : planned) {
             personPlans.add(plan.toModelType());
+        }
+
+        final List<Note> personNotes = new ArrayList<>();
+        for (JsonAdaptedNote note : noted) {
+            personNotes.add(note.toModelType());
         }
 
         if (name == null) {
@@ -160,6 +183,17 @@ class JsonAdaptedPerson {
             modelMeetingDate = new MeetingDate("");
         }
 
+        if (meetingLocation != null && !MeetingLocation.isValidMeetingLocation(meetingLocation)) {
+            throw new IllegalValueException(MeetingLocation.MESSAGE_CONSTRAINTS);
+        }
+        final MeetingLocation modelMeetingLocation;
+
+        if (meetingLocation != null) {
+            modelMeetingLocation = new MeetingLocation(meetingLocation);
+        } else {
+            modelMeetingLocation = new MeetingLocation("");
+        }
+
         if (risk != null && !Risk.isValidRisk(risk)) {
             throw new IllegalValueException(Risk.MESSAGE_CONSTRAINTS);
         }
@@ -171,11 +205,16 @@ class JsonAdaptedPerson {
             modelRisk = new Risk("");
         }
 
+
         final Set<Plan> modelPlans = new HashSet<>(personPlans);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate, modelTags,
-                modelRisk, modelPlans);
+
+        final Set<Note> modelNotes = new HashSet<>(personNotes);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate,
+            modelMeetingLocation,
+            modelTags, modelRisk, modelPlans, modelNotes);
     }
 
 }

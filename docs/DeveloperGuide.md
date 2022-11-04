@@ -5,37 +5,44 @@ title: Developer Guide
 
 Table of Contents
 
-1. [Acknowledgements](#1-acknowledgements)
-2. [Setting up, getting started](#2-setting-up-getting-started)
-3. [Design](#3-design)  
-   3.1. [Architecture](#31-architecture)  
-   3.2. [UI component](#32-ui-component)   
-   3.3. [Logic component](#33-logic-component)  
-   3.4. [Model component](#34-model-component)   
-   3.5. [Storage component](#35-storage-component)   
-   3.6. [Common classes](#36-common-classes)   
-4. [Implementation](#4-implementation)   
-   4.1. [Import command](#41-import-command)   
-   4.2. [\[Proposed\] Undo/redo feature](#42-proposed-undoredo-feature)   
-   4.3. [\[Proposed\] Data archiving](#43-proposed-data-archiving)   
-5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)   
-6. [Appendix: Requirements](#6-appendix-requirements)   
-   6.1. [Product scope](#61-product-scope)  
-   6.2. [User stories](#62-user-stories)   
-   6.3. [Use cases](#63-use-cases)   
-   6.4. [Non-Functional Requirements](#64-non-functional-requirements)   
-   6.5. [Glossary](#65-glossary)   
-7. [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing)   
-   7.1. [Launch and shutdown](#71-launch-and-shutdown)   
-   7.2. [Deleting a client](#72-deleting-a-client)   
-   7.3. [Saving data](#73-saving-data)   
+1. [Acknowledgements](#1-acknowledgements)<br>
+2. [Setting up, getting started](#2-setting-up-getting-started)<br>
+3. [Design](#3-design)<br>
+   3.1. [Architecture](#31-architecture)<br>
+   3.2. [UI component](#32-ui-component)<br>
+   3.3. [Logic component](#33-logic-component)<br>
+   3.4. [Model component](#34-model-component)<br>
+   3.5. [Storage component](#35-storage-component)<br>
+   3.6. [Common classes](#36-common-classes)<br>
+4. [Implementation](#4-implementation)<br>
+   4.1. [Import command](#41-import-command)<br>
+5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
+6. [Appendix: Requirements](#6-appendix-requirements)<br>
+   6.1. [Product scope](#61-product-scope)<br>
+   6.2. [User stories](#62-user-stories)<br>
+   6.3. [Use cases](#63-use-cases)<br>
+   6.4. [Non-Functional Requirements](#64-non-functional-requirements)<br>
+   6.5. [Glossary](#65-glossary)<br>
+7. [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing)<br>
+   7.1. [Launch and shutdown](#71-launch-and-shutdown)   <br>
+   7.2. [Deleting a client](#72-deleting-a-client)  <br>
+   7.3. [Saving data](#73-saving-data)<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **1. Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+This project is based on the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S1/tp) project created by
+the [SE-EDU initiative](https://se-education.org).
+
+Libraries used:
+
+* [JavaFX](https://openjfx.io/)
+* [Jackson](https://github.com/FasterXML/jackson)
+* [JUnit5](https://github.com/junit-team/junit5)
+* [OpenCSV](https://opencsv.sourceforge.net/)
+* [Password4j](https://password4j.com/)
+* [zxcvbn4j](https://github.com/nulab/zxcvbn4j)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -49,8 +56,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+:bulb: **Tip:** The `.puml` and `.drawio` files used to create diagrams in this document can be found in
+the [diagrams](https://github.com/AY2223S1-CS2103T-F11-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 </div>
@@ -66,21 +73,21 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
@@ -107,9 +114,9 @@ The sections below give more details of each component.
 ### 3.2. UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UpdatedUiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
@@ -117,9 +124,9 @@ the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -131,7 +138,7 @@ The `UI` component,
 ### 3.3. Logic component
 
 **
-API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -140,10 +147,10 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
@@ -169,7 +176,7 @@ How the parsing works:
 ### 3.4. Model component
 
 **
-API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/UpdatedModelClassDiagramWithPortfolio.png" width="450" />
 
@@ -194,18 +201,22 @@ The `Model` component,
 ### 3.5. Storage component
 
 **
-API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png"/>
 
 The `Storage` component,
 
-* can save both address book data and user preference data in json format, and read them back into corresponding
+* can save both address book data and user preference data in `JSON` format, and read them back into corresponding
   objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* has a `Storage` interface which inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be
+  treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
+* has `CsvAdaptedPerson` which is used to save `Person`s in the address book in `CSV` format, and read them back into
+  corresponding
+  `Person`s.
 
 ### 3.6. Common classes
 
@@ -233,13 +244,19 @@ The import command mainly relies on the following classes:
 `CsvToBeanBuilder` is provided by the OpenCSV library.
 
 1. The user executes the `import` command while providing a path as an argument.
-2. `AddressBookParser#parseCommand()` is called, which creates and returns a new `ImportCommandParser` that parses the provided path.
+2. `AddressBookParser#parseCommand()` is called, which creates and returns a new `ImportCommandParser` that parses the
+   provided path.
 3. `ImportCommandParser#parse()` is called, which calls `ParserUtil#parseImportPath()` to parse the provided path.
-4. `ParserUtil` checks if the path is to a `JSON` or `CSV` file, and if the file is readable. If the path is valid, it returns the path.
+4. `ParserUtil` checks if the path is to a `JSON` or `CSV` file, and if the file is readable. If the path is valid, it
+   returns the path.
 5. `ImportCommandParser` creates and returns a new `ImportCommand` using the returned path.
 6. `ImportCommand#execute()` is called.
-    * If the path is to a `JSON` file, `ImportCommand` creates a new `JsonAddressBookStorage` using the path, then uses it to read and add `Person`s to the `Model`.
-    * If the path is to a `CSV` file, `ImportCommand` creates a new `CsvToBeanBuilder` using the path, then uses it to obtain a list of `CsvAdaptedPerson`s. `StringToTag#convertToRead()` is called by `CsvToBeanBuilder` to convert strings from the `CSV` file to `Tag`s. `CsvAdaptedPerson#toModelType()` is called to convert each `CsvAdaptedPerson` to a `Person` before adding them to the `Model`.
+    * If the path is to a `JSON` file, `ImportCommand` creates a new `JsonAddressBookStorage` using the path, then uses
+      it to read and add `Person`s to the `Model`.
+    * If the path is to a `CSV` file, `ImportCommand` creates a new `CsvToBeanBuilder` using the path, then uses it to
+      obtain a list of `CsvAdaptedPerson`s. `StringToTag#convertToRead()` is called by `CsvToBeanBuilder` to convert
+      strings from the `CSV` file to `Tag`s. `CsvAdaptedPerson#toModelType()` is called to convert
+      each `CsvAdaptedPerson` to a `Person` before adding them to the `Model`.
 
 The following sequence diagram shows how the import command works:
 
@@ -249,106 +266,7 @@ The following sequence diagram shows how the import command works:
 
 Chose to use OpenCSV to read `CSV` files to avoid reinventing the wheel.
 
-### 4.2. \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
-following operations:
-
-* `VersionedAddressBook#commit()`— Saves the current address book state in its history.
-* `VersionedAddressBook#undo()`— Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()`— Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
-and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
-to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
-state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`
-, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
-the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
-as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
-Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
-desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### 4.3. \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -383,7 +301,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * should only be used to access and store sensitive information
 * targeted at FAs and does not include features that involve communication with their clients
 * manage contacts faster than a typical mouse/GUI driven app
-* FA's can shorten their time spent on doing administrative duties such as finding a client by showing all clients' details as well as portfolio in one glance
+* FA's can shorten their time spent on doing administrative duties such as finding a client by showing all clients'
+  details as well as portfolio in one glance
 
 ### 6.2. User stories
 
@@ -399,26 +318,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | relatively new user                        | read updated meeting dates for a client                                          | I can always know an updated list of my clients’ details                            |
 | `* * *`  | relatively new user                        | list all clients                                                                 | I will be able to find and view all my clients easily                               |
 | `* * *`  | relatively new user                        | view email addresses as part of client information                               | it would be easier for me to contact the respective client                          |
+| `* * *`  | relatively new user                        | add a portfolio to my clients                                                    | I can store financial information about my client.                                  |
+| `* * *`  | user ready to start using the app          | set up a password                                                                | I can lock the application                                                          |
+| `* * *`  | new user                                   | lock the application                                                             | unauthorised parties cannot access my data                                          |
+| `* *`    | new user                                   | receive feedback on my chosen password                                           | I can avoid using an insecure password                                              |
 | `* *`    | user ready to start using the app          | import a set of data from another source                                         | I do not have to insert each client’s data one by one                               |
+| `* *`    | user ready to start using the app          | purge all current data                                                           | I can get rid of sample/experimental data I used for exploring the app              |
 | `* *`    | user who is a little familiar with the app | search for clients                                                               | I do not have to scroll through all of my clients’ details to find a certain client |
-| `*`      | user who is a little familiar with the app | sort meetings                                                                    | I can plan for the upcoming days                                                    |
-| `*`      | user ready to start using the app          | purge all current data                                                           | I can get rid of sample/experimental data I used for exploring the app              |
+| `* *`    | user who is a little familiar with the app | sort meetings                                                                    | I can plan for the upcoming days                                                    |
+| `* *`    | user who is a little familiar with the app | add additional notes that I have discussed with the client                       | I don't have to use another platform to store my notes regarding my client.         |
+| `* *`    | user who is familiar with the app          | copy data to the clipboard with the click of a button or the use of a shortcut   | it is more convenient for me                                                        |
+| `* *`    | returning user                             | import data from an existing save                                                | I can move between devices                                                          |
+| `* *`    | returning user                             | export data to a `CSV` file                                                      | I can edit the data in other applications                                           |
 | `*`      | user ready to start using the app          | view a list of instructions or commands built in by the app for easier reference | it would be easier for me to adapt to these commands                                |
-| `*`      | user ready to start using the app          | be asked to set up a password                                                    | I don’t forget it later                                                             |
 | `*`      | user who is familiar with the app          | sort my clients into groups                                                      | I can keep them organised                                                           |
-| `*`      | user who is familiar with the app          | copy data to the clipboard with the click of a button or the use of a shortcut   | it is more convenient for me                                                        |
-| `*`      | new user                                   | choose to use a generated password                                               | I can avoid using an insecure password                                              |
-| `*`      | new user                                   | lock the application                                                             | unauthorised parties cannot access my data                                          |
 | `*`      | long-time user                             | view the dashboard as an overview for all clients                                | I can view the overall details of all my clients                                    |
 | `*`      | long-time user                             | archive/hide unused data                                                         | I am not distracted by irrelevant data                                              |
-| `*`      | long-time user                             | archive/hide unused data                                                         | I am not distracted by irrelevant data                                              |
 | `*`      | long-time user                             | delete multiple “old” clients                                                    | I can easily identify clients I am still working with                               |
-| `*`      | expert user                                | create shortcuts for tasks                                                       | I can save time on frequently performed tasks                                       |
-| `*`      | expert user                                | set up 2-factor authentication                                                   | my data is not compromised even when my password is leaked                          |
 | `*`      | expert user                                | change settings within the application                                           | I can tweak it to exactly how I like it                                             |
-| `*`      | returning user                             | import data from an existing save                                                | I can move between devices                                                          |
 | `*`      | returning user                             | delete all data quickly and securely when facing an emergency situation          | my data is not leaked                                                               |
-| `*`      | potential user exploring the app           | be greeted with a brief overview of the privacy features available               | I am aware of them                                                                  |
+| `*`      | potential user exploring the app           | see a brief overview of the privacy features available                           | I am aware of them                                                                  |
 
 ### 6.3. Use cases
 
@@ -620,12 +539,18 @@ FinBook is not required to handle interaction between client and FA.
 
 ### 6.5. Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **FA**: Financial advisor
-* **Client**: A client is a person whose financial data and details are managed by an FA
-* **Private client detail**: A client detail that is sensitive and not meant to be shared with others
-* **CSV**: A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values
-* **System**: FinBook
+| Term                         | Meaning                                                                                                                                                                                                                                       |
+|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Mainstream OS                | Windows, Linux, Unix, OS-X                                                                                                                                                                                                                    |
+| FA                           | Financial advisor                                                                                                                                                                                                                             |
+| Client                       | A client is a person whose financial data and details are managed by an FA                                                                                                                                                                    |
+| Private client detail        | A client detail that is sensitive and not meant to be shared with others                                                                                                                                                                      |
+| System                       | FinBook                                                                                                                                                                                                                                       |
+| CLI (Command-line Interface) | A application that users interact with by typing text.                                                                                                                                                                                        |
+| Command                      | A sequence specified text typed by the user to perform an action.                                                                                                                                                                             |
+| JSON                         | JSON (JavaScript Object Notation) is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and arrays (or other serializable values). |
+| CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values.                                                                                                                                            |
+| Path                         | A path is a string of characters used to uniquely identify a location in a directory structure.                                                                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -644,17 +569,17 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-       optimum.
+    2. Double-click the jar file<br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### 7.2. Deleting a client
 
@@ -681,24 +606,24 @@ testers are expected to do more *exploratory* testing.
        than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### 7.3. Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. Test case: Importing an invalid JSON file   
+    1. Test case: Importing an invalid JSON file<br>
        Expected: list of clients will be empty and nothing is shown
 
-    2. Test case: Importing an invalid CSV file   
+    2. Test case: Importing an invalid CSV file<br>
        Expected: list of clients will be empty and nothing is shown
 
-    3. Test case: Editing the JSON file when the application is not launched with invalid datas   
+    3. Test case: Editing the JSON file when the application is not launched with invalid datas<br>
        Expected: list of clients will be empty and nothing is shown
 
-    4. Test case: Missing JSON file   
+    4. Test case: Missing JSON file<br>
        Expected: Creates a new addressbook.json file when there is a new command entered
 
-    5. {explain how to simulate a missing/corrupted file, and the expected behavior}_
+    5. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
