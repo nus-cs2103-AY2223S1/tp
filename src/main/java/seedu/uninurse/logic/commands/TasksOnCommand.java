@@ -11,12 +11,12 @@ import seedu.uninurse.model.task.DateTime;
  */
 public class TasksOnCommand extends DisplayTasksGenericCommand {
 
-    public static final String COMMAND_WORD = "tasksOn";
-
     public static final CommandType COMMAND_TYPE = CommandType.SCHEDULE;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Shows a list of tasks for that day";
+            + ": Shows a list of tasks for the given date. The date must be in dd-mm-yy format.\n"
+            + "Format: " + COMMAND_WORD + " DATE\n"
+            + "Example: " + COMMAND_WORD + " 25-4-22";
 
     public static final String MESSAGE_SUCCESS = "Showing Tasks for %1$s";
 

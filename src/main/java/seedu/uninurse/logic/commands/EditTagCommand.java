@@ -21,11 +21,13 @@ import seedu.uninurse.model.tag.exceptions.DuplicateTagException;
  * Edits the details of an existing tag for a patient.
  */
 public class EditTagCommand extends EditGenericCommand {
-    public static final String MESSAGE_USAGE = "Command: Edit a tag of a patient.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
+            + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_TAG_INDEX
+            + ": Edits a tag of a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_OPTION_TAG_INDEX + " TAG_INDEX " + PREFIX_TAG + "TAG\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_OPTION_TAG_INDEX
-            + " 2 " + PREFIX_TAG + "fall-risk";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_TAG_INDEX
+            + " 1 " + PREFIX_TAG + "fall-risk";
     public static final String MESSAGE_SUCCESS = "Edited tag %1$d of %2$s:\n"
             + "Before: %3$s\n"
             + "After: %4$s";
