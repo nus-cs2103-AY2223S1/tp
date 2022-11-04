@@ -132,7 +132,6 @@ public class ParserUtil {
         return new Client(
                 new Name(clientName),
                 new Address("placeholder"),
-                new HashSet<>(),
                 new HashSet<>()
                 );
     }

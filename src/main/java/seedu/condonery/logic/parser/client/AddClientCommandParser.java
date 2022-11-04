@@ -55,13 +55,13 @@ public class AddClientCommandParser implements Parser<Command> {
         Set<Property> interestedPropertyList = ParserUtil
                 .parseProperties(argMultimap.getAllValues(PREFIX_INTERESTEDPROPERTIES));
 
-        Client client = new Client(name, address, tagList, interestedPropertyList);
+        Client client = new Client(name, address, tagList);
 
         if (argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()) {
-            return new AddClientCommand(client, true);
+            return new AddClientCommand(client, interestedPropertyList, true);
         }
 
-        return new AddClientCommand(client);
+        return new AddClientCommand(client, interestedPropertyList);
     }
 
     /**

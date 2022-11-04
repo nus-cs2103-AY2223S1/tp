@@ -24,7 +24,6 @@ import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.client.Client;
-import seedu.condonery.model.client.utils.ParseClientInterestedProperties;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
@@ -94,9 +93,25 @@ public class EditClientCommand extends Command {
         Client clientToEdit = lastShownList.get(targetIndex.getZeroBased());
         Path imageDirectoryPath = model.getUserPrefs().getUserImageDirectoryPath();
         Client editedClient = createEditedClient(clientToEdit, editClientDescriptor, imageDirectoryPath);
+
+        for (Property interestedProperty : editClientDescriptor.getInterestedProperties().orElse(new HashSet<>())) {
+            String interestedPropertyName = interestedProperty.getName().toString();
+            if (!model.hasPropertyName(interestedPropertyName)) {
+                throw new CommandException("Could not find any property matching substring "
+                    + interestedPropertyName
+                    + ". You might want to refine your search.");
+            }
+            if (!model.hasUniquePropertyName(interestedPropertyName)) {
+                throw new CommandException("More than 1 property matches substring "
+                    + interestedPropertyName
+                    + ". You might want to make your search more specific.");
+            }
+            Property property = model.getUniquePropertyByName(interestedPropertyName);
+            property.getInterestedClients().add(editedClient);
+        }
+
         // Parsed interested properties
-        Client newEditedClient = new ParseClientInterestedProperties(editedClient, model).getNewClient();
-        newEditedClient.setImageDirectoryPath(imageDirectoryPath);
+        editedClient.setImageDirectoryPath(imageDirectoryPath);
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
@@ -104,10 +119,10 @@ public class EditClientCommand extends Command {
 
         File existingImage = new File(clientToEdit.getImagePath().toString());
         if (existingImage.exists()) {
-            existingImage.renameTo(new File(newEditedClient.getImagePath().toString()));
+            existingImage.renameTo(new File(editedClient.getImagePath().toString()));
         }
 
-        model.setClient(clientToEdit, newEditedClient);
+        model.setClient(clientToEdit, editedClient);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
 
         if (this.hasImage) {
@@ -115,10 +130,10 @@ public class EditClientCommand extends Command {
                 String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient),
                 false,
                 false,
-                "client-" + newEditedClient.getCamelCaseName()
+                "client-" + editedClient.getCamelCaseName()
             );
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, newEditedClient));
+        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
     }
 
     public EditClientDescriptor getEditClientDescriptor() {
@@ -137,11 +152,8 @@ public class EditClientCommand extends Command {
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-        Set<Property> updatedInterestedProperties = editClientDescriptor
-                .getInterestedProperties()
-                .orElse(clientToEdit.getInterestedProperties());
 
-        Client updatedClient = new Client(updatedName, updatedAddress, updatedTags, updatedInterestedProperties);
+        Client updatedClient = new Client(updatedName, updatedAddress, updatedTags);
         updatedClient.setImageDirectoryPath(imageDirectoryPath);
         return updatedClient;
     }
@@ -240,8 +252,8 @@ public class EditClientCommand extends Command {
          * A defensive copy of {@code properties} is used internally.
          */
         public void setInterestedProperties(Set<Property> properties) {
-            this.interestedProperties = (interestedProperties != null)
-                    ? new HashSet<>(interestedProperties)
+            this.interestedProperties = (properties != null)
+                    ? new HashSet<>(properties)
                     : null;
         }
 
