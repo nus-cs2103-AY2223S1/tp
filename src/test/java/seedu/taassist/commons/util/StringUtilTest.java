@@ -1,5 +1,6 @@
 package seedu.taassist.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.commons.util.StringUtil.caseInsensitiveEquals;
@@ -155,5 +156,75 @@ public class StringUtilTest {
         String testString = "testString";
         String differentTestString = "differenttt";
         assertFalse(caseInsensitiveEquals(testString, differentTestString));
+    }
+
+    //---------------- Tests for capitalise --------------------------------------
+
+    @Test
+    public void capitalise_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.capitalise(null));
+    }
+
+    @Test
+    public void capitalise_emptyString_returnsEmptyString() {
+        String inputString = "";
+        String outputString = StringUtil.capitalise(inputString);
+        assertEquals(outputString, inputString);
+    }
+
+    @Test
+    public void capitalise_whiteSpace_returnsEmptyString() {
+        String inputString = "  ";
+        String outputString = StringUtil.capitalise(inputString);
+        assertEquals("", outputString);
+    }
+
+    @Test
+    public void capitalise_singleLetter_returnsUpperCasedLetter() {
+        String inputString = "a";
+        String outputString = StringUtil.capitalise(inputString);
+        assertEquals("A", outputString);
+    }
+
+    @Test
+    public void capitalise_singleSymbol_returnsSymbol() {
+        String inputString = "_";
+        String outputString = StringUtil.capitalise(inputString);
+        assertEquals(inputString, outputString);
+    }
+
+    @Test
+    public void capitalise_singleLowerCasedWord_returnsCapitalisedWord() {
+        String inputString = "foo";
+        String outputString = StringUtil.capitalise(inputString);
+        assertEquals("Foo", outputString);
+    }
+
+    @Test
+    public void capitalise_singleUpperCasedWord_returnsCapitalisedWord() {
+        String inputString = "FOO";
+        String outputString = StringUtil.capitalise(inputString);
+        assertEquals("Foo", outputString);
+    }
+
+    @Test
+    public void capitalise_lowerCasedSentence_returnsCapitalisedString() {
+        String inputString = "the quick brown fox jumps over the lazy dog";
+        String outputString = StringUtil.capitalise(inputString);
+        assertEquals("The Quick Brown Fox Jumps Over The Lazy Dog", outputString);
+    }
+
+    @Test
+    public void capitalise_upperCasedSentence_returnsCapitalisedString() {
+        String inputString = "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG";
+        String outputString = StringUtil.capitalise(inputString);
+        assertEquals("The Quick Brown Fox Jumps Over The Lazy Dog", outputString);
+    }
+
+    @Test
+    public void capitalise_sentenceWithSymbols_returnsCapitalisedString() {
+        String inputString = "@the quick brown_fox jumps over the lazy_dog! wow.";
+        String outputString = StringUtil.capitalise(inputString);
+        assertEquals("@the Quick Brown_fox Jumps Over The Lazy_dog! Wow.", outputString);
     }
 }

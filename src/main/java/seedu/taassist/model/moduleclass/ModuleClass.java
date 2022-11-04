@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import seedu.taassist.model.moduleclass.exceptions.SessionNotFoundException;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
 
@@ -35,8 +34,9 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      */
     public ModuleClass(String className) {
         requireNonNull(className);
-        checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
-        this.className = className.toUpperCase();
+        String upperCasedName = className.toUpperCase();
+        checkArgument(isValidModuleClassName(upperCasedName), MESSAGE_CONSTRAINTS);
+        this.className = upperCasedName;
         sessions = new ArrayList<Session>();
     }
 
@@ -48,8 +48,9 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      */
     public ModuleClass(String className, List<Session> sessions) {
         requireAllNonNull(className, sessions);
-        checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
-        this.className = className.toUpperCase();
+        String upperCasedName = className.toUpperCase();
+        checkArgument(isValidModuleClassName(upperCasedName), MESSAGE_CONSTRAINTS);
+        this.className = upperCasedName;
         this.sessions = sessions;
     }
 
@@ -70,12 +71,6 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      */
     public List<Session> getSessions() {
         return Collections.unmodifiableList(sessions);
-    }
-
-    public Session getSessionWithSameName(Session session) throws SessionNotFoundException {
-        requireNonNull(session);
-        return sessions.stream().filter(s -> s.isSame(session)).findFirst()
-                .orElseThrow(SessionNotFoundException::new);
     }
 
     /**
