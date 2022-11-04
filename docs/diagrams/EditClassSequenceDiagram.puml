@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit 1 dt/2022-09-15 1000-1300")
+[-> LogicManager : execute("edit 1 dt/Mon 1000-1300")
 activate LogicManager
 
-LogicManager -> TeachersPetParser : parseCommand("edit 1 dt/2022-09-15 1000-1300")")
+LogicManager -> TeachersPetParser : parseCommand("edit 1 dt/Mon 1000-1300")")
 activate TeachersPetParser
 
 create EditCommandParser
@@ -27,7 +27,7 @@ activate EditCommandParser
 EditCommandParser --> TeachersPetParser
 deactivate EditCommandParser
 
-TeachersPetParser -> EditCommandParser : parse(" 1 dt/2022-09-15 1000-1300")")
+TeachersPetParser -> EditCommandParser : parse(" 1 dt/Mon 1000-1300")")
 activate EditCommandParser
 
 create EditCommand
