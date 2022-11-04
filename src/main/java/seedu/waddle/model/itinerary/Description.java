@@ -12,8 +12,6 @@ public class Description {
     public static final String MESSAGE_CONSTRAINTS =
             "Description should not be blank and should only contain alphanumeric characters,spaces" +
                     " and these following special characters: ( ) & ! ' : , . -";
-            "Description should not be blank and should only contain alphanumeric characters,spaces"
-                    + " and these following special characters: ( ) & ! ' : , . -";
 
     /*
      * The first character of the description must not be a whitespace,
