@@ -22,6 +22,24 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Introduction 
+
+GuestBook is a **desktop app for managing guests in a hotel,
+optimized for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+GuestBook can get your
+guest management tasks done faster than traditional GUI apps with our efficient
+management workflow.
+The primary target audience of GuestBook is hotel managers of small hotels
+and backpacker's inn who can type fast.
+
+
+GuestBook to track guests and their details including name, email address, phone number,
+room number, dates of stay, number of guests, bill, request, and whether their room has been cleaned.
+With the features to add, edit, delete, and filter guests, GuestBook fulfill all the essential hotel management needs.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -29,6 +47,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+
+This section aims to showcase how GuestBook was designed. We first go through the overarching
+architecture of GuestBook then go in more details about its underlying components and design decisions for
+the four core components and common classes.
 
 <div markdown="span" class="alert alert-primary">
 
