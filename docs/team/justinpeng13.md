@@ -5,15 +5,29 @@ title: Justin Peng's Project Portfolio Page
 
 ### Project: GuestBook
 
-GuestBook is a one stop access to get all the necessary guest data.
+GuestBook is a **desktop app for managing guests in a hotel,
+optimized for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+If you are a hotel manager who can type fast, GuestBook can get your
+guest management tasks done faster than traditional GUI apps.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java, and has about 10 kLoC.
+It is written in Java, and has about 13 kLoC.
 This project is based off AddressBook - Level 3.
 
 Given below are my contributions to the project.
 
-* **New Features**:
-  * to be added soon
+* **New Feature**: Added `DateRange` field.
+  * This field represents the start and end date of a guest's stay.
+  * 
+* **New Feature**: Added `Bill` field.
+  * This field represents the total additional charges incurred by a guest during their stay.
+  
+* **New Feature**: Added `bill` command.
+  * Allows the user to cumulatively update the bill of a guest in GuestBook.
+  * This command is typically used to charge a guest, such as for room service.
+  * This command ensures that the total bill of a guest is not negative and does not exceed the maximum possible value.
+  * This feature greatly aids with GuestBook's efficiency, as GuestBook calculates the new value of the total bill
+  automatically.
 
 * **Enhancements to existing features**:
   * to be added soon
