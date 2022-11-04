@@ -39,12 +39,12 @@ Gim uses a Command Line Interface (CLI), which may be new to some users. If you 
 ### 2.1 Useful Notations
 While exploring Gim's features with this user guide, do take note of these symbols used in the user guide and what they represent.
 
-|        Symbol         | Meaning                 |
-|:---------------------:|-------------------------|
-| :information_source:  | Important information   |
-|     :exclamation:     | Warning or Caution      |
-|    :thinking_face:    | When should I use this? |
-|        :bulb:         | Tips                    |
+|        Symbol        | Meaning                 |
+|:--------------------:|-------------------------|
+| :information_source: | Important information   |
+|    :exclamation:     | Warning or Caution      |
+|      :thinking:      | When should I use this? |
+|        :bulb:        | Tips                    |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -233,7 +233,7 @@ Format: `:filter KEYWORD [KEYWORD]...`
 
 <div markdown="block" class="alert alert-info">
 
-**:thinking_face: When should I use this?**<br>
+**:thinking: When should I use this?**<br>
 I should use this if I am looking to find the instances of a specific exercise.
 
 </div>
@@ -263,7 +263,7 @@ Format: `:sort`
 
 <div markdown="block" class="alert alert-info">
 
-**:thinking_face: When should I use this?**<br>
+**:thinking: When should I use this?**<br>
 I should use this if I am looking to find the instances of a specific exercise.
 
 </div>
@@ -325,7 +325,7 @@ Shows a list of all exercises.
 
 <div markdown="block" class="alert alert-info">
 
-**:thinking_face: When should I use this?**<br>
+**:thinking: When should I use this?**<br>
 I should use this when I want to reset my search settings back to the default.
 
 </div>
