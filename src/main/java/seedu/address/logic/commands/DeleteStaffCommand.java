@@ -8,6 +8,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_NO_STAFF_DISPLAYED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -60,22 +61,24 @@ public class DeleteStaffCommand extends Command {
         List<Staff> lastShownStaffList = model.getFilteredStaffList();
 
         checkForEmptyList(projectList, lastShownStaffList);
-        if (index.getZeroBased() >= lastShownStaffList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX));
-        }
 
-        Staff staffToDelete = lastShownStaffList.get(index.getZeroBased());
-        StaffName staffName = staffToDelete.getStaffName();
+        Optional<Staff> staffToDelete = model.getStaffFromProjectAtIndex(new ProjectName(projectName), index);
+        Optional<Project> projectToDelete = model.getProjectWithName(new ProjectName(projectName));
 
-        Project project = getProjectFrom(projectList);
+        Project project = projectToDelete.orElseThrow(() ->
+                new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName)));
 
-        UniqueStaffList staffList = project.getStaffList();
-        Staff staff = getStaffFrom(staffList, staffName);
 
-        staffList.remove(staff);
+        Staff toDelete = staffToDelete.orElseThrow(() ->
+                new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX));
+
+
+        model.removeStaffFromProject(new ProjectName(projectName), index);
+
         model.setFilteredStaffList(project.getStaffList());
         model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
-        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName, project.getProjectName()));
+        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS,
+                toDelete.getStaffName(), project.getProjectName()));
     }
 
     /**
