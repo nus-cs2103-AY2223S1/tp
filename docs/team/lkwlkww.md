@@ -23,7 +23,7 @@ Given below are my contributions to the project.
     * includes stuff like regex
 
 * **Contibutions to User Guide**:
-  * Completed the 
+  * Completed the 'Property and client attributes' section
   * Completed the section for describing features of Condonery's client directory
 
 * **Contributions to Developer Guide**:
@@ -32,6 +32,7 @@ Given below are my contributions to the project.
 * **Other documentation contributions**:
 
 * **Contributions to team-based tasks**:
+  * Setting up of documents to track meeting discussions
 
 * **Review/mentoring contributions**:
 
