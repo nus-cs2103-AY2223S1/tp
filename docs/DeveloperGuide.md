@@ -28,7 +28,7 @@ title: Developer Guide
    5. [Glossary](#65-glossary)
 7. [Appendix B: Instructions for Manual Testing](#7-appendix-b-instructions-for-manual-testing)
    1. [Launch and shutdown](#71-launch-and-shutdown)
-   2. [Adding a person](#72-adding-an-applicant)
+   2. [Adding an applicant](#72-adding-an-applicant)
    3. [Viewing the detail of an applicant](#73-viewing-the-detail-of-an-applicant)
    4. [Editing an applicant](#74-editing-an-applicant)
    5. [Deleting an applicant](#75-deleting-an-applicant)
@@ -137,7 +137,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+3. The command can communicate with the `Model` when it is executed (e.g. to add an person).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -297,15 +297,15 @@ The following sequence diagram shows how the `view` command works:
 
 #### Design considerations
 
-**Aspect: How the UI window is split to show a panel of list of all persons and another panel to view details of a person:**
+**Aspect: How the UI window is split to show a panel of list of all applicants and another panel to view details of an applicant:**
 
 ![guiDesignConsideration1](images/guiDesignConsideration1.png)
 - **Alternative 1 (current implementation):** Window is split into half below the result display box.
     - Pros: Symmetrical and looks more regular.
-    - Cons: Pane to view details of a person is smaller.
+    - Cons: Pane to view details of an applicant is smaller.
 ![guiDesignConsideration2](images/guiDesignConsideration2.png)
 - **Alternative 2:** Window is split from the top, so both command box and result display box are halved.
-    - Pros: Can have a larger pane to view details of a person.
+    - Pros: Can have a larger pane to view details of an applicant.
     - Cons: Need to scroll more to see typed command and result displayed.
 
 
@@ -406,7 +406,7 @@ The following sequence diagram shows how the `export` command works:
 
 ### 4.5 Find Feature Improvements
 
-The `find` feature currently allows the user to search by name among all Persons in store by InternConnect. We want to improve onto this feature to allow Users to search by any possible field of choice
+The `find` feature currently allows the user to search by name among all applicants in store by InternConnect. We want to improve onto this feature to allow Users to search by any possible field of choice
 
 #### Implementation
 
@@ -642,7 +642,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1b. The given file has invalid value, incorrect format, and/or duplicate persons.
+* 1b. The given file has invalid value, incorrect format, and/or duplicate applicants.
 
     * 1b1. InternConnect shows an error message.
 
@@ -721,7 +721,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 6.5 Glossary
 
 * **Applicant**: An applicant refers to a person who has applied for a job. 
-  Applicant and Person can be used interchangeably as they refer to the same thing
 * **Job**: A job opening the applicant applied for
 * **Command Line Interface (CLI)**: Text-based user interface
 * **Graphical User Interface (GUI)**: Graphic-based user interface
