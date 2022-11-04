@@ -17,7 +17,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: UI
 
-### Conrad Lew Kian Loong
+### Lew Kian Loong, Conrad
 
 <img src="images/conradlew.png" width="200px">
 
