@@ -26,8 +26,8 @@ Added custom commands components:
 - int
 - float
 - str
-- r 
-- if 
+- r
+- if
 - ...
 
 ### UI
