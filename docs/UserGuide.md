@@ -352,14 +352,6 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-Note that only one sample workout is generated for each unique exercise name. For example, `:gen 4, 5 level/easy` will generate one sample workout for squat, as both index 4 and 5 in the displayed list are Squat exercises.
-
-![GenerateCommandExample2](images/GenerateCommandExample2.png)
-
-<br>
-
-<div style="page-break-after: always;"></div>
-
 Format (2): `:gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL`
 
 Parameter constraints:
@@ -374,8 +366,6 @@ Example:
 * `:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift.
 
 ![GenerateCommandNameExample1](images/GenerateCommandNameExample1.png)
-
-Note that only one sample workout is generated for each unique exercise name. For example, `:gen n/Squat n/Squat level/easy` will generate one sample workout for squat.
 
 <div style="page-break-after: always;"></div>
 
