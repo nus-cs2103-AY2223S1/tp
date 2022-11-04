@@ -1,12 +1,14 @@
 package seedu.hrpro.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.hrpro.commons.core.GuiSettings;
 import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.model.project.Project;
+import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.staff.Staff;
 import seedu.hrpro.model.staff.UniqueStaffList;
 import seedu.hrpro.model.task.Task;
@@ -114,6 +116,27 @@ public interface Model {
      */
     ObservableList<Project> getFilteredProjectList();
 
+    /**
+     * Returns an Optional that may or may not contain a Project with given {@code projectName}.
+     */
+    Optional<Project> getProjectWithName(ProjectName projectName);
+
+    /**
+     * Returns an Optional that may or may not contain a Project with given {@code projectIndex}.
+     */
+    Optional<Project> getProjectWithIndex(Index projectIndex);
+
+    /**
+     * Checks if the project in the model contains the staff {@code toAdd}.
+     */
+    boolean targetProjectContainsStaff(Index projectIndex, Staff toAdd);
+
+    /**
+     * Checks if the project with the given {@code projectName} contains a duplicate staff
+     * once the staff {@code toEdit} is edited with {@code editWith}
+     */
+    boolean projectHasDuplicateStaff(ProjectName projectName, Staff toEdit, Staff editWith);
+
     //=========== Staff ================================================================================
 
     /**
@@ -130,6 +153,28 @@ public interface Model {
 
     /** Sets filtered Staff list to be {@code uniqueStaffList} specified by the view command */
     void setFilteredStaffList(UniqueStaffList uniqueStaffList);
+
+    /**
+     * Returns an Optional that contains a staff that is at the {@code index} of the project with the
+     * {@code projectName}
+     */
+    Optional<Staff> getStaffFromProjectAtIndex(ProjectName projectName, Index index);
+
+    /**
+     * Removes the staff at {@code index} from the staff list of the project with {@code projectName}.
+     */
+    void removeStaffFromProject(ProjectName projectName, Index index);
+
+    /**
+     * Adds the staff {@code toAdd} to the staff list of the project with {@code projectName}.
+     */
+    void addStaffToProject(Index projectIndex, Staff toAdd);
+
+    /**
+     * Edits the staff {@code toEdit} in the staff list of hthe project with {@code projectName}
+     * with {@code editWith}.
+     */
+    void editStaffInProject(ProjectName projectName, Staff toEdit, Staff editWith);
 
     //=========== Tasks ================================================================================
     /**

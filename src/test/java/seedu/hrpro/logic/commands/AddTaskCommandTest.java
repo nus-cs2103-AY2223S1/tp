@@ -11,6 +11,7 @@ import static seedu.hrpro.testutil.TypicalTasks.TASK_BRAVO;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,7 @@ import seedu.hrpro.model.Model;
 import seedu.hrpro.model.ReadOnlyHrPro;
 import seedu.hrpro.model.ReadOnlyUserPrefs;
 import seedu.hrpro.model.project.Project;
+import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.staff.Staff;
 import seedu.hrpro.model.staff.UniqueStaffList;
 import seedu.hrpro.model.task.Task;
@@ -151,6 +153,26 @@ public class AddTaskCommandTest {
         }
 
         @Override
+        public Optional<Project> getProjectWithName(ProjectName projectName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Project> getProjectWithIndex(Index projectIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean targetProjectContainsStaff(Index projectIndex, Staff toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean projectHasDuplicateStaff(ProjectName projectName, Staff toEdit, Staff editWith) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setFilteredStaffList(UniqueStaffList staffList) {
             throw new AssertionError("This method should not be called.");
         }
@@ -162,6 +184,26 @@ public class AddTaskCommandTest {
 
         @Override
         public void updateFilteredStaffList(Predicate<Staff> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Staff> getStaffFromProjectAtIndex(ProjectName projectName, Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeStaffFromProject(ProjectName projectName, Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStaffToProject(Index projectIndex, Staff toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editStaffInProject(ProjectName projectName, Staff toEdit, Staff editWith) {
             throw new AssertionError("This method should not be called.");
         }
 

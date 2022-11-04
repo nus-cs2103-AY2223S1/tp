@@ -10,15 +10,13 @@ import static seedu.hrpro.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.hrpro.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.hrpro.model.Model.PREDICATE_SHOW_ALL_STAFF;
 
-import java.util.List;
+import java.util.Optional;
 
 import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.logic.commands.exceptions.CommandException;
 import seedu.hrpro.model.Model;
 import seedu.hrpro.model.project.Project;
-import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.staff.Staff;
-import seedu.hrpro.model.staff.UniqueStaffList;
 
 /**
  * Adds a staff to HR Pro Max++.
@@ -46,7 +44,6 @@ public class AddStaffCommand extends Command {
     public static final String MESSAGE_ADD_STAFF_SUCCESS = "New staff added to %2$s: %1$s\n"
             + "Displaying all staff in project: %2$s";
     public static final String MESSAGE_DUPLICATE_STAFF = "Staff already exists in the project: %1$s";
-
     private final Staff toAdd;
     private final Index index;
 
@@ -63,24 +60,19 @@ public class AddStaffCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);;
-        List<Project> lastShownList = model.getFilteredProjectList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX));
+        Optional<Project> projectToAdd = model.getProjectWithIndex(index);
+        Project project = projectToAdd.orElseThrow(() ->
+                new CommandException(String.format(MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX)));
+
+        if (model.targetProjectContainsStaff(index, toAdd)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_STAFF, project.getProjectName()));
         }
 
-        Project targetProject = lastShownList.get(index.getZeroBased());
-        ProjectName projectName = targetProject.getProjectName();
-
-        if (targetProject.getStaffList().contains(toAdd)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_STAFF, projectName));
-        }
-
-        UniqueStaffList targetStaffList = targetProject.getStaffList();
-        targetStaffList.add(toAdd);
-        model.setFilteredStaffList(targetStaffList);
+        model.addStaffToProject(index, toAdd);
+        model.setFilteredStaffList(project.getStaffList());
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
-        return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, toAdd, projectName));
+        return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, toAdd, project.getProjectName()));
     }
 
     @Override

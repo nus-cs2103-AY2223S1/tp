@@ -5,6 +5,7 @@ import static seedu.hrpro.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -15,6 +16,7 @@ import seedu.hrpro.commons.core.LogsCenter;
 import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.model.deadline.Deadline;
 import seedu.hrpro.model.project.Project;
+import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.staff.Staff;
 import seedu.hrpro.model.staff.UniqueStaffList;
 import seedu.hrpro.model.task.Task;
@@ -129,6 +131,123 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedProject);
 
         hrPro.setProject(target, editedProject);
+    }
+
+    @Override
+    public Optional<Project> getProjectWithName(ProjectName projectName) {
+        if (!isValidProjectName(projectName)) {
+            return Optional.empty();
+        }
+        for (Project project : this.filteredProjects) {
+            if (project.getProjectName().toString().equalsIgnoreCase(projectName.toString())) {
+                return Optional.<Project>of(project);
+            }
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Project> getProjectWithIndex(Index projectIndex) {
+        if (!isValidProjectIndex(projectIndex)) {
+            return Optional.empty();
+        }
+        return Optional.<Project>of(this.filteredProjects.get(projectIndex.getZeroBased()));
+    }
+
+    private boolean isValidProjectName(ProjectName projectName) {
+        requireNonNull(projectName);
+        return this.filteredProjects.stream()
+                .anyMatch(project ->
+                        project.getProjectName().toString().equalsIgnoreCase(projectName.toString()));
+    }
+
+    private boolean isValidProjectIndex(Index projectIndex) {
+        requireNonNull(projectIndex);
+        return projectIndex.getZeroBased() < this.filteredProjects.size();
+    }
+
+    @Override
+    public boolean projectHasDuplicateStaff(ProjectName projectName, Staff toEdit, Staff editWith) {
+        requireNonNull(projectName);
+        requireNonNull(toEdit);
+        requireNonNull(editWith);
+
+        assert isValidProjectName(projectName);
+
+        Optional<Project> projectOptional = getProjectWithName(projectName);
+        Project project = projectOptional.get();
+
+        if (!toEdit.isSameStaff(editWith) && project.getStaffList().contains(editWith)) {
+            return true;
+        }
+        return false;
+    }
+
+    //=========== Staff ================================================================================
+
+
+    private boolean isValidStaffIndexInProject(ProjectName projectName, Index index) {
+        requireNonNull(projectName);
+        requireNonNull(index);
+        if (!isValidProjectName(projectName)) {
+            return false;
+        }
+        return index.getZeroBased() < this.filteredStaff.size();
+    }
+
+    @Override
+    public Optional<Staff> getStaffFromProjectAtIndex(ProjectName projectName, Index index) {
+        requireNonNull(projectName);
+        requireNonNull(index);
+
+        if (!isValidStaffIndexInProject(projectName, index)) {
+            return Optional.empty();
+        }
+
+        return Optional.<Staff>of(this.filteredStaff.get(index.getZeroBased()));
+    }
+
+    @Override
+    public void removeStaffFromProject(ProjectName projectName, Index index) {
+        requireNonNull(projectName);
+        requireNonNull(index);
+
+        for (Project currentProject : this.filteredProjects) {
+            if (currentProject.getProjectName().toString().equalsIgnoreCase(projectName.toString())) {
+                if (index.getZeroBased() >= currentProject.getStaffList().size()) {
+                    return;
+                } else {
+                    Staff toRemove = this.filteredStaff.get(index.getZeroBased());
+                    currentProject.getStaffList().remove(toRemove);
+                    break;
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean targetProjectContainsStaff(Index projectIndex, Staff toAdd) {
+        requireNonNull(projectIndex);
+        requireNonNull(toAdd);
+        return this.filteredProjects.get(projectIndex.getZeroBased()).getStaffList().contains(toAdd);
+    }
+
+    @Override
+    public void addStaffToProject(Index projectIndex, Staff staff) {
+        requireNonNull(projectIndex);
+        requireNonNull(staff);
+        // Guaranteed that staff and project are valid
+        this.filteredProjects.get(projectIndex.getZeroBased()).getStaffList().add(staff);
+    }
+
+    @Override
+    public void editStaffInProject(ProjectName projectName, Staff toEdit, Staff editWith) {
+        requireNonNull(projectName);
+        requireNonNull(toEdit);
+
+        Optional<Project> projectOptional = getProjectWithName(projectName);
+        Project project = projectOptional.get();
+        project.getStaffList().setStaff(toEdit, editWith);
     }
 
     //=========== Tasks ================================================================================
