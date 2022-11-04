@@ -177,7 +177,7 @@ Traverse/Scroll **down**: `<Down>`
 | **find** | `find KEYWORD`<br> e.g. `find compilers`                               |
 | **view** | `view MODULE-CODE`<br> e.g. `view CS2103`                              |
 | **preq** | `preq MODULE-CODE`<br> e.g. `preq CS2103`                              |
-| **add**  | `add MODULE-CODE`<br> e.g. `add CS2103`                                |
+| **add**  | `add MODULE-CODE`<br> e.g. `add CS2103 s1`                             |
 | **rm**   | `rm MODULE-CODE`<br> e.g. `rm CS2103`                                  |
 | **pick** | `pick MODULE-CODE LESSON-TYPE LESSON-ID`<br> e.g. `pick CS2103 TUT 06` |
 | **exit** | `exit`                                                                 |
