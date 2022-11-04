@@ -106,11 +106,8 @@ public class ParserUtil {
 
         LessonTypeEnum s1 = LessonTypeEnum.fromName(toCheck);
 
-        if (!s1.equals(LessonTypeEnum.UNSUPPORTED)) {
-            return Optional.of(s1);
-        }
+        return Optional.of(s1);
 
-        return Optional.empty();
     }
     /**
      * Parse semester details according to user input

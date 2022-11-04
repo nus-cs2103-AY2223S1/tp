@@ -28,6 +28,7 @@ public class LessonPill extends Pill {
         super(formatLesson(id, lessons), DEFAULT_BG_COLOR,
             DEFAULT_TEXT_COLOR,
             DEFAULT_FONT_SIZE);
+        super.setDisable(true);
     }
 
     private static String formatLesson(String id, List<Lesson> lessons) {
