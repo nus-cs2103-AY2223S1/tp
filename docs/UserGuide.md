@@ -54,7 +54,7 @@ The following icons are used in the _User Guide_ to denote special information t
 3. Copy the file to the folder you want to use as the _home folder_ for your Mass Linkers.
 
 4. Double-click the file to start the app. If done correctly, the GUI similar to the one below should appear in a few seconds. The image below is annotated with the various sections of the UI.
-   * Note for OS-X users: If you face difficulty running Mass Linkers, refer to the [FAQ](#faq) section.<br>
+   * Note for Mac users: If you face difficulty running Mass Linkers, refer to the [FAQ](#faq) section.<br>
 ![Ui](images/UiBreakDown.png)
 
 5. The app has been populated with some sample data. If you wish to start with an empty set of data, execute the [Clear](#2-clear-all-data-clear) command.
@@ -96,10 +96,11 @@ The following notes outline several noteworthy format which the [Feature](#featu
   * If you specify `n/John Doe n/Bob Tan`, only `n/Bob Tan` will be saved.
   * If you specify `p/12341234` `p/56785678`, only `p/56785678` will be saved.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
-  Example:
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) and `mod mark all` will be ignored.
+  <br>Example:
   * If the command specifies `help 123`, it will be interpreted as `help`.
   * If the command specifies `exit 345`, it will be interpreted as `exit`.
+  * If the command specifies `mod mark all 123`, it will be interpreted as `mod mark all`.
 
 </div>
 
@@ -440,6 +441,7 @@ Facing an issue? Below are several commonly asked questions, which address techn
 **Q**: Do I need internet connection to use Mass Linkers?<br>
 **A**: No, internet connection is not required. 
 
+<span style="background-color: #FFFF00">Important for Mac users</span><br>
 **Q**: I am using Mac and I tried opening the `MassLinkers.jar` file by double-clicking it in Finder. It says *"MassLinkers.jar" cannot be opened because it is from an unidentified developer.*<br>
 **A**: Right click the `MassLinkers.jar file` and select `Open`. When a warning message that says _macOS cannot verify the developer of "MassLinkers.jar". Are you sure you want to open it?_ appears, select `Open`. Alternatively, you can right click the `MassLinkers.jar` file and select `Open with JavaLauncher(default)`. 
 
