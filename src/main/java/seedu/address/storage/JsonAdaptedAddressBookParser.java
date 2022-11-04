@@ -52,6 +52,8 @@ public class JsonAdaptedAddressBookParser {
         assert addressBookParser != null;
 
         alias.forEach((beforeAlias, newAlias) -> addressBookParser.addAlias(beforeAlias, newAlias));
-        macros.forEach((macro, customCommand) -> addressBookParser.addCommand(customCommand.toModelType()));
+        for (Map.Entry<String, JsonAdaptedCustomCommandBuilder> macro : macros.entrySet()) {
+            addressBookParser.addCommand(macro.getValue().toModelType());
+        }
     }
 }
