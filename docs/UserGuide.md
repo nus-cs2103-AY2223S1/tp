@@ -175,6 +175,11 @@ The commands in this segment are focused on creating, editing and removing data 
 These commands are:
 
 * [Adding a patient](#adding-a-patient-add)
+* [Editing a patient](#editing-a-patient-edit)
+* [Deleting a patient](#deleting-a-patient-delete)
+* [Creating an appointment](#creating-past-appointment-for-patient-appt)
+* [Deleting an appointment](#deleting-past-appointment-for-patient-delappt)
+* [Consulting a patient](#consulting-a-patient-consult)
 
 ### Adding a patient: `add`
 
@@ -230,7 +235,7 @@ If patient type is outpatient: <br>
 `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/outpatient m/panadol m/ibuprofen`
 ![Add John Doe Outpatient Result](images/ug-images/addCommand/addJohnDoeOutpatientResult.png)
 
-[back to top](#back-to-topt)
+[back to top](#back-to-topt) | [back to segment top](#creating-patient-info)
 
 ### Editing a patient: `edit`
 
@@ -283,6 +288,8 @@ If not, please follow the error message given and format above to enter the corr
 
 * `edit 2 n/Betsy Crower m/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medication.
   ![edit Betsy Crower Result](images/ug-images/editCommand/editBetsyCrowerResult.png)
+
+[back to top](#back-to-topt) | [back to segment top](#creating-patient-info)
 
 ### Deleting a patient: `delete`
 
@@ -344,6 +351,8 @@ If not, please follow the error message given and format above to enter the corr
   for `John Doe`.
 ![Create Appointment for John Doe](images/ug-images/apptCommand/apptJohnDoeCommandResult.png)
 
+[back to top](#back-to-topt) | [back to segment top](#creating-patient-info)
+
 ### Deleting past appointment for patient: `delappt`
 
 <div markdown="block" class="alert alert-info">
@@ -370,6 +379,8 @@ If not, please follow the error message given and format above to enter the corr
 * `get /n John` displays `John Doe` at index 1 and `John` at index 2.
 * Following this, `delappt 1` will remove `John Doe`'s most recent past appointment.
 ![Delete Appointment for John Doe](images/ug-images/delapptCommand/delapptJohnDoeCommandResult.png)
+
+[back to top](#back-to-topt) | [back to segment top](#creating-patient-info)
 
 ### Consulting a patient: `consult`
 Creates a past appointment for the patient on the current date. If the patient has an upcoming appointment for the current 
@@ -399,8 +410,15 @@ If not, please follow the error message given and format above to enter the corr
 clear his upcoming appointment which was scheduled for the current date.
   ![Consult Alex Yeoh](images/ug-images/consultCommand/consultAlexYeohCommandResult.png)
 
+[back to top](#back-to-topt) | [back to segment top](#creating-patient-info)
+
 ---
 ## Retrieving Patient Info
+The commands in this segment are focused on filtering, processing then retrieving patient information in meaningful ways.
+These commands are:
+* [Listing all patients](#listing-all-patients-list)
+* [Locating patients](#locating-patients-get)
+* [Counting all patients](#obtaining-total-patient-count-count)
 
 ### Listing all patients: `list`
 
@@ -409,6 +427,8 @@ Lists all the patients in checkUp.
 Format: `list`
 
 * This command resets any filters applied via the `get` command below.
+
+[back to top](#back-to-topt) | [back to segment top](#retrieving-patient-info)
 
 ### Locating patients: `get`
 Finds patients based on the predicates and parameters you input.
@@ -552,6 +572,8 @@ If the command was successfully executed, you should see something similar to th
 
 If not, please follow the error message given and format above to enter the correct command.
 
+[back to top](#back-to-topt) | [back to segment top](#retrieving-patient-info)
+
 ### Obtaining total patient count: `count`
 
 Gets total number of patients. Also gets the total number of types of long-term medications prescribed to patients, and a breakdown of the number of patients
@@ -564,8 +586,19 @@ Format: `count`
 * If 32 of those patients are on long-term antidepressants, the count will also display
   `antidepressants: 32`.
 
+[back to top](#back-to-topt) | [back to segment top](#retrieving-patient-info)
+
 ---
 ## General Commands
+The commands in this segment are essential commands needed for the app to run correctly 
+and quality of life commands to improve the user experience.
+These commands are:
+* [Viewing a patient](#viewing-a-patient-view)
+* [Clearing all data](#clearing-all-data--clear)
+* [Viewing help](#open-the-help-page--help)
+* [Exiting the program](#exiting-the-program--exit)
+* [Mouse interactions](#mouse-interactions)
+* [Keyboard shortcuts](#keyboard-shortcuts)
 
 ### Viewing a Patient: `view`
 
@@ -592,7 +625,9 @@ If the command was successfully executed, you should see something similar to th
 
 If not, please follow the error message given and format above to enter the correct command.
 
-### Clearing all entries : `clear`
+[back to top](#back-to-topt) | [back to segment top](#general-commands)
+
+### Clearing all data : `clear`
 
 <div markdown="block" class="alert alert-info">
 
@@ -622,6 +657,8 @@ Format: `exit`
 
 * GUI settings (window height and width) are preserved during this process.
 
+[back to top](#back-to-topt) | [back to segment top](#general-commands)
+
 ### Saving the data
 
 checkUp has been created in such a manner that you do not need to manually save data. Simply executing commands saves
@@ -632,6 +669,7 @@ any data created or deleted from the application.
 * checkUp stores data in the JSON format, improving readability and allowing for manually editing the data file.
 * The data file can be found in `data/checkup.json` in the home folder where checkUp's `jar` file is stored.
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
+
 
 ### Mouse Interactions
 
@@ -662,6 +700,8 @@ Example:
 Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
   * Navigate past commands with the `UP` and `DOWN` arrow keys.
   * Clear the text currently in the command box with `Ctrl + Shift + C`.
+
+[back to top](#back-to-topt) | [back to segment top](#general-commands)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -698,3 +738,5 @@ the data of your previous checkUp home folder.
 | [**clear**](#clearing-all-entries--clear)                     | `clear`                                                                                                                                                                                                                                                                                                                                            |
 | [**help**](#open-the-help-page--help)                         | `help`                                                                                                                                                                                                                                                                                                                                             |
 | [**exit**](#exiting-the-program--exit)                        | `exit`                                                                                                                                                                                                                                                                                                                                             |
+
+[back to top](#back-to-topt)
