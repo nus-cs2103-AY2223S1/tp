@@ -384,6 +384,11 @@ public class Student {
         return (aClass.isSameDateAs(displayedClass.date));
     }
 
+    /**
+     * Checks if the student has a phone number that is the same as the next-of-kin's.
+     *
+     * @return true if phone number equals next-of-kin's phone.
+     */
     public boolean hasSharedPhone() {
         return phone.equals(nokPhone);
     }
