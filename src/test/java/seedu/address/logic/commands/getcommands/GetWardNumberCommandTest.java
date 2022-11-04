@@ -72,6 +72,16 @@ public class GetWardNumberCommandTest {
         assertEquals(Arrays.asList(BENSON, FIONA), model.getFilteredPersonList());
     }
 
+    @Test
+    public void execute_noneMatching_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        WardNumberPredicate predicate = preparePredicate("Z999 P986");
+        GetWardNumberCommand command = new GetWardNumberCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code WardNumberContainsKeywordsPredicate}.
      */

@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+'https://plantuml.com/sequence-diagram
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":CreatePastAppointmentCommandParser" as CreatePastAppointmentCommandParser LOGIC_COLOR
+participant ":CreatePastAppointmentCommand" as CreatePastAppointmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("appt 1...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("appt 1...")
+activate AddressBookParser
+
+create CreatePastAppointmentCommandParser
+AddressBookParser -> CreatePastAppointmentCommandParser
+activate CreatePastAppointmentCommandParser
+
+CreatePastAppointmentCommandParser -> AddressBookParser
+deactivate CreatePastAppointmentCommandParser
+
+AddressBookParser -> CreatePastAppointmentCommandParser : parse("appt 1...")
+activate CreatePastAppointmentCommandParser
+
+create CreatePastAppointmentCommandParser
+
+create CreatePastAppointmentCommand
+CreatePastAppointmentCommandParser -> CreatePastAppointmentCommand
+activate CreatePastAppointmentCommand
+
+CreatePastAppointmentCommand --> CreatePastAppointmentCommandParser : d
+deactivate CreatePastAppointmentCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CreatePastAppointmentCommandParser --> AddressBookParser : d
+destroy CreatePastAppointmentCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> CreatePastAppointmentCommand : execute()
+activate CreatePastAppointmentCommand
+
+CreatePastAppointmentCommand -> Model : addPastAppointment(d)
+activate Model
+
+Model --> CreatePastAppointmentCommand
+deactivate Model
+
+create CommandResult
+CreatePastAppointmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CreatePastAppointmentCommand
+deactivate CommandResult
+
+CreatePastAppointmentCommand --> LogicManager : result
+deactivate CreatePastAppointmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

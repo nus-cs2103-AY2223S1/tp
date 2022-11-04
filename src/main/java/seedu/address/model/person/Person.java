@@ -255,22 +255,22 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("; ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("; ")
                 .append(getEmail())
-                .append("; Next of Kin: ")
+                .append("; ")
                 .append(getNextOfKin())
-                .append("; Patient Type: ")
+                .append("; ")
                 .append(getPatientType());
 
         if (getPatientType().isInpatient()) {
-            builder.append("; Hospital Wing: ")
-                    .append(getHospitalWing())
-                    .append("; Floor Number: ")
-                    .append(getFloorNumber())
-                    .append("; Ward Number: ")
-                    .append(getWardNumber());
+            builder.append("; ")
+                    .append(getHospitalWing().orElse(new HospitalWing("south")))
+                    .append("; ")
+                    .append(getFloorNumber().orElse(new FloorNumber(10)))
+                    .append("; ")
+                    .append(getWardNumber().orElse(new WardNumber("D312")));
         }
 
 
@@ -280,7 +280,7 @@ public class Person {
             tags.forEach(tag -> builder.append(tag.medicationName).append(", "));
         }
         builder.append("; Past Appointments: ").append(getPastAppointmentCount());
-        builder.append(" Upcoming Appointment: ").append(getUpcomingAppointment());
+        builder.append("; ").append(getUpcomingAppointment().orElse(new UpcomingAppointment("")));
         return builder.toString();
     }
 

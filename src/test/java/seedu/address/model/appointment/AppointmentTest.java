@@ -22,7 +22,14 @@ class AppointmentTest {
 
     @Test
     public void isValidDate_validDate_returnsTrue() {
+        // valid date -> returns true
         assertTrue(Appointment.isValidDate("01-01-2020"));
+
+        // February 29 in a leap year -> returns true
+        assertTrue(Appointment.isValidDate("29-02-2020"));
+
+        // May 31 -> returns true
+        assertTrue(Appointment.isValidDate("31-05-2020"));
     }
 
     @Test
@@ -38,6 +45,12 @@ class AppointmentTest {
 
         // date that is in a month that does not exist -> returns false
         assertFalse(Appointment.isValidDate("14-14-2022"));
+
+        // February 29 in a non-leap year -> returns false
+        assertFalse(Appointment.isValidDate("29-02-2021"));
+
+        // April 31 -> returns false
+        assertFalse(Appointment.isValidDate("31-04-2021"));
     }
 
     @Test

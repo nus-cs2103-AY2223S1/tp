@@ -60,7 +60,7 @@ public class ConsultCommand extends Command {
         Person person = lastShownList.get(index.getZeroBased());
 
         if (person.getUpcomingAppointment().get().value.equals(LocalDate.now()
-                .format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))) {
+                .format(DateTimeFormatter.ofPattern("dd-MM-uuuu")))) {
             CommandResult editResult = new EditCommand(index, editPersonDescriptor).execute(model);
         }
 

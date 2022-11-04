@@ -48,6 +48,9 @@ public class GetHospitalWingCommandTest {
         // different types -> returns false
         assertFalse(getFirstHospitalWingCommand.equals(1));
 
+        // null -> returns false
+        assertFalse(getFirstHospitalWingCommand.equals(null));
+
         // different person -> returns false
         assertFalse(getFirstHospitalWingCommand.equals(getSecondHospitalWingCommand));
     }

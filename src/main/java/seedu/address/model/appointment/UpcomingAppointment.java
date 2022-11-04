@@ -17,7 +17,7 @@ public class UpcomingAppointment extends Appointment {
         if (date == null) {
             this.value = null;
         } else {
-            this.value = date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            this.value = date.format(DateTimeFormatter.ofPattern("dd-MM-uuuu"));
         }
     }
     /**

@@ -26,9 +26,8 @@ public class GetHospitalWingCommandParserTest {
         GetHospitalWingCommand expectedGetHospitalWingCommand =
                 new GetHospitalWingCommand(new HospitalWingContainsKeywordsPredicate(Arrays.asList("South", "East")));
         assertParseSuccess(parser, "South East", expectedGetHospitalWingCommand);
+
         // multiple whitespaces between keywords
-        expectedGetHospitalWingCommand =
-                new GetHospitalWingCommand(new HospitalWingContainsKeywordsPredicate(Arrays.asList("South", "East")));
         assertParseSuccess(parser, "\n South \n \t East  \t", expectedGetHospitalWingCommand);
     }
 
