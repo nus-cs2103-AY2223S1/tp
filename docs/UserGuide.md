@@ -503,7 +503,20 @@ _Details coming soon..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
+## 6. Appendix
+
+### 6.1 Glossary
+
+| Term                               | Description                                                                                                                                                                                    |
+|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**   | User interface that allows users to use text as commands to be executed by an application.                                                                                                     |
+| **Graphical User Interface (GUI)** | User interface that allows users to interact with an application through graphics and visuals                                                                                                  |
+| **Command**                        | User-specified instruction that ModQuik will execute.<br> e.g., `add student` and `find`                                                                                                       |
+| **Parameter**                      | A component of the command that the user will need to input.<br> e.g., `sort reminder by/deadline` where deadline is the parameter.                                                            |
+| **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix. |
+| **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                   |
+
+### 6.2 Command summary
 
 | Action                                           | Format, Examples                                                                                                                                                                                                                                           |
 |--------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -530,9 +543,8 @@ _Details coming soon..._
 | [**Help**][`help`]                               | `help`                                                                                                                                                                                                                                                     |
 | [**Exit**][`exit`]                               | `exit`                                                                                                                                                                                                                                                     |
 
---------------------------------------------------------------------------------------------------------------------
 
-## 7. Prefix summary
+### 6.3 Prefix summary
 
 | Prefix    | Symbolises       | Used in                                                                                                                                                                                    |
 |-----------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -578,16 +590,3 @@ _Details coming soon..._
 [`clear`]: #clear
 [`help`]: #help
 [`exit`]: #exit
-
---------------------------------------------------------------------------------------------------------------------
-
-## 8. Glossary
-
-| Term                               | Description                                                                                                                                                                                    |
-|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Command Line Interface (CLI)**   | User interface that allows users to use text as commands to be executed by an application.                                                                                                     |
-| **Graphical User Interface (GUI)** | User interface that allows users to interact with an application through graphics and visuals                                                                                                  |
-| **Command**                        | User-specified instruction that ModQuik will execute.<br> e.g., `add student` and `find`                                                                                                       |
-| **Parameter**                      | A component of the command that the user will need to input.<br> e.g., `sort reminder by/deadline` where deadline is the parameter.                                                            |
-| **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix. |
-| **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                   |
