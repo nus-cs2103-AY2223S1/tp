@@ -173,7 +173,7 @@ Traverse/Scroll **down**: `<Down>`
 | Action   | Format, Examples                                                       |
 |----------|------------------------------------------------------------------------|
 | **help** | `help`<br> e.g. `help find`                                            |
-| **ls**   | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`, `ls MA --user`           |
+| **ls**   | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`                           |
 | **find** | `find KEYWORD`<br> e.g. `find compilers`                               |
 | **view** | `view MODULE-CODE`<br> e.g. `view CS2103`                              |
 | **preq** | `preq MODULE-CODE`<br> e.g. `preq CS2103`                              |
