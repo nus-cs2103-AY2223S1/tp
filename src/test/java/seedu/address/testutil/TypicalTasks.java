@@ -36,6 +36,7 @@ public class TypicalTasks {
     public static final Task TASK_B = new TaskBuilder().withModule("cs2030")
         .withTaskDescription("Task B")
         .withStatus("incomplete")
+        .withPriorityTag(new PriorityTag("low"))
         .build();
     public static final Task TASK_C = new TaskBuilder().withModule("cs2040")
         .withTaskDescription("Task C")
