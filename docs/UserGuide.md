@@ -154,7 +154,7 @@ TrackO's functionalities!
 
 1. We start off by getting to know how to manage your **inventory**!
 
-   1. Adding an item: `addi`
+   1. **Adding an item: `addi`**
        * If your small business has `350` units of the new item, `Teddy bear keychain` currently in your physical inventory.
          It costs `$0.89` to make these keychains, and you will be selling them at `$3.50` each. You can add these items 
          to TrackO, with the following command:
@@ -164,10 +164,11 @@ TrackO's functionalities!
 
          You should see this item appear in TrackO at index `5` as shown below:
    
-
+         <img src="./images/user-guide/Tutorial1.png" alt="Tutorial1">
+    
 2. Next, we move on to order management:
 
-    1. Adding an order: `addo`
+    1. **Adding an order: `addo`**
        * If you have a customer named `Jonathan Chee` living at `43 Clementi Road, 639433` with an email address `JonChee@gmail.com` and phone number of
         `96785944`. You can enter the customer details into the [command box](#layout) using the following command: <br>
          `addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com a/43 Clementi Road, 639433`
@@ -175,25 +176,33 @@ TrackO's functionalities!
          following command into the [command box](#layout): <br>
          `i/teddy bear keychains q/1`
        * Lastly, type `done` to finish adding an order to TrackO!
-        
+
          You should see this order appear in TrackO at index 5 as shown below:
+       
+         <img src="./images/user-guide/Tutorial2.png" alt="Tutorial2">
 
     <div markdown="span" class="alert alert-primary">:bulb: **Note:**
     If an item is not in your inventory, TrackO does not allow you to add that item to an order!
     </div>
+   <br>
 
-   2. Finding order(s): `findo`
+   2. **Finding order(s): `findo`**
       * Our application allows you to search for orders by different fields (e.g. payment status, delivery status, customer details).
       * To find orders to be delivered to `Clementi` which have not been paid for, enter the following command to the [command box](#layout):
-         <br>
+
          `findo -P a/Clementi`
    
-        You should see these orders appear in the [order list](#layout).
-
-   3. Listing order(s): `listo`
+        You should see these orders appear in the [order list](#layout), as shown below:
+        
+        <img src="./images/user-guide/Tutorial3.png" alt="Tutorial3">
+    
+   3. **Listing order(s): `listo`**
        * To view all your orders again, enter `listo`.
 
-         You should see these orders appear in the [order list](#layout).
+         You should see these orders appear in the [order list](#layout), as shown below:
+         
+         <img src="./images/user-guide/Tutorial4.png" alt="Tutorial4">
+         <br>
 
 Now that you're done trying out some commands, you can enter `exit` to leave the application. We hope that this short tutorial was helpful! 
 To check out more commands, you can head over to our [features section](#features).
