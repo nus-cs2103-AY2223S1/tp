@@ -3,33 +3,58 @@ layout: page
 title: User guide
 ---
 
-TABS helps project team leaders **overview tasks assigned to group members**. It is targeted at individuals with less programming background i.e. **less CLI-intensive** in nature.
+TABS is a project centric desktop application specially designed to manage contacts, groups and tasks within members of the group.
 
-- [`Quick start`](#quick-start)
-- [`Features`](#features)
-  - [Viewing help: `help`](#viewing-help-help)
-  - [Adding a person: `addperson`](#adding-a-person-addperson)
-  - [Deleting a person : `deleteperson`](#deleting-a-person-deleteperson)
-  - [Editing a person: `editperson`](#editing-a-person-editperson)
-  - [Locating persons by name: `findperson`](#locating-persons-by-name-findperson)
-  - [Listing all persons: `listpersons`](#listing-all-persons-listpersons)
-  - [Adding a group: `addgroup`](#adding-a-group-addgroup)
-  - [Deleting a group: `deletegroup`](#deleting-a-group-deletegroup)
-  - [Adding a member to a group: `addmember`](#adding-a-member-to-a-group-addmember)
-  - [Deleting a member from a group: `deletemember`](#deleting-a-member-from-a-group-deletemember)
-  - [Display a group: `displaygroup`](#display-a-group-displaygroup)
-  - [Listing all groups: `listgroups`](#listing-all-groups-listgroups)
-  - [Assigning a task to a member: `assigntask`](#assigning-a-task-to-a-member-assigntask)
-  - [Deleting a task from a member: `deletetask`](#deleting-a-task-from-a-member-deletetask)
-  - [Assigning a task to all members: `assigntaskall`](#assigning-a-task-to-all-members-assigntaskall)
-  - [Deleting a task from all members: `deletetaskall`](#deleting-a-task-from-all-members-deletetaskall)
-  - [Clearing existing data: `clear`](#clearing-all-entries-clear)
-  - [Exiting the program : `exit`](#exiting-the-program-exit)
-- [`Command summary`](#command-summary)
+# Target User
+TABS's target users are student project team leaders who are facing issues with **group management** and **task allocation**.
+
+TABS aims to help project team leaders by
+1. Simplifying the **group management** process.
+2. Providing an **overview** of tasks assigned to members.
+
+It is targeted at individuals with less programming background i.e. **less CLI-intensive** in nature.
+
+# Structure of this Document
+This document is structured chronologically so that you can follow through with this guide while using the product.
+
+Please refer to the Table of Contents if you are lost at any point of time.
+
+# Table of Contents
+- [1. Quick start](#1-quick-start)
+- [2. Reading the Document](#2-reading-the-document)
+  - [2.1 Text Style](#2.1-text-style)
+  - [2.2 Feature Overview](#2.2-feature-overview)
+  - [2.3 GUI Interface](#2.3-GUI-interface)
+  - [2.4 Command Format](#2.4-command-format)
+  - [2.5 Prefixes](#2.5-prefixes)
+- [3. Features](#3-features)
+  - [3.1 Contact Features](#3.1-contact-features)
+    - [3.1.1 Adding a person: `addperson`](#3.1.1-adding-a-person-addperson)
+    - [3.1.2 Deleting a person : `deleteperson`](#3.1.2-deleting-a-person-deleteperson)
+    - [3.1.3 Editing a person: `editperson`](#3.1.3-editing-a-person-editperson)
+    - [3.1.4 Locating persons by name: `findperson`](#3.1.4-locating-persons-by-name-findperson)
+    - [3.1.5 Listing all persons: `listpersons`](#3.1.5-listing-all-persons-listpersons)
+  - [3.2 Group Features](#3.2-group-features)
+    - [3.2.1 Adding a group: `addgroup`](#3.2.1-adding-a-group-addgroup)
+    - [3.2.2 Deleting a group: `deletegroup`](#3.2.2-deleting-a-group-deletegroup)
+    - [3.2.3 Adding a member to a group: `addmember`](#3.2.3-adding-a-member-to-a-group-addmember)
+    - [3.2.4 Deleting a member from a group: `deletemember`](#3.2.4-deleting-a-member-from-a-group-deletemember)
+    - [3.2.5 Display a group: `displaygroup`](#3.2.5-display-a-group-displaygroup)
+    - [3.2.6 Listing all groups: `listgroups`](#3.2.6-listing-all-groups-listgroups)
+  - [3.3 Task Features](#3.3-task-features)
+    - [3.3.1 Assigning a task to a member: `assigntask`](#3.3.1-assigning-a-task-to-a-member-assigntask)
+    - [3.3.2 Deleting a task from a member: `deletetask`](#3.3.2-deleting-a-task-from-a-member-deletetask)
+    - [3.3.3 Assigning a task to all members: `assigntaskall`](#3.3.3-assigning-a-task-to-all-members-assigntaskall)
+    - [3.3.4 Deleting a task from all members: `deletetaskall`](#3.3.4-deleting-a-task-from-all-members-deletetaskall)
+  - [3.4 Miscellaneous Features](#3.4-miscellaneous-features)
+    - [3.4.1 Viewing help: `help`](#3.4.1-viewing-help-help)
+    - [3.4.2 Clearing existing data: `clear`](#3.4.2-clearing-all-entries-clear)
+    - [3.4.3 Exiting the program : `exit`](#3.4.3-exiting-the-program-exit)
+- [4. Glossary](#4-glossary)
+- [5. Command summary](#5-command-summary)
 
 ---
-## Quick start
-
+# 1. Quick start
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest TABS.jar.
 3. Copy the file to the folder you want to use as the home folder for your TABS.
@@ -42,9 +67,30 @@ Note how the app contains some sample data.
 
 
 --------------------------------------------------------------------------------------------------------------------
+# 2. Reading the Document
+This section will introduce you to the different symbols and syntax used throughout the guide, as well
+as provide an overview of the features and GUI interface of TABS.
 
-## Features
+## 2.1 Text Style
+Text that appear as `this` form refers to special terms related to TABS.
 
+## 2.2 Feature Overview
+The features of TABS are as such:
+1. Contact management features - covering how to manage **Contacts** in TABS.
+2. Group management features - covering how to manage **Groups**, consisting of **Members** in TABS.
+3. Task management features - covering how to manage **Tasks** amongst **Members**.
+4. Miscellaneous features - other features for convenience.
+
+<div markdown="span" class="alert alert-primary">
+  :information_source: **Note**:
+
+**Members** and **Contacts** are different.
+- In order to add **Members**, the persons have to be present in TABS as **Contacts**.
+- On deletion of **Members** in **Groups**, the corresponding **Contacts** of the person will still remain.
+
+</div>
+
+## 2.3 GUI Interface
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Shortcut keys to use the application:**<br>
@@ -53,8 +99,9 @@ Note how the app contains some sample data.
 
 * Use arrow keys to switch between *Contact details* and *Assignments*.
 
-**:information_source: Notes about the command format:**<br>
+</div>
 
+## 2.4 Command Format
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `addperson n/NAME`, `NAME` is a parameter which can be used as `addperson n/John Doe`.
 
@@ -73,20 +120,18 @@ Note how the app contains some sample data.
 * Extraneous parameters for commands that do not take in parameters (such as `listpersons`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `listpersons 123`, it will be interpreted as `listpersons`.
 
-* Commands involving the parameter `NAME` is case-sensitive, the `NAME` specified must be 
-exactly the same as the one stored in TABS.
+* Commands involving the parameter `NAME` is case-sensitive, the `NAME` specified must be
+  exactly the same as the one stored in TABS.
 
-</div>
+## 2.5 Prefixes
 
-### Viewing help: help
+-------------------------------------------------------------------------------------------------------------------
+# 3. Features
 
-Shows a list of commands explaining how to use TABS and a message to the TABS' user guide.
+## 3.1 Contact Features
+This section covers features related to Contacts.
 
-![Help Example](images/user-guide/Help.png)
-
-Format: help
-
-### Adding a person: `addperson`
+### 3.1.1 Adding a person: `addperson`
 
 Adds a person to TABS.
 
@@ -108,7 +153,7 @@ Examples:
 * `addperson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addperson n/Betsy Crowe t/friend e/betsycrowe@example a/Newgate Prison p/1234567 t/criminal`
 
-### Deleting a person: `deleteperson`
+### 3.1.2 Deleting a person: `deleteperson`
 
 Deletes the specified person from TABS.
 
@@ -119,7 +164,7 @@ Examples:
 * `deleteperson Betsy` deletes the person with the username `Betsy`.
 * `deleteperson Betsy Hoover` deletes the person with the username `Betsy Hoover`.
 
-### Editing a person: `editperson`
+### 3.1.3 Editing a person: `editperson`
 
 Edits an existing person in TABS.
 
@@ -135,7 +180,7 @@ Examples:
 *  `editperson John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of `John Doe` to be `91234567` and `johndoe@example.com` respectively.
 *  `editperson BetsyCrower n/Betsy Crower t/` Edits the name of `BetsyCrower` to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `findperson`
+### 3.1.4 Locating persons by name: `findperson`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -154,7 +199,7 @@ Examples:
 <br>
   ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
 
-### Listing all persons: `listpersons`
+### 3.1.5 Listing all persons: `listpersons`
 
 Shows a list of all persons in TABS.
 
@@ -275,6 +320,14 @@ Format: `deletetaskall g/GROUP task/TASK`
 Examples:
 * `deletetaskall g/CS2103T task/TeamProject` deletes task `TeamProject` from all members in group `CS2103T`.
 * `deletetaskall g/Team Delta task/Delta Project` deletes task `Delta Project` from all members with in `Team Delta`.
+
+### Viewing help: help
+
+Shows a list of commands explaining how to use TABS and a message to the TABS' user guide.
+
+![Help Example](images/user-guide/Help.png)
+
+Format: help
 
 ### Clearing all entries: `clear`
 
