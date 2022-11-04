@@ -436,7 +436,7 @@ Edits an existing task in the task list.
 Format: `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT]`
 
 * Edits the person at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* At least one of the optional fields (TITLE, DEADLINE, PROJECT) must be provided. If none are provided, the application will give an error.
 * Existing values will be updated to the input values.
 
 ---
