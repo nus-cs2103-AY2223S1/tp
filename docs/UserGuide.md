@@ -677,7 +677,7 @@ Students' data is saved as a JSON file `[JAR file location]/data/teachersPet.jso
 <div markdown="span" class="alert alert-danger">❗ **Caution:** If your changes to the data file makes its format invalid,
 Teacher’s Pet will not be able to load any data into the app. Do not worry that your data file will be discarded!
 To proceed, you will need to correct any changes you made in order to load the data.
-You may also delete the JSON file to have a new set of data.
+You may also delete the JSON file o have a new set of generated sample data.
 </div>
 
 [↑ Back to top](#table-of-contents)
