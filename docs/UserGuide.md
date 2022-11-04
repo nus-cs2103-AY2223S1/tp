@@ -102,7 +102,7 @@ The following is the main user interface of NUScheduler.
 
 * For `Event` and `Profile` commands, option flags (-x where x is a placeholder for valid flags e.g. a, d, v) must be used after the `event` and `profile` command word.
 
-* For `Event` and `Profile` commands which require an `Index`, the `Index` must be provided after the option flag.
+* For `Event` and `Profile` commands which require an `INDEX`, the `INDEX` must be provided after the option flag.
 
 * In addition, the `INDEX` provided must be a positive number less than 10000 as NUScheduler is designed to handle a maximum of 9999 entries for `Profile`s and `Event`s which covers the needs for most NUS students.
 
