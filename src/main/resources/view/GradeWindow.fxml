@@ -34,13 +34,14 @@
                     </Label>
                     <Label fx:id="studentClass" text="Label">
                     </Label>
-                    <HBox fx:id = "inputBox">
+                    <HBox fx:id = "inputBox" alignment = "CENTER">
                         <TextField fx:id="enteredScore" promptText="Enter grade here"/>
                         <Button fx:id="copyButton" mnemonicParsing="false" onAction = "#enterGradeForStudent" text="Enter">
                             <HBox.margin>
                                 <Insets left="5.0"/>
                             </HBox.margin>
-                        </Button></HBox>
+                        </Button>
+                    </HBox>
 
                 </children>
                 <opaqueInsets>
