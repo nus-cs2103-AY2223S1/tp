@@ -40,7 +40,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New guest added: %1$s";
     public static final String MESSAGE_DUPLICATE_GUEST = "This guest already exists in the guest book";
-    public static final String MESSAGE_ROOM_OCCUPIED = "The room is currently occupied by a guest";
+    public static final String MESSAGE_ROOM_OCCUPIED = "All guests are required to have unique rooms";
 
     private final Guest toAdd;
 
