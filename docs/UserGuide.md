@@ -356,7 +356,7 @@ Consequently, the commands are split into **5** main sections:
 4. [Link commands](#commands-to-manage-links--urls)
 5. [General commands](#general-commands)
 
-    <div markdown="block" class="alert alert-info">**:information_source: Notes about command format**
+<div markdown="block" class="alert alert-info">**:information_source: Notes about command format**
 
 - Syntax for each command adheres to the structure laid out in the 
 [help command section](#example-command-help-message---add-person---help)
@@ -366,6 +366,7 @@ Consequently, the commands are split into **5** main sections:
 - Parameters with ellipsis (`...`) behind them means that more than 1 parameter can be specified
 - If an extra parameter is specified, the command will not execute and an error message will be displayed
 [//]: # (TODO: add reference to flags/parameter summary)
+
 </div>
 
 ### Commands to Manage Persons
