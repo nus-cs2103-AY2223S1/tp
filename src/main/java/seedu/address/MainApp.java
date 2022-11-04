@@ -39,6 +39,8 @@ public class MainApp extends Application {
 
     public static final Version VERSION = new Version(0, 2, 0, true);
 
+    protected static boolean isInInvalidFormat;
+
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
@@ -47,7 +49,6 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
     protected ClassStorage classStorage;
-    protected static boolean isInInvalidFormat;
 
     @Override
     public void init() throws Exception {

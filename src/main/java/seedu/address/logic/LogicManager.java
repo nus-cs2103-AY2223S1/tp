@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
@@ -19,7 +20,6 @@ import seedu.address.model.StatisticsCalculator;
 import seedu.address.model.student.Student;
 import seedu.address.storage.ClassStorage;
 import seedu.address.storage.Storage;
-import seedu.address.MainApp;
 
 /**
  * The main LogicManager of the app.
