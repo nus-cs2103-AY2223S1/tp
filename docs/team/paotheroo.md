@@ -9,38 +9,38 @@ HackAssist is a desktop address book and task management application used for ma
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Created models for task and task list, and integrated them into the application.
+  * What it does: allows tasks and task commands to be created and implemented respectively.
+  * Justification: This feature provides a baseline foundation for the team to build on for future task commands.
+  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of all possible class designs, without breaking the usability of existing features related to person.
+  * Credits: Inspiration was taken from how a person is modelled in the application.
+  * Pull requests: [\#43](), [\#44](), [#54]()
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added the ability to filter tasks by deadline.
+  * What it does: allows the user to filter the task list to only display tasks that have deadlines specific to and before the input date.
+  * Justification: This feature improves the product significantly because a user can now modify the task list and quickly identify specific tasks based on input deadline, without having to search through the entire task list.
+  * Credits: Inspiration was taken from the 'find' feature.
+  * Pull requests: [\#84]()
+
+* **New Feature**: Added the ability to find tasks using keywords.
+  * What it does: allows the user to find and list all tasks that have names or descriptions that contain any of the input keywords. Keyword matching is case-insensitive.
+  * Justification: This feature improves the product significantly because a user can now modify the task list and quickly identify specific tasks based on input keywords, without having to search through the entire task list.
+  * Credits: Inspiration was taken from the 'find' feature.
+  * Pull requests: [\#114]()
 
 * **Code contributed**: [RepoSense link]()
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Synced the 'filterByCategory' and 'filterByDeadline' features into a single 'filter' command (Pull request [\#98]())
+  * Synced the 'sortByPriority' and 'sortByDeadline' features into a single 'sort' command (Pull request [\#112]())
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the 'listTasks' feature [\#108]()
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added non-function requirements [\#21]()
+    * Added implementation details of the 'filterByDeadline' feature [\#108]()
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
+  * PRs reviewed: [\#42](), [\#88]()
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{to be updated soon}_
