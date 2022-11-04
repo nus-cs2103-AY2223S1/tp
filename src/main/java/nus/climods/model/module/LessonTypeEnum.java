@@ -11,7 +11,7 @@ public enum LessonTypeEnum {
     LAB("Laboratory"),
     REC("Recitation"),
     SEC("Sectional Teaching"),
-    UNSUPPORTED("");
+    OTHERS("Others");
 
     private final String valueStr;
 
@@ -37,7 +37,7 @@ public enum LessonTypeEnum {
             }
         }
 
-        return LessonTypeEnum.UNSUPPORTED;
+        return LessonTypeEnum.OTHERS;
     }
 
     /**
@@ -54,7 +54,7 @@ public enum LessonTypeEnum {
             }
         }
 
-        return LessonTypeEnum.UNSUPPORTED;
+        return LessonTypeEnum.OTHERS;
     }
 
     @Override
