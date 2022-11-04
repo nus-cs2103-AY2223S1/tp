@@ -48,14 +48,11 @@ Student *--> NokPhone
 Student *--> Email
 Student *--> Address
 Student *--> Class
-Student *--> Money
-Student *--> AdditionalNotes
-Student *--> "*" Tag
-Student *--> Class
-Student *--> AdditionalNotes
 Student *--> MoneyOwed
 Student *--> MoneyPaid
 Student *--> RatesPerClass
+Student *--> AdditionalNotes
+Student *--> "*" Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> NokPhone
