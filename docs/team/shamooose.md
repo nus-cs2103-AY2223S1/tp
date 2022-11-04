@@ -45,12 +45,14 @@ Given below are my contributions to the project.
     * Added documentation for the feature `modules left` [#108](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/108)
     * Did cosmetic tweaks to existing documentation of features `edit`, `delete`, `module`: [#108](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/108)
     * Organised table of contents [#166](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/166)
-    * Did cosmetic tweaks to existing documentation of features `add user`, `add contacts`, `edit contacts`: [#166](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/166)
+    * Did cosmetic tweaks to existing documentation of features `add user`, `add contacts`, `edit contacts` [#166](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/166)
     * Added documentation for the features `find`, `clear`, `help` [#166](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/166)
     * Added documentation for the feature `Github URL button` [#169](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/169)
     * Added images for the features `add user`, `module`, `find`, `modules left` [#169](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/169)
     * Adjusted width of images [#184](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/184)
     * Edited documentation of `modules left` command [#184](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/184)
+    * Did cosmetic tweaks to existing documentation of feature `clear` [#208](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/208)
+    * Annotated screenshots for AddUserProfile, NextSem, EditModules, FilterModules, FilterTags, FindCommand and ModulesLeft [#208](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/208)
 
   * Developer Guide:
     * Added use cases for `User` and `Module` related features [#91](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/91)
@@ -62,6 +64,10 @@ Given below are my contributions to the project.
     * Updated PersonClassDiagram to include `Tag` [#192](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/192)
     * Added design considerations for `User` and `Module` class, Edit modules and Modules left features [#199](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/199)
     * Added descriptions to edit contact's modules and edit user's modules features [#199](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/199)
+    * Added descriptions to modules left feature [#208](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/208)
+    * Added ModuleCommandSequenceDiagram, ModuleActivityDiagram and updated documentation of `Module` class and `module` command [#208](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/208)
+    * Added ModulesLeftActivityDiagram and updated documentation of `modules left` command [#208](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/208)
+    * Added test cases for adding user/contacts, editing user/contacts, deleting user, editing user/contact's modules and modules left [#208](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/208)
 
 
 * **Contributions to Team-based tasks**:
@@ -71,4 +77,4 @@ Given below are my contributions to the project.
 * **Review / mentoring contributions**:
   * PRs approved: [#53](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/53), [#61](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/61), [#68](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/68),
   [#89](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/89), [#90](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/90), [#168](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/168),
-  [#175](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/175), [#188](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/188)
+  [#175](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/175), [#188](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/188), [#207](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/207)

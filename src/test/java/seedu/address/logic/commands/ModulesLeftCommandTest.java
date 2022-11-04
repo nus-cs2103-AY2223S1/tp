@@ -36,7 +36,8 @@ public class ModulesLeftCommandTest {
         Index index = Index.fromOneBased(1);
         ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
 
-        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS, expectedSet);
+        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS,
+                ModulesLeftCommand.moduleSetToString(expectedSet));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -53,7 +54,8 @@ public class ModulesLeftCommandTest {
         Index index = Index.fromOneBased(2);
         ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
 
-        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS, expectedSet);
+        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS,
+                ModulesLeftCommand.moduleSetToString(expectedSet));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -71,7 +73,8 @@ public class ModulesLeftCommandTest {
         Index index = Index.fromOneBased(3);
         ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
 
-        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS, expectedSet);
+        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS,
+                ModulesLeftCommand.moduleSetToString(expectedSet));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -88,7 +91,8 @@ public class ModulesLeftCommandTest {
         Index index = Index.fromOneBased(4);
         ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
 
-        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS, expectedSet);
+        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS,
+                ModulesLeftCommand.moduleSetToString(expectedSet));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -105,45 +109,49 @@ public class ModulesLeftCommandTest {
         Index index = Index.fromOneBased(5);
         ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
 
-        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS, expectedSet);
+        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS,
+                ModulesLeftCommand.moduleSetToString(expectedSet));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         assertCommandSuccess(modulesLeftCommand, model, expectedMessage, expectedModel);
     }
 
-    //    @Test
-    //    public void execute_dataModules_success() {
-    //        Set<Module> expectedSet = new HashSet<>();
-    //        String[] modStringArray = {"CS2102", "CS3223", "CS4221", "CS4224", "CS4225"};
-    //        for (String modString : modStringArray) {
-    //            expectedSet.add(new Module(modString));
-    //        }
-    //        Index index = Index.fromOneBased(6);
-    //        ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
-    //
-    //        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS, expectedSet);
-    //
-    //        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-    //
-    //        assertCommandSuccess(modulesLeftCommand, model, expectedMessage, expectedModel);
-    //    }
-    //
-    //    @Test
-    //    public void execute_infoModules_success() {
-    //        Set<Module> expectedSet = new HashSet<>();
-    //        String[] modStringArray = {"CS2108", "CS3245", "CS4242", "CS4248", "CS4347"};
-    //        for (String modString : modStringArray) {
-    //            expectedSet.add(new Module(modString));
-    //        }
-    //        Index index = Index.fromOneBased(7);
-    //        ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
-    //
-    //        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS, expectedSet);
-    //
-    //        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-    //
-    //        assertCommandSuccess(modulesLeftCommand, model, expectedMessage, expectedModel); }
+    @Test
+    public void execute_dataModules_success() {
+        Set<Module> expectedSet = new HashSet<>();
+        String[] modStringArray = {"CS2102", "CS3223", "CS4221", "CS4224", "CS4225"};
+        for (String modString : modStringArray) {
+            expectedSet.add(new Module(modString));
+        }
+        Index index = Index.fromOneBased(6);
+        ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
+
+        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS,
+                ModulesLeftCommand.moduleSetToString(expectedSet));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        assertCommandSuccess(modulesLeftCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_infoModules_success() {
+        Set<Module> expectedSet = new HashSet<>();
+        String[] modStringArray = {"CS2108", "CS3245", "CS4242", "CS4248", "CS4347"};
+        for (String modString : modStringArray) {
+            expectedSet.add(new Module(modString));
+        }
+        Index index = Index.fromOneBased(7);
+        ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
+
+        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS,
+                ModulesLeftCommand.moduleSetToString(expectedSet));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        assertCommandSuccess(modulesLeftCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_networkModules_success() {
@@ -155,7 +163,8 @@ public class ModulesLeftCommandTest {
         Index index = Index.fromOneBased(8);
         ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
 
-        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS, expectedSet);
+        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS,
+                ModulesLeftCommand.moduleSetToString(expectedSet));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -172,29 +181,31 @@ public class ModulesLeftCommandTest {
         Index index = Index.fromOneBased(9);
         ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
 
-        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS, expectedSet);
+        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS,
+                ModulesLeftCommand.moduleSetToString(expectedSet));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         assertCommandSuccess(modulesLeftCommand, model, expectedMessage, expectedModel);
     }
 
-    //    @Test
-    //    public void execute_languagesModules_success() {
-    //        Set<Module> expectedSet = new HashSet<>();
-    //        String[] modStringArray = {"CS2104", "CS3211", "CS4212", "CS4215"};
-    //        for (String modString : modStringArray) {
-    //            expectedSet.add(new Module(modString));
-    //        }
-    //        Index index = Index.fromOneBased(10);
-    //        ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
-    //
-    //        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS, expectedSet);
-    //
-    //        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-    //
-    //        assertCommandSuccess(modulesLeftCommand, model, expectedMessage, expectedModel);
-    //        }
+    @Test
+    public void execute_languagesModules_success() {
+        Set<Module> expectedSet = new HashSet<>();
+        String[] modStringArray = {"CS2104", "CS3211", "CS4212", "CS4215"};
+        for (String modString : modStringArray) {
+            expectedSet.add(new Module(modString));
+        }
+        Index index = Index.fromOneBased(10);
+        ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
+
+        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS,
+                ModulesLeftCommand.moduleSetToString(expectedSet));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        assertCommandSuccess(modulesLeftCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_sweModules_success() {
@@ -206,7 +217,8 @@ public class ModulesLeftCommandTest {
         Index index = Index.fromOneBased(11);
         ModulesLeftCommand modulesLeftCommand = new ModulesLeftCommand(index);
 
-        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS, expectedSet);
+        String expectedMessage = String.format(ModulesLeftCommand.MESSAGE_SUCCESS,
+                ModulesLeftCommand.moduleSetToString(expectedSet));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
