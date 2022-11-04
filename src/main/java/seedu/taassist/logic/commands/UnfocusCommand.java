@@ -3,6 +3,7 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.logic.commands.CommandUtil.requireFocusMode;
 
+import seedu.taassist.logic.commands.actions.UiAction;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -22,6 +23,6 @@ public class UnfocusCommand extends Command {
         requireFocusMode(model, COMMAND_WORD);
         ModuleClass focusedClass = model.getFocusedClass();
         model.exitFocusMode();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, focusedClass), false, false, false, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, focusedClass), UiAction.UNFOCUS);
     }
 }
