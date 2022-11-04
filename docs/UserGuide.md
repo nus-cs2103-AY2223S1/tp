@@ -88,17 +88,26 @@ The `Result Display Window` displays feedback after executing a command. This in
 ### 4.4. Recognised Exercise Name List
 
 The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered in the system.
-<br><br>This list updates in real time and allows you to keep track of the exercises you have input in the past. As such, you are able to keep track of what you named your exercises; you would also be able to quickly identify any misspellings in the name of your inputted exercises.
+<br><br>
+
+Notice there are two counts under the list. 
+
+* **Count #1**: Displays the number of exercise names registered in the system (list circled in green).  
+* **Count #2**: Displays the total number of exercise entries in the system, inclusive of duplicates. 
+
+There are multiple "Squat" entries in the picture. They are registered under the same name "Squat" by the system, which is reflected by the first count. The second count includes duplicates and hence, it counts each exercise entry individually even if they are registered under the same name.
+
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** Use the list circled in green to identify any mispellings in your exercise entries! <br> 
+
+e.g. If you see an entry for "Squatz" in the green list when you normally name your exercise "Squat", it means you have at least one entry that is spelled wrongly.
+</div> 
 
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
 
-* The `Recognised Exercises Count` displays the number of unique exercises registered in the system.
-* The `System Exercise Entries Count` displays the total number of exercise entries in the system.
-<br>
-
 **Adding and Deleting from the Exercise Name List**
 
-The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised Exercise Name List is automatically updated whenever you add or delete an entry from the system.
+The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised Exercise Name List is automatically updated whenever you add or delete an exercise entry from the system.
 
 <div id="names" markdown="span" class="alert alert-danger">:exclamation: **Caution:**<br>
 Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br>
