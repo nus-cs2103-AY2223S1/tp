@@ -10,8 +10,8 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
 public class Bill {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Bills should only contain numerical digits, one decimal point (.), and one leading plus (+) or minus (-) "
-                    + "sign.\n"
+            "Bills should only contain numbers, optionally one decimal point (.), and one leading plus (+) "
+                    + "or minus (-) sign.\n"
                     + "If a decimal point is used, there can be up to 2 digits after it (e.g., 2.5, 9.99).\n"
                     + "If no sign is used, the value is assumed to be positive.";
     public static final String VALIDATION_REGEX = "^[-+]?(\\d+(\\.\\d{0,2})?|\\d*\\.\\d{1,2})$";
