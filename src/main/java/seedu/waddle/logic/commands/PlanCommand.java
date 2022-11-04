@@ -13,8 +13,6 @@ import seedu.waddle.model.Model;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.DayNumber;
 import seedu.waddle.model.itinerary.Itinerary;
-import seedu.waddle.model.itinerary.exceptions.DayIndexOutOfBoundsException;
-import seedu.waddle.model.itinerary.exceptions.ItemIndexOutOfBoundsException;
 
 /**
  * Plans an item in the itinerary wish list.
@@ -63,14 +61,7 @@ public class PlanCommand extends Command {
 
         Item plannedItem;
 
-        try {
-            plannedItem = itinerary.planItem(itemIndex, dayNumber, startTime);
-        } catch (ItemIndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_INVALID_ITEM_NUMBER);
-        } catch (DayIndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_INVALID_DAY_NUMBER);
-        }
-
+        plannedItem = itinerary.planItem(itemIndex, dayNumber, startTime);
         return new CommandResult(String.format(MESSAGE_SUCCESS, plannedItem.getDescription()));
     }
 
