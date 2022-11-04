@@ -21,7 +21,7 @@ public class JsonArchivedTaskBookStorage implements ArchivedTaskBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonArchivedTaskBookStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonArchivedTaskBookStorage(Path filePath) {
         this.filePath = filePath;
