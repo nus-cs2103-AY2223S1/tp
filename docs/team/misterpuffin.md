@@ -17,21 +17,25 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=misterpuffin&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Added Undo Command [\#87](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/87)
+  * Added convenient reuse of commands using arrow keys [\#106](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/106)
+  * Added image uploads for Properties and Clients [\#92](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/92)
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `delete` and `find` [\#72]()
+    * Added documentation for Image Upload
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide:
     * Added implementation details of the `delete` feature.
+    * Added implementation details of the 'undo' feature.
+    * Added implementation details of the 'image upload' feature.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
