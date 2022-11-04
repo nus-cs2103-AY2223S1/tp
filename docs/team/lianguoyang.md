@@ -5,7 +5,7 @@ title: Lian Guo Yang's Project Portfolio Page
 
 ### Project: TABS
 
-TABS is a desktop scheduler application used by students managing team projects. 
+TABS is a desktop scheduler application used by students managing team projects.
 It allows the user who is a student to view a project’s members and their workload, allocate tasks to them.
 
 Given below are my contributions to the project.
@@ -65,7 +65,10 @@ Given below are my contributions to the project.
 
 **Review/mentoring contributions**:
 - PRs reviewed (with non-trivial review comments):
-[#103](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/103), [#109](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/109), [#114](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/114), [#115](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/115)
+[#103](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/103),
+[#109](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/109),
+[#114](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/114),
+[#115](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/115)
 
 
 **Evidence of helping others**
