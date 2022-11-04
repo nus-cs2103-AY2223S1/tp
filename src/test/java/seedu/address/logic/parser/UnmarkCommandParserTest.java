@@ -1,7 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DESC_AMY_REM;
+import static seedu.address.logic.commands.CommandTestUtil.HOMEWORK_DESC_AMY_REM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -9,7 +10,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.GradeProgressCommand;
-import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.MarkPersonDescriptor;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.testutil.MarkPersonDescriptorBuilder;
