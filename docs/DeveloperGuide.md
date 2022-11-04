@@ -45,8 +45,8 @@ checkUp's features include creating, viewing and managing patients' medical reco
 checkUp also allows users to:
 * search for patients by:
   * name;
-  * location in the hospital; and
-  * long-term medication.
+  * location in the hospital;
+  * long-term medication;
 * view the total number of patients in the system; and
 * view the total number of patients under specific long-term medication prescriptions.
 
@@ -54,7 +54,7 @@ checkUp also allows users to:
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the following guide: [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -180,6 +180,10 @@ How the parsing works:
 
 The `Model` component,
 
+* stores all registered patient data under the `Patient` package.
+* stores all prescribed medication data under the `Tag` package in a `MedicationMap` object.
+* stores all appointment data under the [`Appointment`](#appointments-feature) package.
+
 * stores all registered patient data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
@@ -276,6 +280,33 @@ Step 3. The medical assistant creates an `UpcomingAppointment` for John by execu
 now has an `UpcomingAppointment` associated with him.
 
 ![AppointmentObjectDiagramWithBothAppt](images/AppointmentObjectDiagramWithBothAppt.png)
+
+### Count feature
+
+The count feature allows the user to count the number of patients stored in checkUp. It also returns a list of long-term
+medications and how many patients are taking them. The count feature is facilitated by the `CountCommand` class.
+
+**Implementation**
+
+The count feature is implemented by the `CountCommand` class which extends the `Command` class. The overriden `execute()`
+method returns a `CommandResult` object which contains the number of patients and the list of long-term medications.
+
+The list of patients are stored in the `UniquePersonList` class. The list of medications are stored in the
+`MedicationMap` class, which encapsulates an `ObservableMap` object that maps the name of a medication (represented by a
+string) to the number of patients taking it (represented by an integer). Both the `UniquePersonList` and `MedicationMap`
+classes are stored in the `Model` component, and accessible through the `ReadOnlyAddressBook` interface.
+
+The `CountCommand` class depends on the `Model` interface to obtain the count of patients and the list of long-term
+medications. This is done through the `Model#getCensus()` method which uses the `ReadOnlyAddressBook` interface to get
+the census. `Model#getCensus()` in turn calls the `ReadOnlyAddressBook#getCensus()` method
+which interacts with the `UniquePersonList` class to get the list of patients, and the `MedicationMap` class to get the
+list of long-term medications.
+
+The following sequence diagram shows how the count feature works:
+
+[//]: # ([![CountCommandSequenceDiagram]&#40;images/CountCommandSequenceDiagram.png&#41;]&#40;images/CountCommandSequenceDiagram.png&#41;)
+
+
 
 ### Get Features (By prefixes)
 
