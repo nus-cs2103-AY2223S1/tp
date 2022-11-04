@@ -47,7 +47,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
    2. [**Item planning page commands**](#item-planning-page-commands)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always"></div>
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -76,7 +76,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always"></div>
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -118,7 +118,7 @@ Format: `help`
 Exits the Waddle program.
 
 Format: `exit`
-
+<div style="page-break-after: always"></div>
 ### The main page
 The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
 
@@ -243,8 +243,7 @@ Format: `select INDEX`
 
 Examples:
 * `select 1`
-
-
+<div style="page-break-after: always"></div>
 ### The planning page
 The planning page of an itinerary displays the list of items you have added to the itinerary. Items on the Wishlist that have not been added to you schedule yet will appear on top in order of priority, while scheduled items will appear in order of date and time.
 
@@ -405,7 +404,7 @@ Here's an example of how the generated PDF would look like:
 Returns you to the main itinerary list page.
 
 Format: `home`
-
+<div style="page-break-after: always"></div>
 ### Advanced
 
 ### Saving the data
@@ -421,14 +420,14 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always"></div>
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Waddle home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always"></div>
 ## Command summary
 
 ### Home page commands
