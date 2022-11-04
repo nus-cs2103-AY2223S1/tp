@@ -42,29 +42,24 @@ you can jump to our [Features](#features) section to learn more about the featur
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ArtBuddy.
 
-4. Double-click the file to start the app. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/CustomerView.png)
+4. Double-click the file to start the app. You can start typing to input your commands. If you click away, you can click on the top box to start typing again.
+5. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/UiCustomerList.png)
+Note that the images are to help with interface only. The actual details of the data may differ in your application.
+6. You can use the following commands in the Customer View:
 
-5. The following commands are available in Customer View:
+   * `addcus n/Betsy Crowe e/betsycrowe@example.com p/1234586` :  Creates a new customer named Betsy Crowe.
+   * `delcus 2` :  Deletes the 2nd customer displayed on the list.
+   * `opencus 2` : Selects the 2nd customer (Bernice Yu) on the list.
 
-   * **`addcus`**`n/John Doe e/johnd@example.com a/John t/animal cartoons t/vip` :  Creates a new customer named John Doe.
-   * **`delcus`**`4` :  Deletes the 4th customer displayed on the list.
-   * **`opencus`**`1` : Opens the 1st customer (Alex) on the list and brings you to the Commission View for Alex.
-
-
-6. In the Commission View, the list of all commissions from the opened customer (Alex) is displayed. <br> ![Ui](images/CommissionView.png)
-
-7. The following commands are available in Commission View:
-    * **`addcom`**` n/Tokyo Ghoul Fan art f/50 d/2022-10-10` : Creates a new commission titled Tokyo Ghoul Fan art under Simon.
-    * **`delcom`**`5` : Deletes the 5th commission from Simon on the list.
-    * **`opencom`**`4` : Opens the 4th commission titled Berserk and brings you to the Commission Details View.
-
-
-8. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Digital half-body portrait) is displayed. ![Ui](images/CommissionDetailsView.png)
-9. The following commands are available in Commission Details View:
-   * **`additer`**`/Users/Joseph/CSP/Devil-sketch.png` : Attaches the image at the specified file path to the opened commission.
-
-
-10. Refer to the [Features](#features) below for details of each command.
+7. In the Commission View, the list of all commissions from the opened customer (Alex Yeoh) is displayed. <br> ![Ui](images/UiCommissionList.png)
+8. You can use the following commands in the Commission View:
+    * `addcom n/Fate Archer f/60 d/2022-10-15 s/true p/Archery t/night t/city` : Creates a new commission titled "Fate Archer" under Meg.
+    * `delcom 2` : Deletes the 2nd commission from Alex Yeoh on the list.
+    * `opencom 1` : Opens the 1st commission titled "Alex Yeoh Commission 1" and updates the Commission Details View.
+9. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Alex Yeoh Commission 1) is displayed. <br> ![Ui](images/UiCommissionDetail.png)
+10. You can use the following commands in the Commission Details View:
+   * `additer d/2022-10-11 n/Add lighting p//Users/Joseph/CSP/sunshine_highlight.png f/Warmer tone might be better` : Adds an iteration to the selected commission and attaches the image at the specified file path to the iteration.
+11. Refer to the [Features](#features) below for details of each command.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -135,7 +130,9 @@ Examples:
 
 ### Adding a customer: `addcus`
 
-Adds a customer to ArtBuddy.
+Adds a customer to ArtBuddy. This can be done either by the command-line, or the graphical interface.
+
+**Adding by the Command-Line interface**
 
 Format: `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...​`
 
@@ -149,6 +146,15 @@ Creates the customer entry for John Doe with his details including multiple tags
 * `addcus n/Betsy Crowe e/betsycrowe@example.com p/12345867`
 Creates the customer entry for Betsy Crowe with her email and phone number.
 
+**Adding by the Graphical Interface**
+
+Adding a customer can also be done via the graphical interface by clicking on the `Add Customer` button in the top right corner of the Customer List Panel.
+
+![addcus button](images/AddcusButton.png)
+
+A new window will then pop up, where you will be prompted to fill in the details of the new customer.
+
+![addcus popup](images/AddcusPopup.png)
 
 ### Editing a customer: `editcus`
 
@@ -197,7 +203,9 @@ Examples:
 
 ### Adding a commission: `addcom`
 
-Adds a commission to the currently opened customer.
+Adds a commission to the currently selected customer. Similar to `addcus`, this can be done via the command line or the graphical interface.
+
+**Adding by the Command-Line interface**
 
 Format: `addcom n/TITLE f/FEE d/DEADLINE s/STATUS [p/DESCRIPTION] [t/TAG]...​`
 * Fee is the amount you are charging the customer for this commission.
@@ -206,6 +214,16 @@ Format: `addcom n/TITLE f/FEE d/DEADLINE s/STATUS [p/DESCRIPTION] [t/TAG]...​`
 Examples:
 * `addcom n/Rimuru f/40 d/2022-11-01 t/traditional s/Y t/chibi` creates the commission entry titled "Rimuru" with the given fee, due date, completion status and tags.
 * `addcom n/Fate Archer f/60 d/2022-10-15 s/false p/Archery t/night t/city` creates a commission entry titled "Fate Archer" with the given fee, due date, completion status, description and tags.
+
+**Adding by the Graphical Interface**
+
+Adding an iteration can also be done via the graphical interface by clicking on the `Add Commission` button in the top right corner of the Commission List Panel. 
+
+![addcom button](images/AddcomButton.png)
+
+A new window will then pop up, where you will be prompted to fill in the details of the new commission.
+
+![addcom popup](images/AddcomPopup.png)
 
 ### Editing a commission: `editcom`
 
@@ -311,7 +329,7 @@ If you wish to upload the image, either rename the folder name, or upload the im
 </div>
 <br>
 
-**Adding by Graphical Interface**
+**Adding by the Graphical Interface**
 
 Adding an iteration can also be done via the graphical interface by clicking on
 the `Add Iteration` button inside the Commission you wish to add the iteration to.
