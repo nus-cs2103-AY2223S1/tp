@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -40,10 +41,10 @@ public class DateSlot implements Comparable<DateSlot> {
     private static final String DEFAULT_CHECK = " ";
     public final LocalDateTime dateSlotTime;
     private final String dateSlotInString;
-    private Boolean hasVisited;
-    private Boolean hasAssigned;
-    private Boolean isSuccessVisit;
-    private Long nurseUidNo;
+    private Boolean hasVisited = DEFAULT_BOOLEAN;
+    private Boolean hasAssigned = DEFAULT_BOOLEAN;
+    private Boolean isSuccessVisit = DEFAULT_BOOLEAN;
+    private Long nurseUidNo = DEFAULT_EMPTY_ASSIGNED_NURSE;
 
     /**
      * Constructs a {@code DateSlot}.
@@ -55,27 +56,20 @@ public class DateSlot implements Comparable<DateSlot> {
         checkArgument(isValidDateSlot(dateSlot), MESSAGE_CONSTRAINTS);
         this.dateSlotTime = parseDateSlot(dateSlot);
         this.dateSlotInString = dateSlot;
-        this.hasVisited = DEFAULT_BOOLEAN;
-        this.hasAssigned = DEFAULT_BOOLEAN;
-        this.isSuccessVisit = DEFAULT_BOOLEAN;
-        this.nurseUidNo = DEFAULT_EMPTY_ASSIGNED_NURSE;
         checkDateTime();
     }
 
     /**
      * Constructs a {@code DateSlot}.
      */
-    public DateSlot(String dateSlot, Boolean isAssigned, Boolean isVisited, Boolean isSucessVisit, Long nurseUidNo) {
-        requireNonNull(dateSlot);
-        requireNonNull(isAssigned);
-        requireNonNull(isVisited);
-        requireNonNull(isSucessVisit);
-        requireNonNull(nurseUidNo);
+    public DateSlot(String dateSlot, Boolean isAssigned, Boolean isVisited, Boolean isSuccessfulVisit,
+            Long nurseUidNo) {
+        requireAllNonNull(dateSlot, isAssigned, isVisited, isSuccessfulVisit, nurseUidNo);
         this.dateSlotTime = parseDateSlot(dateSlot);
         this.dateSlotInString = dateSlot;
         this.hasVisited = isVisited;
         this.hasAssigned = isAssigned;
-        this.isSuccessVisit = isSucessVisit;
+        this.isSuccessVisit = isSuccessfulVisit;
         this.nurseUidNo = nurseUidNo;
         if (hasVisited == false) {
             checkDateTime();
@@ -218,11 +212,10 @@ public class DateSlot implements Comparable<DateSlot> {
     @Override
     public String toString() {
         return String.format(
-            "[%s] [%s] %s",
-            getAssignCheck(),
-            getVisitCheck(),
-            dateSlotTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
-        );
+                "[%s] [%s] %s",
+                getAssignCheck(),
+                getVisitCheck(),
+                dateSlotTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
     }
 
     @Override
