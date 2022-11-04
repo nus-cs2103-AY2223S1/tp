@@ -44,6 +44,8 @@ AddressBook *--> "1" UniqueStaffList
 UniqueStaffList .up.> "~* all" Staff
 ModelManager ---> "~* filtered" Staff
 
+Project -right-> "1" UniqueStaffList
+
 AddressBook *--> "1" UniqueTaskList
 UniqueTaskList .up.> "~* all" Task
 
