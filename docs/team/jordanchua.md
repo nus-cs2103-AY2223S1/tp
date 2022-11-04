@@ -71,12 +71,12 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Included the documentation for both the `MarkCommand` and `SortCommand` (#99)
-    * Helped to fix the grammatical errors in the User Stories (#78)
-    * Helped to create the Command Summary and Product Scope as well (#77)
+    * Included the documentation for both the `MarkCommand` and `SortCommand` (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/99)
+    * Helped to fix the grammatical errors in the User Stories (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/78)
+    * Helped to create the Command Summary and Product Scope as well (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/77)
   * Developer Guide:
-    * Added implementation details of both `MarkCommand` and `SortCommand`(#112)
-    * Included appropriate UML diagrams for both commands(#112, #126)
+    * Added implementation details of both `MarkCommand` and `SortCommand`(https://github.com/AY2223S1-CS2103-F09-1/tp/pull/112)
+    * Included appropriate UML diagrams for both commands https://github.com/AY2223S1-CS2103-F09-1/tp/pull/112) (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/126)
 
 * **Community**:
   * Helped to report the bugs for another team's project during PED
