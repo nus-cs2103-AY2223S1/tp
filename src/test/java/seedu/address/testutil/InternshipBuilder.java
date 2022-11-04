@@ -27,7 +27,7 @@ public class InternshipBuilder {
     private InternshipRole role;
     private InternshipStatus status;
     private InterviewDate interviewDate;
-    private PersonId personId;
+    private PersonId contactPersonId;
 
     /**
      * Creates a {@code InternshipBuilder} with the default details.
@@ -38,14 +38,14 @@ public class InternshipBuilder {
         role = new InternshipRole(DEFAULT_ROLE);
         status = new InternshipStatus(DEFAULT_STATUS);
         interviewDate = new InterviewDate(DEFAULT_INTERVIEW_DATE);
-        personId = null;
+        contactPersonId = null;
     }
 
     /**
      * Initializes the InternshipBuilder with the data of {@code internshipToCopy}.
      */
     public InternshipBuilder(Internship internshipToCopy) {
-        personId = internshipToCopy.getContactPersonId();
+        contactPersonId = internshipToCopy.getContactPersonId();
         name = internshipToCopy.getCompanyName();
         role = internshipToCopy.getInternshipRole();
         status = internshipToCopy.getInternshipStatus();
@@ -58,7 +58,7 @@ public class InternshipBuilder {
      * This refers to the contact person linked to the internship.
      */
     public InternshipBuilder withPersonId(Integer id) {
-        this.personId = new PersonId(id);
+        this.contactPersonId = new PersonId(id);
         return this;
     }
 
@@ -112,7 +112,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(internshipId, name, role, status, personId, interviewDate);
+        return new Internship(internshipId, name, role, status, contactPersonId, interviewDate);
     }
 
 }
