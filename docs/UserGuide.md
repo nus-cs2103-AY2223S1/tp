@@ -373,8 +373,14 @@ the data of your previous FypManager home folder.
 ## 6. Glossary
 
 <!-- Reused from https://ay2122s2-cs2103t-w14-1.github.io/tp/UserGuide.html with minor modifications -->
-| Term                                      | Explanation                                                                                     |
-|-------------------------------------------|-------------------------------------------------------------------------------------------------|
-| Java                                      | A programming language which was used to built FypManager.                                      |
-| Command-line Interface (CLI)              | An interface which involves the users typing text and executing it as commands.                 |
-| Graphical User Interface (GUI)            | An interface which involves the users clicking buttons and selecting options from the menu bar. |
+
+| Term                           | Explanation                                                                                     |
+|--------------------------------|-------------------------------------------------------------------------------------------------|
+| Java                           | A programming language which was used to built FypManager.                                      |
+| Command-line Interface (CLI)   | An interface which involves the users typing text and executing it as commands.                 |
+| Graphical User Interface (GUI) | An interface which involves the users clicking buttons and selecting options from the menu bar. |
+| Final Year Project (FYP)       | A project taken by students in their final year of study.                                       |
+| School of Computing (SoC)      | One of the faculties inside the National University of Singapore.                               |
+| JerylFypManager                | A platform used by SoC Professors for supervising student's FYP.                                |
+| Professor                      | An academic staff of SoC who is supervising a student's FYP.                                    |
+| Student                        | A SoC student who is taking FYP in their final year of study.                                   |
