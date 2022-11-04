@@ -166,7 +166,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // majors
+        // tags
         userInput = targetIndex.getOneBased() + MAJOR_DESC_MATHEMATICS;
         descriptor = new EditApplicantDescriptorBuilder().withMajors(VALID_MAJOR_MATHEMATICS).build();
 
