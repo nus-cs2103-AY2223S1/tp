@@ -36,7 +36,7 @@ import seedu.address.model.person.Survey;
 import seedu.address.model.tag.Tag;
 
 /**
- * Clones an existing person in the address book.
+ * Clones an existing person in Survin.
  */
 public class CloneCommand extends Command {
 
@@ -65,7 +65,7 @@ public class CloneCommand extends Command {
     public static final String MESSAGE_CLONE_PERSON_SUCCESS = "Cloned Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one of the unique optional fields (Name, Phone or Email)"
             + " has to be provided.";
-    public static final String MESSAGE_DUPLICATE_CLONED_PERSON = "This person already exists in the address book, "
+    public static final String MESSAGE_DUPLICATE_CLONED_PERSON = "This person already exists in Survin, "
             + "try again with different details, at least one of the unique optional fields (Name, Phone or Email) "
             + "has to be provided.";
 
@@ -99,7 +99,7 @@ public class CloneCommand extends Command {
         }
 
         model.addPerson(clonedPerson);
-        model.commitAddressBook();
+        model.commitSurvin();
         return new CommandResult(String.format(MESSAGE_CLONE_PERSON_SUCCESS, clonedPerson));
     }
 

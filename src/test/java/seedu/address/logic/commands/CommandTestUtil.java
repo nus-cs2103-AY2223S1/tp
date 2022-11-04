@@ -22,7 +22,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Survin;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -138,23 +138,23 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in
+     * - Survin, filtered person list and selected person in
      * {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        Survin expectedSurvin = new Survin(actualModel.getSurvin());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedSurvin, actualModel.getSurvin());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
 
     /**
      * Updates {@code model}'s filtered list to show only the person at the given
-     * {@code targetIndex} in the {@code model}'s address book.
+     * {@code targetIndex} in the {@code model}'s Survin.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
@@ -177,7 +177,7 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         model.deletePerson(person);
-        model.commitAddressBook();
+        model.commitSurvin();
     }
 
     /**
@@ -208,7 +208,7 @@ public class CommandTestUtil {
                 person.getGender(), person.getBirthdate(), person.getRace(), person.getReligion(), newSurveySet,
                 person.getTags());
         model.setPerson(person, editedPerson);
-        model.commitAddressBook();
+        model.commitSurvin();
         return editedPerson;
     }
 }

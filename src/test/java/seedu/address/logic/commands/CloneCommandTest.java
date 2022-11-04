@@ -13,14 +13,14 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSurvin;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CloneCommand.ClonePersonDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Survin;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -33,7 +33,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class CloneCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSurvin(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,9 +43,9 @@ public class CloneCommandTest {
 
         String expectedMessage = String.format(CloneCommand.MESSAGE_CLONE_PERSON_SUCCESS, clonedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Survin(model.getSurvin()), new UserPrefs());
         expectedModel.addPerson(clonedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
         assertCommandSuccess(cloneCommand, model, expectedMessage, expectedModel);
     }
@@ -65,9 +65,9 @@ public class CloneCommandTest {
 
         String expectedMessage = String.format(CloneCommand.MESSAGE_CLONE_PERSON_SUCCESS, clonedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Survin(model.getSurvin()), new UserPrefs());
         expectedModel.addPerson(clonedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
         assertCommandSuccess(cloneCommand, model, expectedMessage, expectedModel);
     }
@@ -83,9 +83,9 @@ public class CloneCommandTest {
 
         String expectedMessage = String.format(CloneCommand.MESSAGE_CLONE_PERSON_SUCCESS, clonedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Survin(model.getSurvin()), new UserPrefs());
         expectedModel.addPerson(clonedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
         assertCommandSuccess(cloneCommand, model, expectedMessage, expectedModel);
     }
@@ -103,8 +103,8 @@ public class CloneCommandTest {
     public void execute_duplicatePersonFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        // clone person in filtered list into a duplicate in address book
-        Person personInList = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        // clone person in filtered list into a duplicate in Survin
+        Person personInList = model.getSurvin().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         CloneCommand cloneCommand = new CloneCommand(INDEX_FIRST_PERSON,
                 new ClonePersonDescriptorBuilder(personInList).build());
 
@@ -124,8 +124,8 @@ public class CloneCommandTest {
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        // ensures that outOfBoundIndex is still in bounds of Survin list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSurvin().getPersonList().size());
 
         CloneCommand cloneCommand = new CloneCommand(outOfBoundIndex,
                 new ClonePersonDescriptorBuilder().withName(VALID_NAME_BOB).build());

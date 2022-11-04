@@ -20,7 +20,7 @@ import seedu.address.model.person.Religion;
 import seedu.address.model.person.Survey;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from Survin.
  */
 public class DeleteCommand extends Command {
 
@@ -67,7 +67,7 @@ public class DeleteCommand extends Command {
 
             Person personToDelete = lastShownList.get(targetIndex.get().getZeroBased());
             model.deletePerson(personToDelete);
-            model.commitAddressBook();
+            model.commitSurvin();
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
         }
 
@@ -100,7 +100,7 @@ public class DeleteCommand extends Command {
             }
         }
 
-        model.commitAddressBook();
+        model.commitSurvin();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personList.toString()));
     }
 

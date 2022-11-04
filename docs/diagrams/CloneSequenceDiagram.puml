@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SurvinParser" as SurvinParser LOGIC_COLOR
 participant ":CloneCommandParser" as CloneCommandParser LOGIC_COLOR
 participant "c:CloneCommand" as CloneCommand LOGIC_COLOR
 participant "n:Person" as Person LOGIC_COLOR
@@ -18,17 +18,17 @@ end box
 [-> LogicManager : execute("clone 1 n/Tom")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("clone 1 n/Tom")
-activate AddressBookParser
+LogicManager -> SurvinParser : parseCommand("clone 1 n/Tom")
+activate SurvinParser
 
 create CloneCommandParser
-AddressBookParser -> CloneCommandParser
+SurvinParser -> CloneCommandParser
 activate CloneCommandParser
 
-CloneCommandParser --> AddressBookParser
+CloneCommandParser --> SurvinParser
 deactivate CloneCommandParser
 
-AddressBookParser -> CloneCommandParser : parse("1 n/Tom")
+SurvinParser -> CloneCommandParser : parse("1 n/Tom")
 activate CloneCommandParser
 
 create ClonePersonDescriptor
@@ -45,14 +45,14 @@ activate CloneCommand
 CloneCommand --> CloneCommandParser : c
 deactivate CloneCommand
 
-CloneCommandParser --> AddressBookParser : c
+CloneCommandParser --> SurvinParser : c
 deactivate CloneCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-CloneCommandParser -[hidden]-> AddressBookParser
+CloneCommandParser -[hidden]-> SurvinParser
 destroy CloneCommandParser
 
-AddressBookParser --> LogicManager : c
-deactivate AddressBookParser
+SurvinParser --> LogicManager : c
+deactivate SurvinParser
 
 LogicManager -> CloneCommand : execute()
 activate CloneCommand

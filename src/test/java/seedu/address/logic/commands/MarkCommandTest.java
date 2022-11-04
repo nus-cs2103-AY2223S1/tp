@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.markPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSurvin;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,13 +21,13 @@ import seedu.address.model.person.Survey;
 
 class MarkCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSurvin(), new UserPrefs());
 
     @Test
     public void execute_validArgs_success() {
         MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, new Survey("Environment Survey"));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSurvin(), new UserPrefs());
         Person markedPerson = markPersonAtIndex(expectedModel, INDEX_FIRST_PERSON, new Survey("Environment Survey"),
                 true);
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS, markedPerson);

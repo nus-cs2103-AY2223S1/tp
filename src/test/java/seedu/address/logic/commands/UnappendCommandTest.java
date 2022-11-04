@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSurvin;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.Survin;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -22,7 +22,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class UnappendCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSurvin(), new UserPrefs());
 
     @Test
     public void execute_singleSurveyUnappended_success() {
@@ -38,9 +38,9 @@ public class UnappendCommandTest {
 
         String expectedMessage = String.format(UnappendCommand.MESSAGE_UNAPPEND_SUCCESS, unappendedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Survin(model.getSurvin()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), unappendedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
         assertCommandSuccess(unappendCommand, model, expectedMessage, expectedModel);
     }
@@ -59,9 +59,9 @@ public class UnappendCommandTest {
 
         String expectedMessage = String.format(UnappendCommand.MESSAGE_UNAPPEND_SUCCESS, unappendedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Survin(model.getSurvin()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), unappendedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
         assertCommandSuccess(unappendCommand, model, expectedMessage, expectedModel);
     }

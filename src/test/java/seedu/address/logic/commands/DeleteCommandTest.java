@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.deletePersonAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSurvin;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -35,7 +35,7 @@ import seedu.address.model.person.Survey;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSurvin(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -45,7 +45,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSurvin(), new UserPrefs());
         deletePersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -70,9 +70,9 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSurvin(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -83,8 +83,8 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        // ensures that outOfBoundIndex is still in bounds of Survin list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSurvin().getPersonList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(Optional.of(outOfBoundIndex), Optional.empty(),
                 Optional.empty(), Optional.empty());
@@ -102,9 +102,9 @@ public class DeleteCommandTest {
         personList.addAll(model.getFilteredPersonList());
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personList.toString());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSurvin(), new UserPrefs());
         deletePersons(expectedModel, p -> p.getRace().equals(race));
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -129,9 +129,9 @@ public class DeleteCommandTest {
         personList.addAll(model.getFilteredPersonList());
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personList.toString());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSurvin(), new UserPrefs());
         deletePersons(expectedModel, p -> p.getReligion().equals(religion));
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -158,9 +158,9 @@ public class DeleteCommandTest {
         personList.addAll(model.getFilteredPersonList());
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personList.toString());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSurvin(), new UserPrefs());
         deletePersons(expectedModel, p -> p.getSurveys().equals(setSurvey));
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }

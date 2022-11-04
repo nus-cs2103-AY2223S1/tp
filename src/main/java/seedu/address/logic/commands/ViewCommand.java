@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.PersonContainsAttributePredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all persons in Survin whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class ViewCommand extends Command {

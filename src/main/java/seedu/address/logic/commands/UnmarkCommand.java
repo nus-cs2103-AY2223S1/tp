@@ -59,7 +59,7 @@ public class UnmarkCommand extends Command {
 
         Person editedPerson = createUnmarkedPerson(targetPerson, surveySet);
         model.setPerson(targetPerson, editedPerson);
-        model.commitAddressBook();
+        model.commitSurvin();
         return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, editedPerson));
     }
 

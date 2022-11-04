@@ -146,7 +146,7 @@ Format: `clone INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRT
 
 - Clones the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to clone, as shown in the display list. The index must be a **positive integer**.
 - At least one of the unique optional fields (Name, Phone or Email) has to be provided.
-- A new person with updated values in specified field will be added to the address book.
+- A new person with updated values in specified field will be added to Survin.
 - When updating tags or surveys, the existing tags or surveys of the person will be removed i.e adding of tags is not cumulative.
 - You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 - You can remove all the person’s surveys by typing `s/` without specifying any surveys after it.

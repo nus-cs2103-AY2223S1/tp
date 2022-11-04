@@ -73,7 +73,7 @@ public class UnappendCommand extends Command {
 
         model.setPerson(personToUnappend, unappendedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.commitAddressBook();
+        model.commitSurvin();
         return new CommandResult(String.format(MESSAGE_UNAPPEND_SUCCESS, unappendedPerson));
     }
 
