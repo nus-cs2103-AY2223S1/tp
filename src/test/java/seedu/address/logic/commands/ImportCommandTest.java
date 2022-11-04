@@ -1,27 +1,31 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_IMPORT_ERROR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.ImportCommand.MESSAGE_DUPLICATE_PERSONS;
+import static seedu.address.logic.commands.ImportCommand.MESSAGE_IMPORT_DATA_SUCCESS;
 import static seedu.address.model.util.SampleDataUtil.getSamplePersons;
 import static seedu.address.testutil.TestUtil.getFilePathInSandboxFolder;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.testutil.PersonBuilder;
 
@@ -54,7 +58,7 @@ public class ImportCommandTest {
 
         ImportCommand importCommand = new ImportCommand(dummyPath);
 
-        String expectedMessage = String.format(ImportCommand.MESSAGE_IMPORT_DATA_SUCCESS, dummyPath.getFileName());
+        String expectedMessage = String.format(MESSAGE_IMPORT_DATA_SUCCESS, dummyPath.getFileName());
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
@@ -64,7 +68,7 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void execute_invalidJson_throwsCommandException() {
+    public void execute_duplicateJson_success() {
         JsonAddressBookStorage storage = new JsonAddressBookStorage(dummyPath);
         try {
             dummyFile.createNewFile();
@@ -75,15 +79,37 @@ public class ImportCommandTest {
 
         ImportCommand importCommand = new ImportCommand(dummyPath);
 
-        assertCommandFailure(importCommand, model,
-                String.format(MESSAGE_IMPORT_ERROR, new DuplicatePersonException().getMessage()));
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_PERSONS + MESSAGE_IMPORT_DATA_SUCCESS,
+                dummyPath.getFileName());
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        assertCommandSuccess(importCommand, model, expectedMessage, expectedModel);
+        dummyFile.delete();
+    }
+
+    @Test
+    public void execute_invalidJson_throwsCommandException() throws CommandException {
+        JsonAddressBookStorage storage = new JsonAddressBookStorage(dummyPath);
+        try {
+            FileWriter writer = new FileWriter(dummyFile);
+            writer.write("{}");
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImportCommand importCommand = new ImportCommand(dummyPath);
+
+        assertThrows(CommandException.class, () -> importCommand.execute(model));
+        dummyFile.delete();
     }
 
     @Test
     public void execute_validCsv_success() {
         ImportCommand importCommand = new ImportCommand(validCsv);
 
-        String expectedMessage = String.format(ImportCommand.MESSAGE_IMPORT_DATA_SUCCESS, validCsv.getFileName());
+        String expectedMessage = String.format(MESSAGE_IMPORT_DATA_SUCCESS, validCsv.getFileName());
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         for (Person person : getSamplePersons()) {
@@ -91,6 +117,21 @@ public class ImportCommandTest {
         }
 
         assertCommandSuccess(importCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_duplicateCsv_success() {
+        ImportCommand importCommand = new ImportCommand(validCsv);
+
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_PERSONS + MESSAGE_IMPORT_DATA_SUCCESS,
+                validCsv.getFileName());
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        for (Person person : getSamplePersons()) {
+            expectedModel.addPerson(person);
+        }
+
+        assertCommandSuccess(importCommand, expectedModel, expectedMessage, expectedModel);
     }
 
     @Test
