@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.buyer;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.ADDRESS_DESC_AMY;
@@ -37,7 +37,6 @@ import static seedu.address.testutil.TypicalBuyers.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.buyer.AddBuyerCommand;
-import seedu.address.logic.parser.buyer.AddBuyerCommandParser;
 import seedu.address.model.address.Address;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Email;
@@ -104,8 +103,7 @@ public class AddBuyerCommandParserTest {
                 .withNoDesiredCharacteristics()
                 .withNoPriceRange().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + TAG_DESC_PRIORITY_HIGH,
-                new AddBuyerCommand(expectedBuyer));
+                        + TAG_DESC_PRIORITY_HIGH, new AddBuyerCommand(expectedBuyer));
     }
 
     @Test
