@@ -9,7 +9,23 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Adapted `Theme` class to switch between dark and light mode from [here](https://github.com/junlong4321/tp/blob/master/src/main/java/tutorspet/ui/stylesheet/Stylesheet.java).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+
+Made for SOC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** 
+It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands while providing users with a simple and clean Graphical User Interface (GUI). 
+The main interaction with **ProfNUS** will thus be done through commands.
+
+The features of ProfNUS include:
+* Keeping track of teaching schedules.
+* Recording module information.
+* Recording of student information.
+* Viewing module and student details.
+
+The purpose of this Developer Guide is to help you to understand the design and implementation of **ProfNUS**, so that you can contribute to our project.
 
 --------------------------------------------------------------------------------------------------------------------
 
