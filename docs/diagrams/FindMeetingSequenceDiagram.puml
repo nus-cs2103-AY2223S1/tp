@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindMeetingCommandParser" as FindMeetingCommandParser LOGIC_COLOR
+participant "mk:MeetingContainsKeywordsPredicate" as MeetingContainsKeywordsPredicate LOGIC_COLOR
+participant "fm:FindMeetingCommand" as FindMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute\n(userInput)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand\n(userInput)
+activate AddressBookParser
+
+create FindMeetingCommandParser
+AddressBookParser -> FindMeetingCommandParser
+activate FindMeetingCommandParser
+FindMeetingCommandParser --> AddressBookParser
+deactivate FindMeetingCommandParser
+
+
+AddressBookParser -> FindMeetingCommandParser : parse(args)
+activate FindMeetingCommandParser
+
+create MeetingContainsKeywordsPredicate
+FindMeetingCommandParser -> MeetingContainsKeywordsPredicate : MeetingContainsKeywordsPredicate\n(keywords, lambda)
+activate MeetingContainsKeywordsPredicate
+FindMeetingCommandParser <-- MeetingContainsKeywordsPredicate : mk
+deactivate MeetingContainsKeywordsPredicate
+
+create FindMeetingCommand
+FindMeetingCommandParser -> FindMeetingCommand : FindMeetingCommand(mk)
+deactivate FindMeetingCommandParser
+
+activate FindMeetingCommand
+destroy FindMeetingCommandParser
+FindMeetingCommand --> LogicManager : fm
+FindMeetingCommand <- LogicManager : execute(model)
+FindMeetingCommand -> Model : updateFilteredMeetingList(mk)
+activate Model
+Model --> FindMeetingCommand
+deactivate Model
+
+create CommandResult
+FindMeetingCommand -> CommandResult
+
+activate CommandResult
+CommandResult --> FindMeetingCommand
+deactivate CommandResult
+
+FindMeetingCommand --> LogicManager : result
+deactivate FindMeetingCommand
+
+[<--LogicManager
+
+@enduml
