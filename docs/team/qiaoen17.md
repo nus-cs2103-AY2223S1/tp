@@ -34,7 +34,7 @@ Given below are my contributions to the project.
       may make a mistake in marking another tutorial as complete, this feature allows them to undo that action.
     * Highlights: The implementation was less complicated as I could refer to previous code.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=T08&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=qiaoen17&tabRepo=AY2223S1-CS2103T-T08-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Enhancements to existing features**:
     * AddResponse:
@@ -71,4 +71,5 @@ Given below are my contributions to the project.
       [\#99](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/99#pullrequestreview-1150261965)
 
 * **Tools**:
-    * to be added soon
+    * Java
+    * CSS
