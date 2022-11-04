@@ -572,8 +572,6 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
