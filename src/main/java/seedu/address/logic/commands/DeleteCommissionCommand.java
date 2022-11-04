@@ -37,10 +37,6 @@ public class DeleteCommissionCommand extends Command {
     @Override
     public CommandResult execute(Model model, Storage...storage) throws CommandException {
         requireNonNull(model);
-
-        if (!model.hasSelectedCustomer()) {
-            throw new CommandException(Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
-        }
         List<Commission> lastShownList = model.getFilteredCommissionList();
         if (lastShownList == null || targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
