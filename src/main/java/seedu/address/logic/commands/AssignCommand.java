@@ -161,7 +161,7 @@ public class AssignCommand extends Command {
 
     private void checkCrashes(DateSlot dateSlot, List<HomeVisit> homeVisitList) throws CommandException {
         Optional<HomeVisit> homeVisit = homeVisitList.stream().filter(
-                h -> h.getDateSlot().getDateTime().equals(dateSlot.getDateTime())).findFirst();
+                h -> h.getDateSlot().getDateSlotTime().equals(dateSlot.getDateSlotTime())).findFirst();
         if (!homeVisit.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_TIME_CRASHES, dateSlot.getDateSlotFormatted()));
         }

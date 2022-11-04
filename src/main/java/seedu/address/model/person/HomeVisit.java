@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is valid as declared in
  * {@link #isValidHomeVisit(String)}
  */
-public class HomeVisit {
+public class HomeVisit implements Comparable<HomeVisit> {
 
     public static final String MESSAGE_CONSTRAINTS = "Home Visit should be in YYYY-MM-DD,SLOT_NUMBER:"
             + "PATIENT_UID_NUMBER.\n" + "For example, 2022-11-11,1:2";
@@ -83,6 +83,11 @@ public class HomeVisit {
     @Override
     public int hashCode() {
         return homeVisitDateSlot.hashCode() + homeVisitPatientUidNo.hashCode();
+    }
+
+    @Override
+    public int compareTo(HomeVisit o) {
+        return homeVisitDateSlot.compareTo(o.homeVisitDateSlot);
     }
 
 }

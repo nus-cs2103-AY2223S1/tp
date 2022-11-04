@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: immutable; is valid as declared in
  * {@link #isValidDateSlot(String)}
  */
-public class DateSlot {
+public class DateSlot implements Comparable<DateSlot> {
 
     public static final String MESSAGE_CONSTRAINTS = "Date and slot should be in YYYY-MM-DD,SLOT_NUMBER.\n"
             + "The slot number can only be from 1 to 4. Slot 1 is 10am, slot 2 is 12pm, "
@@ -205,7 +205,7 @@ public class DateSlot {
         return this.nurseUidNo;
     }
 
-    public LocalDateTime getDateTime() {
+    public LocalDateTime getDateSlotTime() {
         return this.dateSlotTime;
     }
 
@@ -231,6 +231,11 @@ public class DateSlot {
     @Override
     public int hashCode() {
         return dateSlotTime.hashCode();
+    }
+
+    @Override
+    public int compareTo(DateSlot o) {
+        return dateSlotTime.compareTo(o.getDateSlotTime());
     }
 
 }

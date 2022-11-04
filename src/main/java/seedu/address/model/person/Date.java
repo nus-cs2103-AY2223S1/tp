@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: immutable;
  * Valid as declared in {@link #isValidDateFormat(String)} and {@link #isValidDate(String)}
  */
-public class Date {
+public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS = "Date should be in YYYY-MM-DD."
             + " For example, 2022-11-11";
@@ -99,6 +99,11 @@ public class Date {
 
     public LocalDate getDate() {
         return this.date;
+    }
+
+    @Override
+    public int compareTo(Date o) {
+        return this.date.compareTo(o.getDate());
     }
 
 }
