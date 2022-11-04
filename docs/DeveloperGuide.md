@@ -3,8 +3,31 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+##Table of Contents
+- **[Architecture](#architecture)**
+  * [UI Component](#ui-component)
+  * [Logic Component](#logic-component)
+  * [Model Component](#model-component)
+  * [Storage Component](#storage-component)
+- **[Implementation](#implementation)**
+  * [[Proposed] Undo/Redo feature](#proposed-undoredo-feature)
+  * [[Proposed] Data-archiving](#proposed-data-archiving)
+  * [Unique ID Mechanism](#unique-id-mechanism)
+  * [Display or Person List](#display-of-person-list)
+    * [1.Motivation](#1-motivation)
+    * [2.Implementation of New UI](#2-implementation-of-the-new-ui)
+    * [3.Alternatives Considered](#3-alternatives-considered)
+  * [Pop-up Window for add command](#pop-up-window-for-add-command)
+    * [1.Motivation](#1-motivation)
+    * [2.Implementation of Pop-up Window](#2-implementation-of-the-pop-up-window)
+    * [3.Alternatives Considered](#3-alternatives-considered)
+  * [The match function](#the-match-function)
+    * [1.Motivation](#1-motivation)
+    * [2.Implementation of Scoring System](#2-implementation-of-the-score-system)
+    * [3.Sample calculation](#3-sample-calculation)
+    * [4.Sorting](#4-sorting)
+    * [5.Comments and Reflection](#5-comments-and-reflection)
+  * 
 
 --------------------------------------------------------------------------------------------------------------------
 
