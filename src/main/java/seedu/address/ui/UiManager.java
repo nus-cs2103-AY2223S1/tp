@@ -50,6 +50,14 @@ public class UiManager implements Ui {
         }
     }
 
+    /**
+     * Displays error message to user when there is invalid format in the teachersPet json file.
+     */
+    @Override
+    public void showInvalidFormatInJsonFile() {
+        mainWindow.showInvalidFormatInJsonFile();
+    }
+
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
     }

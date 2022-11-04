@@ -85,6 +85,8 @@ public class MainApp extends Application {
      * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * The app will present empty data if invalid data format shows up when reading {@code storage}'s address book,
+     * but the teachersPet json file will still contain the invalid data to allow user to correct them.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyTeachersPet> teachersPetOptional;
@@ -188,6 +190,9 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting TeachersPet " + MainApp.VERSION);
         ui.start(primaryStage);
+        if (isInInvalidFormat) {
+            ui.showInvalidFormatInJsonFile();
+        }
     }
 
     @Override
