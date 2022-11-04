@@ -98,6 +98,10 @@ public class CalendarLogic {
         drawBody();
     }
 
+    public JumpText getJumpText() {
+        return jumpText;
+    }
+
     private void drawHeader() {
         Text textHeader = getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(),

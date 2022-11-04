@@ -101,9 +101,9 @@ public class MainWindow extends UiPart<Stage> {
                 KeyCombination.CONTROL_DOWN));
     }
 
-    private void registerCalendarNavigationForCalendarTab(CalendarDisplay calendarDisplay) {
+    private void registerCalendarNavigationForCalendarTab() {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (calendarTab.isSelected() && !commandTextField.isFocused()) {
+            if (calendarTab.isSelected() && !commandTextField.isFocused() && calendarDisplay.isJumpTextFocused()) {
                 calendarDisplay.handleKeyPressed(event);
             }
         });
@@ -160,7 +160,7 @@ public class MainWindow extends UiPart<Stage> {
 
         calendarDisplay = new CalendarDisplay(logic, primaryStage);
         calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
-        registerCalendarNavigationForCalendarTab(calendarDisplay);
+        registerCalendarNavigationForCalendarTab();
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
