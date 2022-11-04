@@ -545,15 +545,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample profiles and events.
+   2. Double-click the jar file.<br>
+      Expected: Shows the GUI with a set of sample profiles and events.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 ### Deleting a Profile
@@ -565,10 +566,10 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `profile -d 1`<br>
       Expected: First profile is deleted from the list. Details of the deleted profile shown in the status message. If first profile is attending any events, the profile will be removed from the event as well.
 
-   4. Test case: `profile - d 0`<br>
+   3. Test case: `profile - d 0`<br>
       Expected: No Profile is deleted. Error details shown in the status message. Status bar remains the same.
 
-   5. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 
