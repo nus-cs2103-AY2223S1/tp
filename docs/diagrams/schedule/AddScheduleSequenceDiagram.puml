@@ -1,0 +1,67 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProfNUSParser" as ProfNUSParser LOGIC_COLOR
+participant ":AddScheduleCommandParser" as AddScheduleCommandParser LOGIC_COLOR
+participant "a:AddScheduleCommand" as AddScheduleCommand LOGIC_COLOR
+participant "c:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sadd c/CS2103T w/Friday ...")
+activate LogicManager
+
+LogicManager -> ProfNUSParser : parseCommand("sadd c/CS2103T w/Friday ...")
+activate ProfNUSParser
+
+create AddScheduleCommandParser
+ProfNUSParser -> AddScheduleCommandParser
+activate AddScheduleCommandParser
+
+AddScheduleCommandParser --> ProfNUSParser
+deactivate AddScheduleCommandParser
+
+ProfNUSParser -> AddScheduleCommandParser : parse("c/CS2103T w/Friday...")
+activate AddScheduleCommandParser
+
+create AddScheduleCommand
+AddScheduleCommandParser -> AddScheduleCommand
+activate AddScheduleCommand
+
+AddScheduleCommand --> AddScheduleCommandParser : a
+deactivate AddScheduleCommand
+
+AddScheduleCommandParser --> ProfNUSParser : a
+destroy AddScheduleCommandParser
+
+ProfNUSParser --> LogicManager : a
+deactivate ProfNUSParser
+
+LogicManager -> AddScheduleCommand : execute()
+activate AddScheduleCommand
+
+AddScheduleCommand -> Model : addSchedule(s)
+activate Model
+
+Model --> AddScheduleCommand
+deactivate Model
+
+create CommandResult
+AddScheduleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddScheduleCommand : c
+deactivate CommandResult
+
+AddScheduleCommand --> LogicManager : c
+destroy AddScheduleCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
