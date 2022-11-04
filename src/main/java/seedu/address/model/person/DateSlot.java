@@ -217,8 +217,12 @@ public class DateSlot implements Comparable<DateSlot> {
 
     @Override
     public String toString() {
-        return "[" + getAssignCheck() + "] " + "[" + getVisitCheck() + "] "
-                + dateSlotTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        return String.format(
+            "[%s] [%s] %s",
+            getAssignCheck(),
+            getVisitCheck(),
+            dateSlotTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
+        );
     }
 
     @Override
