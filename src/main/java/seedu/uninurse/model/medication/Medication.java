@@ -7,14 +7,12 @@ import java.util.Optional;
 
 /**
  * Represents a Patient's required medication type and dosage
- * Guarantees: immutable; is valid as declared in {@link #isValidMedication(String)}
  */
 public class Medication {
     public static final String MESSAGE_CONSTRAINTS =
             "Medication type can take any values and should not be blank.\n"
             + "Dosage amount should only contain alphanumeric characters, "
             + "decimal points and spaces and should not be blank";
-
     /*
      * The first character of the medication type and dosage amount must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -26,7 +24,7 @@ public class Medication {
     private final String medicationDosage;
 
     /**
-     * Constructs a {@code Medication}.
+     * Constructs a Medication.
      *
      * @param medicationType A valid medication type.
      * @param medicationDosage A valid dosage amount.

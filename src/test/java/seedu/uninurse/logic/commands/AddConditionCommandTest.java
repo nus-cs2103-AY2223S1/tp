@@ -3,7 +3,6 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.uninurse.logic.commands.AddConditionCommand.ADD_CONDITION_COMMAND_TYPE;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -28,7 +27,7 @@ import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for {@code AddConditionCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for AddConditionCommand.
  */
 public class AddConditionCommandTest {
     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
@@ -59,14 +58,15 @@ public class AddConditionCommandTest {
 
         AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_FIRST_PERSON, addedCondition);
 
-        String expectedMessage = String.format(AddConditionCommand.MESSAGE_ADD_CONDITION_SUCCESS,
+        String expectedMessage = String.format(AddConditionCommand.MESSAGE_SUCCESS,
                 editedPatient.getName(), addedCondition);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addConditionCommand, model, expectedMessage, ADD_CONDITION_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(addConditionCommand, model, expectedMessage, AddConditionCommand.COMMAND_TYPE,
+                expectedModel);
     }
 
     @Test
@@ -88,14 +88,15 @@ public class AddConditionCommandTest {
 
         AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_FIRST_PERSON, addedCondition);
 
-        String expectedMessage = String.format(AddConditionCommand.MESSAGE_ADD_CONDITION_SUCCESS,
+        String expectedMessage = String.format(AddConditionCommand.MESSAGE_SUCCESS,
                 editedPatient.getName(), addedCondition);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addConditionCommand, model, expectedMessage, ADD_CONDITION_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(addConditionCommand, model, expectedMessage, AddConditionCommand.COMMAND_TYPE,
+                expectedModel);
     }
 
     @Test

@@ -17,7 +17,7 @@ import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
 import seedu.uninurse.model.person.Patient;
 
 /**
- * Add a medical condition to an existing patient in the patient list.
+ * Adds a medical condition to an existing patient in the patient list.
  */
 public class AddConditionCommand extends AddGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
@@ -26,8 +26,8 @@ public class AddConditionCommand extends AddGenericCommand {
             + PREFIX_CONDITION + "CONDITION\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
             + PREFIX_CONDITION + "Hypertension";
-    public static final String MESSAGE_ADD_CONDITION_SUCCESS = "New condition added to %1$s: %2$s";
-    public static final CommandType ADD_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final String MESSAGE_SUCCESS = "New condition added to %1$s: %2$s";
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index index;
     private final Condition condition;
@@ -55,21 +55,20 @@ public class AddConditionCommand extends AddGenericCommand {
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
-        ConditionList updatedConditionList;
 
         try {
-            updatedConditionList = patientToEdit.getConditions().add(condition);
+            ConditionList updatedConditionList = patientToEdit.getConditions().add(condition);
+
+            Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
+
+            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            model.setPatientOfInterest(editedPatient);
+
+            return new CommandResult(String.format(MESSAGE_SUCCESS, editedPatient.getName(), condition),
+                    COMMAND_TYPE, patientListTracker);
         } catch (DuplicateConditionException dce) {
             throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
         }
-
-        Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
-
-        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
-        model.setPatientOfInterest(editedPatient);
-
-        return new CommandResult(String.format(MESSAGE_ADD_CONDITION_SUCCESS, editedPatient.getName(), condition),
-                ADD_CONDITION_COMMAND_TYPE, patientListTracker);
     }
 
     @Override
