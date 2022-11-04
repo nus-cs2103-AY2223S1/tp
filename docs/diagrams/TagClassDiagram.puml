@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+show attributes
+show members
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor MODEL_COLOR
+
+Class ModelManager {
+    +printTagsPrettily(): String
+    +hasTag(Tag): boolean
+    +addTag(Tag): void
+    +deleteTags(Set<Tag>): Set<Tag>
+    +removeTags(Person, Collection<Tag>): void
+}
+
+Class AddressBook {
+    tags: TagSet
+
+    +removeTags(Person, Collection): Person
+    +hasTag(Tag): boolean
+    +createTag(Tag): void
+    +deleteTags(Set<Tag>): Set<Tag>
+}
+
+Class TagSet {
+    +add(Tag): void
+    +remove(Tag): Tag
+    +remove(Set<Tag>): Set<Tag>
+    +contains(Tag): boolean
+}
+
+Class Tag {
+    tagName: String
+
+    +isValidTagName(String): boolean
+}
+
+ModelManager -down-> AddressBook
+AddressBook -down-> "1" TagSet
+TagSet *-down-> "*" Tag
+@enduml
