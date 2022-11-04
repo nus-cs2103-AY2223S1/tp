@@ -89,7 +89,6 @@ public class EditProjectCommand extends ProjectCommand {
                     throw new CommandException(MESSAGE_DUPLICATE_PROJECT_NAME);
                 }
             }
-            toEditProject.setName(newName);
         }
 
         if (newClientId != null) {
@@ -104,6 +103,8 @@ public class EditProjectCommand extends ProjectCommand {
                         EditProjectCommand.MESSAGE_INVALID_CLIENT));
             }
         }
+
+        toEditProject.setName(newName);
 
         if (newRepository != null) {
             toEditProject.setRepository(newRepository);
