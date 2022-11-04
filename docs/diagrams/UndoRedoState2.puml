@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "add n/David"
+title After command "sadd n/Davids Delights …"
 
 package States <<rectangle>> {
     class State1 as "__ab0:AddressBook__"
@@ -14,7 +14,7 @@ package States <<rectangle>> {
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
 
-class Pointer as "Current State" #FFFFF
+class Pointer as "Current State" #FFFFFF
 
 Pointer -up-> State3
 @end

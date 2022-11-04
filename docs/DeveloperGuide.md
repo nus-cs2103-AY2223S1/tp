@@ -358,21 +358,24 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design considerations:
 - Multiple fields of a Review can be edited in one go to increase the efficiency of the user of our application.
 
-<<<<<<< Updated upstream
+
 ### Review Sorting feature
+=======
+### Sorting Stalls and Reviews feature
 
-#### What is Review Sorting feature about?
+#### What is sorting stalls and reviews feature about?
 
-The Sort Review mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion.
+`ssort`: The Sort Stalls mechanism is facilitated by `Model` and `StallsComparatorList`. This feature allows the user to sort all stalls by specified criterion. The list of supported sorting criteria is stored in `StallsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Stall>` field that will be passed in as an argument for `Model.sortStalls()` for sorting the stall list.
 
-The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
+`rsort`: The Sort Reviews mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion. The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
 
 For the command, the feature extends `command`, and is implemented as such:
+* `ssort CRITERION`
 * `rsort CRITERION`
 
-#### Implementation Flow of Review Sorting feature
+#### Implementation Flow of Sorting Stalls and Reviews feature
 
-Given below is an example usage scenario and how the sorting of all reviews mechanism behaves at each step.
+Given below is an example usage scenario and how the sorting of all stalls and reviews mechanism behaves at each step.
 
 Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
 
@@ -390,16 +393,50 @@ Step 6. `model.sortReviews()` will interact with the model to sort reviews using
 
 ![SortReview](images/SortReview.png)
 
-#### UML Diagram for Sorting Review
+#### UML Diagram for Sorting Stalls/Reviews
 
-The following activity diagram summarizes what happens when a user executes a new `rsort` command:
+The following activity diagram summarizes what happens when a user executes a new `ssort` or `rsort` command:
 
 <img src="images/SortReviewActivityDiagram.png" width="250" />
 =======
+
 ### File format for FoodWhere
 
-The Foodwhere
->>>>>>> Stashed changes
+The Foodwhere data is stored as a JSON file.
+* The file stores the stalls in the `"stalls"` property of the object
+* Each of the stalls is represented by an object with the properties `"name"`, `"address"`, `"tags"`, `"reviews"`.
+* The reviews for a stall is stored in the `"reviews"` property of the object representing the stall.
+* Each review is represented by an object with the properties `"date"`, `"content"`, `"rating"`, `"tags"`.
+
+Aside from rating, the other fields are stored as strings. The accepted format includes the following:
+
+| Data field     | Format                                                                                                           |
+|----------------|------------------------------------------------------------------------------------------------------------------|
+| Address        | Any ASCII text                                                                                                   |
+| Content        | Any ASCII text                                                                                                   |
+| Date           | A date in the format DD/MM/YYYY, D/MM/YYYY, DD/M/YYYY, D/M/YYYY, or with dashes instead of slashes               |
+| Name           | Nonempty alphanumeric string with spaces, capitalisation preserved, duplicate spaces removed for the actual name |
+| Rating         | An integer or floating point number from 0 (inclusive) to 6 (exclusive), rounded down for the actual rating      |
+| Tag            | Alphanumeric token without spaces, interpreted as lowercase for the actual tag                                   |
+
+Below is an example of one stall with one review.
+```
+{
+  "stalls" : [ {
+    "name" : "Alex Chicken Rice",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "tags" : [ "chickenrice" ],
+    "reviews" : [ {
+      "date" : "20/09/2022",
+      "content" : "Very tasty. Worth the trip",
+      "rating" : 5,
+      "tags" : [ "travelworthy" ]
+    } ]
+  } ]
+}
+```
+
+=======
 
 ### \[Proposed\] Undo/redo feature
 
@@ -419,11 +456,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th stall in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `sdel 5` command to delete the 5th stall in the address book. The `sdel` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `sdel 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new stall. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `sadd n/Davids Delights …` to add a new stall. The `sadd` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -454,11 +491,11 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `slist`. Commands that do not modify the address book, such as `slist`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `sadd n/Davids Delights …` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -521,7 +558,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                             | I want to …​                                                                                                                 | So that I can…​                                                                                                                                        |
+| Priority | As a …​                              | I want to …​                                                                                                                  | So that I can…​                                                                                                                                         |
 |----------|-------------------------------------|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `* * *`  | user                                | create reviews for a food stall                                                                                              | record which food stall that I have visited have nice food                                                                                             |
 | `* * *`  | user                                | view reviews for a food stall                                                                                                | easily find out the best food I have eaten                                                                                                             |
@@ -529,10 +566,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                | modify details of review for food stall                                                                                      | rectify any erroneous details in the entry                                                                                                             |
 | `* * *`  | user                                | list out food stall                                                                                                          | have a overview of the food stalls I have been to                                                                                                      |
 | `* *`    | user                                | list out food stall according from high to low reviews                                                                       | see the top few food stall                                                                                                                             |
-| `* * *`  | user                                | find food stall by substring match name                                                                                      | find the exact food stall I am interested in                                                                                                           |
+| `* * *`  | user                                | find food stall by matching a word in the name                                                                               | find the exact food stall I am interested in                                                                                                           |
 | `*`      | user                                | find food stall by approximate name                                                                                          | find the exact food stall I am interested in even when I’m not very sure about the stall name                                                          |
 | `*`      | user                                | tag a food stall with a tag                                                                                                  | categorize food stalls effectively                                                                                                                     |
-| `*`      | user                                | list out food place according to given tag                                                                                   | get an overview of the food place with the tag i am interested in                                                                                      |
+| `*`      | user                                | list out food place according to given tag                                                                                   | get an overview of the food place with the tag I am interested in                                                                                      |
 | `*`      | user                                | include photo along with the review                                                                                          | easily identify which photo belongs to which stall and upload them to social media                                                                     |
 | `* * *`  | user                                | purge existing data                                                                                                          | get rid of any sample data                                                                                                                             |
 | `* * *`  | user                                | add food stall addresses                                                                                                     | add a new location I can review                                                                                                                        |
@@ -547,13 +584,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                | see review that are most recent (sorting)                                                                                    | get the most updated review                                                                                                                            |
 | `*`      | user                                | archive existing stalls / review                                                                                             | not be distracted by previous reviews made                                                                                                             |
 | `* * *`  | new user                            | check out what tools are available in this application                                                                       | learn how to use the application                                                                                                                       |
-| `* * *`  | user helping another stall, eg. Bob | import data                                                                                                                  | get existing lists from Bob to work on                                                                                                                 |
+| `* * *`  | user helping another user           | import data                                                                                                                  | get existing lists from friends/coworkers to work on                                                                                                   |
 | `* * *`  | user                                | export data                                                                                                                  | archive my data entries somewhere else                                                                                                                 |
 | `*`      | user                                | set a deadline to review a particular stall                                                                                  | remind myself to complete the task                                                                                                                     |
 | `*`      | experienced user                    | see statistics of total number of reviews or stalls created                                                                  | keep track of my performance and targets for the year                                                                                                  |
 | `*`      | user                                | include custom rating metrics on my review (star system? Health benefits?)                                                   | be more nuanced on my review                                                                                                                           |
 | `* * *`  | user                                | include stall opening and closing times                                                                                      | plan my schedule on when to visit the stall accordingly                                                                                                |
-| `*`      | impatient user                      | manage over 1000 stalls and reviews in reasonable time                                                                       | minimize my waiting time                                                                                                                               |
+| `*`      | impatient user                      | manage up to 1000 stalls and reviews in reasonable time                                                                      | minimize my waiting time                                                                                                                               |
 | `*`      | impatient user                      | open the app quickly                                                                                                         | not wait so long                                                                                                                                       |
 | `*`      | impatient user                      | get a visualisation for any loading times                                                                                    | know how long I need to wait                                                                                                                           |
 | `* *`    | user                                | search for past reviews by substring                                                                                         | see places I’ve been to before                                                                                                                         |
