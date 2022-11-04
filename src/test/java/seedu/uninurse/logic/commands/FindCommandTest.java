@@ -3,7 +3,6 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.uninurse.logic.commands.FindCommand.MESSAGE_FIND_SUCCESS;
 import static seedu.uninurse.testutil.TypicalPersons.CARL;
 import static seedu.uninurse.testutil.TypicalPersons.ELLE;
 import static seedu.uninurse.testutil.TypicalPersons.FIONA;
@@ -55,7 +54,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_allPersonFound() {
-        String expectedMessage = String.format(MESSAGE_FIND_SUCCESS, model.getFilteredPersonList().size());
+        String expectedMessage = String.format(FindCommand.MESSAGE_SUCCESS, model.getFilteredPersonList().size());
         PatientMatchPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -65,7 +64,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_FIND_SUCCESS, 3);
+        String expectedMessage = String.format(FindCommand.MESSAGE_SUCCESS, 3);
         PatientMatchPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);

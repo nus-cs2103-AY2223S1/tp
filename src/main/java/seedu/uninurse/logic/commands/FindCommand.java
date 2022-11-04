@@ -15,7 +15,7 @@ public class FindCommand extends Command {
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
-    public static final String MESSAGE_FIND_SUCCESS = "%1$d persons listed!";
+    public static final String MESSAGE_SUCCESS = "%1$d persons listed!";
     public static final CommandType FIND_COMMAND_TYPE = CommandType.FIND;
 
     private final PatientMatchPredicate predicate;
@@ -28,7 +28,7 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireAllNonNull(model);
         model.updateFilteredPersonList(predicate);
-        return new CommandResult(String.format(MESSAGE_FIND_SUCCESS, model.getFilteredPersonList().size()),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredPersonList().size()),
                 FIND_COMMAND_TYPE);
     }
 

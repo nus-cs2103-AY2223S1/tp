@@ -7,11 +7,11 @@ import seedu.uninurse.model.Model;
  */
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
-    public static final String MESSAGE_EXIT_SUCCESS = "Exiting UniNurse Book as requested ...";
+    public static final String MESSAGE_SUCCESS = "Exiting UniNurse Book as requested ...";
     public static final CommandType EXIT_COMMAND_TYPE = CommandType.EXIT;
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_EXIT_SUCCESS, EXIT_COMMAND_TYPE);
+        return new CommandResult(MESSAGE_SUCCESS, EXIT_COMMAND_TYPE);
     }
 }
