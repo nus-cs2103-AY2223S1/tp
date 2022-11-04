@@ -13,7 +13,7 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
-Class Person
+abstract Class Person
 Class GithubUserame
 Class Email
 Class Name
@@ -44,7 +44,7 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList --> "~*" Person
 Person *-left-> Name
 Person *-left-> Phone
 Person *-right-> Email
@@ -55,11 +55,11 @@ Person *-left-> "*" Tag
 Person <|-- Student
 Person <|-- Professor
 Person <|-- TeachingAssistant
-Student *--> "0..1" Year
-Professor *--> "0..1" Rating
-Professor *--> "0..1" OfficeHour
-Professor *--> "0..1" Specialisation
-TeachingAssistant *--> "0..1" Rating
+Student *--> Year
+Professor *--> Rating
+Professor *--> OfficeHour
+Professor *--> Specialisation
+TeachingAssistant *--> Rating
 Professor *--> ModuleCode
 Student *--> "1..*" ModuleCode
 TeachingAssistant *--> ModuleCode
@@ -68,5 +68,5 @@ Name -[hidden]right-> Phone
 Student -[hidden]left-> TeachingAssistant
 Email -[hidden]right-> GithubUserame
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~*" Person
 @enduml

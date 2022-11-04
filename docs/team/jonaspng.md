@@ -5,71 +5,69 @@ title: Png Yi Wei Jonas' Project Portfolio Page
 
 ### Project: SoConnect
 
-SoConnect is a desktop address book application designed for National University of Singapore (NUS) Computer Science Undergraduates. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+### Overview
+
+SoConnect is a desktop address book application designed for National University of Singapore (NUS) Computer Science Undergraduates to keep track of their University Social Circle. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+
+
+### Summary of Contributions
 
 Given below are my contributions to the project.
 
-to be added soon...
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jonaspng&breakdown=true)
 
-[//]: # ()
-[//]: # (* **New Feature**: Added the ability to undo/redo previous commands.)
+* **New Feature**: Added the ability to open contacts' GitHub Profile page with a Command
 
-[//]: # (  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.)
+  * What it does: Allows the user to open contacts' GitHub Profile Page on user default browser using `github INDEX` command
 
-[//]: # (  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.)
+  * Justification: This feature allows users to browse their Peers'/Teaching Assistants'/Professors' GitHub Projects easily. This help keep users up to date with their social circle's computing projects.
 
-[//]: # (  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.)
+  * Credits: Regex to validate valid format for Github username taken from [here](https://github.com/shinnn/github-username-regex)
 
-[//]: # (  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*)
 
-[//]: # ()
-[//]: # (* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.)
+* **Modified Feature**: Modified `add` command into 3 different commands that add Students, Professors and Teaching Assistants into the application.
 
-[//]: # ()
-[//]: # (* **Code contributed**: [RepoSense link]&#40;&#41;)
+  * What it does: Allow users to add Student, Professor and Teaching Assistant into application using `student`, `prof` and `ta` command respectively.
 
-[//]: # ()
-[//]: # (* **Project management**:)
+  * Justification: This feature allows users to classify their contacts into Students, Professor and Teaching Assistants whom are all essential person in user's university life.
 
-[//]: # (  * Managed releases `v1.3` - `v1.5rc` &#40;3 releases&#41; on GitHub)
+  * Highlights: First ever major changes from AB3 address book repository base code. Had to modify many parts of the code (e.g. storage for json, test cases) due to these changes made to the previous `add` command.
 
-[//]: # ()
-[//]: # (* **Enhancements to existing features**:)
 
-[//]: # (  * Updated the GUI color scheme &#40;Pull requests [\#33]&#40;&#41;, [\#34]&#40;&#41;&#41;)
+* **Project management**:
 
-[//]: # (  * Wrote additional tests for existing features to increase coverage from 88% to 92% &#40;Pull requests [\#36]&#40;&#41;, [\#38]&#40;&#41;&#41;)
+  * Team Leader for Project
 
-[//]: # ()
-[//]: # (* **Documentation**:)
+  * Managed releases `v1.3(trial)` - `v1.4` (3 releases) on GitHub
 
-[//]: # (  * User Guide:)
 
-[//]: # (    * Added documentation for the features `delete` and `find` [\#72]&#40;&#41;)
+* **Enhancements to existing features**:
 
-[//]: # (    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]&#40;&#41;)
+  * Enhanced `clear` command to prevent accidental clearing of all contacts by forcing users to add an extra "-confirm" tag
 
-[//]: # (  * Developer Guide:)
+  * Wrote additional tests for existing features to increase coverage by 4.84% (Pull requests [#182](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/182), [#72](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/72))
 
-[//]: # (    * Added implementation details of the `delete` feature.)
 
-[//]: # ()
-[//]: # (* **Community**:)
+* **Documentation**:
 
-[//]: # (  * PRs reviewed &#40;with non-trivial review comments&#41;: [\#12]&#40;&#41;, [\#32]&#40;&#41;, [\#19]&#40;&#41;, [\#42]&#40;&#41;)
+  * User Guide:
 
-[//]: # (  * Contributed to forum discussions &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;, [4]&#40;&#41;&#41;)
+    * Added documentation for the features `github` and `edit`: [#95](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/95)
 
-[//]: # (  * Reported bugs and suggestions for other teams in the class &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;&#41;)
+    * Changed `import` command photos to match jar file name: [#126](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/126)
 
-[//]: # (  * Some parts of the history feature I added was adopted by several other class mates &#40;[1]&#40;&#41;, [2]&#40;&#41;&#41;)
+    * Rectified various formatting and style errors: [#120](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/120)
 
-[//]: # ()
-[//]: # (* **Tools**:)
+    * Developer Guide:
 
-[//]: # (  * Integrated a third party library &#40;Natty&#41; to the project &#40;[\#42]&#40;&#41;&#41;)
+      * Added implementation details and Use Case for the `github` command: [#74](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/76)
 
-[//]: # (  * Integrated a new Github plugin &#40;CircleCI&#41; to the team repo)
+      * Update Model class diagram and Storage class diagram: [#194](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/194)
 
-[//]: # ()
-[//]: # (* _{you can add/remove categories in the list above}_)
+      * Added Sequence Diagram and activity diagram for `github` command: [#74](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/76)
+    
+* **Review/mentoring contributions Links**
+
+  * [Link 1](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/93#issuecomment-1288150131)
+
+  * [Link 2](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/74#discussion_r999120307)

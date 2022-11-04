@@ -18,12 +18,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonMatchesPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -56,19 +58,33 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_CABE = "M";
     public static final String VALID_GENDER_MALE = "M";
     public static final String VALID_GITHUB_AMY = "amyb";
-    public static final String VALID_GITHUB_BOB = "bob";
-    public static final String VALID_GITHUB_CABE = "cabe";
+
+    public static final String VALID_GITHUB_BOB = "bob123";
+    public static final String VALID_GITHUB_CABE = "cabe123";
     public static final String VALID_LOCATION_AMY = "Comp 2";
     public static final String VALID_LOCATION_BOB = "Comp 3";
     public static final String VALID_LOCATION_CABE = "Comp 1";
+
+    public static final HashSet<ModuleCode> VALID_MODULE_CODES_SET = new HashSet<>(List
+            .of(new ModuleCode("CS1111"), new ModuleCode("CS2222")));
+    public static final HashSet<ModuleCode> VALID_MODULE_CODES_SET_AMY = new HashSet<>(List
+            .of(new ModuleCode(VALID_MODULE_CODE_AMY), new ModuleCode(VALID_MODULE_CODE_BOB)));
+    public static final String VALID_OFFICE_HOUR = "MONDAY, 03:00 pm - 06:00 pm";
+    public static final String VALID_OFFICE_HOUR_BOB = "TUESDAY, 03:00 pm - 06:00 pm";
+    public static final String VALID_RATING = "4";
+    public static final String VALID_RATING_CABE = "2";
+    public static final String VALID_RATING_BOB = "3";
+    public static final String VALID_RATING_ONE = "1";
+    public static final String VALID_RATING_TWO = "2";
+    public static final String VALID_SPECIALISATION = "Graphics";
+    public static final String VALID_SPECIALISATION_BOB = "Networks";
     public static final String VALID_OFFICE_HOURS_BOB = "TUESDAY, 03:00 PM - 05:00 PM";
-    public static final String VALID_SPECIALISATION_BOB = "Mathematics";
+
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_RATING_BOB = "5";
-    public static final String VALID_RATING_CABE = "4";
     public static final String VALID_USERNAME = "test";
     public static final String VALID_YEAR_AMY = "1";
+    public static final String VALID_YEAR_BOB = "2";
 
     public static final String LOCATION_DESC_AMY = " " + PREFIX_LOCATION + VALID_LOCATION_AMY;
     public static final String LOCATION_DESC_BOB = " " + PREFIX_LOCATION + VALID_LOCATION_BOB;
@@ -91,32 +107,50 @@ public class CommandTestUtil {
     public static final String RATING_DESC_CABE = " " + PREFIX_RATING + VALID_RATING_CABE;
     public static final String GITHUB_USERNAME_DESC_AMY = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_AMY;
     public static final String GITHUB_USERNAME_DESC_BOB = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_BOB;
-    public static final String GITHUB_USERNAME_DESC_CABE = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_CABE;
 
     public static final String GENDER_DESC_CABE = " " + PREFIX_GENDER + VALID_GENDER_CABE;
+    public static final String OFFICE_HOUR_MONDAY = " " + PREFIX_OFFICEHOUR + "MONDAY, 4:00 PM - 5:00 PM";
+
+    public static final String OFFICE_HOUR_DESC_MONDAY = " " + PREFIX_OFFICEHOUR + "1-15:00-3";
+    public static final String OFFICE_HOUR_DESC_TUESDAY = " " + PREFIX_OFFICEHOUR + "2-15:00-3";
+    public static final String RATING_DESC_ONE = " " + PREFIX_RATING + VALID_RATING_ONE;
+    public static final String RATING_DESC_TWO = " " + PREFIX_RATING + VALID_RATING_TWO;
+    public static final String SPECIALISATION_DESC_GRAPHICS = " " + PREFIX_SPECIALISATION + VALID_SPECIALISATION;
     public static final String SPECIALISATION_DESC_BOB = " " + PREFIX_SPECIALISATION + VALID_SPECIALISATION_BOB;
 
+    public static final String GITHUB_USERNAME_DESC_CABE = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_CABE;
+
     public static final String OFFICE_HOURS_DESC_BOB = " " + PREFIX_OFFICEHOUR + VALID_OFFICE_HOURS_BOB;
+
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String OFFICE_HOUR_MONDAY = " " + PREFIX_OFFICEHOUR + "MONDAY, 4:00 PM - 5:00 PM";
     public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
+    public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER; // empty string not allowed for gender
-    public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUBUSERNAME; // empty string not allowed for github
-    public static final String INVALID_MODULE_CODE = " " + PREFIX_MODULE_CODE + " "; // empty string not allowed
+    public static final String INVALID_GITHUB_DESC = " "
+            + PREFIX_GITHUBUSERNAME + "---"; // consecutive hyphens not allowed for github
+
+    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + " "; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_YEAR_DESC = " " + PREFIX_YEAR + "5*"; // 5 is an invalid year
+    public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "6"; // rating is out of 5
+    public static final String INVALID_OFFICE_HOUR_DESC = " " + PREFIX_OFFICEHOUR
+            + "8-25:00-o"; //day and time out of range, letter used for hours
+    public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION + " "; //empty string not allowed
 
     public static final String PREAMBLE_WHITESPACE = "a/ b/ c/ ";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
-    public static final EditCommand.EditPersonDescriptor DESC_CABE;
+    //Used as a student
+    public static final EditCommand.EditPersonDescriptor STUDENT_AMY;
+    //Used as a professor
+    public static final EditCommand.EditPersonDescriptor PROFESSOR_BOB;
+    //Used a teaching assistant
+    public static final EditCommand.EditPersonDescriptor TEACHING_ASSISTANT_CABE;
 
     public static final String VALID_NAMES = "Kurz Elle Kunz";
 
@@ -127,14 +161,19 @@ public class CommandTestUtil {
     public static final List<String> VALID_NAMES_LIST = Arrays.asList(VALID_NAMES.split("\\s+"));
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        STUDENT_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+            .withModuleCodeSet(VALID_MODULE_CODES_SET_AMY).withLocation(VALID_LOCATION_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withGender(VALID_GENDER_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+            .withTags(VALID_TAG_FRIEND).withUsername(VALID_GITHUB_AMY).withYear(VALID_YEAR_AMY).build();
+        PROFESSOR_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withRating(VALID_RATING_BOB).withLocation(VALID_LOCATION_BOB)
+            .withSpecialisation(VALID_SPECIALISATION_BOB)
+            .withOfficeHour(VALID_OFFICE_HOUR_BOB)
             .withModuleCode(VALID_MODULE_CODE_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withGender(VALID_GENDER_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        DESC_CABE = new EditPersonDescriptorBuilder().withName(VALID_NAME_CABE)
+        TEACHING_ASSISTANT_CABE = new EditPersonDescriptorBuilder().withName(VALID_NAME_CABE)
+                .withRating(VALID_RATING_CABE).withLocation(VALID_LOCATION_CABE)
             .withModuleCode(VALID_MODULE_CODE_CABE)
             .withPhone(VALID_PHONE_CABE).withEmail(VALID_EMAIL_CABE).withGender(VALID_GENDER_CABE)
             .withTags(VALID_TAG_FRIEND).build();

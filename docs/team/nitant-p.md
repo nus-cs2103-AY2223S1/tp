@@ -5,71 +5,33 @@ title: Nitant Panicker's Project Portfolio Page
 
 ### Project: SoConnect
 
-SoConnect is a desktop address book application designed for National University of Singapore (NUS) Computer Science Undergraduates. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+SoConnect is a desktop address book application designed for National University of Singapore (NUS) Computer Science Undergraduates to keep track of their University Social Circle. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-Given below are my contributions to the project.
+* **Enhancements to existing features**: Added the ability to find contacts by any field and added a new search mode.
+      
+  * What it does: allows the user to find and filter contacts by any field used in our program.
 
-to be added soon...
+  * Justification: Previously, the find command only supported the `name` field. This reduces the usefulness of the find command. There are many use cases, as listed in the Developer Guide, to search by other fields.
 
-[//]: # ()
-[//]: # (* **New Feature**: Added the ability to undo/redo previous commands.)
+  * Highlights: Its implementation was done in a way to make it as extendable as possible as our team was constantly adding new fields to contacts. To support `OR` and `ALL` search mode for some fields, efficiency and practicality was a factor in deciding its implementation before settling on set operations.
 
-[//]: # (  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.)
 
-[//]: # (  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.)
+  * Wrote additional test cases for existing features to increase coverage from 57.02% to 65.06% [#192](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/192). Test coverage increase unknown: [#196](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/196) [#35](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/35)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nitant-p&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-[//]: # (  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.)
+* **Documentation:**
 
-[//]: # (  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*)
+  * User Guide
+    * Added documentation for the feature `find` [#118](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/118)
+  * Developer Guide
+    * Added sequence diagram for `find` command [#118](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/118) 
+    * Wrote user stories for `find` [#118](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/118)
+    * Added use cases for `find` command [#118](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/118)
 
-[//]: # ()
-[//]: # (* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.)
 
-[//]: # ()
-[//]: # (* **Code contributed**: [RepoSense link]&#40;&#41;)
+* **Community**:
 
-[//]: # ()
-[//]: # (* **Project management**:)
+  * PRs reviewed with non-trivial review comments: [#31](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/31/files#r985051245) [#54](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/54#issuecomment-1279929158)
 
-[//]: # (  * Managed releases `v1.3` - `v1.5rc` &#40;3 releases&#41; on GitHub)
 
-[//]: # ()
-[//]: # (* **Enhancements to existing features**:)
 
-[//]: # (  * Updated the GUI color scheme &#40;Pull requests [\#33]&#40;&#41;, [\#34]&#40;&#41;&#41;)
-
-[//]: # (  * Wrote additional tests for existing features to increase coverage from 88% to 92% &#40;Pull requests [\#36]&#40;&#41;, [\#38]&#40;&#41;&#41;)
-
-[//]: # ()
-[//]: # (* **Documentation**:)
-
-[//]: # (  * User Guide:)
-
-[//]: # (    * Added documentation for the features `delete` and `find` [\#72]&#40;&#41;)
-
-[//]: # (    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]&#40;&#41;)
-
-[//]: # (  * Developer Guide:)
-
-[//]: # (    * Added implementation details of the `delete` feature.)
-
-[//]: # ()
-[//]: # (* **Community**:)
-
-[//]: # (  * PRs reviewed &#40;with non-trivial review comments&#41;: [\#12]&#40;&#41;, [\#32]&#40;&#41;, [\#19]&#40;&#41;, [\#42]&#40;&#41;)
-
-[//]: # (  * Contributed to forum discussions &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;, [4]&#40;&#41;&#41;)
-
-[//]: # (  * Reported bugs and suggestions for other teams in the class &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;&#41;)
-
-[//]: # (  * Some parts of the history feature I added was adopted by several other class mates &#40;[1]&#40;&#41;, [2]&#40;&#41;&#41;)
-
-[//]: # ()
-[//]: # (* **Tools**:)
-
-[//]: # (  * Integrated a third party library &#40;Natty&#41; to the project &#40;[\#42]&#40;&#41;&#41;)
-
-[//]: # (  * Integrated a new Github plugin &#40;CircleCI&#41; to the team repo)
-
-[//]: # ()
-[//]: # (* _{you can add/remove categories in the list above}_)

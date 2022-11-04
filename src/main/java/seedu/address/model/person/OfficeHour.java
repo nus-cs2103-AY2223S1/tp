@@ -16,11 +16,10 @@ import java.util.Date;
 public class OfficeHour {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Office hour cannot be empty and consist of:\n"
+            "Office hour must consist of:\n"
             + "- integer representation of weekday (from monday[1]- friday[5])\n"
             + "- time in HH:mm military time format (16:00 represents 4 pm)\n"
-            + "- duration specified in integer (1 - 9)\n"
-            + "However, when you are editing Office Hour field, o/ can be empty.";
+            + "- duration specified in integer (1 - 9)";
 
     public static final String EMPTY_OFFICE_HOUR = "";
 
@@ -48,7 +47,7 @@ public class OfficeHour {
         requireNonNull(officeHour);
         if (isPresent) {
             checkArgument(isValidOfficeHour(officeHour), MESSAGE_CONSTRAINTS);
-            value = officeHour;
+            value = officeHour.toUpperCase();
         } else {
             value = EMPTY_OFFICE_HOUR;
         }
