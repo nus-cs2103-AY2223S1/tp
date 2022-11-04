@@ -18,7 +18,7 @@ Given below are my contributions to the project.
       2. Edit an existing tag type. Example: `editTagType Grade-Marks gpa-m`, this edits the existing Grade tag type to Marks and its prefix from gpa to m.
       3. Delete an existing tag type. Example: `deleteTagType Skills`, now Skills tag type will no longer be available for use.
   * Implementation specifications:
-    * In order to keep track of the tag types available to the user and their respective prefix a static field `prefixMap` of `Map` reference data type is created in the `UniqueTagTypeMap` class. The `prefixMap` maps each `Prefix` for a tag type to its respective `TagType`. Moreover, to initially provide the user with 3 basic tag types another static field `initialTagTypeMap` of `Map` reference data type was initialised with the prefix and tag types for `Skills`, `Degree` and `Job Type`. So when a user runs the application for the first time the `prefixMap` is initialised with this `initialTagTypeMap`. Furthermore, to store and retrieve the available tag types from the storage a static variable `prefixMap` is added to the address book that shares its reference with the `prefixMap` in the `UniqueTagTypeMap` and the `JsonSerializableAddressBook` is also updated for the same.
+    * In order to keep track of the tag types available to the user and their respective prefix a static field `prefixMap` of `Map` reference data type is created in the `UniqueTagTypeMap` class. The `prefixMap` maps each `Prefix` for a tag type to its respective `TagType`. Moreover, to initially provide the user with 3 basic tag types another static field `initialTagTypeMap` of `Map` reference data type was created. So when a user runs the application for the first time the `prefixMap` is initialised with this `initialTagTypeMap`. Furthermore, to store and retrieve the available tag types from the storage a static variable `prefixMap` is added to the address book that shares its reference with the `prefixMap` in the `UniqueTagTypeMap` and the `JsonSerializableAddressBook` is also updated for the same.
     
 * **New Feature**: Add/Delete Links
   * What it does?
@@ -29,7 +29,7 @@ Given below are my contributions to the project.
       3. Delete all links of a candidate. Example: `deleteLink 2` deletes all links of person at index 2.
   * Implementation specifications:
     * The `Person` class has a field that stores a `Set` of links for the candidate.
-    * The parser converts the input for links from String to a valid URL using java library for URL and creates a new instance of `Link` class for each URL and then the `Link` class generates the platform as the name of the platform if it is recognised by CLIinkedIn, or else as general so that it can display the platform specific icon for the link in the GUI.
+    * The parser converts the input for links from String to a valid URL using java library for URL and creates a new instance of `Link` class for each URL. Then the `Link` class generates the name of the platform if it is recognised by CLInkedIn, or else as general so that it can display the platform specific icon for the link in the GUI.
     * Furthermore, to store and retrieve the links from the storage, a `JsonAdaptedLink` class is created that stores the links in String format and while reloading the application converts the String to the required URL type.
 
 
@@ -51,8 +51,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-      - Added documentation for the different kinds of `tag type` commands.
-      - Added documentation for the different kinds of `link` commands.
+      - Added documentation for the different kinds of `tag type` and `link` commands.
       - Updated documentation for different kind of `note` and `rate` commands.
       - Updated images and command summary.
     * Developer Guide:
