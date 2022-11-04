@@ -27,8 +27,9 @@ public class Location {
      */
     public Location(String location) {
         requireNonNull(location);
-        checkArgument(isValidLocation(location), MESSAGE_CONSTRAINTS);
-        value = location;
+        String trimmedStr = location.trim().replaceAll(" +", " ");
+        checkArgument(isValidLocation(trimmedStr), MESSAGE_CONSTRAINTS);
+        value = trimmedStr;
     }
 
     /**

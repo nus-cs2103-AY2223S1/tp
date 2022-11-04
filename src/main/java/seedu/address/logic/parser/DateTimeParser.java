@@ -24,7 +24,8 @@ public class DateTimeParser {
      * @return LocalDateTime parsed from the input String.
      */
     public static LocalDateTime parseLocalDateTimeFromString(String str) {
-        return LocalDateTime.parse(str, DateTimeParser.dateTimeFormatter);
+        String trimmedStr = str.trim().replaceAll(" +", " ");
+        return LocalDateTime.parse(trimmedStr, DateTimeParser.dateTimeFormatter);
     }
 
     /**
