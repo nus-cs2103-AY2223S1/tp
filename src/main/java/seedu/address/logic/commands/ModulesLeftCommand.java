@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -209,6 +210,28 @@ public class ModulesLeftCommand extends Command {
         }
     }
 
+    /**
+     * Converts the set of module {@code moduleSet} into a string to be output by the command
+     */
+    public static String moduleSetToString(Set<Module> moduleSet) {
+        StringBuilder result = new StringBuilder();
+        String[] array = new String[moduleSet.size()];
+        int j = 0;
+        for (Module module : moduleSet) {
+            array[j] = module.moduleName;
+            j++;
+        }
+        Arrays.sort(array);
+        for (int i = 0; i < array.length; i++) {
+            if (i == 0) {
+                result.append(array[i]);
+            } else {
+                result.append(", " + array[i]);
+            }
+        }
+        return result.toString();
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -228,7 +251,7 @@ public class ModulesLeftCommand extends Command {
         modulesLeft.removeAll(userPrevMods);
         modulesLeft.removeAll(userCurrMods);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, modulesLeft));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleSetToString(modulesLeft)));
     }
 
     @Override
