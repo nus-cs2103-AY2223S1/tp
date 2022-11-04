@@ -314,6 +314,7 @@ Add a new client to _MyInsuRec_.
 Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
 * A client **must** have a `NAME` and a `PHONE_NUMBER`.
+* `PHONE_NUMBER` should contain only numbers and be at least 8 digits long.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
 * If a `NAME` already exist in _MyInsuRec_, adding the same `NAME` will result in an error!
 
@@ -452,9 +453,6 @@ Examples:
 Suppose MyInsuRec contains only one client 'Alex':
 * Add a meeting with Alex on 28-Sep-2022 from 2PM to 3PM
   * `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal`
-
-Screenshot:
-![AddMeeting](images/features/AddMeeting.png)
 
 <div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
 MyInsuRec can help you detect conflicting meeting times! For example, attempting to add a meeting from 1330 to 1430 when you already have one scheduled for 1300 to 1400 will display an error message.
@@ -656,11 +654,21 @@ MyInsuRec data are saved as a JSON file **[JAR file location]/data/myinsurec.jso
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
 </div>
 
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
+Do not make any changes to the IDs (e.g., `"@UUID" : "3bbda97d-bae5-4f28-8ea0-0d0b39ee5a56"`) stored in the data file unless you are absolutely sure you know what you are doing!
+</div>
+
 #### 7.5.3 Change the color scheme
 
 MyInsuRec comes with light and dark color schemes. To change between the two, simply click on the View menu button and select the desired mode!
 
 ![Dark Mode](images/DarkModeUi.png)
+
+### 7.6 Proposed features
+
+#### 7.6.1 Duplicate clients detection `[coming in v1.5]`
+
+We plan to be able to detect duplicate clients entries in v1.5. For example, 'John Tan' and 'john tan' are likely to be the same person. As such, we plan to add a feature that warns the user when using such similar inputs. We also plan to distinguish between clients of similar names through this feature in v1.5, as such the current version v1.4 will disallow clients of the same names to be added.
 
 [Return to the top](#)
 
