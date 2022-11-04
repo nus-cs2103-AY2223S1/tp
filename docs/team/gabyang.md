@@ -50,5 +50,6 @@ in a few minutes
   * Handled most of the UI changes and UI debugging
 
 - **Review/mentoring contributes**: 
-  * Reviewed PRs with non-trivial comments on how to improve styles and deleting redundant code.
-  * Reported bugs and suggestions of the team and provided simple solutions to fix it
+  * Reviewed PRs with non-trivial comments on how to improve styles and deleting redundant code. [\100](https://github.com/AY2223S1-CS2103T-W10-2/tp/pull/100)
+  * Reported bugs and suggestions of the team and provided simple solutions to fix it 
+  * Helped team members with git flow control to maintain clean commits [\#175](https://github.com/AY2223S1-CS2103T-W10-2/tp/pull/175)

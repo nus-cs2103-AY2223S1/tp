@@ -11,12 +11,10 @@ Friendnancial is a **desktop application, optimized for use by financial advisor
 
 --------------------------------------------------------------------------------------------------------------------
 ## Short Glossary for non-technical Users.
-| Technical Terms | Meaning                                                                                   | 
-|-----------------|-------------------------------------------------------------------------------------------|
-| **GUI**         | Graphical User Interface - A system of interactive visual components for computer software| 
-| **CLI**         | Command Line Interface - A text based user interface to run programs                      | 
-| **Index**       | A number indicating the order of a person within the contact list, used in conjunction with commands|
-| **Parameter**   | Refers to the information typed along with the commands. For example the command `add n/John Doe` means that the parameter is `n/John Doe` | 
+* **GUI**: Graphical User Interface - A system of interactive visual components for computer software
+* **CLI**: Command Line Interface - A text based user interface to run programs
+* **Index**: A number indicating the order of a person within the contact list, used in conjunction with commands
+* **Parameter**: Refers to the information typed along with the commands. For example the command `add n/John Doe` means that the parameter is `n/John Doe`
 
 ## Quick start
 
