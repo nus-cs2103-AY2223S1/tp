@@ -6,12 +6,20 @@
 
 **Enhancements implemented:** _to be added soon_
 
-**Contributions to the UG:** _to be added soon_
+**Contributions to the UG:** 
+* addL feature description
+* editL feature description
+* deleteL feature description
 
-**Contributions to the DG:** _to be added soon_
+**Contributions to the DG:** 
+* addL feature description
+* editL feature description
+* deleteL feature description
 
-**Contributions to team based tasks:** _to be added soon_
+**Contributions to team based tasks:** 
+* Listing class and its features
 
-**Review/mentoring contributions:** _to be added soon_
+**Review/mentoring contributions:** 
+* weekly review and merging of peer PRs
 
 **Contributions beyond the project team:** _to be added soon_

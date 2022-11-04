@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.Price;
@@ -85,6 +86,15 @@ public class SampleDataUtil {
         };
     }
 
+    public static Listing[] getSamepleListings() {
+        return new Listing[] {
+            new Listing(new ListingId("BEDOK_NORTH"), new Address("Bedok North Blk 123 #02-2222"),
+                new Name("Billy Joe"), new Price("760000"))
+        };
+    }
+
+
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Client sampleClient : getSampleClients()) {
@@ -92,6 +102,10 @@ public class SampleDataUtil {
         }
         for (Offer sampleOffer : getSampleOffers()) {
             sampleAb.addOffer(sampleOffer);
+        }
+
+        for (Listing sampleListing : getSamepleListings()) {
+            sampleAb.addListing(sampleListing);
         }
         return sampleAb;
     }
