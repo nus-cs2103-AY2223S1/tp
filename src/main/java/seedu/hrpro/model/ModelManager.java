@@ -37,7 +37,7 @@ public class ModelManager implements Model {
     private final ArrayList<Task> targetTask = new ArrayList<>();
 
     /**
-     * Initializes a ModelManager with the given hrPro and userPrefs.
+     * Initializes a ModelManager with the given {@code hrPro} and {@code userPrefs}.
      */
     public ModelManager(ReadOnlyHrPro hrPro, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(hrPro, userPrefs);

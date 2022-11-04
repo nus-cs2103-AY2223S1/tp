@@ -220,14 +220,14 @@ public interface Model {
     void sortComplete();
 
     /**
-     * Update the task of the filtered task list to set it to be a completed task.
+     * Updates the task of the filtered task list to set it to be a completed task.
      *
      * @param targetIndex The index of the task in the filtered task list.
      */
     void markTask(Index targetIndex);
 
     /**
-     * Update the task of the filtered task list to set it to be a uncompleted task.
+     * Updates the task of the filtered task list to set it to be a uncompleted task.
      *
      * @param targetIndex The index of the task in the filtered task list.
      */
