@@ -10,6 +10,10 @@ import friday.logic.commands.RemarkCommand;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.student.Remark;
 
+// @@author HowSuen-reused
+// Reused from https://nus-cs2103-ay2223s1.github.io/tp/tutorials/AddRemark.html
+// with minor modifications
+
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object
  */

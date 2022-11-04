@@ -101,6 +101,9 @@ public class FridayParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3", model) instanceof ListCommand);
     }
 
+    // @@author HowSuen-reused
+    // Reused from https://nus-cs2103-ay2223s1.github.io/tp/tutorials/AddRemark.html
+    // with minor modifications
     @Test
     public void parseCommand_remark() throws Exception {
         final Remark remark = new Remark("Some remark.");

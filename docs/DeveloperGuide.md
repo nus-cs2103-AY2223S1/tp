@@ -353,6 +353,11 @@ _{To add activity diagram}_
 _{To add other design considerations}_
 
 ### Grade Feature
+FRIDAY allows the user to record their students' grades for assessments and examinations in CS1101S. There are 5 
+assessments in CS1101S, namely Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment, Midterm 
+exam, and the Final exam. Each student in FRIDAY will have a list of their grades for the 5 assessments, showing the 
+name of the assessment and the student's score for the assessment. Users are able to view and edit the individual 
+students' grades for the assessments.
 
 #### Implementation
 The `grade` command is executed by `GradeCommand`. In CS1101S, the 5 main examinations are Reading Assessment 1, Reading Assessment 2, Practical Assessment, Midterm exam, and Final exam, which are denoted by "ra1", "ra2", "pa", "mt", and "ft" respectively.
@@ -367,9 +372,8 @@ Practical Assessment for the 5th student in FRIDAY. `GradeCommandParser` checks 
 
 2. The `GradeCommand` will access the `GradesList` of the specified student and the individual grades specified by the user. The `GradesList` is updated, where Reading Assessment 1 and Practical Assessment examinations are updated with the new scores, and the other examinations have the same scores as before.
 
-{Sequence Diagram}
-
-{Activity Diagram}
+The following Sequence Diagram shows the aforementioned steps.
+<img src="images/GradeSequenceDiagram.png" width="574" />
 
 #### Design considerations:
 

@@ -12,6 +12,10 @@ import friday.model.Model;
 import friday.model.student.Remark;
 import friday.model.student.Student;
 
+// @@author HowSuen-reused
+// Reused from https://nus-cs2103-ay2223s1.github.io/tp/tutorials/AddRemark.html
+// with minor modifications
+
 /**
  * Changes the remark of an existing student in FRIDAY.
  */
