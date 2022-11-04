@@ -30,6 +30,8 @@ import seedu.guest.testutil.GuestBuilder;
  */
 public class BillCommandTest {
 
+    private static final String MAX_BILL = "999999999999.99";
+
     private Model model = new ModelManager(getTypicalGuestBook(), new UserPrefs());
 
     @Test
@@ -143,13 +145,31 @@ public class BillCommandTest {
     }
 
     @Test
-    public void execute_negativeBillFilteredList_success() {
+    public void execute_negativeBillFilteredList_failure() {
         showGuestAtIndex(model, INDEX_SECOND_GUEST);
 
         Guest guestToBill = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased()); // bill = 1
         BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill("-1.01")); // bill - 1.01 = -0.01
 
         assertCommandFailure(billCommand, model, BillCommand.MESSAGE_NEGATIVE_BILL);
+    }
+
+    @Test
+    public void execute_exceedBillUnfilteredList_failure() {
+        Guest guestToBill = model.getFilteredGuestList().get(INDEX_SECOND_GUEST.getZeroBased()); // bill = 1
+        BillCommand billCommand = new BillCommand(INDEX_SECOND_GUEST, new Bill(MAX_BILL)); // bill + MAX
+
+        assertCommandFailure(billCommand, model, BillCommand.MESSAGE_EXCEED_BILL);
+    }
+
+    @Test
+    public void execute_exceedBillFilteredList_failure() {
+        showGuestAtIndex(model, INDEX_SECOND_GUEST);
+
+        Guest guestToBill = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased()); // bill = 1
+        BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill(MAX_BILL)); // bill + MAX
+
+        assertCommandFailure(billCommand, model, BillCommand.MESSAGE_EXCEED_BILL);
     }
 
     @Test

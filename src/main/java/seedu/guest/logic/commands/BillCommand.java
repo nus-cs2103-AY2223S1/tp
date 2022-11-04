@@ -32,7 +32,7 @@ public class BillCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Updated bill of Guest: %1$s";
     public static final String MESSAGE_NEGATIVE_BILL = "Total bill cannot be negative";
-    public static final String MESSAGE_TOO_LARGE_BILL = "Total bill cannot exceed 999,999,999,999.99";
+    public static final String MESSAGE_EXCEED_BILL = "Total bill cannot exceed 999,999,999,999.99";
 
     private final Index index;
     private final Bill bill;
@@ -62,7 +62,7 @@ public class BillCommand extends Command {
         try {
             editedBill = guestToEdit.getBill().add(bill);
         } catch (IllegalArgumentException iae) {
-            throw new CommandException(MESSAGE_TOO_LARGE_BILL);
+            throw new CommandException(MESSAGE_EXCEED_BILL);
         }
 
         if (editedBill.getValue() < 0) {
