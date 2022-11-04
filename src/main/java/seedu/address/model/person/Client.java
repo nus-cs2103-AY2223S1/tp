@@ -57,7 +57,8 @@ public class Client extends Person implements Comparable<Client> {
         }
 
         return otherClient != null
-                && otherClient.getName().equals(getName());
+                && this.getName().toString().toLowerCase().equals((
+                otherClient.getName().toString().toLowerCase()));
     }
 
     /**

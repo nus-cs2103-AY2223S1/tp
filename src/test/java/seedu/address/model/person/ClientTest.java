@@ -42,7 +42,7 @@ public class ClientTest {
 
         // name differs in case, all other attributes same -> returns false
         Client editedBob = new ClientBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameClient(editedBob));
+        assertTrue(BOB.isSameClient(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
