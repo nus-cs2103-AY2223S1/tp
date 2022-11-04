@@ -32,6 +32,8 @@ import seedu.address.model.task.TaskTitle;
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String INFO_NOT_AVAILABLE = "NA";
+    public static final String BLANK_STUDENT_LIST = "Student list cannot be blank. "
+            + "Add at least one student for an assignment task.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -224,12 +226,14 @@ public class ParserUtil {
      * Parse a {@code String students} into a {@code List<String>}.
      * Leading and trailing whitespaces will be trimmed for each student name.
      */
-    public static List<String> parseStudents(String students) {
+    public static List<String> parseStudents(String students) throws ParseException {
         requireNonNull(students);
-
         String[] arr = students.split(",");
-        ArrayList<String> result = Arrays.stream(arr).map(String::trim)
+        ArrayList<String> result = Arrays.stream(arr).map(String::trim).filter(str -> !str.isBlank())
                 .collect(Collectors.toCollection(ArrayList::new));
+        if (result.isEmpty()) {
+            throw new ParseException(BLANK_STUDENT_LIST);
+        }
         return result;
     }
 }

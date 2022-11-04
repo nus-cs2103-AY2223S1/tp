@@ -367,6 +367,7 @@ Format: `edit-task [t/TITLE] [d/DESCRIPTION] [by/YYYY-MM-DD] [addStu/STUDENT_1, 
     * `by/` is only accepted while editing a Deadline Task. A date should strictly follow the format of YYYY-MM-DD.
     * `addStu/` and `deleteStu/` are only accepted while editing an Assignment Task.
     * `addStu/` adds the student names to the assignment while `deleteStu/` deletes students names if the exact name is already in the assignment task's student list.
+    * `deleteStu/` is case-sensitive so `deleteStu/adam yeoh` will **NOT** delete `Adam Yeoh` in the assignment's student list.
 * Existing values will be updated to the input values.
 
 Examples:
