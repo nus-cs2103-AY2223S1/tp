@@ -20,16 +20,16 @@ Given below are my contributions to the project.
 
 * **New Feature**: Made Room Field unique to each Guest
   * Ensures that there are no guests staying in the same room
-  * This feature greatly aids in the precision of GuestBook, as unrelated guests are unlikely to 
+  * This feature greatly aids in the precision of GuestBook, as unrelated guests are unlikely to
   stay in the same room. This also prevents the user from accidentally entering a room that is occupied.
-  
+
 
 * **Code contributed**: [[RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=kangzongxian&tabRepo=AY2223S1-CS2103T-W16-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)]
 
 
 * **Enhancements to existing features**:
     * Removed Address Field and Tag Field to fit the GuestBook specificity.
-      * The Address Field and Tag Field are not necessary in GuestBook, 
+      * The Address Field and Tag Field are not necessary in GuestBook,
       and removing them significantly improves the clarity of our codebase.
 
 * **Documentation**:
