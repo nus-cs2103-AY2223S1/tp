@@ -15,7 +15,6 @@ import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -35,7 +34,6 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
     private static final double LABEL_PREFERRED_HEIGHT = 20;
-    private static final int AUTOCOMPLETE_ENTRY_START_POSITION = -1;
 
     private final CommandExecutor commandExecutor;
 
@@ -59,6 +57,13 @@ public class CommandBox extends UiPart<Region> {
 
         // set up a listener for autocomplete feature.
         setAutocompleteListener();
+
+        commandTextField.setOnKeyReleased(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                handleCommandEntered();
+            }
+        });
+
     }
 
     /**
@@ -90,21 +95,13 @@ public class CommandBox extends UiPart<Region> {
             }
         });
 
-        commandTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        commandTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                case UP:
-                case DOWN:
-                case LEFT:
-                case RIGHT:
-                case SPACE:
-                    break;
-                default:
-                    autocompleteAction();
-                }
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                autocompleteAction();
             }
         });
+
         commandTextField.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -161,6 +158,7 @@ public class CommandBox extends UiPart<Region> {
                     commandTextField.setText(autocompleteEntry);
                     handleCommandEntered();
                     autocompletePopup.hide();
+                    autocompletePopup.getItems().clear();
                 }
             });
 

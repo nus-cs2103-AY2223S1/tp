@@ -18,7 +18,7 @@ import soconnect.model.todo.Todo;
 public class TodoListPanel extends UiPart<Region> {
     public static final String TODAY_HEADER = TodoShowCommand.TODAY_CONDITION;
 
-    public static final String ALL_HEADER = "ALL";
+    public static final String ALL_HEADER = "All";
 
     private static final String FXML = "TodoListPanel.fxml";
 
