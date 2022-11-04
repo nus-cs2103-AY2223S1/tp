@@ -421,7 +421,7 @@ Aspect: How should the remind command filter out upcoming interviews?
 ### Status Feature
 
 #### Implementation
-The `Status` feature allows users to add a status with a new application and edit existing status of their application as they progress through the application process.
+The `Status` feature allows users to add a status to a new application and edit the status of their existing application as they progress through the application process.
 
 #### Design Considerations
 
