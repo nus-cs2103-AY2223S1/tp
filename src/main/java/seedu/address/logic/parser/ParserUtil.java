@@ -180,6 +180,9 @@ public class ParserUtil {
         if (!Birthday.isValidBirthday(trimmedBirthday)) {
             throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
         }
+        if (!Birthday.isInPast(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_DATE_NOT_FUTURE);
+        }
         return new Birthday(trimmedBirthday);
     }
 

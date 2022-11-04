@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import seedu.address.model.DeepCopyable;
 
 /**
@@ -11,13 +14,12 @@ import seedu.address.model.DeepCopyable;
  */
 public class Birthday implements DeepCopyable {
 
-    public static final String MESSAGE_CONSTRAINTS = "Birthdays should only contain numbers and forward slashes";
-
+    public static final String MESSAGE_CONSTRAINTS = "Birthdays should be in dd/mm/yyyy format with valid dates.";
+    public static final String MESSAGE_DATE_NOT_FUTURE = "Birthdays have to be in the past.";
     public static final String DATE_REGEX = "(^(((0[1-9]|1[0-9]|2[0-8])[\\/](0[1-9]|1[012]))|((29|30|31)[\\/]"
         + "(0[13578]|1[02]))|((29|30)[\\/](0[4,6,9]|11)))[\\/](19|[2-9][0-9])\\d\\d$)|(^29[\\/]02[\\/]"
         + "(19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)";
-
-
+    public static final DateTimeFormatter CORRECT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public final String value;
 
     /**
@@ -28,6 +30,7 @@ public class Birthday implements DeepCopyable {
     public Birthday(String birthday) {
         requireNonNull(birthday);
         checkArgument(isValidBirthday(birthday), MESSAGE_CONSTRAINTS);
+        checkArgument(isInPast(birthday), MESSAGE_DATE_NOT_FUTURE);
         value = birthday;
     }
 
@@ -36,6 +39,15 @@ public class Birthday implements DeepCopyable {
      */
     public static boolean isValidBirthday(String test) {
         return test.matches(DATE_REGEX);
+    }
+
+    /**
+     * Returns true if given date is in the future.
+     */
+    public static boolean isInPast(String date) {
+        LocalDate pastDate = LocalDate.parse(date, CORRECT_DATE_FORMAT);
+        LocalDate today = LocalDate.now();
+        return today.isAfter(pastDate);
     }
 
     @Override
