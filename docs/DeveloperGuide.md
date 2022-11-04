@@ -153,13 +153,56 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 3.1 Delete Meeting Feature
+### 3.1 `Client`-related features
+
+### 3.2 `Meeting`-related features
+
+#### 3.2.1 Add Meeting feature
+
+Syntax: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Purpose: Adds a meeting with the given information to the internal model and storage
+
+##### Implementation
+
+In keeping with the command execution structure of the overall program, the command
+specific classes `AddMeetingCommand` and `AddMeetingCommandParser` were added to the commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
+to accept the new command word, `addMeeting`.
+
+The following sequence diagram offers a high-level overview of how
+the command is executed.
+
+![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.png)
+
+##### Design Considerations
+
+**Aspect: What the addMeeting command accepts as a reference to a client:**
+
+- **Alternative 1 (current choice):** Accept the client's list index.
+    - Pros: Each valid index is guaranteed to refer to a unique client.
+    - Cons: It is less intuitive for the user compared to typing in a name.
+- **Alternative 2:** Accept the client's name.
+    - Pros: It is intuitive for the user to enter a name.
+    - Cons: Names have to be spelt exactly as stored, otherwise the name.
+      could be referencing more than one client.
+
+**Aspect: The parameters that the AddMeetingCommand constructor should accept:**
+
+- **Alternative 1 (current choice):** Accept the parsed command arguments separately.
+    - Pros: The logic and operations on the model that are associated with
+      command execution are inside the AddMeetingCommand.
+    - Cons: The design of AddMeetingCommand is less intuitive.
+- **Alternative 2:** Accept a completed Meeting.
+    - Pros: The design of AddMeetingCommand is simpler.
+    - Cons: The parser will need to have access to the model in order to
+      obtain the referenced client.
+
+#### 3.2.2 Delete Meeting Feature
 
 Syntax: `delMeeting i/x`, where x is an index shown in the Meeting List.
 
 Purpose: Delete a specified `Meeting` from the Meeting List in `Model`
 
-#### 3.1.1 Implementation
+##### Implementation
 
 Usage Scenario of `delMeeting`:
 
@@ -174,62 +217,27 @@ Below is an activity diagram that summarises the execution of `delMeeting`.
 
 ![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
 
-#### 3.1.2 Design Considerations
+##### Design Considerations
 
 Aspect: How many meetings to delete in one command
 
 - Alternative Solution 1 (Current Choice): Allows only one deletion
-  - Pros: Easy to implement
-  - Cons: Troublesome in the event where multiple meetings
+    - Pros: Easy to implement
+    - Cons: Troublesome in the event where multiple meetings
 - Alternative Solution 2: Allows multiple deletion
-  - Pros: Convenient to delete multiple meetings when needed.
-  - Cons: Complex to implement
+    - Pros: Convenient to delete multiple meetings when needed.
+    - Cons: Complex to implement
 - Considering that the approach taken to develop MyInsuRec is a breath first approach,
-where we should only build to the point where every iteration is a working product,
-**Solution 1** is thus chosen as it is easier to implement.
+  where we should only build to the point where every iteration is a working product,
+  **Solution 1** is thus chosen as it is easier to implement.
 
-### 3.2 List Meeting feature
-
-Syntax: `listMeeting`
-
-Purpose: View all `Meeting` from the Meeting List in `Model`.
-
-#### 3.2.1 Implementation
-
-Usage Scenario of `listMeeting`:
-
-1) User inputs `listMeeting` to view the current meetings in the `Model`.
-
-Below is a sequence diagram that illustrates the execution of `listMeeting` command and the interaction with `Model`.
-
-![ListMeetingSequenceDiagram](images/ListMeetingSequenceDiagram.png)
-
-### 3.3 Different view panels
-
-The GUI changes view panels depending on the last executed command. For example, a `listMeeting` will cause the meeting list view panel to be displayed, while `viewClient i/1` will cause a detailed client view panel to be displayed.
-
-#### 3.3.1 Implementation
-
-Below is a sequence diagram that illustrates the execution of `listMeeting` command and the interaction with `Model`.
-
-![DifferentViewPanelsSequenceDiagram](images/DifferentViewPanelsSequenceDiagram.png)
-
-#### 3.3.2 Rationale
-
-We chose to implement the changing of view panels through `CommandResult` due to its simplicity and the intended effects are clear. Furthermore, this is in line with how `HelpCommand` and `ExitCommand` is implemented.
-
-#### 3.3.3 Proposed future changes
-
-We feel that there is a way for us to cut down on repetition of code. More specifically, the methods for setting the view panels which is currently done through four very similar methods in `MainWindow#setListPanelToXYZ`. We are currently exploring the use of event listeners on the Model, such that when a command is executed, the Model can listen for the specific view for the UI to display. This however causes the Model to have to depend on UI which results in more coupling of compartments. Another possibility is to have a general `MainWindow#setListPanelToXYZ` which takes in some input to specify which view to show. It will behave much like how `MyInsuRecParser#parseCommand` works, using switch cases to decide which panels to use.
-
-
-### 3.4 View Meeting feature
+#### 3.2.3 View Meeting feature
 
 Syntax: `viewMeeting i/INDEX`
 
 Purpose: View details associated with a meeting, such as meeting’s date and time.
 
-#### 3.4.1 Implementation
+##### Implementation
 
 Usage Scenario of `viewMeeting`:
 
@@ -241,7 +249,51 @@ Below is a sequence diagram that illustrates the execution of `viewMeeting` comm
 
 ![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
 
-### 3.5 Edit Client and Edit Meeting feature
+#### 3.2.4 List Meeting feature
+
+Syntax: `listMeeting`
+
+Purpose: View all `Meeting` from the Meeting List in `Model`.
+
+##### Implementation
+
+Usage Scenario of `listMeeting`:
+
+1) User inputs `listMeeting` to view the current meetings in the `Model`.
+
+Below is a sequence diagram that illustrates the execution of `listMeeting` command and the interaction with `Model`.
+
+![ListMeetingSequenceDiagram](images/ListMeetingSequenceDiagram.png)
+
+### 3.3 `Product`-related features
+
+### 3.4 UI
+
+#### 3.4.1 Different view panels
+
+The GUI changes view panels depending on the last executed command. For example, a `listMeeting` will cause the meeting list view panel to be displayed, while `viewClient i/1` will cause a detailed client view panel to be displayed.
+
+#### Implementation
+
+Below is a sequence diagram that illustrates the execution of `listMeeting` command and the interaction with `Model`, which demonstrates how a view panel changes to `MeetingListPanel`.
+
+![DifferentViewPanelsSequenceDiagram](images/DifferentViewPanelsSequenceDiagram.png)
+
+#### Rationale
+
+We chose to implement the changing of view panels through `CommandResult` due to its simplicity and the intended effects are clear. Furthermore, this is in line with how `HelpCommand` and `ExitCommand` is implemented.
+
+#### Proposed future changes
+
+We feel that there is a way for us to cut down on repetition of code. More specifically, the methods for setting the view panels which is currently done through four very similar methods in `MainWindow#setListPanelToXYZ`. We are currently exploring the use of event listeners on the Model, such that when a command is executed, the Model can listen for the specific view for the UI to display. This however causes the Model to have to depend on UI which results in more coupling of compartments. Another possibility is to have a general `MainWindow#setListPanelToXYZ` which takes in some input to specify which view to show. It will behave much like how `MyInsuRecParser#parseCommand` works, using switch cases to decide which panels to use.
+
+
+
+
+
+
+
+### [problematic, update the header hashs after complete] Edit Client and Edit Meeting feature
 
 `editClient` and `editMeeting` execute in a similar manner to each other.
 Let the term entity refer to either a client or a meeting.
@@ -297,56 +349,17 @@ Aspect: How prefixes are stored:
 - Pros: Matcher has several useful methods for validating a match.
 - Case-insensitive matches can be made easily by setting a flag in the Pattern.
 - Cons: Regex string used to define a pattern may be difficult to read.
-e.g. String regexForBirthday = "[b|d|birthday|birthdate][\\\\]" is not as clear as Alternative 2
+  e.g. String regexForBirthday = "[b|d|birthday|birthdate][\\\\]" is not as clear as Alternative 2
 
 - Alternative Solution 2: Store each possible prefix as a String in a List maintained by Prefix.
 - Pros:   String matches are easier to understand than regexes
-e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
+  e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
 - Cons: List of String returned is cumbersome for pattern matching, i.e. Iterate through every String in patternsForBirthday to look for a match.
 
 #### Rationale
 - A single Pattern for each Prefix is more succinct that a List.
 - No need to iterate through a list of Strings to find a match.
 - Matches can be made using pre-existing methods in Matcher (no need to rely on String methods)
-
-### 3.6 Add Meeting feature
-
-Syntax: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
-Purpose: Adds a meeting with the given information to the internal model and storage
-
-#### 3.6.1 Implementation
-
-In keeping with the command execution structure of the overall program, the command
-specific classes `AddMeetingCommand` and `AddMeetingCommandParser` were added to the commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
-to accept the new command word, `addMeeting`.
-
-The following sequence diagram offers a high-level overview of how
-the command is executed.
-
-![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.png)
-
-#### 3.6.2 Design Considerations
-
-**Aspect: What the addMeeting command accepts as a reference to a client:**
-
-- **Alternative 1 (current choice):** Accept the client's list index.
-  - Pros: Each valid index is guaranteed to refer to a unique client.
-  - Cons: It is less intuitive for the user compared to typing in a name.
-- **Alternative 2:** Accept the client's name.
-  - Pros: It is intuitive for the user to enter a name.
-  - Cons: Names have to be spelt exactly as stored, otherwise the name.
-could be referencing more than one client.
-
-**Aspect: The parameters that the AddMeetingCommand constructor should accept:**
-
-- **Alternative 1 (current choice):** Accept the parsed command arguments separately.
-  - Pros: The logic and operations on the model that are associated with
-command execution are inside the AddMeetingCommand.
-  - Cons: The design of AddMeetingCommand is less intuitive.
-- **Alternative 2:** Accept a completed Meeting.
-  - Pros: The design of AddMeetingCommand is simpler.
-  - Cons: The parser will need to have access to the model in order to
-obtain the referenced client.
 
 --------------------------------------------------------------------------------------------------------------------
 
