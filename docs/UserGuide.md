@@ -494,15 +494,19 @@ Finds all students with a particular tag.
 Formats: `find t/tagName`
 
 - Only one tag can be searched at each time.
+- The tag is case-insensitive.
 
 <div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one tag such as find t/python java.
 </div>
 
 Examples:
 
-`find t/python` returns all students who have python as a tag, including students who have other tags on top of the
+* `find t/python` returns all students who have a python tag, including students who have other tags on top of the
 python tag.
-`find t/javascript` returns all students with javascript as a tag and other tags besides javascript.
+* `find t/javascript` returns all students who have a javascript tag, including students who have other tags on top
+of javascript tag 
+* `find t/python t/javascript` returns all students who have javascript and python tags, includings students who have 
+other tags on top of the two tags.
 
 [↑ Back to top](#table-of-contents)
 

@@ -1,7 +1,6 @@
 package seedu.address.model.student.predicate;
 
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -21,12 +20,23 @@ public class TagContainsKeywordsPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
-        Set<String> set = student.getTags().stream()
+        // There is a need to convert tagName to lowercase so that the comparison is case-insensitive
+        String tagString = student.getTags().stream()
                 .map(tag -> tag.tagName)
-                .collect(Collectors.toSet());
-        String tagsString = String.join(" ", set);
-        return keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(tagsString, keyword));
+                .collect(Collectors.joining(" "));
+        /*
+         There is only a need to check whether the tagString (the current tags of the student) contains
+         the keyword.
+         If it does not then it is false.
+         If the tagString only has 1 tag and there are 2 keywords to search for, it will also fail since this is
+         technically O(n^2) solution so all the cases will be covered.
+         */
+        for (String keyword : keywords) {
+            if (!StringUtil.containsWordIgnoreCase(tagString, keyword)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
