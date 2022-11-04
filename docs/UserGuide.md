@@ -381,13 +381,16 @@ Example:
 
 List tasks in YellowBook with deadlines up to and including the specified date.
 
-Both completed and incomplete tasks are listed.
-Task with deadline that are already past are also listed.
+Format: `remindT DEADLINE`
+
+* Both completed and incomplete tasks are listed.
+
+* Task with deadlines that are already past are also listed.
+
+* Tasks that are complete are also listed so users are reminded to delete them.
 
 The following scenarios should not happen for your command to run successfully:
 - The deadline of the task is not in dd-mm-yyyy format.
-
-Format: `remindT DEADLINE`
 
 Example:
 
@@ -467,6 +470,8 @@ This list is unique, meaning each label with a distinct name is only shown once,
 Multiple labels can be added in the same command. 
 However, only a maximum of one contact and one task can be labelled within the same command.
 
+Labels must be alphanumeric and one word long.
+
 The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist
 - Contact/task already has the required label
@@ -489,6 +494,8 @@ Otherwise, it is only removed from the specified contact/task label list.
 
 Multiple labels can be deleted in the same command. 
 However, only a maximum of one contact and one task can be edited within the same command.
+
+Labels must be alphanumeric and one word long.
 
 The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist

@@ -43,6 +43,7 @@ public class AddTaskCommandTest {
 
         assertEquals(String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, validTask),
                 commandResult.getFeedbackToUser());
+
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
 

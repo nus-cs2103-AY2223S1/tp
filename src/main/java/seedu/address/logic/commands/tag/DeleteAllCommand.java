@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.NEW_LINE_CHARACTER;
 import static seedu.address.logic.commands.contact.DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS;
 import static seedu.address.logic.commands.tag.DeleteTagCommand.MESSAGE_DELETE_TAG_SUCCESS;
-import static seedu.address.logic.commands.tag.DeleteTagCommand.createEditedPerson;
-import static seedu.address.logic.commands.tag.DeleteTagCommand.createEditedTask;
 import static seedu.address.logic.commands.task.DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.task.Task.PREDICATE_SHOW_NON_ARCHIVED_TASKS;
@@ -16,6 +14,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandUtil;
 import seedu.address.logic.commands.EditPersonDescriptor;
 import seedu.address.logic.commands.EditTaskDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -36,13 +35,13 @@ public class DeleteAllCommand extends Command {
     public static final String COMMAND_WORD = "deleteA";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes all tasks and contacts whose tags contain any of "
-            + "the specified keyword (case-insensitive).\n"
-            + "Any tags that contains any of the specified keyword are also deleted.\n"
+            + ": Deletes all tasks and contacts whose labels contain any of "
+            + "the specified keyword (case-sensitive).\n"
+            + "Any labels that contains any of the specified keyword are also deleted.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T";
 
-    public static final String MESSAGE_TAGS_DO_NOT_EXIST = "The tag(s) you want to remove cannot be found";
+    public static final String MESSAGE_TAGS_DO_NOT_EXIST = "The label(s) you want to remove cannot be found";
 
     private final PersonContainsKeywordsPredicate personPredicate;
     private final TaskContainsKeywordsPredicate taskPredicate;
@@ -78,7 +77,7 @@ public class DeleteAllCommand extends Command {
         }
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         editTaskDescriptor.setTags(tagsToDelete);
-        return createEditedTask(task, editTaskDescriptor);
+        return CommandUtil.createEditedTask(task, editTaskDescriptor);
     }
 
     private Person removeTags(Model model, Person person) {
@@ -89,7 +88,7 @@ public class DeleteAllCommand extends Command {
         }
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         editPersonDescriptor.setTags(tagsToDelete);
-        return createEditedPerson(person, editPersonDescriptor);
+        return CommandUtil.createEditedPerson(person, editPersonDescriptor);
     }
 
     private String deleteAndUpdateTasks(Model model) {
@@ -145,7 +144,9 @@ public class DeleteAllCommand extends Command {
         for (Tag toDelete: tagsToDelete) {
             sb.append(String.format(MESSAGE_DELETE_TAG_SUCCESS, toDelete));
             sb.append(NEW_LINE_CHARACTER);
-            model.decreaseTagCount(toDelete);
+            while (model.hasTag(toDelete)) {
+                model.decreaseTagCount(toDelete);
+            }
         }
         return sb.toString();
     }

@@ -18,6 +18,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code DeleteTaskCommand}.
+ */
 public class DeleteTaskCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -98,6 +102,7 @@ public class DeleteTaskCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoTasks(Model model) {
+
         model.updateFilteredTaskList(p -> false);
 
         assertTrue(model.getFilteredTaskList().isEmpty());
