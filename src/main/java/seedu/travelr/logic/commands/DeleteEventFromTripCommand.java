@@ -56,19 +56,13 @@ public class DeleteEventFromTripCommand extends Command {
 
 
         if (!model.hasTrip(
-                new Trip(tripToDeleteFrom,
-                        new Description("random"),
-                        new HashSet<>(),
-                        new Location("random"),
+                new Trip(tripToDeleteFrom, new Description("random"), new HashSet<>(), new Location("random"),
                         new DateField("01-01-2000")))) {
             throw new CommandException("Please enter a valid Trip");
         }
 
         Trip toDeleteFrom = model.getTrip(
-                new Trip(tripToDeleteFrom,
-                        new Description("random"),
-                        new HashSet<>(),
-                        new Location("random"),
+                new Trip(tripToDeleteFrom, new Description("random"), new HashSet<>(), new Location("random"),
                         new DateField("01-01-2000")));
 
 

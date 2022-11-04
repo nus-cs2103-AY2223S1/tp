@@ -54,11 +54,8 @@ public class AddEventToTripCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Trip fakeTrip = new Trip(tripToAddInto,
-                new Description("random"),
-                new HashSet<>(),
-                new Location("random"),
-                new DateField("01-01-2000"));
+        Trip fakeTrip = new Trip(tripToAddInto, new Description("random"), new HashSet<>(),
+                new Location("random"), new DateField("01-01-2000"));
 
         if (!model.hasTrip(fakeTrip)) {
             throw new CommandException("Please enter a valid Trip");
@@ -66,19 +63,10 @@ public class AddEventToTripCommand extends Command {
 
         Event fakeEvent = new Event((eventToAdd));
         if (!model.bucketlistHasEvent(fakeEvent)) {
-            if (!model.tripHasEvent(fakeTrip, fakeEvent)) {
+            if (model.tripHasEvent(fakeTrip, fakeEvent)) {
                 throw new CommandException("The specified event is already in the specified trip");
             }
             throw new CommandException("Please enter a valid event");
-        }
-
-        if (!model.hasTrip(
-                new Trip(tripToAddInto,
-                        new Description("random"),
-                        new HashSet<>(),
-                        new Location("random"),
-                        new DateField("01-01-2000")))) {
-            throw new CommandException("Please enter a valid Trip");
         }
 
         if (!model.hasEventInBucketList(new Event(eventToAdd))) {
@@ -86,12 +74,7 @@ public class AddEventToTripCommand extends Command {
         }
 
         Event event = model.getEvent(new Event(eventToAdd));
-        Trip toAddInto = model.getTrip(
-                new Trip(tripToAddInto,
-                        new Description("random"),
-                        new HashSet<>(),
-                        new Location("random"),
-                        new DateField("01-01-2000")));
+        Trip toAddInto = model.getTrip(fakeTrip);
 
         if (toAddInto.containsEvent(event)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT_IN_TRIP);
