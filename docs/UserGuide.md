@@ -7,6 +7,8 @@ title: User Guide
 
 <h1>Rapportbook User Guide</h1>
 
+</div>
+
 Welcome to the Rapportbook user guide!
 
 Rapportbook is a **desktop app for managing client information for your financial advising needs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
@@ -15,7 +17,7 @@ Rapportbook provides functionality for your whole financial advising workflow, w
 
 Rapportbook is built for tech savvy financial advisors who type fast. A concise set of syntax and command aliasing makes navigating Rapportbook's functionality a breeze.
 
-</div>
+
 
 {:refdef: style="text-align: center;"}
 ![Mockup](images/Ui.png)
@@ -82,7 +84,12 @@ In the user guide, you might come across some terms you might not understand. Th
 
 Here are the brief descriptions of each section of the GUI.
 
-   ![annotated](images/annotated.png)
+  {:refdef: style="text-align: center;"}
+  ![annotated](images/annotated.png)
+  {: refdef}
+   
+
+<div align="center" style="padding-bottom: 0.5em"><em>Different sections of the GUI highlighted.</em></div>
 
 * i: Your list of clients. This will update when you make changes to your list of client information, or filter based on clients' names or tags.
 
@@ -121,7 +128,11 @@ Here are the brief descriptions of each section of the GUI.
 
 Shows a message explaning how to access the help page. Can also be acessed with the `F1` hotkey.
 
+{:refdef: style="text-align: center;"}
 ![help message](images/helpMessage.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>The help window.</em></div>
 
 Format: `help`
 
@@ -165,7 +176,11 @@ Example:
 
 * `show 1`
 
+{:refdef: style="text-align: center;"}
 ![Show](images/show.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Showing information of client index 1.</em></div>
 
 ### Editing of client information : `edit`
 
@@ -204,7 +219,11 @@ Examples:
 * `tag create potential` Creates a tag called `potential`
 * `tag create potential highPriority lowPriority` Creates 3 tags called `potential`, `highPriority` and `lowPriority`.
 
-![imageedit_2_2454502168.png](images/createTag.png)
+{:refdef: style="text-align: center;"}
+![Tag creation](images/tagCreate.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Creating a tag "bff"</em></div>
 
 ### Tagging clients : `tag`
 
@@ -225,7 +244,11 @@ Examples:
 * `tag 5 potential` Assigns the `potential` tag to the client entry at index 5.
 * `tag 5 potential highPriority` Assigns the `potential` and `highPriority` tags to the client entry at index 5.
 
-![imageedit_3_5522601060.png](images/tag.png)
+{:refdef: style="text-align: center;"}
+![Tagging a client](images/tag.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Tagging client index 3 with "bff" tag.</em></div>
 
 ### Listing tags : `tag list`
 
@@ -233,7 +256,11 @@ View all available tags.
 
 Format: `tag list`
 
-![imageedit_4_6370390561.png](/Users/cyanaspect/Downloads/imageedit_4_6370390561.png)
+{:refdef: style="text-align: center;"}
+![Listing available tags](images/tagList.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Listing all the available tags.</em></div>
 
 ### Removing tags from a client : `tag remove`
 
@@ -250,7 +277,11 @@ Examples:
 * `tag remove 5 potential` Removes the `potential` tag from the client entry at index 5.
 * `tag remove 5 potential highPriority` Removes the `potential` and `highPriority` tags from the client entry at index 5.
 
-![imageedit_5_4642324925.png](images/tagRemove.png)
+{:refdef: style="text-align: center;"}
+![Removing a tag from client](images/tagRemove.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Removing the "bff" tag from client index 3.</em></div>
 
 ### Deleting tags : `tag delete`
 
@@ -267,7 +298,11 @@ Example:
 - `tag delete potential` Deletes the `potential` tag from the address book.
 - `tag delete potential highPriority` Deletes the `potential` and `highPriority` tags from address book.
 
-![imageedit_8_4864780781.png](images/tagDelete.png)
+{:refdef: style="text-align: center;"}
+![Deletion of tag](images/tagDelete.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Deleting the tag "bff".</em></div>
 
 ### Filtering client entries : `filter`
 
@@ -288,7 +323,11 @@ Examples:
 * `filter n=Homer t=potential` Shows all clients with the name `Homer` **and** the `potential` tag.
 * `filter n=Homer,Laufey t=potential,highPotential` Shows all clients with names, `Homer` or `Laufey`, **and** with either the `potential` or `highPrirority` tags.
 
+{:refdef: style="text-align: center;"}
 ![Filter list](images/filter.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Filter clients with the "friend" tag.</em></div>
 
 ### Clearing filters : `filter clear`
 
@@ -308,7 +347,11 @@ Shows the list of filters (name and tags) that are currently applied.
 
 Format: `filter list`
 
+{:refdef: style="text-align: center;"}
 ![Filter list result](images/filterListResult.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Listing down all the filters that is currently applied.</em></div>
 
 ### Creating reminders : `reminder`
 
@@ -331,7 +374,11 @@ Possible date time formats:
   * `dt=2022-11-8 12:00AM`
   * `dt=22-nov-08 00:00`
 
+{:refdef: style="text-align: center;"}
 ![Creating Reminders](images/reminder.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Creating a reminder with the description "Promote Product".</em></div>
 
 ### Deleting reminders : `reminder delete`
 
@@ -380,7 +427,11 @@ Lists your message templates.
 
 Format: `message list`
 
+{:refdef: style="text-align: center;"}
 ![Listing available Messages](images/messageList.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Displaying all the message templates.</em></div>
 
 ### Generating a message from template : `message generate`
 
@@ -395,7 +446,11 @@ Example:
 
 - `message generate 1 4` Generates a personalized message for the 1st client using the 4th message template
 
+{:refdef: style="text-align: center;"}
 ![Generating Messages](images/message_generate.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Generating a message from a template for client index 1.</em></div>
 
 ### Deleting message templates : `message delete`
 
@@ -407,7 +462,11 @@ Example:
 
 - `message delete 1`
 
+{:refdef: style="text-align: center;"}
 ![Deleting Message](images/messageDelete.png)
+{: refdef}
+
+<div align="center" style="padding-bottom: 0.5em"><em>Deleting of a message template.</em></div>
 
 ### Return home : `home`
 
