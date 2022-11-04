@@ -22,24 +22,42 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INDEX_TOO_LONG = "Index provided must be no longer than 4 characters";
-    public static final String MESSAGE_INVALID_DAYS = "Days provided is not a non-zero unsigned integer";
-    public static final String MESSAGE_DAYS_TOO_LONG = "Days provided must be no longer than 4 characters";
+    public static final int MAX_INDEX = 9999;
+    public static final int MAX_DAYS = 9999;
+    public static final int MAX_INTEGER_LENGTH = String.valueOf(Integer.MAX_VALUE).length();
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer less than 10000.";
+    public static final String MESSAGE_INDEX_TOO_LONG = "Index provided may result in integer overflow.";
+    public static final String MESSAGE_INDEX_GREATER_THAN_MAX = "Index provided is greater than max value allowed.";
+    public static final String MESSAGE_INVALID_DAYS = "Days provided is not a non-zero unsigned integer less than "
+            + "10000.";
+    public static final String MESSAGE_DAYS_TOO_LONG = "Days provided may result in integer overflow.";
+    public static final String MESSAGE_DAYS_GREATER_THAN_MAX = "Days provided is greater than max value allowed.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer less than 10000).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (trimmedIndex.length() > 4) {
-            throw new ParseException(MESSAGE_INDEX_TOO_LONG);
-        }
+
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            // handles integer overflow values
+            if (trimmedIndex.length() > MAX_INTEGER_LENGTH) {
+                throw new ParseException(MESSAGE_INDEX_TOO_LONG);
+            }
+
+            // handles inputs that are invalid (e.g. contains characters)
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+
+        int index = Integer.parseInt(trimmedIndex);
+
+        // limits index to 9999
+        if (index > MAX_INDEX) {
+            throw new ParseException(MESSAGE_INDEX_GREATER_THAN_MAX);
+        }
+
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
@@ -158,11 +176,21 @@ public class ParserUtil {
     public static int parseDays(String days) throws ParseException {
         requireNonNull(days);
         String trimmedDays = days.trim();
-        if (trimmedDays.length() > 4) {
-            throw new ParseException(MESSAGE_DAYS_TOO_LONG);
-        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedDays)) {
+            // handles integer overflow values
+            if (trimmedDays.length() > MAX_INTEGER_LENGTH) {
+                throw new ParseException(MESSAGE_DAYS_TOO_LONG);
+            }
+
+            // handles inputs that are invalid (e.g. contains characters)
             throw new ParseException(MESSAGE_INVALID_DAYS);
+        }
+
+        int index = Integer.parseInt(trimmedDays);
+
+        // limits days to 9999
+        if (index > MAX_DAYS) {
+            throw new ParseException(MESSAGE_DAYS_GREATER_THAN_MAX);
         }
         return Integer.parseInt(trimmedDays);
     }
