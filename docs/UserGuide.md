@@ -187,7 +187,7 @@ Format: `findstudent KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`.
-* Students matching at least one keyword will be returned (i.e. `OR` search)
+* Students with names matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -211,7 +211,7 @@ Format: `grade INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`
 * At least one of the optional fields must be provided.
 
 Examples:
-* `grade 1 ra1/17 mt/55` add to the grades for the 1st student in your student list: 17 marks for RA1 and 55 marks for midterms. 
+* `grade 1 ra1/17 mt/55` records the grades for the 1st student in your student list: 17 marks for RA1 and 55 marks for midterms. 
 
 ### Setting mastery check result for a student : `mc`
 
@@ -244,7 +244,7 @@ Format: `addtask t/TASK_DESC [d/DEADLINE]`
 
 Examples:
 * `addtask t/Prepare tutorial slides d/2022-11-01` adds a task with description `Prepare tutorial slides` and deadline of `Nov-11-2022` to your task list.
-* `addtask t/Mark missions` adds a task with description `Mark missions` with no deadline to your task list.
+* `addtask t/Mark missions` adds a task with description `Mark missions` and no deadline to your task list.
 
 ### Deleting a task : `deletetask`
 
@@ -414,7 +414,7 @@ Format: `addnote n/NOTE li/LESSON_INDEX [si/STUDENT_INDEX]`
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `addnote n/Get back to jeff on streams li/1 si/2` adds a note for the 2nd student within the 1st lesson in your lesson list.
+* `addnote n/Get back to jeff on streams li/1 si/2` adds a note for the 2nd student in the student list within the 1st lesson in your lesson list.
 * `addnote n/Get back to the class on streams li/2` adds a note for the 2nd lesson in your lesson list.
 
 ### Deleting a note from a lesson : `deletenote`
@@ -430,7 +430,7 @@ Format: `deletenote ni/NOTE_INDEX li/LESSON_INDEX [si/STUDENT_INDEX]`
 * `NOTE_INDEX`, `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `deletenote ni/1 li/1 si/2` deletes the 1st note for the 2nd student within the 1st lesson in your lesson list.
+* `deletenote ni/1 li/1 si/2` deletes the 1st note for the 2nd student in the student list within the 1st lesson in your lesson list.
 * `deletenote ni/2 li/1` deletes the 2nd note from the 1st lesson in your lesson list.
 
 ### Adding participation for a student in a lesson : `addpart`
@@ -446,7 +446,7 @@ Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `addpart p/100 li/1 si/2` sets participation for the 2nd student within the 1st lesson in your lesson list to be 100.
+* `addpart p/100 li/1 si/2` sets participation for the 2nd student in the student list within the 1st lesson in your lesson list to be 100.
 
 <div style="page-break-after: always;"></div>
 
