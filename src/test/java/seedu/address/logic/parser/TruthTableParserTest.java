@@ -3,7 +3,9 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_COMPLETE_TASKS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASKS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_ONE;
@@ -44,6 +46,11 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindMemberCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.FindTaskCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListMembersCommand;
+import seedu.address.logic.commands.ListPersonsCommand;
+import seedu.address.logic.commands.ListTasksCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
@@ -285,23 +292,39 @@ public class TruthTableParserTest {
 
     @Test
     public void parseCommand_help() throws Exception {
+        HelpCommand command = (HelpCommand) parser.parseCommand(HelpCommand.COMMAND_WORD);
+        assertEquals(new HelpCommand(), command);
     }
 
     @Test
     public void parseCommand_list() throws Exception {
+        ListCommand command = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD);
+        assertEquals(new ListCommand(), command);
     }
 
     @Test
     public void parseCommand_listMembers() throws Exception {
+        ListMembersCommand command = (ListMembersCommand) parser.parseCommand(ListMembersCommand.FULL_COMMAND);
+        assertEquals(new ListMembersCommand(), command);
     }
     @Test
     public void parseCommand_listPersons() throws Exception {
+        ListPersonsCommand command = (ListPersonsCommand) parser.parseCommand(ListPersonsCommand.FULL_COMMAND);
+        assertEquals(new ListPersonsCommand(), command);
     }
     @Test
     public void parseCommand_listTasks() throws Exception {
+        ListTasksCommand commandEmpty = (ListTasksCommand) parser.parseCommand("list tasks");
+        assertEquals(false, ParserHelper.getIsComplete(commandEmpty));
+        assertEquals(false, ParserHelper.getIsIncomplete(commandEmpty));
+        ListTasksCommand commandFlagComplete = (ListTasksCommand) parser.parseCommand(ListTasksCommand.FULL_COMMAND + " " + FLAG_COMPLETE_TASKS_STR);
+        assertEquals(true, ParserHelper.getIsComplete(commandFlagComplete));
+        assertEquals(false, ParserHelper.getIsIncomplete(commandFlagComplete));
+        ListTasksCommand commandFlagIncomplete = (ListTasksCommand) parser.parseCommand(ListTasksCommand.FULL_COMMAND + " " + FLAG_INCOMPLETE_TASKS_STR);
+        assertEquals(false, ParserHelper.getIsComplete(commandFlagIncomplete));
+        assertEquals(true, ParserHelper.getIsIncomplete(commandFlagIncomplete));
     }
-
-    @Test
+        @Test
     public void parseCommand_mark() throws Exception {
     }
 

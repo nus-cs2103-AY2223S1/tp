@@ -1,7 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.FLAG_COMPLETE_TASKS_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASKS_STR;
+
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.function.BinaryOperator;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
@@ -223,5 +227,17 @@ public class ParserHelper {
             }
         }
         return null;
+    }
+
+    public static boolean getIsComplete(Command command) {
+        CommandLine.Model.CommandSpec commandSpec = CommandLine.Model.CommandSpec.forAnnotatedObject(command);
+        boolean value =  commandSpec.findOption(FLAG_COMPLETE_TASKS_STR).getValue();
+        return value;
+    }
+
+    public static boolean getIsIncomplete(Command command) {
+        CommandLine.Model.CommandSpec commandSpec = CommandLine.Model.CommandSpec.forAnnotatedObject(command);
+        boolean value =  commandSpec.findOption(FLAG_INCOMPLETE_TASKS_STR).getValue();
+        return value;
     }
 }
