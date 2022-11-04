@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ public class ViewClientListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showClientAtIndex(model, INDEX_FIRST_CLIENT);
+        showClientAtIndex(model, FIRST_INDEX);
         assertCommandSuccess(new ViewClientListCommand(), model, ViewClientListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
