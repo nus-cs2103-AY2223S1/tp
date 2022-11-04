@@ -381,25 +381,25 @@ Sample `.csv` file:
 
 ![](images/batch-add-images/sampleCSV.png)
 
-Sample `.xlsx` file:  
-![](images/batch-add-images/SampleExcel.png)  
+Sample `.xlsx` file:
+![](images/batch-add-images/SampleExcel.png)
 Note: You can export this to `.csv`.
 
 #### Step 2 (Uploading CSV file) :
 
 1. Go to the folder where you stored the `jar` file.
-2. Move CSV file to the `data` folder.  
+2. Move CSV file to the `data` folder.
    ![](images/batch-add-images/movingFile.png)
 
-_If you are a new user (have not run any command yet), you will not see the `data` folder.  
-You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first.  
+_If you are a new user (have not run any command yet), you will not see the `data` folder.
+You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first.
 After this, you should be able to see the `data` folder._
 
 #### Step 3 (Running CSV file) :
 
 1. Once done, run `batch-add FILENAME` in the command box.
 
-Successful Batch Add:  
+Successful Batch Add:
 ![](images/batch-add-images/BatchAddSuccess.png)
 
 Unsuccessful Batch Add:
@@ -408,16 +408,16 @@ In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv
 
 **Case 1 (Duplicate Employee):**
 
-If there is another employee with the same name in the database or in the csv, command will fail  
-and error will be raised.  
+If there is another employee with the same name in the database or in the csv, command will fail
+and error will be raised.
 ![](images/batch-add-images/DuplicateEmployee.png)
 
 **Case 2 (Any of the fields in wrong format):**
 
-If any of the fields are in a wrong format (as specified in `add` command), command will fail  
+If any of the fields are in a wrong format (as specified in `add` command), command will fail
 and error with regard to field in the wrong format will be raised
 
-![](images/batch-add-images/Incorrect Format.png)  
+![](images/batch-add-images/Incorrect Format.png)
 _In this case, a `Phone` field was in the wrong format._
 
 As of version `1.4.0` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
@@ -724,11 +724,11 @@ Format: `exit`
 
 Clears all the data currently stored in the database.
 
-If you are a new user, you can use this command after you have experimented with Coydir  
+If you are a new user, you can use this command after you have experimented with Coydir
 to start keying in your actual employee information.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
-Once you run this command, you lose all data immediately.  
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once you run this command, you lose all data immediately.
 </div>
 
 Format: `clear`

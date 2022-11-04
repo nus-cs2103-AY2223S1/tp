@@ -26,7 +26,7 @@ Given below are my contributions to the project.
     * Created a `RateCommand` class to handle the logic (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/commands/RateCommand.java)) 
     and `RateCommandParser` class to handle the parsing of the user input (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/parser/RateCommandParser.java)).
     * Use Case: User can add ratings for employees.
-    * Justification: With this command, users of Coydir will be able to rate the performance of an employee based on a 1-5 integer rating scale: 
+    * Justification: With this command, users of Coydir will be able to rate the performance of an employee based on a 1-5 integer rating scale:
 
         [5: Outstanding | 4: Exceeds Expectations | 3: Satisfactory | 2: Needs Improvement | 1: Unsatisfactory]
     * Highlights: This command was slightly tricky to implement, as there were many cases to consider, such as ensuring that ratings are always sorted by the local date format (if the user modifies the JSON database).
@@ -43,7 +43,7 @@ Given below are my contributions to the project.
   * Refactored `Add` command.
   * Fixed multiple bugs (Refer to #84, #200, #227, #242).
 
-#### Contributions to the UG 
+#### Contributions to the UG
 * Added documentation for following parts:
   * Introduction catchy hook
   * Product Overview and Description
@@ -61,7 +61,7 @@ Given below are my contributions to the project.
   * [To Be Updated]
 
 #### Contributions to the team-based tasks
-* Helped to create and distribute issues. 
+* Helped to create and distribute issues.
 * Contributed to manual testing of application to find bugs.
 * Influenced the overall aesthetic of the project through mockups and design direction
 * Was in-charge of testing and Integration
@@ -77,4 +77,3 @@ Given below are my contributions to the project.
   * [#225] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/225)
   * [#241] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/241)
   * [#243] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/243)
-  
