@@ -45,13 +45,6 @@ public class PickCommandParserTest {
     }
 
     @Test
-    public void parse_invalidFormatLessonType_throwsParseException() {
-        String input = "CS2100 lol 999 ";
-
-        assertParseFailure(parser, input, String.format(LessonTypeParameter.PARSE_EXCEPTION_MESSAGE, "lol"));
-    }
-
-    @Test
     public void parse_insufficientArguments_throwsParseException() {
         String input = "CS2100 ";
 
