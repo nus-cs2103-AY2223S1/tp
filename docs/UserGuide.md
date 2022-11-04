@@ -304,7 +304,7 @@ Examples (refer to diagram below as well):
 * `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` creates a sell transaction for the 1<sup>st</sup> client (Alice) in
 the list on the 07/11/2000.
 
-![Ui](images/SampleBuySellCommand2.png)
+![Ui](images/SampleBuySellCommand2.PNG)
 
 > <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the "view" command to see it.</div>
 
@@ -323,7 +323,7 @@ Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
 
 Example (refer to diagram below):
 
-`edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the displayed list of transactions (pear), to have a new **goods name**: "pear", **quantity**: "100", **price**: 1.5.
+`edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the displayed list of transactions (pear), to have a new **goods name**: "Apples", **quantity**: "100", **price**: 1.5.
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use "view" command first before you can edit a transaction. If not, there will be an error within the application!
 
