@@ -37,17 +37,19 @@ YellowBook is optimised for use via a Command Line Interface (CLI).
 
 ## Sample Usage
 
-To better understand the usage of YellowBook, we have provided a usage scenario of YellowBook below. We encourage all first-time users to follow along the to learn how each command works.
+To better understand the usage of YellowBook, we have provided a usage scenario of YellowBook below. We encourage all first-time users to follow along to gain a general understanding of the commands available.
 
 1. YellowBook comes with a list of sample contacts and tasks by default.
 
 2. Let's start by listing all the contacts in YellowBook. Type `listC` in the command box and press Enter to execute it. You should see a list of contacts. Try using `listT` to list all the tasks.
 
-3. More to be added
+3. Now that you can navigate between the contact and task lists, let's add a new contact. Type `addC n/Elmo p/91238888 e/elmo@sesamestreet.com a/sesame street` in the command box and press Enter to execute it. You should see a message indicating that the contact has been added successfully and Elmo will appear in your contact list.
 
-4. As you have have noticed, YellowBook's commands are mnemonically named. A [Command Summary](#command-summary) with these helpful tips can be found below.
+4. YellowBook also allows you to add tasks, to add homework task with deadline of 25 December 2022. Type `addT d/complete homework D/25-12-2022` in the command box and press Enter to execute it. You should see a message indicating that the task has been added successfully and the task will appear in your task list.
 
-5. Now that you are ready, feel free to add your own contacts and tasks to YellowBook!
+5. Now that you know the basic commands, try using following the guide for the label command to tag the newly added `Elmo` contact as `friend`. 
+
+YellowBook's commands are mnemonically named. A [Command Summary](#command-summary) with these helpful tips can be found below.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -192,7 +194,7 @@ Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 * Contacts matching at least one keyword will be returned. e.g. `n/Perry Dr.`
   will match contacts with name `Perry the Platypus` and `Dr Doofenshmirtz`.
 
-Example:
+Examples:
 
 * `findC n/john p/81113210 e/john@gmail.com a/123` will return a contact whose name contains the word `john`, phone number `81113210`, email `john@gmail.com`, and address containing `123`.
 
@@ -345,6 +347,7 @@ Format: `unmarkT INDEX`
 Examples:
 
 * `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
+
 * `findT d/book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
 
 ### Finding a task: `findT`
@@ -365,7 +368,7 @@ Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)] [s/STATUS (complete / i
 * Task fields matching at least one keyword will be returned. e.g. `d/cs2103t cs2101` will match
   `cs2103t tutorial` and `cs2101 reflection`.
 
-Example:
+Examples:
 
 * `findT d/cs2103t D/25-12-2022` will return tasks with descriptions containing `cs2103t` and deadline `25th December 2022`.
 
