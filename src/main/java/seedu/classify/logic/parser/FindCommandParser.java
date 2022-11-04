@@ -28,6 +28,13 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_STUDENT_NAME,
                 CliSyntax.PREFIX_ID);
 
+        // Invalid Command if both name and id prefixes are used
+        if (argMultiMap.getValue(CliSyntax.PREFIX_STUDENT_NAME).isPresent()
+                && argMultiMap.getValue(CliSyntax.PREFIX_ID).isPresent()) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
         if (argMultiMap.getValue(CliSyntax.PREFIX_STUDENT_NAME).isPresent()) {
             String[] nameKeywords = argMultiMap.getValue(CliSyntax.PREFIX_STUDENT_NAME).get().split("\\s+");
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
