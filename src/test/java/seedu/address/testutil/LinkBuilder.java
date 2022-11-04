@@ -4,6 +4,9 @@ import seedu.address.model.team.Link;
 import seedu.address.model.team.LinkName;
 import seedu.address.model.team.Url;
 
+/**
+ * Utility class that helps to build links.
+ */
 public class LinkBuilder {
     public static final String DEFAULT_NAME = "Google";
     public static final String DEFAULT_URL = "https://google.com";

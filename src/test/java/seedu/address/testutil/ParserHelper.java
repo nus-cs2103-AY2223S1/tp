@@ -5,12 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASKS_STR;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.function.BinaryOperator;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.parser.LocalDateTimeConverter;
 import seedu.address.logic.parser.Order;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -24,6 +22,9 @@ import seedu.address.model.team.TaskName;
 import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Url;
 
+/**
+ * Utility class that helps to retrieve fields in command objects.
+ */
 public class ParserHelper {
     public static Name getName(Command command) {
         CommandLine.Model.CommandSpec commandSpec = CommandLine.Model.CommandSpec.forAnnotatedObject(command);
@@ -231,13 +232,13 @@ public class ParserHelper {
 
     public static boolean getIsComplete(Command command) {
         CommandLine.Model.CommandSpec commandSpec = CommandLine.Model.CommandSpec.forAnnotatedObject(command);
-        boolean value =  commandSpec.findOption(FLAG_COMPLETE_TASKS_STR).getValue();
+        boolean value = commandSpec.findOption(FLAG_COMPLETE_TASKS_STR).getValue();
         return value;
     }
 
     public static boolean getIsIncomplete(Command command) {
         CommandLine.Model.CommandSpec commandSpec = CommandLine.Model.CommandSpec.forAnnotatedObject(command);
-        boolean value =  commandSpec.findOption(FLAG_INCOMPLETE_TASKS_STR).getValue();
+        boolean value = commandSpec.findOption(FLAG_INCOMPLETE_TASKS_STR).getValue();
         return value;
     }
 }

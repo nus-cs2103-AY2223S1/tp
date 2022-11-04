@@ -2,20 +2,17 @@ package seedu.address.testutil;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.TaskName;
-import seedu.address.model.util.SampleDataUtil;
 
+/**
+ * Utility class that helps build Task objects.
+ */
 public class TaskBuilder {
     public static final String DEFAULT_NAME = "Code Review";
     public static final Person DEFAULT_ASSIGNEE_ONE = TypicalPersons.ALICE;

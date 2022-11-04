@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.model.team.Task;
 
+/**
+ * Utility class that helps convert task objects to commands.
+ */
 public class TaskUtil {
     public static String getAddTaskCommand(Task task) {
         return AddTaskCommand.FULL_COMMAND + " " + getTaskDetails(task);

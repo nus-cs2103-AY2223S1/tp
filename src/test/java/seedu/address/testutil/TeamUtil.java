@@ -1,12 +1,14 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 
 import seedu.address.logic.commands.AddTeamCommand;
 import seedu.address.model.team.Team;
 
+/**
+ * Utility class that helps convert teams to commands.
+ */
 public class TeamUtil {
 
     public static String getAddTeamCommand(Team team) {

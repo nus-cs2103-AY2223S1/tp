@@ -12,6 +12,9 @@ import seedu.address.model.team.Team;
 import seedu.address.model.team.TeamName;
 import seedu.address.model.team.UniqueLinkList;
 
+/**
+ * Utility class that help build Team objects.
+ */
 public class TeamBuilder {
     public static final String DEFAULT_NAME = "default";
     public static final String DEFAULT_DESCRIPTION = "default description";
@@ -62,7 +65,7 @@ public class TeamBuilder {
     }
 
     /**
-     * Sets the {@code Description of the {@code Team} that we are building.
+     * Sets the {@code Description} of the {@code Team} that we are building.
      */
     public TeamBuilder withDescription(String description) {
         this.description = new Description(description);
@@ -93,6 +96,9 @@ public class TeamBuilder {
         return this;
     }
 
+    /**
+     * Returns a new Team object.
+     */
     public Team build() {
         return new Team(name, description,
                 members.asUnmodifiableObservableList(),

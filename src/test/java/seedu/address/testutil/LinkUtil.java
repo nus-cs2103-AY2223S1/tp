@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
 import seedu.address.logic.commands.AddLinkCommand;
 import seedu.address.model.team.Link;
 
+/**
+ * Utility class that helps to convert links to commands.
+ */
 public class LinkUtil {
     public static String getAddLinkCommand(Link link) {
         return AddLinkCommand.FULL_COMMAND + " " + getLinkDetails(link);

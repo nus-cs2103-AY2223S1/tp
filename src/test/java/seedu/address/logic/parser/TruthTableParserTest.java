@@ -1,21 +1,17 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_COMPLETE_TASKS_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASKS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_ONE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THREE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +32,6 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteLinkCommand;
 import seedu.address.logic.commands.DeleteMemberCommand;
-import seedu.address.logic.commands.DeleteMemberCommandTest;
 import seedu.address.logic.commands.DeletePersonCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DeleteTeamCommand;
@@ -72,8 +67,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
-import seedu.address.model.team.TeamName;
-import seedu.address.testutil.Assert;
 import seedu.address.testutil.LinkBuilder;
 import seedu.address.testutil.LinkUtil;
 import seedu.address.testutil.ParserHelper;
@@ -122,8 +115,7 @@ public class TruthTableParserTest {
         Task task = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(TaskUtil.getAddTaskCommand(task));
         assertEquals(task.getName(), ParserHelper.getTaskName(command));
-        assertTrue(Arrays.equals(new String[] {"1","2"},
-                ParserHelper.getAssignees(command)));
+        assertTrue(Arrays.equals(new String[] {"1", "2"}, ParserHelper.getAssignees(command)));
         assertEquals(task.getDeadline().get(), ParserHelper.getDeadline(command));
     }
 
@@ -150,8 +142,7 @@ public class TruthTableParserTest {
                 + INDEX_SECOND_PERSON.getOneBased();
         AssignTaskCommand command = (AssignTaskCommand) parser.parseCommand(commandString);
         assertEquals(INDEX_ONE, ParserHelper.getIndex(command));
-        assertTrue(Arrays.equals(new String[] {"1","2"},
-                ParserHelper.getAssignees(command)));
+        assertTrue(Arrays.equals(new String[] {"1", "2"}, ParserHelper.getAssignees(command)));
     }
     @Test
     public void parseCommand_assignRandom() throws Exception {
@@ -245,8 +236,7 @@ public class TruthTableParserTest {
                 + TaskUtil.getTaskDetailsWithNameFlag(task);
         EditTaskCommand command = (EditTaskCommand) parser.parseCommand(commandString);
         assertEquals(task.getName(), ParserHelper.getTaskName(command));
-        assertTrue(Arrays.equals(new String[] {"1","2"},
-                ParserHelper.getAssignees(command)));
+        assertTrue(Arrays.equals(new String[] {"1", "2"}, ParserHelper.getAssignees(command)));
         assertEquals(task.getDeadline().get(), ParserHelper.getDeadline(command));
     }
     @Test
@@ -334,14 +324,16 @@ public class TruthTableParserTest {
         ListTasksCommand commandEmpty = (ListTasksCommand) parser.parseCommand("list tasks");
         assertEquals(false, ParserHelper.getIsComplete(commandEmpty));
         assertEquals(false, ParserHelper.getIsIncomplete(commandEmpty));
-        ListTasksCommand commandFlagComplete = (ListTasksCommand) parser.parseCommand(ListTasksCommand.FULL_COMMAND + " " + FLAG_COMPLETE_TASKS_STR);
+        ListTasksCommand commandFlagComplete = (ListTasksCommand) parser.parseCommand(
+                ListTasksCommand.FULL_COMMAND + " " + FLAG_COMPLETE_TASKS_STR);
         assertEquals(true, ParserHelper.getIsComplete(commandFlagComplete));
         assertEquals(false, ParserHelper.getIsIncomplete(commandFlagComplete));
-        ListTasksCommand commandFlagIncomplete = (ListTasksCommand) parser.parseCommand(ListTasksCommand.FULL_COMMAND + " " + FLAG_INCOMPLETE_TASKS_STR);
+        ListTasksCommand commandFlagIncomplete = (ListTasksCommand) parser.parseCommand(
+                ListTasksCommand.FULL_COMMAND + " " + FLAG_INCOMPLETE_TASKS_STR);
         assertEquals(false, ParserHelper.getIsComplete(commandFlagIncomplete));
         assertEquals(true, ParserHelper.getIsIncomplete(commandFlagIncomplete));
     }
-        @Test
+    @Test
     public void parseCommand_mark() throws Exception {
         MarkCommand command = (MarkCommand) parser.parseCommand(
                 MarkCommand.FULL_COMMAND + " " + INDEX_ONE.getOneBased());
@@ -425,7 +417,7 @@ public class TruthTableParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND,
+                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand("unknownCommand"));
     }
 }
