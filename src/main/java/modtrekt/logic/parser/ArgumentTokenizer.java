@@ -29,18 +29,6 @@ public class ArgumentTokenizer {
     }
 
     /**
-     * Returns true if the given flag is present in the given arguments string.
-     * Flags are prefixes without arguments, e.g. {@code -A}.
-     *
-     * @param argsString Arguments string of the form: {@code preamble [<prefix>value] ... <flag> ... [<prefix>value]}
-     * @param flag       Flag to search for
-     * @return true if the flag is present in the arguments string
-     */
-    public static boolean isFlagPresent(String argsString, Prefix flag) {
-        return !findPrefixPositions(argsString, flag).isEmpty();
-    }
-
-    /**
      * Finds all zero-based prefix positions in the given arguments string.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
