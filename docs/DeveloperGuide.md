@@ -687,7 +687,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
 
    1. Test Case: `insurance 1 hi/`<br>
-      Expected: First contact is shown to have health insurance. Details of the updated insurance policy are shown in the status message. Updating single insurance.
+      Expected: First contact is shown to have health insurance and no other insurance. Details of the updated insurance policy are shown in the status message. Updating single insurance.
 
    1. Test Case: `insurance 1`<br>
       Expected: First contact is shown to have no insurance. Details of the removed insurance policies are shown in the status message. Removing insurance.
