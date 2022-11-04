@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
@@ -83,6 +84,9 @@ public class AddTaskCommand extends TaskCommand {
         List<Person> lastShownPersonList = model.getFilteredPersonList();
 
         for (Index index : contactIndexes) {
+            if (index.getZeroBased() >= lastShownPersonList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
             Contact toAssign = new Contact(lastShownPersonList.get(index.getZeroBased()).getName().toString());
             assignedContacts.add(toAssign);
         }
