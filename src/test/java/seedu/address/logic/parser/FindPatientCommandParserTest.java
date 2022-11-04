@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailureForPrefix;
 import static seedu.address.testutil.TypicalPatients.ALICE;
+import static seedu.address.testutil.TypicalPatients.DANIEL;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientsHealthContact;
 
 import java.util.Arrays;
@@ -50,6 +51,12 @@ public class FindPatientCommandParserTest {
         expectedModel.updateFilteredPatientList(secondCommand.getPredicate());
         assertCommandSuccess(secondCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE), model.getFilteredPatientList());
+
+        // multiple fields
+        FindPatientCommand thirdCommand = parser.parse(" n/dan p/525 e/example a/str r/likes t/friends ");
+        expectedModel.updateFilteredPatientList(thirdCommand.getPredicate());
+        assertCommandSuccess(thirdCommand, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(DANIEL), model.getFilteredPatientList());
     }
 
     @Test
