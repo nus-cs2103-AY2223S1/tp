@@ -8,8 +8,6 @@ import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.storage.exceptions.StorageException;
 
-// TODO: Rename all "ReadOnlyAddressBook" to "ReadOnlyUserModuleList"
-
 /**
  * Represents a storage for {@link nus.climods.model.module.UniqueUserModuleList}
  */
@@ -25,7 +23,6 @@ public interface UserModuleListStorage {
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException             if there was any problem when reading from the storage.
      */
     Optional<UniqueUserModuleList> readUserModuleList() throws DataConversionException;
 
@@ -38,7 +35,6 @@ public interface UserModuleListStorage {
      * Saves the given {@link UniqueUserModuleList} to the storage.
      *
      * @param userModuleList cannot be null.
-     * @throws IOException if there was any problem writing to the file.
      */
     void saveUserModuleList(UniqueUserModuleList userModuleList) throws StorageException;
 
@@ -46,5 +42,4 @@ public interface UserModuleListStorage {
      * @see #saveUserModuleList(UniqueUserModuleList)
      */
     void saveUserModuleList(UniqueUserModuleList userModuleList, Path filePath) throws IOException;
-
 }

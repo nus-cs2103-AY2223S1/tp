@@ -16,9 +16,9 @@ import nus.climods.model.module.exceptions.UserModuleNotFoundException;
 
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls. A module is considered
- * unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of modules uses
- * Person#isSamePerson(Person) for equality to ensure that the module being added or updated is unique in terms of
- * identity in the UniquePersonList. However, the removal of a module uses Person#equals(Object) to ensure that
+ * unique by comparing using {@code Module#isSameModule(Module)}. As such, adding and updating of modules uses
+ * Module#isSameModule(Module) for equality to ensure that the module being added or updated is unique in terms of
+ * identity in the UniqueModuleList. However, the removal of a module uses Module#equals(Object) to ensure that
  * the module with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
