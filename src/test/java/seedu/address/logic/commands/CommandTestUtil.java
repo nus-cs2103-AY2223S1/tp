@@ -120,12 +120,12 @@ public class CommandTestUtil {
     }
 
     static {
-        DESC_AMY_MARK = new MarkPersonDescriptorBuilder().withAttendance(VALID_ATTENDANCE_AMY)
-                .withAttendanceIndex(VALID_INDEX).withHomework(VALID_HOMEWORK_AMY)
+        DESC_AMY_MARK = new MarkPersonDescriptorBuilder()
+                .withAttendanceIndex(VALID_INDEX)
                 .withHomeworkIndex(VALID_INDEX).build();
 
-        DESC_BOB_MARK = new MarkPersonDescriptorBuilder().withAttendance(VALID_ATTENDANCE_BOB)
-                .withAttendanceIndex(VALID_INDEX).withHomework(VALID_HOMEWORK_BOB)
+        DESC_BOB_MARK = new MarkPersonDescriptorBuilder()
+                .withAttendanceIndex(VALID_INDEX)
                 .withHomeworkIndex(VALID_INDEX).build();
     }
 
