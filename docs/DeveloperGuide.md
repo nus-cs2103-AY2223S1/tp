@@ -124,11 +124,13 @@ The `Model` component,
 * stores the art buddy data i.e., all `Customer` objects (which are contained in a `UniqueCustomerList` object).
 * stores all `Commission` objects within their respective `Customer` object (which are contained in a `UniqueCommissionList` object).
 * stores all `Iteration` objects within their respective `Commission` object (which are contained in a `UniqueIterationList` object).
-* stores the currently 'selected' `Customer` as an `ObservableObject<Customer>` which lets us listen to changes to the selected customer for performing UI updates.
-* stores the current 'filtered' `Customer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Customer` as an `ObservableObject<Customer>` respectively, which lets us listen to changes to the selected customer for performing UI updates.
+  * the same applies to the currently selected `Commission`.
+* stores the current 'sorted' and 'filtered' objects (sorted based on the `sortcus` or `find` commands) as a separate _sorted_ and _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the current list of `Commission` objects belonging to the selected `Customer` (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Commission>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* keeps track of the currently selected GUI tab using a `GuiTab` enum. The tab that the GUI displays is updated after each command is executed. 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Customer` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Customer` needing their own `Tag` objects.<br>
 
