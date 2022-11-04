@@ -95,27 +95,26 @@ public class ExamTest {
 
     @Test
     public void edit_withModuleDescriptionAndDate() {
-        Exam exam = new ExamBuilder(FINAL_EXAM).withNumOfCompletedTasks(0).withTotalNumOfTasks(2).build();
 
         // null module, description and date
         assertThrows(NullPointerException.class, () ->
-            exam.edit(null, null, null));
+            FINAL_EXAM.edit(null, null, null));
 
         // module edited
         Module module = new Module(new ModuleCode(VALID_MODULE_CS2030));
-        Exam finalExamEdited = new ExamBuilder(FINAL_EXAM).withModule(VALID_MODULE_CS2030).build();
-        assertEquals(finalExamEdited, exam.edit(module, null, null));
+        Exam finalExamEdited = new ExamBuilder(MIDTERM_EXAM).withModule(VALID_MODULE_CS2030).build();
+        assertEquals(finalExamEdited, MIDTERM_EXAM.edit(module, null, null));
 
         // description edited
         ExamDescription description = new ExamDescription(VALID_DESCRIPTION_EXAMONE);
         Exam finalExamDescriptionEdited = new ExamBuilder(FINAL_EXAM)
             .withDescription(VALID_DESCRIPTION_EXAMONE).build();
-        assertEquals(finalExamDescriptionEdited, exam.edit(null, description, null));
+        assertEquals(finalExamDescriptionEdited, FINAL_EXAM.edit(null, description, null));
 
         // date edited
         ExamDate date = new ExamDate(VALID_DATE_EXAMONE);
         Exam finalExamDateEdited = new ExamBuilder(FINAL_EXAM).withDate(VALID_DATE_EXAMONE).build();
-        assertEquals(finalExamDateEdited, exam.edit(null, null, date));
+        assertEquals(finalExamDateEdited, FINAL_EXAM.edit(null, null, date));
     }
 
     @Test

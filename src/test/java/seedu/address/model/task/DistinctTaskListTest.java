@@ -273,7 +273,7 @@ public class DistinctTaskListTest {
         assertThrows(NullPointerException.class, () -> distinctTaskList.unlinkTasksFromExam(null));
     }
 
-    @Test
+    @Test // mght need to edit since method was changed
     public void unlinkTasksFromExam_success() {
         distinctTaskList.addTask(TASK_D);
         distinctTaskList.unlinkTasksFromExam(MIDTERM_EXAM);
@@ -382,7 +382,7 @@ public class DistinctTaskListTest {
         assertThrows(NullPointerException.class, () -> distinctTaskList.updateModuleFieldForTask(CS2030, null));
     }
 
-    @Test
+    @Test // might need to edit since method was changed
     public void updateModuleFieldForTask_success() {
         // task with same module
         distinctTaskList.addTask(TASK_A);

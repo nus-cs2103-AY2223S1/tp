@@ -195,7 +195,6 @@ public class Exam {
                 && otherExam.getExamDate().equals(getExamDate());
     }
 
-
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
