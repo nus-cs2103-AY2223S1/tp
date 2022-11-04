@@ -13,7 +13,7 @@ public class ListTasksCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
-    public static final String EMPTY_LIST = "No task in list";
+    public static final String EMPTY_LIST = "No tasks in list";
 
 
     @Override
