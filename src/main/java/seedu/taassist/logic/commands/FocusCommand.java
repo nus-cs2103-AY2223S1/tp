@@ -48,7 +48,7 @@ public class FocusCommand extends Command {
         }
 
         model.enterFocusMode(existingModuleClass);
-        return new CommandResult(String.format(MESSAGE_ENTERED_FOCUS_MODE, existingModuleClass), UiAction.UI_FOCUS);
+        return new CommandResult(String.format(MESSAGE_ENTERED_FOCUS_MODE, existingModuleClass), UiAction.FOCUS);
     }
 
     @Override

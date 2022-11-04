@@ -20,7 +20,7 @@ public class ClearCommand extends Command {
         boolean isInFocusMode = model.isInFocusMode();
         model.setTaAssist(new TaAssist());
         if (isInFocusMode) {
-            return new CommandResult(MESSAGE_SUCCESS, UiAction.UI_UNFOCUS);
+            return new CommandResult(MESSAGE_SUCCESS, UiAction.UNFOCUS);
         }
         return new CommandResult(MESSAGE_SUCCESS);
 

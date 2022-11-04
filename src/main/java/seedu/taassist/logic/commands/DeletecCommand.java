@@ -65,7 +65,7 @@ public class DeletecCommand extends Command {
 
         String message = getCommandMessage(existingClasses, nonExistentClasses);
         if (isDeletingFocusedClass) {
-            return new CommandResult(message, UiAction.UI_UNFOCUS);
+            return new CommandResult(message, UiAction.UNFOCUS);
         }
         return new CommandResult(message);
     }

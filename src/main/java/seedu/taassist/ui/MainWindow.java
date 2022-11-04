@@ -226,16 +226,16 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.hasUiAction()) {
                 switch (commandResult.getUiAction()) {
-                case UI_HELP:
+                case HELP:
                     handleHelp();
                     break;
-                case UI_EXIT:
+                case EXIT:
                     handleExit();
                     break;
-                case UI_FOCUS:
+                case FOCUS:
                     handleFocusMode();
                     break;
-                case UI_UNFOCUS:
+                case UNFOCUS:
                     handleUnfocusMode();
                     break;
                 default:

@@ -25,6 +25,6 @@ public class UnfocusCommand extends Command {
         }
         ModuleClass focusedClass = model.getFocusedClass();
         model.exitFocusMode();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, focusedClass), UiAction.UI_UNFOCUS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, focusedClass), UiAction.UNFOCUS);
     }
 }

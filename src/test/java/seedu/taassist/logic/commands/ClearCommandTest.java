@@ -39,7 +39,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalTaAssist(), new UserPrefs());
         expectedModel.setTaAssist(new TaAssist());
 
-        CommandResult expectedResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS, UiAction.UI_UNFOCUS);
+        CommandResult expectedResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS, UiAction.UNFOCUS);
         assertCommandSuccess(new ClearCommand(), model, expectedResult, expectedModel);
         assertFalse(model.isInFocusMode());
     }

@@ -17,6 +17,6 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, UiAction.UI_HELP);
+        return new CommandResult(SHOWING_HELP_MESSAGE, UiAction.HELP);
     }
 }
