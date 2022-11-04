@@ -8,8 +8,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
 
-<HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8">
+<HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane"
+    xmlns="http://javafx.com/javafx/8">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
@@ -34,9 +36,9 @@
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
             <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
             <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
-            <Label fx:id="homeVisits" styleClass="cell_small_label" text="\$homeVisit"/>
+            <Label fx:id="homeVisits" styleClass="cell_small_label" text="\$homeVisit" wrapText="true"/>
             <Label fx:id="dateSlots" styleClass="cell_small_label" text="\$date"/>
-            <Label fx:id="unavailableDates" styleClass="cell_small_label" text="\$unavailableDate"/>
+            <Label fx:id="unavailableDates" styleClass="cell_small_label" text="\$unavailableDate" wrapText="true"/>
             <Label fx:id="physInfo" styleClass="cell_small_label" text="\$physInfo"/>
             <Label fx:id="nokInfo" styleClass="cell_small_label" text="\$nokInfo"/>
         </VBox>
