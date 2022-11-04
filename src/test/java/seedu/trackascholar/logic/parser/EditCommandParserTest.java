@@ -99,7 +99,7 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_MAJOR} alone will reset the tags of the {@code Applicant} being edited,
+        // while parsing {@code PREFIX_MAJOR} alone will reset the majors of the {@code Applicant} being edited,
         // parsing it together with a valid major results in error
         assertParseFailure(parser, "1" + MAJOR_DESC_FRIEND + MAJOR_DESC_HUSBAND + MAJOR_EMPTY,
             Major.MESSAGE_CONSTRAINTS);
@@ -166,7 +166,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
+        // majors
         userInput = targetIndex.getOneBased() + MAJOR_DESC_FRIEND;
         descriptor = new EditApplicantDescriptorBuilder().withMajors(VALID_MAJOR_FRIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
