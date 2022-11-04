@@ -142,17 +142,16 @@ You should see this item appear in TrackO at index 5 as shown below:
 2. Next, we move on to managing your **orders**!
     1. Adding an order: `addo`
       * Suppose a customer by the name `Jonathan Chee` wants his order delivered to `43 Clementi Road, 639433`. He is 
-        contactable by the email `JonChee@gmail.com` and at the phone number`96785944`. He has also has ordered 1 unit of `Teddy bear keychain`.
+        contactable by the email `JonChee@gmail.com` and at the phone number`96785944`. He has also ordered 1 unit of `Teddy bear keychain`.
       * Firstly, initiate the `addo` command with the customer details by entering the following command into the [command box](#layout):
         ```
         addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com a/43 Clementi Road, 639433
         ```
-   
       * Next, to add the items ordered by the customer, enter the following command into the [command box](#layout):
         ```
         i/teddy bear keychain q/1
         ```
-      * Lastly, enter `done` to finish adding the order to TrackO!
+      * Finally, enter `done` to finish adding the order to TrackO!
       
    You should see this order appear in TrackO at index 5 as shown below:
 
