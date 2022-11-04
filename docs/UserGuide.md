@@ -116,13 +116,14 @@ No time to waste, let's start _Working_! :muscle:
 
 * Otherwise, WorkBook will be in the wide layout which has an extra right panel for displaying tips.
 
+|       Wide Layout         |
+|:-------------------------:|
+|![wide layout](images/AnnotatedUi.png) |
+
 |       Narrow Layout       |  
 |:-------------------------:|
 |![narrow layout](images/UiNarrow.png) |
 
-|       Wide Layout         |
-|:-------------------------:|
-|![wide layout](images/AnnotatedUi.png) |
 
 |     Resizing Example      |
 |:-------------------------:|
