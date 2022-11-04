@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
 
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
@@ -12,15 +13,56 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+together {
+Class UniqueConsultationList
+Class UniqueStudentList
+Class UniqueTutorialList
+Class UniqueReminderList
+}
+
+Class Student {
+    -id: StudentId
+    -grade: Grade
+    -email: Email
+    -name: Name
+    -phone: Phone
+    -tags: Tag
+    -attendance: Attendance
+    -participation: Participation
+    -telegramHandle: TelegramHandle
+}
+
+Class Consultation {
+    -name: ConsultationName
+    -description: ConsultationDescription
+}
+
+Class Reminder {
+    -name: ReminderName
+    -priority: ReminderDescription
+    -description: ReminderPriority
+    -status: ReminderStatus
+}
+
+Class Tutorial
+Class TutorialName
+
+package Commons {
+Class ModuleCode
+Class Venue
+}
+
+package DateTime {
+Class WeeklyTimeslot
+Class Datetime
+Class DatetimeRange
+}
 
 }
+
+show Student members
+show Consultation members
+show Reminder members
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -29,22 +71,37 @@ AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .right.> ReadOnlyAddressBook
+ModelManager -right-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *-down-> "1" UniqueStudentList
+UniqueStudentList --> "~* all" Student
+Student *--> ModuleCode
+Student *--> TutorialName
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+AddressBook *-down-> "1" UniqueConsultationList
+UniqueConsultationList --> "~* all" Consultation
+Consultation *--> ModuleCode
+Consultation *--> Venue
+Consultation *--> DatetimeRange
 
-ModelManager -->"~* filtered" Person
+AddressBook *-down-> "1" UniqueReminderList
+UniqueReminderList --> "~* all" Reminder
+Reminder *--> Datetime
+
+AddressBook *-down-> "1" UniqueTutorialList
+UniqueTutorialList --> "~* all" Tutorial
+Tutorial *--> TutorialName
+Tutorial *--> ModuleCode
+Tutorial *--> Venue
+Tutorial *--> WeeklyTimeslot
+
+Student -right[hidden]-> Tutorial
+
+ModelManager -->"~* filtered" Student
+ModelManager -->"~* filtered" Consultation
+ModelManager -->"~* filtered" Reminder
+ModelManager -->"~* filtered" Tutorial
 @enduml
