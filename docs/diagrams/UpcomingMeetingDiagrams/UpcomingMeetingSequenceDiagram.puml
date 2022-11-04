@@ -9,6 +9,10 @@ participant ":MeetingsListPanel" as MeetingsListPanel LOGIC_COLOR
 participant ":MeetingCard" as MeetingCard LOGIC_COLOR
 end box
 
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+end box
+
 [-> MainWindow : f2
 activate MainWindow
 
@@ -43,6 +47,13 @@ activate MeetingsListPanel
 create MeetingCard
 MeetingsListPanel -> MeetingCard
 activate MeetingCard
+
+create Person
+MeetingCard -> Person
+activate Person
+
+Person --> MeetingCard
+deactivate Person
 
 MeetingCard --> MeetingsListPanel
 deactivate MeetingCard

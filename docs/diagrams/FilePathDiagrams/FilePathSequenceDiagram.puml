@@ -12,7 +12,8 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "Bernice Yu:Person" as BerniceYu MODEL_COLOR
+participant "PersonToEdit:Person" as personToEdit MODEL_COLOR
+participant "EditedPerson:Person" as EditedPerson MODEL_COLOR
 end box
 
 [-> LogicManager : execute("filepath 2 f/C:\Users\...\Tut.pdf")
@@ -72,12 +73,19 @@ deactivate Model
 SetPersonFileCommand -> SetPersonFileCommand : get(index.getZeroBased())
 activate SetPersonFileCommand
 
-create BerniceYu
-SetPersonFileCommand -> BerniceYu
-activate BerniceYu
+create personToEdit
+SetPersonFileCommand -> personToEdit
+activate personToEdit
 
-BerniceYu --> SetPersonFileCommand
-deactivate BerniceYu
+personToEdit --> SetPersonFileCommand
+deactivate personToEdit
+
+Create EditedPerson
+SetPersonFileCommand -> EditedPerson
+activate EditedPerson
+
+EditedPerson --> SetPersonFileCommand
+deactivate EditedPerson
 
 SetPersonFileCommand --> SetPersonFileCommand
 deactivate SetPersonFileCommand
