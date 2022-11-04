@@ -33,7 +33,7 @@ Given below are my contributions to the project.
     * It was also hard to implement the status as a small coloured box at the top right hand corner
       of the Project card displayed in the UI since I was not too familiar with FXML.
   * Credits:
-    * Would like to thank @russeldash332 for the help in implementing the status as a coloured box
+    * Would like to thank @russelldash332 for the help in implementing the status as a coloured box
       by providing the required FXML knowledge
 
 * **New Feature**: Added the ability to sort the projects by their specialisation, or by their project status
