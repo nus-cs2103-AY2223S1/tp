@@ -197,12 +197,16 @@ Format: `meet [NAMES_OF_PERSONS_TO_MEET (separated by }})] ;;; MEETING_DESCRIPTI
 
 Example: `meet Alex }} Bernice ;;; Project Meeting ;;; 29-01-2022 1530 ;;; UTown`
 
+Note: Separating names by `}` or `}}}` (or any other variation of `}}`) will likely result in errors
+Note: Separating each component of information by `;` or `;;` (or any other variation of `;;;`) will likely result in errors
+
 * The names of the people to meet must correspond to the names of actual contacts, otherwise an error message will be displayed 
-* You can choose to type in part of the contact's name (but must be in full word) and the software will match it to the closest contact\
+* You can choose to type in part of the contact's name (but must be in full word) and the software will match it to the closest contact
   * i.e. There is only one contact called `Alex Yeoh` and inputting `meet Alex ...` will identify the `Alex Yeoh` as the person to meet
   * However, inputting `meet Al ...` will not identify `Alex Yeoh` as `Al` is not a full word in the name
   * NOTE: if there are multiple contacts sharing the same word(s) in their names, the ambiguity will result in an error message and you will be prompted to re-enter a more precise name
   * e.g. if there are two contacts called `Alex Yeoh` and `Alex Lee`, then inputting `meet Alex ...` will result in error
+  * However, if there are three contacts named `Alex`, `Alex Yeoh` and `Alex Lee`, then inputting `meet Alex ...` will fetch the contact named `Alex` since it is the contact with an exact name match.
 * For the date and time of the meeting:
   * Both the month and day have to be in double digits, e.g. `1-1-2000`, `01-9-2000`, `9-18-2000` will not be accepted, but `01-01-2000`, `01-09-2000`, `09-18-2000` will be
   * Years smaller than 1000 or greater than 10000 will not be accepted as well

@@ -34,6 +34,7 @@ public class DateTimeProcessor {
         this.timeFormatter = timeFormatter;
     }
 
+    //Solution below adapted from https://www.baeldung.com/java-datetimeformatter
     /**
      * Checks if the input string matches the accepted date format of the formatter
      *
@@ -90,6 +91,7 @@ public class DateTimeProcessor {
             throw new ParseException(String.format("Meeting date: %1$s is not in dd-MM-yyyy format", meetingDate));
         }
 
+        //Solution below adapted from https://www.baeldung.com/java-datetimeformatter
         DateTimeFormatter newFormatter = DateTimeFormatter
             .ofLocalizedDate(FormatStyle.FULL).withLocale(Locale.UK).withResolverStyle(ResolverStyle.SMART);
 
