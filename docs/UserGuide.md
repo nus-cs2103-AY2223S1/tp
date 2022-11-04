@@ -144,7 +144,7 @@ Required Arguments:
     - e.g. `08J`
   > Tip: Use the `view` command to look at the available lessons!
 
-Pick lesson (e.g tutorial, lab) slots from the available choices for modules that are in the user list.
+Pick lesson (e.g tutorial, lab) slots from the available choices for modules that have been selected by the user.
 
 Your list of modules will display your lesson timings!
 
