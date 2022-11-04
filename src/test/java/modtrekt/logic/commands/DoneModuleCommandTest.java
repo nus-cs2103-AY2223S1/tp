@@ -42,7 +42,7 @@ public class DoneModuleCommandTest {
     }
 
     @Test
-    public void unsuccessfulTestExecuteCommandCdIntoAnotherModule() {
+    public void executeCommandCdIntoAnotherModule_success() {
         ModelStub model = testExecutionSetup();
         model.setCurrentModule(new ModCode("CS2100"));
         assertThrows(CommandException.class,
@@ -51,14 +51,14 @@ public class DoneModuleCommandTest {
     }
 
     @Test
-    public void unsuccessfulTestExecuteCommandNonexistentModCode() {
+    public void executeCommandNonexistentModCode_throws() {
         ModelStub model = testExecutionSetup();
         assertThrows(CommandException.class, "Module code CS9999 does not exist.", ()
                 -> new ModtrektParser().parseCommand("done mod CS9999").execute(model));
     }
 
     @Test
-    public void unsuccessfulTestExecuteCommandModuleAlreadyDone() {
+    public void executeCommandModuleAlreadyDone_throws() {
         ModelStub model = new ModelStub();
         Module module = new ModuleBuilder().withDone(true).build();
         model.addModule(module);
@@ -67,7 +67,7 @@ public class DoneModuleCommandTest {
     }
 
     @Test
-    public void successfulTestExecuteMarkDone() {
+    public void executeMarkDone_success() {
         ModelStub model = new ModelStub();
         Module module = new ModuleBuilder().withDone(false).build();
         model.addModule(module);

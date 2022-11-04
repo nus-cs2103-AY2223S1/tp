@@ -43,7 +43,7 @@ public class UndoneModuleCommandTest {
     }
 
     @Test
-    public void unsuccessfulTestExecuteCommandCdIntoAnotherModule() {
+    public void executeCommandCdIntoAnotherModule_throws() {
         ModelStub model = testExecutionSetup();
         model.setCurrentModule(new ModCode("CS2100"));
         assertThrows(CommandException.class, "Please exit the current module using 'cd ..' command!", ()
@@ -51,14 +51,14 @@ public class UndoneModuleCommandTest {
     }
 
     @Test
-    public void unsuccessfulTestExecuteCommandNonexistentModCode() {
+    public void executeCommandNonexistentModCode_throws() {
         ModelStub model = testExecutionSetup();
         assertThrows(CommandException.class, "Module code CS9999 does not exist.", ()
                 -> new ModtrektParser().parseCommand("undone mod CS9999").execute(model));
     }
 
     @Test
-    public void unsuccessfulTestExecuteCommandModuleAlreadyUndone() {
+    public void executeCommandModuleAlreadyUndone_throws() {
         ModelStub model = new ModelStub();
         Module module = new ModuleBuilder().withDone(false).build();
         model.addModule(module);
@@ -67,7 +67,7 @@ public class UndoneModuleCommandTest {
     }
 
     @Test
-    public void successfulTestExecuteMarkUndone() {
+    public void executeMarkUndone_success() {
         ModelStub model = new ModelStub();
         Module module = new ModuleBuilder().withDone(true).build();
         model.addModule(module);

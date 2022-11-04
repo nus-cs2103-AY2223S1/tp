@@ -37,7 +37,6 @@ public class DoneTaskCommandTest {
         modelStub.addModule(module);
         Task task = new TaskBuilder().withModCode(module.getCode().toString()).build();
         modelStub.addTask(task);
-        assertEquals(task, modelStub.getFilteredTaskList().get(0));
         assertEquals(new DoneTaskCommand(Index.fromOneBased(1)).execute(modelStub),
                 new CommandResult("Yay! I successfully marked this task as done!"));
     }

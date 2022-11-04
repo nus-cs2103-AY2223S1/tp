@@ -50,7 +50,7 @@ public class AddDeadlineCommandTest {
     }
 
     @Test
-    public void testCommandNoCurrentModuleAndNoModuleCode_throws() {
+    public void testCommandNoCurrentModule_throws() {
         AddDeadlineCommand cmd = AddDeadlineCommandBuilder.build("desc", "2022-09-09", "CS2103T");
         assertThrows(CommandException.class, () -> cmd.execute(new ModelStub()));
     }
