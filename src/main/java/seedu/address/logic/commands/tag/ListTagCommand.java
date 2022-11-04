@@ -14,7 +14,7 @@ public class ListTagCommand extends Command {
 
     public static final String COMMAND_WORD = "listL";
 
-    public static final String MESSAGE_SUCCESS = "Listed all tags";
+    public static final String MESSAGE_SUCCESS = "Listed all labels";
 
 
     @Override

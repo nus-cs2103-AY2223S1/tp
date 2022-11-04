@@ -3,6 +3,8 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.util.StringUtil;
+
 /**
  * Represents the description of a task in the TaskList.
  */
@@ -42,7 +44,9 @@ public class Description {
      * @param otherDescription Description to compare with.
      */
     public boolean equalsIgnoreCase(Description otherDescription) {
-        return taskDescription.equalsIgnoreCase(otherDescription.taskDescription);
+        requireNonNull(otherDescription);
+        return StringUtil.containsWordIgnoreCase(this.taskDescription,
+                otherDescription.taskDescription);
     }
 
     @Override
