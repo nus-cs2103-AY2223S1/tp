@@ -72,7 +72,7 @@ deactivate MeetingsWindow
 MainWindow --> MainWindow
 deactivate MainWindow
 
-[<-- MainWindow : 
+[<-- MainWindow :
 
 deactivate MainWindow
 @enduml

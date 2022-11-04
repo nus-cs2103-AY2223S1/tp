@@ -248,7 +248,7 @@ Step 2. The user decides to add a file path to  the 2nd person in the current li
 
 Step 3. `LogicManager` calls `LogicManager#execute()` method that was implemented from `Logic` interface. Within the method, `AddressBookParser#parseCommand()` is called on the user input `filePath` and a `Command` object is returned.
 
-Step 4. `AddressBookParser::parseCommand` will parse the user input and match the `COMMAND_WORD` to be `filepath` which is `SetPathFileCommand#COMMAND_WORD` `SetPathFileCommandParser` object is instantiated which parses and checks the user arguments. 
+Step 4. `AddressBookParser::parseCommand` will parse the user input and match the `COMMAND_WORD` to be `filepath` which is `SetPathFileCommand#COMMAND_WORD` `SetPathFileCommandParser` object is instantiated which parses and checks the user arguments.
 
 Step 5. `SetPathFileCommandParser` object parses the given user arguments. If the `PREFIX_FILEPATH` is present and there is no `IllegalValueException`, a `SetPersonFileCommand` object is instantiated with `index` and `filePath` obtained from the user arguments.
 
@@ -269,7 +269,7 @@ The following activity diagram shows how the assigning filepath to a client feat
     * Absolute path of the PDF would mean that changes to the file location of User's FABook will not affect the ability to open PDF.
   * Cons:
     * Changing file location of PDF will render stored filepath useless.
-  
+
 **Choice 2** Store PDF files of clients in a folder.
   * Pros:
     * Users do not need to input absolute path as it is more technical than relative paths.
@@ -325,7 +325,7 @@ The `ObservableList<Person>` is used to instantiate `MeetingCard` objects and po
 
 Step 1. User presses `f2` to see upcoming meetings.
 
-Step 2. `f2` is set by `MainWindow#setAccelerator()` to call `MainWindow#handleMeetings()` method which in turn calls `MeetingsWindow#getMeetings()`. 
+Step 2. `f2` is set by `MainWindow#setAccelerator()` to call `MainWindow#handleMeetings()` method which in turn calls `MeetingsWindow#getMeetings()`.
 
 Step 3. `MeetingsWindow#getMeetings()` method filters a list of `Person` objects by calling `MeetingsWindow#isWithinOneWeek()` method on the `Set<MeetingTime>` of each `Person`. The filtered list will contain `Person` objects that have meetings from now till 7 days later.
 
@@ -347,7 +347,7 @@ The following activity diagram shows how upcoming meetings feature works.
     * Does not take up real estate on the Main UI.
   * Cons:
     * Extra window to be created and managed.
-  
+
 **Choice 2** Displayed on a section of Main Window.
   * Pros:
     * No extra window to be managed.
@@ -357,10 +357,10 @@ The following activity diagram shows how upcoming meetings feature works.
 **Meeting Card Display**
 **Choice 1 (Current Choice)** Display Meetings Card by Person.
   * Pros:
-    * Clear distinction by client of the meetings that user will have with. 
+    * Clear distinction by client of the meetings that user will have with.
   * Cons:
     * Not intuitive for consolidated meetings in a day.
-  
+
 **Choice 2** Display Meetings Card by date.
   * Pros:
     * Intuitive consolidated meetings per day.
