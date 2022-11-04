@@ -153,14 +153,14 @@ public class ModelManager implements Model {
         }
         return Optional.<Project>of(this.filteredProjects.get(projectIndex.getZeroBased()));
     }
-
+    
     private boolean isValidProjectName(ProjectName projectName) {
         requireNonNull(projectName);
         return this.filteredProjects.stream()
                 .anyMatch(project ->
                         project.getProjectName().toString().equalsIgnoreCase(projectName.toString()));
     }
-
+    
     private boolean isValidProjectIndex(Index projectIndex) {
         requireNonNull(projectIndex);
         return projectIndex.getZeroBased() < this.filteredProjects.size();
@@ -253,6 +253,12 @@ public class ModelManager implements Model {
     //=========== Tasks ================================================================================
 
     @Override
+    public boolean isValidTaskIndex(Index taskIndex) {
+        requireNonNull(taskIndex);
+        return taskIndex.getZeroBased() < this.filteredTasks.size();
+    }
+
+    @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return hrPro.hasTask(task);
@@ -301,6 +307,15 @@ public class ModelManager implements Model {
         setTask(task, newTask);
     }
 
+    @Override
+    public Optional<Task> getTaskWithIndex(Index taskIndex) {
+        if (!isValidTaskIndex(taskIndex)) {
+            return Optional.empty();
+        }
+        return Optional.<Task>of(this.filteredTasks.get(taskIndex.getZeroBased()));
+    }
+
+    @Override
     public void sortTasks() {
         hrPro.sortTasks();
     }

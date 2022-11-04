@@ -238,4 +238,15 @@ public interface Model {
      */
     void sortTasks();
 
+    /**
+     * Returns an Optional that may or may not contain a Task with given {@code taskIndex}.
+     */
+    Optional<Task> getTaskWithIndex(Index taskIndex);
+
+    /**
+     * Returns true if the {@code taskIndex} is within the filtered task list.
+     * @param taskIndex
+     * @return boolean
+     */
+    boolean isValidTaskIndex(Index taskIndex);
 }
