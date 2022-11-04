@@ -82,7 +82,11 @@ Given below are my contributions to the project.
 * Written the add commands and select commands in the User Guide
 
 ### Contributions to the Developer Guide:
-to be added soon
+* Updated existing diagrams.
+* Created UniquePatientListDiagram.
+* Created UniqueAppointmentListDiagram.
+* Created UniqueBillLisrDiagram.
+* Added Command Shortcut Feature.
 
 ### Contributions to the team-based tasks:
 

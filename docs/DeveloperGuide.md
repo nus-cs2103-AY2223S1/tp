@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/dg/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `AppointmentListPanel`, `BillListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -322,21 +322,21 @@ related appointments.
 
 #### Current Implementation
 
-The select commands simulates a click on the 'PatientCard' or 'AppointmentCard' in the UI.
+The select commands simulates a click on the `PatientCard` or `AppointmentCard` in the UI.
 
-The select methods are separated for patients and appointments, with command word 'selectpatient'
-and 'selectappointment' respectively.
+The select methods are separated for patients and appointments, with command word `selectpatient`
+and `selectappointment` respectively.
 
 The select commands make use of the index of a patient or an appointment in the 'FilteredList's
 to identify whose appointments and bills to show.
 
-The 'SelectPatientCommandParser' and 'SelectAppointmentCommandParser' convert
+The `SelectPatientCommandParser` and `SelectAppointmentCommandParser` convert
 input String containing target index to the SelectCommand objects.
 
-On execution, the SelectPatientCommand will invoke the selectPatient() and selectAppointment() in the Model to
-update the FilteredAppointmentList and FilteredBillList to contain selected patient's information only.
+On execution, the SelectPatientCommand will invoke the `Model#selectPatient()` and `Model#selectAppointment()` in the Model to
+update the `FilteredAppointmentList` and `FilteredBillList` to include selected patient's information only.
 
-Given below is an example usage scenario and how the find mechanism behaves at each step.
+Given below is an example usage scenario and how the mechanism behaves at each step.
 
 Step 1. The user executes `selectpatient 1` command to show all appointments and bills
 tied to the first listed patient.
@@ -379,6 +379,22 @@ The sort feature is now separated for the patients, appointments and bills secti
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+
+### Command Shortcut Feature
+
+The commands in HealthContact make use of `CommandWord` class to allow alternative command words to a command.
+Each command is allowed to have one main command word and any number of alternative command words to get triggered.
+The alternative command words are used to provide shorter command words for convenience in typing long commands.
+
+Given below are examples of usage of the command shortcut:
+* `aa` is equivalent to `addappointment`
+* `dp` is equivalent to `deletepatient`
+* `ls` is equivalent to `list`
+
+Every command stores its command words using the class `CommandWord`.
+
+The `HealthContactParser` invokes the `CommandWord#match(String)` to check if the input String is one of the options of
+the command.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -432,29 +448,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HealthContact` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Editing a patient**
-
-**MSS**
-
-1.  User requests to edit a patient
-2.  HealthContact shows the detailed information about the patient
-3.  User requests to edit specific information about the patient
-4.  HealthContact edits the patient
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given name is invalid.
-
-    * 3a1. HealthContact shows an error message.
-
-      Use case resumes at step 2.
-
 **Use case: Adding a patient**
 
 **MSS**
@@ -476,6 +469,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. HealthContact shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Adding an appointment
 
 
 
@@ -506,7 +501,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Editing a patient**
 
+**MSS**
+
+1.  User requests to edit a patient
+2.  HealthContact shows the detailed information about the patient
+3.  User requests to edit specific information about the patient
+4.  HealthContact edits the patient
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given name is invalid.
+
+    * 3a1. HealthContact shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Editing an appointment**
 
 **Use case: Editing a bill of an appointment**
 
@@ -538,7 +556,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 patients, appointments and bills without a noticeable sluggishness in performance for typical usage.
+3. Notes on project scope: The application does not execute any real-world tasks such as calling the patients for appointments or accepting payment from patients.
+4. The system should respond within 2 seconds.
+5. A user who has an English-text typing speed that is above average should be able to execute all of the commands faster than using a mouse to do so.
+6. The application should work without internet connection.
 
 ### Glossary
 
