@@ -318,7 +318,7 @@ public class Class {
     }
 
     /**
-     * Returns -1 is this {@code Class} starts before the given {@code aclass} and 1 otherwise.
+     * Returns -1 if this {@code Class} starts before the given {@code aclass} and 1 otherwise.
      * {@code Class} and {@code aclass} must be non-null;
      */
     public int compareToByStartTime(Class aclass) {
