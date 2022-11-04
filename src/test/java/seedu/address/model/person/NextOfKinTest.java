@@ -29,7 +29,8 @@ public class NextOfKinTest {
         assertThrows(IllegalArgumentException.class, () -> new NextOfKin("carle,mom ")); //missing one field
         assertThrows(IllegalArgumentException.class, () -> new NextOfKin("carle, mom, ")); //mising one field with comma
         assertThrows(IllegalArgumentException.class, () -> new NextOfKin("@@12, mom, 123456 ")); //invalid name
-        assertThrows(IllegalArgumentException.class, () -> new NextOfKin("carle, @@12, 123456 ")); //invalid relationship
+        //invalid relationship
+        assertThrows(IllegalArgumentException.class, () -> new NextOfKin("carle, @@12, 123456 "));
         assertThrows(IllegalArgumentException.class, () -> new NextOfKin("carle, mom, mynumber")); //invalid contact
     }
 
@@ -56,107 +57,107 @@ public class NextOfKinTest {
     public void toStringTest() {
         String expectedMessage1 = "Next of Kin: Charles, Brother, 90989098";
         String expectedMessage2 = "Next of Kin: Mary, Aunt, 12341234";
-        NextOfKin NextOfKin1 = new NextOfKin("Charles, Brother, 90989098");
-        NextOfKin NextOfKin2 = new NextOfKin("Mary, Aunt, 12341234");
+        NextOfKin nextOfKin1 = new NextOfKin("Charles, Brother, 90989098");
+        NextOfKin nextOfKin2 = new NextOfKin("Mary, Aunt, 12341234");
 
         // same next of kin
-        assertEquals(expectedMessage1, NextOfKin1.toString());
-        assertEquals(expectedMessage2, NextOfKin2.toString());
+        assertEquals(expectedMessage1, nextOfKin1.toString());
+        assertEquals(expectedMessage2, nextOfKin2.toString());
 
         // different next of kin
-        assertNotEquals(expectedMessage1, NextOfKin2.toString());
-        assertNotEquals(expectedMessage2, NextOfKin1.toString());
+        assertNotEquals(expectedMessage1, nextOfKin2.toString());
+        assertNotEquals(expectedMessage2, nextOfKin1.toString());
     }
 
     @Test
     public void getNextOfKinNameTest() {
         String expectedMessage1 = "Charles";
         String expectedMessage2 = "Mary";
-        NextOfKin NextOfKin1 = new NextOfKin("Charles, Brother, 90989098");
-        NextOfKin NextOfKin2 = new NextOfKin("Mary , Aunt, 12341234");
+        NextOfKin nextOfKin1 = new NextOfKin("Charles, Brother, 90989098");
+        NextOfKin nextOfKin2 = new NextOfKin("Mary , Aunt, 12341234");
 
         // same next of kin
-        assertEquals(expectedMessage1, NextOfKin1.getNextOfKinName());
-        assertEquals(expectedMessage2, NextOfKin2.getNextOfKinName());
+        assertEquals(expectedMessage1, nextOfKin1.getNextOfKinName());
+        assertEquals(expectedMessage2, nextOfKin2.getNextOfKinName());
 
         // different next of kin
-        assertNotEquals(expectedMessage1, NextOfKin2.getNextOfKinName());
-        assertNotEquals(expectedMessage2, NextOfKin1.getNextOfKinName());
+        assertNotEquals(expectedMessage1, nextOfKin2.getNextOfKinName());
+        assertNotEquals(expectedMessage2, nextOfKin1.getNextOfKinName());
 
         //case sensitive
-        assertNotEquals("mary", NextOfKin2.getNextOfKinName());
+        assertNotEquals("mary", nextOfKin2.getNextOfKinName());
     }
 
     @Test
     public void getNextOfKinRelationshipTest() {
         String expectedMessage1 = "Brother";
         String expectedMessage2 = "Aunt";
-        NextOfKin NextOfKin1 = new NextOfKin("Charles, Brother , 90989098");
-        NextOfKin NextOfKin2 = new NextOfKin("Mary ,Aunt, 12341234");
+        NextOfKin nextOfKin1 = new NextOfKin("Charles, Brother , 90989098");
+        NextOfKin nextOfKin2 = new NextOfKin("Mary ,Aunt, 12341234");
 
         // same next of kin
-        assertEquals(expectedMessage1, NextOfKin1.getNextOfKinRelationship());
-        assertEquals(expectedMessage2, NextOfKin2.getNextOfKinRelationship());
+        assertEquals(expectedMessage1, nextOfKin1.getNextOfKinRelationship());
+        assertEquals(expectedMessage2, nextOfKin2.getNextOfKinRelationship());
 
         // different next of kin
-        assertNotEquals(expectedMessage1, NextOfKin2.getNextOfKinRelationship());
-        assertNotEquals(expectedMessage2, NextOfKin1.getNextOfKinRelationship());
+        assertNotEquals(expectedMessage1, nextOfKin2.getNextOfKinRelationship());
+        assertNotEquals(expectedMessage2, nextOfKin1.getNextOfKinRelationship());
 
         //case sensitive
-        assertNotEquals("aunt", NextOfKin2.getNextOfKinRelationship());
+        assertNotEquals("aunt", nextOfKin2.getNextOfKinRelationship());
     }
 
     @Test
     public void getNextOfKinContactTest() {
         String expectedMessage1 = "90989098";
         String expectedMessage2 = "12341234";
-        NextOfKin NextOfKin1 = new NextOfKin("Charles, Brother, 90989098");
-        NextOfKin NextOfKin2 = new NextOfKin("Mary , Aunt, 12341234 ");
+        NextOfKin nextOfKin1 = new NextOfKin("Charles, Brother, 90989098");
+        NextOfKin nextOfKin2 = new NextOfKin("Mary , Aunt, 12341234 ");
 
         // same next of kin
-        assertEquals(expectedMessage1, NextOfKin1.getNextOfKinContact());
-        assertEquals(expectedMessage2, NextOfKin2.getNextOfKinContact());
+        assertEquals(expectedMessage1, nextOfKin1.getNextOfKinContact());
+        assertEquals(expectedMessage2, nextOfKin2.getNextOfKinContact());
 
         // different next of kin
-        assertNotEquals(expectedMessage1, NextOfKin2.getNextOfKinContact());
-        assertNotEquals(expectedMessage2, NextOfKin1.getNextOfKinContact());
+        assertNotEquals(expectedMessage1, nextOfKin2.getNextOfKinContact());
+        assertNotEquals(expectedMessage2, nextOfKin1.getNextOfKinContact());
     }
 
     @Test
     public void equalsTest() {
-        NextOfKin NextOfKin = new NextOfKin("Charles, Brother, 90989098");
+        NextOfKin nextOfKin = new NextOfKin("Charles, Brother, 90989098");
 
         // same object -> returns true
-        assertTrue(NextOfKin.equals(NextOfKin));
+        assertTrue(nextOfKin.equals(nextOfKin));
 
         // same values -> returns true
-        NextOfKin NextOfKinCopy = new NextOfKin("Charles, Brother, 90989098");
-        assertTrue(NextOfKin.equals(NextOfKinCopy));
+        NextOfKin nextOfKinCopy = new NextOfKin("Charles, Brother, 90989098");
+        assertTrue(nextOfKin.equals(nextOfKinCopy));
 
         // different types -> returns false
-        assertFalse(NextOfKin.equals(1));
+        assertFalse(nextOfKin.equals(1));
 
         // null -> returns false
-        assertFalse(NextOfKin.equals(null));
+        assertFalse(nextOfKin.equals(null));
 
         // different next of kin -> returns false
         NextOfKin differentNextOfKin = new NextOfKin("Mary , Aunt, 12341234 ");
-        assertFalse(NextOfKin.equals(differentNextOfKin));
+        assertFalse(nextOfKin.equals(differentNextOfKin));
     }
 
     @Test
     public void hashCodeTest() {
-        NextOfKin NextOfKin1 = new NextOfKin("Charles, Brother, 90989098");
-        NextOfKin NextOfKin2 = new NextOfKin("Charles, Brother, 90989098");
-        NextOfKin NextOfKin4 = new NextOfKin("Mary , Aunt, 12341234");
+        NextOfKin nextOfKin1 = new NextOfKin("Charles, Brother, 90989098");
+        NextOfKin nextOfKin2 = new NextOfKin("Charles, Brother, 90989098");
+        NextOfKin nextOfKin3 = new NextOfKin("Mary , Aunt, 12341234");
 
         // same object -> same hashcode
-        assertEquals(NextOfKin1.hashCode(), NextOfKin1.hashCode());
+        assertEquals(nextOfKin1.hashCode(), nextOfKin1.hashCode());
 
         // same values -> same hashcode
-        assertEquals(NextOfKin1.hashCode(), NextOfKin2.hashCode());
+        assertEquals(nextOfKin1.hashCode(), nextOfKin2.hashCode());
 
         // different values -> different hashcode
-        assertNotEquals(NextOfKin1.hashCode(), NextOfKin4.hashCode());
+        assertNotEquals(nextOfKin1.hashCode(), nextOfKin3.hashCode());
     }
 }

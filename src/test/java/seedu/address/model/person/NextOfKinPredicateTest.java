@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,6 +12,14 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.PersonBuilder;
 
 public class NextOfKinPredicateTest {
+    @Test
+    public void constructor_successful() {
+        assertTrue(() -> {
+            new NextOfKinPredicate(
+                    Arrays.asList("Alice, Mom, 12345678", "Paul, Dad, 87953134"));
+            return true;
+        });
+    }
     @Test
     public void equalsTest() {
         List<String> firstPredicateKeywordList = Collections.singletonList("Alice");

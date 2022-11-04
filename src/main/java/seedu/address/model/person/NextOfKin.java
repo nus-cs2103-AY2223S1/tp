@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 /**
  * Represents a Patient's Next of Kin in the Patient Database.
  * Guarantees: immutable; is valid as declared in {@link #isValidNextOfKin(String)}
@@ -42,7 +40,7 @@ public class NextOfKin {
             Boolean isValidName = !name.equals("") && name.matches(STRING_VALIDATION_REGEX);
             Boolean isValidRelationship = !relationship.equals("") && relationship.matches(STRING_VALIDATION_REGEX);
             Boolean isValidContact = !contact.equals("") && contact.matches(INTEGER_VALIDATION_REGEX);
-           return isValidContact && isValidRelationship && isValidName;
+            return isValidContact && isValidRelationship && isValidName;
         } catch (ArrayIndexOutOfBoundsException e) {
             return false;
         }

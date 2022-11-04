@@ -12,6 +12,14 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.PersonBuilder;
 
 public class HospitalWingContainsKeywordsPredicateTest {
+    @Test
+    public void constructor_successful() {
+        assertTrue(() -> {
+            new HospitalWingContainsKeywordsPredicate(
+                    Arrays.asList("south", "north"));
+            return true;
+        });
+    }
 
     @Test
     public void test_hospitalWingContainsKeywords_returnsTrue() {

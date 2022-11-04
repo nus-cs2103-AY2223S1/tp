@@ -31,7 +31,8 @@ public class HospitalWingTest {
 
     @Test
     public void constructor_invalidHospitalWing_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("SOU TH")); // enum values with unexpected character in between
+        // enum values with unexpected character in between
+        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("SOU TH"));
         assertThrows(IllegalArgumentException.class, () -> new HospitalWing("souths")); // one additional character
         assertThrows(IllegalArgumentException.class, () -> new HospitalWing("WES")); // missing character
         assertThrows(IllegalArgumentException.class, () -> new HospitalWing("WES ")); // missing character
@@ -79,24 +80,23 @@ public class HospitalWingTest {
     public void toStringTest() {
         String expectedMessageForSouth = "Hospital Wing: South";
         String expectedMessageNorth = "Hospital Wing: North";
-        HospitalWing HospitalWingSouth = new HospitalWing("south");
-        HospitalWing HospitalWingNorth = new HospitalWing("north");
+        HospitalWing hospitalWingSouth = new HospitalWing("south");
+        HospitalWing hospitalWingNorth = new HospitalWing("north");
 
         // same hospital wing
-        assertEquals(expectedMessageForSouth, HospitalWingSouth.toString());
-        assertEquals(expectedMessageNorth, HospitalWingNorth.toString());
-
+        assertEquals(expectedMessageForSouth, hospitalWingSouth.toString());
+        assertEquals(expectedMessageNorth, hospitalWingNorth.toString());
         // different hospital wing
-        assertNotEquals(expectedMessageForSouth, HospitalWingNorth.toString());
-        assertNotEquals(expectedMessageNorth, HospitalWingSouth.toString());
+        assertNotEquals(expectedMessageForSouth, hospitalWingNorth.toString());
+        assertNotEquals(expectedMessageNorth, hospitalWingSouth.toString());
     }
 
     @Test
     public void enumToStringTest() {
-        String south = "South" ;
-        String north = "North" ;
-        String east = "East" ;
-        String west = "West" ;
+        String south = "South";
+        String north = "North";
+        String east = "East";
+        String west = "West";
 
         assertEquals(south, HospitalWing.HospitalWingTypes.SOUTH.toString());
         assertEquals(north, HospitalWing.HospitalWingTypes.NORTH.toString());
@@ -106,48 +106,48 @@ public class HospitalWingTest {
 
     @Test
     public void equalsTest() {
-        HospitalWing HospitalWing = new HospitalWing("south");
+        HospitalWing hospitalWing = new HospitalWing("south");
 
         // same object -> returns true
-        assertTrue(HospitalWing.equals(HospitalWing));
+        assertTrue(hospitalWing.equals(hospitalWing));
 
         // same values -> returns true
-        HospitalWing HospitalWingCopy = new HospitalWing("south");
-        assertTrue(HospitalWing.equals(HospitalWingCopy));
+        HospitalWing hospitalWingCopy = new HospitalWing("south");
+        assertTrue(hospitalWing.equals(hospitalWingCopy));
 
         // case insensitive -> returns true
-        HospitalWing HospitalWingCaseInsenstive = new HospitalWing("SOUTH");
-        assertTrue(HospitalWing.equals(HospitalWingCaseInsenstive));
+        HospitalWing hospitalWingCaseInsenstive = new HospitalWing("SOUTH");
+        assertTrue(hospitalWing.equals(hospitalWingCaseInsenstive));
 
         // different types -> returns false
-        assertFalse(HospitalWing.equals(1));
+        assertFalse(hospitalWing.equals(1));
 
         // null -> returns false
-        assertFalse(HospitalWing.equals(null));
+        assertFalse(hospitalWing.equals(null));
 
         // different hospital wing -> returns false
         HospitalWing differentHospitalWing = new HospitalWing("east");
-        assertFalse(HospitalWing.equals(differentHospitalWing));
+        assertFalse(hospitalWing.equals(differentHospitalWing));
     }
 
     @Test
     public void hashCodeTest() {
-        HospitalWing HospitalWing1 = new HospitalWing("south");
-        HospitalWing HospitalWing2 = new HospitalWing("south");
-        HospitalWing HospitalWing3 = new HospitalWing("SOuth");
-        HospitalWing HospitalWing4 = new HospitalWing("east");
+        HospitalWing hospitalWing1 = new HospitalWing("south");
+        HospitalWing hospitalWing2 = new HospitalWing("south");
+        HospitalWing hospitalWing3 = new HospitalWing("SOuth");
+        HospitalWing hospitalWing4 = new HospitalWing("east");
 
         // same object -> same hashcode
-        assertEquals(HospitalWing1.hashCode(), HospitalWing1.hashCode());
+        assertEquals(hospitalWing1.hashCode(), hospitalWing1.hashCode());
 
         // same values -> same hashcode
-        assertEquals(HospitalWing1.hashCode(), HospitalWing2.hashCode());
+        assertEquals(hospitalWing1.hashCode(), hospitalWing2.hashCode());
 
         // same values (case insensitive)-> same hashcode
-        assertEquals(HospitalWing1.hashCode(), HospitalWing3.hashCode());
+        assertEquals(hospitalWing1.hashCode(), hospitalWing3.hashCode());
 
         // different values -> different hashcode
-        assertNotEquals(HospitalWing1.hashCode(), HospitalWing4.hashCode());
-        assertNotEquals(HospitalWing3.hashCode(), HospitalWing4.hashCode());
+        assertNotEquals(hospitalWing1.hashCode(), hospitalWing4.hashCode());
+        assertNotEquals(hospitalWing3.hashCode(), hospitalWing4.hashCode());
     }
 }
