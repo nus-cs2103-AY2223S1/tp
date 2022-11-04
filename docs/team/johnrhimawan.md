@@ -77,4 +77,6 @@ Given below are my contributions to the project.
   * Reviewed team members' PRs
   * Helped in debugging others code
 * **Contributions beyond the project team**:
-  * Contributed in forum discussion (Examples: [1](https://github.com/nus-cs2103-AY2223S1/forum/issues/374), [2](https://github.com/nus-cs2103-AY2223S1/forum/issues/352))
+  * Contributed in forum discussion (Examples: [1](https://github.com/nus-cs2103-AY2223S1/forum/issues/374)
+, [2](https://github.com/nus-cs2103-AY2223S1/forum/issues/352))
+  
