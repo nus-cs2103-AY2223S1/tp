@@ -111,7 +111,10 @@ public class StringUtil {
      * @Return String[]
      */
     public static String[] splitByWhitespace(String s) {
-        return s.split("\\s+");
+        if (s == null) {
+            return null;
+        }
+        return s.trim().split("\\s+");
     }
 
     /**

@@ -34,7 +34,7 @@ title: Developer Guide
    5. [Deleting an applicant](#75-deleting-an-applicant)
    6. [Locating applicants by field](#76-locating-applicants-by-field)
    7. [Importing applicants from an external text file](#77-importing-applicants-from-an-external-json-file)
-   8. [Exporting displayed list](#78-exporting-displayed-list)
+   8. [Exporting displayed list](#78-exporting-displayed-list-to-a-json-file)
    9. [Checkout a new or existing list](#79-checkout-a-new-or-existing-list)
    10. [Saving data](#710-saving-data)
 
@@ -235,7 +235,7 @@ and populated with sample data. `Model` and `Storage` are then loaded with the s
 
 ![CheckoutState2](images/CheckoutState2.png)
 
-The following sequence diagram shows how the branch operation works:
+The following sequence diagram shows how the checkout operation works:
 
 ![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
@@ -410,19 +410,22 @@ The `find` feature currently allows the user to search by name among all applica
 
 #### Implementation
 
-`findCommand` class is used in the execution of `find` command. The command is then parsed accordingly, with a `NameContainsKeywordsPredicate` as an argument to the command. We now want to extend this with 2 changes:
+Currently, the `findCommand` class is used in the execution of `find` command. The command is then parsed accordingly, with a `NameContainsKeywordsPredicate` as an argument to the command. We now want to extend this with 2 changes:
 
 1. Add a predicate for each appropriate attribute
 2. Modify the Parser to appropriately choose the predicates based on a set syntax for its arguments
-3. Allow user to choose if they want to do a _substring_ search, or _search all_
+3. Modify the `FindCommand` to take in the list of chosen predicates instead of a single predicate
+4. Combine the predicates into a single predicate to filter the displayed list by
 
 Given below is an example success scenario and how the `find` mechanism behaves at each step.
 
 1. The user executes `find`.
-2. `LogicManager` calls `AddressBookParser#parseCommand()`.
-3. `AddressBookParser#parseCommand()` calls `FindCommand#execute()`.
-4. `FindCommand` iterates through list, checking for entries where the filtered predicate is true.
-5. `FindCommand` updates the `displayedList` from `model` by calling `Model#updateFilteredPersonList()`.
+2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
+3. `AddressBookParser` calls `FindCommandParser#parse(userInput)`.
+4. `FindCommandParser` parses the arguments and creates a find command with its associated list of predicates to search by
+5. `LogicManager` calls `FindCommand#execute(model, storage)`.
+6. `FindCommand` combines the list of predicates into a single predicate, and calls `Model#updateFilteredPersonList(predicate)`.
+7. `FindCommand` updates the `displayedList` from `model` to display only the Applicants that match the predicate.
 
 The following sequence diagram shows how the `find` command works:
 
@@ -430,8 +433,27 @@ The following sequence diagram shows how the `find` command works:
 
 #### Design Considerations
 
-**Aspect: Usage of flags**
-* **Alternative 1 (current implementation)**: we create a new command for each type of search
+**Aspect: Dealing with multiple predicates**
+* **Alternative 1 (Current Implementation)**: Combines all the predicates into a single predicate
+    * Pros:
+        * Consistent with the current implementation of `find`, which uses a single predicate
+        * Creation of specific predicate for each field type, allows for customization of each field's search implementation
+        * Can combine the predicates by _OR_ or _AND_ search as the developer intends for
+        * Modular design reduces coupling, and allows for easy extension and testing of the `find` command
+    * Cons:
+        * Requires creation of predicate for each field type, can be tedious to implement and test
+        * Requires the developer to decide how to combine the predicates and to decide the search type for each field, which reduces customizability of the search query for the user.
+* **Alternative 2**: Empower user to create predicates themselves, and how they want to combine and search the list with their created predicates
+  * Pros:
+    * Allows for greater customizability of the search query for the user
+    * Allows for greater flexibility of the search query for the user
+  * Cons:
+    * Unintuitive for a first time user to use. Requires the user to know the syntax creating a predicate, and requires the user to know how to combine predicates as they intend for which can be tedious to learn
+    * Security of program will go down, as we allow user to input functions that will be evaluated by the program. Malicious input may be able to compromise the program.
+
+
+**Aspect: Different search types**
+* **Alternative 1 **: we create a new command for each type of search
     * Pros:
         * All commands current follow this design, allows for consistency in code structure, and follows current OOP design conventions.
         * Naming format for all commands are fixed.
@@ -446,7 +468,7 @@ The following sequence diagram shows how the `find` command works:
         * Harder to implement since a flag is a brand-new functionality which other commands do not have. Coupled classes have to be modified accordingly, such as the relevant parser classes and argumentTokenizer/Multimap
         * Flags introduce the possibility for more input types to consider, and these affects the inputs that users can use in all commands
         * Requires restructuring old code, which will increase testing time and possibility of introducing bugs into existing code
-*  **Alternative 3**: Choose a search type for each field type
+*  **Alternative 3 (_current implementation_)**: Choose a search type for each field type
     * Pros:
         * Allow for multiple field searches where the search within each field is curated to best search the available field values
         * Intuitive and easy for Users to use
@@ -689,10 +711,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The list is empty.
+  * 1a1. No applicants will be found.
 
-  Use case ends.
+    Use case ends.
 
-* 1b. The given specifier(s) are invalid.
+* 1b. Input syntax is invalid, no valid specifiers are found, or any specifier value is invalid.
 
     * 1b1. InternConnect shows an error message.
 
@@ -734,9 +757,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: Note: These instructions only provide a starting point for testers to work on;
-testers are expected to do more exploratory testing.
-
+<div markdown="span" class="alert alert-info">
+:information_source: Note: These instructions only provide a starting 
+point for testers to work on; testers are expected to do more exploratory testing.
 </div>
 
 ### 7.1 Launch and shutdown
@@ -791,13 +814,20 @@ testers are expected to do more exploratory testing.
 
 ### 7.4 Editing an applicant
 
-1. tc description
+1. Editing one parameter of an applicant on InternConnect
 
-   1. Prerequisites:
+   1. Prerequisites: One applicant in the application.
 
-   2. Test case:
+   2. Test case: `edit 1 u/NUS`<br>
+      Expected: The university of the applicant in the first index is changed to `NUS`
 
-2. more tc
+2. Editing multiple parameters of an applicant on InternConnect
+
+    1. Prerequisites: One applicant in the application.
+
+    2. Test case: `edit 1 u/NUS p/12345678 g/male`<br>
+       Expected: The university, phone number, and gender of the applicant in the first index is changed to 
+       `NUS`, `12345678`, and `male` respectively.
 
 
 ### 7.5 Deleting an applicant
@@ -807,6 +837,7 @@ testers are expected to do more exploratory testing.
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    2. Test case: `delete 1`<br>
+   
       Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
       Success message shown in the status message.
 
@@ -815,6 +846,7 @@ testers are expected to do more exploratory testing.
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
       
    2. Test case: `delete 0`<br>
+   
       Expected: No applicant is deleted. Error details shown in the status message.
 
 3. Other incorrect `delete` commands to try: `delete`, `delete john`, `delete x`(where `x` is larger than the list size)<br>
@@ -823,13 +855,21 @@ testers are expected to do more exploratory testing.
 
 ### 7.6 Locating applicants by field
 
-1. tc description
+1. Finding all applicants with specified fields
 
-   1. Prerequisites:
+   1. Prerequisites: There exists a valid list of applicants in InternConnect that is not empty
 
-   2. Test case:
+   2. Test case: `find n/Alex` <br>
+      Expected: All applicants with the name `Alex` are listed in the left panel. Number of applicants found will be shown in the status message.
+   3. Test case: `find g/Male m/Computer Science` <br>
+      Expected: All **male** applicants who have majors with **either** `Computer` or `Science` in their major are listed in the left panel. Number of applicants found will be shown in the status message.
 
-2. more tc
+2. No applicants to search for
+
+   1. Prerequisites: There is an empty list of applicants in InternConnect
+   
+   2. Test case: `find specifer/SPECIFER_KEYWORD` <br>
+     Expected: No applicants will be listed in the left display panel. 0 applicants found will be shown in the status message.
 
 
 ### 7.7 Importing applicants from an external JSON file
@@ -894,14 +934,30 @@ testers are expected to do more exploratory testing.
 
 ### 7.9 Checkout a new or existing list
 
-1. tc description
+1. Checkout to an existing file with valid data and valid format.
 
-   1. Prerequisites:
+   1. Prerequisites: One JSON file with valid data and valid format in `data/` folder.
 
-   2. Test case:
+   2. Test case: `checkout FILE_NAME`
 
-2. more tc
+      Expected: The data in the file `FILE_NAME.json` located at `data/` folder is loaded into the application.
 
+2. Checkout to a non-existent file.
+
+    1. Prerequisites: No file with the name `FILE_NAME` in `data/` folder.
+
+    2. Test case: `checkout FILE_NAME`
+
+       Expected: The file `FILE_NAME.json` is created at `data/` folder and its sample data is loaded into the application.
+
+3. Checkout to an existing file with invalid data or invalid format.
+
+    1. Prerequisites: One JSON file with invalid data or invalid format in `data/` folder.
+
+    2. Test case: `checkout FILE_NAME`
+
+       Expected: The data in the file `FILE_NAME.json` located at `data/` folder is wiped.
+       The application will not contain any applicants.
 
 ### 7.10 Saving data
 

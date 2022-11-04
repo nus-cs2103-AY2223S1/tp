@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -223,7 +224,7 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
-    //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
+    //---------------- Tests for trimAndReplaceMultipleSpaces --------------------------------------
 
     @Test
     public void trimAndReplaceMultipleSpaces() {
@@ -249,6 +250,33 @@ public class StringUtilTest {
                 "test 123"); // Multiple spaces in between and 1 leading and trailing space
         assertEquals(StringUtil.trimAndReplaceMultipleSpaces("    test      123    "),
                 "test 123"); // Multiple spaces in between and multiple leading and trailing spaces
+    }
+
+    //---------------- Tests for splitByWhiteSpace --------------------------------------
+    @Test
+    public void splitByWhiteSpaceTest() {
+        assertEquals(StringUtil.splitByWhitespace(null), null); // null string
+        assertArrayEquals(StringUtil.splitByWhitespace(""), new String[]{""}); //empty string
+        assertArrayEquals(StringUtil.splitByWhitespace("test"), new String[]{"test"}); // no space
+
+        // Leading and trailing space
+        assertArrayEquals(StringUtil.splitByWhitespace("test "), new String[]{"test"}); // 1 trailing space
+        assertArrayEquals(StringUtil.splitByWhitespace(" test"), new String[]{"test"}); // 1 leading space
+        assertArrayEquals(StringUtil.splitByWhitespace(" test "), new String[]{"test"}); // 1 leading and trailing space
+
+        // Multiple Leading and trailing space
+        assertArrayEquals(StringUtil.splitByWhitespace(" \t  \n test  \t  \n "), new String[]{"test"});
+
+        // 1 space in between
+        assertArrayEquals(StringUtil.splitByWhitespace("test 123"), new String[]{"test", "123"});
+
+        // Multiple spaces in between
+        assertArrayEquals(StringUtil.splitByWhitespace("test  \t   123"), new String[]{"test", "123"});
+
+        //multiple in between, leading and trailing spaces
+        assertArrayEquals(StringUtil.splitByWhitespace("   test 123   "), new String[]{"test", "123"});
+        assertArrayEquals(StringUtil.splitByWhitespace(" \t \n test  \n \t  123  \t \n "),
+                new String[]{"test", "123"});
     }
 
     //---------------- Tests for splitBySlash --------------------------------------
