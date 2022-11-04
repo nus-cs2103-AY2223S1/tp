@@ -34,7 +34,7 @@ title: Developer Guide
    5. [Deleting an applicant](#75-deleting-an-applicant)
    6. [Locating applicants by field](#76-locating-applicants-by-field)
    7. [Importing applicants from an external text file](#77-importing-applicants-from-an-external-json-file)
-   8. [Exporting displayed list](#78-exporting-displayed-list)
+   8. [Exporting displayed list](#78-exporting-displayed-list-to-a-json-file)
    9. [Checkout a new or existing list](#79-checkout-a-new-or-existing-list)
    10. [Saving data](#710-saving-data)
 
@@ -56,7 +56,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 
@@ -70,7 +70,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/Main.java) and 
+[`MainApp`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -104,13 +105,15 @@ The sections below give more details of each component.
 
 ### 3.2 UI component
 
-**API** : [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API** : [`Ui.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
+For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -122,7 +125,7 @@ The `UI` component,
 
 ### 3.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -138,7 +141,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -151,10 +155,9 @@ How the parsing works:
 
 
 ### 3.4 Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" />
-
 
 The `Model` component,
 
@@ -172,7 +175,7 @@ The `Model` component,
 
 ### 3.5 Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -229,7 +232,7 @@ and populated with sample data. `Model` and `Storage` are then loaded with the s
 
 ![CheckoutState2](images/CheckoutState2.png)
 
-The following sequence diagram shows how the branch operation works:
+The following sequence diagram shows how the checkout operation works:
 
 ![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
@@ -326,18 +329,18 @@ The `export` feature allows the user to export the displayed list in InternConne
 #### Implementation
 
 `exportCommand` class is used in the execution of `export` command.
-`Storage#exportDisplayedList(displayedList, filePath)` is called to save the JSON file in `data/export/` folder.
+`Storage#exportDisplayedListAddressBook(displayedListAddressBook, filePath)` is called to save the JSON file in `data/export/` folder.
 
 Given below is an example success scenario and how the `export` mechanism behaves at each step.
 
-1. The user executes `export`.
-2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
-3. `LogicManager` calls `ExportCommand#execute(model, storage)`.
-4. `ExportCommand` gets current DateTime and use it for the output JSON file path.
-5. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`.
-6. `ExportCommand` calls `Storage#exportDisplayedList()`
-7. The displayedList is stored as a JSON file in `data/export/<currentDateTime>.json`.
-8. A `CommandResult` object indicating that the `export` command is successful will be created.
+1. The user executes `export`
+2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`
+3. `LogicManager` calls `ExportCommand#execute(model, storage)`
+4. `ExportCommand` gets current `DateTime` and use it for the output JSON file name
+5. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`
+6. `ExportCommand` calls `Storage#exportDisplayedListAddressBook(displayedListAddressBook, filePath)`
+7. The displayed list is stored as a JSON file in `data/export/<currentDateTime>.json`
+8. A `CommandResult` object indicating that the `export` command is successful will be created
 
 The following sequence diagram shows how the `export` command works:
 
@@ -379,19 +382,22 @@ The `find` feature currently allows the user to search by name among all Persons
 
 #### Implementation
 
-`findCommand` class is used in the execution of `find` command. The command is then parsed accordingly, with a `NameContainsKeywordsPredicate` as an argument to the command. We now want to extend this with 2 changes:
+Currently, the `findCommand` class is used in the execution of `find` command. The command is then parsed accordingly, with a `NameContainsKeywordsPredicate` as an argument to the command. We now want to extend this with 2 changes:
 
 1. Add a predicate for each appropriate attribute
 2. Modify the Parser to appropriately choose the predicates based on a set syntax for its arguments
-3. Allow user to choose if they want to do a _substring_ search, or _search all_
+3. Modify the `FindCommand` to take in the list of chosen predicates instead of a single predicate
+4. Combine the predicates into a single predicate to filter the displayed list by
 
 Given below is an example success scenario and how the `find` mechanism behaves at each step.
 
 1. The user executes `find`.
-2. `LogicManager` calls `AddressBookParser#parseCommand()`.
-3. `AddressBookParser#parseCommand()` calls `FindCommand#execute()`.
-4. `FindCommand` iterates through list, checking for entries where the filtered predicate is true.
-5. `FindCommand` updates the `displayedList` from `model` by calling `Model#updateFilteredPersonList()`.
+2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
+3. `AddressBookParser` calls `FindCommandParser#parse(userInput)`.
+4. `FindCommandParser` parses the arguments and creates a find command with its associated list of predicates to search by
+5. `LogicManager` calls `FindCommand#execute(model, storage)`.
+6. `FindCommand` combines the list of predicates into a single predicate, and calls `Model#updateFilteredPersonList(predicate)`.
+7. `FindCommand` updates the `displayedList` from `model` to display only the Applicants that match the predicate.
 
 The following sequence diagram shows how the `find` command works:
 
@@ -399,8 +405,27 @@ The following sequence diagram shows how the `find` command works:
 
 #### Design Considerations
 
-**Aspect: Usage of flags**
-* **Alternative 1 (current implementation)**: we create a new command for each type of search
+**Aspect: Dealing with multiple predicates**
+* **Alternative 1 (Current Implementation)**: Combines all the predicates into a single predicate
+    * Pros:
+        * Consistent with the current implementation of `find`, which uses a single predicate
+        * Creation of specific predicate for each field type, allows for customization of each field's search implementation
+        * Can combine the predicates by _OR_ or _AND_ search as the developer intends for
+        * Modular design reduces coupling, and allows for easy extension and testing of the `find` command
+    * Cons:
+        * Requires creation of predicate for each field type, can be tedious to implement and test
+        * Requires the developer to decide how to combine the predicates and to decide the search type for each field, which reduces customizability of the search query for the user.
+* **Alternative 2**: Empower user to create predicates themselves, and how they want to combine and search the list with their created predicates
+  * Pros:
+    * Allows for greater customizability of the search query for the user
+    * Allows for greater flexibility of the search query for the user
+  * Cons:
+    * Unintuitive for a first time user to use. Requires the user to know the syntax creating a predicate, and requires the user to know how to combine predicates as they intend for which can be tedious to learn
+    * Security of program will go down, as we allow user to input functions that will be evaluated by the program. Malicious input may be able to compromise the program.
+
+
+**Aspect: Different search types**
+* **Alternative 1 **: we create a new command for each type of search
     * Pros:
         * All commands current follow this design, allows for consistency in code structure, and follows current OOP design conventions.
         * Naming format for all commands are fixed.
@@ -415,7 +440,7 @@ The following sequence diagram shows how the `find` command works:
         * Harder to implement since a flag is a brand-new functionality which other commands do not have. Coupled classes have to be modified accordingly, such as the relevant parser classes and argumentTokenizer/Multimap
         * Flags introduce the possibility for more input types to consider, and these affects the inputs that users can use in all commands
         * Requires restructuring old code, which will increase testing time and possibility of introducing bugs into existing code
-*  **Alternative 3**: Choose a search type for each field type
+*  **Alternative 3 (_current implementation_)**: Choose a search type for each field type
     * Pros:
         * Allow for multiple field searches where the search within each field is curated to best search the available field values
         * Intuitive and easy for Users to use
@@ -568,7 +593,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given index is not a positive integer or out of bounds.
 
     * 3a1. InternConnect shows an error message.
 
@@ -593,11 +618,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: Import applicants from an external json file**
+**Use case: Import applicants from an external JSON file**
 
 **MSS**
 
-1.  User requests to import applicants from a json file
+1.  User requests to import applicants from a JSON file
 2.  InternConnect adds all applicants
 3.  InternConnect shows the updated list of applicants
 
@@ -605,7 +630,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given file path is invalid or is not a json file.
+* 1a. The given file path is invalid or is not a JSON file.
 
     * 1a1. InternConnect shows an error message.
 
@@ -617,6 +642,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+
+**Use case: Export displayed list to a JSON file**
+
+**MSS**
+
+1.  User requests to export displayed list to a JSON file
+2.  InternConnect exports displayed list to a JSON file
+
+    Use case ends.
 
 **Use case: Exit**
 
@@ -649,10 +683,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The list is empty.
+  * 1a1. No applicants will be found.
 
-  Use case ends.
+    Use case ends.
 
-* 1b. The given specifier(s) are invalid.
+* 1b. Input syntax is invalid, no valid specifiers are found, or any specifier value is invalid.
 
     * 1b1. InternConnect shows an error message.
 
@@ -678,16 +713,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     In addition, the GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for, 
     resolutions 1280x720 and higher, and, for screen scales 150%.
 
-*{More to be added}*
-
 ### 6.5 Glossary
 
-* **Applicant**: An applicant refers to a person who has applied for a role. 
-  Applicant and Person can be used interchangeably as they refer to the same thing.
-* **Role**: Role and Job are used interchangeably. They refer to a job opening that an applicant applied for.
+* **Applicant**: An applicant refers to a person who has applied for a job. 
+  Applicant and Person can be used interchangeably as they refer to the same thing
+* **Job**: A job opening the applicant applied for
 * **Command Line Interface (CLI)**: Text-based user interface
 * **Graphical User Interface (GUI)**: Graphic-based user interface
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X 
+* **Main Success Scenario (MSS)**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -696,9 +730,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
+<div markdown="span" class="alert alert-info">
+:information_source: Note: These instructions only provide a starting 
+point for testers to work on; testers are expected to do more exploratory testing.
 </div>
 
 ### 7.1 Launch and shutdown
@@ -707,7 +741,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts.
+   2. Double-click the jar file expected: Shows the GUI with a set of sample applicants.
 
 2. Saving window preferences
 
@@ -753,13 +787,20 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.4 Editing an applicant
 
-1. tc description
+1. Editing one parameter of an applicant on InternConnect
 
-   1. Prerequisites:
+   1. Prerequisites: One applicant in the application.
 
-   2. Test case:
+   2. Test case: `edit 1 u/NUS`<br>
+      Expected: The university of the applicant in the first index is changed to `NUS`
 
-2. more tc
+2. Editing multiple parameters of an applicant on InternConnect
+
+    1. Prerequisites: One applicant in the application.
+
+    2. Test case: `edit 1 u/NUS p/12345678 g/male`<br>
+       Expected: The university, phone number, and gender of the applicant in the first index is changed to 
+       `NUS`, `12345678`, and `male` respectively.
 
 
 ### 7.5 Deleting an applicant
@@ -769,6 +810,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    2. Test case: `delete 1`<br>
+   
       Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
       Success message shown in the status message.
 
@@ -777,21 +819,30 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
       
    2. Test case: `delete 0`<br>
+   
       Expected: No applicant is deleted. Error details shown in the status message.
 
-3. Other incorrect delete commands to try: `delete`, `delete john`, `delete x`(where `x` is larger than the list size)<br>
+3. Other incorrect `delete` commands to try: `delete`, `delete john`, `delete x`(where `x` is larger than the list size)<br>
    Expected: No applicant is deleted. Error details shown in the status message.
 
 
 ### 7.6 Locating applicants by field
 
-1. tc description
+1. Finding all applicants with specified fields
 
-   1. Prerequisites:
+   1. Prerequisites: There exists a valid list of applicants in InternConnect that is not empty
 
-   2. Test case:
+   2. Test case: `find n/Alex` <br>
+      Expected: All applicants with the name `Alex` are listed in the left panel. Number of applicants found will be shown in the status message.
+   3. Test case: `find g/Male m/Computer Science` <br>
+      Expected: All **male** applicants who have majors with **either** `Computer` or `Science` in their major are listed in the left panel. Number of applicants found will be shown in the status message.
 
-2. more tc
+2. No applicants to search for
+
+   1. Prerequisites: There is an empty list of applicants in InternConnect
+   
+   2. Test case: `find specifer/SPECIFER_KEYWORD` <br>
+     Expected: No applicants will be listed in the left display panel. 0 applicants found will be shown in the status message.
 
 
 ### 7.7 Importing applicants from an external JSON file
@@ -825,27 +876,61 @@ testers are expected to do more *exploratory* testing.
    Expected: No applicant is added. Error details shown in the status message.
 
 
-### 7.8 Exporting displayed list
+### 7.8 Exporting displayed list to a JSON file
 
-1. tc description
+1. Exporting empty displayed list 
 
-   1. Prerequisites:
+   1. Test case: `find g/nonbinary` followed by `export`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is 
+      **"persons"** and value is an empty array.
+      
+   2. Test case: `find g/nonbinary` followed by `export 1`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
+      **"persons"** and value is an empty array.
+      
+2. Exporting non-empty displayed list
 
-   2. Test case:
-
-2. more tc
+   1. Prerequisite: currently displayed list is not empty
+      
+   2. Test case: `export`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is 
+      **"persons"** and value is a non-empty array.
+      
+   3. Test case: `export a`
+      
+      Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
+      **"persons"** and value is a non-empty array.
 
 
 ### 7.9 Checkout a new or existing list
 
-1. tc description
+1. Checkout to an existing file with valid data and valid format.
 
-   1. Prerequisites:
+   1. Prerequisites: One JSON file with valid data and valid format in `data/` folder.
 
-   2. Test case:
+   2. Test case: `checkout FILE_NAME`
 
-2. more tc
+      Expected: The data in the file `FILE_NAME.json` located at `data/` folder is loaded into the application.
 
+2. Checkout to a non-existent file.
+
+    1. Prerequisites: No file with the name `FILE_NAME` in `data/` folder.
+
+    2. Test case: `checkout FILE_NAME`
+
+       Expected: The file `FILE_NAME.json` is created at `data/` folder and its sample data is loaded into the application.
+
+3. Checkout to an existing file with invalid data or invalid format.
+
+    1. Prerequisites: One JSON file with invalid data or invalid format in `data/` folder.
+
+    2. Test case: `checkout FILE_NAME`
+
+       Expected: The data in the file `FILE_NAME.json` located at `data/` folder is wiped.
+       The application will not contain any applicants.
 
 ### 7.10 Saving data
 

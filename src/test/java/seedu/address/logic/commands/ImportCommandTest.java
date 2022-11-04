@@ -17,14 +17,12 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.Storage;
 
@@ -180,7 +178,7 @@ public class ImportCommandTest {
         }
 
         @Override
-        public void exportDisplayedList(ObservableList<Person> displayedList, String filePathString)
+        public void exportDisplayedListAddressBook(ReadOnlyAddressBook displayedListAddressBook, String filePathString)
                 throws IOException {
             throw new AssertionError("This method should not be called.");
         }

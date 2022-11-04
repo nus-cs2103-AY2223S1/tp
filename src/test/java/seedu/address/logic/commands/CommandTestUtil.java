@@ -24,7 +24,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -258,7 +257,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public void exportDisplayedList(ObservableList<Person> displayedList, String filePathString)
+        public void exportDisplayedListAddressBook(ReadOnlyAddressBook displayedListAddressBook, String filePathString)
                 throws IOException {
             throw new AssertionError("This method should not be called.");
         }

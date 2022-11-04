@@ -271,7 +271,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void exportDisplayedList(ObservableList<Person> displayedList, String filePathString)
+        public void exportDisplayedListAddressBook(ReadOnlyAddressBook displayedListAddressBook, String filePathString)
                 throws IOException {
             throw new AssertionError("This method should not be called.");
         }

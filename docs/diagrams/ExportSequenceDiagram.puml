@@ -31,7 +31,7 @@ deactivate AddressBookParser
 LogicManager -> ExportCommand : execute()
 activate ExportCommand
 
-ExportCommand -> Storage : exportDisplayedList()
+ExportCommand -> Storage : exportDisplayedListAddressBook()
 activate Storage
 
 Storage --> ExportCommand
