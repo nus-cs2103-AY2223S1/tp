@@ -1,7 +1,6 @@
 package seedu.uninurse.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -14,23 +13,20 @@ import seedu.uninurse.logic.parser.exceptions.ParseException;
  */
 public class DeleteRemarkCommandParser implements Parser<DeleteRemarkCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteRemarkCommand
+     * Parses the given arguments in the context of the DeleteRemarkCommand
      * and returns a DeleteRemarkCommand object for execution.
      *
+     * @param args the string of arguments given
+     * @return DeleteRemarkCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteRemarkCommand parse(String args) throws ParseException {
-        requireNonNull(args);
+        requireAllNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
-        try {
-            List<Index> indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
+        List<Index> indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
 
-            return new DeleteRemarkCommand(indices.get(0), indices.get(1));
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteRemarkCommand.MESSAGE_USAGE), pe);
-        }
+        return new DeleteRemarkCommand(indices.get(0), indices.get(1));
     }
 }

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.uninurse.commons.core.GuiSettings;
+import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PatientListTracker;
@@ -49,8 +50,7 @@ public class AddPatientCommandTest {
         AddPatientCommand addCommand = new AddPatientCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class,
-                AddPatientCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_PATIENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void addPerson(Patient person) {
+        public PatientListTracker addPerson(Patient person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -132,17 +132,17 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void deletePerson(Patient target) {
+        public PatientListTracker deletePerson(Patient target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void clearPersons(List<Patient> targets) {
+        public PatientListTracker clearPersons(List<Patient> targets) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Patient target, Patient editedPerson) {
+        public PatientListTracker setPerson(Patient target, Patient editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -187,17 +187,17 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void undo() {
+        public CommandResult undo() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void redo() {
+        public CommandResult redo() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void makeSnapshot(PatientListTracker patientListTracker) {
+        public void makeSnapshot(CommandResult commandResult) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -253,9 +253,10 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void addPerson(Patient person) {
+        public PatientListTracker addPerson(Patient person) {
             requireNonNull(person);
             personsAdded.add(person);
+            return new PatientListTracker();
         }
 
         @Override

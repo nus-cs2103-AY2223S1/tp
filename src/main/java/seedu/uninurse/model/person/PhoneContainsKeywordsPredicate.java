@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.uninurse.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Phone} matches any of the keywords given.
+ * Tests that a Person's Phone matches any of the keywords given.
  */
 public class PhoneContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;

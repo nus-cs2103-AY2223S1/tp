@@ -1,69 +1,73 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
+import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 
 /**
- * Adds a person to the uninurse book.
+ * Adds a patient to the patient list.
  */
 public class AddPatientCommand extends AddGenericCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the uninurse book. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient.\n"
+            + "Format: " + COMMAND_WORD + " "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>]... "
             + "[" + PREFIX_CONDITION + "CONDITION]... "
-            + "[" + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION]... "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MEDICATION + "MEDICATION_TYPE | DOSAGE]... "
+            + "[" + PREFIX_REMARK + "REMARK]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_CONDITION + "Cerebral palsy "
-            + PREFIX_MEDICATION + "Amoxicillin | 0.5 g every 8 hours "
-            + PREFIX_TASK_DESCRIPTION + "Refer to rehabilitation therapist "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "highRisk";
-
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the uninurse book";
-
-    public static final CommandType ADD_PATIENT_COMMAND_TYPE = CommandType.ADD_PATIENT;
+            + PREFIX_TASK_DESCRIPTION + "Change dressing | 1-1-22 1345 | 2 days "
+            + PREFIX_TASK_DESCRIPTION + "Take X-rays "
+            + PREFIX_MEDICATION + "Amoxicillin | 0.5 g every 8 hours";
+    public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
+    public static final CommandType COMMAND_TYPE = CommandType.ADD_PATIENT;
 
     private final Patient toAdd;
 
     /**
-     * Creates an AddPatientCommand to add the specified {@code Patient}
+     * Creates an AddPatientCommand to add the specified patient.
+     *
+     * @param patient The given patient to be added.
      */
-    public AddPatientCommand(Patient person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddPatientCommand(Patient patient) {
+        requireAllNonNull(patient);
+        this.toAdd = patient;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PATIENT);
         }
 
-        model.addPerson(toAdd);
+        PatientListTracker patientListTracker = model.addPerson(toAdd);
         model.setPatientOfInterest(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ADD_PATIENT_COMMAND_TYPE);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
+                COMMAND_TYPE, patientListTracker);
     }
 
     @Override

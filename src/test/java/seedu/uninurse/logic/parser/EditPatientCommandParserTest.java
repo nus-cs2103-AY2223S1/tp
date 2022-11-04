@@ -1,6 +1,5 @@
 package seedu.uninurse.logic.parser;
 
-import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.uninurse.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.uninurse.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -21,6 +20,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.uninurse.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
@@ -37,37 +37,33 @@ import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.testutil.EditPatientDescriptorBuilder;
 
 public class EditPatientCommandParserTest {
-
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPatientCommand.MESSAGE_USAGE);
-
     private EditPatientCommandParser parser = new EditPatientCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_INDEX);
 
         // no field specified
-        assertParseFailure(parser, "1", EditPatientCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditPatientCommand.MESSAGE_FAILURE);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_INVALID_INDEX);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_INDEX);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_INDEX);
     }
 
     @Test

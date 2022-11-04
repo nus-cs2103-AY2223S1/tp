@@ -15,7 +15,7 @@ public class DateTime implements Comparable<DateTime> {
 
     public static final String DATE_TIME_PATTERN = "d-M-yy HHmm";
     public static final String DATE_PATTERN = "d-M-yy";
-    public static final String TIME_PATTERN = "HH:mm a";
+    public static final String TIME_PATTERN = "h:mm a";
     public static final String MESSAGE_CONSTRAINTS = "Date and time should be in the format of: "
             + DATE_TIME_PATTERN + " i.e 16-10-22 1015\n" + "or just date should be in the format of: "
             + DATE_PATTERN + " i.e 20-10-22";

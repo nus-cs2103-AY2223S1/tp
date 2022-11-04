@@ -9,9 +9,8 @@ import seedu.uninurse.MainApp;
  * A container for App specific utility functions
  */
 public class AppUtil {
-
     /**
-     * Gets an {@code Image} from the specified path.
+     * Gets an Image from the specified path.
      */
     public static Image getImage(String imagePath) {
         requireNonNull(imagePath);
@@ -19,9 +18,9 @@ public class AppUtil {
     }
 
     /**
-     * Checks that {@code condition} is true. Used for validating arguments to methods.
+     * Checks that condition is true. Used for validating arguments to methods.
      *
-     * @throws IllegalArgumentException if {@code condition} is false.
+     * @throws IllegalArgumentException if condition is false.
      */
     public static void checkArgument(Boolean condition) {
         if (!condition) {
@@ -30,9 +29,9 @@ public class AppUtil {
     }
 
     /**
-     * Checks that {@code condition} is true. Used for validating arguments to methods.
+     * Checks that condition is true. Used for validating arguments to methods.
      *
-     * @throws IllegalArgumentException with {@code errorMessage} if {@code condition} is false.
+     * @throws IllegalArgumentException with errorMessage if condition is false.
      */
     public static void checkArgument(Boolean condition, String errorMessage) {
         if (!condition) {

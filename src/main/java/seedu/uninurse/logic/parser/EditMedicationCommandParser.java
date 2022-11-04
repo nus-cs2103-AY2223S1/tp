@@ -1,7 +1,6 @@
 package seedu.uninurse.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
 
 import java.util.List;
@@ -16,15 +15,16 @@ import seedu.uninurse.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new EditMedicationCommand object
  */
 public class EditMedicationCommandParser implements Parser<EditMedicationCommand> {
-
     /**
-     * Parses the given {@code String} of arguments in the context of the EditMedicationCommand
+     * Parses the given arguments in the context of the EditMedicationCommand
      * and returns an EditMedicationCommand object for execution.
      *
+     * @param args the string of arguments given
+     * @return EditMedicationCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditMedicationCommand parse(String args) throws ParseException {
-        requireNonNull(args);
+        requireAllNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MEDICATION);
 
@@ -34,10 +34,6 @@ public class EditMedicationCommandParser implements Parser<EditMedicationCommand
                     ParserUtil.parseEditMedicationDescriptor(argMultimap.getValue(PREFIX_MEDICATION).orElseThrow());
 
             return new EditMedicationCommand(indices.get(0), indices.get(1), editMedicationDescriptor);
-        } catch (ParseException pe) {
-            // handles invalid indices and medications
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditMedicationCommand.MESSAGE_USAGE), pe);
         } catch (NoSuchElementException nse) {
             // Handles missing prefix
             throw new ParseException(EditMedicationCommand.MESSAGE_NOT_EDITED);

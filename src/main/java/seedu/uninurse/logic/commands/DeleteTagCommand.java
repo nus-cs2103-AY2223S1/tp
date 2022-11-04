@@ -11,6 +11,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
@@ -19,11 +20,13 @@ import seedu.uninurse.model.tag.TagList;
  * Deletes a tag from a patient identified using its displayed index from the patient list.
  */
 public class DeleteTagCommand extends DeleteGenericCommand {
-    public static final String MESSAGE_USAGE = "Command: Delete a tag from a patient.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
+            + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_TAG_INDEX
+            + ": Delete a tags from a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_OPTION_TAG_INDEX + " TAG_INDEX\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_OPTION_TAG_INDEX
-            + " 2";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_OPTION_TAG_INDEX + " 1";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag %1$d from %2$s: %3$s";
 
@@ -67,11 +70,11 @@ public class DeleteTagCommand extends DeleteGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedTagList);
 
-        model.setPerson(patientToEdit, editedPatient);
+        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagIndex.getOneBased(),
-                editedPatient.getName(), deletedTag), DELETE_TAG_COMMAND_TYPE);
+                editedPatient.getName(), deletedTag), DELETE_TAG_COMMAND_TYPE, patientListTracker);
     }
 
     @Override

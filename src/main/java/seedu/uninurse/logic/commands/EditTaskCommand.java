@@ -2,6 +2,8 @@ package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TASK_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.NonRecurringTask;
@@ -23,13 +26,21 @@ import seedu.uninurse.model.task.exceptions.DuplicateTaskException;
  * Edits the details of an existing Task for a patient.
  */
 public class EditTaskCommand extends EditGenericCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the specified task associated with a patient "
-            + "by the index number used in the displayed patient list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: PATIENT INDEX (must be a positive integer) TASK INDEX (must be a positive integer) "
-            + "[" + PREFIX_TASK_DESCRIPTION + "TASK]...\n"
-            + "Example: " + COMMAND_WORD + " 1 " + " 2 "
-            + PREFIX_TASK_DESCRIPTION + "change bandage";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
+            + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_TASK_INDEX
+            + ": Edits a task of a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
+            + PREFIX_OPTION_TASK_INDEX + " TASK_INDEX "
+            + PREFIX_TASK_DESCRIPTION + "<TASK_DESCRIPTION> | <DATE TIME> | <INTERVAL TIME_PERIOD>\n"
+            + "Examples:\n" + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_OPTION_TASK_INDEX + " 1 "
+            + PREFIX_TASK_DESCRIPTION + "Change dressing\n"
+            + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_OPTION_TASK_INDEX + " 1 "
+            + PREFIX_TASK_DESCRIPTION + "| 22-4-22 1345\n"
+            + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_OPTION_TASK_INDEX + " 1 "
+            + PREFIX_TASK_DESCRIPTION + "|| 3 weeks\n";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task %1$d of %2$s:\n"
             + "Before: %3$s\n"
@@ -102,11 +113,12 @@ public class EditTaskCommand extends EditGenericCommand {
 
             Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
 
-            model.setPerson(patientToEdit, editedPatient);
+            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
-            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskIndex.getOneBased(),
-                    editedPatient.getName(), initialTask, updatedTask), EDIT_TASK_COMMAND_TYPE);
+            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,
+                    taskIndex.getOneBased(), editedPatient.getName(), initialTask, updatedTask),
+                    EDIT_TASK_COMMAND_TYPE, patientListTracker);
         } catch (DuplicateTaskException dte) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
         }

@@ -342,8 +342,8 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### UpdatedPersonCard for UI
-#### Implementation:
+### Display added/edited/deleted patient feature
+#### Implementation
 Adding/editing/deleting a patient would have a `UpdatedPersonCard` with the patient’s details appear in the `OutputPanel` of the `UI`. The possible commands to achieve this are:
 1. add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…
 2. edit -p PATIENT_INDEX

@@ -139,7 +139,7 @@ public class EditConditionCommandTest {
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, condition);
         assertCommandFailure(editConditionCommand, model,
-                String.format(EditConditionCommand.MESSAGE_EDIT_DUPLICATE_CONDITION, patientToEdit.getName()));
+                String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
     }
 
     @Test

@@ -38,13 +38,13 @@ public class EditPatientCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPerson).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage,
-                EditPatientCommand.EDIT_PATIENT_COMMAND_TYPE, expectedModel);
+                EditPatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -59,13 +59,13 @@ public class EditPatientCommandTest {
                 .withPhone(VALID_PHONE_BOB).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage,
-                EditPatientCommand.EDIT_PATIENT_COMMAND_TYPE, expectedModel);
+                EditPatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -73,12 +73,12 @@ public class EditPatientCommandTest {
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_PERSON, new EditPatientDescriptor());
         Patient editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage,
-                EditPatientCommand.EDIT_PATIENT_COMMAND_TYPE, expectedModel);
+                EditPatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -89,13 +89,13 @@ public class EditPatientCommandTest {
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_PERSON,
                 new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage,
-                EditPatientCommand.EDIT_PATIENT_COMMAND_TYPE, expectedModel);
+                EditPatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -104,7 +104,7 @@ public class EditPatientCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(firstPerson).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editPatientCommand, model, EditPatientCommand.MESSAGE_DUPLICATE_PATIENT);
+        assertCommandFailure(editPatientCommand, model, Messages.MESSAGE_DUPLICATE_PATIENT);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class EditPatientCommandTest {
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_PERSON,
                 new EditPatientDescriptorBuilder(personInList).build());
 
-        assertCommandFailure(editPatientCommand, model, EditPatientCommand.MESSAGE_DUPLICATE_PATIENT);
+        assertCommandFailure(editPatientCommand, model, Messages.MESSAGE_DUPLICATE_PATIENT);
     }
 
     @Test

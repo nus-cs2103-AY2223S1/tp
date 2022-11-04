@@ -7,6 +7,7 @@ import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.ModelManager;
 import seedu.uninurse.model.UserPrefs;
@@ -14,7 +15,7 @@ import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddPatientCommand}.
+ * Contains integration tests (interaction with the Model) for AddPatientCommand.
  */
 public class AddCommandIntegrationTest {
     private Model model;
@@ -33,12 +34,12 @@ public class AddCommandIntegrationTest {
 
         assertCommandSuccess(new AddPatientCommand(validPerson), model,
                 String.format(AddPatientCommand.MESSAGE_SUCCESS, validPerson),
-                        AddPatientCommand.ADD_PATIENT_COMMAND_TYPE, expectedModel);
+                        AddPatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Patient personInList = model.getUninurseBook().getPersonList().get(0);
-        assertCommandFailure(new AddPatientCommand(personInList), model, AddPatientCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddPatientCommand(personInList), model, Messages.MESSAGE_DUPLICATE_PATIENT);
     }
 }
