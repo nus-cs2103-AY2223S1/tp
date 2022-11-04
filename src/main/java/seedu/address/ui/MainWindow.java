@@ -222,49 +222,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Handles the display for CheckCommand.
-     * @param index The index of the item needs to be checked.
-     */
-    public void handleCheck(String checkType, int index) {
-        checkType = checkType.trim().toUpperCase();
-        switch (checkType) {
-        case CheckCommand.CHECK_BUYER:
-            Buyer buyer = logic.getFilteredBuyerList().get(index);
-            ObservableList<Order> buyerOrderList = logic.getOrderAsObservableListFromBuyer(buyer);
-            OrderListPanel newOrderList = new OrderListPanel(buyerOrderList);
-            personListPanelPlaceholder.getChildren().clear();
-            personListPanelPlaceholder.getChildren().add(newOrderList.getRoot());
-            break;
-        case CheckCommand.CHECK_SUPPLIER:
-            Supplier supplier = logic.getFilteredSupplierList().get(index);
-            ObservableList<Pet> supplierPetList = logic.getPetAsObservableListFromSupplier(supplier);
-            PetListPanel newPetList = new PetListPanel(supplierPetList);
-            personListPanelPlaceholder.getChildren().clear();
-            personListPanelPlaceholder.getChildren().add(newPetList.getRoot());
-            break;
-        case CheckCommand.CHECK_ORDER:
-            Order order = logic.getFilteredOrderList().get(index);
-            Buyer buyerOfOrder = order.getBuyer();
-            ObservableList<Buyer> buyerAsList = FXCollections.singletonObservableList(buyerOfOrder);
-            BuyerListPanel tempBuyerPanel = new BuyerListPanel(buyerAsList, logic);
-            personListPanelPlaceholder.getChildren().clear();
-            personListPanelPlaceholder.getChildren().add(tempBuyerPanel.getRoot());
-            break;
-        case CheckCommand.CHECK_PET:
-            Pet pet = logic.getFilteredPetList().get(index);
-            Supplier supplierOfPet = pet.getSupplier();
-            ObservableList<Supplier> supplierAsList = FXCollections.singletonObservableList(supplierOfPet);
-            SupplierListPanel tempSupplierPanel = new SupplierListPanel(supplierAsList, logic);
-            personListPanelPlaceholder.getChildren().clear();
-            personListPanelPlaceholder.getChildren().add(tempSupplierPanel.getRoot());
-            break;
-        default:
-            //Do nothing
-        }
-
-    }
-
-    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -286,10 +243,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isAddedByPopup()) {
                 handleAddByPopup(commandResult.getAddType());
-            }
-            if (commandResult.isCheck()) {
-                Index index = commandResult.getIndex();
-                handleCheck(commandResult.getCheckType(), index.getZeroBased());
             }
 
             return commandResult;

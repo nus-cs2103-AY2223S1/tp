@@ -7,7 +7,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all items to the user.
  */
 public abstract class ListCommand extends Command {
 
@@ -16,6 +16,9 @@ public abstract class ListCommand extends Command {
     public static final String MESSAGE_USAGE = "List all the Buyer/Supplier/Deliverer/Order/Pet.\n"
             + "Example: list all/buyer/supplier/deliverer/order/pet";
 
+    /**
+     * Removes the predicates on all the lists.
+     */
     public void updateFilteredList(Model model) {
         requireNonNull(model);
         model.updateFilteredBuyerList(Model.PREDICATE_SHOW_ALL_BUYERS);

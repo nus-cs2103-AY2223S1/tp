@@ -3,6 +3,9 @@ package seedu.address.logic.commands.listcommands;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
+/**
+ * Lists all pets to the user.
+ */
 public class ListPetCommand extends ListCommand {
     public static final String MESSAGE_SUCCESS = "Listed all pets";
 

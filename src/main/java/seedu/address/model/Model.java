@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
@@ -203,5 +204,34 @@ public interface Model {
      */
     void switchToPetList();
 
+    /**
+     * Switches the current displayed list to main list.
+     */
     void switchToMainList();
+
+    /**
+     * Sets the current list to the list of orders of a buyer.
+     */
+    void checkBuyerOrder(Buyer buyer);
+
+    /**
+     * Sets the current list to the list of pets of a supplier.
+     */
+    void checkSupplierPet(Supplier supplier);
+
+    /**
+     * Sets the current list to the list of orders of a deliverer.
+     */
+    void checkDelivererOrder(Deliverer deliverer);
+
+    /**
+     * Sets the current list to the show the buyer of an order.
+     */
+    void checkBuyerOfOrder(Order order);
+
+    /**
+     * Sets the current list to show the supplier of a pet.
+     */
+    void checkSupplierOfPet(Pet pet);
+
 }
