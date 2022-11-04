@@ -6,23 +6,18 @@
 ![Ui](docs/images/Ui.png)
 Figure: A mockup of our application
 
-**FABook** is an application for **mid tier financial advisors** who have
-to manage **countless** potential and current clients.<br>
+**FABook** can be your dependable assistant who **reminds** you of meetings and consolidates **crucial information** like financial plans and client information right at your fingertips! <br>
 
-Many financial advisors have **trouble scheduling** for meet-ups due to
-information overload of their clients.<br>
+You can now focus on giving your full attention to your clients without having to worry about things slipping your mind.
 
 **FABook** is optimized for a **one-stop storage solution** to store and remind them on
 **everything** they need to know about their client.
 
-FABook allows financial advisors to create contact cards to store all **crucial information** about their clients. So they can exude a prepared and confident aura that will help them win over their clients.
-
-FABook is a **desktop app for managing contacts, optimized for a financial adviser to use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FABook can get your contact management tasks done faster than traditional GUI apps.
-
 ## Example usages:
-  * Contact book for storing contacts.
+  * Contact book for storing client contacts.
   * Meeting and scheduling reminder.
   * Information storage.
+
 ## User guide:
   * To find out more information about FABook, please take a look at our [User Guide](https://ay2223s1-cs2103t-t10-2.github.io/tp/UserGuide.html)!
 
