@@ -9,25 +9,32 @@ uNivUSal is a desktop application used to link CS2103T users to all the modes of
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to sort entries.
+    * What it does: allows the user to sort all persons in uNivUSal
+    * Commands: `sort`
+    * Justification: This feature improves the navigability for users to traverse through their contacts. It can also be
+  integrated with other fields to support future implementation.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added a tutorial field for a person.
+  * Justification: Supports the aim of the app to cater it to CS2103T students and TAs. This field would allow TAs to
+  keep track of the students in their tutorial group.
 
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: Added a **add to favorite group** shortcut.
+  * Commands: `fav`
+  * Justification: **favorite** would be the basic group a user would need in their contact list.
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=liviamil&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=liviamil&tabRepo=AY2223S1-CS2103T-T08-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false&reverseAuthorshipOrder=false)
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+    * Co-managed releases `v1.1` - `v1.4` (4 releases) on GitHub with team
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
+    * Updated add person to include tutorial (Pull requests [\#100](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/100), [\#178](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/178))
     * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
 * **Documentation**:
     * User Guide:
+        * Added documentation for the features `sort`, `fav`, `tut`
         * Added documentation for the features `delete` and `find` [\#72]()
         * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
     * Developer Guide:

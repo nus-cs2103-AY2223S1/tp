@@ -12,23 +12,36 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+  * What it does: allows the user to see up to their last five previous commands typed.
+  * Justification: This feature improves the product significantly because a user may want to see what they have typed beforehand if they do not remember.
+  * Highlights: This enhancement uses a First-In-First-Out (FIFO) data structure in the form of a queue to present the command history.
 
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: Added a profile picture that changes accordingly to whatever the contact's occupation is.
+  * What it does: allows the user to see easily what the occupation is for each contact in a pictorial form.
+  * Justification: This feature improves the product because a user may want to know what roles all their contacts hold at a glance.
+  * Highlights: This enhancement uses new images saved into the resources folder to be bundled into the JAR file and a function to determine the right image to display.
+
+* **New Enhancement**: Enhanced the delete command to be multi-functional.
+  * What it does: allows the user to not just delete contacts but also delete specific fields of people.
+  * Justification: This feature improves the product significantly because a user may want to update contacts that no longer use those fields.
+  * Highlights: This enhancement affects existing commands. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands and validators. Required changes to GUI also to display the deleted data field.
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jnwkm&breakdown=true)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Co-managed releases `v1.1` - `v1.4` (4 releases) on GitHub with team
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Wrote additional tests for existing features to increase coverage from 46% to 52% (Pull requests [\#205](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/205), [\#38]())
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
+    * Added documentation for the features `delete`, `find` & `history` [\#72]()
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide:
     * Added implementation details of the `delete` feature.
