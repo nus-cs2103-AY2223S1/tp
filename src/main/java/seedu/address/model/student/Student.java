@@ -383,4 +383,8 @@ public class Student {
 
         return (aClass.isSameDateAs(displayedClass.date));
     }
+
+    public boolean hasSharedPhone() {
+        return phone.equals(nokPhone);
+    }
 }
