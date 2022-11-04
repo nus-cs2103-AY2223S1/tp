@@ -370,7 +370,7 @@ Format: `showarchive`
 
 Edits an existing task in the task list, at least one field needs to be edited. 
 
-Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME*]`
+Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]*`
 
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 
@@ -388,7 +388,7 @@ will be removed if no date or tag is given.
 Examples:
 * `edit 1 -t revision -n Recitation` Edits the tag to "revision" and taskName to "Recitation".
 
-![Example image of Edot Command](images/user-guide/EditCommandDemo.png)
+![Example image of Edit Command](images/user-guide/EditCommandDemo.png)
   
 ### Clearing all entries : `clear`
 
@@ -430,8 +430,8 @@ If your changes to the data file makes its format invalid, NotionUS will discard
 **Q**: Is internet needed for NotionUS to work?<br>
 **A**: No, NotionUS functions fully without internet connection.
 
-**Q**: How can I contact the team if I face difficuties ?<br>
-**A**: Please contact us via GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen), do provide screenshots of the error or state the error message. We will assist you as soon as possible. 
+**Q**: I need help! How can I contact the team?<br>
+**A**: Please contact us via GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen), do provide screenshots of the error you are facing. We will assist you as soon as possible! 
 
 --------------------------------------------------------------------------------------------------------------------
 
