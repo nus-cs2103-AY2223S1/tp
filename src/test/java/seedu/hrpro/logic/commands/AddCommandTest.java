@@ -17,9 +17,9 @@ import javafx.collections.ObservableList;
 import seedu.hrpro.commons.core.GuiSettings;
 import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.logic.commands.exceptions.CommandException;
-import seedu.hrpro.model.HRPro;
+import seedu.hrpro.model.HrPro;
 import seedu.hrpro.model.Model;
-import seedu.hrpro.model.ReadOnlyHRPro;
+import seedu.hrpro.model.ReadOnlyHrPro;
 import seedu.hrpro.model.ReadOnlyUserPrefs;
 import seedu.hrpro.model.project.Project;
 import seedu.hrpro.model.staff.Staff;
@@ -103,12 +103,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getHRProFilePath() {
+        public Path getHrProFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setHRProFilePath(Path hrProFilePath) {
+        public void setHrProFilePath(Path hrProFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -118,12 +118,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setHRPro(ReadOnlyHRPro newData) {
+        public void setHrPro(ReadOnlyHrPro newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyHRPro getHRPro() {
+        public ReadOnlyHrPro getHrPro() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -258,8 +258,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyHRPro getHRPro() {
-            return new HRPro();
+        public ReadOnlyHrPro getHrPro() {
+            return new HrPro();
         }
     }
 

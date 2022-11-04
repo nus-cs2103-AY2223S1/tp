@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.hrpro.model.HRPro;
-import seedu.hrpro.model.ReadOnlyHRPro;
+import seedu.hrpro.model.HrPro;
+import seedu.hrpro.model.ReadOnlyHrPro;
 import seedu.hrpro.model.deadline.Deadline;
 import seedu.hrpro.model.project.Budget;
 import seedu.hrpro.model.project.Project;
@@ -23,7 +23,7 @@ import seedu.hrpro.model.task.TaskDescription;
 import seedu.hrpro.model.task.TaskMark;
 
 /**
- * Contains utility methods for populating {@code HRPro} with sample data.
+ * Contains utility methods for populating {@code HrPro} with sample data.
  */
 public class SampleDataUtil {
     public static Project[] getSampleProjects() {
@@ -66,8 +66,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyHRPro getSampleHRPro() {
-        HRPro sampleAb = new HRPro();
+    public static ReadOnlyHrPro getSampleHrPro() {
+        HrPro sampleAb = new HrPro();
         for (Project sampleProject : getSampleProjects()) {
             sampleAb.addProject(sampleProject);
         }

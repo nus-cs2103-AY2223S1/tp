@@ -8,7 +8,7 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKDEADLINE_ALPHA;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKDEADLINE_BRAVO;
 import static seedu.hrpro.testutil.Assert.assertThrows;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalProjects.APPLE;
 import static seedu.hrpro.testutil.TypicalStaff.STAFF_1;
 import static seedu.hrpro.testutil.TypicalTasks.TASK_1;
@@ -32,9 +32,9 @@ import seedu.hrpro.testutil.ProjectBuilder;
 import seedu.hrpro.testutil.StaffBuilder;
 import seedu.hrpro.testutil.TaskBuilder;
 
-public class HRProTest {
+public class HrProTest {
 
-    private final HRPro hrPro = new HRPro();
+    private final HrPro hrPro = new HrPro();
 
     @Test
     public void constructor() {
@@ -49,8 +49,8 @@ public class HRProTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyHRPro_replacesData() {
-        HRPro newData = getTypicalHRPro();
+    public void resetData_withValidReadOnlyHrPro_replacesData() {
+        HrPro newData = getTypicalHrPro();
         hrPro.resetData(newData);
         assertEquals(newData, hrPro);
     }
@@ -61,7 +61,7 @@ public class HRProTest {
         Project editedApple = new ProjectBuilder(APPLE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Project> newProjects = Arrays.asList(APPLE, editedApple);
-        HRProProjectsStub newData = new HRProProjectsStub(newProjects);
+        HrProProjectsStub newData = new HrProProjectsStub(newProjects);
 
         assertThrows(DuplicateProjectException.class, () -> hrPro.resetData(newData));
     }
@@ -71,7 +71,7 @@ public class HRProTest {
         // Two staffs with the same identity fields
         Staff editedStaff = new StaffBuilder(STAFF_1).withTags(VALID_TAG_FRIEND).build();
         List<Staff> newStaff = Arrays.asList(STAFF_1, editedStaff);
-        HRProStaffStub newData = new HRProStaffStub(newStaff);
+        HrProStaffStub newData = new HrProStaffStub(newStaff);
 
         assertThrows(DuplicateStaffException.class, () -> hrPro.resetData(newData));
     }
@@ -81,7 +81,7 @@ public class HRProTest {
         // Two tasks with the same identity fields
         Task task = new TaskBuilder(TASK_1).withDeadline(VALID_TASKDEADLINE_ALPHA).build();
         List<Task> newTasks = Arrays.asList(TASK_1, task);
-        HRProTasksStub newData = new HRProTasksStub(newTasks);
+        HrProTasksStub newData = new HrProTasksStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> hrPro.resetData(newData));
     }
@@ -102,40 +102,40 @@ public class HRProTest {
     }
 
     @Test
-    public void hasProject_projectNotInHRPro_returnsFalse() {
+    public void hasProject_projectNotInHrPro_returnsFalse() {
         assertFalse(hrPro.hasProject(APPLE));
     }
 
     @Test
-    public void hasStaff_staffNotInHRPro_returnsFalse() {
+    public void hasStaff_staffNotInHrPro_returnsFalse() {
         assertFalse(hrPro.hasStaff(STAFF_1));
     }
 
     @Test
-    public void hasTask_taskNotInHRPro_returnsFalse() {
+    public void hasTask_taskNotInHrPro_returnsFalse() {
         assertFalse(hrPro.hasTask(TASK_1));
     }
 
     @Test
-    public void hasProject_projectInHRPro_returnsTrue() {
+    public void hasProject_projectInHrPro_returnsTrue() {
         hrPro.addProject(APPLE);
         assertTrue(hrPro.hasProject(APPLE));
     }
 
     @Test
-    public void hasStaff_staffInHRPro_returnsTrue() {
+    public void hasStaff_staffInHrPro_returnsTrue() {
         hrPro.addStaff(STAFF_1);
         assertTrue(hrPro.hasStaff(STAFF_1));
     }
 
     @Test
-    public void hasTask_taskInHRPro_returnsTrue() {
+    public void hasTask_taskInHrPro_returnsTrue() {
         hrPro.addTask(TASK_1);
         assertTrue(hrPro.hasTask(TASK_1));
     }
 
     @Test
-    public void hasProject_projectWithSameIdentityFieldsInHRPro_returnsTrue() {
+    public void hasProject_projectWithSameIdentityFieldsInHrPro_returnsTrue() {
         hrPro.addProject(APPLE);
         Project editedApple = new ProjectBuilder(APPLE).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -143,7 +143,7 @@ public class HRProTest {
     }
 
     @Test
-    public void hasStaff_staffWithSameIdentityFieldsInHRPro_returnsTrue() {
+    public void hasStaff_staffWithSameIdentityFieldsInHrPro_returnsTrue() {
         hrPro.addStaff(STAFF_1);
         Staff editedStaff = new StaffBuilder(STAFF_1).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -151,7 +151,7 @@ public class HRProTest {
     }
 
     @Test
-    public void hasTask_taskWithSameIdentityFieldsInHRPro_returnsTrue() {
+    public void hasTask_taskWithSameIdentityFieldsInHrPro_returnsTrue() {
         hrPro.addTask(TASK_1);
         Task editedTask = new TaskBuilder(TASK_1).withDeadline(VALID_TASKDEADLINE_BRAVO)
                 .build();
@@ -174,14 +174,14 @@ public class HRProTest {
     }
 
     /**
-     * A stub ReadOnlyHRPro whose projects list can violate interface constraints.
+     * A stub ReadOnlyHrPro whose projects list can violate interface constraints.
      */
-    private static class HRProProjectsStub implements ReadOnlyHRPro {
+    private static class HrProProjectsStub implements ReadOnlyHrPro {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
         private final ObservableList<Staff> staff = FXCollections.observableArrayList();
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        HRProProjectsStub(Collection<Project> projects) {
+        HrProProjectsStub(Collection<Project> projects) {
             this.projects.setAll(projects);
         }
 
@@ -202,14 +202,14 @@ public class HRProTest {
     }
 
     /**
-     * A stub ReadOnlyHRPro whose staff list can violate interface constraints.
+     * A stub ReadOnlyHrPro whose staff list can violate interface constraints.
      */
-    private static class HRProStaffStub implements ReadOnlyHRPro {
+    private static class HrProStaffStub implements ReadOnlyHrPro {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
         private final ObservableList<Staff> staff = FXCollections.observableArrayList();
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        HRProStaffStub(Collection<Staff> staff) {
+        HrProStaffStub(Collection<Staff> staff) {
             this.staff.setAll(staff);
         }
 
@@ -230,14 +230,14 @@ public class HRProTest {
     }
 
     /**
-     * A stub ReadOnlyHRPro whose task list can violate interface constraints.
+     * A stub ReadOnlyHrPro whose task list can violate interface constraints.
      */
-    private static class HRProTasksStub implements ReadOnlyHRPro {
+    private static class HrProTasksStub implements ReadOnlyHrPro {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
         private final ObservableList<Staff> staff = FXCollections.observableArrayList();
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        HRProTasksStub(Collection<Task> tasks) {
+        HrProTasksStub(Collection<Task> tasks) {
             this.tasks.setAll(tasks);
         }
 

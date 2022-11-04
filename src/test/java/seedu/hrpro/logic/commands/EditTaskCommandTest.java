@@ -8,7 +8,7 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKDESCRIPTION_A
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.hrpro.logic.commands.CommandTestUtil.showTaskAtIndex;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 
@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.hrpro.commons.core.Messages;
 import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.logic.commands.EditTaskCommand.EditTaskDescriptor;
-import seedu.hrpro.model.HRPro;
+import seedu.hrpro.model.HrPro;
 import seedu.hrpro.model.Model;
 import seedu.hrpro.model.ModelManager;
 import seedu.hrpro.model.UserPrefs;
@@ -26,7 +26,7 @@ import seedu.hrpro.testutil.EditTaskDescriptorBuilder;
 import seedu.hrpro.testutil.TaskBuilder;
 
 public class EditTaskCommandTest {
-    private Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -36,7 +36,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new HRPro(model.getHRPro()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HrPro(model.getHrPro()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new HRPro(model.getHRPro()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HrPro(model.getHrPro()), new UserPrefs());
         expectedModel.setTask(lastTask, editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
@@ -69,7 +69,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new HRPro(model.getHRPro()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HrPro(model.getHrPro()), new UserPrefs());
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -85,7 +85,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new HRPro(model.getHRPro()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HrPro(model.getHrPro()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
@@ -105,7 +105,7 @@ public class EditTaskCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         // edit task in filtered list into a duplicate in hr pro
-        Task taskInList = model.getHRPro().getTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        Task taskInList = model.getHrPro().getTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK,
                 new EditTaskDescriptorBuilder(taskInList).build());
 
@@ -131,7 +131,7 @@ public class EditTaskCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         Index outOfBoundIndex = INDEX_SECOND_TASK;
         // ensures that outOfBoundIndex is still in bounds of hr pro list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getHRPro().getTaskList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHrPro().getTaskList().size());
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex,
                 new EditTaskDescriptorBuilder().withDescription(VALID_TASKDESCRIPTION_ALPHA).build());

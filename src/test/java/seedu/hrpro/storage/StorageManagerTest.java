@@ -2,7 +2,7 @@ package seedu.hrpro.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 
 import java.nio.file.Path;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.hrpro.commons.core.GuiSettings;
-import seedu.hrpro.model.HRPro;
-import seedu.hrpro.model.ReadOnlyHRPro;
+import seedu.hrpro.model.HrPro;
+import seedu.hrpro.model.ReadOnlyHrPro;
 import seedu.hrpro.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonHRProStorage hrProStorage = new JsonHRProStorage(getTempFilePath("ab"));
+        JsonHrProStorage hrProStorage = new JsonHrProStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(hrProStorage, userPrefsStorage);
     }
@@ -51,18 +51,18 @@ public class StorageManagerTest {
     public void hrProReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonHRProStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonHRProStorageTest} class.
+         * {@link JsonHrProStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonHrProStorageTest} class.
          */
-        HRPro original = getTypicalHRPro();
-        storageManager.saveHRPro(original);
-        ReadOnlyHRPro retrieved = storageManager.readHRPro().get();
-        assertEquals(original, new HRPro(retrieved));
+        HrPro original = getTypicalHrPro();
+        storageManager.saveHrPro(original);
+        ReadOnlyHrPro retrieved = storageManager.readHrPro().get();
+        assertEquals(original, new HrPro(retrieved));
     }
 
     @Test
-    public void getHRProFilePath() {
-        assertNotNull(storageManager.getHRProFilePath());
+    public void getHrProFilePath() {
+        assertNotNull(storageManager.getHrProFilePath());
     }
 
 }

@@ -7,7 +7,7 @@ import seedu.hrpro.commons.core.GuiSettings;
 import seedu.hrpro.logic.commands.CommandResult;
 import seedu.hrpro.logic.commands.exceptions.CommandException;
 import seedu.hrpro.logic.parser.exceptions.ParseException;
-import seedu.hrpro.model.ReadOnlyHRPro;
+import seedu.hrpro.model.ReadOnlyHrPro;
 import seedu.hrpro.model.project.Project;
 import seedu.hrpro.model.staff.Staff;
 import seedu.hrpro.model.task.Task;
@@ -26,11 +26,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the HRPro.
+     * Returns the HrPro.
      *
-     * @see seedu.hrpro.model.Model#getHRPro()
+     * @see seedu.hrpro.model.Model#getHrPro()
      */
-    ReadOnlyHRPro getHRPro();
+    ReadOnlyHrPro getHrPro();
 
     /** Returns an unmodifiable view of the filtered list of projects */
     ObservableList<Project> getFilteredProjectList();
@@ -44,7 +44,7 @@ public interface Logic {
     /**
      * Returns the user prefs' hr pro file path.
      */
-    Path getHRProFilePath();
+    Path getHrProFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

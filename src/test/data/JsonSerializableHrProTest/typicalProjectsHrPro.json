@@ -1,5 +1,5 @@
 {
-  "_comment": "HRPro save file which contains the same Project values as in TypicalProjects#getTypicalHRPro()",
+  "_comment": "HrPro save file which contains the same Project values as in TypicalProjects#getTypicalHrPro()",
   "projects" : [ {
     "projectName" : "Alice Pauline",
     "budget" : "94351253",

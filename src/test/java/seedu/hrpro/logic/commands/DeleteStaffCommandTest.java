@@ -9,7 +9,7 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_FIRST_STAFF;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_SECOND_STAFF;
@@ -31,7 +31,7 @@ import seedu.hrpro.testutil.StaffBuilder;
 
 public class DeleteStaffCommandTest {
 
-    private Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
 
     @Test
     public void execute_validInput_success() {
@@ -48,7 +48,7 @@ public class DeleteStaffCommandTest {
 
         DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(index, projectName);
 
-        Model expectedModel = new ModelManager(getTypicalHRPro(), model.getUserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHrPro(), model.getUserPrefs());
         Project tempProject = new ProjectBuilder(project).build();
         tempProject.getStaffList().remove(staff);
         expectedModel.setProject(project, tempProject);
@@ -80,7 +80,7 @@ public class DeleteStaffCommandTest {
     @Test
     public void execute_invalidIndex_throwCommandException() {
         cleanUpModel();
-        Project project = model.getHRPro().getProjectList().get(0);
+        Project project = model.getHrPro().getProjectList().get(0);
         Staff staff = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
         project.getStaffList().add(staff);
         ProjectName projectName = project.getProjectName();
@@ -98,7 +98,7 @@ public class DeleteStaffCommandTest {
     @Test
     public void execute_noDisplayedStaff_throwCommandException() {
         cleanUpModel();
-        Project project = model.getHRPro().getProjectList().get(0);
+        Project project = model.getHrPro().getProjectList().get(0);
         ProjectName projectName = project.getProjectName();
         int len = model.getFilteredStaffList().size();
         Index index = Index.fromZeroBased(len + 1);

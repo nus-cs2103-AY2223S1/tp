@@ -15,15 +15,15 @@ import seedu.hrpro.commons.util.ConfigUtil;
 import seedu.hrpro.commons.util.StringUtil;
 import seedu.hrpro.logic.Logic;
 import seedu.hrpro.logic.LogicManager;
-import seedu.hrpro.model.HRPro;
+import seedu.hrpro.model.HrPro;
 import seedu.hrpro.model.Model;
 import seedu.hrpro.model.ModelManager;
-import seedu.hrpro.model.ReadOnlyHRPro;
+import seedu.hrpro.model.ReadOnlyHrPro;
 import seedu.hrpro.model.ReadOnlyUserPrefs;
 import seedu.hrpro.model.UserPrefs;
 import seedu.hrpro.model.util.SampleDataUtil;
-import seedu.hrpro.storage.HRProStorage;
-import seedu.hrpro.storage.JsonHRProStorage;
+import seedu.hrpro.storage.HrProStorage;
+import seedu.hrpro.storage.JsonHrProStorage;
 import seedu.hrpro.storage.JsonUserPrefsStorage;
 import seedu.hrpro.storage.Storage;
 import seedu.hrpro.storage.StorageManager;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing HRPro ]===========================");
+        logger.info("=============================[ Initializing HrPro ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        HRProStorage hrProStorage = new JsonHRProStorage(userPrefs.getHRProFilePath());
+        HrProStorage hrProStorage = new JsonHrProStorage(userPrefs.getHrProFilePath());
         storage = new StorageManager(hrProStorage, userPrefsStorage);
 
         initLogging(config);
@@ -74,20 +74,20 @@ public class MainApp extends Application {
      * or an empty hr pro will be used instead if errors occur when reading {@code storage}'s hr pro.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyHRPro> hrProOptional;
-        ReadOnlyHRPro initialData;
+        Optional<ReadOnlyHrPro> hrProOptional;
+        ReadOnlyHrPro initialData;
         try {
-            hrProOptional = storage.readHRPro();
+            hrProOptional = storage.readHrPro();
             if (!hrProOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample HRPro");
+                logger.info("Data file not found. Will be starting with a sample HrPro");
             }
-            initialData = hrProOptional.orElseGet(SampleDataUtil::getSampleHRPro);
+            initialData = hrProOptional.orElseGet(SampleDataUtil::getSampleHrPro);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty HRPro");
-            initialData = new HRPro();
+            logger.warning("Data file not in the correct format. Will be starting with an empty HrPro");
+            initialData = new HrPro();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty HRPro");
-            initialData = new HRPro();
+            logger.warning("Problem while reading from the file. Will be starting with an empty HrPro");
+            initialData = new HrPro();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty HRPro");
+            logger.warning("Problem while reading from the file. Will be starting with an empty HrPro");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting HRPro " + MainApp.VERSION);
+        logger.info("Starting HrPro " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

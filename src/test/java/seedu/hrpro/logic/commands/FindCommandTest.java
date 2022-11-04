@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_PROJECTS_LISTED_PLURAL_OVERVIEW;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalProjects.COCONUT;
 import static seedu.hrpro.testutil.TypicalProjects.ELLE;
 import static seedu.hrpro.testutil.TypicalProjects.FIONA;
@@ -24,8 +24,8 @@ import seedu.hrpro.model.project.ProjectNameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalHRPro(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
 
     @Test
     public void equals() {

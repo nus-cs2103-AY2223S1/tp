@@ -1,7 +1,7 @@
 package seedu.hrpro.logic.commands;
 
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ import seedu.hrpro.model.UserPrefs;
 
 public class SortCompleteCommandTest {
     @Test
-    public void execute_emptyHRPro_success() {
+    public void execute_emptyHrPro_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -20,9 +20,9 @@ public class SortCompleteCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyHRPro_success() {
-        Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalHRPro(), new UserPrefs());
+    public void execute_nonEmptyHrPro_success() {
+        Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
         expectedModel.sortComplete();
 
         assertCommandSuccess(new SortCompleteCommand(), model,

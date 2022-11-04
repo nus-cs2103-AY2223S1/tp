@@ -5,41 +5,41 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.hrpro.commons.exceptions.DataConversionException;
-import seedu.hrpro.model.ReadOnlyHRPro;
+import seedu.hrpro.model.ReadOnlyHrPro;
 
 /**
- * Represents a storage for {@link seedu.hrpro.model.HRPro}.
+ * Represents a storage for {@link seedu.hrpro.model.HrPro}.
  */
-public interface HRProStorage {
+public interface HrProStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getHRProFilePath();
+    Path getHrProFilePath();
 
     /**
-     * Returns HRPro data as a {@link ReadOnlyHRPro}.
+     * Returns HrPro data as a {@link ReadOnlyHrPro}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyHRPro> readHRPro() throws DataConversionException, IOException;
+    Optional<ReadOnlyHrPro> readHrPro() throws DataConversionException, IOException;
 
     /**
-     * @see #getHRProFilePath()
+     * @see #getHrProFilePath()
      */
-    Optional<ReadOnlyHRPro> readHRPro(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyHrPro> readHrPro(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyHRPro} to the storage.
+     * Saves the given {@link ReadOnlyHrPro} to the storage.
      * @param hrPro cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveHRPro(ReadOnlyHRPro hrPro) throws IOException;
+    void saveHrPro(ReadOnlyHrPro hrPro) throws IOException;
 
     /**
-     * @see #saveHRPro(ReadOnlyHRPro)
+     * @see #saveHrPro(ReadOnlyHrPro)
      */
-    void saveHRPro(ReadOnlyHRPro hrPro, Path filePath) throws IOException;
+    void saveHrPro(ReadOnlyHrPro hrPro, Path filePath) throws IOException;
 
 }

@@ -57,11 +57,11 @@ public class TypicalProjects {
 
 
     /**
-     * Returns an {@code HRPro} with all the typical projects.
+     * Returns an {@code HrPro} with all the typical projects.
      */
     /*
-    public static HRPro getTypicalHRProWithProjectOnly() {
-        HRPro ab = new HRPro();
+    public static HrPro getTypicalHrProWithProjectOnly() {
+        HrPro ab = new HrPro();
         for (Project project : getTypicalProjects()) {
             ab.addProject(project);
         }

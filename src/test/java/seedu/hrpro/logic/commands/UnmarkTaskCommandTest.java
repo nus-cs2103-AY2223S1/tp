@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.hrpro.logic.commands.CommandTestUtil.showTaskAtIndex;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 
@@ -18,7 +18,7 @@ import seedu.hrpro.model.ModelManager;
 import seedu.hrpro.model.UserPrefs;
 
 public class UnmarkTaskCommandTest {
-    private Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -28,7 +28,7 @@ public class UnmarkTaskCommandTest {
         String expectedMessage = String.format(UnmarkTaskCommand
                 .MESSAGE_UNMARK_TASK_SUCCESS, INDEX_FIRST_TASK.getOneBased());
 
-        ModelManager expectedModel = new ModelManager(model.getHRPro(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getHrPro(), new UserPrefs());
         expectedModel.markTask(INDEX_FIRST_TASK);
         expectedModel.unmarkTask(INDEX_FIRST_TASK);
         assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
@@ -52,7 +52,7 @@ public class UnmarkTaskCommandTest {
         String expectedMessage = String.format(
                 UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, INDEX_FIRST_TASK.getOneBased());
 
-        Model expectedModel = new ModelManager(model.getHRPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHrPro(), new UserPrefs());
         showTaskAtIndex(expectedModel, INDEX_FIRST_TASK);
         expectedModel.markTask(INDEX_FIRST_TASK);
         expectedModel.unmarkTask(INDEX_FIRST_TASK);
@@ -67,7 +67,7 @@ public class UnmarkTaskCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;
         // ensures that outOfBoundIndex is still in bounds of hr pro list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getHRPro().getTaskList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHrPro().getTaskList().size());
 
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(outOfBoundIndex);
 

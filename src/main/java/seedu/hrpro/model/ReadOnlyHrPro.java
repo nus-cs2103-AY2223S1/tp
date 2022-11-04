@@ -8,7 +8,7 @@ import seedu.hrpro.model.task.Task;
 /**
  * Unmodifiable view of an hr pro
  */
-public interface ReadOnlyHRPro {
+public interface ReadOnlyHrPro {
 
     /**
      * Returns an unmodifiable view of the project list.

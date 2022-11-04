@@ -35,7 +35,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setHRProFilePath(newUserPrefs.getHRProFilePath());
+        setHrProFilePath(newUserPrefs.getHrProFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,11 +47,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getHRProFilePath() {
+    public Path getHrProFilePath() {
         return hrProFilePath;
     }
 
-    public void setHRProFilePath(Path hrProFilePath) {
+    public void setHrProFilePath(Path hrProFilePath) {
         requireNonNull(hrProFilePath);
         this.hrProFilePath = hrProFilePath;
     }

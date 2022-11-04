@@ -53,22 +53,22 @@ public interface Model {
     /**
      * Returns the user prefs' hr pro file path.
      */
-    Path getHRProFilePath();
+    Path getHrProFilePath();
 
     /**
      * Sets the user prefs' hr pro file path.
      */
-    void setHRProFilePath(Path hrProFilePath);
+    void setHrProFilePath(Path hrProFilePath);
 
     /**
      * Replaces hr pro data with the data in {@code hrPro}.
      */
-    void setHRPro(ReadOnlyHRPro hrPro);
+    void setHrPro(ReadOnlyHrPro hrPro);
 
     /**
-     * Returns the HRPro
+     * Returns the HrPro
      */
-    ReadOnlyHRPro getHRPro();
+    ReadOnlyHrPro getHrPro();
 
     //=========== Projects ================================================================================
 

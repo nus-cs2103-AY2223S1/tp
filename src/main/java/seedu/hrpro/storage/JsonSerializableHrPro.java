@@ -9,17 +9,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.hrpro.commons.exceptions.IllegalValueException;
-import seedu.hrpro.model.HRPro;
-import seedu.hrpro.model.ReadOnlyHRPro;
+import seedu.hrpro.model.HrPro;
+import seedu.hrpro.model.ReadOnlyHrPro;
 import seedu.hrpro.model.project.Project;
 import seedu.hrpro.model.staff.Staff;
 import seedu.hrpro.model.task.Task;
 
 /**
- * An Immutable HRPro that is serializable to JSON format.
+ * An Immutable HrPro that is serializable to JSON format.
  */
 @JsonRootName(value = "hrpro")
-class JsonSerializableHRPro {
+class JsonSerializableHrPro {
 
     public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
 
@@ -34,10 +34,10 @@ class JsonSerializableHRPro {
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableHRPro} with the given projects and tasks.
+     * Constructs a {@code JsonSerializableHrPro} with the given projects and tasks.
      */
     @JsonCreator
-    public JsonSerializableHRPro(@JsonProperty("projects") List<JsonAdaptedProject> projects,
+    public JsonSerializableHrPro(@JsonProperty("projects") List<JsonAdaptedProject> projects,
                                        @JsonProperty("staff") List<JsonAdaptedStaff> staff,
                                        @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.projects.addAll(projects);
@@ -46,23 +46,23 @@ class JsonSerializableHRPro {
     }
 
     /**
-     * Converts a given {@code ReadOnlyHRPro} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyHrPro} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableHRPro}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableHrPro}.
      */
-    public JsonSerializableHRPro(ReadOnlyHRPro source) {
+    public JsonSerializableHrPro(ReadOnlyHrPro source) {
         projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
         staff.addAll(source.getStaffList().stream().map(JsonAdaptedStaff::new).collect(Collectors.toList()));
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this hr pro into the model's {@code HRPro} object.
+     * Converts this hr pro into the model's {@code HrPro} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public HRPro toModelType() throws IllegalValueException {
-        HRPro hrPro = new HRPro();
+    public HrPro toModelType() throws IllegalValueException {
+        HrPro hrPro = new HrPro();
         for (JsonAdaptedProject jsonAdaptedProject : projects) {
             Project project = jsonAdaptedProject.toModelType();
             if (hrPro.hasProject(project)) {

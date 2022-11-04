@@ -10,7 +10,7 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_STAFFNAME_ANDY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_STAFFTITLE_ANDY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 
@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.hrpro.commons.core.Messages;
 import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.logic.commands.EditStaffCommand.EditStaffDescriptor;
-import seedu.hrpro.model.HRPro;
+import seedu.hrpro.model.HrPro;
 import seedu.hrpro.model.Model;
 import seedu.hrpro.model.ModelManager;
 import seedu.hrpro.model.UserPrefs;
@@ -37,17 +37,17 @@ import seedu.hrpro.testutil.StaffBuilder;
  */
 public class EditStaffCommandTest {
 
-    private Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
 
     @Test
     public void execute_invalidProjectName_failure() {
         cleanUpModel();
-        model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(0);
         Staff staff = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
         project.getStaffList().add(staff);
         model.setFilteredStaffList(project.getStaffList());
-        Model expectedModel = new ModelManager(new HRPro(model.getHRPro()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HrPro(model.getHrPro()), new UserPrefs());
         Project emptyProject = new ProjectBuilder().withName("DoesNotExist").build();
         EditStaffDescriptor editStaffDescriptor = new EditStaffDescriptorBuilder().build();
         EditStaffCommand editStaffCommand = new EditStaffCommand(emptyProject.getProjectName(), INDEX_FIRST_PROJECT,
@@ -61,7 +61,7 @@ public class EditStaffCommandTest {
     @Test
     public void execute_invalidStaffIndex_failure() {
         cleanUpModel();
-        model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(0);
         Staff staff = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
         project.getStaffList().add(staff);
@@ -80,7 +80,7 @@ public class EditStaffCommandTest {
     @Test
     public void execute_duplicateStaff_failure() {
         cleanUpModel();
-        model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Staff dummyStaff = new StaffBuilder().withStaffName(VALID_STAFFNAME_ANDY).build();
 
         // add two more dummy staff to ensure the total number of staff in the project >= 2
@@ -106,7 +106,7 @@ public class EditStaffCommandTest {
     @Test
     public void execute_allFieldsSpecified_success() {
         cleanUpModel();
-        model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Project validProject = new ProjectBuilder().build();
 
         Staff validStaff = new StaffBuilder().build();
@@ -122,7 +122,7 @@ public class EditStaffCommandTest {
         String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS,
                 validStaffTwo, validProject.getProjectName().toString());
 
-        Model expectedModel = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Project expectedProject = new ProjectBuilder(validProject).build();
         expectedProject.getStaffList().setStaff(validStaff, validStaffTwo);
         expectedModel.addProject(expectedProject);
@@ -135,7 +135,7 @@ public class EditStaffCommandTest {
     @Test
     public void execute_someFieldsSpecified_success() {
         cleanUpModel();
-        model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Project validProject = new ProjectBuilder().build();
 
         Staff validStaff = new StaffBuilder().build();
@@ -153,7 +153,7 @@ public class EditStaffCommandTest {
         String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS,
                 validStaffTwo, validProject.getProjectName().toString());
 
-        Model expectedModel = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Project expectedProject = new ProjectBuilder(validProject).build();
         expectedProject.getStaffList().setStaff(validStaff, validStaffTwo);
         expectedModel.addProject(expectedProject);
@@ -165,7 +165,7 @@ public class EditStaffCommandTest {
     @Test
     public void execute_noFieldSpecified_success() {
         cleanUpModel();
-        model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Project validProject = new ProjectBuilder().build();
 
         Staff validStaff = new StaffBuilder().build();
@@ -181,7 +181,7 @@ public class EditStaffCommandTest {
         String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS,
                 validStaff, validProject.getProjectName().toString());
 
-        Model expectedModel = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Project expectedProject = new ProjectBuilder(validProject).build();
         expectedProject.getStaffList().setStaff(validStaff, validStaff);
         model.setFilteredStaffList(validProject.getStaffList());

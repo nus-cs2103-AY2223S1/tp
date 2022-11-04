@@ -2,7 +2,7 @@ package seedu.hrpro.logic.commands;
 
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.hrpro.logic.commands.CommandTestUtil.showProjectAtIndex;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalHRPro(), new UserPrefs());
-        expectedModel = new ModelManager(model.getHRPro(), new UserPrefs());
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
+        expectedModel = new ModelManager(model.getHrPro(), new UserPrefs());
     }
 
     @Test

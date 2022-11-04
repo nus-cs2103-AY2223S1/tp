@@ -5,14 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.hrpro.commons.exceptions.DataConversionException;
-import seedu.hrpro.model.ReadOnlyHRPro;
+import seedu.hrpro.model.ReadOnlyHrPro;
 import seedu.hrpro.model.ReadOnlyUserPrefs;
 import seedu.hrpro.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends HRProStorage, UserPrefsStorage {
+public interface Storage extends HrProStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends HRProStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getHRProFilePath();
+    Path getHrProFilePath();
 
     @Override
-    Optional<ReadOnlyHRPro> readHRPro() throws DataConversionException, IOException;
+    Optional<ReadOnlyHrPro> readHrPro() throws DataConversionException, IOException;
 
     @Override
-    void saveHRPro(ReadOnlyHRPro hrPro) throws IOException;
+    void saveHrPro(ReadOnlyHrPro hrPro) throws IOException;
 
 }

@@ -10,7 +10,7 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.hrpro.logic.commands.CommandTestUtil.showProjectAtIndex;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 
@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.hrpro.commons.core.Messages;
 import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.logic.commands.EditCommand.EditProjectDescriptor;
-import seedu.hrpro.model.HRPro;
+import seedu.hrpro.model.HrPro;
 import seedu.hrpro.model.Model;
 import seedu.hrpro.model.ModelManager;
 import seedu.hrpro.model.UserPrefs;
@@ -32,7 +32,7 @@ import seedu.hrpro.testutil.ProjectBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new HRPro(model.getHRPro()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HrPro(model.getHrPro()), new UserPrefs());
         expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new HRPro(model.getHRPro()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HrPro(model.getHrPro()), new UserPrefs());
         expectedModel.setProject(lastProject, editedProject);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new HRPro(model.getHRPro()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HrPro(model.getHrPro()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +92,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new HRPro(model.getHRPro()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HrPro(model.getHrPro()), new UserPrefs());
         expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -112,7 +112,7 @@ public class EditCommandTest {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
 
         // edit project in filtered list into a duplicate in hr pro
-        Project projectInList = model.getHRPro().getProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
+        Project projectInList = model.getHrPro().getProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PROJECT,
                 new EditProjectDescriptorBuilder(projectInList).build());
 
@@ -137,7 +137,7 @@ public class EditCommandTest {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
         Index outOfBoundIndex = INDEX_SECOND_PROJECT;
         // ensures that outOfBoundIndex is still in bounds of hr pro list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getHRPro().getProjectList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHrPro().getProjectList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB).build());

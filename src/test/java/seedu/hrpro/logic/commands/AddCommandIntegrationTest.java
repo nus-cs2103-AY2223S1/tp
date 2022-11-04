@@ -2,7 +2,7 @@ package seedu.hrpro.logic.commands;
 
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
     }
 
     @Test
     public void execute_newProject_success() {
         Project validProject = new ProjectBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getHRPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHrPro(), new UserPrefs());
         expectedModel.addProject(validProject);
 
         assertCommandSuccess(new AddCommand(validProject), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateProject_throwsCommandException() {
-        Project projectInList = model.getHRPro().getProjectList().get(0);
+        Project projectInList = model.getHrPro().getProjectList().get(0);
         assertCommandFailure(new AddCommand(projectInList), model, AddCommand.MESSAGE_DUPLICATE_PROJECT);
     }
 

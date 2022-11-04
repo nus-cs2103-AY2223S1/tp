@@ -13,9 +13,9 @@ public class UserPrefsTest {
     }
 
     @Test
-    public void setHRProFilePath_nullPath_throwsNullPointerException() {
+    public void setHrProFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
-        assertThrows(NullPointerException.class, () -> userPrefs.setHRProFilePath(null));
+        assertThrows(NullPointerException.class, () -> userPrefs.setHrProFilePath(null));
     }
 
 }

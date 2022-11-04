@@ -2,7 +2,7 @@ package seedu.hrpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.hrpro.model.HRPro;
+import seedu.hrpro.model.HrPro;
 import seedu.hrpro.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setHRPro(new HRPro());
+        model.setHrPro(new HrPro());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

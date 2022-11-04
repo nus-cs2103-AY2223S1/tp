@@ -8,7 +8,7 @@ import static seedu.hrpro.commons.core.Messages.MESSAGE_STAFFS_LISTED_SINGULAR_O
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,8 +27,8 @@ import seedu.hrpro.testutil.StaffBuilder;
 public class FindStaffCommandTest {
     @Test
     public void execute_zeroKeywords_noStaffFound() {
-        Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
         String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_PLURAL_OVERVIEW, 0);
         StaffNameContainsKeywordsPredicate predicate = preparePredicate("Alice");
         FindStaffCommand findStaffCommand = new FindStaffCommand(predicate);
@@ -39,8 +39,8 @@ public class FindStaffCommandTest {
 
     @Test
     public void execute_staffNameWithSpaces_staffFound() {
-        Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Staff dummyStaff = new StaffBuilder().withStaffName("Alice Lau").build();
         Project dummyProject = new ProjectBuilder().withName(VALID_NAME_AMY).build();
         dummyProject.getStaffList().add(dummyStaff);
@@ -60,8 +60,8 @@ public class FindStaffCommandTest {
 
     @Test
     public void execute_staffsWithSameFirstName_staffFound() {
-        Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Staff dummyStaff = new StaffBuilder().withStaffName("Alice Lau").build();
         Staff dummyStaffTwo = new StaffBuilder().withStaffName("Alice Ng").build();
         Project dummyProject = new ProjectBuilder().withName(VALID_NAME_AMY).build();
@@ -84,8 +84,8 @@ public class FindStaffCommandTest {
 
     @Test
     public void execute_staffNameDifferentCase_staffFound() {
-        Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Staff dummyStaff = new StaffBuilder().withStaffName("Alice Lau").build();
         Project dummyProject = new ProjectBuilder().withName(VALID_NAME_AMY).build();
         dummyProject.getStaffList().add(dummyStaff);

@@ -7,7 +7,7 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_STAFFNAME_ANDY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.hrpro.testutil.Assert.assertThrows;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 
@@ -33,17 +33,17 @@ public class AddStaffCommandTest {
 
     @Test
     public void execute_validIndexValidStaff_success() {
-        Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Project validProject = new ProjectBuilder().build();
         model.addProject(validProject);
         Staff validStaff = new StaffBuilder().build();
-        int len = model.getHRPro().getProjectList().size() - 1;
+        int len = model.getHrPro().getProjectList().size() - 1;
         AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, Index.fromZeroBased(len));
 
         String expectedMessage = String.format(
                 AddStaffCommand.MESSAGE_ADD_STAFF_SUCCESS, validStaff, validProject.getProjectName().toString());
 
-        Model expectedModel = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Project expectedProject = new ProjectBuilder().build();
         expectedProject.getStaffList().add(validStaff);
         expectedModel.addProject(expectedProject);
@@ -54,11 +54,11 @@ public class AddStaffCommandTest {
 
     @Test
     public void execute_validIndexInvalidStaff_throwsException() {
-        Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Staff validStaff = new StaffBuilder().build();
         Project validProject = new ProjectBuilder().withStaff(validStaff).build();
         model.addProject(validProject);
-        int len = model.getHRPro().getProjectList().size() - 1;
+        int len = model.getHrPro().getProjectList().size() - 1;
         AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, Index.fromZeroBased(len));
 
         String expectedMessage = String.format(AddStaffCommand.MESSAGE_DUPLICATE_STAFF,
@@ -69,9 +69,9 @@ public class AddStaffCommandTest {
 
     @Test
     public void execute_invalidIndexValidStaff_throwsException() {
-        Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+        Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Staff validStaff = new StaffBuilder().build();
-        Index len = Index.fromZeroBased(model.getHRPro().getProjectList().size() + 1);
+        Index len = Index.fromZeroBased(model.getHrPro().getProjectList().size() + 1);
 
         AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, len);
 

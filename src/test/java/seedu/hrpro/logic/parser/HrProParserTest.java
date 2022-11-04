@@ -60,9 +60,9 @@ import seedu.hrpro.testutil.StaffUtil;
 import seedu.hrpro.testutil.TaskBuilder;
 import seedu.hrpro.testutil.TaskUtil;
 
-public class HRProParserTest {
+public class HrProParserTest {
 
-    private final HRProParser parser = new HRProParser();
+    private final HrProParser parser = new HrProParser();
 
     @Test
     public void parseCommand_add() throws Exception {

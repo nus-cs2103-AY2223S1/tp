@@ -23,10 +23,10 @@ import seedu.hrpro.logic.commands.exceptions.CommandException;
 import seedu.hrpro.logic.parser.exceptions.ParseException;
 import seedu.hrpro.model.Model;
 import seedu.hrpro.model.ModelManager;
-import seedu.hrpro.model.ReadOnlyHRPro;
+import seedu.hrpro.model.ReadOnlyHrPro;
 import seedu.hrpro.model.UserPrefs;
 import seedu.hrpro.model.project.Project;
-import seedu.hrpro.storage.JsonHRProStorage;
+import seedu.hrpro.storage.JsonHrProStorage;
 import seedu.hrpro.storage.JsonUserPrefsStorage;
 import seedu.hrpro.storage.StorageManager;
 import seedu.hrpro.testutil.ProjectBuilder;
@@ -42,8 +42,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonHRProStorage hrProStorage =
-                new JsonHRProStorage(temporaryFolder.resolve("hrPro.json"));
+        JsonHrProStorage hrProStorage =
+                new JsonHrProStorage(temporaryFolder.resolve("hrPro.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(hrProStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -69,9 +69,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonHRProIoExceptionThrowingStub
-        JsonHRProStorage hrProStorage =
-                new JsonHRProIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionHRPro.json"));
+        // Setup LogicManager with JsonHrProIoExceptionThrowingStub
+        JsonHrProStorage hrProStorage =
+                new JsonHrProIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionHrPro.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(hrProStorage, userPrefsStorage);
@@ -137,7 +137,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getHRPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHrPro(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -157,13 +157,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonHRProIoExceptionThrowingStub extends JsonHRProStorage {
-        private JsonHRProIoExceptionThrowingStub(Path filePath) {
+    private static class JsonHrProIoExceptionThrowingStub extends JsonHrProStorage {
+        private JsonHrProIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveHRPro(ReadOnlyHRPro hrPro, Path filePath) throws IOException {
+        public void saveHrPro(ReadOnlyHrPro hrPro, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

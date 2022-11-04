@@ -22,7 +22,7 @@ import java.util.List;
 
 import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.logic.commands.exceptions.CommandException;
-import seedu.hrpro.model.HRPro;
+import seedu.hrpro.model.HrPro;
 import seedu.hrpro.model.Model;
 import seedu.hrpro.model.project.Project;
 import seedu.hrpro.model.project.ProjectNameContainsKeywordsPredicate;
@@ -184,11 +184,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        HRPro expectedHRPro = new HRPro(actualModel.getHRPro());
+        HrPro expectedHrPro = new HrPro(actualModel.getHrPro());
         List<Project> expectedFilteredList = new ArrayList<>(actualModel.getFilteredProjectList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedHRPro, actualModel.getHRPro());
+        assertEquals(expectedHrPro, actualModel.getHrPro());
         assertEquals(expectedFilteredList, actualModel.getFilteredProjectList());
     }
     /**

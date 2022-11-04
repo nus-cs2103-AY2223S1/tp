@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.hrpro.logic.commands.CommandTestUtil.showTaskAtIndex;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 
@@ -19,7 +19,7 @@ import seedu.hrpro.model.UserPrefs;
 import seedu.hrpro.model.task.Task;
 
 public class DeleteTaskCommandTest {
-    private Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -28,7 +28,7 @@ public class DeleteTaskCommandTest {
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getHRPro(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getHrPro(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -51,7 +51,7 @@ public class DeleteTaskCommandTest {
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        Model expectedModel = new ModelManager(model.getHRPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHrPro(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
         showNoTask(expectedModel);
 
@@ -64,7 +64,7 @@ public class DeleteTaskCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;
         // ensures that outOfBoundIndex is still in bounds of hr pro list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getHRPro().getTaskList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHrPro().getTaskList().size());
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex);
 

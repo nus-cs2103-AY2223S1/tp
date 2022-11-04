@@ -27,7 +27,7 @@ import seedu.hrpro.model.task.TaskMark;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final HRPro hrPro;
+    private final HrPro hrPro;
     private final UserPrefs userPrefs;
     private final FilteredList<Project> filteredProjects;
     private final FilteredList<Staff> filteredStaff;
@@ -37,12 +37,12 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given hrPro and userPrefs.
      */
-    public ModelManager(ReadOnlyHRPro hrPro, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyHrPro hrPro, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(hrPro, userPrefs);
 
         logger.fine("Initializing with hr pro: " + hrPro + " and user prefs " + userPrefs);
 
-        this.hrPro = new HRPro(hrPro);
+        this.hrPro = new HrPro(hrPro);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredProjects = new FilteredList<>(this.hrPro.getProjectList());
         filteredStaff = new FilteredList<Staff>(this.hrPro.getStaffList());
@@ -50,7 +50,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new HRPro(), new UserPrefs());
+        this(new HrPro(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -78,25 +78,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getHRProFilePath() {
-        return userPrefs.getHRProFilePath();
+    public Path getHrProFilePath() {
+        return userPrefs.getHrProFilePath();
     }
 
     @Override
-    public void setHRProFilePath(Path hrProFilePath) {
+    public void setHrProFilePath(Path hrProFilePath) {
         requireNonNull(hrProFilePath);
-        userPrefs.setHRProFilePath(hrProFilePath);
+        userPrefs.setHrProFilePath(hrProFilePath);
     }
 
-    //=========== HRPro ================================================================================
+    //=========== HrPro ================================================================================
 
     @Override
-    public void setHRPro(ReadOnlyHRPro hrPro) {
+    public void setHrPro(ReadOnlyHrPro hrPro) {
         this.hrPro.resetData(hrPro);
     }
 
     @Override
-    public ReadOnlyHRPro getHRPro() {
+    public ReadOnlyHrPro getHrPro() {
         return hrPro;
     }
 
@@ -190,7 +190,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
-     * {@code versionedHRPro}
+     * {@code versionedHrPro}
      */
     @Override
     public ObservableList<Project> getFilteredProjectList() {
@@ -207,7 +207,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
-     * {@code versionedHRPro}
+     * {@code versionedHrPro}
      */
     @Override
     public ObservableList<Staff> getFilteredStaffList() {
@@ -230,7 +230,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-     * {@code versionedHRPro}
+     * {@code versionedHrPro}
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {

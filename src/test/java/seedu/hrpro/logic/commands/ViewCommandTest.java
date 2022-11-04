@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.hrpro.logic.commands.CommandTestUtil.showProjectAtIndex;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 
@@ -22,7 +22,7 @@ import seedu.hrpro.model.project.Project;
  * Contains integration tests (interaction with the Model) for {@code ViewCommand}.
  */
 public class ViewCommandTest {
-    private Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -32,7 +32,7 @@ public class ViewCommandTest {
         String expectedMessage = String.format(ViewCommand
                 .MESSAGE_SUCCESS, projectToView);
 
-        ModelManager expectedModel = new ModelManager(model.getHRPro(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getHrPro(), new UserPrefs());
         expectedModel.setFilteredStaffList(projectToView.getStaffList());
 
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
@@ -55,7 +55,7 @@ public class ViewCommandTest {
 
         String expectedMessage = String.format(ViewCommand.MESSAGE_SUCCESS, projectToView);
 
-        Model expectedModel = new ModelManager(model.getHRPro(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHrPro(), new UserPrefs());
         expectedModel.setFilteredStaffList(projectToView.getStaffList());
         showProjectAtIndex(expectedModel, INDEX_FIRST_PROJECT);
 
@@ -68,7 +68,7 @@ public class ViewCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PROJECT;
         // ensures that outOfBoundIndex is still in bounds of hr pro list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getHRPro().getProjectList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHrPro().getProjectList().size());
 
         ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
 

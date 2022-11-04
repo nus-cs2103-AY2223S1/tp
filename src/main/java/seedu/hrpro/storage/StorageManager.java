@@ -7,23 +7,23 @@ import java.util.logging.Logger;
 
 import seedu.hrpro.commons.core.LogsCenter;
 import seedu.hrpro.commons.exceptions.DataConversionException;
-import seedu.hrpro.model.ReadOnlyHRPro;
+import seedu.hrpro.model.ReadOnlyHrPro;
 import seedu.hrpro.model.ReadOnlyUserPrefs;
 import seedu.hrpro.model.UserPrefs;
 
 /**
- * Manages storage of HRPro data in local storage.
+ * Manages storage of HrPro data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private HRProStorage hrProStorage;
+    private HrProStorage hrProStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code HRProStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code HrProStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(HRProStorage hrProStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(HrProStorage hrProStorage, UserPrefsStorage userPrefsStorage) {
         this.hrProStorage = hrProStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -46,33 +46,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ HRPro methods ==============================
+    // ================ HrPro methods ==============================
 
     @Override
-    public Path getHRProFilePath() {
-        return hrProStorage.getHRProFilePath();
+    public Path getHrProFilePath() {
+        return hrProStorage.getHrProFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyHRPro> readHRPro() throws DataConversionException, IOException {
-        return readHRPro(hrProStorage.getHRProFilePath());
+    public Optional<ReadOnlyHrPro> readHrPro() throws DataConversionException, IOException {
+        return readHrPro(hrProStorage.getHrProFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyHRPro> readHRPro(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyHrPro> readHrPro(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return hrProStorage.readHRPro(filePath);
+        return hrProStorage.readHrPro(filePath);
     }
 
     @Override
-    public void saveHRPro(ReadOnlyHRPro hrPro) throws IOException {
-        saveHRPro(hrPro, hrProStorage.getHRProFilePath());
+    public void saveHrPro(ReadOnlyHrPro hrPro) throws IOException {
+        saveHrPro(hrPro, hrProStorage.getHrProFilePath());
     }
 
     @Override
-    public void saveHRPro(ReadOnlyHRPro hrPro, Path filePath) throws IOException {
+    public void saveHrPro(ReadOnlyHrPro hrPro, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        hrProStorage.saveHRPro(hrPro, filePath);
+        hrProStorage.saveHrPro(hrPro, filePath);
     }
 
 }

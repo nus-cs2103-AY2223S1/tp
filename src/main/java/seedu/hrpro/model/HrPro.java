@@ -16,7 +16,7 @@ import seedu.hrpro.model.task.UniqueTaskList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameProject comparison)
  */
-public class HRPro implements ReadOnlyHRPro {
+public class HrPro implements ReadOnlyHrPro {
 
     private final UniqueProjectList projects;
     private final UniqueStaffList staff;
@@ -55,12 +55,12 @@ public class HRPro implements ReadOnlyHRPro {
         tasks = new UniqueTaskList();
     }
 
-    public HRPro() {}
+    public HrPro() {}
 
     /**
-     * Creates an HRPro using the Projects in the {@code toBeCopied}
+     * Creates an HrPro using the Projects in the {@code toBeCopied}
      */
-    public HRPro(ReadOnlyHRPro toBeCopied) {
+    public HrPro(ReadOnlyHrPro toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -100,9 +100,9 @@ public class HRPro implements ReadOnlyHRPro {
     }
 
     /**
-     * Resets the existing data of this {@code HRPro} with {@code newData}.
+     * Resets the existing data of this {@code HrPro} with {@code newData}.
      */
-    public void resetData(ReadOnlyHRPro newData) {
+    public void resetData(ReadOnlyHrPro newData) {
         requireNonNull(newData);
 
         setProjects(newData.getProjectList());
@@ -141,7 +141,7 @@ public class HRPro implements ReadOnlyHRPro {
     }
 
     /**
-     * Removes {@code key} from this {@code HRPro}.
+     * Removes {@code key} from this {@code HrPro}.
      * {@code key} must exist in hr pro.
      */
     public void removeProject(Project key) {
@@ -204,7 +204,7 @@ public class HRPro implements ReadOnlyHRPro {
     }
 
     /**
-     * Removes {@code key} from this {@code HRPro}.
+     * Removes {@code key} from this {@code HrPro}.
      * {@code key} must exist in hr pro.
      */
     public void removeTask(Task key) {
@@ -249,10 +249,10 @@ public class HRPro implements ReadOnlyHRPro {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof HRPro // instanceof handles nulls
-                && projects.equals(((HRPro) other).projects)
-                && staff.equals(((HRPro) other).staff)
-                && tasks.equals(((HRPro) other).tasks));
+                || (other instanceof HrPro // instanceof handles nulls
+                && projects.equals(((HrPro) other).projects)
+                && staff.equals(((HrPro) other).staff)
+                && tasks.equals(((HrPro) other).tasks));
     }
 
     @Override

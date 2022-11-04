@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.hrpro.commons.core.GuiSettings;
 import seedu.hrpro.model.project.ProjectNameContainsKeywordsPredicate;
-import seedu.hrpro.testutil.HRProBuilder;
+import seedu.hrpro.testutil.HrProBuilder;
 
 public class ModelManagerTest {
 
@@ -28,7 +28,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new HRPro(), new HRPro(modelManager.getHRPro()));
+        assertEquals(new HrPro(), new HrPro(modelManager.getHrPro()));
     }
 
     @Test
@@ -39,14 +39,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setHRProFilePath(Paths.get("hr/pro/file/path"));
+        userPrefs.setHrProFilePath(Paths.get("hr/pro/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setHRProFilePath(Paths.get("new/hr/pro/file/path"));
+        userPrefs.setHrProFilePath(Paths.get("new/hr/pro/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -63,15 +63,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setHRProFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setHRProFilePath(null));
+    public void setHrProFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setHrProFilePath(null));
     }
 
     @Test
-    public void setHRProFilePath_validPath_setsHRProFilePath() {
+    public void setHrProFilePath_validPath_setsHrProFilePath() {
         Path path = Paths.get("hr/pro/file/path");
-        modelManager.setHRProFilePath(path);
-        assertEquals(path, modelManager.getHRProFilePath());
+        modelManager.setHrProFilePath(path);
+        assertEquals(path, modelManager.getHrProFilePath());
     }
 
     @Test
@@ -80,12 +80,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasProject_projectNotInHRPro_returnsFalse() {
+    public void hasProject_projectNotInHrPro_returnsFalse() {
         assertFalse(modelManager.hasProject(APPLE));
     }
 
     @Test
-    public void hasProject_projectInHRPro_returnsTrue() {
+    public void hasProject_projectInHrPro_returnsTrue() {
         modelManager.addProject(APPLE);
         assertTrue(modelManager.hasProject(APPLE));
     }
@@ -106,12 +106,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasTask_taskNotInHRPro_returnsFalse() {
+    public void hasTask_taskNotInHrPro_returnsFalse() {
         assertFalse(modelManager.hasTask(TASK_1));
     }
 
     @Test
-    public void hasTask_taskInHRPro_returnsTrue() {
+    public void hasTask_taskInHrPro_returnsTrue() {
         modelManager.addTask(TASK_1);
         assertTrue(modelManager.hasTask(TASK_1));
     }
@@ -123,9 +123,9 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        HRPro hrPro = new HRProBuilder().withProject(APPLE)
+        HrPro hrPro = new HrProBuilder().withProject(APPLE)
                 .withProject(BANANA).withTask(TASK_1).withStaff(STAFF_1).build();
-        HRPro differentHRPro = new HRPro();
+        HrPro differentHrPro = new HrPro();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
@@ -143,7 +143,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different hrPro -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentHRPro, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentHrPro, userPrefs)));
 
         // different project filteredList -> returns false
         String[] keywords = APPLE.getProjectName().fullName.split("\\s+");
@@ -155,7 +155,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setHRProFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setHrProFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(hrPro, differentUserPrefs)));
     }
 }

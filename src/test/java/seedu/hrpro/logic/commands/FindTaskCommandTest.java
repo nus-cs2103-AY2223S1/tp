@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_TASKS_LISTED_PLURAL_OVERVIEW;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.hrpro.testutil.TypicalHRPro.getTypicalHRPro;
+import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalTasks.TASK_1;
 import static seedu.hrpro.testutil.TypicalTasks.TASK_2;
 import static seedu.hrpro.testutil.TypicalTasks.TASK_3;
@@ -24,8 +24,8 @@ import seedu.hrpro.model.task.TaskDescriptionContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindTaskCommand}.
  */
 public class FindTaskCommandTest {
-    private Model model = new ModelManager(getTypicalHRPro(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalHRPro(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
 
     @Test
     public void equals() {

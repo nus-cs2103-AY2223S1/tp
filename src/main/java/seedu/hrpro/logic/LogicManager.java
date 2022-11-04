@@ -10,10 +10,10 @@ import seedu.hrpro.commons.core.LogsCenter;
 import seedu.hrpro.logic.commands.Command;
 import seedu.hrpro.logic.commands.CommandResult;
 import seedu.hrpro.logic.commands.exceptions.CommandException;
-import seedu.hrpro.logic.parser.HRProParser;
+import seedu.hrpro.logic.parser.HrProParser;
 import seedu.hrpro.logic.parser.exceptions.ParseException;
 import seedu.hrpro.model.Model;
-import seedu.hrpro.model.ReadOnlyHRPro;
+import seedu.hrpro.model.ReadOnlyHrPro;
 import seedu.hrpro.model.project.Project;
 import seedu.hrpro.model.staff.Staff;
 import seedu.hrpro.model.task.Task;
@@ -28,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final HRProParser hrProParser;
+    private final HrProParser hrProParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -36,7 +36,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        hrProParser = new HRProParser();
+        hrProParser = new HrProParser();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveHRPro(model.getHRPro());
+            storage.saveHrPro(model.getHrPro());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -57,8 +57,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyHRPro getHRPro() {
-        return model.getHRPro();
+    public ReadOnlyHrPro getHrPro() {
+        return model.getHrPro();
     }
 
     @Override
@@ -77,8 +77,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getHRProFilePath() {
-        return model.getHRProFilePath();
+    public Path getHrProFilePath() {
+        return model.getHrProFilePath();
     }
 
     @Override
