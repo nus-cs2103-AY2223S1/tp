@@ -46,8 +46,8 @@ public class FindStaffCommandTest {
         dummyProject.getStaffList().add(dummyStaff);
 
         // set active project staff list to dummy project's staff list
-        model.setFilteredStaffList(dummyProject);
-        expectedModel.setFilteredStaffList(dummyProject);
+        model.setFilteredStaffList(dummyProject.getStaffList());
+        expectedModel.setFilteredStaffList(dummyProject.getStaffList());
 
         StaffNameContainsKeywordsPredicate predicate = preparePredicate("Alice Lau");
         FindStaffCommand findStaffCommand =
@@ -69,8 +69,8 @@ public class FindStaffCommandTest {
         dummyProject.getStaffList().add(dummyStaffTwo);
 
         // set active project staff list to dummy project's staff list
-        model.setFilteredStaffList(dummyProject);
-        expectedModel.setFilteredStaffList(dummyProject);
+        model.setFilteredStaffList(dummyProject.getStaffList());
+        expectedModel.setFilteredStaffList(dummyProject.getStaffList());
 
         StaffNameContainsKeywordsPredicate predicate = preparePredicate("Alice");
         FindStaffCommand findStaffCommand =
@@ -91,8 +91,8 @@ public class FindStaffCommandTest {
         dummyProject.getStaffList().add(dummyStaff);
 
         // set active project staff list to dummy project's staff list
-        model.setFilteredStaffList(dummyProject);
-        expectedModel.setFilteredStaffList(dummyProject);
+        model.setFilteredStaffList(dummyProject.getStaffList());
+        expectedModel.setFilteredStaffList(dummyProject.getStaffList());
 
         StaffNameContainsKeywordsPredicate predicate = preparePredicate("alice lau");
         FindStaffCommand findStaffCommand =

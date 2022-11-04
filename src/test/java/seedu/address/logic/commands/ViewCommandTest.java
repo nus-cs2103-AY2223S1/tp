@@ -33,7 +33,7 @@ public class ViewCommandTest {
                 .MESSAGE_SUCCESS, projectToView);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setFilteredStaffList(projectToView);
+        expectedModel.setFilteredStaffList(projectToView.getStaffList());
 
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
@@ -56,7 +56,7 @@ public class ViewCommandTest {
         String expectedMessage = String.format(ViewCommand.MESSAGE_SUCCESS, projectToView);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setFilteredStaffList(projectToView);
+        expectedModel.setFilteredStaffList(projectToView.getStaffList());
         showProjectAtIndex(expectedModel, INDEX_FIRST_PROJECT);
 
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
