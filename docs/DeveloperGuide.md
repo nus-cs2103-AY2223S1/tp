@@ -23,7 +23,7 @@ If it is your first time contributing, make sure you follow the guidelines we ha
 
 The following is the table of contents for Rapportbook.
 
-Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
