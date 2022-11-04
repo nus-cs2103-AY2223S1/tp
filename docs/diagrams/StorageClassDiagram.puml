@@ -21,6 +21,7 @@ Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
 Class JsonAdaptedTask
+Class JsonAdaptedTaskList
 }
 
 }
@@ -43,5 +44,6 @@ JsonAdaptedPerson --> "*" JsonAdaptedTag
 JsonSerializableAddressBook --> "*" JsonAdaptedTask
 JsonAdaptedTask --> "*" JsonAdaptedTag
 JsonSerializableAddressBook --> "*" JsonAdaptedTag
+JsonSerializableAddressBook --> "1" JsonAdaptedTaskList
 
 @enduml
