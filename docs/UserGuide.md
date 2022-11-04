@@ -63,7 +63,7 @@ This section provides a summary of the parameters used when inputting commands i
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. _(Unsure how to check? Click [here](#faq) for a guide.)_
 
 <div markdown="block" class="alert alert-info">
 
