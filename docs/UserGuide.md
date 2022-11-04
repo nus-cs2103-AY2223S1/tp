@@ -116,7 +116,7 @@ Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0). 
-Adding persons maintains the current sorted order of the display list (as opposed to adding to the back of the list). By default, the list is sorted by name.
+Adding persons maintains the current sorted order of the display list (as opposed to adding to the back of the list). By default, the list is sorted by date of creation.
 A person is assumed to be in charge of at most one internship position.
 A phone number is considered valid if it consists of at least 3 numbers (spaces, special characters, and letters are not allowed).
 Duplicate persons are not allowed.
@@ -141,7 +141,7 @@ Format: `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_IND
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
 Instead of typing the full status name, just enter the first letter of the intended status (e.g. `s/b` is a shortcut for `s/BOOKMARKED`)**.
-Adding internships maintains the current sorted order of the display list (as opposed to adding to the back of the list). By default, the list is sorted by company name.
+Adding internships maintains the current sorted order of the display list (as opposed to adding to the back of the list). By default, the list is sorted by date of creation.
 An internship is assumed to have at most one contact person.
 Duplicate internships are not allowed.
 An internship is considered to be duplicate if there already exists an internship in the list with the exact same company name and role (case-sensitive).
