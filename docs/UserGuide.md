@@ -77,19 +77,21 @@ Format: `help`
 
 ### Adding a member: `add`
 
-Adds a new person to EZLead.
+Adds a new member to EZLead.
+The new member will be shown in the userlist window.
 
 Format: `add n/NAME p/PHONE-NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 Examples:
 * `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` Adds a new
-person with the following details to the global member list.
+member with the following details to the global member list.
 
 ![AddPersonExample.png](images/AddPersonExample.png)
 
 ### Editing a member's details: `edit`
 
 Edits a member's details. Require at least one optional parameters.
+The edited member's details will be reflected both in the userlist window and in the _Person Card_ (Refer to the [GUI](#gui)) of the teams that the member is assigned to.
 
 Format: `edit INDEX [n/NAME] [p/PHONE-NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -100,6 +102,7 @@ email to johndoe1@example.com and contact number to 91234567.
 ### Deleting a member: `delete`
 
 Deletes a member.
+The deleted member will be removed from the userlist window.
 
 Format: `delete p/GLOBAL-PERSON-INDEX`
 
@@ -111,7 +114,6 @@ Examples:
 Shows a list of all members and their details.
 
 Format: `userlist`
-
 
 ### Adding a team: `create`
 
@@ -144,10 +146,9 @@ Format: `editteam t/TEAM-INDEX n/NEW-TEAM-NAME`
 Examples:
 * `editteam t/1 n/TEAMNEW` Changes the first team's name to 'TEAMNEW'.
 
-
 ### Assigning a member to a team: `assign`
 
-assigns a member to a team.
+Assigns a member to a team.
 
 Format: `assign m/MEMBER-INDEX t/TEAM-INDEX`
 
