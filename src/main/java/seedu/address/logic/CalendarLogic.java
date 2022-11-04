@@ -34,7 +34,8 @@ import seedu.address.ui.TextValidation;
  */
 public class CalendarLogic {
     private static final String SUCCESS_MESSAGE = "success";
-    private static final String FAILURE_MESSAGE = "failure";
+    private static final String WRONG_FORMAT_MESSAGE = "failure";
+    private static final String INVALID_VALUE_MESSAGE = "invalid";
     private static final String EMPTY_MESSAGE = "";
 
 
@@ -190,20 +191,31 @@ public class CalendarLogic {
         updateCalendarMonth();
     }
 
-    private GregorianCalendar getJumpMonth(Calendar cal) {
+    private GregorianCalendar getJumpMonth(Calendar cal) throws DateTimeParseException {
 
-        String date = jumpText.getText();
+        String inputDate = jumpText.getText();
         jumpText.clear();
+        if (inputDate.startsWith("0")) {
+            textValidation.setTextValidation(WRONG_FORMAT_MESSAGE);
+            return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
+        }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMM-uuuu");
-            formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
-            Date jumpDate = new Date(LocalDate.parse(date, formatter));
-            int newMonth = jumpDate.getMonth() - 1;
-            int newYear = jumpDate.getYear();
-            textValidation.setTextValidation(SUCCESS_MESSAGE);
-            return new GregorianCalendar(newYear, newMonth, 1);
+            formatter = formatter.withResolverStyle(ResolverStyle.LENIENT);
+            LocalDate ld = LocalDate.parse(inputDate, formatter);
+            String copyDate = ld.format(formatter);
+            if (!inputDate.equals(copyDate)) { //Checks for invalid input
+                textValidation.setTextValidation(INVALID_VALUE_MESSAGE);
+                return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
+            } else {
+                Date jumpDate = new Date(ld);
+                int newMonth = jumpDate.getMonth() - 1;
+                int newYear = jumpDate.getYear();
+                textValidation.setTextValidation(SUCCESS_MESSAGE);
+                return new GregorianCalendar(newYear, newMonth, 1);
+            }
         } catch (DateTimeParseException e) {
-            textValidation.setTextValidation(FAILURE_MESSAGE);
+            textValidation.setTextValidation(WRONG_FORMAT_MESSAGE);
         }
         return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
 

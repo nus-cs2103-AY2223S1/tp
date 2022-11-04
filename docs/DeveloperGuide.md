@@ -636,28 +636,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User <ins>find clients with matching keyword(s)(UC5)</ins>
 
-    * 1a1. Financial Advisor Planner shows the appointments of the all the clients in a calendar view.
-    * 1a2. User refreshes the calendar display.
-    * 1a3. Financial Advisor Planner shows the appointments of the given clients in a calendar view.
+    * 1a1. Financial Advisor Planner shows all the appointments of the current month in a calendar view.
 
       Use case ends.
-
-* 2a. User could not see the appointment that was recently added.
-
-    * 2a1. User refreshes the calendar display.
-    * 2a2. Financial Advisor Planner shows the appointments of the all clients in a calendar view, including the recently added appointment.
-
-      Use case ends.
-
 
 **Use case: UC10 - Display appointments of a new month in a calendar view**
 
 **MSS**
 
-1. User requests to view all the appointments of a new month in a calendar view
-2. Financial Advisor Planner shows all the appointments in the given new month according to their dates
+1. User requests to view all the appointments of a new month in a calendar view.
+2. Financial Advisor Planner shows all the appointments in the new month in a calendar view.
 
     Use case ends.
+
+    **Extensions**
+
+* 1a. User uses the `Next Button`
+
+    * 1a1. Financial Advisor Planner shows the appointments of the next month in a calendar view.
+
+      Use case ends.
+* 1b. User uses the `Prev Button`
+
+    * 1b1. Financial Advisor Planner shows the appointments of the previous month in a calendar view.
+
+      Use case ends.
+* 1c. User inputs a valid date in the `Jump Box`
+
+    * 1c1. Financial Advisor Planner shows the appointments of the month of the input date in a calendar view.
+
+      Use case ends.
+* 1d. User inputs an invalid date in the `Jump Box`
+
+    * 1d1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
 
     *{More to be added}*
 
