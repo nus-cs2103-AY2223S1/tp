@@ -80,7 +80,8 @@ public class EditConditionCommandTest {
         expectedModel.setPerson(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editConditionCommand, model, expectedMessage, EditConditionCommand.COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(editConditionCommand, model, expectedMessage, EditConditionCommand.COMMAND_TYPE,
+                expectedModel);
     }
 
     @Test
@@ -113,7 +114,8 @@ public class EditConditionCommandTest {
         expectedModel.setPerson(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editConditionCommand, model, expectedMessage, EditConditionCommand.COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(editConditionCommand, model, expectedMessage, EditConditionCommand.COMMAND_TYPE,
+                expectedModel);
     }
 
     @Test
