@@ -1,6 +1,7 @@
 package longtimenosee.model.person.predicate;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import longtimenosee.commons.util.StringUtil;
@@ -25,19 +26,23 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        boolean[] isMatch = new boolean[keywords.size()];
+        boolean[] areMatch = new boolean[keywords.size()];
+        Set<Tag> tags = person.getTags();
         for (int i = 0; i < keywords.size(); i++) {
-            for (Tag tag : person.getTags()) {
-                if (StringUtil.containsWordIgnoreCase(tag.tagName, keywords.get(i))) {
-                    isMatch[i] = true;
-                    break;
-                }
-            }
+            checkKeywordAgainstTags(tags, keywords.get(i), areMatch, i);
         }
-        return isAllTrue(isMatch);
+        return areAllTrue(areMatch);
     }
 
-    private boolean isAllTrue(boolean[] arr) {
+    private static void checkKeywordAgainstTags(Set<Tag> tags, String keyword, boolean[] areMatch, int index) {
+        for (Tag tag : tags) {
+            if (StringUtil.containsWordIgnoreCase(tag.tagName, keyword)) {
+                areMatch[index] = true;
+                return;
+            }
+        }
+    }
+    private static boolean areAllTrue(boolean[] arr) {
         for (boolean bool : arr) {
             if (!bool) {
                 return false;
