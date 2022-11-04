@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -27,7 +28,7 @@ class JsonAdaptedMeeting {
     /**
      * Converts a given {@code Meeting} into this class for Jackson use.
      */
-    JsonAdaptedMeeting(Meeting meeting) {
+    public JsonAdaptedMeeting(Meeting meeting) {
         description = meeting.getDescription().toString();
         meetingDate = meeting.getMeetingDate().toString();
         meetingStartTime = meeting.getMeetingStartTime().toString();
@@ -35,45 +36,17 @@ class JsonAdaptedMeeting {
     }
 
     /**
-     * Converts a given {@code Meeting} and {@code JsonAdaptedClient} into this class for Jackson use.
-     * @param meeting
-     * @param adaptedClient
+     * Constructs a {@code JsonAdaptedMeeting} with the given meeting details.
      */
-    JsonAdaptedMeeting(Meeting meeting, JsonAdaptedClient adaptedClient) {
-        description = meeting.getDescription().toString();
-        meetingDate = meeting.getMeetingDate().toString();
-        meetingStartTime = meeting.getMeetingStartTime().toString();
-        meetingEndTime = meeting.getMeetingEndTime().toString();
-    }
-
-    /**
-     * Default constructor for {@code JsonAdaptedMeeting}
-     */
-    public JsonAdaptedMeeting() {
-    }
-
-    public void setDescription(String description) {
+    @JsonCreator
+    public JsonAdaptedMeeting(@JsonProperty("description") String description,
+                              @JsonProperty("meetingStartTime") String meetingStartTime,
+                              @JsonProperty("meetingEndTime") String meetingEndTime,
+                              @JsonProperty("meetingDate") String meetingDate) {
         this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setMeetingDate(String meetingDate) {
+        this.meetingStartTime = meetingStartTime;
+        this.meetingEndTime = meetingEndTime;
         this.meetingDate = meetingDate;
-    }
-
-    public String getMeetingDate() {
-        return meetingDate;
-    }
-
-    public void setMeetingTime(String meetingTime) {
-        this.meetingStartTime = meetingTime;
-    }
-
-    public String getMeetingTime() {
-        return meetingStartTime;
     }
 
     /**
