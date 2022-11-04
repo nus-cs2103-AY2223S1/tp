@@ -30,7 +30,7 @@ public class ModuleClassBuilder {
      * Creates a {@code ModuleClassBuilder} with the provided {@code name} and {@code sessions}.
      */
     public ModuleClassBuilder(String name, List<Session> sessions) {
-        this.name = name;
+        this.name = name.toUpperCase();
         this.sessions = sessions;
     }
 
@@ -38,7 +38,7 @@ public class ModuleClassBuilder {
      * Sets the {@code name} of the {@code ModuleClass} that we are building.
      */
     public ModuleClassBuilder withName(String name) {
-        this.name = name;
+        this.name = name.toUpperCase();
         return this;
     }
 

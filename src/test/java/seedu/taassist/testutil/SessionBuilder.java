@@ -2,6 +2,7 @@ package seedu.taassist.testutil;
 
 import java.time.LocalDate;
 
+import seedu.taassist.commons.util.StringUtil;
 import seedu.taassist.model.session.Date;
 import seedu.taassist.model.session.Session;
 
@@ -9,7 +10,7 @@ import seedu.taassist.model.session.Session;
  * A utility class to help with building Session objects.
  */
 public class SessionBuilder {
-    public static final String DEFAULT_NAME = "tutorial0";
+    public static final String DEFAULT_NAME = "Tutorial 1";
     public static final LocalDate DEFAULT_LOCAL_DATE = LocalDate.now();
 
     private String name;
@@ -35,7 +36,7 @@ public class SessionBuilder {
      * Sets the {@code name} of the {@code Session} that we are building.
      */
     public SessionBuilder withName(String name) {
-        this.name = name;
+        this.name = StringUtil.capitalise(name);
         return this;
     }
 

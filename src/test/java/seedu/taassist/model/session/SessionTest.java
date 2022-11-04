@@ -1,5 +1,6 @@
 package seedu.taassist.model.session;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_SESSION_NAME;
@@ -9,6 +10,8 @@ import static seedu.taassist.testutil.TypicalSessions.TUTORIAL_1;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.taassist.commons.util.StringUtil;
+import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.testutil.SessionBuilder;
 
 public class SessionTest {
@@ -27,6 +30,15 @@ public class SessionTest {
         assertThrows(NullPointerException.class, () -> new Session(null));
         assertThrows(NullPointerException.class, () -> new Session(null, validDate));
         assertThrows(NullPointerException.class, () -> new Session(validSessionName, null));
+    }
+
+
+    @Test
+    public void constructor_validLowerCaseSessionName_returnsSessionWithCapitalisedName() {
+        String lowerCaseLab1 = "lab1";
+        Session session = new Session(lowerCaseLab1);
+        String expectedSessionName = StringUtil.capitalise(lowerCaseLab1);
+        assertEquals(expectedSessionName, session.getSessionName());
     }
 
     @Test
