@@ -137,7 +137,11 @@ This guide serves to:<br>
 
 * Otherwise, WorkBook will be in the wide layout which has an extra right panel for displaying tips.
 
-    ![ResponsiveUI](images/ResponsiveUi.gif)
+Narrow Layout            |  Wide Layout
+:-------------------------:|:-------------------------:
+![narrow layout](images/UiNarrow.png) |   ![wide layout](images/Ui.png)
+
+![ResponsiveUI](images/ResponsiveUi.gif)
 
 
 </div>
@@ -238,7 +242,7 @@ Light Bulb Button            |  Tips Window
 ![light bulb button](images/ClickLightBulb.png) |   ![tips window](images/TipsWindow.png)
 
 
-To view the tips in the [wide layout](#responsive-ui-when-window-resizing), simple click and select the application you would like to view the tips for. The tips will appear in the right panel.
+To view the tips in the [wide layout](#responsive-ui-when-window-resizing), simply click and select the application you would like to view the tips for. The tips will appear in the right panel.
 
 ![Tips Panel](images/TipsPanel.png)
 ### 6.5. Finding your internships:
