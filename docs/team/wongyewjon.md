@@ -9,10 +9,7 @@ Financial Advisor Planner is a desktop client management application used for fi
 
 Given below are my contributions to the project.
 
-- ### Feature: Add a new model `Calendar`
-  - What it does: Each `Appointment` models a scheduled meeting with a client, and it stores attributes including date, time and location.
-  - Justification: Financial Advisors(FA) require a method to view all their current appointments with their details, hence an abstraction is needed to model the FA's appointments.
-  - ### Code contributed:
+
   - ### Feature: Added new model `Calendar` and its logic.
     - What it does: It displays  all the appointments for the clients in a calendar  format in another tab.
     - Justification: Financial Advisors(FA) require a method to view all their current appointments with ease, hence a calendar is needed to make scheduling of appointments simple.
@@ -25,14 +22,16 @@ Given below are my contributions to the project.
   - ### Feature: Implemented the `Prev Button`
     - What it does: It shows the previous month in the Calendar.
     - Justification: It allows user to see the appointments scheduled for the previous month, this is usually to return to the current month after using the `Next Button`.
+  - ### Code contributed: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wongyewjon&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=wongyewjon&tabRepo=AY2223S1-CS2103T-W09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
   - ### Enhancements implemented: 
-    - Added new UI for the `Appointment` model and their attributes .
+    - Changed the UI to include an additional panel for the `Appointment` model and their attributes .
   - ### Contributions to the UG:
     - Added documentation for the Calendar features section.
   - ### Contributions to the DG:
-    - Added implementation details and design consideration for `Calendar` features.
-    - Added activity diagrams for `Calendar` features.
-    - Added Use Cases for Add a client, Edit client details, Clear Financial Advisor Planner and Add and appointment.
+    - Added implementation details and design consideration for `Calendar` features section.
+    - Added activity diagrams for `Calendar` features section.
+    - Added Use Cases for Display appointments of the current month in a calendar view and Display appointments of a new month in a calendar view.
+    - Updated the ModelCLassDiagram and UiClassDiagram.
   - ### Contributions to team-based tasks
     - Reported bugs as issues for better tracking.
   - ### Review/mentoring contributions:
