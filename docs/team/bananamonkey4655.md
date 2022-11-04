@@ -5,7 +5,7 @@ title: Humphrey's Project Portfolio Page
 
 ### Project: TaskBook
 
-TaskBook is a desktop address book and task assignment application used for efficiently managing contacts and tasks.
+TaskBook is a desktop address book and task assignment application used for NUS students to efficiently manage theirx contacts and tasks.
 
 Given below are my contributions to the project.
 
