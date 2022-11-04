@@ -91,6 +91,10 @@ Examples:
 * `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
 * `addPerson n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 g/f d/14/12/1998`
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The year "0000" is an invalid input for all persons and events.<br><br>
+</div>
+
 ### Listing all persons : `listPersons`
 
 Shows a list of all persons in the application.
@@ -130,9 +134,12 @@ Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d
   The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index. This command is invalid if `INDEX` is a non-positive integer.
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
+<<<<<<< HEAD
 - Date format accepted is: `dd/mm/yyyy`.
 - The genders accepted by the application are: `M`/`m`/`Male`/`male`
 for male, `F`/`f`/`Female`/`female` for female.
+=======
+>>>>>>> master
 
 Examples:
 *  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
@@ -141,9 +148,9 @@ Examples:
 *  `editPerson 3 n/Charlotte g/F d/03/04/1998` Edits the 3rd person’s name to be `Charlotte`,
     gender to be `Female` and date of birth to be `03/04/1998`.
 
-### Locating persons by name: `find`
+### Locating persons by name: `findPersons`
 
-Finds persons whose names contain any of the given keywords.
+Finds all persons whose names contain any of the given keywords.
 
 Format: `findPersons KEYWORD [MORE_KEYWORDS]`
 
