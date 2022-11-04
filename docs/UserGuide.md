@@ -730,10 +730,13 @@ Format:  `home`
 You may click on a module to ["peek"](#224-peeking-at-modules) at a module's task while on the home page. <br>
 For more detailed information regarding a specific module, you may navigate to that
 module using the [`goto`](#252-navigate-between-modules) command. <br>
-The following commands also navigates you back to the home page:
+The following commands also navigate you back to the home page:
 * [`add-module`](#211-add-module)
 * [`delete-module`](#212-delete-module)
-* [`add-person`](#244-add-person)
+* [`edit-module`](#213-edit-module)
+* [`add-person`](#241-add-person)
+* [`delete-person`](#243-delete-person)
+* [`edit-person`](#245-edit-person)
 </div>
 
 <div markdown="block" class="alert alert-info"> :information_source: **Note:**
