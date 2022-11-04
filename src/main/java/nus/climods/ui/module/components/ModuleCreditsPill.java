@@ -20,6 +20,7 @@ public class ModuleCreditsPill extends Pill {
         super(getModuleCreditPillText(moduleCreditsStr), DEFAULT_MODULE_CREDITS_BG_COLOR,
             DEFAULT_MODULE_CREDITS_TEXT_COLOR,
             DEFAULT_MODULE_CREDITS_FONT_SIZE);
+        super.setDisable(true);
     }
 
     /**
