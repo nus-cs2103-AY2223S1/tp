@@ -328,6 +328,10 @@ Format: `task t/TITLE d/DESC by/YYYY-MM-DD`
 * Both title and description should not be left blank.
 * A date should strictly follow the format of YYYY-MM-DD.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Invalid input:**
+0000-00-00 is <strong>not</strong> considered a valid date.
+</div>
+
 Examples:
 * `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`
 * `task t/Collect robot d/At MakersLab by/2019-09-10`
@@ -369,6 +373,10 @@ Format: `edit-task [t/TITLE] [d/DESCRIPTION] [by/YYYY-MM-DD] [addStu/STUDENT_1, 
     * `addStu/` adds the student names to the assignment while `deleteStu/` deletes students names if the exact name is already in the assignment task's student list.
     * `deleteStu/` is case-sensitive so `deleteStu/adam yeoh` will **NOT** delete `Adam Yeoh` in the assignment's student list.
 * Existing values will be updated to the input values.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Invalid input:**
+0000-00-00 is <strong>not</strong> considered a valid date.
+</div>
 
 Examples:
 * `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang`
