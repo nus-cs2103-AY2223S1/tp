@@ -510,9 +510,9 @@ Example:
 
 * `deleteL t/14 l/CS2101` will remove the label "CS2101" from the 14th task on the task list.
 
-### Delete all contacts and tasks by label: `deleteA`
+### Deleting all contacts and tasks by label: `deleteA`
 
-Delete all contacts and tasks who contain the label(s) specified.
+Deleting all contacts and tasks who contain the label(s) specified.
 
 Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 
@@ -587,8 +587,8 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | **filterT**    | **filter** **T**asks                            | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |
 | **remindT**    | **remind** **T**asks due on/before certain date | `remindT DEADLINE` <br/> e.g., `remindT 12-09-2022`                                                                                                    |
 | **progressT**  | **progress** of **T**ask with label             | `progressT KEYWORD [MORE_KEYWORDS]` <br/> e.g., `progressT cs2103t`                                                                                    |
-| **sortD**      | **sort** **T**asks                              | `sortD`                                                                                                                                                |
-| **sortI**      | **sort** **T**asks                              | `sortI`                                                                                                                                                |
+| **sortD**      | **sort** by **D**eadline                        | `sortD`                                                                                                                                                |
+| **sortI**      | **sort** by **I**d                              | `sortI`                                                                                                                                                |
 | **listL**      | **list** **L**abels                             | `listL`                                                                                                                                                |
 | **addL**       | **add** **l**abel to contact or task            | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                                            |
 | **deleteL**    | **delete** **l**abel from contact or task       | `deleteL c/INDEX n/LABEL_NAME` OR `deleteL t/INDEX n/LABEL_NAME`                                                                                       |
