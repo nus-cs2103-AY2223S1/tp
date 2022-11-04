@@ -149,5 +149,8 @@ public class DeleteCommandTest {
 
         // (Email) different customer -> returns false
         assertFalse(deleteThirdCommand.equals(deleteFourthCommand));
+
+        // Test equals method of deletePersonDescriptor
+        assertFalse(deletePersonDescriptor.equals(1));
     }
 }

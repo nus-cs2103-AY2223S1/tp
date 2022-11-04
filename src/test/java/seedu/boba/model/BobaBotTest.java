@@ -2,11 +2,14 @@ package seedu.boba.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.boba.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_REWARD_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_TAG_GOLD;
 import static seedu.boba.testutil.Assert.assertThrows;
 import static seedu.boba.testutil.TypicalCustomers.ALICE;
+import static seedu.boba.testutil.TypicalCustomers.BOB;
 import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
 
 import java.util.Arrays;
@@ -33,6 +36,15 @@ public class BobaBotTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), bobaBot.getPersonList());
+    }
+
+    @Test
+    public void overloadedConstructor() {
+        bobaBot.addPerson(ALICE);
+
+        BobaBot result = new BobaBot(bobaBot);
+        assertEquals(bobaBot.getPersonList(), result.getPersonList());
+        assertEquals(bobaBot, result);
     }
 
     @Test
@@ -119,6 +131,64 @@ public class BobaBotTest {
     public void getCurrentRewardViaEmail_returnsTrue() {
         bobaBot.addPerson(ALICE);
         assertEquals(bobaBot.getCurrentReward(new Email("alice@example.com")), new Reward("123"));
+    }
+
+    @Test
+    public void strictlyEquals_returnsTrue() {
+        BobaBot sampleBobaBot = new BobaBot();
+
+        assertTrue(bobaBot.strictlyEquals(bobaBot));
+        assertTrue(bobaBot.strictlyEquals(sampleBobaBot));
+    }
+
+    @Test
+    public void hashCode_returnsTrue() {
+        BobaBot sampleBobaBot = new BobaBot();
+        //The hashcode method is dependent on the ObservableList of Customers within bobaBot, thus since both
+        //instances of bobaBot has an empty list, their hashcode would be the same
+        assertEquals(bobaBot.hashCode(), bobaBot.hashCode());
+        assertEquals(bobaBot.hashCode(), sampleBobaBot.hashCode());
+
+        //After adding the customer ALICE into sampleBobaBot, the ObservableList within now differs from the one
+        //in bobaBot, therefore their hashcode would be different
+        sampleBobaBot.addPerson(ALICE);
+        assertNotEquals(bobaBot.hashCode(), sampleBobaBot.hashCode());
+    }
+
+    @Test
+    public void toString_returnsTrue() {
+        String expectedMessage = "0 persons";
+        assertEquals(bobaBot.toString(), expectedMessage);
+        bobaBot.addPerson(ALICE);
+        String expectedMessage1 = "1 persons";
+        assertEquals(bobaBot.toString(), expectedMessage1);
+    }
+
+    @Test
+    public void removePerson_returnsTrue() {
+        BobaBot expectedBobaBot = new BobaBot();
+        //Initially bobaBot and expectedBobaBot are both empty so equals method returns true
+        assertEquals(bobaBot, expectedBobaBot);
+
+        //After adding Customer ALICE to bobaBot, the ObservableList within both differs so equals method returns false
+        bobaBot.addPerson(ALICE);
+        assertNotEquals(bobaBot, expectedBobaBot);
+
+        //After removing the added Customer (ALICE) from bobaBot, both ObservableList should be the same again
+        bobaBot.removePerson(ALICE);
+        assertEquals(bobaBot, expectedBobaBot);
+    }
+
+    @Test
+    public void setPerson_returnsTrue() {
+        bobaBot.addPerson(BOB);
+        Customer editedCustomer = new CustomerBuilder().withPhone(VALID_PHONE_BOB).build();
+        bobaBot.setPerson(BOB, editedCustomer);
+
+        BobaBot expectedBobaBot = new BobaBot();
+        expectedBobaBot.addPerson(editedCustomer);
+
+        assertEquals(bobaBot, expectedBobaBot);
     }
 
     /**
