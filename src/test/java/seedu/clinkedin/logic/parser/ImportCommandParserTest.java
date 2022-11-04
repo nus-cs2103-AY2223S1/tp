@@ -7,7 +7,6 @@ import static seedu.clinkedin.logic.parser.CommandParserTestUtil.assertParseSucc
 
 import org.junit.jupiter.api.Test;
 
-import seedu.clinkedin.logic.commands.ExportCommand;
 import seedu.clinkedin.logic.commands.ImportCommand;
 
 public class ImportCommandParserTest {
