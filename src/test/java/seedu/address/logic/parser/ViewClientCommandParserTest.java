@@ -20,8 +20,13 @@ public class ViewClientCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         // Invalid value after prefix
-        assertParseFailure(parser, " i/a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " i/a", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        // Negative integer
+        assertParseFailure(parser, " i/-1", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        // Number with decimal
+        assertParseFailure(parser, " i/1.5", ParserUtil.MESSAGE_INVALID_INDEX);
 
         // No prefix
         assertParseFailure(parser, "12",

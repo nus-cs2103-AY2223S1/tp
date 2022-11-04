@@ -89,7 +89,19 @@
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                   <Label fx:id="birthday" prefHeight="20.0" prefWidth="263.0" text="\$birthday" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                   <Label fx:id="address" prefHeight="20.0" prefWidth="263.0" text="\$address" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                       <graphic>
+                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                               <image>
+                                   <Image url="@../images/address.png" />
+                               </image>
+                           </ImageView>
+                       </graphic>
+                       <padding>
+                           <Insets top="10.0" />
+                       </padding>
+                   </Label>
+                   <Label fx:id="birthday" prefHeight="20.0" prefWidth="263.0" text="\$birthday" GridPane.columnSpan="2" GridPane.rowIndex="3">
                        <graphic>
                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                <image>
@@ -101,12 +113,12 @@
                            <Insets top="10.0" />
                        </padding>
                    </Label>
-                  <FlowPane fx:id="products" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+                  <FlowPane fx:id="products" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </FlowPane>
-                  <Label text="Products:" GridPane.rowIndex="3">
+                  <Label text="Products:" GridPane.rowIndex="4">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
