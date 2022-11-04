@@ -16,8 +16,7 @@ public class OccupationTest {
     @Test
     public void constructor_invalidOccupation_throwsIllegalArgumentException() {
         String invalidOccupation = "";
-        assertThrows(IllegalArgumentException.class,
-                () -> new Occupation(invalidOccupation));
+        assertThrows(IllegalArgumentException.class, () -> new Occupation(invalidOccupation));
     }
 
     @Test
