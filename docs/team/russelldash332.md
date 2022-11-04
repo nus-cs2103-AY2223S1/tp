@@ -23,8 +23,6 @@ Given below are my contributions to the project.
 
 * **New Feature**:
   * Add student command - A feature to add a student to FypManager along with the particular details.
-    * Rationale: Professors as users can add a student along with his/her FYP details.
-    * Highlights: This command is a foundation of what constitutes a `Student`: student name, project name, student ID, etc.
 
 * **Code contributed**: I personally contributed around 3 KLoC to FypManager, the RepoSense link can be found [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=RussellDash332).
 
@@ -34,9 +32,9 @@ Given below are my contributions to the project.
   * Renamed all packages to match FypManager, i.e. `seedu.address` to `jeryl.fyp`.
   * Managed the release of [`v1.2`](https://github.com/AY2223S1-CS2103-F09-1/tp/releases/tag/v1.2), [`v1.3`](https://github.com/AY2223S1-CS2103-F09-1/tp/releases/tag/v1.3), [`v1.3.1`](https://github.com/AY2223S1-CS2103-F09-1/tp/releases/tag/v1.3.1), [`v1.3.2`](https://github.com/AY2223S1-CS2103-F09-1/tp/releases/tag/v1.3.2), and [`v1.4`](https://github.com/AY2223S1-CS2103-F09-1/tp/releases/tag/v1.4) on GitHub by doing JAR release test.
   * Approved PRs and merging them.
-  * Set up milestones on GitHub (v1.2, v1.2b, v1.3, v1.3b, v1.4, v1.4b) along with their deadlines.
+  * Set up milestones on GitHub (v1.2, v1.2b, v1.3, v1.3b, v1.4, v1.4b).
   * Set up preliminary meeting minutes, such as post PE-D pre-triaging report.
-  * Initiated Zoom meetings for team meeting, hosted them, and conduct debug sessions when needed.
+  * Initiated Zoom meetings for team meeting, hosted them, and conduct debug sessions.
   * Contributed to more than 40 PR review comments as shown on [this dashboard](https://nus-cs2103-ay2223s1.github.io/dashboards/contents/tp-comments.html).
 
 * **Documentation**:
