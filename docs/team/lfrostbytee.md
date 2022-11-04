@@ -15,7 +15,7 @@ Given below are my contributions to the project.
 
 * **Enhancements implemented**:
     * Updated the GUI for the application and added the `listEvents` command [\#54](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/54)
-        * What it does: The application can now display events concurrently with persons while the entering command displays all events in the application to the user.
+        * What it does: The application can now display events concurrently with persons and entering the command `listEvents` displays all events in the application to the user.
         * Justification: This feature allows the user to see events in the current order in which they are stored as data and has been extended to sort events permanently.
     * Added the `Date` and `Time` attributes for Events and the `Date` attribute for Person [\#106](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/106), [\#129](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/129)
         * What it does: Events can now store a starting date and time while each person can store their date of birth.
