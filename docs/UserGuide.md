@@ -129,6 +129,8 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 more technical specifications of each command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Our application is loaded with sample data to help visualize how the application works.
+
 Want start using TrackO from scratch? Enter the [`clear`](#clearing-all-data-in-tracko-clear) command to remove 
 the application's sample data.
 </div>
@@ -162,7 +164,7 @@ TrackO's functionalities!
       
        * This command also helps to add a short description to the item and tags it as `New`.
 
-         You should see this item appear in TrackO at index `5` as shown below:
+         You should see this item appear in TrackO at [index](#index) `5` as shown below:
    
          <img src="./images/user-guide/Tutorial1.png" alt="Tutorial1">
     
@@ -263,12 +265,18 @@ An inventory item's name must be more than 1 character long.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An inventory item can have any number of tags (including 0). A tag should only consist of 1 word. A tag **cannot** have more than 30 characters.
+An inventory item can have 0 or more tags. A tag should only consist of 1 word. A tag **cannot** have more than 30 characters.
 </div>
 
-Examples:
-* `addi i/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
-* `addi i/Chair q/10 d/This is a wooden dining chair t/Furniture t/Mahogany sp/50 cp/20`
+Example(s):
+
+- Executing `addi i/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1 t/Souvenir` to our sample data
+will add a new `Item` with the name `Keychain` which you have `20 units` of in your inventory stock, with the cost price
+of `$1` and selling price `$3.50`. The `Item` has the description `Silicone keychain with a metal buckle` and 
+tag `Souvenir`.
+  <br>
+  The following result will be displayed in the application.
+  <img src="./images/user-guide/AddiExample.png" alt="AddiExample">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -277,6 +285,11 @@ Examples:
 Lists all the existing items in the store’s inventory.
 
 Format: `listi`
+
+Example(s):
+- Executing `listi` to our sample data will list all the existing inventory items and display the following result.
+
+  <img src="./images/user-guide/ListiExample.png" alt="ListiExample">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -293,9 +306,16 @@ Format: `findi KEYWORD [MORE_KEYWORDS]`
 - Items matching at least one keyword will be returned (i.e. OR search).
   e.g. `shirt` will return `dress shirt`, `collared shirt`
 
-Examples:
-- `findi oil` returns items with item names containing the keyword `oil` such as `Olive Oil` and `Vegetable Oil`
-- `findi yellow pillow` returns items with the item names containing the keywords `yellow` and `pillow` such as `yellow blanket`, `ergonomic pillow` and `yellow pillow`
+Example(s):
+- Executing `findi mattress` to our sample data will find items that contain the word `mattress` and display the 
+  following result:
+
+  <img src="./images/user-guide/FindiExample1.png" alt="FindiExample1">
+  
+- Executing `findi mattress chair` to our sample data will find items that contain the word `mattress` or `chair` in 
+  their `Item Name`, and display the following result:
+
+  <img src="./images/user-guide/FindiExample2.png" alt="FindiExample2">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -308,11 +328,22 @@ Format: `deletei INDEX`
 * Deletes the item at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed inventory list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
-* TrackO does not allow items that are currently involved with unpaid/undelivered orders to be deleted
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+TrackO does not allow items that are currently involved with unpaid or undelivered orders to be deleted.
+</div>
 
 Examples:
-* `listi` followed by `deletei 2` deletes the 2nd item in the list of tracked inventory.
-* `findi Paper` followed by `deletei 1` deletes the 1st item in the results of the `findi` command.
+* Executing `deletei 1` to our sample data deletes the first item, `Chair` in the inventory list. Notice how the order 
+  involving `Chair` is completed, which allows the `Chair` to be deleted.
+
+  <img src="./images/user-guide/DeleteiExample1.png" alt="DeleteiExample1">
+  
+* When you enter `deletei 2` to our sample data, TrackO will remind you that the item you are trying to delete is currently
+  involved in an order (in this case, the order at index `2`). You will not be able to delete the item until the order is 
+  completed. To do so, see [`marko`](#marking-an-order-as-paiddelivered-marko).
+
+  <img src="./images/user-guide/DeleteiExample2.png" alt="DeleteiExample2">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -327,14 +358,28 @@ Format: `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [sp/SELL_PRICE] 
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * You can remove all the item’s tags by typing `t/` without
   specifying any tags after it.
-* Editing items with active orders is not permitted.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When an `Item` is involved in an order, you cannot edit its `Item Name`, `Description`, `Sell Price`, `Cost Price`, and
+`Tag`. You can only edit its `Quantity` to allow for restock.
+</div>
 
 Examples:
-* `editi 1 i/Table q/200 d/Metal Table t/Fragile`
-  Edits the item name, quantity, description and tag of the 1st item to be
-  `Table`, `200`, `Metal Table` and `Fragile` respectively.
-* `editi 3 t/` removes the tags of the item at index 3.
-* `editi 3 t/bedroom t/premium` updates the tags of the item at index 3 to be `bedroom` and `premium`
+
+* Executing `editi 1 i/Table q/200 d/Metal Table t/Fragile` to our sample data will edit the item name, quantity, 
+  description and tag of the 1st item, which was `Chair`, to be `Table`, `200`, `Metal Table` and `Fragile` respectively.
+  
+  <img src="./images/user-guide/EditiExample1.png" alt="EditiExample1">
+  
+* Executing `editi 1 t/` removes the tags of the item at index 1.
+
+  <img src="./images/user-guide/EditiExample2.png" alt="EditiExample2">
+
+* When you enter `editi 3 i/Cookies d/Delicious home-made cookies` to our sample data, TrackO will remind you that the item
+you are trying to edit is currently involved in an order (in this case, the order at index `3`) and the item will not be edited.
+
+* When you enter `editi 3 q/500` to our sample data, the `Quantity` of the `Item` at index `3`, `Bolster`, will be restocked to
+`500 units`.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -620,5 +665,10 @@ by updating the user interface.
 `Parameter`s are the changeable inputs that you can give for a specific part of a command. For example, in the portion 
 `i/NAME` of the `addi` command, `NAME` can be replaced with the input that is meaningful to you (e.g, `i/Cookie` or 
 `i/Keychain`).
+
+### Index
+
+`Index` refers to the position of an order or item in the list. When we say that an `item` is at `Index 2`, it means that
+the item is currently in the second position on the list.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
