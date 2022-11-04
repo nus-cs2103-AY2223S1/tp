@@ -113,7 +113,7 @@ You can leave NAME empty if you are using the randomizer (-r) feature
 
 **Arguments:** <br>
 `NAME` : returns eateries that match the keyword(s) <br>
-`NUMBER`: randomly generates indicated number of eateries (more than 0) <br>
+`NUMBER`: how many randomly selected eateries to show (more than 0) <br>
 `-h`: displays help message (specific to find)
 <br>
 
@@ -122,7 +122,7 @@ Note:
 * Eateries matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `find coffee cafe` will return eateries with either `coffee` or `cafe` in their name.
 
-Example: `find pasta -r 3`
+Example: `find mala -r 2`
 
 Below is an example of what the list would look like when using the randomizer `-r` command.
 The command used is shown on the command line. <br>
@@ -145,7 +145,7 @@ You can search for any number of tags by typing them all after findTag
 
 **Arguments:** <br>
 `TAGNAME`: returns eateries that match the keyword(s) <br>
-`NUMBER`: randomly generates indicated number of eateries (more than 0) <br>
+`NUMBER`: how many randomly selected eateries to show (more than 0) <br>
 `-h`: displays help message (specific to findTag)
 <br>
 
@@ -167,7 +167,7 @@ You can also choose to randomize a list of eateries to decide on where to eat._
 
 **Arguments:** <br>
 `LOCATIONNAME`: returns eateries that match the keyword(s) <br>
-`NUMBER`: randomly generates indicated number of eateries (more than 0) <br>
+`NUMBER`: how many randomly selected eateries to show (more than 0) <br>
 `-h`: displays help message (specific to findLocation) <br>
 
 Note:
@@ -189,7 +189,7 @@ You can also choose to randomize a list of eateries to decide on where to eat._
 
 **Arguments:** <br>
 `CUISINENAME`: returns eateries that match the keyword(s) <br>
-`NUMBER`: randomly generates indicated number of eateries (more than 0) <br>
+`NUMBER`: how many randomly selected eateries to show (more than 0) <br>
 `-h`: displays help message (specific to findCuisine)
 <br>
 
@@ -212,7 +212,7 @@ _Search for eateries that match the specified price(s)._
 
 **Arguments:** <br>
 `PRICE`: returns eateries that match the keyword(s) <br>
-`NUMBER`: randomly generates indicated number of eateries (more than 0) <br>
+`NUMBER`: how many randomly selected eateries to show (more than 0) <br>
 `-h`: displays help message (specific to findCuisine)
 <br>
 
@@ -322,13 +322,6 @@ Example: `unfav 3`
 
 <br>
 
-### Find eateries by price `findPrice`
-
-_... Details coming soon ..._
-
-<br>
-
-
 ### Edit eatery : `edit`
 
 _... Details coming soon ..._
@@ -361,16 +354,18 @@ the data of your previous NUSEatWhere home folder.
 
 ## Command summary
 
-| Action           | Format                                                                    |
-|:-----------------|:--------------------------------------------------------------------------|
-| **Help**         | `help`                                                                    |
-| **List**         | `list [-h]`                                                               |
-| **Find**         | `find NAME…​ [-r NUMBER] [-h]`                                            |
-| **FindTag**      | `findTag TAGNAME…​ [-r NUMBER] [-h]`                                      |
-| **FindLocation** | `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`                            |
-| **FindCuisine**  | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`                              |
-| **FindPrice**    | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`									                     |
-| **Tag**          | `tag ID -t TAGNAME…​ [-h]`                                                |
-| **Untag**        | `untag ID -t TAGNAME…​ [-h]`                                              |
-| **Add**          | `add -n NAME -l LOCATION -c CUSINE [-p PRICE] [-t TAG…​] [-h]`            |
-| **Delete**       | `delete ID [-h]`                                                          |
+| Action           | Format                                                          |
+|:-----------------|:----------------------------------------------------------------|
+| **Help**         | `help`                                                          |
+| **List**         | `list [-h]`                                                     |
+| **Find**         | `find NAME…​ [-r NUMBER] [-h]`                                  |
+| **FindTag**      | `findTag TAGNAME…​ [-r NUMBER] [-h]`                            |
+| **FindLocation** | `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`                  |
+| **FindCuisine**  | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`                    |
+| **FindPrice**    | `findPrice PRICE…​ [-r NUMBER] [-h]`									                   |
+| **Tag**          | `tag ID -t TAGNAME…​ [-h]`                                      |
+| **Untag**        | `untag ID -t TAGNAME…​ [-h]`                                    |
+| **Add**          | `add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAG…​] [-h]` |
+| **Delete**       | `delete ID [-h]`                                                |
+| **fav**          | `fav ID [-h]`                                                   |
+| **unfav**        | `unfav ID [-h]`                                                 |

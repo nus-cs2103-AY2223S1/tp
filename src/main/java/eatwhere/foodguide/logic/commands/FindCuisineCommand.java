@@ -22,7 +22,7 @@ public class FindCuisineCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eateries whose cuisine matches any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]... [-r <INT>]\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]... [-r NUMBER]\n"
             + "Example: " + COMMAND_WORD + " mala -r 1";
 
     private final Predicate<Eatery> predicate;

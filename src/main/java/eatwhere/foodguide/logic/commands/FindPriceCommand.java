@@ -19,9 +19,9 @@ public class FindPriceCommand extends Command {
 
     public static final String COMMAND_WORD = "findPrice";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eatries whose price matches "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eateries whose price matches "
             + "the specified keywords and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]... [-r NUMTOSHOW]\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]... [-r NUMBER]\n"
             + "Example: " + COMMAND_WORD + " $$ -r 1";
 
 
