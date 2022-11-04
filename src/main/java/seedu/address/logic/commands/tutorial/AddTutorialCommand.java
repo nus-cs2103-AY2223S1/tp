@@ -29,11 +29,11 @@ public class AddTutorialCommand extends Command {
             + PREFIX_TIME + "TIMESLOT "
             + PREFIX_DATE_DAY + "DAY\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "CS2103T W17 "
+            + PREFIX_NAME + "G08 "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_VENUE + "COM1-0203 "
-            + PREFIX_TIME + "1500-1800 "
-            + PREFIX_DATE_DAY + "2 ";
+            + PREFIX_TIME + "15:00-18:00 "
+            + PREFIX_DATE_DAY + "5 ";
 
     public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in ModQuik";
