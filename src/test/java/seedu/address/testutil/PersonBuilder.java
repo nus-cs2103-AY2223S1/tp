@@ -91,6 +91,16 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Contacts} of the {@code Person} that we are building
+     * after removing the specified contact of the person.
+     * For testing purposes only.
+     */
+    public PersonBuilder withoutContact(ContactType contact) {
+        this.contacts.remove(contact);
+        return this;
+    }
+
+    /**
      * Sets the {@code Role} of the {@code Person} that we are building
      */
     public PersonBuilder withRole(String role) {
