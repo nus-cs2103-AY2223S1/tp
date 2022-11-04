@@ -170,6 +170,25 @@ This section describes some noteworthy details on how certain features are imple
 
 ### 3.1 `Client`-related features
 
+#### 3.1.1 Add client with product feature
+
+Syntax: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
+Purpose: Adds a client with the given information to the internal model and storage
+
+Here, we are interested in the use of adding a client and associating it with a product.
+
+##### Implementation
+
+Below is an activity diagram that illustrates how a user might use the addClient feature and associate the added client with a product.
+
+![AddProductActivityDiagram](images/AddProductActivityDiagram.png)
+
+##### Design Considerations
+
+We decided to only allow adding of a client with its product only after the product is already added using `addProduct`.
+
+This is to try and maintain the overall cleanliness and housekeeping of _MyInsuRec_. Suppose we allow the user to add the client with any product name without it already existing in the product list. This might be organized and clean for the first few contacts added, but over time, the product name can get distorted. Shorthand forms may be used in place of the product name, case sensitivity and whitespaces are ignored. With _MyInsuRec_ also placing a focus on allowing users to get an idea of the popularity of each of the products they are selling, it is paramount that the product name stay the same, so as to enable the feature to work. Furthermore, one of the problems we are attempting to solve is the messiness of using traditional Excel spreadsheets. Having this validation check helps to preserve the data added, and thus the user can use the app for a longer time without feeling cluttered.
+
 ### 3.2 `Meeting`-related features
 
 #### 3.2.1 Add Meeting feature
@@ -605,43 +624,102 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Run the jar file via `java -jar MyInsuRec.jar` 
+      1. Expected: Shows the GUI with a set of sample clients and products. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file.
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …  }_
+1. _Subsequent launches, with data edited
+   1. Run the jar file via `java -jar MyInsuRec.jar`
+      2. Expected: Shows the GUI with the correct edited data.
+
+### 6.2 Adding a client
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
+
+</div>
+
+   1. Prerequisites: No other client have the exact same name.
+
+   1. Test case: `addClient n/John Tan p/89134083`
+      2. Expected: A client named John Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with John Tan's newly added record.
+
+   1. Test case: `addClient n/Trevor Tan p/89134083`
+       2. Expected: A client named Trevor Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with Trevor Tan's newly added record. This test case focuses on the fact that the phone numbers are identical, which happens when parents buy policies for their child who does not have a cellular plan.
+
+   1. Test case: `addClient n/Trevor Tan p/89134083`
+       2. Expected: No client is added and an error message is shown. This tests whether if the app allows clients of the same name, which is not allowed by design.
+
+   1. Test case: `addClient n/Justin Lim p/98120931 e/justinlim@gmail.com`
+       2. Expected: A client named Justin Lim and phone number 98120931 is added and the view switches back to the list of client, where the list is updated with Justin Lim's newly added record. This test case focuses on the fact that an optional field is used.
+    
+   1. Test case: `addClient n/Tom p/90231494 pd/ProductTest`
+      2. Expected: No client is added as the product `ProductTest` is not added beforehand.
+   3. Continuation: `addProduct pd/ProductTest`, then `addClient n/Tom p/90231494 pd/ProductTest` again.
+      4. Expected: The client should now be added with the product as the product is added with the `addProduct` command.
+
 
 ### 6.2 Deleting a client
 
-1. Deleting a client while all clients are being shown
+Deleting a client while all clients are being shown
 
    1. Prerequisites: List all clients using the `listClient` command. Multiple clients in the list.
 
-   1. Test case: `delClient 1`<br>
+   1. Test case: `delClient i/1`
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delClient 0`<br>
+   1. Test case: `delClient i/0`
       Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delClient`, `delClient x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …  }_
+### 6.3 Adding a product
 
-### 6.3 Saving data
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
 
-1. Dealing with missing/corrupted data files
+</div>
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Prerequisites: No other product have the exact same name.
 
-1. _{ more test cases …​ }_
+1. Test case: `addProduct pd/MyInsureCare`
+    2. Expected: A product named MyInsureCare is added and the view switches back to the list of product, where the list is updated with the newly added product.
+
+1. Test case: `addProduct pd/`
+    2. Expected: Empty fields are not allowed, so no product is added.
+
+### 6.3 List product
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
+
+</div>
+
+1. Test case: `listProduct`
+    2. Expected: The list of product view shows up.
+
+1. Test case: `listProduct adfafio3`
+    2. Expected: The list of product view shows up. Any other parameter or input added after the command is ignored.
+
+### 6.4 Delete product
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of products using `listProduct` where the index number of the product can be found.
+
+</div>
+
+1. Prerequisites: There is at least one product already added.
+
+1. Test case: `delProduct i/1`
+    2. Expected: The list of product view shows up (if not already in it), and the first product is deleted.
+
+1. Test case: `delProduct i/-1`
+    2. Expected: No product is deleted and an error message shows up as the index is invalid.
 
 ## 7. Appendix: Effort
 
