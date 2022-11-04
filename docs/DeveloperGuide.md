@@ -562,12 +562,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-| Priority | As a …   | I want to …                               |
-|----------|----------|-------------------------------------------|
-| `* * *`  | gym user | add exercises to the app                  |
-| `* * *`  | gym user | delete exercises from the app             |
-| `* * *`  | gym user | list out my past exercises on the app     |
-| `* * *`  | gym user | associate reps/sets number to an exercise |
+| Priority | As a …        | I want to …                                                          | so that I can …                                                            |
+|----------|---------------|----------------------------------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | user          | add exercises                                                        | keep track of my exercises                                                 |
+| `* * *`  | user          | delete exercises                                                     | see what exercises I have done                                             |
+| `* * *`  | user          | look for all entries of a specific exercise                          | track my progression for that particular exercise                          |
+| `* * *`  | user          | view exercises in chronological order                                | keep track of my gym progress                                              |
+| `* * *`  | user          | want to track my personal records                                    | keep track of my progress for each exercise (and show off to my friends)   |
+| `* * *`  | user          | generate workouts of different difficulty                            | customise my workout based on how I’m feeling that day                     |
+| `* * *`  | user          | view my recent exercises                                             | plan for my next gym session                                               |
+| `* * *`  | user          | view my exercises done within a date range                           | track my overall progress over a period of time (eg. weekly, monthly, etc) |
+| `* * `   | new user      | remove all sample data                                               | input my own data                                                          |
+| `* *  `  | advanced user | have a quick summary of all the commands I can do in the application | save time                                                                  |
+| `* * `   | clumsy user   | have a safeguard against accidentally clearing all data              | preserve my exercise                                                       |
+| `*`      | user          | track my calories intake                                             | attain my fitness goals                                                    |
+| `*`      | user          | track my calories burnt during the gym session                       | attain my fitness goals                                                    |
+| `*`      | user          | have a tailored workout program                                      | target my specific strengths and weaknesses for outstanding results        |
+| `*`      | user          | have motivation to go to the gym                                     | stay motivated to attain my fitness goals                                  |
+| `*`      | user          | track my RPE (rate of perceived exertion) of previous workout        | better plan for my next workout                                            |
+| `*`      | user          | view my run timings                                                  | track my running progression                                               |
+| `*`      | user          | share my workout plan with my friends                                | progress together with them                                                |
+| `*`      | user          | access a workout plan done by my friends                             | learn from them                                                            |
+
+
 
 <br>*{More to be added}*
 
@@ -604,7 +621,6 @@ Guarantees: Input exercise will be added to storage.
 **Extensions**
 
 * 1a. User enters the command wrongly.
-
     * 1a1. Gim shows an error message.
 <br>Use case ends.
 
@@ -631,10 +647,29 @@ Guarantees: Selected exercise will be deleted from storage.
     * 1b1. Gim displays that the exercise does not exist.
 <br>Use case ends.
 
-#### Use case 4: List exercises
+#### Use case 4: Clear all exercise entries in the system
 
 System: Gim <br>
-Use case: UC04 - List exercises <br>
+Use case: UC04 - Clear all exercise entries in the system <br>
+Actor: User <br>
+Guarantees: All exercise entries in the system will be cleared.
+
+**MSS**
+
+1. User requests to clear all exercise entries in the system.
+2. Gim clears all exercise entries in the system.
+   <br>Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. Gim shows an error message.
+      <br>Use case ends.
+
+#### Use case 5: List exercises
+
+System: Gim <br>
+Use case: UC05 - List exercises <br>
 Actor: User <br>
 Guarantees: All stored exercises will be displayed.
 
@@ -650,11 +685,91 @@ Guarantees: All stored exercises will be displayed.
     * 2a1. Gim displays the error message.
 <br>Use case ends.
 
-
-#### Use case 5: Exit Gim
+#### Use case 6: Sort exercises
 
 System: Gim <br>
-Use case: UC05 - Exit Gim <br>
+Use case: UC06 - Sort exercises <br>
+Actor: User <br>
+Guarantees: Displayed list of exercises will be sorted by date.
+
+**MSS**
+
+1. User requests to sort the displayed list of exercises.
+2. Gim sorts the displayed list of exercises by date.
+   <br>Use case ends.
+
+#### Use case 7: View exercises within a time period
+
+System: Gim <br>
+Use case: UC07- View exercises within a time period <br>
+Actor: User <br>
+Guarantees: Exercises within the specified time period will be displayed in an order sorted by date.
+
+**MSS**
+
+1. User requests to view displayed exercises within a time period.
+2. Gim displays exercises completed within the specified time period in an order sorted by date.
+   <br>Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. Gim displays the error message.
+      <br>Use case ends.
+* 1b. User enters an invalid date.
+    * 1b1. Gim displays the invalid date error message.
+      <br>Use case ends.
+
+#### Use case 8: Filter exercises by name(s)
+
+System: Gim <br>
+Use case: UC08 - Filter exercises by name(s) <br>
+Actor: User <br>
+Guarantees: Exercises filtered by name(s) will be displayed.
+
+**MSS**
+
+1. User requests to filter the displayed list of exercises by name(s).
+2. Gim displays the filtered list of exercises.
+   <br>Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. Gim displays the error message.
+      <br>Use case ends.
+* 2a. Filtered list of exercises is empty.
+    * 2a1. Gim displays a reminder message.
+      <br>Use case ends.
+
+#### Use case 9: View Personal Record (PR) for exercise(s)
+
+System: Gim <br>
+Use case: UC09 - View Personal Record (PR) for exercise(s) <br>
+Actor: User <br>
+Guarantees: Personal Record (PR) for exercise(s) will be calculated and displayed.
+
+**MSS**
+
+1. User requests to view Personal Record (PR) for exercise(s).
+2. Gim calculates and displays the Personal Record (PR) for exercise(s).
+   <br>Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. Gim displays the error message.
+      <br>Use case ends.
+* 1b. User enters the name of exercise(s) wrongly.
+    * 2a1. Gim displays exercise(s) not registered in system message.
+      <br>Use case ends.
+
+#### Use case 10: Generate
+
+#### Use case 11: Exit Gim
+
+System: Gim <br>
+Use case: UC11 - Exit Gim <br>
 Actor: User <br>
 Guarantees: Gim will exit.
 
@@ -664,8 +779,6 @@ Guarantees: Gim will exit.
 2. Gim exits.
 <br>Use case ends.
 
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 

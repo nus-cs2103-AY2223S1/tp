@@ -1,6 +1,13 @@
 package gim.logic.commands;
 
-import static gim.testutil.TypicalExercises.*;
+import static gim.testutil.TypicalExercises.getSampleUnsortedExercisesExerciseTracker;
+import static gim.testutil.TypicalExercises.getSortedDifferentExercisesDifferentDatesExerciseTracker;
+import static gim.testutil.TypicalExercises.getSortedDifferentExercisesSameDatesExerciseTracker;
+import static gim.testutil.TypicalExercises.getSortedSameExercisesDifferentDatesExerciseTracker;
+import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
+import static gim.testutil.TypicalExercises.getUnsortedDifferentExercisesDifferentDatesExerciseTracker;
+import static gim.testutil.TypicalExercises.getUnsortedDifferentExercisesSameDatesExerciseTracker;
+import static gim.testutil.TypicalExercises.getUnsortedSameExercisesDifferentDatesExerciseTracker;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
