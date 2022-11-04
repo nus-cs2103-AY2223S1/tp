@@ -59,7 +59,7 @@ I contributed to the following team-based tasks:
 I reviewed the following pull requests:
 1. [Add profile photo for Jordan #14](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/14)
 2. [Update index.md #29](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/29)
-3. 
+3.
 
 I also gave guidance to my team on the following matters:
 1. *Enter contributions here*
