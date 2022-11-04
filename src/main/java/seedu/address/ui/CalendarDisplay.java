@@ -23,6 +23,7 @@ public class CalendarDisplay extends UiPart<Region> {
     private GridPane calendarDisplay;
     @FXML
     private HBox topCalendar;
+    private JumpText jumpText;
 
     /**
      * Creates a Calendar with the given list of CalendarEvents.
@@ -32,6 +33,7 @@ public class CalendarDisplay extends UiPart<Region> {
         this.calendarLogic = new CalendarLogic(logic, primaryStage, calendarDisplay, topCalendar);
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.jumpText = calendarLogic.getJumpText();
         calendarLogic.initialiseLogic();
         calendarLogic.drawCalendar();
     }
@@ -50,5 +52,9 @@ public class CalendarDisplay extends UiPart<Region> {
             calendarLogic.next();
             calendarDisplay.requestFocus();
         }
+    }
+
+    public boolean isJumpTextFocused() {
+        return jumpText.isJumpTextFocused();
     }
 }
