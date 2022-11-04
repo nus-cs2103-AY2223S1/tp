@@ -5,9 +5,9 @@ title: Poh Yu Jie's Project Portfolio Page
 
 ### Project: JerylFypManager
 
-JerylFypManager is a desktop application catered to professors to manage and track the progress for students’ final year 
+JerylFypManager is a desktop application catered to professors to manage and track the progress for students’ final year
 project (FYP), as well as serving as a platform for professors to provide feedback on their students’ progress. The user
-interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC. This 
+interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC. This
 project is based on AddressBook - Level 3.
 
 Given below are my contributions to the project.
@@ -47,7 +47,7 @@ Given below are my contributions to the project.
   * Adapted tests from Address Book 3 to pass for the newly adapted Source Control code
     (https://github.com/AY2223S1-CS2103-F09-1/tp/commit/9e04d8b15cd8d4cebfbb624f06281cd395720744,
     https://github.com/AY2223S1-CS2103-F09-1/tp/commit/1a6eea035395987a4e34257a2c2384a89b4804f1)
-  * Wrote additional tests for existing features 
+  * Wrote additional tests for existing features
   (https://github.com/AY2223S1-CS2103-F09-1/tp/commit/9e04d8b15cd8d4cebfbb624f06281cd395720744,
   https://github.com/AY2223S1-CS2103-F09-1/tp/commit/fe098d2637673d1e833bcb8d092bb44edc744183)
 
@@ -75,4 +75,4 @@ Given below are my contributions to the project.
   * Reported bugs and suggestions for other teams in the class
 
 * **Tools**:
-  * PlantUML to draw UML diagrams 
+  * PlantUML to draw UML diagrams

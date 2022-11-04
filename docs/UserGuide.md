@@ -44,9 +44,7 @@ If you are an advanced user, you can refer to our [Command summary](#5-command-s
 
 3. Copy the file to the desired folder you want to use as the _home folder_ for your FypManager.
 
-4. Double-click the file to start the app. The GUI, similar to the one shown below, should appear in a few seconds. 
-   Note how the app
-   contains some sample data (not the same as the image below).<br> <br>
+4. Double-click the file to start the app. The GUI, similar to the one shown below, should appear in a few seconds. Note how the app contains some sample data (not the same as the image below).<br> <br>
    ![Ui](images/Ui.png) <br><br>
 
 5. Do refer to [GUI Overview](#22-gui-overview) to understand what each component in the GUI does.
@@ -73,7 +71,7 @@ Some example commands that you can try:
 * **`list`** - lists all FYP projects the professor is supervising.
 
 * **`add -s i/A0123456G n/John Doe p/Automation of Selenium e/johndoe@gmail.com`** - adds the FYP project of the
-  student named John Doe with student ID A0123456G, email `johndoe@gmail.com`, 
+  student named John Doe with student ID A0123456G, email `johndoe@gmail.com`,
   and project titled _Automation of Selenium_.
 
 * **`delete -s i/A0123456G`** - deletes the FYP project of the student with student ID A0123456G.
@@ -136,7 +134,7 @@ Refer to the [Features](#3-features) section for details of each command.
   e.g. `05-11-2022 08:00`, `2022-11-05 08:00`.
 
 * For deadline tasks, a priority rank specifies the importance of said task. <br>
-  e.g. `delete -d i/A0123456X r/2` would delete the 2nd highest priority deadline for the student with student 
+  e.g. `delete -d i/A0123456X r/2` would delete the 2nd highest priority deadline for the student with student
   ID of A0123456X.
 
 </div>

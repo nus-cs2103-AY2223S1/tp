@@ -437,7 +437,7 @@ Step 2: The user finds a project by keying in `find -p tree` to find all project
 
 ![FindCommandState1](images/FindCommandState1.png)
 
-Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in 
+Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in
 `find -p blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
 as there is no project whose project name contains `blockchain`.
 
@@ -478,13 +478,13 @@ The following sequence diagram shows how the FindCommand operation works:
 #### Proposed Implementation
 
 This feature allows professors to sort the FYP projects by their project name, or by
-the project status in the order {YTS,IP,DONE}. 
+the project status in the order {YTS, IP, DONE}.
 
 #### Implementation details
 The `Sort` feature is facilitated by 2 main Commands: `SortProjectNameCommand` and `SortProjectStatusCommand`.
 Both of these commands extend from the abstract `Command`class. Note that we have fixed the sorting order
 of `SortProjectStatusCommand` to be sorted in the order {YTS,IP,DONE} since projects that have YTS are more urgent,
-hence we have placed them at the front of our FYP manager, followed by those that are IP, and finally 
+hence we have placed them at the front of our FYP manager, followed by those that are IP, and finally
 those that are DONE which are of the least urgency.
 
 We give an example usage scenario of `SortProjectNameCommand` and `SortProjectStatusCommand`
@@ -501,7 +501,7 @@ We give an example usage scenario of `SortProjectNameCommand` and `SortProjectSt
     1. The user enters `sort -s` if he wishes to execute the `SortProjectStatusCommand`
     2. FypManagerParser creates a new `SortProjectNameCommand` after preliminary check of user input.
     3. `LogicManager` executes the `SortProjectStatusCommand` using the `LogicManager#execute()` method.
-    4. `SortProjectStatusCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be 
+    4. `SortProjectStatusCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be
         identified as a `SortProjectStatusCommand` so that our `MainWindow` will show the sorted List.
 
 ![SortProjectStatusCommandSequenceDiagram](images/SortProjectStatusCommandSequenceDiagram.jpg)
@@ -521,7 +521,7 @@ Given below is an example usage scenario of `ExitCommand`:
 2. `UiManager` calls `MainWindow#fillInnerParts()`.
 3. `MainWindow#fillInnerParts()` executes a `executeCommand()` and creates a `CommandResult`.
 4. `LogicManager` executes the `ExitCommand` using the `LogicManager#execute()` method.
-4.1. `fypManagerParser` will parse the command using `parseCommand` and generate 
+4.1. `FypManagerParser` will parse the command using `parseCommand` and generate
 4.2. `ExitCommand` then creates a `CommandResult` and returns it to `MainWindow` to complete the command.
 4.3. `StorageManager` will save the record using method `StorageManager#saveFypManager()`.
 5. `handleExit()` is then executed to hide the main window.
