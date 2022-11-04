@@ -2,8 +2,8 @@ package seedu.uninurse.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.uninurse.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.uninurse.logic.commands.FindCommand.MESSAGE_FIND_SUCCESS;
 import static seedu.uninurse.testutil.TypicalPersons.CARL;
 import static seedu.uninurse.testutil.TypicalPersons.ELLE;
 import static seedu.uninurse.testutil.TypicalPersons.FIONA;
@@ -20,7 +20,7 @@ import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.PatientMatchPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for FindCommand.
  */
 public class FindCommandTest {
     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
@@ -55,7 +55,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_allPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size());
+        String expectedMessage = String.format(MESSAGE_FIND_SUCCESS, model.getFilteredPersonList().size());
         PatientMatchPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -65,7 +65,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_FIND_SUCCESS, 3);
         PatientMatchPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
