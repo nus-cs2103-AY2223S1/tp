@@ -540,6 +540,8 @@ you can use to get access to hidden functionalities on your personal computer.
 To improve the speed of your actions and quality of your life while using the application we have also implemented the below features
 * When your command box is out of focus and empty, you can press the `/` key on your command to immediately put your cursor on the command box.
   ![command box out of focus](images/CommandBoxFocus.png)
+  The command box will be focused and appears as below. A slash will appear and you will have to delete it before entering the next command.
+  ![command box set focused](images/CommandBoxSetFocused.png)
 * When you enter a command, it disappears from the command box is run by the application. You may use the `UP` arrow key to go back to a previous command or `DOWN` arrow key to go to the next command. However, if there is text entered, then you cannot use this feature.
 
 --------------------------------------------------------------------------------------------------------------------
