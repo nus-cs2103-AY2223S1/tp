@@ -12,29 +12,27 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to view surveyees with given attributes.
   * What it does: allows the user to search for surveyees via attributes.
   * Justification: This feature improves the product significantly because a user may want to filter all surveyees of a given demographic, say, chinese christian females.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+  * Highlights: Able to search for exact phrases by using quotation marks on the specific phrase.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **Updated Feature**: `help` command
+  * What it does: Added functionality of help to show information for each command in Survin.
+  * Justification: New users may be unfamiliar with command usage, especially those with many parameters. `help <COMMAND>` provides a useful tool to help new users get accustomed with using Survin.
+
+* **Updated Feature**: Update persons to allow for multiple `survey` objects.
+  * What it does: A surveyee in Survin can keep track of multiple surveys.
+  * Justification: This is to make for a more pleasant user interface, rather than having the same person card repeated in Survin for each different Survey they participate in.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ryanlml&breakdown=true)
 
 * **Project management**:
-  * TO BE ADDED LATER
-
-* **Enhancements to existing features**:
-  * TO BE ADDED LATER
+  * In charge of `Model` component
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `view` [\#72](https://github.com/AY2223S1-CS2103-F13-2/tp/pull/55)
+    * Add documentation for the following features
+      * `view` [\#55](https://github.com/AY2223S1-CS2103-F13-2/tp/pull/55)
+      * `help` [\#154](https://github.com/AY2223S1-CS2103-F13-2/tp/pull/154)
+    * Improved wording in the user guide [\#201](https://github.com/AY2223S1-CS2103-F13-2/tp/pull/201)
   * Developer Guide:
-    * TO BE ADDED LATER
+    * Add documentation for `view` [\#128](https://github.com/AY2223S1-CS2103-F13-2/tp/pull/128)
 
-* **Community**:
-  * TO BE ADDED LATER
-
-* **Tools**:
-  * TO BE ADDED LATER
-
-* _{you can add/remove categories in the list above}_

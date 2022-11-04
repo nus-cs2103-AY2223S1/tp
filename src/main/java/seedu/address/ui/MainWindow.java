@@ -216,11 +216,10 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleHelpForCommand(String helpMessageForCommand) {
         helpWindowForCommand.setTextString(helpMessageForCommand);
-        if (!helpWindowForCommand.isShowing()) {
-            helpWindowForCommand.show();
-        } else {
-            helpWindowForCommand.focus();
-        }
+        //update the dimensions of the help window
+        helpWindowForCommand.hide();
+        helpWindowForCommand.show();
+        helpWindowForCommand.focus();
     }
 
     void show() {
