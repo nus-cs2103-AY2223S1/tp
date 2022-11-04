@@ -316,10 +316,14 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * A client **must** have a `NAME` and a `PHONE_NUMBER`.
 * `PHONE_NUMBER` should contain only numbers and be at least 8 digits long.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
-* If a `NAME` already exist in _MyInsuRec_, adding the same `NAME` will result in an error!
+* If a `NAME` already exists in _MyInsuRec_, adding the same `NAME` will result in an error!
 
 Use case:
 1. You have just found a potential client! You can use this command to add their particulars into _MyInsuRec_ to help remember their contact information and other details.
+
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+We are using `NAME` as a unique identifier because we have considered cases where parents will be using their contact details for their children. If you are stuck in a situation where both clients have the same name, you can add a few words to make them unique, for example John Tan NUS and John Tan SMU.
+</div>
 
 <div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
 In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`.
@@ -346,7 +350,7 @@ Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
 * `BIRTHDAY` is specified by keywords. The possible keywords are:
   * `tomorrow` for a list of clients whose birthday is tomorrow;
   * `week` for a list of clients whose birthday is in the next week;
-  * `month` for a list of clients whose birthday from the start of the respective month to the end of the respective month..
+  * `month` for a list of clients whose birthday from the start of the respective month to the end of the respective month.
 
 Use case:
 1. You want to find out all your clients with upcoming birthdays so that you can prepare ahead and ensure that every client gets some birthday well wishes!
@@ -415,6 +419,7 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one optional detail must be modified.
 * Maintain value of details not edited by the command.
+* If you wish to edit a client's `NAME` and the `NAME` already exists in _MyInsuRec_, it will result in an error!
 
 Use case:
 1. A client changed his address! Update the client details instead of having to removing the old record and creating a new record.
@@ -426,6 +431,10 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
   * `editClient i/1 n/John Smith`
 * Add email 'johntan@insurec.com'
   * `editClient i/1 e/johntan@insurec.com`
+
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+We are using `NAME` as a unique identifier because we have considered cases where parents will be using their contact details for their children. If you are stuck in a situation where both clients have the same name, you can add a few words to make them unique, for example John Tan NUS and John Tan SMU.
+</div>
 
 ### 7.2 Meeting commands
 
@@ -487,7 +496,7 @@ Examples:
 
 #### 7.2.3 View meeting: `viewMeeting`
 
-View details associated with a meeting, such as the meeting's date and time.
+View details associated with a meeting, such as the meeting's date and time, as well as the client's details associated with the meeting.
 
 Format: `viewMeeting i/INDEX`
 
@@ -739,7 +748,7 @@ To check that your system has the correct Java version (Java 11 and above) to ru
      * Type in 'Terminal' to search for it and click on it to launch.
    * Linux
      * Use **Ctrl** + **Alt** + **T** to open the Terminal.
-2. In your terminal, type in **java --version** and click enter.
+2. In your terminal, type in **java \-\-version** and click enter.
 3. The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
 
 ![JavaVersionTroubleShoot](images/troubleshoot/JavaVersionTroubleShoot.png)
@@ -776,6 +785,12 @@ We thank the CS2103T and CS2101 teaching team and all our classmates for support
 
 Command Line Interface, user interface that accepts input as lines of text.
 
+### *E*
+
+#### `EMAIL`
+
+An email address identifies an email box to which messages are delivered. If you wish to know more about email addresses, you can visit this [link](https://en.wikipedia.org/wiki/Email_address) to view the format of valid emails!
+
 ### *G*
 
 ##### GUI
@@ -788,7 +803,7 @@ Graphical User Interface, user interface that accepts input in means other than 
 
 Number indicating the position of a client, meeting, or product in their respective lists.
 
-In all commands `INDEX` **must be a positive integer** 1, 2, 3, …​`
+In all commands `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 In [`editClient`](#715-edit-client-editclient), [`delClient`](#714-delete-client-delclient), and [`viewClient`](#713-view-client-viewclient) commands, `INDEX` refers to the  number shown by executing [`listClient`](#712-list-clients-listclient) command.
 
