@@ -198,7 +198,10 @@ public class Module {
      */
     public boolean hasLessonTypeEnum(LessonTypeEnum lessonType) {
         requireNonNull(lessonTypesMap);
-        return lessonTypesMap.values().stream().flatMap(Set::stream).collect(Collectors.toSet()).contains(lessonType);
+        return lessonTypesMap.values().stream()
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet())
+                .contains(lessonType);
     }
 
     /**
@@ -279,8 +282,9 @@ public class Module {
     public boolean hasLessonId(String lessonId, SemestersEnum semester, LessonTypeEnum lessonType) {
         requireNonNull(lessonMap);
 
-        return Optional.of(lessonMap.get(semester)).map(semesterMap -> semesterMap.get(lessonType))
-            .map(semesterLessonMap -> semesterLessonMap.get(lessonId)).isPresent();
+        return Optional.of(lessonMap.get(semester))
+                .map(semesterMap -> semesterMap.get(lessonType))
+                .map(semesterLessonMap -> semesterLessonMap.get(lessonId)).isPresent();
     }
 
     /**
@@ -293,8 +297,33 @@ public class Module {
         requireNonNull(lessonMap);
 
         //safe to assume that keySet only has one element in it because lesson is unselectable.
-        return Optional.of(lessonMap.get(semester)).map(semesterMap -> semesterMap.get(lessonType))
+        return Optional.of(lessonMap.get(semester))
+                .map(semesterMap -> semesterMap.get(lessonType))
                 .map(lessonSet -> lessonSet.keySet().toArray()[0]).get().toString();
+    }
+
+    /**
+     * Get lesson information such as lesson timing and lesson day for UserModule.
+     * @param lessonType
+     * @param semester
+     * @param lessonCode
+     * @return
+     */
+    public String getLessonInfo(LessonTypeEnum lessonType, SemestersEnum semester, String lessonCode) {
+        requireNonNull(lessonMap);
+
+        List<Lesson> lessons = Optional.of(lessonMap.get(semester))
+                .map(semesterMap -> semesterMap.get(lessonType))
+                .map(lessonSet -> lessonSet.get(lessonCode)).get();
+
+        String toDisplay = "";
+
+        for (Lesson l : lessons) {
+            toDisplay += String.format("%s, %s-%s, %s\n",
+                    l.getDay(), l.getStartTime(), l.getEndTime(), l.getVenue());
+        }
+
+        return toDisplay;
     }
 
     /**

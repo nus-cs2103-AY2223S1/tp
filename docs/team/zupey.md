@@ -11,4 +11,21 @@ plan and manage their modules much faster than doing it on [nusmods.com](https:/
 
 Given below are my contributions to the project.
 
-_To be added soon_
+* **New Feature**: Added the ability to view the user guide via the `help` command.
+    * What it does: Show our website in a window via the `help` command.
+    * Justification: This feature improves the product by allowing the user to easily access the documentation.
+
+* **Project management**:
+    * To be added
+
+* **Enhancements to existing features**:
+    * To be added
+
+* **Documentation**:
+    * User Guide:
+        * Changed user guide in response to comments given during PE dry run.
+    * Developer Guide:
+        * To be added
+
+* **Community**:
+    * To be added
