@@ -10,12 +10,12 @@ It allows the user who is a student to view a project’s members and their work
 
 Given below are my contributions to the project.
 
-- **New Feature** Assignment Class ([#55](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/55))
+- **New Feature** Assignment Class ([#55](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/55),
+[#81](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/81))
   - What it does: Allow users to initialize task and save them in TABS.
   - Justification: A project team leader wants to initialize and save task in TABS.
 
 - **New Feature**: Assign and Delete task commands ([#55](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/55),
-[#81](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/81),
 [#82](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/82))
   - What it does: Allow users to create and delete task from a member in a group.
   - Justification: A project team leader has to manage many task assigned to his group members. This feature allows them to perform basic operation of creating and deleting tasks.
@@ -33,8 +33,7 @@ Given below are my contributions to the project.
   - Popup window of help command ([#110](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/110),
 [#128](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/128),
 [#130](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/130))
-      - Create a table of commands to allow users to have a better overview of the trivial commands.
-      - Add buttons to open the UG or copy the URL link to the UG.
+      - Create a table of commands and buttons to open the UG or copy the URL link of UG.
       - Add CSS to table and buttons.
       - Update format and examples of each command to match with the ones in the popup window.
   - Fix bugs where GroupList and PersonList are not updated after commands are executed and causes the whole program to fail.
@@ -47,19 +46,18 @@ Given below are my contributions to the project.
 - Contributions to the UG:
   - Update Quick Start ([#21](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/21),
   [#48](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/48))
-  - Update details of `DeleteTask` ([#85](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/85))
-  - Update existing commands and diagrams in UG ([#130](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/130),
+  - Update existing commands and diagrams in UG ([#85](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/85),
+[#130](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/130),
 [#134](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/134),
 [#146](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/146),
 [#153](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/153),
-[#155](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/153))
+[#155](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/155))
 
 
 - Contributions to the DG:
-  - Update User Stories ([#22](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/22),
-[#49](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/49))
-  - Update implementation `AssignTask` command with activity diagram ([#119](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/119))
-  - Finalize Use Cases ([#218](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/218))
+  - Update User Stories ([#22](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/22), [#49](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/49)),
+and finalize Use Cases ([#218](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/218))
+  - Update implementation `AssignTask` command with an activity diagram ([#119](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/119))
 
 
 **Contributions to team-based tasks**
