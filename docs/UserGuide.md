@@ -31,7 +31,7 @@ If you would like to:
 
 ### Symbols and Syntax
 
-| Symbol                  | What it means                                                                | 
+| Symbol                  | What it means                                                                |
 |-------------------------|------------------------------------------------------------------------------|
 | `highlights`            | Executable commands or possible parameters that can be entered into the CLI. |
 | :information_source:    | Additional information that may be useful to know                            |
@@ -52,9 +52,9 @@ The following table describes the sections in detail:
 | 2        | Command Box           | Type in your commands here.                                                         |
 | 3        | Result Display Box    | Displays various messages (e.g. success/error messages) after commands are entered. |
 | 4        | Tutor List Card       | Displays condensed information of a tutor saved in Tuthub.                          |
-| 5        | Tutor List Panel      | Displays the entire/filtered list of tutors saved in Tuthub.                        |    
+| 5        | Tutor List Panel      | Displays the entire/filtered list of tutors saved in Tuthub.                        |
 | 6        | Tutor Details Pane    | Displays full details of a tutor saved in Tuthub.                                   |
-| 7        | Storage File Location | Displays the location of your Tuthub data file.                                     |          
+| 7        | Storage File Location | Displays the location of your Tuthub data file.                                     |
 
 ### Notes About Command Format
 <div markdown="block" class="alert alert-info">
@@ -102,7 +102,7 @@ The following table describes the sections in detail:
 
 1. Type the command in the 'Command Box' and press Enter to execute it.<br>
    Some example commands you can try:
- 
+
     * `list` : Lists all tutors.
 
     * `view 3` : Displays full details of the 3rd tutor shown in the current list.
@@ -188,7 +188,7 @@ Tutors are regarded as the same if they have the **same email or student ID**!
 <div markdown="block" class="alert alert-info">
 
 :information_source: **About Module:**
-- Modules consist of the following in order: 2 compulsory letters, 2 optional letters, 
+- Modules consist of the following in order: 2 compulsory letters, 2 optional letters,
 4 compulsory digits, 2 optional letters.
 
 </div>
@@ -441,7 +441,7 @@ Format: `exit`
 |---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | **Command Line Interface (CLI)**      | A text-based interface where users may interact with the system by typing in commands.                                           |
 | **Graphical User Interface (GUI)**    | A graphic-based interface where users may interact with graphical components (e.g. icons and menus) to interact with the system. |
-| **JAR File**                          | Java Archive File with multiple files compressed into one and may be an executable.                                              |                     
-| **Java**                              | A widely used programming language.                                                                                              |                    
+| **JAR File**                          | Java Archive File with multiple files compressed into one and may be an executable.                                              |
+| **Java**                              | A widely used programming language.                                                                                              |
 | **Javascript Object Notation (JSON)** | A lightweight format for storing and transporting data.                                                                          |
 | **Parameter**                         | A specific tutor detail to be provided for a command to run.                                                                     |
