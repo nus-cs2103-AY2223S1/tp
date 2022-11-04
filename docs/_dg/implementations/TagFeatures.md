@@ -17,8 +17,6 @@
 
 #### General Implementation Details
 
-<!-- TODO: ADD TAG CLASS DIAGRAM -->
-
 The tagging functionality is facilitated by the `UniqueTagList` stored in `FoodRem`. Additionally, each `Item` stores its own sets of associated `Tag` objects in an internal `Set<Tag>`.
 
 * Creating, updating and deleting tags will modify the tags within the `UniqueTagList` which contains all existing `Tag` objects.
@@ -71,6 +69,10 @@ When storing a tag, these are the alternatives to consider.
 ##### Overview
 The `newtag` command creates a new tag in FoodRem which can be subsequently used in another command (`tag`) to tag items for classification.
 
+Here is the sequence diagram showing the interactions between the different components during a `newtag` command.
+![NewTagSequenceDiagram](images/NewTagSequenceDiagram.png)
+
+
 ##### Feature Details
 1. The user specifies a tag name for the new tag when creating the new tag
 1. If the tag name of the new tag is not provided, the user will be prompted to enter the command correctly via an error message.
@@ -85,8 +87,6 @@ The `newtag` command creates a new tag in FoodRem which can be subsequently used
 #### Tagging an Item
 
 ##### Overview
-
-<!-- TODO: ACTIVITY DIAGRAM -->
 
 The `tag item` command tags an item with the provided tag name in FoodRem. If both the item and the tag are valid, the item will be tagged successfully.
 
