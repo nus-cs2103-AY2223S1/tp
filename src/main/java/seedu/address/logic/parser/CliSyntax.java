@@ -18,7 +18,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_STUDENT_TA = new Prefix("ta/");
 
     public static final Prefix PREFIX_WEEKDAY = new Prefix("w/");
-    public static final Prefix PREFIX_MODULE_OF_SCHEDULE = new Prefix("m/");
+    public static final Prefix PREFIX_MODULE_OF_SCHEDULE = new Prefix("c/");
     public static final Prefix PREFIX_CLASS_TIME = new Prefix("ct/");
     public static final Prefix PREFIX_CLASS_CATEGORY = new Prefix("cc/");
     public static final Prefix PREFIX_CLASS_VENUE = new Prefix("cv/");
