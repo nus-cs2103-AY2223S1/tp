@@ -1,5 +1,6 @@
 package seedu.uninurse.logic.parser;
 
+import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_REMARK;
 
@@ -34,7 +35,7 @@ public class EditRemarkCommandParser implements Parser<EditRemarkCommand> {
 
             return new EditRemarkCommand(indices.get(0), indices.get(1), updatedRemark);
         } catch (NoSuchElementException nse) {
-            throw new ParseException(EditRemarkCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRemarkCommand.MESSAGE_USAGE));
         }
     }
 }

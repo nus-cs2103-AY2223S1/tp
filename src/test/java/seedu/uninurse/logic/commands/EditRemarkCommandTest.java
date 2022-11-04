@@ -6,9 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.uninurse.logic.commands.EditRemarkCommand.EDIT_REMARK_COMMAND_TYPE;
-import static seedu.uninurse.logic.commands.EditRemarkCommand.MESSAGE_EDIT_DUPLICATE_REMARK;
-import static seedu.uninurse.logic.commands.EditRemarkCommand.MESSAGE_EDIT_REMARK_SUCCESS;
+import static seedu.uninurse.logic.commands.EditRemarkCommand.COMMAND_TYPE;
+import static seedu.uninurse.logic.commands.EditRemarkCommand.MESSAGE_SUCCESS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -74,14 +73,14 @@ class EditRemarkCommandTest {
         EditRemarkCommand editRemarkCommand =
                 new EditRemarkCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, editedRemark);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_REMARK_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+        String expectedMessage = String.format(MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName().toString(), initialRemark, editedRemark);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editRemarkCommand, model, expectedMessage, EDIT_REMARK_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(editRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -108,7 +107,7 @@ class EditRemarkCommandTest {
         EditRemarkCommand editRemarkCommand =
                 new EditRemarkCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, editedRemark);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_REMARK_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+        String expectedMessage = String.format(MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName().toString(), initialRemark, editedRemark);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
@@ -116,7 +115,7 @@ class EditRemarkCommandTest {
         expectedModel.setPerson(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editRemarkCommand, model, expectedMessage, EDIT_REMARK_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(editRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -156,7 +155,7 @@ class EditRemarkCommandTest {
                 new EditRemarkCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, duplicateRemark);
 
         assertCommandFailure(editRemarkCommand, model,
-                String.format(MESSAGE_EDIT_DUPLICATE_REMARK, patient.getName().toString()));
+                String.format(Messages.MESSAGE_DUPLICATE_REMARK, patient.getName().toString()));
     }
 
     @Test

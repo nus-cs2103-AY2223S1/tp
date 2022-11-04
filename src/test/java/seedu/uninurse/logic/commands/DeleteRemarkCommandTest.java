@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.uninurse.logic.commands.DeleteRemarkCommand.DELETE_REMARK_COMMAND_TYPE;
-import static seedu.uninurse.logic.commands.DeleteRemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS;
+import static seedu.uninurse.logic.commands.DeleteRemarkCommand.COMMAND_TYPE;
+import static seedu.uninurse.logic.commands.DeleteRemarkCommand.MESSAGE_SUCCESS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -62,15 +62,14 @@ public class DeleteRemarkCommandTest {
         DeleteRemarkCommand deleteRemarkCommand =
                 new DeleteRemarkCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_REMARK_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+        String expectedMessage = String.format(MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName(), deletedRemark);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToDeleteRemark, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(deleteRemarkCommand, model, expectedMessage, DELETE_REMARK_COMMAND_TYPE,
-                expectedModel);
+        assertCommandSuccess(deleteRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -95,7 +94,7 @@ public class DeleteRemarkCommandTest {
         DeleteRemarkCommand deleteRemarkCommand =
                 new DeleteRemarkCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_REMARK_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+        String expectedMessage = String.format(MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName().toString(), deletedRemark);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
@@ -103,8 +102,7 @@ public class DeleteRemarkCommandTest {
         expectedModel.setPerson(patientToDeleteRemark, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(deleteRemarkCommand, model, expectedMessage, DELETE_REMARK_COMMAND_TYPE,
-                expectedModel);
+        assertCommandSuccess(deleteRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
 
     @Test
