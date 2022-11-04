@@ -298,17 +298,20 @@ Step 2. The user execute `list tutor` command to list out all tutors by calling 
 
 Step 3. The user executes `find n/john q/computing i/nus` command to search for all tutors who are named John and have graduated from NUS with computing qualifications. The user's input is first parsed into the `AddressBookParser`, where the `COMMAND_WORD` and the `arguments` are separated, and the `Model.ListType` is determined.
 
-Step 4. After checking that the `COMMAND_WORD`, a new `FindCommandParser` is returned with the `arguments` parsed into it.
+Step 4. After checking that the `COMMAND_WORD` is `find`, a new `FindCommandParser` is returned with the `arguments` parsed into it.
 
-Step 5. In the `FindCommandParser`, the `arguments` are tokenized into an `ArgumentMultimap`, where the respective `prefixes` and `keywords` are extracted from the `arguments` and mapped to each other. Afterwards, the pairs of `prefixes` and `keywords` are put into a `HashMap<Prefix, String>`. A `FindCommand` is then returned with the `HashMap<Prefix, String>` parsed into it.
+Step 5. In the `FindCommandParser`, the `arguments` are tokenized into an `ArgumentMultimap`, where the respective `prefixes` and `keywords` are extracted from the `arguments` and mapped to each other. Following that, `validateArguments` is executed to ensure that the arguments are valid.
 
-Step 6. In the `FindCommand`, a `TutorContainsKeywordsPredicate<Tutor>` is created with the `keywords` as input, which tests if the `keywords` are contained by the respective fields in the tutors.
+Step 6. Afterwards, the pairs of `prefixes` and `keywords` are put into a `HashMap<Prefix, String>`, and a `FindCommand` is then returned with the `HashMap<Prefix, String>` parsed into it.
 
-Step 7. Afterwards, the `filteredList` of tutors is updated with that `TutorContainsKeywordsPredicate<Tutor>` in the `ModelManager`. A new `CommandResult` is then returned and a list of tutors with that predicate is then shown.
+Step 7. In the `FindCommand`, a `TutorContainsKeywordsPredicate<Tutor>` is created with the `keywords` as input, which tests if the `keywords` are contained by the respective fields in the tutors.
 
-Step 8. The user now decides he wants to be more specific with his search, and decides to execute `find n/John Doe q/bachelor of computing i/nus` to find all tutors who are named John Doe, and have graduated from NUS with a bachelor's degree in computing. A more specific list of students is then shown.
+Step 8. Afterwards, the `filteredList` of tutors is updated with that `TutorContainsKeywordsPredicate<Tutor>` in the `ModelManager`. A new `CommandResult` is then returned and a list of tutors with that predicate is then shown.
 
-_{more aspects and alternatives to be added}_
+Step 9. The user now decides he wants to be more specific with his search, and decides to execute `find n/John Doe q/bachelor of computing i/nus` to find all tutors who are named John Doe, and have graduated from NUS with a bachelor's degree in computing. A more specific list of students is then shown.
+
+The following sequence diagram shows how the `find` operation works:
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 
 ### \[Implemented\] List type feature

@@ -1,0 +1,121 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "s:StudentContainsKeywordsPredicate" as StudentContainsKeywordsPredicate MODEL_COLOR
+participant "t:TutorContainsKeywordsPredicate" as TutorContainsKeywordsPredicate MODEL_COLOR
+participant "c:TuitionClassContainsKeywordsPredicate" as TuitionClassContainsKeywordsPredicate MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find n/John a/Clementi")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("find n/John a/Clementi", "ListType.STUDENT_LIST")
+activate AddressBookParser
+
+create FindCommandParser
+AddressBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser -> FindCommandParser : validateArguments(argMultimap)
+activate FindCommandParser
+FindCommandParser -> FindCommandParser
+deactivate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser : f
+deactivate FindCommand
+
+FindCommandParser --> AddressBookParser : f
+deactivate FindCommandParser
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager --> FindCommand : execute(model)
+activate FindCommand
+
+FindCommand --> Model : getCurrentListType()
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+alt student list
+
+create StudentContainsKeywordsPredicate
+FindCommand --> StudentContainsKeywordsPredicate
+activate StudentContainsKeywordsPredicate
+
+StudentContainsKeywordsPredicate --> FindCommand : s
+deactivate StudentContainsKeywordsPredicate
+
+FindCommand --> Model : updateFilteredStudentList(s)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+else tutor list
+
+create TutorContainsKeywordsPredicate
+FindCommand --> TutorContainsKeywordsPredicate
+activate TutorContainsKeywordsPredicate
+
+TutorContainsKeywordsPredicate --> FindCommand : t
+deactivate TutorContainsKeywordsPredicate
+
+FindCommand --> Model : updateFilteredTutorList(s)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+else tuition class list
+
+create TuitionClassContainsKeywordsPredicate
+FindCommand --> TuitionClassContainsKeywordsPredicate
+activate TuitionClassContainsKeywordsPredicate
+
+TuitionClassContainsKeywordsPredicate --> FindCommand : c
+deactivate TuitionClassContainsKeywordsPredicate
+
+FindCommand --> Model : updateFilteredTuitionClassList(s)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+end
+
+create CommandResult
+FindCommand --> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+CommandResult -[hidden]-> FindCommand
+destroy CommandResult
+
+FindCommand --> LogicManager : commandResult
+deactivate FindCommand
+
+FindCommand -[hidden]-> LogicManager
+destroy FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
