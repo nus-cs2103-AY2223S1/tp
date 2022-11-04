@@ -389,7 +389,7 @@ Examples:
 
 You can add a tag to a patient with the `add` command.
 
-Format: **`add`**`-p PATIENT_INDEX t/TAG`
+Format: **`add`** `-p PATIENT_INDEX t/TAG`
 
 <div markdown="block" class="alert alert-info">
 
@@ -417,7 +417,7 @@ Examples:
 
 You can edit a tag of a patient with the `edit` command.
 
-Format: **`edit`**`-p PATIENT_INDEX -t TAG_INDEX t/TAG`
+Format: **`edit`** `-p PATIENT_INDEX -t TAG_INDEX t/TAG`
 
 <div markdown="block" class="alert alert-info">
 
@@ -525,7 +525,7 @@ Examples:
 
 You can edit a medical condition of a patient with the `edit` command.
 
-Format: **`edit`**`-p PATIENT_INDEX -c CONDITION_INDEX c/CONDITION`
+Format: **`edit`** `-p PATIENT_INDEX -c CONDITION_INDEX c/CONDITION`
 
 <div markdown="block" class="alert alert-info">
 
@@ -545,7 +545,7 @@ Examples:
 
 You can delete a medical condition of a patient with the `delete` command.
 
-Format: **`delete`**`-p PATIENT_INDEX -c CONDITION_INDEX`
+Format: **`delete`** `-p PATIENT_INDEX -c CONDITION_INDEX`
 
 Examples:
 * `list` followed by `delete -p 2 -c 3` deletes the 3rd condition of the 2nd patient in the patient list.
@@ -671,7 +671,7 @@ _Add screenshot here_
 
 You can view the list of tasks that are due today using the `view` command with the special flag `--today`.
 
-Format: `view --today`
+Format: **`view`** `--today`
 
 Examples:
 
@@ -690,7 +690,7 @@ _<div align="center"> Patient and task list displayed after running the `view --
 
 You can view the list of tasks for all patients using the `view` command with the special flag `--all`.
 
-Format: `view -p --all`
+Format: **`view`** `-p --all`
 
 Examples:
 
@@ -705,7 +705,7 @@ _<div align="center"> Patient and task list displayed after running the `view -p
 
 You can view the list of tasks for a patient using the `view` command.
 
-Format: `view -p PATIENT_INDEX`
+Format: **`view`** `-p PATIENT_INDEX`
 
 Examples:
 
@@ -720,7 +720,7 @@ _<div align="center"> Patient and task list displayed after running the `view -p
 
 You can view the list of tasks for a particular day using the `view` command.
 
-Format: `view DATE`
+Format: **`view`** `DATE`
 
 <div markdown="block" class="alert alert-info">
 
