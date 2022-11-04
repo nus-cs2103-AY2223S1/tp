@@ -20,15 +20,15 @@ TAS helps university administrative staff manage scholarship applications.
 It can store all the applicant's details such as contact info and scholarship applied etc. in one place.
 
 TAS has many features that university administrative staff can use to help speed up the application process immensely.
-TAS presents the administrative staff with the option to pin important applicants, edit their details easily and
-find or filter for applicants with ease. 
+TAS presents the administrative staff with various options such as the ability to pin important applicants,
+edit their details easily and find or filter for applicants with ease. 
 
 TAS is optimised for use via a ***Command Line Interface (CLI)*** while simultaneously having the benefits of a ***Graphical User Interface
 (GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
 
 #### Who is this User Guide for?
 
-Based on our research, many universities often take an extended period of many months to process scholarship applications.
+Based on our research, many universities often take an extended period of several months to process scholarship applications.
 Administrative staff at the university frequently works overtime to process this enormous volume of applications.
 The process is made much more difficult by the subpar scholarship management practices employed in many of these universities.
 
