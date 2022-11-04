@@ -42,8 +42,7 @@ Given below are my contributions to the project.
       related to the UI display, which necessitated the introduction of new methods to existing classes
       , as well as the modification if existing ones
   * Credits:
-    * Would like to thank @russelldash332 for the help in working through the code tracing with me
-      to understand how the UI panel is being displayed
+    * Would like to thank @russelldash332 for the help with the UI panel
 
 * **Code contributed**: <br>
   [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jordanchua&breakdown=true)
@@ -56,8 +55,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Wrote additional tests in related classes such as `FypManagerParser`
     to incorporate relevant testing for introduction of new features
-  * Added more relevant error messages to be thrown such as `MESSAGE_STUDENT_NOT_FOUND`  
-    which may be relevant in commands such as the `AddCommand` or the `MarkCommand`
+  * Added more relevant error messages to be thrown such as `MESSAGE_STUDENT_NOT_FOUND`
 
 * **Documentation**:
   * User Guide:
