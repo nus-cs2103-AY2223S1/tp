@@ -386,47 +386,91 @@ Format: `task do TASK_INDEX [by/DATE]...`
 - If the application is unable to determine a date from your input, an error message will be displayed, and you will be prompted to try a different input.
 - To **remove** the deadline from a task, you can use the special character `?`.
 
-Examples:
+##### Examples:
 * `task do 1 by/tomorrow` sets the deadline for the 1st task in the list to tomorrow.
 * `task do 1 by/?` **removes** the deadline from the 1st task in the list.
 
----
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Additional Notes:**<br>
+* As we foresee that most of your tasks should fall within the current year, the deadline of such tasks have their year omitted in the task panel.<br>
+* You may refer to the screenshot below for a better understanding
+</div>
+
+![Task Deadline](images/deadline-ui.png)
+
+
 ### Sorting tasks by deadline: `task sort`
 
 Sorts the task list by deadline.
 
 Format: `task sort`
 
----
+
 ### Filtering the Tasks List: `task list`
 
-You can use the `task list` command to focus only on tasks that match your specified filter requirements.
+The `task list` command is a powerful command that allows you to focus only on the tasks that matter to you.
 
-Format: `task list [KEYWORD] [#PROJECT]... [@PERSON_INDEX]... [before/ DATE] [after/ DATE]`
-- The `task list` command accepts **optional** parameters that can filter tasks by their description, project, due date or assigned contacts.
-- If you do not specify any filters (i.e. `task list`), the command returns **all incomplete** tasks.
+Format: `task list [KEYWORD] [#PROJECT_NAME]... [@PERSON_INDEX]... [before/DATE] [after/DATE] [-a] [-c]`
 
-#### Filtering by Description
+The format above may look daunting, but this is only because the `task list` command allows you to potentially describe complex queries.
+
+However, all the parameters are optional, and in most cases, you will only need a simple query that uses just one or two parameters.
+
+For ease of understanding, many of these common use cases have been detailed below.
+
+
+#### 1. Filtering by Completion Status
+
+`Format: task list [-a] [-c]`
+- The simplest form of the command is simply `task list`. This allows you to view all incomplete tasks.
+- You may find this command useful to reset your task list back to its default state.
+
+##### Examples
+- `task list -a` returns **all** tasks, regardless of completion status.
+- `task list -c` returns all **completed** tasks only.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Additional Notes:**<br>
+* When the `-a` or `-c` parameters are not specified, the `task list` command returns all **incomplete** tasks that match the given query.<br>
+* In the following examples, 'all tasks' will refer to 'all incomplete tasks' for brevity.<br>
+</div>
+
+#### 2. Filtering by Description
+`Format: task list KEYWORD`
 - The `KEYWORD` parameter allows you to search for tasks that contain `KEYWORD`.
-  - For example, `task list fix` returns all **incomplete** tasks whose description contains the keyword `fix`.
 
-#### Filtering by Project
+##### Example
+- `task list fix` returns all tasks whose description contains the keyword `fix`.
+
+#### 3. Filtering by Project
+`Format: task list #PROJECT_NAME...`
 - The `#` parameter allows you to search for tasks that are assigned to **any** of the project(s) you specify.
-  - For example, `task list #CS2101 #CS2103T` returns all **incomplete** tasks that are **either** under the project `CS2101` **or** `CS2103T`.
 
-#### Filtering by Assigned Contact(s)
+##### Example
+- `task list #CS2101 #CS2103T` returns all tasks that are **either** under the project `CS2101` **or** `CS2103T`.
+
+#### 4. Filtering by Assigned Contact(s)
+`Format: task list @PERSON_INDEX...`
 - The `@` parameter allows you to search for tasks that are assigned to **all** the contact(s) you specify.
-    - For example, `task list @1 @2` returns all **incomplete** tasks that are assigned to **both** the 1st and 2nd persons from the address book.
 
-#### Filtering by Deadline
+##### Example
+- `task list @1 @2` returns all tasks that are assigned to **both** the 1st and 2nd persons from the address book.
+
+#### 5. Filtering by Deadline
+`Format: task list before/DATE after/DATE`
 - The `before/` and `after/` parameters allow you to specify a date range to filter the tasks by, according to their deadline.
-  - For example, `task list before/ next Monday after/ tomorrow` returns all **incomplete** tasks whose deadline is, well, after tomorrow but before next Monday.
+- You can choose to use only one of the parameters, as shown in the examples below
 
-#### Filtering by Completion Status
-- Notice that the command seems to always return **incomplete** tasks. You can choose to opt out of this default behaviour with the `-a` parameter.
-  - For example, `task list -a` returns all tasks, **both** completed and incomplete ones,
-- Similarly, the `-c` filter allows you to search through **completed** tasks only.
-  - For example, `task list -c` returns all **completed** tasks.
+##### Examples
+- `task list before/ next Monday after/ tomorrow` returns all tasks whose deadline is after tomorrow but before next Monday.
+- `task list before/ end of the month` returns all tasks whose deadline is before the end of the month.
+
+<div markdown="block" class="alert alert-primary">
+**:bulb: Tips for Advanced Users:**<br>
+* You can use any combination of the parameters above to build a query that matches your unique requirements!<br>
+* Do note that the `KEYWORD` parameter **must** come first, if any other parameters are used.<br>
+</div>
 
 ---
 ### Editing a task: `task edit`
