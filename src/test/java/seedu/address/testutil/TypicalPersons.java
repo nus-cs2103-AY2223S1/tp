@@ -28,29 +28,30 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withOccupation("STUDENT").withAddress("123, Jurong West Ave 6, #08-111")
-            .withEmail("alice@example.com").withTutorial("T08")
-            .withPhone("94351253").withTags("friends").withGroups("friends").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withOccupation("STUDENT").withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withTutorial("T09").withPhone("98765432")
+    public static final Person ALICE = new PersonBuilder().withOccupation("STUDENT")
+            .withName("Alice Pauline").withPhone("94351253").withEmail("alice@example.com")
+            .withTutorial("T08").withAddress("123, Jurong West Ave 6, #08-111")
+            .withTags("friends").withGroups("friends").build();
+    public static final Person BENSON = new PersonBuilder().withOccupation("STUDENT")
+            .withName("Benson Meier").withPhone("98765432").withEmail("johnd@example.com")
+            .withTutorial("T09").withAddress("311, Clementi Ave 2, #02-25")
             .withTags("owesMoney", "friends").withGroups("friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withOccupation("TA").withEmail("heinz@example.com").withTutorial("T10")
-            .withAddress("wall street").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withOccupation("PROFESSOR").withEmail("cornelia@example.com").withTutorial("T11")
-            .withAddress("10th street").withTags("friends").withGroups("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withOccupation("STUDENT")
-            .withPhone("9482224").withEmail("werner@example.com").withTutorial("T12")
-            .withAddress("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withOccupation("TA")
-            .withPhone("9482427").withEmail("lydia@example.com").withTutorial("T13")
-            .withAddress("little tokyo").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withOccupation("PROFESSOR")
-            .withPhone("9482442").withEmail("anna@example.com").withTutorial("F08")
-            .withAddress("4th street").build();
+    public static final Person CARL = new PersonBuilder().withOccupation("STUDENT")
+            .withName("Carl Kurz").withPhone("95352563").withEmail("heinz@example.com")
+            .withTutorial("T10").withAddress("wall street").build();
+    public static final Person DANIEL = new PersonBuilder().withOccupation("STUDENT")
+            .withName("Daniel Meier").withPhone("87652533").withEmail("cornelia@example.com")
+            .withTutorial("T11").withAddress("10th street")
+            .withTags("friends").withGroups("friends").build();
+    public static final Person ELLE = new PersonBuilder().withOccupation("STUDENT")
+            .withName("Elle Meyer").withPhone("9482224").withEmail("werner@example.com")
+            .withTutorial("T12").withAddress("michegan ave").build();
+    public static final Person FIONA = new PersonBuilder().withOccupation("STUDENT")
+            .withName("Fiona Kunz").withPhone("9482427").withEmail("lydia@example.com")
+            .withTutorial("T13").withAddress("little tokyo").build();
+    public static final Person GEORGE = new PersonBuilder().withOccupation("STUDENT")
+            .withName("George Best").withPhone("9482442").withEmail("anna@example.com")
+            .withTutorial("F08").withAddress("4th street").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withOccupation("STUDENT")
