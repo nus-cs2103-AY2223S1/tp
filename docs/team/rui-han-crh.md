@@ -3,7 +3,7 @@ layout: page
 title: Chen Ruihan's Project Portfolio Page
 ---
 
-### Project: SectresBook
+# Project: SectresBook
 
 SectresBook helps secretaries to maintain all the information of the members of their club by collating a list of identifiable information, past loan records and future tasks.
 
@@ -85,25 +85,25 @@ Given below are my contributions to the project.
 Text Extract (images removed):
 <blockquote>
 
-## User Interface
+### User Interface
 
 Here is an overview of the User Interface (UI) components.
 
 The UI comprises four sections:
 
-## Command Box
+### Command Box
 
 The Command Box is where you type in your command inputs. For more information on command inputs, refer to Features below.
 
 Once the command box is selected, a results display will appear to report the status of the program to you. Error messages and success messages will be shown in this box. Click anywhere else on the screen, or press the ESC key to exit the command box and hide the results display.
 
-## People Panel
+### People Panel
 
 The People Panel contains all the club and organisation members you have registered in this book. They are laid out horizontally. You can scroll the list by hovering your mouse over the People Panel and scrolling the mouse-wheel, or by clicking on and dragging the horizontal scroll bar to scroll.
 
 Each card represents a person and displays their name, phone number and total present loan amount. The loan amount may be positive to indicate an amount owed by the person, or negative to indicate an amount due to be paid to the person.
 
-## Inspect Panel
+### Inspect Panel
 
 The Inspect Panel is related to the People Panel and shows the basic information of the currently inspected person. A person can be inspected by either clicking on his or her card, or by using the inspect command. More details on the inspect command can be found here.
 
@@ -113,7 +113,7 @@ Note that the transaction record next to the icon of the hand holding coins is t
 
 The total amount of the loans is also stated in the right of this panel, describing in fuller detail if the sum is owed by or to be paid to the person.
 
-## Notes Panel
+### Notes Panel
 
 This Notes Panel stores all the information related to notes and tasks that the user may want to keep track of.
 
@@ -127,9 +127,12 @@ Check Notes Features to learn more about the commands you can execute related to
 
 </blockquote>
 
+<br>
+
 3. Added description of properties for both people and notes in the UG.
 
 This section is too long to be reproduced in entirety. Here is an example of the person property `email` extracted with images removed. The entire section can be found [here](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#properties)
+
 <blockquote>
 
 ### Email
@@ -149,7 +152,9 @@ Domain name |The domain name is made up of domain labels separated by periods. T
 The local part and domain part **must** be connected by a `@` symbol.
 </blockquote>
 
-4. Added description of command [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#inspecting-a-person--inspect), [`hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#hiding-notes-panel--hidenotes) and [`showNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#showing-notes-panel--shownotes)
+<br>
+
+4. Added description of command [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#inspecting-a-person--inspect), [`hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#hiding-notes-panel--hidenotes) and [`showNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#showing-notes-panel--shownotes) (links to document section included).
 
 `inspect` text extracted (images removed):
 <blockquote>
@@ -182,18 +187,35 @@ The text for `showNotes` and `hideNotes` are not remarkable enough to be extract
 6. Corrected some English terms
 7. Added Glossary terms
 
+Glossary text extracted:
+
+<blockquote>
+
+Word | Definition
+--------|------------------
+**Command Line Interface (CLI)** | A text-based interface that recieves typed commands as input and returns textual feedback as output.
+**Graphical User Interface (GUI)** | An image-based interface that is more visually appealing than a command-line interface and encapsulates information through the use icons and images.
+**Loan** | An amount of money that is borrowed by or owed to a person. A positive value signifies an amount owed by the person and a negative value signifies an amount to be paid to that person.
+**Parameter** | A value passed as a section of a command, typically following a prefix.
+**Prefix** | A signposting word that indicates the kind of property (i.e. name, email, address, etc), which typically follows immediately after the prefix, that is to be passed as a parameter.
+**Property** | An identifiable feature a person or object has that sufficiently distinguishes it from other objects of the same kind.
+**Secretary** | A person that manages the tasks and events related to the operations of an organisation.
+**Tag** | A label that groups related people together, such that they can be referred to as a single encapsulated entity specified by the tag.
+**Treasurer** | A person that manages the finances and monetary transactions related to the operations of an organisation.
+
+</blockquote>
+
 ----------------------------------------
   <br>
 
 <div style="break-after:page"></div>
 
-* **Contributions to the DG**:
-  * Added 2 diagrams:
-    * Edit sequence diagram involving either searching by index or by name
-    * UI activity diagram that describes how a user would interact with the UI
-  * Updated 1 diagram:
-    * Added the loans property to the Person Class Diagram
-  * Wrote the section involving `inspect`, `showNotes` and `hideNotes`
+### Contributions to the DG:
+
+1. Added Edit sequence diagram involving either searching by index or by name
+2. UI activity diagram that describes how a user would interact with the UI
+3. Updated the Person Class Diagram by adding the loans property to the Person Class Diagram
+4. Wrote the section involving `inspect`, `showNotes` and `hideNotes`
 
   <br>
 
