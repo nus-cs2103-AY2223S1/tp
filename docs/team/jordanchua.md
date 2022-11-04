@@ -12,14 +12,14 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to mark the project with the status {`YTS`, `IP`or `DONE`}.
   * What it does:
     * Allows the Professor to mark any FYP Projects in their FYP Manager with any of the 3 supported statuses
-      `YTS`, `IP` or `DONE`, and the status is shown at the top right-hand corner in the UI
+      `YTS`, `IP` or `DONE`
     * The status of any FYP Project just added to FYP Manager is automatically set to `YTS`
   * Justification:
     * This feature improves the product significantly since users can now mark the current status
       of any FYP project so that he/she can identify which projects may need more attention or help, especially
       those that are `YTS` or `IP`.
   * Highlights:
-    * This enhancement was a totally different command by itself, hence it was challenging to implement everything
+    * This enhancement was challenging to implement everything
       from scratch. It required an in-depth analysis of the current code base, and I had to do extensive
       code-tracing to implement the feature.
   * Credits:
