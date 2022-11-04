@@ -118,14 +118,6 @@ Displays your list of reminders.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g., if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
 
-* The following prefix parameters, `D/` and `T/`, have more than 1 definition, depending on the type of command inputted.<br>
-    - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands.<br>
-      Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday).<br>
-      Format of `DATE` should be yyyy-MM-dd. e.g., 2022-02-24
-    - `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands.<br>
-      Format of `TIMESLOT` should be HH:mm-HH:mm. e.g. 08:00-09:00</br>
-      Format of `TIME` should be HH:mm. e.g., 13:00.
-
 * Inapplicable parameters for commands that do not take in parameters (such as [`help`] and [`exit`]) will be ignored.<br>
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -573,12 +565,14 @@ Examples:
 
 ### 6.3 Prefix summary
 
+* The prefixes `D/` and `T/`, have more than 1 definition, depending on the type of command inputted.
+
 | Prefix    | Symbolises       | Used in                                                                                                                                                                                    |
 |-----------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **att/**  | attendance       | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **by/**   | sorting criteria | [`sort reminder`]                                                                                                                                                                          |
 | **d/**    | description      | [`add consultation`]<br> [`edit consultation`]<br> [`add reminder`]<br> [`edit reminder`]                                                                                                  |
-| **D/**    | date or day      | [`add consultation`]<br> [`edit consultation`]<br> [`add reminder`]<br> [`edit reminder`]                                                                                                  |
+| **D/**    | date or day      | [`add consultation`] (`DATE`) <br> [`edit consultation`] (`DATE`)<br> [`add reminder`] (`DAY`)<br> [`edit reminder`] (`DAY`)                                                               |
 | **e/**    | email            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **f/**    | field            | [`switch`]<br> [`clear`]                                                                                                                                                                   |
 | **g/**    | grade            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
@@ -589,7 +583,7 @@ Examples:
 | **ph/**   | phone            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **part/** | participation    | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **t/**    | tag              | [`add student`]<br> [`edit student`]                                                                                                                                                       |
-| **T/**    | time or timeslot | [`add student`]<br> [`edit student`]                                                                                                                                                       |
+| **T/**    | time or timeslot | [`add reminder`] (`TIME`)<br> [`edit reminder`] (`TIME`)<br> [`add consultation`] (`TIMESLOT`)<br> [`edit consultation`] (`TIMESLOT`)<br>                                                  |
 | **tut/**  | tutorial         | [`add student`]<br> [`edit student`]<br> [`find`]<br> [`add tutorial`]<br> [`edit tutorial`]                                                                                               |
 | **tele/** | Telegram handle  | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **v/**    | venue            | [`add tutorial`]<br> [`edit tutorial`]<br> [`add consultation`]<br> [`edit consultation`]                                                                                                  |
