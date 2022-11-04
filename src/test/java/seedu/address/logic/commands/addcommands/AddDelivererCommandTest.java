@@ -283,6 +283,11 @@ public class AddDelivererCommandTest {
         }
 
         @Override
+        public ObservableList<Object> getFilteredCurrList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredBuyerList(Predicate<Buyer> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -323,9 +328,64 @@ public class AddDelivererCommandTest {
         }
 
         @Override
-        public void clearMasterList() {
+        public void clearCurrList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void switchToBuyerList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void switchToSupplierList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void switchToDelivererList() {
+        }
+
+        @Override
+        public void switchToOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void switchToPetList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void switchToMainList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void checkBuyerOrder(Buyer buyer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void checkSupplierPet(Supplier supplier) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void checkDelivererOrder(Deliverer deliverer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void checkBuyerOfOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void checkSupplierOfPet(Pet pet) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

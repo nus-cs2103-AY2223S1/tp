@@ -7,7 +7,11 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.checkcommands.CheckBuyerCommand;
 import seedu.address.logic.commands.checkcommands.CheckCommand;
+import seedu.address.logic.commands.checkcommands.CheckOrderCommand;
+import seedu.address.logic.commands.checkcommands.CheckPetCommand;
+import seedu.address.logic.commands.checkcommands.CheckSupplierCommand;
 import seedu.address.logic.commands.util.CommandUtil;
 
 public class CheckCommandParserTest {
@@ -34,28 +38,28 @@ public class CheckCommandParserTest {
     @Test
     public void parse_validParams_success() {
         //Valid buyer args
-        CheckCommand expected = new CheckCommand(CheckCommand.CHECK_BUYER, INDEX_FIRST);
+        CheckCommand expected = new CheckBuyerCommand(INDEX_FIRST);
         for (String param : CommandUtil.ACCEPTABLE_BUYER_PARAMETER) {
             String input = param + " 1";
             assertParseSuccess(parser, input, expected);
         }
 
         //Valid supplier args
-        expected = new CheckCommand(CheckCommand.CHECK_SUPPLIER, INDEX_FIRST);
+        expected = new CheckSupplierCommand(INDEX_FIRST);
         for (String param : CommandUtil.ACCEPTABLE_SUPPLIER_PARAMETER) {
             String input = param + " 1";
             assertParseSuccess(parser, input, expected);
         }
 
         //Valid order args
-        expected = new CheckCommand(CheckCommand.CHECK_ORDER, INDEX_FIRST);
+        expected = new CheckOrderCommand(INDEX_FIRST);
         for (String param : CommandUtil.ACCEPTABLE_ORDER_PARAMETER) {
             String input = param + " 1";
             assertParseSuccess(parser, input, expected);
         }
 
         //Valid pet args
-        expected = new CheckCommand(CheckCommand.CHECK_PET, INDEX_FIRST);
+        expected = new CheckPetCommand(INDEX_FIRST);
         for (String param : CommandUtil.ACCEPTABLE_PET_PARAMETER) {
             String input = param + " 1";
             assertParseSuccess(parser, input, expected);

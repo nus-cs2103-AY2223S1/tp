@@ -4,14 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showBuyerAtIndex;
-import static seedu.address.logic.commands.listcommands.ListCommand.LIST_BUYER;
-import static seedu.address.logic.commands.listcommands.ListCommand.LIST_DELIVERER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.listcommands.ListAllCommand;
+import seedu.address.logic.commands.listcommands.ListBuyerCommand;
 import seedu.address.logic.commands.listcommands.ListCommand;
+import seedu.address.logic.commands.listcommands.ListDelivererCommand;
+import seedu.address.logic.commands.listcommands.ListOrderCommand;
+import seedu.address.logic.commands.listcommands.ListPetCommand;
+import seedu.address.logic.commands.listcommands.ListSupplierCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -32,39 +36,57 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
-        CommandResult expectedCommandResult = CommandResult.createListCommandResult(ListCommand.MESSAGE_SUCCESS_EMPTY,
-                ListCommand.LIST_EMPTY);
-        assertCommandSuccess(new ListCommand(ListCommand.LIST_EMPTY), model, expectedCommandResult, expectedModel);
-    }
-
-    @Test
-    public void execute_listIsFiltered_showsEverything() {
-        CommandResult expectedCommandResult = CommandResult.createListCommandResult(ListCommand.MESSAGE_SUCCESS_EMPTY,
-                ListCommand.LIST_EMPTY);
-        showBuyerAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new ListCommand(ListCommand.LIST_EMPTY), model, expectedCommandResult,
+    public void execute_listBuyer_success() {
+        CommandResult expectedCommandResult = new CommandResult(String.format(ListBuyerCommand.MESSAGE_SUCCESS));
+        assertCommandSuccess(new ListBuyerCommand(), model, expectedCommandResult,
                 expectedModel);
     }
 
     @Test
-    public void execute_listBuyer_success() {
-        CommandResult expectedCommandResult = CommandResult.createListCommandResult(
-                String.format(ListCommand.MESSAGE_SUCCESS, LIST_BUYER), LIST_BUYER);
-        assertCommandSuccess(new ListCommand(LIST_BUYER), model, expectedCommandResult,
+    public void execute_listSupplier_success() {
+        CommandResult expectedCommandResult = new CommandResult(String.format(ListSupplierCommand.MESSAGE_SUCCESS));
+        assertCommandSuccess(new ListSupplierCommand(), model, expectedCommandResult,
+                expectedModel);
+    }
+
+    @Test
+    public void execute_listDeliverer_success() {
+        CommandResult expectedCommandResult = new CommandResult(String.format(ListDelivererCommand.MESSAGE_SUCCESS));
+        assertCommandSuccess(new ListDelivererCommand(), model, expectedCommandResult,
+                expectedModel);
+    }
+
+    @Test
+    public void execute_listOrder_success() {
+        CommandResult expectedCommandResult = new CommandResult(String.format(ListOrderCommand.MESSAGE_SUCCESS));
+        assertCommandSuccess(new ListOrderCommand(), model, expectedCommandResult,
+                expectedModel);
+    }
+
+    @Test
+    public void execute_listPet_success() {
+        CommandResult expectedCommandResult = new CommandResult(String.format(ListPetCommand.MESSAGE_SUCCESS));
+        assertCommandSuccess(new ListPetCommand(), model, expectedCommandResult,
+                expectedModel);
+    }
+
+    @Test
+    public void execute_listAll_success() {
+        CommandResult expectedCommandResult = new CommandResult(String.format(ListAllCommand.MESSAGE_SUCCESS));
+        assertCommandSuccess(new ListAllCommand(), model, expectedCommandResult,
                 expectedModel);
     }
 
     @Test
     public void equals() {
-        ListCommand firstCommand = new ListCommand(LIST_BUYER);
-        ListCommand secondCommand = new ListCommand(LIST_DELIVERER);
+        ListCommand firstCommand = new ListBuyerCommand();
+        ListCommand secondCommand = new ListDelivererCommand();
 
         //same object -> returns true
         assertEquals(firstCommand, firstCommand);
 
         //same list -> returns true
-        ListCommand firstCommandCopy = new ListCommand(LIST_BUYER);
+        ListCommand firstCommandCopy = new ListBuyerCommand();
         assertEquals(firstCommand, firstCommandCopy);
 
         //different types -> returns false

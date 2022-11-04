@@ -15,9 +15,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
@@ -304,7 +301,7 @@ public class ModelManager implements Model {
         collect();
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Objects List Accessors =============================================================
     /**
      * Returns an ObservableList of buyers in the filteredPersons list.
      *

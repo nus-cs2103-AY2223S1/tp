@@ -21,10 +21,14 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.checkcommands.CheckBuyerCommand;
 import seedu.address.logic.commands.checkcommands.CheckCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.checkcommands.CheckOrderCommand;
+import seedu.address.logic.commands.checkcommands.CheckSupplierCommand;
+import seedu.address.logic.commands.listcommands.ListAllCommand;
 import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.logic.commands.MatchCommand;
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
@@ -339,8 +343,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " all") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " all") instanceof ListAllCommand);
     }
 
     @Test
@@ -354,17 +357,17 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_checkCommand() throws Exception {
-        CheckCommand expected = new CheckCommand("BUYER", INDEX_FIRST);
+        CheckCommand expected = new CheckBuyerCommand(INDEX_FIRST);
         String input = CheckCommand.COMMAND_WORD + " BUYER 1";
         CheckCommand result = (CheckCommand) parser.parseCommand(input);
         assertEquals(result, expected);
 
-        expected = new CheckCommand("SUPPLIER", INDEX_FIRST);
+        expected = new CheckSupplierCommand(INDEX_FIRST);
         input = CheckCommand.COMMAND_WORD + " SUPPLIER 1";
         result = (CheckCommand) parser.parseCommand(input);
         assertEquals(result, expected);
 
-        expected = new CheckCommand("ORDER", INDEX_FIRST);
+        expected = new CheckOrderCommand(INDEX_FIRST);
         input = CheckCommand.COMMAND_WORD + " ORDER 1";
         result = (CheckCommand) parser.parseCommand(input);
         assertEquals(result, expected);

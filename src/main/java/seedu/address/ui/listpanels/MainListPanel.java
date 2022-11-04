@@ -27,7 +27,7 @@ import seedu.address.ui.displaycards.SupplierCard;
 public class MainListPanel extends UiPart<Region> {
     private static final String FXML = "MainListPanel.fxml";
 
-    private final Logger logger = LogsCenter.getLogger(DelivererListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(MainListPanel.class);
 
     @FXML
     private ListView<Object> mainListView;

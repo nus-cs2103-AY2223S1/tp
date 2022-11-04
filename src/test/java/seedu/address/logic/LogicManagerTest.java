@@ -77,12 +77,6 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS_EMPTY, model);
-    }
-
-    @Test
     public void executeBuyer_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonAddressBookStorage addressBookStorage =
@@ -142,28 +136,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredBuyerList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredBuyerList().remove(0));
-    }
-
-    @Test
-    public void getFilteredSupplierList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredSupplierList().remove(0));
-    }
-
-    @Test
-    public void getFilteredDelivererList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredDelivererList().remove(0));
-    }
-
-    @Test
-    public void getFilteredOrdersList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
-    }
-
-    @Test
-    public void getFilteredPetList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPetList().remove(0));
+    public void getFilteredCurrList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCurrList().remove(0));
     }
 
     @Test

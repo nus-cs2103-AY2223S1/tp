@@ -98,9 +98,7 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_noMatchingKeywords_noOrdersFound() {
-        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 0),
-                false, false, true, ListCommand.LIST_ORDER, false, null,
-                false, null, null);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 0));
 
         AdditionalRequestPredicate<Order> additionalRequestPredicate = new AdditionalRequestPredicate<>(
                 Arrays.asList("laxative"));
@@ -119,9 +117,7 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_matchingAdditionalRequest_oneOrderFound() {
-        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 1),
-                false, false, true, ListCommand.LIST_ORDER, false, null,
-                false, null, null);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 1));
 
         AdditionalRequestPredicate<Order> additionalRequestPredicate = new AdditionalRequestPredicate<>(
                 Arrays.asList("Good with children"));
@@ -141,9 +137,7 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_matchingOrderStatus_oneOrderFound() {
-        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 1),
-                false, false, true, ListCommand.LIST_ORDER, false, null,
-                false, null, null);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 1));
 
         OrderStatusPredicate<Order> orderStatusPredicate = new OrderStatusPredicate<>(OrderStatus.PENDING);
         Predicate<Order> defaultPredicate = new Predicate<Order>() {
@@ -161,9 +155,7 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_exactMatchingPriceRange_oneOrderFound() {
-        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 1),
-                false, false, true, ListCommand.LIST_ORDER, false, null,
-                false, null, null);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 1));
 
         PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(200.00),
                 new Price(400.00));
@@ -182,9 +174,7 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_widePriceRange_twoOrdersFound() {
-        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 2),
-                false, false, true, ListCommand.LIST_ORDER, false, null,
-                false, null, null);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 2));
 
         PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(200), new Price(800));
         Predicate<Order> defaultPredicate = new Predicate<Order>() {

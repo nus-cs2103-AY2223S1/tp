@@ -2,8 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
@@ -17,23 +15,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.checkcommands.CheckCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Order;
-import seedu.address.model.person.Buyer;
-import seedu.address.model.person.Supplier;
-import seedu.address.model.pet.Pet;
-import seedu.address.ui.listpanels.BuyerListPanel;
-import seedu.address.ui.listpanels.DelivererListPanel;
 import seedu.address.ui.listpanels.MainListPanel;
-import seedu.address.ui.listpanels.OrderListPanel;
-import seedu.address.ui.listpanels.PetListPanel;
-import seedu.address.ui.listpanels.SupplierListPanel;
 import seedu.address.ui.popupwindow.AddCommandPopupWindow;
 
 /**

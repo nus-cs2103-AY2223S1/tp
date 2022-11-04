@@ -43,13 +43,7 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Buyer> getFilteredBuyerList();
-    ObservableList<Supplier> getFilteredSupplierList();
-    ObservableList<Deliverer> getFilteredDelivererList();
-    ObservableList<Pet> getFilteredPetList();
-    ObservableList<Order> getFilteredOrderList();
-    ObservableList<Object> getFilteredMainList();
+    /** Returns an unmodifiable view of the filtered list of objects */
     ObservableList<Object> getFilteredCurrList();
 
     /**
