@@ -606,7 +606,7 @@ Format: `delete INDEX <OR> NAME`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the SectresBook.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `delete Betsy` deletes the entry belonging to Betsy in the SectresBook
+* `delete Betsy` deletes the entry belonging to Betsy in the SectresBook.
 * `delete Lynette` does not perform any operation, if Lynette does not exist in the SectresBook.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -1086,10 +1086,10 @@ No. | Word                             | Definition
 Action | Format | Examples
 --------|----------------------|--------
 **Add a person** | `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS bday/BIRTHDAY [tag/TAG]…​`                | `add name/James Ho phone/22224444 email/jamesho@example.com home/123, Clementi Rd, 1234665 bday/01/01/2000 tag/friend tag/colleague`
-**Edit a person** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY][tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
-**Edit the loan of a person** | `editLoan INDEX amt/AMOUNT reason/REASON`                                                            | `editLoan 1 amt/-20 reason/Buy Logistics`
-**Delete a person** | `delete INDEX`<br>`delete NAME`                                                                      | `delete 3` <br> `delete Jane`
-**Find a person** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER`                                                    | `find James Jake` <br> `find 8651`
+**Edit a person** | `edit INDEX <OR> NAME [name/NAME] [phone/PHONE] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY] [tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
+**Edit the loan of a person** | `editLoan INDEX <OR> NAME amt/VALUE reason/REASON`                                                            | `editLoan 1 amt/-20 reason/Buy Logistics`
+**Delete a person** | `delete INDEX <OR> NAME`                                                                      | `delete 3` <br> `delete Jane`
+**Find a person** | `find KEYWORD [MORE_KEYWORDS]`                                                    | `find James Jake` <br> `find 8651`
 **List every person** | `list`                                                                                               | `list`
 
 [Back to Table of Contents](#table-of-contents)
@@ -1142,7 +1142,7 @@ Action | Format | Examples
 Action | Format                    | Examples
 -------|---------------------------|----------|
 **Find Tag** | `findTag TAG [MORE_TAGS]` | `findTag Operations Outreach`
-**Inspect** | `inspect NAME <OR> INDEX` | `inspect Alex` or `inspect 1`
+**Inspect** | `inspect INDEX <OR> NAME` | `inspect 1` or `inspect Alex`
 **Help** | `help`                    | `help`
 **Clear all data** | `clear`                   | `clear`
 **Exit** | `exit`                    | `exit`
