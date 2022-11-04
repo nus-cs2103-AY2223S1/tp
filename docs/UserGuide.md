@@ -233,13 +233,6 @@ Format: `:filter KEYWORD [KEYWORD]...`
 
 <div markdown="block" class="alert alert-info">
 
-**:thinking: When should I use this?**<br>
-I should use this if I am looking to find the instances of a specific exercise.
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about filter:**<br>
 
 * Only the exercise name is searched.
@@ -247,6 +240,13 @@ I should use this if I am looking to find the instances of a specific exercise.
 * The order of the keywords does not matter. e.g. Deadlift Squat will match Squat Deadlift.
 * Only full words will be matched e.g. Squat will not match Squats.
 * Exercises matching at least one keyword will be returned e.g. `:filter Bench press` will return Bench press and Leg press.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**:thinking: When should I use this?**<br>
+I should use this if I am looking to find the instances of a specific exercise.
 
 </div>
 
@@ -261,15 +261,10 @@ Sorts the exercises, in the current [Exercise List](#42-exercise-list), accordin
 
 Format: `:sort`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:thinking: When should I use this?**<br>
 I should use this if I am looking to find the instances of a specific exercise.
-
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** Can be used in conjunction with filter to track the chronological progression of a specific exercise.
 
 </div>
 
@@ -291,11 +286,6 @@ Shows all exercises, among exercises in the current [Exercise List](#42-exercise
 </div>
 
 Format (1) : `:range start/START_DATE end/END_DATE`
-
-<div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** Can be used in conjunction with filter to track the progression of a specific exercise in a certain period of time.
-
-</div>
 
 Parameter constraints:
 * Start date should be before end date. Otherwise, no exercises will be displayed.
@@ -323,7 +313,7 @@ Example:
 
 Shows a list of all exercises.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:thinking: When should I use this?**<br>
 I should use this when I want to reset my search settings back to the default.
@@ -334,6 +324,15 @@ Format: `:list`
 
 Example:
 * `:list` Shows the list of exercises you have completed.
+
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip: Tracking exercise progressions over time**<br>
+If you want to view your squat progression over the past week, here's a nifty sequence of commands you can try!
+* `:list` Current exercise list now shows all exercises.
+* `:filter Squat` Current exercise list now shows 'Squat' exercises.
+* `:range last/7` Current exercise list now shows 'Squat' exercises in the past 7 days.
+
+</div>
 
 ### 5.8. Listing Personal Records (PR): `:pr`
 
@@ -389,6 +388,7 @@ Parameter constraints:
 * The difficulty level must be supported; currently supported are: easy, medium, hard.
 
 Example:
+* `:gen 4, 5 level/easy` Generates a sample workout for Squat; this command is equivalent to `:gen 4 level/easy` since both index 4 and 5 in the displayed list are Squat exercises.
 * `:gen 1, 2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Deadlift and Incline Bench.
 
 ![GenerateCommandExample1](images/GenerateCommandExample1.png)
@@ -402,10 +402,12 @@ Parameter constraints:
 * The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:** <br>
-Redundant inputs (before the first `n/` flag) will be ignored. <br> e.g. if the command specifies `:gen 1,2,3 n/Squat level/easy`, it will be interpreted as `:gen n/Squat level/easy`.
+Redundant inputs (before the first `n/` flag) will be ignored.<br>
+E.g. if the command specifies `:gen 1,2,3 n/Squat level/easy`, it will be interpreted as `:gen n/Squat level/easy`.
 </div>
 
 Example:
+* `:gen n/Squat n/Squat level/easy` Generates a sample workout for Squat; this command is equivalent to `:gen n/Squat level/easy` since both exercise names are the same.
 * `:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift.
 
 ![GenerateCommandNameExample1](images/GenerateCommandNameExample1.png)
@@ -435,28 +437,9 @@ Format: `:wq`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Tips and Tricks
-
-Tip 1: Gim's `range` and `filter` commands operate on the current exercise list, hence you can use the commands successively to narrow the lists down to what you want to find. For instance, you can keep track of your exercise progression over a period of time through the use of `:filter NAME` followed by a `range last/NUMBER_OF_DAYS`.
-
-Example: If you  want to view your squat progression over the past week, you should input these three commands successively:
-* `:list` Current exercise list now shows all exercises.
-* `:filter Squat` Current exercise list now shows 'Squat' exercises.
-* `:range last/7`  Current exercise list now shows 'Squat' exercises in the past 7 days.
-
-Tip 2: Advanced users are welcome to update data directly by editing the data file in
-<br>
-`[JAR file location]/data/exercisetracker.json`
-
-<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Gim will discard all data and start with an empty data file at the next run.
-</div>
-
---------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
-## 7. FAQ
+## 6. FAQ
 
 **Q**: When should I use the `:list` command?
 <br>
@@ -478,17 +461,20 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 
 **Q**: Why is `:filter`, `:range` or `:sort` not showing the "correct" list even though I have input valid parameters?
 <br>
-**A**: The three commands works on the exercises in the current [Exercise List](#42-exercise-list). If your current Exercise List has been altered by list-changing commands such as `:range` or `:filter`, the commands will act on the current Exercise List rather than the full list comprising all exercises in the system.
+**A**: The three commands works on the exercises in the current [Exercise List](#42-exercise-list). If your current Exercise List has been altered by list-changing commands such as `:range` or `:filter`, the commands will act on the current Exercise List rather than the full list comprising all exercises in the system. If you would like to operate on the full list instead, try executing the command `:list` to display the full list before running the commands again.
 
-<br><br>
-If you would like to operate on the full list instead, try executing the command `:list` to display the full list before running the commands again.
+**Q**: How is data stored in Gim?
+<br>
+**A**: Gim data is stored in `[JAR file location]/data/exercisetracker.json`. If you are comfortable working with json files, you are welcome to update Gim's data by editing the data file directly.
 
-
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, Gim will discard all data and start with an empty data file at the next run.
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
-## 8. Command Summary
+## 7. Command Summary
 
 | Action                          | Format                                         | Examples                                  |
 |---------------------------------|------------------------------------------------|-------------------------------------------|
@@ -511,7 +497,7 @@ If you would like to operate on the full list instead, try executing the command
 
 <div style="page-break-after: always;"></div>
 
-## 9. Glossary of Terminologies
+## 8. Glossary of Terminologies
 * **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
 * **Parameters**: Inputs for commands that you come up with.
 * **Exercise** : Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
