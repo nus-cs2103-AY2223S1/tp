@@ -7,7 +7,6 @@ import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Description;
-import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
@@ -36,7 +35,6 @@ public class EditPropertyDescriptorBuilder {
         descriptor.setPrice(property.getPrice());
         descriptor.setAddress(property.getAddress());
         descriptor.setDescription(property.getDescription());
-        descriptor.setOwner(property.getOwner());
         descriptor.setOwnerName(property.getOwner().getName());
         descriptor.setOwnerPhone(property.getOwner().getPhone());
     }
@@ -78,19 +76,6 @@ public class EditPropertyDescriptorBuilder {
      */
     public EditPropertyDescriptorBuilder withCharacteristics(String characteristics) {
         descriptor.setCharacteristics(new Characteristics(characteristics));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Owner}, {@code Name} and {@code Phone} of the {@code EditPropertyDescriptor}
-     * that we are building.
-     */
-    public EditPropertyDescriptorBuilder withOwner(String ownerName, String ownerPhone) {
-        Name newOwnerName = new Name(ownerName);
-        Phone newOwnerPhone = new Phone(ownerPhone);
-        descriptor.setOwner(new Owner(newOwnerName, newOwnerPhone));
-        descriptor.setOwnerName(newOwnerName);
-        descriptor.setOwnerPhone(newOwnerPhone);
         return this;
     }
 
