@@ -7,8 +7,6 @@ We are a team based in the [School of Computing, National University of Singapor
 
 We are a group of like-minded students who saw the problems financial advisors are facing in their work. We came together for the [CS2103T](https://nusmods.com/modules/CS2103T/software-engineering) module in NUS to create a create address book for financial advisors to build their client base.
 
-You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
-
 ## Project team
 
 ### Kelvin Ou
