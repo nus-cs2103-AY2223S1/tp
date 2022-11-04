@@ -4,6 +4,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 /**
@@ -11,12 +13,12 @@ import java.util.Objects;
  * Guarantees: immutable; is valid as declared in {@link #isValidDatetimeStr(String)} (String)}
  */
 public class InterviewDate {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Interview dates must be in the format yyyy-MM-dd HH:mm, and it should not blank";
+    public static final String MESSAGE_CONSTRAINTS = "Interview date must be "
+            + "a valid date (present in a calendar) with valid time (24-hour format), "
+            + "and given in the exact format yyyy-MM-dd HH:mm.";
 
-    public static final String VALIDATION_REGEX = "\\d{4}-[01]\\d-[0-3]\\d\\s[0-2]\\d((:[0-5]\\d)?){2}";
-
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter formatter =
+            DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm").withResolverStyle(ResolverStyle.STRICT);
 
     public final LocalDateTime datetime;
 
@@ -36,8 +38,16 @@ public class InterviewDate {
         }
     }
 
+    /**
+     * Returns true if the given String can be parsed to a valid {@Code LocalDateTime}.
+     */
     public static boolean isValidDatetimeStr(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalDateTime.parse(test, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     @Override
@@ -48,8 +58,6 @@ public class InterviewDate {
         return datetime.format(formatter);
     }
 
-    // solution adapted from
-    // https://stackoverflow.com/a/36716166
     @Override
     public boolean equals(Object other) {
         return Objects.equals(datetime, ((InterviewDate) other).datetime);

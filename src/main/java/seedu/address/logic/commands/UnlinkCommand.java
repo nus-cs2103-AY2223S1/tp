@@ -22,7 +22,7 @@ public class UnlinkCommand extends Command {
 
     public static final String COMMAND_WORD = "unlink";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links a Person and an Internship. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unlinks a Person and an Internship.\n"
             + "Parameters: "
             + PREFIX_PERSON + "PERSON_INDEX "
             + PREFIX_INTERNSHIP + "INTERNSHIP_ID\n"

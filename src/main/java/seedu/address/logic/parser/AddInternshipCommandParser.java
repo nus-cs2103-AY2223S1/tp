@@ -7,8 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK_INDEX;
 
-import java.util.stream.Stream;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddInternshipCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -38,7 +36,11 @@ public class AddInternshipCommandParser implements Parser<AddInternshipCommand> 
                         PREFIX_INTERVIEW_DATE,
                         PREFIX_LINK_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY_NAME, PREFIX_INTERNSHIP_ROLE, PREFIX_INTERNSHIP_STATUS)
+        if (!ParserUtil.arePrefixesPresent(
+                argMultimap,
+                PREFIX_COMPANY_NAME,
+                PREFIX_INTERNSHIP_ROLE,
+                PREFIX_INTERNSHIP_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInternshipCommand.MESSAGE_USAGE));
         }
@@ -60,13 +62,4 @@ public class AddInternshipCommandParser implements Parser<AddInternshipCommand> 
 
         return new AddInternshipCommand(companyName, internshipRole, internshipStatus, interviewDate, linkIndex);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }
