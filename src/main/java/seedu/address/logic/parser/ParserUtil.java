@@ -250,7 +250,7 @@ public class ParserUtil {
             Integer duration = Integer.valueOf(trimmedTimeRange.substring(10));
             if (!Class.isValidDuration(startTime, endTime)
                     || !TimeRange.isValidEndTime(startTime, endTime, duration)) {
-                throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
+                throw new ParseException(TimeRange.INVALID_DURATION_ERROR_MESSAGE);
             }
             return new TimeRange(startTime, endTime, duration);
         } else {
