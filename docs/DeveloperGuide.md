@@ -539,7 +539,7 @@ Use case ends.
 1a. The person already exists in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS displays that the person already exists in the program.
+1a1. TABS displays that the person already exists in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
@@ -593,7 +593,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS displays that the person does not exist.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -603,7 +603,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1b1. TABS displays the format of the invalid field.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -625,7 +625,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS displays the format of the command.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -635,7 +635,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1b1. TABS displays no person is found.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -668,17 +668,17 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS displays that the person specified does not exist in TABS.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
 &nbsp;&nbsp;
-1a. The name of the person is not given.
+1b. The name of the person is not given.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS displays the format of the command.
+1b1. TABS displays the format of the command.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -700,7 +700,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS displays that the group already exists in TABS.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -710,7 +710,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1b1. TABS displays the format of the command.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -720,7 +720,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1c1. TABS displays the format of the empty field.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -742,7 +742,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS displays that the group specified does not exist in TABS.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -752,7 +752,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1b1. TABS displays the format of the command.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -785,7 +785,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS displays that the group specified does not exist in TABS.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -795,7 +795,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1b1. TABS displays the format of the command.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -805,7 +805,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1c1. TABS displays the format of the empty required field.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -827,7 +827,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS displays that the person specified or the group specified does not exist.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -837,7 +837,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1b1. TABS displays the format of the command.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -847,7 +847,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1c1. TABS displays the format of the empty required field.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -869,7 +869,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS displays that the person specified or the group specified does not exist.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -879,7 +879,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1b1. TABS displays that the person specified is not in the group specified.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -889,7 +889,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1c1. TABS displays the format of the command.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -899,7 +899,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1d1. TABS displays the format of the empty field.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -908,7 +908,7 @@ Use case ends.
 **MSS**
 
 1. User requests to assign a task to a member in TABS.
-2. TABS displays that the task is tagged to the person specified under the group specified.
+2. TABS displays that the task is added and is tagged to the person specified under the group specified.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -921,7 +921,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS displays that the person specified or the group specified does not exist.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -931,27 +931,27 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1b1. TABS displays that the person specified is not in the group specified.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
 &nbsp;&nbsp;
-1c. TABS detects a missing required field.
+1c. The task specified already exists in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1c1. TABS displays the format of the command.
+1c1. TABS displays that the task specified already exists in TABS.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
 &nbsp;&nbsp;
-1d. TABS detects an empty required field.
+1d. TABS detects a missing or an empty required field.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1d1. TABS displays the format of the empty field.
+1d1. TABS displays the format of the command and the required fields.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -968,21 +968,42 @@ Use case ends.
 **Extensions:**
 
 &nbsp;&nbsp;
-2a. The person specified is not found in TABS.
+1a. The person specified or the group specified is not found in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-2a1. TABS terminates the operation by the user.
+1a1. TABS displays that the person specified or the group specified does not exist.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
+
 &nbsp;&nbsp;
-3a. The person does not have the specified task.
+1b. The group specified does not have the person specified in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-3a1. TABS terminates the operation by the user.
+1b1. TABS displays that the person specified is not in the group specified.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Use case ends.
+
 
 &nbsp;&nbsp;
+1c. The task specified does not exist for the person specified in TABS.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1c1. TABS displays that the person specified does not have the task specified.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Use case ends.
+
+
+&nbsp;&nbsp;
+1d. TABS detects a missing or an empty required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1d1. TABS displays the format of the command and the required fields.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -1002,9 +1023,19 @@ Use case ends.
 1a. The group specified is not found in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS terminates the operation by the user.
+1a1. TABS displays that the group specified does not exist.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Use case ends.
+
 
 &nbsp;&nbsp;
+1b. TABS detects a missing or an empty required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1b1. TABS displays the format of the command and the required fields.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
@@ -1021,21 +1052,32 @@ Use case ends.
 **Extensions:**
 
 &nbsp;&nbsp;
-1a. The person specified or the group specified is not found in TABS.
+1a. The group specified is not found in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS displays that the person specified or the group specified does not exist.
+1a1. TABS displays that the group specified does not exist.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
+
 &nbsp;&nbsp;
-1a. The person specified or the group specified is not found in TABS.
+1b. The task specified is not found in the group specified in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS displays that the person specified or the group specified does not exist.
+1b1. TABS displays that the task specified does not exist in any group member.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Use case ends.
+
 
 &nbsp;&nbsp;
+1c. TABS detects a missing or an empty required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1c1. TABS displays the format of the command and the required fields.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
