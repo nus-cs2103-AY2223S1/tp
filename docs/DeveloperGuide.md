@@ -289,8 +289,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                                  | know what modules are offered in NUS                                       | find modules to do to fulfill my graduation requirement                   |
 | `* *`    | potential user exploring CLIMods                         | have a tutorial or detailed documentation on features of app               | easily adapt and use the app proficiently                                 |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `CLIMods` and the **Actor** is the `user`, unless specified otherwise)
@@ -399,8 +397,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Student**: The person who uses the app
 * **Module(s)**: The modules/class to be taken by the students
 
-*{More to be added}*
-
+The picture below shows the terms used for different parts of the UI shown on CLIMods.
+1. **Module list**: List of modules offered by NUS. Possibly filtered according to execution of various commands
+2. **My modules**: List of modules the user is taking
+3. **Result window**: Window showing result after execution of commands
+4. **Command box**: Box where the user types commands
+   <img src="images/Glossary.png" width="600" />
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -413,43 +415,55 @@ testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
+Refer to instructions in [Quick Start](https://ay2223s1-cs2103-f14-1.github.io/tp/UserGuide.html#quick-start) for
+launch.
+Use the [exit](https://ay2223s1-cs2103-f14-1.github.io/tp/UserGuide.html#exiting-the-program-exit) command to
+shutdown the application.
 
-1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+### `add`: Adding a module
+0. Prerequisite: CS2103 has not been added to `My modules`.
+1. Type `add CS2103 s1` in the command box to add CS2103 to your module list (under Semester 1)
+2. Expected result: CS2103 is now added to `My modules`
+3. Typing the same command as in Step 1 should now show an error message in the result window as CS2103 has already
+   been added
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+### `view`: Viewing classes for a module
+1. Type `view CS2103` in the command box
+2. The detailed description for CS2103 is now visible in the module list
 
-1. Saving window preferences
+### `pick`: Picking classes for a module
+0. Prerequisite: Add CS2103 to `My modules` by typing `add CS2103 s1`
+1. Type `pick CS2103 tut 02` to add tutorial 2 to picked classes for CS2103
+2. Expected result: Tutorial 02 is added to your class list for CS2103 under `My modules`
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### `preq`: Viewing prerequisites for a module
+1. Type `preq CS2103` in the command box
+2. Expected result: The module list is now filtered to show some prerequisites of CS2103. As explained in the User
+   Guide,
+   not all prerequisites are necessarily shown in the module list due to limitations of the NUSMods API.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a User Module
+### `rm`: Deleting a User Module
 
 1. Deleting a module while all User Modules are being shown
 
-   0. Prerequisites: Open CLImods and add CS2103 using `add cs2103`. 
+   0. Prerequisites: Open CLIMods and add CS2103 by typing `add cs2103` in the command box
 
    1. Test case: `rm cs2103`<br>
    Expected: CS2103 is deleted and removed from `My Modules`.
-   A success message of "Deleted Module: CS2103" should be displayed.
+   A success message of "Deleted Module: CS2103" should be displayed in the result window
 
    3. Test case: `rm cs2103`<br>
-      Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No module is deleted. Error details shown in the result window.
 
    4. Other incorrect delete commands to try: `rm`, `rm x`, `...` (where x is an invalid module code)<br>
       Expected: Similar to previous.
 
-### Finding modules by keyword or regex
+### `find`: Finding modules by keyword or regex
 
 1. Finding modules that match the input keywords or input regex
 
-    0. Prerequisites: Open CLImods with stable internet connection
+    0. Prerequisites: Open CLIMods with stable internet connection
 
     1. Test case: `find operating`<br>
        Expected: CG2271, CS2106, CS2106R, CS3221, CS5250, YSC3217 are listed.
@@ -467,5 +481,3 @@ testers are expected to do more *exploratory* testing.
    2. Launch the app
    3. CLIMods will not load the save file
    4. Adding mods will overwrite the corrupted file
-
-1. _{ more test cases …​ }_
