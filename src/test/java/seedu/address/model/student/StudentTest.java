@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INTERMEDIATE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -294,5 +295,14 @@ public class StudentTest {
         assertTrue(alice.compareToByMoneyOwedDesc(ava) < 0);
         assertTrue(alice.compareToByMoneyOwedDesc(bob) > 0);
         assertTrue(ava.compareToByMoneyOwedDesc(bob) > 0);
+    }
+
+    @Test
+    public void shareSameNumberAsNOKTest() {
+        Student alice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_AMY).withNokPhone(VALID_NOK_PHONE_BOB).build();
+        assertFalse(alice.hasSharedPhone());
+
+        Student bob = new StudentBuilder(BOB).withPhone(VALID_PHONE_BOB).withNokPhone(VALID_PHONE_BOB).build();
+        assertTrue(bob.hasSharedPhone());
     }
 }
