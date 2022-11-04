@@ -666,11 +666,11 @@ command `list orders` before using `filter-o`. When filtering pets, use the comm
 Displays only Orders based on the given attribute(s). There are three possible attributes to filter: Additional
 requests, Order status, Price range.
 
-| Attribute           | Prefix | Format                       | Example         |
-|---------------------|--------|------------------------------|-----------------|
-| Additional requests | o_ar   | o_ar/KEYWORD                 | ar/non-shedding |
-| Order Status        | o_st   | o_st/KEYWORD                 | os/Negotiating  |
-| Price Range         | o_pr   | o_pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
+| Attribute           | Prefix | Format                       | Example           |
+|---------------------|--------|------------------------------|-------------------|
+| Additional requests | o_ar   | o_ar/KEYWORD                 | o_ar/non-shedding |
+| Order Status        | o_st   | o_st/KEYWORD                 | o_st/Negotiating  |
+| Price Range         | o_pr   | o_pr/LOWER_PRICE-UPPER_PRICE | o_pr/100-456        |
 
 Format: `filter-o PREFIX/INPUT`
 
@@ -678,10 +678,11 @@ Examples:
 
 * `filter-o o_st/Pending`
 * `filter-o o_st/Negotiating o_pr/90-900`
-* `filter-o o_ar/good with children o_st/Delivering o_pr/80-100`
+* `filter-o o_ar/good o_st/Delivering o_pr/80-100`
 
 Notes:
 
+* For additional requests, there cannot be spaces (ie. filter-o o_ar/good for kids).
 * Having multiple prefixes of the same type is allowed. One example of this is:
 `filter-o os/Pending os/Delivering`. However, only the latest input will be taken, in the example above, the order status the app will use to filter orders is the "Delivering" status.
 * Note that Order Statuses are case-sensitive, so the input `filter-o os/delivering` may throw an error. To play safe, use the following words for Order status only:
@@ -945,9 +946,8 @@ These prefixes are for you to indicate different fields when you add a new [buye
 |                **[Find Buyer](#finding-a-buyer--find-b)**                 | `find-b PREFIX/KEYWORD`                                                                   | `find-b n/James Jake`                                                  |
 |            **[Find Deliverer](#finding-a-deliverer--find-d)**             | `find-d PREFIX/KEYWORD`                                                                   | `find-d n/James Jake`                                                  |
 |             **[Find Supplier](#finding-a-supplier--find-s)**              | `find-s PREFIX/KEYWORD`                                                                   | `find-s n/James Jake`                                                  |
-|           **[Filter](#filtering-items-by-attributes--filter)**            | `filter t/INPUT`                                                                          | `filter t/dog t/second-hand`                                           |
-|             **[Filter Orders](#filtering-orders--filter-o)**              | `filter-o PREFIX/KEYWORD`                                                                 | `filter-o ar/good with children pr/10-100`                             |
-|               **[Filter Pets](#filtering-pets--filter-p)**                | `filter-p PREFIX/KEYWORD`                                                                 | `filter-p c/white s/capybara`                                          |
+|             **[Filter Orders](#filtering-orders--filter-o)**              | `filter-o PREFIX/KEYWORD`                                                                 | `filter-o o_ar/non-allergic o_pr/10-100`                               |
+|               **[Filter Pets](#filtering-pets--filter-p)**                | `filter-p PREFIX/KEYWORD`                                                                 | `filter-p p_c/white p_s/capybara`                                      |
 |                      **[Help](#viewing-help--help)**                      | `help`                                                                                    |                                                                        |
 |               **[List](#listing-contacts-or-items--list)**                | `list all`, `list buyer`, `list supplier`, <br>`list deliverer`, `list order`, `list pet` |                                                                        |
 |                    **[Sort](#sorting-contacts--sort)**                    | `sort LIST_PARAMETER [ATTRIBUTES...]`                                                     | `sort pet price height weight`                                         |
