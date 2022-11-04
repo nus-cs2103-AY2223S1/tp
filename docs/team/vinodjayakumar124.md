@@ -17,11 +17,11 @@ Given below are my contributions to the project.
 * **Enhancements implemented**:
     * **New Class** Added the `Event` class (Pull request [#57](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/57))
   and `EventTitle` and `Purpose` attributes (Pull request [#124](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/124)).
-      * What is does: This class allows users to store information of marketing events in their application.
-      * Justification: Since the core purpose of our application is to allow marketers to manage events that happen in 
-      a department store, it is crucial to have an event class that is able to store the key information regarding 
-      each marketing event (such as event title, date, time and purpose). The classes built for the event attributes 
-      allow for additional validation checks that are unique to each class.
+      * What is does: This class allows users to store information about marketing events within the application.
+      * Justification: Since the application aims to help department store marketers manage department store events,
+        having an event class that stores key information regarding each marketing event (such as event title, date, time
+        and purpose) is crucial. The classes built for the event attributes allow for additional validation checks that are
+        unique to each class.
       * Highlights: Jackson was used to save the `Event` into JSON format.
 
     * **New Features** Added the `addEvent` (Pull request [#57](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/57)), 
