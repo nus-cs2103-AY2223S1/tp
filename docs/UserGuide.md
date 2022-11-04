@@ -220,7 +220,6 @@ Example:
 
 * `filterC cs2103t` will return a contact with label `cs2103t`.
 
-
 ### Copying contact emails by label: `copyC`
 
 Displays a string of emails of contacts with a label that matches the given keyword for easier copy-pasting.
