@@ -25,6 +25,7 @@ Given below are my contributions to the project.
 * **Project management**:
     * Handled/closed issues promptly
     * Helped to ensure that milestones are met and closed on time
+    * Built and released `TABS.jar` file
     * Pull requests and reviews are done properly
 
 * **Contribution to team-based Tasks**
@@ -46,7 +47,7 @@ Given below are my contributions to the project.
         * Add the Introduction and `Quick Start` section
     * Developer Guide:
         * Add the uses cases for TABS
-        * Add `DisplayGroupCommand` implementation and the corresponding UML diagram
+        * Add `DisplayGroupCommand` implementation
         * Update the `UI Component`
 
 * **Community**:
