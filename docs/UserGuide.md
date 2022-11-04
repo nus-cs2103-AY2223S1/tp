@@ -223,6 +223,11 @@ you can copy the link and paste it into your favourite browser!
 Ans: No! Do not edit the json files on your own! Instead, you should use the command line interface provided by
 CLIMods. We do not take any responsibility for any unexpected behaviour if you insist on editing the json files.
 
+<div markdown="block" class="alert alert-danger">
+If the file is corrupted, please manually delete the file from the directory. 
+Automatic deletion of files is not a feature due to security concerns (e.g. malicious hackers can set the file preference to local files that are not json compatible. Enabling auto-deletion of corrupted files will enable hackers to delete these files.)
+</div>
+
 4. Why is the application not displaying any modules?
 
 Ans: CLIMods requires internet access because we fetch module data from NUSMods API.  Please ensure that you have
