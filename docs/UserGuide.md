@@ -315,6 +315,8 @@ Format: `group GROUPNAME`
 
 Examples:
 * `group friends` opens a group window containing persons in the group `friends`.
+![GroupCommandExample](images/GroupCommandExample.png)
+
 
 ### f. Email all persons in a group : `emailall`
 
