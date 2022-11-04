@@ -114,20 +114,7 @@ public class Class {
      * Returns a formatted date and time for avail command.
      */
     public String toAvailCommandString() {
-        if (date == null) {
-            return "";
-        }
-        return date + " " + this.toAvailCommandTimeString(startTime) + "-" + this.toAvailCommandTimeString(endTime);
-    }
-
-    /**
-     * Returns a formatted time for avail command.
-     */
-    private String toAvailCommandTimeString(LocalTime time) {
-        if (time == null) {
-            return "";
-        }
-        return time.toString().replace(":", "");
+        return this.classDateTime;
     }
 
     /**
@@ -336,7 +323,7 @@ public class Class {
     }
 
     /**
-     * Returns -1 if this {@code Class} starts before the given {@code aClass}.
+     * Returns -1 if this {@code Class} starts before the given {@code aClass} and 1 otherwise.
      * {@code Class} and {@code aClass} must be non-null and on the same day;
      */
     public int compareToByStartTime(Class aClass) {
@@ -346,7 +333,7 @@ public class Class {
     }
 
     /**
-     * Returns -1 if this {@code Class} starts before the given {@code aClass}.
+     * Returns -1 if the {@code Class} starts before the given {@code aClass}, 0 if same and 1 otherwise.
      */
     public int compareToByClassTime(Class aClass) {
         requireAllNonNull(this.date, this.startTime, aClass.date, aClass.startTime);

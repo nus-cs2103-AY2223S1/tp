@@ -154,7 +154,7 @@ public class UniqueStudentList implements Iterable<Student> {
                         && student.getAClass().date != null
                         && student.getAClass().date.compareTo(currDate) >= 0
                         && student.getAClass().startTime.compareTo(LocalTime.now()) >= 0)
-                .sorted(Student::compareTo)
+                .sorted(Student::compareToByClassStartTimeAsc)
                 .collect(Collectors.toList());
         Class newClass = new Class();
         if (list.size() == 0) {

@@ -265,7 +265,7 @@ public class Student {
      * @param student a student object to compare with.
      * @return the result of comparing the two {@code student} object startTime.
      */
-    public int compareTo(Student student) {
+    public int compareToByClassStartTimeAsc(Student student) {
         if (student.aClass.startTime == null && this.aClass.startTime == null) {
             return 0;
         } else if (student.aClass.startTime == null) {
