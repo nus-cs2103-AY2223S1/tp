@@ -1,38 +1,47 @@
 @startuml
-!include style.puml
 
-Actor User as user USER_COLOR
-Participant ":UI" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant ":Storage" as storage STORAGE_COLOR
+skinparam sequence {
+ ActorFontColor black
+ ParticipantFontColor white
+}
 
-user -[USER_COLOR]> ui : "delete 1"
-activate ui UI_COLOR
+actor User as User #black
+participant ":UI" as UI #green
+participant ":Logic" as Logic #3333C4
+participant ":Model" as Model #9D0011
+participant ":Storage" as Storage #A4760A
 
-ui -[UI_COLOR]> logic : execute("delete 1")
-activate logic LOGIC_COLOR
+User->UI : "rm CS2103"
+activate UI #green
 
-logic -[LOGIC_COLOR]> model : deletePerson(p)
-activate model MODEL_COLOR
+UI->Logic : execute("rm CS2103")
+activate Logic #3333C4
 
-model -[MODEL_COLOR]-> logic
-deactivate model
+Logic->Model : deleteUserModule("CS2103")
+activate Model #9D0011
 
-logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
-activate storage STORAGE_COLOR
+Model-->Logic
+deactivate Model
 
-storage -[STORAGE_COLOR]> storage : Save to file
-activate storage STORAGE_COLOR_T1
-storage --[STORAGE_COLOR]> storage
-deactivate storage
+Logic->Storage : saveUserModuleList(userModuleList)
+activate Storage #A4760A
 
-storage --[STORAGE_COLOR]> logic
-deactivate storage
+Storage->Storage : Save to file
+activate Storage #FEE373
 
-logic --[LOGIC_COLOR]> ui
-deactivate logic
+Storage-->Storage
+deactivate Storage
 
-ui--[UI_COLOR]> user
-deactivate ui
+Storage-->Logic
+deactivate Storage
+
+Logic-->UI
+deactivate Logic
+
+UI-->User
+deactivate UI
+
+
+
+
 @enduml
