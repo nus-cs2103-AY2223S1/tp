@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 - **Main responsiblity**: UI/UX Design
   - Despite limitations imposed by JavaFx, designed the UI based on [Material Design](https://m2.material.io/design) [#44](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/44)
   - Implemented different UI components for the features that others had worked on [#56](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/56), [#69](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/69), [#90](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/90)
-  - Implemented bug fixes and suggestions for UI that others have brought up during their testing [$55](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/55), [#99](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/188), [#112](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/112), [#115](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/115)
+  - Implemented bug fixes and suggestions for UI that others have brought up during their testing [#55](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/55), [#99](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/188), [#112](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/112), [#115](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/115)
 - **Contribution to team-based tasks**
   - Initial setting up of repository, including the creation of a new GitHub organisation, configuring code-cov and GitHub pages.
   - v1.3 demo
