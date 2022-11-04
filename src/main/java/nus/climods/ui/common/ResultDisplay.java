@@ -17,8 +17,12 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Initialise the result display and disabling focus
+     */
     public ResultDisplay() {
         super(FXML);
+        resultDisplay.setDisable(true);
     }
 
     public void setFeedbackToUser(String feedbackToUser) {

@@ -27,6 +27,7 @@ public class SavedModuleListPanel extends UiPart<Region> {
      */
     public SavedModuleListPanel(ObservableList<UserModule> moduleList) {
         super(FXML);
+        moduleListView.setFocusTraversable(false);
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListViewCell());
     }
