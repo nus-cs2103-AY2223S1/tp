@@ -447,6 +447,6 @@ Travelr data are saved locally automatically after any command. There is no need
 ### Icons
 |**Icon**|**Explanation**|
 |:-:|:-:|
-|:information_source:|The segment will provide useful information for using the Applicaiton.|
-|:warning:|The segment will provide important notes about our app that you should know.|
+|:information_source:|The segment will provide useful information for using Travelr.|
+|:warning:|The segment will provide important notes about Travelr.|
 |:point_up:|The segment explains the uses of a feature.|
