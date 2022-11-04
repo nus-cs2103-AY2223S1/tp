@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add a member to a group feature
   * What it does: adds a person currently in TABS to a group.
-  * Justification: This feature improves the product significantly by allowing the user to form groups to manage task allocation. 
+  * Justification: This feature improves the product significantly by allowing the user to form groups to manage task allocation.
 
 
 * **New Feature**: Added the ability to delete a member from a group feature
@@ -21,7 +21,7 @@ Given below are my contributions to the project.
 
 
 * **New Feature**: Added tabs to switch between assignment view and contact details (UI)
-    * What it does: allows the user to toggle between the two panes displaying contact details and assignments. 
+    * What it does: allows the user to toggle between the two panes displaying contact details and assignments.
     * Justification: This feature improves the product significantly by allowing the user to view either the assignments or the contact details efficiently.
 
 

@@ -73,7 +73,7 @@ Note how the app contains some sample data.
 * Extraneous parameters for commands that do not take in parameters (such as `listpersons`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `listpersons 123`, it will be interpreted as `listpersons`.
 
-* Commands involving the parameter `NAME` is case-sensitive, the `NAME` specified must be 
+* Commands involving the parameter `NAME` is case-sensitive, the `NAME` specified must be
 exactly the same as the one stored in TABS.
 
 </div>
@@ -97,7 +97,7 @@ Format: `addperson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 </div>
 
 <div markdown="span" class="alert alert-primary">
-<br>:information_source: **Extra note**: 
+<br>:information_source: **Extra note**:
 
 A person's email can be in the form of `local-part@domain`, where the `domain`
 specified must be at least 2 characters long.
@@ -231,7 +231,7 @@ assigns `John` in group `CS2103T` with a `High` workload task `TeamProject`.
 assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0` and the deadline of the task is `2022-01-01 23:59`.
 
 <div markdown="span" class="alert alert-primary">
-  :information_source: **Extra note**: 
+  :information_source: **Extra note**:
 
 A workload indicator is shown beside each person in TABS.
 When the workload of the person increases, the workload indicator will gradually change from green to red.
