@@ -18,8 +18,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.Consultation;
-
+import seedu.address.model.datetime.WeeklyTimeslot;
+import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialName;
 
 
 /**
@@ -71,6 +75,10 @@ public class TypicalConsultations {
         for (Consultation consultation : getTypicalConsultations()) {
             ab.addConsultation(consultation);
         }
+        ab.addTutorial(new Tutorial(new TutorialName("W17"), new ModuleCode("CS2103T"), new Venue("COM1"),
+                WeeklyTimeslot.fromFormattedString("1", "15:00", "17:00")));
+        ab.addTutorial(new Tutorial(new TutorialName("F17"), new ModuleCode("CS2101"), new Venue("COM2"),
+                WeeklyTimeslot.fromFormattedString("2", "15:00", "17:00")));
         return ab;
     }
 
