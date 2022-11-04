@@ -52,7 +52,7 @@ Symbol/Syntax        | Meaning
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/LOW m/1000 c/POTENTIAL` : Adds a contact named `John Doe` to the list of clients.
 
-   * **`aa`** `1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks` : Adds an appointment to the client in index 1 of the contact book with the date, time and location of the appointment.
+   * **`aa`** `1 d/21-01-2023 12:30 l/Jurong Point, Starbucks` : Adds an appointment to the client in index 1 of the contact book with the date, time and location of the appointment.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -101,7 +101,7 @@ Format: `Prefix/Parameter`
 12. d/DATE_AND_TIME
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Prefix l/Location is a lower case L, and not an I. </div>
+Prefix l/Location is a lower case L, and not an uppercase i. </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -286,7 +286,7 @@ Adds an appointment with inputs DATE_AND_TIME and LOCATION for an existing clien
 
 Format: `aa INDEX d/DATE_AND_TIME l/LOCATION`
 
-Example: `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+Example: `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`
 
 The appointment details will be added to the specified client's information.
 
@@ -297,8 +297,8 @@ Also, the appointment details will be added to the calendar.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 <br>
-* DATE_AND_TIME has the format `d-MMM-yyyy hh:mm a` 
-* The PM/AM in TIME is case-sensitive, and whitespace sensitive as well.
+* DATE_AND_TIME has the format `d-M-uuuu HH:mm` (e.g "01-03-2022 18:00" represents 1st March 2022, 6:00 PM)
+
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed.
@@ -309,7 +309,7 @@ Also, the appointment details will be added to the calendar.
 
 Examples:
 
-* `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+* `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`
 
 #### 5.2.2 Editing an appointment : `ea`
 Edits an appointment for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
@@ -323,7 +323,7 @@ Format: `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]`
 
 Examples:
 
-* `ea 1.1 d/21-Jan-2023 12:30 PM l/West Mall, Starbucks` Edits both the date and location of the 1st client's 1st appointment to be `21-Jan-2023 12:30 PM` and `West Mall, Starbucks` respectively.
+* `ea 1.1 d/21-01-2023 12:30 l/West Mall, Starbucks` Edits both the date and location of the 1st client's 1st appointment to be `21-01-2023 12:30` and `West Mall, Starbucks` respectively.
 * `ea 2.3 l/NUS, TechnoEdge` Edits the location of the 2nd client's 3rd appointment to be `NUS, TechnoEdge`
 
 #### 5.2.3 Deleting an appointment : `da`
@@ -442,8 +442,8 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE m/MONTHLY_CONTRIBUTIONS c/CLIENT_TYPE [t/TAG]…​ ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
-**Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
-**Edit Appointment** | `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]` <br> e.g., `ea 1.2 d/21-Jan-2023 12:30 PM l/NUS, TechnoEdge`
+**Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`
+**Edit Appointment** | `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]` <br> e.g., `ea 1.2 d/21-01-2023 12:30 l/NUS, TechnoEdge`
 **Delete Appointment** | `da PERSON_INDEX.APPOINTMENT_INDEX` <br> e.g, `da 1.2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
