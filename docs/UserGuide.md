@@ -8,6 +8,8 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 Travelr allows you to plan trips around the activities in your bucket list. You will be able to keep track of your bucket list, travel dates, locations, and itineraries, all within the same app!
 
+In this guide, you will be introduced to the various features of Travelr, which will help you to use Travelr to build up your bucket list, plan future trips, and look back on your past trip experiences in an effective manner.
+
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
@@ -36,12 +38,12 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 On app startup, the Trip List Display will show all trips and the Event List Display will display
 the events in the bucket list i.e Events that haven't been added to any trips.
 
-Trips can be marked as completed via the `mark` command. Completed trips will be labelled with a tick icon
+Trips can be marked as completed via the [`mark`](#marking-trips-as-completed-mark) command. Completed trips will be labelled with a tick icon
 to the right of the trip's title.
 
 The trips display sorts the trips by completion automatically. Completed trips will remain at the bottom of the list.
 
-Titles, Locations and Descriptions that are too long will be truncated. To view the full details of an event or trip, use `display-e` and `display` commands respectively.
+Titles, locations and descriptions that are too long will be truncated. To view the full details of an event or trip, use [`display-e`](#displaying-specified-event-details-display-e) and [`display`](#displaying-specified-trip-details-display) commands respectively.
 
 <div markdown="block" class="alert alert-info">
 
@@ -53,9 +55,9 @@ Titles, Locations and Descriptions that are too long will be truncated. To view 
 |:-:|:--|
 |**Input Box**|where you enter your commands.|
 |**Output Box**|where the results of your command are shown.
-|**Selected Trip Box**| where the current selected trip is shown.<br><br> Use `select` to select a trip.|
-|**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the types of trips being shown: <br><ul><li>`completed`</li><li>`view`</li><li>`list`</li></ul> See feature list for more information about the commands.|
-|**Event List Display**|where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown: <br><ul><li>`completed`</li><li>`view`</li><li>`list-e`</li><li>`select`</li></ul> See feature list for more information about the commands.
+   |**Selected Trip Box**| where the current selected trip is shown.<br><br> Use [<code>select</code>](#selecting-a-trip-to-view-its-itinerary-select) to select a trip.|
+|**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the types of trips being shown: <br><ul> [<li><code>completed</code></li>](#viewing-all-completed-trips-and-events-completed) [<li><code>view</code></li>](#viewing-all-trips-and-events-view) [<li><code>list</code></li>](#viewing-trips-list-list) </ul> See feature list for more information about the commands.|
+|**Event List Display**|where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown: <br><ul>[<li><code>completed</code></li>](#viewing-all-completed-trips-and-events-completed) [<li><code>view</code></li>](#viewing-all-trips-and-events-view) [<li><code>list-e</code></li>](#viewing-bucket-list-list-e) [<li><code>select</code></li>](#selecting-a-trip-to-view-its-itinerary-select) </ul> See feature list for more information about the commands.
 
 
 </div>
@@ -64,9 +66,9 @@ Titles, Locations and Descriptions that are too long will be truncated. To view 
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-warning">
    
-**:information_source: Notes about the command format:**<br>
+**:warning: Notes about the command format:**<br>
 
 |`Component`|`Formatting Details`|
 |:-:|:--|
@@ -364,7 +366,7 @@ Format: `sort-e [r/]`
 
 ### Overview Display Commands
 
-#### View all completed trips and events: `completed`
+#### Viewing all completed trips and events: `completed`
 Displays all completed trips and events.
 
 Format: `completed`
@@ -375,7 +377,7 @@ Format: `completed`
    
 Take a stroll down memory lane and revisit happy memories as a list of all your completed trips and events are shown to you. </div>
 
-#### View all trips and events: `view`
+#### Viewing all trips and events: `view`
 Displays all trips and events in Travelr. This includes events that are part of the bucket list or events that are part of a trip.
 
 Format: `view`
@@ -442,4 +444,9 @@ Travelr data are saved locally automatically after any command. There is no need
 * **Displayed trips list**: List of trips being displayed in the left panel of the UI
 * **GUI**: Stands for Graphical User Interface, which refers to the user interface that you will be interacting with.
 
-
+### Icons
+|**Icon**|**Explanation**|
+|:-:|:-:|
+|:information_source:|The segment will provide useful information for using Travelr.|
+|:warning:|The segment will provide important notes about Travelr.|
+|:point_up:|The segment explains the uses of a feature.|
