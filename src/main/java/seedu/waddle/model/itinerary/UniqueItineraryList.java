@@ -12,11 +12,12 @@ import seedu.waddle.model.itinerary.exceptions.DuplicateItineraryException;
 import seedu.waddle.model.itinerary.exceptions.ItineraryNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of itineraries that enforces uniqueness between its elements and does not allow nulls.
+ * An itinerary is considered unique by comparing using {@code Itinerary#isSameItinerary(Itinerary)}.
+ * As such, adding and updating of itineraries uses Itinerary#isSameItinerary(Itinerary) for equality
+ * so as to ensure that the itinerary being added or updated is unique in terms of identity in
+ * the UniqueItineraryList. However, the removal of a itinerary uses Itinerary#equals(Object) so
+ * as to ensure that the itinerary with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -29,7 +30,7 @@ public class UniqueItineraryList implements Iterable<Itinerary> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent itinerary as the given argument.
      */
     public boolean contains(Itinerary toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +38,8 @@ public class UniqueItineraryList implements Iterable<Itinerary> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds an itinerary to the list.
+     * The itinerary must not already exist in the list.
      */
     public void add(Itinerary toAdd) {
         requireNonNull(toAdd);
@@ -49,9 +50,10 @@ public class UniqueItineraryList implements Iterable<Itinerary> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the itinerary {@code target} in the list with {@code editedItinerary}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The itinerary identity of {@code editedItinerary} must not be the same as another
+     * existing itinerary in the list.
      */
     public void setItinerary(Itinerary target, Itinerary editedItinerary) {
         requireAllNonNull(target, editedItinerary);
@@ -69,8 +71,8 @@ public class UniqueItineraryList implements Iterable<Itinerary> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent itinerary from the list.
+     * The itinerary must exist in the list.
      */
     public void remove(Itinerary toRemove) {
         requireNonNull(toRemove);
@@ -85,8 +87,8 @@ public class UniqueItineraryList implements Iterable<Itinerary> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code itineraries}.
+     * {@code itineraries} must not contain duplicate itineraries.
      */
     public void setItineraries(List<Itinerary> itineraries) {
         requireAllNonNull(itineraries);
@@ -122,7 +124,7 @@ public class UniqueItineraryList implements Iterable<Itinerary> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code itinerary} contains only unique itineraries.
      */
     private boolean itinerariesAreUnique(List<Itinerary> itineraries) {
         for (int i = 0; i < itineraries.size() - 1; i++) {

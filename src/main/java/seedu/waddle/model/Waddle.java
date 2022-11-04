@@ -9,8 +9,8 @@ import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.UniqueItineraryList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the Waddle level
+ * Duplicates are not allowed (by .isSameItinerary comparison)
  */
 public class Waddle implements ReadOnlyWaddle {
 
@@ -30,7 +30,7 @@ public class Waddle implements ReadOnlyWaddle {
     public Waddle() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a Waddle using the Itineraries in the {@code toBeCopied}
      */
     public Waddle(ReadOnlyWaddle toBeCopied) {
         this();
@@ -40,15 +40,15 @@ public class Waddle implements ReadOnlyWaddle {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the itinerary list with {@code itineraries}.
+     * {@code itineraries} must not contain duplicate itineraries.
      */
     public void setItineraries(List<Itinerary> itineraries) {
         this.itineraries.setItineraries(itineraries);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Waddle} with {@code newData}.
      */
     public void resetData(ReadOnlyWaddle newData) {
         requireNonNull(newData);
@@ -56,10 +56,10 @@ public class Waddle implements ReadOnlyWaddle {
         setItineraries(newData.getItineraryList());
     }
 
-    //// person-level operations
+    //// itinerary-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an itinerary with the same identity as {@code itinerary} exists in Waddle.
      */
     public boolean hasItinerary(Itinerary itinerary) {
         requireNonNull(itinerary);
@@ -67,17 +67,18 @@ public class Waddle implements ReadOnlyWaddle {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds an Itinerary to Waddle.
+     * The itinerary must not already exist in Waddle.
      */
     public void addItinerary(Itinerary p) {
         itineraries.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given itinerary {@code target} in the list with {@code editedItinerary}.
+     * {@code target} must exist in Waddle.
+     * The itinerary identity of {@code editedItinerary} must not be the same as
+     * another existing itinerary in Waddle.
      */
     public void setItinerary(Itinerary target, Itinerary editedItinerary) {
         requireNonNull(editedItinerary);
@@ -86,8 +87,8 @@ public class Waddle implements ReadOnlyWaddle {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Waddle}.
+     * {@code key} must exist in Waddle.
      */
     public void removeItinerary(Itinerary key) {
         itineraries.remove(key);
