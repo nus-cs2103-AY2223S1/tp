@@ -270,10 +270,9 @@ An inventory item can have 0 or more tags. A tag should only consist of 1 word. 
 
 Example(s):
 
-- Executing `addi i/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1 t/Souvenir` to our sample data
-will add a new `Item` with the name `Keychain` which you have `20 units` of in your inventory stock, with the cost price
-of `$1` and selling price `$3.50`. The `Item` has the description `Silicone keychain with a metal buckle` and 
-tag `Souvenir`.
+- When you enter `addi i/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1 t/Souvenir` to our sample data,
+TrackO will add `20 units` of `Keychain` to your inventory list, with the cost price of `$1` and selling price `$3.50`. 
+The `Item` has the description `Silicone keychain with a metal buckle` and tag `Souvenir`.
   <br>
   The following result will be displayed in the application.
   <img src="./images/user-guide/AddiExample.png" alt="AddiExample">
@@ -287,7 +286,8 @@ Lists all the existing items in the store’s inventory.
 Format: `listi`
 
 Example(s):
-- Executing `listi` to our sample data will list all the existing inventory items and display the following result.
+- When you enter `listi` to our sample data, TrackO will list all the existing inventory items. Executing it on our sample
+  data will display the following result.
 
   <img src="./images/user-guide/ListiExample.png" alt="ListiExample">
 
@@ -307,13 +307,13 @@ Format: `findi KEYWORD [MORE_KEYWORDS]`
   e.g. `shirt` will return `dress shirt`, `collared shirt`
 
 Example(s):
-- Executing `findi mattress` to our sample data will find items that contain the word `mattress` and display the 
-  following result:
+- When you enter `findi mattress` to our sample data, TrackO will find items that contain the word `mattress` in their 
+  `Item Name` and display the following result:
 
   <img src="./images/user-guide/FindiExample1.png" alt="FindiExample1">
   
-- Executing `findi mattress chair` to our sample data will find items that contain the word `mattress` or `chair` in 
-  their `Item Name`, and display the following result:
+- When you enter `findi mattress chair` to our sample data, TrackO will find items that contain the word `mattress` or 
+  `chair` in their `Item Name`, and display the following result:
 
   <img src="./images/user-guide/FindiExample2.png" alt="FindiExample2">
 
@@ -334,8 +334,8 @@ TrackO does not allow items that are currently involved with unpaid or undeliver
 </div>
 
 Examples:
-* Executing `deletei 1` to our sample data deletes the first item, `Chair` in the inventory list. Notice how the order 
-  involving `Chair` is completed, which allows the `Chair` to be deleted.
+* When you enter `deletei 1` to our sample data, TrackO deletes the first item, `Chair` from the inventory list. 
+  Notice how the order involving `Chair` is completed, which allows the `Chair` to be deleted.
 
   <img src="./images/user-guide/DeleteiExample1.png" alt="DeleteiExample1">
   
@@ -360,18 +360,18 @@ Format: `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [sp/SELL_PRICE] 
   specifying any tags after it.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-When an `Item` is involved in an order, you cannot edit its `Item Name`, `Description`, `Sell Price`, `Cost Price`, and
-`Tag`. You can only edit its `Quantity` to allow for restock.
+When an `Item` is involved in an order, you cannot edit its `Item Name`, `Sell Price`, and `Cost Price`.
+You can only edit its `Quantity`, `Description`, `Tag`.
 </div>
 
 Examples:
 
-* Executing `editi 1 i/Table q/200 d/Metal Table t/Fragile` to our sample data will edit the item name, quantity, 
+* When you enter `editi 1 i/Table q/200 d/Metal Table t/Fragile` to our sample data, TrackO will edit the item name, quantity, 
   description and tag of the 1st item, which was `Chair`, to be `Table`, `200`, `Metal Table` and `Fragile` respectively.
   
   <img src="./images/user-guide/EditiExample1.png" alt="EditiExample1">
   
-* Executing `editi 1 t/` removes the tags of the item at index 1.
+* When you enter `editi 1 t/`, TrackO removes the tags of the item at index 1.
 
   <img src="./images/user-guide/EditiExample2.png" alt="EditiExample2">
 
@@ -420,6 +420,14 @@ Format: `i/ITEM_NAME q/QUANTITY`
 * If you input an item name that matches previously entered item, the quantity of the added item will be updated instead, e.g. `i/Box q/3` followed by `i/Box q/4` will only add a total of `4` quantities (or units) of `Box` to the created order
 
 Lastly, to end the command, you can enter `done` to tell TrackO to track the order or `cancel` to completely abort the command.
+
+Example(s):
+- When you enter `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace`, followed by  `i/pillow q/5`,
+then lastly `done`, you are creating an order for `John Doe`, who is contactable at `91234567` and `johndoe@example.com` 
+and wants `5 Pillows` delivered to `48 Westwood Terrace`. Executing this command to our sample data will display the 
+following result:
+
+  <img src="./images/user-guide/AddoExample1.png" alt="AddoExample1">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
