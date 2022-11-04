@@ -32,7 +32,7 @@ public class GenerateCommand extends Command {
     public static final String MESSAGE_USAGE = "The generate feature has two variations: \n\n"
             + COMMAND_WORD + " INDEX [, INDEX]... " + PREFIX_LEVEL + "LEVEL\n"
             + "Each INDEX must be a positive integer; LEVEL must be one of " + DIFFICULTY_LEVELS + ".\n"
-            + "Example usage: \n" + COMMAND_WORD + " 2,3 " + PREFIX_LEVEL + "easy\n\n"
+            + "Example usage: \n" + COMMAND_WORD + " 2, 3 " + PREFIX_LEVEL + "easy\n\n"
             + COMMAND_WORD + " n/NAME [n/NAME]... level/LEVEL\n"
             + "NAME must be of an exercise found in the system; LEVEL must be one of " + DIFFICULTY_LEVELS + ".\n"
             + "Example usage: \n" + COMMAND_WORD + " n/squat n/deadlift " + PREFIX_LEVEL + "easy";

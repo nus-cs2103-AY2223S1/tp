@@ -19,20 +19,12 @@ public class FormatterList {
         "uuuu/MM/dd", "uuuu/M/dd", "uuuu/MM/d", "uuuu/M/d",
         "dd/MM/uuuu", "dd/M/uuuu", "d/MM/uuuu", "d/M/uuuu",
 
-        "dd/MM/uu", "dd/M/uu", "d/MM/uu", "d/M/uu",
-        "uu/MM/dd", "uu/M/dd", "uu/MM/d", "uu/M/d",
-
         "dd-MM-uuuu", "dd-M-uuuu", "d-MM-uuuu", "d-M-uuuu",
         "uuuu-MM-dd", "uuuu-M-dd", "uuuu-MM-d", "uuuu-M-d",
-
-        "dd-MM-uu", "dd-M-uu", "d-MM-uu", "d-M-uu",
-        "uu-MM-dd", "uu-M-dd", "uu-MM-d", "uu-M-d",
 
         "dd MM uuuu", "dd M uuuu", "d MM uuuu", "d M uuuu",
         "uuuu MM dd", "uuuu M dd", "uuuu MM d", "uuuu M d",
 
-        "dd MM uu", "dd M uu", "d MM uu", "d M uu",
-        "uu MM dd", "uu M dd", "uu MM d", "uu M d",
     };
 
     private FormatterList() {
