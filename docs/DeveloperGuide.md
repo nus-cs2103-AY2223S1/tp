@@ -27,7 +27,17 @@ title: Developer Guide
     * [3.Sample calculation](#3-sample-calculation)
     * [4.Sorting](#4-sorting)
     * [5.Comments and Reflection](#5-comments-and-reflection)
-  * 
+- **[Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)**
+- **[Appendix: Requirements](#appendix-requirements)**
+  * [Product Scope](#product-scope)
+  * [User Stories](#user-stories)
+  * [Use Cases](#use-cases)
+  * [Non-functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+- **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Launch and shutdown](#launch-and-shutdown) 
+  * [Delete a buyer](#deleting-a-buyer)
+  * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -644,13 +654,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ##### Buyer side
 
-| Priority | As a …​                                | I want to …​                                                                                                                                                          | So that I can…​                                                      |
-|----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| `* * *`  | pet sale coordinator                   | list a summary of all orders from the buyers in storage                                                                                                               | have an overview of what the buyers want.                            |                       |
-| `* * *`  | pet sale coordinator                   | be able to delete any contacts of clients who changed their mind about buying pets and any pet suppliers that have closed down or no longer want to supply pets to me | remove entries that I no longer need.                                |
-| `* * *`  | pet sale coordinator                   | add inquiry from a buyer as an order                                                                                                                                  | know what they want to buy and what their requirements are.          |
-| `* * *`  | pet sale coordinator                   | be able to filter buyer contacts by tags (e.g pet description)                                                                                                        | not waste time searching buyers that satisfy a customer requirement. |
-| `* * *`  | pet sale coordinator with many clients | sort the orders from the buyers based on their urgency (time)                                                                                                         | know which order I should deal with first.                           |
+| Priority | As a …​                                | I want to …​                                                                                                                                                          | So that I can…​                                             |
+|----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| `* * *`  | pet sale coordinator                   | list a summary of all orders from the buyers in storage                                                                                                               | have an overview of what the buyers want.                   |                       |
+| `* * *`  | pet sale coordinator                   | be able to delete any contacts of clients who changed their mind about buying pets and any pet suppliers that have closed down or no longer want to supply pets to me | remove entries that I no longer need.                       |
+| `* * *`  | pet sale coordinator                   | add inquiry from a buyer as an order                                                                                                                                  | know what they want to buy and what their requirements are. |
+| `* * *`  | pet sale coordinator                   | be able to find all contacts (Buyers, Suppliers, Deliverers) by attributes (e.g Email)                                                                                | not waste time searching for a specific contact details.    |
+| `* * *`  | pet sale coordinator                   | be able to filter all orders by attributes (e.g Price range)                                                                                                          | not waste time searching for a specific order.              |
+| `* * *`  | pet sale coordinator                   | be able to filter all pets by attributes (e.g Color)                                                                                                                  | not waste time searching for a specific pet.                |
+| `* * *`  | pet sale coordinator with many clients | sort the orders from the buyers based on their urgency (time)                                                                                                         | know which order I should deal with first.                  |
+| `* * *`  | pet sale coordinator with many pets    | find the pet that best matches a specific order                                                                                                                       | efficiently find the best pet for my client.                |
+| `* * *`  | pet sale coordinator                   | edit the details of a particular contact                                                                                                                              | update client information whenever it changes.              |
 
 ### Use cases
 
@@ -714,12 +728,6 @@ Use case ends.
 3. PetCode searches for all Buyers, Suppliers or Deliverers with that target attribute, depending on what the user has
    specified.
 5. PetCode outputs these Buyers, Suppliers, Deliverers or all three.
-
-Use case ends.
-
-**Extensions**
-
-2a. The tag does not exist
 
 Use case ends.
 
