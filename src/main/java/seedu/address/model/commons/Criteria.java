@@ -40,4 +40,10 @@ public class Criteria {
     public String getCriteria() {
         return criteria;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o == this || (o instanceof Criteria
+                && criteria.equalsIgnoreCase(((Criteria) o).criteria));
+    }
 }
