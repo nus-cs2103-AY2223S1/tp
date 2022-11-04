@@ -51,15 +51,15 @@ public class StuEmailTest {
         assertFalse(StuEmail.isValidStuEmail("peterjack@-example.com")); // domain name starts with a hyphen
         assertFalse(StuEmail.isValidStuEmail("peterjack@example.com-")); // domain name ends with a hyphen
         assertFalse(StuEmail.isValidStuEmail("peterjack@example.c")); // top level domain has less than two chars
+        assertFalse(StuEmail.isValidStuEmail("peterjack@example")); // no period
 
         // valid email
         assertTrue(StuEmail.isValidStuEmail("PeterJack_1190@example.com")); // underscore in local part
         assertTrue(StuEmail.isValidStuEmail("PeterJack.1190@example.com")); // period in local part
         assertTrue(StuEmail.isValidStuEmail("PeterJack+1190@example.com")); // '+' symbol in local part
         assertTrue(StuEmail.isValidStuEmail("PeterJack-1190@example.com")); // hyphen in local part
-        assertTrue(StuEmail.isValidStuEmail("a@bc")); // minimal
-        assertTrue(StuEmail.isValidStuEmail("test@localhost")); // alphabets only
-        assertTrue(StuEmail.isValidStuEmail("123@145")); // numeric local part and domain name
+        assertTrue(StuEmail.isValidStuEmail("a@bc.com")); // minimal
+        assertTrue(StuEmail.isValidStuEmail("123@145.com")); // numeric local part and domain name
         assertTrue(StuEmail.isValidStuEmail("a1+be.d@example1.com")); // mixture of alphanumeric and special characters
         assertTrue(StuEmail.isValidStuEmail("peter_jack@very-very-very-long-example.com")); // long domain name
         assertTrue(StuEmail.isValidStuEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
