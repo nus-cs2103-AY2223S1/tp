@@ -45,7 +45,7 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
 
         TutorialName name = TutorialParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_NAME).get());
         ModuleCode module = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
-        Venue venue = TutorialParserUtil.parseTutorialVenue(argMultimap.getValue(PREFIX_VENUE).get());
+        Venue venue = ParserUtil.parseTutorialVenue(argMultimap.getValue(PREFIX_VENUE).get());
 
         String dayString = argMultimap.getValue(PREFIX_DATE_DAY).get();
         String timeslotString = argMultimap.getValue(PREFIX_TIME).get();

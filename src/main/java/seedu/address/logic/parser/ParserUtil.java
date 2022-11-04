@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.PrefixesEmptyException;
 import seedu.address.logic.parser.exceptions.SomePrefixesMissingException;
 import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -94,5 +95,20 @@ public class ParserUtil {
         }
         String formattedName = trimmedName.toUpperCase();
         return new ModuleCode(formattedName);
+    }
+
+    /**
+     * Parses a {@code String venue} into a {@code Venue}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code venue} is invalid.
+     */
+    public static Venue parseTutorialVenue(String venue) throws ParseException {
+        Objects.requireNonNull(venue);
+        String trimmedName = venue.trim();
+        if (!Venue.isValidVenue(trimmedName)) {
+            throw new ParseException(Venue.MESSAGE_CONSTRAINTS);
+        }
+        return new Venue(trimmedName);
     }
 }
