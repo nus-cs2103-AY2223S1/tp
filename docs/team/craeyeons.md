@@ -43,13 +43,20 @@ Given below are my contributions to the project.
   - Updated documentation for the `filter list` and `tag delete` command. ([#110](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/110))
   - Added screenshots to UG. ([#174](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/174))
 - **Contributions to the DG**:
-  - Updated design considerations on the Remark and Tag command.
+  - Updated implementation and design considerations on the Remark and Tag command.
   ([#75](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/75), [#80](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/80))
   - Updated glossary. ([#175](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/175))
   - Updated user stories. ([#176](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/176))
+  - Added class and sequence diagrams for the Tag feature. ([#226](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/226)) 
 - **Contributions beyond the project team**
   - Reported 13 bugs and left suggestions to the reviewed project in PE-D.
   ([link to PE-D](https://github.com/craeyeons/ped/issues))
+
+Note:
+1. I think it is worth mentioning that my low/periodical commit count is neither due to my working style nor a habit of making big commits. Rather, it is due to the nature of my job scope as a tester.
+   This is because testing requires the features to first be fleshed out before I can start working on it. To add, testing requires writing a lot of utility code,
+   and my approach to simplify the process is to work on it as a whole, so I get a better view of the subject that I am dealing with, and this often ends up in gigantic commits. I hope by looking at the small commits I make when working 
+   on documentation and implementing the remark-feature would serve as a proof. 
 
 Code reuse:
 1. Remark feature by [j-lum](https://github.com/se-edu/addressbook-level3/compare/tutorial-add-remark), from tutorial 2 of TP, week 6.
