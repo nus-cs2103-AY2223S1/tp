@@ -49,15 +49,22 @@ public class JsonAddressBookStorageTest {
         assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
     }
 
+
+    //@@author dlimyy-reused
+    //Minor modifications from existing AB3
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidModuleAddressBook.json"));
     }
+    //@@author
 
+    //@@author dlimyy-reused
+    //Minor modifications from existing AB3
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidModuleAddressBook.json"));
     }
+    //@@author
 
 
     @Test
