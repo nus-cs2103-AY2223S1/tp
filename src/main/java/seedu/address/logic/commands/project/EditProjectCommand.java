@@ -83,6 +83,14 @@ public class EditProjectCommand extends ProjectCommand {
 
         Project toEditProject = model.getProjectById(projectToEditId.getIdInt());
 
+        if (newName != null) {
+            for (Project p : model.getFilteredProjectList()) {
+                if (p.getProjectName().equals(newName)) {
+                    throw new CommandException(MESSAGE_DUPLICATE_PROJECT_NAME);
+                }
+            }
+        }
+
         if (newClientId != null) {
             try {
                 Client newClient = model.getClientById(newClientId.getIdInt());
@@ -93,14 +101,6 @@ public class EditProjectCommand extends ProjectCommand {
             } catch (NotFoundException e) {
                 throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         EditProjectCommand.MESSAGE_INVALID_CLIENT));
-            }
-        }
-
-        if (newName != null) {
-            for (Project p : model.getFilteredProjectList()) {
-                if (p.getProjectName().equals(newName)) {
-                    throw new CommandException(MESSAGE_DUPLICATE_PROJECT_NAME);
-                }
             }
         }
 
