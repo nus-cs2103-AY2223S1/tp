@@ -54,7 +54,6 @@ public class FindPriceCommand extends Command {
             }
             Collections.shuffle(randomIndexes);
             randomIndexes = randomIndexes.subList(0, numToShow);
-            randomIndexes.sort(null);
 
             ArrayList<Eatery> eateriesChosen = new ArrayList<>(numToShow);
             for (Integer i : randomIndexes) {
