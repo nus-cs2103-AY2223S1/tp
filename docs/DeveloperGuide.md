@@ -671,10 +671,10 @@ The following activity diagram summarizes what happens when a user executes a `L
 Navigate to module mechanism is facilitated by the `GoToCommand` and `GoToCommandParser`.
 
 It allows users to navigate to a specific module given their respective module code, displaying information
-(i.e. tasks, links and contacts) that are associated to that module.<br>
+(i.e. tasks, links and persons) that are associated to that module.<br>
 
 It uses the following methods provided by the `Model` interface.
-* `Model#getModuleUsingModuleCode()`: Retrieves a `Module` object using the `ModuleCode` object associated wih that `Module`
+* `Model#getModuleUsingModuleCode()`: Retrieves a `Module` object using the `ModuleCode` object associated with that `Module`
 * `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
 * `Model#updateFilteredPersonList()`: Update the current person list and filter it according to the given predicate `Predicate<Person> predicate`, reflecting the changes accordingly in the GUI
 * `Model#setHomeStatus()`: Sets the home status of Plannit.
