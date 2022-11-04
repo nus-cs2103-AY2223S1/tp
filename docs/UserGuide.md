@@ -65,17 +65,6 @@ This section provides a summary of the parameters used when inputting commands i
 
 1. Ensure you have Java `11` or above installed in your Computer. _(Unsure how to check? Click [here](#faq) for a guide.)_
 
-<div markdown="block" class="alert alert-info">
-
-:information_source: **How to check if you have Java 11 installed:**<br>
-
-* In your search bar, search for 'command prompt' and run it.
-* In the command prompt, type 'java -version' (without the quotation marks).
-* If installed, the version number will be displayed.
-* If not installed, or if the version number is wrong, you can download the correct version from [here](https://www.oracle.com/sg/java/technologies/downloads/#java11-windows).
-
-</div>
-
 2. Download the latest `nutrigoals.jar` from [here](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for NutriGoals.
