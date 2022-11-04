@@ -24,8 +24,8 @@ public class DateUtil {
      */
     public static boolean isValidDateString(String test) {
         try {
-            LocalDateTime.parse(test, parseFormatter);
-            return true;
+            LocalDateTime dateTime = LocalDateTime.parse(test, parseFormatter);
+            return isDateValid(dateTime);
         } catch (Exception e) {
             return false;
         }
