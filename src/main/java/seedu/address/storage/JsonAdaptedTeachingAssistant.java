@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -71,87 +70,27 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted TeachingAssistant.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : getTagged()) {
-            personTags.add(tag.toModelType());
-        }
+        final Name modelName = getModelName();
+        final Phone modelPhone = getModelPhone();
+        final Email modelEmail = getModelEmail();
+        final Gender modelGender = getModelGender();
+        final Set<Tag> modelTags = new HashSet<>(getPersonTags());
+        final Location modelLocation = getModelLocation();
+        final GithubUsername modelUsername = getModelUsername();
+        final Rating modelRating = getModelRating();
+        final ModuleCode modelModuleCode = getModelModuleCode();
 
-        if (getName() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(getName())) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(getName());
+        return new TeachingAssistant(modelName, modelModuleCode, modelPhone, modelEmail, modelGender,
+            modelTags, modelLocation, modelUsername, modelRating);
+    }
 
-        if (getPhone() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(getPhone())) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(getPhone());
-
-        if (getEmail() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(getEmail())) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(getEmail());
-
-        if (getGender() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
-        }
-        if (!Gender.isValidGender(getGender())) {
-            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
-        }
-        final Gender modelGender = new Gender(getGender());
-
-        if (getModuleCode() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ModuleCode.class.getSimpleName()));
-        }
-        if (!ModuleCode.isValidModuleCode(getModuleCode())) {
-            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
-        }
-        final ModuleCode modelModuleCode = new ModuleCode(getModuleCode());
-
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-
-        if (getLocation() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Location.class.getSimpleName()));
-        }
-
-        if (!Location.isValidLocation(getLocation())) {
-            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
-        }
-
-        final Location modelLocation = new Location(getLocation());
-
-        if (getUsername() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    GithubUsername.class.getSimpleName()));
-        }
-
-        final GithubUsername modelUsername;
-
-        if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
-            modelUsername = new GithubUsername(getUsername(), false);
-        } else {
-            if (!GithubUsername.isValidUsername(getUsername())) {
-                throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
-            }
-            modelUsername = new GithubUsername(getUsername(), true);
-        }
-
+    private Rating getModelRating() throws IllegalValueException {
         if (getRating() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Rating.class.getSimpleName()));
         }
 
-        final Rating modelRating;
+        Rating modelRating;
 
         if (getRating().equals(Rating.EMPTY_RATING)) {
             modelRating = new Rating(getRating(), false);
@@ -161,9 +100,18 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
             }
             modelRating = new Rating(getRating(), true);
         }
+        return modelRating;
+    }
 
-        return new TeachingAssistant(modelName, modelModuleCode, modelPhone, modelEmail, modelGender,
-            modelTags, modelLocation, modelUsername, modelRating);
+    private ModuleCode getModelModuleCode() throws IllegalValueException {
+        if (getModuleCode() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ModuleCode.class.getSimpleName()));
+        }
+        if (!ModuleCode.isValidModuleCode(getModuleCode())) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleCode(getModuleCode());
     }
 
 }

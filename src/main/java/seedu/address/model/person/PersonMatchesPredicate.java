@@ -68,6 +68,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean nameMatches(Person person) {
         if (!hasNamesList) {
+            assert namesList.size() == 0 : "There is a names list provided!";
             return true;
         } else {
             return namesList.stream()
@@ -84,6 +85,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean moduleMatches(Person person) {
         if (!hasModulesList) {
+            assert modulesSet.size() == 0 : "There is a modules list provided!";
             return true;
         }
         return person.doModulesMatch(modulesSet, needsAllModules);
@@ -98,6 +100,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean phoneMatches(Person person) {
         if (!hasPhonesList) {
+            assert phonesList.size() == 0 : "There is a phones list provided!";
             return true;
         } else {
             return phonesList.stream()
@@ -114,6 +117,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean emailMatches(Person person) {
         if (!hasEmailsList) {
+            assert emailsList.size() == 0 : "There is an emails list provided!";
             return true;
         } else {
             return emailsList.stream()
@@ -130,6 +134,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean genderMatches(Person person) {
         if (!hasGendersList) {
+            assert gendersList.size() == 0 : "There is a gender list provided!";
             return true;
         } else {
             return gendersList.stream()
@@ -146,6 +151,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean locationMatches(Person person) {
         if (!hasLocationsList) {
+            assert locationsList.size() == 0 : "There is a location list provided!";
             return true;
         } else {
             return locationsList.stream()
@@ -162,6 +168,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean typeMatches(Person person) {
         if (!hasTypesList) {
+            assert typesList.size() == 0 : "There is a types list provided!";
             return true;
         } else {
             return typesList.stream()
@@ -178,6 +185,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean tagMatches(Person person) {
         if (!hasTagsList) {
+            assert tagsSet.size() == 0 : "There is a tag set provided!";
             return true;
         }
         Set<String> personList = makeTagsList(person);
@@ -198,6 +206,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean userNameMatches(Person person) {
         if (!hasUserNamesList) {
+            assert userNamesList.size() == 0 : "There is a usernames list provided!";
             return true;
         } else {
             return userNamesList.stream()
@@ -214,6 +223,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean ratingMatches(Person person) {
         if (!hasRatingsList) {
+            assert ratingsList.size() == 0 : "There is a ratings list provided!";
             return true;
         } else {
             return person.doesRatingMatch(ratingsList);
@@ -229,6 +239,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean yearMatches(Person person) {
         if (!hasYearsList) {
+            assert yearsList.size() == 0 : "There is a years list provided!";
             return true;
         } else {
             return person.doesYearMatch(yearsList);
@@ -244,6 +255,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean specialisationMatches(Person person) {
         if (!hasSpecList) {
+            assert specList.size() == 0 : "There is a specialisations list provided!";
             return true;
         } else {
             return person.doesSpecialisationMatch(specList);
@@ -259,6 +271,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public boolean officeHoursMatches(Person person) {
         if (!hasOfficeHoursList) {
+            assert officeHoursList.size() == 0 : "There is an office hours list provided!";
             return true;
         } else {
             return person.doesOfficeHourMatch(officeHoursList);

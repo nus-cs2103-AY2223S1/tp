@@ -70,82 +70,21 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<ModuleCode> moduleCodes = new ArrayList<>();
-        for (JsonAdaptedModuleCode moduleCode : this.moduleCodes) {
-            moduleCodes.add(moduleCode.toModelType());
-        }
+        final Name modelName = getModelName();
+        final Phone modelPhone = getModelPhone();
+        final Email modelEmail = getModelEmail();
+        final Gender modelGender = getModelGender();
+        final Set<Tag> modelTags = new HashSet<>(getPersonTags());
+        final Location modelLocation = getModelLocation();
+        final GithubUsername modelUsername = getModelUsername();
+        final Set<ModuleCode> modelModuleCodes = getModelModuleCodes();
+        final Year modelYear = getModelYear();
 
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : getTagged()) {
-            personTags.add(tag.toModelType());
-        }
+        return new Student(modelName, modelPhone, modelEmail, modelGender, modelTags, modelLocation, modelUsername,
+                modelModuleCodes, modelYear);
+    }
 
-        if (getName() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(getName())) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(getName());
-
-        if (getPhone() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(getPhone())) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(getPhone());
-
-        if (getEmail() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(getEmail())) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(getEmail());
-
-        if (getGender() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Gender.class.getSimpleName()));
-        }
-        if (!Gender.isValidGender(getGender())) {
-            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
-        }
-        final Gender modelGender = new Gender(getGender());
-
-        final Set<ModuleCode> modelModuleCodes = new HashSet<>(moduleCodes);
-
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-
-        if (getLocation() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Location.class.getSimpleName()));
-        }
-
-        if (!Location.isValidLocation(getLocation())) {
-            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
-        }
-
-        final Location modelLocation = new Location(getLocation());
-
-        if (getUsername() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    GithubUsername.class.getSimpleName()));
-        }
-
-        final GithubUsername modelUsername;
-
-        if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
-            modelUsername = new GithubUsername(getUsername(), false);
-        } else {
-            if (!GithubUsername.isValidUsername(getUsername())) {
-                throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
-            }
-            modelUsername = new GithubUsername(getUsername(), true);
-        }
-
+    private Year getModelYear() throws IllegalValueException {
         if (getYear() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Year.class.getSimpleName()));
@@ -161,9 +100,17 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
             }
             modelYear = new Year(getYear(), true);
         }
-
-        return new Student(modelName, modelPhone, modelEmail, modelGender, modelTags, modelLocation, modelUsername,
-                modelModuleCodes, modelYear);
+        return modelYear;
     }
+
+    private Set<ModuleCode> getModelModuleCodes() throws IllegalValueException {
+        final List<ModuleCode> moduleCodes = new ArrayList<>();
+        for (JsonAdaptedModuleCode moduleCode : this.moduleCodes) {
+            moduleCodes.add(moduleCode.toModelType());
+        }
+
+        return new HashSet<>(moduleCodes);
+    }
+
 
 }
