@@ -56,7 +56,7 @@ public class HomeVisit implements Comparable<HomeVisit> {
     }
 
     public String getString() {
-        return this.homeVisitDateSlot.getDateSlotInString() + ":" + this.homeVisitPatientUidNo;
+        return homeVisitDateSlot.getDateSlotInString() + ":" + this.homeVisitPatientUidNo;
     }
 
     @Override
@@ -65,11 +65,11 @@ public class HomeVisit implements Comparable<HomeVisit> {
     }
 
     public DateSlot getDateSlot() {
-        return this.homeVisitDateSlot;
+        return homeVisitDateSlot;
     }
 
     public Long getHomeVisitPatientUidNo() {
-        return this.homeVisitPatientUidNo;
+        return homeVisitPatientUidNo;
     }
 
     @Override

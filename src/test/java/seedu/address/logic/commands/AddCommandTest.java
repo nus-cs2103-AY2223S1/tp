@@ -178,7 +178,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return this.person.isSamePerson(person);
+            return person.isSamePerson(person);
         }
     }
 

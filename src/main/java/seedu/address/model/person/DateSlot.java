@@ -176,31 +176,31 @@ public class DateSlot implements Comparable<DateSlot> {
     }
 
     public String getDateSlotInString() {
-        return this.dateSlotInString;
+        return dateSlotInString;
     }
 
     public String getDateSlotFormatted() {
-        return this.dateSlotTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        return dateSlotTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
     }
 
     public Boolean getHasVisited() {
-        return this.hasVisited;
+        return hasVisited;
     }
 
     public Boolean getHasAssigned() {
-        return this.hasAssigned;
+        return hasAssigned;
     }
 
     public Boolean getIsSuccessVisit() {
-        return this.isSuccessVisit;
+        return isSuccessVisit;
     }
 
     public Long getNurseUidNo() {
-        return this.nurseUidNo;
+        return nurseUidNo;
     }
 
     public LocalDateTime getDateSlotTime() {
-        return this.dateSlotTime;
+        return dateSlotTime;
     }
 
     public LocalDate getDate() {

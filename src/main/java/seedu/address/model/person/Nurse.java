@@ -16,8 +16,8 @@ import seedu.address.model.tag.Tag;
 
 public class Nurse extends Person {
 
-    private static final String MESSAGE_FOR_EMPTY_HOMEVISITLIST = "No home visit assigned yet.";
-    private static final String MESSAGE_FOR_EMPTY_UNAVAILABLEDATE = "No unavailable date.";
+    private static final String MESSAGE_FOR_EMPTY_HOME_VISIT_LIST = "No home visit assigned yet.";
+    private static final String MESSAGE_FOR_EMPTY_UNAVAILABLE_DATE = "No unavailable date.";
     private final List<HomeVisit> homeVisitList = new ArrayList<>();
     private final List<Date> unavailableDateList = new ArrayList<>();
     private final List<Date> fullyScheduledDateList = new ArrayList<>();
@@ -94,7 +94,7 @@ public class Nurse extends Person {
         String homeVisitsString = homeVisitList.stream()
                 .map(x -> x.toString()).collect(Collectors.joining(","));
         if (homeVisitsString.length() == 0) {
-            return MESSAGE_FOR_EMPTY_HOMEVISITLIST;
+            return MESSAGE_FOR_EMPTY_HOME_VISIT_LIST;
         }
         return String.format("Home Visits: %s;", homeVisitsString);
     }
@@ -103,23 +103,19 @@ public class Nurse extends Person {
         String unavailableString = unavailableDateList.stream()
                 .map(x -> x.toString()).collect(Collectors.joining(","));
         if (unavailableString.length() == 0) {
-            return MESSAGE_FOR_EMPTY_UNAVAILABLEDATE;
+            return MESSAGE_FOR_EMPTY_UNAVAILABLE_DATE;
         }
         return String.format("Unavailable Dates: %s;", unavailableString);
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getCategory().toFormattedString())
-                .append(" ")
-                .append(super.toString())
-                .append(" ")
-                .append(getUnavailableDatesInString())
-                .append(" ")
-                .append(getHomesVisitsInString());
-
-        return builder.toString();
+        return String.format(
+                "%s %s %s %s",
+                getCategory().toFormattedString(),
+                super.toString(),
+                getUnavailableDatesInString(),
+                getHomesVisitsInString());
     }
 
     public boolean isNurse() {
@@ -127,7 +123,7 @@ public class Nurse extends Person {
     }
 
     public String toLiteString() {
-        return String.format("Nurse [Uid:%s]", this.getUid());
+        return String.format("Nurse [Uid:%s]", getUid());
     }
 
 }

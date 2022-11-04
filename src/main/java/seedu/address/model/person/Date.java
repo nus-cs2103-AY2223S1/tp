@@ -10,7 +10,8 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a date (can be nurse's unavailable date or fully-scheduled date).
  * Guarantees: immutable;
- * Valid as declared in {@link #isValidDateFormat(String)} and {@link #isValidDate(String)}
+ * Valid as declared in {@link #isValidDateFormat(String)} and
+ * {@link #isValidDate(String)}
  */
 public class Date implements Comparable<Date> {
 
@@ -64,7 +65,7 @@ public class Date implements Comparable<Date> {
         int year = Integer.parseInt(dateArr[0]);
         int monthInInt = Integer.parseInt(dateArr[1]);
         Month month = Month.of(monthInInt);
-        int date = Integer.parseInt(dateArr[2]); //date
+        int date = Integer.parseInt(dateArr[2]); // date
         boolean isLeapYear = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
         return date <= month.length(isLeapYear);
     }
@@ -77,7 +78,7 @@ public class Date implements Comparable<Date> {
     }
 
     public String getString() {
-        return this.dateInString;
+        return dateInString;
     }
 
     @Override
@@ -98,7 +99,7 @@ public class Date implements Comparable<Date> {
     }
 
     public LocalDate getDate() {
-        return this.date;
+        return date;
     }
 
     public static Date today() {
@@ -107,7 +108,7 @@ public class Date implements Comparable<Date> {
 
     @Override
     public int compareTo(Date o) {
-        return this.date.compareTo(o.getDate());
+        return date.compareTo(o.getDate());
     }
 
 }
