@@ -1,6 +1,6 @@
 package seedu.taassist.logic.commands;
 
-import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -60,11 +60,11 @@ public class CommandResult {
     }
 
     public boolean hasUiAction() {
-        return !isNull(uiAction);
+        return nonNull(uiAction);
     }
 
     public boolean hasStorageAction() {
-        return !isNull(storageAction);
+        return nonNull(storageAction);
     }
 
     /**
@@ -90,21 +90,9 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        boolean isEqualFeedback = feedbackToUser.equals(otherCommandResult.feedbackToUser);
-        boolean isEqualUiAction;
-        if (hasUiAction()) {
-            isEqualUiAction = uiAction.equals(otherCommandResult.uiAction);
-        } else {
-            isEqualUiAction = !otherCommandResult.hasUiAction();
-        }
-        boolean isEqualStorageAction;
-        if (hasStorageAction()) {
-            isEqualStorageAction = storageAction.equals(otherCommandResult.storageAction);
-        } else {
-            isEqualStorageAction = !otherCommandResult.hasStorageAction();
-        }
-
-        return isEqualFeedback && isEqualUiAction && isEqualStorageAction;
+        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && uiAction == otherCommandResult.uiAction
+                && Objects.equals(storageAction, otherCommandResult.storageAction);
     }
 
     @Override

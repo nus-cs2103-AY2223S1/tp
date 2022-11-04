@@ -3,6 +3,7 @@ package seedu.taassist.logic.commands.actions;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import seedu.taassist.logic.commands.CommandResult;
 import seedu.taassist.logic.commands.exceptions.CommandException;
@@ -40,5 +41,24 @@ public class ExportCsvStorageAction implements StorageAction {
             throw new CommandException(String.format(MESSAGE_EXPORT_FAILED, fileName));
         }
         return new CommandResult(feedback);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ExportCsvStorageAction)) {
+            return false;
+        }
+        ExportCsvStorageAction otherStorageAction = (ExportCsvStorageAction) other;
+        return fileName.equals(otherStorageAction.fileName) && fileData.equals(otherStorageAction.fileData);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fileName, fileData);
     }
 }

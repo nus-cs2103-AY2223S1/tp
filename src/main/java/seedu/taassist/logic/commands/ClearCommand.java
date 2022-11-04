@@ -1,8 +1,8 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.logic.commands.actions.UiAction.UI_UNFOCUS;
 
+import seedu.taassist.logic.commands.actions.UiAction;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.TaAssist;
 
@@ -20,7 +20,7 @@ public class ClearCommand extends Command {
         boolean isInFocusMode = model.isInFocusMode();
         model.setTaAssist(new TaAssist());
         if (isInFocusMode) {
-            return new CommandResult(MESSAGE_SUCCESS, UI_UNFOCUS);
+            return new CommandResult(MESSAGE_SUCCESS, UiAction.UI_UNFOCUS);
         }
         return new CommandResult(MESSAGE_SUCCESS);
 
