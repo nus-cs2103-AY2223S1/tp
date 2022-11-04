@@ -445,7 +445,7 @@ as shown by executing the [`listClient`](#712-list-clients-listclient) command.
 * `DATE` should be given in the format DDMMYYYY. 
   * For example, 01022022 represents 1 February 2022.
 *  `DATE` in the past are not acceptable.
-* `START_TIME` and `END_TIME` should be give in the format HHMM. 
+* `START_TIME` and `END_TIME` should be given in 24 Hours HHMM format. 
   * For example, 1234 represents the 12:34PM.
 
 Use case:
