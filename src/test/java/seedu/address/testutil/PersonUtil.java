@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -82,7 +81,17 @@ public class PersonUtil {
         return argList.toArray(new String[0]);
     }
 
-    public static String[] convertEditPersonPartialToArgs(Person person) {
+    public static String[] convertEditFirstPersonPartialToArgs(Person person) {
+        List<String> argList = new ArrayList<>();
+        argList.add("1");
+        argList.add(FLAG_NAME_STR);
+        argList.add(person.getName().fullName);
+        argList.add(FLAG_PHONE_STR);
+        argList.add(person.getPhone().value);
+        return argList.toArray(new String[0]);
+    }
+
+    public static String[] convertEditSecondPersonPartialToArgs(Person person) {
         List<String> argList = new ArrayList<>();
         argList.add("2");
         argList.add(FLAG_NAME_STR);

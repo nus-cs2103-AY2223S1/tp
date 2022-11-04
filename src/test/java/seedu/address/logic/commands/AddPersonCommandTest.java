@@ -50,10 +50,6 @@ public class AddPersonCommandTest {
             .registerConverter(Address.class, new AddressConverter());
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-    }
-
-    @Test
     public void execute_personAcceptedByModel_addSuccessful() {
         Person validPerson = new PersonBuilder().build();
         commandLine.parseArgs(PersonUtil.convertPersonToArgs(validPerson));
