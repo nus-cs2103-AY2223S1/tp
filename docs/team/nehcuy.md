@@ -5,9 +5,9 @@ title: Yuchen's Project Portfolio Page
 
 ## Project: checkUp
 
-"checkUp" is a desktop address book application used for teaching Software Engineering principles.
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java,
-and has about 15 kLoC.
+checkUp is a desktop patient medical record management system.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+It is written in Java, and has about 15 kLoC.
 
 Given below are my contributions to the project.
 

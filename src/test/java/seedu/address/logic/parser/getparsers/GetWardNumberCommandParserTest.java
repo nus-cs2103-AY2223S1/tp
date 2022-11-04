@@ -39,12 +39,12 @@ public class GetWardNumberCommandParserTest {
     @Test
     public void parse_invalidWardNumber_returnsGetWardNumberCommand() {
         // all invalid ward number
-        String userInput = "1 d456 f78";
+        String userInput = "1 f312 d102";
         GetWardNumberCommand expectedGetWardNumberCommand = prepareCommand(userInput);
         assertParseSuccess(parser, userInput, expectedGetWardNumberCommand);
 
         // one invalid ward number
-        userInput = "D329 B567 A01";
+        userInput = "F312 D102 A01";
         expectedGetWardNumberCommand = prepareCommand(userInput);
         assertParseSuccess(parser, userInput, expectedGetWardNumberCommand);
     }
@@ -52,11 +52,11 @@ public class GetWardNumberCommandParserTest {
     @Test
     public void parse_validArgs_returnsGetWardNumberCommand() {
         // no leading and trailing whitespaces
-        GetWardNumberCommand expectedGetWardNumberCommand = prepareCommand("D312 F419");
-        assertParseSuccess(parser, "D312 F419", expectedGetWardNumberCommand);
+        GetWardNumberCommand expectedGetWardNumberCommand = prepareCommand("F312 D102");
+        assertParseSuccess(parser, "F312 D102", expectedGetWardNumberCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "\n D312 \n \t F419  \t", expectedGetWardNumberCommand);
+        assertParseSuccess(parser, "\n F312 \n \t D102  \t", expectedGetWardNumberCommand);
     }
 
     private GetWardNumberCommand prepareCommand(String userInput) {
