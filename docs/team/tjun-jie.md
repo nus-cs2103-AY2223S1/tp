@@ -22,8 +22,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added feature documentations for early iteration of the product (Pull requests [\#46](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/46), [\#78](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/78)).
-        * Fixed hyperlink issues, made a more detailed quick start guide, and added screenshots for visual aid to make following the guide easier (Pull request [\#233](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/233)).
+        * Fixed hyperlink issues (Pull request [\#238](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/238)).
     * Developer Guide:
         * Added use cases (Pull request [\#113](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/113/commits)).
         * Updated the Model diagram (Pull request [\#150](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/150)).
