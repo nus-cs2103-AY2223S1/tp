@@ -171,7 +171,7 @@ public interface Model {
     void addStaffToProject(Index projectIndex, Staff toAdd);
 
     /**
-     * Edits the staff {@code toEdit} in the staff list of hthe project with {@code projectName}
+     * Edits the staff {@code toEdit} in the staff list of the project with {@code projectName}
      * with {@code editWith}.
      */
     void editStaffInProject(ProjectName projectName, Staff toEdit, Staff editWith);

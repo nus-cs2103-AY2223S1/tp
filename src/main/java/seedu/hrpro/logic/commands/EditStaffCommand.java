@@ -89,13 +89,13 @@ public class EditStaffCommand extends Command {
         List<Staff> lastShownStaffList = model.getFilteredStaffList();
         checkForEmptyList(lastShownProjectList, lastShownStaffList);
 
-        Optional<Staff> staffToDelete = model.getStaffFromProjectAtIndex(projectName, staffIndex);
-        Optional<Project> projectToDelete = model.getProjectWithName(projectName);
+        Optional<Staff> staffToEdit = model.getStaffFromProjectAtIndex(projectName, staffIndex);
+        Optional<Project> projectToEdit = model.getProjectWithName(projectName);
 
-        Project toFindIn = projectToDelete.orElseThrow(() ->
+        Project toFindIn = projectToEdit.orElseThrow(() ->
                 new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName)));
 
-        Staff toEdit = staffToDelete.orElseThrow(() ->
+        Staff toEdit = staffToEdit.orElseThrow(() ->
                 new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX));
         Staff editedStaff = createEditedStaff(toEdit, editStaffDescriptor);
 
