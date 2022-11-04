@@ -3,7 +3,9 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
+skinparam defaultFontSize 40
 
+'define UI Components
 package UI <<Rectangle>>{
 Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
@@ -13,8 +15,11 @@ Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
-Class StatusBarFooter
+Class ContactCard
 Class CommandBox
+Class CommandHistory
+Class PersonViewPanel
+Class PastAppointmentCard
 }
 
 package Model <<Rectangle>> {
@@ -28,15 +33,21 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
+UiManager .left|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "1" PersonViewPanel
 
-PersonListPanel -down-> "*" PersonCard
+CommandBox *-down-> "1" CommandHistory
+
+PersonViewPanel *-down-> "*" PastAppointmentCard
+
+note left of PersonListPanel: {PersonListPanel can only have PersonCards \n or ContactCards at one time.}
+PersonListPanel *-down-> "*" PersonCard
+PersonListPanel *-down-> "*" ContactCard
 
 MainWindow -left-|> UiPart
 
@@ -44,17 +55,26 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
 PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
+ContactCard --|> UiPart
 HelpWindow --|> UiPart
+PersonViewPanel --|> UiPart
+PastAppointmentCard --|> UiPart
 
-PersonCard ..> Model
+PersonViewPanel .> CommandBox
+PersonCard .up.> CommandBox
+PersonViewPanel .down.> Model
+PersonCard .down..> Model
+ContactCard .down.> Model
+PastAppointmentCard .down.> Model
+PersonViewPanel .down.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+PersonListPanel -[hidden]left- PersonViewPanel
+PersonViewPanel -[hidden]left- HelpWindow
+ContactCard -[hidden]left- PersonCard
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml

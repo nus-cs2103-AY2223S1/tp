@@ -120,10 +120,16 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/dg-images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, 
-`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** The reason PersonListPanel can only have PersonCard or ContactCard is that only 1 form of information,
+list of patients or next of kin details, can be listed at one time.
+</div>
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures 
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
@@ -364,18 +370,18 @@ Getting the past appointments of a patient involves the following steps:
 
 ### New Add Command
 The new `Add` Command incorporates support for the necessary fields for a patient, namely they are the: `NextOfKin`,
-`PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber` and `Medications` fields. The new command still follows the
-flow of the old command, as illustrated in the Activity Diagram below.
+`PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`, `Medications` and `UpcomingAppointment` fields. 
 
-![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
-![AddCommandParseArgsSequenceDiagram](images/AddCommandParseArgsSequenceDiagram.png)
+When `add <<args>>` is inputted, the `LogicManager` calls the `AddressBookParser` to parse the input. This then creates
+an instance of the `AddCommandParser` to parse the `args` via the respective `ParserUtil` functions. If duplicate
+parameters are inputted (e.g. `add n/Joe n/Mel`), only the last instance is taken, similar to how `edit`, `appt` 
+and `consult` are executed.
 
-As the Add Command now includes more fields for the patients, the Person class has also been updated to store these
-fields, as shown in the class diagram below.
+The `AddCommandParser` will then create the corresponding `Person` object and then feed it to a `AddCommand` object it 
+creates and returns. The `LogicManager` then executes the `Command`, which adds the `Person` to the model.
 
-![PersonClassDiagram](images/PersonClassDiagram.png)
-
-The usage of the Add Command remains the same as before.
+![AddCommandSequenceDiagram](images/dg-images/AddCommandSequenceDiagram.png)
+![AddCommandParseArgsSequenceDiagram](images/dg-images/AddCommandParseArgsSequenceDiagram.png)
 
 ### Get hospital wing feature (`get /hw`)
 When `get /hw` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the

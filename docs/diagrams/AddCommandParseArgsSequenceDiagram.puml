@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 30
+skinparam titleFontSize 30
+
+title Parse Args
+
+box Logic LOGIC_COLOR_T1
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+end box
+box
+
+
+AddCommandParser->ParserUtil:parseName(name)
+activate AddCommandParser
+activate ParserUtil
+return name
+AddCommandParser->ParserUtil:parsePhone(phone)
+activate ParserUtil
+return phone
+AddCommandParser->ParserUtil:parseEmail(email)
+activate ParserUtil
+return email
+AddCommandParser->ParserUtil:parseNextOfKin(nextOfKin)
+activate ParserUtil
+return nextOfKin
+AddCommandParser->ParserUtil:parsePatientType(patientType)
+activate ParserUtil
+return patientType
+AddCommandParser->ParserUtil:parseMedications(medications)
+activate ParserUtil
+return medications
+opt isInPatient
+  AddCommandParser->ParserUtil:parseHospitalWing(hospitalWing)
+  activate ParserUtil
+  return hospitalWing
+  AddCommandParser->ParserUtil:parseFloorNumber(floorNumber)
+  activate ParserUtil
+  return floorNumber
+  AddCommandParser->ParserUtil:parseWardNumber(wardNumber)
+  activate ParserUtil
+  return wardNumber
+end
+AddCommandParser->ParserUtil:parseUpcomingAppointment(upcomingAppointment)
+activate ParserUtil
+return upcomingAppointment
+
+@enduml
