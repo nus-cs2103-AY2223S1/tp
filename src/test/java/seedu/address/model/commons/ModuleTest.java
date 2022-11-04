@@ -33,13 +33,12 @@ public class ModuleTest {
         assertFalse(ModuleCode.isValidModule("peter the 2nd")); // alphanumeric characters
         assertFalse(ModuleCode.isValidModule("Capital Tan")); // with capital letters
         assertFalse(ModuleCode.isValidModule("David Roger Jackson Ray Jr 2nd")); // long names
+        assertFalse(ModuleCode.isValidModule("CS 1101")); // space in module code
 
         // valid name
         assertTrue(ModuleCode.isValidModule("CS1101"));
-        assertTrue(ModuleCode.isValidModule("CS1101S"));
         assertTrue(ModuleCode.isValidModule("DSE1212"));
         assertTrue(ModuleCode.isValidModule("AAA1111A"));
-        assertTrue(ModuleCode.isValidModule("AAA1111"));
-
+        assertTrue(ModuleCode.isValidModule("abc1234"));
     }
 }
