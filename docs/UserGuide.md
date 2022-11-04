@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-InternConnect is a **desktop app for managing internship applicants, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InternConnect can get your application management tasks done faster than traditional GUI apps.
+InternConnect is a **desktop app for managing internship applicants, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+This one-stop, convenient, and efficient platform empowers Internship Campus Recruiters to work with their applicants’ data. Say goodbye to opening multiple windows to retrieve the information you need and focus on what matters more: matching the right people for the right job.
 
 # Table of Contents
 
