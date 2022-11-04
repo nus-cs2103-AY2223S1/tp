@@ -117,7 +117,7 @@ In student and tutor lists, you could click at the student or tutor cards to sho
 
 <p align="center">
 
-<img src="images/showCommand_after.png"/>
+<img src="images/listDisplayPanel.png"/>
 
 </p>
 
@@ -132,6 +132,13 @@ There are three list tabs: Student, Tutor and Class indicating the current displ
 <img src="images/list_tabs.png"/>
 
 </p>
+
+<p align="center">
+
+<img src="images/list_tabs_2.png"/>
+
+</p>
+
 
 This shows that the current displaying list is the student list.
 
