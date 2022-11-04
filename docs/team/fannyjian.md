@@ -21,6 +21,9 @@ Around 4.3k lines of code according to the [RepoSense Link](https://nus-cs2103-a
   - Purpose: Improve the user experience to make the app more professional and appealing to professors.
   - Contribution: Made use of Figma to plan the app layout as well as Canvas to create the app icons.
 
+- **Enhancement**: Update to `Tutor` model
+  - Change: Updated definition of the same `Tutor` to those with the same email or student ID.
+
 
 ### Contributions to the UG
 - Added write-ups, screenshots and diagrams for **Introduction**, **About this Document** and **Glossary** sections, and added documentation for `add`, `view` and `list` commands.
@@ -31,6 +34,6 @@ Around 4.3k lines of code according to the [RepoSense Link](https://nus-cs2103-a
 - Updated use cases, user stories and instructions for manual testing. 
 
 ### Reviewing contributions
-- PRs reviewed: [#77](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/77), [#129](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/129), [#134](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/134), [#139](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/139).
+- PRs reviewed: [#77](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/77), [#129](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/129), [#134](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/134), [#139](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/139), [#276](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/276).
 - Reported 14 bugs for another team in [PED](https://github.com/fannyjian/ped).
 - Participated in the module forum ([#405](https://github.com/nus-cs2103-AY2223S1/forum/issues/405) and [#406](https://github.com/nus-cs2103-AY2223S1/forum/issues/406)). 
