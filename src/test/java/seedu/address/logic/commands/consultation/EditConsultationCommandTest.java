@@ -12,9 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CONSUL
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CONSULT1;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONSULTATION;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CONSULTATION;
 import static seedu.address.testutil.TypicalConsultations.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -106,6 +105,18 @@ public class EditConsultationCommandTest {
         EditConsultationCommand editConsultationCommand = new EditConsultationCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editConsultationCommand, model, Messages.MESSAGE_INVALID_CONSULTATION_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidConsultationModuleNotExist_failure() {
+        Consultation firstConsultation = model.getFilteredConsultationList()
+                .get(INDEX_FIRST_CONSULTATION.getZeroBased());
+        EditConsultationCommand.EditConsultDescriptor descriptor =
+                new EditConsultationDescriptorBuilder(firstConsultation).withModuleCode("CS1101S").build();
+        EditConsultationCommand editConsultationCommand =
+                new EditConsultationCommand(INDEX_FIRST_CONSULTATION, descriptor);
+
+        assertCommandFailure(editConsultationCommand, model, EditConsultationCommand.MESSAGE_NON_EXISTING_MODULE);
     }
 
     @Test
