@@ -209,11 +209,11 @@ Format: `[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/R
   - `view ra/chinese ra/malay g/male g/female` lists female malay persons, ignores `ra/chinese` and `g/male`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Fields that are specified must have a non-empty value! The following are invalid
+Fields that are specified must have a non-empty value! The following are invalid<br />
 
-- Empty spaces `view n/    `
+- Empty spaces `view n/    `<br />
 
-- Empty quotations `view n/"  "`
+- Empty quotations `view n/"  "`<br />
 
 - No value given `view n/`, `view n/""`, `view n/  "   "  ` or any similar variants
 </div>
