@@ -91,7 +91,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 * Unlesss stated otherwise, all parameters should contain alphanumerical characters only.
 
 * Items in square brackets are optional.<br>
-  - e.g. `d/DESCRIPTION [c/COUNTRY] sd/START DATE du/DURATION` can be used as `d/My Japan Trip c/Japan sd/2023-04-01 du/14` or as `d/My Japan Trip sd/2023-04-01 du/14`.
+  - e.g. `d/DESCRIPTION [c/COUNTRY] sd/START_DATE du/DURATION` can be used as `d/My Japan Trip c/Japan sd/2023-04-01 du/14` or as `d/My Japan Trip sd/2023-04-01 du/14`.
 
 * Parameters can be in any order.<br>
   - e.g. if the command specifies `c/COUNTRY d/DESCRIPTION`, `d/DESCRIPTION c/COUNTRY` is also acceptable.
@@ -120,7 +120,9 @@ Format: `help`
 Exits the Waddle program.
 
 Format: `exit`
+
 <div style="page-break-after: always"></div>
+
 ### The main page
 The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
 
@@ -144,7 +146,7 @@ Format: `add d/DESCRIPTION sd/START_DATE du/DURATION [c/COUNTRY] [p/NUMBER_OF_WA
 * `START_DATE` is the date of the first day in the itinerary. It must be given in the format `yyyy-mm-dd`.
 * `DURATION` will determine the number of days in the itinerary, and must be between 1 and 365 days.
   - e.g. `sd/2022-12-10 du/3` would mean that the trip is from 10 Dec 2022 to 12 Dec 2022.
-* `BUDGET` is the budget for the itinerary and must be between 0 and 1,000,000. Please provide the budget in dollars ($), you may include cents too!
+* `BUDGET` is the budget for the itinerary in dollars, or dollars and cents, and must be between 0 and 1,000,000.
   - e.g. `b/1000` is $1,000.
   - e.g. `b/1000.50` is $1,000.50.
   
@@ -208,6 +210,7 @@ Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START_DATE] [du/DURATION] [p
 **:information_source: Notes:** <br>
 
 * If you are editing the budget, please ensure that it is sufficient to cover the cost of all the planned items. An error would be shown otherwise.<br>
+* If you reduce the duration of an itinerary, days will be removed from the back, and any items that were scheduled on a removed day would be returned to the Wishlist.<br>
 
 </div>
 
@@ -251,6 +254,11 @@ Examples:
 ### The planning page
 The planning page of an itinerary displays the list of items you have added to the itinerary. Items on the Wishlist that have not been added to you schedule yet will appear on top in order of priority, while scheduled items will appear in order of date and time.
 
+The index of scheduled items are in the format `DAY.ITEM_NUMBER`. Some examples:
+* The first item of the first day will have index `1.1`
+* The fifth item of the third day will have index `3.5`
+* The second item of the Wishlist will have index `2`
+
 Here's an example of how the item planning page looks like:
 ![item planning page](images/itemPlanningUi.png)
 
@@ -276,7 +284,7 @@ Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 
 * `PRIORITY` is used to rank the importance of an item. It must be a number from 1 to 5, with 1 being the highest priority.
 
-* `COST` is the cost of the item and must be between 0 and 1,000,000. Please provide the cost in dollars ($), you may include cents too!
+* `COST` is the cost of the item in dollars, or dollars and cents, and must be between 0 and 1,000,000.
   - e.g. `c/100.20` is $100.20.
 
 * You cannot add items with the same description as an existing item in the item list.
@@ -284,9 +292,15 @@ Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
-If no `PRIORITY` or `COST` is provided, Waddle assigns them a default value as follows:
-* The default `PRIORITY` is 1.<br>
-* The default `COST` is $0.<br>
+* If no `PRIORITY` or `COST` is provided, Waddle assigns them a default value as follows:
+  * The default `PRIORITY` is 1.<br>
+  * The default `COST` is $0.<br>
+* Waddle only accepts english letters and spaces for `DESCRIPTION`, special characters like `'`, `&`, `!` are not allowed.<br>
+  - Example of invalid input: `d/Visit Saint-Tropez`
+* The cost input should only contain numbers and one decimal point.<br>
+  - Example of invalid input: `c/1,000,000`
+* If more than 2 decimal places are provided for the cost, Waddle rounds it up to 2 decimal places.<br>
+  - e.g. `b/1000.505` will be reflected as $1,000.51.
 
 </div>
 
@@ -336,16 +350,17 @@ Format: `free`
 
 ### Scheduling an item : `plan`
 
-Schedules an item from the wishlist.
+Schedules an item from the Wishlist.
 
 Format: `plan INDEX d/DAY_NUMBER st/START_TIME`
 
-* Schedules the item at the specified `INDEX`. The index refers to the index number displayed in the unscheduled item list.
+* Schedules the item at the specified `INDEX`. The index refers to the index number displayed in the Wishlist.
+* When an item is scheduled, the cost of the item is automatically deducted from the budget of the itinerary.
 * `DAY_NUMBER` must be an integer from 1 to the duration (in days) of the trip.
 * `START_TIME` should be given in the format `hh:mm`, or `hh:mm:ss` where `hh` is the hour in 24-hour format, `mm` is the minute, and `ss` is the seconds.
 * The end time of the item is automatically calculated by adding the `DURATION` of the item to the `START_TIME`.
 * You can only add an item if there is no clash in timing between the start and end time of the new item, and the start and end time of any existing scheduled item.
-* When an item is scheduled, the cost of the item will be automatically deducted from the budget of the itinerary.
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -356,18 +371,17 @@ Format: `plan INDEX d/DAY_NUMBER st/START_TIME`
 </div>
 
 Examples:
-* `plan 2 d/3 st/12:00` would schedule the 2nd item in the unscheduled item list on Day 3, starting at 12pm.
-* `plan 1 d/1 st/14:50:10` would schedule the 1st item in the unscheduled item list on Day 1, starting at 14:50pm, 10 seconds in.
+* `plan 2 d/3 st/12:00` would add the 2nd item in the Wishlist to Day 3, starting at 12pm.
+* `plan 1 d/1 st/14:50:10` would add the 1st item in the Wishlist to Day 1, starting at 14:50pm, 10 seconds in.
 
 ### Unscheduling an item : `unplan`
 
-Unschedules an item in a scheduled item list.
+Takes an item from the itinerary and puts it back into the Wishlist.
 
 Format: `unplan INDEX`
 
 * Unschedules the item at the specified `INDEX`. The index refers to the index number displayed in the list of scheduled items in the list of days.
-* You must provide both an existing day number and item number for `INDEX` in this format `(Day number).(item number)`.
-* Note that day number and item number must both be more than or equals to 0.
+* When an item is unscheduled, its cost is automatically added back to the budget of the itinerary.
 
 Examples:
 * `unplan 2.1` would unschedule the 1st item in the Day 2 item list.
@@ -388,7 +402,7 @@ Here's an example of how the copied text would look like:
 
 * The generated text includes all days within the itinerary, even if there are no items planned for the day.<br>
 
-* The generated text does not include the items in the wishlist. For items to be reflected in the generated text, they must be planned.<br>
+* The generated text does not include the items in the Wishlist. For items to be reflected in the generated text, they must be planned.<br>
 
 </div>
 
@@ -402,6 +416,14 @@ Format: `pdf`
 
 Here's an example of how the generated PDF would look like:
 ![exportPDF](images/exportPDF.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+
+* The generated PDF file does not contain the items in the Wishlist. For items to be reflected in the generated PDF file, they must be planned.<br>
+
+</div>
 
 ### Returning to main page : `home`
 
