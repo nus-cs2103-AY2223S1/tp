@@ -14,19 +14,19 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=lfrostbytee&breakdown=true)
 
 * **Enhancements implemented**:
-    * Updated the GUI for the application (Pull requests [\#54](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/54), [\#131](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/131))
-    * Added the `listEvents` command [\#54](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/54)
-        * What it does: displays all events in the application to the user.
-        * Justification: This feature allows the user to see events in the current order in which they are stored as data and can be extended to sort events permanently.
-    * Added the `Date` and `Time` attribute for Events and Persons [\#106](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/106), [\#129](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/129)
-        * What it does: events can now store a starting date and time while each person can store their date of birth.
-        * Justification: This feature allows the user to see the age statistics for each event and see what time an event begins.
+    * Updated the GUI for the application and added the `listEvents` command [\#54](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/54)
+        * What it does: The application can now display events concurrently with persons while the entering command displays all events in the application to the user.
+        * Justification: This feature allows the user to see events in the current order in which they are stored as data and has been extended to sort events permanently.
+    * Added the `Date` and `Time` attributes for Events and the `Date` attribute for Person [\#106](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/106), [\#129](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/129)
+        * What it does: Events can now store a starting date and time while each person can store their date of birth.
+        * Justification: This feature allows the user to view the start date and time of every event in the application as well as view the date of birth
+    of all persons in the application. These attributes have been used to create and display an event's statistics about its attendees' gender distribution and age.
         * Credits: Reused code from Hong Liang (team member) and re-abstracted the code to form the date package so that it can be used by both the `Event` and `Person` class.
-    * Created the GUI display for the `makeStats` command [\#131](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/131)
-        * What it does: opens a new window showing a pie chart of a statistic.
+    * Created the GUI display for statistics and created the `makeStats` command to open the statistics GUI display [\#131](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/131)
+        * What it does: Opens a new window showing a coloured pie chart of a statistic.
         * Justification: This feature allows the user to see the statistics of an event visually.
     * Added the `findEvents` command [\#128](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/128)
-        * What it does: displays all events that match the keywords that have been inputted.
+        * What it does: Displays all events that match the keywords that have been inputted.
         * Justification: This feature helps the user to better locate the events that they are looking for if they are already managing many events.
 
 * **Documentation**:
@@ -39,7 +39,7 @@ Given below are my contributions to the project.
 
 * **Contributions to team-based tasks**:
     * Setting up the GitHub team org/repo.
-    * Organizing and facilitating weekly team meetings.
+    * Organizing and facilitating bi-weekly team meetings as the Team Lead.
     * Distributing workload amongst team members.
 
 * **Community**:
