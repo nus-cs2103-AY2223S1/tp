@@ -116,21 +116,47 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/dg/ModelClassDiagram.png" width="450" />
+#### Model
 
+<img src="images/dg/ModelClassDiagram.png" width="450" />
 
 The `Model` component,
 
-* stores the HealthContact data i.e., all `Patient` objects (which are contained in a `UniquePatientList` object).
-* stores the currently 'selected' `Patient` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores the HealthContact data i.e.,
+    * all `Patient` objects (which are contained in a `UniquePatientList` object)
+    * all `Appointment` objects (which are contained in a `UniqueAppointmentList` object)
+    * all `Bill` objects (which are contained in a `UniqueBillList` object)
+* stores the currently 'selected' `Patient`, `Appointment` or `Bill` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>`, `ObservableList<Appointment>` or `ObservableList<Bill>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `HealthContact`, which `Patient` references. This allows `HealthContact` to only require one `Tag` object per unique tag, instead of each `Patient` needing their own `Tag` objects.<br>
+#### Patient
 
-<img src="images/dg/BetterModelClassDiagram.png" width="450" />
+<img src="images/dg/UniquePatientListClassDiagram.png" width="450">
 
-</div>
+* The `Patient` object stored in the `Model`, stores the personal information of a patient. Take note that every `Patient` must have a unique `Name` because the application differentiates `Patient` by `Name`.
+* Take note that,
+    * the application differentiates patients by `Name`
+    * same letters of `Name` in different cases are considered as the same `Name`
+#### Appointment
+
+<img src="images/dg/UniqueAppointmentListClassDiagram.png" width="450">
+
+* The `Appointment` object stored in the `Model`, stores the information of an appointment.
+* Take note that,
+    * the `Name` must be a `Name` from an existing `Patient`
+    * the application differentiates appointments by all four attributes
+    * same letters of `MedicalTest`, `Doctor` and `Name` in different cases are considered as same `MedicalTest`, `Doctor` and `Name`.
+
+#### Bill
+
+<img src="images/dg/UniqueBillListClassDiagram.png" width="450">
+
+* The `Bill` object stored in the `Model`, stores the information of a bill.
+* Take note that,
+    * the `Appointment` must be the same as an existing `Appointment`
+    * one `Appointment` can attach at most one bill
+    * the application differentiates bills by all four attributes.
 
 
 ### Storage component
@@ -250,10 +276,10 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
 of the application as indexed lists.
 
-Step 2. The user executes `find n/John` command to find all patients with the name "John". 
+Step 2. The user executes `find n/John` command to find all patients with the name "John".
 The `find` command calls `Model#updateFilteredPatientList(predicate)` to update the list of patients in the application.
 
-Step 3. The application displays the list of patients with the name "John" on the patient list panel. 
+Step 3. The application displays the list of patients with the name "John" on the patient list panel.
 
 The find feature is now seperated for the patients, appointments and bills sections.
 
@@ -282,7 +308,7 @@ Alternatives:
 ####Current Implementation
 
 The delete mechanism deletes a patient, appointment or bill identified by their index in the list. The deletion is done
-through the `deletePatient`, `deleteAppointment` and `deleteBill` functions in `ModelManager`. 
+through the `deletePatient`, `deleteAppointment` and `deleteBill` functions in `ModelManager`.
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
@@ -292,7 +318,7 @@ of the application as indexed lists.
 Step 2. The user executes `deletePatient 2` command to delete the patient at index 2 in the list.
 The `delete` command calls `Model#deletePatient` to delete the patient from the list of patients.
 
-The delete feature is now seperated for the patients, appointments and bills sections. Deleting a patient also deletes 
+The delete feature is now seperated for the patients, appointments and bills sections. Deleting a patient also deletes
 related appointments.
 
 
@@ -303,7 +329,7 @@ related appointments.
 The select commands simulates a click on the 'PatientCard' or 'AppointmentCard' in the UI.
 
 The select methods are separated for patients and appointments, with command word 'selectpatient'
-and 'selectappointment' respectively. 
+and 'selectappointment' respectively.
 
 The select commands make use of the index of a patient or an appointment in the 'FilteredList's
 to identify whose appointments and bills to show.
@@ -316,7 +342,7 @@ update the FilteredAppointmentList and FilteredBillList to contain selected pati
 
 Given below is an example usage scenario and how the find mechanism behaves at each step.
 
-Step 1. The user executes `selectpatient 1` command to show all appointments and bills 
+Step 1. The user executes `selectpatient 1` command to show all appointments and bills
 tied to the first listed patient.
 The `SelectPatient` command calls `Model#selectPatient(index)` to update the list of appointments
 and bills in the application.
@@ -341,7 +367,7 @@ Alternatives:
 
 #### Current Implementation
 
-The sort feature allows the user to sort the list of patients, appointments and bills in the application. 
+The sort feature allows the user to sort the list of patients, appointments and bills in the application.
 
 The sort feature is now separated for the patients, appointments and bills sections.
 
@@ -374,7 +400,7 @@ _{more aspects and alternatives to be added}_
 ## **Appendix: Requirements**
 
 **Product scope**
-* Only provides necessary information that we want to retrieve for patients, except sensitive medical information 
+* Only provides necessary information that we want to retrieve for patients, except sensitive medical information
 like health problems
 * Does not execute any of the real-world tasks except to remind the admin staff
 
@@ -501,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. The format for EditBillCommand is not followed.
-    
+
     * 3a.1 HealthContact shows an error message.
 
       Use case resumes at step 2.

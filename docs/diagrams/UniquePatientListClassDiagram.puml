@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>> {
+    Class HealthContact
+    Class ModelManager
+
+    Package UniquePatientList <<Rectangle>> {
+        Class UniquePatientList
+        Class Patient
+        Class Address
+        Class Email
+        Class Name
+        Class Phone
+        Class Remark
+        Class Tag
+    }
+}
+
+HealthContact *-right-> "1" UniquePatientList
+ModelManager -right-> "1" HealthContact
+ModelManager -right->"~* filtered" Patient
+
+UniquePatientList --> "~* all" Patient
+Patient *--> "1"Name
+Patient *--> "1"Phone
+Patient *--> "1"Email
+Patient *--> "1"Address
+Patient *--> "0,1"Remark
+Patient *--> "*" Tag
+
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+Address -[hidden]right-> Email
+@enduml

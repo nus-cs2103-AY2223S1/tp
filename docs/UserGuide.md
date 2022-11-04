@@ -60,15 +60,15 @@ It helps to keep track of patient data, patient appointments and patient bills f
 ### 1.1.1 Adding a patient `addpatient`, `ap`
 
 Adds a patient to HealthContact with input information including name, phone number,
-email address, home address, remarks and tags. 
+email address, home address, remarks and tags.
 
-* Name must be different from existing patient and name is case-insensitive. 
+* Name must be different from existing patient and name is case-insensitive.
 
 * Remark and tags are optional. 
 
 * A patient can be added with multiple tags.
 
-#### Command word 
+#### Command word
 
 `addpatient`, `ap`
 
@@ -100,7 +100,7 @@ Notes on symbols in first column:
 <img src="images/ug/addcommand/ap1.png" width="800px" height ="500px">
 
 
-* `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable 
+* `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable
 to add such a patient because Bernice Yu already exists in HealthContact.
 
 <img src="images/ug/addcommand/ap2.png" width="800px" height ="500px">
@@ -219,7 +219,7 @@ Edits a patient's information, such as name, phone number, address, email, remar
 Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
          `ep INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
 
-* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. 
+* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list.
   The index **must be a positive integer** 1, 2, 3, …​
 * User input should be different from the previous information that the patient has.
 * At least one of the optional fields must be provided.
@@ -229,7 +229,7 @@ Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [
   specifying any tags after it.
 
 Examples:
-* `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be 
+* `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be
    `91234567` and `johndoe@example.com` respectively.
 <img src = "images/editpatient.png" width="800px" height ="400px">
 
@@ -251,7 +251,7 @@ Format: `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:m
 * Existing values will be updated to the input values.
 
 Examples:
-* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot, 
+* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
    and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
 <img src = "images/editappointment.png" width="800px" height ="400px">
 
@@ -261,7 +261,7 @@ Edits a bill of an appointment.
 
 Format: `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill date]`
 
-* Edits the bill at the specified `INDEX`. The index refers to the index number shown in the displayed bill list. 
+* Edits the bill at the specified `INDEX`. The index refers to the index number shown in the displayed bill list.
   The index **must be a positive integer** 1, 2, 3, …​
 * User input should be different from the previous information that the bill has.
 * At least one of the optional fields must be provided.
@@ -356,7 +356,7 @@ Examples:
 
 ## 1.4 Sort
 
-### 1.4.1 Sorting patients `sortpatient` 
+### 1.4.1 Sorting patients `sortpatient`
 
 Sorts patients by a single field
 
