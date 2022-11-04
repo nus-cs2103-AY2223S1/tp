@@ -19,19 +19,19 @@ Given below are my contributions to the project.
           1. Allows the user to add a person with a date of birth field to the contact list.
           2. Allows the user to edit the date of birth of an existing person in the contact list.
           3. Date of birth field type is later evolved to serve as the date field type of the date field in both persons and events as well (Related `addEvent` and `editEvent` commands implemented by another team member).
-        * Justification: Date of birth is a common field in personal profile, and it can be used in demographic.
+        * Justification: Date of birth is a common field in personal profile, and it can be used in demographic
       analysis for marketing event attendees (related command `makeStats` see below).
 
-  * **New Feature** Implemented a statistics generation system for events, based off the age and gender of the people tagged to the events. (Pull requests [#132](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/55), [#142](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/62))
+  * **New Feature** Implemented a statistics generation system for events, based off the age and gender of the people tagged to the events. (Pull requests [#132](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/132), [#142](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/142))
         * What it does:
           1. Allows the user to generate a piechart that shows the statistics of the age or gender of the people tagged to an event.
           2. The piechart appears in a seperate window, allowing users to multi-task and view both the statistics as well as the main
           application window.
-        * Justification: In order for marketing departments to manage their marketing events, they need a way to view the statistics of events so as to evaluate their successes (related command `makeStats` see below).
+        * Justification: In order for marketing departments to manage their marketing events, they need a way to view the statistics of events so as to evaluate their successes.
         * Highlights: This feature requires using the charts package of the JavaFX library, which is otherwise not used in this application.
 
   * **Testing**
-    * Added unit tests for date, added date related tests for add and edit persons.
+    * Added unit tests for date, added date related tests for add and edit persons' features.
   * **Refactoring** Refactored the old `add` command into the `addPerson` command to distinguish from `addEvent` command.
 
 * **Documentation**:
@@ -40,7 +40,7 @@ Given below are my contributions to the project.
     * Modified `addPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#adding-a-contact-addperson))
       and `editPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#editing-a-contact--editperson)) feature slightly to include new date of birth field.
   * Contributions to the Developer Guide:
-    Added implementation details of date of birth field in `addPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#add-date-of-birth))
+    * Added implementation details of date of birth field in `addPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#add-date-of-birth))
       and `editPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#edit-date-of-birth)) feature.
 
 * **Contributions to team-based tasks**:
