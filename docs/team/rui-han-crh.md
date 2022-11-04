@@ -9,52 +9,54 @@ SectresBook helps secretaries to maintain all the information of the members of 
 
 Given below are my contributions to the project.
 
-* **New Features Implemented**
-  1. **_Loan Property of a Person_**
-     * **What it does**: Implements the ability to track monetary amounts that are represented as loaned amounts. If the amount is positive, the amount is to be paid _by_ the person. If the amount is negative, the amount is to be paid _to_ the person.
-     * **Justification**: A treasurer requires the need to keep track of details of monetary transactions.
-     * **Highlights**: When combined with the Loans History, containing the records of increments and UI Inspect section of loan history, the loan object can be represented to show monetary amounts. 
-     * **Credits**: Loan (Rui Han), Loan Histories (Neethesh), Loan Inspection in UI (Rui Han)
+## New Features Implemented
+1. **_Loan Property of a Person_**
+   * **What it does**: Implements the ability to track monetary amounts that are represented as loaned amounts. If the amount is positive, the amount is to be paid _by_ the person. If the amount is negative, the amount is to be paid _to_ the person.
+   * **Justification**: A treasurer requires the need to keep track of details of monetary transactions.
+   * **Highlights**: When combined with the Loans History, containing the records of increments and UI Inspect section of loan history, the loan object can be represented to show monetary amounts. 
+   * **Credits**: Loan (Rui Han), Loan Histories (Neethesh), Loan Inspection in UI (Rui Han)
   
   <br>
 
-  2. **_User Interface Design_**
-     * **What it does**: Remodels the user interface as shown in the landing page. It contains 4 main section, the text field, the horizontal person card list, the vertical notes list and the inspection panel which updates based on the person inspected. Various small icons, images, alignment details and transitions are also applied for visual enhancement.
-     * **Justification**: The previous UI design did not look appealing, so a more visually appealing design was created
-     * **Highlights**: When combined with the Loans History, containing the records of increments and UI Inspect section of loan history, the loan object can be represented to show monetary amounts. Other features I implemented work on top of the same UI that I designed.
-     * **Credits**: Rui Han
+2. **_User Interface Design_**
+   * **What it does**: Remodels the user interface as shown in the landing page. It contains 4 main section, the text field, the horizontal person card list, the vertical notes list and the inspection panel which updates based on the person inspected. Various small icons, images, alignment details and transitions are also applied for visual enhancement.
+   * **Justification**: The previous UI design did not look appealing, so a more visually appealing design was created
+   * **Highlights**: When combined with the Loans History, containing the records of increments and UI Inspect section of loan history, the loan object can be represented to show monetary amounts. Other features I implemented work on top of the same UI that I designed.
+   * **Credits**: Rui Han
 
   <br>
 
-  3. **_Inspect command_**
-     * **What it does**: Inspects a person in the person's list. Inspection is a UI-centric command that updates the UI values shown. It does not mutate any data in the model. This is also equivalent to just click on the person card, which does exactly the same thing. Inspection can be performed using NAME or INDEX.
-     * **Justification**: The UI requires more flexibility when coupled with the CLI, there shouldn't be things that the GUI can do that the CLI cannot, so the `inspect` command was created.
-     * **Highlights**: `inspect Alex` or `inspect 1` where Alex is at the first index will populate the Inspection Panel with data of the person, such as name, phone number, birthday, etc.
-     * **Credits**: Rui Han
+3. **_Inspect command_**
+   * **What it does**: Inspects a person in the person's list. Inspection is a UI-centric command that updates the UI values shown. It does not mutate any data in the model. This is also equivalent to just click on the person card, which does exactly the same thing. Inspection can be performed using NAME or INDEX.
+   * **Justification**: The UI requires more flexibility when coupled with the CLI, there shouldn't be things that the GUI can do that the CLI cannot, so the `inspect` command was created.
+   * **Highlights**: `inspect Alex` or `inspect 1` where Alex is at the first index will populate the Inspection Panel with data of the person, such as name, phone number, birthday, etc.
+   * **Credits**: Rui Han
 
   <br>
 
-  4. **_Hide Notes Panel Command_**
-     * **What it does**: Hides the notes panel by applying a translational transition with a fade transition to the StackPane containing the notes panel. The UI uses anchor pane with a Vertical anchor point and a horizontal anchor point shared by all 3 components of the UI (People List, Inspect Panel and Notes Panel). The translation is applied through interpolating the vertical anchor point from 0.6 to 1 such that it moves from the original position to the right side of the screen. This pushes the notes panel to the right side and, at the same time, elongates and pulls the people panel and inspect panel to the right. <p> To maintain the aspect of the panel, a difference in initial left and right anchor point of the Notes Stackpane is calculated and maintained through the translation. The fade transition simply reduces the opacity of the entire pane to zero. This creates the effect of hiding the panel.
-     * **Justification**: Because the person panel is horizontally scrolling, it is difficult to view more than 6 people in the list at the same time especially if working on a monitor with a smaller resolution. By hiding the notes panel and pulling the vertical anchor to the right, the people panel becomes wider, allowing for the use of more relevant screen real estate. The inspect panel is also elongated but is also an anchorpane itself, so it maintains equal division between the basic information and the loan history by a ratio.
-     * **Highlights**: The transition effect looks nice. All other elements maintain its aspect through ratio instead of absolute values. `hideNotes` to hide the notes panel
-     * **Credits**: Rui Han
+4. **_Hide Notes Panel Command_**
+   * **What it does**: Hides the notes panel by applying a translational transition with a fade transition to the StackPane containing the notes panel. The UI uses anchor pane with a Vertical anchor point and a horizontal anchor point shared by all 3 components of the UI (People List, Inspect Panel and Notes Panel). The translation is applied through interpolating the vertical anchor point from 0.6 to 1 such that it moves from the original position to the right side of the screen. This pushes the notes panel to the right side and, at the same time, elongates and pulls the people panel and inspect panel to the right. <p> To maintain the aspect of the panel, a difference in initial left and right anchor point of the Notes Stackpane is calculated and maintained through the translation. The fade transition simply reduces the opacity of the entire pane to zero. This creates the effect of hiding the panel.
+   * **Justification**: Because the person panel is horizontally scrolling, it is difficult to view more than 6 people in the list at the same time especially if working on a monitor with a smaller resolution. By hiding the notes panel and pulling the vertical anchor to the right, the people panel becomes wider, allowing for the use of more relevant screen real estate. The inspect panel is also elongated but is also an anchorpane itself, so it maintains equal division between the basic information and the loan history by a ratio.
+   * **Highlights**: The transition effect looks nice. All other elements maintain its aspect through ratio instead of absolute values. `hideNotes` to hide the notes panel
+   * **Credits**: Rui Han
 
   <br>
 
-  5. **_Show Notes Panel Command_**
-     * **What it does**: The opposite of hiding the notes panel. Fades the notes panel in while translating the vertical anchor to the left from 1.0 to 0.6 to slide the notes panel in.
-     * **Justification**: If this did not exist, short of restarting the program, there is no way to bring the notes panel back. This provides the inverse functionality of hiding the notes panel.
-     * **Highlights**: The transition effect looks nice. `showNotes` to show the notes panel.
-     * **Credits**: Rui Han
+5. **_Show Notes Panel Command_**
+   * **What it does**: The opposite of hiding the notes panel. Fades the notes panel in while translating the vertical anchor to the left from 1.0 to 0.6 to slide the notes panel in.
+   * **Justification**: If this did not exist, short of restarting the program, there is no way to bring the notes panel back. This provides the inverse functionality of hiding the notes panel.
+   * **Highlights**: The transition effect looks nice. `showNotes` to show the notes panel.
+   * **Credits**: Rui Han
      
   <br>
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w12&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=rui-han-crh&tabRepo=AY2223S1-CS2103T-W12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+## Code contributed: 
+
+[RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w12&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=rui-han-crh&tabRepo=AY2223S1-CS2103T-W12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
   <br>
 
-* **Project management**:
+## Project management:
   * Called meetings to discuss plans. 
   * Provided feedback on Github PRs.
   * Organised issues and distributed them to group members.
@@ -63,7 +65,7 @@ Given below are my contributions to the project.
 
   <br>
 
-* **Enhancements implemented**:
+## Enhancements implemented:
   * **Feature**: Edit By Name
   * What it does: Adding onto the ability to edit by index, I implemented an ability to edit by any keyword of the person's name. This uses the `FindCommand` to first find by name and ensure that only 1 person exists from the result of finding the keyword. After this, the first index is fetched, which must correspond to a unique person found. Otherwise, if more than 1 person is found or no persons are found, the edit command will halt its operation, display the filtered list of persons returned and feedbacks to the user the people found.
   * Justificaton: It is easier to recall a person's name than to read the index from the list.
@@ -72,15 +74,118 @@ Given below are my contributions to the project.
 
   <br>
 
-* **Contributions to the UG**:
-  * Added images and icons (UI image, person card image, note card image, icons used throughout the program and the filtered icon)
-  * Added the User Interface section of the UG with pointers to which part corresponds to what function and usage. [Link to UI section](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#user-interface)
-  * Added description of command [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#inspecting-a-person--inspect), [`hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#hiding-notes-panel--hidenotes) and [`showNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#showing-notes-panel--shownotes)
-  * Improved description and detail of the UG by writing more complete sentences
-  * Corrected some English terms
-  * Added Glossary terms
+<div style="break-after:page"></div>
 
+## Contributions to the UG:
+
+1. Added images and icons (UI image, person card image, note card image, icons used throughout the program and the filtered icon)
+
+2. Added the User Interface section of the UG with pointers to which part corresponds to what function and usage. [Link to UI section](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#user-interface)
+
+Text Extract (images removed):
+<blockquote>
+
+## User Interface
+
+Here is an overview of the User Interface (UI) components.
+
+The UI comprises four sections:
+
+## Command Box
+
+The Command Box is where you type in your command inputs. For more information on command inputs, refer to Features below.
+
+Once the command box is selected, a results display will appear to report the status of the program to you. Error messages and success messages will be shown in this box. Click anywhere else on the screen, or press the ESC key to exit the command box and hide the results display.
+
+## People Panel
+
+The People Panel contains all the club and organisation members you have registered in this book. They are laid out horizontally. You can scroll the list by hovering your mouse over the People Panel and scrolling the mouse-wheel, or by clicking on and dragging the horizontal scroll bar to scroll.
+
+Each card represents a person and displays their name, phone number and total present loan amount. The loan amount may be positive to indicate an amount owed by the person, or negative to indicate an amount due to be paid to the person.
+
+## Inspect Panel
+
+The Inspect Panel is related to the People Panel and shows the basic information of the currently inspected person. A person can be inspected by either clicking on his or her card, or by using the inspect command. More details on the inspect command can be found here.
+
+The left side of the Inspect Panel shows the basic information, while the right side shows the history of loan transactions.
+
+Note that the transaction record next to the icon of the hand holding coins is the most recent, and the earlier transactions are listed below.
+
+The total amount of the loans is also stated in the right of this panel, describing in fuller detail if the sum is owed by or to be paid to the person.
+
+## Notes Panel
+
+This Notes Panel stores all the information related to notes and tasks that the user may want to keep track of.
+
+Each note contains an index, a title, contents and tags.
+
+The index of the notes only applies to the currently displayed list, it is not tied to the note itself.
+
+Both the People Panel and Notes Panel share a pool of tags to more easily relate a group of people to a specific note.
+
+Check Notes Features to learn more about the commands you can execute related to notes.
+
+</blockquote>
+
+3. Added description of properties for both people and notes in the UG.
+
+This section is too long to be reproduced in entirety. Here is an example of the person property `email` extracted with images removed. The entire section can be found [here](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#properties)
+<blockquote>
+
+### Email
+
+This pertains to the email address of the person to be recorded in the SectresBook. It serves mainly as a point of information regarding the person, but has no additional features tied to it.
+
+This property can be identified from the GUI by the icon of an envelope.
+
+- Identified by the prefix `email`.
+- Emails should be of the format `local-part@domain` and adhere to the following constraints:
+
+Part    | Constraint |
+|---------|----------|
+Local part |                                                                              The local-part should only contain alphanumeric characters and these special characters `_`, `.`, `+` and `-`. <br><br>The local-part may not start or end with any special characters and special characters may not be adjacent to each other.
+Domain name |The domain name is made up of domain labels separated by periods. The domain name must:<p> - end with a domain label at least 2 characters long <br>- have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+The local part and domain part **must** be connected by a `@` symbol.
+</blockquote>
+
+4. Added description of command [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#inspecting-a-person--inspect), [`hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#hiding-notes-panel--hidenotes) and [`showNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#showing-notes-panel--shownotes)
+
+`inspect` text extracted (images removed):
+<blockquote>
+
+#### Inspecting a person : `inspect`
+
+Updates the Inspect Panel with the basic information and loan history of the person inspected.
+
+Inspection is a UI-centric command that operates on the current filtered person’s list, so you may only inspect those that are presently listed.
+
+If you wish to view the properties of anyone in the full list, please remember to specify `list` to clear the filter.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+If there are multiple people in the list satisfying the keywords given, it will, by default, inspect the first person that matches the keywords.
+
+You may wish to use more unique keywords to reduce ambiguity, or inspect by an index.
+</div>
+
+Format: `inspect INDEX <OR> NAME`
+
+Examples:
+* `inspect 2` inspects the second person in the list of people
+* `inspect Lynette` will attempt to find the first person called `Lynette` in the currently **filtered** persons' list and update the Inspect Panel with her information.
+
+</blockquote>
+
+The text for `showNotes` and `hideNotes` are not remarkable enough to be extracted here.
+
+5. Improved description and detail of the UG by writing more complete sentences 
+6. Corrected some English terms
+7. Added Glossary terms
+
+----------------------------------------
   <br>
+
+<div style="break-after:page"></div>
 
 * **Contributions to the DG**:
   * Added 2 diagrams:
