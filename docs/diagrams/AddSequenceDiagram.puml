@@ -33,16 +33,16 @@ create AddCommand
 AddCommandParser -> AddCommand
 activate AddCommand
 
-AddCommand --> AddCommandParser : d
+AddCommand --> AddCommandParser : a
 deactivate AddCommand
 
-AddCommandParser --> AddressBookParser : d
+AddCommandParser --> AddressBookParser : a
 deactivate AddCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddCommandParser -[hidden]-> AddressBookParser
 destroy AddCommandParser
 
-AddressBookParser --> LogicManager : d
+AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
 
 LogicManager -> AddCommand : execute()
