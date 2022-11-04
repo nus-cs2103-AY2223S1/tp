@@ -264,13 +264,13 @@ The following activity diagram shows how the assigning filepath to a client feat
 ![SetPersonFileActivityDiagram](images/DeveloperGuide/FilePath/FilePathActivityDiagram.png)
 
 #### Design Considerations:
-**Alternative 1 (Current Choice)** Store PDF's absolute path.
+**Choice 1 (Current Choice)** Store PDF's absolute path.
   * Pros:
     * Absolute path of the PDF would mean that changes to the file location of User's FABook will not affect the ability to open PDF.
   * Cons:
     * Changing file location of PDF will render stored filepath useless.
   
-**Alternative 2** Store PDF files of clients in a folder.
+**Choice 2** Store PDF files of clients in a folder.
   * Pros:
     * Users do not need to input absolute path as it is more technical than relative paths.
   * Cons:
@@ -334,11 +334,38 @@ Step 4. `MeetingsWindow#getMeetings()` instantiates a `MeetingsListPanel` object
 Step 5. The `MeetingsWindow` contains a `MeetingListPanel` with `MeetingCard` and these objects are linked to `MeetingsWindow.FXML`, `MeetingListPanel.FXML` and `MeetingCard.FXML` which provides the design and UI shown to the user.
 
 The following sequence diagram shows how upcoming meetings feature works.
-
+![UpcomingMeetingSequenceDiagram](images/DeveloperGuide/UpcomingMeetings/UpcomingMeetingSequenceDiagram.png)
 
 The following activity diagram shows how upcoming meetings feature works.
+![UpcomingMeetingActivityDiagram](images/DeveloperGuide/UpcomingMeetings/UpcomingMeetingActivityDiagram.png)
 
 #### Design Considerations:
+**Display**
+**Choice 1 (Current Choice)** Pop up Meetings window.
+  * Pros:
+    * Clear segregation from Main UI.
+    * Does not take up real estate on the Main UI.
+  * Cons:
+    * Extra window to be created and managed.
+  
+**Choice 2** Displayed on a section of Main Window.
+  * Pros:
+    * No extra window to be managed.
+  * Cons:
+    * Cluttered UI.
+
+**Meeting Card Display**
+**Choice 1 (Current Choice)** Display Meetings Card by Person.
+  * Pros:
+    * Clear distinction by client of the meetings that user will have with. 
+  * Cons:
+    * Not intuitive for consolidated meetings in a day.
+  
+**Choice 2** Display Meetings Card by date.
+  * Pros:
+    * Intuitive consolidated meetings per day.
+  * Cons:
+    * Overhaul of new classes and object where a `MeetingTime` has-a `Person` rather than the current implementation of a `Person` has-a `MeetingTime`.
 
 #### Enhancement 2
 

@@ -11,13 +11,13 @@ stop
 
 else ([is valid filePath])
 :Verify Index in SetPersonFilePathCommand;
-if() then ([else))
+if() then ([else])
 :show error message;
 stop
 
 else ([valid keyword])
 :Verify filePath in SetPersonFilePathCommand;
-if() then ([else))
+if() then ([else])
 :show error message;
 stop
 
