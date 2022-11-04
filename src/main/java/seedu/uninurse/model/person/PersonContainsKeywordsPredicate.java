@@ -7,15 +7,17 @@ import java.util.function.Predicate;
 import seedu.uninurse.model.tag.TagContainsKeywordsPredicate;
 
 /**
- * Tests that a {@code Person} matches any of the keywords given.
+ * Tests that at least one of the Person's details matches any of the keywords given.
  */
 public class PersonContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
     private final List<Predicate<Person>> predicates;
 
     /**
-     * Constructs a {@code PersonContainsKeywordsPredicate}
-     * which tests {@code Person} to any of the keywords given.
+     * Constructs a PersonContainsKeywordsPredicate
+     * which tests Person to any of the keywords given.
+     *
+     * @param keywords the keywords
      */
     public PersonContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;

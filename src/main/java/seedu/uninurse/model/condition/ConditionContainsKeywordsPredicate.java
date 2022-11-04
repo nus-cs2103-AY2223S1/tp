@@ -7,7 +7,7 @@ import seedu.uninurse.commons.util.StringUtil;
 import seedu.uninurse.model.person.Patient;
 
 /**
- * Tests that a {@code Patient}'s {@code Condition} matches any of the keywords given.
+ * Tests that at least one of the Patient's Condition matches any of the keywords given.
  */
 public class ConditionContainsKeywordsPredicate implements Predicate<Patient> {
     private final List<String> keywords;

@@ -7,7 +7,7 @@ import seedu.uninurse.commons.util.StringUtil;
 import seedu.uninurse.model.person.Patient;
 
 /**
- * Tests that a {@code Patient}'s {@code Task} matches any of the keywords given.
+ * Tests that at least one of the Patient's Task matches any of the keywords given.
  */
 public class TaskContainsKeywordsPredicate implements Predicate<Patient> {
     private final List<String> keywords;
