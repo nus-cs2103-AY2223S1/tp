@@ -23,6 +23,7 @@ public class DeleteTaskCommand extends Command {
             + "Example: t " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
+    public static final String MESSAGE_EXAM_LINK_DROPPED = "\nWarning! The link between this task and its exam is dropped.";
 
     private final Index targetIndex;
 
@@ -44,8 +45,8 @@ public class DeleteTaskCommand extends Command {
         model.deleteTask(taskToDelete);
 
         if (taskToDelete.isLinked()) {
-            return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete) + "\n"
-                    + "Warning! The link between this task and its exam is dropped.");
+            return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete)
+                    + MESSAGE_EXAM_LINK_DROPPED);
         }
 
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
