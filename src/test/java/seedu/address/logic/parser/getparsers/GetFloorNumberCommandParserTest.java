@@ -26,11 +26,15 @@ public class GetFloorNumberCommandParserTest {
     @Test
     public void parse_invalidFloorNumber_throwsParseException() {
         // all invalid floor number
-        assertParseFailure(parser, "0 -1 asdfghjkl",
+        assertParseFailure(parser, "0 -1 -999",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetFloorNumberCommand.MESSAGE_USAGE));
 
         // one invalid floor number
         assertParseFailure(parser, "1 5 -1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetFloorNumberCommand.MESSAGE_USAGE));
+
+        // string inputs
+        assertParseFailure(parser, "asdfghjkl",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetFloorNumberCommand.MESSAGE_USAGE));
     }
 
