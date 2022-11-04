@@ -198,7 +198,7 @@ Format: `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_IND
 * `LINK_INDEX` refers to the index number shown in the person list and is optional. Specifying this parameter will define the current person at the specified index in the person list as the contact person of the newly added internship. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
-Instead of typing the full status name, just enter the first letter of the intended status (e.g. `s/b` is a shortcut for `s/BOOKMARKED`)**.
+Instead of typing the full status name, just enter the first letter of the intended status (e.g. `s/b` is a shortcut for `s/BOOKMARKED`).
 Adding internships maintains the current sorted order of the display list (as opposed to adding to the back of the list). By default, the list is sorted by date of creation.
 An internship is assumed to have at most one contact person.
 Duplicate internships are not allowed.
@@ -392,8 +392,8 @@ Format: `sort -i [c/] [d/] [s/]`
 - When sorted by interview date, internships with no interview dates are listed at the bottom of the list.
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note: ** <br>
-Both the person list and internship list will remain sorted by the last given criterion until InterNUS is closed. The sorted order persists during additions, deletions and editing of persons and internships.
+**:information_source: Note:** Both the person list and internship list will remain sorted by the last given criterion 
+until InterNUS is closed. The sorted order persists during additions, deletions and editing of persons and internships.
 </div>
 
 ## 4.8. General
@@ -454,6 +454,14 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InterNUS home folder.
+
+**Q**: How do I find a contact person's linked internship?<br>
+**A**: On the contact person's display, look for the linked internship's display name (shown as **Internship: COMPANY_NAME ROLE**), then use 
+`find -i c/COMPANY_NAME r/ROLE` to find the linked internship.
+
+**Q**: How do I find an internship's linked contact person?<br>
+**A**: On the internship's display, look for the linked contact person's display name (shown as **Contact Person: NAME**), then use 
+`find -p n/NAME` to find the linked contact person.
 
 --------------------------------------------------------------------------------------------------------------------
 
