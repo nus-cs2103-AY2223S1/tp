@@ -177,7 +177,7 @@ public class ModelManagerTest {
         modelManager.updateFilteredPatientList(command.getPredicate());
         assertFalse(modelManager.equals(new ModelManager(healthContact, userPrefs)));
 
-        // different filteredAppointmentList -> returns false TODO
+        // different filteredAppointmentList -> returns false
         String[] appointmentKeywords = CARL.getName().fullName.split("\\s+");
 
         String secondPredicateName = appointmentKeywords[0];
@@ -192,7 +192,7 @@ public class ModelManagerTest {
         modelManager.updateFilteredAppointmentList(command2.getPredicate());
         assertFalse(modelManager.equals(new ModelManager(healthContact, userPrefs)));
 
-        // different filteredBillList -> returns false TODO
+        // different filteredBillList -> returns false
         String[] billKeywords = BENSON.getName().fullName.split("\\s+");
 
         String thirdPredicateName = billKeywords[0];
