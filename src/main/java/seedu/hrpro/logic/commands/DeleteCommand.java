@@ -2,7 +2,6 @@ package seedu.hrpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.Optional;
 
 import seedu.hrpro.commons.core.Messages;

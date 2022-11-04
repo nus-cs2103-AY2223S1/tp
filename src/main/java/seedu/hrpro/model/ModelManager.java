@@ -153,14 +153,14 @@ public class ModelManager implements Model {
         }
         return Optional.<Project>of(this.filteredProjects.get(projectIndex.getZeroBased()));
     }
-    
+
     private boolean isValidProjectName(ProjectName projectName) {
         requireNonNull(projectName);
         return this.filteredProjects.stream()
                 .anyMatch(project ->
                         project.getProjectName().toString().equalsIgnoreCase(projectName.toString()));
     }
-    
+
     private boolean isValidProjectIndex(Index projectIndex) {
         requireNonNull(projectIndex);
         return projectIndex.getZeroBased() < this.filteredProjects.size();

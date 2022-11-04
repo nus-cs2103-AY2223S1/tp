@@ -258,14 +258,14 @@ public class AddCommandTest {
         public void unmarkTask(Index index) {
             throw new AssertionError("this mehtod should not be called.");
         }
-        
+
         @Override
         public void sortTasks() {
             throw new AssertionError(("This method should not be called."));
         }
 
         @Override
-        public Optional<Task> getTaskWithIndex(Index taskIndex)  {
+        public Optional<Task> getTaskWithIndex(Index taskIndex) {
             throw new AssertionError(("This method should not be called."));
         }
 

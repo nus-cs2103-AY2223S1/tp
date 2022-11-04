@@ -2,13 +2,10 @@ package seedu.hrpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.hrpro.commons.core.Messages;
 import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.logic.commands.exceptions.CommandException;
 import seedu.hrpro.model.Model;
-import seedu.hrpro.model.task.Task;
 
 /**
  * Marks the task at the specified index as completed.

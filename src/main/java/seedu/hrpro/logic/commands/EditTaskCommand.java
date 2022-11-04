@@ -5,7 +5,6 @@ import static seedu.hrpro.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.hrpro.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.hrpro.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.util.List;
 import java.util.Optional;
 
 import seedu.hrpro.commons.core.Messages;

@@ -267,7 +267,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public Optional<Task> getTaskWithIndex(Index taskIndex)  {
+        public Optional<Task> getTaskWithIndex(Index taskIndex) {
             throw new AssertionError(("This method should not be called."));
         }
 
