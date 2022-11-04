@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
  * in the above example.<br>
  */
 public class ArgumentTokenizer {
-
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
@@ -145,5 +144,4 @@ public class ArgumentTokenizer {
             return prefix;
         }
     }
-
 }

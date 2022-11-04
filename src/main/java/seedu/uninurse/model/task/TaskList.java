@@ -1,6 +1,6 @@
 package seedu.uninurse.model.task;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,29 +23,32 @@ public class TaskList implements GenericList<Task> {
     private List<Task> internalTaskList;
 
     /**
-     * Constructs an empty {@code TaskList}.
+     * Constructs an empty TaskList.
      */
     public TaskList() {
         internalTaskList = new ArrayList<>();
     }
 
     /**
-     * Constructs a {@code TaskList} with a given list of tasks.
+     * Constructs a TaskList with a given list of tasks.
+     *
+     * @param tasks to initially put within TaskList.
      */
     public TaskList(ArrayList<Task> tasks) {
-        requireNonNull(tasks);
+        requireAllNonNull(tasks);
         internalTaskList = tasks;
         internalTaskList.sort(Comparator.comparing(Task::getDateTime));
     }
 
     /**
-     * Adds a task to the {@code TaskList},
-     * @param task The task to be added.
+     * Adds a task to the TaskList.
+     *
+     * @param task to be added.
      * @return The updated {@code TaskList} containing the added task.
      */
     @Override
     public TaskList add(Task task) {
-        requireNonNull(task);
+        requireAllNonNull(task);
 
         if (this.internalTaskList.contains(task)) {
             throw new DuplicateTaskException();
@@ -58,11 +61,11 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * Edits a task in the {@code TaskList}.
+     * Edits a task in the TaskList.
      *
      * @param index of the task to be edited.
      * @param task that is updated.
-     * @return The updated {@code TaskList}.
+     * @return The updated TaskList.
      */
     @Override
     public TaskList edit(int index, Task task) {
@@ -79,10 +82,10 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * Removes a task from the {@code TaskList}.
+     * Removes a task from the TaskList.
      *
-     * @param index The index of the task to be deleted.
-     * @return The updated {@code TaskList}.
+     * @param index of the task to be deleted.
+     * @return The updated TaskList.
      */
     @Override
     public TaskList delete(int index) {
@@ -94,7 +97,10 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * @return the task at the specified index.
+     * Gets the Task at the given index.
+     *
+     * @param index to retrieve from.
+     * @return The Task at the given index.
      */
     public Task get(int index) {
         assert(index >= 0 && index <= this.size());
@@ -102,7 +108,7 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * Returns the size of the list.
+     * @return The size of the list.
      */
     @Override
     public int size() {
@@ -110,13 +116,16 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * Returns true if the task list is empty.
+     * @return True if the task list is empty.
      */
     @Override
     public boolean isEmpty() {
         return this.internalTaskList.isEmpty();
     }
 
+    /**
+     * @return The internal List of Tasks (unmodifiable).
+     */
     @Override
     public List<Task> getInternalList() {
         return Collections.unmodifiableList(internalTaskList);
@@ -157,26 +166,35 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * Returns a list of {@code Task}s that are due on a given day.
+     * Returns a list of Tasks that are due on a given day.
+     *
+     * @param day to get the Tasks on.
+     * @return The List of Tasks on the given Day.
      */
-    public List<Task> getAllTasksOnDay(DateTime test) {
-        return internalTaskList.stream().filter(t -> t.isTaskOnDay(test)).collect(Collectors.toList());
+    public List<Task> getAllTasksOnDay(DateTime day) {
+        return internalTaskList.stream().filter(t -> t.isTaskOnDay(day)).collect(Collectors.toList());
     }
 
     /**
-     * Returns a list of {@code Task}s that are due today.
+     * @return The List of Tasks that are for today.
      */
     public List<Task> getAllTasksToday() {
         return internalTaskList.stream().filter(Task::isTaskToday).collect(Collectors.toList());
     }
 
     /**
-     * Returns true if there are tasks today.
+     * @return If the TaskList contains any Tasks that are for today.
      */
     public boolean containsTaskToday() {
         return !this.getAllTasksToday().isEmpty();
     }
 
+    /**
+     * Checks whether the TaskList has the given Task.
+     *
+     * @param task to check for.
+     * @return Whether the given Task is in TaskList.
+     */
     public boolean hasTask(Task task) {
         return internalTaskList.contains(task);
     }
@@ -201,21 +219,21 @@ public class TaskList implements GenericList<Task> {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         for (int index = 0; index < internalTaskList.size(); index++) {
             Task t = internalTaskList.get(index);
             if (index == 0) {
-                builder.append(index + 1)
+                sb.append(index + 1)
                         .append(". ")
                         .append(t);
             } else {
-                builder.append("\n")
+                sb.append("\n")
                         .append(index + 1)
                         .append(". ")
                         .append(t);
             }
         }
-        return builder.toString();
+        return sb.toString();
     }
 
     @Override

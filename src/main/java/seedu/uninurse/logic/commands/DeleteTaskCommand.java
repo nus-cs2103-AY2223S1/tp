@@ -1,6 +1,5 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TASK_INDEX;
@@ -27,19 +26,17 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
             + PREFIX_OPTION_TASK_INDEX + " TASK_INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
             + PREFIX_OPTION_TASK_INDEX + " 1";
-
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task %1$d from %2$s: %3$s";
-
-    public static final CommandType DELETE_TASK_COMMAND_TYPE = CommandType.TASK;
+    public static final String MESSAGE_SUCCESS = "Deleted task %1$d from %2$s: %3$s";
+    public static final CommandType COMMAND_TYPE = CommandType.TASK;
 
     private final Index patientIndex;
     private final Index taskIndex;
 
     /**
-     * Creates an DeleteTaskCommand to delete a {@code Task} from the specified person.
+     * Creates an DeleteTaskCommand to delete a Task from the specified person.
      *
-     * @param patientIndex index of the person in the filtered person list to delete the task
-     * @param taskIndex    index of the task in the person's task list
+     * @param patientIndex index of the person in the filtered person list to delete the task.
+     * @param taskIndex index of the task in the person's task list.
      */
     public DeleteTaskCommand(Index patientIndex, Index taskIndex) {
         requireAllNonNull(patientIndex, taskIndex);
@@ -50,7 +47,7 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model);
         List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
@@ -72,8 +69,8 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
         PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPerson);
         model.setPatientOfInterest(editedPerson);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskIndex.getOneBased(),
-                editedPerson.getName(), deletedTask), DELETE_TASK_COMMAND_TYPE, patientListTracker);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, taskIndex.getOneBased(),
+                editedPerson.getName(), deletedTask), COMMAND_TYPE, patientListTracker);
     }
 
     @Override
@@ -89,7 +86,7 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
         }
 
         // state check
-        DeleteTaskCommand e = (DeleteTaskCommand) other;
-        return patientIndex.equals(e.patientIndex) && taskIndex.equals((e.taskIndex));
+        DeleteTaskCommand o = (DeleteTaskCommand) other;
+        return patientIndex.equals(o.patientIndex) && taskIndex.equals((o.taskIndex));
     }
 }
