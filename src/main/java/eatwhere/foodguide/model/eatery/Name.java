@@ -52,6 +52,12 @@ public class Name {
                 && fullName.equals(((Name) other).fullName)); // state check
     }
 
+    public boolean similarTo(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Name // instanceof handles nulls
+                && fullName.equalsIgnoreCase(((Name) other).fullName)); // state check
+    }
+
     @Override
     public int hashCode() {
         return fullName.hashCode();

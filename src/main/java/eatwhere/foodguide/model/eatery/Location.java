@@ -50,6 +50,12 @@ public class Location {
                 && value.equals(((Location) other).value)); // state check
     }
 
+    public boolean similarTo(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Location // instanceof handles nulls
+                && value.equalsIgnoreCase(((Location) other).value)); // state check
+    }
+
     @Override
     public int hashCode() {
         return value.hashCode();
