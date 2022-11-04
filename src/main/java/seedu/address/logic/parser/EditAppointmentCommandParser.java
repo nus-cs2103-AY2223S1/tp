@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
+import static seedu.address.model.person.DateTime.DEFAULT_DAY_OUT_OF_BOUNDS_ERROR_MESSAGE;
+import static seedu.address.model.person.DateTime.DEFAULT_MONTH_OUT_OF_BOUNDS_ERROR_MESSAGE;
 
 import java.time.format.DateTimeParseException;
 
@@ -44,6 +46,13 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                 editAppointmentDescriptor.setDateTime(
                     ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_DATE).get()));
             } catch (DateTimeParseException e) {
+                String  str = e.getCause().getMessage();
+                if (str.contains(DEFAULT_DAY_OUT_OF_BOUNDS_ERROR_MESSAGE)) {
+                    throw new ParseException(DEFAULT_DAY_OUT_OF_BOUNDS_ERROR_MESSAGE);
+                }
+                if (str.contains(DEFAULT_MONTH_OUT_OF_BOUNDS_ERROR_MESSAGE)) {
+                    throw new ParseException(DEFAULT_MONTH_OUT_OF_BOUNDS_ERROR_MESSAGE);
+                }
                 throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
             }
         }
