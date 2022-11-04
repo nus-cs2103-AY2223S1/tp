@@ -46,9 +46,9 @@ public class AddConsultationCommandParser implements Parser<AddConsultationComma
 
         ConsultationName name = ConsultationParserUtil.parseConsultationName(
                 argMultimap.getValue(PREFIX_NAME).get());
-        ModuleCode module = ConsultationParserUtil.parseConsultationModule(
+        ModuleCode module = ParserUtil.parseModuleCode(
                 argMultimap.getValue(PREFIX_MODULE).get());
-        Venue venue = ConsultationParserUtil.parseConsultationVenue(
+        Venue venue = ParserUtil.parseVenue(
                 argMultimap.getValue(PREFIX_VENUE).get());
         ConsultationDescription description = ConsultationParserUtil.parseConsultationDescription(
                 argMultimap.getValue(PREFIX_DESCRIPTION).get());
