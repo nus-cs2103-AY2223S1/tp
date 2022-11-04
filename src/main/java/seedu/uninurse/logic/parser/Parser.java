@@ -4,13 +4,16 @@ import seedu.uninurse.logic.commands.Command;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 
 /**
- * Represents a Parser that is able to parse user input into a {@code Command} of type {@code T}.
+ * Represents a Parser that is able to parse user input into a Command.
+ * @param <T> The type of the command.
  */
 public interface Parser<T extends Command> {
-
     /**
-     * Parses {@code userInput} into a command and returns it.
-     * @throws ParseException if {@code userInput} does not conform the expected format
+     * Parses the given user input into a command.
+     *
+     * @param userInput The given user input to be parsed.
+     * @return the resulting Command.
+     * @throws ParseException if user input does not conform to the expected format
      */
     T parse(String userInput) throws ParseException;
 }

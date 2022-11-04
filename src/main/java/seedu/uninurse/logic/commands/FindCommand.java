@@ -1,6 +1,6 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -11,7 +11,6 @@ import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
-import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.person.PatientMatchPredicate;
 
@@ -21,7 +20,6 @@ import seedu.uninurse.model.person.PatientMatchPredicate;
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients whose details contain any of "
             + "the specified keywords (case-insensitive).\n"
             + "Format: [KEYWORD]... "
@@ -36,8 +34,8 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " insulin "
             + PREFIX_NAME + "Jo " + PREFIX_NAME + "Betty "
             + PREFIX_EMAIL + "@example.com";
-
-    public static final CommandType FIND_COMMAND_TYPE = CommandType.FIND;
+    public static final String MESSAGE_SUCCESS = "%1$d persons listed!";
+    public static final CommandType COMMAND_TYPE = CommandType.FIND;
 
     private final PatientMatchPredicate predicate;
 
@@ -47,11 +45,10 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        requireNonNull(model);
+        requireAllNonNull(model);
         model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
-                FIND_COMMAND_TYPE);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredPersonList().size()),
+                COMMAND_TYPE);
     }
 
     @Override
