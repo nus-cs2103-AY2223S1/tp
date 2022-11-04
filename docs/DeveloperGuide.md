@@ -322,9 +322,13 @@ Step 2: The user enters the command `:pr n/Squat` to view their personal record 
     * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition.
     * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow.
 
-### \[Proposed\] Generating a suggested workout routine
+### Generating a suggested workout routine
 
-#### Proposed Implementation
+#### Implementation
+
+Workout suggestions are suggested by `Generator` objects. The suggestion mechanism follows the command pattern. The `GeneratorFactory` creates a concrete `Generator` object, and passes it to the `GenerateCommand` object, which treats all generators as a general `Generator` type. `GenerateCommand` is able to get a workout suggestion without knowledge of the type of generator. The following class diagram illustrates this.
+
+![GeneratorCommandPattern](images/GeneratorCommandPattern.png)
 
 The mechanism for generating a suggested workout routine is facilitated by `GenerateCommand`, which extends from `Command`.
 
@@ -353,19 +357,15 @@ The number of `Generator` objects created is equal to the number of unique exerc
 
 ![GetSuggestionSequenceDiagram](images/GetSuggestionSequenceDiagram.png)
 
-#### Design considerations:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The sd frame should capture the entire diagram here, but due to a limitation of PlantUML, it appears as such.
 
-**Aspect: Type of arguments to accept:**
-* **Alternative 1 (current choice)**: Accept index as arguments.
-    * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition. 
-    * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow. 
-* **Alternative 2**: Accept exercise names.
-    * Pros: Easier to implement.  
-    * Cons: Would require users to type more characters; also require users to enter exercise names accurately.   
+</div>
+
+#### Design considerations:
 
 **Aspect: Number of `Generator` objects:**
 * **Current choice**: Pairing each unique exercise to one `Generator`.
-    * Rationale: The current `:gen` command specifies a single difficulty level for all exercises listed in the command. This implementation would allow a `:gen` command to generate suggestions of varying difficulty levels for different exercises in the same command, a possible extension in the future.
+    * Rationale: The current `:gen` command specifies a single difficulty level for all exercises listed in the command. A possible extension in the future would be to allow each exercise to be linked to its own difficulty level, for example, `:gen deadlift/easy squat/hard`. This design would make such an implementation possible.
     
 ### \[Proposed\] Undo/redo feature
 
