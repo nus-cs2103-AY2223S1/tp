@@ -443,6 +443,7 @@ Step 1. The user launches the application and all patients, appointments and bil
 Step 2. The user executes the `setpaid 1` command to mark the first bill on the bill panel as paid. The `SetPaidCommand` calls `Model#setBillAsPaid`, which marks the bill in the `HealthContact` object as paid. The application displays the bill panel with the first bill's payment status checkbox ticked.
 
 The following sequence diagram shows how the `SetPaidCommand` works:
+
 ![SetPaidCommandSequenceDiagram](images/dg/SetPaidCommandSequenceDiagram.png)
 
 The `SetUnpaidCommand` works similarly to the `SetPaidCommand`, just that it marks the payment status of a bill as unpaid.
@@ -508,9 +509,8 @@ the command.
 ## **Appendix: Requirements**
 
 **Product scope**
-* Only provides necessary information that we want to retrieve for patients, except sensitive medical information
-like health problems
-* Does not execute any of the real-world tasks except to remind the admin staff
+* Only helps the user to store data and keep track of patients involved in online consultations
+* Does not perform any of the real-world tasks such as starting an online consultation with patients or allowing payment through QR codes
 
 **Target user profile**:
 
@@ -520,7 +520,7 @@ like health problems
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: HealthContact is a one-stop app that helps the receptionist of family clinics to manage and keep track of patient details and information such as appointments and bills for telemedicine services, especially for those clinics without apps to expedite the process.
 
 
 ### User stories
@@ -921,14 +921,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 patients, appointments and bills without a noticeable sluggishness in performance for typical usage.
 3. Notes on project scope: The application does not execute any real-world tasks such as calling the patients for appointments or accepting payment from patients.
 4. The system should respond within 2 seconds.
-5. A user who has an English-text typing speed that is above average should be able to execute all of the commands faster than using a mouse to do so.
+5. A user who has an English-text typing speed that is above average should be able to execute all the commands faster than using a mouse to do so.
 6. The application should work without internet connection.
 
 ### Glossary
 
-* **Doctor**: A patient who uses the app
-* **Patient**: A customer who goes to see a doctor
-
+* **Patient**: A person who makes an appointment with a doctor at the family clinic
+* **Telemedicine service**: A service that allows exchange of medical information from one location to another using electronic communication, e.g. an online consultation with a doctor
+* **Receptionist**: An admin staff at the front desk of the family clinic, who is responsible for arranging telemedicine services for patients
+* **Appointment**: A scheduled time and date for a patient to see the doctor
+* **Bill**: The total amount charged for an appointment
+* **Payment Status**: Whether a bill has been paid by the patient
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**

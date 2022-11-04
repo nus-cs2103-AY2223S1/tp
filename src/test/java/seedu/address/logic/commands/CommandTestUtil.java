@@ -17,16 +17,16 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.HealthContact;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.NameContainsKeywordsPredicateAppointment;
 import seedu.address.model.bill.Bill;
-import seedu.address.model.bill.NameContainsKeywordsPredicateBill;
-import seedu.address.model.patient.NameContainsKeywordsPredicatePatient;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
@@ -188,8 +188,12 @@ public class CommandTestUtil {
 
         Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
         final String[] splitName = patient.getName().fullName.split("\\s+");
-        model.updateFilteredPatientList(new NameContainsKeywordsPredicatePatient(splitName[0]));
-
+        Optional<Predicate<Name>> namePredicate = Optional.of(name -> name.fullName.toLowerCase()
+                .contains(splitName[0].toLowerCase()));
+        FindPatientCommand command = new FindPatientCommand(namePredicate, Optional.empty(),
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
+        model.updateFilteredPatientList(command.getPredicate());
         assertEquals(1, model.getFilteredPatientList().size());
     }
 
@@ -206,8 +210,12 @@ public class CommandTestUtil {
         for (int i = 1; i < splitName.length; i++) {
             predicateName += " " + splitName[i];
         }
-        model.updateFilteredAppointmentList(new NameContainsKeywordsPredicateAppointment(predicateName));
-
+        String finalPredicateName = predicateName;
+        Optional<Predicate<Name>> namePredicate = Optional.of(name -> name.fullName.toLowerCase()
+                .contains(finalPredicateName.toLowerCase()));
+        FindAppointmentCommand command = new FindAppointmentCommand(namePredicate, Optional.empty(),
+                Optional.empty(), Optional.empty());
+        model.updateFilteredAppointmentList(command.getPredicate());
         assertEquals(1, model.getFilteredAppointmentList().size());
     }
 
@@ -224,8 +232,12 @@ public class CommandTestUtil {
         for (int i = 1; i < splitName.length; i++) {
             predicateName += " " + splitName[i];
         }
-        model.updateFilteredBillList(new NameContainsKeywordsPredicateBill(predicateName));
-
+        String finalPredicateName = predicateName;
+        Optional<Predicate<Name>> namePredicate = Optional.of(name -> name.fullName.toLowerCase()
+                .contains(finalPredicateName.toLowerCase()));
+        FindBillCommand command = new FindBillCommand(namePredicate, Optional.empty(),
+                Optional.empty(), Optional.empty());
+        model.updateFilteredBillList(command.getPredicate());
         assertEquals(1, model.getFilteredBillList().size());
     }
 
