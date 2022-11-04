@@ -29,6 +29,8 @@ public class ModuleListPanel extends UiPart<Region> {
     private ListView<Module> targetModuleView;
     @FXML
     private ListView<Schedule> scheduleListView;
+    @FXML
+    private ResultDisplay resultDisplay;
 
     /**
      * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
@@ -53,6 +55,7 @@ public class ModuleListPanel extends UiPart<Region> {
                     scheduleListView.setItems(schedules);
                     scheduleListView.setCellFactory(listView ->
                             new ScheduleListPanel.ScheduleListViewCell());
+                    resultDisplay.setFeedbackToUser("Selected a module!");
                 } catch (NullPointerException e) {
                     logger.info("=================[Invalid module selected]=================");
                 }

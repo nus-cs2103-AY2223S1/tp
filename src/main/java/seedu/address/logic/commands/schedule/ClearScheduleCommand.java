@@ -43,6 +43,6 @@ public class ClearScheduleCommand extends Command {
         model.clearSchedules(modulesToClear);
         return new CommandResult(MESSAGE_CLEAR_ALL_SCHEDULES_SUCCESS,
                 false, false, false, false,
-                false, true, false, false);
+                false, false, true, false, false);
     }
 }

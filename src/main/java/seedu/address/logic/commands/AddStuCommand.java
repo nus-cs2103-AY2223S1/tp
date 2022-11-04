@@ -110,7 +110,7 @@ public class AddStuCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, false,
-                true, false, false, false, false);
+                true, false, false, false, false, false);
     }
 
     @Override
