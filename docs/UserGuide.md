@@ -161,7 +161,7 @@ Email of client. <br>
 
 ---
 
-**ADDRESS** - `a/`: <br>
+**ADDRESS** - `a/` : <br>
 Address of client. <br>
 **Parameter restrictions**: Addresses can take any values, and it should not be blank.<br>
 **Examples**:
@@ -188,7 +188,7 @@ Date and time of meeting with client.<br>
 
 ---
 
-**MEETINGLOCATION** - `m/` : <br>
+**MEETINGLOCATION** - `ml/` : <br>
 Location of meeting with client. <br>
 **Parameter restrictions**: <br>
 * Location can be in the form of either an address (for in-person meetings), or a link (for online meetings).
@@ -210,7 +210,7 @@ Tag of client. <br>
 
 **RISK** - `r/` : <br>
 Risk level of client’s portfolio. <br>
-**Parameter restrictions**: sRisk level can take any value. <br>
+**Parameter restrictions**: Risk level can take any value. <br>
 **Examples**:
 * Valid: `High`, `abc`, `10`
 
