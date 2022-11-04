@@ -61,7 +61,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getWaddleFilePath() {
         assertNotNull(storageManager.getWaddleFilePath());
     }
 

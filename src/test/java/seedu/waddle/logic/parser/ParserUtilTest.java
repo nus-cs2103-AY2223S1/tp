@@ -14,13 +14,13 @@ import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.People;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "W!nter";
+    private static final String INVALID_DESCRIPTION = "W!nter";
     private static final String INVALID_COUNTRY = "+651234";
     private static final String INVALID_START_DATE = "2022/03/15";
     private static final String INVALID_END_DATE = "202-04-15";
     private static final String INVALID_PEOPLE = "five";
 
-    private static final String VALID_NAME = "Winter Trip";
+    private static final String VALID_DESCRIPTION = "Winter Trip";
     private static final String VALID_COUNTRY = "Finland";
     private static final String VALID_START_DATE = "2023-03-15";
     private static final String VALID_END_DATE = "2023-04-15";
@@ -55,19 +55,19 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
     }
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Description expectedName = new Description(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseDescription(VALID_NAME));
+        Description expectedName = new Description(VALID_DESCRIPTION);
+        assertEquals(expectedName, ParserUtil.parseDescription(VALID_DESCRIPTION));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Description expectedName = new Description(VALID_NAME);
+        String nameWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+        Description expectedName = new Description(VALID_DESCRIPTION);
         assertEquals(expectedName, ParserUtil.parseDescription(nameWithWhitespace));
     }
 
@@ -95,52 +95,51 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
+    public void parseStartDate_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDate((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
+    public void parseStartDate_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_START_DATE));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Date expectedAddress = new Date(VALID_START_DATE);
-        assertEquals(expectedAddress, ParserUtil.parseDate(VALID_START_DATE));
+    public void parseStartDate_validValueWithoutWhitespace_returnsStartDate() throws Exception {
+        Date expectedStartDate = new Date(VALID_START_DATE);
+        assertEquals(expectedStartDate, ParserUtil.parseDate(VALID_START_DATE));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_START_DATE + WHITESPACE;
-        Date expectedAddress = new Date(VALID_START_DATE);
-        assertEquals(expectedAddress, ParserUtil.parseDate(addressWithWhitespace));
-    }
-
-    /* Same as Start date //TODO
-    @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parse((String) null));
+    public void parseStartDate_validValueWithWhitespace_returnsTrimmedStartDate() throws Exception {
+        String startDateWithWhitespace = WHITESPACE + VALID_START_DATE + WHITESPACE;
+        Date expectedStartDate = new Date(VALID_START_DATE);
+        assertEquals(expectedStartDate, ParserUtil.parseDate(startDateWithWhitespace));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseEndDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate((String) null));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseEndDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_END_DATE));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseEndDate_validValueWithoutWhitespace_returnsEndDate() throws Exception {
+        Date expectedEndDate = new Date(VALID_END_DATE);
+        assertEquals(expectedEndDate, ParserUtil.parseDate(VALID_END_DATE));
     }
-    */
+
+    @Test
+    public void parseEndDate_validValueWithWhitespace_returnsTrimmedEndDate() throws Exception {
+        String endDateWithWhitespace = WHITESPACE + VALID_END_DATE + WHITESPACE;
+        Date expectedEndDate = new Date(VALID_END_DATE);
+        assertEquals(expectedEndDate, ParserUtil.parseDate(endDateWithWhitespace));
+    }
+
 
     @Test
     public void parsePeople_null_throwsNullPointerException() {
