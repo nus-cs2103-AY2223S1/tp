@@ -99,9 +99,11 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 <img src="images/DebtList.png" width="800" /> <br>
 
-<div id="advanced-keyboard-shortcuts" markdown="block" class="alert alert-info">
+<div id="advanced-keyboard-shortcuts" markdown="block" class="alert alert-secondary">
 **:star: Advanced keyboard shortcuts:**
-Although you can make use of the mouse to perform some functions in PayMeLah, you may also use various keyboard shortcuts to do so. 
+Although you can make use of the mouse to perform some functions in PayMeLah, you may also use various keyboard shortcuts to do so.
+
+</div>
 
 |                Keyboard Key                 | Function                                                                                                                                                                                                                                                                                                                                              |
 |:-------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -112,7 +114,6 @@ Although you can make use of the mouse to perform some functions in PayMeLah, yo
 | <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> | Similar to <kbd>PageUp</kbd> and <kbd>PageDown</kbd>, but without expanding the person cards.                                                                                                                                                                                                                                                         |
 |               <kbd>Home</kbd>               | When you are in the person list, press the <kbd>Home</kbd> key to jump to the first person in the list. When you are in a person's debt list, press the <kbd>Home</kbd> key to jump to the first debt in the list.                                                                                                                                    |
 |               <kbd>End</kbd>                | When you are in the person list, press the <kbd>End</kbd> key to jump to the last person in the list. When you are in a person's debt list, press the <kbd>End</kbd> key to jump to the last debt in the list.                                                                                                                                        |
-</div>
 
 [Return to Table of Contents](#table-of-contents)
 
