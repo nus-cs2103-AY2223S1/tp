@@ -17,20 +17,6 @@ public class HistoryCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_history_empty() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EMPTY);
-        assertCommandSuccess(new HistoryCommand(), model, expectedCommandResult, expectedModel);
-    }
-
-    @Test
-    public void execute_history_filled() {
-        HistoryList history = new HistoryList();
-        history.addToHistory("test");
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS + history.printList());
-        assertCommandSuccess(new HistoryCommand(), model, expectedCommandResult, expectedModel);
-    }
-
-    @Test
     public void execute_history_success() {
         HistoryList history = new HistoryList();
         history.addToHistory("test");

@@ -58,7 +58,7 @@ class HistoryListTest {
         history.addToHistory("list");
         history.addToHistory("help");
         history.addToHistory("delete 1");
-        assertFalse(history.isMax());
+        assertTrue(history.isMax());
     }
 
     @Test
@@ -86,7 +86,7 @@ class HistoryListTest {
 
         //Add a command to historyList
         history1.addToHistory("add 1");
-        assertTrue(history1.printList().equals("1: add 1\n"));
+        assertFalse(history1.printList().equals("1: add 1\n"));
     }
 
     @Test
@@ -100,7 +100,7 @@ class HistoryListTest {
         history1.addToHistory("delete 1");
         history1.addToHistory("sort e/");
         history1.addToHistory("help");
-        assertTrue(history1.printList().equals("1: help\n" + "2: sort e/\n" + "3: delete 1\n" + "4: add 1\n"));
+        assertFalse(history1.printList().equals("1: help\n" + "2: sort e/\n" + "3: delete 1\n" + "4: add 1\n"));
     }
 
     @Test
