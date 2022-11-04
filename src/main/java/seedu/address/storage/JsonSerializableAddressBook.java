@@ -30,6 +30,7 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_GROUP = "Groups list contains duplicate group(s).";
     public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
+
     public static final String MESSAGE_INVALID_GROUP_PARENT_COUNT = "Wrong number of group parent.";
     public static final String MESSAGE_NONEXISTING_UID_PARENT_PAIR =
             "Uid (%s) does not have a corresponding parent associated.";

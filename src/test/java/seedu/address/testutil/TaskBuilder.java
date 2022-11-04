@@ -80,6 +80,18 @@ public class TaskBuilder extends AbstractSingleItemBuilder {
     }
 
     @Override
+    public TaskBuilder withAttribute(Attribute<?> attribute) {
+        super.addAttribute(attribute);
+        return this;
+    }
+
+    @Override
+    public <U> TaskBuilder withAttribute(String name, U data) {
+        super.addAttribute(name, data);
+        return this;
+    }
+
+    @Override
     public Task build() {
         Task task = new Task(name.fullName, description.getAttributeContent(), completedTime);
         for (Person parent : assignedParents) {
