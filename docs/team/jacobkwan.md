@@ -14,7 +14,7 @@ WorkBook (WB) is a desktop app for CS/tech students who are applying for interns
 This displays my code contributions for the project: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jacobkwan&breakdown=true)
 
 #### Enhancements implemented
-- New Feature: Sorting internship applications by date 
+- New Feature: Default WorkBook state of having internship applications sorted by date 
 - New Feature: Adding Language Tags
 
 #### Contributions to User Guide
