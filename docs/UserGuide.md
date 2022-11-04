@@ -277,9 +277,9 @@ Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`
 
 Example:
 * `event -dp 1 pr/1 pr/3`
-<img src="images/BeforeDeleteAttendee.png"/>
+![Before deleting attendees](images/BeforeDeleteAttendee.png)
 Note how the first and third attendee under the first listed event `Discuss presentation` have been deleted.
-<img src="images/AfterDeleteAttendee.png"/>
+![After deleting attendees](images/AfterDeleteAttendee.png)
 
 #### Viewing upcoming events: `event -u`
 
@@ -525,4 +525,4 @@ You can simply install the app in the other computer and overwrite the data file
 | **Edit Event**                     | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                                  |
 | **View Events**                    | `event -v`                                                                             |
 | **View Upcoming Event(s)**         | `event -u DAYS`                                                                        |
-| **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE]…`                                                     |
+| **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE_KEYWORDS_OR_DATES]…`                                   |
