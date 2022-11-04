@@ -11,7 +11,7 @@ TABS helps in 3 key ways:
 2. Group management
 3. Delegated task management
 
-TABS aim to reduce the amount of time spent on managing team projects for **students** who already have their academics to contend with. TABS is for people who type quickly as it **optimised for use via Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TABS is available for the **Linux, Windows and Mac OS** operating systems.
+TABS aims to reduce the amount of time spent on managing team projects for **students** who already have their academics to contend with. TABS is for people who type quickly as it **optimised for use via Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TABS is available for the **Linux, Windows and Mac OS** operating systems.
 
 ---
 
@@ -76,6 +76,7 @@ TABS aim to reduce the amount of time spent on managing team projects for **stud
 
 * Commands involving the parameter `NAME` is case-sensitive, the `NAME` specified must be
   exactly the same as the one stored in TABS.
+
 
 </div>
 
@@ -157,7 +158,7 @@ Format: `addperson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 </div>
 
 <div markdown="span" class="alert alert-primary">
-<br>:information_source: **Extra note**: 
+<br>:information_source: **Extra note**:
 
 A person's email can be in the form of `local-part@domain`, where the `domain`
 specified must be at least 2 characters long.
@@ -291,7 +292,7 @@ assigns `John` in group `CS2103T` with a `High` workload task `TeamProject`.
 assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0` and the deadline of the task is `2022-01-01 23:59`.
 
 <div markdown="span" class="alert alert-primary">
-  :information_source: **Extra note**: 
+  :information_source: **Extra note**:
 
 A workload indicator is shown beside each person in TABS.
 When the workload of the person increases, the workload indicator will gradually change from green to red.

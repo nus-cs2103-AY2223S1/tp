@@ -13,17 +13,46 @@ Given below are my contributions to the project.
 * **Code contributed**:
   * [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tan-jin-waye)
 
-* **New Features**:
-  * To be updated.
+* **New Features Added**:
+  * [Groups data structure](https://github.com/Tan-Jin-Waye/tp/tree/branch_group) which maintains a `GroupName` class and a set of `Person`s as members.
 
-* **Project management**:
-  * To be updated.
+  * [Integrate Groups into AB3](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/72) which includes:
+    * Adding `UniqueGroupList` class in the `AddressBook` class;
+    * Adding `DuplicateGroupException` and `GroupNotFoundException` in relation to Groups;
+    * Adding methods to modify `UniqueGroupList` in `AddressBook`, `ModelManager`;
+    * Adding rudimentary `AddGroupCommand` and `DeleteGroupCommand`, including respective parsers and modifying `AddressBookParser` class;
+    * Adding JUnit test cases for above-mentioned new classes.
 
-* **Enhancements to existing features**:
-  * To be updated
+  * [Storage for Groups](https://github.com/Tan-Jin-Waye/tp/tree/branch_storage) to account for abovementioned Groups data structure.
+
+  * [Bulk Task Assignment/Deletion](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/112) to support assigning a task to
+  /deleting a task from all members of a group.
+
+  * [Minor JavaFX Edit](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/196) for window size.
+
+* **Enhancements to Existing Features**:
+  * [Add JUnit testcases](https://github.com/Tan-Jin-Waye/tp/tree/branch_testing) for `LogicManager`, `AddressBook` and `ModelManager` classes.
 
 * **Documentation**:
-  * To be updated
+  * Developer Guide
+    * [Transfer Project Scope and NFRs](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/17) (discussed by team).
+    * [Update Use Case Formatting](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/36).
+    * [Update AB3 Model Component Details](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/132) and Class diagrams to account for `Group` and `Assignment` classes.
+    * [Update Implementation Details](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/132), Sequence and Object diagrams for the following sections:
+      * Add/Delete Group Feature
+      * Add/Delete Member Feature
+      * Display/List Group Feature
+      * Assign/Delete Task Feature
+      * Bulk Commands Feature
+  * User Guide
+    * [Transfer Person related Commands](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/20) (discussed by team).
+
+* **Team Based Tasks**:
+  * Consolidate and close Issues as part of PE-Dry Run
+
+* **Reviewing/Mentoring Contributions**:
+  * [Reviewed 11 PRs](https://github.com/AY2223S1-CS2103T-W10-1/tp/pulls?q=is%3Apr+reviewed-by%3ATan-Jin-Waye).
+  * [Left Comments on 23 PRs](https://github.com/AY2223S1-CS2103T-W10-1/tp/pulls?q=is%3Apr+commenter%3ATan-Jin-Waye).
 
 * **Community**:
   * To be updated

@@ -12,10 +12,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("displaygroup g/CS2103T")
+[-> LogicManager : execute("displaygroup CS2103T")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("displaygroup g/CS2103T")
+LogicManager -> AddressBookParser : parseCommand("displaygroup CS2103T")
 activate AddressBookParser
 
 create DisplayGroupCommandParser
@@ -23,7 +23,7 @@ AddressBookParser -> DisplayGroupCommandParser
 activate DisplayGroupCommandParser
 return
 
-AddressBookParser -> DisplayGroupCommandParser : parse("g/CS2103T")
+AddressBookParser -> DisplayGroupCommandParser : parse("CS2103T")
 activate DisplayGroupCommandParser
 
 create DisplayGroupCommand
