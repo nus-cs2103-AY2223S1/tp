@@ -316,6 +316,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * A client **must** have a `NAME` and a `PHONE_NUMBER`.
 * `PHONE_NUMBER` should contain only numbers and be at least 8 digits long.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
+* `BIRTHDAY` in the future are not acceptable.
 * If a `NAME` already exist in _MyInsuRec_, adding the same `NAME` will result in an error!
 
 Use case:
@@ -413,6 +414,7 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 * Edit the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listClient`](#712-list-clients-listclient) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `BIRTHDAY` in the future are not acceptable.
 * At least one optional detail must be modified.
 * Maintain value of details not edited by the command.
 
@@ -440,10 +442,11 @@ Format: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 * A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 * `INDEX` refers to the number of the client you are meeting with,
 as shown by executing the [`listClient`](#712-list-clients-listclient) command.
-* `DATE` should be given in the format DDMMYYYY. For example, 01022022 represents
-1 February 2022.
-* `START_TIME` and `END_TIME` should be give in the format HHMM. For example,
-1234 represents the 12:34PM.
+* `DATE` should be given in the format DDMMYYYY. 
+  * For example, 01022022 represents 1 February 2022.
+*  `DATE` in the past are not acceptable.
+* `START_TIME` and `END_TIME` should be give in the format HHMM. 
+  * For example, 1234 represents the 12:34PM.
 
 Use case:
 1. You have just scheduled a meeting with a client! You can use this command to add the details of the meeting into _MyInsuRec_ to help remember the meeting details.
@@ -534,6 +537,7 @@ Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPT
 * `INDEX` refers to the index number shown by executing [`listMeeting`](#722-list-meetings-listmeeting) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …
 * If `INDEX` is a non-positive integer or not shown in `listMeeting`, an error will be shown!
+* `DATE` in the past are not acceptable.
 * At least one optional detail must be modified.
 * Details that are not edited will be kept as is.
 
@@ -627,7 +631,7 @@ Format: `exit`
 
 #### 7.4.3 Clear *MyInsuRec*: `clear`
 
-Clear all data in *MyInsuRec*.
+Clear all data regarding clients, meetings and products from *MyInsuRec*.
 
 Format: `clear`
 
