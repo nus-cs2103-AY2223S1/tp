@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ConcurrentMap;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
