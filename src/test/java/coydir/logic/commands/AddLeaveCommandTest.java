@@ -3,9 +3,6 @@ package coydir.logic.commands;
 import static coydir.logic.commands.CommandTestUtil.assertCommandFailure;
 import static coydir.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static coydir.testutil.TypicalIndexes.ID_FIRST_EMPLOYEE;
-import static coydir.testutil.TypicalIndexes.ID_SECOND_EMPLOYEE;
-import static coydir.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -22,8 +19,6 @@ import coydir.testutil.PersonBuilder;
 
 public class AddLeaveCommandTest {
     
-   
-
     @Test
     public void execute_validLeave_success() {
         Model model = new ModelManager(new Database(), new UserPrefs());

@@ -109,10 +109,7 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            System.out.println(expectedModel.getFilteredPersonList());
-            System.out.println(actualModel.getFilteredPersonList());
             assertEquals(expectedCommandResult, result);
-            assertEquals(expectedModel.getDatabase(),actualModel.getDatabase());
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
