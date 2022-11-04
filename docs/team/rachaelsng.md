@@ -13,7 +13,7 @@ Given below are my contributions to the project.
   * What it does: Allows the user to see the full list of students.
   * Justification: The default GUI that the user sees does not show the full list of students. Hence, this feature allows the user to view the full list to see all students in the system and their details recorded.
   * Highlights: to be added
-  
+
 * **New Feature**: Added the ability to view the list of tasks.
   * What it does: Allows the user to see the full list of tasks.
   * Justification: The default GUI that the user sees does not show the full list of tasks. Hence, this feature allows the user to view the full list to see all tasks in the system and their details recorded.
@@ -34,10 +34,9 @@ Given below are my contributions to the project.
   * User Guide:
     * Added tips for the user to differentiate students with the same name.
   * Developer Guide:
-    * Added implementation details of storage component. 
+    * Added implementation details of storage component.
     * Updated UML diagrams for storage component.
     * Added implementation details of the listing of tasks, students and lessons.
 
 * **Community**:
-  * Helped Team CS2103T-T14-2 find bugs during PE-D. 
-  
+  * Helped Team CS2103T-T14-2 find bugs during PE-D.
