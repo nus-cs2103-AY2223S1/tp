@@ -7,7 +7,7 @@ Condonery is a desktop app made for property agents primarily used for managing 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, Condonery can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents 
+* Table of Contents
 - [`Quick start`](#quick-start)
 - [`Property and client attributes`](#property-and-client-attributes)
   - [Shared attributes](#shared-attributes)
@@ -188,7 +188,7 @@ This section gives a breakdown of each attribute and its parameter counterpart.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features in Condonery 
+## Features in Condonery
 
 ### Undoing commands : `undo`
 
