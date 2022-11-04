@@ -667,11 +667,23 @@ _Add screenshot here_
 
 <br>
 
-### Listing all patients for today: `view` `--today`
+### Listing all tasks for today: `view` `--today`
 
-Shows a list of all patients with tasks due today.
+You can view the list of tasks that are due today using the `view` command with the special flag `--today`.
 
 Format: `view --today`
+
+Examples:
+
+Let's say you added the following patients and their tasks:
+* **Physiotherapy appointment** for **Alex Yeoh** at 12:00pm on 2022-11-04
+* **Administer insulin dose** for **Charlotte Oliveiro** at 11:45am on 2022-11-04
+
+If today's date is 2022-11-04, `view --today` will display those 2 tasks.
+
+![result for `view --today`](images/viewTodayResult.png)
+_Patient and task list displayed after running the `view --today` command_
+
 
 <br>
 
