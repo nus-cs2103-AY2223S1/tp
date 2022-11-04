@@ -58,10 +58,7 @@ public class SortCommandParserUtil {
     private static final Comparator<Pet> PET_SPECIES_COMPARATOR = Comparator.comparing(Pet::getSpecies);
     private static final Comparator<Pet> PET_HEIGHT_COMPARATOR = Comparator.comparing(Pet::getHeight);
     private static final Comparator<Pet> PET_WEIGHT_COMPARATOR = Comparator.comparing(Pet::getWeight);
-    private static final Comparator<Pet> PET_VACCINATION_STATUS_COMPARATOR = Comparator.comparing(
-            Pet::getVaccinationStatus);
     private static final Comparator<Pet> PET_PRICE_COMPARATOR = Comparator.comparing(Pet::getPrice);
-    private static final Comparator<Pet> PET_CERTIFICATE_COMPARATOR = Pet::compareCertificate;
 
     private static Comparator<? extends Person> parseToSelectedPersonComparator(String attribute) {
 

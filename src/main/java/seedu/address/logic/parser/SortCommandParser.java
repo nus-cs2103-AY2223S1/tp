@@ -37,8 +37,8 @@ public class SortCommandParser implements Parser<SortCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        final String listType = matcher.group("listType");
-        final String attributes = matcher.group("attributes");
+        final String listType = matcher.group("listType").trim();
+        final String attributes = matcher.group("attributes").trim();
 
         if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_BUYER_PARAMETER, listType)) {
             return parseToSortBuyerCommand(attributes);
