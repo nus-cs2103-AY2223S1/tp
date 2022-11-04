@@ -35,8 +35,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/glemenneo)] [[portfolio](team/glemenneo.md)]
 
-* Role: Testing
-* Responsibilities: Designing test scenarios, conducting automated and manual tests, analysing test results
+* Role: UI/UX
+* Responsibilities: Designing and implementing UI elements for new features, improving user experience by redesigning existing UI elements.
 
 ### Jacob Kwan
 
