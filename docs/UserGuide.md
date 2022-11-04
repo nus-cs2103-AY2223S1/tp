@@ -37,16 +37,16 @@ Customers, Commissions, Iterations and Statistics. Feel free to jump around as y
 As you read through this guide, you might come across text with special formatting. These specially formatted
 text hold meaning, as described below. 
 
-|                             | Description                                                                                                                                                                                             |
-|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`                      | ArtBuddy commands appear in a monospaced font, with a grey background, as shown on the left. To learn more about ArtBuddy commands, refer to the [CLI section]().                                       |
-| `CODE_UPPER_CASE`           | Certain ArtBuddy commands contain words appear in upper case. These refer to [parameters]() (user input) to be supplied to ArtBuddy.                                                                    |
-| <code>_code_italics_</code> | ArtBuddy commands may also contain words that appear in italics. These refer to example command [parameters](), which you can replace with your own inputs.                                             |
-| [blue hyperlink]()          | Hyperlinks appear in a blue font that is underlined when hovered over by your mouse. These hyperlinks bring you to another section of the user guide containing more relevant information to the topic. |
-| **Bold Title Case**         | References to elements in ArtBuddy's [GUI]() (like buttons and text field labels) are formatted in **bold**, in Title Case.                                                                             |
+|                                    | Description                                                                                                                                                                                             |
+|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`                             | ArtBuddy commands appear in a monospaced font, with a grey background, as shown on the left. To learn more about ArtBuddy commands, refer to the [CLI section]().                                       |
+| `CODE_UPPER_CASE`                  | Certain ArtBuddy commands contain words appear in upper case. These refer to [parameters]() (user input) to be supplied to ArtBuddy.                                                                    |
+| <code><em>code_italics</em></code> | ArtBuddy commands may also contain words that appear in italics. These refer to example command [parameters](), which you can replace with your own inputs.                                             |
+| [blue hyperlink]()                 | Hyperlinks appear in a blue font that is underlined when hovered over by your mouse. These hyperlinks bring you to another section of the user guide containing more relevant information to the topic. |
+| **Bold Title Case**                | References to elements in ArtBuddy's [GUI]() (like buttons and text field labels) are formatted in **bold**, in Title Case.                                                                             |
 
 **Call-out text box conventions**  
-You might also notice call-out text boxes in this guide. These contain additional information tibits that might be useful
+You might also notice call-out text boxes in this guide. These contain additional information tidbits that might be useful
 for you.
 
 <div markdown="span" class="alert alert-info">
@@ -115,18 +115,18 @@ like buttons and pop-ups. There's something for everyone!
 Note that the images are to help with interface only. The actual details of the data may differ in your application.
 6. You can use the following commands in the Customer View:
 
-   * <code>addcus n/_Betsy Crowe_ e/_betsycrowe@example.com_ p/_1234586_</code> :  Creates a new customer named Betsy Crowe.
-   * <code>delcus _2_</code> :  Deletes the 2nd customer displayed on the list.
-   * <code>opencus _2_</code> : Selects the 2nd customer (Bernice Yu) on the list.
+   * <code>addcus n/<em>Betsy Crowe</em> e/<em>betsycrowe@example.com</em> p/<em>1234586</em></code> :  Creates a new customer named Betsy Crowe.
+   * <code>delcus <em>2</em></code> :  Deletes the 2nd customer displayed on the list.
+   * <code>opencus <em>2</em></code> : Selects the 2nd customer (Bernice Yu) on the list.
 
 7. In the Commission View, the list of all commissions from the opened customer (Alex Yeoh) is displayed. <br> ![Ui](images/UiCommissionList.png)
 8. You can use the following commands in the Commission View:
-    * <code>addcom n/_Fate Archer_ f/_60_ d/_2022-10-15_ s/_true_ p/_Archery_ t/_night_ t/_city_</code> : Creates a new commission titled "Fate Archer" under Meg.
-    * <code>delcom _2_</code> : Deletes the 2nd commission from Alex Yeoh on the list.
-    * <code>opencom _1_</code> : Opens the 1st commission titled "Alex Yeoh Commission 1" and updates the Commission Details View.
+    * <code>addcom n/<em>Fate Archer</em> f/<em>60</em> d/<em>2022-10-15</em> s/<em>true</em> p/<em>Archery</em> t/<em>night</em> t/<em>city</em></code> : Creates a new commission titled "Fate Archer" under Meg.
+    * <code>delcom <em>2</em></code> : Deletes the 2nd commission from Alex Yeoh on the list.
+    * <code>opencom <em>1</em></code> : Opens the 1st commission titled "Alex Yeoh Commission 1" and updates the Commission Details View.
 9. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Alex Yeoh Commission 1) is displayed.
 10. You can use the following commands in the Commission Details View:
-   * <code>additer d/_2022-10-11_ n/_Add lighting_ p/_/Users/Joseph/CSP/sunshine_highlight.png_ f/_Warmer tone might be better_</code> : Adds an iteration to the selected commission and attaches the image at the specified file path to the iteration.
+   * <code>additer d/<em>2022-10-11</em> n/<em>Add lighting</em> p/<em>/Users/Joseph/CSP/sunshine_highlight.png</em> f/<em>Warmer tone might be better</em></code> : Adds an iteration to the selected commission and attaches the image at the specified file path to the iteration.
 11. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -138,28 +138,28 @@ Note that the images are to help with interface only. The actual details of the 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as <code>add n/_John Doe_</code>.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as <code>add n/<em>John Doe</em></code>.
 
 * `INDEX` refers to the numbering shown on the list. <br>
   e.g. in `opencus INDEX`, `INDEX` refers to the numbering shown on the customers list.
 
 * Anything with prefix `d/` such as `d/DATE` should be formatted in YYYY-MM-DD. <br>
-  e.g. <code>d/_2022-10-04_</code> is a valid input.
+  e.g. <code>d/<em>2022-10-04</em></code> is a valid input.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as <code>n/_John Doe_ t/_friend_</code> or as <code>n/_John Doe_</code>.
+  e.g `n/NAME [t/TAG]` can be used as <code>n/<em>John Doe</em> t/<em>friend</em></code> or as <code>n/<em>John Doe</em></code>.
 
 * Items with `...` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), <code>t/_friend_</code>, <code>t/_friend_ t/_family_</code> etc.
+  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), <code>t/<em>friend</em></code>, <code>t/<em>friend</em> t/<em>family</em></code> etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify <code>p/_12341234_ p/_56785678_</code>, only <code>p/_56785678_</code> will be taken.
+  e.g. if you specify <code>p/<em>12341234</em> p/<em>56785678</em></code>, only <code>p/<em>56785678</em></code> will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies <code>help _123_</code>, it will be interpreted as `help`.
+  e.g. if the command specifies <code>help <em>123</em></code>, it will be interpreted as `help`.
 
 </div>
 
@@ -190,7 +190,7 @@ Opens a customer at `INDEX` and shows customer details with various analytics yo
 Format: `opencus [INDEX]`
 
 Examples:
-* <code>opencus _2_</code>
+* <code>opencus <em>2</em></code>
   Shows details about the customer and updates the commissions tab.
 
 ![opencus](images/opencus.png)
@@ -206,9 +206,9 @@ A customer can have any number of tags (including 0)
 </div>
 
 Examples:
-* <code>addcus n/_John Doe_ p/_98765432_ e/_johnd@example.com_ a/_John street, block 123, #01-01_ t/_animal cartoons_ t/_vip_</code>
+* <code>addcus n/<em>John Doe</em> p/<em>98765432</em> e/<em>johnd@example.com</em> a/<em>John street, block 123, #01-01</em> t/<em>animal cartoons</em> t/<em>vip</em></code>
 Creates the customer entry for John Doe with his details including multiple tags.
-* <code>addcus n/_Betsy Crowe_ e/_betsycrowe@example.com_ p/_12345867_</code>
+* <code>addcus n/<em>Betsy Crowe</em> e/<em>betsycrowe@example.com</em> p/<em>12345867</em></code>
 Creates the customer entry for Betsy Crowe with her email and phone number.
 
 
@@ -220,7 +220,7 @@ Format: `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 * At least one field to edit must be provided.
 
 Examples:
-* <code>editcus _1_ p/_91234567_ e/_johndoe@example.com_</code> Edits the first customer's phone number and email.
+* <code>editcus <em>1</em> p/<em>91234567</em> e/<em>johndoe@example.com</em></code> Edits the first customer's phone number and email.
 
 ### Deleting a customer: `delcus`
 
@@ -229,7 +229,7 @@ Deletes the customer at `INDEX` from the ArtBuddy.
 Format: `delcus INDEX`
 
 Examples:
-* <code>delcus _2_</code> Deletes the 2nd customer in the ArtBuddy and all commissions made by the customer.
+* <code>delcus <em>2</em></code> Deletes the 2nd customer in the ArtBuddy and all commissions made by the customer.
 
 ## Commission related commands
 
@@ -253,7 +253,7 @@ Format: `opencom [INDEX]`
 Examples:
 * `opencom` Switches to commissions tab.
 
-* <code>opencom _2_</code> When you run an `opencom` command with index <code>opencom _2_</code>, you should be switched to the commissions tab to view commission details.
+* <code>opencom <em>2</em></code> When you run an `opencom` command with index <code>opencom <em>2</em></code>, you should be switched to the commissions tab to view commission details.
 
 ![opencom](images/opencom.png)
 
@@ -266,8 +266,8 @@ Format: `addcom n/TITLE f/FEE d/DEADLINE s/STATUS [p/DESCRIPTION] [t/TAG]...​`
 * Status states if the commission is done or not and can only take `y`, `yes`, `t`, `true` for complete status and `n`, `no`, `f`, `false` for incomplete status. It is case-insensitive.
 
 Examples:
-* <code>addcom n/_Rimuru_ f/_40_ d/_2022-11-01_ t/_traditional_ s/_Y_ t/_chibi_</code> creates the commission entry titled "Rimuru" with the given fee, due date, completion status and tags.
-* <code>addcom n/_Fate Archer_ f/_60_ d/_2022-10-15_ s/_false_ p/_Archery_ t/_night_ t/_city_</code> creates a commission entry titled "Fate Archer" with the given fee, due date, completion status, description and tags.
+* <code>addcom n/<em>Rimuru</em> f/<em>40</em> d/<em>2022-11-01</em> t/<em>traditional</em> s/<em>Y</em> t/<em>chibi</em></code> creates the commission entry titled "Rimuru" with the given fee, due date, completion status and tags.
+* <code>addcom n/<em>Fate Archer</em> f/<em>60</em> d/<em>2022-10-15</em> s/<em>false</em> p/<em>Archery</em> t/<em>night</em> t/<em>city</em></code> creates a commission entry titled "Fate Archer" with the given fee, due date, completion status, description and tags.
 
 ### Editing a commission: `editcom`
 
@@ -277,9 +277,9 @@ Format: `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/D
 * At least one field to edit must be provided.
 
 Example:
-* <code>editcom _1_ n/_Tokyo Ghoul Kaneki_ f/_50_ d/_2022-10-10_ s/_False_ p/_Unfamiliar, I will need to do up a reference board first._ t/_digital_ t/_neon_</code>
+* <code>editcom <em>1</em> n/<em>Tokyo Ghoul Kaneki</em> f/<em>50</em> d/<em>2022-10-10</em> s/<em>False</em> p/<em>Unfamiliar, I will need to do up a reference board first.</em> t/<em>digital</em> t/<em>neon</em></code>
   Edits the first commission to have the above fields.
-* <code>editcom _2_ s/_True_</code> Edits the second commission to be completed.
+* <code>editcom <em>2</em> s/<em>True</em></code> Edits the second commission to be completed.
 
 ### Deleting a commission: `delcom`
 
@@ -288,7 +288,7 @@ Deletes a commission at `INDEX` and iterations related to the commission.
 Format: `delcom INDEX`
 
 Example:
-* <code>delcom _14_</code>
+* <code>delcom <em>14</em></code>
 
 ## Iteration related commands
 
@@ -316,8 +316,8 @@ and root directories, you might find the explanation [below](#filepath_explanati
 * Currently, only image file types .png, .jpg, .bmp and .gif are supported
 
 Example:
-* <code>additer n/_First Draft_ d/_2022-10-28_ p/_/Users/John/Downloads/Draft 1.png_ f/_Looks great_</code> creates an iteration 
-with the description "First Draft", date 28 October 2022, image at file path <code>p/_/Users/John/Downloads/Draft 1.png_</code>, 
+* <code>additer n/<em>First Draft</em> d/<em>2022-10-28</em> p/<em>/Users/John/Downloads/Draft 1.png</em> f/<em>Looks great</em></code> creates an iteration 
+with the description "First Draft", date 28 October 2022, image at file path <code>p/<em>/Users/John/Downloads/Draft 1.png</em></code>, 
 and feedback "Looks great".
 
 <br>
@@ -404,9 +404,9 @@ Format: `edititer INDEX [n/DESCRIPTION] [d/DATE] [p/FILEPATH] [f/FEEDBACK]`
 * At least one field to edit must be provided.
 
 Example:
-* <code>edititer _1_ n/_Colourised image_ d/_2022-10-12_ f/_Good improvement_ p/_/Users/John/Downloads/Updated Image.png_</code>
+* <code>edititer <em>1</em> n/<em>Colourised image</em> d/<em>2022-10-12</em> f/<em>Good improvement</em> p/<em>/Users/John/Downloads/Updated Image.png</em></code>
   Edits the first iteration in the currently selected commission to have the above fields and image.
-* <code>edititer _2_ n/_Sketch_</code> Edits the description of the second iteration in the currently selected commission.
+* <code>edititer <em>2</em> n/<em>Sketch</em></code> Edits the description of the second iteration in the currently selected commission.
 
 ### Deleting iteration from commission: `deliter`
 Deletes an iteration at `INDEX` from a commission.
@@ -431,9 +431,9 @@ Format: `find [k/KEYWORDS]... -all [t/TAGS]... -any [t/TAGS]...`
 * The keywords, all, and any filters are all optional and can be omitted, but at least one should exist.
 
 Examples:
-* <code>find k/_Kevin_</code> Finds customers who have the name Kevin.
-* <code>find -all t/_friend_ t/_colleague_</code> Finds customers who are tagged both `friend` and `colleague`.
-* <code>find -any t/_friend_ t/_colleague_</code> Finds customers who are either tagged `friend` or `colleague`.
+* <code>find k/<em>Kevin</em></code> Finds customers who have the name Kevin.
+* <code>find -all t/<em>friend</em> t/<em>colleague</em></code> Finds customers who are tagged both `friend` and `colleague`.
+* <code>find -any t/<em>friend</em> t/<em>colleague</em></code> Finds customers who are either tagged `friend` or `colleague`.
 
 ### Sorting the customer list: `sortcus`
 
@@ -474,9 +474,9 @@ Format: `findcom [k/KEYWORDS]... -all [t/TAGS]... -any [t/TAGS]...`
 * The keywords, all, and any filters are all optional and can be omitted, but at least one should exist.
 
 Examples:
-* <code>findcom k/_Tree Painting_</code> Finds commissions which have the title `Tree Painting`.
-* <code>find -all t/_oil painting_ t/_canvas_</code> Finds commissions which are tagged both `oil painting` and `canvas`.
-* <code>find -any t/_oil painting_ t/_canvas_</code> Finds commissions who are either tagged `oil painting` or `canvas`.
+* <code>findcom k/<em>Tree Painting</em></code> Finds commissions which have the title `Tree Painting`.
+* <code>find -all t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions which are tagged both `oil painting` and `canvas`.
+* <code>find -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions who are either tagged `oil painting` or `canvas`.
 
 ## Miscellaneous
  
@@ -515,25 +515,25 @@ If your changes to the data file makes its format invalid, ArtBuddy will discard
 
 # Command summary
 
-| Action                   | Format, Examples                                                                                                                                                                                                                                                              |
-|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**                 | `help`                                                                                                                                                                                                                                                                        |
-| **Open customer**        | `opencus INDEX`<br> e.g., <code>opencus _2_</code>                                                                                                                                                                                                                            |
-| **Add customer**         | `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...`  <br> e.g., <code>addcus n/_John Doe_ p/_98765432_ e/_johnd@example.com_ a/_John street, block 123, #01-01_ t/_animal cartoons_</code>                                                                          |
-| **Edit customer**        | `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., <code>editcus _1_ p/_91234567_ e/_johndoe@example.com_</code>                                                                                                                                  |
-| **Delete customer**      | `delcus INDEX`<br> e.g., <code>delcus _14_</code>                                                                                                                                                                                                                             |
-| **Open Commission**      | `opencom INDEX`<br> e.g., <code>opencom _14_</code>                                                                                                                                                                                                                           |
-| **Add commission**       | `addcom n/TITLE f/FEE d/DEADLINE [t/TAG]...`<br> e.g., <code>addcom n/_Rimuru_ f/_40_ d/_2022-11-01_ t/_traditional_ t/_chibi_</code>                                                                                                                                         |
-| **Edit commission**      | `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/DESCRIPTION] [t/TAG]...` <br> e.g., <code>editcom _1_ n/_Tokyo Ghoul Kaneki_ f/_50_ d/_2022-10-10_ s/_False_ p/_Unfamiliar, I will need to do up a reference board first._ t/_digital_ t/_neon_</code> |
-| **Delete Commission**    | `delcom INDEX`<br> e.g., <code>delcom _14_</code>                                                                                                                                                                                                                             |
-| **Add Iteration**        | `additer n/DESCRIPTION d/DATE f/FEEDBACK p/FILEPATH`<br> e.g., <code>additer n/_Draft 1_ f/_Good_ d/_2022-10-28_ p/_/Users/John/Downloads/Bread.jpeg_</code>                                                                                                                  |
-| **Edit Iteration**       | `edititer INDEX [n/DESCRIPTION] [d/DATE] [f/FEEDBACK] [p/FILEPATH]`<br> e.g, <code>edititer _2_ n/_Sketch_</code>                                                                                                                                                             |
-| **Delete Iteration**     | `deliter INDEX`<br> e.g., <code>deliter _1_</code>                                                                                                                                                                                                                            |
-| **List customers**       | `list`                                                                                                                                                                                                                                                                        |
-| **Find customers**       | `find [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...` <br> e.g. <code>find -all t/_friend_ t/_colleague_</code>                                                                                                                                                               |
-| **Sort customers**       | `sortcus PREFIX/SUFFIX`<br> e.g., <code>sortcus n/_+_</code>                                                                                                                                                                                                                  |
-| **List commissions**     | `listcom`                                                                                                                                                                                                                                                                     |
-| **View all Commissions** | `allcom`                                                                                                                                                                                                                                                                      |
-| **Find commissions**     | `findcom [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...`                                                                                                                                                                                                                      |
-| **Clear everything**     | `clear`                                                                                                                                                                                                                                                                       |
-| **Exit**                 | `exit`                                                                                                                                                                                                                                                                        |
+| Action                   | Format, Examples                                                                                                                                                                                                                                                                                                                      |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                 | `help`                                                                                                                                                                                                                                                                                                                                |
+| **Open customer**        | `opencus INDEX`<br> e.g., <code>opencus <em>2</em></code>                                                                                                                                                                                                                                                                             |
+| **Add customer**         | `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...`  <br> e.g., <code>addcus n/<em>John Doe</em> p/<em>98765432</em> e/<em>johnd@example.com</em> a/<em>John street, block 123, #01-01</em> t/<em>animal cartoons</em></code>                                                                                               |
+| **Edit customer**        | `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., <code>editcus <em>1</em> p/<em>91234567</em> e/<em>johndoe@example.com</em></code>                                                                                                                                                                     |
+| **Delete customer**      | `delcus INDEX`<br> e.g., <code>delcus <em>14</em></code>                                                                                                                                                                                                                                                                              |
+| **Open Commission**      | `opencom INDEX`<br> e.g., <code>opencom <em>14</em></code>                                                                                                                                                                                                                                                                            |
+| **Add commission**       | `addcom n/TITLE f/FEE d/DEADLINE [t/TAG]...`<br> e.g., <code>addcom n/<em>Rimuru</em> f/<em>40</em> d/<em>2022-11-01</em> t/<em>traditional</em> t/<em>chibi</em></code>                                                                                                                                                              |
+| **Edit commission**      | `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/DESCRIPTION] [t/TAG]...` <br> e.g., <code>editcom <em>1</em> n/<em>Tokyo Ghoul Kaneki</em> f/<em>50</em> d/<em>2022-10-10</em> s/<em>False</em> p/<em>Unfamiliar, I will need to do up a reference board first.</em> t/<em>digital</em> t/<em>neon</em></code> |
+| **Delete Commission**    | `delcom INDEX`<br> e.g., <code>delcom <em>14</em></code>                                                                                                                                                                                                                                                                              |
+| **Add Iteration**        | `additer n/DESCRIPTION d/DATE f/FEEDBACK p/FILEPATH`<br> e.g., <code>additer n/<em>Draft 1</em> f/<em>Good</em> d/<em>2022-10-28</em> p/<em>/Users/John/Downloads/Bread.jpeg</em></code>                                                                                                                                              |
+| **Edit Iteration**       | `edititer INDEX [n/DESCRIPTION] [d/DATE] [f/FEEDBACK] [p/FILEPATH]`<br> e.g, <code>edititer <em>2</em> n/<em>Sketch</em></code>                                                                                                                                                                                                       |
+| **Delete Iteration**     | `deliter INDEX`<br> e.g., <code>deliter <em>1</em></code>                                                                                                                                                                                                                                                                             |
+| **List customers**       | `list`                                                                                                                                                                                                                                                                                                                                |
+| **Find customers**       | `find [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...` <br> e.g. <code>find -all t/<em>friend</em> t/<em>colleague</em></code>                                                                                                                                                                                                         |
+| **Sort customers**       | `sortcus PREFIX/SUFFIX`<br> e.g., <code>sortcus n/<em>+</em></code>                                                                                                                                                                                                                                                                   |
+| **List commissions**     | `listcom`                                                                                                                                                                                                                                                                                                                             |
+| **View all Commissions** | `allcom`                                                                                                                                                                                                                                                                                                                              |
+| **Find commissions**     | `findcom [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...`                                                                                                                                                                                                                                                                              |
+| **Clear everything**     | `clear`                                                                                                                                                                                                                                                                                                                               |
+| **Exit**                 | `exit`                                                                                                                                                                                                                                                                                                                                |
