@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grade should be A, B, C, D or F. If grade is unavailable, leave as blank";
+            "Grade should be A, B, C, D or F. If grade is unavailable, leave as PENDING...";
     public static final String VALIDATION_REGEX = "^[a-dA-DfF]$";
     public final String value;
 
