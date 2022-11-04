@@ -5,8 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Tan Jin Waye
@@ -17,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/tan-jin-waye.md)]
 
 * Role: TBC
-* Responsibilities: TBC
+* Responsibilities: Storage
 
 ### Lian Guo Yang
 
@@ -46,8 +44,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/Aloynz)]
 [[portfolio](team/aloynz.md)]
 
-* Role: TBC
-* Responsibilities: TBC
+* Role: Developer
+* Responsibilities: UI
 
 ### Lee Zi Yang
 
@@ -56,5 +54,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/zylee348)]
 [[portfolio](team/zylee348.md)]
 
-* Role: TBC
-* Responsibilities: TBC
+* Role: Developer
+* Responsibilities: UI
