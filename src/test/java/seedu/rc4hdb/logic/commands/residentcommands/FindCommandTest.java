@@ -68,7 +68,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_partialKeyword_onePersonFound() {
+    public void execute_partialKeyword_oneResidentFound() {
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate predicate = preparePredicate("eorge");
         FindCommand command = new FindCommand(predicate);
@@ -78,7 +78,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_partialKeyword_multiplePersonFound() {
+    public void execute_partialKeyword_multipleResidentsFound() {
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 2);
         NameContainsKeywordsPredicate predicate = preparePredicate("Ku");
         FindCommand command = new FindCommand(predicate);
@@ -88,7 +88,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multiplePartialKeyword_multiplePersonFound() {
+    public void execute_multiplePartialKeyword_multipleResidentsFound() {
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Ku On");
         FindCommand command = new FindCommand(predicate);
@@ -98,7 +98,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_onePartialOneInvalidKeyword_multiplePersonFound() {
+    public void execute_onePartialOneInvalidKeyword_multipleResidentsFound() {
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 2);
         NameContainsKeywordsPredicate predicate = preparePredicate("Ku Bestie");
         FindCommand command = new FindCommand(predicate);

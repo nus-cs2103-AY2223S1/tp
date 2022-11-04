@@ -41,7 +41,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateResident_throwsCommandException() {
         Resident validResident = new ResidentBuilder().build();
         AddCommand addCommand = new AddCommand(validResident);
         ModelStub modelStub = new ModelStubWithResident(validResident);

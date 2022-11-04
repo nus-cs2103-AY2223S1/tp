@@ -22,7 +22,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyResidentBook_success() {
         Model model = new ModelManager(getTypicalResidentBook(), new VenueBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalResidentBook(), new VenueBook(), new UserPrefs());
         expectedModel.setResidentBook(new ResidentBook());
