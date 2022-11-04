@@ -1,0 +1,76 @@
+{
+  "_comment": "HRPro save file which contains the same Project values as in TypicalProjects#getTypicalHRPro()",
+  "projects" : [ {
+    "projectName" : "Alice Pauline",
+    "budget" : "94351253",
+    "deadline" : "2022-01-01",
+    "tagged" : [ "friends" ],
+    "staffList": []
+  }, {
+    "projectName" : "Benson Meier",
+    "budget" : "98765432",
+    "deadline" : "2022-12-28",
+    "tagged" : [ "owesMoney", "friends" ],
+    "staffList": []
+  }, {
+    "projectName" : "Coconut",
+    "budget" : "95352563",
+    "deadline" : "2022-01-10",
+    "tagged" : [ ],
+    "staffList": []
+  }, {
+    "projectName" : "Daniel Meier",
+    "budget" : "87652533",
+    "deadline" : "2022-08-02",
+    "staffList": [],
+    "tagged" : [ "friends" ]
+  }, {
+    "projectName" : "Elle Meyer",
+    "budget" : "9482224",
+    "deadline" : "2022-10-05",
+    "staffList": [],
+    "tagged" : [ ]
+  }, {
+    "projectName" : "Fiona Kunz",
+    "budget" : "9482427",
+    "deadline" : "2023-09-09",
+    "staffList": [],
+    "tagged" : [ ]
+  }, {
+    "projectName" : "George Best",
+    "budget" : "9482442",
+    "deadline" : "2021-10-05",
+    "staffList": [],
+    "tagged" : [ ]
+  } ],
+  "staff" : [],
+  "tasks" : [{
+    "taskDescription" : "Assignment 2101",
+    "taskDeadline": "2022-07-11",
+    "taskMark": "false"
+  }, {
+    "taskDescription" : "Todo 2102",
+    "taskDeadline": "2022-06-12",
+    "taskMark": "true"
+  }, {
+    "taskDescription" : "Todo 2103",
+    "taskDeadline": "2022-02-16",
+    "taskMark": "false"
+  }, {
+    "taskDescription" : "Todo 2104",
+    "taskDeadline": "2022-04-14",
+    "taskMark": "true"
+  }, {
+    "taskDescription" : "Todo 2105",
+    "taskDeadline": "2022-01-11",
+    "taskMark": "false"
+  }, {
+    "taskDescription" : "Todo 2106",
+    "taskDeadline": "2022-03-15",
+    "taskMark": "true"
+  }, {
+    "taskDescription" : "Todo 2107",
+    "taskDeadline": "2022-05-13",
+    "taskMark": "false"
+  }]
+}
