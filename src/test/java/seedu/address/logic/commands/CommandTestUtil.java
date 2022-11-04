@@ -28,7 +28,8 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_OCCUPATION = "STUDENT";
+    public static final String VALID_OCCUPATION_AMY = "STUDENT";
+    public static final String VALID_OCCUPATION_BOB = "TA";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -42,8 +43,10 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String OCCUPATION_DESC = " " + PREFIX_OCCUPATION
-            + VALID_OCCUPATION;
+    public static final String OCCUPATION_DESC_AMY = " " + PREFIX_OCCUPATION
+            + VALID_OCCUPATION_AMY;
+    public static final String OCCUPATION_DESC_BOB = " " + PREFIX_OCCUPATION
+            + VALID_OCCUPATION_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -71,10 +74,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withOccupation(VALID_OCCUPATION).withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPersonDescriptorBuilder().withOccupation(VALID_OCCUPATION_AMY).withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withTutorial(VALID_TUTORIAL_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditPersonDescriptorBuilder().withOccupation(VALID_OCCUPATION_BOB).withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withTutorial(VALID_TUTORIAL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
