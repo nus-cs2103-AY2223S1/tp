@@ -16,6 +16,9 @@ So, focus on your art and leave the rest to ArtBuddy.
 Eager to get started? You can refer to our [Quick Start](#quick-start) section to set ArtBuddy up, or
 you can jump right into our [Features](#features) section to learn more about the features ArtBuddy offers.
 
+--------------------------------------------------------------------------------------------------------------------
+# Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -30,6 +33,8 @@ To hop right into setting up ArtBuddy, you might find the [Quick Start](#quick-s
 If you just want to learn more about our features, you can check out our [Features](#features) section.
 For ease of reference, the [Features](#features) section is divided into subsections corresponding to each main feature:
 Customers, Commissions, Iterations and Statistics. Feel free to jump around as you explore ArtBuddy's amazing features!
+
+You can also refer to our [Table of Contents](#table-of-contents) to navigate between the different sections of this guide.
 
 ### Conventions used in this guide
 
