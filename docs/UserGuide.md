@@ -102,8 +102,8 @@ This alert contains important information to be wary of.
 ## Getting Started
 
 1. Ensure you have **Java 11** or above installed in your computer. If not, don't worry! Click
-   [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for further instructions on
-   how to download and install **Java 11**.
+<a href="https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html" target="_blank">here</a> 
+   for further instructions on how to download and install **Java 11**.
 
 2. Download the latest version of `truthtable.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases).
 The file can be located under the "Assets" section of the page as seen in the image below.
@@ -219,6 +219,13 @@ require flags to **appear before parameters**.
 
 Note that flags and parameters always **come after the command**.
 
+<div markdown="span" class="alert alert-info">
+**:star: Command syntax**
+
+TruthTable's command syntax is actually very similar to other command line applications like
+[git](https://git-scm.com/) and [docker](https://docs.docker.com/engine/reference/commandline/cli/)!
+</div>
+
 Let's use an example to break down what each term means.
 
 #### Example Command - `add person`
@@ -269,15 +276,19 @@ any command.
 
 Here's a summary of what each highlighted section represents.
 
-| Number | Name                            | Special Syntax       | Remarks                                                                        |
-|--------|---------------------------------|----------------------|:-------------------------------------------------------------------------------|
-| 1      | Command                         | -                    | Strictly alphabets only (all commands can be found [here](#command-summary))   |
-| 2      | Optional Flag with no Parameter | `[-flag]`            | -                                                                              |
-| 3      | Optional Flag with Parameters   | `[-flag=parameters]` | An ellipsis `...` is present only if more than 1 parameter is **allowed**      |
-| 4      | Required Flag with Parameters   | `flag=parameters`    | An ellipsis `...` is present only if more than 1 parameter is **required**     |
-| 5      | Required Parameter              | `<parameter>`        | All parameters are required by default                                         |
-| 6      | Flag/Parameter Name and Alias   | -                    | All aliases of a flag/parameter will be listed and separated with commas (`,`) |
-| 7      | Flag/Parameter Description      | -                    | Brief description of flag/parameter                                            |
+| Number | Name                            | Special Syntax         | Remarks                                                                        |
+|--------|---------------------------------|------------------------|:-------------------------------------------------------------------------------|
+| 1      | Command                         | -                      | Strictly alphabets only (all commands can be found [here](#command-summary))   |
+| 2      | Optional Flag with no Parameter | `[-flag]`              | -                                                                              |
+| 3      | Optional Flag with Parameters   | `[-flag=<parameters>]` | An ellipsis `...` is present only if more than 1 parameter is **allowed**      |
+| 4      | Required Flag with Parameters   | `flag=<parameters>`    | An ellipsis `...` is present only if more than 1 parameter is **required**     |
+| 5      | Required Parameter              | `<parameter>`          | All parameters are required by default                                         |
+| 6      | Flag/Parameter Name and Alias   | -                      | All aliases of a flag/parameter will be listed and separated with commas (`,`) |
+| 7      | Flag/Parameter Description      | -                      | Brief description of flag/parameter                                            |
+
+<div markdown="block" class="alert alert-info">**:information_source: Optional flags are wrapped with square 
+brackets (`[]`)**
+</div>
 
 <div markdown="block" class="alert alert-info">
 **:bulb: Flags with multiple parameters**
@@ -293,6 +304,17 @@ A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the 
 [here](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02)
 </div>
 
+### Aliases
+
+TruthTable allows for aliases (i.e. alternative names) to represent the same commands, similar to nicknames. 
+Consequently, commands and flags may have alternative names to execute the same instruction.
+
+For instance, the `add person` command has the following command aliases,
+- `add p`
+- `a person`
+- `a p`
+
+Refer to the [command summary section](#command-summary) to view the commands and their respective aliases.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -318,15 +340,32 @@ If you're looking to migrate your team information onto TruthTable, here is a st
 
 ---
 ## Commands
-[](#understanding-truthtables-cli)
 
-<div markdown="block" class="alert alert-info">**:information_source: Make sure you have read 
-[this section](#understanding-truthtables-cli) before continuing!**
+<div markdown="block" class="alert alert-info">**:information_source: Make sure you have 
+[read this section](#understanding-truthtables-cli) before continuing!**
 </div>
 
-<div markdown="span" class="alert alert-info">**For experienced command line users**
+TruthTable allows you to manage members, tasks, links, and members. For member management, you will need to create the 
+person's record in TruthTable first, before assigning them to different teams.
 
-You will find that the syntax is very similar to other command line interfaces like `git` and `docker`!
+Consequently, the commands are split into **5** main sections:
+
+1. [Person commands](#commands-to-manage-persons) and [Member commands](#commands-to-manage-members)
+2. [Team commands](#commands-to-manage-teams)
+3. [Task commands](#commands-to-manage-tasks)
+4. [Link commands](#commands-to-manage-links--urls)
+5. [General commands](#general-commands)
+
+    <div markdown="block" class="alert alert-info">**:information_source: Notes about command format**
+
+- Syntax for each command adheres to the structure laid out in the 
+[help command section](#example-command-help-message---add-person---help)
+- Words in `UPPER_CASE` are parameters to be supplied by the user
+- Flags and parameters in square brackets (`[]`) are optional 
+- Flags can be specified in any order, however, parameters must always come before flags
+- Parameters with ellipsis (`...`) behind them means that more than 1 parameter can be specified
+- If an extra parameter is specified, the command will not execute and an error message will be displayed
+[//]: # (TODO: add reference to flags/parameter summary)
 </div>
 
 ### Commands to Manage Persons
@@ -335,15 +374,29 @@ You will find that the syntax is very similar to other command line interfaces l
 
 Adds a person to TruthTable.
 
-Format: `add person -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [-t TAG]`
+Format: `add person [-h] -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [-t [TAGS...]]`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-a`, `--address` | ✔        | Address of person (e.g. "311, Clementi Ave 2, #02-25") |
+| `-e`, `--email`   | ✔        | Email of person (e.g. truth@table.com)                 |
+| `-n`, `--name`    | ✔        | Name of person (e.g. "Truth Table")                    |
+| `-p`,`--phone`    | ✔        | Phone of person (e.g. 98765432)                        |
+| `-t`,`--tags`     |          | Tags of person (e.g. Frontend, Backend)                |
+| `-h`, `--help`    |          | Shows help message                                     |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
+Command Aliases:
+- `a person`
+- `add p`
+- `a p`
+
 Examples:
 * `add person -n "John Doe" -p 98765432 -e johnd@example.com -a "John street, block 123, #01-01"`
-* `add person -n "Betsy Crowe" -e betsycrowe@example.com -a "Newgate Prison" -p 1234567 -t criminal friend`
+* `a p -n "Betsy Crowe" -e betsycrowe@example.com -a "Newgate Prison" -p 1234567 -t criminal friend`
 
 #### Listing all persons : `list persons`
 
@@ -357,7 +410,7 @@ Edits an existing person in TruthTable.
 
 Format: `edit person PERSON_INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]`
 
-* Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person 
+* Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person
   list. The index **must be a positive integer** 1, 2, 3,...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -366,9 +419,9 @@ Format: `edit person PERSON_INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [
   specifying any tags after it.
 
 Examples:
-*  `edit person 1 -p 91234567 -e johndoe@example.com` Edits the phone number and email address of the 1st person to be 
+*  `edit person 1 -p 91234567 -e johndoe@example.com` Edits the phone number and email address of the 1st person to be
    `91234567` and `johndoe@example.com` respectively.
-*  `edit person 2 -n Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing 
+*  `edit person 2 -n Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing
    tags.
 
 #### Locating persons by name: `find person`
@@ -402,53 +455,6 @@ Examples:
 * `list persons` followed by `delete person 2` deletes the 2nd person in the address book.
 * `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find person` command.
 
-### Commands to Manage Teams
-
-#### Creating a new team `add team`
-
-Add a new team to your list of teams. Will show an error there is already an existing team with the same name. 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Team name must consist only of alphanumeric characters (i.e., **Spaces are NOT allowed**).
-</div>
-
-Format: `add team TEAM_NAME [-d TEAM_DESCRIPTION]`
-
-Examples:
-
-- `add team CS2103` will create a new team by the name of "CS2103"
-- `add team CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
-  as description
-
-#### Set a new team `set team`
-
-Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if the team does not exist
-
-Format: `set team TEAM_NAME`
-
-Examples:
-
-- `set team CS2103` will change the current working team to be the "CS2103" team.
-
-#### Edit current team `edit team`
-
-Format: `edit team [-n TEAM_NAME] [-d TEAM_DESCRIPTION]`
-
-Examples:
-- `edit team -n CS2103 -d "Software Engineering"` will edit the name of the current team to CS2103 and description
-  to "Software Engineering"
-
-#### Delete an existing team `delete team`
-
-Delete an existing team from the user's list of teams. Throws an error under these conditions.
-
-- The target team does not exist.
-- The target team is the only existing team.
-
-Format: `delete team TEAM_NAME`
-
-Examples:
-
-- `delete team CS2103` will delete the team with the name "CS2103"
 
 ### Commands to Manage Members
 
@@ -512,6 +518,54 @@ Examples
 * `sort members asc` sorts your team members in **alphabetical** order (as per their names).
 * `sort members dsc` sorts the team members in **reverse alphabetical** order (as per their names).
 * `sort members res` **resets** the order of the team members shown.
+
+### Commands to Manage Teams
+
+#### Creating a new team `add team`
+
+Add a new team to your list of teams. Will show an error there is already an existing team with the same name. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Team name must consist only of alphanumeric characters (i.e., **Spaces are NOT allowed**).
+</div>
+
+Format: `add team TEAM_NAME [-d TEAM_DESCRIPTION]`
+
+Examples:
+
+- `add team CS2103` will create a new team by the name of "CS2103"
+- `add team CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
+  as description
+
+#### Set a new team `set team`
+
+Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if the team does not exist
+
+Format: `set team TEAM_NAME`
+
+Examples:
+
+- `set team CS2103` will change the current working team to be the "CS2103" team.
+
+#### Edit current team `edit team`
+
+Format: `edit team [-n TEAM_NAME] [-d TEAM_DESCRIPTION]`
+
+Examples:
+- `edit team -n CS2103 -d "Software Engineering"` will edit the name of the current team to CS2103 and description
+  to "Software Engineering"
+
+#### Delete an existing team `delete team`
+
+Delete an existing team from the user's list of teams. Throws an error under these conditions.
+
+- The target team does not exist.
+- The target team is the only existing team.
+
+Format: `delete team TEAM_NAME`
+
+Examples:
+
+- `delete team CS2103` will delete the team with the name "CS2103"
 
 ### Commands to Manage Tasks
 
@@ -709,7 +763,7 @@ Examples:
 
 - `delete link 1`
 
-### Miscellaneous Commands
+### General Commands
 
 #### Clearing all entries : `clear`
 
@@ -770,10 +824,10 @@ the data of your previous TruthTable home folder.
 
 ## Command summary
 
-| Action | Format, Examples |
-|--------|------------------|
-| TBC    | TBC              |
-| TBC    | TBC              |
+| Action | Aliases | Format, Examples |
+|--------|:--------|------------------|
+| TBC    |         | TBC              |
+| TBC    |         | TBC              |
 
 [Back to Table of Contents](#table-of-contents)
 
