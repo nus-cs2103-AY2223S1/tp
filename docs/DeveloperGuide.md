@@ -231,6 +231,22 @@ For simplicity, only the `DeleteGroupCommand`'s execution is shown below. Both c
 
 <img src="images/DeleteGroupCommandExecutesSequenceDiagram.png" width="400" />
 
+**Design Considerations:**
+
+**Aspect: Data Structure used to store Groups:**
+- Alternative 1 (current choice): Reference the `UniquePersonList` in `AddressBook` class
+  - Pros: 
+    - Design is consistent with existing system architecture.
+  - Cons:
+    - `UniquePersonList` implementation may be unfamiliar. 
+- Alternative 2: Use simpler data structure e.g. Sets/ArrayList
+  - Pros: 
+    - Can leverage Java libraries, simple to implement.
+  - Cons: 
+    - Design may not be consistent with existing system architecture.
+    - Run risk of not accounting for future features, have to design workarounds that weaken the data structure.
+    - May violate immutability principle employed in the existing system architecture.
+
 -----
 
 ### **\[Developed\] Add/Delete member feature**
@@ -287,6 +303,26 @@ For simplicity, only the `DeleteGroupMemberCommand`'s execution is shown below. 
 
 <img src="images/DeleteGroupMemberCommandExecutesSequenceDiagram.png" width="400" />
 
+**Design Considerations:**
+
+**Aspect: How a group maintains references to its members:**
+- Alternative 1 (current choice): Maintains a reference to a `Person` object.
+  - Pros: 
+    - When deleting group/performing groupwide assignment or deletion of task, easier to retrieve each member to be edited.
+  - Cons: 
+    - Duplication of `Person` in memory, may have performance issues.
+- Alternative 2: Maintain a String/`Name` object `Person` only.
+  - Pros: 
+    - No duplication of `Person` in memory, though `Name` object may be duplicated.
+  - Cons: 
+    - When deleting group/performing groupwide assignment or deletion of task, have to lookup the actual `Person` object in AB3 model;
+      incur overhead.
+- Alternative 3: References to `Group` maintained in a member i.e. the other way around.
+  - Pros:
+    - No duplication of `Person` in memory.
+  - Cons:
+    - Deleting group/performing groupwide assignment or deletion of task is even more difficult as
+      will have to perform linear scan of the entire `Person` list to surface affected members.
 
 -----
 
@@ -387,6 +423,21 @@ For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both co
 
 <img src="images/DeleteTaskCommandExecuteSequenceDiagram.png" width="400" />
 
+**Design Considerations:**
+
+**Aspect: Where task list should be maintained**
+- Alternative 1: `Group` object stores a HashMap mapping `Person` to task
+  - Pros: 
+    - Easy to implement
+    - Deleting tasks from a `Person` does not require modification of the `Person` object.
+  - Cons:
+    - If the `Person` is part of multiple groups, retrieving all tasks to display on their card requires referencing multiple `Group` objects.
+- Alternative 2 (Current Option): `Person` object stores a HashMap mapping `GroupName` to task
+  - Pros:
+    - Since a `Person` object can be in multiple `Groups`, storing all tasks in `Person` incurs less overhead when all those tasks are displayed in the assignments view.
+  - Cons:
+    - Deleting tasks from a `Person` requires modification of the `Person` object. This is compounded when multiple `Person`s are updated in one command i.e. bulk commands.
+
 ----
 
 ### **\[Developed\] Bulk Assignment & Deletion of Tasks**
@@ -451,6 +502,20 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
 
 <img src="images/DeleteTaskAllCommandExecuteSequenceDiagram.png" width="400" />
 
+**Design Considerations:**
+
+**Aspect: How to handle `Person`s with duplicate task when assigning/no task when deleting:**
+- Alternative 1 (Current Option): Skip over
+  - Pros:
+    - More user-friendly; if the user does not know that a `Person` already has/does not have the assignment to be added/deleted respectively, the end result is close to the desired outcome.
+  - Cons:
+    - Have to maintain a list of updated `Person`s to feedback to user; more difficult to implement.
+- Alternative 2: Return CommandException
+  - Pros:
+    - Easier to implement.
+  - Cons:
+    - Less user-friendly; if the user does not keep track of tasks already assigned, cannot take advantage of
+      the feature easily.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
