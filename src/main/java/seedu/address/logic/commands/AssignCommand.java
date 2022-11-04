@@ -196,7 +196,6 @@ public class AssignCommand extends Command {
     }
 
     private void editPatient(Model model, Patient patient, List<DateSlot> dateSlotList) {
-
         Uid uid = patient.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();
         Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();

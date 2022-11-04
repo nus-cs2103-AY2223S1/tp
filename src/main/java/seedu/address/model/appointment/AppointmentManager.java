@@ -48,6 +48,55 @@ public class AppointmentManager {
     }
 
     /**
+     * Creates a new appointment using the given patient and appointmentDateTime
+     *
+     * @param patient             The requested patient
+     * @param appointmentDateTime The requested appointment Date
+     * @throws NullPointerException   Any of the required parameters are null
+     *                                correctly
+     * @throws PatientIsBusyException The patient is current busy at this point of
+     *                                time
+     */
+    public Appointment createNewAppointment(Patient patient, AppointmentDateTime appointmentDateTime)
+            throws PatientIsBusyException {
+        requireAllNonNull(patient, appointmentDateTime);
+
+        if (!patient.isFreeDuring(appointmentDateTime)) {
+            throw new PatientIsBusyException();
+        }
+
+        Appointment newAppointment = new Appointment(patient, appointmentDateTime);
+        newAppointment.create();
+        return newAppointment;
+    }
+
+    /**
+     * Assign nurse to an appointment
+     *
+     * @param nurse               The nurse to assign
+     * @param appointmentDateTime The appointment date time of the requested
+     *                            appointment
+     * @return The appointment after the update
+     * @throws AppointmentNotFoundException The requested appointment is not found
+     * @throws NurseIsBusyException         The nurse is busy and cannot be assigned
+     *                                      to the requested appointment
+     */
+    public Appointment assignNurseForAppointment(Nurse nurse, AppointmentDateTime appointmentDateTime)
+            throws AppointmentNotFoundException, NurseIsBusyException {
+        requireAllNonNull(nurse, appointmentDateTime);
+
+        Appointment appointment = findAppointment(nurse, appointmentDateTime)
+                .orElseThrow(AppointmentNotFoundException::new);
+
+        if (!nurse.isFreeDuring(appointmentDateTime)) {
+            throw new NurseIsBusyException();
+        }
+
+        appointment.changeNurseTo(nurse);
+        return appointment;
+    }
+
+    /**
      * Removes an appointment given the appointmentDateTime and a patient or nurse
      *
      * @param nurse               The nurse of the appointment to be removed

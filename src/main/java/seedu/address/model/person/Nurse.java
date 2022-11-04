@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -137,6 +138,7 @@ public class Nurse extends Person {
      */
     public void addAppointment(Appointment newAppointment) {
         this.appointments.add(newAppointment);
+        Collections.sort(appointments);
         updateFullyScheduledDateList();
     }
 

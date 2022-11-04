@@ -16,7 +16,7 @@ public class Appointment implements Comparable<Appointment> {
     private Boolean visited;
 
     /**
-     * Appointment Constructor
+     * Appointment Constructor with patient and nurse
      *
      * @param patient             The provided patient
      * @param nurse               The provided nurse
@@ -26,6 +26,20 @@ public class Appointment implements Comparable<Appointment> {
         requireAllNonNull(patient, nurse, appointmentDateTime);
         this.patient = patient;
         this.nurse = nurse;
+        this.appointmentDateTime = appointmentDateTime;
+        this.visited = false;
+    }
+
+    /**
+     * Appointment Constructor with only patient
+     *
+     * @param patient             The provided patient
+     * @param nurse               The provided nurse
+     * @param appointmentDateTime The provided appointment datetime
+     */
+    public Appointment(Patient patient, AppointmentDateTime appointmentDateTime) {
+        requireAllNonNull(patient, nurse, appointmentDateTime);
+        this.patient = patient;
         this.appointmentDateTime = appointmentDateTime;
         this.visited = false;
     }
