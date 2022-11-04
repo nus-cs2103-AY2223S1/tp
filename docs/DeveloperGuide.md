@@ -838,6 +838,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.
   * Use case resumes at step 2.
 
+
+#### Use case: Generate message templates
+
+**MSS**
+
+1. User creates a new message template
+
+2. User lists their message templates
+
+3. User generates a personalized message for the client at index 1 (say, Alice)
+
+4. User generates a personalized message for the client at index 2 (say, Bob)
+   
+   Use case ends.
+
+**Extensions**
+
+- 3a. There is no client with index 1.
+  
+  - 3a1. Rapportbook shows an error message.
+  
+  - Use case resumes at step 4.
+
+- 4a. There is no client with index 2.
+  
+  - 4a1. Rapportbook shows an error message.
+  
+  - Use case ends
+
 #### Use case: View motivational quote
 
 1. User accesses the home page of Rapportbook.
