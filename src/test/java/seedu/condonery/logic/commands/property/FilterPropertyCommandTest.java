@@ -24,24 +24,24 @@ public class FilterPropertyCommandTest {
         PropertyTagContainsKeywordsPredicate lookingPredicate =
                 new PropertyTagContainsKeywordsPredicate(new ArrayList<>(List.of("LOOKING")));
 
-        FilterPropertyCommand FilterPropertyCommand = new FilterPropertyCommand(richPredicate);
+        FilterPropertyCommand filterPropertyCommand = new FilterPropertyCommand(richPredicate);
         FilterPropertyCommand anotherFilterPropertyCommand = new FilterPropertyCommand(lookingPredicate);
 
         // same object -> returns true
-        assertTrue(FilterPropertyCommand.equals(FilterPropertyCommand));
+        assertTrue(filterPropertyCommand.equals(filterPropertyCommand));
 
         // same values -> returns true
         FilterPropertyCommand selectFirstCommandCopy = new FilterPropertyCommand(richPredicate);
-        assertTrue(FilterPropertyCommand.equals(selectFirstCommandCopy));
+        assertTrue(filterPropertyCommand.equals(selectFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(FilterPropertyCommand.equals(1));
+        assertFalse(filterPropertyCommand.equals(1));
 
         // null -> returns false
-        assertFalse(FilterPropertyCommand.equals(null));
+        assertFalse(filterPropertyCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(FilterPropertyCommand.equals(anotherFilterPropertyCommand));
+        assertFalse(filterPropertyCommand.equals(anotherFilterPropertyCommand));
     }
 
 }
