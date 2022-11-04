@@ -428,6 +428,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 ## Command summary
 
 ### Home page commands
+
 | Action                                                           | Format, Examples                                                                                                                                                  |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                            |
@@ -441,6 +442,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                            |
 
 ### Item planning page commands
+
 | Action                                                       | Format, Examples                                                                                         |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | [**Add Item**](#adding-an-item--add)                         | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
