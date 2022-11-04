@@ -33,6 +33,9 @@ public class FindCommissionCommand extends Command {
     public CommandResult execute(Model model, Storage...storage) {
         requireNonNull(model);
         model.updateFilteredCommissionList(predicate);
+        if (!model.getFilteredCommissionList().contains(model.getSelectedCommission().getValue())) {
+            model.selectCommission(null);
+        }
         model.selectTab(GuiTab.COMMISSION);
         return new CommandResult(String.format(Messages.MESSAGE_COMMISSIONS_LISTED_OVERVIEW,
                 model.getFilteredCommissionList().size()));
