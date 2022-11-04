@@ -29,9 +29,9 @@ public class TagCommand extends Command {
     public static final String COMMAND_WORD = "tag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds tags to the task identified "
-            + "by the index number used in the displayed task list. "
+            + "by the index number used in the displayed task list. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG*]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "highPriority";
 
@@ -65,7 +65,7 @@ public class TagCommand extends Command {
         Task taskToTag = lastShownList.get(index.getZeroBased());
         Task taggedTask = createTaggedPerson(taskToTag, editPersonTags);
 
-        if (!taskToTag.isSamePerson(taggedTask)) {
+        if (!taskToTag.isSameTask(taggedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

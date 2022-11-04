@@ -17,18 +17,18 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task tracker. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task tracker. \n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_MODULE + "MODULE "
-            + PREFIX_DEADLINE + "YYYY-MM-DD "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_NAME + " NAME "
+            + PREFIX_MODULE + " MODULE "
+            + "[ " + PREFIX_DEADLINE + " YYYY-MM-DD] "
+            + "[" + PREFIX_TAG + " TAG*]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Project "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_DEADLINE + "2022-10-18 "
-            + PREFIX_TAG + "lowPriority "
-            + PREFIX_TAG + "optional";
+            + PREFIX_NAME + " Project "
+            + PREFIX_MODULE + " CS2103T "
+            + PREFIX_DEADLINE + " 2022-10-18 "
+            + PREFIX_TAG + " lowPriority "
+            + PREFIX_TAG + " optional";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the task tracker.";
@@ -51,6 +51,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.updateFilterStatus("Showing all tasks", true);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

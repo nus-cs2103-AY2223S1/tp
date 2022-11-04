@@ -38,7 +38,7 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validTask).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTask), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
 
     @Test
@@ -226,7 +226,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Task task) {
             requireNonNull(task);
-            return this.task.isSamePerson(task);
+            return this.task.isSameTask(task);
         }
     }
 
@@ -234,18 +234,40 @@ public class AddCommandTest {
      * A Model stub that always accept the task being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Task> personsAdded = new ArrayList<>();
+        final ArrayList<Task> tasksAdded = new ArrayList<>();
+
+        private String filterStatus = "";
 
         @Override
         public boolean hasPerson(Task task) {
             requireNonNull(task);
-            return personsAdded.stream().anyMatch(task::isSamePerson);
+            return tasksAdded.stream().anyMatch(task::isSameTask);
         }
 
         @Override
         public void addPerson(Task task) {
             requireNonNull(task);
-            personsAdded.add(task);
+            tasksAdded.add(task);
+        }
+
+        @Override
+        public void updateFilterStatus(String filter) {
+            requireNonNull(filter);
+            if (this.filterStatus.equalsIgnoreCase("Showing all tasks") || this.filterStatus.equals("")) {
+                this.filterStatus = filter;
+            } else {
+                this.filterStatus += ", " + filter;
+            }
+        }
+
+        @Override
+        public void updateFilterStatus(String filter, boolean isNewFilterSet) {
+            requireNonNull(filter);
+            if (isNewFilterSet) {
+                this.filterStatus = filter;
+            } else {
+                this.filterStatus += ", " + filter;
+            }
         }
 
         @Override

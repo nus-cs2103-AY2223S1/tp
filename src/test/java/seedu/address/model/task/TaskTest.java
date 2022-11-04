@@ -28,36 +28,36 @@ public class TaskTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameTask(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameTask(null));
 
         // same name and module, all other attributes different -> returns true
         Task editedAlice = new PersonBuilder(ALICE).withDeadline(VALID_DEADLINE_BETA)
                 .withTags(VALID_TAG_HIGH_PRIORITY).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameTask(editedAlice));
 
         // different isDone, all other attributes same -> returns true
         editedAlice = new PersonBuilder(ALICE).withIsDone(!ALICE.isDone()).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameTask(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_TASK_BETA).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameTask(editedAlice));
 
         // different module, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withModule(VALID_MODULE_BETA).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameTask(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Task editedBob = new PersonBuilder(BETA).withName(VALID_NAME_TASK_BETA.toLowerCase()).build();
-        assertFalse(BETA.isSamePerson(editedBob));
+        assertTrue(BETA.isSameTask(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_TASK_BETA + " ";
         editedBob = new PersonBuilder(BETA).withName(nameWithTrailingSpaces).build();
-        assertFalse(BETA.isSamePerson(editedBob));
+        assertFalse(BETA.isSameTask(editedBob));
     }
 
     @Test

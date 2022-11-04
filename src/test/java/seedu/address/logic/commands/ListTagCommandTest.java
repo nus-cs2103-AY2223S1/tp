@@ -72,7 +72,7 @@ public class ListTagCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TagContainsKeywordsPredicate}.
      * @return
      */
     private TagContainsKeywordsPredicate preparePredicate(String userInput) {

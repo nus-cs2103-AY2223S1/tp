@@ -18,11 +18,14 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USER_QUICKSTART = "Type the command in the “COMMAND INPUT” box and press “ENTER” to "
             + "execute the command\n"
             + "Some example commands you can try:\n"
-            + "ls -a : Lists all contacts.\n"
-            + "add <module> <taskName> [--tag <tag>] : Adds a task called taskName from the module into the task list."
-            + "\ndelete <taskId> : Deletes the task in the task list with task id taskId.\n"
-            + "edit <taskId> <module> <taskName> : Changes the module and task name of the task with taskId to module "
-            + "and taskName respectively.";
+            + "add -n Tutorial 3 -m CS2103T -d 2022-09-16 : "
+            + "Adds a task called Tutorial 3 for the module CS2103T with the deadline 2022-09-16 into the task list.\n"
+            + "mark 1 : Marks the first task in the list as complete.\n"
+            + "ls --module CS2103T : Lists all tasks associated with the module CS2103T.\n"
+            + "delete 2 : Deletes the second task in the list.\n"
+            + "edit 3 -n Assignment 2 : Changes the name of the third task in the list to Assignment 2.\n"
+            + "find tutorial : "
+            + "Finds anything with the keyword 'tutorial' (not case-sensitive or strictly matched words)";
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-f12-3.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "For additional help, refer to the user guide: " + USERGUIDE_URL;
 

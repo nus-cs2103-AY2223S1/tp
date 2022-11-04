@@ -20,7 +20,7 @@ public class NameOrTagContainsKeywordsPredicate implements Predicate<Task> {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsIgnoreCase(task.getName().fullName, keyword)
                         || task.getTags().stream()
-                        .anyMatch(tag -> StringUtil.containsIgnoreCase(tag.tagName, keyword)));
+                        .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)));
     }
 
     @Override
