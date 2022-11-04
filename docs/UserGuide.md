@@ -675,12 +675,12 @@ Examples:
 ```
 edit-person 2 n/Charmander
 ```
-In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
+In the above example, we are editing the contact with a displayed-index number of '2' on the screen to now have the name
 `Charmander` in Plannit.
 ```
-edit-person 1 n/Charmander e/charmander@gmail.com
+edit-person 2 n/Charmander e/charmander@gmail.com
 ```
-In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
+In the above example, we are editing the contact with a displayed-index number of '2' on the screen to now have the name
 `Charmander` and email `charmander@gmail.com`in Plannit.  
 Screenshots for the last example:
 
