@@ -455,6 +455,14 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InterNUS home folder.
 
+**Q**: How do I find a contact person's linked internship?<br>
+**A**: On the contact person's display, look for the linked internship's display name (shown as **Internship: COMPANY_NAME ROLE**), then use 
+`find -i c/COMPANY_NAME r/ROLE` to find the linked internship.
+
+**Q**: How do I find an internship's linked contact person?<br>
+**A**: On the internship's display, look for the linked contact person's display name (shown as **Contact Person: NAME**), then use 
+`find -p n/NAME` to find the linked contact person.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Command summary
