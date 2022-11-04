@@ -11,6 +11,11 @@ WorkBook (WB) is a desktop app for CS/tech students who are applying for interns
 
 ### Summary of contributions
 
+Updated UG from AB3 to WB.
+Redesigned Internship card to better fit WB.
+Implemented the Tips window and Tips button.
+Implemented Responsive UI. 
+
 #### Code contributed
 
 This displays my code contributions for the project: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=glemenneo&breakdown=true)
