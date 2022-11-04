@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.AddPersonCommand.MESSAGE_SUCCESS;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -11,18 +14,40 @@ import org.junit.jupiter.api.Test;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
+import picocli.CommandLine;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddressConverter;
+import seedu.address.logic.parser.EmailConverter;
+import seedu.address.logic.parser.NameConverter;
+import seedu.address.logic.parser.PhoneConverter;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.team.Link;
-import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.Task;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonUtil;
 
 // TODO: Add implementation for tests
 public class AddPersonCommandTest {
+
+    private Model model = new ModelManager();
+    private Model expectedModel = model;
+    private final Command commandToBeTested = new AddPersonCommand();
+    private final CommandLine commandLine = new CommandLine(commandToBeTested)
+            .registerConverter(Name.class, new NameConverter())
+            .registerConverter(Email.class, new EmailConverter())
+            .registerConverter(Phone.class, new PhoneConverter())
+            .registerConverter(Address.class, new AddressConverter());
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -30,10 +55,19 @@ public class AddPersonCommandTest {
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+        Person validPerson = new PersonBuilder().build();
+        commandLine.parseArgs(PersonUtil.convertPersonToArgs(validPerson));
+        CommandResult expectedResult = new CommandResult(String.format(MESSAGE_SUCCESS, validPerson));
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        commandLine.parseArgs(PersonUtil.convertPersonToArgs(validPerson));
+        assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON,
+                () -> commandToBeTested.execute(modelStub));
     }
 
     @Test
