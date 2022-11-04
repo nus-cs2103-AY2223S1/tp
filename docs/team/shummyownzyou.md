@@ -22,9 +22,11 @@ It is written in Java, and has about 14 kLoC.
     along with all related methods, test cases and parameter names. [#65](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/65), [#71](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/71)
 
 * **Enhancements to existing features**: 
-  * Updated `LogicManager` to display pinned applicants on the UI: [#114](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/114)
+  * Updated `Logic` and `Model` to display pinned applicants on the UI: [#114](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/114)
   * Changed `Unpin` command to unpin by name instead of index: [#122](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/122),  [#123](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/123)
-    * Justification: The pinned applicant list does not display index to avoid inconsistencies and confusion between the 2 applicant lists for indexed commands. This change allows a more straightforward way to unpin applicants as applicant names are guaranteed to be unique.
+    * Justification: 
+      * The pinned applicant list does not display applicant index number to avoid inconsistencies and confusion between the 2 applicant lists for commands requiring indexes. 
+      * This change allows a more straightforward way to unpin applicants as applicant names are guaranteed to be unique.
 
 * **Documentation**:
     * User Guide:
@@ -32,7 +34,7 @@ It is written in Java, and has about 14 kLoC.
       * Made minor improvements in format for user guide: [#126](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/126), [#132](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/132)
     * Developer Guide: 
       * Updated developer guide with use case 5: [#39](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/39)
-      * Updated developer guide with sort feature: [#106](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/106), [#132](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/132)  
+      * Updated developer guide with sort feature and corresponding UML diagrams: [#106](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/106), [#132](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/132)  
 
 * **Community**: 
   * PRs reviewed (with non-trivial suggestions): [#111](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/111), [#124](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/124)
