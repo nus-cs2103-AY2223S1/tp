@@ -17,9 +17,13 @@ Rapportbook is a CLI-focused desktop app for managing client information, develo
 
 If it is your first time contributing, make sure you follow the guidelines we have noted in [Setting up, getting started](#setting-up-getting-started). Please refer to the following list of sections to get you familiarized with Rapportbook.
 
-* [Design overview](#design) -- High level overview of the design and architecture Rapportbook.
-* [Implementation](#implementation) -- Implementation details for the features currently implemented.
-* [Testing](#appendix-instructions-for-manual-testing) -- Testing instructions and expected outcomes of the features in Rapportbook.
+- [Design overview](#design) -- High level overview of the design and architecture Rapportbook
+
+- [Implementation](#implementation) -- Implementation details for the features currently implemented
+
+- [Testing](#appendix-instructions-for-manual-testing) -- Testing instructions and expected outcomes of the features in Rapportbook.
+
+
 
 The following is the table of contents for Rapportbook.
 
@@ -30,11 +34,13 @@ The following is the table of contents for Rapportbook.
 
 ## **Acknowledgements**
 
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
 * Third-party libraries used:
-  * [JavaFX](https://openjfx.io/) -- UI framework
-  * [Jackson](https://github.com/FasterXML/jackson) -- JSON parser
-  * [JUnit5](https://junit.org/junit5/) -- Testing framework
+  - [JavaFX](https://openjfx.io/) -- UI framework
+  
+  - [Jackson](https://github.com/FasterXML/jackson) -- JSON parser
+  
+  - [JUnit5](https://junit.org/junit5/) -- Testing framework
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -64,17 +70,20 @@ Given below is a quick overview of main components and how they interact with ea
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+- [**`UI`**](#ui-component): The UI of the App.
+
+- [**`Logic`**](#logic-component): The command executor.
+
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
@@ -105,10 +114,13 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-* take user commands from `CommandBox` and executes user commands via the `Logic` component.
-  * The `UI` component therefore keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* listens for changes to the data within the `Model` component and updates the UI with any modified data.
-  * This means that the `UI` component depends on some classes in the `Model` component (for example, `PersonCard` and `ReminderCard` displays information that is set in the `Model` component).
+- take user commands from `CommandBox` and executes user commands via the `Logic` component.
+  
+  - The `UI` component therefore keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+
+- listens for changes to the data within the `Model` component and updates the UI with any modified data.
+  
+  - This means that the `UI` component depends on some classes in the `Model` component (for example, `PersonCard` and `ReminderCard` displays information that is set in the `Model` component).
 
 ### Logic component
 
@@ -121,8 +133,11 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -138,7 +153,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -149,16 +164,25 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data, which includes:
-  * all `Person` objects (which are contained in a `UniquePersonList` object).
-  * all `Tag` objects in a set (which are contained in a `TagSet` object).
-  * all `Message` objects in a List that represents the message templates (which are contained in a `MessageList` object).
-* stores the currently _filtered_ `Person` objects (i.e. results of a `filter` command) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>`.
-  * The `UI` component updates the `PersonListPanel` JavaFx component to match the components in the `ObservableList` whenever the data in the filtered list change.
-* stores the currently _selected_ `Person` object (i.e. result of a `show` command) as a `TargetPerson` which is exposed as an unmodifiable `ObservableList<Person>`.
-  * Similarly, the `UI` component updates the `TargetPersonPanel` JavaFx component ot match the data that is in the `ObservableList` whenever the `TargetPerson` is changed.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` component acts as a "database" which represents data entities, and the data entities should work on their own without depending on other components)
+- stores the address book data, which includes:
+  
+  - all `Person` objects (which are contained in a `UniquePersonList` object).
+  
+  - all `Tag` objects in a set (which are contained in a `TagSet` object).
+  
+  - all `Message` objects in a List that represents the message templates (which are contained in a `MessageList` object).
+
+- stores the currently _filtered_ `Person` objects (i.e. results of a `filter` command) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>`.
+  
+  - The `UI` component updates the `PersonListPanel` JavaFx component to match the components in the `ObservableList` whenever the data in the filtered list change.
+
+- stores the currently _selected_ `Person` object (i.e. result of a `show` command) as a `TargetPerson` which is exposed as an unmodifiable `ObservableList<Person>`.
+  
+  - Similarly, the `UI` component updates the `TargetPersonPanel` JavaFx component ot match the data that is in the `ObservableList` whenever the `TargetPerson` is changed.
+
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+
+- does not depend on any of the other three components (as the `Model` component acts as a "database" which represents data entities, and the data entities should work on their own without depending on other components)
 
 Given below is the class diagram for the `Person` model.
 
@@ -172,8 +196,9 @@ Given below is the class diagram for the `Person` model.
 
 The `Storage` component,
 
-* can save both address book data, user preference data and reminder data in json format, and read them back into corresponding objects.
-* inherits from `AddressBookStorage`, `UserPrefStorage` and `ReminderListStorage`, which means it can be treated as any of them (if only the functionality of only one is needed).
+- can save both address book data, user preference data and reminder data in json format, and read them back into corresponding objects.
+
+- inherits from `AddressBookStorage`, `UserPrefStorage` and `ReminderListStorage`, which means it can be treated as any of them (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -204,18 +229,22 @@ The main stylesheet can be found under `resources/view/LightTheme.css`. The prim
 * **Alternative 1 (current choice):** Only implement a light theme.
   
   * Pros:
-    * Most applications are light themed by default, thus only support light theme for consistency.
-    * Only need to maintain one stylesheet.
-  * Cons:
+    - Most applications are light themed by default, thus only support light theme for consistency.
+    
+    - Only need to maintain one stylesheet.
+  
+  - Cons:
+    
     * User may have enabled system-wide dark mode, so the light theme of Rapportbook may not blend in with other
       applications nicely.
 
 * **Alternative 2:** Implement both light theme and dark theme and follow user's system light/dark mode setting.
   
-  * Pros:
-    * Current theme will blend in with other applications on the system nicely.
+  - Pros:
+    
+    - Current theme will blend in with other applications on the system nicely.
   * Cons:
-    * Extra manpower is required to maintain two different stylesheets.
+    - Extra manpower is required to maintain two different stylesheets.
     * [There is still no official way to detect system-wide light/dark mode setting in Java yet without the use of a third-party library.](https://stackoverflow.com/a/60323132)
 
 ### Remark field for entries
@@ -234,13 +263,18 @@ There are only 2 commands which can modify the Remark for a Person. These are th
 `add` command and the `edit` command.
 
 1. `add` Command (upon instantiating)
+   
    1. If the remark field is specified when instantiating a Person, for example:
       `add n=JohnDoe p=98765432 e=JohnDoe@gmail.com a=Clementi r=REMARK`, their remark
       will be REMARK.
+   
    2. If not specified, it will be an empty String.
+
 2. `edit` Command (after instantiating)
+   
    1. If the remark field is specified when editing a Person, for example:
       `edit 1 r=Change Remark`, their remark will be changed to ChangeRemark.
+   
    2. If not specified, it will remain unchanged.
 
 #### Design considerations:
@@ -250,17 +284,18 @@ There are only 2 commands which can modify the Remark for a Person. These are th
 * **Alternative 1 (current choice):** Only at `add` and `edit` command.
   
   * Pros:
-    * Reduces cluttering of commands.
-    * More intuitive design as it agrees with the definition of `add` and `edit`.
+    - Reduces cluttering of commands.
+    
+    - More intuitive design as it agrees with the definition of `add` and `edit`.
   * Cons:
-    * Extra typing (`r=New Remark`) to modify the Remark field.
+    - Extra typing (`r=New Remark`) to modify the Remark field.
 
 * **Alternative 2:** Create a `remark` command just to modify remarks.
   
   * Pros:
-    * Slightly less typing when editing Remark.
+    - Slightly less typing when editing Remark.
   * Cons:
-    * Remark is just like any other field, just like name and address.
+    - Remark is just like any other field, just like name and address.
       Hence, it is by no mean special and does not deserve its own command.
     * `edit` command no longer agrees with its definition to edit entries.
 
@@ -272,8 +307,7 @@ The `message` command provides an easy way for users to generate messages to sen
 
 The following commands are provided:
 
-* `create`  — Create a message template
-
+- `create`  — Create a message template
 * `delete`  — Delete the specified message template
 
 * `generate`  — Using the specified message template and client, generate a message for client.
@@ -348,20 +382,21 @@ We can also remove tags from a user using the `tag remove` command. For example,
 
 * **Alternative 1 (current choice):** Using a separate set of commands labelled `tag`.
   
-  * Pros:
-    * A cleaner design as tags, unlike remarks are elements of a set, rather than a String.
-  * Cons:
-    * Forces the creation of a few unique commands. Not user-friendly as the user is expected
-      to memorize all commands.
+  - Pros:
+    
+    - A cleaner design as tags, unlike remarks are elements of a set, rather than a String.
+  
+  - Cons:
+    
+    - Forces the creation of a few unique commands. Not user-friendly as the user is expected to memorize all commands.
 
 * **Alternative 2:** Building on top of the `add` and `edit` commands.
   
   * Pros:
     * It allows a more concise set of operations.
-  * Cons:
-    * `add` and `edit` commands will be slightly messier and may contain ambiguities.
-    * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
-      wish to add or edit one of the many tags the client possesses.
+  * Cons:`
+    - add` and `edit` commands will be slightly messier and may contain ambiguities.
+    * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they wish to add or edit one of the many tags the client possesses.
 
 ### Filter Command
 
@@ -371,8 +406,7 @@ The `filter`command provides a way for users to search for clients in Rapportboo
 
 The following commands are provided:
 
-* `filter list` — Lists all applied filters
-
+- `filter list` — Lists all applied filters
 * `filter [n=NAME,...] [t=TAG,...]`  — Filter for clients with the specified names and tags
 
 * `filter clear [n=NAME,...] [t=TAG,...]`  — Removes filters that were previously applied with the specified names or tags
@@ -417,19 +451,27 @@ filter clear n=bob,alan
 
 * **Alternative 1 (current choice):** filters of the same type are reduced with `OR` and filters of different types are reduced with `AND`.
   
-  * Pros:
-    * Simple to implement
-    * Follows the same filtering pattern used by most websites
-  * Cons:
-    * It might be unintuitive for the user to see the list expanding after a new filter is applied.
+  - Pros:
+    
+    - Simple to implement
+    
+    - Follows the same filtering pattern used by most websites
+  
+  - Cons:
+    
+    - It might be unintuitive for the user to see the list expanding after a new filter is applied.
 
 * **Alternative 2:** filters in the same command are reduced with `OR` and filters in separate commands are reduced with `AND`.
   
-  * Pros:
-    * Provides a lot of flexibility for the user
-  * Cons:
-    * Difficult to test as there are many different cases
-    * Difficult to implement clearing of filters in a sensible and intuitive manner
+  - Pros:
+    
+    - Provides a lot of flexibility for the user
+  
+  - Cons:
+    
+    - Difficult to test as there are many different cases
+    
+    - Difficult to implement clearing of filters in a sensible and intuitive manner
 
 ### Show command
 
@@ -445,7 +487,9 @@ The following class diagram shows how the `TargetPerson` is implemented:
 Commands that integrates with the `show` command includes:
 
 - `edit`
+
 - `tag`
+
 - `reminder`
 
 **Given below is an example usage scenario of show command**
@@ -490,8 +534,7 @@ The `reminder`command provides a way for users to add reminders for clients in R
 
 The following commands are provided:
 
-* `reminder [INDEX] d=DESCRIPTION dt=YY-M-D H:m` — Adds a reminder for the specified client if INDEX is provided, otherwise adds a reminder for the target client shown using the `show` command.
-
+- `reminder [INDEX] d=DESCRIPTION dt=YY-M-D H:m` — Adds a reminder for the specified client if INDEX is provided, otherwise adds a reminder for the target client shown using the `show` command.
 * `reminder delete INDEX`  — Deletes a reminder from the displayed reminder list using the reminder index.
 
 * `reminder clear`  — Clears all reminders from the displayed reminder list.
@@ -521,17 +564,28 @@ reminder 1 d=Zoom meeting dt=22-11-30 11:00
 #### Design considerations:
 
 - **Aspect: Storage for reminders:**
+  
   - Alternative 1 (current choice): Store reminders in a separate JSON file.
+    
     - Pros:
+      
       - Reduced data coupling between contacts and reminders — Corrupted data in reminders will not cause the application to fail to load the address book data.
+    
     - Cons:
+      
       - More tedious to implement.
+      
       - An extra file the user needs to keep track of when transferring data.
-  - Alternative 2: Store all reminders in the address book JSON file
-    - Pros:
-      - Easier to implement.
-    - Cons:
-      - Data coupling — A pre-existing database may fail to load due to changes in how address book or reminders data are stored, and data coupling will increase the amount of data that fails to load.
+
+- Alternative 2: Store all reminders in the address book JSON file
+  
+  - Pros:
+    
+    - Easier to implement.
+  
+  - Cons:
+    
+    - Data coupling — A pre-existing database may fail to load due to changes in how address book or reminders data are stored, and data coupling will increase the amount of data that fails to load.
 
 ### Motivational quotes
 
@@ -548,27 +602,40 @@ To access a quote, the class provides the `QuoteList#getRandomQuote()` method wh
 #### Design considerations:
 
 - **Aspect: How the quotes are stored.**
+  
   - Alternative 1 (current choice): Stored as a static variable in a class
+    
     - Pros:
+      
       - Easy to implement.
+    
     - Cons:
       - Every quote will be loaded into memory even though only 1 quote is used.
+  
   - Alternative 2: Stored in a JSON file
+    
     - Pros:
+      
       - Reduces memory use.
       - Allows users to add their own quotes.
+    
     - Cons:
+      
       - High effort for a small feature.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+
+- [Testing guide](Testing.md)
+
+- [Logging guide](Logging.md)
+
+- [Configuration guide](Configuration.md)
+
+- [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -578,21 +645,31 @@ To access a quote, the class provides the `QuoteList#getRandomQuote()` method wh
 
 **Target user profile**:
 
-* new financial advisor
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-* does not like repetitive work
-* prefers to have minimal traveling expenses
-* likes motivational quotes
+- new financial advisor
+
+- has a need to manage a significant number of contacts
+
+- prefer desktop apps over other types
+
+- can type fast
+
+- prefers typing to mouse interactions
+
+- is reasonably comfortable using CLI apps
+
+- does not like repetitive work
+
+- prefers to have minimal traveling expenses
+
+- likes motivational quotes
 
 **Value proposition**:
 
-* manage contacts faster than a typical mouse/GUI driven app
-* keep track of the user's contacts and meeting schedule easily, but communication with contacts is not covered.
-* stay motivated to engage with his clients
+- manage contacts faster than a typical mouse/GUI driven app
+
+- keep track of the user's contacts and meeting schedule easily, but communication with contacts is not covered.
+
+- stay motivated to engage with his clients
 
 ### User stories
 
@@ -624,6 +701,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### Use case: List contacts
 
 1. User requests to list contacts.
+
 2. Rapportbook shows a list of contacts.
    Use case ends.
 
@@ -632,6 +710,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a contact and provides details of contacts.
+
 2. Rapportbook indicates that contact has been added.
    Use case ends.
 
@@ -645,7 +724,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User [lists contacts](#use-case-list-contacts).
+
 2. User requests to delete a specific contact in the list.
+
 3. Rapportbook deletes the contact.
    Use case ends.
 
@@ -656,7 +737,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The given index is invalid.
   
-  * 2a1. Rapportbook shows an error message.
+  - 2a1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 #### Use case: Edit a contact
@@ -664,7 +745,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User [lists contacts](#use-case-list-contacts).
+
 2. User requests to edit a specific contact in the list by specifying fields and their updated values.
+
 3. Rapportbook edits the contact based on what the user specified.
    Use case ends.
 
@@ -675,26 +758,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The given index is invalid.
   
-  * 2a1. Rapportbook shows an error message.
+  - 2a1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2b. No fields were specified
   
-  * 2b1. Rapportbook shows an error message.
-  * Use case resumes at step 2.
+  - 2b1. Rapportbook shows an error message.
+  
+  - Use case resumes at step 2.
 
 * 2c. Updated values is not in the right format.
   
-  * 2c1. Rapportbook shows an error message.
+  - 2c1. Rapportbook shows an error message
   * Use case resumes at step 2.
 
 * 2d. No index was specified but there is a [contact shown](#use-case-show-contact).
   
-  * Use case resumes at step 3.
+  - Use case resumes at step 3.
 
 * 2e. No index was specified and there is no [contact shown](#use-case-show-contact).
   
-  * Rapportbook shows an error message.
+  - Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 #### Use case: List filters applied
@@ -705,13 +789,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2. Rapportbook displays a list of filters applied.
    
-    Use case ends
-   **Extensions**
+   Use case ends
+
+**Extensions**
+
 * 1a. No filters are applied.
 
-* 2a1. Rapportbook shows a message to indicate there are no filters applied.
-  
-  #### Use case: Filter clients
+* 2a1. Rapportbook shows a message to indicate there are no filters applied
+
+#### Use case: Filter clients
 
 **MSS**
 
@@ -732,12 +818,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to clear filters that were originally applied.
 
 4. Rapportbook shows a list of contacts without the filters applied.
-   
-   Use case ends.
+
+Use case ends.
 
 **Extensions**
 
-* 3a. Some filters specified were not previously applied.
+- 3a. Some filters specified were not previously applied.
 * 3a1. Rapportbook only clears the filters that were applied.
 
 #### Use case: Show contact
@@ -745,18 +831,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User [lists contacts](#use-case-list-contacts).
+
 2. User requests to show a specific contact in the list.
+
 3. Rapportbook displays the contact in a separate panel for the user.
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+- 1a. The list is empty.
   Use case ends.
-
 * 2a. The given index is invalid.
   
-  * 2a1. Rapportbook shows an error message.
+  - 2a1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 #### Use case: Create tag(s)
@@ -764,50 +851,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to create a certain tag or multiple tags.
+
 2. Rapportbook creates the corresponding tag(s).
+
 3. Rapportbook shows success message.
    Use case ends.
 
 **Extensions**
 
-* 2a. At least one of the specified tag(s) already exist.
-  * 2a1. Rapportbook shows a message indicating that the tag(s) already exists.
-  * 2a2. Rapportbook creates any tags that does not exist.
-  * Use case resumes at step 3.
+- 2a. At least one of the specified tag(s) already exist.
+  
+  - 2a1. Rapportbook shows a message indicating that the tag(s) already exists.
+  
+  - 2a2. Rapportbook creates any tags that does not exist.
+  
+  - Use case resumes at step 3.
 
 #### Use case: Add tag(s) to contact
 
 **MSS**
 
 1. User [lists contacts](#use-case-list-contacts).
+
 2. User requests to tag a specific contact in the list with certain tag(s).
+
 3. Rapportbook shows success message.
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+- 1a. The list is empty.
   Use case ends.
-
 * 2a. The given index is invalid.
   
-  * 2a1. Rapportbook shows an error message.
+  - 2a1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2b. At least one of the specified tag(s) do not exist.
   
-  * 2b1. Rapportbook shows an error message.
+  - 2b1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2c. Contact already tagged with certain tag(s) specified but not all the tag(s) specified.
   
-  * 2c1. Rapportbook tags the contact with the missing tag(s).
+  - 2c1. Rapportbook tags the contact with the missing tag(s).
   * 2c2. Rapportbook shows a message indicating which tag(s) the contact already has and which tag(s) were added.
     Use case ends.
 
 * 2d. Contact already tagged with all tag(s) specified.
   
-  * 2d1. Rapportbook shows a message indicating that no tags were added.
+  - 2d1. Rapportbook shows a message indicating that no tags were added.
     Use case ends.
 
 #### Use case: Remove tag(s) from contact
@@ -815,7 +908,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User [lists contacts](#use-case-list-contacts).
+
 2. User requests to remove certain tag(s) from a specific contact in the list.
+
 3. Rapportbook shows success message.
    Use case ends.
 
@@ -826,17 +921,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The given index is invalid.
   
-  * 2a1. Rapportbook shows an error message.
+  - 2a1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2b. At least one of the specified tag(s) do not exist.
   
-  * 2b1. Rapportbook shows an error message.
+  - 2b1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2c. Contact already has at least one of the tag(s) specified.
   
-  * 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.
+  - 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.
   * Use case resumes at step 2.
 
 #### Use case: Generate message templates
@@ -870,18 +965,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### Use case: View motivational quote
 
 1. User accesses the home page of Rapportbook.
+
 2. Rapportbook shows a motivational quote on the home page.
    Use case ends.
 
 #### Use case: Request help manual
 
 1. User requests help for application usage.
+
 2. Rapportbook opens another window that contains a link to the help manual.
    Use case ends.
 
 #### Use case: Exit application
 
 1. User requests to exit the application.
+
 2. Rapportbook closes all windows and exits gracefully.
    Use case ends.
 
@@ -894,59 +992,82 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Data requirements**
 
 1. Data should be stored locally and in a human editable text file.
+
 2. No database managed system should be used.
 
 **Technical requirements**
 
 1. Rapportbook should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+
 2. Rapportbook should work on 64-bit environments.
+
 3. Rapportbook should work in an offline environment.
+
 4. Rapportbook should work without requiring an installer.
 
 **Performance requirements**
 
 1. Rapportbook should be able to hold up to 1000 contacts without a noticeable delay in performance for typical usage.
+
 2. Rapportbook should be able to load and store up to 1000 contacts without a noticeable delay in performance.
+
 3. Rapportbook should be able to respond to user requests in less than 1 second when there are less than 1000 contacts.
 
 **Process requirements**
 
 1. Rapportbook development schedule:
-   * **v1.1** by 29 September 2022, Thursday, Week 7
-   * **v1.2** by 13 October 2022, Thursday, Week 9
-   * **v1.3** by 27 October 2022, Thursday, Week 11
-   * **v1.4** by 3 November 2022, Thursday, Week 12
-2. Rapportbook code should follow the Object-oriented paradigm primarily.
+   
+   - **v1.1** by 29 September 2022, Thursday, Week 7
+   
+   - **v1.2** by 13 October 2022, Thursday, Week 9
+   
+   - **v1.3** by 27 October 2022, Thursday, Week 11
+   
+   - **v1.4** by 3 November 2022, Thursday, Week 12
+
+2- Rapportbook code should follow the Object-oriented paradigm primarily.
 
 **Quality requirements**
 
 1. A user with above average typing speed should be able to accomplish most tasks faster using commands than using the
    mouse.
+
 2. Rapportbook GUI should work well for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and
    125%.
+
 3. Rapportbook GUI should be usable for screen resolutions 1280x720 and higher, and, for screen scales 150%.
 
 **Project scope**
 
 1. Rapportbook is a single user product.
+
 2. Rapportbook does not handle communication with clients.
+
 3. Rapportbook does not send notifications to the user.
 
 **Noteworthy points**
 
 1. Rapportbook features should be easy to test.
+
 2. Rapportbook should not rely on external APIs to work.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Client**: A person that is using the services of our target user.
-* **Contact**: A client profile containing their name, phone number, and other relevant information.
-* **Field**: A piece of information in a contact (e.g. name, phone number).
-* **Entry**: A contact.
-* **Private contact detail**: A contact detail that is not meant to be shared with others.
-* **Remark**: Text that describes a client.
-* **Message**: A text template to generate frequently used messages to communicate with clients.
+- **Mainstream OS**: Windows, Linux, Unix, OS-X.
+
+- **Client**: A person that is using the services of our target user.
+
+- **Contact**: A client profile containing their name, phone number, and other relevant information.
+
+- **Field**: A piece of information in a contact (e.g. name, phone number).
+
+- **Entry**: A contact.
+
+- **Private contact detail**: A contact detail that is not meant to be shared with others.
+
+- **Remark**: Text that describes a client.
+
+- **Message**: A text template to generate frequently used messages to communicate with clients.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -995,13 +1116,14 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites:
       
       1. The tags specified (eg. `t=friends`)in the command must exist in Rapportbook.
+      
       2. There are clients in the Rapportbook.
    
-   2. Test case: `edit 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` or `e 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` <br>
+   1. Test case: `edit 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` or `e 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` <br>
       
       Expected: First client is edited with the information specified. Fields not specified will not be changed.
    
-   3. Test case: `edit 1` <br>
+   2. Test case: `edit 1` <br>
       
       Expected: No client is edited. Error details shown in the status message. Command box remains the same.
 
@@ -1023,11 +1145,9 @@ testers are expected to do more *exploratory* testing.
    
    1. Prerequisites: There are clients in Rapportbook.
    
-   2. Test case: `delete 1` or `d 1`<br>
-      Expected: First client is deleted from the list. Details of the deleted contact shown in the status message.
+   2. Test case: `delete 1` or `d 1`<br>Expected: First client is deleted from the list. Details of the deleted contact shown in the status message.
    
-   3. Test case: `delete 0`<br>
-      Expected: No client is deleted. Error details shown in the status message. Command box remains the same.
+   3. Test case: `delete 0`<br>Expected: No client is deleted. Error details shown in the status message. Command box remains the same.
    
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       
