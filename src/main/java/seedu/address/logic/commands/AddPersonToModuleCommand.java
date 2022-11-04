@@ -31,7 +31,7 @@ public class AddPersonToModuleCommand extends Command {
     public static final String COMMAND_WORD = "add-person-to-module";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person (identified by name)"
-            + "to a module (identified by module code).\n"
+            + " to a module (identified by module code).\n"
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
             + PREFIX_NAME + "NAME \n"

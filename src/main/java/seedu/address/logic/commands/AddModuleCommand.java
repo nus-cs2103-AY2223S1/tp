@@ -15,7 +15,7 @@ public class AddModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "add-module";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to Plannit."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to Plannit.\n"
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
             + "[" + PREFIX_MODULE_TITLE + "MODULE_TITLE]\n"

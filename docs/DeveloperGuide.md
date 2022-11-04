@@ -179,8 +179,8 @@ Given below is an example usage scenario and how the add link mechanism behaves 
 **Step 1**: The user decides to add a link to a current module in Plannit using the following input:
 `add-link m/CS1231 l/<link URL> la/<link alias>`.
 
-**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the user input.
-Then, the `LogicManager` calls the `AddressBookParser::parseCommand` method
+**Step 2**: The `LogicManager` calls the `LogicManager#execute()` method on the user input.
+Then, the `LogicManager` calls the `AddressBookParser#parseCommand()` method
 with the user input `String` to create a `Command` object.
 
 **Step 3**: The `AddressBookParser` finds the command keyword `add-link` in the user input.
@@ -191,12 +191,12 @@ to create a new `AddLinkCommand` object.
 its module code, link URL, and alias. Also, it forms a new `Link` object with its link URL and alias.
 A new `AddLinkCommand` is created with the module code and `Link` object, which is returned to `LogicManager`.
 
-**Step 5**: The `AddLinkCommand::execute` method is then called by the `LogicManager`.
+**Step 5**: The `AddLinkCommand#execute()` method is then called by the `LogicManager`.
 This method will first obtain the `Module` object with the module code indicated by the user.
 A copy of the `Module`'s fields is then created and the `Link` object is added to the copied `TreeSet` of links.
 
 **Step 6**: A new `Module` is created with the modified and copied fields, which replaces
-the original `Module` object in Plannit using the `Model::setModule` method.
+the original `Module` object in Plannit using the `Model#setModule()` method.
 
 The following sequence diagram shows how the 'add link' feature works:
 ![AddLinkSequenceDiagram](images/AddLinkFeature/AddLinkSequenceDiagram.png)
@@ -488,9 +488,9 @@ description.
 **Step 4**: This `AddTaskToModuleDescriptor` is used to instantiate an
 `AddTaskCommand` object that is returned to the `LogicManager`.
 
-**Step 5**: The `AddTaskCommand::execute` method is then called by the
+**Step 5**: The `AddTaskCommand#execute()` method is then called by the
 `LogicManager`. This method will first obtain the `Module` with the
-`ModuleCode` indicated by the user by calling `Model::getModule`. A copy of
+`ModuleCode` indicated by the user by calling `Model#getModule()`. A copy of
 the `Module`'s fields are then created.
 
 **Step 6**: A new `Task` is then added to the copied `TaskList` field.
@@ -499,7 +499,7 @@ the `Module`'s fields are then created.
 with the updated `TaskList` field.
 
 **Step 8**: The `Module` currently existing in the `Model` is then
-replaced with this new updated `Module` using the `Model::setModule` method.
+replaced with this new updated `Module` using the `Model#setModule()` method.
 
 The following sequence diagram summarizes what happens when a user executes
 the `add-task` command:
@@ -564,6 +564,7 @@ Find person feature is similar and will be omitted.
 
 ##### Implementation
 
+<<<<<<< HEAD
 Find module mechanism is facilitated by the `FindModuleCommand` and `FindModuleCommandParser`.
 
 It allows users to obtain a list of modules starting with the keyword provided.<br>
