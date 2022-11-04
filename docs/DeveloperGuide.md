@@ -393,6 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
+3.  Connected to internet
 
 ### Glossary
 * **Student**: The person who uses the app
@@ -444,12 +445,27 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `rm`, `rm x`, `...` (where x is an invalid module code)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Finding modules by keyword or regex
+
+1. Finding modules that match the input keywords or input regex
+
+    0. Prerequisites: Open CLImods with stable internet connection
+
+    1. Test case: `find operating`<br>
+       Expected: CG2271, CS2106, CS2106R, CS3221, CS5250, YSC3217 are listed.
+       A success message of "6 modules listed!" should be displayed.
+
+   2. Test case: `find ^CS20\d0$`<br>
+       Expected: CS2030, CS2040 are returned. <br>
+       A success message of "2 modules listed!" should be displayed.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Edit the local json save file and erase the saved folders till it is corrupted
+   2. Launch the app
+   3. CLIMods will not load the save file
+   4. Adding mods will overwrite the corrupted file
 
 1. _{ more test cases …​ }_
