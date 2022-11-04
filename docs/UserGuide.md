@@ -10,9 +10,11 @@ title: User Guide
 
 Welcome to Coydir's User Guide!
 
-**Even Thanos had to read the User Guide before he learnt how to wield the power of the infinity stones...**
+## **Coydir /(‘kohy-də)/**
 
-**This guide will teach you the ropes so that you too can command the infinite power of Coydir the universe has never seen before!! Or simply feel free to look around! :p**
+> **Financial Resources may be the lifeblood of a company, but human resources are the brains.** - Rob Silzer
+
+Revolutionize your company and become an Industry Leader today with Coydir!
 
 ---
 
@@ -71,7 +73,7 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
    1. If you have installed Java before, check that you have the right version, which is Java `11`.
       - If you are using Windows, open up command prompt and type `java -version` and enter.
       - If you are using Mac, open up terminal and type `java -version` and enter.
-   2. If you do not have Java `11`: - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/). - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).  
+   2. If you do not have Java `11`: - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/). - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
       <br />
 2. Download the latest Coydir v1.3.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
 
@@ -379,25 +381,25 @@ Sample `.csv` file:
 
 ![](images/batch-add-images/sampleCSV.png)
 
-Sample `.xlsx` file:  
-![](images/batch-add-images/SampleExcel.png)  
+Sample `.xlsx` file:
+![](images/batch-add-images/SampleExcel.png)
 Note: You can export this to `.csv`.
 
 #### Step 2 (Uploading CSV file) :
 
 1. Go to the folder where you stored the `jar` file.
-2. Move CSV file to the `data` folder.  
+2. Move CSV file to the `data` folder.
    ![](images/batch-add-images/movingFile.png)
 
-_If you are a new user (have not run any command yet), you will not see the `data` folder.  
-You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first.  
+_If you are a new user (have not run any command yet), you will not see the `data` folder.
+You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first.
 After this, you should be able to see the `data` folder._
 
 #### Step 3 (Running CSV file) :
 
 1. Once done, run `batch-add FILENAME` in the command box.
 
-Successful Batch Add:  
+Successful Batch Add:
 ![](images/batch-add-images/BatchAddSuccess.png)
 
 Unsuccessful Batch Add:
@@ -406,16 +408,16 @@ In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv
 
 **Case 1 (Duplicate Employee):**
 
-If there is another employee with the same name in the database or in the csv, command will fail  
-and error will be raised.  
+If there is another employee with the same name in the database or in the csv, command will fail
+and error will be raised.
 ![](images/batch-add-images/DuplicateEmployee.png)
 
 **Case 2 (Any of the fields in wrong format):**
 
-If any of the fields are in a wrong format (as specified in `add` command), command will fail  
+If any of the fields are in a wrong format (as specified in `add` command), command will fail
 and error with regard to field in the wrong format will be raised
 
-![](images/batch-add-images/Incorrect Format.png)  
+![](images/batch-add-images/Incorrect Format.png)
 _In this case, a `Phone` field was in the wrong format._
 
 As of version `1.4.0` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
@@ -625,6 +627,8 @@ In each employee profile below their current performance rating field, there is 
 
 The individual rating values will be displayed beside each node in the performance rating graph. This makes it clearer for users to visualize an employee's overall performance at a glance.
 
+![Performance History Graph](./images/ui-screenshots/performance-history-graph.jpg)
+
 <div markdown="span" class="alert alert-info">
 
 **:information_source: Note:** You can only rate the performance of an employee once per day.<br><br>
@@ -720,11 +724,11 @@ Format: `exit`
 
 Clears all the data currently stored in the database.
 
-If you are a new user, you can use this command after you have experimented with Coydir  
+If you are a new user, you can use this command after you have experimented with Coydir
 to start keying in your actual employee information.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
-Once you run this command, you lose all data immediately.  
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once you run this command, you lose all data immediately.
 </div>
 
 Format: `clear`

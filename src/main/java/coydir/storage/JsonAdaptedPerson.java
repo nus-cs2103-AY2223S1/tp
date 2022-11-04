@@ -202,6 +202,9 @@ class JsonAdaptedPerson {
             try {
                 modelLeave = Integer.valueOf(leave);
                 leaveLeftTransfer = Integer.valueOf(leaveLeft);
+                if (leaveLeftTransfer > modelLeave) {
+                    throw new IllegalValueException("Leave left cannot be more than total leave");
+                }
             } catch (NumberFormatException nfe) {
                 throw new IllegalValueException(String.format("%s is not a valid integer", leave));
             }

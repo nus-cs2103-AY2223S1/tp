@@ -26,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_DEPARTMENT = "Information Technology";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final int DEFAULT_LEAVE = 14;
 
     private Name name;
     private EmployeeId employeeId;
@@ -35,6 +36,7 @@ public class PersonBuilder {
     private Department department;
     private Address address;
     private Rating rating;
+    private int totalLeave;
     private Set<Tag> tags;
 
     /**
@@ -49,6 +51,7 @@ public class PersonBuilder {
         department = new Department(DEFAULT_DEPARTMENT);
         address = new Address(DEFAULT_ADDRESS);
         rating = Rating.getNullRating();
+        totalLeave = DEFAULT_LEAVE;
         tags = new HashSet<>();
     }
 
@@ -64,6 +67,7 @@ public class PersonBuilder {
         department = personToCopy.getDepartment();
         address = personToCopy.getAddress();
         rating = personToCopy.getRating();
+        totalLeave = personToCopy.getTotalNumberOfLeaves();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -156,15 +160,23 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Department} of the {@code Person} that we are building.
+     * Sets the {@code Rating} of the {@code Person} that we are building.
      */
     public PersonBuilder withRating(String rating) {
         this.rating = new Rating(rating);
         return this;
     }
 
+    /**
+     * Sets the {@code Leave} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTotalLeave(int totalLeave) {
+        this.totalLeave = totalLeave;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, employeeId, phone, email, position, department, address, tags, 14, rating);
+        return new Person(name, employeeId, phone, email, position, department, address, tags, totalLeave, rating);
     }
 
 }

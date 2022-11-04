@@ -1,5 +1,6 @@
 package coydir.logic.commands;
 
+import static coydir.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 import static coydir.logic.parser.CliSyntax.PREFIX_LIST;
 
@@ -31,6 +32,12 @@ public class BatchAddCommand extends Command {
             + "Parameters: filename (must be in the data folder of the repository and CSV format)\n"
             + "Example: " + COMMAND_WORD + " coydir.csv";
     public static final String MESSAGE_SUCCESS = "Batch Add Success. %d employees were added";
+    public static final String MESSAGE_FILE_NOT_FOUND = "File Not Found";
+    public static final String MESSAGE_MISSING_COMP_FIELDS = "Name, Position or Department is missing for one person!";
+    public static final String MESSAGE_NO_DATA = "%s does not have any data";
+    public static final String MESSAGE_DUPLICATE_FOUND = "One person in the list is found to be a duplicate. "
+            + "Call aborted";
+
     private final String filename;
     private Path filePath;
 
@@ -80,11 +87,15 @@ public class BatchAddCommand extends Command {
                 addCommandList.add(new AddCommandParser().parse(arg));
             }
         } catch (FileNotFoundException e) {
-            throw new CommandException("File Not Found");
+            throw new CommandException(MESSAGE_FILE_NOT_FOUND);
         } catch (IOException e) {
             throw new CommandException(e.getMessage());
         } catch (ParseException e) {
-            throw new CommandException(e.getMessage());
+            if (e.getMessage().equals(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE))) {
+                throw new CommandException(MESSAGE_MISSING_COMP_FIELDS);
+            } else {
+                throw new CommandException(e.getMessage());
+            }
         }
         return addCommandList;
     }
@@ -94,7 +105,7 @@ public class BatchAddCommand extends Command {
         int currEmployeeID = EmployeeId.getCount();
         List<AddCommand> addCommandList = this.getInfo();
         if (addCommandList.isEmpty()) {
-            throw new CommandException(String.format("%s does not have any data", this.filename));
+            throw new CommandException(String.format(MESSAGE_NO_DATA, this.filename));
         }
         List<Person> copyOfPersonList = new ArrayList<>();
         for (Person p : model.getDatabase().getPersonList()) {
@@ -110,7 +121,7 @@ public class BatchAddCommand extends Command {
             ab.setPersons(copyOfPersonList);
             model.setDatabase(ab);
             EmployeeId.setCount(currEmployeeID);
-            throw new CommandException("One person in the list is found to be a duplicate. Call aborted");
+            throw new CommandException(MESSAGE_DUPLICATE_FOUND);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, addCommandList.size()));
     }

@@ -1,3 +1,4 @@
-﻿Name,Phone,Email,Position,Department,Address,Tags
-Hoon Meier,8482424,stefan@example.com,Frontend Engineer,Information Technology,little india,
-Ida Mueller,8482131,hans@example.com,Intern,Marketing,chicago ave,
+﻿Name,Phone,Email,Position,Department,Address,Leave,Tags,
+Kim Meier,84824249,kimmeier@example.com ,Frontend Engineer,Information Technology,Little India,20,Promotion coming,
+Petris Mueller,96722343,,Marketing Intern,Marketing,,13,,
+Paul Morty,,paul@example.com,UI/UX Engineer,Sales,,,Innovation Lead,
