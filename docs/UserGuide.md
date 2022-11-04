@@ -86,7 +86,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   - e.g. in `add d/DESCRIPTION ...`, `DESCRIPTION` is a parameter which can be used as `add d/My Japan Trip`.
 
-* All parameters should contain alphanumerical characters only.
+* Unlesss stated otherwise, all parameters should contain alphanumerical characters only.
 
 * Items in square brackets are optional.<br>
   - e.g. `d/DESCRIPTION [c/COUNTRY] sd/START DATE du/DURATION` can be used as `d/My Japan Trip c/Japan sd/2023-04-01 du/14` or as `d/My Japan Trip sd/2023-04-01 du/14`.
