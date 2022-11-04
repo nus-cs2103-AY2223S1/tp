@@ -23,6 +23,9 @@ Class JsonAdaptedConsultation
 Class JsonAdaptedReminder
 Class JsonAdaptedStudent
 Class JsonAdaptedTutorial
+Class JsonAdaptedDatetime
+Class JsonAdaptedDatetimeRange
+Class JsonAdaptedWeeklyTimeslot
 }
 
 }
@@ -43,7 +46,10 @@ JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedStudent
 JsonAdaptedStudent --> "*" JsonAdaptedTag
 JsonSerializableAddressBook --> "*" JsonAdaptedTutorial
+JsonAdaptedTutorial --> "1" JsonAdaptedWeeklyTimeslot
 JsonSerializableAddressBook --> "*" JsonAdaptedConsultation
+JsonAdaptedConsultation --> "1" JsonAdaptedDatetimeRange
 JsonSerializableAddressBook --> "*" JsonAdaptedReminder
+JsonAdaptedReminder --> "1" JsonAdaptedDatetime
 
 @enduml
