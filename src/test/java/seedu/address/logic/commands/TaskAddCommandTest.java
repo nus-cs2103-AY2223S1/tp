@@ -17,8 +17,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.source.tree.AssertTree;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -48,11 +46,24 @@ public class TaskAddCommandTest {
         TaskAddCommand taskAddCommand = new TaskAddCommand(validIndex, validTask);
         ModelStub modelStub = new ModelStubWithTeam(FRONTEND);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX, () -> taskAddCommand.execute(modelStub));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX, ()
+                -> taskAddCommand.execute(modelStub));
     }
 
     @Test
-    public void execute_taskAcceptedByModel_TaskAddSuccessful() throws Exception {
+    public void execute_duplicateTask_throwsCommandException() {
+        Task validTask = new TaskBuilder().build();
+        Index validIndex = INDEX_FIRST_PERSON;
+        TaskAddCommand taskAddCommand = new TaskAddCommand(validIndex, validTask);
+        ModelStubWithTeam modelStub = new ModelStubWithTeam(FRONTEND);
+        modelStub.addTask(validIndex, validTask);
+
+        assertThrows(CommandException.class, TaskAddCommand.MESSAGE_DUPLICATE_TASK, ()
+                -> taskAddCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(FRONTEND);
         Task validTask = new TaskBuilder().build();
         Index validIndex = INDEX_FIRST_PERSON;
@@ -275,9 +286,21 @@ public class TaskAddCommandTest {
         }
 
         @Override
+        public void addTask(Index index, Task task) {
+            requireAllNonNull(index, task);
+            team.addTask(task);
+        }
+
+        @Override
         public boolean hasTeam(Team team) {
             requireNonNull(team);
             return this.team.isSameTeam(team);
+        }
+
+        @Override
+        public boolean teamHasTask(Index index, Task task) {
+            requireAllNonNull(index, task);
+            return team.containTask(task);
         }
 
         @Override
