@@ -49,6 +49,7 @@ Review *--> Date
 Review *--> Content
 Review *--> Rating
 Review *--> Name
+Review *--> Address
 Review *--> "*" Tag
 
 ModelManager -->"~* filtered" Stall
