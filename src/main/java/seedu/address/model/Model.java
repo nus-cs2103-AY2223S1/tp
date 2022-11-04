@@ -140,6 +140,7 @@ public interface Model {
     ObservableList<Pet> getFilteredPetList();
     ObservableList<Order> getFilteredOrderList();
     ObservableList<Object> getFilteredMainList();
+    ObservableList<Object> getFilteredCurrList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -176,4 +177,31 @@ public interface Model {
      * Clears the main display list
      */
     void clearMasterList();
+
+    /**
+     * Switches the current displayed list to buyer list.
+     */
+    void switchToBuyerList();
+
+    /**
+     * Switches the current displayed list to supplier list.
+     */
+    void switchToSupplierList();
+
+    /**
+     * Switches the current displayed list to deliverer list.
+     */
+    void switchToDelivererList();
+
+    /**
+     * Switches the current displayed list to order list.
+     */
+    void switchToOrderList();
+
+    /**
+     * Switches the current displayed list to pet list.
+     */
+    void switchToPetList();
+
+    void switchToMainList();
 }

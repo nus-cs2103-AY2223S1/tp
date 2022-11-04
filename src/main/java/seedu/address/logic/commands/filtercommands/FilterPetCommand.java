@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
@@ -70,7 +70,7 @@ public class FilterPetCommand extends FilterCommand {
                 false,
                 false,
                 true,
-                ListCommand.LIST_PET,
+                "ListCommand.LIST_PET",
                 false,
                 null,
                 false,

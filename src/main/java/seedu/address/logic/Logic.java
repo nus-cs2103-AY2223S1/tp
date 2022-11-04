@@ -49,8 +49,8 @@ public interface Logic {
     ObservableList<Deliverer> getFilteredDelivererList();
     ObservableList<Pet> getFilteredPetList();
     ObservableList<Order> getFilteredOrderList();
-
     ObservableList<Object> getFilteredMainList();
+    ObservableList<Object> getFilteredCurrList();
 
     /**
      * Returns the user prefs' address book file path.

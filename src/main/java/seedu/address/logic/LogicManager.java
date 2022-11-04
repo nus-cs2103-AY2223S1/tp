@@ -109,6 +109,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Object> getFilteredCurrList() {
+        return model.getFilteredCurrList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

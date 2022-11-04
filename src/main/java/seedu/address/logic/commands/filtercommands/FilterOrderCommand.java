@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
@@ -62,7 +62,7 @@ public class FilterOrderCommand extends FilterCommand {
                 false,
                 false,
                 true,
-                ListCommand.LIST_ORDER,
+                "",
                 false,
                 null,
                 false,

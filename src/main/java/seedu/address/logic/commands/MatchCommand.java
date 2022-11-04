@@ -10,6 +10,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.pet.Pet;
@@ -77,7 +78,7 @@ public class MatchCommand extends Command {
                 false,
                 false,
                 true,
-                ListCommand.LIST_PET,
+                "",
                 false,
                 null,
                 false,

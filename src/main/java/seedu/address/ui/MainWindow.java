@@ -19,9 +19,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CheckCommand;
+import seedu.address.logic.commands.checkcommands.CheckCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
@@ -57,6 +57,7 @@ public class MainWindow extends UiPart<Stage> {
     private SupplierListPanel supplierListPanel;
     private OrderListPanel orderListPanel;
     private PetListPanel petListPanel;
+    private MainListPanel currListPanel;
 
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
@@ -147,10 +148,10 @@ public class MainWindow extends UiPart<Stage> {
         orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
         petListPanel = new PetListPanel(logic.getFilteredPetList());
         mainListPanel = new MainListPanel(logic.getFilteredMainList(), logic);
+        currListPanel = new MainListPanel(logic.getFilteredCurrList(), logic);
 
         // Set the display window
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
+        refresh();
 
         // Initialise the remaining components in the main window
         resultDisplay = new ResultDisplay();
@@ -264,35 +265,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Handles the window display behaviour for list command.
+     * Refreshes the current list.
      */
-    public void handleList(String listType) {
-        listType = listType.trim().toUpperCase();
-        switch (listType) {
-        case ListCommand.LIST_BUYER:
-            showBuyer();
-            break;
-        case ListCommand.LIST_SUPPLIER:
-            showSupplier();
-            break;
-        case ListCommand.LIST_DELIVERER:
-            showDeliverer();
-            break;
-        case ListCommand.LIST_ORDER:
-            showOrder();
-            break;
-        case ListCommand.LIST_PET:
-            showPet();
-            break;
-        case ListCommand.LIST_ALL:
-            showAll();
-            break;
-        case ListCommand.LIST_EMPTY:
-            show();
-            break;
-        default:
-            //Do nothing.
-        }
+    public void refresh() {
+        currListPanel = new MainListPanel(logic.getFilteredCurrList(), logic);
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(currListPanel.getRoot());
     }
 
     /**
@@ -357,6 +335,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            refresh();
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -366,10 +345,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
-            }
-
-            if (commandResult.isList()) {
-                handleList(commandResult.getListType());
             }
 
             if (commandResult.isAddedByPopup()) {

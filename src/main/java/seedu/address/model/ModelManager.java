@@ -53,6 +53,7 @@ public class ModelManager implements Model {
     private final FilteredList<Pet> filteredPets;
     private final FilteredList<Order> filteredOrders;
     private final MasterList filteredAll;
+    private FilteredList<?> filteredCurrList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -71,6 +72,7 @@ public class ModelManager implements Model {
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
         filteredAll = new MasterList();
         collect();
+        switchToMainList();
     }
 
     public ModelManager() {
@@ -343,6 +345,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Object> getFilteredCurrList() {
+
+        @SuppressWarnings("unchecked")
+        ObservableList<Object> res = (ObservableList<Object>) filteredCurrList;
+
+        return res;
+    }
+
+    @Override
     public void updateFilteredBuyerList(Predicate<Buyer> predicate) {
         requireNonNull(predicate);
         filteredBuyers.setPredicate(predicate);
@@ -398,6 +409,36 @@ public class ModelManager implements Model {
     @Override
     public void clearMasterList() {
         filteredAll.clear();
+    }
+
+    @Override
+    public void switchToBuyerList() {
+        filteredCurrList = (FilteredList<?>) filteredBuyers;
+    }
+
+    @Override
+    public void switchToSupplierList() {
+        filteredCurrList = (FilteredList<?>) filteredSuppliers;
+    }
+
+    @Override
+    public void switchToDelivererList() {
+        filteredCurrList = (FilteredList<?>) filteredDeliverers;
+    }
+
+    @Override
+    public void switchToOrderList() {
+        filteredCurrList = (FilteredList<?>) filteredOrders;
+    }
+
+    @Override
+    public void switchToPetList() {
+        filteredCurrList = (FilteredList<?>) filteredPets;
+    }
+
+    @Override
+    public void switchToMainList() {
+        filteredCurrList = (FilteredList<?>) new FilteredList<>(filteredAll.getMasterList());
     }
 
     private void collect() {

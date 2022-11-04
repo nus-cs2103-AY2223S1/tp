@@ -7,7 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.CheckCommand;
+import seedu.address.logic.commands.checkcommands.CheckCommand;
 import seedu.address.logic.commands.util.CommandUtil;
 
 public class CheckCommandParserTest {

@@ -4,13 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showBuyerAtIndex;
-import static seedu.address.logic.commands.ListCommand.LIST_BUYER;
-import static seedu.address.logic.commands.ListCommand.LIST_DELIVERER;
+import static seedu.address.logic.commands.listcommands.ListCommand.LIST_BUYER;
+import static seedu.address.logic.commands.listcommands.ListCommand.LIST_DELIVERER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
