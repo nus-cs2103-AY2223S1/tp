@@ -17,11 +17,17 @@ package "Model" {
         Object "__:InventoryItem__" as Item1 {
             itemName = "Pen"
             quantity = 296
+            description = "Ballpoint pen"
+            sell price = 1.00
+            cost price = 0.30
         }
 
         Object "__:InventoryItem__" as Item2 {
             itemName = "Eraser"
             quantity = 243
+            description = "soft eraser"
+            sell price = 1.50
+            cost price = 0.40
         }
 
         InventoryList --right> Item1

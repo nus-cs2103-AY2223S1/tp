@@ -156,42 +156,58 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Item feature
 
+The add item feature allows users to add an `InventoryItem` to be tracked by the system. 
+
 #### Implementation
 
 The add item command will be executed by `AddItemCommand`. Items added will be stored in `InventoryList`. 
 
 Given below is an example usage scenario and how the add item mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `InventoryList` will contain sample data.
+Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `InventoryList` will contain sample data. <br>
+The initial state of TrackO Model before running add item command will be as such.
 
-Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. 
-The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. 
+![AddOrderState0](images/developer-guide/AddOrderState0.png)
+
+Step 2. The user executes `addi i/Key q/200 d/Cabinet keys sp/9.90 cp/4.90 t/new` command to add 200 keys to item list in TrackO. 
+The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for 
+* item name (prefixed by `i/`)
+* quantity (prefixed by `q/`) 
+* description (prefixed by `d/`)
+* sell price (prefixed by `sp/`
+* cost price (prefied by `cp`) 
+
+are present before parsing the arguments into an `AddItemCommand` object. 
 
 The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addItem()`, so the incomplete item will not be saved to `ItemsList`.
+![AddItemState1](images/developer-guide/AddItemState1.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, 
+it will not call `Model#addItem()`, so the incomplete item will not be saved to `ItemsList`.
 
 </div>
 
 The following sequence diagram shows how the add item operation works:
 
-_{insert sequence diagram}_
+![AddItemSequenceDiagram](images/developer-guide/AddItemSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddItemCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddItemCommand` should 
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-_{insert activity diagram}_
+![AddItemActivityDiagram](images/developer-guide/AddItemActivityDiagram.png)
 
 #### Design considerations:
 
 **Aspect: How add item executes:**
 
-_{add design considerations}_
-
-_{more aspects and alternatives to be added}_
+* **Alternative 1 (current choice): ** User inputs all required fields in a single input
+  * Pros: easier to implement
+  * Cons: user input is very long and may be more prone to typos
 
 ### List Items Feature
 
@@ -361,7 +377,7 @@ in its `inProgressCommand` field. The UI then prompts the user for further input
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format
 </div>
 
-![AddOrderState1](images/developer-guide/AddOrderState1.png);
+![AddOrderState1](images/developer-guide/AddOrderState1.png)
 
 Step 2a. The user then enters `i/Eraser q/3`, representing that the order requires 3 quantities (or units) of `Erasers` to fulfill.
 The system updates the instantiated command, by first having the `AddOrderCommand` stage the input item name and quantity for validation,
@@ -370,7 +386,7 @@ using the `AddOrderCommand#stageForValidation()` method.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format
 </div>
 
-![AddOrderState2a](images/developer-guide/AddOrderState2a.png);
+![AddOrderState2a](images/developer-guide/AddOrderState2a.png)
 
 Step 2b. On the `AddOrderCommand#execute()` method call, the system searches the model's inventory for an item that has a matching name to the user's input item name.
 In this scenario, we assume that the user has already added an `InventoryItem` with its `ItemName` value to be `Eraser`, to the model's list of tracked `InventoryItem`s.
@@ -385,7 +401,7 @@ This adds a new `ItemQuantityPair` object that references the found `InventoryIt
 
 Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Order`'s list of ordered items.
 
-![AddOrderState3](images/developer-guide/AddOrderState3.png);
+![AddOrderState3](images/developer-guide/AddOrderState3.png)
 
 Step 4. The user then enters `done` after inputting all the required order item details. On the following `AddOrderCommand#execute()` method call,
 the `AddOrderCommand` will no longer await input, and the `LogicManager` also removes its reference to the `AddOrderCommand`.
