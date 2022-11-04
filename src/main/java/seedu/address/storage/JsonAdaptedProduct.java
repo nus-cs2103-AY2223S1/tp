@@ -11,6 +11,8 @@ import seedu.address.model.product.Product;
  */
 public class JsonAdaptedProduct {
 
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Product's %s field is missing!";
+
     private final String productName;
 
     /**
@@ -39,6 +41,9 @@ public class JsonAdaptedProduct {
      * @throws IllegalValueException if there were any data constraints violated in the adapted product.
      */
     public Product toModelType() throws IllegalValueException {
+        if (productName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "productName"));
+        }
         if (!Product.isValidProductName(productName)) {
             throw new IllegalValueException(Product.MESSAGE_CONSTRAINTS);
         }

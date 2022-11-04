@@ -6,6 +6,10 @@ import static java.util.Objects.requireNonNull;
  * Represents a Meeting's description in MyInsuRec.
  */
 public class Description {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Descriptions can consist of any valid character except newlines.";
+    public static final String VALIDATION_REGEX = "(.*?)";
     private final String details;
 
     /**
@@ -17,6 +21,13 @@ public class Description {
         requireNonNull(description);
         // check argument in the future
         details = description;
+    }
+
+    /**
+     * Returns true if a given string is a valid description.
+     */
+    public static boolean isValidDescription(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
