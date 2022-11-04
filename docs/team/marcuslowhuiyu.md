@@ -23,5 +23,5 @@ Around 500 lines of code according to the [RepoSense Link](https://nus-cs2103-ay
 - Added implementation details for `comment` command
 
 ### Reviewing contributions
-- Reported 17 bugs for other teams in [PE-D](https://github.com/marcuslowhuiyu/ped/issues)
+- Reported 17 bugs for other team in [PE-D](https://github.com/marcuslowhuiyu/ped/issues)
 - Reviewed PED testers for their review of our TP during PE-D
