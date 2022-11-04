@@ -763,11 +763,32 @@ Guarantees: Personal Record (PR) for exercise(s) will be calculated and displaye
     * 1a1. Gim displays the error message.
       <br>Use case ends.
 * 1b. User enters the name of exercise(s) wrongly.
-    * 2a1. Gim displays exercise(s) not registered in system message.
+    * 1b1. Gim displays exercise(s) not registered in system message.
       <br>Use case ends.
 
 #### Use case 10: Generate
 
+System: Gim <br>
+Use case: UC10 - Generate workout suggestion for exercise(s) <br>
+Actor: User <br>
+Guarantees: Sample workout suggestion will be displayed.
+
+**MSS**
+
+1. User wishes to generate a workout suggestion.
+2. User enters the exercise and difficulty level desired.
+3. Gim computes a sample workout for the user.
+   <br>Use case ends.
+
+**Extensions**
+
+* 2a. Gim detects an error in the command format.
+    * 2a1. Gim requests user to enter a valid command format.
+    * 2a2. User enters new command.
+      <br>Steps 2a1-2a2 are repeated until the command entered is of valid format.
+      Use case resumes from step 3.
+
+  
 #### Use case 11: Exit Gim
 
 System: Gim <br>
@@ -799,6 +820,7 @@ Guarantees: Gim will exit.
 * **Reps**: Number of times you perform a specific exercise
 * **Sets**: Number of cycles of reps that you complete
 * **Weight**: Total weight (include barbell if applicable, exclude body weight)
+* **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
 
 --------------------------------------------------------------------------------------------------------------------
 
