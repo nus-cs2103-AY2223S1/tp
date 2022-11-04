@@ -40,23 +40,25 @@ public class HospitalWingTest {
     @Test
     public void isValidHospitalWingTest() {
         // null hospital wing
-        assertThrows(NullPointerException.class, 
-                () -> HospitalWing.isValidHospitalWing(null));
+        assertThrows(NullPointerException.class, (
+                ) -> HospitalWing.isValidHospitalWing(null));
 
         // blank hospital wing
         assertFalse(HospitalWing.isValidHospitalWing("")); // empty string
         assertFalse(HospitalWing.isValidHospitalWing(" ")); // spaces only
 
         // invalid hospital wing
-        assertFalse(HospitalWing.isValidHospitalWing("sou th"));
-        assertFalse(HospitalWing.isValidHospitalWing("wests"));
-        assertFalse(HospitalWing.isValidHospitalWing("WES"));
-        assertFalse(HospitalWing.isValidHospitalWing("WEST "));
-        assertFalse(HospitalWing.isValidHospitalWing(""));
-        assertFalse(HospitalWing.isValidHospitalWing(" "));
-        assertFalse(HospitalWing.isValidHospitalWing("123"));
-        assertFalse(HospitalWing.isValidHospitalWing("@@@"));
-        assertFalse(HospitalWing.isValidHospitalWing("abdadew"));
+        assertFalse(HospitalWing.isValidHospitalWing("sou th")); //space in between
+        assertFalse(HospitalWing.isValidHospitalWing("southsouth")); //duplicate enum values
+        assertFalse(HospitalWing.isValidHospitalWing("south north")); //two enum values with space
+        assertFalse(HospitalWing.isValidHospitalWing("wests")); //additonal character
+        assertFalse(HospitalWing.isValidHospitalWing("WES")); //missing character
+        assertFalse(HospitalWing.isValidHospitalWing("WEST ")); //additional space
+        assertFalse(HospitalWing.isValidHospitalWing("")); //empty string
+        assertFalse(HospitalWing.isValidHospitalWing(" ")); //space only
+        assertFalse(HospitalWing.isValidHospitalWing("123")); //numbers
+        assertFalse(HospitalWing.isValidHospitalWing("@@@")); //symbols
+        assertFalse(HospitalWing.isValidHospitalWing("abdadew")); //not valid enum values
 
         // valid hospital wing
         assertTrue(HospitalWing.isValidHospitalWing("SOUTH"));

@@ -49,7 +49,7 @@ public class NextOfKinTest {
 
         // valid NextOfKines
         assertTrue(NextOfKin.isValidNextOfKin("a, a, 81283745")); // short NextOfKin
-        assertTrue(NextOfKin.isValidNextOfKin("carls, mom, 12345"));
+        assertTrue(NextOfKin.isValidNextOfKin("Sugon Bee, Father, 92873764"));
     }
 
     @Test

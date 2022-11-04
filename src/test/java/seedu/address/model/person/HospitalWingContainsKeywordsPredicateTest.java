@@ -14,34 +14,6 @@ import seedu.address.testutil.PersonBuilder;
 public class HospitalWingContainsKeywordsPredicateTest {
 
     @Test
-    public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("south");
-        List<String> secondPredicateKeywordList = Arrays.asList("north", "east");
-
-        HospitalWingContainsKeywordsPredicate firstPredicate =
-                new HospitalWingContainsKeywordsPredicate(firstPredicateKeywordList);
-        HospitalWingContainsKeywordsPredicate secondPredicate =
-                new HospitalWingContainsKeywordsPredicate(secondPredicateKeywordList);
-
-        // same object -> returns true
-        assertTrue(firstPredicate.equals(firstPredicate));
-
-        // same values -> returns true
-        HospitalWingContainsKeywordsPredicate firstPredicateCopy =
-                new HospitalWingContainsKeywordsPredicate(firstPredicateKeywordList);
-        assertTrue(firstPredicate.equals(firstPredicateCopy));
-
-        // different types -> returns false
-        assertFalse(firstPredicate.equals(1));
-
-        // null -> returns false
-        assertFalse(firstPredicate.equals(null));
-
-        // different person -> returns false
-        assertFalse(firstPredicate.equals(secondPredicate));
-    }
-
-    @Test
     public void test_hospitalWingContainsKeywords_returnsTrue() {
         // One keyword with all lower-case input
         HospitalWingContainsKeywordsPredicate predicate =
@@ -54,6 +26,10 @@ public class HospitalWingContainsKeywordsPredicateTest {
 
         // one keyword with all upper case input
         predicate = new HospitalWingContainsKeywordsPredicate(Collections.singletonList("NORTH"));
+        assertTrue(predicate.test(new PersonBuilder().withHospitalWing("north").build()));
+
+        // Multiple keywords
+        predicate = new HospitalWingContainsKeywordsPredicate(Arrays.asList("north", "south"));
         assertTrue(predicate.test(new PersonBuilder().withHospitalWing("north").build()));
 
     }
@@ -74,5 +50,33 @@ public class HospitalWingContainsKeywordsPredicateTest {
                 Arrays.asList("12345678", "alice@email.com", "Alice", "east"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345678")
                 .withEmail("alice@email.com").withHospitalWing("south").build()));
+    }
+
+    @Test
+    public void equalsTest() {
+        List<String> firstPredicateKeywordList = Collections.singletonList("south");
+        List<String> secondPredicateKeywordList = Arrays.asList("north", "east");
+
+        HospitalWingContainsKeywordsPredicate firstPredicate =
+                new HospitalWingContainsKeywordsPredicate(firstPredicateKeywordList);
+        HospitalWingContainsKeywordsPredicate secondPredicate =
+                new HospitalWingContainsKeywordsPredicate(secondPredicateKeywordList);
+
+        // same object -> returns true
+        assertTrue(firstPredicate.equals(firstPredicate));
+
+        // same values -> returns true
+        HospitalWingContainsKeywordsPredicate firstPredicateCopy =
+                new HospitalWingContainsKeywordsPredicate(firstPredicateKeywordList);
+        assertTrue(firstPredicate.equals(firstPredicateCopy));
+
+        // different types -> returns false
+        assertFalse(firstPredicate.equals(100));
+
+        // null -> returns false
+        assertFalse(firstPredicate.equals(null));
+
+        // different hospital wing -> returns false
+        assertFalse(firstPredicate.equals(secondPredicate));
     }
 }

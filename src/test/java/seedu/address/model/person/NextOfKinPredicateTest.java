@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,8 +15,8 @@ import seedu.address.testutil.PersonBuilder;
 public class NextOfKinPredicateTest {
     @Test
     public void equalsTest() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        List<String> firstPredicateKeywordList = Collections.singletonList("Alice");
+        List<String> secondPredicateKeywordList = Arrays.asList("Alice", "Bob");
 
         NextOfKinPredicate firstPredicate = new NextOfKinPredicate(firstPredicateKeywordList);
         NextOfKinPredicate secondPredicate = new NextOfKinPredicate(secondPredicateKeywordList);
@@ -38,7 +39,7 @@ public class NextOfKinPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_nextOfKinPredicate_returnsTrue() {
         // One keyword
         NextOfKinPredicate predicate = new NextOfKinPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
@@ -57,7 +58,7 @@ public class NextOfKinPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_nextOfKinPredicate_returnsFalse() {
         // Zero keywords
         NextOfKinPredicate predicate = new NextOfKinPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
@@ -66,8 +67,8 @@ public class NextOfKinPredicateTest {
         predicate = new NextOfKinPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
-        // Keywords match phone, email and address, but does not match name
-        predicate = new NextOfKinPredicate(Arrays.asList("12345678", "alice@email.com", "Main", "Street"));
+        // Keywords match phone and email, but does not match name
+        predicate = new NextOfKinPredicate(Arrays.asList("Bob", "12345678", "alice@email.com"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345678")
                 .withEmail("alice@email.com").build()));
     }
