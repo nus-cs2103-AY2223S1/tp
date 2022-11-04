@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import jeryl.fyp.model.student.DeadlineList;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -24,6 +23,7 @@ import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.ReadOnlyUserPrefs;
 import jeryl.fyp.model.student.Deadline;
+import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.testutil.StudentBuilder;
