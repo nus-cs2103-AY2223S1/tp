@@ -82,8 +82,6 @@ public class AddCommandParser implements Parser<AddCommand> {
                 name, employeeId, phone, email, position, department, address, tagList, numberOfLeaves, rating
                 );
 
-        System.out.println(person);
-
         return new AddCommand(person);
     }
 
