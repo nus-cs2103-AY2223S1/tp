@@ -5,8 +5,8 @@ title: Deon Tan's Project Portfolio Page
 
 ### Project: InternConnect
 
-InternConnect is a one-stop, convenient, and efficient platform to manage and empower how internship campus recruiters 
-who prefer CLI to GUI work with their applicants’ data. The user interacts with it using a CLI, and it has a GUI 
+InternConnect is a one-stop, convenient, and efficient platform to manage and empower how internship campus recruiters
+who prefer CLI to GUI work with their applicants’ data. The user interacts with it using a CLI, and it has a GUI
 created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user may need to manage different list of
     applicants and the app should provide a convenient way to switch between lists.
   * Highlights: This enhancement modifies the method signature of existing commands and commands to be added in the
-    future. It required an in-depth analysis of design alternatives and command dependencies. Different methods were 
+    future. It required an in-depth analysis of design alternatives and command dependencies. Different methods were
     evaluated based on design fundamentals such as `Abstraction`, `Coupling`, and `Cohesion`.
   * Credits: Issue [#373](https://github.com/nus-cs2103-AY2223S1/forum/issues/373)
 
@@ -34,8 +34,8 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Added additional parameters for existing features.
-    (PR 
-    [#101](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/101), 
+    (PR
+    [#101](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/101),
     [#107](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/107),
     [#248](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/248))
   * Modified the edit feature to display the edited person after editing.
@@ -61,7 +61,7 @@ Given below are my contributions to the project.
     * Use case: `Modify an applicant`.
       (PR
       [#85](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/85))
-    * Branching feature. (Now called checkout feature.) 
+    * Branching feature. (Now called checkout feature.)
       (PR
       [#134](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/134))
     * Checkout feature. (Previously called branching feature.)
@@ -74,9 +74,9 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed:
-    * Contributed to [forum](https://nus-cs2103-ay2223s1.github.io/dashboards/contents/forum-activities.html#12-tan-deon-deeyonn-21-posts) discussions: 
-      
-      (Issue 
+    * Contributed to [forum](https://nus-cs2103-ay2223s1.github.io/dashboards/contents/forum-activities.html#12-tan-deon-deeyonn-21-posts) discussions:
+
+      (Issue
       [#8](https://github.com/nus-cs2103-AY2223S1/forum/issues/8#issuecomment-1217490892),
       [#12](https://github.com/nus-cs2103-AY2223S1/forum/issues/12#issuecomment-1217582541),
       [#177](https://github.com/nus-cs2103-AY2223S1/forum/issues/177#issuecomment-1243465396),

@@ -49,7 +49,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` : Adds an applicant named `John Doe` to InternConnect.
 
-   * **`view`**`1` : Views the 1st applicant shown in the current list   
+   * **`view`**`1` : Views the 1st applicant shown in the current list.
 
    * **`delete`**`3` : Deletes the 3rd applicant shown in the current list.
 
@@ -65,7 +65,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 **:information_source: Notes about the field format:**<br>
 
-* Words in `UPPER_CASE` are the parameter details to be supplied by the user.  
+* Words in `UPPER_CASE` are the parameter details to be supplied by the user.
   e.g., in `CURRENT_CAP`, `CURRENT_CAP` is a parameter which can be used as `3.5`.
 * None of the fields inserted into the command should be blank, except when removing `Tag` through the `edit` command
 
@@ -105,7 +105,7 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 | **CAP**             | `c`       | None         | Can only consist of 2 positive numeric values in the form of `CURRENT_CAP/MAX_CAP`     |
 | **Gender**          | `g`       | None         | Can only be `male` or `female` , will be converted to lower-case                       |
 | **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                                    |
-| **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `MM-yyyy`, starting from the year 0000        |                           
+| **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `MM-yyyy`, starting from the year 0000        |                         
 | **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                                    |
 | **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces              |
 
@@ -133,7 +133,7 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 * An address book cannot have multiple persons with the exact same identity fields (`EMAIL` and `JOB_ID`)
   e.g., `n/John e/j@example.com ji/J12332` and `n/Jason e/j@example.com ji/J12332` are considered the same applicant.
 
-* Words in `UPPER_CASE` are the parameter details to be supplied by the user.  
+* Words in `UPPER_CASE` are the parameter details to be supplied by the user.
   e.g., in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Bobby Doe`.
 
 * Items with `...` after them can be used multiple times including zero times.
@@ -148,10 +148,10 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 * Parameters can be in any order, and are separated by a space.
   e.g., if the command specifies `n/NAME p/PHONE e/EMAIL`, `n/NAME e/EMAIL p/PHONE` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. 
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `export` and `clear`) will be ignored.  
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `export` and `clear`) will be ignored.
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
 * All leading and trailing whitespaces will be trimmed, while multiple whitespaces in between words will be replaced by a single whitespace.
@@ -207,8 +207,8 @@ Edits an existing applicant in InternConnect.
 Format: `edit INDEX parameter/NEW_PARAMETER_DETAIL [parameter/NEW_PARAMETER_DETAIL]...`
 
 * For `parameter` arguments, please refer to the `parameter` of each field in the [Fields](#2-fields) section above.
-* Edits the applicant at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed applicants list. 
+* Edits the applicant at the specified `INDEX`.
+* The index refers to the index number shown in the displayed applicants list.
 * The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
 * At least one of the parameter fields must be provided.
 * Existing values will be updated to the input values.
@@ -254,18 +254,18 @@ Search Types:
 2. Substring: Keywords will match as long as a substring match exists. E.g., `@gmail.com` will match `jason@gmail.com` and `CS2103@gmail.com`
 3. Numeric: Search will search by its numeric value, rounded to 2 decimal places. E.g., Both `3` and `3.00000001` will match `3.00`
 
-| Field               | Search Type               | 
+| Field               | Search Type               |
 |---------------------|---------------------------|
-| **Name**            | Matching word             | 
+| **Name**            | Matching word             |
 | **Email**           | Substring                 |
 | **Phone**           | Substring                 |
-| **Address**         | Matching word             | 
-| **CAP**             | Numeric of `CURRENT_CAP`  | 
+| **Address**         | Matching word             |
+| **CAP**             | Numeric of `CURRENT_CAP`  |
 | **Gender**          | Matching word             |
-| **University**      | Matching word             | 
-| **Graduation Date** | Matching word             |                          
-| **Major**           | Matching word             | 
-| **Job ID**          | Substring                 | 
+| **University**      | Matching word             |
+| **Graduation Date** | Matching word             |                         
+| **Major**           | Matching word             |
+| **Job ID**          | Substring                 |
 | **Job Title**       | Matching word             |
 
 Examples:
@@ -310,7 +310,7 @@ Format: `checkout FILE_NAME`
 
 * `FILE_NAME` should not include any extension, as it would always be a JSON file.
 * The command will attempt to load the specified `FILE_NAME.json` file in the `data/` folder.
-* If the file contains invalid data or have an invalid format, the contents of the file will be erased and an empty 
+* If the file contains invalid data or have an invalid format, the contents of the file will be erased and an empty
 addressbook will be loaded.
 * If the file doesn't exist, a new file will be created, populated with sample data.
 * If the file contains valid data, the file will be loaded.
@@ -352,13 +352,13 @@ If your changes to the data file makes its format invalid, InternConnect will di
 | Action       | Format                                                                          | Examples                                                                                                                                                                                                    |
 |--------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**     | `help`                                                                          | `help`                                                                                                                                                                                                      |
-| **Add**      | `add {mandatory_field_parameter/MANDATORY_FIELD_DETAIL} [t/TAG]...`             | `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` | 
+| **Add**      | `add {mandatory_field_parameter/MANDATORY_FIELD_DETAIL} [t/TAG]...`             | `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` |
 | **List**     | `list`                                                                          | `list`                                                                                                                                                                                                      |
 | **View**     | `view INDEX`                                                                    | `view 2`                                                                                                                                                                                                    |
 | **Edit**     | `edit INDEX parameter/NEW_PARAMETER_DETAIL [parameter/NEW_PARAMETER_DETAIL]...` | `edit 1 p/91234567 e/bob@example.com`                                                                                                                                                                       |
 | **Delete**   | `delete INDEX`                                                                  | `delete 3`                                                                                                                                                                                                  |
 | **Find**     | `find parameter/KEYWORD [parameter/KEYWORD]...`                                 | `find g/Male t/offered KIV`                                                                                                                                                                                 |
-| **Import**   | `import FILE_PATH`                                                              | `import nus_students.json`                                                                                                                                                                                  | 
+| **Import**   | `import FILE_PATH`                                                              | `import nus_students.json`                                                                                                                                                                                  |
 | **Export**   | `export`                                                                        | `export`                                                                                                                                                                                                    |
 | **Checkout** | `checkout FILE_NAME`                                                            | `checkout 27-oct-2022`                                                                                                                                                                                      |
 | **Clear**    | `clear`                                                                         | `clear`                                                                                                                                                                                                     |
