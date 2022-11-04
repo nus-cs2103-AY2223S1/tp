@@ -325,7 +325,8 @@ Example:
 
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** Whenever a pie chart containing one slice of 100% is made, a white line will be created within the pie chart.<br><br>
+:information_source: **Note:** If the pie chart created only contains one slice (100% of the pie chart), a white line
+that is the length of the pie chart's radius will also be present. <br><br>
 
 This issue is a bug pertaining to the JavaFX library. 
 </div>
