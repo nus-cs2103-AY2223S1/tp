@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/dg/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `AppointmentListPanel`, `BillListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -436,29 +436,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HealthContact` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Editing a patient**
-
-**MSS**
-
-1.  User requests to edit a patient
-2.  HealthContact shows the detailed information about the patient
-3.  User requests to edit specific information about the patient
-4.  HealthContact edits the patient
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given name is invalid.
-
-    * 3a1. HealthContact shows an error message.
-
-      Use case resumes at step 2.
-
 **Use case: Adding a patient**
 
 **MSS**
@@ -480,6 +457,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. HealthContact shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Adding an appointment
 
 
 
@@ -510,7 +489,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Editing a patient**
 
+**MSS**
+
+1.  User requests to edit a patient
+2.  HealthContact shows the detailed information about the patient
+3.  User requests to edit specific information about the patient
+4.  HealthContact edits the patient
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given name is invalid.
+
+    * 3a1. HealthContact shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Editing an appointment**
 
 **Use case: Editing a bill of an appointment**
 
