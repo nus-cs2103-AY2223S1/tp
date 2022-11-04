@@ -11,9 +11,7 @@ GitHub repo every time and manually check different pages to see which tasks req
 
 Given below are my contributions to the project.
 
-* **Code Contributed**: The link to the tP dashboard can be found [here](https://nus-cs2103-ay2223s1.github.
-  io/tp-dashboard/?search=aishwarya-hariharan-iyer&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16
-  &timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code Contributed**: The link to the tP dashboard can be found [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=aishwarya-hariharan-iyer&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **New features implemented**: A summary of the enhancements you implemented.
     * **New Feature**: `Client` class with `add`, `delete` and `edit` commands
