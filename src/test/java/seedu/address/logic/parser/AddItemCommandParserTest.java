@@ -102,11 +102,6 @@ public class AddItemCommandParserTest {
         assertParseFailure(parser, "1 c/5 m/-", MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "1 c/5 m//", MESSAGE_INVALID_FORMAT);
 
-
-
-
-
-
     }
 
     @Test
