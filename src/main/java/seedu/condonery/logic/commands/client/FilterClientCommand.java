@@ -23,7 +23,13 @@ public class FilterClientCommand extends Command {
 
     private final ClientTagContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FilterClientCommand to filter the specified {@code Client}
+     *
+     * @param predicate
+     */
     public FilterClientCommand(ClientTagContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 

@@ -5,6 +5,7 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -37,6 +38,7 @@ public class AddPropertyCommand extends Command {
             + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
             + PREFIX_PRICE + "1000000 "
             + PREFIX_PROPERTY_TYPE + "HDB "
+            + PREFIX_PROPERTY_STATUS + "SOLD "
             + PREFIX_TAG + "High-End ";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";

@@ -7,8 +7,7 @@ import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.condonery.logic.commands.DeleteCommand;
-import seedu.condonery.logic.parser.DeleteCommandParser;
+import seedu.condonery.logic.commands.property.DeletePropertyCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -19,15 +18,16 @@ import seedu.condonery.logic.parser.DeleteCommandParser;
  */
 public class DeletePropertyCommandParserTest {
 
-    private final DeleteCommandParser parser = new DeleteCommandParser();
+    private final DeletePropertyCommandParser parser = new DeletePropertyCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST));
+        assertParseSuccess(parser, "1", new DeletePropertyCommand(INDEX_FIRST));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePropertyCommand.MESSAGE_USAGE));
     }
 }
