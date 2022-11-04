@@ -32,9 +32,9 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
       1. [`add` Adding an item](#adding-an-item--add)
       2. [`edit` Editing the details of an item](#editing-the-details-of-an-item--edit)
       3. [`delete` Deleting an item](#deleting-an-item--delete)
-      4. [`plan` Scheduling an item](#scheduling-an-item--plan)
-      5. [`unplan` Unscheduling an item](#unscheduling-an-item--unplan)
-      6. [`free` Viewing vacant timeslots](#viewing-vacant-timeslots--free)
+      4. [`free` Viewing vacant timeslots](#viewing-vacant-timeslots--free)
+      5. [`plan` Scheduling an item](#scheduling-an-item--plan)
+      6. [`unplan` Unscheduling an item](#unscheduling-an-item--unplan)
       7. [`copy` Copying to clipboard](#copying-to-clipboard--copy)
       8. [`pdf` Exporting as PDF file](#exporting-as-pdf-file--pdf)
       9. [`home` Returning to main page](#returning-to-main-page--home)
@@ -136,10 +136,10 @@ Using the [`select` command](#selecting-an-itinerary--select)  will bring you to
 
 Adds an itinerary to Waddle.
 
-Format: `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WADDLERS] [b/BUDGET]`
+Format: `add d/DESCRIPTION sd/START_DATE du/DURATION [c/COUNTRY] [p/NUMBER_OF_WADDLERS] [b/BUDGET]`
 
 * Adds a new itinerary named `DESCRIPTION` to the itinerary list.
-* `START DATE` is the date of the first day in the itinerary. It must be given in the format `yyyy-mm-dd`.
+* `START_DATE` is the date of the first day in the itinerary. It must be given in the format `yyyy-mm-dd`.
 * `DURATION` will determine the number of days in the itinerary, and must be between 1 and 365 days.
   - e.g. `sd/2022-12-10 du/3` would mean that the trip is from 10 Dec 2022 to 12 Dec 2022.
 * `BUDGET` is the budget for the itinerary and must be between 0 and 1,000,000. Please provide the budget in dollars ($), you may include cents too!
@@ -195,7 +195,7 @@ Examples:
 
 Edits an existing itinerary in Waddle.
 
-Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START DATE] [du/DURATION] [p/NUMBER OF WADDLERS] [b/BUDGET]`
+Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START_DATE] [du/DURATION] [p/NUMBER_OF_WADDLERS] [b/BUDGET]`
 
 * Edits the itinerary at the specified `INDEX`. The index refers to the index number shown in the displayed itinerary list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -335,12 +335,12 @@ Format: `free`
 
 Schedules an item from the wishlist.
 
-Format: `plan INDEX d/DAY NUMBER st/START TIME`
+Format: `plan INDEX d/DAY_NUMBER st/START_TIME`
 
 * Schedules the item at the specified `INDEX`. The index refers to the index number displayed in the unscheduled item list.
-* `DAY NUMBER` must be an integer from 1 to the duration (in days) of the trip.
-* `START TIME` should be given in the format `hh:mm`, or `hh:mm:ss` where `hh` is the hour in 24-hour format, `mm` is the minute, and `ss` is the seconds.
-* The end time of the item is automatically calculated by adding the `DURATION` of the item to the `START TIME`.
+* `DAY_NUMBER` must be an integer from 1 to the duration (in days) of the trip.
+* `START_TIME` should be given in the format `hh:mm`, or `hh:mm:ss` where `hh` is the hour in 24-hour format, `mm` is the minute, and `ss` is the seconds.
+* The end time of the item is automatically calculated by adding the `DURATION` of the item to the `START_TIME`.
 * You can only add an item if there is no clash in timing between the start and end time of the new item, and the start and end time of any existing scheduled item.
 * When an item is scheduled, the cost of the item will be automatically deducted from the budget of the itinerary.
 
@@ -428,6 +428,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 ## Command summary
 
 ### Home page commands
+
 | Action                                                           | Format, Examples                                                                                                                                                  |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                            |
@@ -441,6 +442,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                            |
 
 ### Item planning page commands
+
 | Action                                                       | Format, Examples                                                                                         |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | [**Add Item**](#adding-an-item--add)                         | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
