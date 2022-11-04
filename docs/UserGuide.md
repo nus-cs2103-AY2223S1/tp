@@ -12,7 +12,11 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 ## 1 Introduction
 
+Welcome to **ProfNUS**! :blush:
 
+Are you a SoC professor who is busy with heavy research work, teaches many modules and manages hundreds of students and TAs at the same time? Do you feel dizzy changing from one platform to another such as Luminus or Canvas? Have you ever sent an email to the wrong group of students? Life is hard, but luckily, **ProfNUS** can help you out! **ProfNUS** is a comprehensive teaching management desktop application that assists SoC professor in terms of modules, students, TAs, and schedules. It is designed based on Command Line Interface (CLI), which perfectly fits SoC professors' habits and preferences. We also provide Graphic User Interface (GUI) for users to interact with our product.
+
+If you want to know more about how **ProfNUS** is able to ease your worries, go to the [Quick Start](#2-quick-start) and take your first step in **ProfNUS**!
 
 ## 2 Quick start
 
@@ -281,9 +285,9 @@ In this section, we list all the parameters you will encounter of following comm
 | Parameter     | Description & Restriction                                    | Example       |
 | ------------- | ------------------------------------------------------------ | ------------- |
 | `MODULE_CODE` | This parameter represents the code of a module. Using module code can uniquely determine a module. The format should abide by the  [Module Code Format of NUS](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf). | `CS2103T`     |
-| `WEEKDAY`     | This parameter represents the day in a week. We provide seven options for you: `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`.                                                                                                            Please take note that this parameter is **case sensitive**. Weekdays in lower case will not be accepted. | `Monday`      |
-| `PERIOD`      | This parameter represents the time slot of your schedule. Your `PERIOD` should follow the format of `HH:MM-HH:MM`. To be consistent with NUS regular class duration, we  have set the following **restrictions** to this parameter:                                                                                                              1. No class should start before `07:00` or end after `10:00`.                                2. The time should be on the whole or half hour.                                                   3. The duration should be longer than or equal to one hour, and shorter        than or equal to three hours.                                                                                                             Please take note that ProfNUS adopts 24-hour clock, so `02:00` will be treated as 2am. | `10:00-12:00` |
-| `CLASS_TYPE`  | This parameter represents the class category. We provide four types of classes for you: `lec`, `tut`, `lab`, `rec`, representing Lecture, Tutoria, Lab, and Reflection, respectively.                                                                                     Please take note that this parameter is **case sensitive**. Any uppercase character will not be accepted. | `lec`         |
+| `WEEKDAY`     | This parameter represents the day in a week. We provide seven options for you: `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`. <br/>Please take note that this parameter is **case sensitive**. Weekdays in lower case will not be accepted. | `Monday`      |
+| `PERIOD`      | This parameter represents the time slot of your schedule. Your `PERIOD` should follow the format of `HH:MM-HH:MM`. To be consistent with NUS regular class duration, we  have set the following **restrictions** to this parameter:                                                                                                                  <br/>1. No class should start before `07:00` or end after `10:00`.                                <br/>2. The time should be on the whole or half hour.                                                   <br/>3. The duration should be longer than or equal to one hour, and shorter than or equal to three hours.                                                                                                             <br/>Please take note that ProfNUS adopts 24-hour clock, so `02:00` will be treated as 2am. | `10:00-12:00` |
+| `CLASS_TYPE`  | This parameter represents the class category. We provide four types of classes for you: `lec`, `tut`, `lab`, `rec`, representing Lecture, Tutoria, Lab, and Reflection, respectively. <br/> Please take note that this parameter is **case sensitive**. Any uppercase character will not be accepted. | `lec`         |
 | `CLASS_GROUP` | This parameter represents the group label if there are multiple lecture, tutorial, lab, or reflection groups. | `L1`          |
 | `VENUE`       | This parameter represents the venue of a class.              | `LT16`        |
 | `INDEX`       | This parameter represents the index of a schedule in the displayed list. Indices are **one-based**. | `1`           |
@@ -298,7 +302,7 @@ You can add a schedule by using this command.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 
 </div>
 
@@ -336,7 +340,7 @@ Edits a schedule in the ProfNUS.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 - You are expected to provide at least one optional parameter
 - Your newly typed parameters will overwrite corresponding existing information.
 
@@ -375,7 +379,7 @@ Deletes a schedule from the ProfNUS.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 
 </div>
 
@@ -409,7 +413,7 @@ This command helps you clear all schedules/all schedules of selected modules.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 - If no optional `MODULE_CODE` is given, all schedules will be cdeleted
 
 </div>
@@ -433,7 +437,7 @@ You can use this command to view the list of selected/all schedules.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 - Schedules matching at least one keyword will be returned to you.
 - You can view all your schedules by typing `view` without any parameter.
 
