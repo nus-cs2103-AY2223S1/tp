@@ -19,7 +19,7 @@ public class AddTeamCommand extends TeamCommand implements PureCommandInterface 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUBCOMMAND_WORD
         + ": Add a new group in the current "
         + "group scope if the group name does not currently exist.\n"
-        + "The group name should only begin with a letter and"
+        + "The group name should only begin with a letter and "
         + "be alphanumeric and have hyphens and/or underscores only\n"
         + "Parameters: group_name/group_within_group_name\n"
         + "Example: " + COMMAND_WORD + " " + SUBCOMMAND_WORD + " group_c345";

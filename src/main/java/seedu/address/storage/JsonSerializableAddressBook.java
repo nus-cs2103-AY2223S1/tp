@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.group.Group;
@@ -40,18 +41,23 @@ class JsonSerializableAddressBook {
     // Contains the parent child relationship for persons, groups and tasks by their Uuids.
     private final Map<String, List<String>> itemRelationship = new HashMap<>();
 
+    // Contains information from the singleton AddressBookParser.
+    private final JsonAdaptedAddressBookParser jsonAdaptedAddressBookParser;
+
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons, groups and tasks.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("groups") List<JsonAdaptedGroup> groups,
-                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
-                                       @JsonProperty("itemRelationship") Map<String, List<String>> itemRelationship) {
+            @JsonProperty("groups") List<JsonAdaptedGroup> groups,
+            @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+            @JsonProperty("itemRelationship") Map<String, List<String>> itemRelationship,
+            @JsonProperty("addressBookParser") JsonAdaptedAddressBookParser jsonAdaptedAddressBookParser) {
         this.persons.addAll(persons);
         this.groups.addAll(groups);
         this.tasks.addAll(tasks);
         this.itemRelationship.putAll(itemRelationship);
+        this.jsonAdaptedAddressBookParser = jsonAdaptedAddressBookParser;
     }
 
     /**
@@ -78,6 +84,8 @@ class JsonSerializableAddressBook {
         taskList.forEach(task -> itemRelationship.put(
                 task.getUid().toString(),
                 task.getParents().stream().map(parent -> parent.getUid().toString()).collect(Collectors.toList())));
+
+        jsonAdaptedAddressBookParser = new JsonAdaptedAddressBookParser(AddressBookParser.get());
     }
 
     /**
@@ -162,6 +170,10 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
             addressBook.addTask(task);
+        }
+
+        if (jsonAdaptedAddressBookParser != null) {
+            jsonAdaptedAddressBookParser.toModelType();
         }
 
         return addressBook;

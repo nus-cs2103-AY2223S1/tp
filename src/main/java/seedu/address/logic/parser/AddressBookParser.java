@@ -142,10 +142,19 @@ public class AddressBookParser {
     public void addAlias(String alias, String command) {
         if (aliasMapper.containsKey(command)) {
             addAlias(alias, aliasMapper.get(command));
+            return;
         }
-        if (defaultMapper.containsKey(command) || defaultMapper.containsKey(command)) {
+        if (defaultMapper.containsKey(command) || bonusMapper.containsKey(command)) {
             aliasMapper.put(alias, command);
         }
+    }
+
+    public Map<String, String> getAliasMapper() {
+        return aliasMapper;
+    }
+
+    public Map<String, CustomCommandBuilder> getBonusMapper() {
+        return bonusMapper;
     }
 
     /**
