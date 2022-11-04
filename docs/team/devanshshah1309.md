@@ -10,14 +10,16 @@ software engineering modules to build projects. It helps track the team's progre
 
 Given below are my contributions to the project.
 
-* **New Feature**: To be added soon.
+* **New Feature**: Allowing users to create, delete and list tasks.
 
-* **New Feature**: To be added soon.
+* **New Feature**: Allowing users to change themes.
 
-* **Code contributed**: Link to be added soon. [RepoSense link]()
+* **UI Changes**: Implemented the UI changes including layout, color scheme, font, etc. 
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=DevanshShah1309&tabRepo=AY2223S1-CS2103T-W13-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-    * To be added soon.
+    * Assigned labels to all issues for v1.4 to make task management easier.
 
 
 * **Enhancements to existing features**:
@@ -30,9 +32,8 @@ Given below are my contributions to the project.
         * To be added soon.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): To be added soon.
-    * Contributed to forum discussions (examples: To be added soon).
-    * Reported bugs and suggestions for other teams in the class (examples: To be added soon).
+    * PRs reviewed (with non-trivial review comments): Reviewed a total of 29 PRs. Some examples are: [#128](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/128), [#75](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/75)
+    * Reported bugs and suggestions for other teams in the class during the PE Dry Run: The bugs reported can be found [here](https://github.com/Devanshshah1309/ped/issues).
 
 * **Tools**:
   To be added soon.
