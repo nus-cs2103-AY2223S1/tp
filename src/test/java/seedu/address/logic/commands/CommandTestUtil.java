@@ -25,6 +25,7 @@ import seedu.address.model.listing.exceptions.ListingNotFoundException;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditClientDescriptorBuilder;
+import seedu.address.testutil.EditListingDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -86,6 +87,16 @@ public class CommandTestUtil {
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    public static final EditListingCommand.EditListingDescriptor DESC_LISTING_AMY;
+    public static final EditListingCommand.EditListingDescriptor DESC_LISTING_BOB;
+
+    static {
+        DESC_LISTING_AMY = new EditListingDescriptorBuilder().withId(VALID_ID_AMY).withName(VALID_NAME_AMY)
+                .withAddress(VALID_ADDRESS_AMY).withAskingPrice(VALID_PRICE_1).withTags(VALID_TAG_4_BEDROOM).build();
+        DESC_LISTING_BOB = new EditListingDescriptorBuilder().withId(VALID_ID_BOB).withName(VALID_NAME_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withAskingPrice(VALID_PRICE_2).withTags(VALID_TAG_POOL).build();
     }
 
     /**
@@ -168,7 +179,7 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showListingAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredListingList().size());
 
         Listing listing = model.getFilteredListingList().get(targetIndex.getZeroBased());
         final String id = listing.getId().value;

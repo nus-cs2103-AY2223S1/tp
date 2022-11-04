@@ -7,6 +7,7 @@ public class Messages {
 
     public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW = "%1$d clients listed!";
     public static final String MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX = "The client index provided is invalid";
+    public static final String MESSAGE_INVALID_LISTING_DISPLAYED_INDEX = "The listing index provided is invalid";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_LISTING_ID = "The listing ID provided is invalid.";
     public static final String MESSAGE_LISTING_DOES_NOT_EXIST = "This listing does not exist in REal-Time.";

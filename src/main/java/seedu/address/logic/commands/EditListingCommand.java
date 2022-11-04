@@ -71,7 +71,7 @@ public class EditListingCommand extends Command {
         List<Listing> lastShownList = model.getFilteredListingList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_LISTING_ID);
+            throw new CommandException(Messages.MESSAGE_INVALID_LISTING_DISPLAYED_INDEX);
         }
 
         Listing listingToEdit = lastShownList.get(index.getZeroBased());
@@ -97,8 +97,11 @@ public class EditListingCommand extends Command {
         Address updatedAddress = editListingDescriptor.getAddress().orElse(listingToEdit.getAddress());
         Name updatedName = editListingDescriptor.getName().orElse(listingToEdit.getName());
         Price updatedAskingPrice = editListingDescriptor.getAskingPrice().orElse(listingToEdit.getAskingPrice());
+        Set<Tag> updatedTags = editListingDescriptor.getTags().orElse(listingToEdit.getTags());
 
-        return new Listing(updatedId, updatedAddress, updatedName, updatedAskingPrice);
+        Listing listing = new Listing(updatedId, updatedAddress, updatedName, updatedAskingPrice);
+        listing.addTags(updatedTags);
+        return listing;
     }
     @Override
     public boolean equals(Object other) {
@@ -217,7 +220,8 @@ public class EditListingCommand extends Command {
             return getId().equals(e.getId())
                     && getName().equals(e.getName())
                     && getAddress().equals(e.getAddress())
-                    && getAskingPrice().equals(e.getAskingPrice());
+                    && getAskingPrice().equals(e.getAskingPrice())
+                    && getTags().equals(e.getTags());
         }
     }
 }
