@@ -1,16 +1,14 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
-import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 
 import java.util.List;
 import java.util.StringJoiner;
 
+import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
+import seedu.taassist.commons.core.index.IndexUtil;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.logic.parser.ParserStudentIndexUtil;
-import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.SessionData;
@@ -48,7 +46,7 @@ public class ViewCommand extends Command {
         requireNonNull(model);
 
         if (!model.isInFocusMode()) {
-            throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
+            throw new CommandException(String.format(Messages.MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
         }
 
         ModuleClass focusedClass = model.getFocusedClass();
@@ -56,9 +54,9 @@ public class ViewCommand extends Command {
 
         Student student;
         try {
-            student = ParserStudentIndexUtil.parseStudentFromIndex(index, lastShownList);
-        } catch (ParseException e) {
-            throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            student = IndexUtil.getAtIndex(lastShownList, index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         List<SessionData> sessionDataList = student.findStudentModuleData(focusedClass)

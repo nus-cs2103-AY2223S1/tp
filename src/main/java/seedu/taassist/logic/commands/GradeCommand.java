@@ -1,8 +1,6 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_SESSION;
-import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_GRADE;
@@ -10,10 +8,10 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.List;
 
+import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
+import seedu.taassist.commons.core.index.IndexUtil;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.logic.parser.ParserStudentIndexUtil;
-import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.moduleclass.exceptions.SessionNotFoundException;
@@ -57,7 +55,7 @@ public class GradeCommand extends Command {
         requireNonNull(model);
 
         if (!model.isInFocusMode()) {
-            throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
+            throw new CommandException(String.format(Messages.MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
         }
 
         ModuleClass focusedClass = model.getFocusedClass();
@@ -66,15 +64,16 @@ public class GradeCommand extends Command {
         try {
             existingSession = focusedClass.getSessionWithSameName(session);
         } catch (SessionNotFoundException snfe) {
-            throw new CommandException(String.format(MESSAGE_INVALID_SESSION, session.getSessionName(), focusedClass));
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_SESSION,
+                    session.getSessionName(), focusedClass));
         }
 
         List<Student> lastShownList = model.getFilteredStudentList();
         List<Student> studentsToGrade;
         try {
-            studentsToGrade = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
-        } catch (ParseException e) {
-            throw new CommandException(e.getMessage());
+            studentsToGrade = IndexUtil.getAtIndices(lastShownList, indices);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         studentsToGrade.forEach(s -> model.setStudent(s, s.updateGrade(focusedClass, existingSession, grade)));

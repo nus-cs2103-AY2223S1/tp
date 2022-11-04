@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":ViewCommand" as ViewCommand LOGIC_COLOR
-participant "<<class>>\nParserStudentIndexUtil" as Util LOGIC_COLOR
+participant "<<class>>\nIndexUtil" as Util LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 participant "student:Student" as Student LOGIC_COLOR
 participant "s:StudentModuleData" as SMD LOGIC_COLOR
@@ -26,7 +26,7 @@ activate Model
 Model --> ViewCommand: lastShownList
 deactivate Model
 
-ViewCommand -> Util: parseStudentFromIndex
+ViewCommand -> Util: getAtIndex
 activate Util
 Util --> ViewCommand: student
 deactivate Util

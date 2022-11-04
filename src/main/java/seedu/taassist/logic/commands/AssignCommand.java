@@ -9,9 +9,8 @@ import java.util.List;
 
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
+import seedu.taassist.commons.core.index.IndexUtil;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.logic.parser.ParserStudentIndexUtil;
-import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.moduleclass.exceptions.ModuleClassNotFoundException;
@@ -62,8 +61,8 @@ public class AssignCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
         List<Student> studentsToAssign;
         try {
-            studentsToAssign = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
-        } catch (ParseException pe) {
+            studentsToAssign = IndexUtil.getAtIndices(lastShownList, indices);
+        } catch (IndexOutOfBoundsException pe) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
