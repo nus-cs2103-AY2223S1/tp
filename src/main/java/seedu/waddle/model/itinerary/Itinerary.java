@@ -21,6 +21,8 @@ import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.UniqueItemList;
 import seedu.waddle.model.item.exceptions.DuplicateItemException;
+import seedu.waddle.model.itinerary.exceptions.DayIndexOutOfBoundsException;
+import seedu.waddle.model.itinerary.exceptions.ItemIndexOutOfBoundsException;
 
 /**
  * Represents a Person in the address book.
@@ -215,12 +217,22 @@ public class Itinerary {
      * @throws CommandException When adding item to specific day leads to conflict in time.
      */
     public Item planItem(Index itemIndex, DayNumber dayNumber, LocalTime startTime) throws CommandException {
-        Item item = this.unscheduledItemList.get(itemIndex.getZeroBased());
+        Item item;
+        try {
+            item = this.unscheduledItemList.get(itemIndex.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new ItemIndexOutOfBoundsException();
+        }
         if (this.budget.calculateLeftOverBudget() - item.getCost().getValue() < 0) {
             throw new CommandException(Messages.MESSAGE_OVER_BUDGET);
         }
         item.setStartTime(startTime);
-        Day day = this.days.get(dayNumber.dayNumber.getZeroBased());
+        Day day;
+        try {
+            day = this.days.get(dayNumber.dayNumber.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new DayIndexOutOfBoundsException();
+        }
         try {
             day.addItem(item);
         } catch (CommandException e) {

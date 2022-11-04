@@ -39,7 +39,7 @@ public class EditItemCommand extends Command {
             + "[" + PREFIX_PRIORITY + "PRIORITY]"
             + "[" + PREFIX_COST + "COST]"
             + "[" + PREFIX_ITEM_DURATION + "DURATION]"
-            + "[" + PREFIX_START_TIME + "START TIME]...\n"
+            + "[" + PREFIX_START_TIME + "START_TIME]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Visit the Eiffel Tower ";
 

@@ -18,7 +18,7 @@ public class SelectCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": selects an itinerary for planning "
             + "by the index number used in the last itineraries listing.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must exist in the itinerary list) "
             + "Example: " + COMMAND_WORD + " 1 ";
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
     public static final String MESSAGE_SELECT_ITINERARY_SUCCESS = "Selected Itinerary: %1$s";
