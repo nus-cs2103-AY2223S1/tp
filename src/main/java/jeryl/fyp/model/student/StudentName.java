@@ -10,13 +10,14 @@ import static jeryl.fyp.commons.util.AppUtil.checkArgument;
 public class StudentName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Student names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Student names should only contain alphabetic characters, spaces and slash(for Indian names),"
+                    + " and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[a-zA-Z ]*[a-zA-Z]*\\/*[a-zA-Z ]*[a-zA-Z]+";
 
     public final String fullStudentName;
 

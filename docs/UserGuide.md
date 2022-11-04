@@ -86,8 +86,10 @@ FYP projects in a concise manner.
 * `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 uppercase letter)**. <br>
   e.g. `A0123456G`.
 
-* `FYP_NAME` and `DEADLINE_NAME` should only include alphanumeric characters and spaces but
+* `FYP_NAME`  should only include alphanumeric characters and spaces but
 **cannot start with a space**.<br>
+* and `DEADLINE_NAME` should only include alphanumeric characters and spaces but
+  **cannot start with a space**.<br>
   e.g. ` Support vector machine: some improvements` is invalid
 
 * `DEADLINE_DATETIME` can be in the format of **"DD-MM-YYYY HH:mm"** or **"YYYY-MM-DD HH:mm"**.<br>
@@ -106,7 +108,7 @@ FYP projects in a concise manner.
 There are 2 types of `add` commands.
 
 1. `add -s`: Adds a new FYP of a student to the FYP manager. The same student ID should not exist in the FYP manager
-   previously.
+   previously. And the student name should only contain alphabetic characters, spaces and /(for Indian names).
 
    Format: `add [-s] i/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​`
 
@@ -134,10 +136,12 @@ There are 2 types of `delete` commands.
 
    Format: `delete [-s] i/STUDENT_ID`
 
-2. `delete -d`: Removes a deadline assigned to a student specified by ID & a priority rank. The specified deadline must
+2. `delete -d`: Removes a deadline assigned to a student specified by ID & a priority rank (Below highlighted task has a priority rank of 2). The specified deadline must
    exist in the student's deadline list previously.
-
+   
    Format: `delete -d i/STUDENT_ID r/DEADLINE_RANK`
+   ![Priority](images/Priority.png) <br> <br>
+
 
 Examples:
 

@@ -11,6 +11,7 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.index.Index;
+import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.student.exceptions.DuplicateStudentException;
 import jeryl.fyp.model.student.exceptions.StudentNotFoundException;
 
@@ -30,7 +31,8 @@ public class UniqueStudentList implements Iterable<Student> {
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
+    private final String MESSAGE_STUDENT_NOT_EXIST = "This student specified is not in the student list currently, "
+            + "Please retry with another student ID. ";
     /**
      * Returns true if the list contains an equivalent student as the given argument.
      */
@@ -149,14 +151,18 @@ public class UniqueStudentList implements Iterable<Student> {
     /**
      * Returns unique Student if {@code students} contains the student with the specified studentId.
      */
-    public Student getStudentByStudentId(StudentId studentId) {
+    public Student getStudentByStudentId(StudentId studentId) throws StudentNotFoundException {
         Student student = null;
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getStudentId().equals(studentId)) {
                 student = internalList.get(i);
             }
         }
-        return student;
+        if (student == null) {
+            throw new StudentNotFoundException(MESSAGE_STUDENT_NOT_EXIST);
+        } else {
+            return student;
+        }
     }
 
     public Index getIndexByStudentId(StudentId studentId) {
