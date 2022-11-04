@@ -246,7 +246,7 @@ Format: `:filter KEYWORD [KEYWORD]...`
 <div markdown="block" class="alert alert-warning">
 
 **:thinking: When should I use this?**<br>
-I should use this if I am looking to find the instances of a specific exercise.
+I should use this when I want to find the instances of a specific exercise.
 
 </div>
 
@@ -260,13 +260,6 @@ Example:
 Sorts the exercises, in the current [Exercise List](#42-exercise-list), according to their date of completion, with the latest exercise completed displayed at the top of the list.
 
 Format: `:sort`
-
-<div markdown="block" class="alert alert-warning">
-
-**:thinking: When should I use this?**<br>
-I should use this if I am looking to find the instances of a specific exercise.
-
-</div>
 
 Example:
 * `:sort` Shows the sorted list of exercises.
@@ -316,7 +309,7 @@ Shows a list of all exercises.
 <div markdown="block" class="alert alert-warning">
 
 **:thinking: When should I use this?**<br>
-I should use this when I want to reset my search settings back to the default.
+I should use this when I want to reset my exercise list view back to the original.
 
 </div>
 
@@ -327,10 +320,10 @@ Example:
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip: Tracking exercise progressions over time**<br>
-If you want to view your squat progression over the past week, here's a nifty sequence of commands you can try!
-* `:list` Current exercise list now shows all exercises.
-* `:filter Squat` Current exercise list now shows 'Squat' exercises.
-* `:range last/7` Current exercise list now shows 'Squat' exercises in the past 7 days.
+If you want to view your squat progression over the past week, here's a nifty sequence of commands you can try!<br><br>
+1. `:list` Current exercise list now shows all exercises.<br>
+2. `:filter Squat` Current exercise list now shows 'Squat' exercises.<br>
+3. `:range last/7` Current exercise list now shows 'Squat' exercises in the past 7 days.
 
 </div>
 
@@ -372,6 +365,13 @@ Example:
 ### 5.9. Generating a sample workout based on Personal Records: `:gen`
 
 Generates a sample workout suggestion based on existing personal records of the exercises, according to the difficulty level specified. Exercises are indicated either by their index numbers shown in the displayed exercise list or their exercise names.
+
+<div markdown="block" class="alert alert-warning">
+
+**:thinking: When should I use this?**<br>
+I should use this when I want to get a quick workout based on how I am feeling.
+
+</div>
 
 <div markdown="block" class="alert alert-info">
 
