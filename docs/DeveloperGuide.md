@@ -266,19 +266,34 @@ Below is a sequence diagram that illustrates the execution of `viewMeeting` comm
 
 #### 3.2.4 List Meeting feature
 
-Syntax: `listMeeting`
+Syntax: `listMeeting [d/PERIOD]`
 
-Purpose: View all `Meeting` from the Meeting List in `Model`.
+Purpose: View all `Meeting` from the Meeting List in `Model`, optionally using `d/PERIOD` to filter out `Meeting` from a specific time period.
 
 ##### Implementation
 
 Usage Scenario of `listMeeting`:
 
-1) User inputs `listMeeting` to view the current meetings in the `Model`.
+Step 1. User inputs `listMeeting d/tomorrow` to view the current meetings in the `Model`.
 
-Below is a sequence diagram that illustrates the execution of `listMeeting` command and the interaction with `Model`.
+Below is a sequence diagram that illustrates the execution of `listMeeting d/tomorrow` command and the interaction with `Model`.
 
 ![ListMeetingSequenceDiagram](images/ListMeetingSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `pred` refers to a predicate where the `Meeting` are filtered based on that predicate.
+</div>
+
+##### Design Considerations
+
+**Aspect: What the `listMeeting` command accepts for the `PERIOD` prefix:**
+
+- **Alternative 1 (current choice):** Use the same prefix as `DATE` (that is, `d/`)
+    - Pros: Users will have to remember lesser prefixes for specifying inputs for a similar domain of dates.
+    - Cons: It might be slightly confusing what values can be used for a specific prefix.
+- **Alternative 2:** Use another prefix e.g., `prd/`
+    - Pros: It might be more intuitive for a new user.
+    - Cons: There is limited number of short, representative prefixes that can be used and we feel that we are using quite a number of prefixes already. For example, we want to use `pd/` as a shorthand for `PERIOD`, but that is taken up by `PRODUCT` already. We want to use `p/`, but that is also taken up by `PHONE`. So we feel that it is best to use a keyword in a similar domain.
+
 
 ### 3.3 `Product`-related features
 
@@ -298,9 +313,18 @@ Below is a sequence diagram that illustrates the execution of `listMeeting` comm
 
 We chose to implement the changing of view panels through `CommandResult` due to its simplicity and the intended effects are clear. Furthermore, this is in line with how `HelpCommand` and `ExitCommand` is implemented.
 
-#### Proposed future changes
+##### Design Considerations
 
-We feel that there is a way for us to cut down on repetition of code. More specifically, the methods for setting the view panels which is currently done through four very similar methods in `MainWindow#setListPanelToXYZ`. We are currently exploring the use of event listeners on the Model, such that when a command is executed, the Model can listen for the specific view for the UI to display. This however causes the Model to have to depend on UI which results in more coupling of compartments. Another possibility is to have a general `MainWindow#setListPanelToXYZ` which takes in some input to specify which view to show. It will behave much like how `MyInsuRecParser#parseCommand` works, using switch cases to decide which panels to use.
+**Aspect: The method used to change view panels
+
+- **Alternative 1 (current choice):** Pass the specific view through `CommandResult` using enum `CommandSpecific`. 
+    - Pros: Simple and clear. It is also in line with how some other commands are implemented, and is the most natural manner to communicate with the UI from the Logic.
+    - Cons: If we have too many views, we will need a lot of different `CommandSpecific`. Furthermore, our switch statements may get bloated.
+- **Alternative 2:** Use listeners on the model. For example, we can have listeners on `filteredClients` to change views when changes happen on `filteredClients`.
+    - Pros: Cleaner design. We will not need a separate enum.
+    - Cons: Harder to implement. Increases coupling as well, as `Model` can skip communications through `Logic` to get `UI` to change views directly.
+
+- Ultimately, we believe that we will not have too many views (likely a maximum of 6 as we only have to consider `Client`, `Meeting`, `Product` and their detailed variant). As such, we felt that passing the `CommandSpecific` is a cheaper (in terms of effort and programming hours and research) and better solution for now.
 
 
 
