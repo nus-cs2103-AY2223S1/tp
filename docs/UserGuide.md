@@ -8,22 +8,12 @@ title: User Guide
 
 ![banner](images/ug-images/editCommand/checkUp_banner.png)
 
-**checkUp is a desktop app for managing patient details**, optimized for use via a Command Line Interface (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient 
-management tasks done quicker than traditional GUI apps.
+**checkUp is the perfect desktop app for healthcare establishments**. If you are a healthcare worker looking for an app to better manage 
+your patients details then look no further! checkUp can boost your productivity with features to quickly retrieve patients details without the 
+need of internet connection. Beyond that, checkUp also has features to help you manage your inventory so that you know when to restock certain medication!
 
-**checkUp** is an app made for healthcare establishments. It allows clinics to track relevant details for their patients and
-hospitals to track details related to a patient's stay at the hospital. Without an internet connection, checkUp stores
-patient details such as:
-- patient name;
-- next-of-kin details;
-- phone number;
-- email;
-- medical history;
-- upcoming appointments; and 
-- past appointments.
-
-Also, medication tags can be added to your patients to keep track of their long-term medication history.
+checkUp is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the [Installation Guide](#installation-guide). This user guide 
+can also serve as a reference for experienced users, with a convenient [Command Summary](#command-summary).
 
 <div markdown="block" class="alert alert-info">
 
@@ -66,6 +56,55 @@ Also, medication tags can be added to your patients to keep track of their long-
 8. Refer to the [Features](#features) below for details of each command.
 
 ---
+## Installation Guide
+
+### System Requirements
+Here is everything you need to install and set up checkUp. For the best possible experience, we recommend that you use checkUp on the following supported operating systems:
+
+* Windows
+* macOS
+* Linux <br>
+You will also require Java 11 or above to run checkUp. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). 
+To tell if you already have the correct version of Java installed on your system, refer to [Checking your system's Java version](#checking-your-systems-java-version).
+
+### Installation Requirements
+1. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
+
+2. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
+
+3. Double click the file to start the app.
+
+4. The GUI similar to the below will appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/ug-images/Ui-explanations.png)
+   
+## Troubleshooting   
+### Checking your system's Java version
+
+This section covers the technical issues you may run into while using checkUp.
+
+**Checking your system's Java version**
+
+To check that your system has the correct Java version (Java 11 and above) to run checkUp, you can follow the steps below:
+
+Open your terminal.
+* Windows
+   * Use Win + S to open search.
+  * Type in 'Terminal' to search for it and click on it to launch.
+
+* macOS
+  * Use Cmd + Space to open Spotlight search.
+  * Type in 'Terminal' to search for it and click on it to launch.
+* Linux
+  * Use Ctrl + Alt + T to open the Terminal.
+  * In your terminal, type in java --version and click enter.
+The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
+
+
+The number in the red highlight rectangle tells you the Java version installed. 
+For example, the Java version installed on the example system is Java 11.0.16, which is sufficient to run checkUp as it is greater than Java 11.
+
+If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, 
+head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
 
 ## Glossary
 
@@ -581,9 +620,9 @@ any data created or deleted from the application.
 * The data file can be found in `data/checkup.json` in the home folder where checkUp's `jar` file is stored.
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
 
-### GUI Interaction
+### Mouse Interactions
 
-Although CheckUp is built as a Command Line Interface application, it also supports the following GUI interactions:
+Although CheckUp is built as a Command Line Interface application, it also supports the following mouse interactions:
 
 #### Person List Panel:
 
@@ -593,7 +632,7 @@ Example:
 
 * Clicking on the first patient `Alex Yeoh` will display his details on the Patient View Panel.
 
-![Clicking on Patient List Panel Gif](images/ug-images/patientListPanel.gif)
+![Clicking on Patient List Panel Gif](images/ug-images/Person-List-Panel-Clickability.png)
 
 #### Person Details Panel:
 
@@ -601,9 +640,9 @@ Example:
 
 Example:
 
-* If the patient is `Roy Balakrishnan`, clicking on his name will set the text in the Command Input Box to `edit 1 n/`.
+* If the patient is `Alex Yeoh`, clicking on his `email` will set the text in the Command Input Box to `edit 1 e/`.
 
-![Clicking on Patient View Panel Gif](images/ug-images/patientViewPanel.gif)
+![Clicking on Patient View Panel Gif](images/ug-images/Person-Details-Panel-Clickability.png)
 
 ### Keyboard Shortcuts
 

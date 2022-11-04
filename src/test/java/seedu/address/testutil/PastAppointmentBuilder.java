@@ -26,7 +26,7 @@ public class PastAppointmentBuilder {
      * Creates a {@code PastAppointmentBuilder} with the default details.
      */
     public PastAppointmentBuilder() {
-        date = LocalDate.parse(DEFAULT_DATE, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        date = LocalDate.parse(DEFAULT_DATE, DateTimeFormatter.ofPattern("dd-MM-uuuu"));
         medication = SampleDataUtil.getMedicationSet(DEFAULT_MEDICATIONS);
         diagnosis = DEFAULT_DIAGNOSIS;
     }
@@ -35,7 +35,7 @@ public class PastAppointmentBuilder {
      * Initializes the PastAppointmentBuilder with the given date.
      */
     public PastAppointmentBuilder withDate(String date) {
-        this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-uuuu"));
         return this;
     }
 

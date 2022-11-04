@@ -146,7 +146,7 @@ public class EditPersonDescriptorBuilder {
             descriptor.setUpcomingAppointment(new UpcomingAppointment((LocalDate) null));
         } else {
             descriptor.setUpcomingAppointment(new UpcomingAppointment(LocalDate.parse(dateString,
-                    DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
+                    DateTimeFormatter.ofPattern("dd-MM-uuuu"))));
         }
         return this;
     }

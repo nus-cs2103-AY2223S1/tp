@@ -192,7 +192,7 @@ public class PersonBuilder {
             this.upcomingAppointment = new UpcomingAppointment((LocalDate) null);
         } else {
             this.upcomingAppointment =
-                    new UpcomingAppointment(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                    new UpcomingAppointment(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-uuuu")));
         }
         return this;
     }

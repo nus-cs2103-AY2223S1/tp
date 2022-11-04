@@ -11,7 +11,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.tag.Medication;
@@ -59,6 +58,23 @@ public class Person {
     }
 
     /**
+     * Checks to ensure the patient has the exact past appointment.
+     * @param appt the appointment to check the patient's past appointments against.
+     * @return true if he has that past appointment, false otherwise.
+     */
+    public boolean hasPastAppointment(PastAppointment appt) {
+        int length = pastAppointments.size();
+
+        // if appt is equal to any current past appointment, do not add as duplicate
+        for (int i = 0; i < length; i++) {
+            if (pastAppointments.get(i).equals(appt)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Adds input {@code PastAppointment} to stored list of {@code PastAppointment}s.
      * @param appt the {@code PastAppointment} to be added
      */
@@ -67,11 +83,10 @@ public class Person {
         int length = pastAppointments.size();
         LocalDate apptDate = appt.getDate();
 
-        // if appt is equal to any current past appointment, do not add as duplicate
-        for (int i = 0; i < length; i++) {
-            if (pastAppointments.get(i).equals(appt)) {
-                return;
-            }
+        // Ensure no duplicate past appt,
+        // Should not trigger as hasPastAppointment(PastAppointment appt) should be called beforehand to check.
+        if (hasPastAppointment(appt)) {
+            return;
         }
 
         for (int i = 0; i < length; i++) {
@@ -90,12 +105,13 @@ public class Person {
     /**
      * Removes the most recent {@code PastAppointment} from the stored list of {@code PastAppointment}s.
      */
-    public void deleteMostRecentPastAppointment() throws CommandException {
-        try {
-            deletePastAppointment(0);
-        } catch (IndexOutOfBoundsException e) {
-            throw new CommandException("No past appointments to delete.");
+    public void deleteMostRecentPastAppointment() {
+        // Ensure not deleting from an empty list,
+        // Should not trigger as getPastAppointmentCount() should be called beforehand to check.
+        if (getPastAppointmentCount() <= 0) {
+            return;
         }
+        deletePastAppointment(0);
     }
 
     private void deletePastAppointment(int index) {
@@ -239,22 +255,22 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("; ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("; ")
                 .append(getEmail())
-                .append("; Next of Kin: ")
+                .append("; ")
                 .append(getNextOfKin())
-                .append("; Patient Type: ")
+                .append("; ")
                 .append(getPatientType());
 
         if (getPatientType().isInpatient()) {
-            builder.append("; Hospital Wing: ")
-                    .append(getHospitalWing())
-                    .append("; Floor Number: ")
-                    .append(getFloorNumber())
-                    .append("; Ward Number: ")
-                    .append(getWardNumber());
+            builder.append("; ")
+                    .append(getHospitalWing().orElse(new HospitalWing("south")))
+                    .append("; ")
+                    .append(getFloorNumber().orElse(new FloorNumber(10)))
+                    .append("; ")
+                    .append(getWardNumber().orElse(new WardNumber("D312")));
         }
 
 
@@ -264,7 +280,7 @@ public class Person {
             tags.forEach(tag -> builder.append(tag.medicationName).append(", "));
         }
         builder.append("; Past Appointments: ").append(getPastAppointmentCount());
-        builder.append(" Upcoming Appointment: ").append(getUpcomingAppointment());
+        builder.append("; ").append(getUpcomingAppointment().orElse(new UpcomingAppointment("")));
         return builder.toString();
     }
 

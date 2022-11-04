@@ -36,11 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        if (filteredPersons.size() > 0) {
-            currentlyViewedPerson = generateFirstPerson();
-        } else {
-            currentlyViewedPerson = new CurrentlyViewedPerson(null, null);
-        }
+        resetCurrentlyViewedPerson();
     }
 
     public ModelManager() {
@@ -87,6 +83,8 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        updateFilteredPersonList(x -> true);
+        resetCurrentlyViewedPerson();
     }
 
     @Override
@@ -165,6 +163,14 @@ public class ModelManager implements Model {
     public void updateCurrentlyViewedPerson(Person person, Index index) {
         requireAllNonNull(person, index);
         currentlyViewedPerson = new CurrentlyViewedPerson(person, index);
+    }
+
+    private void resetCurrentlyViewedPerson() {
+        if (filteredPersons.size() > 0) {
+            currentlyViewedPerson = generateFirstPerson();
+        } else {
+            currentlyViewedPerson = new CurrentlyViewedPerson(null, null);
+        }
     }
 
     private CurrentlyViewedPerson generateFirstPerson() {

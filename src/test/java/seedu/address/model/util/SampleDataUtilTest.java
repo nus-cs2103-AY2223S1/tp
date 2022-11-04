@@ -38,7 +38,7 @@ class SampleDataUtilTest {
     public void getPastAppointment_validString_returnsPastAppointment() {
         String[] pastApptStrings = { "12-12-2022", "Ibuprofen Paracetamol", "Sick" };
         assertEquals("12-12-2022", SampleDataUtil.getPastAppointment(pastApptStrings).getDate()
-                .format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                .format(DateTimeFormatter.ofPattern("dd-MM-uuuu")));
     }
 
 }
