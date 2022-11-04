@@ -144,7 +144,9 @@ public class DeleteAllCommand extends Command {
         for (Tag toDelete: tagsToDelete) {
             sb.append(String.format(MESSAGE_DELETE_TAG_SUCCESS, toDelete));
             sb.append(NEW_LINE_CHARACTER);
-            model.decreaseTagCount(toDelete);
+            while (model.hasTag(toDelete)) {
+                model.decreaseTagCount(toDelete);
+            }
         }
         return sb.toString();
     }
