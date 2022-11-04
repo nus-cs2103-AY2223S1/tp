@@ -682,14 +682,13 @@ Let's say you added the following patients and their tasks:
 If today's date is 2022-11-04, `view --today` will display those 2 tasks.
 
 ![result for `view --today`](images/viewTodayResult.png)
-_Patient and task list displayed after running the `view --today` command_
-
+_<div align="center"> Patient and task list displayed after running the `view --today` command </div>_
 
 <br>
 
 ### Listing all tasks: `view` `-p` `--all`
 
-Shows a list of all tasks to be completed.
+You can view the list of tasks for all patients using the `view` command with the special flag `--all`.
 
 Format: `view -p --all`
 
