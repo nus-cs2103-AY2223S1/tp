@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
@@ -15,11 +16,14 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-f11-3.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
+    @FXML
+    private Scene parent;
 
     @FXML
     private Button copyButton;
@@ -66,6 +70,22 @@ public class HelpWindow extends UiPart<Stage> {
         logger.fine("Showing help page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    /**
+     * Sets HelpWindow UI to light mode by changing the parent stylesheet to HelpWindowLight.css file
+     */
+    void setLightTheme() {
+        parent.getStylesheets().add("view/styles/HelpWindowLight.css");
+        parent.getStylesheets().remove("view/styles/HelpWindowDark.css");
+    }
+
+    /**
+     * Sets HelpWindow UI to dark mode by changing the parent stylesheet to HelpWindowDark.css file
+     */
+    void setDarkTheme() {
+        parent.getStylesheets().add("view/styles/HelpWindowDark.css");
+        parent.getStylesheets().remove("view/styles/HelpWindowLight.css");
     }
 
     /**

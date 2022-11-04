@@ -5,12 +5,18 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "income" : "$7340",
-    "tagged": [ "friends" ]
+    "meetingDate" : "23 Nov 2022",
+    "tagged": [ "friends" ],
+    "risk":  "high",
+    "planned": [ "prudential income" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "income" : "$5610"
+    "income" : "$5610",
+    "meetingDate" : "8 Oct 2022",
+    "risk":  "high",
+    "planned": [ "prudential income" ]
   } ]
 }

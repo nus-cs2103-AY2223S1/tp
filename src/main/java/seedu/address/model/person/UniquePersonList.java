@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Person#isSamePerson(Person)
@@ -26,7 +27,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -46,6 +47,26 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Sorts clients according to parameters provided.
+     * Sorts by ascending order for name, income, and meeting dates.
+     */
+    public void sort(String sortParam) {
+        switch (sortParam) {
+        case "n/":
+            internalList.sort(Comparator.comparing(person -> person.getName().fullName));
+            break;
+        case "i/":
+            internalList.sort(Comparator.comparing(person -> person.getIncome().toInt()));
+            break;
+        case "m/":
+            internalList.sort(Comparator.comparing(person -> person.getMeeting().getMeetingDate().get()));
+            break;
+        default:
+            break;
+        }
     }
 
     /**
@@ -112,8 +133,8 @@ public class UniquePersonList implements Iterable<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+            || (other instanceof UniquePersonList // instanceof handles nulls
+            && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override
@@ -133,5 +154,14 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder personList = new StringBuilder();
+        for (Person person : internalList) {
+            personList.append(person.toString()).append("\n");
+        }
+        return personList.toString();
     }
 }

@@ -1,53 +1,111 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "income" : "$5000",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "income" : "$300",
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
-    "income" : "$840",
-    "tagged" : [ ]
-  }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "income" : "$7000",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "income" : "$2500",
-    "tagged" : [ ]
-  }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "income" : "$90",
-    "tagged" : [ ]
-  }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
-    "income" : "$3000",
-    "tagged" : [ ]
-  } ]
+  "persons": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "income": "$5000",
+      "meetingDate": "23 Nov 2022",
+      "meetingLocation": "13 Computing Drive",
+      "tagged": [
+        "friends"
+      ],
+      "risk": "high",
+      "planned": [
+        "prudential income"
+      ],
+      "note": [
+        "is currently having COVID"
+      ]
+    },
+    {
+      "name": "Benson Meier",
+      "phone": "98765432",
+      "email": "johnd@example.com",
+      "address": "311, Clementi Ave 2, #02-25",
+      "income": "$300",
+      "meetingDate": "10 Dec 2022",
+      "meetingLocation": "13 Computing Drive",
+      "tagged": [
+        "owesMoney",
+        "friends"
+      ],
+      "risk": "high",
+      "planned": [
+        "prudential income"
+      ],
+      "note": null
+    },
+    {
+      "name": "Carl Kurz",
+      "phone": "95352563",
+      "email": "heinz@example.com",
+      "address": "wall street",
+      "income": "$840",
+      "meetingDate": null,
+      "meetingLocation": "13 Computing Drive",
+      "tagged": [],
+      "risk": "low",
+      "planned": [],
+      "note": null
+    },
+    {
+      "name": "Daniel Meier",
+      "phone": "87652533",
+      "email": "cornelia@example.com",
+      "address": "10th street",
+      "income": "$7000",
+      "meetingDate": "28 Nov 2022",
+      "meetingLocation": "13 Computing Drive",
+      "tagged": [
+        "friends"
+      ],
+      "risk": "high",
+      "planned": [
+        "NTUC income"
+      ],
+      "note": null
+    },
+    {
+      "name": "Elle Meyer",
+      "phone": "9482224",
+      "email": "werner@example.com",
+      "address": "michegan ave",
+      "income": "$2500",
+      "meetingDate": "16 Nov 2022",
+      "meetingLocation": "13 Computing Drive",
+      "tagged": [],
+      "risk": "medium",
+      "planned": [],
+      "note": null
+    },
+    {
+      "name": "Fiona Kunz",
+      "phone": "9482427",
+      "email": "lydia@example.com",
+      "address": "little tokyo",
+      "income": "$90",
+      "meetingDate": "12 Sep 2022",
+      "meetingLocation": "13 Computing Drive",
+      "tagged": [],
+      "risk": null,
+      "planned": [],
+      "note": null
+    },
+    {
+      "name": "George Best",
+      "phone": "9482442",
+      "email": "anna@example.com",
+      "address": "4th street",
+      "income": "$3000",
+      "meetingDate": null,
+      "meetingLocation": "13 Computing Drive",
+      "tagged": [],
+      "risk": null,
+      "planned": [],
+      "note": null
+    }
+  ]
 }

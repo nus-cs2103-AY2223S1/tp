@@ -6,8 +6,11 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLANS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RISK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
@@ -53,6 +56,18 @@ public class EditPersonDescriptorTest {
 
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different meeting date -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMeetingDate(VALID_MEETING_DATE_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different risk -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withRisk(VALID_RISK_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different plans -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPlans(VALID_PLANS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

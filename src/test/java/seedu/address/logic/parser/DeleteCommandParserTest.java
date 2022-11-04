@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_LIST;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,39 @@ public class DeleteCommandParserTest {
     }
 
     @Test
+    public void parse_allIndexValidArgs_returnsDeleteCommand() {
+        assertParseSuccess(parser, "all", new DeleteCommand());
+    }
+
+    @Test
+    public void parse_multipleIndexValidArgsTestOne_returnsDeleteCommand() {
+        assertParseSuccess(parser, "1,2,3", new DeleteCommand(INDEX_LIST));
+    }
+
+    @Test
+    public void parse_multipleIndexValidArgsTestTwo_returnsDeleteCommand() {
+        assertParseSuccess(parser, "3,1,2", new DeleteCommand(INDEX_LIST));
+    }
+
+    @Test
+    public void parse_rangeIndexValidArgs_returnsDeleteCommand() {
+        assertParseSuccess(parser, "1-3", new DeleteCommand(INDEX_LIST));
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_multipleIndexInvalidArgs_throwsParseException() {
+        assertParseFailure(parser, "1,a,3", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_MULTIPLE_DELETE_USAGE));
+    }
+
+    @Test
+    public void parse_rangeIndexInvalidArgs_throwsParseException() {
+        assertParseFailure(parser, "3-1", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_RANGE_DELETE_USAGE));
     }
 }

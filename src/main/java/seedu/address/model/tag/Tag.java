@@ -48,7 +48,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return tagName;
     }
 
 }
