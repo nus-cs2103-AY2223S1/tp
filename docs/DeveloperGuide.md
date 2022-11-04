@@ -625,7 +625,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Import trackAScholarImport File
 
-1. Run trackAScholar program (make some changes to the file) and close it
+1. Run TrackAScholar (make some changes to the file) and close it
 2. It will create a new ./data/ folder with the trackAScholar.json file in the same folder 
 3. Insert the trackAScholarImport.json file here (Note that the name needs to be exactly as stated)
 
