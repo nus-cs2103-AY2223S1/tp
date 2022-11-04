@@ -15,7 +15,7 @@
     "scholarship" : "Merit",
     "applicationStatus": "accepted",
     "majors" : [ "Computer Science", "Mathematics" ],
-    "hasPinned" : false
+    "hasPinned" : true
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
