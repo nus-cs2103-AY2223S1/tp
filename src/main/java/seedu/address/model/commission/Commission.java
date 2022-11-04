@@ -74,7 +74,11 @@ public class Commission {
         completionStatus = builder.status;
         tags = builder.tags;
         description = builder.description;
-        iterations = builder.iterations;
+        iterations = new UniqueIterationList();
+        builder.iterations.forEach(iteration -> {
+            iterations.add(new Iteration(iteration.getDate(), iteration.getDescription(), iteration.getImagePath(),
+                    iteration.getFeedback()));
+        });
         this.customer = customer;
     }
 
