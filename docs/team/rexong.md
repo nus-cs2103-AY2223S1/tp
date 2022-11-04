@@ -13,12 +13,12 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=rexong&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements Implemented**:
-  * Refactored most `person` and `addressbook` to `client` and MyInsuRec` respectively. [#116](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/116)
-  * Implemented `delMeeting` command. [#129](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/129)
-  * Implemented tests for `delMeeting` command. [#140](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/140)
-  * Changed Client's attributes `meeting` to meeting list `List&lt;Meeting&gt;`. [#164](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/164)
-  * Implemented `listClient` by birthday to list client with upcoming birthday. [#202](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/202)
-  * Fixed valid date accepted by both the `MeetingDate` and `Birthday`. [#294](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/294)
+  * Refactored most `person` and `addressbook` to `client` and MyInsuRec` respectively. [#116](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/116) This task alone was fairly simple to complete after looking at tutorials from the textbooks and only had to ensure that the testcases still works despite the change in name.
+  * Implemented `delMeeting` command. [#129](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/129) This task implements a new command as part of the CRUD features for meetings which was manageable. 
+  * Implemented tests for `delMeeting` command. [#140](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/140) To ensure the `delMeeting` command works as intended, I wrote some test cases to ensure it works as intended.
+  * Changed Client's attributes `meeting` to meeting list `List&lt;Meeting&gt;`. [#164](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/164) This task was challenging as our team wanted to make a bidirectional association immutable and I spent hours trying to find a solution that can work. However, we were not able to find a solution and due to time, we settle with our current implementation of having the meeting list in client mutable. 
+  * Implemented `listClient` by birthday to list client with upcoming birthday. [#202](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/202) This task was manageable as this was an implementation that builds on functions we already had and I felt that this was similar to implementing a new feature.
+  * Fixed valid date accepted by both the `MeetingDate` and `Birthday`. [#294](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/294) This task was fairly simple as I just added checks to ensure valid results.
 
 * **Contributions to team-based task**:
   * Designed the User Interface for MyInsuRec. [Mockup](https://www.figma.com/file/uTvPCqGAF8BiQUaxK1gU5r/CS2103T-MyInsuRec-Mockup?node-id=0%3A1)
