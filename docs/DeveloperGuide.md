@@ -690,7 +690,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User <u>searches for guest (Use case 2)</u>.
 2. User requests to add to or deduct from a guest's bill.
-3. System adds to or deducts from  the original guest's bill.
+3. System adds to or deducts from the original guest's bill.
 
    Use case ends.
 
