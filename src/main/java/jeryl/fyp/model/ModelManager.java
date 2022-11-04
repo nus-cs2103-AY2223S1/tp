@@ -242,7 +242,6 @@ public class ModelManager implements Model {
         completedStudents.setPredicate(predicate);
         uncompletedStudents.setPredicate(predicate);
     }
-
      @Override
     public DeadlineList listDeadlineUnderStudent(Student student) {
         return fypManager.getDeadlineList(student);
