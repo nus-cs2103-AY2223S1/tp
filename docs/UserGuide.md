@@ -287,7 +287,7 @@ keep track of it by adding it to Plannit using the `add-task` command.
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:**<br/> 
-Make sure you have [added a module](#211-add-module-add-module) to Plannit 
+Make sure you have [added a module](#211-add-module) to Plannit 
 before proceeding!
 </div>
 
