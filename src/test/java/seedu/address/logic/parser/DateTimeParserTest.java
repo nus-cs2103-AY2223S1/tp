@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +21,8 @@ public class DateTimeParserTest {
     private static final String INVALID_DAY = "1000-04-2023 12:30";
     private static final String INVALID_DAY_ERROR_MESSAGE = "Text '1000-04-2023 12:30' could not be parsed: "
             + "Invalid value for DayOfMonth (valid values 1 - 28/31): 1000";
-    private static final String INVALID_MONTH_ERROR_MESSAGE = "Text '01-13-2023 12:30' could not be parsed: Invalid value for MonthOfYear (valid values 1 - 12): 13";
+    private static final String INVALID_MONTH_ERROR_MESSAGE =
+            "Text '01-13-2023 12:30' could not be parsed: Invalid value for MonthOfYear (valid values 1 - 12): 13";
     private static final String INVALID_YEAR_ERROR_MESSAGE = "Text '01-04-23 12:30' could not be parsed at index 6";
     private DateTimeParser parser = new DateTimeParser();
 
