@@ -226,24 +226,27 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
-            if (commandResult.isFocus()) {
-                handleFocusMode();
-            }
-
-            if (commandResult.isUnfocus()) {
-                handleUnfocusMode();
+            if (commandResult.hasUiAction()) {
+                switch (commandResult.getUiAction()) {
+                case HELP:
+                    handleHelp();
+                    break;
+                case EXIT:
+                    handleExit();
+                    break;
+                case FOCUS:
+                    handleFocusMode();
+                    break;
+                case UNFOCUS:
+                    handleUnfocusMode();
+                    break;
+                default:
+                    assert false;
+                }
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | AssertionError e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

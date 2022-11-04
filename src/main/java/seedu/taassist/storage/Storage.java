@@ -35,4 +35,9 @@ public interface Storage extends TaAssistStorage, UserPrefsStorage {
      * If the backup file already exists, it will be overwritten.
      */
     void backupFile(Path filePath) throws IOException;
+
+    /**
+     * Exports a CSV file with the given {@code fileName} and {@code fileData}.
+     */
+    void exportAsCsv(String fileName, String fileData) throws IOException;
 }

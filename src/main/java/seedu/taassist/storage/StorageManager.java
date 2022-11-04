@@ -1,7 +1,10 @@
 package seedu.taassist.storage;
 
+import static seedu.taassist.commons.core.csv.CsvConfig.CSV_EXTENSION;
+
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -18,6 +21,7 @@ import seedu.taassist.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+    private static final Path USER_DIR = Paths.get(System.getProperty("user.dir")).resolve("data");
     private TaAssistStorage taAssistStorage;
     private UserPrefsStorage userPrefsStorage;
 
@@ -83,5 +87,12 @@ public class StorageManager implements Storage {
         }
         Path backupFilePath = filePath.resolveSibling(filePath.getFileName() + ".bak");
         FileUtil.writeToFile(backupFilePath, FileUtil.readFromFile(filePath));
+    }
+
+    // ================ Export method ==============================
+    @Override
+    public void exportAsCsv(String fileName, String fileData) throws IOException {
+        Path filePath = USER_DIR.resolve(fileName + CSV_EXTENSION);
+        FileUtil.writeToFile(filePath, fileData);
     }
 }
