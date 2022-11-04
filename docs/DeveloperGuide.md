@@ -352,12 +352,12 @@ The following activity diagram summarises what happens when a user enters a `mar
 
 <span style="font-size: large; color: #e46c0a">Design Considerations:</span>
 **Aspect: The scope at which the command changes all guests' `isRoomClean` statuses**
-* Alternative 1: Allow `markroomsunclean` command to operate only on the last shown list instead of the entire list. This is to standardise how edits are made across the commands (e.g. edit and delete).
+* Alternative 1: Allow `markroomsunclean` command to operate only on the last shown list instead of the entire list. This is to standardise how edits are made across the commands (e.g. `edit` and `delete`).
   * Pros: This might be more intuitive for users, as `edit` and `delete` commands work only on the last shown lists.
   * Cons: User is unable to change all the guests' `isRoomClean` statuses in a single command.
 * Alternative 2 (current choice): Allow `markroomsunclean` command to change all guests' `isRoomClean` statuses in GuestBook instead of the last shown list.
   * Pros: User is able to change all the guests' `isRoomClean` statuses in a single command.
-  * Cons: There is less flexibility in marking groups of guests' room as unclean.
+  * Cons: There is less flexibility in marking groups of guests' rooms as unclean.
 
 Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' `isRoomClean` statuses differently as the types of rooms as mostly homogenous. Hence, we decided to proceed with Alternative 2.
 
@@ -489,12 +489,12 @@ This is a quick overview of all the commands and their functionalities.
 | **Bill**               | `bill INDEX b/BILL`                                                                                                       | `bill 2 b/99.99` <br> Increases the bill of guest at the second index by 99.99. <br><br> `bill 1 b/-10` <br> Decreases the bill of the first guest by 10. |
 | **Clear**              | `clear`                                                                                                                   | Clears all guest entries in GuestBook.                                                                                                                  |                                                                                                                                                      |
 | **Delete**             | `delete INDEX`                                                                                                            | `delete 3`<br> Deletes the third guest in the current list.                                                                                             |
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]` | `edit 2 rc/yes` <br> Edits the second guest in the current list by changing the guest's the room clean status to "yes".                                 |
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]` | `edit 2 rc/yes` <br> Edits the second guest in the current list by changing the guest's room clean status to `yes`.                                     |
 | **Exit**               | `exit`                                                                                                                    | Exits and closes the GuestBook application.                                                                                                             |
-| **Find**               | `find KEYWORD [MORE_KEYWORDS]`                                                                                            | `find James Jake` <br> Searches the entire GuestBook for fields matching "James" and "Jake" and returns the matching guests.                            |
+| **Find**               | `find KEYWORD [MORE_KEYWORDS]`                                                                                            | `find James Jake` <br> Searches the entire GuestBook for fields matching `James` and `Jake` and returns the matching guests.                              |
 | **Help**               | `help`                                                                                                                    | Shows a popup on how to get help with GuestBook.                                                                                                        |
 | **List**               | `list`                                                                                                                    | Displays a list containing all the guest in GuestBook.                                                                                                  |
-| **Mark Rooms Unclean** | `markroomsunclean`                                                                                                        | Changes the room clean statuses of all guests to `no`.                                                                                                    |                                                                                                                                                       |
+| **Mark Rooms Unclean** | `markroomsunclean`                                                                                                        | Changes the room clean statuses of all guests to `no`.                                                                                                  |                                                                                                                                                       |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -689,8 +689,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User <u>searches for guest (Use case 2)</u>.
-2. User requests to add or deduct to a guest's bill.
-3. System add or deduct to original guest's bill.
+2. User requests to add to or deduct from a guest's bill.
+3. System adds to or deducts from  the original guest's bill.
 
    Use case ends.
 
