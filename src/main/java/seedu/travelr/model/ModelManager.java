@@ -307,8 +307,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortBucketList(Comparator<Event> comp) {
-        travelr.sortBucketList(comp);
+    public void sortEvents(Comparator<Event> comp) {
+        travelr.sortEvents(comp);
     }
 
     @Override

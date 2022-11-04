@@ -251,7 +251,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortBucketList(Comparator<Event> comp) {
+        public void sortEvents(Comparator<Event> comp) {
             throw new AssertionError("This method should not be called.");
         }
 

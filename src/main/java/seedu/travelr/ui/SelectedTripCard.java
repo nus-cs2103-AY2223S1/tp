@@ -48,6 +48,7 @@ public class SelectedTripCard extends UiPart<Region> {
     public SelectedTripCard(ObservableTrip selectedTrip, Image completed) {
         super(FXML);
         this.selectedTrip = selectedTrip;
+        this.completed = completed;
         title.textProperty().addListener((ob, o, n) -> setSelectedTripLabel(title.getText()));
         title.textProperty().bind(selectedTrip.getObservableTitle());
         description.textProperty().bind(selectedTrip.getObservableDescription());
