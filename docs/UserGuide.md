@@ -473,13 +473,17 @@ Shows the list of meetings in MyInsuRec.
 
 A valid filter can also be applied to show a selected list of meetings.
 
-Format: `listMeeting [d/DATE]`
+Format: `listMeeting [d/PERIOD]`
 
-* A valid filter can be upcoming meetings happening in range `DATE`.
-* `DATE` is specified by keywords. The possible keywords are:
+* A valid filter can be upcoming meetings happening in range `PERIOD`.
+* `PERIOD` is specified by keywords. The possible keywords are:
   * `tomorrow` for a list of meetings happening tomorrow;
   * `week` for a list of meetings happening in the next week;
   * `month` for a list of meetings happening from the start of the respective month to the end of the respective month.
+
+<div markdown="span" class="alert alert-info">**:information_source: Note:**
+The valid inputs for `d/PERIOD` differs from that of `d/DATE`! `d/PERIOD` can only accept keywords, while `d/DATE` can only accept specific dates. 
+</div>
 
 Use case:
 1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
@@ -716,7 +720,7 @@ Add the product to the client using the [`editClient`](#715-edit-client-editclie
 | [**Delete client**](#714-delete-client-delclient)    | `delClient i/INDEX`                                                                            | • `delClient i/1`                                                                                                                                |
 | [**Edit client**](#715-edit-client-editclient)       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` | • `editClient i/1 n/John Smith`                                                                                                                  |
 | [**Add meeting**](#721-add-meeting-addmeeting)       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`                                              | • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                             |
-| [**List meetings**](#722-list-meetings-listmeeting)  | `listMeeting [d/DATE]`                                                                         | • `listMeeting` <br> • `listMeeting d/tomorrow` <br> • `listMeeting d/week`  <br> • `listMeeting d/month`                                        |
+| [**List meetings**](#722-list-meetings-listmeeting)  | `listMeeting [d/PERIOD]`                                                                       | • `listMeeting` <br> • `listMeeting d/tomorrow` <br> • `listMeeting d/week`  <br> • `listMeeting d/month`                                        |
 | [**View meeting**](#723-view-meeting-viewmeeting)    | `viewMeeting i/INDEX`                                                                          | • `viewMeeting i/1`                                                                                                                              |
 | [**Delete meeting**](#724-delete-meeting-delmeeting) | `delMeeting i/INDEX`                                                                           | • `delMeeting i/1`                                                                                                                               |
 | [**Edit meeting**](#725-edit-meeting-editmeeting)    | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`                  | • `i/1 dn/Follow up team meeting`                                                                                                                |
