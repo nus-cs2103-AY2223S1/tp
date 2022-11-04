@@ -18,16 +18,15 @@ import seedu.address.model.task.Task;
  */
 public class DeleteTagCommand extends Command {
     public static final String COMMAND_WORD = "tagdel";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes tags linked to the task.\n"
-            + "Format: " + COMMAND_WORD + " " + "[" + PREFIX_TAG + "TAG]\n"
-            + "Example: " + COMMAND_WORD + " " + "t/" + "priority\n"
-            + COMMAND_WORD + " " + PREFIX_TAG + "priority deadline";
+    public static final String MESSAGE_USAGE = "t " + COMMAND_WORD + ": deletes tags linked to the task.\n"
+            + "Parameters: " + "INDEX " + PREFIX_TAG + "KEYWORD [SECOND_KEYWORD]\n"
+            + "Example: " + "t " + COMMAND_WORD + " 1 " + "t/" + "priority";
     public static final String NO_PRIORITY_TAG_TO_DELETE =
             "There is no priority tag to delete from the task.";
     public static final String NO_DEADLINE_TAG_TO_DELETE =
             "There is no deadline tag to delete form the task.";
-    public static final String ALL_TAGS_DELETED_SUCCESSFULLY =
-            "All tags have been deleted from the task.";
+    public static final String TAG_DELETED_SUCCESSFULLY =
+            "The tag(s) has/have been deleted from the task.";
 
     private final Index index;
     private final Set<String> keywords;
@@ -69,6 +68,14 @@ public class DeleteTagCommand extends Command {
             changedTask = changedTask.deleteDeadlineTag();
         }
         model.replaceTask(currentTask, changedTask, true);
-        return new CommandResult(ALL_TAGS_DELETED_SUCCESSFULLY);
+        return new CommandResult(TAG_DELETED_SUCCESSFULLY);
+    }
+
+    @Override
+    public boolean equals(Object otherDeleteTagCommand) {
+        return otherDeleteTagCommand == this
+                || (otherDeleteTagCommand instanceof DeleteTagCommand
+                && keywords.equals(((DeleteTagCommand) otherDeleteTagCommand).keywords)
+                && index.equals(((DeleteTagCommand) otherDeleteTagCommand).index));
     }
 }

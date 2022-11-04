@@ -28,15 +28,15 @@ public class EditModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = "m " + COMMAND_WORD
             + ": Edits the module code, module name and module credit of the module identified "
             + "by the index number used in the displayed module list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_MOD_CODE + "MODULE CODE] "
-            + "[" + PREFIX_MOD_NAME + "MODULE NAME] "
-            + "[" + PREFIX_MOD_CREDIT + "MODULE CREDIT] "
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Parameters: INDEX "
+            + "[" + PREFIX_MOD_CODE + "MODULE CODE]* "
+            + "[" + PREFIX_MOD_NAME + "MODULE NAME]* "
+            + "[" + PREFIX_MOD_CREDIT + "MODULE CREDIT]*\n"
+            + "Example: m " + COMMAND_WORD + " 1 "
             + PREFIX_MOD_CODE + "cs2040 "
             + PREFIX_MOD_NAME + "Data Structures and Algorithms "
             + PREFIX_MOD_CREDIT + "4";
@@ -44,7 +44,9 @@ public class EditModuleCommand extends Command {
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s, Edited Name: %2$s, "
             + "Edited Credit: %3$s";
     public static final String MESSAGE_MODULE_NOT_EDITED = "The provided fields are the same as the current module";
-    public static final String MESSAGE_NO_FIELDS_PROVIDED = "The module name to edit must be provided.";
+    public static final String MESSAGE_NO_FIELDS_PROVIDED =
+            String.format("Please provide at least one of the fields to edit: %1$sMODULE CODE, "
+                    + "%2$sMODULE NAME, %3$sMODULE CREDIT", PREFIX_MOD_CODE, PREFIX_MOD_NAME, PREFIX_MOD_CREDIT);
 
     private final Index index;
     private final EditModuleDescriptor editModuleDescriptor;
@@ -66,7 +68,8 @@ public class EditModuleCommand extends Command {
         List<Module> lastShownList = model.getFilteredModuleList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_MODULE_INDEX_TOO_LARGE, lastShownList.size() + 1));
         }
 
         Module moduleToEdit = lastShownList.get(index.getZeroBased());
@@ -79,13 +82,23 @@ public class EditModuleCommand extends Command {
         try {
             model.replaceModule(moduleToEdit, editedModule);
 
+            boolean isModuleFieldUpdated = false;
             if (!moduleToEdit.isSameModule(editedModule)) {
                 if (model.hasTaskWithModule(moduleToEdit)) {
                     model.updateModuleFieldForTask(moduleToEdit, editedModule);
+                    isModuleFieldUpdated = true;
                 }
                 if (model.hasExamWithModule(moduleToEdit)) {
                     model.updateModuleFieldForExam(moduleToEdit, editedModule);
+                    isModuleFieldUpdated = true;
                 }
+            }
+
+            if (isModuleFieldUpdated) {
+                return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule,
+                        editedModule.getModuleName(), editedModule.getModuleCredit()) + "\n"
+                        + "Warning! All the tasks and exams related to the initial module "
+                        + "now have this edited Module as their new module.");
             }
 
         } catch (DuplicateModuleException e) {

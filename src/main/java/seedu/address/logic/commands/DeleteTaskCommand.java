@@ -17,10 +17,10 @@ public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "del";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = "t " + COMMAND_WORD
             + ": Deletes the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX\n"
+            + "Example: t " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
@@ -36,11 +36,18 @@ public class DeleteTaskCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_TASK_INDEX_TOO_LARGE, lastShownList.size() + 1));
         }
 
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTask(taskToDelete);
+
+        if (taskToDelete.isLinked()) {
+            return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete) + "\n"
+                    + "Warning! The link between this task and its exam is dropped.");
+        }
+
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 

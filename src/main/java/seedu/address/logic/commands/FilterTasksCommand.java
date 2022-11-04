@@ -17,12 +17,16 @@ public class FilterTasksCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Filters the task list by module and/or completion status and/or link status. "
+    public static final String MESSAGE_USAGE = "t " + COMMAND_WORD
+            + ": Filters the task list by module and/or completion status and/or link status.\n"
             + "Parameters: "
-            + PREFIX_MODULE + "MODULE "
-            + PREFIX_IS_COMPLETE + "COMPLETE(y or n) "
-            + PREFIX_IS_LINKED + "LINKED(y or n)";
+            + "[" + PREFIX_MODULE + "MODULE]* "
+            + "[" + PREFIX_IS_COMPLETE + "COMPLETED(y or n)]* "
+            + "[" + PREFIX_IS_LINKED + "LINKED(y or n)]*\n"
+            + "Example: t " + COMMAND_WORD + " "
+            + PREFIX_MODULE + "CS2103T "
+            + PREFIX_IS_COMPLETE + "y "
+            + PREFIX_IS_LINKED + "n";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks with following constraints:%1$s";
 

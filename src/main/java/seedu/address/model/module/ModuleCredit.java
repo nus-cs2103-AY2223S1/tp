@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ModuleCredit {
     public static final String MODULE_CREDIT_CONSTRAINTS =
-            "The module credit of a module should be a integer from 0 to 20";
+            "The module credit of a module should be a integer from 0 to 45";
 
     public final int moduleCredit;
 
@@ -25,7 +25,7 @@ public class ModuleCredit {
     }
 
     public static boolean isValidModuleCredit(int moduleCredit) {
-        return moduleCredit >= 0 && moduleCredit <= 20;
+        return moduleCredit >= 0 && moduleCredit <= 45;
     }
 
     @Override

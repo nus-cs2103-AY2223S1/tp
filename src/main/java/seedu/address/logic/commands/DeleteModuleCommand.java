@@ -17,10 +17,10 @@ public class DeleteModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "del";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = "m " + COMMAND_WORD
             + ": Deletes the module identified by the index number used in the displayed module list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX\n"
+            + "Example: m " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 
@@ -36,16 +36,29 @@ public class DeleteModuleCommand extends Command {
         List<Module> lastShownList = model.getFilteredModuleList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_MODULE_INDEX_TOO_LARGE, lastShownList.size() + 1));
         }
 
         Module moduleToDelete = lastShownList.get(targetIndex.getZeroBased());
 
+        boolean areTasksOrExamsDeleted = false;
+
         if (model.hasTaskWithModule(moduleToDelete)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DELETION_AS_TIED_WITH_TASK);
+            model.deleteTasksWithModule(moduleToDelete);
+            areTasksOrExamsDeleted = true;
+        }
+        if (model.hasExamWithModule(moduleToDelete)) {
+            model.deleteExamsWithModule(moduleToDelete);
+            areTasksOrExamsDeleted = true;
         }
 
         model.deleteModule(moduleToDelete);
+
+        if (areTasksOrExamsDeleted) {
+            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete) + "\n"
+                    + "Warning! All the tasks and exams related to this module have been deleted.");
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
     }
 

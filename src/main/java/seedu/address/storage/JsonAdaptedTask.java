@@ -101,11 +101,14 @@ public class JsonAdaptedTask {
         if (!TaskStatus.isValidStatus(status)) {
             throw new IllegalValueException(TaskStatus.STATUS_CONSTRAINTS);
         }
-        if (!PriorityTag.isValidTag(priority)) {
+        if (priority != null && !PriorityTag.isValidTag(priority)) {
             throw new IllegalValueException(PriorityTag.PRIORITY_TAG_CONSTRAINTS);
         }
 
         final LocalDate date;
+        if (deadline != null && !DeadlineTag.checkDateFormat(deadline)) {
+            throw new IllegalValueException(DeadlineTag.DEADLINE_TAG_FORMAT_CONSTRAINTS);
+        }
         try {
             if (deadline != null) {
                 //@@author dlimyy-reused
@@ -119,7 +122,7 @@ public class JsonAdaptedTask {
                 date = null;
             }
         } catch (DateTimeParseException dtp) {
-            throw new IllegalValueException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+            throw new IllegalValueException(DeadlineTag.DEADLINE_TAG_INVALID_DATE);
         }
         if (!((examDate == null && examDescription == null)
                 || (examDate != null && examDescription != null))) {

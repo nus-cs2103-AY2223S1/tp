@@ -21,7 +21,7 @@ public class ListModulesCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        if (model.getFilteredTaskList().size() == 0) {
+        if (model.getFilteredModuleList().size() == 0) {
             return new CommandResult(EMPTY_LIST);
         }
         return new CommandResult(MESSAGE_SUCCESS);

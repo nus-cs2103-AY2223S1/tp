@@ -15,10 +15,10 @@ import seedu.address.model.task.Task;
  */
 public class UnlinkExamCommand extends Command {
     public static final String COMMAND_WORD = "unlink";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = "e " + COMMAND_WORD
             + ": Unlinks the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX\n"
+            + "Example: e " + COMMAND_WORD + " 1";
     public static final String EXAM_UNLINKED_SUCCESS = "The exam has been successfully unlinked from the task!";
     public static final String TASK_ALREADY_UNLINKED = "The task is already not linked to any exam.";
     private final Index taskIndex;

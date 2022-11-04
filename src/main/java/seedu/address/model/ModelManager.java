@@ -160,9 +160,6 @@ public class ModelManager implements Model {
         addressBook.removeTask(target);
     }
 
-
-
-
     //========== Exam List ==================================================================================
     @Override
     public boolean hasExam(Exam exam) {
@@ -283,6 +280,12 @@ public class ModelManager implements Model {
         addressBook.updateModuleFieldForTask(previousModule, newModule);
     }
 
+    @Override
+    public void deleteTasksWithModule(Module module) {
+        requireNonNull(module);
+        addressBook.deleteTasksWithModule(module);
+    }
+
     //================================Exam Commands=====================================
     @Override
     public ObservableList<Exam> getFilteredExamList() {
@@ -307,4 +310,16 @@ public class ModelManager implements Model {
         addressBook.updateModuleFieldForExam(previousModule, newModule);
     }
 
+    @Override
+    public void deleteExamsWithModule(Module module) {
+        requireNonNull(module);
+        addressBook.deleteExamsWithModule(module);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+               || (other instanceof ModelManager
+               && this.addressBook.equals(((ModelManager) other).addressBook));
+    }
 }

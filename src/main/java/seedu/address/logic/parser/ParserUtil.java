@@ -27,16 +27,19 @@ import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskDescription;
-import seedu.address.model.task.TaskStatus;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
+
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_KEYWORDS = "The keywords for tag delete must be priority"
+    public static final String MESSAGE_INVALID_INDEX = "Index should be an unsigned integer that is"
+            + " greater than 0 and less than 2147483648.";
+    public static final String MESSAGE_INVALID_KEYWORDS = "The keywords for tagdel must be priority"
             + " or deadline or both.";
+    public static final String MESSAGE_INVALID_NUMBER_OF_KEYWORDS = "The number of keywords used for tag"
+            + "del should be either 1 or 2";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -202,8 +205,11 @@ public class ParserUtil {
     public static Set<String> parseDeleteTagKeywords(String keywords) throws ParseException {
         requireNonNull(keywords);
         String trimmedKeywords = keywords.strip();
-        String[] keywordsList = trimmedKeywords.split(" ");
+        String[] keywordsList = trimmedKeywords.split("\\s+");
         final Set<String> keywordSet = new HashSet<>();
+        if (keywordsList.length > 2 || keywordsList.length < 1) {
+            throw new ParseException(MESSAGE_INVALID_NUMBER_OF_KEYWORDS);
+        }
         for (String keyword : keywordsList) {
             if (!(keyword.equalsIgnoreCase("priority")
                     || keyword.equalsIgnoreCase("deadline"))) {
@@ -224,7 +230,7 @@ public class ParserUtil {
     public static PriorityTag parsePriorityTag(String priorityTag) throws ParseException {
         requireNonNull(priorityTag);
         String trimmedPriorityStatus = priorityTag.strip();
-        if (!PriorityTag.isValidTag(priorityTag)) {
+        if (!PriorityTag.isValidTag(trimmedPriorityStatus)) {
             throw new ParseException(PriorityTag.PRIORITY_TAG_CONSTRAINTS);
         }
         return new PriorityTag(trimmedPriorityStatus);
@@ -240,6 +246,9 @@ public class ParserUtil {
     public static DeadlineTag parseDeadlineTag(String deadline) throws ParseException {
         requireNonNull(deadline);
         final LocalDate date;
+        if (!DeadlineTag.checkDateFormat(deadline)) {
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_FORMAT_CONSTRAINTS);
+        }
         //@@author dlimyy-reused
         //Reused from https://stackoverflow.com/questions/32823368/
         //with minor modifications.
@@ -249,10 +258,10 @@ public class ParserUtil {
         try {
             date = LocalDate.parse(deadline, dtf);
         } catch (DateTimeParseException dtp) {
-            throw new ParseException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_INVALID_DATE);
         }
         if (!DeadlineTag.isValidDeadline(date)) {
-            throw new ParseException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_DATE_HAS_PASSED);
         }
         return new DeadlineTag(date);
     }
@@ -289,21 +298,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String status} into a {@code TaskStatus}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code status} is invalid.
-     */
-    public static TaskStatus parseStatus(String status) throws ParseException {
-        requireNonNull(status);
-        String trimmedStatus = status.trim();
-        if (!TaskStatus.isValidStatus(trimmedStatus)) {
-            throw new ParseException(TaskStatus.STATUS_CONSTRAINTS);
-        }
-        return TaskStatus.of(trimmedStatus);
-    }
-
-    /**
      * Parses a {@code String description} into a {@code ExamDescription}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -327,8 +321,15 @@ public class ParserUtil {
     public static ExamDate parseExamDate(String examDate) throws ParseException {
         requireNonNull(examDate);
         String trimmedDate = examDate.trim();
-        if (!ExamDate.isValidDate(trimmedDate)) {
-            throw new ParseException(ExamDate.DATE_CONSTRAINTS);
+
+        if (!ExamDate.isCorrectDateFormat(trimmedDate)) {
+            throw new ParseException(ExamDate.DATE_FORMAT_CONSTRAINTS);
+        }
+        if (!ExamDate.isExistingDate(trimmedDate)) {
+            throw new ParseException(ExamDate.VALID_DATE_CONSTRAINTS);
+        }
+        if (!ExamDate.isNotAPastDate(trimmedDate)) {
+            throw new ParseException(ExamDate.NOT_A_PAST_DATE_CONSTRAINTS);
         }
         return new ExamDate(trimmedDate);
     }

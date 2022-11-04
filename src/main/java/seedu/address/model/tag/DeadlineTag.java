@@ -9,9 +9,16 @@ import java.time.format.DateTimeFormatter;
  * Deadline Tag represents a tag which contains the deadline for the task
  */
 public class DeadlineTag implements Comparable<DeadlineTag> {
-    public static final String DEADLINE_TAG_CONSTRAINTS =
-            "Deadline of the tag should be in the format dd-mm-yyyy"
-            + " and should be a valid date entry";
+    public static final String DEADLINE_TAG_FORMAT_CONSTRAINTS =
+            "The deadline should be in the format DD-MM-YYYY. DD should be between "
+                    + "1 and 31(both inclusive)\nand MM "
+                    + "should be between 1 and 12(both inclusive)";
+    public static final String DEADLINE_TAG_INVALID_DATE =
+            "The deadline should be a valid date";
+    public static final String DEADLINE_TAG_DATE_HAS_PASSED =
+            "The deadline should not be earlier than today's date.";
+    private static final String dateFormat = "^(?:0[1-9]|[1-2][0-9]|3[0-1])[-]"
+            + "(?:0[1-9]|1[0-2])[-][0-9]{4}";
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public final LocalDate deadline;
@@ -28,6 +35,16 @@ public class DeadlineTag implements Comparable<DeadlineTag> {
     }
 
     /**
+     * Checks that the format of the date is correct
+     *
+     * @param date The date string being checked
+     * @return true if the format of string is correct; else return false;
+     */
+    public static boolean checkDateFormat(String date) {
+        return date.matches(dateFormat);
+    }
+
+    /**
      * Checks whether the deadline given is valid.
      *
      * @param testDateAdded The date being checked for validity.
@@ -35,7 +52,7 @@ public class DeadlineTag implements Comparable<DeadlineTag> {
      */
     public static boolean isValidDeadline(LocalDate testDateAdded) {
         if (testDateAdded == null) {
-            return true;
+            return false;
         }
         return testDateAdded.compareTo(LocalDate.now()) >= 0;
     }

@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY_STATUS;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -13,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
+import seedu.address.model.tag.exceptions.BothTagsCannotBeNullException;
 import seedu.address.model.task.Task;
 
 /**
@@ -20,9 +22,11 @@ import seedu.address.model.task.Task;
  */
 public class AddTagCommand extends Command {
     public static final String COMMAND_WORD = "tagadd";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": tags a task in the task list.\n"
-            + "parameters: INDEX " + PREFIX_PRIORITY_STATUS + "PRIORITY_STATUS "
-            + PREFIX_DEADLINE + "DEADLINE";
+    public static final String MESSAGE_USAGE = "t " + COMMAND_WORD + ": tags a task in the task list.\n"
+            + "Parameters: INDEX " + "[" + PREFIX_PRIORITY_STATUS + "PRIORITY_STATUS]* "
+            + "[" + PREFIX_DEADLINE + "DEADLINE]*\n"
+            + "Example: " + "t " + COMMAND_WORD + " 1"
+            + " " + PREFIX_PRIORITY_STATUS + "HIGH";
 
     public static final String TAG_ADDED_SUCCESS = "The tag(s) has/have been added successfully";
 
@@ -43,6 +47,9 @@ public class AddTagCommand extends Command {
      */
     public AddTagCommand(PriorityTag priorityTag, DeadlineTag deadlineTag, Index index) {
         requireNonNull(index);
+        if (priorityTag == null && deadlineTag == null) {
+            throw new BothTagsCannotBeNullException();
+        }
         this.priorityTag = priorityTag;
         this.deadlineTag = deadlineTag;
         this.index = index;
@@ -73,5 +80,14 @@ public class AddTagCommand extends Command {
         }
         model.replaceTask(currentTask, taggedTask, true);
         return new CommandResult(TAG_ADDED_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object otherAddTagCommand) {
+        return otherAddTagCommand == this
+                || (otherAddTagCommand instanceof AddTagCommand
+                && Objects.equals(priorityTag, ((AddTagCommand) otherAddTagCommand).priorityTag)
+                && Objects.equals(deadlineTag, ((AddTagCommand) otherAddTagCommand).deadlineTag)
+                && index.equals(((AddTagCommand) otherAddTagCommand).index));
     }
 }

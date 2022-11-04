@@ -17,163 +17,152 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-
-      <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" spacing="10.0">
-            <children>
-               <VBox prefHeight="600.0" prefWidth="1000.0">
-                  <children>
-                     <HBox prefHeight="600.0" prefWidth="1000.0">
-                        <children>
-                           <VBox fx:id="firstHalfCommands" prefHeight="299.0" prefWidth="500.0" style="-fx-border-color: white;">
-                              <children>
-                                  <HBox prefHeight="48.0" prefWidth="100.0" spacing="170.0">
-                                      <Label style="-fx-padding: 15 2 5 50;" text="Command Format" textFill="WHITE">
-                                         <font>
-                                             <Font size="15.0" />
-                                         </font>
-                                      </Label>
-                                      <Label style="-fx-padding: 15 0 5 0;" text="Description" textFill="WHITE">
-                                         <font>
-                                             <Font size="15.0" />
-                                         </font>
-                                      </Label>
-                                  </HBox>
-                                  <HBox prefHeight="37.0" prefWidth="495.0">
-                                      <Label style="-fx-padding: 0 0 0 20;" text="T add m/MODULE d/DESCRIPTION" textFill="WHITE" />
-                                      <Label style="-fx-padding: 0 0 0 100;" text="Adds the task to the task list" textFill="WHITE" />
-                                  </HBox>
-                                  <HBox prefHeight="35.0" prefWidth="495.0">
-                                      <Label style="-fx-padding: 0 0 0 20;" text="T del INDEX" textFill="WHITE" />
-                                      <Label prefHeight="17.0" prefWidth="411.0" style="-fx-padding: 0 0 0 222;" text="Deletes the task in the task list" textFill="WHITE" />
-                                  </HBox>
-                                  <HBox prefHeight="38.0" prefWidth="495.0">
-                                      <Label style="-fx-padding: 0 0 0 20;" text="T edit INDEX [m/MODULE] [d/DESCRIPTION]" textFill="WHITE" />
-                                      <Label style="-fx-padding: 0 0 0 43;" text="Edits the task in the task list" textFill="WHITE" />
-                                  </HBox>
-                                  <HBox prefHeight="36.0" prefWidth="495.0">
-                                      <Label style="-fx-padding: 0 0 0 20;" text="T list" textFill="WHITE" />
-                                      <Label style="-fx-padding: 0 0 0 260;" text="Lists the tasks in the task list" textFill="WHITE" />
-                                  </HBox>
-                                  <HBox prefHeight="47.0" prefWidth="495.0">
-                                      <Label prefWidth="216.0" style="-fx-padding: 0 0 0 20;" text="T sort c/CRITERIA" textFill="WHITE" />
-                                      <Label style="-fx-padding: 0 0 0 160;" text="Sort the tasks in the task list based on the criteria" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
-                                  </HBox>
-                                  <HBox prefHeight="34.0" prefWidth="495.0">
-                                      <Label style="-fx-padding: 0 0 0 20;" text="T filter m/MODULE c/COMPLETE l/LINKED" textFill="WHITE" />
-                                      <Label style="-fx-padding: 0 0 0 56;" text="Edits the task in the task list" textFill="WHITE" />
-                                  </HBox>
-                                  <HBox prefHeight="43.0" prefWidth="495.0">
-                                      <Label prefHeight="17.0" prefWidth="242.0" style="-fx-padding: 0 0 0 20;" text="T find KEYWORD" textFill="WHITE" />
-                                      <Label style="-fx-padding: 0 0 0 162;" text="Finds all tasks whose description matches the keyword" textFill="WHITE" wrapText="true" />
-                                  </HBox>
-                                  <HBox prefHeight="42.0" prefWidth="495.0">
-                                      <Label prefHeight="17.0" prefWidth="132.0" style="-fx-padding: 0 0 0 20;" text="T mark INDEX" textFill="WHITE" />
-                                      <Label style="-fx-padding: 0 0 0 181;" text="Marks the task in task list as complete" textFill="WHITE" wrapText="true" />
-                                  </HBox>
-                                  <HBox prefHeight="33.0" prefWidth="495.0">
-                                      <Label style="-fx-padding: 0 0 0 20;" text="T unmark INDEX" textFill="WHITE" />
-                                      <Label style="-fx-padding: 0 0 0 191;" text="Unmarks the task in the task list" textFill="WHITE" />
-                                  </HBox>
-                                  <HBox prefHeight="41.0" prefWidth="495.0">
-                                      <Label prefHeight="34.0" prefWidth="371.0" style="-fx-padding: 0 0 0 20;" text="T tagadd INDEX p/PRIORITY_STATUS dl/DEADLINE" textFill="WHITE" wrapText="true" />
-                                      <Label style="-fx-padding: 0 0 0 80;" text="Tags the task in the task list with priority status and/or deadline" textFill="WHITE" wrapText="true" />
-                                  </HBox>
-                                  <HBox prefHeight="41.0" prefWidth="495.0">
-                                      <Label prefHeight="37.0" prefWidth="290.0" style="-fx-padding: 0 0 0 20;" text="T tagedit INDEX p/PRIORITY_STATUS dl/DEADLINE" textFill="WHITE" wrapText="true" />
-                                      <Label style="-fx-padding: 0 0 0 57;" text="Edits the tag linked to the task in the task list" textFill="WHITE" wrapText="true" />
-                                  </HBox>
-                                  <HBox prefHeight="38.0" prefWidth="500.0">
-                                      <Label prefHeight="17.0" prefWidth="491.0" style="-fx-padding: 0 0 0 20;" text="T tagdel INDEX t/KEYWORD [SECOND_KEYWORD]" textFill="WHITE" />
-                                      <Label prefWidth="396.0" style="-fx-padding: 0 0 0 8;" text="Deletes the tag linked to the task in the task list" textFill="WHITE" wrapText="true" />
-                                  </HBox>
-                                  <HBox prefHeight="33.0" prefWidth="500.0">
-                                      <Label style="-fx-padding: 0 0 0 20;" text="T clear" textFill="WHITE" />
-                                      <Label prefHeight="27.0" prefWidth="442.0" style="-fx-padding: 0 0 0 249;" text="Clears all tasks in the task list" textFill="WHITE" />
-                                  </HBox>
-                              </children>
-                           </VBox>
-                            <VBox fx:id="secondHalfCommands" prefHeight="299.0" prefWidth="500.0" style="-fx-border-color: white;">
-                                <HBox prefHeight="48.0" prefWidth="100.0" spacing="170.0">
-                                    <Label style="-fx-padding: 15 2 5 50;" text="Command Format" textFill="WHITE">
-                                        <font>
-                                            <Font size="15.0" />
-                                        </font>
-                                    </Label>
-                                    <Label style="-fx-padding: 15 0 5 0;" text="Description" textFill="WHITE">
-                                        <font>
-                                            <Font size="15.0" />
-                                        </font>
-                                    </Label>
-                                </HBox>
-                                <HBox prefHeight="43.0" prefWidth="500.0">
-                                    <Label prefHeight="35.0" prefWidth="261.0" style="-fx-padding: 0 0 0 20;" text="M add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT" textFill="WHITE" wrapText="true" />
-                                    <Label prefHeight="36.0" prefWidth="207.0" style="-fx-padding: 0 0 0 35;" text="Adds the module to the module list" textFill="WHITE" wrapText="true" />
-                                </HBox>
-                                <HBox prefHeight="43.0" prefWidth="497.0">
-                                    <Label prefHeight="47.0" prefWidth="259.0" style="-fx-padding: 0 0 0 20;" text="M edit INDEX [c/MODULE CODE] [m/MODULE NAME] [mc/MODULE CREDIT]" textFill="WHITE" wrapText="true" />
-                                    <Label style="-fx-padding: 10 0 0 36;" text="Edits the module in the module list" textFill="WHITE" wrapText="true" />
-                                </HBox>
-                                <HBox prefHeight="41.0" prefWidth="497.0">
-                                    <Label style="-fx-padding: 10 0 0 20;" text="M del INDEX" textFill="WHITE" />
-                                    <Label prefWidth="381.0" style="-fx-padding: 0 0 0 205;" text="Deletes the module in the module list" textFill="WHITE" wrapText="true" />
-                                </HBox>
-                                <HBox prefHeight="28.0" prefWidth="500.0">
-                                    <Label style="-fx-padding: 0 0 0 20;" text="M list" textFill="WHITE" />
-                                    <Label style="-fx-padding: 0 0 0 245;" text="Lists all modules in the module list" textFill="WHITE" />
-                                </HBox>
-                                <HBox prefHeight="39.0" prefWidth="500.0">
-                                    <Label prefHeight="17.0" prefWidth="268.0" style="-fx-padding: 8 0 0 20;" text="M find KEYWORD" textFill="WHITE" />
-                                    <Label style="-fx-padding: 0 15 0 170;" text="Finds all modules whose module code matches the keyword" textFill="WHITE" wrapText="true" />
-                                </HBox>
-                                <HBox prefHeight="35.0" prefWidth="500.0">
-                                    <Label prefHeight="35.0" prefWidth="261.0" style="-fx-padding: 0 0 0 20;" text="E add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE" textFill="WHITE" wrapText="true" />
-                                    <Label prefHeight="36.0" prefWidth="207.0" style="-fx-padding: 0 0 0 35;" text="Adds the exam to the exam list" textFill="WHITE" wrapText="true" />
-                                </HBox>
-                                <HBox prefHeight="41.0" prefWidth="500.0">
-                                    <Label prefHeight="47.0" prefWidth="259.0" style="-fx-padding: 0 0 0 20;" text="E edit INDEX [m/MODULE] [ex/EXAM_DESCRIPTION] [ed/EXAM_DATE]" textFill="WHITE" wrapText="true" />
-                                    <Label style="-fx-padding: 13 0 0 37;" text="Edits the exam in the exam list" textFill="WHITE" wrapText="true" />
-                                </HBox>
-                                <HBox prefHeight="46.0" prefWidth="500.0">
-                                    <Label style="-fx-padding: 10 0 0 20;" text="E del INDEX" textFill="WHITE" />
-                                    <Label prefWidth="381.0" style="-fx-padding: 5 0 0 212;" text="Deletes the exam in the exam list" textFill="WHITE" wrapText="true" />
-                                </HBox>
-                                <HBox prefHeight="40.0" prefWidth="500.0">
-                                    <Label prefHeight="17.0" prefWidth="217.0" style="-fx-padding: 0 0 0 20;" text="E link e/EXAM_INDEX t/TASK_INDEX" textFill="WHITE" />
-                                    <Label style="-fx-padding: 2 0 0 78;" text="Links the task to the exam" textFill="WHITE" />
-                                </HBox>
-                                <HBox prefHeight="36.0" prefWidth="500.0">
-                                    <Label prefHeight="17.0" prefWidth="120.0" style="-fx-padding: 0 0 0 20;" text="E unlink INDEX " textFill="WHITE" />
-                                    <Label style="-fx-padding: 0 0 0 174;" text="Unlinks the task from the exam" textFill="WHITE" />
-                                </HBox>
-                                <HBox prefHeight="38.0" prefWidth="500.0">
-                                    <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="E showT INDEX" textFill="WHITE" />
-                                    <Label style="-fx-padding: 0 0 0 183;" text="View all tasks linked to the exam" textFill="WHITE" />
-                                </HBox>
-                                <HBox prefHeight="37.0" prefWidth="500.0">
-                                    <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="clearAll" textFill="WHITE" />
-                                    <Label style="-fx-padding: 0 0 0 182;" text="Clears all exams,modules and tasks" textFill="WHITE" />
-                                </HBox>
-                                <HBox prefHeight="30.0" prefWidth="500.0">
-                                    <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="help" textFill="WHITE" />
-                                    <Label style="-fx-padding: 0 0 0 182;" text="View all available commands" textFill="WHITE" />
-                                </HBox>
-                                <HBox prefHeight="28.0" prefWidth="500.0">
-                                    <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="exit" textFill="WHITE" />
-                                    <Label style="-fx-padding: 0 0 0 181;" text="To exit MODPRO application" textFill="WHITE" />
-                                </HBox>
-                            </VBox>
-                        </children>
-                     </HBox>
-                     <HBox fx:id="helpLinkContainer" alignment="CENTER" prefHeight="80.0" prefWidth="1000.0">
-                        <children>
-                           <Label fx:id="helpMessage" style="-fx-padding: 0 15 0 0;" text="helpMessage" />
-                           <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" />
-                        </children>
-                     </HBox>
-                  </children>
-               </VBox>
-            </children>
-      </HBox>
+        <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" spacing="10.0">
+            <VBox prefHeight="600.0" prefWidth="1000.0">
+                <HBox prefHeight="600.0" prefWidth="1000.0">
+                    <VBox fx:id="firstHalfCommands" prefHeight="299.0" prefWidth="500.0" style="-fx-border-color: white;">
+                        <HBox prefHeight="48.0" prefWidth="100.0" spacing="170.0">
+                            <Label style="-fx-padding: 15 2 5 50;" text="Command Format" textFill="WHITE">
+                                <font>
+                                    <Font size="15.0" />
+                                </font>
+                            </Label>
+                            <Label style="-fx-padding: 15 0 5 0;" text="Description" textFill="WHITE">
+                                <font>
+                                    <Font size="15.0" />
+                                </font>
+                            </Label>
+                        </HBox>
+                        <HBox prefHeight="37.0" prefWidth="495.0">
+                            <Label style="-fx-padding: 0 0 0 20;" text="T add m/MODULE d/DESCRIPTION" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 100;" text="Adds the task to the task list" textFill="WHITE" />
+                        </HBox>
+                        <HBox prefHeight="35.0" prefWidth="495.0">
+                            <Label style="-fx-padding: 0 0 0 20;" text="T del INDEX" textFill="WHITE" />
+                            <Label prefHeight="17.0" prefWidth="411.0" style="-fx-padding: 0 0 0 222;" text="Deletes the task in the task list" textFill="WHITE" />
+                        </HBox>
+                        <HBox prefHeight="38.0" prefWidth="495.0">
+                            <Label style="-fx-padding: 0 0 0 20;" text="T edit INDEX [m/MODULE]* [d/DESCRIPTION]*" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 31;" text="Edits the task in the task list" textFill="WHITE" />
+                        </HBox>
+                        <HBox prefHeight="36.0" prefWidth="495.0">
+                            <Label style="-fx-padding: 0 0 0 20;" text="T list" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 260;" text="Lists the tasks in the task list" textFill="WHITE" />
+                        </HBox>
+                        <HBox prefHeight="47.0" prefWidth="495.0">
+                            <Label prefWidth="216.0" style="-fx-padding: 0 0 0 20;" text="T sort c/CRITERIA" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 160;" text="Sort the tasks in the task list based on the criteria" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                        <HBox prefHeight="47.0" prefWidth="495.0">
+                            <Label prefHeight="34.0" prefWidth="371.0" style="-fx-padding: 0 0 0 20;" text="T filter [m/MODULE]* [c/COMPLETE]* [l/LINKED]*" textFill="WHITE" wrapText="true" />
+                            <Label style="-fx-padding: 0 0 0 62;" text="Filters the task list by module, completion and/or link status" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="43.0" prefWidth="495.0">
+                            <Label prefHeight="17.0" prefWidth="242.0" style="-fx-padding: 0 0 0 20;" text="T find KEYWORD" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 162;" text="Finds all tasks whose description matches the keyword" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="42.0" prefWidth="495.0">
+                            <Label prefHeight="17.0" prefWidth="132.0" style="-fx-padding: 0 0 0 20;" text="T mark INDEX" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 181;" text="Marks the task in task list as complete" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="33.0" prefWidth="495.0">
+                            <Label style="-fx-padding: 0 0 0 20;" text="T unmark INDEX" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 191;" text="Unmarks the task in the task list" textFill="WHITE" />
+                        </HBox>
+                        <HBox prefHeight="41.0" prefWidth="495.0">
+                            <Label prefHeight="36.0" prefWidth="453.0" style="-fx-padding: 0 0 0 20;" text="T tagadd INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*" textFill="WHITE" wrapText="true" />
+                            <Label style="-fx-padding: 0 0 0 0;" text="Tags the task in the task list with priority status and/or deadline" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="41.0" prefWidth="495.0">
+                            <Label prefHeight="37.0" prefWidth="290.0" style="-fx-padding: 0 0 0 20;" text="T tagedit INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*" textFill="WHITE" wrapText="true" />
+                            <Label style="-fx-padding: 0 0 0 57;" text="Edits the tag linked to the task in the task list" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="38.0" prefWidth="500.0">
+                            <Label prefHeight="17.0" prefWidth="491.0" style="-fx-padding: 0 0 0 20;" text="T tagdel INDEX t/KEYWORD [SECOND_KEYWORD]" textFill="WHITE" />
+                            <Label prefWidth="396.0" style="-fx-padding: 0 0 0 8;" text="Deletes the tag linked to the task in the task list" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="33.0" prefWidth="500.0">
+                            <Label style="-fx-padding: 0 0 0 20;" text="T clear" textFill="WHITE" />
+                            <Label prefHeight="27.0" prefWidth="442.0" style="-fx-padding: 0 0 0 249;" text="Clears all tasks in the task list" textFill="WHITE" />
+                        </HBox>
+                    </VBox>
+                    <VBox fx:id="secondHalfCommands" prefHeight="299.0" prefWidth="500.0" style="-fx-border-color: white;">
+                        <HBox prefHeight="48.0" prefWidth="100.0" spacing="170.0">
+                            <Label style="-fx-padding: 15 2 5 50;" text="Command Format" textFill="WHITE">
+                                <font>
+                                    <Font size="15.0" />
+                                </font>
+                            </Label>
+                            <Label style="-fx-padding: 15 0 5 0;" text="Description" textFill="WHITE">
+                                <font>
+                                    <Font size="15.0" />
+                                </font>
+                            </Label>
+                        </HBox>
+                        <HBox prefHeight="43.0" prefWidth="500.0">
+                            <Label prefHeight="35.0" prefWidth="261.0" style="-fx-padding: 0 0 0 20;" text="M add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT" textFill="WHITE" wrapText="true" />
+                            <Label prefHeight="36.0" prefWidth="207.0" style="-fx-padding: 0 0 0 35;" text="Adds the module to the module list" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="66.0" prefWidth="497.0">
+                            <Label prefHeight="61.0" prefWidth="259.0" style="-fx-padding: 0 0 0 20;" text="M edit INDEX [c/MODULE CODE]* [m/MODULE NAME]* [mc/MODULE CREDIT]*" textFill="WHITE" wrapText="true" />
+                            <Label style="-fx-padding: 10 0 0 36;" text="Edits the module in the module list" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="41.0" prefWidth="497.0">
+                            <Label style="-fx-padding: 10 0 0 20;" text="M del INDEX" textFill="WHITE" />
+                            <Label prefWidth="381.0" style="-fx-padding: 0 0 0 205;" text="Deletes the module in the module list" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="28.0" prefWidth="500.0">
+                            <Label style="-fx-padding: 0 0 0 20;" text="M list" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 245;" text="Lists all modules in the module list" textFill="WHITE" />
+                        </HBox>
+                        <HBox prefHeight="39.0" prefWidth="500.0">
+                            <Label prefHeight="17.0" prefWidth="268.0" style="-fx-padding: 8 0 0 20;" text="M find KEYWORD" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 15 0 170;" text="Finds all modules whose module code matches the keyword" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="44.0" prefWidth="497.0">
+                            <Label prefHeight="35.0" prefWidth="261.0" style="-fx-padding: 0 0 0 20;" text="E add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE" textFill="WHITE" wrapText="true" />
+                            <Label prefHeight="36.0" prefWidth="207.0" style="-fx-padding: 0 0 0 35;" text="Adds the exam to the exam list" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="41.0" prefWidth="500.0">
+                            <Label prefHeight="39.0" prefWidth="272.0" style="-fx-padding: 0 0 0 20;" text="E edit INDEX [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*" textFill="WHITE" wrapText="true" />
+                            <Label style="-fx-padding: 13 0 0 23;" text="Edits the exam in the exam list" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="46.0" prefWidth="500.0">
+                            <Label style="-fx-padding: 10 0 0 20;" text="E del INDEX" textFill="WHITE" />
+                            <Label prefWidth="381.0" style="-fx-padding: 5 0 0 212;" text="Deletes the exam in the exam list" textFill="WHITE" wrapText="true" />
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="500.0">
+                            <Label prefHeight="17.0" prefWidth="229.0" style="-fx-padding: 0 0 0 20;" text="E link e/EXAM_INDEX t/TASK_INDEX" textFill="WHITE" />
+                            <Label style="-fx-padding: 2 0 0 67;" text="Links the task to the exam" textFill="WHITE" />
+                        </HBox>
+                        <HBox prefHeight="36.0" prefWidth="500.0">
+                            <Label prefHeight="17.0" prefWidth="120.0" style="-fx-padding: 0 0 0 20;" text="E unlink INDEX " textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 176;" text="Unlinks the task from the exam" textFill="WHITE" />
+                        </HBox>
+                        <HBox prefHeight="38.0" prefWidth="500.0">
+                            <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="E showT INDEX" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 186;" text="View all tasks linked to the exam" textFill="WHITE" />
+                        </HBox>
+                        <HBox prefHeight="37.0" prefWidth="500.0">
+                            <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="clearAll" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 184;" text="Clears all exams,modules and tasks" textFill="WHITE" />
+                        </HBox>
+                        <HBox prefHeight="30.0" prefWidth="500.0">
+                            <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="help" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 184;" text="View all available commands" textFill="WHITE" />
+                        </HBox>
+                        <HBox prefHeight="28.0" prefWidth="500.0">
+                            <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="exit" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 184;" text="To exit MODPRO application" textFill="WHITE" />
+                        </HBox>
+                    </VBox>
+                </HBox>
+                <HBox fx:id="helpLinkContainer" alignment="CENTER" prefHeight="80.0" prefWidth="1000.0">
+                    <Label fx:id="helpMessage" style="-fx-padding: 0 15 0 0;" text="helpMessage" />
+                    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" />
+                </HBox>
+            </VBox>
+        </HBox>
     </Scene>
   </scene>
 </fx:root>

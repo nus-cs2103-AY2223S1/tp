@@ -1,81 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Label?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="1100" minHeight="600" onCloseRequest="#handleExit">
-  <icons>
-    <Image url="@/images/address_book_32.png" />
-  </icons>
-  <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
+<fx:root minHeight="600" minWidth="1100" onCloseRequest="#handleExit" title="MODPRO" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/address_book_32.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
 
-      <VBox>
-        <HBox fx:id="titleBox" prefHeight="60.0" prefWidth="1100" >
-          <Label fx:id ="title" text="MODPRO" />
-        </HBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
+            <VBox>
+                <HBox fx:id="titleBox" prefHeight="60.0" prefWidth="1100">
+                    <Label fx:id="title" text="MODPRO" />
+                </HBox>
+                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+                    <Menu mnemonicParsing="false" text="File">
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Help">
+                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                    </Menu>
+                </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border" >
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                    <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
+                </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100" >
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                    <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
+                </StackPane>
 
-        <SplitPane VBox.vgrow="ALWAYS" >
-        <VBox fx:id="taskList" styleClass="tasks-pane-with-border" minWidth="350" prefWidth="400" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="15" right="7" bottom="15" left="7" />
-          </padding>
-          <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-          <VBox fx:id="examList" styleClass="exams-pane-with-border" minWidth="350" prefWidth="400" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="15" right="7" bottom="15" left="7" />
-            </padding>
-            <StackPane fx:id="examListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-        <VBox fx:id="moduleList" styleClass="modules-pane-with-border" minWidth="350" prefWidth="400" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="15" right="7" bottom="15" left="7" />
-            </padding>
-            <StackPane fx:id="moduleListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+                <SplitPane dividerPositions="0.5, 0.5" style="-fx-padding: 0 5 0 5;" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="taskList" minWidth="350" prefWidth="400" styleClass="tasks-pane-with-border" VBox.vgrow="ALWAYS">
+                        <padding>
+                            <Insets bottom="15" left="7" right="7" top="15" />
+                        </padding>
+                        <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                    <VBox fx:id="examList" minWidth="350" prefWidth="400" styleClass="exams-pane-with-border" VBox.vgrow="ALWAYS">
+                        <padding>
+                            <Insets bottom="15" left="7" right="7" top="15" />
+                        </padding>
+                        <StackPane fx:id="examListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                    <VBox fx:id="moduleList" minWidth="350" prefWidth="400" styleClass="modules-pane-with-border" VBox.vgrow="ALWAYS">
+                        <padding>
+                            <Insets bottom="15" left="7" right="7" top="15" />
+                        </padding>
+                        <StackPane fx:id="moduleListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
 
 
-        </SplitPane>
+                </SplitPane>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
-    </Scene>
-  </scene>
+                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+            </VBox>
+        </Scene>
+    </scene>
 </fx:root>
+

@@ -12,10 +12,13 @@ import seedu.address.model.commons.Criteria;
  */
 public class SortTaskCommand extends Command {
     public static final String COMMAND_WORD = "sort";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts the task list.\n"
-            + COMMAND_WORD + " " + PREFIX_CRITERIA + "CRITERIA";
+    public static final String MESSAGE_USAGE = "t " + COMMAND_WORD + ": sorts the task list.\n"
+            + "Parameters: " + PREFIX_CRITERIA + "CRITERIA\n"
+            + "Example: " + "t " + COMMAND_WORD + " " + PREFIX_CRITERIA + "priority";
     public static final String TASK_SORTED_SUCCESSFULLY =
             "Task list has been successfully sorted";
+    public static final String NO_TASK_TO_SORT =
+            "There are no tasks in the task list to sort!";
     private final Criteria criteria;
 
     /**
@@ -33,6 +36,9 @@ public class SortTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.sortTaskList(criteria);
+        if (model.getFilteredTaskList().size() == 0) {
+            throw new CommandException(NO_TASK_TO_SORT);
+        }
         return new CommandResult(TASK_SORTED_SUCCESSFULLY);
     }
 }
