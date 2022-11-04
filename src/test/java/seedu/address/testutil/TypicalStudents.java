@@ -6,8 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INFO_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INFO_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -102,15 +100,13 @@ public class TypicalStudents {
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build())
             .withId(VALID_ID_AMY)
-            .withTelegramHandle(VALID_TELEGRAM_AMY)
-            .withStudentInfo(VALID_INFO_AMY).build();
+            .withTelegramHandle(VALID_TELEGRAM_AMY).build();
     public static final Student BOB = new StudentBuilder(new PersonBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build())
             .withId(VALID_ID_BOB)
-            .withTelegramHandle(VALID_TELEGRAM_BOB)
-            .withStudentInfo(VALID_INFO_BOB).build();
+            .withTelegramHandle(VALID_TELEGRAM_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
