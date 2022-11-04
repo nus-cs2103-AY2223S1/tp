@@ -7,7 +7,7 @@ import static java.lang.Boolean.parseBoolean;
  */
 public class Status {
 
-    public static final String MESSAGE_STRING_CONSTRAINTS = "Status should be completed or incomplete.";
+    public static final String MESSAGE_CONSTRAINTS = "Status should be completed or incomplete.";
     /**
      * Represents and empty Issue status.
      */
@@ -23,8 +23,6 @@ public class Status {
             return true;
         }
     }
-
-    public static final String MESSAGE_CONSTRAINTS = "STATUS NOT IMPLEMENTED";
 
     private boolean completed;
 
