@@ -191,3 +191,9 @@ Traverse/Scroll **down**: `<Down>`
 
 Ans: It stands for `regular expression` and is a sequence of characters that specifies a search pattern in text.
 To learn more about regex, you can refer to [this tutorial](https://regexone.com).
+
+2. Why can't I visit external links?
+
+Ans: You are likely coming from our application via the `help` command.  It is intended for the user
+to only view our website (including the user guide) via the command.  If you wish to visit any external links,
+you can copy the link and paste it into your favourite browser!
