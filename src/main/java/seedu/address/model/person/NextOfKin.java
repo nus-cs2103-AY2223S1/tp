@@ -12,7 +12,7 @@ public class NextOfKin {
     public static final String MESSAGE_CONSTRAINTS = "Next of Kin should not be blank "
             + "and should come in the format: Name, Relationship, Contact";
 
-    public static final String VALIDATION_REGEX = "[A-Za-z\\s]+,[a-zA-Z\\s]+,[0-9\\s]+";
+    public static final String VALIDATION_REGEX = "[\\s]*[A-Za-z]+[\\s]*,[\\s]*[a-zA-Z]+[\\s]*,[\\s]*[0-9]+[\\s]*";
 
     public final String value;
 

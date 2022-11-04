@@ -13,7 +13,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class NextOfKinPredicateTest {
     @Test
-    public void equals() {
+    public void equalsTest() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
