@@ -3,6 +3,8 @@ package seedu.uninurse.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_MEDICATION_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +13,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.medication.exceptions.DuplicateMedicationException;
@@ -20,18 +23,19 @@ import seedu.uninurse.model.person.Patient;
  * Edits the details of an existing medication for a patient.
  */
 public class EditMedicationCommand extends EditGenericCommand {
-    // tentative syntax; TODO: integrate with EditGenericCommand
-    public static final String COMMAND_WORD = "editMedication";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
+            + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_MEDICATION_INDEX
+            + ": Edits a medication of a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
+            + PREFIX_OPTION_MEDICATION_INDEX + " MEDICATION_INDEX "
+            + PREFIX_MEDICATION + "<MEDICATION_TYPE> | <DOSAGE>\n"
+            + "Examples:\n" + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_MEDICATION_INDEX
+            + " 1 " + PREFIX_MEDICATION + "Amoxicillin\n"
+            + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_MEDICATION_INDEX
+            + " 1 " + PREFIX_MEDICATION + "| 0.5 g every 8 hours\n"
+            + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_MEDICATION_INDEX
+            + " 1 " + PREFIX_MEDICATION + "Amoxicillin | 0.5 g every 8 hours";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the medication identified by the index number in the medication list of the patient "
-            + "identified by the index number used in the last patient listing.\n"
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: PATIENT_INDEX (must be a positive integer) "
-            + "MEDICATION_INDEX (must be a positive integer) "
-            + PREFIX_MEDICATION + "MEDICATION_TYPE | MEDICATION_DOSAGE\n"
-            + "Example: " + COMMAND_WORD + " 2 " + " 1 "
-            + PREFIX_MEDICATION + "Ampicillin | 0.5 IV every 6 hours";
 
     public static final String MESSAGE_EDIT_MEDICATION_SUCCESS = "Edited medication %1$d of %2$s:\n"
             + "Before: %3$s\n"
@@ -93,12 +97,12 @@ public class EditMedicationCommand extends EditGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedMedicationList);
 
-        model.setPerson(patientToEdit, editedPatient);
+        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_EDIT_MEDICATION_SUCCESS,
                 medicationIndex.getOneBased(), editedPatient.getName(), initialMedication, updatedMedication),
-                EDIT_MEDICATION_COMMAND_TYPE);
+                EDIT_MEDICATION_COMMAND_TYPE, patientListTracker);
     }
 
     @Override

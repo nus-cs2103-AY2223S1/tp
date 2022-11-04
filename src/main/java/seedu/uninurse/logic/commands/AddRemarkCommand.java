@@ -1,6 +1,7 @@
 package seedu.uninurse.logic.commands;
 
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.remark.Remark;
 import seedu.uninurse.model.remark.RemarkList;
@@ -18,16 +20,12 @@ import seedu.uninurse.model.remark.exceptions.DuplicateRemarkException;
  * Add a remark to an existing patient in the patient list.
  */
 public class AddRemarkCommand extends AddGenericCommand {
-    // tentative syntax; TODO: integrate with AddGenericCommand
-    public static final String COMMAND_WORD = "addRemark";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a remark to the patient identified "
-            + "by the index number used in the last patient listing.\n"
-            + "Parameters: PATIENT_INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
+            + ": Adds a remark to a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_REMARK + "REMARK\n"
-            + "Example: " + COMMAND_WORD
-            + " 2 " + PREFIX_REMARK + "Allergic to Amoxicillin";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_REMARK + "Allergic to Amoxicillin";
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "New remark added to %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_REMARK = "This remark already exists in %1$s's remark list";
@@ -68,11 +66,11 @@ public class AddRemarkCommand extends AddGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedRemarkList);
 
-        model.setPerson(patientToEdit, editedPatient);
+        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_ADD_REMARK_SUCCESS, editedPatient.getName(), remark),
-                ADD_REMARK_COMMAND_TYPE);
+                ADD_REMARK_COMMAND_TYPE, patientListTracker);
     }
 
     @Override

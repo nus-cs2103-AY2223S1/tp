@@ -10,6 +10,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
@@ -19,10 +20,11 @@ import seedu.uninurse.model.tag.exceptions.DuplicateTagException;
  * Add a tag to an existing patient in the person list.
  */
 public class AddTagCommand extends AddGenericCommand {
-    public static final String MESSAGE_USAGE = "Command: Add a tag to a patient.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
+            + ": Adds a tag to a patient."
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_TAG + "TAG\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_TAG + "high-risk";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_TAG + "fall-risk";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "New tag added to %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in %1$s's tag list";
@@ -64,11 +66,11 @@ public class AddTagCommand extends AddGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedTagList);
 
-        model.setPerson(patientToEdit, editedPatient);
+        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPatient.getName(), tag),
-                ADD_TAG_COMMAND_TYPE);
+                ADD_TAG_COMMAND_TYPE, patientListTracker);
     }
 
     @Override

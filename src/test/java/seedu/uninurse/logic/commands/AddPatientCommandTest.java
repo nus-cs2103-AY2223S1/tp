@@ -112,7 +112,7 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void addPerson(Patient person) {
+        public PatientListTracker addPerson(Patient person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -132,17 +132,17 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void deletePerson(Patient target) {
+        public PatientListTracker deletePerson(Patient target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void clearPersons(List<Patient> targets) {
+        public PatientListTracker clearPersons(List<Patient> targets) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Patient target, Patient editedPerson) {
+        public PatientListTracker setPerson(Patient target, Patient editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -187,17 +187,17 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void undo() {
+        public CommandResult undo() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void redo() {
+        public CommandResult redo() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void makeSnapshot(PatientListTracker patientListTracker) {
+        public void makeSnapshot(CommandResult commandResult) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -253,9 +253,10 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void addPerson(Patient person) {
+        public PatientListTracker addPerson(Patient person) {
             requireNonNull(person);
             personsAdded.add(person);
+            return new PatientListTracker();
         }
 
         @Override

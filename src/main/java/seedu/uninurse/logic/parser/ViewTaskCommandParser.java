@@ -1,6 +1,6 @@
 package seedu.uninurse.logic.parser;
 
-import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.ViewTaskCommand;
@@ -14,15 +14,14 @@ public class ViewTaskCommandParser implements Parser<ViewTaskCommand> {
      * Parses the given {@code String} of arguments in the context of the ViewTaskCommand
      * and returns a ViewTaskCommand object for execution.
      *
+     * @param args the string of arguments given
+     * @return ViewTaskCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewTaskCommand parse(String args) throws ParseException {
-        try {
-            Index index = ParserUtil.parseIndex(args);
-            return new ViewTaskCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewTaskCommand.MESSAGE_USAGE), pe);
-        }
+        requireAllNonNull(args);
+
+        Index index = ParserUtil.parseIndex(args);
+        return new ViewTaskCommand(index);
     }
 }

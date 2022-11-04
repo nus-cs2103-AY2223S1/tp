@@ -4,6 +4,8 @@ import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.uninurse.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.uninurse.model.condition.Condition.MESSAGE_CONSTRAINTS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalConditions.CONDITION_DIABETES;
 import static seedu.uninurse.testutil.TypicalConditions.TYPICAL_CONDITION_DIABETES;
@@ -15,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.uninurse.logic.commands.EditConditionCommand;
 
 /**
- * Contains unit tests for {@code EditConditionCommandParser}.
+ * Contains unit tests for EditConditionCommandParser.
  */
 public class EditConditionCommandParserTest {
     private final EditConditionCommandParser parser = new EditConditionCommandParser();
@@ -40,44 +42,38 @@ public class EditConditionCommandParserTest {
     public void parse_invalidPatientIndex_failure() {
         String userInput = " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " " + PREFIX_CONDITION
                 + TYPICAL_CONDITION_DIABETES;
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditConditionCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, "a" + userInput, expectedMessage);
-        assertParseFailure(parser, "0" + userInput, expectedMessage);
+        assertParseFailure(parser, "a" + userInput, MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "0" + userInput, MESSAGE_INVALID_INDEX);
     }
 
     @Test
     public void parse_missingPatientIndex_failure() {
         String userInput = INDEX_FIRST_ATTRIBUTE.getOneBased() + " " + PREFIX_CONDITION + TYPICAL_CONDITION_DIABETES;
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditConditionCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, userInput, expectedMessage);
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_INDEX);
     }
 
     @Test
     public void parse_invalidConditionIndex_failure() {
         String userInput = " " + PREFIX_CONDITION + TYPICAL_CONDITION_DIABETES;
-        assertParseFailure(parser, "1 a" + userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditConditionCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "1 0" + userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditConditionCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "1 a" + userInput, MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "1 0" + userInput, MESSAGE_INVALID_INDEX);
     }
 
     @Test
     public void parse_missingConditionIndex_failure() {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_CONDITION + TYPICAL_CONDITION_DIABETES;
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditConditionCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, userInput, expectedMessage);
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_INDEX);
     }
 
     @Test
     public void parse_emptyCondition_failure() {
         String userInput = "1 1 " + PREFIX_CONDITION;
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditConditionCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, userInput, expectedMessage);
+        assertParseFailure(parser, userInput, MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_missingConditionPrefix_failure() {
-        String expectedMessage = EditConditionCommandParser.MESSAGE_MISSING_CONDITION;
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditConditionCommand.MESSAGE_USAGE);
         assertParseFailure(parser, "1 1" , expectedMessage);
     }
 }

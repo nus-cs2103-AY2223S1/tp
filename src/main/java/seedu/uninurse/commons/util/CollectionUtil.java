@@ -11,7 +11,6 @@ import java.util.stream.Stream;
  * Utility methods related to Collections
  */
 public class CollectionUtil {
-
     /** @see #requireAllNonNull(Collection) */
     public static void requireAllNonNull(Object... items) {
         requireNonNull(items);
@@ -19,7 +18,9 @@ public class CollectionUtil {
     }
 
     /**
-     * Throws NullPointerException if {@code items} or any element of {@code items} is null.
+     * Ensures that the items are not null.
+     *
+     * @throws NullPointerException if items or any element of items is null.
      */
     public static void requireAllNonNull(Collection<?> items) {
         requireNonNull(items);
@@ -27,7 +28,7 @@ public class CollectionUtil {
     }
 
     /**
-     * Returns true if {@code items} contain any elements that are non-null.
+     * Returns true if items contain any elements that are non-null.
      */
     public static boolean isAnyNonNull(Object... items) {
         return items != null && Arrays.stream(items).anyMatch(Objects::nonNull);
