@@ -17,7 +17,6 @@ import seedu.uninurse.logic.commands.DeleteConditionCommand;
  * Contains unit tests for DeleteConditionCommandParser.
  */
 public class DeleteConditionCommandParserTest {
-
     private final DeleteConditionCommandParser parser = new DeleteConditionCommandParser();
 
     @Test
