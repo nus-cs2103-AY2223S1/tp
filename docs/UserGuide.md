@@ -109,19 +109,19 @@ This section contains all the information on the main features of **ProfNUS**. Y
 
 Switch to light mode.
 
-Format: `light`
+**Format:** `light`
 
 #### 4.1.2. Switch to dark mode: `dark`
 
 Switch to dark mode.
 
-Format: `dark`
+**Format:** `dark`
 
 #### 4.1.3. Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
-Format: `help`
+**Format:** `help`
 
 ### 4.2. Modules
 
@@ -132,7 +132,7 @@ You can click on each module to view more details about the module.
 
 ![mlist](images/userguide/mlist.png)
 
-Format: `mlist`
+**Format:** `mlist`
 
 #### 4.2.2. Viewing more details of a module in the list of modules: `vtarget`
 
@@ -141,9 +141,9 @@ at your specified `INDEX`.
 More information such as name of the module and module description,
 as well as any tags given to the module will be displayed.
 
-Format: `vtarget INDEX`
+**Format:** `vtarget INDEX`
 
-Examples: `vtarget 3`
+**Examples:** `vtarget 3`
 
 #### 4.2.3. Viewing module details: `mview`
 
@@ -151,24 +151,24 @@ Shows a list of students and tutors in the module.
 
 ![mlist](images/userguide/mview.png)
 
-Format: `mview c/MODULE_CODE`
+**Format:** `mview c/MODULE_CODE`
 
 * Views the list of students and tutors at the specified `MODULE_CODE`.
 
-Examples:
+**Examples:**
 *  `mview c/CS1101S` Views the list of students and tutors in CS1101S.
 
 #### 4.2.4. Adding a module: `madd`
 
 Adds a module to ProfNUS.
 
-Format: `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​`
+**Format:** `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A module can have any number of tags or modules(including 0)
 </div>
 
-Examples:
+**Examples:**
 * `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/ModuleCoordinator`
 * `madd n/Introduction to Cybersecurity c/CS2107 d/Cryptography practices t/NEW t/URGENT`
 
@@ -176,9 +176,9 @@ Examples:
 
 Deletes a module stored in ProfNUS.
 
-Format: `mdel c/MODULE_CODE`
+**Format:** `mdel c/MODULE_CODE`
 
-Examples:
+**Examples:**
 * `mdel c/CS2103T`
 
 ### 4.3. Students
@@ -187,7 +187,7 @@ Examples:
 
 Adds a student/teaching assistant to the module.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/STUDENT_ID h/TELEGRAM [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
+**Format:** `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/STUDENT_ID h/TELEGRAM [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** A student can have any number of tags, modules, ta modules and class groups (including 0).
@@ -195,7 +195,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/STUDENT_ID h/TELEGRAM [t/
 
 </div>
 
-Examples:
+**Examples:**
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/A0175749U h/@good_user`
 * `add n/Adam Doink e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 i/A0175776U h/@adam_doink c/CS1101S cg/CS1101S:Tut07`
 * `add n/David Lim e/ad4md01nk@example.com a/Tembusu College p/82738419 i/A0175079D h/@david_the_best c/CS2030S ta/CS1101S cg/CS1101S:Tut07`
@@ -204,7 +204,7 @@ Examples:
 
 Edits an existing student in ProfNUS.
 
-Format: `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
+**Format:** `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -213,7 +213,7 @@ Format: `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c
 * You can remove all the student’s tags by typing `t/` without
   specifying any tags after it.
 
-Examples:
+**Examples:**
 *  `editstu 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `editstu 2 n/Betsy Crower ta/` Edits the name of the 2nd student to be `Betsy Crower` and clears all ta modules.
 
@@ -222,7 +222,7 @@ Examples:
 
 Edits an existing teaching assistant in ProfNUS.
 
-Format: `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
+**Format:** `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
 
 * Edits the teaching assistant at the specified `INDEX`. The index refers to the index number shown in the displayed teaching assistant list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -231,7 +231,7 @@ Format: `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/
 * You can remove all the teaching assistant’s modules by typing `c/` without
   specifying any modules after it.
 
-Examples:
+**Examples:**
 *  `editta 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teaching assistant to be `91234567` and `johndoe@example.com` respectively.
 *  `editta 2 n/Betsy Crower ta/` Edits the name of the 2nd teaching assistant to be `Betsy Crower` and clears all ta modules.
 
@@ -239,13 +239,13 @@ Examples:
 
 Deletes the specified student from ProfNUS.
 
-Format: `delstu INDEX`
+**Format:** `delstu INDEX`
 
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+**Examples:**
 * `list` followed by `delete 2` deletes the 2nd student in the list of students.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
@@ -253,13 +253,13 @@ Examples:
 
 Deletes the specified teaching assistant from ProfNUS.
 
-Format: `delta INDEX`
+**Format:** `delta INDEX`
 
 * Deletes the teaching assistant at the specified `INDEX`.
 * The index refers to the index number shown in the displayed teaching assistant list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+**Examples:**
 * `list` followed by `delta 2` deletes the 2nd teaching assistant in the list of teaching assistants.
 * `find Betsy` followed by `delta 1` deletes the 1st teaching assistant in the results of the `find` command.
 
@@ -267,7 +267,7 @@ Examples:
 
 Finds students/teaching assistants whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+**Format:** `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -276,7 +276,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
+**Examples:**
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
@@ -284,9 +284,7 @@ Examples:
 
 Shows a list of all the students and teaching assistants in ProfNUS with their contact information in the application.
 
-Format: `list`
-
-Examples:
+**Format:** `list`
 
 ![list](images/userguide/list.png)
 
@@ -312,7 +310,7 @@ In this section, we list all the parameters you will encounter of following comm
 
 You can add a schedule by using this command.
 
-**Format**: `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE`
+**Format:** `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE`
 
 <div markdown="block" class="alert alert-info">
 
@@ -331,17 +329,17 @@ You can add a schedule by using this command.
 
 </div>
 
-**Example**:
+**Example:**
 
 Now, let's use `sadd` to add a schedule with following information:
 
 `m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD`
 
-**Step 1**: type command `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` in the command text box.
+**Step 1:** type command `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` in the command text box.
 
 ![sadd](images/userguide/sadd_step1.png)
 
-**Step 2**: Press enter, then you can see the new schedule has been added to the list.
+**Step 2:** Press enter, then you can see the new schedule has been added to the list.
 
 ![sadd_step2](images/userguide/sadd_step2.png)
 
@@ -350,7 +348,7 @@ Now, let's use `sadd` to add a schedule with following information:
 
 Edits a schedule in ProfNUS.
 
-**Format**: `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE] `
+**Format:** `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE] `
 
 <div markdown="block" class="alert alert-info">
 
@@ -370,17 +368,17 @@ Edits a schedule in ProfNUS.
 
 </div>
 
-**Example**:
+**Example:**
 
 Now, let's use `sedit` command to edit a schedule with the following information:
 
 `1 w/Monday ct/09:00-10:00 cc/tut cv/COM2-0218`
 
-**Step 1**: Type the command `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103` in the command text box.
+**Step 1:** Type the command `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103` in the command text box.
 
 ![sedit](images/userguide/sedit_step1.png)
 
-**Step 2**: Press enter, then you will see the first schedule in the list has been edited.
+**Step 2:** Press enter, then you will see the first schedule in the list has been edited.
 
 ![sedit_step2](images/userguide/sedit_step2.png)
 
@@ -389,7 +387,7 @@ Now, let's use `sedit` command to edit a schedule with the following information
 
 Deletes a schedule from ProfNUS.
 
-**Format**: `sdelete INDEX`
+**Format:** `sdelete INDEX`
 
 <div markdown="block" class="alert alert-info">
 
@@ -407,15 +405,15 @@ Deletes a schedule from ProfNUS.
 
 </div>
 
-**Example**: `sdelete 1`
+**Example:** `sdelete 1`
 
 Now, let's use `sdelete` command and delete the first schedule in your schedule list.
 
-**Step 1**:  Type the command `sdelete 1` in the command box.
+**Step 1:**  Type the command `sdelete 1` in the command box.
 
 ![sdelete_step1](images/userguide/sdelete_step1.png)
 
-**Step 2**: Press enter, then you will see the first schedule is deleted.
+**Step 2:** Press enter, then you will see the first schedule is deleted.
 
 ![sdelete_step2](images/userguide/sdelete_step2.png)
 
@@ -423,7 +421,7 @@ Now, let's use `sdelete` command and delete the first schedule in your schedule 
 #### 4.4.5. Clear your schedule: `sclear`
 
 This command helps you clear all schedules/all schedules of selected modules.
-**Format**: `sclear [m/MODULE_CODE]...`
+**Format:** `sclear [m/MODULE_CODE]...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -442,12 +440,12 @@ This command helps you clear all schedules/all schedules of selected modules.
 
 </div>
 
-**Example**: `sclear m/CS2103T m/CS2103`
+**Example:** `sclear m/CS2103T m/CS2103`
 
 #### 4.4.6. View your schedule: `view`
 
 You can use this command to view the list of selected/all schedules.
-**Format**: `view [m/MODULE_CODE]... [w/WEEKDAY]...`
+**Format:** `view [m/MODULE_CODE]... [w/WEEKDAY]...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -459,15 +457,15 @@ You can use this command to view the list of selected/all schedules.
 
 </div>
 
-**Example**: `view m/CS2030S w/Monday`
+**Example:** `view m/CS2030S w/Monday`
 
 Now, let's view your schedules of CS2030S and schedules on Monday.
 
-**Step 1**: Type the command `view m/CS2030S w/Monday` in the command box.
+**Step 1:** Type the command `view m/CS2030S w/Monday` in the command box.
 
 ![view_step1](images/userguide/view_step1.png)
 
-**Step 2**: Press enter, you will see all schedules related to CS2030S and Monday.
+**Step 2:** Press enter, you will see all schedules related to CS2030S and Monday.
 
 ![view by module](images/userguide/view.png)
 
@@ -475,8 +473,8 @@ Now, let's view your schedules of CS2030S and schedules on Monday.
 
 Want to make your own timetable? Use `tview` command! It helps you creates your own weekly timetable.
 
-**Format**: `tview`
-**Example**: `tview`
+**Format:** `tview`
+**Example:** `tview`
 
 ![tview](images/userguide/tview.png)
 
@@ -484,13 +482,13 @@ Want to make your own timetable? Use `tview` command! It helps you creates your 
 
 Clears all entries from ProfNUS.
 
-Format: `clear`
+**Format:** `clear`
 
 ### 4.6. Exiting the program: `exit`
 
 Exits the program.
 
-Format: `exit`
+**Format:** `exit`
 
 ### 4.7. Saving the data
 
@@ -511,8 +509,8 @@ _Details coming soon ..._
 
 ## 5. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProfNUS home folder.
+**Q:** How do I transfer my data to another Computer?<br>
+**A:** Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProfNUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
