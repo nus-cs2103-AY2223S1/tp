@@ -10,8 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Reason {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Content should only contain alphanumeric characters, spaces, special characters, it should not be blank "
-                    + "and no maximum length";
+            "The reason cannot be left blank!";
 
     public static final String VALIDATION_REGEX = "[\\p{ASCII}][\\p{ASCII}]*";
 

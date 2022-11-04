@@ -28,12 +28,12 @@ public class ListNoteCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListNotesCommand(), model, ListNotesCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListNoteCommand(), model, ListNoteCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showNoteAtIndex(model, INDEX_FIRST_NOTE);
-        assertCommandSuccess(new ListNotesCommand(), model, ListNotesCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListNoteCommand(), model, ListNoteCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

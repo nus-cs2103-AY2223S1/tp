@@ -635,7 +635,7 @@ If no person is named `John`, or if more than one person has `John` in their nam
 
 #### Locating persons by name or contact number : `find`
 
-Finds persons whose names match any of the given keywords, or phone numbers contain any of the given keywords (in digits).
+Finds persons whose names match any of the given keywords, or phone numbers starting with any of the given keywords (in digits).
 
 You will notice a `FILTERED` icon next to the panel header to indicate that the list you are viewing is currently filtered.
 
@@ -765,8 +765,8 @@ Format: `findNote KEYWORD [MORE_KEYWORDS]`
 * However, `tshirt` will not match `t–shirt` as special characters are ignored (`t-shirt` is now treated as two words, `t` and `shirt` with the special character `-` being treated as a spacing)
 
 Examples:
-* findNote `Meeting` returns `Club Meeting`, `Meeting!` and `Meeting 2`
-* findNote `Soon` returns `Payment (soon)`
+* `findNote Meeting` returns `Club Meeting`, `Meeting!` and `Meeting 2`
+* `findNote Soon` returns `Payment (soon)`
 
 [Back to Top](#sectresbook)
 

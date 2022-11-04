@@ -31,7 +31,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_AMBIGUOUS_NAME = "There is more than 1 person with %s in their name!\n"
             + "Please use a more unique specifier or use indices to edit.";
 
-    public static final String MESSAGE_INVALID_NAME = "There is no one with the name %s found!";
+    public static final String MESSAGE_INVALID_NAME = "No names matched the given keywords %s!";
+
+    public static final String MESSAGE_INVALID_NON_POSITIVE_INDEX = "You may not specify non-positive indices!";
 
     public static final String AMOUNT_NOT_SPECIFIED = "No amount to was specified to edit the loan with.\n"
             + "Please use " + CliSyntax.PREFIX_LOAN_AMOUNT + " to specify a change in loan amount!";
@@ -44,8 +46,17 @@ public class Messages {
 
     public static final String NOT_AN_INTEGER = "The index given was not an integer value";
 
+    public static final String TOTAL_LOAN_OUT_OF_BOUNDS = "Operation refused as the total loan amount"
+            + " will be out of bounds.";
+
     public static final String AMBIGUOUS_NAME_INSPECT_FIRST = "There was more than one person of that name found.\n"
             + "Showing the first person matching the given name.\n"
-            + "Note that inspection works on the currently filtered list, "
-            + "perhaps you would like to filter away some persons first?";
+            + "Note that inspection works only on the list you are currently viewing.\n"
+            + "Perhaps you would like to perform a find operation with keywords using "
+            + "the find command to narrow your search?";
+
+    public static final String MESSAGE_INVALID_NAME_INSPECT = "No names matched the given keywords %s!\n"
+            + "Note that inspection works only on the list you are currently viewing.\n"
+            + "Perhaps you would like to list out all persons with the list command "
+            + "to widen your search?";
 }
