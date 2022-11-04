@@ -109,8 +109,8 @@ Format: `redo`
 
 ## Section 1: Contacts
 
-These commands allow you to maintain a list of people that you meet in both professional and personal settings.
-Whether it be family, friends or acquaintances, store all their details in one place for easy look-up.
+These commands allow you to maintain a list of business contacts that you meet for collaborative projects.
+Whether it be for a school project or an internship, store all their details in one place for easy look-up.
 Contact management has never been this simple.
 
 ### Add a contact: `addC`
@@ -466,9 +466,9 @@ Format: `unarchiveT INDEX`
 
 ## Section 3: Labels
 
-These commands allow you to further organise people and tasks into subgroups depending on the context of 
-your relationship with them.
-Whether it be a project groupmate or your other half, you can customise every person with what they mean to you.
+These commands allow you to further organise people and tasks into subgroups depending on the nature of the project you
+are working on together.
+Whether it be a software engineering module or a business pitch, you can customise every person and task.
 With our label feature, managing your numerous projects on the go has just gotten a lot easier.
 
 
