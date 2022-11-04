@@ -24,8 +24,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/LianGuoYang)]
 [[portfolio](team/lianguoyang.md)]
 
-* Role: TBC
-* Responsibilities: TBC
+* Role: Developer
+* Responsibilities: Logic, Storage
 
 ### Cedric Chia
 
