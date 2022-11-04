@@ -59,7 +59,6 @@ public class AddOrderCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
     public static final String MESSAGE_SUCCESS = "Added Order: %1$s";
-    public static final String INVALID_BUYER = "Index %1$s is not a buyer";
 
     private final Order toAdd;
     private final Index index;
@@ -93,7 +92,7 @@ public class AddOrderCommand extends Command {
 
         Object o = lastShownList.get(index.getZeroBased());
         if (!(o instanceof Buyer)) {
-            throw new CommandException(String.format(INVALID_BUYER, index.getOneBased()));
+            throw new CommandException(String.format(Messages.INVALID_BUYER, index.getOneBased()));
         }
 
         Buyer associatedBuyer = (Buyer) o;

@@ -42,14 +42,17 @@ public class DeleteSupplierCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Supplier> lastShownList = model.getFilteredSupplierList();
-
+        ObservableList<Object> lastShownList = model.getFilteredCurrList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        Object o = lastShownList.get(targetIndex.getZeroBased());
+        if (!(o instanceof Supplier)) {
+            throw new CommandException(String.format(Messages.INVALID_SUPPLIER, targetIndex.getOneBased()));
+        }
 
-        Supplier personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Supplier personToDelete = (Supplier) o;
 
         model.deleteSupplier(personToDelete);
 
@@ -58,7 +61,7 @@ public class DeleteSupplierCommand extends DeleteCommand {
         for (Pet pet : petsFromSupplier) {
             model.deletePet(pet);
         }
-
+        model.switchToSupplierList();
         return new CommandResult(String.format(MESSAGE_DELETE_SUPPLIER_SUCCESS, personToDelete));
     }
 

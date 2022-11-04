@@ -22,7 +22,6 @@ import seedu.address.model.person.Phone;
 public class EditDelivererCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "edit-d";
-    public static final String INVALID_DELIVERER = "Index %1$s is not a deliverer";
     public EditDelivererCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         super(index, editPersonDescriptor);
     }
@@ -38,7 +37,7 @@ public class EditDelivererCommand extends EditCommand {
 
         Object o = lastShownList.get(index.getZeroBased());
         if (!(o instanceof Deliverer)) {
-            throw new CommandException(String.format(INVALID_DELIVERER, index.getOneBased()));
+            throw new CommandException(String.format(Messages.INVALID_DELIVERER, index.getOneBased()));
         }
 
         Deliverer delivererToEdit = (Deliverer) o;

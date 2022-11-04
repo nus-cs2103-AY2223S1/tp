@@ -78,8 +78,6 @@ public class AddPetCommand extends Command {
 
     public static final String MESSAGE_FAILURE = "Unable to execute AddPetCommand.";
 
-    public static final String INVALID_SUPPLIER = "Index %1$s is not a supplier";
-
     private final Index index;
     private final Pet toAdd;
 
@@ -113,7 +111,7 @@ public class AddPetCommand extends Command {
 
         Object o = lastShownList.get(index.getZeroBased());
         if (!(o instanceof Supplier)) {
-            throw new CommandException(String.format(INVALID_SUPPLIER, index.getOneBased()));
+            throw new CommandException(String.format(Messages.INVALID_SUPPLIER, index.getOneBased()));
         }
         Supplier associatedSupplier = (Supplier) o;
 

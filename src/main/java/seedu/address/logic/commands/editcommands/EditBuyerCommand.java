@@ -23,7 +23,6 @@ import seedu.address.model.person.Phone;
 public class EditBuyerCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "edit-b";
-    public static final String INVALID_BUYER = "Index %1$s is not a buyer";
 
     public EditBuyerCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         super(index, editPersonDescriptor);
@@ -40,7 +39,7 @@ public class EditBuyerCommand extends EditCommand {
 
         Object o = lastShownList.get(index.getZeroBased());
         if (!(o instanceof Buyer)) {
-            throw new CommandException(String.format(INVALID_BUYER, index.getOneBased()));
+            throw new CommandException(String.format(Messages.INVALID_BUYER, index.getOneBased()));
         }
 
         Buyer buyerToEdit = (Buyer) o;

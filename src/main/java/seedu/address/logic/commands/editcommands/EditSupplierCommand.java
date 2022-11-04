@@ -22,7 +22,7 @@ import seedu.address.model.person.Supplier;
 public class EditSupplierCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "edit-s";
-    public static final String INVALID_SUPPLIER = "Index %1$s is not a supplier";
+
     public EditSupplierCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         super(index, editPersonDescriptor);
     }
@@ -38,7 +38,7 @@ public class EditSupplierCommand extends EditCommand {
 
         Object o = lastShownList.get(index.getZeroBased());
         if (!(o instanceof Supplier)) {
-            throw new CommandException(String.format(INVALID_SUPPLIER, index.getOneBased()));
+            throw new CommandException(String.format(Messages.INVALID_SUPPLIER, index.getOneBased()));
         }
 
         Supplier supplierToEdit = (Supplier) o;

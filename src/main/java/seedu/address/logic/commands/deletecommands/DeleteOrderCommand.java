@@ -39,17 +39,21 @@ public class DeleteOrderCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Order> lastShownList = model.getFilteredOrderList();
+        ObservableList<Object> lastShownList = model.getFilteredCurrList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        Object o = lastShownList.get(targetIndex.getZeroBased());
+        if (!(o instanceof Order)) {
+            throw new CommandException(String.format(Messages.INVALID_ORDER, targetIndex.getOneBased()));
+        }
 
-        Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Order orderToDelete = (Order) o;
 
         model.deleteOrder(orderToDelete);
 
-
+        model.switchToOrderList();
         return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete));
     }
 

@@ -39,17 +39,21 @@ public class DeletePetCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Pet> lastShownList = model.getFilteredPetList();
+        ObservableList<Object> lastShownList = model.getFilteredCurrList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        Object o = lastShownList.get(targetIndex.getZeroBased());
+        if (!(o instanceof Pet)) {
+            throw new CommandException(String.format(Messages.INVALID_PET, targetIndex.getOneBased()));
+        }
 
-        Pet petToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Pet petToDelete = (Pet) o;
 
         model.deletePet(petToDelete);
 
-
+        model.switchToPetList();
         return new CommandResult(String.format(MESSAGE_DELETE_PET_SUCCESS, petToDelete));
     }
 
