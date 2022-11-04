@@ -135,7 +135,7 @@ public class PriceRange {
                 && this.toString().equals(((PriceRange) other).toString())); // state check
     }
 
-    public boolean getIsReset() {
+    public boolean isReset() {
         return isReset;
     }
 }

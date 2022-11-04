@@ -58,7 +58,7 @@ public class AddBuyerCommandParser extends Parser<AddBuyerCommand> {
         PriceRange priceRange = null;
         if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
             priceRange = ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
-            priceRange = priceRange.getIsReset() ? null : priceRange;
+            priceRange = priceRange.isReset() ? null : priceRange;
         }
 
         Characteristics characteristics = null;
