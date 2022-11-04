@@ -21,6 +21,8 @@ public class TypicalTeams {
 
     public static final Team FIRST = new Team(new TeamName("first"),
             Description.DEFAULT_DESCRIPTION);
+    public static final Team DEFAULT = new Team(new TeamName("default"),
+            Description.DEFAULT_DESCRIPTION);
     public static final Team FIRST_DUPLICATE = new Team(new TeamName("first") ,
             Description.NO_DESCRIPTION.DEFAULT_DESCRIPTION);
     public static final Team SECOND = new Team(new TeamName("second"),

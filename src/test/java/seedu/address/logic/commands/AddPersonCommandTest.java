@@ -54,7 +54,7 @@ public class AddPersonCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_personAcceptedByModel_addSuccessful() {
         Person validPerson = new PersonBuilder().build();
         commandLine.parseArgs(PersonUtil.convertPersonToArgs(validPerson));
         CommandResult expectedResult = new CommandResult(String.format(MESSAGE_SUCCESS, validPerson));

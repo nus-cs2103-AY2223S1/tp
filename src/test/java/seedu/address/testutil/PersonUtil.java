@@ -53,16 +53,18 @@ public class PersonUtil {
         argList.add(person.getEmail().value);
         argList.add(FLAG_ADDRESS_STR);
         argList.add(person.getAddress().value);
-        for (Tag t : person.getTags()) {
+        if (!person.getTags().isEmpty()) {
             argList.add(FLAG_TAG_STR);
-            argList.add(t.tagName);
+            for (Tag t : person.getTags()) {
+                argList.add(t.tagName);
+            }
         }
         return argList.toArray(new String[0]);
     }
 
     public static String[] convertEditPersonToArgs(Person person) {
         List<String> argList = new ArrayList<>();
-        argList.add("1");
+        argList.add("2");
         argList.add(FLAG_NAME_STR);
         argList.add(person.getName().fullName);
         argList.add(FLAG_PHONE_STR);
@@ -71,12 +73,35 @@ public class PersonUtil {
         argList.add(person.getEmail().value);
         argList.add(FLAG_ADDRESS_STR);
         argList.add(person.getAddress().value);
-        for (Tag t : person.getTags()) {
+        if (!person.getTags().isEmpty()) {
             argList.add(FLAG_TAG_STR);
-            argList.add(t.tagName);
+            for (Tag t : person.getTags()) {
+                argList.add(t.tagName);
+            }
         }
         return argList.toArray(new String[0]);
     }
+
+    public static String[] convertEditPersonPartialToArgs(Person person) {
+        List<String> argList = new ArrayList<>();
+        argList.add("2");
+        argList.add(FLAG_NAME_STR);
+        argList.add(person.getName().fullName);
+        argList.add(FLAG_PHONE_STR);
+        argList.add(person.getPhone().value);
+        return argList.toArray(new String[0]);
+    }
+
+    public static String[] convertEditPersonOOBToArgs(Person person) {
+        List<String> argList = new ArrayList<>();
+        argList.add("20");
+        argList.add(FLAG_NAME_STR);
+        argList.add(person.getName().fullName);
+        argList.add(FLAG_PHONE_STR);
+        argList.add(person.getPhone().value);
+        return argList.toArray(new String[0]);
+    }
+
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */

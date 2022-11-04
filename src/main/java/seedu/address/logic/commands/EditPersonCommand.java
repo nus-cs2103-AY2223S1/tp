@@ -122,6 +122,9 @@ public class EditPersonCommand extends Command {
         if (arguments.address != null) {
             editPersonDescriptor.address = arguments.address;
         }
+        if (arguments.phone != null) {
+            editPersonDescriptor.phone = arguments.phone;
+        }
         if (arguments.email != null) {
             editPersonDescriptor.email = arguments.email;
         }
