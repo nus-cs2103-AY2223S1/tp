@@ -546,30 +546,20 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1b. TABS detects an error in the required fields.
+1b. TABS detects missing or invalid required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS displays the format of the invalid required field.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-Use case ends.
-
-
-&nbsp;&nbsp;
-1c. TABS detects missing required fields.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1c1. TABS displays the format of the command.
+1b1. TABS displays the format of the command and the required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
 &nbsp;&nbsp;
-1d. TABS detects missing optional field.
+1c. TABS detects missing optional fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1d1. TABS sets the optional field to be empty.
+1c1. TABS sets the optional field to be empty.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case resumes at step 2.
@@ -598,10 +588,10 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1b. TABS detects an error in the input fields.
+1b. TABS detects missing or invalid required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS displays the format of the invalid field.
+1b1. TABS displays the format of the command and the required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
@@ -612,7 +602,7 @@ Use case ends.
 **MSS**
 
 1. User requests to find an existing person in TABS by providing filters.
-2. TABS displays the person found.
+2. TABS displays the person found based on the filter.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -620,20 +610,20 @@ Use case ends.
 **Extensions**
 
 &nbsp;&nbsp;
-1a. TABS detects an empty filter.
+1a. TABS detects missing or invalid filters.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS displays the format of the command.
+1a1. TABS displays the format of the command and the filter.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
 &nbsp;&nbsp;
-1b. No person matches the filter provided in TABS.
+1b. No person in TABS matches the filters provided.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS displays no person is found.
+1b1. TABS displays that no person is found.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
@@ -644,7 +634,7 @@ Use case ends.
 **MSS**
 
 1. User requests to list every person.
-2. TABS shows the list of person in TABS.
+2. TABS shows the list of every person in TABS.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -673,10 +663,10 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1b. The name of the person is not given.
+1b. TABS detects missing or invalid required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS displays the format of the command.
+1b1. TABS displays the format of the command and the required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
@@ -705,20 +695,10 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1b. TABS detects a missing required field.
+1b. TABS detects missing or invalid required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS displays the format of the command.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-Use case ends.
-
-
-&nbsp;&nbsp;
-1c. TABS detects an empty required field.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1c1. TABS displays the format of the empty field.
+1b1. TABS displays the format of the command and the required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
@@ -747,10 +727,10 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1b. TABS detects missing required field.
+1b. TABS detects missing or invalid required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS displays the format of the command.
+1b1. TABS displays the format of the command and the required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
@@ -760,7 +740,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to display all the groups in TABS.
+1. User requests to list all the groups in TABS.
 2. TABS displays all the group with their respective members.
 
 &nbsp;&nbsp;
@@ -790,20 +770,10 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1b. TABS detects missing required field.
+1b. TABS detects missing or invalid required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS displays the format of the command.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-Use case ends.
-
-
-&nbsp;&nbsp;
-1c. TABS detects an empty required field.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1c1. TABS displays the format of the empty required field.
+1b1. TABS displays the format of the command and the required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
@@ -832,20 +802,20 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1b. TABS detects a missing required field.
+1b. The person specified is already in the group specified.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS displays the format of the command.
+1b1. TABS displays that the person specified is already in the group specified.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
 &nbsp;&nbsp;
-1c. TABS detects an empty required field.
+1c. TABS detects missing or invalid required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1c1. TABS displays the format of the empty required field.
+1c1. TABS displays the format of the command and the required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
@@ -855,8 +825,8 @@ Use case ends.
 
 **MSS**
 
-1. User requests to remove an existing contact from an existing group.
-2. TABS displays that the contact specified is removed from the group.
+1. User requests to remove an existing person from an existing group.
+2. TABS displays that the person specified is removed from the group.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -884,20 +854,10 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1c. TABS detects a missing required field.
+1c. TABS detects missing or invalid required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1c1. TABS displays the format of the command.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-Use case ends.
-
-
-&nbsp;&nbsp;
-1d. TABS detects an empty required field.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1d1. TABS displays the format of the empty field.
+1c1. TABS displays the format of the command and the required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
@@ -936,17 +896,17 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1c. The task specified already exists in TABS.
+1c. The task specified already exists for the person specified in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1c1. TABS displays that the task specified already exists in TABS.
+1c1. TABS displays that the task specified already exists for the person specified in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
 
 &nbsp;&nbsp;
-1d. TABS detects a missing or an empty required field.
+1d. TABS detects missing or invalid fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1d1. TABS displays the format of the command and the required fields.
@@ -959,8 +919,8 @@ Use case ends.
 
 **MSS**
 
-1. User requests to remove a task from a person.
-2. TABS displays that the task is successfully removed.
+1. User requests to remove a task from a member.
+2. TABS displays that the task is successfully removed from that member.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -988,7 +948,7 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1c. The task specified does not exist for the person specified in TABS.
+1c. The person specified does not have the task specified in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1c1. TABS displays that the person specified does not have the task specified.
@@ -998,7 +958,7 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1d. TABS detects a missing or an empty required field.
+1d. TABS detects missing or invalid fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1d1. TABS displays the format of the command and the required fields.
@@ -1011,8 +971,8 @@ Use case ends.
 
 **MSS**
 
-1. User requests to add a task to a group.
-2. TABS displays that the task is successfully added.
+1. User requests to add a task to every member of a group.
+2. TABS displays that the task is successfully added to every group member.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -1030,10 +990,30 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1b. TABS detects a missing or an empty required field.
+1b. All the group members already have the task specified.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS displays the format of the command and the required fields.
+1b1. TABS displays that the all the group members already have the task specified.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Use case ends.
+
+
+&nbsp;&nbsp;
+1c. The group does not consist any members.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1c1. TABS displays that the group does not have any members.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Use case ends.
+
+
+&nbsp;&nbsp;
+1d. TABS detects missing or invalid fields.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1d1. TABS displays the format of the command and the required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
@@ -1044,7 +1024,7 @@ Use case ends.
 **MSS**
 
 1. User requests to remove a task from every member in a group in TABS.
-2. TABS displays that the task is successfully removed.
+2. TABS displays that the task is successfully removed from every group member.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -1072,10 +1052,20 @@ Use case ends.
 
 
 &nbsp;&nbsp;
-1c. TABS detects a missing or an empty required field.
+1c. The group does not consist any members.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1c1. TABS displays the format of the command and the required fields.
+1c1. TABS displays that the group does not have any members.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Use case ends.
+
+
+&nbsp;&nbsp;
+1d. TABS detects missing or invalid fields.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1d1. TABS displays the format of the command and the required fields.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
