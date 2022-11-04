@@ -174,8 +174,9 @@ The `addi` command creates an `AddItemCommandParser` which checks the necessary 
 * item name (prefixed by `i/`)
 * quantity (prefixed by `q/`) 
 * description (prefixed by `d/`)
-* sell price (prefixed by `sp/`
+* sell price (prefixed by `sp/`)
 * cost price (prefied by `cp`) 
+* tags (optional, prefixed by `t/`)
 
 are present before parsing the arguments into an `AddItemCommand` object. 
 
