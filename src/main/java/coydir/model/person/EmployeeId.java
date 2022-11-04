@@ -47,11 +47,19 @@ public class EmployeeId {
         this.value = String.valueOf(Integer.parseInt(id));
     }
 
+    /**
+     * Resets the static count to a given input.
+     * Also clears the set for new entries.
+     */
     public static void restart(int count) {
         allIds.clear();
         EmployeeId.count = count;
     }
 
+    /**
+     * Factory method for creating a new {@code EmployeeId}.
+     * Calls the constructor with a given string, but performs validation checks.
+     */
     public static EmployeeId addEmployeeId(String id) {
         requireNonNull(id);
         checkArgument(isValidEmployeeId(id), MESSAGE_CONSTRAINTS);

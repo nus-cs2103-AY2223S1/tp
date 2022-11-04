@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import coydir.testutil.TestUtil;
 import org.junit.jupiter.api.Test;
 
 import coydir.commons.exceptions.IllegalValueException;
 import coydir.commons.util.JsonUtil;
 import coydir.model.Database;
+import coydir.testutil.TestUtil;
 import coydir.testutil.TypicalPersons;
 
 public class JsonSerializableDatabaseTest {

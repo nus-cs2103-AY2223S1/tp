@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import coydir.commons.exceptions.IllegalValueException;
-import coydir.logic.commands.CommandTestUtil;
 import coydir.model.person.Address;
 import coydir.model.person.Department;
 import coydir.model.person.Email;

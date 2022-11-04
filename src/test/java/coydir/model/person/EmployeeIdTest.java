@@ -2,7 +2,7 @@ package coydir.model.person;
 
 import static coydir.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+// import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ public class EmployeeIdTest {
         assertFalse(EmployeeId.isValidEmployeeId("9011p041")); // alphabets within digits
         assertFalse(EmployeeId.isValidEmployeeId("9312 1534")); // spaces within digits
 
-        // valid ids
+        // valid ids TODO: Redo the tests
         // assertTrue(EmployeeId.isValidEmployeeId("9"));
         // assertTrue(EmployeeId.isValidEmployeeId("911"));
         // assertTrue(EmployeeId.isValidEmployeeId("93121534"));

@@ -41,10 +41,17 @@ import static coydir.testutil.TypicalPersons.AMY;
 import static coydir.testutil.TypicalPersons.BOB;
 import static coydir.testutil.TypicalPersons.PRITTAM;
 
-import coydir.model.person.*;
 import org.junit.jupiter.api.Test;
 
 import coydir.logic.commands.AddCommand;
+import coydir.model.person.Address;
+import coydir.model.person.Department;
+import coydir.model.person.Email;
+import coydir.model.person.EmployeeId;
+import coydir.model.person.Name;
+import coydir.model.person.Person;
+import coydir.model.person.Phone;
+import coydir.model.person.Position;
 import coydir.model.tag.Tag;
 import coydir.testutil.PersonBuilder;
 import coydir.testutil.TestUtil;
