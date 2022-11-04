@@ -6,7 +6,7 @@ title: User Guide
 Made for SOC Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands which is perfect for SOC Professors! Interested? :wink: Continue reading to find out more!
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -32,15 +32,15 @@ If you want to know more about how **ProfNUS** is able to ease your worries, go 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all students and teaching assistants.
+    * **`list`** : Lists all students and teaching assistants.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/A0837092R t/@john_doe c/CS2030S cg/CS2030S:Tut07`: Adds a student named `John Doe` to ProfNUS.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/A0837092R t/@john_doe c/CS2030S cg/CS2030S:Tut07`: Adds a student named `John Doe` to ProfNUS.
 
-   * **`delstu`**`3` : Deletes the 3rd student shown in the current list of students.
+    * **`delstu`**`3` : Deletes the 3rd student shown in the current list of students.
 
-   * **`clear`** : Deletes all students, teaching assistants, modules and schedules.
+    * **`clear`** : Deletes all students, teaching assistants, modules and schedules.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#4-features) below for details of each command.
 
@@ -59,7 +59,7 @@ We have structured the User Guide in a way to help you find what you want and wh
 * Students
 * Schedules
 
-In the next [subsection](#32-reading-this-document), you can find several useful tips on how to read this guide. 
+In the next [subsection](#32-reading-this-document), you can find several useful tips on how to read this guide.
 
 ### 3.2. Reading this document
 
@@ -69,11 +69,12 @@ This section introduces to you some terminologies, symbols and syntax that are u
 
 The table below shows the general symbols and syntax used throughout the user guide.
 
-| Syntax                                                                      | Definition                                                                                         |
-|-----------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| command                                                                     | A grey highlighted block specifies an executable command that can be entered into the command box. |
-| <div markdown="block" class="alert alert-info"> :information_source: </div> | An information sign indicates that the following text is a tip.                                    |
-| <div markdown="block" class="alert alert-danger"> :exclamation: </div>      | An exclamation mark indicates that the following text is important.                                |
+| Syntax                                                                      | Definition                                                                                               |
+|-----------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| `command`                                                                   | A grey highlighted block specifies an executable command that can be entered into the command box.       |
+| <div markdown="block" class="alert alert-info"> :bulb: </div>               | An bulb icon indicates that the following text is a tip.                                                 |
+| <div markdown="block" class="alert alert-info"> :information_source: </div> | An information sign indicates that the following text provides additional information that you may need. |
+| <div markdown="block" class="alert alert-danger"> :exclamation: </div>      | An exclamation mark indicates that the following text is important.                                      |
 
 #### 3.2.2 Command Syntax
 Notes about the command format:
@@ -102,7 +103,7 @@ Notes about the command format:
 
 This section contains all the information on the main features of **ProfNUS**. You may enter the commands here into the Command Box to use our features.
 
-### 4.1. UI
+### 4.1. User Interface
 
 #### 4.1.1. Switch to light mode : `light`
 
@@ -124,7 +125,40 @@ Format: `help`
 
 ### 4.2. Modules
 
-#### 4.2.1. Adding a module: `madd`
+#### 4.2.1. Viewing list of modules : `mlist`
+
+Shows a list of all modules in ProfNUS.
+You can click on each module to view more details about the module.
+
+![mlist](images/userguide/mlist.png)
+
+Format: `mlist`
+
+#### 4.2.2. Viewing more details of a module in the list of modules : `vtarget`
+
+You can also choose to use a CLI-command to get more information about a module in ProfNUS
+at your specified `INDEX`.
+More information such as name of the module and module description,
+as well as any tags given to the module will be displayed.
+
+Format: `vtarget INDEX`
+
+Examples: `vtarget 3`
+
+#### 4.2.3. Viewing module details : `mview`
+
+Shows a list of students and tutors in the module.
+
+![mlist](images/userguide/mview.png)
+
+Format: `mview c/MODULE_CODE`
+
+* Views the list of students and tutors at the specified `MODULE_CODE`.
+
+Examples:
+*  `mview c/CS1101S` Views the list of students and tutors in CS1101S.
+
+#### 4.2.4. Adding a module: `madd`
 
 Adds a module to ProfNUS.
 
@@ -137,39 +171,6 @@ A module can have any number of tags or modules(including 0)
 Examples:
 * `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/ModuleCoordinator`
 * `madd n/Introduction to Cybersecurity c/CS2107 d/Cryptography practices t/NEW t/URGENT`
-
-#### 4.2.2. Viewing list of modules : `mlist`
-
-Shows a list of all modules in ProfNUS.
-You can click on each module to view more details about the module.
-
-![mlist](images/userguide/mlist.png)
-
-Format: `mlist`
-
-#### 4.2.3. Viewing more details of a module in the list of modules : `vtarget`
-
-You can also choose to use a CLI-command to get more information about a module in ProfNUS
-at your specified `INDEX`.
-More information such as name of the module and module description,
-as well as any tags given to the module will be displayed.
-
-Format: `vtarget INDEX`
-
-Examples: `vtarget 3`
-
-#### 4.2.4. Viewing module details : `mview`
-
-Shows a list of students and tutors in the module.
-
-![mlist](images/userguide/mview.png)
-
-Format: `mview c/MODULE_CODE`
-
-* Views the list of students and tutors at the specified `MODULE_CODE`.
-
-Examples:
-*  `mview c/CS1101S` Views the list of students and tutors in CS1101S.
 
 #### 4.2.5. Deleting a module: `mdel`
 
@@ -352,13 +353,13 @@ In this section, we list all the parameters you will encounter of following comm
 
 #### 4.4.2. Add your schedule `sadd`
 
-You can add a schedule by using this command. 
+You can add a schedule by using this command.
 
 **Format**: `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE`
 
 <div markdown="block" class="alert alert-info">
 
- **:information_source: Note**<br>
+**:information_source: Note**<br>
 
 - Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
 
@@ -373,7 +374,7 @@ You can add a schedule by using this command.
 
 </div>
 
-**Example**: 
+**Example**:
 
 Now, let's use `sadd` to add a schedule with following information:
 
@@ -396,7 +397,7 @@ Edits a schedule in ProfNUS.
 
 <div markdown="block" class="alert alert-info">
 
- **:information_source: Note**<br>
+**:information_source: Note**<br>
 
 - Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
 - You are expected to provide at least one optional parameter
@@ -412,7 +413,7 @@ Edits a schedule in ProfNUS.
 
 </div>
 
-**Example**: 
+**Example**:
 
 Now, let's use `sedit` command to edit a schedule with the following information:
 
@@ -435,7 +436,7 @@ Deletes a schedule from ProfNUS.
 
 <div markdown="block" class="alert alert-info">
 
- **:information_source: Note**<br>
+**:information_source: Note**<br>
 
 - Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
 
@@ -469,7 +470,7 @@ This command helps you clear all schedules/all schedules of selected modules.
 
 <div markdown="block" class="alert alert-info">
 
- **:information_source: Note**<br>
+**:information_source: Note**<br>
 
 - Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
 - If no optional `MODULE_CODE` is given, all schedules will be cdeleted
@@ -493,7 +494,7 @@ You can use this command to view the list of selected/all schedules.
 
 <div markdown="block" class="alert alert-info">
 
- **:information_source: Note**<br>
+**:information_source: Note**<br>
 
 - Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
 - Schedules matching at least one keyword will be returned to you.
@@ -561,25 +562,35 @@ _Details coming soon ..._
 
 ## 6. Command summary
 
+### 6.1 User Interface Command Summary
+
+| Action                                                 | Format                                                       | Example                                                      |
+|--------------------------------------------------------| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Switch to light mode](#411-switch-to-light-mode-light) | `light`                                                                                                            | `light`                                                                                                                                                                     |
+| [Switch to dark mode](#412-switch-to-dark-mode-dark)   | `dark`                                                                                                             | `dark`                                                                                                                                                                      |
+| [View help](#413-viewing-help)                         | `help`                                                                                                             | `help`                                                                                                                                                                      |
+
+### 6.2 Module Manager Command Summary
+
+| Action                                                                                                       | Format               | Example                                                                              |
+|--------------------------------------------------------------------------------------------------------------|----------------------|--------------------------------------------------------------------------------------|
+| [List all modules](#421-viewing-list-of-modules-mlist)                                                       | `mlist`              | `mlist`                                                                              |
+| [View more information about a module](#422-viewing-more-details-of-a-module-in-the-list-of-modules-vtarget) | `vtarget INDEX`      | `vtarget 3`                                                                          |
+| [View more information about a module](#423-viewing-module-details-mview)                                    | `mview c/MODULE_CODE` | `mview c/CS1101S`                                                                    |
+| [Add a module](#424-adding-a-module-madd)                                                                    | `madd`               | `madd n/Computer Organisation c/CS2100 d/Teaches you more on computer hardware t/Y2` |
+| [Delete a module](#425-deleting-a-module-mdel)                                                               | `mdel c/MODULE_CODE` | `mdel c/CS1101S`                                                                     |
+
+### 6.3 Student Manager Command Summary
+
 | Action                                | Format                                                                                                             | Example                                                                                                                                                                     |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| switch to light mode                  | `light`                                                                                                            | `light`                                                                                                                                                                     |
-| switch to dark mode                   | `dark`                                                                                                             | `dark`                                                                                                                                                                      |
+| list all students/teaching assistants     | `list`                                                                                                             | `list`                                                                                                                                                                      |
 | add a student/teaching assistant      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`            | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br> `add n/Adam Doink t/TA e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 c/CS1101S` |
 | edit a student                        | `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​` | `editstu 1 p/91234567 e/johndoe@example.com` <br> `editstu 2 n/Betsy Crower c/`                                                                                             |
 | edit a teaching assistant             | `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`  | `editta 1 p/97384723 e/davidlim@example.com` <br> `editta 2 n/Beth ta/CS2030S`                                                                                              |
 | delete a student                      | `delstu INDEX`                                                                                                     | `delstu 1`                                                                                                                                                                  |
 | delete a teaching assistant           | `delta INDEX`                                                                                                      | `delta 1`                                                                                                                                                                   |
-| clear                                 | `clear`                                                                                                            | `clear`                                                                                                                                                                     |
-| add a module                          | `madd`                                                                                                             | `madd n/Computer Organisation c/CS2100 d/Teaches you more on computer hardware t/Y2`                                                                                        |
-| list all students/teaching assistants | `list`                                                                                                             | `list`                                                                                                                                                                      |
-| list all modules                      | `mlist`                                                                                                            | `mlist`                                                                                                                                                                     |
-| view more information about a module  | `vtarget INDEX`                                                                                                    | `vtarget 3`                                                                                                                                                                 |
-| view students and tutors in module    | `mview [c/MODULE_CODE]`                                                                                            | `mview c/CS1101S`                                                                                                                                                           |
-| view the teaching schedule            | `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`                                                  | `view schedule -w Monday -m CS2103T` <br>`view schedule -d 2022-09-12` <br> `view schedule -h`                                                                              |
 | find a student/teaching assistant     | `find KEYWORD [MORE_KEYWORD]`                                                                                      | `find Adam Do`                                                                                                                                                              |
-| help                                  | `help`                                                                                                             | `help`                                                                                                                                                                      |
-| exit                                  | `exit`                                                                                                             | `exit`                                                                                                                                                                      |
 
 ### 6.4 Schedule Manager Command Summary
 
@@ -592,3 +603,9 @@ _Details coming soon ..._
 | [View your schedule list](#446-view-your-schedule-view)   | `view [m/MODULE_CODE]... [w/WEEKDAY]...`                     | `view m/CS2103T w/Monday`                                    |
 | [View your timetable](#447-view-your-timetable-tview)     | `tview`                                                      | `tview`                                                      |
 
+### 6.5 Miscellaneous Command Summary
+
+| Action                                       | Format                                                       | Example                                                      |
+|----------------------------------------------| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Clear data](#45-clearing-all-entries-clear) | `clear`                                                                                                            | `clear`                                                                                                                                                                     |
+| [Exit ProfNUS](#46-exiting-the-program)      | `exit`                                                                                                             | `exit`                                                                                                                                                                      |
