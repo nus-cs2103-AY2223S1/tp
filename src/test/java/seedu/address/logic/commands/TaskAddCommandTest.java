@@ -17,6 +17,8 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import com.sun.source.tree.AssertTree;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -205,6 +207,11 @@ public class TaskAddCommandTest {
         }
 
         @Override
+        public boolean teamNameExists(seedu.address.model.team.Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public seedu.address.model.team.Name getTeamName(Index teamIndex) {
             throw new AssertionError("This method should not be called.");
         }
@@ -221,6 +228,11 @@ public class TaskAddCommandTest {
 
         @Override
         public boolean teamHasMember(Index p, Index t) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean teamHasTask(Index index, Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
