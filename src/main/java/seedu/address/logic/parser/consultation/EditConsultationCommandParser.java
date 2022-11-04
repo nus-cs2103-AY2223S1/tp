@@ -51,11 +51,11 @@ public class EditConsultationCommandParser implements Parser<EditConsultationCom
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             editConsultDescriptor.setModule(
-                    ConsultationParserUtil.parseConsultationModule(argMultimap.getValue(PREFIX_MODULE).get()));
+                    ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get()));
         }
         if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
             editConsultDescriptor.setVenue(
-                    ConsultationParserUtil.parseConsultationVenue(argMultimap.getValue(PREFIX_VENUE).get()));
+                    ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE_DAY).isPresent() && argMultimap.getValue(PREFIX_TIME).isPresent()) {
             String date = argMultimap.getValue(PREFIX_DATE_DAY).get();
