@@ -102,12 +102,14 @@ Adds a hobby activity to HobbyList.
 Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
 
 * `[t/TAG]...` only accepts alphanumeric with underscores.
+* `[date/DATE]` only accepts date with a format of **yyyy-mm-dd** with the year greater than or equal to 1000.
 * `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** as STATUS. e.g. `s/ongoing`(case-insensitive).
 * If `STATUS` is not specified, it will be displayed as **Status: NONE** by default.
+* If multiple dates or status are detected, the last one will be taken to add. But any number of tags will be accepted and added.
 
 Examples:
 * `add n/42km run d/NUS Run event t/sport`
-* `add n/Badminton d/play badminton t/sport entertainment_2 date/2022-10-19 s/completed`
+* `add n/Badminton d/play badminton t/sport t/entertainment_2 date/2022-10-19 s/completed`
 
 ### 5.2 Editing an activity : `edit`
 
@@ -120,6 +122,7 @@ Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the activity will be removed i.e. adding of tags is not cumulative.
 * You can remove all the activity's tags by typing `t/` without specifying any tags after it.
+* You can remove the date by typing `date/` without specifying any date after it.
 * `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive) as STATUS. e.g. `s/ongoing`.
 
 Examples:
@@ -290,6 +293,14 @@ If you do not want to use your mouse, you can press the `F2` key to open the win
 If you really want to, you can shorten the commands to a single character to speed up typing commands, like the example below:
 
 ![Example alias settings](images/ExampleAliases.png)
+
+### 5.15 Changing appearance of the user interface.
+
+If you do not like the current appearance of the theme. You can change it by clicking `Theme` in the menu bar and select different themes.
+
+When you open the app next time, the default theme will be the last theme that you used.
+
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -319,19 +330,21 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 
 ## 8. Command summary
 
-| Action                            | Format                                                                                     | Examples                                                                               |
-|-----------------------------------|--------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
-| **Add activity**                  | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`                               | `add n/poutine d/at some place t/food date/2022-09-25 s/completed`                     |
-| **Edit activity**                 | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`                   | `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17 s/completed` |
-| **Delete activity**               | `delete INDEX`                                                                             | `delete 3`                                                                             |
-| **List activities**               | `list`                                                                                     | `list`                                                                                 |
-| **Rate activity**                 | `rate INDEX r/RATING [re/REVIEW]`                                                          | `rate 1 r/4` <br/> `rate 1 r/4 re/Nice food with good vibes`                           |
-| **Select activity**               | `select INDEX`                                                                             | `select 1`                                                                             |
-| **Find activity**                 | `find KEYWORDS` <br/> `find yyyy-mm-dd` `find yyyy-mm` `find yyyy` <br/> `find rate/value` |                                                                                        |
-| **Find activity by tag**          | `findTag KEYWORD`                                                                          | `findTag movie`                                                                        |
-| **Find activity by status**       | `findStatus STATUS`                                                                        | `findStatus completed`                                                                 |
-| **Find activity by rating value** | `r/above VALUE`                                                                            | `r/above 3`                                                                            |
-| **Help**                          | `help`                                                                                     | `help`                                                                                 |
-| **Clear**                         | `clear`                                                                                    | `clear`                                                                                | 
-| **Exit**                          | `exit`                                                                                     | `exit`                                                                                 |
+| Action                                    | Format                                                                   | Examples                                                                               |
+|-------------------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| **Add activity**                          | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`             | `add n/poutine d/at some place t/food date/2022-09-25 s/completed`                     |
+| **Edit activity**                         | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]` | `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17 s/completed` |
+| **Delete activity**                       | `delete INDEX`                                                           | `delete 3`                                                                             |
+| **List activities**                       | `list`                                                                   | `list`                                                                                 |
+| **Rate activity**                         | `rate INDEX r/RATING [re/REVIEW]`                                        | `rate 1 r/4` <br/> `rate 1 r/4 re/Nice food with good vibes`                           |
+| **Select activity**                       | `select INDEX`                                                           | `select 1`                                                                             |
+| **Find activity**                         | `find KEYWORDS`  `find rate/value`                                       | `find relax`                                                                           |
+| **Find activity by time**                 | `find yyyy-mm-dd` `find yyyy-mm` `find yyyy`                             | 'find 1997-02`                                                                         |
+| **Find activity by tag**                  | `findTag KEYWORD`                                                        | `findTag movie`                                                                        |
+| **Find activity by status**               | `findStatus STATUS`                                                      | `findStatus completed`                                                                 |
+| **Find activity by rating value**         | `find rate/value`                                                        | `find rate/3`                                                                          |
+| **List activities above certain ratings** | `rate/above value`                                                       | `rate/above 3`                                                                         |
+| **Help**                                  | `help`                                                                   | `help`                                                                                 |
+| **Clear**                                 | `clear`                                                                  | `clear`                                                                                | 
+| **Exit**                                  | `exit`                                                                   | `exit`                                                                                 |
 
