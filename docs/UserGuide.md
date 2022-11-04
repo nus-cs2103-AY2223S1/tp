@@ -249,7 +249,10 @@ Example:`m/Amoxicillin | 0.5g every 8 hours`
 
 ### `r/REMARK`
 
-_To be added_
+`REMARK` accepts any values.
+
+Example:`r/Allergic to peanuts`
+
 
 
 _Clean up Task parameters, some should be put in the feature, while things like date format maybe be put in this section_
@@ -620,34 +623,60 @@ Examples:
 
 ### Adding a remark: `add` `-p`
 
-Format: `add -p PATIENT_INDEX r/REMARK`
-* Adds a remark to a patient at the specified `PATIENT_INDEX`.
+You can add a remark to a patient with the `add` command.
+
+Format: **`add`** `-p PATIENT_INDEX r/REMARK`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only add one remark at a time.
+* You cannot add duplicate remarks.
+* Remarks are case-sensitive e.g. `allergic to peanuts` is distinct from `Allergic to Peanuts`.
+
+</div>
 
 Examples:
+* `list` followed by `add -p 1 r/Requires wheelchair to move around` adds the `Requires wheelchair to move around` remark to the 1st patient in the patient list.
+* `find Rachel` followed by `add -p 2 r/Allergic to Peanuts` adds the `Allergic to Peanuts` remark to the 2nd patient in the results of the `find Rachel` command.
 
-_To be added_
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can add multiple remarks at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
 
 <br>
 
 ### Editing a remark: `edit` `-p` `-r`
 
-Format: `edit -p PATIENT_INDEX -r REMARK_INDEX r/REMARK`
-* Edits the remark at the specified `REMARK_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can edit a remark of a patient with the `edit` command.
+
+Format: **`edit`** `-p PATIENT_INDEX -r REMARK_INDEX r/REMARK`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only edit one remark at a time.
+* If there are duplicate remarks after editing a remark, it will not be edited.
+
+</div>
 
 Examples:
-
-_To be added_
+* `list` followed by `edit -p 2 -r 3 r/Allergic to Amoxicillin` edits the 3rd remark of the 2nd patient in the patient list to `Allergic to Amoxicillin`.
+* `find Rachel` followed by `edit -p 1 -r 2 r/Allergic to Amoxicillin` edits the 2nd remark of the 1st patient in the results of the `find Rachel` command to `Allergic to Amoxicillin`.
 
 <br>
 
 ### Deleting a remark: `delete` `-p` `-r`
 
-Format: `delete -p PATIENT_INDEX -r REMARK_INDEX`
-* Deletes the remark at the specified `REMARK_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can delete a medical condition of a patient with the `delete` command.
+
+Format: **`delete`** `-p PATIENT_INDEX -r REMARK_INDEX`
 
 Examples:
-
-_To be added_
+* `list` followed by `delete -p 2 -r 3` deletes the 3rd remark of the 2nd patient in the patient list.
+* `find Rachel` followed by `delete -p 1 -r 2` deletes the 2nd remark of the 1st patient in the results of the `find Rachel` command.
 
 <br>
 
