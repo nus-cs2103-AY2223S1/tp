@@ -126,7 +126,7 @@ For example,
    parameter for `NAME`
 
 ### 2.3.1. Prefix format
-**NAME** - `n/`: <br>
+**NAME** - `n/` : <br>
 Name of a client. <br>
 **Parameter restrictions**: Only standard English characters are allowed, and it should not be blank. <br>
 **Examples**:
@@ -135,7 +135,7 @@ Name of a client. <br>
 
 ---
 
-**PHONE** - `p/`: <br>
+**PHONE** - `p/` : <br>
 Phone number of a client. <br>
 **Parameter restrictions**: Phone numbers should only contain numbers and be at least 3 digits long, and it should not
 be blank.<br>
@@ -145,7 +145,7 @@ be blank.<br>
 
 ---
 
-**EMAIL** - `e/`: <br>
+**EMAIL** - `e/` : <br>
 Email of client. <br>
 **Parameter description**: Emails should be of the format local-part@domain and adhere to the following constraints: <br/> 
 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.<br/> 
@@ -153,7 +153,8 @@ Email of client. <br>
 &emsp;The domain name must: <br/>
 &emsp;&emsp; - end with a domain label at least 2 characters long<br/>
 &emsp;&emsp; - have each domain label start and end with alphanumeric characters<br/>
-&emsp;&emsp;- have each domain label consist of alphanumeric characters, separated only by hyphens, if any.<br>
+&emsp;&emsp; - have each domain label consist of alphanumeric characters, separated only by hyphens, if <br>
+&emsp;&emsp;   any.<br>
 **Examples**:
 * Valid: `john@gmail.com`, `jo_doe@abc.com.sg`
 * Invalid: `john_@example.com`, `john@example_.com`
@@ -168,7 +169,7 @@ Address of client. <br>
 
 ---
 
-**INCOME** - `i/`: <br>
+**INCOME** - `i/` : <br>
 Income of client. <br>
 **Parameter restrictions**: Income should start with $ followed by numbers and should be at least 1 digit long, and it
 should not be blank. <br>
@@ -178,7 +179,7 @@ should not be blank. <br>
 
 ---
 
-**MEETINGDATE or MEETINGDATEWITHTIME** - `m/`: <br>
+**MEETINGDATE or MEETINGDATEWITHTIME** - `m/` : <br>
 Date and time of meeting with client.<br>
 **Parameter restrictions**: Date should be in the form of dd MMM yyyy [HH:mm]. Meeting time is optional.<br>
 **Examples**:
@@ -187,7 +188,7 @@ Date and time of meeting with client.<br>
 
 ---
 
-**MEETINGLOCATION** - `m/`: <br>
+**MEETINGLOCATION** - `m/` : <br>
 Location of meeting with client. <br>
 **Parameter restrictions**: <br>
 * Location can be in the form of either an address (for in-person meetings), or a link (for online meetings).
@@ -198,7 +199,7 @@ Location of meeting with client. <br>
 
 ---
 
-**TAG** - `t/`: <br>
+**TAG** - `t/` : <br>
 Tag of client. <br>
 **Parameter restrictions**: Tags names should be alphanumeric. <br>
 **Examples**:
@@ -207,7 +208,7 @@ Tag of client. <br>
 
 ---
 
-**RISK** - `r/`: <br>
+**RISK** - `r/` : <br>
 Risk level of client’s portfolio. <br>
 **Parameter restrictions**: sRisk level can take any value. <br>
 **Examples**:
@@ -215,7 +216,7 @@ Risk level of client’s portfolio. <br>
 
 ---
 
-**PLANS** - `pl/`: <br>
+**PLANS** - `pl/` : <br>
 Plans regarding client’s portfolio. <br>
 **Parameter restrictions**: Plan name can take any value. <br>
 **Examples**:
@@ -223,7 +224,7 @@ Plans regarding client’s portfolio. <br>
 
 ---
 
-**ADDITIONAL NOTES** - `note/`: <br>
+**ADDITIONAL NOTES** - `note/` : <br>
 Additional notes to client’s portfolio. <br>
 **Parameter restrictions**: Notes can take any value. <br>
 **Examples**:
