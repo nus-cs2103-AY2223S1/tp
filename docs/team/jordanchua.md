@@ -46,8 +46,7 @@ Given below are my contributions to the project.
   [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jordanchua&breakdown=true)
 
 * **Project management**:
-  * Helped to provide a workflow for the Project, such as suggesting to refactor the code first
-    before starting on implementing our own features and commands
+  * Helped to provide a workflow for the Project such as suggesting refactoring of the code as a priority
   * Helped in assigning the relevant tasks for each member depending on their respective code proficiency
 
 * **Enhancements to existing features**:
@@ -61,8 +60,8 @@ Given below are my contributions to the project.
     * Helped to fix the grammatical errors in the User Stories (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/78)
     * Helped to create the Command Summary and Product Scope as well (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/77)
   * Developer Guide:
-    * Added implementation details of both `MarkCommand` and `SortCommand`(https://github.com/AY2223S1-CS2103-F09-1/tp/pull/112)
-    * Included appropriate UML diagrams for both commands (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/112) (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/126)
+    * Added documentation and appropriate UML diagrams for both commands (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/112) 
+      (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/126)
 
 * **Community**:
   * Helped to report the bugs for another team's project during PED
