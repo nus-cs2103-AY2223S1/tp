@@ -21,7 +21,7 @@
     "address" : "wall street",
     "tagged" : [ ],
     "assignments": { },
-    "personGroup" : [ "Team Project" ]
+    "personGroup" : [ "Team Project", "Team Coursework"]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
