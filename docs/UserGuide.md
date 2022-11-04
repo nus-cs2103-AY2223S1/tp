@@ -105,19 +105,19 @@ This section contains all the information on the main features of **ProfNUS**. Y
 
 ### 4.1. User Interface
 
-#### 4.1.1. Switch to light mode : `light`
+#### 4.1.1. Switch to light mode: `light`
 
 Switch to light mode.
 
 Format: `light`
 
-#### 4.1.2. Switch to dark mode : `dark`
+#### 4.1.2. Switch to dark mode: `dark`
 
 Switch to dark mode.
 
 Format: `dark`
 
-#### 4.1.3. Viewing help : `help`
+#### 4.1.3. Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -125,7 +125,7 @@ Format: `help`
 
 ### 4.2. Modules
 
-#### 4.2.1. Viewing list of modules : `mlist`
+#### 4.2.1. Viewing list of modules: `mlist`
 
 Shows a list of all modules in ProfNUS.
 You can click on each module to view more details about the module.
@@ -134,7 +134,7 @@ You can click on each module to view more details about the module.
 
 Format: `mlist`
 
-#### 4.2.2. Viewing more details of a module in the list of modules : `vtarget`
+#### 4.2.2. Viewing more details of a module in the list of modules: `vtarget`
 
 You can also choose to use a CLI-command to get more information about a module in ProfNUS
 at your specified `INDEX`.
@@ -145,7 +145,7 @@ Format: `vtarget INDEX`
 
 Examples: `vtarget 3`
 
-#### 4.2.3. Viewing module details : `mview`
+#### 4.2.3. Viewing module details: `mview`
 
 Shows a list of students and tutors in the module.
 
@@ -162,7 +162,7 @@ Examples:
 
 Adds a module to ProfNUS.
 
-Format: `madd n/MODULE NAME c/MODULE CODE d/MODULE DESCRIPTION [t/TAG]…​ `
+Format: `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A module can have any number of tags or modules(including 0)
@@ -176,11 +176,10 @@ Examples:
 
 Deletes a module stored in ProfNUS.
 
-Format: `mdel c/MODULE CODE`
+Format: `mdel c/MODULE_CODE`
 
 Examples:
 * `mdel c/CS2103T`
-
 
 ### 4.3. Students
 
@@ -201,7 +200,7 @@ Examples:
 * `add n/Adam Doink e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 i/A0175776U h/@adam_doink c/CS1101S cg/CS1101S:Tut07`
 * `add n/David Lim e/ad4md01nk@example.com a/Tembusu College p/82738419 i/A0175079D h/@david_the_best c/CS2030S ta/CS1101S cg/CS1101S:Tut07`
 
-#### 4.3.2. Editing a student : `editstu`
+#### 4.3.2. Editing a student: `editstu`
 
 Edits an existing student in ProfNUS.
 
@@ -219,7 +218,7 @@ Examples:
 *  `editstu 2 n/Betsy Crower ta/` Edits the name of the 2nd student to be `Betsy Crower` and clears all ta modules.
 
 
-#### 4.3.3. Editing a teaching assistant : `editta`
+#### 4.3.3. Editing a teaching assistant: `editta`
 
 Edits an existing teaching assistant in ProfNUS.
 
@@ -236,7 +235,7 @@ Examples:
 *  `editta 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teaching assistant to be `91234567` and `johndoe@example.com` respectively.
 *  `editta 2 n/Betsy Crower ta/` Edits the name of the 2nd teaching assistant to be `Betsy Crower` and clears all ta modules.
 
-#### 4.3.4. Deleting a student : `delstu`
+#### 4.3.4. Deleting a student: `delstu`
 
 Deletes the specified student from ProfNUS.
 
@@ -250,7 +249,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the list of students.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-#### 4.3.5. Deleting a teaching assistant : `delta`
+#### 4.3.5. Deleting a teaching assistant: `delta`
 
 Deletes the specified teaching assistant from ProfNUS.
 
@@ -281,7 +280,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-#### 4.3.7. Listing all students : `list`
+#### 4.3.7. Listing all students: `list`
 
 Shows a list of all the students and teaching assistants in ProfNUS with their contact information in the application.
 
@@ -309,7 +308,7 @@ In this section, we list all the parameters you will encounter of following comm
 | `VENUE`       | This parameter represents the venue of a class.              | `LT16`        |
 | `INDEX`       | This parameter represents the index of a schedule in the displayed list. Indices are **one-based**. | `1`           |
 
-#### 4.4.2. Add your schedule `sadd`
+#### 4.4.2. Add your schedule: `sadd`
 
 You can add a schedule by using this command.
 
@@ -347,7 +346,7 @@ Now, let's use `sadd` to add a schedule with following information:
 ![sadd_step2](images/userguide/sadd_step2.png)
 
 
-#### 4.4.3. Edit your schedule `sedit`
+#### 4.4.3. Edit your schedule: `sedit`
 
 Edits a schedule in ProfNUS.
 
@@ -386,7 +385,7 @@ Now, let's use `sedit` command to edit a schedule with the following information
 ![sedit_step2](images/userguide/sedit_step2.png)
 
 
-#### 4.4.4. Delete your schedule `sdelete`
+#### 4.4.4. Delete your schedule: `sdelete`
 
 Deletes a schedule from ProfNUS.
 
@@ -421,7 +420,7 @@ Now, let's use `sdelete` command and delete the first schedule in your schedule 
 ![sdelete_step2](images/userguide/sdelete_step2.png)
 
 
-#### 4.4.5. Clear your schedule `sclear`
+#### 4.4.5. Clear your schedule: `sclear`
 
 This command helps you clear all schedules/all schedules of selected modules.
 **Format**: `sclear [m/MODULE_CODE]...`
@@ -445,7 +444,7 @@ This command helps you clear all schedules/all schedules of selected modules.
 
 **Example**: `sclear m/CS2103T m/CS2103`
 
-#### 4.4.6. View your schedule `view`
+#### 4.4.6. View your schedule: `view`
 
 You can use this command to view the list of selected/all schedules.
 **Format**: `view [m/MODULE_CODE]... [w/WEEKDAY]...`
@@ -472,7 +471,7 @@ Now, let's view your schedules of CS2030S and schedules on Monday.
 
 ![view by module](images/userguide/view.png)
 
-#### 4.4.7. View your timetable `tview`
+#### 4.4.7. View your timetable: `tview`
 
 Want to make your own timetable? Use `tview` command! It helps you creates your own weekly timetable.
 
@@ -481,13 +480,13 @@ Want to make your own timetable? Use `tview` command! It helps you creates your 
 
 ![tview](images/userguide/tview.png)
 
-### 4.5. Clearing all entries : `clear`
+### 4.5. Clearing all entries: `clear`
 
 Clears all entries from ProfNUS.
 
 Format: `clear`
 
-### 4.6. Exiting the program : `exit`
+### 4.6. Exiting the program: `exit`
 
 Exits the program.
 
@@ -530,13 +529,13 @@ _Details coming soon ..._
 
 ### 6.2 Module Manager Command Summary
 
-| Action                                                                                                       | Format               | Example                                                                              |
-|--------------------------------------------------------------------------------------------------------------|----------------------|--------------------------------------------------------------------------------------|
-| [List all modules](#421-viewing-list-of-modules-mlist)                                                       | `mlist`              | `mlist`                                                                              |
-| [View more information about a module](#422-viewing-more-details-of-a-module-in-the-list-of-modules-vtarget) | `vtarget INDEX`      | `vtarget 3`                                                                          |
-| [View more information about a module](#423-viewing-module-details-mview)                                    | `mview c/MODULE_CODE` | `mview c/CS1101S`                                                                    |
-| [Add a module](#424-adding-a-module-madd)                                                                    | `madd`               | `madd n/Computer Organisation c/CS2100 d/Teaches you more on computer hardware t/Y2` |
-| [Delete a module](#425-deleting-a-module-mdel)                                                               | `mdel c/MODULE_CODE` | `mdel c/CS1101S`                                                                     |
+| Action                                                                                                       | Format                                                             | Example                                                                              |
+|--------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| [List all modules](#421-viewing-list-of-modules-mlist)                                                       | `mlist`                                                            | `mlist`                                                                              |
+| [View more information about a module](#422-viewing-more-details-of-a-module-in-the-list-of-modules-vtarget) | `vtarget INDEX`                                                    | `vtarget 3`                                                                          |
+| [View more information about a module](#423-viewing-module-details-mview)                                    | `mview c/MODULE_CODE`                                              | `mview c/CS1101S`                                                                    |
+| [Add a module](#424-adding-a-module-madd)                                                                    | `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​` | `madd n/Computer Organisation c/CS2100 d/Teaches you more on computer hardware t/Y2` |
+| [Delete a module](#425-deleting-a-module-mdel)                                                               | `mdel c/MODULE_CODE`                                               | `mdel c/CS1101S`                                                                     |
 
 ### 6.3 Student Manager Command Summary
 
