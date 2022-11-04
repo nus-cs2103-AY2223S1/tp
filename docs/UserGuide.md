@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide (v1.3)
+title: User Guide 
 ---
 ## Table of Contents
 
@@ -9,32 +9,59 @@ title: User Guide (v1.3)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction
+## Introduction  
+
+This is an overview of the application.
 
 #### What is TrackAScholar?
 
-TrackAScholar (TAS) is the **only** desktop app any university administrative staff needs for managing scholarship applications.
-TAS helps administrative staff manage scholarship applications by storing the applicant's contact details, scholarship applied and majors taken all in one place.
+TrackAScholar (TAS) helps university administrative staff manage scholarship applications.
+It stores all applicant's details such as contact info and scholarship applied etc. all in one place.
+TrackAScholar (TAS) is a one of a kind desktop app.It is the **only** application that any university administrative staff needs.
 
-TAS presents the administrative staff with the option to pin important applicants, edit their details easily,
- find or filter for applicants with ease and otherwise speeds up the application process.
+TAS have many functions that university administrative staff can use to help speed up the application process immensly.
+
+These functions include:
+1. Pinning of important applicants. 
+2. Easy edit of applicant's detail.
+For example, you typed in the wrong name.You can easily edit the wrong name to the correct one.
+3. Finding a particular applicant by a certain trait.
+For example, you can find a particular applicant in a large list of over 100 applicants just by keying in the applicant's name.
+4. Filtering of applicants by application status. 
+Filtering by application status divides the list to 3 portions according to the 3 different types of application status. 
 
 TAS is **optimised for use via a Command Line Interface (CLI)** while simultaneously having the benefits of a **Graphical User Interface
 (GUI)**. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
 
 #### Who is this User Guide for?
 
-We have created this user manual for people who want to learn how to use our app.
-It is best suited for administrative staff members who seek an app to streamline their scholarship management procedure.
+It is stated that on average 1.7 million university scholarships are given out each year in the United States alone.Furthermore, 
+it is found that only 1 in 8 student actually wins a scholarship.This brings us to about more than 10 million applications a year.
 
-Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3.github.io/tp/DeveloperGuide.html)
- to find out more about the technical components of our app.
+As such, many universities often take an extended period of many months to process these applications.
+University administrative staff often have to work overtime to process these large number of applications.
+Poor scholarship management procedures employed in many of these universities further complicates the process. 
+
+TrackAScholar (TAS) is an app designed for university administrative staff members to streamline the scholarship management procedure. 
+
+TrackAScholar (TAS) seeks to 
+1. Reduce the time taken for university to process the scholarships
+2. Improve the current scholarship management process
+3. Decrease the number of times staff members work overtime 
+
+For technical upkeep, please refer to our [Developer Guide](https://ay2223s1-cs2103t-w10-3.github.io/tp/DeveloperGuide.html)
+
+#### Current version
+This is the third iteration of the user guide.
+The current version is version 1.3.
 
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Legend
+## Legend 
+
+Explanation of signs which may help the user better understand the documentation
 
 :information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
 
@@ -46,7 +73,20 @@ Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Glossary - helps user better understand and navigate certain technical terms
+
+| Technical terms       | Explanation of technical terms                                                                                |
+|-----------------------|---------------------------------------------------------------------------------------------------------------|
+| **Applicant list**    | A list containing all the applicants.                                                                         |
+| **command box**       | The place where you key in your commands.                                                                     |
+| **command**           | The order you are giving to TrackAScholar.                                                                    |
+| **TrackAScholar.jar** | The file that contains TrackAScholar.By downloading and running it you can run TrackAScholar.                 |
+| **case-insensitive**  | Upper case is considered to be the same as lower case.For instance 'a' and 'A' are considered to be the same. |
+| **case-sensitive**    | Upper case is not the same as lower case.For instance 'a' and 'A' are considered to be not the same.          |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick start - How to get started
 
 1. Ensure `Java 11` or a later version is installed on your computer. Otherwise, check [here](https://nus-cs2103-ay2223s1.github.io/website/admin/programmingLanguages.html#programming-language).
 
@@ -69,7 +109,9 @@ Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Overview of TrackAScholar app
+## Overview of TrackAScholar app  
+
+This is how the application will look like when opened.
 
 ![Overview of TrackAScholar app](images/UserGuideCommands/TrackAScholarOverview.png)
 
@@ -395,6 +437,16 @@ import <r>/<k>
 It is necessary for a trackAScholar file to be named as a readable format (trackAScholarImport.json) and be placed in the ./data directory. 
 Otherwise, file cannot be read.
 </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When the trackAScholar program is being run, it will create a new ./data/ folder with the trackAScholar.json data
+file in the same folder. Please insert the trackAScholarImport.json file there.
+
+For testers, please refer to the Developer Guide for the testing files.
+</div>
+
+[Testing Import function](https://github.com/samuelcheongws/tp/blob/master/docs/DeveloperGuide.md#import-trackascholarimport-file)
+
 
 Examples:
 * `import r` applicants with the same name will be replaced with application data from imported file

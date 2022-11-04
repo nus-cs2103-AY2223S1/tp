@@ -85,7 +85,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @param applicantPredicateList Predicate list to combine.
      * @return A chain of combined predicate list.
      */
-    private static Predicate<Applicant> combinePredicateList(List<Predicate<Applicant>> applicantPredicateList) {
+    public static Predicate<Applicant> combinePredicateList(List<Predicate<Applicant>> applicantPredicateList) {
         return applicantPredicateList.stream().reduce(Predicate::and).orElse(x -> true);
     }
 
