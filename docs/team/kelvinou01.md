@@ -1,9 +1,7 @@
 ---
 layout: page
-title: Kelvin's Project Portfolio Page
+title: Kelvin's Project Portfolio Page 
 ---
-
-### 
 
 # Rapportbook
 
