@@ -259,7 +259,6 @@ Step 7. `SetPathFileCommand#execute()` method will instantiate a new `Person` ob
 The following sequence diagram shows how the assigning filepath to a client feature works.
 ![SetPersonFileSequenceDiagram](images/DeveloperGuide/FilePath/FilePathSequenceDiagram.png)
 
-
 The following activity diagram shows how the assigning filepath to a client feature works.
 ![SetPersonFileActivityDiagram](images/DeveloperGuide/FilePath/FilePathActivityDiagram.png)
 

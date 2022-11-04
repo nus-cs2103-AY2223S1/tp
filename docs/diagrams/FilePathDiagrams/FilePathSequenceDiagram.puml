@@ -5,21 +5,19 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":SetPersonFileCommandParser" as SetPersonFileCommandParser LOGIC_COLOR
-participant ":Index" as Index LOGIC_COLOR
-participant ":FilePath" as FilePath LOGIC_COLOR
 participant ":SetPersonFileCommand" as SetPersonFileCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "PersonToEdit:Person" as personToEdit MODEL_COLOR
-participant "EditedPerson:Person" as EditedPerson MODEL_COLOR
+participant "lastShownList:List<Person>" as lastShownList MODEL_COLOR
+participant "editedPerson:Person" as editedPerson MODEL_COLOR
 end box
 
-[-> LogicManager : execute("filepath 2 f/C:\Users\...\Tut.pdf")
+[-> LogicManager : execute(commandText)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("filepath 2 f/C:\Users\...\Tut.pdf")
+LogicManager -> AddressBookParser : parseCommand(commandText)
 activate AddressBookParser
 
 create SetPersonFileCommandParser
@@ -29,25 +27,11 @@ activate SetPersonFileCommandParser
 SetPersonFileCommandParser --> AddressBookParser
 deactivate SetPersonFileCommandParser
 
-AddressBookParser -> SetPersonFileCommandParser : parse("2 f/C:\Users\...\Tut.pdf")
+AddressBookParser -> SetPersonFileCommandParser : parse(arguments)
 activate SetPersonFileCommandParser
 
-create Index
-SetPersonFileCommandParser -> Index
-activate Index
-
-Index --> SetPersonFileCommandParser
-deactivate Index
-
-create FilePath
-SetPersonFileCommandParser -> FilePath
-activate FilePath
-
-FilePath --> SetPersonFileCommandParser
-deactivate FilePath
-
 create SetPersonFileCommand
-SetPersonFileCommandParser -> SetPersonFileCommand : (2, "C:\Users\Eugene Tay\Downloads\Tutorial_8_qns.pdf")
+SetPersonFileCommandParser -> SetPersonFileCommand : SetPersonFileCommand(index, filePath)
 activate SetPersonFileCommand
 
 SetPersonFileCommand --> SetPersonFileCommandParser
@@ -67,30 +51,23 @@ activate SetPersonFileCommand
 SetPersonFileCommand -> Model : getFilteredPersonList()
 activate Model
 
-Model --> SetPersonFileCommand
+Model --> SetPersonFileCommand : lastShownList
 deactivate Model
 
-SetPersonFileCommand -> SetPersonFileCommand : get(index.getZeroBased())
-activate SetPersonFileCommand
+SetPersonFileCommand -> lastShownList : get(index.getZeroBased())
+activate lastShownList
 
-create personToEdit
-SetPersonFileCommand -> personToEdit
-activate personToEdit
+lastShownList --> SetPersonFileCommand:personToEdit
+deactivate lastShownList
 
-personToEdit --> SetPersonFileCommand
-deactivate personToEdit
+Create editedPerson
+SetPersonFileCommand -> editedPerson
+activate editedPerson
 
-Create EditedPerson
-SetPersonFileCommand -> EditedPerson
-activate EditedPerson
+editedPerson --> SetPersonFileCommand
+deactivate editedPerson
 
-EditedPerson --> SetPersonFileCommand
-deactivate EditedPerson
-
-SetPersonFileCommand --> SetPersonFileCommand
-deactivate SetPersonFileCommand
-
-SetPersonFileCommand -> Model : setPerson()
+SetPersonFileCommand -> Model : setPerson(personToEdit, editedPerson)
 activate Model
 
 Model --> SetPersonFileCommand
@@ -102,9 +79,9 @@ activate Model
 Model --> SetPersonFileCommand
 deactivate Model
 
-SetPersonFileCommand --> LogicManager : CommandResult
+SetPersonFileCommand --> LogicManager : result
 destroy SetPersonFileCommand
 
-[<--LogicManager : commandResult
+[<--LogicManager : result
 deactivate LogicManager
 @enduml
