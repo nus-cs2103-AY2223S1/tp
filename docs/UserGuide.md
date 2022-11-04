@@ -254,7 +254,7 @@ This section contains some technical specifications of how to use the commands i
 ### <u>Inventory management</u>
 
 The commands included in this section are related to inventory management. 
-As of the latest update, there are 5 commands.
+As of `v1.4`, there are 5 commands.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -396,7 +396,7 @@ you are trying to edit is currently involved in an order (in this case, the orde
 ### <u>Order management</u>
 
 The commands included in this section are related to order management.
-As of the latest update, there are 7 commands.
+As of `v1.4`, there are 7 commands.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -568,9 +568,31 @@ Format: `deleteo INDEX`
 * `INDEX` **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `listo` followed by `deleteo 2` deletes the 2nd order from the order list.
-* `findo i/Paper` followed by `deleteo 1` deletes the 1st item in the results of the `findo i/Paper` command.
-* `sorto new` followed by `deleteo 1` deletes the most recently created order
+* When you enter `listo` followed by `deleteo 2`, TrackO deletes the 2nd order from the order list. Executing it on our 
+sample data will display this result:
+
+  <img src="./images/user-guide/DeleteoExample1.png" alt="DeleteoExample1">
+
+* For the second example, let us follow the steps described below:
+  1. First, enter `findo i/Pillow`. TrackO will display orders with the item `Chair` in their list of ordered items.
+
+     <img src="./images/user-guide/DeleteoExample2-1.png" alt="DeleteoExample2-1">
+     
+  2. When you enter `deleteo 1`, TrackO will delete the order currently displayed at index `1`, which is the order with 
+     `Pillow` in its list of ordered items. It will display the following result:
+  
+     <img src="./images/user-guide/DeleteoExample2-2.png" alt="DeleteoExample2-2">
+     
+  3. To redisplay all your existing orders, enter `listo` and it should look like the following:
+  
+     <img src="./images/user-guide/DeleteoExample2-3.png" alt="DeleteoExample2-3">
+
+* For the third example, let us follow the steps described below:
+  1. First, enter `sorto new`. TrackO will sort the orders from the newest to the oldest, with the most recent 
+     order at the top.
+     <img src="./images/user-guide/DeleteoExample3-1.png" alt="DeleteoExample3-1">
+  2. When you enter `deleteo 1`, TrackO will delete the order currently displayed at index `1`, i.e. the most recent order.
+     <img src="./images/user-guide/DeleteoExample3-2.png" alt="DeleteoExample3-2">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -611,13 +633,18 @@ the `2` `Apples`.
 </div>
 
 Examples:
-* `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`
-  Edits the name, phone, email, and address of the second order in the list to `Peter`,`98765432`, `peter@email.com`,
-  and `123 Apartment Unit, #05-11` respectively.
-* When the third order in the list has `Chairs` in quantity `5`, `edito 3 i/chairs q/0` 
-  will remove the item from the order list. 
-* When the fifth order in the list has `Tables` in quantity `3` in its order list, and you have `Chairs` in your inventory,
-`edito 5 i/chairs q/15` will add `15 Chairs` to the order list.
+* For this example, let us follow the steps described below:
+  1. When you enter `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`, TrackO will edit the name, 
+     phone, email, and address of the second order in the list to `Peter`,`98765432`, `peter@email.com`, and 
+     `123 Apartment Unit, #05-11` respectively. It will display this result when executed on our sample data:
+     <img src="./images/user-guide/EditoExample1-1.png" alt="EditoExample1-1">
+  2. Next, entering `edito 4 i/Chair q/5` will add `5 Chairs` to the fourth order's list of ordered items, as shown below:
+     <img src="./images/user-guide/EditoExample1-2.png" alt="EditoExample1-2">
+  3. Now, let us try entering `edito 4 i/mattress q/0`. Doing this will remove the item `Mattress` from the fourth order's 
+     list of ordered items.
+     <img src="./images/user-guide/EditoExample1-3.png" alt="EditoExample1-3">
+  4. Finally, try entering `edito 4 i/Chair q/10`. TrackO will update the `Quantity` of ordered `Chairs` in the fourth order to `10`.
+     <img src="./images/user-guide/EditoExample1-4.png" alt="EditoExample1-4">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -650,9 +677,14 @@ mark an order as **delivered** if there is **insufficient stock** of the item(s)
 </div>
 
 Examples:
-* `marko 1 -p` Marks the order at index `1` in the currently displayed list as `paid`. 
-* `marko 1 -d` Marks the order at index `1` in the currently displayed list as `delivered`.
-* `marko 1 -p -d` Marks the order at index `1` in the currently displayed list as both `paid` and `delivered`.
+* When you enter `marko 4 -p` on our sample data, TrackO will mark the order at index `4` in the currently displayed 
+  list as `paid`, as shown below:
+  <img src="./images/user-guide/MarkoExample1.png" alt="MarkoExample1">
+
+* When you enter `marko 2 -d` on our sample data, TrackO will mark the order at index `2` in the currently displayed
+  list as `delivered`. However, because the order was previously marked as `paid`, the label will show `Completed` and 
+  the color of the [order card](#layout) is tinted gray.
+  <img src="./images/user-guide/MarkoExample2.png" alt="MarkoExample2">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -666,6 +698,8 @@ or to exit the application.
 ### Getting help: `help`
 
 Shows a window with a link to the user guide.
+
+<img src="./images/user-guide/Help.png" alt="Help">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -687,6 +721,9 @@ The command `clear` clears all data (in both `Order List` and `Inventory List`) 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The keywords `confirm` and `done` are case-sensitive. Thus, only the keywords in lower case are accepted.
 </div>
+
+An empty TrackO should look like this:
+<img src="./images/user-guide/Clear.png" alt="Clear">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
