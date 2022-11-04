@@ -85,7 +85,7 @@ Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 
 - The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
 - Date format accepted is: `dd/mm/yyyy`.
-- Date cannot be after the current date.
+- Date of birth cannot be after the current date.
 - The genders accepted by the contact list are: `M`/`m`/`Male`/`male` for male, `F`/`f`/`Female`/`female` for female.
 
 Examples:
@@ -132,7 +132,7 @@ Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
 - Date format accepted is: `dd/mm/yyyy`.
-- Date cannot be after the current date.
+- Date of birth cannot be after the current date.
 - The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
 for male, `F`/`f`/`Female`/`female` for female.
 

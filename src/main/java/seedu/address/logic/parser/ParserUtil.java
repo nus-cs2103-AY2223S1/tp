@@ -169,7 +169,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Date} into a {@code Date}.
+     * Parses a {@code String Date} into a {@code Date}. {@code isFutureDateAllowed} is true
+     * if a date after the current date is allowed, false otherwise.
      * Leading and trailing whitespaces will be trimmed.
      */
     public static Date parseDate(String date, boolean isFutureDateAllowed) throws ParseException {
