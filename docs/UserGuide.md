@@ -169,8 +169,14 @@ The two fields that the user can sort by are:
 
 Format for each variant of `sort`:
 
-1. `ProjectName`: `sort [-p]`, this is the default variant
+1. `ProjectName`: `sort [-p]`
 2. `ProjectStatus`: `sort -s`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: A `sort` command without the flag specified explicitly will be interpreted as `sort -p` by default.
+
+</div>
 
 #### 3.1.4. Clearing the FYP list: `clear`
 
@@ -214,7 +220,7 @@ Removes a FYP from the FYP manager. The specified student ID must exist in the F
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: An `delete` command without the `-s` flag specified explicitly will be interpreted as `delete -s` by default.
+:information_source: A `delete` command without the `-s` flag specified explicitly will be interpreted as `delete -s` by default.
 
 </div>
 
@@ -256,10 +262,16 @@ The four fields that the user can search by are:
 
 Format for each variant of `find`:
 
-1. `ProjectName`: `find [-p] KEYWORD/[KEYWORD2/KEYWORD3/…]`, this is the default variant
+1. `ProjectName`: `find [-p] KEYWORD/[KEYWORD2/KEYWORD3/…]`
 2. `StudentId`: `find -i KEYWORD/[KEYWORD2/KEYWORD3/…]`
 3. `StudentName`: `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`
 4. `Tags`: `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: A `find` command without the flag specified explicitly will be interpreted as `find -p` by default.
+
+</div>
 
 * the `/` in the above examples shows multiple input parameters. <br>
   e.g. `find -i A0123456X/A0123456G` will search for all students with either student ID of *A0123456X* or *A0123456G*.
@@ -279,7 +291,7 @@ Examples:
 Remark:
 
 * A neat alternative to `list`: `find -i a` or `find -i /a` will function the same way as `list` and returns a list
-  of all students, as student ID always begins with letter 'a'.
+  of all students, as student ID always begins with letter 'A' and the keyword supplied is case-insensitive.
 
 #### 3.2.5. Edit student details: `edit`
 
@@ -328,6 +340,9 @@ Example:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous FypManager home folder.
+
+**Q**: What happens if I modify the data file?<br>
+**A**: Although extremely discouraged, the application will start with a fresh new sample data.
 
 --------------------------------------------------------------------------------------------------------------------
 
