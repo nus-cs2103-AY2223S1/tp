@@ -543,29 +543,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | view a list of current internship applications                        | -                                                                  |
 | `* * *`  | user                                       | add a new internship application                                      | -                                                                  |
 | `* * *`  | user                                       | delete an internship application                                      | remove entries that I no longer need                               |
-| `* *`    | user                                       | mark internship applications as completed                             | clearly see my progress                                            |
-| `*`      | user                                       | unmark completed internship applications                              | clearly see my progress                                            |
 | `* * *`  | forgetful user                             | obtain the information of the company                                 | contact them if I have any queries                                 |
-| `*`      | potential user                             | see the app populated with sample data                                | see what the app is like while it is in use                        |
-| `* *`    | new user                                   | purge all current data                                                | get rid of experimental data I used for exploring the app          |
 | `* * *`  | organized user                             | color code tags for different interviews and statuses                 | sort and prioritize my interview data                              |
+| `* * *`  | user applying to many internships          | search for a specific company via keywords                            | easily find the information I am looking for                       |
+| `* * *`  | user applying to many internships          | make my own tags                                                      | sort my applications better                                        |
+| `* * *`  | user applying to internships progressively | edit individual application information at any time                   | make sure the information stays relevant                           |
+| `* * *`  | frequent user                              | the commands to be simple and memorable                               | access my information quickly and easily                           |
+| `* *`    | user                                       | mark internship applications as completed                             | clearly see my progress                                            |
+| `* *`    | user                                       | view internship periods of different companies                        | more informed about my applications                                |                                                                                    
+| `* *`    | new user                                   | purge all current data                                                | get rid of experimental data I used for exploring the app          |                  
 | `* *`    | user applying to many internships          | sort application deadlines by time and priority                       | take note of upcoming deadlines                                    |
 | `* *`    | user applying to many internships          | record down the dates of the interviews                               | avoid interview clashes                                            |
-| `* *`    | user who just started his interviews       | record my mistakes made during interviews                             | reflect on t hem                                                   |
-| `* * *`  | user applying to many internships          | search for a specific company via keywords                            | easily find the information I am looking for                       |
+| `* *`    | user who just started his interviews       | record my mistakes made during interviews                             | reflect on t hem                                                   |          
 | `* *`    | user applying to many internships          | receive reminders about upcoming interviews and deadlines             | not miss any important dates                                       |
-| `* * *`  | user applying to many internships          | make my own tags                                                      | sort my applications better                                        |
-| `* *`    | user applying to technical internships     | view different stages of my interview such as HR and technical stages | see what phase of the interviews I am at                           |
-| `* * *`  | user applying to internships progressively | edit individual application information at any time                   | make sure the information stays relevant                           |
+| `* *`    | user applying to technical internships     | view different stages of my interview such as HR and technical stages | see what phase of the interviews I am at                           |                     
 | `* *`    | user applying to technical internships     | filter through my internships by job role                             | to keep track of the roles I have applied for                      |
-| `*`      | user applying to many internships          | sort the salaries of each company                                     | compare the options I have                                         |
-| `*`      | user applying to many internships          | archive the interviews I have been rejected from                      | avoid cluttering the app with data and also refer to them later on |
 | `* *`    | user applying to many internships          | prioritize the companies I am keen on                                 | compare the options I have                                         |
-| `* * *`  | frequent user                              | the commands to be simple and memorable                               | access my information quickly and easily                           |
-| `*`      | frequent user                              | search for applications through case sensitive searching              | find and sort my internships more easily                           |
-| `* *`    | user                                       | view internship periods of different companies                        | more informed about my applications                                |
-| `*`      | frequent user                              | have a customizable GUI                                               | have more visible information on my applications                   |
 | `* *`    | frequent user                              | compare internship statistics such as internship lengths              | make a more informed choice                                        |
+| `*`      | potential user                             | see the app populated with sample data                                | see what the app is like while it is in use                        |
+| `*`      | user                                       | unmark completed internship applications                              | clearly see my progress                                            |
+| `*`      | user applying to many internships          | sort the salaries of each company                                     | compare the options I have                                         |
+| `*`      | user applying to many internships          | archive the interviews I have been rejected from                      | avoid cluttering the app with data and also refer to them later on |                                                        
+| `*`      | frequent user                              | search for applications through case sensitive searching              | find and sort my internships more easily                           |                               
+| `*`      | frequent user                              | have a customizable GUI                                               | have more visible information on my applications                   |                                      
 | `*`      | frequent user                              | send feedback to the developers of the application                    | make them optimize the app more                                    |
 
 *{More to be added}*
@@ -621,30 +621,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 2a The given index is invalid.
 
-    * 3a1. InTrack shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: UC05 - Mark an internship application as completed**
-
-**MSS**
-
-1. User <u>views list of current internship applications (UC02)</u>.
-2. User requests to mark a specific internship application in the list as completed.
-3. InTrack marks the internship application as completed.
-
-   Use case ends.
-
-**Extensions**
-
-* 3a. The given index is invalid.
-
-    * 3a1. InTrack shows an error message.
+    * 2a1. InTrack shows an error message.
 
       Use case resumes at step 2.
-
+    
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -652,21 +634,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 internship applications without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Data should be stored consistently upon closing and reopening the app
-5. System should be usable by a Computing student who has never applied to an internship before
-6. System should be easily usable by the majority of Year 2+ Computing students
-
-
-*{More to be added}*
-
+4. Data should be stored consistently upon closing and reopening the app.
+5. System should be usable by a Computing student who has never applied to an internship before.
+6. System should be easily usable by the majority of Year 2+ Computing students.
+7. The application is not required to support any other language other than English.
+8. The application is not required to support multiple users on a single device.
+9. The response to any commands carried out by the user should become visible within 3 seconds.
+10. The user is not required to install Gradle/JavaFx for the application to function. 
+11. The user is not required to have internet connection in order for the application to function.
 
 ### Glossary
 
-| Term        | Explanation |
-| ----------- | ----------- |
-| Mainstream OS | Windows, Linux, Unix, OS-X |
-| Graphical User Interface (GUI) | An interface for the user to interact with the system via graphical icons and audio |
-| Command Line Interface (CLI) | An interface for the user to input commands to interact with the system |
+| Term                           | Explanation                                                                                                    |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------|
+| Mainstream OS                  | Windows, Linux, Unix, OS-X                                                                                     |
+| Graphical User Interface (GUI) | An interface for the user to interact with the system via graphical icons and audio                            |
+| Command Line Interface (CLI)   | An interface for the user to input commands to interact with the system                                        |
+| Tag                            | An optional one-word identifier of a internship application. An internship application can have multiple tags. |
+| Status                         | The status of the internship application, must be either `Offered`, `Rejected` or `Progress`                   |
 
 --------------------------------------------------------------------------------------------------------------------
 
