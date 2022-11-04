@@ -9,13 +9,17 @@ title: User Guide
 
 Welcome to the Rapportbook user guide!
 
+Rapportbook is a **desktop app for managing client information for your financial advising needs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+Rapportbook provides functionality for your whole financial advising workflow, which includes searching for, prospecting, and meeting up with clients.
+
+Rapportbook is built for tech savvy financial advisors who type fast. A concise set of syntax and command aliasing makes navigating Rapportbook's functionality a breeze.
+
 </div>
 
 {:refdef: style="text-align: center;"}
 ![Mockup](images/Ui.png)
 {: refdef}
-
-Rapportbook is a **desktop app for managing client information for your financial advising needs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 #### Using this guide
 
@@ -200,7 +204,7 @@ Examples:
 * `tag create potential` Creates a tag called `potential`
 * `tag create potential highPriority lowPriority` Creates 3 tags called `potential`, `highPriority` and `lowPriority`.
 
-![imageedit_2_2454502168.png](/Users/cyanaspect/Downloads/imageedit_2_2454502168.png)
+![imageedit_2_2454502168.png](images/createTag.png)
 
 ### Tagging clients : `tag`
 
@@ -221,7 +225,7 @@ Examples:
 * `tag 5 potential` Assigns the `potential` tag to the client entry at index 5.
 * `tag 5 potential highPriority` Assigns the `potential` and `highPriority` tags to the client entry at index 5.
 
-![imageedit_3_5522601060.png](/Users/cyanaspect/Downloads/imageedit_3_5522601060.png)
+![imageedit_3_5522601060.png](images/tag.png)
 
 ### Listing tags : `tag list`
 
@@ -246,7 +250,7 @@ Examples:
 * `tag remove 5 potential` Removes the `potential` tag from the client entry at index 5.
 * `tag remove 5 potential highPriority` Removes the `potential` and `highPriority` tags from the client entry at index 5.
 
-![imageedit_5_4642324925.png](/Users/cyanaspect/Downloads/imageedit_5_4642324925.png)
+![imageedit_5_4642324925.png](images/tagRemove.png)
 
 ### Deleting tags : `tag delete`
 
@@ -263,7 +267,7 @@ Example:
 - `tag delete potential` Deletes the `potential` tag from the address book.
 - `tag delete potential highPriority` Deletes the `potential` and `highPriority` tags from address book.
 
-![imageedit_8_4864780781.png](/Users/cyanaspect/Downloads/imageedit_8_4864780781.png)
+![imageedit_8_4864780781.png](images/tagDelete.png)
 
 ### Filtering client entries : `filter`
 
