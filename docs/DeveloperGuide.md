@@ -11,7 +11,7 @@ title: Developer Guide
 
 ### 1.1 Product description
 
-MyInsuRec is a desktop app for financial advisors. It provides financial advisors with clients, meetings and products management abilities to ease their mental load. It also provides some CRM features such as the ability to look up clients with upcoming birthdays.
+MyInsuRec is a desktop app for financial advisors. It provides financial advisors with clients, meetings and products management abilities to ease their mental load. It also provides some customer relations features such as the ability to look up clients with upcoming birthdays.
 
 ### 1.2 Acknowledgements
 
@@ -438,7 +438,7 @@ Aspect: How prefixes are stored:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
-| Priority | As an …         | I want to …                                                 | So that I can…                                                             | Conditions                                                             |
+| Priority | As an …         | I want to …                                                 | So that I can…                                                              | Conditions                                                             |
 |----------|-----------------|-------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | insurance agent | add client details                                          | keep track of my client's details                                           |                                                                        |
 | `* * *`  | insurance agent | view all my clients                                         | see who I am providing services to                                          |                                                                        |
@@ -448,11 +448,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 | `* * *`  | insurance agent | view all client meetings                                    | see when I have meetings                                                    |                                                                        |
 | `* * *`  | insurance agent | see an overview of today’s client meetings                  | know what my schedule looks like for the day                                |                                                                        |
 | `* * *`  | insurance agent | delete client meetings                                      | remove meetings that are canceled                                           |                                                                        |
+| `* *`    | insurance agent | see an overview of future client meetings                   | know what my schedule looks like for at least the coming month              |                                                                        |
 | `* *`    | insurance agent | add and edit a list of the products a client bought         | better track which products might interest them                             | Product are created by the agent before being associated with a client |
 | `* *`    | insurance agent | know which products my clients have bought                  | gauge the popularity of each product                                        | Clients can be filtered according to the product they bought           |
 | `* *`    | insurance agent | see the birthdays of my clients for the upcoming week/month | send my clients a thank you/birthday gift and maintain a close relationship |                                                                        |
 | `* *`    | insurance agent | set the default views in my app to light mode and dark mode |                                                                             |                                                                        |
-
 
 
 ### 5.3 Use cases
@@ -567,25 +567,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 1a. User tries to deletes a product that was not shown in the list.
+* 1a. User tries to delete a product that was not shown in the list.
     * 1a1. System shows an error message.
 
       Use case ends.
 
 ### 5.4 Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should be usable by a novice who has never used a command line interface.
-5.  Common actions should require 5 or less input phrases to accomplish.
-6.  UI should be intuitive and easy to understand.
+1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed. (Technical requirement)
+2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage. (Performance requirements)
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. (Constraints)
+4.  Should be usable by a novice who has never used a command line interface. (Accessibility requirements)
+5.  Common actions should require 5 or less input phrases to accomplish. (Quality requirements)
+6.  Should be able to work without an internet connection. (Constraints)
+7.  Should not take more than 10 seconds to execute any commands. (Performance requirements)
 
 ### 5.5 Glossary
 
+* **Command Line Interface**: A text-based user interface that allows users to interact with a system.
 * **Mainstream OS**: Windows, MacOS, Unix
 * **Meeting**: An event that the user with the client at a specific date and time.
-* **Timing conflict**: Time periods that overlap. e.g. meetings should not be happening on the same time.
+* **Product**: A financial product such as life insurance that a financial advisor is selling
+* **Timing conflict**: Time periods that overlap. e.g., a time period spanning from 1400 to 1500 and another time period spanning from 1430 to 1500 are considered to overlap. Time period that start and end at the same time however are considered to not overlap, e.g., a time period spanning from 0900 to 0900 and another time period spanning from 0900 to 0900 are considered to not overlap.
+* **View panel**: The main and largest component of the user interface the user will be interacting with. e.g., the view panel is the component that is used to display the list of clients, show detailed information about a meeting, etc.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Appendix: Instructions for manual testing
@@ -638,3 +642,29 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## 7. Appendix: Effort
+
+MyInsuRec is a brown-field project that extends from AB3. It is developed to become a financial advisor's everyday companion app, used for its client contacts tracking, meetings scheduling and products management ability.
+
+Our team has put in a substantial effort in developing this product. To date, we have over [10,000 lines of code](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w16-4&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16). Over 350 automated tests were written, and many hours of writing code and testing them was spent on this.
+
+We have listed our project challenges below in an attempt to bring you closer to the behind-the-scenes of the product development, and help you understand the countless hours and the thoughts put into designing and creating the product.
+
+### 7.1 Product challenges
+
+Some design considerations and effort is listed below:
+
+* Careful deliberation on how we can maintain the immutability of all three entity types to match the design of AB3. This was **especially challenging as we planned for `Client` and `Meeting` to have a bidirectional navigability so that we can freely access both object's information, but this is impossible** (literally) as there are no order of creation such that both objects can be immutable. We ultimately settled on a immutable definition that is less strict, and allows `Client` to have an immutable attribute of a list of meetings, but strictly control the ways that the list can be changed.
+
+* Integrating the 3 entity types is also challenging as the initial code base is written purely for a single entity. We had to **spend hours researching on the use of Jackson** to better understand how we can incorporate navigability e.g., having `Client` have a reference to `Meeting` and kept inside to-and-fro storage. We ultimately decided on using an ID generator in order to reference from `Client` to its `Meeting`.
+
+* Having 3 entity type also meant that all 3 view panels in the UI needed to be constantly synchronized with one another. This was more complex than we imagined, as the code base only has event listeners on the `ObservableList` which is created as a separate copy from the `FilteredList`. This meant that any mutations to the object will not trigger an update to the UI. That observation alone took us **hours googling and reading JavaFx documentations and fiddling through the AB3 code base** to figure out why mutations does not cause UI changes. We had to revert some decisions made earlier and revamp the entire code base to be fully immutable for the UI updates to work as intended
+
+* 3 entity types also meant **triple the testing required**. Not just in automated testing, but also in integration test, where we had to ensure that all 3 entities can work together and stay synchronized. For example, ensuring that deletion of 1 entity meant the proper deletion of all the other associated entities.
+
+* Having 3 entity types also mean that our GUI needed to switch between multiple panels. We had to implement all the different types of possible panels for the 3 entity, plus even more panels due to further variants of the list panel (e.g., detailed view panel). This poised some challenge for our team as we had to take the time to learn JavaFx, which was a library we were initially not adept at using.
+
+* We implemented meetings with start and end time. Without the availability of interval trees in Java, it was more difficult than expected to ensure that meetings do not have any timing conflicts. We **faced a lot of bugs** in between trying to get the start and end time duration feature to work, facing regressions after fixing a bug. We eventually managed to produce a version that is relatively bug-free after many iterations spent.
+
+* We have some attributes for clients optional, which is unlike AB3 where only `Tag` is optional. For AB3, the optional `Tag` is easily implemented as it is implemented as a Set which can simply be empty. For our attributes which are not in a form of data structure, we had to deliberate over how it should be implemented. For example, should it just be a barebones, empty parameter version of the attribute (which was the initial solution used)? How would that affect the software engineering principles that are taught? We eventually settled on the use of Java' Optional which suited our needs better, after facing bugs with using the barebones version of an attribute.
