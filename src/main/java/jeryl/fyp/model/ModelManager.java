@@ -246,7 +246,6 @@ public class ModelManager implements Model {
     public DeadlineList listDeadlineUnderStudent(Student student) {
         return fypManager.getDeadlineList(student);
     }
-    
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
