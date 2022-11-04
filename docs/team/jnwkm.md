@@ -28,16 +28,16 @@ Given below are my contributions to the project.
 * **New Enhancement**: Enhanced the delete command to be multi-functional.
   * What it does: allows the user to allows the user to not just delete contacts but also delete specific fields of people.
   * Justification: This feature improves the product significantly because a user may want to update contacts that no longer use those fields.
-  * Highlights: This enhancement affects existing commands. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands and validators.
+  * Highlights: This enhancement affects existing commands. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands and validators. Required changes to GUI also to display the deleted data field.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Jnwkm&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jnwkm&breakdown=true)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Wrote additional tests for existing features to increase coverage from 46% to 52% (Pull requests [\#205](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/205), [\#38]())
 
 * **Documentation**:
   * User Guide:
