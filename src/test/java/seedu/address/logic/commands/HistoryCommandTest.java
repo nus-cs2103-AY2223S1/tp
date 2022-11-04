@@ -23,19 +23,11 @@ public class HistoryCommandTest {
     }
 
     @Test
-    public void execute_history_filled() {
-        HistoryList history = new HistoryList();
-        history.addToHistory("test");
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS + history.printList());
-        assertCommandSuccess(new HistoryCommand(), model, expectedCommandResult, expectedModel);
-    }
-
-    @Test
     public void execute_history_success() {
-        HistoryList history = new HistoryList();
-        history.addToHistory("test");
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS + history.printList());
+        HistoryList.addToHistory("test");
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS + HistoryList.printList());
         assertCommandSuccess(new HistoryCommand(), model, expectedCommandResult, expectedModel);
+        HistoryList.clearList();
     }
 
     @Test

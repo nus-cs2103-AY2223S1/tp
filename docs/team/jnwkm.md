@@ -33,7 +33,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Jnwkm&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Co-managed releases `v1.1` - `v1.4` (4 releases) on GitHub with team
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
@@ -41,7 +41,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
+    * Added documentation for the features `delete`, `find` & `history` [\#72]()
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide:
     * Added implementation details of the `delete` feature.

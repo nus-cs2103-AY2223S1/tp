@@ -47,6 +47,16 @@ public class HistoryList {
     }
 
     /**
+     * Clears the list.
+     */
+    public static void clearList() {
+        while (!history.isEmpty()) {
+            history.remove();
+        }
+    }
+
+
+    /**
      * Prints out the contents of the list.
      */
     public static String printList() {

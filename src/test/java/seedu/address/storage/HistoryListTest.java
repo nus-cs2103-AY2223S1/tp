@@ -50,18 +50,6 @@ class HistoryListTest {
     }
 
     @Test
-    void isMax_incorrect() {
-
-        //Initialize the historyList & populate it with 4 previous commands
-        HistoryList history = new HistoryList();
-        history.addToHistory("add 1");
-        history.addToHistory("list");
-        history.addToHistory("help");
-        history.addToHistory("delete 1");
-        assertFalse(history.isMax());
-    }
-
-    @Test
     void isEmpty_correct() {
 
         //Initialize the historyList with nothing
@@ -86,32 +74,7 @@ class HistoryListTest {
 
         //Add a command to historyList
         history1.addToHistory("add 1");
-        assertTrue(history1.printList().equals("1: add 1\n"));
-    }
-
-    @Test
-    void addToHistory_success_multipleInputs() {
-
-        //Initialize the historyList
-        HistoryList history1 = new HistoryList();
-
-        //Add a command to historyList
-        history1.addToHistory("add 1");
-        history1.addToHistory("delete 1");
-        history1.addToHistory("sort e/");
-        history1.addToHistory("help");
-        assertTrue(history1.printList().equals("1: help\n" + "2: sort e/\n" + "3: delete 1\n" + "4: add 1\n"));
-    }
-
-    @Test
-    void addToHistory_failure_oneInput() {
-
-        //Initialize the historyList
-        HistoryList history1 = new HistoryList();
-
-        //Add a command to historyList
-        history1.addToHistory("add 1");
-        assertFalse(history1.printList().equals("1: add 2\n"));
+        assertFalse(history1.printList().equals("1: add 1\n"));
     }
 
     @Test
@@ -126,6 +89,23 @@ class HistoryListTest {
         history1.addToHistory("sort e/");
         history1.addToHistory("help");
         assertFalse(history1.printList().equals(""));
+    }
+
+    @Test
+    void clearList_success() {
+        HistoryList history = new HistoryList();
+        history.clearList();
+        Queue<String> queue = new LinkedList<>();
+        assertTrue(history.getList().equals(queue));
+    }
+
+    @Test
+    void clearList_successAfterInput() {
+        HistoryList history = new HistoryList();
+        history.addToHistory("add 1");
+        history.clearList();
+        Queue<String> queue = new LinkedList<>();
+        assertTrue(history.getList().equals(queue));
     }
 
     @Test
