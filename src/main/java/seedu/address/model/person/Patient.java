@@ -196,7 +196,18 @@ public class Patient extends Person {
         return appointments.stream().anyMatch(appt -> appt.isDuring(appointmentDateTime));
     }
 
+    /**
+     * Returns true if the patient is free during the given appointment date time
+     *
+     * @param appointmentDateTime The given appointment date time to check
+     * @return True if the patient does not have an existing appointment at that
+     *         date time
+     */
     public boolean isFreeDuring(AppointmentDateTime appointmentDateTime) {
         return !hasAppointment(appointmentDateTime);
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
     }
 }

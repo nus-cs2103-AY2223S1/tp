@@ -123,6 +123,25 @@ public class AssignCommand extends Command {
     }
 
     private void markAssign(Model model, Patient patient, Nurse nurse) throws CommandException {
+        // If the ‘DATE_AND_SLOT_INDEX’ is not indicated (0), then all the date slot of
+        // the patients will be assigned to the nurse.
+
+        // If the ‘DATE_AND_SLOT_INDEX(ES)’ is indicated, then the date slot with the
+        // respective index(es) in the displayed dateslot list will be assigned to the
+        // nurse.
+
+        // try {
+        //     if (dateslotIndex.isEmpty()) {
+        //         appointmentManager.assignNurseForAllAppointments(nurse, patient);
+        //     } else {
+        //         appointmentManager.assignNurseForAppointments(nurse, patient, dateslotIndex);
+        //     }
+        // } catch (NurseIsBusyException e) {
+        //     throw new CommandException(e.getMessage());
+        // }
+
+        // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         List<DateSlot> patientDateSlotList = patient.getDatesSlots();
         Long nurseUidNo = nurse.getUid().getUid();
         List<HomeVisit> nurseHomeVisitList = nurse.getHomeVisits();

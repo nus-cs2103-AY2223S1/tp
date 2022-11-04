@@ -1,7 +1,9 @@
 package seedu.address.model.appointment;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.address.model.appointment.exceptions.NurseIsBusyException;
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
@@ -10,6 +12,12 @@ import seedu.address.model.person.Person;
  * Represents an appointment between a patient and a nurse.
  */
 public class Appointment implements Comparable<Appointment> {
+    public static final String SUCCESS_VISIT_CHECK = "V";
+    public static final String FAIL_VISIT_CHECK = "FV";
+    public static final String SUCCESS_ASSIGNED_CHECK = "A";
+    public static final String MESSAGE_CONSTRAINTS = "Date and slot should be in YYYY-MM-DD,SLOT_NUMBER.\n"
+            + "The slot number can only be from 1 to 4. Slot 1 is 10am, slot 2 is 12pm, "
+            + "slot 3 is 2pm and slot 4 is 4pm.\n" + "For example, 2022-11-11,1";
     private Patient patient;
     private Nurse nurse;
     private AppointmentDateTime appointmentDateTime;
@@ -38,7 +46,7 @@ public class Appointment implements Comparable<Appointment> {
      * @param appointmentDateTime The provided appointment datetime
      */
     public Appointment(Patient patient, AppointmentDateTime appointmentDateTime) {
-        requireAllNonNull(patient, nurse, appointmentDateTime);
+        requireAllNonNull(patient, appointmentDateTime);
         this.patient = patient;
         this.appointmentDateTime = appointmentDateTime;
         this.visited = false;
@@ -164,8 +172,14 @@ public class Appointment implements Comparable<Appointment> {
      * Links the current appointment to its new nurse
      *
      * @param newNurse The new nurse to link to
+     * @throws NurseIsBusyException When the new nurse is busy during this time
      */
-    public void changeNurseTo(Nurse newNurse) {
+    public void assignNurseForAppointment(Nurse newNurse) throws NurseIsBusyException {
+        requireNonNull(nurse);
+
+        if (!nurse.isFreeDuring(appointmentDateTime)) {
+            throw new NurseIsBusyException(appointmentDateTime.getDate());
+        }
         nurse.removeAppointment(this);
         setNurse(newNurse);
         nurse.addAppointment(this);

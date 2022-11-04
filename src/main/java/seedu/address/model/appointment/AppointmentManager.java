@@ -2,9 +2,12 @@ package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.NurseIsBusyException;
 import seedu.address.model.appointment.exceptions.PatientIsBusyException;
@@ -39,7 +42,7 @@ public class AppointmentManager {
         }
 
         if (!nurse.isFreeDuring(appointmentDateTime)) {
-            throw new NurseIsBusyException();
+            throw new NurseIsBusyException(appointmentDateTime.getDate());
         }
 
         Appointment newAppointment = new Appointment(patient, nurse, appointmentDateTime);
@@ -89,10 +92,10 @@ public class AppointmentManager {
                 .orElseThrow(AppointmentNotFoundException::new);
 
         if (!nurse.isFreeDuring(appointmentDateTime)) {
-            throw new NurseIsBusyException();
+            throw new NurseIsBusyException(appointmentDateTime.getDate());
         }
 
-        appointment.changeNurseTo(nurse);
+        appointment.assignNurseForAppointment(nurse);
         return appointment;
     }
 
@@ -170,10 +173,10 @@ public class AppointmentManager {
                 .orElseThrow(AppointmentNotFoundException::new);
 
         if (!newNurse.isFreeDuring(appointmentDateTime)) {
-            throw new NurseIsBusyException("The new nurse is busy");
+            throw new NurseIsBusyException(appointmentDateTime.getDate());
         }
 
-        appointment.changeNurseTo(newNurse);
+        appointment.assignNurseForAppointment(newNurse);
     }
 
     /**
@@ -219,4 +222,43 @@ public class AppointmentManager {
         requireAllNonNull(nurse, patient, appointmentDateTime);
         return patient.findAppointment(nurse, appointmentDateTime);
     }
+
+    /**
+     * Assigns all of the given patient's appointments with the given nurse
+     *
+     * @param nurse   The given nurse to be assigned
+     * @param patient The given patient who's appointments will be assigned to the
+     *                nurse
+     * @throws NurseIsBusyException When the given nurse is busy during the given
+     *                              patient's appointments
+     */
+    public void assignNurseForAllAppointments(Nurse nurse, Patient patient) throws NurseIsBusyException {
+        for (Appointment appointment : patient.getAppointments()) {
+            appointment.assignNurseForAppointment(nurse);
+        }
+    }
+
+    /**
+     * Assigns the given nurse to a given patient's specific appointments specified
+     * by the indexes in the dateSlotIndex List
+     *
+     * @param nurse           The given nurse to be assigned
+     * @param patient         The given patient who's appointments will be assigned
+     *                        to the nurse
+     * @param dateSlotIndexes The indexes of the patient's appointments to be
+     *                        assigned
+     * @throws NurseIsBusyException When the given nurse is busy during the given
+     *                              patient's appointments
+     */
+    public void assignNurseForAppointments(Nurse nurse, Patient patient, List<Index> dateSlotIndexes)
+            throws NurseIsBusyException {
+        List<Appointment> patientAppointments = patient.getAppointments();
+        List<Appointment> selectedAppointments = dateSlotIndexes.stream()
+                .map(idx -> patientAppointments.get(idx.getZeroBased()))
+                .collect(Collectors.toList());
+        for (Appointment appointment : selectedAppointments) {
+            appointment.assignNurseForAppointment(nurse);
+        }
+    }
+
 }
