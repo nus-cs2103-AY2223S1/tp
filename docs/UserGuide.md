@@ -77,9 +77,9 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a contact: `addPerson`
+### Adding a person: `addPerson`
 
-Adds a contact to the application.
+Adds a person to the application.
 
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 
@@ -92,6 +92,11 @@ Examples:
 * `addPerson n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 g/f d/14/12/1998`
 
 <div markdown="span" class="alert alert-info">
+:information_source: **Note:** Adding a new person that has the same name as an existing person is not allowed.<br><br>
+
+For example, if the application currently has a person named `Donny`, the input `addPerson n/Donny p/98765432 e/test@test.com a/UTown g/M d/10/10/2022`
+will not run and will output the error message `This person already exists in the address book`.
+
 :information_source: **Note:** The year "0000" is an invalid input for all persons and events.<br><br>
 </div>
 
