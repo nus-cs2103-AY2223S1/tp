@@ -36,4 +36,9 @@ public class RedoCommand extends Command {
 
         return new CommandResult(MESSAGE_REDO_SUCCESS, false, false, false, true, false);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof RedoCommand;
+    }
 }

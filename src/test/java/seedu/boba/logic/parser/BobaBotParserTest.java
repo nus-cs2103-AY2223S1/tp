@@ -27,6 +27,8 @@ import seedu.boba.logic.commands.FindCommand;
 import seedu.boba.logic.commands.HelpCommand;
 import seedu.boba.logic.commands.IncreaseCommand;
 import seedu.boba.logic.commands.ListCommand;
+import seedu.boba.logic.commands.RedoCommand;
+import seedu.boba.logic.commands.UndoCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
@@ -126,6 +128,18 @@ public class BobaBotParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_undo() throws ParseException {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + "     ") instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_redo() throws ParseException {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + "     ") instanceof RedoCommand);
     }
 
     @Test

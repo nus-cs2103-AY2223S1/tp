@@ -109,6 +109,24 @@ public class VersionedBobaBot extends BobaBot {
     }
 
     /**
+     * Gets the integer representing the current state pointer.
+     *
+     * @return an Integer representing the current state pointer
+     */
+    public int getCurrentStatePointer() {
+        return this.currentStatePointer;
+    }
+
+    /**
+     * Gets the size of the current stateList.
+     *
+     * @return an Integer representing the size of the current stateList
+     */
+    public int getStateListSize() {
+        return this.bobaBotStateList.size();
+    }
+
+    /**
      * Compares if two VersionedBobaBot objects are equal
      *
      * @param other
