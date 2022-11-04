@@ -158,14 +158,16 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The add item command will be executed by `AddItemCommand`. Items added will be stored in `InventoryList`. 
+The add item command will be executed by `AddItemCommand`. Items added will be stored in `InventoryList`.
 
 Given below is an example usage scenario and how the add item mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `InventoryList` will contain sample data.
 
-Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. 
-The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. 
+Step 2. The user executes `addi i/keys q/10 d/Metallic keys sp/15.50 cp/10 t/Utilities` command to add 10 `keys` to item list in TrackO.
+The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`), 
+quantity (prefixed by `q/`), description (prefixed by `d/`), selling price (prefixed by `sp/`), cost price (prefixed by `cp/`) 
+are present before parsing the arguments into an `AddItemCommand` object. Tags, prefixed by `t/`, are optional.
 
 The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
 
@@ -214,8 +216,8 @@ The sequence diagram below illustrates this process.
 
 ![ListItemsSequenceDiagram](images/ListItemsSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListItemsCommand` 
-should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListItemsCommand`
+should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline
 reaches the end of diagram.
 </div>
 
@@ -239,7 +241,7 @@ Given below is an example usage scenario and how the find order mechanism behave
 
 Step 1. The user executes `findi chair mattress` command to find the orders containing items with the keywords
 keychain or apple. The `findi` command calls `FindItemCommandParser` which checks for the correct command
-syntax and separates the keywords, utilising each space as a delimiter. 
+syntax and separates the keywords, utilising each space as a delimiter.
 
 Step 2. The keywords are then passed into a constructor for `ItemContainsKeywordsPredicate`,
 which extends `Predicate<Item>`, to construct a predicate that will filter the items according to the keywords.
@@ -251,7 +253,7 @@ The sequence diagram below illustrates this process.
 
 ![FindItemSequenceDiagram](images/FindItemSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser`
 and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
 reaches the end of diagram.
 </div>
@@ -511,7 +513,9 @@ done by `Item#isSameItem`, which returns true if both the newly inputted `Item` 
       `MESSAGE_ONE_ORDERED_ITEM` will be thrown. This is because **an order cannot have zero ordered items**.
     - The newly inputted`Quantity` is different from the existing `Quantity`. If it is, then it will update 
 to the newly inputted `Quantity`.
-    - Otherwise, nothing happens.
+      - Otherwise, a `CommandException` with `MESSAGE_NO_CHANGE_IN_QUANTITY` will be thrown. This is to warn users that
+      the newly inputted `Quantity` is the same as the existing `Quantity` and does not update the `Quantity` field at
+      all. 
 
 Step 4. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, 
 successfully executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and 
