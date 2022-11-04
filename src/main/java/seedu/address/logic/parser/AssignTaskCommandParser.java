@@ -2,6 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_EMPTY_DEADLINE;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_EMPTY_NAME;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_GROUP;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_TASK;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_WORKLOAD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
@@ -39,8 +44,31 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
 
         String group;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK, PREFIX_WORKLOAD)
-                || argMultimap.getPreamble().isEmpty()) {
+        // name empty
+        if (argMultimap.getPreamble().isEmpty()
+                && (arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK, PREFIX_WORKLOAD))) {
+            throw new ParseException(String.format(MESSAGE_EMPTY_NAME, AssignTaskCommand.MESSAGE_USAGE));
+
+        // group empty
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_GROUP)
+                && (arePrefixesPresent(argMultimap, PREFIX_TASK, PREFIX_WORKLOAD)
+                        && !argMultimap.getPreamble().isEmpty())) {
+            throw new ParseException(String.format(MESSAGE_NO_PREFIX_GROUP, AssignTaskCommand.MESSAGE_USAGE));
+
+        // task empty
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_TASK)
+                && (arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_WORKLOAD)
+                        && !argMultimap.getPreamble().isEmpty())) {
+            throw new ParseException(String.format(MESSAGE_NO_PREFIX_TASK, AssignTaskCommand.MESSAGE_USAGE));
+
+        // workload empty
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_WORKLOAD)
+                && (arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK)
+                        && !argMultimap.getPreamble().isEmpty())) {
+            throw new ParseException(String.format(MESSAGE_NO_PREFIX_WORKLOAD, AssignTaskCommand.MESSAGE_USAGE));
+
+        // rest
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK, PREFIX_WORKLOAD)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AssignTaskCommand.MESSAGE_USAGE));
         }
@@ -50,20 +78,25 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
             group = argMultimap.getValue(PREFIX_GROUP).get();
             String task = argMultimap.getValue(PREFIX_TASK).get();
             String workload = argMultimap.getValue(PREFIX_WORKLOAD).get().toUpperCase();
-
             inputName = ParserUtil.parseName(name);
             inputGroup = ParserUtil.parseGroupName(group);
             inputWorkload = ParserUtil.parseWorkload(workload);
+
             //Deadline field is present
             if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
                 String deadline = argMultimap.getValue(PREFIX_DEADLINE).get();
-                inputDeadline = ParserUtil.parseDeadline(deadline);
+                try {
+                    inputDeadline = ParserUtil.parseDeadline(deadline);
+                } catch (ParseException e) {
+                    throw new ParseException(String.format(MESSAGE_EMPTY_DEADLINE, e.getMessage()));
+                }
                 inputTask = ParserUtil.parseAssignmentWithDeadline(task, inputWorkload, inputDeadline);
             } else {
                 inputTask = ParserUtil.parseAssignmentWithWorkload(task, inputWorkload);
             }
         } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    e.getMessage()));
         }
 
         return new AssignTaskCommand(inputName, group, inputTask);

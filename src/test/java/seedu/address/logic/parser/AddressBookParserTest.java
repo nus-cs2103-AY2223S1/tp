@@ -40,6 +40,7 @@ import seedu.address.model.person.FullNamePredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonGroup;
 import seedu.address.model.person.testutil.EditPersonDescriptorBuilder;
 import seedu.address.model.person.testutil.PersonBuilder;
 import seedu.address.model.person.testutil.PersonUtil;
@@ -60,8 +61,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addgroupmember() throws Exception {
-        String group = "Group";
-        String name = "Alex";
+        PersonGroup group = new PersonGroup("Group");
+        Name name = new Name("Alex");
         AddGroupMemberCommand command = (AddGroupMemberCommand) parser.parseCommand(
                 AddGroupMemberCommand.COMMAND_WORD + " " + PREFIX_GROUP + group
                         + " " + PREFIX_NAME + name);
@@ -106,8 +107,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deletegroupmember() throws Exception {
-        String group = "Group";
-        String name = "Alex";
+        PersonGroup group = new PersonGroup("Group");
+        Name name = new Name("Alex");
         DeleteGroupMemberCommand command = (DeleteGroupMemberCommand) parser.parseCommand(
                 DeleteGroupMemberCommand.COMMAND_WORD + " " + PREFIX_GROUP + group
                         + " " + PREFIX_NAME + name);

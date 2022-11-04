@@ -54,7 +54,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deleteperson John`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -96,13 +96,13 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddPersonCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deleteperson John")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram2.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -112,8 +112,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -308,7 +308,7 @@ Starting from the default persons, the user has executed `addgroup g/CS2103T` to
 `GroupName` "CS2103T".
 
 **Step 2.**
-User executes `displaygroup g/CS2103T`. The associated command `DisplayGroupCommand` calls
+User executes `displaygroup CS2103T`. The associated command `DisplayGroupCommand` calls
 `Model#updateFilteredGroupList(predicate)` with the given predicate being the `GroupName` CS2103T
 to display just the group with that name.
 
@@ -363,7 +363,7 @@ The `AddressBook` model is reflected below:
 <img src="images/AddDeleteMemberState2.png" width="300" />
 
 **Note:** `AssignTaskCommandParser` will check if the assignment's parameters are parsed properly,
-such as `Task` being non-empty, `Deadline` being a valid date, etc. 
+such as `Task` being non-empty, `Deadline` being a valid date, etc.
 `AssignTaskCommand` further checks if both the person and group with the specified name and groupname respectively
 exist in the app, that the person is a member of the group, and the person doesn't already have a similar task under
 the group.
@@ -395,7 +395,7 @@ For simplicity, only the `deletetask` command sequence diagram is shown below. B
 
 ### **\[Developed\] Bulk Assignment & Deletion of Tasks**
 
-#### **Implementation** 
+#### **Implementation**
 This feature allows tasks to be assigned to/deleted from all members of a group simultaneously.
 It is facilitated by the following operations:
 

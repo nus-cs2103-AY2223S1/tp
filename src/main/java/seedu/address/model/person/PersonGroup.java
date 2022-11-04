@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class PersonGroup extends ArrayList<PersonGroup> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Group has to exist currently, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Group has to exist currently, and it should not be blank.";
 
     /*
      * The first character of the group must not be a whitespace,

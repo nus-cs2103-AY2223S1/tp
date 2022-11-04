@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_GROUP;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_TASK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
@@ -13,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AssignTaskAllCommand;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.Workload;
 
 public class AssignTaskAllCommandParserTest {
@@ -27,19 +28,16 @@ public class AssignTaskAllCommandParserTest {
 
     @Test
     public void parse_invalidInput_throwsParseException() {
-        // no group
-        assertParseFailure(parser, " " + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
 
         // no group prefix
         assertParseFailure(parser, " " + "Group" + " "
                         + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_NO_PREFIX_GROUP, AssignTaskAllCommand.MESSAGE_USAGE));
 
         // no task
         assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
                 + PREFIX_WORKLOAD + "low",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_NO_PREFIX_TASK, AssignTaskAllCommand.MESSAGE_USAGE));
 
         // invalid task
         assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
@@ -55,7 +53,7 @@ public class AssignTaskAllCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
                         + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low" + " "
                         + PREFIX_DEADLINE + "2022-02-30",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Deadline.MESSAGE_CONSTRAINTS));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_EMPTY_DEADLINE));
     }
 
     @Test

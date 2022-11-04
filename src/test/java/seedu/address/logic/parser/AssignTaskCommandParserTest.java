@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_EMPTY_NAME;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_GROUP;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_TASK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKLOAD;
@@ -26,20 +29,16 @@ public class AssignTaskCommandParserTest {
 
     @Test
     public void parse_invalidInput_throwsParseException() {
-        // no name
-        assertParseFailure(parser, "" + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task" + " "
-                + PREFIX_WORKLOAD + "low",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
 
         // empty name
         assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task" + " "
                 + PREFIX_WORKLOAD + "low",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_EMPTY_NAME, AssignTaskCommand.MESSAGE_USAGE));
 
         // no group
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_TASK + "Task" + " "
                 + PREFIX_WORKLOAD + "low",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_NO_PREFIX_GROUP, AssignTaskCommand.MESSAGE_USAGE));
 
         // invalid group
         assertParseFailure(parser, " " + "Alex Yeoh" + " "
@@ -49,21 +48,21 @@ public class AssignTaskCommandParserTest {
         // no group prefix
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + "Group" + " " + PREFIX_TASK + "Task" + " "
                         + PREFIX_WORKLOAD + "low",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_NO_PREFIX_GROUP, AssignTaskCommand.MESSAGE_USAGE));
 
         // no task
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group" + " "
                         + PREFIX_WORKLOAD + "low",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_NO_PREFIX_TASK, AssignTaskCommand.MESSAGE_USAGE));
 
         // no workload
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
 
-        //invalid workload
+        // invalid workload
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group" + " "
                         + PREFIX_WORKLOAD + "very high",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_NO_PREFIX_TASK, AssignTaskCommand.MESSAGE_USAGE));
 
         // invalid task
         assertParseFailure(parser, " " + "Alex Yeoh" + " "
