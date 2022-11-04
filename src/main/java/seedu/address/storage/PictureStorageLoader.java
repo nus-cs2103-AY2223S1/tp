@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Storage loader class for the profile picture.
  */
@@ -12,6 +14,7 @@ public class PictureStorageLoader {
      * @param occupation the occupation provided.
      */
     public PictureStorageLoader(String occupation) {
+        requireNonNull(occupation);
         this.occupation = occupation;
     }
 
