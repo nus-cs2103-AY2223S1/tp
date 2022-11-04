@@ -112,7 +112,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleAttributeKeywords_ApplicantsFound() {
+    public void execute_multipleAttributeKeywords_applicantFound() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Benson Alice");
         ScholarshipContainsKeywordsPredicate scholarshipPredicate = prepareScholarshipPredicate("Merit");
