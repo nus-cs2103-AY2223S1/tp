@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  * Module lesson type
  */
 public enum LessonTypeEnum {
-    TUT("Tutorial"),
-    LEC("Lecture"),
     LAB("Laboratory"),
+    LEC("Lecture"),
+    TUT("Tutorial"),
     REC("Recitation"),
     SEC("Sectional Teaching"),
     UNSUPPORTED("");
