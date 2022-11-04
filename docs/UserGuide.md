@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 <div align="center">
-<img src="../docs/images/Logo.png" width="300">
+<img src="../docs/images/Logo.png" width="360">
 </div>
 Welcome to Mass Linkers &mdash; a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates.
 
