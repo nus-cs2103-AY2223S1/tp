@@ -67,14 +67,17 @@ public class FindCommand extends Command {
         model.updateFilteredDelivererList(delivererPredicate);
         model.updateFilteredSupplierList(supplierPredicate);
         if (type.equals(PersonCategory.BUYER)) {
+            model.switchToBuyerList();
             return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredBuyerList().size()));
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredCurrList().size()));
         } else if (type.equals(PersonCategory.DELIVERER)) {
+            model.switchToDelivererList();
             return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredDelivererList().size()));
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredCurrList().size()));
         } else {
+            model.switchToSupplierList();
             return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredMainList().size()));
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredCurrList().size()));
         }
     }
 

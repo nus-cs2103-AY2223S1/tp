@@ -175,9 +175,9 @@ public interface Model {
     List<Pet> getPetsFromSupplier(Supplier supplier);
 
     /**
-     * Clears the main display list
+     * Clears the curr display list
      */
-    void clearMasterList();
+    void clearCurrList();
 
     /**
      * Switches the current displayed list to buyer list.

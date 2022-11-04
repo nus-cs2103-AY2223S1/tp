@@ -57,17 +57,9 @@ public class FilterOrderCommand extends FilterCommand {
         requireNonNull(model);
         Predicate<Order> finalPredicate = generatePredicate();
         model.updateFilteredOrderList(finalPredicate);
+        model.switchToOrderList();
         return new CommandResult(
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()),
-                false,
-                false,
-                true,
-                "",
-                false,
-                null,
-                false,
-                null,
-                null);
+                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredCurrList().size()));
     }
 
 

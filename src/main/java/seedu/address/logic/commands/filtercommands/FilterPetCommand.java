@@ -65,17 +65,9 @@ public class FilterPetCommand extends FilterCommand {
         requireNonNull(model);
         Predicate<Pet> finalPredicate = generatePredicate();
         model.updateFilteredPetList(finalPredicate);
+        model.switchToPetList();
         return new CommandResult(
-                String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, model.getFilteredPetList().size()),
-                false,
-                false,
-                true,
-                "ListCommand.LIST_PET",
-                false,
-                null,
-                false,
-                null,
-                null);
+                String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, model.getFilteredCurrList().size()));
     }
 
 

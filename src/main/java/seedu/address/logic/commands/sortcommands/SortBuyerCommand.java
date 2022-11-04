@@ -36,6 +36,7 @@ public class SortBuyerCommand extends SortCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.sortBuyer(comparator);
+        model.switchToBuyerList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

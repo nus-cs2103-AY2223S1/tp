@@ -411,8 +411,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void clearMasterList() {
+    public void clearCurrList() {
         filteredAll.clear();
+        filteredCurrList.clear();
     }
 
     @Override
