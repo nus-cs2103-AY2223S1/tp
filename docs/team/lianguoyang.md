@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 
 - **New Feature**: Assign and Delete task commands ([#55](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/55),
 [#81](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/81),
-[#82](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/81))
+[#82](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/82))
   - What it does: Allow users to create and delete task from a member in a group.
   - Justification: A project team leader has to manage many task assigned to his group members. This feature allows them to perform basic operation of creating and deleting tasks.
 
@@ -26,15 +26,19 @@ Given below are my contributions to the project.
 
 **Enhancements implemented**:
   - Show tasks details for each person in UI ([#55](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/55))
-  - Add JUnit test cases for `Logic` and `Model` classes ([#98](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/98))
+  - Add JUnit test cases for `Logic` and `Model` classes ([#82](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/82),
+[#98](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/98),
+[#139](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/139),
+[#195](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/195))
   - Popup window of help command ([#110](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/110),
-[#128](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/128))
+[#128](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/128),
+[#130](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/130))
       - Create a table of commands to allow users to have a better overview of the trivial commands.
       - Add buttons to open the UG or copy the URL link to the UG.
       - Add CSS to table and buttons.
+      - Update format and examples of each command to match with the ones in the popup window.
   - Fix bugs where GroupList and PersonList are not updated after commands are executed and causes the whole program to fail.
-([#138](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/138),
-[#139](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/139),
+([#139](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/139),
 [#146](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/146),
 [#195](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/195))
 
@@ -43,11 +47,10 @@ Given below are my contributions to the project.
 - Contributions to the UG:
   - Update Quick Start ([#21](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/21),
   [#48](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/48))
-  - Update details of `DeleteTaskCommand` ([#85](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/85))
+  - Update details of `DeleteTask` ([#85](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/85))
   - Update existing commands and diagrams in UG ([#130](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/130),
 [#134](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/134),
 [#146](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/146),
-[#147](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/147),
 [#153](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/153),
 [#155](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/153))
 
