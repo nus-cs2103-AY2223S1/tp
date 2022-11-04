@@ -124,7 +124,7 @@ class JsonAdaptedIssue {
         try {
             modelProject = HasIntegerIdentifier.getElementById(
                     addressBook.getProjectList(), Integer.parseInt(project));
-        } catch (NotFoundException e) {
+        } catch (NotFoundException | NumberFormatException e) {
             throw new IllegalValueException(ProjectId.MESSAGE_CONSTRAINTS);
         }
 
