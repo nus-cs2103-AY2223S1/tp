@@ -49,18 +49,6 @@ public class BirthdayTest {
 
     }
 
-
-    @Test
-    public void isPastBirthday() {
-        // past birthdays
-        assertTrue(Birthday.isInPast("29/02/2000"));
-        assertTrue(Birthday.isInPast("15/06/2022"));
-        assertTrue(Birthday.isInPast("01/01/2021"));
-
-        // future birthdays
-        assertFalse(Birthday.isInPast("30/06/2050")); // Boundary case for end of month
-    }
-
     @Test
     public void deepCopy_copyNotSameButEqual() {
         Birthday birthday = new Birthday("01/01/2000");
