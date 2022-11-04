@@ -202,7 +202,6 @@ TrackO's functionalities!
          You should see these orders appear in the [order list](#layout), as shown below:
          
          <img src="./images/user-guide/Tutorial4.png" alt="Tutorial4">
-         <br>
 
 Now that you're done trying out some commands, you can enter `exit` to leave the application. We hope that this short tutorial was helpful! 
 To check out more commands, you can head over to our [features section](#features).
@@ -538,7 +537,7 @@ Examples:
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
-### **<u>General features</u>**
+### <u>General features</u>
 
 The commands included here are `TrackO`'s general features for you to clear the sample data, access the help window, 
 or to exit the application.
