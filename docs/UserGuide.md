@@ -576,10 +576,10 @@ Format: `calendar`
 Q: How do I transfer my data to another Computer? <br>
 A : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LTNS home folder.
 
-Q: Why am I seeing `(insert error)` when trying to add an event?<br>
+Q: Why am I seeing `The person you specified doesn't exist` when trying to add an event?<br>
 A : When adding an Event involving a client, this client must exist in your client book first.
 
-Q: Why am I seeing a `Sorting metric does not exist` error when trying to sort my client list? <br>
+Q: Why am I seeing a `Sorting metric does not exist` when trying to sort my client list? <br>
 A : You may be typing a wrong <b>keyword</b> or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
 
 Q: Why is a blank screen shown when I use the `calendar` feature? <br>
