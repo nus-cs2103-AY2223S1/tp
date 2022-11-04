@@ -244,8 +244,8 @@ Examples:
 Adds a tutorial to ModQuik.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
-* `DAY` should take in a number from 1 (Monday) to 7 (Sunday).
-* `TIMESLOT` should take in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
+* `DAY` takes in a number from 1 (Monday) to 7 (Sunday).
+* `TIMESLOT` takes in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
 
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
@@ -288,8 +288,9 @@ Examples:
 Adds a consultation to ModQuik.
 
 Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
-* `DATE` should take in a date in the format yyyy-MM-dd, e.g. 2022-10-24.
-* `TIMESLOT` should take in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
+* `DATE` should be given in the format yyyy-MM-dd, e.g. 2022-10-24.
+* `TIMESLOT` takes in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
+* You can add consultations from the past to keep track of all your consultations and progress throughout the semester.
 
 Examples:
 * `add consultation n/JakeKim m/CS2103T D/2023-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
@@ -334,14 +335,16 @@ Adds a reminder to ModQuik. Users can add reminders such as "Mark Assignment 1" 
 Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
-* `DATE` and `TIME` inputted must be after the current date and time as shown in your local PC.
+* `DATE` should be given in the format yyyy-MM-dd, e.g. 2022-10-24.
+* `TIME` should be given in the format HH:mm, e.g., 18:00.
+* You can add reminders from the past to keep track of all your tasks and progress throughout the semester.
 * You cannot add 2 reminders of the same name, date, time and description as they are considered duplicate.
-* Whenever a reminded is added, it will be automatically sorted by priority, just like when `sort reminder by/priority` is used so that the tasks deemed most important are shown at the top of the list.
+* Whenever a reminded is added, it will be **automatically sorted by priority**, just like when `sort reminder by/priority` is used so that the tasks deemed most important are shown at the top of the list.
 
 
 Examples:
-* `add reminder n/Mark Midterms D/2023-01-01 T/15:00 d/300 papers to mark p/HIGH`
-* `add reminder n/update grades T/16:00 D/2023-01-01 d/20 students to update p/MEDIUM`
+* `add reminder n/Mark Midterms D/2023-01-01 T/15:00 d/30 papers to mark p/HIGH`
+* `add reminder n/Update Grades T/16:00 D/2023-01-01 d/20 students to update p/MEDIUM`
 
 <a name="edit-reminder"></a>
 #### 4.4.2 Editing a reminder: `edit reminder`
@@ -354,13 +357,12 @@ Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPT
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
-* `DATE` and `TIME` inputted must be after the current date and time as shown in your local PC.
 * When editing the `DATE` or `TIME`, both fields must be given.
 
 
 Examples:
 * `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
-* `edit reminder 2 T/14:00 D/2023-10-10` Edits the deadline time of the 2nd reminder to be `14:00` and sets deadline date to `2023 Oct 10`.
+* `edit reminder 2 T/14:00 D/2023-10-10` Edits the time of the 2nd reminder to be `14:00` and the date to `2023 Oct 10`.
 
 <a name="mark-reminder"></a>
 #### 4.4.3 Mark a reminder: `mark reminder`
@@ -419,8 +421,8 @@ Format: `sort reminder by/SORT_CRITERIA`
   Reminders with the same priority will then be sorted by date, from earliest to latest chronologically.
 * Specifying `deadline` will sort reminders by their deadline, with the earliest date on top of the list.
   Reminders with the same deadline will then be sorted by descending priority level, with the same order as stated above.
-* Reminders with the same priority and deadline will then be sorted lexicographically. 
-* Sorting does not take reminders' status into account since users may mark or unmark tasks accidentally and editing reminders that are constantly jumping in order is inconvenient.
+* Reminders with the same priority and deadline will then be sorted lexicographically.
+* Sorting does not take reminders' status into account since users may mark or unmark reminders accidentally and editing reminders that are constantly jumping in order is inconvenient.
 
 Examples:
 * `sort reminder by/priority`
