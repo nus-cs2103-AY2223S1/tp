@@ -346,5 +346,22 @@ public class Commission {
             }
             return builder.toString();
         }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            } else if (other instanceof CommissionBuilder) {
+                CommissionBuilder otherBuilder = (CommissionBuilder) other;
+                boolean tagEquality = otherBuilder.tags.equals(this.tags);
+                return otherBuilder.title.equals(this.title)
+                        && otherBuilder.status.equals(this.status)
+                        && otherBuilder.deadline.equals(this.deadline)
+                        && otherBuilder.fee.equals(this.fee)
+                        && (Objects.equals(otherBuilder.description, this.description))
+                        && otherBuilder.tags.equals(this.tags);
+            }
+            return false;
+        }
     }
 }

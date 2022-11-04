@@ -127,7 +127,11 @@ public class CommissionBuilder {
      * Returns a Commission.CommissionBuilder with the given details.
      */
     public Commission.CommissionBuilder toCommissionBuilder() {
-        return new Commission.CommissionBuilder(title, fee, deadline, completionStatus, tags);
+        Commission.CommissionBuilder builder = new Commission.CommissionBuilder(title, fee, deadline, completionStatus, tags);
+        if (description != null) {
+            builder.setDescription(description);
+        }
+        return builder;
     }
 
 }

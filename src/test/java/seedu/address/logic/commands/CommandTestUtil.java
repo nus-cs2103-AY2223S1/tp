@@ -2,19 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_FEEDBACK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
@@ -61,17 +49,9 @@ public class CommandTestUtil {
 
     public static final String VALID_FEE_LITTLE = "0.341245";
     public static final String VALID_FEE_NORMAL = "50.03";
-    public static final String VALID_FEE_LARGE = "2550.50";
-    public static final String VALID_INT_FEE = "500";
 
-    public static final String VALID_NO_STATUS = "No";
-    public static final String VALID_N_STATUS = "n";
     public static final String VALID_FALSE_STATUS = "False";
-    public static final String VALID_F_STATUS = "f";
-    public static final String VALID_Y_STATUS = "y";
-    public static final String VALID_YES_STATUS = "YES";
     public static final String VALID_TRUE_STATUS = "true";
-    public static final String VALID_T_STATUS = "T";
 
     public static final String VALID_DATE_FIRST_DAY_OF_YEAR = "2022-01-01";
     public static final String VALID_DATE_LAST_DAY_OF_YEAR = "2022-12-31";
@@ -91,6 +71,23 @@ public class CommandTestUtil {
             + "/src/test/data/images/test_image_2.png";
 
     public static final String TITLE_DESC_CAT = " " + PREFIX_TITLE + VALID_TITLE_CAT;
+    public static final String TITLE_DESC_DOG = " " + PREFIX_TITLE + VALID_TITLE_DOG;
+    public static final String TITLE_DESC_ELEPHANT = " " + PREFIX_TITLE + VALID_TITLE_ELEPHANT;
+
+    public static final String FEE_DESC_LITTLE = " " + PREFIX_FEE + VALID_FEE_LITTLE;
+    public static final String FEE_DESC_NORMAL = " " + PREFIX_FEE + VALID_FEE_NORMAL;
+
+    public static final String STATUS_DESC_FALSE = " " + PREFIX_STATUS + VALID_FALSE_STATUS;
+    public static final String STATUS_DESC_TRUE = " " + PREFIX_STATUS + VALID_TRUE_STATUS;
+
+    public static final String DESC_OF_CAT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CAT;
+    public static final String DESC_OF_DOG = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_DOG;
+    public static final String DESC_OF_ELEPHANT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_ELEPHANT;
+
+    public static final String DEADLINE_DESC_START = " " + PREFIX_DEADLINE
+            + VALID_DATE_FIRST_DAY_OF_YEAR;
+    public static final String DEADLINE_DESC_END = " " + PREFIX_DEADLINE
+            + VALID_DATE_LAST_DAY_OF_YEAR;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
