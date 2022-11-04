@@ -1,6 +1,6 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_NAME;
@@ -27,7 +27,7 @@ import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.TaskList;
 
 /**
- * Edits the details of an existing patient in the uninurse book.
+ * Edits the details of an existing patient in the patient list.
  */
 public class EditPatientCommand extends EditGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
@@ -41,12 +41,9 @@ public class EditPatientCommand extends EditGenericCommand {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
-
-    public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the uninurse book.";
-
-    public static final CommandType EDIT_PATIENT_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final String MESSAGE_SUCCESS = "Edited Patient: %1$s";
+    public static final String MESSAGE_FAILURE = "At least one field to edit must be provided.";
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index index;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -56,8 +53,7 @@ public class EditPatientCommand extends EditGenericCommand {
      * @param editPatientDescriptor details to edit the patient with
      */
     public EditPatientCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editPatientDescriptor);
+        requireAllNonNull(index, editPatientDescriptor);
 
         this.index = index;
         this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
@@ -65,7 +61,7 @@ public class EditPatientCommand extends EditGenericCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model);
         List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -76,18 +72,22 @@ public class EditPatientCommand extends EditGenericCommand {
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
         if (!patientToEdit.isSamePerson(editedPatient) && model.hasPerson(editedPatient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PATIENT);
         }
 
         PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
-        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient),
-                EDIT_PATIENT_COMMAND_TYPE, patientListTracker);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedPatient),
+                COMMAND_TYPE, patientListTracker);
     }
 
     /**
-     * Creates and returns a {@code Patient} with the details of {@code patientToEdit}
-     * edited with {@code editPatientDescriptor}.
+     * Creates a patient using the details of an existing patient,
+     * edited with editPatientDescriptor.
+     *
+     * @param patientToEdit The existing patient whose details are to be used.
+     * @param editPatientDescriptor The given editPatientDescriptor.
+     * @return a Patient with the details of patientToEdit edited with editPatientDescriptor
      */
     private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
