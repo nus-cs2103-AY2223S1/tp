@@ -283,7 +283,7 @@ Examples:
 
 * `user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive g/SilasTSL curr/CS2100 prev/CS1101S plan/CS2109`adds your own user profile to your contact list with all the details specified.
 
-<img src="images/AddUserProfile.png" width="800" />
+![Add User Profile](images/AddUserProfile.png)
 
 [Scroll back to top](#table-of-contents)
 
@@ -374,7 +374,7 @@ Examples:
 * `find John` returns john and John Doe
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
-<img src="images/FindCommand.png" width="800" />
+![Find Command](images/FindCommand.png)
 
 [Scroll back to top](#table-of-contents)
 
@@ -487,7 +487,7 @@ Examples:
 
 * `module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000` adds the first 3 modules into the first contact's respective lists and removes GEA1000 from all module lists
 
-<img src="images/EditModules.png" width="800" />
+![Edit Modules](images/EditModules.png)
 
 [Scroll back to top](#table-of-contents)
 
@@ -521,7 +521,7 @@ Examples:
 
 * `modsleft 1` outputs the list of remaining CS Core Requirement modules that you have yet to clear.
 
-<img src="images/ModulesLeft.png" width="800" />
+![Modules Left](images/ModulesLeft.png)
 
 [Scroll back to top](#table-of-contents)
 
@@ -538,7 +538,7 @@ Examples:
 
 * `nextsem` moves all current modules into the previous modules list of the user and all contacts and removes all modules in the current modules list.
 
-<img src="images/After NextSem.png" width="800" />
+![Next Semester](images/AfterNextSem.png)
 
 [Scroll back to top](#table-of-contents)
 
@@ -665,11 +665,11 @@ Examples:
 
 * `filtertag friends` lists all contacts with a friends tag.
 
-<img src="images/filtertag friends.png" width="800" />
+<img src="images/filtertagfriends.png" width="300" />
 
 * `filtertag friends family` lists all contacts with either a friends or family tag.
 
-<img src="images/filtertag friends family.png" width="800" />
+<img src="images/filtertagfriendsfamily.png" width="300" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -687,7 +687,7 @@ Examples:
 
 * `filtercurrmod CS1000` lists all contacts with module code CS1000 in their current modules list.
 
-<img src="images/filtercurrmod CS1000.png" width="800" />
+<img src="images/filtercurrmodCS1000.png" width="300" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -705,7 +705,7 @@ Examples:
 
 * `filterprevmod CS2000` lists all contacts with module code CS2000 in their previous modules list.
 
-<img src="images/filterprevmod CS2000.png" width="800" />
+<img src="images/filterprevmodCS2000.png" width="300" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -723,7 +723,7 @@ Examples:
 
 * `filterplanmod CS23333` lists all contacts with module code CS3333 in their planned modules list.
 
-<img src="images/filterplanmod CS3333.png" width="800" />
+<img src="images/filterplanmodCS3333.png" width="300" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -775,15 +775,15 @@ Examples:
 
 * To demonstrate the `undo`/`redo` feature, we will first add a contact into our contact list by inputting the command `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109` which adds module contact Ruijie to our contact list with all the details specified.
 
-<img src="images/UndoRedoExample0.png" width="800" />
+![Undo/Redo 0](images/UndoRedoExample0.png)
 
 * `undo` undoes the latest action of adding "Ruijie" as a contact.
 
-<img src="images/UndoRedoExample1.png" width="800" />
+![Undo/Redo 1](images/UndoRedoExample1.png)
 
 * `redo` redoes the latest undo action of undoing "Ruijie" as a contact.
 
-<img src="images/UndoRedoExample2.png" width="800" />
+![Undo/Redo 2](images/UndoRedoExample2.png)
 
 [Scroll back to top](#table-of-contents)
 
