@@ -61,7 +61,7 @@ public class UniquePersonListTest {
     @Test
     public void containsPersonWithSameDateTimeAppointment_personNotInList_returnsFalse() {
         Appointment uniqueAppointment = new AppointmentBuilder()
-                .withDateTime("01-Jan-1880 12:00 AM")
+                .withDateTime("1-1-1880 12:00")
                 .withLocation(VALID_LOCATION_NUS).build();
         assertFalse(uniquePersonList.containsPersonWithSameAppointmentDateTime(uniqueAppointment));
     }

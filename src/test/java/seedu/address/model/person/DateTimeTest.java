@@ -19,7 +19,7 @@ public class DateTimeTest {
         }
         @Override
         public String toString() {
-            return "21-Jan-2023 09:00 AM";
+            return "21-01-2023 09:00";
         }
     }
 

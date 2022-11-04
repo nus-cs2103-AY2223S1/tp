@@ -56,7 +56,7 @@
     "monthly": "250",
     "tagged" : [ ],
     "appointments" : [ {
-      "appointmentDateTime" : "22-Jan-2023 01:00 AM",
+      "appointmentDateTime" : "22-01-2023 01:00",
       "appointmentLocation" : "Jurong Point"
     } ]
   }, {
@@ -71,7 +71,7 @@
     "monthly": "500",
     "tagged" : [ ],
     "appointments" : [ {
-      "appointmentDateTime" : "23-Mar-2024 01:00 AM",
+      "appointmentDateTime" : "23-03-2024 01:00",
       "appointmentLocation" : "West Mall"
     } ]
   }, {
@@ -86,10 +86,10 @@
     "monthly": "400",
     "tagged" : [ ],
     "appointments" : [ {
-      "appointmentDateTime" : "21-Jan-2023 01:00 AM",
+      "appointmentDateTime" : "21-01-2023 01:00",
       "appointmentLocation" : "NUS"
     }, {
-      "appointmentDateTime" : "23-Mar-2024 01:00 AM",
+      "appointmentDateTime" : "23-03-2024 01:00",
       "appointmentLocation" : "NUS"
     } ]
   } ]

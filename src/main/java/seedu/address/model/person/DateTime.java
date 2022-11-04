@@ -10,7 +10,12 @@ import java.time.LocalDateTime;
  * Guarantees: immutable;
  */
 public class DateTime implements Comparable<DateTime> {
-    public static final String MESSAGE_CONSTRAINTS = "Invalid date time format";
+    public static final String DEFAULT_DAY_OUT_OF_BOUNDS_ERROR_MESSAGE =
+            "Invalid value for DayOfMonth (valid values 1 - 28/31)";
+    public static final String DEFAULT_MONTH_OUT_OF_BOUNDS_ERROR_MESSAGE =
+            "Invalid value for MonthOfYear (valid values 1 - 12)";
+    public static final String MESSAGE_CONSTRAINTS = "Date time must follow format d-M-yyyy HH:mm\n"
+            + "(e.g \"01-03-2022 18:00\" represents 1-Mar-2022 6:00 PM)";
     private final LocalDateTime localDateTime;
 
     /**

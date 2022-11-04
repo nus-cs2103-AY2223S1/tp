@@ -18,9 +18,9 @@ public class CalendarMonthBuilder {
 
     private static final String DEFAULT_FIRST_NAME = "Amy";
     private static final String DEFAULT_SECOND_NAME = "Bob";
-    private static final String DEFAULT_FIRST_DATE = "1-Apr-2023 01:00 PM";
-    private static final String DEFAULT_SECOND_DATE = "1-May-2023 01:00 PM";
-    private static final String DEFAULT_THIRD_DATE = "1-Apr-2024 01:00 PM";
+    private static final String DEFAULT_FIRST_DATE = "1-04-2023 01:00";
+    private static final String DEFAULT_SECOND_DATE = "1-5-2023 01:00";
+    private static final String DEFAULT_THIRD_DATE = "1-4-2024 01:00";
     private ObservableList<CalendarEvent> eventList;
 
     /**
@@ -63,4 +63,3 @@ public class CalendarMonthBuilder {
     }
 
 }
-
