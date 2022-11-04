@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: immutable; is valid as declared in
  * {@link #isValidDateSlot(String)}
  */
-public class DateSlot {
+public class DateSlot implements Comparable<DateSlot> {
 
     public static final String MESSAGE_CONSTRAINTS = "Date and slot should be in YYYY-MM-DD,SLOT_NUMBER.\n"
             + "The slot number can only be from 1 to 4. Slot 1 is 10am, slot 2 is 12pm, "
@@ -36,7 +36,7 @@ public class DateSlot {
     private static final String SLOT_THREE = "14:00:00";
     private static final String SLOT_FOUR = "16:00:00";
     private static final Boolean DEFAULT_BOOLEAN = false;
-    private static final Long DEFAULT_EMPTY_ASSIGNED_NURSE = Long.valueOf(-1); // No nurse assigned
+    private static final Long DEFAULT_EMPTY_ASSIGNED_NURSE = -1L; // No nurse assigned
     private static final String DEFAULT_CHECK = " ";
     public final LocalDateTime dateSlotTime;
     private final String dateSlotInString;
@@ -77,7 +77,9 @@ public class DateSlot {
         this.hasAssigned = isAssigned;
         this.isSuccessVisit = isSucessVisit;
         this.nurseUidNo = nurseUidNo;
-        checkDateTime();
+        if (hasVisited == false) {
+            checkDateTime();
+        }
     }
 
     private static LocalDateTime parseDateSlot(String dateSlot) {
@@ -203,7 +205,7 @@ public class DateSlot {
         return this.nurseUidNo;
     }
 
-    public LocalDateTime getDateTime() {
+    public LocalDateTime getDateSlotTime() {
         return this.dateSlotTime;
     }
 
@@ -229,6 +231,11 @@ public class DateSlot {
     @Override
     public int hashCode() {
         return dateSlotTime.hashCode();
+    }
+
+    @Override
+    public int compareTo(DateSlot o) {
+        return dateSlotTime.compareTo(o.getDateSlotTime());
     }
 
 }

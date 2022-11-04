@@ -41,7 +41,7 @@ class JsonAdaptedDate {
      *                               the adapted date.
      */
     public Date toModelType() throws IllegalValueException {
-        if (!Date.isValidDate(date)) {
+        if (!Date.isValidDateFormat(date)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         return new Date(date);

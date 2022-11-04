@@ -32,7 +32,7 @@ public class UpdateContactCommand extends Command {
             + "n/ [CONTACT NAME]\n"
             + "p/ [CONTACT PHONE]\n"
             + "e/ [CONTACT EMAIL]\n"
-            + "c/ [CONTACT CATEGORY]: either D for Physician or N for Next of Kin\n"
+            + "c/ [CONTACT CATEGORY]: either D for Physician or K for Next of Kin\n"
             + "Example: " + COMMAND_WORD + " id/3 "
             + "n/ John Doe p/ 81234567 e/ johndoe@example.com c/ D";
 

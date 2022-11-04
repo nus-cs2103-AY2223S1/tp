@@ -77,7 +77,7 @@ public class Patient extends Person {
 
     public String getNextOfKinDetails() {
         String[] output = new String[] { NO_NEXTOFKIN_SET };
-        nextOfKin.ifPresent(x -> output[0] = "NOK: " + x.toString());
+        nextOfKin.ifPresent(x -> output[0] = "NOK: " + x);
         return output[0];
     }
 
@@ -105,8 +105,7 @@ public class Patient extends Person {
      * Returns a sorted date and slot list
      */
     public List<DateSlot> getDatesSlots() {
-        DateSlotComparator comp = new DateSlotComparator();
-        dateSlots.sort(comp);
+        Collections.sort(dateSlots);
         return dateSlots;
     }
 

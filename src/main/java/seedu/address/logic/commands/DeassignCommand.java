@@ -173,7 +173,7 @@ public class DeassignCommand extends Command {
         List<Date> updatedFullyScheduledList = new ArrayList<>(nurseFullyScheduledList);
 
         HomeVisit homeVisitToBeDeleted = updatedHomeVisitList.stream().filter(
-                h -> h.getDateSlot().getDateTime().equals(dateSlot.getDateTime())).findFirst().get();
+                h -> h.getDateSlot().getDateSlotTime().equals(dateSlot.getDateSlotTime())).findFirst().get();
 
         updatedHomeVisitList.remove(homeVisitToBeDeleted);
 
@@ -212,14 +212,13 @@ public class DeassignCommand extends Command {
         }
     }
 
-    private void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList)
-            throws CommandException {
+    private void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList) {
         Person patient = personList.stream().filter(
                 p -> p.getUid().getUid().equals(patientUidNo)).findFirst().get();
         List<DateSlot> dateSlotList = ((Patient) patient).getDatesSlots();
         List<DateSlot> updatedDateSlotList = new ArrayList<>(dateSlotList);
         DateSlot dateSlotToBeUnmarked = updatedDateSlotList.stream().filter(
-                d -> d.getDateTime().equals(dateslot.getDateTime())).findFirst().get();
+                d -> d.getDateSlotTime().equals(dateslot.getDateSlotTime())).findFirst().get();
         dateSlotToBeUnmarked.unmark();
         editPatient(model, patient, updatedDateSlotList);
     }

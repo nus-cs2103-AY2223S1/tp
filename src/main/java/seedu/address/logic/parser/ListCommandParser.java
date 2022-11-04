@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses user input for the list command.
  */
-public class ListCommandParser implements Parser {
+public class ListCommandParser implements Parser<ListCommand> {
 
     /**
      * Parses user input for the list command.
