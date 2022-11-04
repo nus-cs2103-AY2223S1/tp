@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN_AMOUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -42,6 +44,8 @@ public class CommandTestUtil {
     public static final String VALID_BIRTHDAY_BOB = "01/01/2000";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_AMOUNT = "2.55";
+    public static final String VALID_REASON = "Testcase";
 
     public static final String VALID_TITLE_MEETING = "Meeting";
     public static final String VALID_TITLE_CLUB = "Club";
@@ -59,6 +63,9 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
     public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
+
+    public static final String AMOUNT_DESC = " " + PREFIX_LOAN_AMOUNT + VALID_AMOUNT;
+    public static final String REASON_DESC = " " + PREFIX_LOAN_REASON + VALID_REASON;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -67,6 +74,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_BIRTHDAY_DESC = " " + PREFIX_BIRTHDAY + "asd";
+    public static final String INVALID_AMOUNT_DESC = " " + PREFIX_LOAN_AMOUNT + "7.555"; // too many decimal places
+    public static final String INVALID_REASON_DESC = " " + PREFIX_LOAN_REASON + ""; // cannot be empty
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

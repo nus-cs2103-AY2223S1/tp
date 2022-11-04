@@ -4,14 +4,22 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.model.DeepCopyable;
+import seedu.address.model.person.exceptions.LoanOutOfBoundsException;
 
 /**
  * Loan represents a class encapsulating an amount of money presently owed to the club.
  */
 public class Loan implements DeepCopyable {
     public static final String MESSAGE_CONSTRAINTS =
-            "Loan amount should only contain numerics, possibly with decimal point, optional negative";
-    public static final String VALIDATION_REGEX = "^-?[$]?[0-9]\\d*(\\.\\d+)?[$]?$";
+            "Loan amounts should only contain numerics. Optionally, the decimal point (.), "
+            + "the dollar sign ($) and either plus or minus signs (+/-) may be used if desired.\n"
+            + "The sign, if used, must appear at the start of the number and before the dollar sign.\n"
+            + "The loan amount must be between negative 1 trillion and positive 1 trillion, both "
+            + "inclusive, and the precision may not exceed 2 decimal places.";
+
+
+    public static final String VALIDATION_REGEX = "^[-|+]?[$]?[0-9]\\d*(\\.\\d{0,2})?$";
+    private static final double ONE_TRILLION = 1_000_000_000_000.00;
 
     private double amountOwed = 0;
 
@@ -24,6 +32,7 @@ public class Loan implements DeepCopyable {
         requireNonNull(amountString);
         checkArgument(isValidLoan(amountString), MESSAGE_CONSTRAINTS);
         amountString = amountString.replace("$", "");
+
         amountOwed = Double.parseDouble(amountString);
     }
 
@@ -33,30 +42,68 @@ public class Loan implements DeepCopyable {
      * @param amount A double value to signifies a new loan amount
      */
     public Loan(double amount) {
-        checkArgument(isValidLoan(Double.toString(amount)), MESSAGE_CONSTRAINTS);
+        amount = (Math.round(amount * 100.0)) / 100.0;
+        checkArgument(isValidLoan(amount), MESSAGE_CONSTRAINTS);
         amountOwed = amount;
     }
 
+    /**
+     * Checks if the given input satisfies the constraints
+     * @param test the input to test
+     * @return whether the constraint is satisfied
+     */
     public static boolean isValidLoan(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        test = test.replace("$", "");
+
+        double parsedAmount;
+        try {
+            parsedAmount = Double.parseDouble(test);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return isValidLoan(parsedAmount);
     }
 
     /**
-     * Increases the current loan by byAmount. If byAmount is negative, then the
-     * resulting amountOwed will be negative.
+     * Checks if the given input satisfies the constraints
+     * @param test the input to test
+     * @return whether the constraint is satisfied
+     */
+    public static boolean isValidLoan(double test) {
+        return Math.abs(test) <= ONE_TRILLION;
+    }
+
+
+    /**
+     * Subtracts the current loan with another loan and returns a new Loan object
+     * @param byLoan the amount to increase by
+     */
+    public Loan subtractBy(Loan byLoan) throws LoanOutOfBoundsException {
+        try {
+            return new Loan(getAmount() - byLoan.getAmount());
+        } catch (IllegalArgumentException e) {
+            throw new LoanOutOfBoundsException(
+                    String.format("%f - %f will be out of bounds", getAmount(), byLoan.getAmount()));
+        }
+    }
+
+    /**
+     * Adds the current loan with another loan and returns a new Loan object
      *
-     * @param byAmount the amount to increase by
+     * @param byLoan the amount to increase by
      */
-    public void increaseLoan(double byAmount) {
-        amountOwed += byAmount;
+    public Loan addBy(Loan byLoan) throws LoanOutOfBoundsException {
+        try {
+            return new Loan(getAmount() + byLoan.getAmount());
+        } catch (IllegalArgumentException e) {
+            throw new LoanOutOfBoundsException(
+                    String.format("%f + %f will be out of bounds", getAmount(), byLoan.getAmount()));
+        }
     }
 
-    /**
-     * Completely clears the loan amount and sets it to zero.
-     */
-    public void clearLoan() {
-        amountOwed = 0;
-    }
 
     public double getAmount() {
         return amountOwed;
@@ -103,11 +150,7 @@ public class Loan implements DeepCopyable {
             return false;
         }
 
-        if (((Loan) other).amountOwed == amountOwed) {
-            return ((Loan) other).amountOwed == amountOwed;
-        } else {
-            return false;
-        }
+        return ((Loan) other).amountOwed == amountOwed;
     }
 
     @Override
@@ -118,6 +161,6 @@ public class Loan implements DeepCopyable {
 
     @Override
     public Loan deepCopy() {
-        return new Loan(String.valueOf(amountOwed));
+        return new Loan(amountOwed);
     }
 }
