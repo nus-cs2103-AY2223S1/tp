@@ -356,20 +356,21 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design considerations:
 - Multiple fields of a Review can be edited in one go to increase the efficiency of the user of our application.
 
-### Review Sorting feature
+### Sorting Stalls and Reviews feature
 
-#### What is Review Sorting feature about?
+#### What is sorting stalls and reviews feature about?
 
-The Sort Review mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion.
+`ssort`: The Sort Stalls mechanism is facilitated by `Model` and `StallsComparatorList`. This feature allows the user to sort all stalls by specified criterion. The list of supported sorting criteria is stored in `StallsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Stall>` field that will be passed in as an argument for `Model.sortStalls()` for sorting the stall list.
 
-The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
+`rsort`: The Sort Reviews mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion. The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
 
 For the command, the feature extends `command`, and is implemented as such:
+* `ssort CRITERION`
 * `rsort CRITERION`
 
-#### Implementation Flow of Review Sorting feature
+#### Implementation Flow of Sorting Stalls and Reviews feature
 
-Given below is an example usage scenario and how the sorting of all reviews mechanism behaves at each step.
+Given below is an example usage scenario and how the sorting of all stalls and reviews mechanism behaves at each step.
 
 Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
 
@@ -387,11 +388,11 @@ Step 6. `model.sortReviews()` will interact with the model to sort reviews using
 
 ![SortReview](images/SortReview.png)
 
-#### UML Diagram for Sorting Review
+#### UML Diagram for Sorting Stalls/Reviews
 
-The following activity diagram summarizes what happens when a user executes a new `rsort` command:
+The following activity diagram summarizes what happens when a user executes a new `ssort` or `rsort` command:
 
-<img src="images/SortReviewActivityDiagram.png" width="250" />
+<img src="images/SortActivityDiagram.png" width="250" />
 
 ### \[Proposed\] Undo/redo feature
 
