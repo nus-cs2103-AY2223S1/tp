@@ -15,10 +15,28 @@ About 2.4k lines contributed.
 - Managed Tuthub's Github releases `v1.2`, `v1.2.1`, and `v1.3`. This can be viewed [here](https://github.com/AY2223S1-CS2103T-T15-3/tp/releases).
 
 ### Enhancements implemented
-_to be added soon_
+
+**New Feature: `sort`**
+- Added the feature to sort the tutor list based on rating and teaching nominations ([#127](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/127)).
+- Fixed bugs regarding the `sort` command ([#201](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/201)).
+
+**New Feature: `mail`**
+- Added the feature to mail tutors ([#162](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/162)).
+
+**Enhancements**
+- Modified and fixed bugs in `Comment`, `CommentCommand`, and `DeleteCommentCommand` ([#185](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/185)).
+  - Fixed bugs found in:
+    - [#178](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/178)
+    - [#182](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/182)
+    - [#183](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/183)
+  - Added test cases for these logic classes.
+- Updated the `Tutor` class (was `Person`) to store additional fields `StudentId` ([#76](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/76)) and `Rating` ([#114](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/114)). 
+  - Implemented the fields into the add command and `Tutor` class.
+  - Added test cases for `StudentId` and `Rating` models.
 
 ### Contributions to the UG
-_to be added soon_
+- Added documentation for the features `sort` ([#127](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/127)) and `mail` ([#162](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/162)).
+- Added documentation to additional model details `StudentId` and `Rating` ([#259](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/259))
 
 ### Contributions to the DG
 - Added implementation details for the `sort` command ([#156](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/156)).
