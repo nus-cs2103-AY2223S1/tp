@@ -34,7 +34,7 @@ import seedu.hrpro.model.staff.StaffTitle;
 import seedu.hrpro.model.tag.Tag;
 
 /**
- * Edits the details of an existing staff in a project.
+ * Edits the details of an existing staff in a project in HR Pro Max++.
  */
 public class EditStaffCommand extends Command {
 

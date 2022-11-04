@@ -6,7 +6,7 @@ import seedu.hrpro.logic.commands.exceptions.CommandException;
 import seedu.hrpro.model.Model;
 
 /**
- * Filters the tasks into uncompleted at the top of task list and completed at the bottom.
+ * Sorts the tasks in HR Pro Max++ by completion status.
  */
 public class SortCompleteCommand extends Command {
     public static final String COMMAND_WORD = "sortcomplete";

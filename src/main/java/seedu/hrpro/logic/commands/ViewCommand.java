@@ -12,7 +12,7 @@ import seedu.hrpro.model.Model;
 import seedu.hrpro.model.project.Project;
 
 /**
- * Display all staff members for a given project in HR Pro Max++ to the user.
+ * Displays all staff members for a given project in HR Pro Max++ to the user.
  */
 public class ViewCommand extends Command {
 
