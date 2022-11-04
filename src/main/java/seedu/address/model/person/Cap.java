@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * {@link #isValidCapValues(double, double)}
  */
 public class Cap {
-    public static final String MESSAGE_CONSTRAINTS = "CAPs should only consist of two numeric values"
-        + "without symbols and alphabets,"
-        + "namely the current CAP value and its maximum value!"
+    public static final String MESSAGE_CONSTRAINTS = "CAPs should only consist of two numeric values "
+        + "without symbols and alphabets, "
+        + "namely the current CAP value and its maximum value!\n"
         + "e.g. 4.0/5.0";
     public static final double MINIMUM = 0.0;
     public static final String CAP_SEPARATOR = "/";

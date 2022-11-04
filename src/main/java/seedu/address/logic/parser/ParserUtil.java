@@ -195,22 +195,18 @@ public class ParserUtil {
      * @throws ParseException if the given {@code cap} is invalid.
      */
     public static Cap parseCap(String cap) throws ParseException {
-        try {
-            requireNonNull(cap);
-            String trimmedCap = cap.trim();
-            String[] capValues = trimmedCap.split(CAP_SEPARATOR);
-            if (!Cap.isValidCapInput(capValues)) {
-                throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
-            }
-            double capValue = Double.parseDouble(capValues[0]);
-            double maximumCapValue = Double.parseDouble(capValues[1]);
-            if (!Cap.isValidCapValues(capValue, maximumCapValue)) {
-                throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
-            }
-            return new Cap(capValue, maximumCapValue);
-        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+        requireNonNull(cap);
+        String trimmedCap = cap.trim();
+        String[] capValues = trimmedCap.split(CAP_SEPARATOR);
+        if (!Cap.isValidCapInput(capValues)) {
             throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
         }
+        double capValue = Double.parseDouble(capValues[0]);
+        double maximumCapValue = Double.parseDouble(capValues[1]);
+        if (!Cap.isValidCapValues(capValue, maximumCapValue)) {
+            throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
+        }
+        return new Cap(capValue, maximumCapValue);
     }
 
     /**
