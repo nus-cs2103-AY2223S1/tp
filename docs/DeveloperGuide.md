@@ -274,7 +274,7 @@ Purpose: View all `Meeting` from the Meeting List in `Model`, optionally using `
 
 Usage Scenario of `listMeeting`:
 
-Step 1. User inputs `listMeeting d/tomorrow` to view the current meetings in the `Model`.
+Step 1. User inputs `listMeeting d/tomorrow` to view the meetings for tomorrow in the `Model`.
 
 Below is a sequence diagram that illustrates the execution of `listMeeting d/tomorrow` command and the interaction with `Model`.
 
@@ -471,7 +471,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 **Extensions**
 
 * 1a. User inputs incomplete client data.
-
     * 1a1. System shows an error message.
 
       Use case ends.
@@ -488,7 +487,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 **Extensions**
 
 * 1a. User selects non-existent client.
-
     * 1a1. System shows an error message.
 
       Use case ends.
@@ -526,8 +524,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 **Extensions**
 
 * 3a. User deletes a meeting that was not shown in the list.
-
     * 3a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.6 Use case: UC6 - Add a product
+
+**MSS**
+
+1. User requests to add a product.
+2. System adds the product.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs incomplete product data.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.7 Use case: UC7 - List all products
+
+**MSS**
+
+1. User requests for a list of all products.
+2. System shows a list of all products.
+
+   Use case ends.
+
+#### 5.3.8 Use case: UC8 - Delete a product
+
+**MSS**
+
+1. User requests for a [list of all products (UC4)](#537-use-case-uc7---list-all-products).
+2. System shows a list of all products.
+3. User requests to delete one product from the list.
+4. System deletes the product specified by the user.
+5. System informs user that the specified product is deleted.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User tries to deletes a product that was not shown in the list.
+    * 1a1. System shows an error message.
 
       Use case ends.
 
