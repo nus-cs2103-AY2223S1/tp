@@ -31,8 +31,8 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the student present for the upcoming lesson "
-            + "by the index number shown in the schedule list.\n"
-            + "Parameters: INDEX (must be positive integer)\n"
+            + "by the index number shown in the schedule list on the right.\n"
+            + "Parameters: INDEX-s (must be positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Student has been marked as present";
