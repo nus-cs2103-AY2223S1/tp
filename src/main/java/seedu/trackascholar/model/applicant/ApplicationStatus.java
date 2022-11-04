@@ -15,9 +15,9 @@ public class ApplicationStatus implements Comparable<ApplicationStatus> {
     public static final String MESSAGE_STATUS_REJECTION =
             "Completed ApplicationStatus can only be 2 values (ACCEPTED or REJECTED), and it should not be blank";
 
-    private static final String PENDING = "pending";
-    private static final String ACCEPTED = "accepted";
-    private static final String REJECTED = "rejected";
+    public static final String PENDING = "pending";
+    public static final String ACCEPTED = "accepted";
+    public static final String REJECTED = "rejected";
 
     private final String status;
 

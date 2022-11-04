@@ -14,48 +14,42 @@ import seedu.trackascholar.model.applicant.ScholarshipContainsKeywordsPredicate;
 import seedu.trackascholar.model.major.MajorContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
-
-    private FindCommandParser parser = new FindCommandParser();
+    private static final FindCommandParser parser = new FindCommandParser();
+    private static final String ERROR_MESSAGE =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "", ERROR_MESSAGE);
+        assertParseFailure(parser, "     ", ERROR_MESSAGE);
     }
 
     @Test
     public void parse_emptyPrefix_throwsParseException() {
-        assertParseFailure(parser, "Alice",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "Alice", ERROR_MESSAGE);
     }
 
     @Test
     public void parse_nonEmptyPreamble_throwsParseException() {
-        assertParseFailure(parser, "nonEmptyPreamble n/Alice",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "nonEmptyPreamble n/Alice", ERROR_MESSAGE);
     }
 
     @Test
     public void parse_keywordMissing_throwsParseException() {
         // missing name keyword
-        assertParseFailure(parser, " n/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " n/", ERROR_MESSAGE);
 
         // missing scholarship keyword
-        assertParseFailure(parser, " s/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " s/", ERROR_MESSAGE);
 
         // missing majors keyword
-        assertParseFailure(parser, " m/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " m/", ERROR_MESSAGE);
 
         //missing multiple keywords
-        assertParseFailure(parser, " n/ s/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " n/ s/", ERROR_MESSAGE);
 
         //missing one prefix
-        assertParseFailure(parser, "Alice s/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "Alice s/", ERROR_MESSAGE);
 
     }
 
