@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.boba.logic.commands.AddCommand;
+import seedu.boba.logic.commands.CalculateCommand;
+import seedu.boba.logic.commands.CalculatorGuiCommand;
 import seedu.boba.logic.commands.ClearCommand;
 import seedu.boba.logic.commands.DecreaseCommand;
 import seedu.boba.logic.commands.DeleteCommand;
@@ -140,6 +142,21 @@ public class BobaBotParserTest {
     public void parseCommand_redo() throws ParseException {
         assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
         assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + "     ") instanceof RedoCommand);
+    }
+
+    @Test
+    public void parseCommand_calc_gui() throws ParseException {
+        assertTrue(parser.parseCommand(CalculatorGuiCommand.COMMAND_WORD) instanceof CalculatorGuiCommand);
+        assertTrue(parser.parseCommand(CalculatorGuiCommand.COMMAND_WORD + " 3")
+                instanceof CalculatorGuiCommand);
+    }
+
+    @Test
+    public void parseCommand_calculate() throws ParseException {
+        assertTrue(parser.parseCommand(CalculateCommand.COMMAND_WORD) instanceof CalculateCommand);
+        CalculateCommand calculateCommand = (CalculateCommand) parser.parseCommand(
+                CalculateCommand.COMMAND_WORD + " 1+1*9/3");
+        assertEquals(new CalculateCommand(" 1+1*9/3"), calculateCommand);
     }
 
     @Test
