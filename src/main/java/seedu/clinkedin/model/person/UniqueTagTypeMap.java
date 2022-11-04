@@ -23,6 +23,7 @@ import seedu.clinkedin.model.tag.exceptions.DuplicateTagException;
 import seedu.clinkedin.model.tag.exceptions.DuplicateTagTypeException;
 import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
 import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
+import seedu.clinkedin.model.tag.exceptions.TagTypePrefixPairNotFoundException;
 
 /**
  * A list of tagtypes that enforces uniqueness between its elements and does not
@@ -79,8 +80,24 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
     }
 
-    public static void setExistingTagType(Prefix toRemovePrefix, Prefix prefix, TagType tagType)
-            throws PrefixNotFoundException, TagTypeNotFoundException, DuplicatePrefixException {
+    public static void setExistingTagType(Prefix toRemovePrefix, TagType toRemoveTagType, Prefix prefix,
+                                          TagType tagType)
+            throws PrefixNotFoundException, TagTypeNotFoundException, DuplicatePrefixException,
+            TagTypePrefixPairNotFoundException, DuplicateTagTypeException {
+        if (!prefixMap.containsKey(toRemovePrefix)) {
+            throw new PrefixNotFoundException();
+        }
+        if (!prefixMap.get(toRemovePrefix).equals(toRemoveTagType)) {
+            throw new TagTypePrefixPairNotFoundException();
+        }
+        if (prefixMap.keySet().contains(prefix) && !toRemovePrefix.equals(prefix)) {
+            throw new DuplicatePrefixException();
+        }
+
+        if (prefixMap.values().stream().anyMatch(val -> val.getTagTypeName().equals(tagType.getTagTypeName()))
+                && !toRemoveTagType.getTagTypeName().equals(tagType.getTagTypeName())) {
+            throw new DuplicateTagTypeException();
+        }
         prefixMap.remove(toRemovePrefix);
         CliSyntax.removeTagPrefix(toRemovePrefix);
         UniqueTagTypeMap.createTagType(prefix, tagType);
