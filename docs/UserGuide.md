@@ -88,7 +88,7 @@ This user guide contains all the information that you will need to use and learn
 
 If you are a **new user**, the necessary knowledge for you to get started can be found [here](#quick-start).
 
-If you are an **experienced user**, a [Command Summary](#command-summary) is also provided, so you can quickly refer to the command formats.
+If you are an **experienced user**, a [Summary](#summary) is also provided, so you can quickly refer to the command formats.
 
 Before you delve into the guide, do take note of the following highlighted information panels.
 
@@ -107,7 +107,7 @@ In addition, for better readability, icons in this guide have been colored black
 
 ## Quick start
 
-1. Ensure you have Java `11`<sup>[6](#glossary)</sup> or above installed in your Computer.
+1. Ensure you have Java `11`<sup>[7](#glossary)</sup> or above installed in your Computer.
 
 1. Download the latest `SectresBook.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-2/tp/releases).
 
@@ -125,11 +125,11 @@ In addition, for better readability, icons in this guide have been colored black
   - **`list`** : Lists all contacts.
   - <code><b>add</b> name/John Doe phone/98765432 email/johnd@example.com home/John street, block 123, #01-01 bday/01/01/2000</code> : Adds a contact named `John Doe` to the SectresBook.
   - **`delete 3`** : Deletes the 3rd contact shown in the current list.
-  - **`help`**: Opens a [help window](#viewing-help--help).
+  - **`help`** : Opens a [help window](#viewing-help--help).
   - **`clear`** : Deletes all contacts.
   - **`exit`** : Exits the app.
   
-1. Once you are done executing commands and want to see the GUI, press the `ESC` key (reccommended), or click on anywhere that is not the command box, to leave the typing space and hide the results display.
+1. Once you are done executing commands and want to see the GUI, press the `ESC` key (recommended), or click on anywhere that is not the command box, to leave the typing space and hide the results display.
 
 Refer to [Features](#features) below for details of each command.
 
@@ -179,7 +179,7 @@ Each card represents a person and displays their name, phone number and total pr
 </p>
 <center style="font-size:3mm;">A person card.</center>
 
-The index of the person only applies to the currently displayed list, it **is not** tied to the person itself.
+The index of the person only applies to the currently displayed list, it is **not** tied to the person itself.
 
 Check [Person Features](#person-features) to learn more about the commands you can execute related to people.
 
@@ -231,16 +231,16 @@ Check [Notes Features](#note-features) to learn more about the commands you can 
 
 This is the name of the person to be recorded in the SectresBook. Two persons cannot have exactly the same name, but slight deviations are acceptable. Our team recognizes that many people may share the same name, so it is alright to use close aliases. 
 
-This property<sup>[11](#glossary)</sup> is compulsory to declare during initialisation<sup>[11](#glossary)</sup>.
+This property<sup>[12](#glossary)</sup> is compulsory to declare during initialisation<sup>[6](#glossary)</sup>.
 
-Only alphanumeric characters<sup>[1](#glossary)</sup> are accepted in this property<sup>[1](#glossary)</sup>. Numbers are accepted in use as disambiguation, but may not exist as a standalone word without alphabets immediately before or following it. See examples below for a more specific overview.
+Only alphanumeric characters<sup>[1](#glossary)</sup> are accepted in this property<sup>[12](#glossary)</sup>. Numbers are accepted in use as disambiguation, but may not exist as a standalone word without alphabets immediately before or following it. See examples below for a more specific overview.
 
-This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of the silhouette of a person.
+This property<sup>[12](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of the silhouette of a person.
 
 <img src="images/icons/person.png" width="50" height="50">
 
 - Identified by the prefix `name`.
-- This is a valid property<sup>[11](#glossary)</sup> to find a person by using the [`find` command](#locating-persons-by-name-or-contact-number--find).
+- This is a valid property<sup>[12](#glossary)</sup> to find a person by using the [`find` command](#locating-persons-by-name-or-contact-number--find).
 
 <table>
   <tr>
@@ -273,15 +273,15 @@ It is recommended to include the full name of the person instead of aliases for 
 
 #### Phone
 
-This is the phone number of the person to be recorded in the SectresBook. It is compulsory to declare this during initialisation<sup>[11](#glossary)</sup>.
+This is the phone number of the person to be recorded in the SectresBook. It is compulsory to declare this during initialisation<sup>[6](#glossary)</sup>.
 
-This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of a mobile phone.
+This property<sup>[12](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of a mobile phone.
 
 <img src="images/icons/phone.png" width="50" height="50">
 
 - Identified by the prefix `phone`.
 - A phone number should contain only numbers and be at least 3 digits long.
-- This is a valid property<sup>[11](#glossary)</sup> to find a person by using the [`find` command](#locating-persons-by-name-or-contact-number--find).
+- This is a valid property<sup>[12](#glossary)</sup> to find a person by using the [`find` command](#locating-persons-by-name-or-contact-number--find).
 
 Please record the phone number by which the member is most easily contacted. You are not allowed to enter multiple phone numbers in this field.
 
@@ -293,9 +293,9 @@ Ensure that no two persons have the same phone number! This is allowed in the pr
 
 #### Email
 
-This is the email address of the person to be recorded in the SectresBook. It serves mainly as a point of information regarding the person, and has no additional features tied to it. This property<sup>[11](#glossary)</sup> is compulsory to declare during initialisation<sup>[11](#glossary)</sup>.
+This is the email address of the person to be recorded in the SectresBook. It serves mainly as a point of information regarding the person, and has no additional features tied to it. This property<sup>[12](#glossary)</sup> is compulsory to declare during initialisation<sup>[6](#glossary)</sup>.
 
-This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of an envelope.
+This property<sup>[12](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of an envelope.
 
 <img src="images/icons/mail.png" width="50" height="50">
 
@@ -312,9 +312,9 @@ The local part and domain part **must** be connected by an `@` symbol.
 [Back to Table of Contents](#table-of-contents)
 
 #### Address
-This is the residing address of the person. It serves mainly as a point of information regarding the person, and has no additional features tied to it. This property<sup>[11](#glossary)</sup> is compulsory to declare during initialisation<sup>[11](#glossary)</sup>.
+This is the residing address of the person. It serves mainly as a point of information regarding the person, and has no additional features tied to it. This property<sup>[12](#glossary)</sup> is compulsory to declare during initialisation<sup>[6](#glossary)</sup>.
 
-This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of a house.
+This property<sup>[12](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of a house.
 
 <img src="images/icons/home.png" width="50" height="50">
 
@@ -328,9 +328,9 @@ Please ensure that your SectresBook window can accommodate the length of the tex
 [Back to Table of Contents](#table-of-contents)
 
 #### Loan
-This is amount of money that is owed by a person, or is to be paid to that person. This is a property<sup>[11](#glossary)</sup> that cannot be manipulated directly, but can only be edited with the [`editLoan` command](#editing-loan-of-a-person--editloan).
+This is amount of money that is owed by a person, or is to be paid to that person. This is a property<sup>[12](#glossary)</sup> that cannot be manipulated directly, but can only be edited with the [`editLoan` command](#editing-loan-of-a-person--editloan).
 
-This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of the hand holding two stacks of coins.
+This property<sup>[12](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of the hand holding two stacks of coins.
 
 <img src="images/icons/loan.png" width="50" height="50">
 
@@ -339,14 +339,14 @@ This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#gl
     + A zero value indicates no outstanding loan.
     + A negative value indicates an amount that should be paid back to the person.
 - Loans can only take up numerical values.
-- The maximum value this property<sup>[11](#glossary)</sup> can take is `$1,000,000,000,000.00` (1 trillion dollars ). Similarly, the minimum value is `-$1,000,000,000,000.00` (negative 1 trillion dollars). This should be more than sufficient for general purpose use.
+- The maximum value this property<sup>[12](#glossary)</sup> can take is `$1,000,000,000,000.00` (1 trillion dollars ). Similarly, the minimum value is `-$1,000,000,000,000.00` (negative 1 trillion dollars). This should be more than sufficient for general purpose use.
 
 [Back to Table of Contents](#table-of-contents)
 
 #### Loan History
-A loan history is linked to the loans properties and describes the changes to the numeric values of the loans in detail. There is no way to declare this during initialisation<sup>[11](#glossary)</sup>, but it can be modified by the [`editLoan` command](#editing-loan-of-a-person--editloan).
+A loan history is linked to the loans properties and describes the changes to the numeric values of the loans in detail. There is no way to declare this during initialisation<sup>[6](#glossary)</sup>, but it can be modified by the [`editLoan` command](#editing-loan-of-a-person--editloan).
 
-This property<sup>[11](#glossary)</sup> is represented as a descending list on the right side of the inspection panel.
+This property<sup>[12](#glossary)</sup> is represented as a descending list on the right side of the inspection panel.
 
 ![img.png](images/LoanHistoryPanel.png)
 
@@ -372,9 +372,9 @@ Including a reason for every change to a person's loan value reduces the risk of
 [Back to Table of Contents](#table-of-contents)
 
 #### Birthday
-The birthday date of a person. This property<sup>[11](#glossary)</sup> is compulsory to declare during initialisation<sup>[11](#glossary)</sup>.
+The birthday date of a person. This property<sup>[12](#glossary)</sup> is compulsory to declare during initialisation<sup>[6](#glossary)</sup>.
 
-This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of a birthday cake.
+This property<sup>[12](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by the icon of a birthday cake.
 
 <img src="images/icons/birthday.png" width="50" height="50">
 
@@ -385,9 +385,9 @@ This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#gl
 [Back to Table of Contents](#table-of-contents)
 
 #### Tags
-Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes. This property<sup>[11](#glossary)</sup> is completely optional.
+Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes. This property<sup>[12](#glossary)</sup> is completely optional.
 
-This property<sup>[11](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by tag shaped labels with text inside them. They are usually located at the bottom right of each person card. If there is no such label, then it means this person has no associated tags.
+This property<sup>[12](#glossary)</sup> can be identified in the GUI<sup>[4](#glossary)</sup> by tag shaped labels with text inside them. They are usually located at the bottom right of each person card. If there is no such label, then it means this person has no associated tags.
 
 ![img.png](images/PersonTags.png)
 
@@ -413,32 +413,32 @@ Please refer to the [`Tag Properties`](#tag-properties) below for more informati
 <center style="font-size:3mm;">A typical note card.</center>
 
 #### Title
-The title serves as the main marker for notes and summarises the important details of this specific note. This is a compulsory field for all notes.
+The title serves as the main marker for notes and summarises the important details of this specific note. This property<sup>[12](#glossary)</sup> is compulsory to declare during initialisation<sup>[6](#glossary)</sup>.
 
 It is the first line of a note card, which is bigger than the rest of the text.
 
-Special characters are allowed in the title, but they will always be treated as a whitespace<sup>[16](#glossary)</sup> during operations. This is because punctuation is not normally a part of a word. This feature is relevant to [`findNote`](#locating-a-note-by-title--findnote).
+Special characters are allowed in the title, but they will always be treated as a whitespace<sup>[17](#glossary)</sup> during operations. This is because punctuation is not normally a part of a word. This feature is relevant to [`findNote`](#locating-a-note-by-title--findnote).
 
-- This property<sup>[11](#glossary)</sup> is identified by the prefix `title`.
-- Notes can be filtered through with the [`findNote` command](#locating-a-note-by-title--findnote) using the title property<sup>[11](#glossary)</sup>.
+- This property<sup>[12](#glossary)</sup> is identified by the prefix `title`.
+- Notes can be filtered through with the [`findNote` command](#locating-a-note-by-title--findnote) using the title property<sup>[12](#glossary)</sup>.
 - Titles must be within 100 characters and can contain any ASCII characters<sup>[2](#glossary)</sup>.
-- This property<sup>[11](#glossary)</sup> cannot be left empty.
+- This property<sup>[12](#glossary)</sup> cannot be left empty.
 
 [Back to Table of Contents](#table-of-contents)
 
 #### Content
-The content serves as the description for notes. This is a compulsory field for all notes.
+The content serves as the description for notes. This property<sup>[12](#glossary)</sup> is compulsory to declare during initialisation<sup>[6](#glossary)</sup>.
 
 This is immediately below the title and is in a smaller font size.
 
-- This property<sup>[11](#glossary)</sup> is identified by `content`.
-- This property<sup>[11](#glossary)</sup> cannot be left empty.
+- This property<sup>[12](#glossary)</sup> is identified by `content`.
+- This property<sup>[12](#glossary)</sup> cannot be left empty.
 
 [Back to Table of Contents](#table-of-contents)
 
 #### Tags
 
-Notes can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes. This is an optional property<sup>[11](#glossary)</sup> for all notes.
+Notes can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes. This is an optional property<sup>[12](#glossary)</sup> for all notes.
 
 This is located at the bottom right of the notes card. If there is no such label, then it means this note has no associated tags.
 
@@ -514,7 +514,7 @@ Examples:
 * `add name/Jane Doe phone/98876542 email/jane@example.com home/That Street, block 133, #11-10 bday/05/11/1986 tag/Member`
 * `add name/Neethesh tag/VicePresident email/neethesh@example.com home/Happy Avenue phone/91234567 bday/24/05/1998`
 
-[Back to Table of Contents](#table-of-contents)]
+[Back to Table of Contents](#table-of-contents)
 
 #### Editing a club member : `edit`
 
@@ -522,7 +522,7 @@ Edits an existing club member’s information in the SectresBook.
 
 Format: `edit INDEX <OR> NAME [name/NAME] [phone/PHONE] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY] [tag/TAG]…​`
 
-Remember that all terms are optional for edit commands, but it must include at least 1 property<sup>[11](#glossary)</sup> to edit the person by.
+Remember that all terms are optional for edit commands, but it must include at least one property<sup>[12](#glossary)</sup> to edit the person by.
 
 If ambiguities by the keywords given exist, the persons' list will auto-filter to display all matching persons that cause the ambiguity to arise. Please fine tune your search requirements, or use an index from here, to edit the person again.
 
@@ -608,7 +608,7 @@ Examples:
 * `delete Lynette` does not perform any operation, if Lynette does not exist in the SectresBook.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To delete everyone at the same time, please refer to the [`clear` command](#clearing-all-entries--clear).
+To delete everyone at the same time, please refer to the <a href="#clearing-all-entries--clear"><code>clear</code> command</a>.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -617,7 +617,9 @@ To delete everyone at the same time, please refer to the [`clear` command](#clea
 
 Finds persons whose names match any of the given keywords, or phone numbers contain any of the given keywords (in digits).
 
-You will notice a `FILTERED` icon next to the People Panel header to indicate that the list you are viewing is currently filtered.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+The People Panel will show a `FILTERED` indicator to inform you that the list has been filtered.
+</div>
 
 <img src="images/PeopleFilteredIcon.png" width="256">
 
@@ -640,13 +642,18 @@ Examples:
 * `find 86` returns `Theodore`<br>
   <img src="images/find86result.png" width="400">
   
+
 * `find 8` will not be accepted as a command, as searching by phone numbers must be of at least 2 digits.
 
 [Back to Table of Contents](#table-of-contents)
 
 #### Listing all persons : `list`
 
-List of all persons in the SectresBook. If the list was formerly filtered, the filter icon to the right of the person's label will disappear.
+List of all persons in the SectresBook. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+If the list was formerly filtered, the filter icon to the right of the person's label will disappear.
+</div>
 
 Format: `list`
 
@@ -690,7 +697,7 @@ Format: `editNote INDEX <OR> TITLE [title/TITLE] [content/CONTENT] [tag/TAG]...`
 Example of usage:
 
 * `editNote 1 content/Second club meeting` can be used to easily update the first note's contents.
-* `editNote alumni title/2020 alumni meeting` can be used to amend a note with the title "2020 alumni mtg", only if it is the only note containing "alumni" in its title.
+* `editNote alumni title/2020 alumni meeting` can be used to amend a note with the title "2020 alumni meeting", only if it is the only note containing "alumni" in its title.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -707,22 +714,26 @@ Format: `deleteNote INDEX`
 Unlike other entities, you may not delete a note by name. This is to minimise errors in deletion as many notes may have similar names.
 
 Examples:
-* `listNotes` followed by `deleteNote 2` deletes the 2nd note in the SectresBook.
+* `listNotes` followed by `deleteNote 2` deletes the second note in the SectresBook.
 
 [Back to Table of Contents](#table-of-contents)
 
 #### Locating a note by title : `findNote`
 
-Finds the notes whose titles match any of the given keywords. A filtered icon will show to the side of the Notes Panel to indicate that you are now viewing a filtered list.
+Finds the notes whose titles match any of the given keywords.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+The Notes Panel will show a `FILTERED` indicator to inform you that the Notes list have been filtered.
+</div>
 
 The search is not case-sensitive. For example, `meeting` will match any notes containing the word `Meeting`. As in find for persons, the order of the keywords also does not matter, and `Meeting Club` will also match a note called `Club Meeting`.
 
 Please be informed that only the title will be search. Contents will not be searched through this command. 
 
 Although the title may contain special characters such as `,`, `.`, `?` or `!`, these special characters are not accepted as part of a keyword. This is because punctuation are not normally associated as part of a word. During the parsing of the [title](#title), special charaters are treated as spaces, so adjacent segments of the word containing it are treated as separate words.
-  * The keywords `?!` and `t-shirt` will not be allowed, as they contain special characters<sup>[11](#glossary)</sup>.
+  * The keywords `?!` and `t-shirt` will not be allowed, as they contain special characters.
   * `2` will match `shirt 2` but will not match `shirt2`, as `shirt2` is an entire word by itself.
-  * To search for `Upcoming club meeting!`, `meeting!` is not allowed as a keyword as it contains a special character<sup>[11](#glossary)</sup>, but `meeting` is allowed.
+  * To search for `Upcoming club meeting!`, `meeting!` is not allowed as a keyword as it contains a special character, but `meeting` is allowed.
   * `tshirt` will not match `t–shirt` as `t-shirt` is now treated as two words, `t` and `shirt` with the special character `-` being treated as a spacing.
 
 <img src="images/NotesFilteredIcon.png" width="256">
@@ -737,9 +748,13 @@ Examples:
 
 #### Listing Notes : `listNote`
 
-Shows a list of all notes in the SectresBook. If the notes list was previously filtered, the filter icon will disappear to indicate that you are now looking at the full list.
+Shows a list of all notes in the SectresBook. 
 
-This command, unlike many others, does not take in any parameters<sup>[9](#glossary)</sup>.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+If the notes list was previously filtered, the filter icon will disappear to indicate that you are now looking at the full list.
+</div>
+
+This command, unlike many others, does not take in any parameters<sup>[10](#glossary)</sup>.
 
 Format: `listNote`
 
@@ -808,7 +823,7 @@ To ease interpretation, you may read `showNotes` as _"show the **notes panel**"_
 Finds People and Notes that have the given tags. Both the People Panel and Notes Panel will be updated synchronously with all entities that match the specifiers.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Both the people panel and notes panel will show a `FILTERED` indicator to inform you that both lists have been filtered.
+Both the People Panel and Notes Panel will show a `FILTERED` indicator to inform you that both lists have been filtered.
 </div>
 
 Format: `findTag TAG [MORE_TAGS]`
@@ -894,7 +909,7 @@ SectresBook data is saved in the hard disk automatically after any command that 
 
 #### Editing the data file
 
-SectresBook data is saved as a JSON file<sup>[6](#glossary)</sup> at `[JAR file location]/data/sectresbook.json`. Advanced users are welcome to update data directly by editing that data file.
+SectresBook data is saved as a JSON file<sup>[8](#glossary)</sup> at `[JAR file location]/data/sectresbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, SectresBook will discard all data and start with an empty data file at the next run.
@@ -950,10 +965,10 @@ Note that performing undo commands and inputting a new command after will set th
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the previous SectresBook data file.
 
 **Q**: Double-clicking the jar file does not open the jar file, why does this happen?<br>
-**A**: Make sure that Java 11<sup>[6](#glossary)</sup> is installed on your computer. You may also open the terminal<sup>[14](#glossary)</sup> and type in `java -jar SectresBook.jar`.
+**A**: Make sure that Java 11<sup>[7](#glossary)</sup> is installed on your computer. You may also open the terminal<sup>[15](#glossary)</sup> and type in `java -jar SectresBook.jar`.
 
 **Q** Do I need to have Java installed to run SectresBook?<br>
-**A** Yes, SectresBook runs on Java and would require it to work. For more information on how to install Java 11<sup>[6](#glossary)</sup>, visit this [website](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html).
+**A** Yes, SectresBook runs on Java and would require it to work. For more information on how to install Java 11<sup>[7](#glossary)</sup>, visit this [website](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html).
 
 **Q** What can I can do if the window size is too small?<br>
 **A** Drag the window of the application with your mouse to enlarge it, or simply click the top right maximise icon of the window.
@@ -962,19 +977,26 @@ Note that performing undo commands and inputting a new command after will set th
 **A** Your window is too small to accommodate the full label text, please resize your window either wider or taller so that the full text can be displayed.
 
 **Q** I have entered a command, but there is no response from the program, why did this happen?<br>
-**A** A critical error may have occurred. You may likely be able to continue your usage of the program. Please review your terminal<sup>[14](#glossary)</sup> output and file a bug report on our [issues page](https://github.com/AY2223S1-CS2103T-W12-2/tp/issues), detailing a description of the bug as well as the steps to reproduce, attaching screenshots if any.
+**A** A critical error may have occurred. You may likely be able to continue your usage of the program. Please review your terminal<sup>[15](#glossary)</sup> output and file a bug report on our [issues page](https://github.com/AY2223S1-CS2103T-W12-2/tp/issues), detailing a description of the bug as well as the steps to reproduce, attaching screenshots if any.
 
 **Q** Do I require an internet connection to use SectresBook?<br>
 **A** No, SectresBook fully works without the need for internet connection.
 
 **Q** I have an existing data file but the app does not show any of the information, what is wrong?<br>
-**A** Your data file is corrupted. If you know how to, please open the JSON data file<sup>[7](#glossary)</sup> in a text editor and remove the offending data. Otherwise, please refer to someone who knows how to remedy a corrupted data file.
+**A** Your data file is corrupted. If you know how to, please open the JSON data file<sup>[8](#glossary)</sup> in a text editor and remove the offending data. Otherwise, please refer to someone who knows how to remedy a corrupted data file.
 
 **Q** Who can I contact for questions regarding this version of the program if the information I need cannot be found in this guide?<br>
 **A** Please contact the person from whom you obtained this present version from, or contact any of our developers (links to Github):
 
-| [Rui Han](https://github.com/rui-han-crh) | [Pinran](https://github.com/Pinran-J) | [Ryan](https://github.com/ryanczx) | [Neethesh](https://github.com/Neethesh26) | [Zhong Wei](https://github.com/czhongwei) |
-|-------------------------------------------|---------------------------------------|------------------------------------|-------------------------------------------|-------------------------------------------|
+<table>
+  <tr>
+    <td> <a href="https://github.com/rui-han-crh">Rui Han</a> </td>
+    <td> <a href="https://github.com/Pinran-J">Pinran</a> </td>
+    <td> <a href="https://github.com/ryanczx">Ryan</a> </td>
+    <td> <a href="https://github.com/Neethesh26">Neethesh</a> </td>
+    <td> <a href="https://github.com/czhongwei">Zhong Wei</a> </td>
+  </tr>
+</table>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -990,17 +1012,18 @@ No. | Word                             | Definition
 3| **Command Line Interface (CLI)** | A text-based interface that recieves typed commands as input and returns textual feedback as output.
 4| **Graphical User Interface (GUI)** | An image-based interface that is more visually appealing than a command-line interface and encapsulates information through the use of icons and images.
 5| **Home Folder**                  | The folder that SectresBook is located in. It is also where SectresBook will store its data
-6| **Java 11**                      | Eleventh version of the Java Platform, Standard Edition Development Kit (JDK). SectresBook requires this to be installed to run.
-7| **JSON data file**               | A data file that uses the JavaScript Object Notation format.
-8| **Loan**                         | An amount of money that is borrowed by or owed to a person. A positive value signifies an amount owed by the person and a negative value signifies an amount to be paid to that person.
-9| **Parameter**                    | A value passed as a section of a command, typically following a prefix.
-10| **Prefix**                       | A signposting word that indicates the kind of property (i.e. name, email, address, etc), which typically follows immediately after the prefix, that is to be passed as a parameter.
-11| **Property**                     | An identifiable feature a person or object has that sufficiently distinguishes it from other objects of the same kind.
-12| **Secretary**                    | A person that manages the tasks and events related to the operations of an organisation.
-13| **Tag**                          | A label that groups related people together, such that they can be referred to as a single encapsulated entity specified by the tag.
-14| **Terminal**                     |  A text-based interface to the computer
-15| **Treasurer**                    | A person that manages the finances and monetary transactions related to the operations of an organisation.
-16| **Whitespace**                   | A space character ` `
+6|**Initialisation** | The moment when a Person or Note is created and added into SectresBook.
+7| **Java 11**                      | Eleventh version of the Java Platform, Standard Edition Development Kit (JDK). SectresBook requires this to be installed to run.
+8| **JSON data file**               | A data file that uses the JavaScript Object Notation format.
+9| **Loan**                         | An amount of money that is borrowed by or owed to a person. A positive value signifies an amount owed by the person and a negative value signifies an amount to be paid to that person.
+10| **Parameter**                    | A value passed as a section of a command, typically following a prefix.
+11| **Prefix**                       | A signposting word that indicates the kind of property (i.e. name, email, address, etc), which typically follows immediately after the prefix, that is to be passed as a parameter.
+12| **Property**                     | An identifiable feature a person or object has that sufficiently distinguishes it from other objects of the same kind.
+13| **Secretary**                    | A person that manages the tasks and events related to the operations of an organisation.
+14| **Tag**                          | A label that groups related people together, such that they can be referred to as a single encapsulated entity specified by the tag.
+15| **Terminal**                     |  A text-based interface to the computer
+16| **Treasurer**                    | A person that manages the finances and monetary transactions related to the operations of an organisation.
+17| **Whitespace**                   | A space character ` `
 
 [Back to Table of Contents](#table-of-contents)
 
