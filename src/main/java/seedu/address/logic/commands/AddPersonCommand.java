@@ -16,7 +16,7 @@ public class AddPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "add-person";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to Plannit. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to Plannit.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_EMAIL + "EMAIL "

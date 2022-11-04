@@ -26,7 +26,7 @@ import seedu.address.model.person.Person;
 public class AddLinkCommand extends Command {
 
     public static final String COMMAND_WORD = "add-link";
-    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Add link(s) to a the module "
+    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Add link(s) to a module "
             + "using its module code, link URL, and a user-defined alias.\n"
             + "A 'm/' flag should be appended to the front the module code;\n"
             + "a 'l/' flag should be appended to the front of each link URL;\n"
