@@ -556,10 +556,16 @@ Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 
 Example:
 ```
-add-person n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
+add-person n/Bobbie e/bobbie@gmail.com p/91234567
 ```
-In the above example, we are adding a contact with name `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number
+In the above example, we are adding a contact with name `Bobbie`, email `bobbie@gmail.com`, and phone number
 `91234567` into Plannit.
+
+
+| Before executing the command                                                                                                                               | After executing the command                                                                                   |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-person-after.png"/></p><p>Bobbie has been added!</p>{:/} |
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Adding a person to Plannit will bring you back to the home page.
@@ -608,9 +614,15 @@ Format: `delete-person n/NAME`
 
 Example:
 ```
-delete-person n/Dinosaur Lim
+delete-person n/Bobbie
 ```
-In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
+In the above example, we are deleting the contact with name `Bobbie` from Plannit.
+
+
+| Before executing the command                                                                                                                                  | After executing the command                                                                                        |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-person-after.png"/></p><p>Bobbie has been deleted!</p>{:/} |
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Deleting a person from Plannit will bring you back to the home page.
@@ -635,9 +647,14 @@ Format: `delete-person-from-module m/MODULE_CODE n/NAME`
 Example:
 
 ```
-delete-person-from-module m/CS2103T n/Dinosaur Lim
+delete-person-from-module m/CS2103T n/Charlotte Oliveiro
 ```
-In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
+In the above example, we are deleting the person `Charlotte Oliveiro` from the module `CS2103T`.
+
+
+| Before executing the command                                                                                                                                              | After executing the command                                                                                                                                        |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-person-from-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-person-from-module-after.png"/></p><p>Charlotte Oliveiro has been deleted from the module CS2103T!</p>{:/} |
 
 
 #### 2.4.5. Edit person
@@ -656,20 +673,21 @@ Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 
 Examples:
 ```
-edit-person 1 n/Dinosaur Lim
+edit-person 2 n/Charmander
 ```
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
-`Dinosaur Lim` in Plannit.
+`Charmander` in Plannit.
 ```
-edit-person 1 e/dinosaurlim@gmail.com
-```
-In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the
-email `dinosaurlim@gmail.com`in Plannit.
-```
-edit-person 1 n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
+edit-person 1 n/Charmander e/charmander@gmail.com
 ```
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
-`Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number `91234567` in Plannit.
+`Charmander` and email `charmander@gmail.com`in Plannit.  
+Screenshots for the last example:
+
+
+| Before executing the command                                                                                                                                | After executing the command                                                                                                       |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/edit-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/edit-person-after.png"/></p><p>Bernice Yu has been edited to Charmander!</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Editing a person will bring you back to the home page.
