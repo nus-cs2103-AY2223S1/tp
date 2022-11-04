@@ -32,8 +32,8 @@ Given below are my contributions to the project.
     * What it does: Receives user's confirmation before proceeding with the removal or clearing of data from TrackAScholar.json
     * Justification: Since the above commands are irreversible in nature, the alert dialog box serves as a deterrence against unintentional usage of the commands, thus improving the overall experience of the product for the user
     * Highlights: Still optimized for fast typists as the prompt can be answered using keyboard commands
-  * Enhanced the GUI of TrackAScholar
-    * Implemented `PinCard`, `PinList` and its css files to improve the overall user interface
+  * Enhanced the GUI of TrackAScholar. [#101](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/101/files) and [#185](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/185)
+    * Implemented `PinCard`, `PinList` and its css files to improve the overall user interface.
 
 * **Documentation**: 
   * User Guide: Added unpin command in features.
