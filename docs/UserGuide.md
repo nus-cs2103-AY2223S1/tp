@@ -58,16 +58,22 @@ This guide aims to
 ### 3.1 Navigating the User Guide
 **Information Box**
 <div markdown="block" class="alert alert-info">
-**:information_source: Info:** Provides useful information
+**:information_source: Info:** I am an example info box! I provide useful information.
 </div>
 
 **Tip Box**
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** Provides pointers to enhance your experience
+**:bulb: Tip:** I am an example tip box! I provide pointers to advanced users to enhance experience.
+</div>
+
+**Warning Box**
+<div markdown="block" class="alert alert-danger">
+**:exclamation: Warning:** I am an example warning box! I show important messages to take note to avoid any unintended effects.
 </div>
 
 **Highlights** <br>
-[`commands`](#glossary) or [`PARAMETERS`](#glossary) are inputs by users
+Highlighted text refers to commands, parameters, fields values or any user inputs.
+e.g. [`commands`](#glossary) [`PARAMETERS`](#glossary)
 
 ### 3.2 Navigating the GUI
 ![GUI](images/AnnotatedUi.png)
@@ -123,9 +129,6 @@ Displays your list of reminders.
 * Inapplicable parameters for commands that do not take in parameters (such as [`help`] and [`exit`]) will be ignored.<br>
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
-* To make it convenient for you, you could click on `Tab` button to switch between the different tabs (`Student`, `Grade Chart`, `Consultation`, `Tutorial`) and the command box.
- Alternatively, you can use the [`switch`] command.
-
 
 </div>
 
@@ -156,7 +159,13 @@ Examples:
 
 Shows a list of all students in ModQuik.
 
-* Command will only display the list if you navigate to the `Student` tab
+* If the list of students is not currently active, it may appear that the command does not have any effect. Navigate to the `Student` tab to see the list of students.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To switch between tabs, you can click on `Tab` button to switch between the different tabs (`Student`, `Grade Chart`, `Consultation`, `Tutorial`) and the command box.
+Alternatively, you can use the [`switch`] command if you would like to only use the keyboard.
+</div>
+
 
 Format: `list`
 
@@ -482,7 +491,7 @@ All data in ModQuik is saved in the hard disk automatically after executing any 
 
 All data in ModQuik is saved as a JSON file `[JAR file location]/data/modquik.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:**
 If your changes to the data file makes its format invalid, ModQuik will discard all data and start with an empty data file at the next run.
 </div>
 
