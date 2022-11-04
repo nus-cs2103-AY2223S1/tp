@@ -430,7 +430,7 @@ If your changes to the data file makes its format invalid, NotionUS will discard
 **Q**: Is internet needed for NotionUS to work?<br>
 **A**: No, NotionUS functions fully without internet connection.
 
-**Q**: What if the application crashes?<br>
+**Q**: How can I contact the team if I face difficuties ?<br>
 **A**: Please contact us via GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen), do provide screenshots of the error or state the error message. We will assist you as soon as possible. 
 
 --------------------------------------------------------------------------------------------------------------------
