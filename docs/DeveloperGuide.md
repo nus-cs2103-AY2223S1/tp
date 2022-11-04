@@ -510,7 +510,7 @@ Software System: Travelr
 
   Use case ends.
 
-**Use case: UC06 Mark a trip as done**
+**Use case: UC06 Mark a trip as not done**
 
 **Actor: User**
 
@@ -524,8 +524,7 @@ Software System: Travelr
 
 **Extensions:**
 
-* 2a. There is trip list is empty.
-
+* 2a. The trip list is empty.  
   Use case ends.
 * 3a. The requested trip doesn't exist
     * 3a1. Travelr shows an error message.
@@ -554,16 +553,16 @@ Software System: Travelr
 
 **Extensions:**
 
-* 2a. Bucket list is empty.
+* 2a. Bucket list is empty.  
   Use case ends.
 
 * 3a. The requested event doesn't exist
 
-    * 3a1. Travelr shows an error message.
+    * 3a1. Travelr shows an error message.  
       Use case ends
 
 * 3b. Invalid input
-    * 3b1. Travelr shows an error message.
+    * 3b1. Travelr shows an error message.  
       Use Case Ends
 
 **Use case: UC08 Sort trips**
@@ -580,20 +579,37 @@ Software System: Travelr
 
 **Extensions:**
 
-* 2a. UniqueTripList is empty.
+* 2a. UniqueTripList is empty.  
   Use case ends.
 
 * 3a. The requested sorting factor does not exist
 
-    * 3a1. Travelr shows an error message.
+    * 3a1. Travelr shows an error message.  
       Use case ends
 
 * 3b. Invalid input
-    * 3b1. Travelr shows an error message.
+    * 3b1. Travelr shows an error message.  
       Use Case Ends
 
+**Use case: UC09 Show completed trips and events**
 
-*{More TBA}*
+**Actor: User**
+
+**MSS :**
+1. User requests to see the trips they have completed as well as the events in these completed trips.
+2. Travelr lists trips user has completed as well as the events in these trips.
+
+   Use case ends
+  
+**Use case: UC10 Show summary**
+
+**Actor: User**
+
+**MSS :**
+1. User requests to see a summary of all their trips and events in Travelr.
+2. Travelr displays a summary of the user's trips and events.
+
+   Use case ends
 
 ### Non-Functional Requirements
 
