@@ -65,6 +65,8 @@ Also, medication tags can be added to your patients to keep track of their long-
 
 8. Refer to the [Features](#features) below for details of each command.
 
+[back to top](#back-to-topt)
+
 ---
 
 ## Glossary
@@ -91,6 +93,10 @@ Also, medication tags can be added to your patients to keep track of their long-
 | `+`           | Required field.                         |
 | `-`           | Optional field.                         |
 | `*`           | Multiple inputs are allowed.            |
+
+[back to top](#back-to-topt)
+
+---
 
 ## Features
 
@@ -122,8 +128,14 @@ Also, medication tags can be added to your patients to keep track of their long-
 * [Retrieving Patient Info](#retrieving-patient-info)
 * [General Commands](#general-commands)
 
+[back to top](#back-to-topt)
+
 ---
 ## Creating Patient Info
+The commands in this segment are focused on creating, editing and removing data to and from the application. 
+These commands are:
+
+* [Adding a patient](#adding-a-patient-add)
 
 ### Adding a patient: `add`
 
@@ -179,6 +191,7 @@ If patient type is outpatient: <br>
 `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/outpatient m/panadol m/ibuprofen`
 ![Add John Doe Outpatient Result](images/ug-images/addCommand/addJohnDoeOutpatientResult.png)
 
+[back to top](#back-to-topt)
 
 ### Editing a patient: `edit`
 
