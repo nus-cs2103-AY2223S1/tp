@@ -59,6 +59,8 @@ Provides the user manual for all supported commands.
 
 ### Listing modules: `ls`
 
+![ListCommand Demo](images/commands/ListCommand.png)
+
 Format: `ls [FACULTY-PREFIX]`
 
 Optional Arguments:
@@ -70,6 +72,8 @@ Shows the entire list of modules offered by NUS with the option to also filter i
 module prefix e.g. CS, CEG).
 
 ### Searching for modules: `find`
+
+![FindCommand Demo](images/commands/FindCommand.png)
 
 Format: `find KEYWORD`
 
@@ -91,6 +95,9 @@ Regex is difficult, and is intended to be used by more experienced users. This f
 
 ### View module details: `view`
 
+![ViewCommand Demo](images/commands/ViewCommand.png)
+![ViewCommand Show Tutorial Demo](images/commands/ViewCommandShowTutorial.png)
+
 Format: `view MODULE-CODE`
 
 Required Arguments:
@@ -101,6 +108,8 @@ Required Arguments:
 View full details (e.g. description, module credits and lesson slots) of a module via its module code.
 
 ### Listing module prerequisite: `preq`
+
+![PreqCommand Demo](images/commands/PreqCommand.png)
 
 Format: `preq MODULE-CODE`
 
@@ -117,6 +126,8 @@ Preclusions to prerequisite mods will not be shown due to a limitation with the 
 
 
 ### Add modules to user list: `add`
+
+![AddCommand Demo](images/commands/AddCommand.png)
 
 Format: `add MODULE-CODE SEMESTER-CODE`
 
