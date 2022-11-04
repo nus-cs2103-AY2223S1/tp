@@ -46,5 +46,6 @@ Given below are my contributions to the project.
 
 * **Tools**:
     * Used JavaFX for UI related features.
+    * Used PlantUML to add more UML diagrams in the developer guide.
 
 
