@@ -11,6 +11,7 @@ title: FinBook User Guide
    2.1. [Icons and symbols](#21-icons-and-symbols)<br>
    2.2. [User Interface (UI) of FinBook](#22-user-interface-ui-of-finbook)<br>
    2.3. [Command format](#23-command-format)<br>
+   &emsp; 2.3.1.[Prefix format](#231-prefix-format)<br>
 3. [Quick Start](#3-quick-start)<br>
 4. [Features](#4-features)<br>
    4.1. [Managing a client](#41-managing-a-client)<br>
@@ -124,21 +125,111 @@ For example,
 3. **Parameter**: Provides supplementary information to the command word or prefix. For this example, `John Doe` is the
    parameter for `NAME`
 
-### Prefix Table
+### 2.3.1. Prefix format
+**NAME** - `n/`: <br>
+Name of a client. <br>
+**Parameter restrictions**: Only standard English characters are allowed, and it should not be blank. <br>
+**Examples**:
+ * Valid: `John Doe`, `Alex Yeoh`
+ * Invalid: `Александр`, `语嫣`
 
-| Prefix | Corresponding Parameter                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Examples                                                                                                                                      |
-|--------|----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| n/     | NAME                                         | Name of a client<br/> **:information_source: Parameter restrictions:**<br>- Only standard English characters are allowed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | **Valid Examples:** <br/>- John Doe<br/>- Alex Yeoh <br/>**Invalid Examples:** <br/>- Александр<br/>- 语嫣                                      |
-| p/     | PHONE                                        | Phone number of a client<br/> **:information_source: Parameter restrictions:**<br>- Phone numbers should only contain numbers and be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | **Valid Examples:** <br/>- 999<br/>- 12345678 <br/>**Invalid Examples:** <br/>- 10 <br/>- +6512345678                                         |
-| e/     | EMAIL                                        | Email of client<br/> **:information_source: Parameter restrictions:**<br> Emails should be of the format local-part@domain and adhere to the following constraints: <br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.<br/> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <br/> &emsp;The domain name must: <br/>&emsp;&emsp; - end with a domain label at least 2 characters long<br/>&emsp;&emsp; - have each domain label start and end with alphanumeric characters<br/>&emsp;&emsp;- have each domain label consist of alphanumeric characters, separated only by hyphens, if any.                                                                                                    | **Valid Examples:** <br/>- john@gmail.com<br/>- jo_doe@abc.com.sg <br/>**Invalid Examples:** <br/>- john_@example.com<br/>- john@example_.com |
-| a/     | ADDRESS                                      | Address of client<br/> **:information_source: Parameter restrictions:**<br> - Addresses can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | **Valid Examples:** <br/>- Blk 123 @Flower Street, #01-01<br/>- abc <br/>                                                                     |
-| i/     | INCOME                                       | Income of client<br/> **:information_source: Parameter restrictions:**<br> - Income should start with $ followed by numbers and should be at least 1 digit long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | **Valid Examples:** <br/>- $8250 <br/>- $0 <br/>  **Invalid Examples:** <br/>- $10k<br/>- 5000 <br/>                                          |
-| m/     | MEETINGDATE or <br/> MEETINGDATE<br>WITHTIME | Date and time of meeting with client<br/> **:information_source: Parameter restrictions:**<br> - Date should be in the form of dd MMM yyyy [HH:mm]. Meeting time is optional.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | **Valid Examples:** <br/>- 20 Nov 2022 <br/>- 05 Oct 2023 10:30 <br/>  **Invalid Examples:** <br/>- 13-Aug-2022 <br/>- 15 Jul 2023 16.30      |
-| ml/    | MEETINGLOCATION                              | Location of meeting with client<br/> **:information_source: Parameter restrictions:**<br> - Location can be in the form of either an address (for in-person meetings), or a link (for online meetings).<br> - Addresses can take any values, and it should not be blank.<br> Links should be of the format protocol://host, and links compliant with the format will be automatically detected by Finbook, and the meeting will be automatically categorised as online.                                                                                                                                                                                                                                                                                                                                                                                                                                                | **Valid Examples:** <br/>- 13 Computing Drive <br/>- https://nus-sg.zoom.us/ <br/>                                                            |
-| t/     | TAG                                          | Tag of client <br/> **:information_source: Parameter restrictions:**<br>-Tags names should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | **Valid Examples:** <br/>- VIPClient <br/>- 10 <br/>  **Invalid Examples:** <br/>- VIP-Client <br/>- * <br/>                                  |
-| r/     | RISK                                         | Risk level of client's portfolio <br/> **:information_source: Parameter restrictions:**<br>- Risk level can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | **Valid Examples:** <br/>- High <br/>- abc <br/>                                                                                              |
-| pl/    | PLANS                                        | Plans regarding client's portfolio <br/> **:information_source: Parameter restrictions:**<br>- Plan names should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | **Valid Examples:** <br/>- NTUC Income Plan <br/>- OCBC Plan 2020 <br/>                                                                       |
-| note/  | ADDITIONAL NOTES                             | Additional notes to client's portfolio <br/> **:information_source: Parameter restrictions:**<br>- Notes should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | **Valid Examples:** <br/>- Plans to save for retirement <br/>- Currently have COVID <br/>                                                     |         
+---
+
+**PHONE** - `p/`: <br>
+Phone number of a client. <br>
+**Parameter restrictions**: Phone numbers should only contain numbers and be at least 3 digits long, and it should not
+be blank.<br>
+**Examples**:
+* Valid: `999`, `12345678`
+* Invalid: `10`, `+6512345678`
+
+---
+
+**EMAIL** - `e/`: <br>
+Email of client. <br>
+**Parameter description**: Emails should be of the format local-part@domain and adhere to the following constraints: <br/> 
+1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.<br/> 
+2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <br/>
+&emsp;The domain name must: <br/>
+&emsp;&emsp; - end with a domain label at least 2 characters long<br/>
+&emsp;&emsp; - have each domain label start and end with alphanumeric characters<br/>
+&emsp;&emsp;- have each domain label consist of alphanumeric characters, separated only by hyphens, if any.<br>
+**Examples**:
+* Valid: `john@gmail.com`, `jo_doe@abc.com.sg`
+* Invalid: `john_@example.com`, `john@example_.com`
+
+---
+
+**ADDRESS** - `a/`: <br>
+Address of client. <br>
+**Parameter restrictions**: Addresses can take any values, and it should not be blank.<br>
+**Examples**:
+* Valid: `Blk 123 @Flower Street #01-01`, `abc`
+
+---
+
+**INCOME** - `i/`: <br>
+Income of client. <br>
+**Parameter restrictions**: Income should start with $ followed by numbers and should be at least 1 digit long, and it
+should not be blank. <br>
+**Examples**:
+* Valid: `$8250`, `$0`
+* Invalid: `$10k`, `5000`
+
+---
+
+**MEETINGDATE or MEETINGDATEWITHTIME** - `m/`: <br>
+Date and time of meeting with client.<br>
+**Parameter restrictions**: Date should be in the form of dd MMM yyyy [HH:mm]. Meeting time is optional.<br>
+**Examples**:
+* Valid: `20 Nov 2022`, `05 Oct 2023 10:30`
+* Invalid: `13-Aug-2022`, `15 Jul 2023 16.30`
+
+---
+
+**MEETINGLOCATION** - `m/`: <br>
+Location of meeting with client. <br>
+**Parameter restrictions**: <br>
+* Location can be in the form of either an address (for in-person meetings), or a link (for online meetings).
+* Addresses can take any values, and it should not be blank.
+  Links should be of the format protocol://host, and links compliant with the format will be automatically detected by Finbook, and the meeting will be automatically categorised as online.<br>
+**Examples**:
+* Valid: `13 Computing Drive`, `https://nus-sg.zoom.us/`
+
+---
+
+**TAG** - `t/`: <br>
+Tag of client. <br>
+**Parameter restrictions**: Tags names should be alphanumeric. <br>
+**Examples**:
+* Valid: `VIPClient`, `10`
+* Invalid: `VIP-Client`, `*`
+
+---
+
+**RISK** - `r/`: <br>
+Risk level of client’s portfolio. <br>
+**Parameter restrictions**: sRisk level can take any value. <br>
+**Examples**:
+* Valid: `High`, `abc`, `10`
+
+---
+
+**PLANS** - `pl/`: <br>
+Plans regarding client’s portfolio. <br>
+**Parameter restrictions**: Plan name can take any value. <br>
+**Examples**:
+* Valid: `NTUC Income Plan`, `OCBC Plan 2020`
+
+---
+
+**ADDITIONAL NOTES** - `note/`: <br>
+Additional notes to client’s portfolio. <br>
+**Parameter restrictions**: Notes can take any value. <br>
+**Examples**:
+* Valid: `Plans to save for retirement`, `Currently have COVID`
+
+--- 
 
 <div markdown="block" class="alert alert-info">
 
