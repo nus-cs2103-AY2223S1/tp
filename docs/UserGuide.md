@@ -8,6 +8,8 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 Travelr allows you to plan trips around the activities in your bucket list. You will be able to keep track of your bucket list, travel dates, locations, and itineraries, all within the same app!
 
+In this guide, you will be introduced to the various features of Travelr, which will help you to use Travelr to build up your bucket list, plan future trips, and look back on your past trip experiences in an effective manner.
+
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
@@ -16,7 +18,7 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 3. Copy the file to the folder you want to use as the _home folder_ for Travelr.
 4. Double-click the file to start the app. The GUI should appear in a few seconds, and will look similar to the screenshot below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the input box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list-e` : Lists all events.
@@ -36,12 +38,12 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 On app startup, the Trip List Display will show all trips and the Event List Display will display
 the events in the bucket list i.e Events that haven't been added to any trips.
 
-Trips can be marked as completed via the `mark` command. Completed trips will be labelled with a tick icon
+Trips can be marked as completed via the [`mark`](#marking-trips-as-completed-mark) command. Completed trips will be labelled with a tick icon
 to the right of the trip's title.
 
 The trips display sorts the trips by completion automatically. Completed trips will remain at the bottom of the list.
 
-Titles, Locations and Descriptions that are too long will be truncated. To view the full details of an event or trip, use `display-e` and `display` commands respectively.
+Titles, locations and descriptions that are too long will be truncated. To view the full details of an event or trip, use [`display-e`](#displaying-specified-event-details-display-e) and [`display`](#displaying-specified-trip-details-display) commands respectively.
 
 <div markdown="block" class="alert alert-info">
 
@@ -53,9 +55,9 @@ Titles, Locations and Descriptions that are too long will be truncated. To view 
 |:-:|:--|
 |**Input Box**|where you enter your commands.|
 |**Output Box**|where the results of your command are shown.
-|**Selected Trip Box**| where the current selected trip is shown.<br><br> Use `select` to select a trip.|
-|**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the types of trips being shown: <br><ul><li>`completed`</li><li>`view`</li><li>`list`</li></ul> See feature list for more information about the commands.|
-|**Event List Display**|where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown: <br><ul><li>`completed`</li><li>`view`</li><li>`list-e`</li><li>`select`</li></ul> See feature list for more information about the commands.
+   |**Selected Trip Box**| where the current selected trip is shown.<br><br> Use [<code>select</code>](#selecting-a-trip-to-view-its-itinerary-select) to select a trip.|
+|**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the types of trips being shown: <br><ul> [<li><code>completed</code></li>](#viewing-all-completed-trips-and-events-completed) [<li><code>view</code></li>](#viewing-all-trips-and-events-view) [<li><code>list</code></li>](#viewing-trips-list-list) </ul> See feature list for more information about the commands.|
+|**Event List Display**|where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown: <br><ul>[<li><code>completed</code></li>](#viewing-all-completed-trips-and-events-completed) [<li><code>view</code></li>](#viewing-all-trips-and-events-view) [<li><code>list-e</code></li>](#viewing-bucket-list-list-e) [<li><code>select</code></li>](#selecting-a-trip-to-view-its-itinerary-select) </ul> See feature list for more information about the commands.
 
 
 </div>
@@ -64,9 +66,9 @@ Titles, Locations and Descriptions that are too long will be truncated. To view 
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-warning">
    
-**:information_source: Notes about the command format:**<br>
+**:warning: Notes about the command format:**<br>
 
 |`Component`|`Formatting Details`|
 |:-:|:--|
@@ -88,6 +90,13 @@ Adds an event to the bucket list.
 
 Format: `add-e n/TITLE d/DESCRIPTION`
 
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+
+Have something new to add to your bucket list? Use the <code>add-e</code> to add a new event to your bucket list! 
+      
+
 Examples:
 - `add-e n/Skydiving d/Skydiving with crew`
 - `add-e n/Sailing d/Sail in the Danube River`
@@ -99,6 +108,8 @@ The following is an example of how the `add-e` command can be run in the GUI.
 After the event has been successfully added, a confirmation message will be shown in the output box. You will also be able to see your new event in the event list display as seen below.
 
 ![AddEventDone](images/AddEventDone.png)
+   
+</div>
 
 
 #### Viewing bucket list: `list-e`
@@ -118,11 +129,15 @@ Examples:
 - `delete-e 2` deletes the 2nd event in the bucket list.
 
 #### Displaying specified event details: `display-e`
-Displays the full title, description of the event at the specified INDEX of the displayed events list in the command box.
+Displays the full title, description of the event at the specified INDEX of the displayed events list in the output box.
 
 Format: `display-e INDEX`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Occasionally, you may add events with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display-e</code> command to look at a specified event's full title and description. </div>
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+
+Occasionally, you may add events with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display-e</code> command to look at a specified event's full title and description.
 
 The following is an example of how the `display-e` command can be run in the GUI.
 
@@ -131,6 +146,8 @@ The following is an example of how the `display-e` command can be run in the GUI
 After the command has been successfully executed, a full description of the specified event will be shown in the output box as seen below.
 
 ![DisplayEventDone](images/DisplayEventDone.png)
+   
+</div>
 
 ### Managing Trips
 
@@ -141,15 +158,24 @@ Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`
 - All fields are compulsory.
 - Date must follow the format `dd-mm-yyyy`.
 
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Planning an upcoming trip? Use the `add` command to add a new trip to your trip list!
+
 Examples:
 - `add n/Trip to Iceland d/Skiing in Iceland l/Iceland D/26-12-2023`
 
 The following is an example of how the `add` command can be run in the GUI.
 
+
 ![AddTrip](images/AddTrip.png)
 
 After the trip has been successfully added, a confirmation message will be shown in the output box. You will also be able to see your new trip in the trip list display as seen below.
 ![AddTripDone](images/AddTripDone.png)
+ 
+</div>
 
 #### Viewing trips list: `list`
 Shows a list of all trips added.
@@ -166,10 +192,14 @@ Examples:
 
 #### Displaying specified trip details: `display`
 
-Displays the full title, description, location, and date of the trip at the specified INDEX of the displayed trip list in the command box
+Displays the full title, description, location, and date of the trip at the specified INDEX of the displayed trip list in the output box.
 Format: `display INDEX`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Occasionally, you may add trips with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display</code> command to look at a specified trip's full title and description. </div>
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Occasionally, you may add trips with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display</code> command to look at a specified trip's full title and description.
 
 The following is an example of how the `display` command can be run in the GUI.
 
@@ -178,6 +208,8 @@ The following is an example of how the `display` command can be run in the GUI.
 After the command has been successfully executed, a full description of the specified trip will be shown in the output box as seen below.
 
 ![DisplayTripDone](images/DisplayTripDone.png)
+   
+</div>
 
 ### Managing a Trip's Itinerary
 
@@ -190,7 +222,13 @@ Format: `add-et n/EVENT NAME t/TRIP NAME`
 - The TRIP NAME must exist in the trips list.
 - The EVENT NAME must exist in the events list.
 
-<div class="alert alert-block alert-success"><b>Use case: </b> <code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command. </div>
+*Note: Event names and trip names are used as inputs instead of indexes to make the command as specific as possible.
+
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+<code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command.
 
 Examples:
 - `add-et n/Visit the Swiss Alps t/Trip to Switzerland` adds the event titled `Visit the Swiss Alps` in the bucket list to the itinerary of the trip with the title `Trip to Switzerland`.
@@ -199,6 +237,7 @@ The following is an example of how the `add-et` command can be run in the GUI.
 
 ![AddEventToTrip](images/AddEventToTrip.png)
 
+</div>
 
 #### Removing event from a trip's itinerary: `delete-et`
 Remove the specified event from the specified trip. The event will then be returned to the bucket list.
@@ -209,11 +248,15 @@ Format: `delete-et n/EVENT NAME t/TRIP NAME`
 - The TRIP NAME must exist in the trips list.
 - The EVENT NAME must exist in the trip itinerary.
 
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. </div>
+
 Examples:
 - `delete-et n/Visit the Swiss Alps t/Trip to Switzerland` remove the event titled `Visit the Swiss Alps` from the itinerary of the trip titled `Trip to Switzerland` and returns it to the bucket list.
 
-
-<div class="alert alert-block alert-success"><b>Use case: </b> Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. </div>
 
 #### Selecting a trip to view its itinerary `select`
 Selects the trip in the specified INDEX and displays all events added to that trip in the events list panel.
@@ -223,7 +266,11 @@ Format: `select INDEX`
 - The index refers to the index number shown in the current displayed trip list.
 - The index must be a positive integer 1, 2, 3, …
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Now that you have added events into a trip's itinerary, you may want to take a look at how that trip's itinerary looks like. You can run the <code>select</code> command to select a trip and view all the events that have been added its itinerary. </div>
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Now that you have added events into a trip's itinerary, you may want to take a look at how that trip's itinerary looks like. You can run the <code>select</code> command to select a trip and view all the events that have been added its itinerary. 
 
 The following is an example of how the `select` command can be run in the GUI.
 
@@ -232,10 +279,12 @@ The following is an example of how the `select` command can be run in the GUI.
 After the trip has been successfully selected, a confirmation message will be shown in the output box. You will be able to see your selected trip in the selected trip box, along with the list of events in its itinerary.
 
 ![SelectTripDone](images/SelectTripDone.png)
+   
+</div>
 
 ### Managing a Trip's Completion Status
 
-#### Marking trips as done: `mark`
+#### Marking trips as completed: `mark`
 Mark the trip in the specified INDEX as done. After the specified trip has been marked as completed, it will be moved downwards to the set of completed trips in the trip list. 
 
 Format: `mark INDEX`
@@ -243,7 +292,11 @@ Format: `mark INDEX`
 - The index refers to the index number shown in the trip list.
 - The index must be a positive integer 1, 2, 3, …
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Congratulations, you have just completed a trip! You can now mark it as completed using the <code>mark</code> command. </div>
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Congratulations, you have just completed a trip! You can now mark it as completed using the <code>mark</code> command.
 
 Examples:
 - `mark 1` marks the first trip in the trip list as done.
@@ -256,8 +309,9 @@ After the trip has been successfully marked, a confirmation message will be show
 
 ![MarkTripDone](images/MarkTripDone.png)
 
+</div>
 
-#### Marking trips as not done: `unmark`
+#### Marking trips as incomplete: `unmark`
 Mark the trip in the specified INDEX as not done. After the specified trip has been marked as incomplete, it will be moved upwards to the set of incomplete trips in the trip list. 
 
 Format: `unmark INDEX`
@@ -265,10 +319,16 @@ Format: `unmark INDEX`
 - The index refers to the index number shown in the trip list.
 - The index must be a positive integer 1, 2, 3, …
 
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Accidentally marked a trip as completed on accident? Use the <code>unmark</code> command to set it back to incomplete.
+
 Examples:
 - `unmark 1` marks the first trip in the trip list as not done.
-
-<div class="alert alert-block alert-success"><b>Use case: </b> Accidentally marked a trip as completed on accident? Use the <code>unmark</code> command to set it back to incomplete. </div>
+   
+</div>
 
 ### Sorting
 
@@ -306,14 +366,18 @@ Format: `sort-e [r/]`
 
 ### Overview Display Commands
 
-#### View all completed trips and events: `completed`
+#### Viewing all completed trips and events: `completed`
 Displays all completed trips and events.
 
 Format: `completed`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Take a stroll down memory lane and revisit happy memories as a list of all your completed trips and events are shown to you. </div>
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Take a stroll down memory lane and revisit happy memories as a list of all your completed trips and events are shown to you. </div>
 
-#### View all trips and events: `view`
+#### Viewing all trips and events: `view`
 Displays all trips and events in Travelr. This includes events that are part of the bucket list or events that are part of a trip.
 
 Format: `view`
@@ -329,12 +393,17 @@ Format: `summary`
 - Progress indicator for trips and events.
 - Command must be used again to view updates to the summary.
 
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the <code>summary</code> command.
+
 After the command has been successfully executed, a new window will pop up, with information summarising your lifetime travels.
 
 [Summary_Window](images/SummaryScreenshot.png)
-
-
-<div class="alert alert-block alert-success"><b>Use case: </b> How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the <code>summary</code> command. </div>
+ 
+</div>
 
 ### General Commands
 
@@ -353,7 +422,11 @@ Shows a command summary as well as link to the User Guide page. The link can be 
 
 Format: `help`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Need help with using Travelr effectively? The <code>help</code> command provides a summarized list of commands that you can try out. </div>
+<div class="alert alert-block alert-success">
+   
+**:point_up: Use case:**<br> 
+   
+Need help with using Travelr effectively? The <code>help</code> command provides a summarized list of commands that you can try out. </div>
 
 #### Exiting the program: `exit`
 Exits the program.
@@ -362,7 +435,7 @@ Format: `exit`
 
 
 ### Saving data
-Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
+Travelr data are saved locally automatically after any command. There is no need to save manually.
 
 ## Glossary
 
@@ -371,4 +444,9 @@ Travelr data are saved locally automatically after any command that changes the 
 * **Displayed trips list**: List of trips being displayed in the left panel of the UI
 * **GUI**: Stands for Graphical User Interface, which refers to the user interface that you will be interacting with.
 
-
+### Icons
+|**Icon**|**Explanation**|
+|:-:|:-:|
+|:information_source:|The segment will provide useful information for using Travelr.|
+|:warning:|The segment will provide important notes about Travelr.|
+|:point_up:|The segment explains the uses of a feature.|
