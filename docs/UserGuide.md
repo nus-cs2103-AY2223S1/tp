@@ -116,9 +116,26 @@ Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/
 <br>
 1. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
 2. <code>CONTACT</code> must be 5-15 digits long.<br>
-3. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
-4. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list.<br>
-5. Tags must be alphanumeric and cannot contain spaces.
+3. Emails should be of the format local-part@domain and adhere to the following constraints:
+<ol>
+    <li>
+    The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>
+    The local-part may not start or end with any special characters, nor can it contain consecutive special characters.
+    </li>
+    <li>
+    This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br>
+    The domain name must:
+    <ul>
+        <li>
+        have each domain label consist of alphanumeric characters, separated only by singular hyphens, if any</li>
+        <li>have each domain label start and end with alphanumeric characters</li>
+        <li>end with a domain label that contains at least 2 consecutive alphanumeric characters</li>
+    </ul>
+    </li>
+</ol>
+4. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
+5. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list.<br>
+6. Tags must be alphanumeric and cannot contain spaces.
 </div>
 
 Examples:
