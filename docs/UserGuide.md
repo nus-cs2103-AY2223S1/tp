@@ -75,29 +75,26 @@ This guide aims to
 Highlighted text refers to commands, parameters, fields values or any user inputs.
 e.g. [`commands`](#glossary) [`PARAMETERS`](#glossary)
 
-### 3.2 Navigating the GUI
-![GUI](images/AnnotatedUi.png)
-
-**Command Box**
-Enter your command here.
-
-**Result Display Box**
-Displays a feedback message after a command is executed.
-
-**Navigation Tab**
-Panel displaying the tabs you can navigate to.
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Clicking on a button in the panel will allow you to switch tabs. 
-</div>
-
-**Main Display**
-Displays the list of your chosen tab.
-
-**Reminder List**
-Displays your list of reminders.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Features
+
+![GUI](images/AnnotatedUi.png)
+
+**<span style="color:red;">Command Box</span>**<br>
+Enter your command here.
+
+**<span style="color:mediumseagreen;">Result Display Box</span>**<br>
+Displays a feedback message after a command is executed.
+
+**<span style="color:dodgerblue;">Navigation Tab</span>**<br>
+Displays the tabs that you can navigate to.
+
+**<span style="color:white;">Main Display</span>**<br>
+Displays the list of your chosen tab.
+
+**<span style="color:purple;">Reminder List</span>**<br>
+Displays your list of reminders.
 
 <div markdown="block" class="alert alert-info">
 
