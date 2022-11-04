@@ -46,9 +46,9 @@ public class EateryTest {
         editedAlice = new EateryBuilder(TypicalEateries.ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(TypicalEateries.ALICE.isSameEatery(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Eatery editedBob = new EateryBuilder(TypicalEateries.BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(TypicalEateries.BOB.isSameEatery(editedBob));
+        assertTrue(TypicalEateries.BOB.isSameEatery(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
