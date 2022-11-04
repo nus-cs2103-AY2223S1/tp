@@ -1,8 +1,9 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
 h1 {
-  font-size: 5rem !important;
-  color: #005757;
+  font-size: 2rem !important;
+  font-weight: 900;
+  color: #111111;
 }
 
 h2, h3, h4, h5, h6 {
@@ -71,7 +72,7 @@ code {
   padding: $alert-padding-y $alert-padding-x;
   margin-bottom: $alert-margin-bottom;
   border: $alert-border-width solid transparent;
-  order-radius : $alert-border-radius;
+  border-radius : $alert-border-radius;
 }
 
 // Headings for larger alerts
