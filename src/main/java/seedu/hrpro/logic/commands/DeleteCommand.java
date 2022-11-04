@@ -3,6 +3,7 @@ package seedu.hrpro.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.hrpro.commons.core.Messages;
 import seedu.hrpro.commons.core.index.Index;
@@ -34,16 +35,14 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Project> lastShownList = model.getFilteredProjectList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
-        }
+        Optional<Project> projectToDelete = model.getProjectWithIndex(targetIndex);
+        Project toDelete = projectToDelete.orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX));
 
-        Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteProject(projectToDelete);
+        model.deleteProject(toDelete);
         model.setFilteredStaffList(new UniqueStaffList());
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, toDelete));
     }
 
     @Override
