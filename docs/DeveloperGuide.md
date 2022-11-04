@@ -330,21 +330,21 @@ related appointments.
 
 #### Current Implementation
 
-The select commands simulates a click on the 'PatientCard' or 'AppointmentCard' in the UI.
+The select commands simulates a click on the `PatientCard` or `AppointmentCard` in the UI.
 
-The select methods are separated for patients and appointments, with command word 'selectpatient'
-and 'selectappointment' respectively.
+The select methods are separated for patients and appointments, with command word `selectpatient`
+and `selectappointment` respectively.
 
 The select commands make use of the index of a patient or an appointment in the 'FilteredList's
 to identify whose appointments and bills to show.
 
-The 'SelectPatientCommandParser' and 'SelectAppointmentCommandParser' convert
+The `SelectPatientCommandParser` and `SelectAppointmentCommandParser` convert
 input String containing target index to the SelectCommand objects.
 
-On execution, the SelectPatientCommand will invoke the selectPatient() and selectAppointment() in the Model to
-update the FilteredAppointmentList and FilteredBillList to contain selected patient's information only.
+On execution, the SelectPatientCommand will invoke the `Model#selectPatient()` and `Model#selectAppointment()` in the Model to
+update the `FilteredAppointmentList` and `FilteredBillList` to include selected patient's information only.
 
-Given below is an example usage scenario and how the find mechanism behaves at each step.
+Given below is an example usage scenario and how the mechanism behaves at each step.
 
 Step 1. The user executes `selectpatient 1` command to show all appointments and bills
 tied to the first listed patient.
