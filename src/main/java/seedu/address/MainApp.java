@@ -190,6 +190,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting TeachersPet " + MainApp.VERSION);
         ui.start(primaryStage);
+        // Display error message in command box if JSON file is invalid
         if (isInInvalidFormat) {
             ui.showInvalidFormatInJsonFile();
         }

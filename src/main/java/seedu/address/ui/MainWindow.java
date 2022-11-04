@@ -213,6 +213,7 @@ public class MainWindow extends UiPart<Stage> {
      * Displays error message to user when there is invalid format in the teachersPet json file.
      */
     public void showInvalidFormatInJsonFile() {
-        resultDisplay.setFeedbackToUser("JSON file is invalid. File will not be saved until the error is corrected.");
+        resultDisplay.setFeedbackToUser("JSON file is invalid. File will not be saved until the error is corrected." +
+                "\nYou may delete the JSON file if you wish to create a new set of data.");
     }
 }
