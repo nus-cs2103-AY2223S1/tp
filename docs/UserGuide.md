@@ -109,6 +109,10 @@ Format: `redo`
 
 ## Section 1: Contacts
 
+These commands allow you to maintain a list of people that you meet in both professional and personal settings.
+Whether it be family, friends or acquaintances, store all their details in one place for easy look-up.
+Contact management has never been this simple.
+
 ### Add a contact: `addC`
 
 Adds a contact to the address book.
@@ -234,6 +238,11 @@ Example:
 
 
 ## Section 2: Tasks
+
+These commands allow you to maintain a handy to-do list so you can prioritise what needs to be done first.
+Monitor your progress, track deadlines and archive tasks with a few simple commands.
+Leave your task management to YellowBook, so you can do your best work.
+
 ### Listing all non-archived tasks: `listT`
 
 Shows all (non-archived) tasks stored in the task list.
@@ -457,6 +466,12 @@ Format: `unarchiveT INDEX`
 
 ## Section 3: Labels
 
+These commands allow you to further organise people and tasks into subgroups depending on the context of 
+your relationship with them.
+Whether it be a project groupmate or your other half, you can customise every person with what they mean to you.
+With our label feature, managing your numerous projects on the go has just gotten a lot easier.
+
+
 ### Listing all labels: `listL`
 
 Shows a list of all existing labels in the address book.
@@ -469,6 +484,10 @@ This list is unique, meaning each label with a distinct name is only shown once,
 
 Multiple labels can be added in the same command. 
 However, only a maximum of one contact and one task can be labelled within the same command.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+addL is case-sensitive! `cs2103t` and `CS2103T` will be added as separate labels in the tag list.
+</div>
 
 Labels must be alphanumeric and one word long.
 
@@ -495,7 +514,13 @@ Otherwise, it is only removed from the specified contact/task label list.
 Multiple labels can be deleted in the same command. 
 However, only a maximum of one contact and one task can be edited within the same command.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+deleteL is case-sensitive! If you try to delete `cs2103t` but type `CS2103T` in your command, 
+you will encounter an error as YellowBook will not find a match.
+</div>
+
 Labels must be alphanumeric and one word long.
+
 
 The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist
@@ -504,11 +529,11 @@ The following scenarios should not happen for your command to run successfully:
 - No label is provided
 - More than one contact or more than one task is specified
 
-Format: `deleteL t/INDEX l/label_NAME`
+Format: `deleteL c/INDEX t/INDEX l/label_NAME`
 
 Example:
 
-* `deleteL t/14 l/CS2101` will remove the label "CS2101" from the 14th task on the task list.
+* `deleteL c/12 t/14 l/CS2101` will remove the label "CS2101" from the 12th contact and 14th task on the task list.
 
 ### Delete all contacts and tasks by label: `deleteA`
 
@@ -590,6 +615,6 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | **sortD**      | **sort** **T**asks                              | `sortD`                                                                                                                                                |
 | **sortI**      | **sort** **T**asks                              | `sortI`                                                                                                                                                |
 | **listL**      | **list** **L**abels                             | `listL`                                                                                                                                                |
-| **addL**       | **add** **l**abel to contact or task            | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                                            |
-| **deleteL**    | **delete** **l**abel from contact or task       | `deleteL c/INDEX n/LABEL_NAME` OR `deleteL t/INDEX n/LABEL_NAME`                                                                                       |
+| **addL**       | **add** **l**abel to contact or task            | `addL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR  `addL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `addL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]`                                                                                          |
+| **deleteL**    | **delete** **l**abel from contact or task       | `deleteL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]`                                                                                      |
 | **deleteA**    | **delete** **A**ll contact(s)/task(s) with tag  | `deleteA LABEL_NAME [MORE_LABEL_NAMES]` <br> e.g., `deleteA cs2103t`                                                                                   |
