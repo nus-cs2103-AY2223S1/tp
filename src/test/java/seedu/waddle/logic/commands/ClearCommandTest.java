@@ -13,7 +13,7 @@ import seedu.waddle.model.Waddle;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyWaddle_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,7 +21,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyWAddle_success() {
         Model model = new ModelManager(getTypicalWaddle(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalWaddle(), new UserPrefs());
         expectedModel.setWaddle(new Waddle());
