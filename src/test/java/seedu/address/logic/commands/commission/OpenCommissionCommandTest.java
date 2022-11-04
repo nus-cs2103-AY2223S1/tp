@@ -34,8 +34,8 @@ class OpenCommissionCommandTest {
     @Test
     public void execute_noIndex_switchesTab() {
         model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
-        CommandResult result = Assertions.assertDoesNotThrow(() -> new OpenCommissionCommand().execute(model));
-        assertEquals(result.getFeedbackToUser(), Messages.MESSAGE_OPEN_COMMISSION_TAB_SUCCESS);
+        CommandResult result = assertDoesNotThrow(() -> new OpenCommissionCommand().execute(model));
+        assertEquals(result.getFeedbackToUser(), OpenCommissionCommand.MESSAGE_USAGE);
         assertEquals(model.getSelectedTab(), GuiTab.COMMISSION);
     }
 

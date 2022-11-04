@@ -33,7 +33,5 @@ public class Messages {
 
 
     public static final String MESSAGE_OPEN_CUSTOMER_SUCCESS = "Opened Customer: %1$s";
-    public static final String MESSAGE_OPEN_CUSTOMER_TAB_SUCCESS = "Opened Customer tab";
-    public static final String MESSAGE_OPEN_COMMISSION_TAB_SUCCESS = "Opened Commission Tab";
     public static final String MESSAGE_OPEN_COMMISSION_SUCCESS = "Opened Commission: %1$s";
 }

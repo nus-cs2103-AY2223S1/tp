@@ -1,7 +1,9 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -30,7 +32,8 @@ public interface Model {
     /**
      * {@code Comparator} that sorts by name
      */
-    Comparator<Customer> CUSTOMER_NAME_COMPARATOR = Comparator.comparing(Customer::getName);
+    Comparator<Customer> CUSTOMER_NAME_COMPARATOR = Comparator.comparing(
+            customer -> customer.getName().fullName.toLowerCase());
 
     /**
      * {@code Comparator} that sorts by number of commissions
@@ -51,9 +54,8 @@ public interface Model {
     /**
      * {@code Comparator} that sorts by the customer's latest commission
      */
-    Comparator<Customer> CUSTOMER_LAST_DATE_COMPARATOR = Comparator.comparing(Customer::getLastDate);
-
-
+    Comparator<Customer> CUSTOMER_LAST_DATE_COMPARATOR = Comparator.comparing(
+            customer -> Optional.ofNullable(customer.getLastDate()).orElse(LocalDate.MIN));
 
     /**
      * Returns the user prefs.
