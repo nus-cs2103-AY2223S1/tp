@@ -14,14 +14,7 @@ Given below are my contributions to the project.
     * Allows the Professor to mark any FYP Projects in their FYP Manager with any of the 3 supported statuses
       `YTS`, `IP` or `DONE`, and the status is shown at the top right-hand corner in the UI
     * Note that the 3 statuses are coloured differently, with the colour scheme being similar to that of a traffic light
-      (`YTS` is coloured red, `IP` is coloured yellow, `DONE` is coloured green)
-      This allows the user to easily identify the current status of any FYP project.
-    * The status of any FYP Project just added to FYP Manager is automatically set to `YTS`,
-      which the user can then update accordingly.
-    * We have also modified the UI to show projects that are `YTS` or `IP` on the left panel,
-      and projects that are `DONE`on the right panel. This greatly increases the convenience for users
-      to easily differentiate between projects that are more urgent, mainly those with the status `YTS`or `IP`,
-      and those that are already completed.
+    * The status of any FYP Project just added to FYP Manager is automatically set to `YTS`
   * Justification:
     * This feature improves the product significantly since users can now mark the current status
       of any FYP project so that he/she can identify which projects may need more attention or help, especially
@@ -30,8 +23,6 @@ Given below are my contributions to the project.
     * This enhancement was a totally different command by itself, hence it was challenging to implement everything
       from scratch. It required an in-depth analysis of the current code base, and I had to do extensive
       code-tracing to implement the feature.
-    * It was also hard to implement the status as a small coloured box at the top right hand corner
-      of the Project card displayed in the UI since I was not too familiar with FXML.
   * Credits:
     * Would like to thank @russelldash332 for the help in implementing the status as a coloured box
       by providing the required FXML knowledge
@@ -48,9 +39,8 @@ Given below are my contributions to the project.
       projects that have the status `YTS` may be of more urgency compared to those with the status `IP`.
   * Highlights:
     * This enhancement was challenging since it required an in depth analysis of the classes
-      related to the UI display, which necessitated the introduction of new methods to existing classes.
-    * It also required me to modify existing methods affecting how the panel is displayed in the UI, which was
-      not easy as well.
+      related to the UI display, which necessitated the introduction of new methods to existing classes
+      , as well as the modification if existing ones
   * Credits:
     * Would like to thank @russelldash332 for the help in working through the code tracing with me
       to understand how the UI panel is being displayed
