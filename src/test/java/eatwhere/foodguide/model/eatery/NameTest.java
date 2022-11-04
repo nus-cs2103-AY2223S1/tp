@@ -38,4 +38,17 @@ public class NameTest {
         assertTrue(Name.isValidName("^")); // only non-alphanumeric characters
         assertTrue(Name.isValidName("12345")); // only numbers
     }
+
+    @Test
+    public void isSimilarName() {
+        Name baseName = new Name("Alice");
+
+        assertTrue(baseName.similarTo(baseName)); // same object
+        assertTrue(baseName.similarTo(new Name("Alice"))); // same spelling
+        assertTrue(baseName.similarTo(new Name("alice"))); // all lowercase
+        assertTrue(baseName.similarTo(new Name("ALICE"))); // all uppercase
+
+        assertFalse(baseName.similarTo(new Name("Alice "))); // extra trailing whitespace
+        assertFalse(baseName.similarTo(new Name("Alicee"))); // different spelling
+    }
 }
