@@ -11,14 +11,17 @@ deliverables by **empowering NUS students** with the ability to manage **tasks**
 
 Given below are my contributions to the project.
 * **New Feature**: UI overhaul
-  * What it does: The UI of the original AB3 was modified to accommodate all 
+  * What it does:<br>
+    The UI of the original AB3 was modified to accommodate all 
     the new features implemented by my team.
-  * Justification: The AB3 initially only contained contacts, while Plannit 
+  * Justification:<br>
+    The AB3 initially only contained contacts, while Plannit 
     now featured many new components including [modules](../UserGuide.md#21-modules),
     [tasks](../UserGuide.md#22-tasks) and [links](../UserGuide.md#23-links). 
     As such, an overhaul was needed to allow all components to be displayed 
     to users in a neat and organised manner.
-  * Highlights: Extensive modification of the AB3's code was necessary for 
+  * Highlights:<br>
+    Extensive modification of the AB3's code was necessary for 
     us to achieve the intended look. Furthermore, the addition of new 
     components meant we now had much more content to be fit within the same 
     window. This was not an easy task, considering the need to optimise 
@@ -26,25 +29,31 @@ Given below are my contributions to the project.
     minimalistic.
 
 * **New Feature**: Adding, deleting and swapping of `Task` objects
-  * What it does: Allows students to assign tasks to modules. Tasks can be
+  * What it does:<br>
+    Allows students to assign tasks to modules. Tasks can be
     ordered in the specific manner the student wishes.
-  * Justification: This feature lets students keep track of the tasks to be
+  * Justification:<br>
+    This feature lets students keep track of the tasks to be
     completed, and also order them based on their respective priorities. 
     This allows them to complete their tasks in a timely fashion.
-  * Highlights: This is a completely new component that was not previously 
+  * Highlights:<br>
+    This is a completely new component that was not previously 
     in the design of AB3. Hence, much thought was put into designing the 
     component's behaviour to maximise our user's utility.
 
 * **New Feature**: Interactive UI for `Task` objects
-  * What it does: Tasks are hidden by default while on the home page and 
+  * What it does:<br>
+    Tasks are hidden by default while on the home page and 
     will only be displayed when users [`goto`](../UserGuide.md#25-navigation) a specific 
     module, or when they [double-click](../UserGuide.md#224-peeking-at-tasks)
     on the module.
-  * Justification: Earlier implementations of the UI with both tasks and 
+  * Justification:<br>
+    Earlier implementations of the UI with both tasks and 
     links of all modules being displayed on the home page resulted in a very 
     cluttered layout. With our current implementation, we greatly reduce the 
     clutter by only displaying the tasks of modules indicated by the user.
-  * Highlights: This enhancement needed an observable `Boolean` 
+  * Highlights:<br>
+    This enhancement needed an observable `Boolean` 
     value to indicated to the UI whether to display the tasks. This proved 
     highly challenging to implement, with much research having to be done on 
     the best (and simplest) method to do so. Furthermore, this feature 
@@ -54,7 +63,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=teoyuqi&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=teoyuqi&tabRepo=AY2223S1-CS2103T-T10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Enhancements to existing features**:
-  * Wrote additional tests for existing features ([#155](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/155)
+  * Wrote additional tests for existing features ([#155](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/155))
   
 * **Documentation**:
   * User Guide:
