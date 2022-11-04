@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new {@code SortBillCommand} object
  */
-public class SortBillCommandParser {
+public class SortBillCommandParser implements Parser<SortBillCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
      * and returns a {@code RemarkCommand} object for execution.
@@ -24,6 +24,15 @@ public class SortBillCommandParser {
         String bool = argMultimap.getValue(PREFIX_ORDER).orElse("");
 
         if (!bool.toLowerCase().equals("asc") && !bool.toLowerCase().equals("desc")) {
+            throw new ParseException(SortBillCommand.MESSAGE_USAGE);
+        }
+
+        if (criteria.equals("")) {
+            throw new ParseException(SortBillCommand.MESSAGE_USAGE);
+        }
+
+        if (!(criteria.toLowerCase().equals("name") || criteria.toLowerCase().equals("amount")
+                 || criteria.toLowerCase().equals("date") || criteria.toLowerCase().equals("status"))) {
             throw new ParseException(SortBillCommand.MESSAGE_USAGE);
         }
 

@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
@@ -51,7 +50,7 @@ public class SortAppointmentCommand extends Command {
             DoctorComparator doctorComparator = new DoctorComparator();
             model.sortAppointments(doctorComparator, this.isAscending);
         } else {
-            throw new CommandException(Messages.MESSAGE_INVALID_SORT_CRITERIA);
+            throw new CommandException(MESSAGE_USAGE);
         }
 
         String message = String.format(MESSAGE_SORT_SUCCESS, this.criteria);
@@ -96,5 +95,20 @@ public class SortAppointmentCommand extends Command {
         public int compare(Appointment first, Appointment second) {
             return first.getDoctor().toString().compareTo(second.getDoctor().toString());
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof SortAppointmentCommand)) {
+            return false;
+        }
+
+        SortAppointmentCommand e = (SortAppointmentCommand) other;
+        return criteria.equals(e.criteria)
+                && isAscending == e.isAscending;
     }
 }
