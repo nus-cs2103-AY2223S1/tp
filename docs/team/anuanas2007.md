@@ -42,7 +42,7 @@ Given below are my contributions to the project.
         * Added Sequence diagram [\#179](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/179)
     * Readme:
         * Updated the readme file for EZLead [\#64](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/64), [\#79](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/79)
-      
+
 * **Contributions**:
     * PRs reviewed (with non-trivial review comments): [\#152](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/152)
     * Caught more than 5 bugs for PE-dry run. [PE-D issues](https://github.com/anuanas2007/ped/issues)

@@ -6,7 +6,7 @@ title: Richa Motwani's Project Portfolio Page
 EZLead is a **desktop app for tech leads to manage teams optimized for use via a Command Line Interface (CLI),
 with GUI created with JavaFX**. It is written in Java
 
-Given below are my contributions to the project: 
+Given below are my contributions to the project:
 
 * **Code Contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=richavm14&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -22,7 +22,7 @@ Given below are my contributions to the project:
     * What it does: Allows user to change the name of a pre-existing team by specifying its index.
     * Justification: This feature allows tech leads to change the name of a team in case they added the wrong name or for any other reason.
 
-* **Enhancements to existing features**: 
+* **Enhancements to existing features**:
   * Add functionality to unassign member from a team on deleting that team (pull request: [\#130](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/130))
   * Wrote tests for create team command (pull requests: [\#250](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/250))
 

@@ -82,7 +82,7 @@ Adds a new person to EZLead.
 Format: `add n/NAME p/PHONE-NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 Examples:
-* `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` Adds a new 
+* `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` Adds a new
 person with the following details to the global member list.
 
 ![AddPersonExample.png](images/AddPersonExample.png)
@@ -94,8 +94,8 @@ Edits a member's details. Require at least one optional parameters.
 Format: `edit INDEX [n/NAME] [p/PHONE-NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 Examples:
-* `edit 1 n/Johny p/91234567 e/johndoe@example.com` Edits the first member's name in the global member list to Johny, email to 
-johndoe1@example.com and contact number to 91234567.
+* `edit 1 n/Johny p/91234567 e/johndoe@example.com` Edits the first member's name in the global member list to Johny,
+email to johndoe1@example.com and contact number to 91234567.
 
 ### Deleting a member: `delete`
 
@@ -147,7 +147,7 @@ Examples:
 
 ### Assigning a member to a team: `assign`
 
-assigns a member to a team. 
+assigns a member to a team.
 
 Format: `assign m/MEMBER-INDEX t/TEAM-INDEX`
 
@@ -188,7 +188,7 @@ Adds a new task to a team. Additionally, you may opt to set a deadline for the t
 Format: `taskadd t/TEAM-INDEX n/TASK-NAME [d/DD-MM-YYYY]`
 
 Examples:
-* `taskadd t/1 n/Finish project d/24-12-2023` Adds a new task to team with index 1 with the description 
+* `taskadd t/1 n/Finish project d/24-12-2023` Adds a new task to team with index 1 with the description
 "Finish project". The deadline set here is 24 December 2023.
 
 ![TaskAddExample.png](images/TaskAddExample.png)
@@ -227,7 +227,7 @@ Updates a task's description. Require at least one optional parameters.
 Format: `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]`
 
 Examples:
-* `taskedit t/1 task/1 n/Finish assignment d/12-12-2022` Updates the first task in the first team with new description 
+* `taskedit t/1 task/1 n/Finish assignment d/12-12-2022` Updates the first task in the first team with new description
 'Finish assignment'. Adding a deadline to the task is optional.
 
 <div markdown="block" class="alert alert-info">
