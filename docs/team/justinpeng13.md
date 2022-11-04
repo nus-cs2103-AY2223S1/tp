@@ -61,8 +61,8 @@ Given below are my contributions to the project.
 
 * **Review/mentoring contributions**:
   * Reviewed team members' PRs meticulously. Reviews with non-trivial comments:
-    * Documentation: #199, #198, #188, #118, #116, #67
-    * Code: #121, #112, #78, #65
+    * Documentation: [#199](https://github.com/AY2223S1-CS2103T-W16-1/tp/pull/199), [#198](https://github.com/AY2223S1-CS2103T-W16-1/tp/pull/198), [#188](https://github.com/AY2223S1-CS2103T-W16-1/tp/pull/188), [#118](https://github.com/AY2223S1-CS2103T-W16-1/tp/pull/118), [#116](https://github.com/AY2223S1-CS2103T-W16-1/tp/pull/116), [#67](https://github.com/AY2223S1-CS2103T-W16-1/tp/pull/67)
+    * Code: [#121](https://github.com/AY2223S1-CS2103T-W16-1/tp/pull/121), [#112](https://github.com/AY2223S1-CS2103T-W16-1/tp/pull/112), [#78](https://github.com/AY2223S1-CS2103T-W16-1/tp/pull/78), [#65](https://github.com/AY2223S1-CS2103T-W16-1/tp/pull/65)
   * Guided team members with using SourceTree.
   * [Reported bugs](https://github.com/JustinPeng13/ped) for other teams.
 
