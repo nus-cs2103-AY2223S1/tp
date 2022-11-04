@@ -184,19 +184,6 @@ public class ModelManager implements Model {
         return travelr.getTrip(trip);
     }
 
-    @Override
-    public void setTrip(Trip target, Trip editedTrip) {
-        requireAllNonNull(target, editedTrip);
-
-        travelr.setTrip(target, editedTrip);
-    }
-
-    @Override
-    public void setEvent(Event target, Event editedEvent) {
-        requireAllNonNull(target, editedEvent);
-        travelr.setEvent(target, editedEvent);
-    }
-
     //=========== Summary Variables Accessors =============================================================
 
     @Override
