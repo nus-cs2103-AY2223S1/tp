@@ -5,9 +5,9 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FoodRemParser" as FoodRemParser LOGIC_COLOR
-participant ":NewTagCommandParser" as TagCommandParser LOGIC_COLOR
+participant ":NewTagCommandParser" as NewTagCommandParser LOGIC_COLOR
 participant ":Tag" as Tag LOGIC_COLOR
-participant ":NewTagCommand" as TagCommand LOGIC_COLOR
+participant ":NewTagCommand" as NewTagCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 
 
@@ -23,59 +23,59 @@ activate LogicManager
 LogicManager -> FoodRemParser : parseCommand("newtag n/tagname")
 activate FoodRemParser
 
-create TagCommandParser
-FoodRemParser -> TagCommandParser
-activate TagCommandParser
+create NewTagCommandParser
+FoodRemParser -> NewTagCommandParser
+activate NewTagCommandParser
 
 
-TagCommandParser --> FoodRemParser
-deactivate TagCommandParser
+NewTagCommandParser --> FoodRemParser
+deactivate NewTagCommandParser
 
 
-FoodRemParser -> TagCommandParser : parse("newtag n/tagname")
-activate TagCommandParser
+FoodRemParser -> NewTagCommandParser : parse("newtag n/tagname")
+activate NewTagCommandParser
 
 create Tag
-TagCommandParser -> Tag
+NewTagCommandParser -> Tag
 activate Tag
-Tag --> TagCommandParser
+Tag --> NewTagCommandParser
 deactivate Tag
 
-create TagCommand
-TagCommandParser -> TagCommand : NewTagCommand(tag)
-activate TagCommand
+create NewTagCommand
+NewTagCommandParser -> NewTagCommand : NewTagCommand(tag)
+activate NewTagCommand
 
-TagCommand --> TagCommandParser :
-deactivate TagCommand
+NewTagCommand --> NewTagCommandParser :
+deactivate NewTagCommand
 
-TagCommandParser --> FoodRemParser :
-deactivate TagCommandParser
+NewTagCommand --> FoodRemParser :
+deactivate NewTagCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-TagCommandParser -[hidden]-> FoodRemParser
-destroy TagCommandParser
+NewTagCommandParser -[hidden]-> FoodRemParser
+destroy NewTagCommandParser
 
 FoodRemParser --> LogicManager :
 deactivate FoodRemParser
 
-LogicManager -> TagCommand : execute(model)
-activate TagCommand
+LogicManager -> NewTagCommand : execute(model)
+activate NewTagCommand
 
 
-TagCommand -> Model : addTag(toAdd)
+NewTagCommand -> Model : addTag(toAdd)
 activate Model
 
-Model --> TagCommand
+Model --> NewTagCommand
 deactivate Model
 
 create CommandResult
-TagCommand -> CommandResult
+NewTagCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> TagCommand
+CommandResult --> NewTagCommand
 deactivate CommandResult
 
-TagCommand --> LogicManager
-deactivate TagCommand
+NewTagCommand --> LogicManager
+deactivate NewTagCommand
 
 [<--LogicManager
 deactivate LogicManager
