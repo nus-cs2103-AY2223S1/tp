@@ -89,7 +89,7 @@ public class StorageManagerTest {
     @Test
     public void residentBookReadSave_withPath() throws Exception {
         ResidentBook original = getTypicalResidentBook();
-        Path expectedPath = Path.of("SomeFile");
+        Path expectedPath = getTempFilePath("SomeFile");
         storageManager.saveResidentBook(original, expectedPath);
         ReadOnlyResidentBook retrieved = storageManager.readResidentBook(expectedPath).get();
         assertEquals(original, new ResidentBook(retrieved));
@@ -97,7 +97,7 @@ public class StorageManagerTest {
 
     @Test
     public void residentBookReadSave_withNullResidentBook() {
-        Path expectedPath = Path.of("SomeFile");
+        Path expectedPath = getTempFilePath("SomeFile");
         assertThrows(NullPointerException.class, () -> storageManager.saveResidentBook(null, expectedPath));
     }
     @Test
@@ -113,14 +113,14 @@ public class StorageManagerTest {
 
     @Test
     public void setDataStoragePath_validFilePath_filePathSet() {
-        Path expectedPath = Path.of("SomeFile");
+        Path expectedPath = getTempFilePath("SomeFile");
         storageManager.setDataStorageFolderPath(expectedPath);
         assertEquals(expectedPath, storageManager.getDataStorageFolderPath());
     }
 
     @Test
     public void setDataStoragePath_getObservableFolderPath() {
-        Path expectedPath = Path.of("SomeFile");
+        Path expectedPath = getTempFilePath("SomeFile");
         storageManager.setDataStorageFolderPath(expectedPath);
         assertEquals(new ObservableItem<>(expectedPath), storageManager.getObservableFolderPath());
     }
@@ -132,7 +132,7 @@ public class StorageManagerTest {
 
     @Test
     public void deleteResidentBook_existingFile_fileDeleted() throws Exception {
-        Path folderPath = testFolder.resolve("ToBeDeleted");
+        Path folderPath = getTempFilePath("ToBeDeleted");
         Path toBeDeleted = folderPath.resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH);
         FileUtil.createIfMissing(toBeDeleted);
         storageManager.deleteResidentBookFile(folderPath);
@@ -141,7 +141,7 @@ public class StorageManagerTest {
 
     @Test
     public void deleteResidentBook_fileDoesNotExist_throwsNoSuchFileException() {
-        Path toBeDeleted = testFolder.resolve("ToBeDeleted");
+        Path toBeDeleted = getTempFilePath("ToBeDeleted");
         assertThrows(NoSuchFileException.class, () -> storageManager.deleteResidentBookFile(toBeDeleted));
     }
 
@@ -152,7 +152,7 @@ public class StorageManagerTest {
 
     @Test
     public void createResidentBookFile_fileDoesNotExist_fileCreated() throws Exception {
-        Path toBeCreated = testFolder.resolve("ToBeCreated");
+        Path toBeCreated = getTempFilePath("ToBeCreated");
         storageManager.createResidentBookFile(toBeCreated);
         assertTrue(FileUtil.isFolderExists(toBeCreated));
         assertTrue(FileUtil.isFileExists(toBeCreated.resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH)));
@@ -160,7 +160,7 @@ public class StorageManagerTest {
 
     @Test
     public void createResidentBookFile_fileAlreadyExist_throwsFileAlreadyExistException() throws Exception {
-        Path toBeCreated = testFolder.resolve("ToBeCreated").resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH);
+        Path toBeCreated = getTempFilePath("ToBeCreated").resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH);
         FileUtil.createIfMissing(toBeCreated);
         assertThrows(FileAlreadyExistsException.class, () -> storageManager.createResidentBookFile(toBeCreated));
     }
@@ -222,7 +222,7 @@ public class StorageManagerTest {
     @Test
     public void venueBookReadSave_withPath() throws Exception {
         VenueBook original = getTypicalVenueBook();
-        Path expectedPath = Path.of("SomeFile");
+        Path expectedPath = getTempFilePath("SomeFile");
         storageManager.saveVenueBook(original, expectedPath);
         ReadOnlyVenueBook retrieved = storageManager.readVenueBook(expectedPath).get();
         assertEquals(original, new VenueBook(retrieved));
@@ -230,7 +230,7 @@ public class StorageManagerTest {
 
     @Test
     public void venueBookReadSave_withNullVenueBook() {
-        Path expectedPath = Path.of("SomeFile");
+        Path expectedPath = getTempFilePath("SomeFile");
         assertThrows(NullPointerException.class, () -> storageManager.saveVenueBook(null, expectedPath));
     }
 
@@ -247,7 +247,7 @@ public class StorageManagerTest {
 
     @Test
     public void deleteVenueBook_existingFile_fileDeleted() throws Exception {
-        Path folderPath = testFolder.resolve("ToBeDeleted");
+        Path folderPath = getTempFilePath("ToBeDeleted");
         Path toBeDeleted = folderPath.resolve(JsonVenueBookStorage.VENUE_DATA_PATH);
         FileUtil.createIfMissing(toBeDeleted);
         storageManager.deleteVenueBookFile(folderPath);
@@ -256,7 +256,7 @@ public class StorageManagerTest {
 
     @Test
     public void deleteVenueBook_fileDoesNotExist_throwsNoSuchFileException() {
-        Path toBeDeleted = testFolder.resolve("ToBeDeleted");
+        Path toBeDeleted = getTempFilePath("ToBeDeleted");
         assertThrows(NoSuchFileException.class, () -> storageManager.deleteVenueBookFile(toBeDeleted));
     }
 
@@ -267,7 +267,7 @@ public class StorageManagerTest {
 
     @Test
     public void createVenueBookFile_fileDoesNotExist_fileCreated() throws Exception {
-        Path toBeCreated = testFolder.resolve("ToBeCreated");
+        Path toBeCreated = getTempFilePath("ToBeCreated");
         storageManager.createVenueBookFile(toBeCreated);
         assertTrue(FileUtil.isFolderExists(toBeCreated));
         assertTrue(FileUtil.isFileExists(toBeCreated.resolve(JsonVenueBookStorage.VENUE_DATA_PATH)));
@@ -275,7 +275,7 @@ public class StorageManagerTest {
 
     @Test
     public void createVenueBookFile_fileAlreadyExist_throwsFileAlreadyExistException() throws Exception {
-        Path toBeCreated = testFolder.resolve("ToBeCreated").resolve(JsonVenueBookStorage.VENUE_DATA_PATH);
+        Path toBeCreated = getTempFilePath("ToBeCreated").resolve(JsonVenueBookStorage.VENUE_DATA_PATH);
         FileUtil.createIfMissing(toBeCreated);
         assertThrows(FileAlreadyExistsException.class, () -> storageManager.createVenueBookFile(toBeCreated));
     }

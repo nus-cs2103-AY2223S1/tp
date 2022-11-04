@@ -38,6 +38,7 @@ public class VenueListView extends UiPart<Region> {
         venueListView.setItems(venueList);
         venueListView.setCellFactory(listView -> new VenueListCell());
         setCurrentlyDisplayedVenueText(currentlyDisplayedVenue.getValue());
+        configureListProperties();
 
         // Set up listener
         currentlyDisplayedVenue.addListener(this::updateCurrentVenue);
@@ -72,6 +73,11 @@ public class VenueListView extends UiPart<Region> {
      */
     public void updateCurrentVenue(ObservableValue<? extends Venue> observable, Venue oldValue, Venue newValue) {
         setCurrentlyDisplayedVenueText(newValue);
+    }
+
+    private void configureListProperties() {
+        venueListView.setMinWidth(220.0);
+        venueListView.setSelectionModel(new NoSelectionModel<Venue>());
     }
 
 }

@@ -1,5 +1,6 @@
 package seedu.rc4hdb.model.venues.booking;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.rc4hdb.model.resident.Resident;
@@ -44,6 +45,7 @@ public abstract class Booking {
      * @return True if both bookings overlap.
      */
     public boolean clashesWith(Booking other) {
+        requireNonNull(other);
         return dayOfWeek.equals(other.dayOfWeek)
                 && hourPeriod.clashesWith(other.hourPeriod);
     }
@@ -54,6 +56,7 @@ public abstract class Booking {
      * @return True if the booking is on the same day.
      */
     public boolean isSameDay(Day day) {
+        requireNonNull(day);
         return this.dayOfWeek.equals(day);
     }
 
@@ -63,6 +66,7 @@ public abstract class Booking {
      * @return True if the booking is on the same period.
      */
     public boolean isSamePeriod(HourPeriod hourPeriod) {
+        requireNonNull(hourPeriod);
         return this.hourPeriod.equals(hourPeriod);
     }
     /**
@@ -71,6 +75,7 @@ public abstract class Booking {
      * @return True if the booking lies on the same day and time period.
      */
     public boolean isSameBooking(BookingDescriptor bookingDescriptor) {
+        requireNonNull(bookingDescriptor);
         return bookingDescriptor.getHourPeriod().map(this::isSamePeriod).orElse(false)
                 && bookingDescriptor.getDayOfWeek().map(this::isSameDay).orElse(false);
     }

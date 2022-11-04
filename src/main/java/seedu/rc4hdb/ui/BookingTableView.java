@@ -2,6 +2,7 @@ package seedu.rc4hdb.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -134,6 +135,8 @@ public class BookingTableView extends UiPart<Region> {
     public void updateTable(ObservableValue<? extends Venue> observable, Venue oldValue, Venue newValue) {
         if (newValue != null) {
             this.weeklySchedule.setAll(DailySchedule.generateWeeklySchedule(newValue.getReadOnlyBookings()));
+        } else {
+            this.weeklySchedule.setAll(DailySchedule.generateWeeklySchedule(new ArrayList<>()));
         }
     }
 
