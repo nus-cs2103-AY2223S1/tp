@@ -515,27 +515,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1b1. System shows an error message.
   
-    Use case resumes at step 2.
+    Use case ends.
 
 **Use case 2: Search for a guest**
 
 **MSS**
 
-1. User requests to search for a guest.
+1. User requests to search for a guest through any of the guest's details.
 2. System returns the guest.
 
    Use case ends.
 
 **Extensions**
-* 1a. The guest is does not exist in the system.
+* 1a. The guest's details does not exist in the system.
 
-  Use case ends.
+    * 1a1. System returns no guests.
+
+      Use case ends.
 
 * 1b. The search data is invalid.
 
     * 1b1. System shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 **Use case 3: Update a guest's details**
 
@@ -543,57 +545,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User <u>searches for guest (Use case 2)</u>.
 2. User requests to edit a guest's details.
-3. System updates the guest.
+3. System updates the guest's details.
 
    Use case ends.
 
 **Extensions**
-* 2a. The edit data is invalid.
+* 2a. The edit name already exists.
 
     * 2a1. System shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
-**Use case 4: Delete a guest**
+* 2b. The edit room is already occupied by another guest.
+
+    * 2b1. System shows an error message.
+
+      Use case ends.
+
+* 2c. The edit data is invalid.
+
+    * 2c1. System shows an error message.
+
+      Use case ends.
+
+**Use case 4: Get list of all guests**
 
 **MSS**
 
 1.  User requests to list guests.
-2.  System shows a list of guests.
-3.  User requests to delete a specific guest in the list.
-4.  System deletes the guest.
+2.  System shows a list of all guests.
+
+    Use case ends.
+
+**Use case 5: Delete a guest**
+
+**MSS**
+
+1.  User <u>gets a list of all guests (Use case 4)</u>
+2.  User requests to delete a specific guest in the list.
+3.  System deletes the guest.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. System shows an error message.
+    * 2a1. System shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
-**Use case 5: Get list of all guests**
-
-**MSS**
-
-1.  User requests to list guests.
-2.  System shows a list of guests.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-
-**Use case 6: Mark room clean status to "no" of all guests**
+**Use case 6: Mark all guests' room clean status to "no"**
 
 **MSS**
 
@@ -613,18 +619,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-* 2a. The update data is invalid.
+* 2a. The guest's bill is negative.
 
     * 2a1. System shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
+
+* 2b. The update data is invalid.
+
+    * 2b1. System shows an error message.
+
+      Use case ends.
 
 **Use case 8: Exit the program**
 
 **MSS**
 
 1. User requests exit the program
-3. System exits the program
+2. System exits the program
 
     Use case ends.
 
