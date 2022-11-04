@@ -722,9 +722,14 @@ You can view the list of tasks for a particular day using the `view` command.
 
 Format: `view DATE`
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
 * The DATE **must be of the specified format** dd-MM-yy
+</div>
 
 Examples:
+* `view 5-9-22` lists the tasks on 5th September 2022
 * `view 25-11-22` lists the tasks on 25th November 2022
 
 ![result for `view 25-11-22`](images/viewSpecificDayResult.png)
