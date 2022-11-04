@@ -52,7 +52,7 @@ Given below are my contributions to the project.
     * It also required me to modify existing methods affecting how the panel is displayed in the UI, which was
       not easy as well.
   * Credits:
-    * Would like to thank @russeldash332 for the help in working through the code tracing with me
+    * Would like to thank @russelldash332 for the help in working through the code tracing with me
       to understand how the UI panel is being displayed
 
 * **Code contributed**: <br>
