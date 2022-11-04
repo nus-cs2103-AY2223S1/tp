@@ -14,11 +14,11 @@ public class DateTimeParserTest {
 
     public static final String FIRST_VALID_DATE_TIME = "01-04-2023 12:30";
 
-    public static final  String MINUTE_FORMAT = "01-04-2023 12:%s";
-    public static final  String HOUR_FORMAT = "01-04-2023 %s:30";
-    public static final  String DAY_FORMAT = "%s-04-2023 12:30";
-    public static final  String MONTH_FORMAT = "01-%s-2023 12:30";
-    public static final  String YEAR_FORMAT = "01-04-%s 12:30";
+    private static final String MINUTE_FORMAT = "01-04-2023 12:%s";
+    private static final String HOUR_FORMAT = "01-04-2023 %s:30";
+    private static final String DAY_FORMAT = "%s-04-2023 12:30";
+    private static final String MONTH_FORMAT = "01-%s-2023 12:30";
+    private static final String YEAR_FORMAT = "01-04-%s 12:30";
     private static final String OUTOFBOUNDS_MINUTE = "60";
     private static final String OUTOFBOUNDS_HOUR = "24";
     private static final String OUTOFBOUNDS_DAY = "32";
@@ -26,26 +26,50 @@ public class DateTimeParserTest {
 
     private static final String OUTOFBOUNDS_MINUTE_INPUT = String.format(MINUTE_FORMAT, OUTOFBOUNDS_MINUTE);
     private static final String OUTOFBOUNDS_HOUR_INPUT = String.format(HOUR_FORMAT, OUTOFBOUNDS_HOUR);
-    private static final String OUTOFBOUNDS_DAY_INPUT= String.format(DAY_FORMAT, OUTOFBOUNDS_DAY);
+    private static final String OUTOFBOUNDS_DAY_INPUT = String.format(DAY_FORMAT, OUTOFBOUNDS_DAY);
     private static final String OUTOFBOUNDS_MONTH_INPUT = String.format(MONTH_FORMAT, OUTOFBOUNDS_MONTH);
-    public static final String OUTOFBOUNDS_FORMAT = "Text '%s' could not be parsed: Invalid value for %s (valid values %s): %s";
+    private static final String OUTOFBOUNDS_FORMAT =
+            "Text '%s' could not be parsed: Invalid value for %s (valid values %s): %s";
     private static final String WRONGLENGTH_MINUTE_1_INPUT = String.format(MINUTE_FORMAT, "2");
-    private static final String WRONGLENGTH_MINUTE_2_INPUT = String.format(MINUTE_FORMAT, "060");
+    private static final String WRONGLENGTH_MINUTE_2_INPUT = String.format(MINUTE_FORMAT, "002");
     private static final String WRONGLENGTH_HOUR_1_INPUT = String.format(HOUR_FORMAT, "2");
-    private static final String WRONGLENGTH_HOUR_2_INPUT = String.format(HOUR_FORMAT, "020");
-    private static final String WRONGLENGTH_YEAR_1_INPUT = String.format(YEAR_FORMAT, 23);
-    private static final String WRONGLENGTH_YEAR_2_INPUT = String.format(YEAR_FORMAT, 23000);
+    private static final String WRONGLENGTH_HOUR_2_INPUT = String.format(HOUR_FORMAT, "002");
 
-    private static final String OUTOFBOUNDS_MINUTE_ERROR_MESSAGE = String.format(OUTOFBOUNDS_FORMAT, OUTOFBOUNDS_MINUTE_INPUT, "MinuteOfHour", "0 - 59", OUTOFBOUNDS_MINUTE);
-    private static final String OUTOFBOUNDS_HOUR_ERROR_MESSAGE = String.format(OUTOFBOUNDS_FORMAT, OUTOFBOUNDS_HOUR_INPUT, "HourOfDay", "0 - 23", OUTOFBOUNDS_HOUR);
-    private static final String OUTOFBOUNDS_DAY_ERROR_MESSAGE = String.format(OUTOFBOUNDS_FORMAT, OUTOFBOUNDS_DAY_INPUT, "DayOfMonth", "1 - 28/31", OUTOFBOUNDS_DAY);
-    private static final String OUTOFBOUNDS_MONTH_ERROR_MESSAGE = String.format(OUTOFBOUNDS_FORMAT, OUTOFBOUNDS_MONTH_INPUT, "MonthOfYear", "1 - 12", OUTOFBOUNDS_MONTH);
-    private static final String WRONGLENGTH_MINUTE_ERROR_MESSAGE_1 = "Text '" + WRONGLENGTH_MINUTE_1_INPUT + "' could not be parsed at index 14";
-    private static final String WRONGLENGTH_MINUTE_ERROR_MESSAGE_2 = "Text '" + WRONGLENGTH_MINUTE_2_INPUT + "' could not be parsed, unparsed text found at index 16";
-    private static final String WRONGLENGTH_HOUR_ERROR_MESSAGE_1 = "Text '" + WRONGLENGTH_HOUR_1_INPUT + "' could not be parsed at index 11";
-    private static final String WRONGLENGTH_HOUR_ERROR_MESSAGE_2 = "Text '" + WRONGLENGTH_HOUR_2_INPUT +"' could not be parsed at index 13";
-    private static final String WRONGLENGTH_YEAR_ERROR_MESSAGE_1 = "Text '" + WRONGLENGTH_YEAR_1_INPUT + "' could not be parsed at index 6";
-    private static final String WRONGLENGTH_YEAR_ERROR_MESSAGE_2 = "Text '" + WRONGLENGTH_YEAR_2_INPUT + "' could not be parsed at index 6";
+    private static final String WRONGLENGTH_DAY_1_INPUT = String.format(MINUTE_FORMAT, "2");
+    private static final String WRONGLENGTH_DAY_2_INPUT = String.format(MINUTE_FORMAT, "002");
+    private static final String WRONGLENGTH_MONTH_1_INPUT = String.format(HOUR_FORMAT, "1");
+    private static final String WRONGLENGTH_MONTH_2_INPUT = String.format(HOUR_FORMAT, "001");
+    private static final String WRONGLENGTH_YEAR_1_INPUT = String.format(YEAR_FORMAT, 023);
+    private static final String WRONGLENGTH_YEAR_2_INPUT = String.format(YEAR_FORMAT, 00023);
+
+    private static final String OUTOFBOUNDS_MINUTE_ERROR_MESSAGE =
+            String.format(OUTOFBOUNDS_FORMAT, OUTOFBOUNDS_MINUTE_INPUT, "MinuteOfHour", "0 - 59", OUTOFBOUNDS_MINUTE);
+    private static final String OUTOFBOUNDS_HOUR_ERROR_MESSAGE =
+            String.format(OUTOFBOUNDS_FORMAT, OUTOFBOUNDS_HOUR_INPUT, "HourOfDay", "0 - 23", OUTOFBOUNDS_HOUR);
+    private static final String OUTOFBOUNDS_DAY_ERROR_MESSAGE =
+            String.format(OUTOFBOUNDS_FORMAT, OUTOFBOUNDS_DAY_INPUT, "DayOfMonth", "1 - 28/31", OUTOFBOUNDS_DAY);
+    private static final String OUTOFBOUNDS_MONTH_ERROR_MESSAGE =
+            String.format(OUTOFBOUNDS_FORMAT, OUTOFBOUNDS_MONTH_INPUT, "MonthOfYear", "1 - 12", OUTOFBOUNDS_MONTH);
+    private static final String WRONGLENGTH_MINUTE_ERROR_MESSAGE_1 =
+            "Text '" + WRONGLENGTH_MINUTE_1_INPUT + "' could not be parsed at index 14";
+    private static final String WRONGLENGTH_MINUTE_ERROR_MESSAGE_2 =
+            "Text '" + WRONGLENGTH_MINUTE_2_INPUT + "' could not be parsed, unparsed text found at index 16";
+    private static final String WRONGLENGTH_HOUR_ERROR_MESSAGE_1 =
+            "Text '" + WRONGLENGTH_HOUR_1_INPUT + "' could not be parsed at index 11";
+    private static final String WRONGLENGTH_HOUR_ERROR_MESSAGE_2 =
+            "Text '" + WRONGLENGTH_HOUR_2_INPUT + "' could not be parsed at index 13";
+    private static final String WRONGLENGTH_DAY_ERROR_MESSAGE_1 =
+            "Text '" + WRONGLENGTH_DAY_1_INPUT + "' could not be parsed at index 14";
+    private static final String WRONGLENGTH_DAY_ERROR_MESSAGE_2 =
+            "Text '" + WRONGLENGTH_DAY_2_INPUT + "' could not be parsed, unparsed text found at index 16";
+    private static final String WRONGLENGTH_MONTH_ERROR_MESSAGE_1 =
+            "Text '" + WRONGLENGTH_MONTH_1_INPUT + "' could not be parsed at index 11";
+    private static final String WRONGLENGTH_MONTH_ERROR_MESSAGE_2 =
+            "Text '" + WRONGLENGTH_MONTH_2_INPUT + "' could not be parsed at index 13";
+    private static final String WRONGLENGTH_YEAR_ERROR_MESSAGE_1 =
+            "Text '" + WRONGLENGTH_YEAR_1_INPUT + "' could not be parsed at index 6";
+    private static final String WRONGLENGTH_YEAR_ERROR_MESSAGE_2 =
+            "Text '" + WRONGLENGTH_YEAR_2_INPUT + "' could not be parsed at index 6";
     private DateTimeParser parser = new DateTimeParser();
 
 
@@ -57,7 +81,7 @@ public class DateTimeParserTest {
     }
 
     @Test
-    public void parse_outOfBounds_Field_Format_exceptionThrown() {
+    public void parse_outOfBoundsFieldFormat_exceptionThrown() {
         // out of bounds minute
         try {
             LocalDateTime parsedLocalDateTime = parser.parseLocalDateTimeFromString(OUTOFBOUNDS_MINUTE_INPUT);
@@ -86,7 +110,7 @@ public class DateTimeParserTest {
 
 
     @Test
-    public void parse_wrongNumberOfDigits_Field_Format_exceptionThrown() {
+    public void parse_wrongNumberOfDigitsFieldFormat_exceptionThrown() {
         // wrong number of digits (minute)
         try {
             LocalDateTime parsedLocalDateTime = parser.parseLocalDateTimeFromString(WRONGLENGTH_MINUTE_1_INPUT);
@@ -108,6 +132,28 @@ public class DateTimeParserTest {
             LocalDateTime parsedLocalDateTime = parser.parseLocalDateTimeFromString(WRONGLENGTH_HOUR_2_INPUT);
         } catch (DateTimeException e) {
             assertEquals(WRONGLENGTH_HOUR_ERROR_MESSAGE_2, e.getMessage());
+        }
+        // wrong number of digits (day)
+        try {
+            LocalDateTime parsedLocalDateTime = parser.parseLocalDateTimeFromString(WRONGLENGTH_DAY_1_INPUT);
+        } catch (DateTimeException e) {
+            assertEquals(WRONGLENGTH_DAY_ERROR_MESSAGE_1, e.getMessage());
+        }
+        try {
+            LocalDateTime parsedLocalDateTime = parser.parseLocalDateTimeFromString(WRONGLENGTH_DAY_2_INPUT);
+        } catch (DateTimeException e) {
+            assertEquals(WRONGLENGTH_DAY_ERROR_MESSAGE_2, e.getMessage());
+        }
+        // wrong number of digits (month)
+        try {
+            LocalDateTime parsedLocalDateTime = parser.parseLocalDateTimeFromString(WRONGLENGTH_MONTH_1_INPUT);
+        } catch (DateTimeException e) {
+            assertEquals(WRONGLENGTH_MONTH_ERROR_MESSAGE_1, e.getMessage());
+        }
+        try {
+            LocalDateTime parsedLocalDateTime = parser.parseLocalDateTimeFromString(WRONGLENGTH_MONTH_2_INPUT);
+        } catch (DateTimeException e) {
+            assertEquals(WRONGLENGTH_MONTH_ERROR_MESSAGE_2, e.getMessage());
         }
         // wrong number of digits (year)
         try {

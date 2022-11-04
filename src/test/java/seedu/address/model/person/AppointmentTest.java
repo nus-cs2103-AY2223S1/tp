@@ -58,12 +58,12 @@ public class AppointmentTest {
      */
     private static class DateTimeStub extends DateTime {
         DateTimeStub() {
-            super(DateTimeParser.parseLocalDateTimeFromString("1-04-2023 12:30"));
+            super(DateTimeParser.parseLocalDateTimeFromString("01-04-2023 12:30"));
         }
 
         @Override
         public String toString() {
-            return "1-04-2023 12:30";
+            return "01-04-2023 12:30";
         }
     }
 
@@ -99,7 +99,7 @@ public class AppointmentTest {
     @Test
     public void versionToString_validVersion_correctStringRepresentation() {
         Appointment newAppointment = new Appointment(new DateTimeStub(), new ValidLocationStub());
-        Assertions.assertEquals("1-04-2023 12:30, NUS TechnoEdge", newAppointment.toString());
+        Assertions.assertEquals("01-04-2023 12:30, NUS TechnoEdge", newAppointment.toString());
     }
 
     @Test
