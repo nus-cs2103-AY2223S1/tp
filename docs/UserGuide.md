@@ -573,17 +573,14 @@ sample data will display this result:
   <img src="./images/user-guide/DeleteoExample1.png" alt="DeleteoExample1">
 
 * For the second example, let us follow the steps described below:
-  1. First, enter `findo i/Pillow`. TrackO will display orders with the item `Chair` in their list of ordered items.
-
+  1. First, enter `findo i/Pillow`. TrackO will display orders with the item `Pillow` in their list of ordered items. <br>
      <img src="./images/user-guide/DeleteoExample2-1.png" alt="DeleteoExample2-1">
      
   2. When you enter `deleteo 1`, TrackO will delete the order currently displayed at index `1`, which is the order with 
-     `Pillow` in its list of ordered items. It will display the following result:
-  
+     `Pillow` in its list of ordered items. It will display the following result: <br>
      <img src="./images/user-guide/DeleteoExample2-2.png" alt="DeleteoExample2-2">
      
-  3. To redisplay all your existing orders, enter `listo` and it should look like the following:
-  
+  3. To redisplay all your existing orders, enter `listo` and it should look like the following: <br>
      <img src="./images/user-guide/DeleteoExample2-3.png" alt="DeleteoExample2-3">
 
 * For the third example, let us follow the steps described below:
