@@ -175,15 +175,19 @@ class JsonAdaptedPerson {
         if (cap == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Cap.class.getSimpleName()));
         }
-        double[] capValues = StringUtil.convertToDoubleArray(StringUtil.splitBySlash(cap));
-        if (!Cap.isValidCap(capValues[0], capValues[1])) {
+        String[] stringCapValues = StringUtil.splitBySlash(cap);
+        if (!Cap.isValidCapInput(stringCapValues)) {
+            throw new IllegalValueException(Cap.MESSAGE_CONSTRAINTS);
+        }
+        double[] capValues = StringUtil.convertToDoubleArray(stringCapValues);
+        if (!Cap.isValidCapValues(capValues[0], capValues[1])) {
             throw new IllegalValueException(Cap.MESSAGE_CONSTRAINTS);
         }
         final Cap modelCap = new Cap(capValues[0], capValues[1]);
 
         if (university == null) {
             throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, University.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, University.class.getSimpleName()));
         }
         if (!University.isWithinLengthLimit(university)) {
             throw new IllegalValueException(University.MESSAGE_LENGTH_LIMIT_EXCEEDED);

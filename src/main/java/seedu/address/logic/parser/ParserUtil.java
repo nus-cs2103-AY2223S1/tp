@@ -28,7 +28,8 @@ import seedu.address.model.person.University;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various *Parser
+ * classes.
  */
 public class ParserUtil {
 
@@ -40,7 +41,8 @@ public class ParserUtil {
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -189,6 +191,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String cap} into a {@code Cap}.
      * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException if the given {@code cap} is invalid.
      */
     public static Cap parseCap(String cap) throws ParseException {
@@ -196,21 +199,17 @@ public class ParserUtil {
             requireNonNull(cap);
             String trimmedCap = cap.trim();
             String[] capValues = trimmedCap.split(CAP_SEPARATOR);
-            if (!Cap.isValidCapFormat(capValues[0]) || !Cap.isValidCapFormat(capValues[1])) {
-                throw new ParseException(Cap.MESSAGE_NUMERIC_VALUE_REQUIRED);
-            } else if (capValues.length > 2) { // more than two values provided
-                throw new ParseException(Cap.MESSAGE_INVALID_CAP_FORMAT);
+            if (!Cap.isValidCapInput(capValues)) {
+                throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
             }
             double capValue = Double.parseDouble(capValues[0]);
             double maximumCapValue = Double.parseDouble(capValues[1]);
-            if (!Cap.isValidCap(capValue, maximumCapValue)) {
+            if (!Cap.isValidCapValues(capValue, maximumCapValue)) {
                 throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
             }
             return new Cap(capValue, maximumCapValue);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException(Cap.MESSAGE_INVALID_CAP_FORMAT);
         }
     }
 
