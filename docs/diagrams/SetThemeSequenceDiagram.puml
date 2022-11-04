@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Ui
+participant "primaryStage:Stage" as Stage #darkgrey
+
+
+box Ui LOGIC_COLOR_T1
+participant ":Scene" as Scene LOGIC_COLOR
+end box
+
+
+
+[-> MainWindow: handleDark()
+activate MainWindow
+MainWindow -> Stage : getScene()
+activate Stage
+Stage -> Scene : getStyleSheets()
+activate Scene
+Scene -> Scene : removeAll()
+return
+return
+MainWindow -> Stage : getScene()
+activate Stage
+Stage -> Scene : getStyleSheets()
+activate Scene
+Scene -> Scene : add()
+return
+return
+return
+
+@enduml

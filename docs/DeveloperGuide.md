@@ -204,6 +204,42 @@ The following is a use case for changing command names.
   * Pros: Easy to extend.
   * Cons: Harder to implement.
 
+### Setting Themes
+
+#### Implementation
+
+Changing themes is handled by 5 different methods. Each comes with a unique css file.
+
+Each css file applies a set of different stylesheets to `MainWindow` `ActivityCard` `ActivityListPanel` `CommandBox` and `ResultDisplay`
+
+The following sequence diagram shows what happens when the user decide to change a theme. Take change the theme to Dark as an example.
+
+![SettingThemesSequenceDiagram](images/SettingThemesSequenceDiagram.jpg)
+
+The following is a use case for changing themes.
+
+**Use case: Changing to a different theme**
+**System**: HobbyList
+**Actor**: User
+
+**MSS**
+1. User change a theme
+2. HobbyList show the target theme
+3. HobbyList saves the change as default ui for next time when user open the app.
+
+   Use case ends.
+
+#### Design Considerations
+
+**Aspect:** How prevent adding multiple stylesheets to the scene:
+
+**Current choice:** Remove all stylesheets and then add a new one.
+
+**Aspect:** How to keep the user-preferred settings:
+
+**Current choice:** Save it as a variable in MainWindow class and load it when next time user start the app.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -321,27 +357,27 @@ Mainly CLI with many shortcuts to benefit people who type fast.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …          | I want to …                                          | So that I can…                                 |
-|----------|-----------------|------------------------------------------------------|------------------------------------------------|
-| `* * *`  | user            | add activity                                         | track my activities                            |
-| `* * *`  | user            | delete activity                                      | make mistakes                                  |
-| `* * *`  | user            | view activities                                      | look at what I have done                       |
-| `* *`    | busy CS student | quickly write commands                               | save time adding entries                       |
-| `* *`    | busy CS student | add date to an activity                              | keep the timeline of events in life clear      |
-| `*`      | busy CS student | find activities in certain time period               | manage different timeline of activities        |
-| `* *`    | new user        | type "help" for help                                 | try the commands and use the app               |
-| `* *`    | new user        | clear all activities                                 | quickly clear the sample data                  |
-| `* *`    | new user        | see sample data                                      | get to know how the app works                  |
-| `* *`    | user            | tag an activity with a type                          | know what type of activity it is               |
-| `* *`    | user            | change the appearance of the app                     | have better experience when looking through    |
-| `* *`    | user            | add an activity description                          | know what the activity is about                |
-| `*`      | long time user  | use shortcuts for commands                           | enter commands faster                          |
-| `*`      | food enthusiast | review restaurants                                   | note down my opinions of the restaurant        |
-| `*`      | food enthusiast | rate restaurants                                     | note down my opinions of the restaurant        |
-| `*`      | food enthusiast | find restaurants with certain rate                   | quickly choose a restaurant to go              |
-| `*`      | food enthusiast | find restaurants with rate higher than certain value | choose some restaurants to recommend to others |
-| `*`      | gym user        | keep track of dates of activities                    | record when I did the activity                 |
-| `*`      | long time user  | search activities with keywords                      | quickly find certain activity                  |
+| Priority | As a …          | I want to …                                                        | So that I can…                                 |
+|----------|-----------------|--------------------------------------------------------------------|------------------------------------------------|
+| `* * *`  | user            | add activity                                                       | track my activities                            |
+| `* * *`  | user            | delete activity                                                    | make mistakes                                  |
+| `* * *`  | user            | view activities                                                    | look at what I have done                       |
+| `* *`    | busy CS student | quickly write commands                                             | save time adding entries                       |
+| `* *`    | busy CS student | add date to an activity                                            | keep the timeline of events in life clear      |
+| `*`      | busy CS student | find activities in certain time period                             | manage different timeline of activities        |
+| `* *`    | new user        | type "help" for help                                               | try the commands and use the app               |
+| `* *`    | new user        | clear all activities                                               | quickly clear the sample data                  |
+| `* *`    | new user        | see sample data                                                    | get to know how the app works                  |
+| `* *`    | user            | tag an activity with a type                                        | know what type of activity it is               |
+| `* *`    | user            | change the appearance of the app                                   | have better experience when looking through    |
+| `* *`    | user            | add an activity description                                        | know what the activity is about                |
+| `*`      | long time user  | use shortcuts for commands                                         | enter commands faster                          |
+| `*`      | food enthusiast | review restaurants                                                 | note down my opinions of the restaurant        |
+| `*`      | food enthusiast | rate restaurants                                                   | note down my opinions of the restaurant        |
+| `*`      | food enthusiast | find restaurants with certain rate                                 | quickly choose a restaurant to go              |
+| `*`      | food enthusiast | find restaurants with rate higher than or equal to a certain value | choose some restaurants to recommend to others |
+| `*`      | gym user        | keep track of dates of activities                                  | record when I did the activity                 |
+| `*`      | long time user  | search activities with keywords                                    | quickly find certain activity                  |
 
 
 *{More to be added}*
@@ -415,7 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Find activities above certain rate value**
+**Use case: Find activities whose rating are greater or equal than certain value**
 
 **MSS**
 
@@ -424,7 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add an activity with a date**
+**Use case: Add date of an activity**
 
 **MSS**
 
@@ -437,8 +473,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The date format is wrong
     * 2a1. HobbyList shows a message about the right format.
+  
+* 2b. There are multiple dates in the add command
+    * 2b1. HobbyList will save the last date typed in.
+  
+      Use case ends.
+
+**Use case: Edit date of an activity**
+
+**MSS**
+
+1.  User edit an activity with new date 
+2.  HobbyList update the date in the activity card
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The edit content of date is empty
+    * 2a1. HobbyList delete the original date.
 
       Use case ends.
+
 
 **Use case: Select an activity to display its details**
 
