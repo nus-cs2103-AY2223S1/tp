@@ -11,7 +11,6 @@ import static seedu.taassist.testutil.TypicalSessions.TUTORIAL_1;
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.commons.util.StringUtil;
-import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.testutil.SessionBuilder;
 
 public class SessionTest {
