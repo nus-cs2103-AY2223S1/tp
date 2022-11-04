@@ -64,8 +64,8 @@ public class FindCommand extends Command {
             model.updateFilteredEateryList(eateriesChosen::contains);
 
             if (numToShow < numRandPicks) {
-                warning = "\nWarning: there are fewer eateries matching the specified criteria than " +
-                        "the requested number of eateries to randomly select.";
+                warning = "\nWarning: there are fewer eateries matching the specified criteria than "
+                        + "the requested number of eateries to randomly select.";
             }
         }
         return new CommandResult(
