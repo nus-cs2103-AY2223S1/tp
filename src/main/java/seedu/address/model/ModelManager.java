@@ -250,7 +250,7 @@ public class ModelManager implements Model {
         double numCompleted = 0.0;
 
         if (numOfTasks == 0) {
-            return 100.0;
+            return -1;
         }
 
         for (int i = 0; i < numOfTasks; i++) {
