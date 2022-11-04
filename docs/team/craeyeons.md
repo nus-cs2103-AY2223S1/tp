@@ -30,7 +30,7 @@ Given below are my contributions to the project.
   - v1.2 postmortem.
   - v1.3 demo.
 - **Review/mentoring contributions**:
-  - Reviewed team member's PRs and occasionally provided suggestions to improve.
+  - Reviewed team member's PRs and provided suggestions to improve where applicable.
     ([#43](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/43),
     [#44](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/44),
     [#52](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/52),
@@ -39,9 +39,9 @@ Given below are my contributions to the project.
     [#77](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/77),
     [#89](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/89))
 - **Contributions to the UG**:
-    - Updated documentation for the `filter list` and `tag delete` command. ([#110](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/110))
-    - Updated documentation for the `add` and `delete` command, in the initial UG draft. Was subsequently added to the official UG by Yap Zhi Heng. ([#22](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/22))
-    - Added screenshots to UG. ([#174](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/174))
+  - Updated documentation for the `add` and `delete` command, in the initial UG draft. Was subsequently added to the official UG by Yap Zhi Heng. ([#22](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/22))
+  - Updated documentation for the `filter list` and `tag delete` command. ([#110](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/110))
+  - Added screenshots to UG. ([#174](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/174))
 - **Contributions to the DG**:
   - Updated design considerations on the Remark and Tag command.
   ([#75](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/75), [#80](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/80))
