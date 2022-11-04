@@ -308,7 +308,7 @@ Starting from the default persons, the user has executed `addgroup g/CS2103T` to
 `GroupName` "CS2103T".
 
 **Step 2.**
-User executes `displaygroup g/CS2103T`. The associated command `DisplayGroupCommand` calls
+User executes `displaygroup CS2103T`. The associated command `DisplayGroupCommand` calls
 `Model#updateFilteredGroupList(predicate)` with the given predicate being the `GroupName` CS2103T
 to display just the group with that name.
 
@@ -363,7 +363,7 @@ The `AddressBook` model is reflected below:
 <img src="images/AddDeleteMemberState2.png" width="300" />
 
 **Note:** `AssignTaskCommandParser` will check if the assignment's parameters are parsed properly,
-such as `Task` being non-empty, `Deadline` being a valid date, etc. 
+such as `Task` being non-empty, `Deadline` being a valid date, etc.
 `AssignTaskCommand` further checks if both the person and group with the specified name and groupname respectively
 exist in the app, that the person is a member of the group, and the person doesn't already have a similar task under
 the group.
@@ -395,7 +395,7 @@ For simplicity, only the `deletetask` command sequence diagram is shown below. B
 
 ### **\[Developed\] Bulk Assignment & Deletion of Tasks**
 
-#### **Implementation** 
+#### **Implementation**
 This feature allows tasks to be assigned to/deleted from all members of a group simultaneously.
 It is facilitated by the following operations:
 
