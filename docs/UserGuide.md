@@ -314,7 +314,7 @@ For instance, the `add person` command has the following command aliases,
 - `a person`
 - `a p`
 
-Refer to the [command summary section](#command-summary) to view the commands and their respective aliases.
+Refer to the [command summary section](#command-aliases) to view the commands and their respective aliases.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -360,22 +360,25 @@ Consequently, the commands are split into **5** main sections:
 
 - Syntax for each command adheres to the structure laid out in the 
 [help command section](#example-command-help-message---add-person---help)
+- Every command has a `-h` and `--help` flag available to see their help message
 - Words in `UPPER_CASE` are parameters to be supplied by the user
 - Flags and parameters in square brackets (`[]`) are optional 
 - Flags can be specified in any order, however, parameters must always come before flags
 - Parameters with ellipsis (`...`) behind them means that more than 1 parameter can be specified
 - If an extra parameter is specified, the command will not execute and an error message will be displayed
-[//]: # (TODO: add reference to flags/parameter summary)
-
 </div>
 
+[//]: # (TODO: add reference to flags/parameter summary)
+
 ### Commands to Manage Persons
+
+Summary of commands can be found [here](#summary-of-person-commands)
 
 #### Creating a new person `add person`
 
 Adds a person to TruthTable.
 
-Format: `add person [-h] -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [-t [TAGS...]]`
+**Format:** `add person [-h] -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [-t [TAGS...]]`
 
 | Flags             | Required | Remarks                                                |
 |-------------------|:---------|--------------------------------------------------------|
@@ -390,12 +393,12 @@ Format: `add person [-h] -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [-t [TAGS..
 A person can have any number of tags (including 0)
 </div>
 
-Command Aliases:
+**Command Aliases:**
 - `a person`
 - `add p`
 - `a p`
 
-Examples:
+**Examples:**
 * `add person -n "John Doe" -p 98765432 -e johnd@example.com -a "John street, block 123, #01-01"`
 * `a p -n "Betsy Crowe" -e betsycrowe@example.com -a "Newgate Prison" -p 1234567 -t criminal friend`
 
@@ -458,6 +461,8 @@ Examples:
 
 
 ### Commands to Manage Members
+
+Summary of commands can be found [here](#summary-of-member-commands)
 
 #### Adding a new member to the team `add member`
 
@@ -522,6 +527,8 @@ Examples
 
 ### Commands to Manage Teams
 
+Summary of commands can be found [here](#summary-of-team-commands)
+
 #### Creating a new team `add team`
 
 Add a new team to your list of teams. Will show an error there is already an existing team with the same name. 
@@ -569,6 +576,8 @@ Examples:
 - `delete team CS2103` will delete the team with the name "CS2103"
 
 ### Commands to Manage Tasks
+
+Summary of commands can be found [here](#summary-of-task-commands)
 
 #### Add task to team : `add task`
 
@@ -714,6 +723,7 @@ View the number of tasks assigned to each user in the team.
 Format: `summary`
 
 #### Sort tasks : `sort tasks`
+
 Sorts all tasks in the current team by name and displays them in the task list
 
 Format: `sort tasks ORDER`
@@ -724,6 +734,7 @@ Examples
 * `sort tasks res` **resets** the order of the tasks shown.
 
 #### Filter tasks by team member : `tasksof`
+
 Find all tasks in your current team that have been assigned to a particular team member.
 
 Format: `tasksof MEMBER_INDEX`
@@ -732,6 +743,8 @@ Examples
 * `tasksof 1` will show all tasks assigned to the first member in your current team's member list.
 
 ### Commands to Manage Links / URLs
+
+Summary of commands can be found [here](#summary-of-link-commands)
 
 #### Add a new link : `add link`
 
@@ -765,6 +778,8 @@ Examples:
 - `delete link 1`
 
 ### General Commands
+
+Summary of commands can be found [here](#summary-of-general-commands)
 
 #### Clearing all entries : `clear`
 
@@ -823,12 +838,75 @@ the data of your previous TruthTable home folder.
 
 ---
 
-## Command summary
+## Command Summary
 
-| Action | Aliases | Format, Examples |
-|--------|:--------|------------------|
-| TBC    |         | TBC              |
-| TBC    |         | TBC              |
+### Command Aliases
+
+| Action | Command | Aliases |
+|--------|:--------|---------|
+|        |         |         |
+|        |         |         |
+|        |         |         |
+
+[Back to Table of Contents](#table-of-contents)
+
+### Flag And Parameter Constraints
+
+[Back to Table of Contents](#table-of-contents)
+
+
+### Summary of Person Commands 
+
+| Action | Format, Examples |
+|--------|------------------|
+| TBC    | TBC              |
+| TBC    | TBC              |
+
+[Back to Table of Contents](#table-of-contents)
+
+
+### Summary of Member Commands
+
+| Action | Format, Examples |
+|--------|------------------|
+| TBC    | TBC              |
+| TBC    | TBC              |
+
+[Back to Table of Contents](#table-of-contents)
+
+### Summary of Team Commands
+
+| Action | Format, Examples |
+|--------|------------------|
+| TBC    | TBC              |
+| TBC    | TBC              |
+
+[Back to Table of Contents](#table-of-contents)
+
+### Summary of Task Commands
+
+| Action | Format, Examples |
+|--------|------------------|
+| TBC    | TBC              |
+| TBC    | TBC              |
+
+[Back to Table of Contents](#table-of-contents)
+
+### Summary of Link Commands
+
+| Action | Format, Examples |
+|--------|------------------|
+| TBC    | TBC              |
+| TBC    | TBC              |
+
+[Back to Table of Contents](#table-of-contents)
+
+### Summary of General Commands
+
+| Action | Format, Examples |
+|--------|------------------|
+| TBC    | TBC              |
+| TBC    | TBC              |
 
 [Back to Table of Contents](#table-of-contents)
 
