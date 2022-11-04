@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -360,6 +361,13 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@Code Collection<String> tags} into a {@code List<String>}
+     */
+    public static List<String> parseTagsList(Collection<String> tags) throws ParseException {
+        return parseTags(tags).stream().map(tag -> tag.tagName).collect(Collectors.toList());
     }
 
     /**

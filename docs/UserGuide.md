@@ -494,15 +494,19 @@ Finds all students with a particular tag.
 Formats: `find t/tagName`
 
 - Only one tag can be searched at each time.
+- The tag is case-insensitive.
 
 <div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one tag such as find t/python java.
 </div>
 
 Examples:
 
-`find t/python` returns all students who have python as a tag, including students who have other tags on top of the
+* `find t/python` returns all students who have a python tag, including students who have other tags on top of the
 python tag.
-`find t/javascript` returns all students with javascript as a tag and other tags besides javascript.
+* `find t/javascript` returns all students who have a javascript tag, including students who have other tags on top
+of javascript tag 
+* `find t/python t/javascript` returns all students who have javascript and python tags, includings students who have 
+other tags on top of the two tags.
 
 [↑ Back to top](#table-of-contents)
 
@@ -634,9 +638,15 @@ Format: `clear`
 
 ### Undo the last command: `undo`
 
-Undoes the last command executed and restores the Teacher's Pet to the previous state.
+Undoes the last command executed by reverting any recent change in data within the Teacher's Pet.
 
 Format: `undo`
+
+<div markdown="span" class="alert alert-info">ℹ **Note:** Undo command will not change any visual display
+with the latest commands being display-related like
+<a href="#finding-a-student-find">find</a> command. If you wish to remove the filter, the best way is to use
+<a href="#viewing-all-students-list">list</a> command.
+</div>
 
 [↑ Back to top](#table-of-contents)
 

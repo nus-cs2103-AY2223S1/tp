@@ -380,6 +380,29 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseTagsList_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTagsList(null));
+    }
+
+    @Test
+    public void parseTagsList_collectionWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTagsList(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    }
+
+    @Test
+    public void parseTagsList_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTagsList(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseTagsList_collectionWithValidTags_returnsTagSet() throws Exception {
+        List<String> actualTagSet = ParserUtil.parseTagsList(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        List<String> expectedTagSet = Arrays.asList(VALID_TAG_1, VALID_TAG_2);
+
+        assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
     public void adjustDateToTomorrowSuccessful() {
         // This date falls on a saturday
         LocalDate date = LocalDate.of(2022, 10, 15);

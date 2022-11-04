@@ -27,8 +27,8 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " n/alice bob charlie\n"
             + "Example: " + COMMAND_WORD + " t/python t/beginner";
 
-    public static final String ONLY_ONE_PREFIX_MESSAGE = "You can only search with 1 prefix, "
-            + "either n/, p/, np/, e/, a/, dt/ or t/";
+    public static final String ONLY_ONE_PREFIX_MESSAGE = "You can only search with 1 prefix for "
+            + "n/, p/, np/, e/, a/, dt/, or multiple prefixes for t/.\n" + "Examples: find n/Ben, find t/Java t/Python";
 
     private final Predicate<Student> predicate;
 
