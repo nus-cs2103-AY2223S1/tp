@@ -701,3 +701,6 @@ HealthContact data are saved as a JSON file `[JAR file location]/data/healthcont
 
 2. Q: What do I do if I cannot open the application by double-clicking on it?
 - Try opening the application by running the command `java -jar HealthContact.jar` in the command prompt.
+
+3. Q: What do I do if the data on the application panels are too long and are partially hidden by "..."?
+- Use select commands to view the details or expand the window.

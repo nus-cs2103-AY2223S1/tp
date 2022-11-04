@@ -564,7 +564,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 patients, appointments and bills without a noticeable sluggishness in performance for typical usage.
+3. Notes on project scope: The application does not execute any real-world tasks such as calling the patients for appointments or accepting payment from patients.
+4. The system should respond within 2 seconds.
+5. A user who has an English-text typing speed that is above average should be able to execute all of the commands faster than using a mouse to do so.
+6. The application should work without internet connection.
 
 ### Glossary
 
