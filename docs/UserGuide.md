@@ -2,10 +2,19 @@
 layout: page
 title: User Guide
 ---
+Ever forget a deadline? Or lost track of your customers? Many commission-based artists struggle to organise
+their business. With so many things to keep track of, you might have found yourself wondering if there were a
+better way to manage all of these.
 
-Made for commission-based artists, **ArtBuddy** (AB) is the easiest way to organise your customers and commissions.
-Powerful features and intuitive design, all packaged into one desktop app. With optimised support for
-use via a Command Line Interface (CLI) ArtBuddy can help you manage your small business with the speed of your fingertips. But not to worry if you're unfamiliar with CLI, we still offer the benefits of a Graphical User Interface (GUI).
+That's why we built **ArtBuddy** (AB), a commission-based artist's best buddy, just for you. Developed with your
+needs in mind, ArtBuddy is here to help you manage all your customers and commissions in one place. But that's
+not all. With integrated support for tracking the progress of your commissions through iterations,
+and generation of statistics, ArtBuddy is also here to help you grow as an artist.
+
+So, focus on your art and leave the rest to ArtBuddy.
+
+Eager to get started? You can refer to our [Quick Start](#Quick_start) section to set ArtBuddy up, or
+you can jump right into our [Features](#features) section to learn more about the features ArtBuddy offers.
 
 * Table of Contents
 {:toc}
@@ -20,20 +29,40 @@ If you are a new user, we welcome you to start from our [introduction](#introduc
 --------------------------------------------------------------------------------------------------------------------
 # Introduction
 
-Ever forget a deadline? Or lost track of your customers? Many commission-based artists struggle to organise
-their business. With so many things to keep track of, you might have found yourself wondering if there were a
-better way to manage all of these.
+Made for commission-based artists, ArtBuddy is the easiest way to organise your customers and commissions.
+Powerful features and intuitive design, all packaged into one neat desktop app. ArtBuddy is supported on all
+major operating systems (Windows, MacOS, Linux).
 
-That's why we built ArtBuddy, a commission-based artist's best buddy, just for you. Developed with your
-needs in mind, ArtBuddy can help you manage all your customers and commissions in one place. That's
-not all. With integrated support for tracking the progress of your commissions through iterations,
-and generation of statistics, ArtBuddy is also here to help you grow as an artist.
+#### Let ArtBuddy help you...
 
-So, focus on your art and leave the rest to ArtBuddy.
+1. **Manage your customers**  
+ArtBuddy lets you store, edit and delete your customer's information. Consolidate all your customer's
+contact details, so you never have to lose a contact again.
+2. **Take charge of your commissions**  
+Add commissions to a customer in ArtBuddy, just like in real life! ArtBuddy can store your
+commission details, like fees, deadlines, and completion statuses. Easily update and delete
+commissions as you wish.
+3. **Keep track of your progress**  
+ArtBuddy wants you help you hone your craft, and learning from yourself is a critical part of that.
+With ArtBuddy, keep track of the progress of your commissions using iterations. Each iteration is simply 
+a version of your artwork. Learn from feedback and your past work, so you can continuously improve your craft.
+4. **Supercharge your business**  
+Learn where your highest sales are coming from by leveraging on the powerful statistics ArtBuddy offers
+so that you can accelerate your business growth.
 
-Eager to get started? You can refer to our [Quick Start](#Quick_start) section to set ArtBuddy up, or
-you can jump to our [Features](#features) section to learn more about the features ArtBuddy offers.
+#### Getting things done fast
+We get that your time is precious. So spend it on what you love doing, your art, and let ArtBuddy handle the
+rest. With optimised support for use via a Command Line Interface (CLI), ArtBuddy can help you manage your
+small business at the speed of your fingertips.
 
+Not sure what a CLI is? Don't worry! It's easy to pick up, you can even refer to our short introduction to
+ArtBuddy's CLI to learn more.
+
+More of a visual person? Don't sweat it! Unlike many CLI applications, ArtBuddy still has a sleek, intuitive
+Graphical User Interface (GUI). This means that you can also interact with ArtBuddy using visual controls
+like buttons and pop-ups. There's something for everyone!
+
+--------------------------------------------------------------------------------------------------------------------
 # Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
