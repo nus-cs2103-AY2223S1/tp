@@ -54,7 +54,7 @@ public class EditTutorialCommandParser implements Parser<EditTutorialCommand> {
         }
         if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
             editTutorialDescriptor.setVenue(ParserUtil
-                    .parseTutorialVenue(argMultimap.getValue(PREFIX_VENUE).get()));
+                    .parseVenue(argMultimap.getValue(PREFIX_VENUE).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE_DAY).isPresent() && argMultimap.getValue(PREFIX_TIME).isPresent()) {
             String day = argMultimap.getValue(PREFIX_DATE_DAY).get();

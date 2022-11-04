@@ -103,7 +103,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code venue} is invalid.
      */
-    public static Venue parseTutorialVenue(String venue) throws ParseException {
+    public static Venue parseVenue(String venue) throws ParseException {
         Objects.requireNonNull(venue);
         String trimmedName = venue.trim();
         if (!Venue.isValidVenue(trimmedName)) {
