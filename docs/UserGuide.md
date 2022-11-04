@@ -332,7 +332,7 @@ Format: `task sort`
 
 The `task list` command is a powerful command that allows you to focus only on the tasks that matter to you.
 
-Format: `task list [KEYWORD] [#PROJECT_NAME]... [@PERSON_INDEX]... [before/ DATE] [after/ DATE] [-a] [-c]`
+Format: `task list [KEYWORD] [#PROJECT_NAME]... [@PERSON_INDEX]... [before/DATE] [after/DATE] [-a] [-c]`
 
 The format above may look daunting, but this is only because the `task list` command allows you to potentially describe complex queries.
 
@@ -352,8 +352,8 @@ For ease of understanding, many of these common use cases have been detailed bel
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Additional Notes:**<br>
-* By default, the command returns all incomplete tasks that match the query.<br>
-* In the following examples, ‘all tasks’ refers to ‘all incomplete tasks’ for brevity.<br>
+* By default, the command returns all **incomplete** tasks that match the query.<br>
+* In the following examples, 'all tasks' refers to 'all incomplete tasks' for brevity.<br>
 </div>
 
 #### 2. Filtering by Description
@@ -378,7 +378,7 @@ For ease of understanding, many of these common use cases have been detailed bel
 - `task list @1 @2` returns all tasks that are assigned to **both** the 1st and 2nd persons from the address book.
 
 #### 5. Filtering by Deadline
-`Format: task list before/ DATE after/ DATE`
+`Format: task list before/DATE after/DATE`
 - The `before/` and `after/` parameters allow you to specify a date range to filter the tasks by, according to their deadline.
 - You can choose to use only one of the parameters, as shown in the examples below
 
@@ -386,8 +386,8 @@ For ease of understanding, many of these common use cases have been detailed bel
 - `task list before/ next Monday after/ tomorrow` returns all tasks whose deadline is after tomorrow but before next Monday.
 - `task list before/ end of the month` returns all tasks whose deadline is before the end of the month.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tips for Advanced Users:**
-* You can use any combination of the parameters above to build a query that matches your unique requirements!
+<div markdown="span" class="alert alert-primary">:bulb: **Tips for Advanced Users:**<br>
+* You can use any combination of the parameters above to build a query that matches your unique requirements!<br>
 * Do note that the `KEYWORD` parameter **must** come first, if any other parameters are used.
 </div>
 
