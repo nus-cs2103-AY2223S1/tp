@@ -17,7 +17,6 @@ Given below are my contributions to the project.
     * [Extend `HelpCommand` to handle various commands](https://github.com/AY2223S1-CS2103-F09-1/tp/pull/133).
       * Rationale: With more commands being added, it would be harder to maintain the help command since another new class must be added. Instead, I modified `HelpCommandParser` to create different `HelpCommand` instances. This approach will keep `HelpCommand` as its own class but with extended functionalities that do not need to increase the number of classes needed. 
     * [Enhance deadline parser to accept multiple datetime formats](https://github.com/AY2223S1-CS2103-F09-1/tp/pull/131).
-      * Rationale: Sometimes, the user might have different datetime formats as their preferred datetime format and might keep using this format instead of the specified one. Therefore, an adaptation is made such that multiple datetime formats supplied by the user will still mean the same thing when it comes to the parsing phase.
     * [Improve code quality on `EditCommand`](https://github.com/AY2223S1-CS2103-F09-1/tp/pull/141).
       * Rationale: Used the Facade design pattern such that `EditCommandParser` does not access `EditCommand.EditStudentDescriptor` directly but rather use what has been provided in the `Model` interface.
     * Major UI changes, such as [the splitting of the FYP list into uncompleted and completed list](https://github.com/AY2223S1-CS2103-F09-1/tp/pull/130).
