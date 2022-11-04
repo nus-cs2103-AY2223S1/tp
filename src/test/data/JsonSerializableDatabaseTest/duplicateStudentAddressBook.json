@@ -6,7 +6,7 @@
       "email": "alice@example.com",
       "address": "123, Jurong West Ave 6, #08-111",
       "studentClass": "1A",
-      "attendance": "date/12-02-2022 attendance/1 %% date/13-02-2022 attendance/0",
+      "attendance": "date/12-02-2024 attendance/1 %% date/13-02-2024 attendance/0",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "remarks": [
         "friendly"
@@ -21,7 +21,7 @@
       "email": "pauline@example.com",
       "address": "4th street",
       "studentClass": "1A",
-      "attendance": "date/12-02-2022 attendance/1 %% date/13-02-2022 attendance/0",
+      "attendance": "date/12-02-2024 attendance/1 %% date/13-02-2024 attendance/0",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]"
     }
   ]

@@ -21,7 +21,7 @@ public class AttendanceTest {
 
         // valid commands
         assertTrue(Attendance.isValidAttendance("")); // empty string is valid
-        assertTrue(Attendance.isValidAttendance("date/13/02/2022 attendance/1")); // valid date and attendance
-        assertTrue(Attendance.isValidAttendance("date/13-02-2022 attendance/1")); // date with different format
+        assertTrue(Attendance.isValidAttendance("date/13/02/9999 attendance/1")); // valid date and attendance
+        assertTrue(Attendance.isValidAttendance("date/13-02-9999 attendance/1")); // date with different format
     }
 }

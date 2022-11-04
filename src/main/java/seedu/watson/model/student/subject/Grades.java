@@ -61,10 +61,10 @@ public class Grades {
         double totalMarks = 0;
         double totalWeightage = 0;
         for (double[] doubles : totalMarksArray) {
-            totalMarks += doubles[0] * doubles[1];
-            totalWeightage += doubles[1];
+            totalMarks += (doubles[0] / doubles[1]) * doubles[2];
+            totalWeightage += doubles[2];
         }
-        return (totalMarks / totalWeightage);
+        return (totalMarks / totalWeightage) * 100;
     }
 
     public double[] getGradeForAssessment(String assessment) {
@@ -126,7 +126,7 @@ public class Grades {
         if (assessmentMarks.isEmpty()) {
             grade = "There is currently no grade.";
         } else {
-            grade = String.format("Grade = %.1f", currentPercentageObtained);
+            grade = String.format("Grade = %.2f", currentPercentageObtained);
         }
         return grade;
     }
