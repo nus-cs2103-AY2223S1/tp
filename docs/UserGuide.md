@@ -419,10 +419,11 @@ Format: `sort reminder by/SORT_CRITERIA`
 * `SORT_CRITERIA` must either be `priority` or `deadline`.
 * Specifying `priority` will sort reminders by their priority, with `HIGH` on top of the list, followed by `MEDIUM` and `LOW`.
   Reminders with the same priority will then be sorted by date, from earliest to latest chronologically.
+  At a glance, the user can see how many reminders are still pending or already completed for each priority.
 * Specifying `deadline` will sort reminders by their deadline, with the earliest date on top of the list.
   Reminders with the same deadline will then be sorted by descending priority level, with the same order as stated above.
 * Reminders with the same priority and deadline will then be sorted lexicographically.
-* Sorting does not take reminders' status into account since users may mark or unmark reminders accidentally and editing reminders that are constantly jumping in order is inconvenient.
+* Sorting does not take reminders' status into account.
 
 Examples:
 * `sort reminder by/priority`
