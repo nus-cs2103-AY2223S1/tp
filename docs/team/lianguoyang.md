@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 - **New Feature**: Assign and Delete task commands ([#55](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/55),
 [#82](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/82))
   - What it does: Allow users to create and delete task from a member in a group.
-  - Justification: A project team leader has to manage many task assigned to his group members. This feature allows them to perform basic operation of creating and deleting tasks.
+  - Justification: A project team leader has to manage many task assigned to his group members. This feature allows them to create and delete tasks.
 
 
 **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=lianguoyang&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
