@@ -62,9 +62,9 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
         - [List all project title](#listing-all-projects-task-project)
 3. [Command Summary](#command-summary)
 4. [FAQ](#faq)
-5.  [Tutorial for CLI](#tutorial-for-cli)
+5. [Tutorial for CLI](#tutorial-for-cli)
 6. [Behind Everything](#behind-everything)
-7. [GLossary](#glossary)
+7. [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -535,6 +535,12 @@ manage computer files and interact with the computer.
 
 [This article](https://www.freecodecamp.org/news/command-line-commands-cli-tutorial/) showed you several “unknown-to-many” commands 
 you can use to get access to hidden functionalities on your personal computer.
+
+### Some of our features
+To improve the speed of your actions and quality of your life while using the application we have also implemented the below features
+* When your command box is out of focus and empty, you can press the `/` key on your command to immediately put your cursor on the command box.
+  ![command box out of focus](images/CommandBoxFocus.png)
+* When you enter a command, it disappears from the command box is run by the application. You may use the `UP` arrow key to go back to a previous command or `DOWN` arrow key to go to the next command. However, if there is text entered, then you cannot use this feature.
 
 --------------------------------------------------------------------------------------------------------------------
 
