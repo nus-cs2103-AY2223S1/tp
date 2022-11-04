@@ -3,13 +3,9 @@ layout: page
 title: User Guide
 ---
 
-EZLead is a **desktop app for tech leads to manage teams optimized for use via a Command Line Interface (CLI)**.
-As a tech lead, you will be able to easily keep track of all the teams under you as well as each team's current and
-future tasks. With our app, teams management would be easier than ever.
+## Table of Contents
 
---------------------------------------------------------------------------------------------------------------------
-
-## Index
+{:toc}
 
 - [GUI](#gui)
 - [Quick Start](#quick-start)
@@ -18,7 +14,15 @@ future tasks. With our app, teams management would be easier than ever.
 
 --------------------------------------------------------------------------------------------------------------------
 
+EZLead is a **desktop app for tech leads to manage teams optimized for use via a Command Line Interface (CLI)**.
+As a tech lead, you will be able to easily keep track of all the teams under you as well as each team's current and
+future tasks. With our app, teams management would be easier than ever.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## GUI
+
+### EZLead Main Window
 
 <img src= "images/GUIExplanation.png">
 
@@ -66,6 +70,25 @@ future tasks. With our app, teams management would be easier than ever.
   e.g. You cannot enter HeLp instead of help
 
 </div>
+
+### Parameters
+
+Here is a summary of all the parameters used in EZLead commands:
+
+
+| Parameter               | Refers to                                                                           | Required format                                                                                                                                                    |
+|-------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **NAME**                | The name of the member.                                                             | It should only contain alphanumeric characters and spaces, and should not be blank.                                                                                |
+| **PHONE-NUMBER**        | The phone number of the member.                                                     | It should only contain numbers, is exactly 8 numbers long, and should not be blank.                                                                                |
+| **EMAIL**               | The email of the member.                                                            | It should follow the _local-part@domain_ format and should not be blank.                                                                                           | 
+| **ADDRESS**             | The address of the member.                                                          | It can take any value, but it should not be blank.                                                                                                                 | 
+| **TAG**                 | Additional information about the member.                                            | It should only contain alphanumeric characters, or it can be blank.                                                                                                |
+| **GLOBAL-MEMBER-INDEX** | The index number of the member as shown in the **userlist window**.                 | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid. |
+| **TEAM-NAME**           | The name of the team.                                                               | It should only contain alphanumeric characters, spaces, and parentheses. But it should not be blank.                                                               | 
+| **TEAM-INDEX**          | The index of the team as shown in the **main window**.                              | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid. |
+| **TASK-NAME**           | The name of the task.                                                               | It should only contain alphanumeric characters, spaces, parentheses, and the apostrophe. But it should not be blank.                                               |
+| **DEADLINE**            | The deadline of the task.                                                           | It should be a valid date in `DD-MM-YYYY` format.                                                                                                                  |
+| **TASK-INDEX**          | The index of the task as shown in the task list of the team in the **main window**. | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid. |
 
 ### Viewing help: `help`
 
@@ -139,7 +162,7 @@ Examples:
 
 Changes a team's name (specified by index) to the given name.
 
-Format: `editteam t/TEAM-INDEX n/NEW-TEAM-NAME`
+Format: `editteam t/TEAM-INDEX n/TEAM-NAME`
 
 Examples:
 * `editteam t/1 n/TEAMNEW` Changes the first team's name to 'TEAMNEW'.
@@ -185,7 +208,7 @@ Examples:
 
 Adds a new task to a team. Additionally, you may opt to set a deadline for the task (optional).
 
-Format: `taskadd t/TEAM-INDEX n/TASK-NAME [d/DD-MM-YYYY]`
+Format: `taskadd t/TEAM-INDEX n/TASK-NAME [d/DEADLINE]`
 
 Examples:
 * `taskadd t/1 n/Finish project d/24-12-2023` Adds a new task to team with index 1 with the description
@@ -222,9 +245,9 @@ Examples:
 
 ### Updating a task description: `taskedit`
 
-Updates a task's description. Require at least one optional parameters.
+Updates a task's description. Require at least one of the optional parameters.
 
-Format: `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]`
+Format: `taskedit t/TEAM-INDEX task/TASK-INDEX [n/TASK-NAME] [d/DEADLINE]`
 
 Examples:
 * `taskedit t/1 task/1 n/Finish assignment d/12-12-2022` Updates the first task in the first team with new description
@@ -269,11 +292,11 @@ to load in an EMPTY state.
 | **Member List**     | `userlist`                                                                                                                                                     |
 | **Team Add**        | `create n/TEAM-NAME` <br> e.g. `create n/TEAM1`                                                                                                                |
 | **Team Delete**     | `delteam TEAM-INDEX` <br> e.g. `delteam 1`                                                                                                                     |
-| **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                     |
+| **Team Edit**       | `editteam t/TEAM-INDEX n/TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                         |
 | **Member assign**   | `assign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`assign m/1 t/1`                                                                                                 |
 | **Member unAssign** | `unassign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`unassign m/1 t/1`                                                                                             |
-| **Task Add**        | `taskadd t/TEAM-INDEX n/TASK-NAME [d/DD-MM-YYYY]` <br> e.g. `taskadd t/1 n/Finish project d/24-12-2023`                                                        |
+| **Task Add**        | `taskadd t/TEAM-INDEX n/TASK-NAME [d/DEADLINE]` <br> e.g. `taskadd t/1 n/Finish project d/24-12-2023`                                                          |
 | **Task Delete**     | `taskdelete t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskdelete t/1 task/1`                                                                                    |
 | **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                        |
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
-| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                  |
+| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/TASK-NAME] [d/DEADLINE]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                            |
