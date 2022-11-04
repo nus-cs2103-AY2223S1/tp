@@ -78,6 +78,8 @@ public class AddPetCommand extends Command {
 
     public static final String MESSAGE_FAILURE = "Unable to execute AddPetCommand.";
 
+    public static final String INVALID_SUPPLIER = "Index %1$s is not a supplier";
+
     private final Index index;
     private final Pet toAdd;
 
@@ -103,17 +105,22 @@ public class AddPetCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Supplier> lastShownList = model.getFilteredSupplierList();
+        ObservableList<Object> lastShownList = model.getFilteredCurrList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Supplier associatedSupplier = lastShownList.get(index.getZeroBased());
+        Object o = lastShownList.get(index.getZeroBased());
+        if (!(o instanceof Supplier)) {
+            throw new CommandException(String.format(INVALID_SUPPLIER, index.getOneBased()));
+        }
+        Supplier associatedSupplier = (Supplier) o;
 
         associatedSupplier.addPets(Collections.singletonList(toAdd.getId()));
         toAdd.setSupplier(associatedSupplier);
         model.addPet(toAdd);
+        model.switchToPetList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

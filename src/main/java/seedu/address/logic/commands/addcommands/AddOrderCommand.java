@@ -59,6 +59,7 @@ public class AddOrderCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
     public static final String MESSAGE_SUCCESS = "Added Order: %1$s";
+    public static final String INVALID_BUYER = "Index %1$s is not a buyer";
 
     private final Order toAdd;
     private final Index index;
@@ -84,17 +85,23 @@ public class AddOrderCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Buyer> lastShownList = model.getFilteredBuyerList();
+        ObservableList<Object> lastShownList = model.getFilteredCurrList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Buyer associatedBuyer = lastShownList.get(index.getZeroBased());
+        Object o = lastShownList.get(index.getZeroBased());
+        if (!(o instanceof Buyer)) {
+            throw new CommandException(String.format(INVALID_BUYER, index.getOneBased()));
+        }
+
+        Buyer associatedBuyer = (Buyer) o;
 
         associatedBuyer.addOrders(Collections.singletonList(toAdd.getId()));
         toAdd.setBuyer(associatedBuyer);
         model.addOrder(toAdd);
+        model.switchToOrderList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }

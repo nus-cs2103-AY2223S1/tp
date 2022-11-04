@@ -82,6 +82,7 @@ public class AddSupplierCommand extends AddPersonCommand {
 
         toAdd.addPets(pets.stream().map(Pet::getId).collect(Collectors.toList()));
         model.addSupplier(toAdd);
+        model.switchToSupplierList();
 
         //TODO To keep a single MESSAGE_SUCCESS
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)
