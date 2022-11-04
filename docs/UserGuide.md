@@ -163,8 +163,11 @@ This is where the description of a specified student or tutor is shown. When the
 
 #### File
 The ` File`  menu contains `Export` and `Exit`.
-`Export` allows you to export your data into a `.csv` file. 
+`Export` allows you to export your data into a `.csv` file.
+For more information regarding `Export`, you can click [here](#exporting-address-books-to-csv).
 `Exit` allows the software to exit after three seconds of pause.
+
+
 
 #### Help
 `Help` allows you to view the help information regarding the software.
