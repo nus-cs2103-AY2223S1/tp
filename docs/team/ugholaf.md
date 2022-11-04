@@ -10,7 +10,7 @@ SoConnect is a **desktop app for managing contacts and tasks**. It aims to help 
 
 ## Contribution
 
-### New Feature: Autocomplete on Search Functionality
+### New Autocomplete Feature: Autocomplete on Search Functionality
 
 **What it does**: Provides a list of autocompleted search entries based on what the user has typed in the command box, this allows the user to choose the autocompleted entries and search without having to type the full command.
 
