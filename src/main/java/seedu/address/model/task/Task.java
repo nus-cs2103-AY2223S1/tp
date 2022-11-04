@@ -269,9 +269,10 @@ public class Task {
 
     /**
      * Creates and returns a {@code Task} with the details of {@code this}
-     * edited with {@code newModule} and {@code newTaskDescription}.
+     * edited with {@code newModule} and {@code newTaskDescription}. Preserves the link between the task
+     * and its corresponding exam even if the module is changed.
      */
-    public Task edit(Module newModule, TaskDescription newTaskDescription) {
+    public Task editWithoutUnlinkingExam(Module newModule, TaskDescription newTaskDescription) {
         requireAnyNonNull(newModule, newTaskDescription);
         Module updatedModule = module;
         TaskDescription updatedDescription = description;
@@ -281,7 +282,7 @@ public class Task {
         if (newTaskDescription != null) {
             updatedDescription = newTaskDescription;
         }
-        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag, linkedExam);
     }
 
     /**
