@@ -139,7 +139,14 @@ However, the first time you add an exercise with an unrecognised name, the Recog
 
 ### 5.1. Adding an exercise: `:add`
 
-Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise.
+Adds an exercise that we have done for the day.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about add:**<br>
+If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise.
+
+</div>
 
 Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 
