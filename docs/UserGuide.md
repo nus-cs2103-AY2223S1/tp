@@ -496,8 +496,13 @@ Shows the most recent 10 commands that was inputted.
 Allows cycling through those commands to reduce the need of retyping similar commands fully.
 The history is looped, meaning that when you reach the end, the next cycle will bring it back to the start.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Every new valid command will reset the index back to the top of the history.
-Click Down Arrow to get the most recent command immediately and Up Arrow to get the last command in the history.
+<div markdown="block" class="alert alert-primary">
+:bulb: **Tip:** <br>
+
+* Every new valid command will reset the index back to the top of the history.
+
+* Click Down Arrow to get the most recent command immediately and Up Arrow to get the last command in the history.
+  
 </div>
 
 Controls: 
