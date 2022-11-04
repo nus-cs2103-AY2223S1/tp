@@ -37,6 +37,18 @@ public class Deadline implements Comparable<Deadline> {
     }
 
     /**
+     * Returns if a given string is a valid deadline.
+     */
+    public static boolean isValidDeadline(String deadline) {
+        try {
+            LocalDate.parse(deadline, DATE_TIME_FORMATTER.withResolverStyle(ResolverStyle.STRICT));
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Parses the deadline string and returns a LocalDate instance if the deadline is a valid date.
      *
      * @param deadline A deadline.
