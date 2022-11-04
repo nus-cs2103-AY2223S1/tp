@@ -18,6 +18,7 @@ Welcome to the Rapportbook user guide!
 Rapportbook is a **desktop app for managing client information for your financial advising needs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 #### Using this guide
+
 If this is the first time you are using this user guide, it is highly recommended for you to read the section on [Rapportbook 101](#rapportbook-101-everything-you-need-to-know). Otherwise,
 
 * If you are just setting up, please take a look at our [quick start guide](#quick-start).
@@ -28,11 +29,13 @@ Table of Contents
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Rapportbook 101: Everything you need to know
 
 Whether you’re new to Rapportbook, or just want to learn more about the details -- this section has you covered. This section will provide an overview of Rapporbook and explain key concepts in simple terms.
 
 ### What is Rapportbook?
+
 Rapportbook is a free, and open-source application designed for financial advisors for client information management.
 
 If you’re working with a lot of people, you’ll eventually have too much information to stay on top of. For example, what appointments do you have tomorrow? Which client should you prioritize? How should you approach this client? What are his contacts?
@@ -40,10 +43,11 @@ If you’re working with a lot of people, you’ll eventually have too much info
 Rapportbook is designed specifically to improve your workflow, and helps you manage all this information and “understand” your clients better. It can be used to offload information, categorize them more meaningfully, and set reminders so you don’t ever miss an appointment.
 
 ### Glossary
+
 In the user guide, you might come across some terms you might not understand. The following table provides clarification of the terms commonly used in Rapportbook.
 
 | Term                 | Description                                                                                                                                                                                                                                                   |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Client / contact** | A client or a contact is an information entry Rapportbook. You can add a client with the `add` command.                                                                                                                                                       |
 | **Command**          | A command is a specific instruction you can give to Rapportbook to perform an action.                                                                                                                                                                         |
 | **Command box**      | The command box is the text box on the bottom left of Rapportbook for you to enter your commands in.                                                                                                                                                          |
@@ -56,7 +60,7 @@ In the user guide, you might come across some terms you might not understand. Th
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-
+   
    - If you are unable to launch the application because you do not have Java `11` or above installed, install it from [this page.](https://www.oracle.com/java/technologies/downloads/#java11)
 
 2. Download the latest `rapportbook.jar` from [here](https://github.com/AY2223S1-CS2103T-T13-2/tp/releases).
@@ -418,7 +422,7 @@ _Details coming soon ..._ -->
 Frequently used commands have aliases that are short so that you can perform actions quickly.
 
 | Action                                                               | Command            | Alias |
-|----------------------------------------------------------------------|--------------------|-------|
+| -------------------------------------------------------------------- | ------------------ | ----- |
 | **[Home](#return-home--home)**                                       | `home`             | h     |
 | **[Show](#viewing-the-information-of-a-client--show)**               | `show`             | s     |
 | **[Add](#adding-a-client--add)**                                     | `add`              | a     |
@@ -452,7 +456,7 @@ Frequently used commands have aliases that are short so that you can perform act
 ## Command summary
 
 | Action                                                               | Format                                                                                                                      |
-|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | **[Home](#return-home--home)**                                       | `home`                                                                                                                      |
 | **[Show](#viewing-the-information-of-a-client--show)**               | `show INDEX`                                                                                                                |
 | **[Add](#adding-a-client--add)**                                     | `add n=NAME p=PHONE e=EMAIL a=ADDRESS [r=REMARKS] [t=TAGS]`                                                                 |
