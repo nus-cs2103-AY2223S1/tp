@@ -5,7 +5,8 @@ title: Kang Quan's Project Portfolio Page
 
 ### Project: Salesy
 
-Salesy is a desktop program that helps food vendors in NUS manage details of their clients and suppliers. It is optimised for CLI users so that tasks can be done faster by typing in commands. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Salesy is a desktop program that helps food vendors in NUS manage details of their tasks, inventory and suppliers. 
+It is optimised for CLI users so that tasks can be done faster by typing in commands. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
