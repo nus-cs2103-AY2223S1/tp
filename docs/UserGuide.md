@@ -259,10 +259,8 @@ I should use this if I am looking to find the instances of a specific exercise.
 
 </div>
 
-<div markdown="block" class="alert alert-primary">
-
-**:bulb: Tip**<br>
-Can be used in conjunction with filter to track the chronological progression of a specific exercise.
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** Can be used in conjunction with filter to track the chronological progression of a specific exercise.
 
 </div>
 
@@ -285,10 +283,8 @@ Shows all exercises, among exercises in the current [Exercise List](#42-exercise
 
 Format (1) : `:range start/START_DATE end/END_DATE`
 
-<div markdown="block" class="alert alert-primary">
-
-**:bulb: Tip**<br>
-Can be used in conjunction with filter to track the progression of a specific exercise in a certain period of time.
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** Can be used in conjunction with filter to track the progression of a specific exercise in a certain period of time.
 
 </div>
 
