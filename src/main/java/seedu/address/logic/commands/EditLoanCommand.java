@@ -22,6 +22,7 @@ import seedu.address.model.person.LoanHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.exceptions.LoanOutOfBoundsException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,14 +35,16 @@ public class EditLoanCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the loan value of the person identified "
             + "by the index number used in the displayed person list. "
             + "The existing loan value will be added to the input value.\n"
-            + "Parameters: INDEX (can be a positive or negative integer) "
-            + PREFIX_LOAN_AMOUNT + "AMOUNT"
+            + "Parameters: INDEX (can be a positive or negative integer) <OR> NAME (must be valid) "
+            + PREFIX_LOAN_AMOUNT + "AMOUNT "
             + PREFIX_LOAN_REASON + "REASON\n"
-            + "Example: " + COMMAND_WORD + "1 "
-            + PREFIX_LOAN_AMOUNT + "20"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_LOAN_AMOUNT + "20 "
             + PREFIX_LOAN_REASON + "Buy logistics";
 
     public static final String MESSAGE_EDIT_LOAN_SUCCESS = "Edited loan of person: %1$s";
+    public static final String OUT_OF_BOUNDS_NOTIFICATION =
+            Messages.TOTAL_LOAN_OUT_OF_BOUNDS + "\n" + Loan.MESSAGE_CONSTRAINTS;
 
     private final Index index;
     private final EditLoanDescriptor editLoanDescriptor;
@@ -49,12 +52,10 @@ public class EditLoanCommand extends Command {
     /**
      * @param index of the person in the filtered person list to edit
      * @param editLoanDescriptor details to edit the person with
-     * @param change LoanHistory of the loan change
      */
-    public EditLoanCommand(Index index, EditLoanDescriptor editLoanDescriptor, LoanHistory change) {
+    public EditLoanCommand(Index index, EditLoanDescriptor editLoanDescriptor) {
         requireNonNull(index);
         requireNonNull(editLoanDescriptor);
-        requireNonNull(change);
 
         this.index = index;
         this.editLoanDescriptor = editLoanDescriptor;
@@ -70,7 +71,12 @@ public class EditLoanCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editLoanDescriptor);
+        Person editedPerson;
+        try {
+            editedPerson = createEditedPerson(personToEdit, editLoanDescriptor);
+        } catch (LoanOutOfBoundsException e) {
+            throw new CommandException(OUT_OF_BOUNDS_NOTIFICATION);
+        }
 
         model.setPerson(personToEdit, editedPerson);
 
@@ -89,11 +95,12 @@ public class EditLoanCommand extends Command {
         int index = model.getFilteredPersonList().indexOf(editedPerson);
 
         return new CommandResult(String.format(MESSAGE_EDIT_LOAN_SUCCESS, editedPerson),
-                CommandResult.UiState.Inspect, String.valueOf(index + 1));
+                CommandResult.UiState.Inspect, String.format("%d", index + 1));
     }
 
 
-    private static Person createEditedPerson(Person personToEdit, EditLoanDescriptor editLoanDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditLoanDescriptor editLoanDescriptor)
+            throws LoanOutOfBoundsException {
         assert personToEdit != null;
 
         Name updatedName = personToEdit.getName();
@@ -103,15 +110,10 @@ public class EditLoanCommand extends Command {
         Birthday updatedBirthday = personToEdit.getBirthday();
         Set<Tag> updatedTags = personToEdit.getTags();
 
-        double val = editLoanDescriptor.getLoan().get().getAmount() + personToEdit.getLoan().getAmount();
+        Loan updatedLoan = personToEdit.getLoan().addBy(editLoanDescriptor.getLoan()
+                    .orElse(new Loan(0)));
 
-        Loan updatedLoan = new Loan(String.valueOf(val));
-        List<LoanHistory> updatedLoanHistory = new ArrayList<>();
-
-        for (LoanHistory his : personToEdit.getHistory()) {
-            updatedLoanHistory.add(his);
-        }
-
+        List<LoanHistory> updatedLoanHistory = new ArrayList<>(personToEdit.getHistory());
         editLoanDescriptor.getHistory().ifPresent(updatedLoanHistory::add);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
@@ -140,29 +142,30 @@ public class EditLoanCommand extends Command {
      * Stores the loan details to edit the person with
      */
     public static class EditLoanDescriptor {
-        private Loan loan;
-        private LoanHistory history;
+        private final Loan loan;
+        private final LoanHistory history;
 
-        public EditLoanDescriptor() {}
+        /**
+         * Constructs a new EditLoanDescriptor
+         * @param loan the new total loan
+         * @param history the new history to carry, included the increment loan and the reason
+         */
+        public EditLoanDescriptor(Loan loan, LoanHistory history) {
+            this.loan = loan;
+            this.history = history;
+        }
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
         public EditLoanDescriptor(EditLoanDescriptor toCopy) {
-            setLoan(toCopy.loan);
-        }
-
-        public void setLoan(Loan loan) {
-            this.loan = loan;
+            this.loan = toCopy.loan;
+            this.history = toCopy.history;
         }
 
         public Optional<Loan> getLoan() {
             return Optional.ofNullable(loan);
-        }
-
-        public void setHistory(LoanHistory history) {
-            this.history = history;
         }
 
         public Optional<LoanHistory> getHistory() {
@@ -177,12 +180,12 @@ public class EditLoanCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
+            if (!(other instanceof EditLoanDescriptor)) {
                 return false;
             }
 
             // state check
-            EditCommand.EditPersonDescriptor e = (EditCommand.EditPersonDescriptor) other;
+            EditLoanDescriptor e = (EditLoanDescriptor) other;
 
             return getLoan().equals(e.getLoan())
                     && getHistory().equals((e.getHistory()));

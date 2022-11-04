@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NON_POSITIVE_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_DESC_AMY;
@@ -75,10 +75,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, String.format(MESSAGE_INVALID_NAME, "\"-5\""));
+        assertParseFailure(parser, "-5", MESSAGE_INVALID_NON_POSITIVE_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0", MESSAGE_INVALID_NON_POSITIVE_INDEX);
+
+        // invalid preamble
+        assertParseFailure(parser, "gfeui*(^", MESSAGE_INVALID_FORMAT);
     }
 
     @Test

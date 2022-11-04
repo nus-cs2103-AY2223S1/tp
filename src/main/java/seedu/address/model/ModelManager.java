@@ -1,18 +1,27 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AMBIGUOUS_NAME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NON_POSITIVE_INDEX;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.FindCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.note.Note;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -191,6 +200,49 @@ public class ModelManager implements Model {
     public void updateFilteredNoteList(Predicate<Note> predicate) {
         requireNonNull(predicate);
         filteredNotes.setPredicate(predicate);
+    }
+
+    /**
+     * Filters the {@code ObservableList<Person>} by person name, originating from
+     * some command
+     * @param preamble the name to search for, by complete word
+     * @param messageUsage the usage of the command this call originated from
+     * @param pe the ParseException to throw on failure
+     * @throws ParseException if there is nobody found by the find command, or there exist
+     *      an ambiguity
+     */
+    @Override
+    public void filterPersonListByName(String preamble, String messageUsage,
+                                        ParseException pe) throws ParseException {
+        try {
+            if (Integer.parseInt(preamble) <= 0) {
+                throw new ParseException(MESSAGE_INVALID_NON_POSITIVE_INDEX, pe);
+            }
+        } catch (NumberFormatException e) {
+            if (!Name.isValidName(preamble)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        messageUsage), pe);
+            }
+        }
+
+        try {
+            new FindCommandParser().parse(preamble).execute(this);
+        } catch (ParseException ignored) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    messageUsage), pe);
+        }
+
+        ObservableList<Person> filteredPersonList = getFilteredPersonList();
+
+        String splitPreamble = Arrays.stream(preamble.split(" "))
+                .map(x -> "\"" + x.trim() + "\"")
+                .collect(Collectors.joining(" or "));
+
+        if (filteredPersonList.size() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_NAME, splitPreamble), pe);
+        } else if (filteredPersonList.size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_AMBIGUOUS_NAME, splitPreamble), pe);
+        }
     }
 
 

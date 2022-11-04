@@ -1,8 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -236,7 +238,9 @@ public class MainWindow extends UiPart<Stage> {
                 .toArray(Person[]::new);
 
         if (personsArray.length == 0) {
-            resultDisplay.setFeedbackToUser(Messages.MESSAGE_INVALID_NAME);
+            resultDisplay.setFeedbackToUser(String.format(Messages.MESSAGE_INVALID_NAME_INSPECT,
+                    Arrays.stream(inspectingName).map(n -> "\"" + n + "\"")
+                            .collect(Collectors.joining(" or "))));
             return;
         }
 
