@@ -8,7 +8,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.event.Event;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Events} objects to be used in tests.
  */
 public class TypicalEvents {
 
@@ -49,7 +49,8 @@ public class TypicalEvents {
             .withDate("04/09/2022").withStartTime("09:25")
             .withPurpose("$0.80 off all chopsticks").build();
 
-    private TypicalEvents() {} // prevents instantiation
+    private TypicalEvents() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical events.
