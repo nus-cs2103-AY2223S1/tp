@@ -44,7 +44,6 @@ public class AddStaffCommand extends Command {
     public static final String MESSAGE_ADD_STAFF_SUCCESS = "New staff added to %2$s: %1$s\n"
             + "Displaying all staff in project: %2$s";
     public static final String MESSAGE_DUPLICATE_STAFF = "Staff already exists in the project: %1$s";
-
     private final Staff toAdd;
     private final Index index;
 
@@ -61,7 +60,6 @@ public class AddStaffCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);;
-
 
         Optional<Project> projectToAdd = model.getProjectWithIndex(index);
         Project project = projectToAdd.orElseThrow(() ->

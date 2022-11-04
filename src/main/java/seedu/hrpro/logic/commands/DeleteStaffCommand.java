@@ -40,7 +40,6 @@ public class DeleteStaffCommand extends Command {
             + "Displaying all staff in project: %2$s ";
 
     private String projectName;
-
     private Index index;
 
     /**
@@ -68,13 +67,10 @@ public class DeleteStaffCommand extends Command {
         Project project = projectToDelete.orElseThrow(() ->
                 new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName)));
 
-
         Staff toDelete = staffToDelete.orElseThrow(() ->
                 new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX));
 
-
         model.removeStaffFromProject(new ProjectName(projectName), index);
-
         model.setFilteredStaffList(project.getStaffList());
         model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
         return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS,
@@ -96,36 +92,6 @@ public class DeleteStaffCommand extends Command {
         if (staffList.size() == 0) {
             throw new CommandException(String.format(MESSAGE_NO_STAFF_DISPLAYED, "delstaff command"));
         }
-    }
-
-    private Project getProjectFrom(List<Project> projectList) throws CommandException {
-        Project tempProject = null;
-        for (int x = 0; x < projectList.size(); x++) {
-            String nameToCheck = projectList.get(x).getProjectName().toString();
-            if (nameToCheck.equalsIgnoreCase(projectName)) {
-                tempProject = projectList.get(x);
-                break;
-            }
-        }
-
-        if (tempProject == null) {
-            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName));
-        }
-        return tempProject;
-    }
-
-    private Staff getStaffFrom(UniqueStaffList staffList, StaffName staffName) throws CommandException {
-        Staff staff = null;
-        for (Staff tempStaff : staffList) {
-            if (tempStaff.getStaffName().staffName.equalsIgnoreCase(staffName.toString())) {
-                staff = tempStaff;
-                break;
-            }
-        }
-        if (staff == null) {
-            throw new CommandException(String.format(MESSAGE_INVALID_STAFF, staffName));
-        }
-        return staff;
     }
 
     @Override

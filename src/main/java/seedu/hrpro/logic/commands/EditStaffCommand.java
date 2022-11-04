@@ -39,7 +39,6 @@ import seedu.hrpro.model.tag.Tag;
 public class EditStaffCommand extends Command {
 
     public static final String COMMAND_WORD = "editstaff";
-
     public static final String MESSAGE_NOT_EDITED = "At least one field must be provided.";
     public static final String MESSAGE_DUPLICATE_STAFF = "This staff already exists in the project.";
     public static final String MESSAGE_EDIT_STAFF_SUCCESS = "Edited Staff in %2$s: %1$s\n"
@@ -85,9 +84,11 @@ public class EditStaffCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Project> lastShownProjectList = model.getFilteredProjectList();
         List<Staff> lastShownStaffList = model.getFilteredStaffList();
         checkForEmptyList(lastShownProjectList, lastShownStaffList);
+
         Optional<Staff> staffToDelete = model.getStaffFromProjectAtIndex(projectName, staffIndex);
         Optional<Project> projectToDelete = model.getProjectWithName(projectName);
 
