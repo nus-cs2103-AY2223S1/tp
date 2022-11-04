@@ -11,6 +11,8 @@ Welcome to the Rapportbook user guide!
 
 Rapportbook is a **desktop app for managing client information for your financial advising needs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
+Rapportbook provides functionality for your whole financial advising workflow, which includes searching for, prospecting, and meeting up with clients.
+
 Rapportbook is built for tech savvy financial advisors who type fast. A concise set of syntax and command aliasing makes navigating Rapportbook's functionality a breeze.
 
 </div>
