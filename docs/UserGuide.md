@@ -225,7 +225,7 @@ This section of the user guide helps to break down the formatting used for comma
 * Parameters can be in any order.<br>
   e.g. if the command specifies `i/ITEM_NAME q/QUANTITY`, `q/QUANTITY i/ITEM_NAME` is also acceptable.
 
-* All command keywords (e.g. `addo`, `marko`, `editi`, etc.), prefixes (e.g.`p/`, `i/`, etc.)
+* All command keywords (e.g. `addo`, `marko`, `editi`, etc.), prefixes (e.g. `p/`, `i/`, etc.)
   and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**.<br/>
   e.g. `addo` is a valid command keyword, but `addO` is invalid. 
 
@@ -274,7 +274,7 @@ Example(s):
 TrackO will add `20 units` of `Keychain` to your inventory list, with the cost price of `$1` and selling price `$3.50`. 
 The `Item` has the description `Silicone keychain with a metal buckle` and tag `Souvenir`.
   <br>
-  The following result will be displayed in the application.
+  The following result will be displayed in the application:
   <img src="./images/user-guide/AddiExample.png" alt="AddiExample">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
@@ -286,8 +286,8 @@ Lists all the existing items in the store’s inventory.
 Format: `listi`
 
 Example(s):
-- When you enter `listi` to our sample data, TrackO will list all the existing inventory items. Executing it on our sample
-  data will display the following result.
+- When you enter `listi` to our sample data, TrackO will list all the existing inventory items in your `Inventory List`.
+Executing it on our sample data will display the following result:
 
   <img src="./images/user-guide/ListiExample.png" alt="ListiExample">
 
@@ -335,7 +335,7 @@ TrackO does not allow items that are currently involved with unpaid or undeliver
 
 Examples:
 * When you enter `deletei 1` to our sample data, TrackO deletes the first item, `Chair` from the inventory list. 
-  Notice how the order involving `Chair` is completed, which allows the `Chair` to be deleted.
+  Notice how the order involving `Chair` is completed, which allows the `Chair` to be deleted:
 
   <img src="./images/user-guide/DeleteiExample1.png" alt="DeleteiExample1">
   
@@ -437,6 +437,12 @@ Lists all the orders a store has.
 
 Format: `listo`
 
+Example(s):
+- When you enter `listo` to our sample data, TrackO will list all the existing orders in the `Order List`. Executing it 
+on our sample data will display the following result:
+  
+  <img src="./images/user-guide/ListoExample.png" alt="ListoExample">
+
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 ### Finding order(s): `findo`
@@ -462,18 +468,45 @@ the parameter will be taken in, e.g. `findo a/Clementi a/Geylang` will search fo
 in their address.
 
 
-* The search keywords used are case-insensitive. e.g. `keychain` will match `Keychain`
-* The order of the keywords does not matter. e.g. `findo a/Geylang n/Alex` will also give the same results as `findo n/Alex a/Geylang`
-* Only full words will be matched e.g. `Gardens,` will not match `Gardens` and `keychain` will not match `keychains`
-* Orders matching at least one keyword will be returned (i.e. `OR` search).<br>
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* The search keywords used are case-insensitive. <br>
+  e.g. `keychain` will match `Keychain`
+
+* The order of the keywords does not matter. <br>
+  e.g. `findo a/Geylang n/Alex` will also give the same results as `findo n/Alex a/Geylang`
+
+* Only full words will be matched. <br>
+  e.g. `Gardens,` will not match `Gardens` and `keychain` will not match `keychains`
+
+* Orders matching at least one keyword will be returned (i.e. `OR` search). <br>
   e.g. `findo i/apple keychain` will return `apple painting` and `banana keychain`
 
+</div>
 
-Examples:
-* `findo n/Alex a/Clementi` returns all orders with the name `Alex` and an address including the word `Clementi`
-* `findo n/Alex Barbara a/Clementi Geylang` returns all orders with the name `Alex` or `Barbara` and an address including the word `Clementi` or `Geylang`
-* `findo -D` returns all orders which have not been delivered
-* `findo -d -p n/Alex` returns all orders with the name `Alex` which have been paid and delivered
+Example(s):
+- When you enter `findo n/Alex a/Geylang`, TrackO will display all orders with the name `Alex` and an address 
+including the word `Geylang`. Executing it on our sample data will display the following result:
+
+  <img src="./images/user-guide/FindoExample1.png" alt="FindoExample1">
+
+* When you enter `findo n/Charlotte Bernice a/Serangoon Ang Mo Kio`, TrackO will display all orders with the name 
+`Charlotte` or `Bernice` and an address including the word `Serangoon` or `Ang Mo Kio`. Executing it on our sample
+data will display the following result:
+  
+  <img src="./images/user-guide/FindoExample2.png" alt="FindoExample2">
+
+* When you enter `findo -d n/Charlotte`, TrackO returns all orders with the name `Charlotte` which have been `delivered`.
+Executing it on our sample data will display the following result:
+
+  <img src="./images/user-guide/FindoExample3.png" alt="FindoExample3">
+  
+* When you enter `findo -d -p n/Alex` returns all orders with the name `Alex` which have been `paid` and `delivered`.
+Executing it on our sample data will display the following result:
+
+    <img src="./images/user-guide/FindoExample4.png" alt="FindoExample4">
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Completed orders are orders which have been paid **and** delivered. You can search using both -p **and** -d to find completed orders! 
@@ -492,9 +525,19 @@ Format: `sorto new` or `sorto old`
 * `sorto old` sorts the order list such that the oldest orders are at the top.
 
 Examples:
-* `listo` followed by `sorto old` sorts all orders such that oldest orders are at the top
-* `findo i/Chair` followed by `sorto new` sorts all orders found using `findo i/Chair` such that newest orders are at the 
-top
+* When you enter `listo` followed by `sorto old`, TrackO sorts all orders such that oldest orders are at the top.
+Executing it on our sample data will display the following result:
+
+<img src="./images/user-guide/SortoOldExample.png">
+
+* For this example, let us follow the steps described below:
+  1. First, enter `addo n/Jessica Doe a/Blk 12 Changi Road 20, #01-15 p/90876543 e/jessicadoe@gmail.com`, followed by
+     `i/Chair q/5`, then `done` to add an order of `5 Chairs` for customer `Jessica Doe`. The application will display 
+     the following result:
+  
+     <img src="">
+     
+  2. 
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -536,12 +579,19 @@ Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUA
 `2` `Apples` and `3` `Bananas`. Inputting `edito 4 i/Bananas q/0` will remove the `Bananas` from the fourth order's list of ordered items, leaving only
 the `2` `Apples`.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
 
 * Only orders which are not marked as `paid` or `delivered` can be edited.
+
 * The order's created time cannot be edited.
+
 * An order's paid status and delivery status also cannot be edited through this command. To modify those,
   see [`marko`](#marking-an-order-as-paid-or-delivered-marko) instead.
+
 </div>
 
 Examples:
