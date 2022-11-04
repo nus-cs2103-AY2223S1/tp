@@ -126,8 +126,8 @@ Refer to the [Features](#3-features) section for details of each command.
 * `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 uppercase letter)**. <br>
   e.g. `A0123456G`.
 
-* `STUDENT_NAME` should only contain alphabetic characters, spaces and slash(for Indian names).
-  **cannot start with a space**.<br>
+* `STUDENT_NAME` should only contain alphabetic characters, spaces and slash (for Indian names).
+  **Leading and trailing spaces will be trimmed**.<br>
 
 * `FYP_NAME`  should only include alphanumeric characters and spaces but
 **cannot start with a space**.<br>
@@ -231,7 +231,6 @@ Removes a FYP from the FYP manager. The specified student ID must exist in the F
 
 Format: `delete [-s] i/STUDENT_ID`
 
-
 Examples:
 
 * `delete -s i/A0987654X`
@@ -330,13 +329,13 @@ Example:
 #### 3.3.2 Removing a student's deadline: `delete -d`
 
 Removes a deadline assigned to a student specified by ID & a priority rank (Below highlighted task has a priority rank of 2). The specified deadline must exist in the student's deadline list previously.
-
+![Priority](images/Priority.png) <br>
 Format: `delete -d i/STUDENT_ID r/DEADLINE_RANK`
 
 Example:
 
 * `delete -d i/A0123456G r/1`
-   ![Priority](images/Priority.png) <br> <br>
+
   
 --------------------------------------------------------------------------------------------------------------------
 

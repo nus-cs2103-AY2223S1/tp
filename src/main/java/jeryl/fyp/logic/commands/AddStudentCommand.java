@@ -56,9 +56,6 @@ public class AddStudentCommand extends Command {
         if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
-        if (model.hasSameEmail(toAdd)) {
-            throw new CommandException(MESSAGE_EMAIL_USED);
-        }
 
         model.addStudent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

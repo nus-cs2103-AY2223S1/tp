@@ -79,10 +79,6 @@ public class EditCommand extends Command {
         if (!studentToEdit.isSameStudentId(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
-        // Check if email is used
-        if (model.hasSameEmail(editedStudent)) {
-            throw new CommandException(MESSAGE_EMAIL_USED);
-        }
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);

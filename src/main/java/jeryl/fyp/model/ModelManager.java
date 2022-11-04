@@ -112,12 +112,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasSameEmail(Student student) {
-        requireNonNull(student);
-        return fypManager.hasSameEmail(student);
-    }
-
-    @Override
     public void deleteStudent(Student target) {
         fypManager.removeStudent(target);
     }
@@ -235,7 +229,6 @@ public class ModelManager implements Model {
     public ObservableList<Student> getSortedCompletedStudentList() {
         return sortedCompletedStudents;
     }
-
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
@@ -243,7 +236,7 @@ public class ModelManager implements Model {
         completedStudents.setPredicate(predicate);
         uncompletedStudents.setPredicate(predicate);
     }
-     @Override
+    @Override
     public DeadlineList listDeadlineUnderStudent(Student student) {
         return fypManager.getDeadlineList(student);
     }

@@ -150,10 +150,4 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     DeadlineList listDeadlineUnderStudent(Student student);
-
-    /**
-     * Returns true if the email is used by other {@code student} in the FYP manager.
-     */
-    boolean hasSameEmail(Student student);
-
 }
