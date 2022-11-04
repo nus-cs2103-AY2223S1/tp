@@ -86,7 +86,6 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<Task> updatedTask = personToEdit.getTasks();
         personToEdit.editPerson(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedTask);
-
         return personToEdit;
     }
 
@@ -104,6 +103,11 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+
+        for(Task task : personToEdit.getTasks()) {
+            task.setPerson(editedPerson);
         }
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
