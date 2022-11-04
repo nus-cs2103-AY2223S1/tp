@@ -83,6 +83,12 @@ Required Arguments:
 
 Search for a (list of) module in the entire list of modules offered by NUS.
 
+<div markdown="block" class="alert alert-danger">
+Regex is difficult, and is intended to be used by more experienced users. This function works fine even without using regex in the query!
+</div>
+
+> Click [here](https://regex101.com/) to check that your regex statement is compatible with Java 8
+
 ### View module details: `view`
 
 Format: `view MODULE-CODE`
@@ -104,6 +110,11 @@ Required Arguments:
     - e.g. `CS2103`
 
 Show the list of modules that are the given module's prerequisites.
+
+<div markdown="block" class="alert alert-danger">
+Preclusions to prerequisite mods will not be shown due to a limitation with the NUSMods API. (E.g. Only CS1010 will be shown for `preq cs2040`)
+</div>
+
 
 ### Add modules to user list: `add`
 
