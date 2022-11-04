@@ -172,7 +172,7 @@ An `Exercise` contains the following attributes,
 
 ### **Sorting Exercise List**
 
-#### **Sorting Implementation**
+#### **Implementation**
 
 The sorting of exercise list is facilitated by `ModelManager` which implements `Model`. `ModelManager` contains a `filteredExercises`
 list which is the list of exercises in a `FilteredList` 'wrapper' from `javafc.collections.transformation`. `filteredExercises`
@@ -221,33 +221,33 @@ The following sequence diagram shows how the sort command is executed.
 
 #### **Implementation**
 
-The range view is driven by `ModelManager` implements the interface `Model`. `ModelManager` contains a 
-`filteredExercises` list which is the list of exercises in a `FilteredList` 'wrapper' from 
-`javafc.collections.transformation`. `filteredExercises` gets the list of exercises to be displayed from method 
+The range view is driven by `ModelManager` implements the interface `Model`. `ModelManager` contains a
+`filteredExercises` list which is the list of exercises in a `FilteredList` 'wrapper' from
+`javafc.collections.transformation`. `filteredExercises` gets the list of exercises to be displayed from method
 `getExerciseList()` in `ExerciseTracker`.
 
 `ExerciseTracker` has the method `filterListByDateRange()` which calls `filterListByDateRange()` in `ExerciseList`.
 
 Inside `ExerciseList`, we have a list `internalUnmodifiableList` which contains the list of `Exercise` objects. Although
-it is declared as `final`, the elements within the list can potentially be modified. In order to preserve the order that 
-is currently true in the aforementioned list, a copy called `rangeFilteredList` is created within the method 
+it is declared as `final`, the elements within the list can potentially be modified. In order to preserve the order that
+is currently true in the aforementioned list, a copy called `rangeFilteredList` is created within the method
 `filterListByDateRange()`.
 
 The user interface `Ui` will display this `rangeFilteredList` of type `ObservableList<Exercise>` in `ExerciseList`. 
 
 Within the `filterListByDateRange()` method, the `rangeFilteredList` list is iterated through. For each `Exercise`,
 the `Date` is considered and compared with both the `startDate` and `endDate` arguments provided to the
-`filterListByDateRange()` method. If the `Exercise` has a `Date` value that falls between `startDate` (inclusive) 
+`filterListByDateRange()` method. If the `Exercise` has a `Date` value that falls between `startDate` (inclusive)
 and `endDate` (inclusive), then it will be retained in the list. Otherwise, it will be removed from the list.
 
-Then, `rangeFilteredList` will be sorted in ascending order of `Date` using the method `sortDisplayedList()` 
+Then, `rangeFilteredList` will be sorted in ascending order of `Date` using the method `sortDisplayedList()`
 in `ExerciseList`.
 
 #### Execution
 
-When the command `:sort DD/MM/YYYY DD/MM/YYYY` is entered, the `Ui` sends the command to `Logic`. 
+When the command `:sort DD/MM/YYYY DD/MM/YYYY` is entered, the `Ui` sends the command to `Logic`.
 Here, `DD/MM/YYYY` is the supported format for entering the start date and end date.
-`Logic` parses and identifies the `:sort` command that was entered, and creates an instance of it. 
+`Logic` parses and identifies the `:sort` command that was entered, and creates an instance of it.
 `Logic` then executes the command.
 `Model` will have the displayed list sorted and the sorted list will be displayed by `Ui`.
 
@@ -255,13 +255,13 @@ Here, `DD/MM/YYYY` is the supported format for entering the start date and end d
 
 Given below is an example usage scenario and how the date range view mechanism behaves at each step.
 
-Step 1: The user launches the application which loads the set of exercises previously keyed. `rangeFilteredList` will be 
-initialised to be the same as the `internalUnmodifiableList` in `ExerciseList` where the exercises are sorted by the 
+Step 1: The user launches the application which loads the set of exercises previously keyed. `rangeFilteredList` will be
+initialised to be the same as the `internalUnmodifiableList` in `ExerciseList` where the exercises are sorted by the
 date of input.
 
 Step 2: The user executes `:sort 11/10/2022 18/10/2022` command to view all the exercises done between 11 October 2022
-and 18 October 2022. The `ExerciseTrackerParser` identifies that the command is a `SortCommand`. 
-The command calls `Model` to `filterListByDateRange()` and the `Ui` displays the `rangeFilteredList` which has all the 
+and 18 October 2022. The `ExerciseTrackerParser` identifies that the command is a `SortCommand`.
+The command calls `Model` to `filterListByDateRange()` and the `Ui` displays the `rangeFilteredList` which has all the
 exercises between the specified dates.
 
 The following sequence diagram shows how the date range process (variant of sort command) is executed.
@@ -279,11 +279,11 @@ The following sequence diagram shows how the date range process (variant of sort
 
 **Aspect: Preserving ordering state**
 * **Current choice**: `rangeFilteredList` is a copy of `internalUnmodifiableList` in `ExerciseList` class
-    * Rationale: Inside `ExerciseList`, we have a list `internalUnmodifiableList` which contains the list of `Exercise` 
-      objects. Although it is declared as `final`, the elements within the list can potentially be modified. In order 
-      to preserve the order that is currently true in the aforementioned list, a copy called `rangeFilteredList` is 
-      created within the method `filterListByDateRange()`. This practice of defensive programming is to prevent the 
-      potential bug that may arise in the future, caused by the assumption that `internalUnmodifiableList` preserves 
+    * Rationale: Inside `ExerciseList`, we have a list `internalUnmodifiableList` which contains the list of `Exercise`
+      objects. Although it is declared as `final`, the elements within the list can potentially be modified. In order
+      to preserve the order that is currently true in the aforementioned list, a copy called `rangeFilteredList` is
+      created within the method `filterListByDateRange()`. This practice of defensive programming is to prevent the
+      potential bug that may arise in the future, caused by the assumption that `internalUnmodifiableList` preserves
       the original ordered state.
 
 ### **Listing of Personal Records**
@@ -317,7 +317,7 @@ Step 2: The user enters the command `:pr n/Squat` to view their personal record 
 * **Alternative 1 (current choice)**: Accept exercise names.
     * Pros: Being able to view and list personal records by Exercise name is more intuitive and convenient, especially since all unique Exercises are listed in the UI (bottom right).
     * Cons: Would require users to type more characters; also require users to enter exercise names accurately.
-  
+
 * **Alternative 2**: Accept index as arguments.
     * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition.
     * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow.
@@ -366,7 +366,7 @@ The number of `Generator` objects created is equal to the number of unique exerc
 **Aspect: Number of `Generator` objects:**
 * **Current choice**: Pairing each unique exercise to one `Generator`.
     * Rationale: The current `:gen` command specifies a single difficulty level for all exercises listed in the command. A possible extension in the future would be to allow each exercise to be linked to its own difficulty level, for example, `:gen deadlift/easy squat/hard`. This design would make such an implementation possible.
-    
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -449,18 +449,18 @@ _{more aspects and alternatives to be added}_
 
 ### Listing of unique stored Exercises in a graphical UI
 
-#### Implementation 
+#### Implementation
 
 The display window is located in the bottom right of the application. The display mechanism has been implemented with the Observer pattern in mind.
 
-It is primarily driven by `SavedExerciseListWindow` (which holds the UI for the display). The logic is 
+It is primarily driven by `SavedExerciseListWindow` (which holds the UI for the display). The logic is
 handled by `ExerciseKeys` and `ExerciseHashMap`.
 
 ##### General class diagram
-The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The 
-`ExerciseHashMap` class maintains an internal ArrayList of type `Observer`, which can be modified through the 
+The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The
+`ExerciseHashMap` class maintains an internal ArrayList of type `Observer`, which can be modified through the
 addUI function. As the UI elements are usually initialized later than the data, the `SavedExerciseListWindow`
-UI object is only added as an observer after its constructor is called. This guards against any nullpointer exceptions 
+UI object is only added as an observer after its constructor is called. This guards against any nullpointer exceptions
 which may occur when preloading data from a hashmap in storage.
 
 ![ObserverPatternClass](images/ObserverPattern.png)
@@ -484,7 +484,7 @@ and formatting of the display message is handled by the `ExerciseKeys` class.
 
 Let us use `SavedExerciseListWindow` update function as an example of how the system is updated. A notification would notify
 `SavedExerciseListWindow` that it needs to relook at the `ExerciseHashMap` it stores and regenerate the input. It calls
-the update function which first gives the `ExerciseKeys` object an ArrayList of Strings which are the key names, arranged in 
+the update function which first gives the `ExerciseKeys` object an ArrayList of Strings which are the key names, arranged in
 natural alphabetical order, as defined in Collections.Sort .
 
 ```
@@ -519,7 +519,7 @@ notifyObservers function in `ExerciseHashMap`.
         }
     }
 ```
-Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it. 
+Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it.
 `ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update,
 instead, the responsibility of deciding what to do is passed on to the Observers themselves.
 
@@ -564,12 +564,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-| Priority | As a …   | I want to …                               |
-|----------|----------|-------------------------------------------|
-| `* * *`  | gym user | add exercises to the app                  |
-| `* * *`  | gym user | delete exercises from the app             |
-| `* * *`  | gym user | list out my past exercises on the app     |
-| `* * *`  | gym user | associate reps/sets number to an exercise |
+| Priority | As a …        | I want to …                                                          | so that I can …                                                            |
+|----------|---------------|----------------------------------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | user          | add exercises                                                        | keep track of my exercises                                                 |
+| `* * *`  | user          | delete exercises                                                     | see what exercises I have done                                             |
+| `* * *`  | user          | look for all entries of a specific exercise                          | track my progression for that particular exercise                          |
+| `* * *`  | user          | view exercises in chronological order                                | keep track of my gym progress                                              |
+| `* * *`  | user          | want to track my personal records                                    | keep track of my progress for each exercise (and show off to my friends)   |
+| `* * *`  | user          | generate workouts of different difficulty                            | customise my workout based on how I’m feeling that day                     |
+| `* * *`  | user          | view my recent exercises                                             | plan for my next gym session                                               |
+| `* * *`  | user          | view my exercises done within a date range                           | track my overall progress over a period of time (eg. weekly, monthly, etc) |
+| `* * `   | new user      | remove all sample data                                               | input my own data                                                          |
+| `* *  `  | advanced user | have a quick summary of all the commands I can do in the application | save time                                                                  |
+| `* * `   | clumsy user   | have a safeguard against accidentally clearing all data              | preserve my exercise                                                       |
+| `*`      | user          | track my calories intake                                             | attain my fitness goals                                                    |
+| `*`      | user          | track my calories burnt during the gym session                       | attain my fitness goals                                                    |
+| `*`      | user          | have a tailored workout program                                      | target my specific strengths and weaknesses for outstanding results        |
+| `*`      | user          | have motivation to go to the gym                                     | stay motivated to attain my fitness goals                                  |
+| `*`      | user          | track my RPE (rate of perceived exertion) of previous workout        | better plan for my next workout                                            |
+| `*`      | user          | view my run timings                                                  | track my running progression                                               |
+| `*`      | user          | share my workout plan with my friends                                | progress together with them                                                |
+| `*`      | user          | access a workout plan done by my friends                             | learn from them                                                            |
+
+
 
 <br>*{More to be added}*
 
@@ -606,7 +623,6 @@ Guarantees: Input exercise will be added to storage.
 **Extensions**
 
 * 1a. User enters the command wrongly.
-
     * 1a1. Gim shows an error message.
 <br>Use case ends.
 
@@ -633,10 +649,29 @@ Guarantees: Selected exercise will be deleted from storage.
     * 1b1. Gim displays that the exercise does not exist.
 <br>Use case ends.
 
-#### Use case 4: List exercises
+#### Use case 4: Clear all exercise entries in the system
 
 System: Gim <br>
-Use case: UC04 - List exercises <br>
+Use case: UC04 - Clear all exercise entries in the system <br>
+Actor: User <br>
+Guarantees: All exercise entries in the system will be cleared.
+
+**MSS**
+
+1. User requests to clear all exercise entries in the system.
+2. Gim clears all exercise entries in the system.
+   <br>Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. Gim shows an error message.
+      <br>Use case ends.
+
+#### Use case 5: List exercises
+
+System: Gim <br>
+Use case: UC05 - List exercises <br>
 Actor: User <br>
 Guarantees: All stored exercises will be displayed.
 
@@ -652,11 +687,91 @@ Guarantees: All stored exercises will be displayed.
     * 2a1. Gim displays the error message.
 <br>Use case ends.
 
-
-#### Use case 5: Exit Gim
+#### Use case 6: Sort exercises
 
 System: Gim <br>
-Use case: UC05 - Exit Gim <br>
+Use case: UC06 - Sort exercises <br>
+Actor: User <br>
+Guarantees: Displayed list of exercises will be sorted by date.
+
+**MSS**
+
+1. User requests to sort the displayed list of exercises.
+2. Gim sorts the displayed list of exercises by date.
+   <br>Use case ends.
+
+#### Use case 7: View exercises within a time period
+
+System: Gim <br>
+Use case: UC07- View exercises within a time period <br>
+Actor: User <br>
+Guarantees: Exercises within the specified time period will be displayed in an order sorted by date.
+
+**MSS**
+
+1. User requests to view displayed exercises within a time period.
+2. Gim displays exercises completed within the specified time period in an order sorted by date.
+   <br>Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. Gim displays the error message.
+      <br>Use case ends.
+* 1b. User enters an invalid date.
+    * 1b1. Gim displays the invalid date error message.
+      <br>Use case ends.
+
+#### Use case 8: Filter exercises by name(s)
+
+System: Gim <br>
+Use case: UC08 - Filter exercises by name(s) <br>
+Actor: User <br>
+Guarantees: Exercises filtered by name(s) will be displayed.
+
+**MSS**
+
+1. User requests to filter the displayed list of exercises by name(s).
+2. Gim displays the filtered list of exercises.
+   <br>Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. Gim displays the error message.
+      <br>Use case ends.
+* 2a. Filtered list of exercises is empty.
+    * 2a1. Gim displays a reminder message.
+      <br>Use case ends.
+
+#### Use case 9: View Personal Record (PR) for exercise(s)
+
+System: Gim <br>
+Use case: UC09 - View Personal Record (PR) for exercise(s) <br>
+Actor: User <br>
+Guarantees: Personal Record (PR) for exercise(s) will be calculated and displayed.
+
+**MSS**
+
+1. User requests to view Personal Record (PR) for exercise(s).
+2. Gim calculates and displays the Personal Record (PR) for exercise(s).
+   <br>Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. Gim displays the error message.
+      <br>Use case ends.
+* 1b. User enters the name of exercise(s) wrongly.
+    * 2a1. Gim displays exercise(s) not registered in system message.
+      <br>Use case ends.
+
+#### Use case 10: Generate
+
+#### Use case 11: Exit Gim
+
+System: Gim <br>
+Use case: UC11 - Exit Gim <br>
 Actor: User <br>
 Guarantees: Gim will exit.
 
@@ -666,8 +781,6 @@ Guarantees: Gim will exit.
 2. Gim exits.
 <br>Use case ends.
 
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
