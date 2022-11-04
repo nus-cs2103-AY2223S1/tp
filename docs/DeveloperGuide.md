@@ -54,7 +54,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ModifiedArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -123,13 +123,15 @@ The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the meeting list data i.e., all `Meeting` objects (which are contained in a `UniqueMeetingList` object).
+* stores the currently 'selected' `Meeting` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
+<img src="images/ModifiedModelClassDiagram.png" width="450" />
 </div>
 
 
@@ -137,7 +139,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/ModifiedStorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data, meeting list data and user preference data in json format, and read them back into corresponding objects.
@@ -218,7 +220,6 @@ The diagrams below should sufficiently explain the main cases for the command.
 
 ### [Implemented] Storage for meetings
 #### Implementation
-<img src="images/ModifiedStorageClassDiagram.png" width="550" />
 The implementation of the storage for meetings closely follows the way address book was implemented. There were many classes 
 that had to be copied, and they included
 - `MeetingList`
@@ -241,39 +242,12 @@ The following classes had to be extended in order to support meeting list
 - `LogicManager`
 - `AddressBookParser`
 
-
-### [Implemented] Storage for meetings
-#### Implementation
 <img src="images/ModifiedStorageClassDiagram.png" width="550" />
 
-The implementation of the storage for meetings closely follows the way address book was implemented. There were many classes 
-that had to be copied, and they included
-- `MeetingList`
-- `ReadOnlyMeetingList`
-- `JsonMeetingListStorage`
-- `JsonAdaptedMeeting`
-- `JsonSerializableMeetingList`
-- `MeetingListStorage`
-
-The following classes had to be extended in order to support meeting list
-- `MainApp`
-- `UserPrefs`
-- `ReadOnlyUserPrefs`
-- `SampleDataUtil`
-- `Storage`
-- `StorageManager`
-- `Model`
-- `ModelManager`
-- `Logic`
-- `LogicManager`
-- `AddressBookParser`
 
 The app maintained its own internal list of meetings in the `ModelManager` and the 
 `LogicManager` would save the current model whenever the execute function to the `meetinglist.json`. As such, there
 was no need of having to create additional classes to support the model or logic classes
-
-<img src="images/ModifiedModelClassDiagram.png" width="450" />
-
 
 ### [Implemented] Filter Meetings between Dates
 #### Implementation
