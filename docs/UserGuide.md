@@ -25,8 +25,8 @@ If this is the first time you are using this user guide, it is highly recommende
 * If you are unsure of how to use Rapportbook, the [command summary](#command-summary) table is a good starting point, additionally, there is a [command aliases](#command-aliases) table for abbreviated commands.
 * If you are a developer and want to help out, please take a look at the [developer guide](DeveloperGuide.html).
 
-Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
