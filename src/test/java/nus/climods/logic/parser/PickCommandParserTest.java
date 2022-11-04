@@ -6,7 +6,6 @@ import static nus.climods.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import org.junit.jupiter.api.Test;
 
 import nus.climods.logic.commands.PickCommand;
-import nus.climods.logic.parser.parameters.LessonTypeParameter;
 import nus.climods.logic.parser.parameters.ModuleCodeParameter;
 import nus.climods.model.module.LessonTypeEnum;
 
