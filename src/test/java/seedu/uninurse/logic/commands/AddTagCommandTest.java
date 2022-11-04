@@ -27,7 +27,7 @@ import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for {@code AddTagCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for AddTagCommand.
  */
 public class AddTagCommandTest {
     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
@@ -81,7 +81,7 @@ public class AddTagCommandTest {
         Tag tag = new Tag("high-risk");
         AddTagCommand addTagCommand = new AddTagCommand(INDEX_SECOND_PERSON, tag);
         assertCommandFailure(addTagCommand, model,
-                String.format(AddTagCommand.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
+                String.format(Messages.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
     }
 
     @Test
@@ -126,7 +126,7 @@ public class AddTagCommandTest {
         Tag tag = new Tag("high-risk");
         AddTagCommand addTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, tag);
         assertCommandFailure(addTagCommand, model,
-                String.format(AddTagCommand.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
+                String.format(Messages.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
     }
 
     @Test

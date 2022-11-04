@@ -29,7 +29,7 @@ import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteTagCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for DeleteTagCommand.
  */
 public class DeleteTagCommandTest {
     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());

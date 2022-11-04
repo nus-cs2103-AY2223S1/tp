@@ -15,4 +15,5 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists for this patient";
     public static final String MESSAGE_DUPLICATE_CONDITION = "This condition already exists in %1$s's condition list.";
+    public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in %1$s's tag list";
 }

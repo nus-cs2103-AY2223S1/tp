@@ -1,7 +1,6 @@
 package seedu.uninurse.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -14,22 +13,20 @@ import seedu.uninurse.logic.parser.exceptions.ParseException;
  */
 public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteTagCommand
+     * Parses the given arguments in the context of the DeleteTagCommand
      * and returns a DeleteTagCommand object for execution.
      *
+     * @param args The string of arguments given.
+     * @return DeleteTagCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteTagCommand parse(String args) throws ParseException {
-        requireNonNull(args);
+        requireAllNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
-        try {
-            List<Index> indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
-            return new DeleteTagCommand(indices.get(0), indices.get(1));
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE), pe);
-        }
+        List<Index> indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
+
+        return new DeleteTagCommand(indices.get(0), indices.get(1));
     }
 }

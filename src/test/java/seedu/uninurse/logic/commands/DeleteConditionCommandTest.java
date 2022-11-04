@@ -29,7 +29,7 @@ import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteConditionCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for DeleteConditionCommand.
  */
 public class DeleteConditionCommandTest {
     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());

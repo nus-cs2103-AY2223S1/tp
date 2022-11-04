@@ -32,7 +32,7 @@ import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for {@code EditTagCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for EditTagCommand.
  */
 public class EditTagCommandTest {
     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
@@ -139,7 +139,7 @@ public class EditTagCommandTest {
         EditTagCommand editTagCommand =
                 new EditTagCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, tag);
         assertCommandFailure(editTagCommand, model,
-                String.format(EditTagCommand.MESSAGE_EDIT_DUPLICATE_TAG, patientToEdit.getName()));
+                String.format(Messages.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
     }
 
     @Test

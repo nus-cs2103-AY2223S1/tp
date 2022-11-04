@@ -28,7 +28,7 @@ import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for {@code AddConditionCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for AddConditionCommand.
  */
 public class AddConditionCommandTest {
     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());

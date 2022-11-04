@@ -17,7 +17,7 @@ import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
 import seedu.uninurse.model.person.Patient;
 
 /**
- * Add a medical condition to an existing patient in the patient list.
+ * Adds a medical condition to an existing patient in the patient list.
  */
 public class AddConditionCommand extends AddGenericCommand {
     public static final String MESSAGE_USAGE = "Command: Add a medical condition to a patient.\n"
@@ -54,21 +54,20 @@ public class AddConditionCommand extends AddGenericCommand {
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
-        ConditionList updatedConditionList;
 
         try {
-            updatedConditionList = patientToEdit.getConditions().add(condition);
+            ConditionList updatedConditionList = patientToEdit.getConditions().add(condition);
+
+            Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
+
+            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            model.setPatientOfInterest(editedPatient);
+
+            return new CommandResult(String.format(MESSAGE_ADD_CONDITION_SUCCESS, editedPatient.getName(), condition),
+                    ADD_CONDITION_COMMAND_TYPE, patientListTracker);
         } catch (DuplicateConditionException dce) {
             throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
         }
-
-        Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
-
-        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
-        model.setPatientOfInterest(editedPatient);
-
-        return new CommandResult(String.format(MESSAGE_ADD_CONDITION_SUCCESS, editedPatient.getName(), condition),
-                ADD_CONDITION_COMMAND_TYPE, patientListTracker);
     }
 
     @Override
