@@ -60,11 +60,7 @@ public class PlanCommand extends Command {
 
         Item plannedItem;
 
-        try {
-            plannedItem = itinerary.planItem(itemIndex, dayNumber, startTime);
-        } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_INVALID_DAY_NUMBER);
-        }
+        plannedItem = itinerary.planItem(itemIndex, dayNumber, startTime);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, plannedItem.getDescription()));
     }

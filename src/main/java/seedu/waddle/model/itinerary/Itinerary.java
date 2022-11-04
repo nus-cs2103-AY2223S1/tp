@@ -215,14 +215,23 @@ public class Itinerary {
      * @throws CommandException When adding item to specific day leads to conflict in time.
      */
     public Item planItem(Index itemIndex, DayNumber dayNumber, LocalTime startTime) throws CommandException {
-        Item item = this.unscheduledItemList.get(itemIndex.getZeroBased());
+        Item item;
+        try {
+            item = this.unscheduledItemList.get(itemIndex.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        }
+
         if (this.budget.calculateLeftOverBudget() - item.getCost().getValue() < 0) {
             throw new CommandException(Messages.MESSAGE_OVER_BUDGET);
         }
         item.setStartTime(startTime);
-        Day day = this.days.get(dayNumber.dayNumber.getZeroBased());
+        Day day;
         try {
+            day = this.days.get(dayNumber.dayNumber.getZeroBased());
             day.addItem(item);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DAY_INDEX);
         } catch (CommandException e) {
             // if time conflict detected, reset the time of the item
             item.resetStartTime();
