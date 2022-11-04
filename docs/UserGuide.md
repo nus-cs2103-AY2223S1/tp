@@ -261,7 +261,7 @@ Changes the theme of BookFace.
 
 Select either the `Light` or `Dark` theme by clicking on `Theme` in the menu bar.
 
-### Exit BookFace: `exit`
+### Exit BookFace : `exit`
 
 Exit the BookFace program.
 
