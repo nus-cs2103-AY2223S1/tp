@@ -79,7 +79,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 The UI consists of a `MainWindow` that is made up of parts e.g. `OutputPanel`,`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 Additionally, the structure of `OutputPanel` is as shown below:
-![Structure of the OutputPanel Component](images/OutputPanelClassDiagram.PNG)
+![Structure of the OutputPanel Component](images/OutputPanelClassDiagram.png)
 
 `OutputPanel` is made up of parts e.g. `TruncatedTaskListPanel`, `ScheduleListPanel`, `UpdatedPersonListPanel`, `UndoCard` etc. Similar to `MainWindow`, all these components including the `OutputPanel` inherit from the abstract `UiPart` class.
 
