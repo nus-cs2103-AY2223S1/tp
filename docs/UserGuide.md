@@ -280,6 +280,7 @@ For all three formats:
 * Meeting fields matching at least one keyword will be returned (i.e. `OR` search). 
   e.g. `CS2100 CS2103` will return meetings with `CS2100 Project`, `CS2103 Project` and
   `Project` will also return meetings with  `CS2100 Project`, `CS2103 Project`
+* Keywords are split with a whitespace. e.g. `CS2100 Project` counts as **two** keywords
 
 Examples: 
 * `findmeeting /at UTown Com1`
