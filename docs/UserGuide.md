@@ -9,13 +9,13 @@ title: User Guide
 
 Welcome to the Rapportbook user guide!
 
+Rapportbook is a **desktop app for managing client information for your financial advising needs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
 </div>
 
 {:refdef: style="text-align: center;"}
 ![Mockup](images/Ui.png)
 {: refdef}
-
-Rapportbook is a **desktop app for managing client information for your financial advising needs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 #### Using this guide
 
