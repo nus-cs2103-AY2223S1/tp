@@ -99,10 +99,8 @@ delete the user that is currently displayed.
 Adds a book to the library.
 
 Format: `add book t/TITLE a/AUTHOR`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0).
-</div>
+* The title **must only contain alphanumerical characters and spaces**
+* The author **must only contain alphabetical characters and spaces**
 
 Examples:
 * `add book t/The Life of John a/Emily Dunce`
@@ -161,7 +159,7 @@ Format: `loan USER_INDEX BOOK_INDEX [DUE DATE]`
 * The indexes refer to the index number shown in the displayed user and book list respectively.
 * The indexes **must be a positive integer** 1, 2, 3, …​
 * The respective specified `INDEXES` **must be present in their lists**.
-* The books that are loaned out will appear at the top of the book list.
+* The books that are loaned out will appear at the top of the book list **upon restarting the application**.
 * If due date is not specified, a default due date of 14 days from today is set when the book is loaned out.
 * Due date formats such as `dd/MM/yyyy`, `yyyy-MM-dd` or even text such as `next sunday` or `tomorrow` would work. Only the
   first date entered would be set as the due date and subsequent dates entered would be ignored.
@@ -294,6 +292,9 @@ If your changes to the data file makes its format invalid, BookFace will discard
 
 **Q**: How do I clear the sample data on BookFace?<br>
 **A**: Simply use the `clear all` command.
+
+**Q**: Is it normal for the order of the books to change upon restarting the application?<br>
+**A**: Yes; it is a perfectly normal behaviour for the application **if there are loaned books in the book list**, as the intention is to show books that have been loaned as a priority in the list upon starting the app.
 
 --------------------------------------------------------------------------------------------------------------------
 
