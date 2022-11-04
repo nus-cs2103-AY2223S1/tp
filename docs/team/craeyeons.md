@@ -52,11 +52,5 @@ Given below are my contributions to the project.
   - Reported 13 bugs and left suggestions to the reviewed project in PE-D.
   ([link to PE-D](https://github.com/craeyeons/ped/issues))
 
-Note:
-1. I think it is worth mentioning that my low/periodical commit count is neither due to my working style nor a habit of making big commits. Rather, it is due to the nature of my job scope as a tester.
-   This is because testing requires the features to first be fleshed out before I can start working on it. To add, testing requires writing a lot of utility code,
-   and my approach to simplify the process is to work on it as a whole, so I get a better view of the subject that I am dealing with, and this often ends up in gigantic commits. I hope by looking at the small commits I make when working 
-   on documentation and implementing the remark-feature would serve as a proof. 
-
 Code reuse:
 1. Remark feature by [j-lum](https://github.com/se-edu/addressbook-level3/compare/tutorial-add-remark), from tutorial 2 of TP, week 6.
