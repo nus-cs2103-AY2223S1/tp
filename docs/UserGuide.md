@@ -64,9 +64,9 @@ Titles, Locations and Descriptions that are too long will be truncated. To view 
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-warning">
    
-**:information_source: Notes about the command format:**<br>
+**:warning: Notes about the command format:**<br>
 
 |`Component`|`Formatting Details`|
 |:-:|:--|
@@ -442,4 +442,9 @@ Travelr data are saved locally automatically after any command. There is no need
 * **Displayed trips list**: List of trips being displayed in the left panel of the UI
 * **GUI**: Stands for Graphical User Interface, which refers to the user interface that you will be interacting with.
 
-
+### Icons
+|:-:|:-:|
+|**Icon**|**Explanation**|
+|:information_source:|The segment will provide useful information for using the Applicaiton.|
+|:warning:|The segment will provide important notes about our app that you should know.|
+|:point_up:|The segment explains the uses of a feature.|
