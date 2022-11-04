@@ -59,5 +59,3 @@ Given below are my contributions to the project.
       - Added details for the Target User Profile, Value Proposition, and User Stories.
       - Added details for the Use Cases.
       - Added implementation details for the `Tag Types` feature. 
-
-
