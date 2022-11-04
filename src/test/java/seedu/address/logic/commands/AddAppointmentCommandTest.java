@@ -82,7 +82,7 @@ public class AddAppointmentCommandTest {
                 .withLocation(VALID_LOCATION_NUS).build());
         expectedModel.addPerson(expectedPerson);
         expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
-        expectedModel.updateFilteredPersonList(person -> person.isSamePerson(expectedPerson) );
+        expectedModel.updateFilteredPersonList(person -> person.isSamePerson(expectedPerson));
 
         // Create addAppointmentCommand
         Appointment appointmentToAdd = new AppointmentBuilder()

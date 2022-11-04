@@ -92,7 +92,7 @@ public class DeleteAppointmentCommandTest {
         Appointment deletedAppointment = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build();
-        expectedModel.updateFilteredPersonList(person -> person.isSamePerson(expectedPerson) );
+        expectedModel.updateFilteredPersonList(person -> person.isSamePerson(expectedPerson));
 
         DeleteAppointmentCommand deleteAppointmentCommand =
                 new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
