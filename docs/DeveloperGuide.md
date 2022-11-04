@@ -237,87 +237,6 @@ We do not control other websites, and we want the user to only view the user gui
 We also considered just displaying the link with a `Copy URL` button.  However, the user has to copy the link into
 their web browser, making the user experience not smooth.  
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedCliMods`. It extends `CliMods` with an undo/redo history, stored internally as an `CliModsStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedCliMods#commit()` — Saves the current module list state in its history.
-* `VersionedCliMods#undo()` — Restores the previous module list state from its history.
-* `VersionedCliMods#redo()` — Restores a previously undone module list state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitCliMods()`, `Model#undoCliMods()` and `Model#redoCliMods()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedCliMods` will be initialized with the initial module list state, and the `currentStatePointer` pointing to that single module list state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the module list. The `delete` command calls `Model#commitCliMods()`, causing the modified state of the module list after the `delete 5` command executes to be saved in the `CliModsStateList`, and the `currentStatePointer` is shifted to the newly inserted module list state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitCliMods()`, causing another modified module list state to be saved into the `CliModsStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCliMods()`, so the module list state will not be saved into the `CliModsStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCliMods()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous module list state, and restores the module list to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial CliMods state, then there are no previous CliMods states to restore. The `undo` command uses `Model#canUndoCliMods()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoCliMods()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the module list to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `CliModsStateList.size() - 1`, pointing to the latest module list state, then there are no undone CliMods states to restore. The `redo` command uses `Model#canRedoCliMods()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the module list, such as `list`, will usually not call `Model#commitCliMods()`, `Model#undoCliMods()` or `Model#redoCliMods()`. Thus, the `CliModsStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitCliMods()`. Since the `currentStatePointer` is not pointing at the end of the `CliModsStateList`, all module list states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire module list.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
@@ -477,7 +396,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
-3. For functions that allows regex commands, the user is expected to understand regex to take full advantage of these features.
 
 ### Glossary
 * **Student**: The person who uses the app
