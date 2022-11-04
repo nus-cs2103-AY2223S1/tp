@@ -28,9 +28,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_DESCRIPTION);
 
-        try {
-            Integer.parseInt(argMultimap.getPreamble());
-        } catch (NumberFormatException ne) {
+        if (argMultimap.getPreamble().trim().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
         }
 

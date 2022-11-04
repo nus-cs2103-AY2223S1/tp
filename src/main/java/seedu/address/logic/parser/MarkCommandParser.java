@@ -19,9 +19,7 @@ public class MarkCommandParser implements Parser<MarkCommand> {
      */
     public MarkCommand parse(String args) throws ParseException {
 
-        try {
-            Integer.parseInt(args.trim());
-        } catch (NumberFormatException ne) {
+        if (args.trim().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
         try {
