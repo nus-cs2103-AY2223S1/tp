@@ -263,7 +263,7 @@ _Adds a new eatery to NUSEatWhere's database. Eatery will be added to the end of
 current list <br>
 (i.e. if the current list pre-addition has 5 eateries, the newly added eatery will be of index 6)._
 
-**Format:** `add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAG]…​ [-h]`
+**Format:** `add -n NAME -l LOCATION -c CUISINE -p PRICE [-t TAG]…​ [-h]`
 
 **Arguments:** <br>
 `NAME`: name of the eatery to be added <br>
