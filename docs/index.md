@@ -6,7 +6,7 @@ title: Teacher's Pet
 [![CI Status](https://github.com/AY2223S1-CS2103T-T09-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T09-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T09-4/tp/branch/master/graph/badge.svg?token=U5H55TYQ7M)](https://codecov.io/gh/AY2223S1-CS2103T-T09-4/tp)
 
-<iframe width="1080" height="608"
+<iframe width="720" height="405"
 src="https://www.youtube.com/watch?v=Z4yEM05bJnc">
 </iframe>
 
