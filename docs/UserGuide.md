@@ -376,7 +376,8 @@ Copies the itinerary in a text format onto your device's clipboard so you can pa
 
 Format: `copy`
 
-[//]: # (TODO: include screenshot of how the generated text looks like)
+Here's an example of how the copied text would look like:
+![exportCopy](images/exportCopy.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -395,6 +396,9 @@ Exports the itinerary as a PDF file. The file can be found under the "Waddle" fo
 [//]: # (TODO: include screenshots of where to find it for windows and mac, maybe linux but idk how)
 
 Format: `pdf`
+
+Here's an example of how the generated PDF would look like:
+![exportPDF](images/exportPDF.png)
 
 ### Returning to main page : `home`
 
