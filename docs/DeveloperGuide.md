@@ -9,8 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* [NUSMods API](https://api.nusmods.com/v2/) 
-* [Open API](https://www.openapis.org/)
+* [NUSMods API](https://api.nusmods.com/v2/) for providing information on NUS modules
+* [Open API](https://www.openapis.org/) for generating boiler plate API classes
 
 --------------------------------------------------------------------------------------------------------------------
 
