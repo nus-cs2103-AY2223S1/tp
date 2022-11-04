@@ -248,21 +248,21 @@ This property<sup>[12](#glossary)</sup> can be identified in the GUI<sup>[4](#gl
   <tr>
     <th>Valid Examples</th>
     <td>
-     <code>Samuel West</code><br/>
-     <code>Jonathan Lee Wen Xin</code></br>
-     <code>Jack Robert the 3rd</code></br>
-     <code>3Lite M1k0ch1</code></br>
+     <code>Samuel West</code><br>
+     <code>Jonathan Lee Wen Xin</code><br>
+     <code>Jack Robert the 3rd</code><br>
+     <code>3Lite M1k0ch1</code><br>
      <code>Elizabeth Wong n11</code>
     </td>
   </tr>
   <tr>
     <th>Invalid Examples</th>
     <td>
-     <code>@*)^%</code> (Non-alphanumeric characters are not accepted)</br>
-     <code>Jack Robert the 3</code> (Number may not exist as a standalone word)</br>
-     <code>Elizabeth Wong 11</code> (Number may not exist as a standalone word)</br>
-     <code>Jonathan 25 Chin</code> (Number may not exist as a standalone word)</br>
-     <code>(25) Jonathan Chin</code> (Non-alphanumeric characters cannot be used adjacent to numbers)</br>
+     <code>@*)^%</code> (Non-alphanumeric characters are not accepted)<br>
+     <code>Jack Robert the 3</code> (Number may not exist as a standalone word)<br>
+     <code>Elizabeth Wong 11</code> (Number may not exist as a standalone word)<br>
+     <code>Jonathan 25 Chin</code> (Number may not exist as a standalone word)<br>
+     <code>(25) Jonathan Chin</code> (Non-alphanumeric characters cannot be used adjacent to numbers)<br>
     </td>
   </tr>
 </table>
