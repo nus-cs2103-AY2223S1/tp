@@ -73,7 +73,7 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
    1. If you have installed Java before, check that you have the right version, which is Java `11`.
       - If you are using Windows, open up command prompt and type `java -version` and enter.
       - If you are using Mac, open up terminal and type `java -version` and enter.
-   2. If you do not have Java `11`: - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/). - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).  
+   2. If you do not have Java `11`: - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/). - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
       <br />
 2. Download the latest Coydir v1.3.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
 
