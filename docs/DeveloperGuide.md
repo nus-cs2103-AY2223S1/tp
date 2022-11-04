@@ -19,7 +19,7 @@ MyInsuRec is a desktop app for financial advisors. It provides financial advisor
   [se-education.org](https://se-education.org).
   * Libraries used: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://junit.org/junit5/)
 
-## 1.3 Setting up, getting started
+### 1.3 Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -120,6 +120,8 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddClientCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 2.4 Model component
+
+#### 2.4.1 Overall structure
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="600" />
@@ -131,6 +133,19 @@ The `Model` component,
 * stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* `Client`, `Meeting` and `Product` have attributes here that are abstracted and portrayed in the following subsections.
+
+#### 2.4.2 Client
+
+<img src="images/ClientClassDiagram.png" width="600" />
+
+#### 2.4.3 Meeting
+
+<img src="images/MeetingClassDiagram.png" width="600" />
+
+#### 2.4.2 UniqueProductList
+
+<img src="images/ProductClassDiagram.png" width="90" />
 
 ### 2.5 Storage component
 
