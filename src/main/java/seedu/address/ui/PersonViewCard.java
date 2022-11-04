@@ -43,8 +43,6 @@ public class PersonViewCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label job;
-    // @FXML
-    // private Label id;
     @FXML
     private Label phone;
     @FXML
