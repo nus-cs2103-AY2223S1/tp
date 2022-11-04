@@ -26,7 +26,7 @@ public class EditTagCommand extends EditGenericCommand {
             + PREFIX_OPTION_TAG_INDEX + " TAG_INDEX " + PREFIX_TAG + "TAG\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_OPTION_TAG_INDEX
             + " 2 " + PREFIX_TAG + "fall-risk";
-    public static final String MESSAGE_EDIT_TAG_SUCCESS = "Edited tag %1$d of %2$s:\n"
+    public static final String MESSAGE_SUCCESS = "Edited tag %1$d of %2$s:\n"
             + "Before: %3$s\n"
             + "After: %4$s";
     public static final CommandType EDIT_TAG_COMMAND_TYPE = CommandType.EDIT_PATIENT;
@@ -76,7 +76,7 @@ public class EditTagCommand extends EditGenericCommand {
             PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
-            return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagIndex.getOneBased(),
+            return new CommandResult(String.format(MESSAGE_SUCCESS, tagIndex.getOneBased(),
                     editedPatient.getName(), initialTag, editedTag), EDIT_TAG_COMMAND_TYPE, patientListTracker);
         } catch (DuplicateTagException dte) {
             throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));

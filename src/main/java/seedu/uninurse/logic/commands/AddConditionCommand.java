@@ -25,7 +25,7 @@ public class AddConditionCommand extends AddGenericCommand {
             + PREFIX_CONDITION + "CONDITION\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 "
             + PREFIX_CONDITION + "Hypertension";
-    public static final String MESSAGE_ADD_CONDITION_SUCCESS = "New condition added to %1$s: %2$s";
+    public static final String MESSAGE_SUCCESS = "New condition added to %1$s: %2$s";
     public static final CommandType ADD_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index index;
@@ -63,7 +63,7 @@ public class AddConditionCommand extends AddGenericCommand {
             PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
-            return new CommandResult(String.format(MESSAGE_ADD_CONDITION_SUCCESS, editedPatient.getName(), condition),
+            return new CommandResult(String.format(MESSAGE_SUCCESS, editedPatient.getName(), condition),
                     ADD_CONDITION_COMMAND_TYPE, patientListTracker);
         } catch (DuplicateConditionException dce) {
             throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));

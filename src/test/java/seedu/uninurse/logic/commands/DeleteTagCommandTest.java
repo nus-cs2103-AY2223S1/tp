@@ -7,7 +7,6 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.logic.commands.DeleteTagCommand.DELETE_TAG_COMMAND_TYPE;
-import static seedu.uninurse.logic.commands.DeleteTagCommand.MESSAGE_DELETE_TAG_SUCCESS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -63,8 +62,8 @@ public class DeleteTagCommandTest {
         DeleteTagCommand deleteTagCommand =
                 new DeleteTagCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_TAG_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
-                editedPatient.getName(), deletedTag);
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS,
+                INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName(), deletedTag);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToDeleteTag, editedPatient);
@@ -95,7 +94,7 @@ public class DeleteTagCommandTest {
         DeleteTagCommand deleteTagCommand =
                 new DeleteTagCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_TAG_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName().toString(), deletedTag);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());

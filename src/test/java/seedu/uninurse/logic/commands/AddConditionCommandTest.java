@@ -59,7 +59,7 @@ public class AddConditionCommandTest {
 
         AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_FIRST_PERSON, addedCondition);
 
-        String expectedMessage = String.format(AddConditionCommand.MESSAGE_ADD_CONDITION_SUCCESS,
+        String expectedMessage = String.format(AddConditionCommand.MESSAGE_SUCCESS,
                 editedPatient.getName(), addedCondition);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
@@ -88,7 +88,7 @@ public class AddConditionCommandTest {
 
         AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_FIRST_PERSON, addedCondition);
 
-        String expectedMessage = String.format(AddConditionCommand.MESSAGE_ADD_CONDITION_SUCCESS,
+        String expectedMessage = String.format(AddConditionCommand.MESSAGE_SUCCESS,
                 editedPatient.getName(), addedCondition);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());

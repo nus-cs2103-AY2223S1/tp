@@ -57,8 +57,7 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, addedTag);
 
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_ADD_TAG_SUCCESS,
-                editedPatient.getName(), addedTag);
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, editedPatient.getName(), addedTag);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddTag, editedPatient);
@@ -95,8 +94,7 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, addedTag);
 
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_ADD_TAG_SUCCESS,
-                editedPatient.getName(), addedTag);
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, editedPatient.getName(), addedTag);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddTag, editedPatient);

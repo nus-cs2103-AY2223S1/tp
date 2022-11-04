@@ -7,7 +7,6 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.logic.commands.EditTagCommand.EDIT_TAG_COMMAND_TYPE;
-import static seedu.uninurse.logic.commands.EditTagCommand.MESSAGE_EDIT_TAG_SUCCESS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -75,7 +74,7 @@ public class EditTagCommandTest {
         EditTagCommand editTagCommand =
                 new EditTagCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE, TAG_ELDERLY);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_TAG_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+        String expectedMessage = String.format(EditTagCommand.MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName(), initialTag, TAG_ELDERLY);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
@@ -106,7 +105,7 @@ public class EditTagCommandTest {
         EditTagCommand editTagCommand =
                 new EditTagCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, TAG_ELDERLY);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_TAG_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+        String expectedMessage = String.format(EditTagCommand.MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName(), initialTag, TAG_ELDERLY);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());

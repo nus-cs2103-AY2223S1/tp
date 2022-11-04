@@ -7,7 +7,6 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.logic.commands.EditConditionCommand.EDIT_CONDITION_COMMAND_TYPE;
-import static seedu.uninurse.logic.commands.EditConditionCommand.MESSAGE_EDIT_CONDITION_SUCCESS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalConditions.CONDITION_DIABETES;
 import static seedu.uninurse.testutil.TypicalConditions.CONDITION_OSTEOPOROSIS;
@@ -75,8 +74,8 @@ public class EditConditionCommandTest {
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE, CONDITION_DIABETES);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_CONDITION_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
-                editedPatient.getName(), initialCondition, CONDITION_DIABETES);
+        String expectedMessage = String.format(EditConditionCommand.MESSAGE_SUCCESS,
+                INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName(), initialCondition, CONDITION_DIABETES);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToEdit, editedPatient);
@@ -106,8 +105,8 @@ public class EditConditionCommandTest {
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, CONDITION_DIABETES);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_CONDITION_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
-                editedPatient.getName(), initialCondition, CONDITION_DIABETES);
+        String expectedMessage = String.format(EditConditionCommand.MESSAGE_SUCCESS,
+                INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName(), initialCondition, CONDITION_DIABETES);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
 
