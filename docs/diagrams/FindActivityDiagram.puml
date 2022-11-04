@@ -6,9 +6,9 @@ skinparam activity {
     BorderThickness 1.5
 }
 start
-:User executes find command with keywords;
-:Find guests whose Name matches any keyword;
-:Display the guests that match;
+:User executes find command with search terms;
+:Find guest(s) whose fields match any search term;
+:Set the guest(s) to the model;
 stop
 
 @enduml

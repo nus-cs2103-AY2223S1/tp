@@ -212,6 +212,10 @@ from their respective prefixes.
 The following activity diagram summarizes what happens when a user enters an `add` command.
 
 ![AddActivityDiagram](images/AddActivityDiagram.png)
+* When the user executes an `add` command, the user will fill in the necessary details of the guest.
+* If the user specifies a `Request` (i.e., the user entered rq/ in the command line), the guest will be created with a `Request`.
+* Else, the details of the guest created will not have a `Request`.
+* Finally, the guest is added to the model.
 
 #### Design Considerations:
 
@@ -250,7 +254,10 @@ we chose to make `Request` optional and default it as blank should it not be pro
 The following activity diagrams summarizes what happens when a user enters a `bill` command.
 
 ![BillActivityDiagram](images/BillActivityDiagram.png)
-
+* When the user executes the `bill` command, GuestBook will find the guest to be billed based on the index passed to the command.
+* A new bill will be created with the updated value based on the value passed to the `bill` command.
+* A new guest will be created with the updated bill, while the other details of the guest will remain unchanged.
+* Finally, the new guest is set to the model.
 
 ##### Design Considerations:
 
@@ -287,6 +294,9 @@ This feature was implemented so that it is easy for the user to change a guest's
 The following activity diagram summarizes what happens when a user enters an `edit` command.
 
 ![EditActivityDiagram](images/EditActivityDiagram.png)
+* When the user executes the `edit` command, GuestBook will find the guest to be edited based on the index passed to the command.
+* A new guest will be created with the updated values based on the values passed to the `edit` command. The other details of the guests will remain unchanged.
+* Finally, the new guest is set to the model.
 
 #### Design Considerations:
 
@@ -306,6 +316,9 @@ The following activity diagram summarizes what happens when a user enters an `ed
 The following activity diagram summarises what happens when a user enters a `markroomsunclean` command.
 
 ![MarkRoomsUncleanActivityDiagram](images/MarkRoomsUncleanActivityDiagram.png)
+* When the user execues the `markroomsunclean` command, GuestBook will retrieve the list of all the guests that requires editing of the isRoomClean status.
+* A new list of guests will be created with isRoomClean fields set to "no". The other details of the guests will remain unchanged.
+* Finally, the new list of guests is set to the model.
 
 #### Design Considerations:
 **Aspect: The scope at which the command changes all guests' isRoomClean statuses**
@@ -340,6 +353,8 @@ rather insignificant as once the user gets acquainted with the command, reading 
 The following activity diagram summarizes what happens when a user enters a `find` command.
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
+* When the user executes the `find` command, GuestBook will find guests matching any of the search terms passed by the user in the `find` command.
+* Once the finding process is complete, the guests that match any of the search terms will be set to the model.
 
 #### Design Considerations:
 
