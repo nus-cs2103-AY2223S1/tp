@@ -34,8 +34,11 @@ No time to waste, let's start _Working_! :muscle:
 
 4. Using your command terminal:
    1. Navigate to the folder where you placed your WorkBook at.
-   2. Fire it up by running: `java -jar WorkBook.jar`. <br>The GUI, as shown below, should appear within seconds.<br>
-   ![Ui](images/AnnotatedUi.png)
+   2. Fire it up by running: `java -jar WorkBook.jar`. <br>The GUI, as shown below in one of two the layouts, should appear within seconds.<br>
+
+|       Wide Layout         |       Narrow Layout       | 
+|:-------------------------:|:-------------------------:|
+|![wide layout](images/Ui.png) |![narrow layout](images/UiNarrow.png) |
 
 5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute it.
 6. Before diving right into using WorkBook, familiarise yourself with the [things to note](#4-things-to-note) to not hinder your tracking process!
@@ -122,7 +125,7 @@ No time to waste, let's start _Working_! :muscle:
 
 |       Narrow Layout       |  
 |:-------------------------:|
-|![narrow layout](images/UiNarrow.png) |
+|![narrow layout](images/AnnotatedUiNarrow.png) |
 
 
 |     Resizing Example      |
