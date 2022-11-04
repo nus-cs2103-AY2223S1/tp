@@ -9,44 +9,35 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
+**Refactoring**:
+* **Refactored Feature**: Refactored `tag` model ([PR#140](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/140))
+  * What it does: encapsulates the idea of `tag` so that users can create and add `tag` to `item`.
+  * Justification: This feature allows `item` to be classified into different categories. The refactoring allows for creating of any tags as well as updating of the restrictions we would like to place on names for `tag`.
+  * Highlights: This refactoring allows users to create any `tag` they want. Through the use of regex, it also updates the restrictions we would like to place on names for `tag`, such as character limit or disallowed characters.
 
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **Refactored Feature**: Added storage for `tag` model ([PR#223](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/223))
+  * What it does: Adds storage functionality for the refactored `tag` model.
+  * Justification: This feature is needed as we needed to store a separate list for `tag` besides the `item` list.
 
-* **Code contributed**: [RepoSense link]()
+**New feature**:
+* **New Feature**: Added `renametag` command ([PR#179](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/179))
+  * What it does: Allows for renaming of existing `tag`.
+  * Justification: Users might make errors in creating `tag` so we want to allow them to rename `tag`.
 
-* **Project management**:
 
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+* **New Feature**: Added `deletetag` command ([PR#199](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/199))
+  * What it does: Allows for deletion of existing `tag`.
+  * Justification: To allow users to delete `tag` no longer used.
+
+
+* **New Feature**: Added `filtertag` command ([PR#302](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/302), [PR#353](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/353))
+  * What it does: Allows for filtering for `item` by `tag`.
+  * Justification: This feature is the core functionality added by `tag`. We can classify `item` by `tag` so naturally we would like to filter by `tag`.
+  * Credits: Thanks to `eugenetanwl3881` for catching a bug with the Ui related to `filtertag`.
+
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=bryanljx&tabRepo=AY2223S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Enhancements to existing features**:
-
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
-* **Documentation**:
-
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
-* **Community**:
-
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * Wrote tests for existing features
