@@ -273,11 +273,12 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 
 * Tasks that are past their deadline can still be added since overdue tasks might have to be completed still.
 
-The following scenarios should not happen for your command to run successfully:
+<div markdown="span" class="alert alert-warning">:exclamation: The following scenarios should not happen for your command to run successfully:</div>
+
 - If the description of the task is empty.
 - If the deadline of the task is empty.
 - The deadline of the task is not in dd-mm-yyyy format.
-
+   
 Example:
 
 * `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
