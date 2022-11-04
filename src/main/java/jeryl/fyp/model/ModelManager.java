@@ -243,6 +243,11 @@ public class ModelManager implements Model {
         uncompletedStudents.setPredicate(predicate);
     }
 
+     @Override
+    public DeadlineList listDeadlineUnderStudent(Student student) {
+        return fypManager.getDeadlineList(student);
+    }
+    
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
