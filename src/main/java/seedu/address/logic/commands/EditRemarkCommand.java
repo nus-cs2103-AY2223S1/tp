@@ -12,6 +12,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.NameEqualsKeywordPredicate;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.remark.UniqueRemarkList;
+import seedu.address.model.remark.exceptions.DuplicateRemarkException;
 
 
 /**
@@ -27,6 +28,7 @@ public class EditRemarkCommand extends EditCommand {
     public static final String MESSAGE_REMARK_INVALID = "Remark cannot be created. Enter a valid Remark details:\n"
             + "INDEX "
             + "REMARK";
+    public static final String MESSAGE_DUPLICATE_REMARK = "This remark has already been created!\n";
 
     private final Index index;
     private final Remark editedRemark;
@@ -60,7 +62,12 @@ public class EditRemarkCommand extends EditCommand {
         }
 
         Remark remarkToEdit = remarkList.getRemark(index.getZeroBased());
-        remarkList.replaceRemark(remarkToEdit, editedRemark);
+
+        try {
+            remarkList.replaceRemark(remarkToEdit, editedRemark);
+        } catch (DuplicateRemarkException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_REMARK);
+        }
 
         model.updateFilteredClientList(new NameEqualsKeywordPredicate(currentClient));
         return new CommandResult(String.format(MESSAGE_EDIT_TRANSACTION_SUCCESS, editedRemark));

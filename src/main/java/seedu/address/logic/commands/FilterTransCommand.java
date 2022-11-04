@@ -16,7 +16,8 @@ public class FilterTransCommand extends Command {
             + "Parameters: TYPE (Must be either 'buy' or 'sell')\n"
             + "Example: " + COMMAND_WORD + " buy";
 
-    public static final String MESSAGE_SUCCESS = "Filtered all %1$s transactions from all clients.";
+    public static final String MESSAGE_SUCCESS = "All %1$s transactions are filtered in the transaction panel.\n"
+            + "All clients are listed in the client panel.";
 
     private final boolean isBuy;
 

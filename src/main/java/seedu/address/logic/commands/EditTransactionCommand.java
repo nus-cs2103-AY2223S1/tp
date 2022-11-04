@@ -30,9 +30,8 @@ public class EditTransactionCommand extends EditCommand {
     public static final String MESSAGE_EDIT_TRANSACTION_SUCCESS = "Edited Transaction: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one Transaction field to edit must be provided.\n"
             + "E.g. [q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]";
-    public static final String MESSAGE_INVALID_USAGE = "Edit of transaction can only happen when transactions "
-            + "are visible in the application!\n"
-            + "Use 'view' command to view a specific client before applying this command\n";
+    public static final String MESSAGE_INVALID_USAGE =
+            "Use 'view' command to view a specific client before applying this command\n";
 
     private final Index index;
     private final EditTransactionDescriptor editTransactionDescriptor;
@@ -60,7 +59,7 @@ public class EditTransactionCommand extends EditCommand {
         TransactionLog transactionLog = currentClient.getTransactions();
 
         if (index.getZeroBased() >= transactionLog.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
         }
 
         Transaction transactionToEdit = transactionLog.getTransaction(index.getZeroBased());
