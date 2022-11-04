@@ -1,8 +1,8 @@
 package seedu.address.logic.parser.property;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
 import org.junit.jupiter.api.Test;
@@ -28,15 +28,11 @@ public class DeletePropertyCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         // alphabetical input
-        assertParseFailure(parser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePropertyCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", MESSAGE_INVALID_INDEX);
 
         // 0 is not a valid input
-        assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeletePropertyCommand.MESSAGE_USAGE));
-
+        assertParseFailure(parser, "0", MESSAGE_INVALID_INDEX);
         // out of range input
-        assertParseFailure(parser, "99999999999999999999999999999999999999",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePropertyCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "99999999999999999999999999999999999999", MESSAGE_INVALID_INDEX);
     }
 }

@@ -25,14 +25,14 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="propertyName" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="propertyName" text="\$first" styleClass="cell_big_label" wrapText="true"/>
       </HBox>
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-      <Label fx:id="price" styleClass="cell_small_label" text="\$price" />
-      <Label fx:id="ownerName" styleClass="cell_small_label" text="\$ownerName" />
-      <Label fx:id="ownerPhone" styleClass="cell_small_label" text="\$ownerPhone" />
-      <Label fx:id="characteristics" styleClass="cell_small_label" text="\$characteristics" />
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true"/>
+      <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true"/>
+      <Label fx:id="price" styleClass="cell_small_label" text="\$price" wrapText="true"/>
+      <Label fx:id="ownerName" styleClass="cell_small_label" text="\$ownerName" wrapText="true"/>
+      <Label fx:id="ownerPhone" styleClass="cell_small_label" text="\$ownerPhone" wrapText="true"/>
+      <Label fx:id="characteristics" styleClass="cell_small_label" text="\$characteristics" wrapText="true"/>
     </VBox>
   </GridPane>
 </HBox>
