@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/dg/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `AppointmentListPanel`, `BillListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -118,7 +118,7 @@ How the parsing works:
 
 #### Model
 
-<img src="images/dg/ModelClassDiagram.png" width="450" />
+<img src="images/dg/ModelClassDiagram.png" width="600" />
 
 The `Model` component,
 
@@ -339,40 +339,37 @@ Alternatives:
 
 #### Current Implementation
 
-The find mechanism makes use of a predicate to filter the list of patients through `updateFilteredPatientList` method in the `ModelManager` class.
-The `FindCommandParser` gets the user input to set it as the predicate. The user can find all fields of patients, appointments and bills.
+The `FindPatientCommand`, `FindAppointmentCommand` and `FindBillCommand` make use of predicates to filter the list of patients, appointments and bills respectively.
+Each command's parser parses the field prefixes and filter inputs keyed in by the user to create the command with Optional predicates for each field passed in as parameters.
+The command then creates a combined predicate and upon execution, updates the filtered list of patients, appointments or bills in the model by setting the new predicate.
 
-Given below is an example usage scenario and how the find mechanism behaves at each step.
+Given below is an example usage scenario for __FindPatientCommand__ and how the find mechanism behaves at each step.
 
-Step 1. The user launches the application. All patients, appointments and bills are shown in different sections
-of the application as indexed lists.
 
-Step 2. The user executes `find n/John` command to find all patients with the name "John".
-The `find` command calls `Model#updateFilteredPatientList(predicate)` to update the list of patients in the application.
+Step 1. The user launches the application. The `filteredPatients` list is initialized with an "always true" predicate for all the patient fields and all patients are shown to the user as an indexed list on the patient list panel.
 
-Step 3. The application displays the list of patients with the name "John" on the patient list panel.
+Step 2. The user executes the `findpatient n/John` or `fp n/John` command to find all patients with the name field containing "John". 
+The `FindPatientCommand` calls `Model#updateFilteredPatientList(predicate)` to set the predicate of the `filteredPatients` list to the new predicate created by the command. 
+The application displays the list of patients with names containing "John" on the patient list panel.
+
+The following sequence diagram shows how the `FindPatientCommand` works:
+
+![FindPatientCommandSequenceDiagram](images/dg/FindPatientCommandSequenceDiagram.png)
 
 The find feature is now separated for the patients, appointments and bills sections.
 
 Design considerations:
-1. Length of command word
-2. Whether to use a prefix for the search term
-3. Number of keywords used for the search term
+1. Usage of command word
+2. Usage of prefixes for each field
+3. Usage of Optional predicates
 
 Alternatives:
-
-1. Use a shorter command word (e.g. find instead of findpatient)
-    - Pros: Easy to type
-    - Cons: May be confused with the find command for appointments and bills
-    - Cons: May be confused with the find command for patients
-2. Use a prefix for the search term (e.g. find n/John)
-    - Pros: Easy to type
-    - Pros: Easy to remember
-    - Cons: May be confused with the find command for appointments and bills
-3. Combine find feature for patients, appointments and bills into one command
-    - Pros: Easy to type
-    - Pros: Easy to remember
-    - Cons: May be confusing to the user
+1. Use `find` as the command word for patients, appointments and bills
+    - Pros: Easy to remember and type the command word
+    - Cons: Too many prefixes to type in one command if we want to search by multiple fields, which can make the command very long
+2. Create a new predicate class for each field instead of using Optional predicates
+    - Pros: Predicates are more clearly separated and defined 
+    - Cons: More classes to maintain
 
 ###Delete Feature
 
@@ -397,21 +394,21 @@ related appointments.
 
 #### Current Implementation
 
-The select commands simulates a click on the 'PatientCard' or 'AppointmentCard' in the UI.
+The select commands simulates a click on the `PatientCard` or `AppointmentCard` in the UI.
 
-The select methods are separated for patients and appointments, with command word 'selectpatient'
-and 'selectappointment' respectively.
+The select methods are separated for patients and appointments, with command word `selectpatient`
+and `selectappointment` respectively.
 
 The select commands make use of the index of a patient or an appointment in the 'FilteredList's
 to identify whose appointments and bills to show.
 
-The 'SelectPatientCommandParser' and 'SelectAppointmentCommandParser' convert
+The `SelectPatientCommandParser` and `SelectAppointmentCommandParser` convert
 input String containing target index to the SelectCommand objects.
 
-On execution, the SelectPatientCommand will invoke the selectPatient() and selectAppointment() in the Model to
-update the FilteredAppointmentList and FilteredBillList to contain selected patient's information only.
+On execution, the SelectPatientCommand will invoke the `Model#selectPatient()` and `Model#selectAppointment()` in the Model to
+update the `FilteredAppointmentList` and `FilteredBillList` to include selected patient's information only.
 
-Given below is an example usage scenario and how the find mechanism behaves at each step.
+Given below is an example usage scenario and how the mechanism behaves at each step.
 
 Step 1. The user executes `selectpatient 1` command to show all appointments and bills
 tied to the first listed patient.
@@ -432,7 +429,31 @@ Alternatives:
     - Pros: Easy to type
     - Cons: Easier to type the wrong short-form command as they differ by 1 letter
 
+### Set Payment Status Feature
 
+#### Current Implementation
+
+The `SetPaidCommand` marks the payment status of a bill as paid. The `SetPaidCommandParser` parses the bill index input of the user
+and creates a `SetPaidCommand` object with the index passed in as a parameter. The `SetPaidCommand` then calls `Model#setBillAsPaid` to mark the bill as paid. The patient bill panel now shows that the checkbox for the bill is ticked, indicating that the bill is paid.
+
+Given below is an example usage scenario and how the `SetPaidCommand` behaves at each step.
+
+Step 1. The user launches the application and all patients, appointments and bills are shown on different panels as indexed lists.
+
+Step 2. The user executes the `setpaid 1` command to mark the first bill on the bill panel as paid. The `SetPaidCommand` calls `Model#setBillAsPaid`, which marks the bill in the `HealthContact` object as paid. The application displays the bill panel with the first bill's payment status checkbox ticked.
+
+The following sequence diagram shows how the `SetPaidCommand` works:
+![SetPaidCommandSequenceDiagram](images/dg/SetPaidCommandSequenceDiagram.png)
+
+The `SetUnpaidCommand` works similarly to the `SetPaidCommand`, just that it marks the payment status of a bill as unpaid.
+
+Design considerations:
+1. Whether to combine `SetPaidCommand` and `SetUnpaidCommand` into one command or split them
+
+Alternatives:
+1. Combine `SetPaidCommand` and `SetUnpaidCommand` into one command
+    - Pros: Shorter command word, eg. `set`
+    - Cons: Use a prefix to indicate user's intention to set bill as paid or unpaid
 
 ### Sort Feature
 
@@ -454,6 +475,22 @@ The sort feature is now separated for the patients, appointments and bills secti
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+
+### Command Shortcut Feature
+
+The commands in HealthContact make use of `CommandWord` class to allow alternative command words to a command.
+Each command is allowed to have one main command word and any number of alternative command words to get triggered.
+The alternative command words are used to provide shorter command words for convenience in typing long commands.
+
+Given below are examples of usage of the command shortcut:
+* `aa` is equivalent to `addappointment`
+* `dp` is equivalent to `deletepatient`
+* `ls` is equivalent to `list`
+
+Every command stores its command words using the class `CommandWord`.
+
+The `HealthContactParser` invokes the `CommandWord#match(String)` to check if the input String is one of the options of
+the command.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -614,12 +651,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given name is invalid.
 
     * 3a1. HealthContact shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The appointment does not exist.
-
-    * 3b1. HealthContact shows an error message.
 
       Use case resumes at step 2.
     
@@ -887,7 +918,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 patients, appointments and bills without a noticeable sluggishness in performance for typical usage.
+3. Notes on project scope: The application does not execute any real-world tasks such as calling the patients for appointments or accepting payment from patients.
+4. The system should respond within 2 seconds.
+5. A user who has an English-text typing speed that is above average should be able to execute all of the commands faster than using a mouse to do so.
+6. The application should work without internet connection.
 
 ### Glossary
 
@@ -946,3 +981,8 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+-----------------------------------------------------------------------------------------------------------------
+
+## Appendix: Effort
+
