@@ -74,10 +74,10 @@ In the user guide, you might come across some terms you might not understand. Th
 
 5. Here is a brief description of each part of the GUI.
 
-  1. Your list of clients. This will update when you make changes to your list of client information, or filter based on clients' names or tags.
-  2. Home screen. This home screen will be changed if you view the details of a client, or display all your message templates with `message list`.
-  3. Command output. Any command that you executed will have feedback displayed in here.
-  4. Command input field. This is where you type your commands.
+  * 1: Your list of clients. This will update when you make changes to your list of client information, or filter based on clients' names or tags.
+  * 2: Home screen. This home screen will be changed if you view the details of a client, or display all your message templates with `message list`.
+  * 3: Command output. Any command that you executed will have feedback displayed in here.
+  * 4: Command input field. This is where you type your commands.
 
 6. Refer to the [Features](#features) below for details of each command.
 
