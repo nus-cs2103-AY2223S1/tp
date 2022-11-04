@@ -10,11 +10,11 @@ title: User Guide
 
 ## 1. Introduction
 
-*MyInsuRec* is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients, meetings and products details, then look no further! *MyInsuRec* can boost your productivity with features to quickly look up client and meetings details. Beyond that, *MyInsuRec* also has features to help you improve your relationships with clients.
+_MyInsuRec_ is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients, meetings and products details, then look no further! _MyInsuRec_ can **boost your productivity** with features to quickly look up client and meetings details. Beyond that, _MyInsuRec_ helps you **build relations and stay connected with your clients**, through features such as getting a list of your clients' upcoming birthdays.
 
-*MyInsuRec* is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *MyInsuRec* can get your client, meeting and product management tasks done faster than traditional GUI apps!
+_MyInsuRec_ prioritizes user-friendliness and user experience. As such, interactions with _MyInsuRec_ happens through typing, without ever needing to touch your mouse!
 
-*MyInsuRec* is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the [installation guide](#5-installation-guide). This user guide can also serve as a reference for experienced users, with a convenient [command summary](#9-command-summary).
+_MyInsuRec_ is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the [installation guide](#5-installation-guide). This user guide can also serve as a reference for experienced users, with a convenient [command summary](#9-command-summary).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -28,23 +28,23 @@ This guide smooths the learning curve and helps you learn how to use _MyInsuRec_
 
 Before we go on further, look out for these symbols in the User Guide as they provide some important messages you might want to know!
 
-| Symbol               | Meaning                                                                 |
-|----------------------|-------------------------------------------------------------------------|
-| `command`            | Indicates some command or parameter that can be entered into MyInsuRec. |
-| :information_source: | Additional information.                                                 |
-| :exclamation:        | Crucial information needed for proper use of MyInsuRec.                 |
-| :bulb:               | Tips and tricks.                                                        |
+| Symbol               | Background color | Meaning                                                                                               |
+|----------------------|------------------|-------------------------------------------------------------------------------------------------------|
+| `command`            | -                | Indicates some command or parameter that can be entered into MyInsuRec.                               |
+| :information_source: | Blue             | Additional information. This symbol is followed by a label 'Note'.                                    |
+| :exclamation:        | Yellow           | Crucial information needed for proper use of MyInsuRec. This symbol is followed by a label 'Caution'. |
+| :bulb:               | Green            | Tips and tricks. This symbol is followed by a label 'Tips and tricks'.                                |
 
 <div markdown="span" class="alert alert-info">**:information_source: Note:**
 If you have **not installed** _MyInsuRec_, you can follow the [installation guide](#5-installation-guide) here!
 </div>
 
 After you have installed _MyInsuRec_, you can
-1. Familiarize yourself with our [terminologies](#3-terminologies) that are used throughout this User Guide.
+1. Familiarize yourself with _MyInsuRec_ through the [overview](#3-overview), which introduces terminologies and ideas that are used throughout this User Guide.
 2. Get to know the [layout of the interface](#4-user-interface) you will be interacting with.
-3. Follow this [step-by-step tutorial](#6-quick-start) to learn the basic features of _MyInsuRec_.
+3. Follow this [step-by-step tutorial](#6-tutorial) to learn the basic features of _MyInsuRec_.
 4. Check out other advanced features under [features](#7-features) once you got the hang of the basic features.
-5. Refer to our [glossary](#11-glossary) when you come across a unfamiliar term used.
+5. Refer to our [glossary](#11-glossary) when you come across an unfamiliar term used.
 
 <div markdown="span" class="alert alert-info">**:information_source: Note:**
 For **experienced users**, you can look at the [Command Summary](#9-command-summary) for a summarized table of all the commands available.
@@ -58,7 +58,7 @@ We hope that this guide is helpful in smoothing out the learning curve for you!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Terminologies
+## 3. Overview
 
 The following subsections explains some terminology and main features of *MyInsuRec*:
 
@@ -81,7 +81,9 @@ Beyond individual clients, you can also:
 
 ### 3.2 Meetings
 
-*MyInsuRec* eases a financial advisor's mental load by helping them keep track of any upcoming meetings with clients. You can do meeting-specific tasks such as:
+*MyInsuRec* eases a financial advisor's mental load by helping them keep track of any upcoming meetings with clients.
+
+You can do meeting-specific tasks such as:
 
 * **add** a meeting to a client in *MyInsuRec*.
 * **view** a meeting in greater details.
@@ -112,9 +114,19 @@ Beyond individual products, you can also:
 
 ## 4. User Interface
 
+The following subsections introduces the layout of _MyInsuRec_'s user interface.
+
+<div markdown="span" class="alert alert-info">**:information_source: Note:**
+This section is placed earlier to give you a first look at our product. As such, some details of the interface will likely make more sense after you get more familiarized with _MyInsuRec_! You can refer back to this section once you have visited some of _MyInsuRec_'s features to gain a deeper understanding of the layout.
+</div>
+
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+After executing a command specific to a list, the UI will automatically switch to that view. For example, executing `addProduct` will cause the UI to switch to Product's view. Executing `viewClient` will cause the UI to switch to Detailed Client's view.
+</div>
+
 ### 4.1 Client List
 
-This is the view after executing the `listClient` command.
+This is the view after executing the `listClient` command. **By default, this view is shown right after launching _MyInsuRec_.**
 
 ![listClientWithDescription](images/ui-description/listClientWithDescription.png)
 
@@ -177,7 +189,7 @@ Ta-da! *MyInsuRec* is now installed on your system.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Quick Start
+## 6. Tutorial
 
 ### 6.1 Basic features
 
@@ -368,6 +380,9 @@ Examples:
 * View client with an `INDEX` of 1
   * `viewClient i/1`
 
+Screenshot:
+![ViewClient](images/features/ViewClient.png)
+
 #### 7.1.4 Delete client: `delClient`
 
 Delete the specified client from _MyInsuRec_.
@@ -438,6 +453,9 @@ Suppose MyInsuRec contains only one client 'Alex':
 * Add a meeting with Alex on 28-Sep-2022 from 2PM to 3PM
   * `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal`
 
+Screenshot:
+![AddMeeting](images/features/AddMeeting.png)
+
 <div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
 MyInsuRec can help you detect conflicting meeting times! For example, attempting to add a meeting from 1330 to 1430 when you already have one scheduled for 1300 to 1400 will display an error message.
 </div>
@@ -458,7 +476,6 @@ Format: `listMeeting [d/DATE]`
 
 Use case:
 1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
-2. Organize all your meetings in a single place, so you don't have to worry about missing a meeting ever again.
 
 <div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
 This command is used to get the index of a meeting. In order to perform commands related to a particular meeting such as `editMeeting`, you will have to first get its index by running `listMeeting`. So, expect to use this command a lot!
@@ -481,11 +498,14 @@ Format: `viewMeeting i/INDEX`
 * The `INDEX` **must be a positive integer** 1, 2, 3, …
 
 Use Case:
-1. Get an overview of the meeting and the client you are meeting with. This helps you become more prepared for the meeting and you will not have to remember every single small detail of the meeting!
+1. Get an overview of the meeting and the client you are meeting with. This helps you become more prepared for the meeting, and you will not have to remember every single small detail of the meeting!
 
 Examples:
 * View meeting with an `INDEX` of 1
   * `viewMeeting i/1`
+
+Screenshot:
+![ViewMeeting](images/features/ViewMeeting.png)
 
 #### 7.2.4 Delete meeting: `delMeeting`
 
@@ -593,7 +613,9 @@ Examples:
 
 #### 7.4.1 View help: `help`
 
-Show a message explaining how to access the help page.
+Show a message explaining how to access the help page (this user guide!). 
+
+You can click on 'Copy URL', then paste the link into your browser to get to the help page.  
 
 ![help message](images/helpMessage.png)
 
@@ -617,7 +639,7 @@ Use Case:
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 This is a one-shot way of removing all data stored in *MyInsuRec*.
-Only clear when you are sure you do not need the data anymore, or else make a [backup](#553-creating-and-using-data-file-backups).
+Only clear when you are sure you do not need the data anymore!
 </div>
 
 ### 7.5 Others
@@ -656,7 +678,7 @@ MyInsuRec comes with light and dark color schemes. To change between the two, si
 **A**: Yes, your data is saved automatically after every action.
 
 **Q**: My computer does not recognise the file type jar. How do I open the app?<br>
-**A**: Check if your computer already has Java 11 or above installed from [8.1 Checking your system's Java version](#101-checking-your-systems-java-version). If not, follow the instructions to install Java.
+**A**: Check if your computer already has Java 11 or above installed from [10.1 Checking your system's Java version](#101-checking-your-systems-java-version). If not, follow the instructions to install Java.
 
 **Q**: Why can't I add a product to my client?<br>
 **A**: First check that the product has been created use the [`listProduct`](#732-list-products-listproduct) command.

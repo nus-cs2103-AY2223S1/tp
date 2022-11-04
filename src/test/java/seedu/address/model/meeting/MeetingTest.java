@@ -46,9 +46,9 @@ public class MeetingTest {
         editedMeeting1 = new MeetingBuilder(MEETING1).withMeetingDate(VALID_MEETING_DATE_MEETING2).build();
         assertFalse(MEETING1.equals(editedMeeting1));
 
-        // different meeting time -> returns false
+        // different meeting time -> returns true
         editedMeeting1 = new MeetingBuilder(MEETING1).withMeetingStartTime(VALID_MEETING_TIME_MEETING2).build();
-        assertFalse(MEETING1.equals(editedMeeting1));
+        assertTrue(MEETING1.equals(editedMeeting1));
 
         // different client -> returns false
         editedMeeting1 = new MeetingBuilder(MEETING1).withClient(BENSON).build();

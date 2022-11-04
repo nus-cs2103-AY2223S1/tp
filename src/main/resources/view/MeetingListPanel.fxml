@@ -35,8 +35,8 @@
             <children>
                <Label styleClass="table-header" text="Index" />
                <Label styleClass="table-header" text="Description" GridPane.columnIndex="2" />
-               <Label styleClass="table-header" text="Date" GridPane.columnIndex="4" />
-               <Label styleClass="table-header" text="Time" GridPane.columnIndex="3" />
+               <Label styleClass="table-header" text="Time" GridPane.columnIndex="4" />
+               <Label styleClass="table-header" text="Date" GridPane.columnIndex="3" />
                <Label styleClass="table-header" text="Name" GridPane.columnIndex="1" />
             </children>
             <padding>

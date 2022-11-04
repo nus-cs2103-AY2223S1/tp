@@ -10,6 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.client.Address;
 import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
@@ -35,6 +36,9 @@ public class ClientDetailedView extends UiPart<Region> {
     private Label email;
 
     @FXML
+    private Label address;
+
+    @FXML
     private Label birthday;
 
     @FXML
@@ -52,6 +56,7 @@ public class ClientDetailedView extends UiPart<Region> {
         clientName.setText(client.getName().toString());
         phoneNumber.setText(client.getPhone().toString());
         email.setText(client.getEmail().map(Email::toString).orElse(""));
+        address.setText(client.getAddress().map(Address::toString).orElse(""));
         Optional<Birthday> clientBirthday = client.getBirthday();
         if (clientBirthday.isEmpty()) {
             birthday.setText("");
