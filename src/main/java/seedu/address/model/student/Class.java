@@ -206,7 +206,7 @@ public class Class {
     }
 
     /**
-     * Returns true if a given string is a valid input.
+     * Returns true if {@code String classDateTime} is a valid input.
      *
      * @param classDateTime String to be validated.
      * @return true if a given string fits the format of 'yyyy-MM-dd 0000-2359'.
@@ -216,16 +216,22 @@ public class Class {
     }
 
     /**
-     * Validates whether {@code String classDateTime} is of format as {@code String VALIDATION_STANDARD_CLASS_REGEX}.
+     * Returns true if {@code String classDateTime} is a valid input.
+     *
+     * @param classDateTime String to be validated.
+     * @return true if format  {@code String VALIDATION_STANDARD_CLASS_REGEX}.
      */
     public static boolean isValidClassStringFormat(String classDateTime) {
         return classDateTime.matches(VALIDATION_STANDARD_CLASS_REGEX);
     }
 
     /**
-     * Validates whether the {@code String classDateTime} can be parsed to a valid date.
+     * Returns true if {@code String classDateTime} is a valid input.
      * Note that this should be always called when {@code String classDateTime} is of correct format
      * as specified by {@code isValidClassStringFormat}.
+     *
+     * @param classDateTime String to be validated.
+     * @return true if it can be parsed to a valid date.
      */
     public static boolean isValidClassDateString(String classDateTime) {
         assert isValidClassStringFormat(classDateTime);
@@ -237,7 +243,7 @@ public class Class {
     }
 
     /**
-     * Returns true if a given string is a valid input.
+     * Returns true if {@code String classDateTime} is a valid input.
      *
      * @param classDateTime String to be validated.
      * @return true if a given string fits the format of 'Day-of-Week 0000-2359'.
@@ -252,9 +258,9 @@ public class Class {
     }
 
     /**
-     * Returns true if a given string is a valid date.
+     * Returns true if {@code String date} is a valid date.
      *
-     * @param date String object.
+     * @param date String to be validated.
      * @return true if is valid.
      */
     private static boolean isValidDateString(String date) {
@@ -268,9 +274,9 @@ public class Class {
     }
 
     /**
-     * Returns true if a given string is a valid time.
+     * Returns true if {@code String time} is a valid time.
      *
-     * @param time String object.
+     * @param time String to be validated.
      * @return true if is valid.
      */
     private static boolean isValidTimeString(String time) {
@@ -308,7 +314,7 @@ public class Class {
     }
 
     /**
-     * Returns true if duration is valid.
+     * Returns true if {@code LocalTime startTime} and {@code LocalTime endTime} are valid.
      *
      * @param startTime LocalTime object.
      * @param endTime LocalTime object.
