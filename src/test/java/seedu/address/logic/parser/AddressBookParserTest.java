@@ -73,7 +73,6 @@ import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.PetBuilder;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
-import seedu.address.testutil.TypicalPersonCategories;
 import seedu.address.testutil.TypicalSuppliers;
 
 
@@ -241,12 +240,9 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         String input = " n/foo";
         Predicate<Buyer> buyerPredicate = PredicateParser.parseBuyer(input);
-        Predicate<Deliverer> delivererPredicate = PredicateParser.parseDeliverer(input);
-        Predicate<Supplier> supplierPredicate = PredicateParser.parseSupplier(input);
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + input);
-        FindCommand otherCommand = new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
-                TypicalPersonCategories.PERSON_CATEGORY_BUYER);
+        FindCommand command = (FindBuyerCommand) parser.parseCommand(
+                FindBuyerCommandParser.PARSE_WORD + input);
+        FindCommand otherCommand = new FindBuyerCommand(buyerPredicate);
         assertEquals(otherCommand, command);
     }
 
