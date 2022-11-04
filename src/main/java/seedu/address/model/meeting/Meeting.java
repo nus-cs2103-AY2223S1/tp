@@ -59,7 +59,7 @@ public class Meeting implements Comparable<Meeting> {
             throws PersonNotFoundException, DuplicatePersonException {
 
         if (Objects.equals(peopleToMeet[0], "")) {
-            throw new PersonNotFoundException();
+            throw new PersonNotFoundException(PersonNotFoundException.NO_PERSON_DETECTED);
         }
 
         if (checkDuplicates(peopleToMeet)) {
@@ -69,7 +69,8 @@ public class Meeting implements Comparable<Meeting> {
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
         for (String personName: peopleToMeet) {
-            String[] nameKeywords = personName.strip().split("\\s+");
+            String strippedPersonName = personName.strip();
+            String[] nameKeywords = strippedPersonName.split("\\s+");
             NameContainsKeywordsPredicate personNamePredicate =
                 new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
 
@@ -77,21 +78,39 @@ public class Meeting implements Comparable<Meeting> {
             model.updateFilteredPersonList(personNamePredicate);
             ObservableList<Person> listOfPeople = model.getFilteredPersonList();
 
+            //predicate returns empty list, name does not match anyone
             if (listOfPeople.isEmpty()) {
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-                throw new PersonNotFoundException();
-            } else if (listOfPeople.size() > 1) {
-                throw new ImpreciseMatchException();
-            } else { // get the first person in the address book whose name matches
-                output.add(listOfPeople.get(0));
+                throw new PersonNotFoundException(String.format(PersonNotFoundException.PERSON_NOT_FOUND,
+                strippedPersonName));
             }
-
-            // resets the list of persons after every search
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            output.add(findExactMatch(listOfPeople, personName));
         }
+        // resets the list of persons after every search
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return output;
     }
 
+    /**
+     * helper function for the convertNameToPerson function
+     * essentially iterates through a list of people and return the correct person
+     * @param listOfPeople list of Persons to iterate through
+     * @param personName person to find
+     * @return returns the correct Person object
+     */
+    private static Person findExactMatch(ObservableList<Person> listOfPeople, String personName) {
+        // guard clause
+        if (listOfPeople.size() == 1) {
+            return listOfPeople.get(0);
+        }
+        // if guard fails, then iterate through whole list to find and return p
+        for (Person p : listOfPeople) {
+            if (p.getName().fullName.strip().equalsIgnoreCase(personName.strip())) {
+                return p;
+            }
+        }
+        throw new ImpreciseMatchException(personName);
+    }
     /**
      * checks for duplicate names in array
      *
@@ -122,18 +141,32 @@ public class Meeting implements Comparable<Meeting> {
      * @param people the array list of people to be added to the meeting
      */
     public void addPersons(ArrayList<Person> people) {
-        for (int i = 0; i < people.size(); i++) {
-            this.peopleToMeetList.add(people.get(i));
+        for (Person person : people) {
+            this.peopleToMeetList.add(person);
         }
     }
 
     /**
      * Deletes the array of persons from the unique persons list
-     * @param people
+     * @param people the people to remove from the meeting
      */
     public void deletePersons(ArrayList<Person> people) {
-        for (int i = 0; i < people.size(); i++) {
-            this.peopleToMeetList.remove(people.get(i));
+        for (Person person : people) {
+            if (peopleToMeetList.contains(person)) {
+                this.peopleToMeetList.remove(person);
+            }
+        }
+    }
+
+    /**
+     * updates a found person in the meeting list
+     * @param originalPerson original person to find
+     * @param editedPerson edited person to replace with
+     */
+    public void updatePerson(Person originalPerson, Person editedPerson) {
+        // defensive coding clause to check if person is in the list
+        if (peopleToMeetList.contains(originalPerson)) {
+            peopleToMeetList.setPerson(originalPerson, editedPerson);
         }
     }
 
@@ -188,6 +221,15 @@ public class Meeting implements Comparable<Meeting> {
         return otherMeeting != null
             && (otherMeeting.getPersonToMeet().equals(getPersonToMeet()))
             && (otherMeeting.getDateAndTime().equals(getDateAndTime()));
+    }
+
+    /**
+     * returns true if person is in the meeting object
+     * @param p person to check
+     * @return true or false depending on if a person is in the meeting or not
+     */
+    public boolean containsPerson(Person p) {
+        return peopleToMeetArray.contains(p);
     }
 
     /**

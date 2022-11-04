@@ -19,7 +19,6 @@ import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
-
 /**
  * Edits the details of an existing person in the address book.
  */
@@ -58,7 +57,7 @@ public class EditMeetingCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException, ParseException, java.text.ParseException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         List<Meeting> lastShownList = model.getFilteredMeetingList();
 
@@ -82,14 +81,11 @@ public class EditMeetingCommand extends Command {
      * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
      * edited with {@code editMeetingDescriptor}.
      */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor)
-            throws ParseException, java.text.ParseException {
+    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor) {
         assert meetingToEdit != null;
 
         String updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
-        editMeetingDescriptor.getDate();
-        meetingToEdit.getNonProcessedDateAndTime();
-        String updatedDate = editMeetingDescriptor.getDate().orElse(meetingToEdit.getNonProcessedDateAndTime());
+        String updatedDate = editMeetingDescriptor.getDate().orElse(meetingToEdit.getDateAndTime());
         String updatedLocation = editMeetingDescriptor.getLocation().orElse(meetingToEdit.getLocation());
         ArrayList<Person> persons = editMeetingDescriptor.getPeople().orElse(meetingToEdit.getArrayListPersonToMeet());
 

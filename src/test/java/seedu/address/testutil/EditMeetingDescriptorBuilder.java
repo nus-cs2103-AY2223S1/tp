@@ -25,7 +25,7 @@ public class EditMeetingDescriptorBuilder {
         descriptor = new EditMeetingDescriptor();
         descriptor.setLocation(meeting.getLocation());
         descriptor.setDescription(meeting.getDescription());
-        descriptor.setDate(meeting.getNonProcessedDateAndTime());
+        descriptor.setDate(meeting.getDateAndTime());
         descriptor.setPeople(meeting.getArrayListPersonToMeet());
     }
 

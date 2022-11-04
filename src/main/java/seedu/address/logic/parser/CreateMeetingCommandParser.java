@@ -16,11 +16,11 @@ import seedu.address.model.util.DateTimeProcessor;
  */
 public class CreateMeetingCommandParser implements Parser<CreateMeetingCommand> {
 
-    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.UK)
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.UK)
         .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm", Locale.UK)
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmm", Locale.UK)
         .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeProcessor validator = new DateTimeProcessor(dateFormatter, timeFormatter);
+    public static final DateTimeProcessor DATE_TIME_VALIDATOR = new DateTimeProcessor(DATE_FORMATTER, TIME_FORMATTER);
 
     /**
      * Parses the given {@code String} of arguments in the context of the CreateMeetingCommand
@@ -47,7 +47,7 @@ public class CreateMeetingCommandParser implements Parser<CreateMeetingCommand> 
                 throw new ParseException(CreateMeetingCommand.INCORRECT_NUMBER_OF_ARGUMENTS);
             }
 
-            String processedMeetingDateAndTime = this.validator.processDateTime(meetingDateAndTime);
+            String processedMeetingDateAndTime = DATE_TIME_VALIDATOR.processDateTime(meetingDateAndTime);
 
             return new CreateMeetingCommand(peopleToMeet, meetingTitle, processedMeetingDateAndTime, meetingLocation);
 
@@ -55,7 +55,7 @@ public class CreateMeetingCommandParser implements Parser<CreateMeetingCommand> 
             throw new ParseException(CreateMeetingCommand.INCORRECT_NUMBER_OF_ARGUMENTS);
 
         } catch (java.text.ParseException e) {
-            throw new ParseException(e.getMessage());
+            throw new ParseException(String.format(CreateMeetingCommand.INVALID_DATE_AND_TIME_FORMAT, e.getMessage()));
         }
 
     }

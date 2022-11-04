@@ -54,7 +54,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ModifiedArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -123,13 +123,15 @@ The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the meeting list data i.e., all `Meeting` objects (which are contained in a `UniqueMeetingList` object).
+* stores the currently 'selected' `Meeting` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
+<img src="images/ModifiedModelClassDiagram.png" width="450" />
 </div>
 
 
@@ -137,7 +139,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/ModifiedStorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data, meeting list data and user preference data in json format, and read them back into corresponding objects.
@@ -218,7 +220,6 @@ The diagrams below should sufficiently explain the main cases for the command.
 
 ### [Implemented] Storage for meetings
 #### Implementation
-<img src="images/ModifiedStorageClassDiagram.png" width="550" />
 The implementation of the storage for meetings closely follows the way address book was implemented. There were many classes 
 that had to be copied, and they included
 - `MeetingList`
@@ -241,37 +242,12 @@ The following classes had to be extended in order to support meeting list
 - `LogicManager`
 - `AddressBookParser`
 
-
-### [Implemented] Storage for meetings
-#### Implementation
 <img src="images/ModifiedStorageClassDiagram.png" width="550" />
-The implementation of the storage for meetings closely follows the way address book was implemented. There were many classes 
-that had to be copied, and they included
-- `MeetingList`
-- `ReadOnlyMeetingList`
-- `JsonMeetingListStorage`
-- `JsonAdaptedMeeting`
-- `JsonSerializableMeetingList`
-- `MeetingListStorage`
 
-The following classes had to be extended in order to support meeting list
-- `MainApp`
-- `UserPrefs`
-- `ReadOnlyUserPrefs`
-- `SampleDataUtil`
-- `Storage`
-- `StorageManager`
-- `Model`
-- `ModelManager`
-- `Logic`
-- `LogicManager`
-- `AddressBookParser`
 
 The app maintained its own internal list of meetings in the `ModelManager` and the 
 `LogicManager` would save the current model whenever the execute function to the `meetinglist.json`. As such, there
 was no need of having to create additional classes to support the model or logic classes
-<img src="images/ModifiedModelClassDiagram.png" width="450" />
-
 
 ### [Implemented] Filter Meetings between Dates
 #### Implementation
@@ -281,13 +257,16 @@ The filter meetings between dates command consists of these various classes:
 - `FilterMeetingCommandParser` which extends `Parser<FilterMeetingCommand>`
 - `MeetingFilterPredicate` which extends `Predicate<Meeting>`
 
-As with all other commands in Yellow Pages, filter meetings has a `Parser` subclass that goes through the 
-`AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object.
+As with all other commands in Yellow Pages, find meetings has a `Parser` subclass, namely `FilterMeetingCommandParser`
+which parses the user input and returns a `FilterMeetingCommand` object with a `new MeetingFilterPredicate` that contains the 
+"verified" user inputs. Utilizing the `Predicate` system allows the 
+command to simply offer up a new `Predicate` object. In this case, it is simply a predicate checking if each Meeting 
+Object's date is between two given dates. This `MeetingFilterDatePredicate` is then used to update the
+`filteredMeetings` list in the `ModelManager`, allowing it to temporarily store and display the meetings matching the `MeetingFilterDatePredicate`.
 
-Utilizing the `Predicate` system allows the command to simply offer up a new `Predicate` object. In this case, it
-utilizes the `MeetingFilterDatePredicate` class which extends `Predicate<Meeting>`. It is simply a predicate checking 
-if each Meeting Object's date is between two given dates. The `MeetingFilterDatePredicate` then updates the 
-`FilteredMeetingList` allowing it to temporarily store and display the meetings matching the `Predicate`.
+The `FilterMeetingCommandParser` class utilizes a utility class called `DateTimeConverter`. The `FilterMeetingCommandParser` class converts the 
+DateTime values from the Meeting which is stored as a `String` in the `EEEE, d MMMM uuuu hh:mm a` format into a `LocalDateTime` 
+object for comparison with other dates.
 
 Command: `filtermeetingsbetween Date A ;;; Date B`, both Date A and B must be real dates that follow the 
 dd-MM-yyyy HHmm format.
@@ -299,17 +278,94 @@ are within the range of Date A and Date B.
   date = Date A = Date B.
 - `Date A > Date B` - will throw an error as this is an invalid syntax.
 
-The diagram below should sufficiently explain the main cases for the command.
-
-![FilterMeetingsActivityDiagram](images/FilterMeetingsActivityDiagram.png)
 
 #### Sequence Diagram for Filter Meetings between Dates
 ![FilterMeetingsSequenceDiagram](images/FilterMeetingsSequenceDiagram.png)
 
+### [Implemented] Find Meetings
+#### Implementation
+The find meetings command consists of these various classes:
+- `FindMeetingCommand` which extends `Command`
+- `FindMeetingCommandParser` which extends `Parser<FilterMeetingCommand>`
+- `MeetingContainsKeywordsPredicate` which extends `Predicate<Meeting>`
+- `FindMeetingFunctionalInterface`which acts as a Functional Interface to pass functions as parameters.
+
+
+As with all other commands in Yellow Pages, find meetings has a `Parser` subclass, namely `FindMeetingCommandParser`
+which parses the user input and returns a `FindMeetingCommand` object with a `new MeetingContainsKeywordsPredicate` that 
+contains the following parameters: 
+- Array of Keywords entered by the user
+- One of three `static` Functional Interfaces which are:
+  - `Meeting::getDescription`
+  - `Meeting::getLocation`
+  - `Meeting::getPeopleToMeetAsString`
+
+Utilizing the `Predicate` system allows the command to simply offer up a new `Predicate` object. 
+In this case, it is a predicate checking if one of a Meeting Object's fields (corresponding to the Functional Interfaces) matches a keyword. 
+This `MeetingContainsKeywordsPredicate` is then used to update the `filteredMeetings` list in the `ModelManager`, 
+allowing it to temporarily store and display the meetings matching the `MeetingContainsKeywordsPredicate`.
+
+The aforementioned `static` Functional Interfaces exist within the `FindMeetingCommand` class, 
+these interfaces are used to indicate which Meeting field (description, location and people) to search the keywords provided in.
+This implementation raises two important questions:
+#### 1. Why are they static?
+   
+`static` values were used instead of creating new Functional Interface Objects each time primarily because of limitations in Java. 
+Namely, Java is unable to compare two Functional Interface Objects unless they are the same Object. This affected Unit Testing
+as without comparison, we would never be able to test if two `MeetingContainsKeywordsPredicate` were the same. Utilizing static
+Functional Interfaces allowed us to compare these two of them together and provide higher quality tests.
+
+#### 2. Why use functional interfaces?
+
+Functional Interfaces were used as a means to parameterize various getter functions from the Meeting Class.
+This allows the `MeetingContainsKeywordsPredicate` to directly use the function instead of relying on identities and conditional 
+statements to locate the correct Meeting field. In way this can be seen as an application of _defensive programming_, whereby the use 
+of Functional Interfaces limit the chances of things going wrong. Using Functional Interfaces implies that any errors/bugs that happen 
+in regard to the wrong Meeting field to select lay solely in the `FindMeetingCommandParser` passing the wrong parameters. Furthermore, this 
+implementation aids in scalability of the Meeting Object, adding more fields to a Meeting just requires us to declare a new 
+`static` Functional Interface with the appropriate field and to update the `verifyParameters` function.
+
+#### Sequence Diagram for Find Meeting
+**Note**: `lambda` refers to a Functional Interface.
+
+
+![FilterMeetingsSequenceDiagram](images/FindMeetingSequenceDiagram.png)
+
+### [Implemented] Sort Meetings
+
+The sort meetings command consists of these various classes:
+- `SortMeetingCommand` which extends `Command`
+- `SortMeetingCommandParser` which extends `Parser<FilterMeetingCommand>`
+
+Like all other commands in Yellow Pages, sort meetings has a `Parser` subclass, namely `SortMeetingCommandParser`
+which parses the user input and returns a `SortMeetingCommand` with a boolean parameter `isInAscending` that indicates
+whether to sort the meeting list in Ascending or Descending order.
+
+Sort Meetings primarily uses Java's `List::sort` that `SortMeetingCommand` 
+accesses through the `ObservableList<Meeting>` in the `Model`. 
+It utilizes the `compareTo` method found in Meetings to compare two Meeting Objects by date. 
+The comparator function used in the Sort is as follows:
+```
+public void sortByDate(boolean isInAscending) {
+    //Ternary operator checks if isInAscending is true and negates the results if it is false
+    internalList.sort((Meeting m1, Meeting m2) -> isInAscending
+            ? m1.compareTo(m2)
+            : -m1.compareTo(m2));
+}
+```
+
+Note that the `isInAscending` value decides whether the `compareTo` result is negated. This implementation allowed
+for the option of sorting Ascending (non-negated) and Descending (negated). Furthermore, calling the `sort` function 
+in this manner allows us to make changes to the list **permanently** which is intended.
+
+#### Sequence Diagram for Sort Meeting
+
+![SortMeetingsSequenceDiagram](images/SortMeetingSequenceDiagram.png)
+
 ### [Implemented] Edit Meeting Details
 #### Implementation
 
-The filter meetings between dates command consists of these various classes:
+The edit meeting details command consists of these various classes:
 - `EditMeetingCommand` which extends `Command`
 - `EditMeetingCommandParser` which extends `Parser<FilterMeetingCommand>`
 
@@ -545,7 +601,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample Contacts and Meetings. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -553,30 +609,154 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
+   
+### Find by Tag
+1. Find contact using tags 
+   1. Prerequisite: Have at least one person with the tag `Friends`
+   2. Test Case: `findtag friends` <br>
+      Expected: A success message should appear. Persons with the tag `friends` will appear on the contact list.
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test Case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated. Furthermore, if the Person is included in a meeting, they should be deleted from the meeting as well. 
 
-   1. Test case: `delete 0`<br>
+   1. Test Case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting a person while they are the last person in a meeting
+   1. Prerequisite: Have a Person be the last person in a meeting. Assume that this "Last Person" has an Index of 1
+
+   2. Test Case: `delete 1` <br>
+      Expected: Person is not deleted and an error message stating that the meeting Person at Index 1 is the last member of must be deleted first.
+
+### Editing a person
+1. Editing a person while all persons are being shown
+   1. Prerequisites: List all persons using the `list` command. Multiple persons are assumed to be in the list.
+   2. Test Case: `edit 1 n/editedName p/123456 e/email@email.com a/address land 123` <br>
+      Expected: Person at Index 1 should be updated with the new information. 
+   3. Test case: `edit 0 n/editedName p/123456 e/email@email.com a/address land 123`<br>
+   Expected: No person is edited. Error details shown in the status message. Status bar remains the same.
+2. Editing a person should reflect in a meeting if they are a part of it.
+   1. Prerequisites: Person at Index 1 should belong to a meeting.
+   2. Test Case: `edit 1 n/edited name` <br>
+      Expected: Person at Index 1 should be updated with a new name, the meeting they are in also should be updated with the new information.
+
+### List Meetings
+1. Listing out all meetings
+   1. Prerequisites: Have at least one (recommended more) meeting objects in Yellow Pages.
+   2. Test Case: `listmeeting` <br>
+      Expected: All meetings should be listed in the status message, as well as displayed in the UI.
+
+### Create Meetings
+1. Create Meeting
+   1. Prerequisites: Have two Persons named `John` and `Alex` in the contact list.
+   2. Test Case: `meet John }} Alex ;;; Meeting ;;; 10-10-2022 1530 ;;; UTown`
+      Expected: A success message should appear. A meeting with the above parameters should be created as well.
+   
+2. Create Meeting with similar named persons
+   1. Prerequisites: Have two Persons named `John Tan` and `John Doe` in the contact list.
+   2. Test Case: `meet John Tan;;; Meeting ;;; 10-10-2022 1530 ;;; UTown` <br>
+      Expected: A success message should appear. A meeting with the above parameters should be created as well.
+   3. Test Case: `meet John Tan;;; Meeting ;;; 10-10-2022 1530 ;;; UTown` <br>
+      Expected: Error message should appear. Contact list should also display contacts with the keyword `John` in their names.
+
+### Edit Meetings
+1. Edit Meeting
+    1. Prerequisites: Have at least one meeting.
+    2. Test Case: `editmeeting 1 d/a name dd/10-10-2022 1000 l/COM3` <br>
+       Expected: A success message should appear. Meeting at Index 1 should be updated with the parameters used.
+
+### Delete Meetings
+1. Delete Meeting
+   1. Prerequisites: Have at least one meeting.
+   2. Test Case: `deletemeeting 1` <br> 
+      Expected: A success message should appear. Meeting at Index 1 should be deleted.
+
+### Add Person to Meeting
+1. Add Person to a Meeting
+    1. Prerequisites: Have a person named `Alex` and at least one meeting, assuming `Alex` is not in the meeting at Index 1.
+    2. Test Case: `addpersontomeeting 1; Alex` <br>
+       Expected: A success message should appear. Meeting at Index 1 should have `Alex` added to it.
+
+2. Add similar named persons to a meeting
+    1. Prerequisites: Have two Persons named `John Tan` and `John Doe` in the contact list and at least one meeting, assuming `John Doe` is not in meeting at Index 1.
+    2. Test Case: `addpersontomeeting 1; John Doe` <br>
+       Expected: A success message should appear. `John Doe` should be added to the meeting at Index 1.
+    3. Test Case: `addpersontomeeting 1; John` <br>
+       Expected: Error message should appear. Person is not added to the meeting and the contact list should also display contacts with the keyword `John` in their names.
+
+3. Add person already in meeting
+   1. Prerequisites: Have a person called `Alex` and `Alex` should be in the meeting at Index 1.
+   2. Test Case: `addpersontomeeting 1; Alex` <br>
+      Expected: Error message should appear. Person is not added to the meeting again.
+
+### Delete Person from Meeting
+1. Delete Person from Meeting
+   1. Prerequisite: Have a persons named `John Doe` and `Mary Sue` be in the meeting at Index 1, and they are not the only two people in said meeting.
+   2. Test Case: `deletepersonfrommeeting 1; John, Mary` <br>
+      Expected: A success message should appear. `John Doe` and `Mary Sue` should be removed from the meeting at Index 1.
+2. Add delete similar named persons from a meeting
+    1. Prerequisites: Have two Persons named `John Tan` and `John Doe` in the contact list and at least one meeting, assuming `John Doe` is in meeting at Index 1.
+    2. Test Case: `deletepersonfrommeeting 1; John Doe` <br>
+       Expected: A success message should appear. `John Doe` should be removed from the meeting at Index 1.
+    3. Test Case: `deletepersonfrommeeting 1; John` <br>
+       Expected: Error message should appear. Person is not removed from the meeting and the contact list should also display contacts with the keyword `John` in their names.
+3. Deleting the last person from a meeting
+   1. Prerequisite: Have a meeting at Index 1 with only one person, `John Doe`.
+   2. Test Case: `deletepersonfrommeeting 1; John Doe`
+      Expected: Error message should appear. Person is not removed from the meeting.
+
+### Filter Meetings
+1. Filter meetings between two dates
+   1. Prerequisites: Have at least one meeting that falls between the dates `10-10-2022 0000` and `15-10-2022 0000`
+   2. Test Case: `filtermeetingsbetween 10-10-2022 0000 ;;; 15-10-2022 0000` <br>
+       Expected: A success message should appear. Only meeting(s) that fall between those two dates should be listed. All other meetings should not appear.
+2. Filter meetings based on a single date
+   1. Prerequisites: Have at least one meeting that falls on `10-10-2022 0000`
+   2. Test Case: `filtermeetingsbetween 10-10-2022 0000 ;;; 10-10-2022 0000` <br>
+      Expected: A success message should appear. Only meeting(s) that fall on `10-10-2022 0000` will be listed.
+
+### Sort Meetings
+1. Sort meetings in ascending order
+   1. Prerequisites: Have at least three meetings with different dates.
+   2. Test Case: `sortmeetings asc` or `sortmeetings desc` <br>
+      A success message should appear. Should sort the meeting list by date in ascending or descending order (based on the command). 
+   3. Close and open Yellow Pages again, the meeting list should still be sorted.
+
+### Find Meetings
+1. Find meeting with description
+   1. Prerequisites: Have several meetings with at least one meeting with the description `AMeeting`.
+   2. Test Case: `findmeeting /named AMeeting` <br>
+      Expected: A success message should appear. Meetings with descriptions containing the keyword `AMeeting` should be listed. 
+2. Find meeting with location
+   1. Prerequisites: Have several meetings with at least one meeting with the location `UTown`
+   2. Test Case: `findmeeting /at UTown` <br>
+      Expected: A success message should appear. Meetings with their location set as `UTown` should be listed.
+3. Find meeting with people
+   1. Prerequisites: Have several meetings with at least one meeting with a Person `John`
+   2. Test Case: `findmeeting /with John` <br>
+      Expected: A success message should appear. All meetings with `John` should appear, meetings with other persons with the keyword `John`
+ should also appear
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisite: `meetinglist.json` and `addressbook.json` were somehow corrupted
+   2. Delete both files in the /data file found in the root folder of `Yellow Pages.jar`
+   3. Run `Yellow Pages.jar` again, it will generate default information.
 
-1. _{ more test cases …​ }_
+## Appendix: Effort
+
+Compared to AB3, Yellow Pages makes extensive use of dates. This caused plenty of unforeseen consequences in the form of date conversion and manipulation. 
+Creating a utility class that let us convert dates in String to actual LocalDateTime objects or converting dates in String to other formats
+helped us to centralize and better manage this issue.
+

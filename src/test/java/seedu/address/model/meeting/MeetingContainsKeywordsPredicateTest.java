@@ -23,16 +23,16 @@ public class MeetingContainsKeywordsPredicateTest {
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
         MeetingContainsKeywordsPredicate firstPredicate = new
-                MeetingContainsKeywordsPredicate(firstPredicateKeywordList, FindMeetingCommand.getDescription);
+                MeetingContainsKeywordsPredicate(firstPredicateKeywordList, FindMeetingCommand.GET_DESCRIPTION);
         MeetingContainsKeywordsPredicate secondPredicate = new
-                MeetingContainsKeywordsPredicate(secondPredicateKeywordList, FindMeetingCommand.getDescription);
+                MeetingContainsKeywordsPredicate(secondPredicateKeywordList, FindMeetingCommand.GET_DESCRIPTION);
 
         // same object -> returns true
         assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
         MeetingContainsKeywordsPredicate firstPredicateCopy = new
-                MeetingContainsKeywordsPredicate(firstPredicateKeywordList, FindMeetingCommand.getDescription);
+                MeetingContainsKeywordsPredicate(firstPredicateKeywordList, FindMeetingCommand.GET_DESCRIPTION);
         assertEquals(firstPredicate, firstPredicateCopy);
 
         // different types -> returns false
@@ -49,23 +49,23 @@ public class MeetingContainsKeywordsPredicateTest {
     public void test_meetingNameContainsKeywords_returnsTrue() {
         // One keyword
         MeetingContainsKeywordsPredicate predicate = new MeetingContainsKeywordsPredicate(
-                Collections.singletonList("Alice"), FindMeetingCommand.getPeople);
+                Collections.singletonList("Alice"), FindMeetingCommand.GET_PEOPLE);
 
         assertTrue(predicate.test(new MeetingBuilder()
                 .withPersons(new PersonBuilder().withName("Alice Lim").build()).build()));
 
         // Multiple keywords
-        predicate = new MeetingContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"), FindMeetingCommand.getPeople);
+        predicate = new MeetingContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"), FindMeetingCommand.GET_PEOPLE);
         assertTrue(predicate.test(new MeetingBuilder()
                 .withPersons(new PersonBuilder().withName("Alice Bob").build()).build()));
 
         // Only one matching keyword
-        predicate = new MeetingContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"), FindMeetingCommand.getPeople);
+        predicate = new MeetingContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"), FindMeetingCommand.GET_PEOPLE);
         assertTrue(predicate.test(new MeetingBuilder()
                 .withPersons(new PersonBuilder().withName("Alice Bob").build()).build()));
 
         // Mixed-case keywords
-        predicate = new MeetingContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"), FindMeetingCommand.getPeople);
+        predicate = new MeetingContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"), FindMeetingCommand.GET_PEOPLE);
         assertTrue(predicate.test(new MeetingBuilder()
                 .withPersons(new PersonBuilder().withName("Alice Bob").build()).build()));
     }
@@ -74,18 +74,18 @@ public class MeetingContainsKeywordsPredicateTest {
     public void test_meetingNameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         MeetingContainsKeywordsPredicate predicate =
-                new MeetingContainsKeywordsPredicate(Collections.emptyList(), FindMeetingCommand.getPeople);
+                new MeetingContainsKeywordsPredicate(Collections.emptyList(), FindMeetingCommand.GET_PEOPLE);
         assertFalse(predicate.test(new MeetingBuilder()
                 .withPersons(new PersonBuilder().withName("Alice").build()).build()));
 
         // Non-matching keyword
-        predicate = new MeetingContainsKeywordsPredicate(List.of("Carol"), FindMeetingCommand.getPeople);
+        predicate = new MeetingContainsKeywordsPredicate(List.of("Carol"), FindMeetingCommand.GET_PEOPLE);
         assertFalse(predicate.test(new MeetingBuilder()
                 .withPersons(new PersonBuilder().withName("Alice Bob").build()).build()));
 
         // predicate searches people for COM1 and UTown, but meetings built with location of UTown
         predicate = new MeetingContainsKeywordsPredicate(Arrays.asList("COM1", "UTown"),
-                FindMeetingCommand.getPeople);
+                FindMeetingCommand.GET_PEOPLE);
         assertFalse(predicate.test(new MeetingBuilder()
                 .withLocation("UTown").build()));
     }

@@ -124,11 +124,11 @@ public class FindMeetingCommandTest {
     private MeetingContainsKeywordsPredicate preparePredicate(String userInput, String type) {
         FindMeetingFunctionalInterface functionalInterface;
         if (type.equals("Description")) {
-            functionalInterface = FindMeetingCommand.getDescription;
+            functionalInterface = FindMeetingCommand.GET_DESCRIPTION;
         } else if (type.equals("Location")) {
-            functionalInterface = FindMeetingCommand.getLocation;
+            functionalInterface = FindMeetingCommand.GET_LOCATION;
         } else {
-            functionalInterface = FindMeetingCommand.getPeople;
+            functionalInterface = FindMeetingCommand.GET_PEOPLE;
         }
         return new MeetingContainsKeywordsPredicate(
                 Arrays.asList(userInput.split("\\s+")), functionalInterface);

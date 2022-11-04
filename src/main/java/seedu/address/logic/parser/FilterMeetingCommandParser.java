@@ -28,12 +28,11 @@ public class FilterMeetingCommandParser implements Parser<FilterMeetingCommand> 
         LocalDateTime afterDate;
         LocalDateTime beforeDate;
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        String[] nameKeywords = trimmedArgs.split(";;;");
+        if (!trimmedArgs.contains(";;;") || nameKeywords.length == 0) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterMeetingCommand.MESSAGE_USAGE));
         }
-        String[] nameKeywords = trimmedArgs.split(";;;");
-
         try {
             afterDate = DateTimeConverter.stringToLocalDateTime(nameKeywords[0].trim());
             beforeDate = DateTimeConverter.stringToLocalDateTime(nameKeywords[1].trim());

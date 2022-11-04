@@ -1,4 +1,3 @@
-/*
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -21,6 +20,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingList;
 import seedu.address.model.Model;
@@ -30,11 +31,9 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.MeetingBuilder;
 
-*/
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditMeetingCommand.
- *//*
-
+ */
 public class EditMeetingCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingList(), new UserPrefs());
@@ -90,7 +89,7 @@ public class EditMeetingCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws CommandException, ParseException {
         showMeetingAtIndex(model, INDEX_FIRST_PERSON);
 
         Meeting meetingInFilteredList = model.getFilteredMeetingList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -103,6 +102,9 @@ public class EditMeetingCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new MeetingList(model.getMeetingList()), new UserPrefs());
         expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
+
+        System.out.println(editMeetingCommand.execute(model).getFeedbackToUser());
+        System.out.println(expectedMessage);
 
         assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
     }
@@ -138,12 +140,10 @@ public class EditMeetingCommandTest {
         assertCommandFailure(editMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 
-    */
-/**
+    /**
      * Edit filtered list where index is larger than size of filtered list,
      * but smaller than size of address book
-     *//*
-
+     */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         showMeetingAtIndex(model, INDEX_FIRST_PERSON);
@@ -183,4 +183,3 @@ public class EditMeetingCommandTest {
     }
 
 }
-*/

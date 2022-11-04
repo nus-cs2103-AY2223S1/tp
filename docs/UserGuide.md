@@ -5,28 +5,29 @@ title: User Guide
 
 Yellow Pages (YP) is a desktop app for managing contacts, optimised for use via a Graphical User Interface (GUI). If you can type fast, YP can get your contacts and scheduling done faster than traditional GUI apps.
 
-* Quick Start
-* Features
-  * Viewing help
-  * Adding a contact
-  * Listing all contacts
-  * Editing a contact
-  * Locating contact by name
-  * Locating contact by tag
-  * Deleting a contact
-  * Clearing all contacts
-  * Adding a meeting
-  * Add contact to meeting
-  * Delete contact from meeting
-  * Edit meeting details
-  * Listing all meetings
-  * Finding meetings
-  * Filtering meetings
-  * Sorting meetings
-  * Exiting the program
-  * Saving the data
-* FAQ
-* Command Summary
+* [Quick Start](#quick-start)
+* [Features](#features)
+  * [Viewing help](#viewing-help-help)
+  * [Adding a contact](#adding-a-person-add)
+  * [Listing all contacts](#listing-all-persons--list)
+  * [Editing a contact](#editing-a-person--edit)
+  * [Locating contact by name](#locating-persons-by-name-find)
+  * [Locating contact by tag](#locating-contact-by-tag-findtag)
+  * [Deleting a contact](#deleting-a-person--delete)
+  * [Clearing all data](#clearing-all-entries--clear)
+  * [Creating a meeting](#creating-a-meeting--meet)
+  * [Deleting a meeting](#deleting-a-meeting--deletemeeting)
+  * [Add contact to meeting](#add-contacts-to-meeting-addpersontomeeting)
+  * [Delete contact from meeting](#delete-contacts-from-meeting-deletepersonfrommeeting)
+  * [Edit meeting details](#editing-a-meeting--editmeeting)
+  * [Listing all meetings](#listing-all-meetings--listmeeting)
+  * [Finding meetings](#finding-a-meeting-findmeeting)
+  * [Filtering meetings](#filtering-meetings-filtermeetingsbetween)
+  * [Sorting meetings](#sort-meetings-sortmeetings)
+  * [Exiting the program](#exiting-the-program--exit)
+  * [Saving the data](#saving-the-data)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -39,16 +40,16 @@ Yellow Pages (YP) is a desktop app for managing contacts, optimised for use via 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/UiUpdate.png)
+   ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete 3` : Deletes the 3rd **contact** shown in the current list.
 
     * **`clear`** : Deletes all contacts.
 
@@ -84,11 +85,11 @@ Yellow Pages (YP) is a desktop app for managing contacts, optimised for use via 
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageUpdated.png)
 
 Format: `help`
 
@@ -98,7 +99,8 @@ Format: `help`
 Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
+* A Persons `NAME` must be **unique**.
+* A Persons `PHONE_NUMBER` must be _at least three digits long_ 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
@@ -118,6 +120,10 @@ Format: `list`
 Edits an existing person in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Editing a person also edits them in their respective meetings.
+</div>
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -164,9 +170,14 @@ Deletes the specified person from the address book.
 
 Format: `delete INDEX`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Deleting a person also deletes them from their respective meeting(s)
+</div>
+
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* A person cannot be deleted if they are the **last person** in a meeting, delete the corresponding meeting first.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
@@ -178,13 +189,43 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### Adding a meeting : `addmeeting`
+### Creating a meeting : `meet`
 
-Adds a meeting to the meeting list.
+Creates a meeting and adds it to the meeting list.
 
-Format: `addmeeting MEETING_TITLE /at MEETING_DATE [/description MEETING_DESCRIPTION] [/contact INDEX]`
+Format: `meet [NAMES_OF_PERSONS_TO_MEET (separated by }})] ;;; MEETING_DESCRIPTION ;;; MEETING_DATE_AND_TIME (in dd-MM-yyyy HHmm format) ;;; MEETING_LOCATION`
 
-* `index` must be a positive integer corresponding to a contact
+Example: `meet Alex }} Bernice ;;; Project Meeting ;;; 29-01-2022 1530 ;;; UTown`
+
+Note: Separating names by `}` or `}}}` (or any other variation of `}}`) will likely result in errors
+Note: Separating each component of information by `;` or `;;` (or any other variation of `;;;`) will likely result in errors
+
+* The names of the people to meet must correspond to the names of actual contacts, otherwise an error message will be displayed 
+* You can choose to type in part of the contact's name (but must be in full word) and the software will match it to the closest contact
+  * i.e. There is only one contact called `Alex Yeoh` and inputting `meet Alex ...` will identify the `Alex Yeoh` as the person to meet
+  * However, inputting `meet Al ...` will not identify `Alex Yeoh` as `Al` is not a full word in the name
+  * NOTE: if there are multiple contacts sharing the same word(s) in their names, the ambiguity will result in an error message and you will be prompted to re-enter a more precise name
+  * e.g. if there are two contacts called `Alex Yeoh` and `Alex Lee`, then inputting `meet Alex ...` will result in error
+  * However, if there are three contacts named `Alex`, `Alex Yeoh` and `Alex Lee`, then inputting `meet Alex ...` will fetch the contact named `Alex` since it is the contact with an exact name match.
+* For the date and time of the meeting:
+  * Both the month and day have to be in double digits, e.g. `1-1-2000`, `01-9-2000`, `9-18-2000` will not be accepted, but `01-01-2000`, `01-09-2000`, `09-18-2000` will be
+  * Years smaller than 1000 or greater than 10000 will not be accepted as well
+  * Time of the meeting has to be in 24h format
+  * Dates in the past are allowed, if you would like to archive/ track past meetings
+* For duplicate meetings:
+  * A meeting is considered duplicate (and an error will be thrown) when you are meeting the same people at the same time.
+  * We allow concurrent meetings with different groups of people, as some people might want to arrange both a physical and a virtual meeting at the same time (this is not a feature bug, we have encountered such people before)
+
+### Deleting a meeting : `deletemeeting`
+
+Deletes the selected meeting from the meeting list and UI.
+
+Format: `deletemeeting INDEX_OF_MEETING_DISPLAYED_IN_MEETING_CARDS`
+
+Example: `deletemeeting 1`
+
+* The index refers to the index number of the meeting displayed in the meeting list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Add contacts to meeting: `addpersontomeeting`
 Adds the list of contacts to the specified meeting.
@@ -194,6 +235,10 @@ Format: `addpersontomeeting MEETING_INDEX; [NAMES]`
 * The index refers to the index number shown in the displayed meeting list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Examples: 
+* `addpersontomeeting 1; John Doe, Jane Doe`
+* `addpersontomeeting 2; Alex`
+
 ### Delete contacts from meeting: `deletepersonfrommeeting`
 Deletes the list of contacts from the specified meeting.
 
@@ -202,6 +247,10 @@ Format: `deletepersonfrommeeting MEETING_INDEX; [NAMES]`
 * Will not be able to delete person from meeting if only 1 person left in the meeting.
 * The index refers to the index number shown in the displayed meeting list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deletepersonfrommeeting 1; John Doe, Jane Doe`
+* `deletepersonfrommeeting 2; Alex`
 
 ### Editing a meeting : `editmeeting`
 
@@ -221,7 +270,7 @@ Examples:
 
 Shows a list of all meetings in the address book and console.
 
-### Searching a meeting: `findmeeting`
+### Finding a meeting: `findmeeting`
 
 Finds a meeting by the meeting's description, location or people 
 
@@ -257,13 +306,17 @@ Can be split into three cases:
 3. `AFTER_DATE` > `BEFORE_DATE` - Error
 
 Examples: 
-* `findmeetingsbetween 10-10-2022 1050 ;;; 12-10-2022 1200`
-* `findmeetingsbetween 10-11-2022 0000 ;;; 12-11-2022 0000`
-* `findmeetingsbetween 10-11-2022 1000 ;;; 10-11-2022 1000`
+* `filtermeetingsbetween 10-10-2022 1050 ;;; 12-10-2022 1200`
+* `filtermeetingsbetween 10-11-2022 0000 ;;; 12-11-2022 0000`
+* `filtermeetingsbetween 10-11-2022 1000 ;;; 10-11-2022 1000`
 
 ### Sort Meetings: `sortmeetings`
 
 Format: `sortmeetings asc` or `sortmeetings desc`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This command **PERMANENTLY** sorts the meeting list.
+</div>
 
 - Sorts the list of meetings by ascending or descending date order 
 - Has two parameter types `asc` and `desc` which sorts the list by ascending order or descending order
@@ -307,18 +360,23 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                                      |
-|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**          | `clear`                                                                                                                                                               |
-| **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **Find Tag**       | `find TAG [MORE_TAGS]`<br> e.g., `find friend CS2100`                                                                                                                 |
-| **Add Meeting**    | `addmeeting MEETING_TITLE /at MEETING_DATE [/description MEETING_DESCRIPTION] [/contact INDEX]` <br> e.g., `addmeeting Project Meeting /at 29 Jan 2022`               |
-| **Find Meeting**   | `findmeeting /named MEETING_TITLE` <br> e.g., findmeeting /named CS2103                                                                                               |
-| **Filter Meeting** | `filtermeetingsbetween AFTER_DATE ;;; BEFORE_DATE` <br> e.g., filtermeetingsbetween 10-10-2022 1010 ;;; 11-10-2022 1010                                               |
-| **Sort Meetings**  | `sortmeetings asc` or `sortmeetings desc`                                                                                                                             |
-| **List**           | `list`                                                                                                                                                                |
-| **Help**           | `help`                                                                                                                                                                |
+| Action                          | Format, Examples                                                                                                                                                                                                                           |
+|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                      |
+| **Clear**                       | `clear`                                                                                                                                                                                                                                    |
+| **Delete**                      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                        |
+| **Edit**                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                |
+| **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                 |
+| **Find Tag**                    | `findtag TAG [MORE_TAGS]`<br> e.g., `findtag friend CS2100`                                                                                                                                                                                |
+| **Create Meeting**              | `meet [NAMES_OF_PERSONS_TO_MEET (separated by }})] ;;; MEETING_DESCRIPTION ;;; MEETING_DATE_AND_TIME (in dd-MM-yyyy HHmm format) ;;; MEETING_LOCATION` <br> e.g., `meet Alex }} Bernice ;;; Project Meeting ;;; 29-01-2022 1530 ;;; UTown` |
+| **Delete Meeting**              | `deletemeeting INDEX_OF_MEETING_DISPLAYED_IN_MEETING_CARDS` <br> e.g., `deletemeeting 1`                                                                                                                                                   |
+| **Add Contact To Meeting**      | `addpersontomeeting MEETING_INDEX; [NAMES]` <br> e.g., `addpersontomeeting 1; John Doe, Jane Doe`                                                                                                                                          |
+| **Delete Contact From Meeting** | `deletepersonfrommeeting MEETING_INDEX; [NAMES]` <br> e.g., `deletepersonfrommeeting 1; John Doe, Jane Doe`                                                                                                                                |
+| **Edit Meeting**                | `editmeeting INDEX [d/DESCRIPTION] [dd/DATE] [l/LOCATION]` <br> e.g., `editmeeting 1; d/cs2103 dd/10-10-2022 1010 l/UTown`                                                                                                                 |
+| **List Meetings**               | `listmeeting`                                                                                                                                                                                                                              |
+| **Find Meeting**                | `findmeeting /named MEETING_TITLE` <br> e.g., findmeeting /named CS2103                                                                                                                                                                    |
+| **Filter Meeting**              | `filtermeetingsbetween AFTER_DATE ;;; BEFORE_DATE` <br> e.g., filtermeetingsbetween 10-10-2022 1010 ;;; 11-10-2022 1010                                                                                                                    |
+| **Sort Meetings**               | `sortmeetings asc` or `sortmeetings desc`                                                                                                                                                                                                  |
+| **List**                        | `list`                                                                                                                                                                                                                                     |
+| **Help**                        | `help`                                                                                                                                                                                                                                     |
 

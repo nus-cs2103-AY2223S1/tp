@@ -22,6 +22,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_INVALID_NON_EMPTY = "Message must not be blank";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -48,6 +50,22 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Leading and trailing whitespaces will be trimmed
+     *
+     * @param info
+     * @return trimmed info
+     * @throws ParseException if the given string only contains white spaces
+     */
+    public static String parseMeetingDetails(String info) throws ParseException {
+        requireNonNull(info);
+        String trimmedInfo = info.trim();
+        if (info.equals("")) {
+            throw new ParseException(MESSAGE_INVALID_NON_EMPTY);
+        }
+        return trimmedInfo;
     }
 
     /**

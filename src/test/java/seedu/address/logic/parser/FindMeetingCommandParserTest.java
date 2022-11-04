@@ -26,7 +26,7 @@ public class FindMeetingCommandParserTest {
         // no leading and trailing whitespaces
         FindMeetingCommand expectedFindMeetingCommandDescription =
                 new FindMeetingCommand(new MeetingContainsKeywordsPredicate(
-                        Arrays.asList("CS2103", "CS1101"), FindMeetingCommand.getDescription));
+                        Arrays.asList("CS2103", "CS1101"), FindMeetingCommand.GET_DESCRIPTION));
         assertParseSuccess(parser, "/named CS2103 CS1101", expectedFindMeetingCommandDescription);
         // multiple whitespaces between keywords
         assertParseSuccess(parser, "/named  \n CS2103 \n \t CS1101  \t", expectedFindMeetingCommandDescription);
@@ -35,14 +35,14 @@ public class FindMeetingCommandParserTest {
         //testing other types
         FindMeetingCommand expectedFindMeetingCommandPeople =
                 new FindMeetingCommand(new MeetingContainsKeywordsPredicate(
-                        Arrays.asList("John", "Alex"), FindMeetingCommand.getPeople));
+                        Arrays.asList("John", "Alex"), FindMeetingCommand.GET_PEOPLE));
         assertParseSuccess(parser, "/with John Alex", expectedFindMeetingCommandPeople);
         assertParseSuccess(parser, "/with  \n John \n \t Alex  \t", expectedFindMeetingCommandPeople);
 
 
         FindMeetingCommand expectedFindMeetingCommandLocation =
                 new FindMeetingCommand(new MeetingContainsKeywordsPredicate(
-                        Arrays.asList("UTown", "COM1"), FindMeetingCommand.getLocation));
+                        Arrays.asList("UTown", "COM1"), FindMeetingCommand.GET_LOCATION));
         assertParseSuccess(parser, "/at UTown COM1", expectedFindMeetingCommandLocation);
         assertParseSuccess(parser, "/at  \n UTown \n \t COM1  \t", expectedFindMeetingCommandLocation);
     }
