@@ -32,7 +32,7 @@ Given below are my contributions to the project.
   * Refactored code to improve maintainability and readability, and fixed ordering and naming of imports to pass checkstyle [\#80](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/80), [\#101](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/101)
   * Added and updated `edit` command for FRIDAY to edit a student's details, including name, Telegram Handle, Mastery Check assessment, consultation date, and tags. Additionally, added and updated tests for `edit` command. [\#80](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/89)
   * Updated and adapted `remark` command for FRIDAY to add remark comments for each student. [\#2](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/2)
-  * Updated GUI's logo and title [\#101](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/101)
+  * Designed and updated GUI's logo and title [\#101](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/101)
   * Designed and implemented new GUI for FRIDAY, including adding new colours and adjusting layout.
 
 * **Documentation**:
@@ -44,10 +44,10 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added Non-functional requirements
     * Refactored names to update for FRIDAY [\#106](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/106)
-    * Updated UML Diagrams
+    * Updated UML Diagrams to fit FRIDAY
     * Added documentation for the `grade` feature.
   * README:
     * Designed and added UI Mockup for FRIDAY
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#97](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/97), [\#118](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/118)
+  * PRs reviewed (with non-trivial review comments): [\#97](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/97), [\#118](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/118), [\#122](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/122), [\#178](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/178)

@@ -85,8 +85,9 @@ public class GradeCommandTest {
 
     @Test
     public void equals() {
-        EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder().withGrade("RA1", GRADE_STUB)
-                .build();
+        EditGradeDescriptor emptyDescriptor = new EditGradeDescriptor();
+        EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder(emptyDescriptor)
+                .withGrade("RA1", GRADE_STUB).build();
         final GradeCommand standardCommand = new GradeCommand(INDEX_FIRST_STUDENT, descriptor);
 
         // same values -> returns true
