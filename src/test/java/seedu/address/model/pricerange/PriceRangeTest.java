@@ -30,16 +30,17 @@ public class PriceRangeTest {
         assertThrows(NullPointerException.class, () -> PriceRange.isValidPriceRange(null));
 
         // invalid price range
-        assertFalse(PriceRange.isValidPriceRange("")); // empty string
-        assertFalse(PriceRange.isValidPriceRange(" ")); // spaces only
         assertFalse(PriceRange.isValidPriceRange("200")); // only one value
         assertFalse(PriceRange.isValidPriceRange("500-200")); // low before high
         assertFalse(PriceRange.isValidPriceRange("200;300")); // wrong separator
 
         // valid price range
+        assertTrue(PriceRange.isValidPriceRange("")); // empty string
+        assertTrue(PriceRange.isValidPriceRange(" ")); // spaces only
         assertTrue(PriceRange.isValidPriceRange("200 - 500"));
         assertTrue(PriceRange.isValidPriceRange("200 - 200")); // upper = lower
         assertTrue(PriceRange.isValidPriceRange("200-500")); // no spacing
+        assertTrue(PriceRange.isValidPriceRange("200-  500")); // multiple spaces
     }
 
     @Test

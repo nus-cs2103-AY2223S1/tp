@@ -21,8 +21,6 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_PRICE_RANGE = "200";
-    private static final String INVALID_DESIRED_CHARACTERISTICS = "";
-    private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -171,11 +169,6 @@ public class ParserUtilTest {
     @Test
     public void parseCharacteristics_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCharacteristics(null));
-    }
-
-    @Test
-    public void parseCharacteristics_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePriceRange(INVALID_DESIRED_CHARACTERISTICS));
     }
 
     @Test

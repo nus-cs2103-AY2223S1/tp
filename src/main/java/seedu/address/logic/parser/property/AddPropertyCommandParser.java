@@ -63,6 +63,7 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
         Characteristics characteristics = null;
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
+            characteristics = characteristics.isReset() ? null : characteristics;
         }
 
         Property property = new Property(propertyName, price, address, description,

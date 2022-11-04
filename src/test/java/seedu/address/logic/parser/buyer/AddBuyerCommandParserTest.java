@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.DESIRED_CHARACTE
 import static seedu.address.logic.commands.BuyerCommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_DESIRED_CHARACTERISTICS_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_PHONE_DESC;
@@ -43,7 +42,6 @@ import seedu.address.model.buyer.Email;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
-import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 import seedu.address.testutil.BuyerBuilder;
 
@@ -157,11 +155,6 @@ public class AddBuyerCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_PRICE_RANGE_DESC + DESIRED_CHARACTERISTICS_DESC_BOB
                 + TAG_DESC_PRIORITY_LOW, PriceRange.MESSAGE_CONSTRAINTS);
-
-        // invalid desired characteristics
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + PRICE_RANGE_DESC_BOB + INVALID_DESIRED_CHARACTERISTICS_DESC
-                + TAG_DESC_PRIORITY_LOW, Characteristics.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
