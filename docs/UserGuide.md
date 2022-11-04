@@ -126,7 +126,8 @@ Refer to the [Features](#3-features) section for details of each command.
 * `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 uppercase letter)**. <br>
   e.g. `A0123456G`.
 
-* `STUDENT_NAME` should only contain alphabetic characters, spaces and slash (for Indian names).
+* `STUDENT_NAME` Student names should only contain alphabetic characters, spaces and some supported characters given below, and it should not be blank: <br> / \ ( ) [ ] { } . - <br>
+  **Cannot start with a non-alphabetic character**.<br>
   **Leading and trailing spaces will be trimmed**.<br>
 
 * `FYP_NAME`  should only include alphanumeric characters and spaces but

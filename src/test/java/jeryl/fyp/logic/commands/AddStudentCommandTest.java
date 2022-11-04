@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import jeryl.fyp.model.student.DeadlineList;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -181,6 +182,11 @@ public class AddStudentCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public DeadlineList listDeadlineUnderStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
