@@ -150,7 +150,8 @@ public class ModelStub implements Model {
 
     @Override
     public void setTask(Task target, Task editedTask) {
-
+        taskBook.remove(target);
+        taskBook.add(target);
     }
 
     @Override
