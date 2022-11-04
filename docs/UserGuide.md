@@ -255,13 +255,11 @@ Clears all book and user entries from BookFace.
 
 Format: `clear all`
 
-### Changing the theme: `theme` *COMING SOON*
+### Changing the theme
 
 Changes the theme of BookFace.
 
-Format: `theme <supported theme>`
-
-Examples: `theme light`
+Select either the `Light` or `Dark` theme by clicking on `Theme` in the menu bar.
 
 ### Exit BookFace : `exit`
 
