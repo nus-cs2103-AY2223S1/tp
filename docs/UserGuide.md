@@ -198,7 +198,7 @@ Format: `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_IND
 * `LINK_INDEX` refers to the index number shown in the person list and is optional. Specifying this parameter will define the current person at the specified index in the person list as the contact person of the newly added internship. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
-Instead of typing the full status name, just enter the first letter of the intended status (e.g. `s/b` is a shortcut for `s/BOOKMARKED`)**.
+Instead of typing the full status name, just enter the first letter of the intended status (e.g. `s/b` is a shortcut for `s/BOOKMARKED`).
 Adding internships maintains the current sorted order of the display list (as opposed to adding to the back of the list). By default, the list is sorted by date of creation.
 An internship is assumed to have at most one contact person.
 Duplicate internships are not allowed.
