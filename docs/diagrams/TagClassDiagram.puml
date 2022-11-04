@@ -16,8 +16,6 @@ Class ModelManager {
 }
 
 Class AddressBook {
-    tags: TagSet
-
     +removeTags(Person, Collection): Person
     +hasTag(Tag): boolean
     +createTag(Tag): void

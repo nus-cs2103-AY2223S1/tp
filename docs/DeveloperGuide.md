@@ -249,7 +249,7 @@ The main stylesheet can be found under `resources/view/LightTheme.css`. The prim
 
 ### Remark field for entries
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed implementation for Remark is similar to that of other details of Person.
 Firstly we include a Remark class under `seedu/address/model/person`.
@@ -316,7 +316,7 @@ Creation and deletion are exposed in the `Model` interface as `Model#createMessa
 
 The following class diagram shows how messages are implemented:
 
-![UndoRedoState4](images/MessageClassDiagram.png)
+![MessageClassDiagram](images/MessageClassDiagram.png)
 
 **Given below is an example usage scenario of message generation**
 
@@ -358,7 +358,7 @@ message delete 1
 
 ### Tag command
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed implementation for Tags is similar to that of other details of Person.
 However, it is important to note that a tag needs to be created before it can be used.
@@ -367,14 +367,47 @@ This package will contain a tag class with all details about a tag, namely its R
 the string which is the remark itself. The package also contains a TagSet class which stores all
 tags created under a set.
 
+The following class diagram illustrates how Tag is implemented:
+
+![TagClassDiagram](images/TagClassDiagram.png)
+
+The `ModelManager` class
+
 Note that a Tag field is optional when adding a Person entry into the AddressBook.
 Hence, the default value for a Tag is an empty String.
 
 We can create tags using the `tag create` command. For example, `tag create friends`.
 
+The following sequence diagram illustrates the mechanism behind creating a tag:
+
+1. Upon executing the CreateTag Command, all the tags passed in by the user are passed through a loop to check if they already exist, via `Model#hasTag(tag)`.
+2. In the event that they exist, they will be stored in a list to inform the user later.
+3. In the event that it does not exist, it will be created by calling `Model#add(tag)`.
+4. If there were existing tags being passed in by the user, a message to notify the user will be generated out and printed along the success message.
+
+![CreateTagSequenceDiagram](images/CreateTagSequenceDiagram.png)
+
 Now that we have created a tag, we can tag a client using the `tag` command. For example, `tag 1 friends`.
 
+The sequence diagram below illustrates how tagging works:
+
+1. Upon executing the Tag Command, the `model`'s `getFilteredPersonList()` is called to obtain the list of users.
+2. With the list of users, we are now able to identify the client to tag. We then obtain the tags he/she currently have via `Person#getTags()`.
+3. Now we can add the new tags to this particular client. 
+4. Next, we call `Model#setPerson(personToTag, taggedPerson)` to update the client's tags. 
+5. Lastly, we call `Model#clearFiltersInFilteredPersonList()` to update our list of users.
+
+![TagSequenceDiagram](images/TagSequenceDiagram.png)
+
 We can also remove tags from a user using the `tag remove` command. For example, `tag remove 1 friends`.
+
+To remove all instances of a tag, we can use the `tag delete` command. For example, `tag delete friends`.
+
+The following sequence diagram describes how the deletion of tags is done:
+
+1. Upon executing the DeleteTag Command, the command calls the `model`'s deleteTags method to delete the tags.
+   
+![DeleteTagSequenceDiagram](images/DeleteTagSequenceDiagram.png)
 
 #### Design considerations:
 
