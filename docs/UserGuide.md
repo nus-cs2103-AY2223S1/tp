@@ -4,7 +4,7 @@ title: User guide
 
 ---
 # 1. Overview <a id="1-overview"></a>
----
+
 TABS is a desktop application which helps student project team leaders **overview tasks assigned to group members**.
 TABS helps in 3 key ways:
 1. Contact details management 
@@ -16,74 +16,36 @@ TABS aim to reduce the amount of time spent on managing team projects for **stud
 ---
 
 1. [Overview](#1-overview)
-2. [Quick start](#quick-start)
-3. [GUI interface](#gui-interface)
-4. [Features](#features)
-   - [4.1 Viewing help: `help`](#viewing-help-help)
-  - [Adding a person: `addperson`](#adding-a-person-addperson)
-  - [Deleting a person : `deleteperson`](#deleting-a-person-deleteperson)
-  - [Editing a person: `editperson`](#editing-a-person-editperson)
-  - [Locating persons by name: `findperson`](#locating-persons-by-name-findperson)
-  - [Listing all persons: `listpersons`](#listing-all-persons-listpersons)
-  - [Adding a group: `addgroup`](#adding-a-group-addgroup)
-  - [Deleting a group: `deletegroup`](#deleting-a-group-deletegroup)
-  - [Adding a member to a group: `addmember`](#adding-a-member-to-a-group-addmember)
-  - [Deleting a member from a group: `deletemember`](#deleting-a-member-from-a-group-deletemember)
-  - [Display a group: `displaygroup`](#display-a-group-displaygroup)
-  - [Listing all groups: `listgroups`](#listing-all-groups-listgroups)
-  - [Assigning a task to a member: `assigntask`](#assigning-a-task-to-a-member-assigntask)
-  - [Deleting a task from a member: `deletetask`](#deleting-a-task-from-a-member-deletetask)
-  - [Assigning a task to all members: `assigntaskall`](#assigning-a-task-to-all-members-assigntaskall)
-  - [Deleting a task from all members: `deletetaskall`](#deleting-a-task-from-all-members-deletetaskall)
-  - [Clearing existing data: `clear`](#clearing-all-entries-clear)
+2. [About User Guide](#user-guide)
+   - [2.1 Command format](#user-guide2.1)
+   - [2.2 Prefixes](#user-guide2.2)
+3. [Quick start](#quick-start)
+4. [GUI interface](#gui-interface)
+5. [Features](#features)
+   - [Viewing help: `help`](#viewing-help-help)
+   - [Adding a person: `addperson`](#adding-a-person-addperson)
+   - [Deleting a person : `deleteperson`](#deleting-a-person-deleteperson)
+   - [Editing a person: `editperson`](#editing-a-person-editperson)
+   - [Locating persons by name: `findperson`](#locating-persons-by-name-findperson)
+   - [Listing all persons: `listpersons`](#listing-all-persons-listpersons)
+   - [Adding a group: `addgroup`](#adding-a-group-addgroup)
+   - [Deleting a group: `deletegroup`](#deleting-a-group-deletegroup)
+   - [Adding a member to a group: `addmember`](#adding-a-member-to-a-group-addmember)
+   - [Deleting a member from a group: `deletemember`](#deleting-a-member-from-a-group-deletemember)
+   - [Display a group: `displaygroup`](#display-a-group-displaygroup)
+   - [Listing all groups: `listgroups`](#listing-all-groups-listgroups)
+   - [Assigning a task to a member: `assigntask`](#assigning-a-task-to-a-member-assigntask)
+   - [Deleting a task from a member: `deletetask`](#deleting-a-task-from-a-member-deletetask)
+   - [Assigning a task to all members: `assigntaskall`](#assigning-a-task-to-all-members-assigntaskall)
+   - [Deleting a task from all members: `deletetaskall`](#deleting-a-task-from-all-members-deletetaskall)
+   - [Clearing existing data: `clear`](#clearing-all-entries-clear)
   - [Exiting the program : `exit`](#exiting-the-program-exit)
 - [Command summary](#command-summary)
 
-
-# 2. Quick start<a id="quick-start"></a>
-
-1. Ensure you have Java 11 or above installed in your Computer.
-2. Download the latest TABS.jar.
-3. Copy the file to the folder you want to use as the home folder for your TABS.
-4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
-Note how the app contains some sample data.
-<br><br>
-![TABS example](images/user-guide/Ui.png)
-<br><br>
-5. Refer to the [Features](#features) below for details of each command.
-
-
 ---
-# 3. GUI interface<a id="gui-interface"></a>
-The images below show the sections of the TABS user interface.
+# 2. About User Guide <a id="user-guide"></a>
 
-![TABS example](images/user-guide/Ui2.png)
-
-Overview of the sections in the main window:
-
-Section | Role
---------|------------------
-Menu Bar | Display menu items File and Help
-Command Box | To type the commands
-Result Window | Displays the result of user input
-Contacts Pane | Contains the list of persons in TABS
-Group Pane | Contains the list of groups in TABS
-
-![TABS example](images/user-guide/Ui3 persontab.png)
-
-Overview of the sections in the contacts pane:
-
-Section | Role
---------|------------------
-Tab Buttons | Switch between Contact details and Assignments
-Assignments | Contains the assignment allocated to the person sorted by group
-Contact details | Contains the person's information
-Workload indicator | Calculated workload of the person's assignments based on priority
-
-
----
-## Features<a id="features"></a>
-
+## 2.1 Command format <a id="user-guide2.1"></a>
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Shortcut keys to use the application:**<br>
@@ -112,10 +74,69 @@ Workload indicator | Calculated workload of the person's assignments based on pr
 * Extraneous parameters for commands that do not take in parameters (such as `listpersons`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `listpersons 123`, it will be interpreted as `listpersons`.
 
-* Commands involving the parameter `NAME` is case-sensitive, the `NAME` specified must be 
-exactly the same as the one stored in TABS.
+* Commands involving the parameter `NAME` is case-sensitive, the `NAME` specified must be
+  exactly the same as the one stored in TABS.
 
 </div>
+
+## 2.2 Prefixes <a id="user-guide2.2"></a>
+Prefix | Field
+--------|------------------
+n/ | NAME
+p/ | PHONE
+e/ | EMAIL
+a/ | ADDRESS
+t/ | TAG
+g/ | GROUP
+task/ | TASK
+w/ | WORKLOAD
+d/ | DEADLINE
+
+---
+# 3. Quick start<a id="quick-start"></a>
+
+1. Ensure you have Java 11 or above installed in your Computer.
+2. Download the latest TABS.jar.
+3. Copy the file to the folder you want to use as the home folder for your TABS.
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
+Note how the app contains some sample data.
+<br><br>
+![TABS example](images/user-guide/Ui.png)
+<br><br>
+5. Refer to the [Features](#features) below for details of each command.
+
+---
+# 4. GUI interface<a id="gui-interface"></a>
+The images below show the sections of the TABS user interface.
+
+![TABS example](images/user-guide/Ui2.png)
+
+Overview of the sections in the main window:
+
+Section | Role
+--------|------------------
+Menu Bar | Display menu items File and Help
+Command Box | To type the commands
+Result Window | Displays the result of user input
+Contacts Pane | Contains the list of persons in TABS
+Group Pane | Contains the list of groups in TABS
+
+![TABS example](images/user-guide/Ui3 persontab.png)
+
+Overview of the sections in the contacts pane:
+
+Section | Role
+--------|------------------
+Tab Buttons | Switch between Contact details and Assignments
+Assignments | Contains the assignment allocated to the person sorted by group
+Contact details | Contains the person's information
+Workload indicator | Calculated workload of the person's assignments based on priority
+
+
+---
+## 5. Features<a id="features"></a>
+
+
 
 ### Viewing help: help
 
