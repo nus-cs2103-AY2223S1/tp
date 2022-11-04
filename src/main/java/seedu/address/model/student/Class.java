@@ -25,8 +25,7 @@ public class Class {
             "Time should be in a valid time in the range of 0000 - 2359";
     public static final String INVALID_DATETIME_ERROR_MESSAGE =
             INVALID_DATE_ERROR_MESSAGE + ".\n" + INVALID_TIME_ERROR_MESSAGE;
-    public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime and duration"
-            + " should be less than or equal to the difference between EndTime and StartTime";
+    public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime";
     public static final String VALIDATION_DATETIME_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
     public static final String VALIDATION_TIME_REGEX = "[0-9]{4}";
     public static final String VALIDATION_STANDARD_CLASS_REGEX = VALIDATION_DATETIME_REGEX
@@ -207,7 +206,7 @@ public class Class {
     }
 
     /**
-     * Returns true if a given string is a valid input.
+     * Returns true if {@code String classDateTime} is a valid input.
      *
      * @param classDateTime String to be validated.
      * @return true if a given string fits the format of 'yyyy-MM-dd 0000-2359'.
@@ -217,16 +216,22 @@ public class Class {
     }
 
     /**
-     * Validates whether {@code String classDateTime} is of format as {@code String VALIDATION_STANDARD_CLASS_REGEX}.
+     * Returns true if {@code String classDateTime} is a valid input.
+     *
+     * @param classDateTime String to be validated.
+     * @return true if format  {@code String VALIDATION_STANDARD_CLASS_REGEX}.
      */
     public static boolean isValidClassStringFormat(String classDateTime) {
         return classDateTime.matches(VALIDATION_STANDARD_CLASS_REGEX);
     }
 
     /**
-     * Validates whether the {@code String classDateTime} can be parsed to a valid date.
+     * Returns true if {@code String classDateTime} is a valid input.
      * Note that this should be always called when {@code String classDateTime} is of correct format
      * as specified by {@code isValidClassStringFormat}.
+     *
+     * @param classDateTime String to be validated.
+     * @return true if it can be parsed to a valid date.
      */
     public static boolean isValidClassDateString(String classDateTime) {
         assert isValidClassStringFormat(classDateTime);
@@ -238,7 +243,7 @@ public class Class {
     }
 
     /**
-     * Returns true if a given string is a valid input.
+     * Returns true if {@code String classDateTime} is a valid input.
      *
      * @param classDateTime String to be validated.
      * @return true if a given string fits the format of 'Day-of-Week 0000-2359'.
@@ -253,9 +258,9 @@ public class Class {
     }
 
     /**
-     * Returns true if a given string is a valid date.
+     * Returns true if {@code String date} is a valid date.
      *
-     * @param date String object.
+     * @param date String to be validated.
      * @return true if is valid.
      */
     private static boolean isValidDateString(String date) {
@@ -269,9 +274,9 @@ public class Class {
     }
 
     /**
-     * Returns true if a given string is a valid time.
+     * Returns true if {@code String time} is a valid time.
      *
-     * @param time String object.
+     * @param time String to be validated.
      * @return true if is valid.
      */
     private static boolean isValidTimeString(String time) {
@@ -309,7 +314,7 @@ public class Class {
     }
 
     /**
-     * Returns true if duration is valid.
+     * Returns true if {@code LocalTime startTime} and {@code LocalTime endTime} are valid.
      *
      * @param startTime LocalTime object.
      * @param endTime LocalTime object.
@@ -331,24 +336,24 @@ public class Class {
     }
 
     /**
-     * Returns 1 is this {@code Class} starts before the given {@code aclass}.
-     * {@code Class} and {@code aclass} must be non-null and on the same day;
+     * Returns -1 if this {@code Class} starts before the given {@code aClass}.
+     * {@code Class} and {@code aClass} must be non-null and on the same day;
      */
-    public int compareToByStartTime(Class aclass) {
-        requireAllNonNull(this.date, this.startTime, aclass.date, aclass.startTime);
-        assert this.date.equals(aclass.date);
-        return this.startTime.compareTo(aclass.startTime);
+    public int compareToByStartTime(Class aClass) {
+        requireAllNonNull(this.date, this.startTime, aClass.date, aClass.startTime);
+        assert this.date.equals(aClass.date);
+        return this.startTime.compareTo(aClass.startTime);
     }
 
     /**
-     * Returns 1 is the {@code Class} starts before the given {@code aclass}.
+     * Returns -1 if this {@code Class} starts before the given {@code aClass}.
      */
-    public int compareToByClassTime(Class aclass) {
-        requireAllNonNull(this.date, this.startTime, aclass.date, aclass.startTime);
-        if (!this.date.equals(aclass.date)) {
-            return this.date.compareTo(aclass.date);
+    public int compareToByClassTime(Class aClass) {
+        requireAllNonNull(this.date, this.startTime, aClass.date, aClass.startTime);
+        if (!this.date.equals(aClass.date)) {
+            return this.date.compareTo(aClass.date);
         } else {
-            return this.compareToByStartTime(aclass);
+            return this.compareToByStartTime(aClass);
         }
     }
 }

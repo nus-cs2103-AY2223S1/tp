@@ -104,6 +104,20 @@ public class ClassTest {
     }
 
     @Test
+    public void isSameDateAsTest() {
+        LocalDate date = LocalDate.of(2022, 11, 11);
+        Class classWithTheSameDate =
+                new Class(LocalDate.of(2022, 11, 11),
+                        LocalTime.of(12, 0), LocalTime.of(15, 0), "2022-11-11 1200-1500");
+        assertTrue(classWithTheSameDate.isSameDateAs(date));
+
+        LocalDate differentDate = LocalDate.of(2022, 12, 12);
+        Class classWithDifferentDate = new Class(differentDate,
+                LocalTime.of(12, 0), LocalTime.of(15, 0), "2022-12-12 1200-1500");
+        assertFalse(classWithDifferentDate.isSameDateAs(date));
+    }
+
+    @Test
     public void addDaysToClassTest() {
         LocalDate validDate = LocalDate.of(2022, 10, 11);
         LocalTime validStartTime = LocalTime.of(0, 0);
