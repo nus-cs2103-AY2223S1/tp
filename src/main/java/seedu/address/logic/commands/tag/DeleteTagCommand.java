@@ -9,27 +9,18 @@ import static seedu.address.model.task.Task.PREDICATE_SHOW_NON_ARCHIVED_TASKS;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandUtil;
 import seedu.address.logic.commands.EditPersonDescriptor;
 import seedu.address.logic.commands.EditTaskDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Id;
 import seedu.address.model.task.Task;
 
 /**
@@ -38,7 +29,6 @@ import seedu.address.model.task.Task;
 public class DeleteTagCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteL";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the labels of the person/task identified "
             + "by the index number used in the displayed person/task list. "
             + "Selected tags will be deleted from the existing list of tags.\n"
@@ -48,9 +38,9 @@ public class DeleteTagCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_CONTACT + "1 " + PREFIX_TASK + "2 "
             + PREFIX_TAG + "CS2103T";
 
-    public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted Tag: %1$s";
-    public static final String MESSAGE_TAG_NOT_DELETED = "At least 1 tag to delete must be provided.";
-    public static final String MESSAGE_TAGS_DO_NOT_EXIST = "The tag(s) you want to remove are not found "
+    public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted Label: %1$s";
+    public static final String MESSAGE_TAG_NOT_DELETED = "At least 1 label to delete must be provided.";
+    public static final String MESSAGE_TAGS_DO_NOT_EXIST = "The label(s) you want to remove are not found "
         + "on the selected contact/task.";
     public static final String MESSAGE_MISSING_INDEX = "At least 1 contact or task index must be provided.";
 
@@ -133,53 +123,6 @@ public class DeleteTagCommand extends Command {
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS,
                 editPersonDescriptor.getTags().orElse(new HashSet<>())));
-    }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    public static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
-
-        UUID id = editPersonDescriptor.getId().orElse(personToEdit.getId());
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
-        Set<Tag> newTags = editPersonDescriptor.getTags().orElse(new HashSet<>());
-        Set<Tag> updatedTags = new HashSet<>();
-        updatedTags.addAll(personToEdit.getTags());
-        if (newTags.size() > 0) {
-            updatedTags.removeAll(newTags);
-        }
-
-        return new Person(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
-    }
-
-    /**
-     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
-     * edited with {@code editTaskDescriptor}.
-     */
-    public static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
-        assert taskToEdit != null;
-
-        Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Boolean updatedIsDone = editTaskDescriptor.getCompletionStatus().orElse(taskToEdit.getCompletionStatus());
-        Boolean updatedIsArchived = editTaskDescriptor.getArchivalStatus().orElse(taskToEdit.getArchivalStatus());
-
-        Set<Tag> newTags = editTaskDescriptor.getTags().orElse(new HashSet<>());
-        Set<Tag> updatedTags = new HashSet<>();
-        updatedTags.addAll(taskToEdit.getTags());
-        if (newTags.size() > 0) {
-            updatedTags.removeAll(newTags);
-        }
-        // Id cannot be updated
-        Id id = taskToEdit.getId();
-
-        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedIsArchived, updatedTags, id);
     }
 
     @Override
