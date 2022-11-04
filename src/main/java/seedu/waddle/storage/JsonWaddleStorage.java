@@ -15,7 +15,7 @@ import seedu.waddle.commons.util.JsonUtil;
 import seedu.waddle.model.ReadOnlyWaddle;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access Waddle data stored as a json file on the hard disk.
  */
 public class JsonWaddleStorage implements WaddleStorage {
 
@@ -60,8 +60,8 @@ public class JsonWaddleStorage implements WaddleStorage {
     }
 
     @Override
-    public void saveWaddle(ReadOnlyWaddle addressBook) throws IOException {
-        saveWaddle(addressBook, filePath);
+    public void saveWaddle(ReadOnlyWaddle waddle) throws IOException {
+        saveWaddle(waddle, filePath);
     }
 
     /**

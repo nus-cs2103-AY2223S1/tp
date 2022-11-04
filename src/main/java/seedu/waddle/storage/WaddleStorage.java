@@ -19,7 +19,7 @@ public interface WaddleStorage {
     Path getWaddleFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyWaddle}.
+     * Returns Waddle data as a {@link ReadOnlyWaddle}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -33,14 +33,14 @@ public interface WaddleStorage {
 
     /**
      * Saves the given {@link ReadOnlyWaddle} to the storage.
-     * @param addressBook cannot be null.
+     * @param waddle cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveWaddle(ReadOnlyWaddle addressBook) throws IOException;
+    void saveWaddle(ReadOnlyWaddle waddle) throws IOException;
 
     /**
      * @see #saveWaddle(ReadOnlyWaddle)
      */
-    void saveWaddle(ReadOnlyWaddle addressBook, Path filePath) throws IOException;
+    void saveWaddle(ReadOnlyWaddle waddle, Path filePath) throws IOException;
 
 }
