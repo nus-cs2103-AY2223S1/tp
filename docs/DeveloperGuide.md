@@ -37,7 +37,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+#### Main components of the architecture
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -53,9 +53,9 @@ The rest of the App consists of four components.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
-**How the architecture components interact with each other**
+#### Interaction between the architecture components
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -76,7 +76,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g. `CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -153,7 +153,8 @@ The `SessionData` objects contains a `Session` object and a grade associated wit
 
 `Student`, `ModuleClass`, `Session`, `StudentModuleData`, and `SessionData` objects implement the `Identity<T>` interface 
 which has a single `isSame(T)` method.  The `isSame(T)` method allows `Identity<T>` objects to define a weaker notion of 
-equality than the `equals` method.
+equality than the `equals` method. More details regarding this can be found in the 
+[Implementation section](#identity-a-weaker-notion-of-equality).
 
 The relationship between these classes is shown in the following class diagram:
 
@@ -299,11 +300,11 @@ While the `ModuleClass` object for the module "CS1231S" might be saved in `modul
 }
 ```
 
-#### Design Considerations
-* Alternative 1 (current choice): The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and
+#### Design considerations
+* **Alternative 1 (current choice)**: The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and
 `Session` name respectively. Because in any of their functionality, we do not need to know the list of `Sessions` in the
 `ModuleClass` object or the `Date` of the `Session` object. 
-  * Pros:
+  * **Pros**:
     * The `StudentModuleData` and `SessionData` objects are independent of the `ModuleClass` and `Session` objects stored
       in `Model`. 
     * It makes testing easier due to the independence of the `StudentModuleData` and `SessionData` objects.
@@ -311,20 +312,22 @@ While the `ModuleClass` object for the module "CS1231S" might be saved in `modul
       `StudentModuleData` and `SessionData` objects. 
     * According to our JSON format, it is more intuitive to let the `StudentModuleData` and `SessionData` classes only know
       about the names. 
-  * Cons: The `ModuleClass` and `Session` objects are duplicated, which may cause confusion when we may need to iterate
+  * **Cons**: The `ModuleClass` and `Session` objects are duplicated, which may cause confusion when we may need to iterate
     on the session list in the `ModuleClass` object, for example. So we need to remember that the actual `ModuleClass` and
     `Session` objects are stored in `Model` and not in the `StudentModuleData` and `SessionData` objects.
-* Alternative 2: Same as alternative 1 but we save the names of `ModuleClass` and `Session` as a `String`. 
-  * Pros: Makes the intention more clear that only the names are required in these classes. 
-  * Cons: We lose some functionality of the `ModuleClass` and `Session` objects, such as `isSame`, `toString` and other
+  
+* **Alternative 2**: Same as alternative 1 but we save the names of `ModuleClass` and `Session` as a `String`. 
+  * **Pros**: Makes the intention more clear that only the names are required in these classes. 
+  * **Cons**: We lose some functionality of the `ModuleClass` and `Session` objects, such as `isSame`, `toString` and other
     methods. In this approach, we would need to recreate them for `String` instead. 
-* Alternative 3: While loading the data, we first load `ModuleClass` objects and `Student` objects into two separate lists. 
+  
+* **Alternative 3**: While loading the data, we first load `ModuleClass` objects and `Student` objects into two separate lists. 
   Then for each `Student` object and each `StudentModuleData` object, we iterate through the list of `ModuleClass` objects
   and reference the correct `ModuleClass` object. Then for each of the `SessionData` in the `StudentModuleData` object, we 
   iterate through the list of `Sessions` in the `ModuleClass` object and reference the correct `Session` object.
-  * Pros: The `ModuleClass` and `Session` objects are not duplicated. The same object is referenced by both the `Model`
+  * **Pros**: The `ModuleClass` and `Session` objects are not duplicated. The same object is referenced by both the `Model`
     and `StudentModuleData` or `SessionData` objects.
-  * Cons: 
+  * **Cons**: 
     * Implementation of this loading mechanism would be quite convoluted and hard to test. 
     * Maintaining this strong coupling can be quite challenging. 
     * It makes testing more difficult as we need to ensure that the `Model` and `StudentModuleData` or `SessionData` 
@@ -337,24 +340,25 @@ Each student object contains a collection of `StudentModuleData` where module cl
 
 Given below are the different steps taken when the user assigns students to a module class.
 
-Step 1: The user enters the command keyword `assign`, followed by the indices of the students he want to assign module classes to, and the names of the module classes that he wants to assign to the students. Example: `assign 1 2 3 c/CS1101S`.
+**Step 1**: The user enters the command keyword `assign`, followed by the indices of the students he want to assign module classes to, and the names of the module classes that he wants to assign to the students. Example: `assign 1 2 3 c/CS1101S`.
 
-Step 2: The program makes use of the `TAAssistParser` to make sense of the keyword, and determine which parser to use to parse the arguments. In this case, the `AssignCommandParser` is used.
+**Step 2**: The program makes use of the `TAAssistParser` to make sense of the keyword, and determine which parser to use to parse the arguments. In this case, the `AssignCommandParser` is used.
 
-Step 3: The `AssignCommandParser` makes sense of the arguments, and creates an `AssignCommand` object with the student indices and the module classes to assign them to.
+**Step 3**: The `AssignCommandParser` makes sense of the arguments, and creates an `AssignCommand` object with the student indices and the module classes to assign them to.
 
-Step 4: The `AssignCommand` object is executed. The student indices are be used to retrieve the `Student` objects from the list of students captured by the `Model` interface. For each student, the program creates a new `StudentModuleData` object for each module class that is not already assigned to the student. The `StudentModuleData` object only contains the module class name and not any session information. The `StudentModuleData` objects created for the student are added to the student object's collection of `StudentModuleData`.
+**Step 4**: The `AssignCommand` object is executed. The student indices are be used to retrieve the `Student` objects from the list of students captured by the `Model` interface. For each student, the program creates a new `StudentModuleData` object for each module class that is not already assigned to the student. The `StudentModuleData` object only contains the module class name and not any session information. The `StudentModuleData` objects created for the student are added to the student object's collection of `StudentModuleData`.
 
-Step 5: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI to the user.
+**Step 5**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI to the user.
 
 #### Design considerations:
 
-* Alternative 1 (current choice): Let each student maintain a collection of module classes that the student is being assigned to.
-  * Pros: Only captures necessary information, and easier to implement. This structure is also easier to capture session information for the students.
-  * Cons: Will be creating multiple `StudentModuleData` objects for a module class when multiple students are assigned to the module class. This may cause performance issues from the large number of objects created.
-* Alternative 2: Create a matrix of students and classes to determine which module class is assigned to which student.
-  * Pros: Will allow fast query to whether a student is assigned to a module class, or when looking for all the students assigned to a certain module class.
-  * Cons: Can possibly be storing a lot of unnecessary information. Considering the target audience of TAs, it is very unlikely for them to be teaching the same student for multiple module classes.
+* **Alternative 1 (current choice)**: Let each student maintain a collection of module classes that the student is being assigned to.
+  * **Pros**: Only captures necessary information, and easier to implement. This structure is also easier to capture session information for the students.
+  * **Cons**: Will be creating multiple `StudentModuleData` objects for a module class when multiple students are assigned to the module class. This may cause performance issues from the large number of objects created.
+  
+* **Alternative 2**: Create a matrix of students and classes to determine which module class is assigned to which student.
+  * **Pros**: Will allow fast query to whether a student is assigned to a module class, or when looking for all the students assigned to a certain module class.
+  * **Cons**: Can possibly be storing a lot of unnecessary information. Considering the target audience of TAs, it is very unlikely for them to be teaching the same student for multiple module classes.
 
 ### Unassigning students from module classes
 
@@ -371,27 +375,27 @@ the given grade.
 
 Given bellow are the steps taken when the user gives grade to a student for a session: 
 
-Step 1: The user input is parsed similar to other commands and a `GradeCommand` object is created using the given 
+**Step 1**: The user input is parsed similar to other commands and a `GradeCommand` object is created using the given 
 student indices, session name, and grade. 
 
-Step 2: The `GradeCommand` object is executed. The given indices are used to retrieve the `Student` objects from the 
+**Step 2**: The `GradeCommand` object is executed. The given indices are used to retrieve the `Student` objects from the 
 current curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndices` method. For each 
 student, steps 3 to 5 are repeated.
 
-Step 3: The old `Student` object is used to create an updated `Student` object via the `Student#updateGrade` method. 
+**Step 3**: The old `Student` object is used to create an updated `Student` object via the `Student#updateGrade` method. 
 The method creates the new student with an updated list of `StudentModuleData` by going through the list of the 
 old `Student` object's list of `StudentModuleData` and updating the `StudentModuleData` that matches the current 
 focused `ModuleClass`.
 
-Step 4: The `StudentModuleData#updateGrade` method is used to create a new `StudentModuleData` object with the
+**Step 4**: The `StudentModuleData#updateGrade` method is used to create a new `StudentModuleData` object with the
 updated grade for the session. The method first creates a new `StudentModuleData` object which has the same list of
 `SessionData` except the one matching with the given session (if any). The method then creates a new `SessionData` 
 object with the given grade and adds it to the list of `SessionData` in the new `StudentModuleData` object. 
 
-Step 5: After finishing steps 3-4, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
+**Step 5**: After finishing steps 3-4, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
 is used to replace the old `Student` object with the updated one in our model. 
 
-Step 6: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
+**Step 6**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
 to the user. 
 
 ### Viewing session-wise grades of a student in a class
@@ -403,21 +407,21 @@ the session-wise grade can be read from the list of `SessionData` stored inside 
 
 Given bellow are the steps taken when the user wants to view a student's session-wise grades:
 
-Step 1: The user input is parsed similar to other commands and a `ViewCommand` object is created using the given student index. 
+**Step 1**: The user input is parsed similar to other commands and a `ViewCommand` object is created using the given student index. 
 
-Step 2: The `ViewCommand` object is executed. The given index is used to retrieve the correct `Student` object from the 
+**Step 2**: The `ViewCommand` object is executed. The given index is used to retrieve the correct `Student` object from the 
 curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndex` method.  
 
-Step 3: The `StudentModuleData` of the student that matches with the current focus class is retrieved using the 
+**Step 3**: The `StudentModuleData` of the student that matches with the current focus class is retrieved using the 
 `Student#findStudentModuleData` method. This method achieves that by searching the `UniqueList` with a new `StudentModuleData`
 that has the identity of the current focus class. This `StudentModuleData` is guaranteed to exist, since the program is in
 focus mode. 
 
-Step 4: The list of `SessionData` is retrieved from the `StudentModuleData` using the `StudentModuleData#getSessionDataList` method.
+**Step 4**: The list of `SessionData` is retrieved from the `StudentModuleData` using the `StudentModuleData#getSessionDataList` method.
 
-Step 5: A response message is constructed from the list of `SessionData`, containing all the session-wise grades of the student. 
+**Step 5**: A response message is constructed from the list of `SessionData`, containing all the session-wise grades of the student. 
 
-Step 6: The execution ends and returns a `CommandResult` object containing the constructed response to be displayed by GUI to the user. 
+**Step 6**: The execution ends and returns a `CommandResult` object containing the constructed response to be displayed by GUI to the user. 
 
 ### Tracking the state of focus mode
 
@@ -483,7 +487,7 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
 :information_source: **Note:** The diagram above simplifies the `ListView` interaction as it is abstracted away by JavaFX and its details are mostly irrelevant to our implementation.
 </div>
 
-#### Design Considerations
+#### Design considerations
 
 **Aspect: How query data is passed to `UI`:**
 * **Option 1 (Current Choice).** Pair `Student` and `SessionData` together in a `StudentView` class.
@@ -727,7 +731,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-### Non-Functional Requirements
+### Non-functional requirements
 
 1. Should work on any mainstream OS with Java 11 or above installed.
 2. Should work without requiring an installer.
@@ -781,7 +785,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding sessions
 
-1. Adding a session to a class
+1. Adding a session to a class:
    1. Prerequisites: The class `CS1231S` exists in TA-Assist without any sessions assigned. 
       TA-Assist is currently in focus mode and is focusing on the `CS1231S` class.
    1. Test case: `adds s/Tut 1`<br>
@@ -790,8 +794,9 @@ testers are expected to do more *exploratory* testing.
       Expected: A session named `Tut 1` is added with its date set to `1st January 2022` and is displayed on the session list.
    1. Test case: `adds s/Lab 1 d/2019-02-29`<br>
       Expected: Session is not created as `29th February 2019` is not a valid date.
+   <p></p> <!--- Empty paragraph to add spacing between sections -->
 
-1. Batch adding sessions to a class
+1. Batch adding sessions to a class:
    1. Prerequisites: The class `CS1231S` exists in TA-Assist without any sessions assigned.
    TA-Assist is currently in focus mode and is focusing on the `CS1231S` class.
    1. Test case: `adds s/Tut 2 s/Lab 2`<br>
@@ -807,6 +812,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: Jar file has been launched and data files have been generated.
    1. Close the application. Open `data/taassist.json` and add some random characters.
    1. Re-launch the app.
+    
    Expected: An alert box appears stating the data file has been corrupted and queries the user if they want to continue
    with a new data file.
     
@@ -814,6 +820,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: Jar file has been launched and data files have been generated.
    1. Close the application. Rename `data/taassist.json` to `data/taassist.json.bak`.
    1. Re-launch the app.
+    
    Expected: TA-Assist launches normally and re-generates the sample data similar to when the application is first launched.
   
 1. Recovering accidentally deleted data: 
@@ -821,5 +828,6 @@ testers are expected to do more *exploratory* testing.
    1. Modify or delete some data using the application.
    1. Close the application. Rename `data/taassist.json.bak` to `data/taassist.json`. 
    1. Re-launch the app.
+    
    Expected: TA-Assist copied the data from `data/taassist.json` to `data/taassist.json.bak` at launch. After following
    the instructions, data before modification is recovered.
