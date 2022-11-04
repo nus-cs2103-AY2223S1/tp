@@ -19,11 +19,13 @@ import seedu.uninurse.model.person.Patient;
  * Deletes a medical condition from a patient identified using its displayed index from the patient list.
  */
 public class DeleteConditionCommand extends DeleteGenericCommand {
-    public static final String MESSAGE_USAGE = "Command: Delete a medical condition from a patient.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
+            + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_CONDITION_INDEX
+            + ": Deletes a medical condition from a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
-            + PREFIX_OPTION_CONDITION_INDEX + " TAG_INDEX\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_OPTION_CONDITION_INDEX
-            + " 2";
+            + PREFIX_OPTION_CONDITION_INDEX + " CONDITION_INDEX\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_OPTION_CONDITION_INDEX + " 1";
     public static final String MESSAGE_DELETE_CONDITION_SUCCESS = "Deleted condition %1$d from %2$s: %3$s";
     public static final CommandType DELETE_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 

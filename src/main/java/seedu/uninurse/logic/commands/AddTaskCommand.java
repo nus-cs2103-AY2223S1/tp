@@ -2,6 +2,7 @@ package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import java.util.List;
@@ -20,13 +21,16 @@ import seedu.uninurse.model.task.exceptions.DuplicateTaskException;
  * Add a task to an existing person in the patient list.
  */
 public class AddTaskCommand extends AddGenericCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a task to the person identified "
-            + "by the index number used in the last patient listing.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_TASK_DESCRIPTION + "[TASK_DESCRIPTION]\n"
-            + "Example: " + COMMAND_WORD + " 2 "
-            + PREFIX_TASK_DESCRIPTION + "Change dressing on left arm";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
+            + ": Adds a task to a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
+            + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>\n"
+            + "Examples:\n" + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_TASK_DESCRIPTION + "Change dressing\n"
+            + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_TASK_DESCRIPTION + "Change dressing | 22-4-22 1345\n"
+            + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_TASK_DESCRIPTION + "Change dressing | 22-4-22 1345 | 3 weeks\n";
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "New task added to %1$s: %2$s";
 

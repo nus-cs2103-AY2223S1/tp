@@ -2,6 +2,7 @@ package seedu.uninurse.logic.commands;
 
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
 import java.util.List;
 
@@ -19,16 +20,12 @@ import seedu.uninurse.model.person.Patient;
  * Add a medication to an existing patient in the patient list.
  */
 public class AddMedicationCommand extends AddGenericCommand {
-    // tentative syntax; TODO: integrate with AddGenericCommand
-    public static final String COMMAND_WORD = "addMedication";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a medication to the patient identified "
-            + "by the index number used in the last patient listing.\n"
-            + "Parameters: PATIENT_INDEX (must be a positive integer) "
-            + PREFIX_MEDICATION + "MEDICATION_TYPE | MEDICATION_DOSAGE\n"
-            + "Example: " + COMMAND_WORD
-            + " 2 " + PREFIX_MEDICATION + "Amoxicillin | 0.5 g every 8 hours";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
+            + ": Adds a medication to a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
+            + PREFIX_MEDICATION + "MEDICATION_TYPE | DOSAGE\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_MEDICATION + "Amoxicillin | 0.5 g every 8 hours";
 
     public static final String MESSAGE_ADD_MEDICATION_SUCCESS = "New medication added to %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_MEDICATION =
