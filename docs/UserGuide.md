@@ -694,7 +694,7 @@ Format: **`view`** `-p --all`
 
 Examples:
 
-* `view -p --all` will show the list of all patients with tasks along their list of tasks.
+* `view -p --all` will show a list of all tasks belonging to patients with tasks.
 
 ![result for `view -p --all`](images/viewAllTaskResult.png)
 _<div align="center"> Patient and task list displayed after running the `view -p --all` command </div>_
@@ -703,7 +703,7 @@ _<div align="center"> Patient and task list displayed after running the `view -p
 
 ### Viewing all tasks of a patient: `view` `-p`
 
-You can view the list of tasks for a patient using the `view` command.
+You can view the list of tasks for a particular patient using the `view` command.
 
 Format: **`view`** `-p PATIENT_INDEX`
 
