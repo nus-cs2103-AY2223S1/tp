@@ -1,0 +1,21 @@
+@startuml
+start
+:User keys in command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:Program parses input;
+
+if () then ([command is in valid format])
+    if () then ([arguments are valid])
+        :Return filtered property list;
+    else ([else])
+        :Show error message with correct required values;
+    endif
+else ([else])
+    : Show error message with correct command format;
+endif
+
+stop
+@enduml
