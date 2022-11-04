@@ -211,6 +211,8 @@ During instantiation, a note object can be declared with any of these properties
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## **Person Implementation**
+
 ### Edit Feature
 
 The Edit Person feature is facilitated by the `EditCommand` which utilises the `FindCommand`. It allows users to edit any editable field of a person given the index of the person, or the name of the person.
@@ -271,6 +273,78 @@ but due to a limitation of PlantUML, the lifeline reaches the end of diagram. </
 * **Alternative 2:** Delete a person based on complete name i.e. first and last name required in input.
   * Pros: Stricter input requirement, ensuring that persons are not accidentally deleted.
   * Cons: Longer input required for the same output.
+
+
+### Find Person
+
+### Implementation
+
+The Find Person feature is facilitated by 'FindCommand'. It allows users to find all Persons with names that are matching or phone number starting with any of the keywords.
+
+Given below is an example usage scenario and how the find feature behaves at each step.
+
+Step 1. The user executes 'find David' command to find all Persons in the address book that includes the name `David`.
+
+Step 2. A `FindCommand` is constructed with a `NameContainsKeywordPredicate` which checks through the list of persons in the address book and only shows those with their first/last name matching `David`.
+
+Step 3. The `FindCommand` is executed and the `NameContainsKeywordsPredicate` is used to update the filtered person list.
+
+The following sequence diagram shows how the find command works:
+
+<img src="images/FindCommandSequence.png" width="740"/>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design considerations:
+
+**Aspect: How find executes:**
+
+* **Alternative 1 (current choice):** Chooses person based on the whole first/last name matching the keyword.
+    * Pros: More specific Persons list after the find command.
+    * Cons: User needs to know the first/last name of the person they are trying to find.
+
+* **Alternative 2:** Chooses person if name contains the keyword.
+    * Pros: Easier to find person.
+    * Cons: Persons list may show other persons that are not desired by the user.
+
+### Find Person by Tag feature
+
+#### Implementation
+
+The find Person by Tag feature (called `findTag`) is facilitated by `FindTagCommand`. It allows users to find all Persons with the given Tags.
+
+Given below is an example usage scenario and how the findTag feature behaves at each step.
+
+Step 1. The user executes `findTag Finance` command to find all Persons in the address book with the tag `Finance`.
+
+Step 2. A `FindTagCommand` is constructed with a `TagsContainsKeywordsPredicate` which will check through the list of persons in the address book and only show those with the tag `Finance`.
+
+Step 3. The `FindTagCommand` is executed and the `TagsContainsKeywordsPredicate` is passed to model to update the Person List to only show Persons with the tag `Finance`.
+
+The following sequence diagram shows how the findTag command works:
+
+<img src="images/FindTagSequenceDiagram.png" width="740"/>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindTagCommandParser` and `FindTagCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design considerations:
+
+**Aspect: How findTag executes:**
+
+* **Alternative 1 (current choice):** Goes through all Persons to check for Tag.
+    * Pros: Easy to implement (Similar to current find command).
+    * Cons: May have performance issues in terms of having to do many more steps.
+
+* **Alternative 2:** Goto searched Tags and get the Persons that each Tag points to.
+    * Pros: Will use fewer steps (Go directly to the Tags rather than looking through all Persons).
+    * Cons: Implementation would be more complicated.
+
+
+## **Notes implementation**
 
 ### addNote feature
 
@@ -355,74 +429,63 @@ The following sequence diagram shows how the addNote operation works:
     * Pros: Would be more precise (Title of notes are unique).
     * Cons: Long command would be needed to delete a note with a long Title.
 
-### Find Person
+### editNote feature
 
-### Implementation
+#### Proposed implementation
 
-The Find Person feature is facilitated by 'FindCommand'. It allows users to find all Persons with names that are matching or phone number starting with any of the keywords.
+The editNote mechanism is facilitated by `EditNoteCommand` and utilises the `FindNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
+- `EditNoteCommand#execute()` : edits the note at the specified index (or with matching title) from the note list.
 
-Given below is an example usage scenario and how the find feature behaves at each step.
+Given below is an example usage scenario and how the editNote mechanism behaves at each step.
 
-Step 1. The user executes 'find David' command to find all Persons in the address book that includes the name `David`.
+Step 1. The user launches the application and wishes to edit a note's title with a new title. The user lists the current notes: 
+1. Title: Meeting, Content: 3rd October 9pm
+2. Title: Event, Content: Remind club members to attend.
 
-Step 2. A `FindCommand` is constructed with a `NameContainsKeywordPredicate` which checks through the list of persons in the address book and only shows those with their first/last name matching `David`.
+The user has decided to edit the first note titled `Meeting` with a new title, `Club Meeting`.
 
-Step 3. The `FindCommand` is executed and the `NameContainsKeywordsPredicate` is used to update the filtered person list.
+Step 2a. If an index is entered (user executes `editNote 1 title/Club Meeting`), the `EditNoteCommandParser` carries this index to the `EditNoteCommand`, which retrieves the `Note` to edit by getting the `Model`'s current `FilteredList<Note>` and retrieving by index.
 
-The following sequence diagram shows how the find command works:
+Step 2b. If a non-number is entered (user executes `editNote meeting title/Club Meeting`), `EditNoteCommandParser` calls `FindNoteCommandParser#parse()` and executes `FindNoteCommand#execute()` concurrently. 
 
-<img src="images/FindCommandSequence.png" width="740"/>
+`FilteredList<Note>` is then checked to ensure that exactly one note corresponds with the search term. 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Otherwise, the method short-circuits with ambiguity errors (more than 1 note) or invalid note errors (no notes at all). If successful, `EditNoteCommandParser` returns a new `EditNoteCommand` object.
 
-</div>
 
-#### Design considerations:
+- Example of ambiguity error message:
+> There is more than 1 note with meeting in their title!
+> 
+> Please use a more unique specifier or use indices to edit.
 
-**Aspect: How find executes:**
+- Example of invalid title error message:
+> There are no notes with meeting in their titles in the list!
 
-* **Alternative 1 (current choice):** Chooses person based on the whole first/last name matching the keyword.
-    * Pros: More specific Persons list after the find command.
-    * Cons: User needs to know the first/last name of the person they are trying to find.
+Step 3. `EditNoteCommand#execute()` will be called by `LogicManager#execute()`. The note to edit is retrieved by the index given and a new edited note is created by copying over non-transformed fields and replacing the transformed field.
 
-* **Alternative 2:** Chooses person if name contains the keyword.
-    * Pros: Easier to find person.
-    * Cons: Persons list may show other persons that are not desired by the user.
+Step 4. The `editedNote` is then set to replace the previous state of the `Note` object in the `Model` with `Model#setNote`.
 
-### Find Person by Tag feature
+The following sequence diagram shows how the `editNote` feature works.
 
-#### Implementation
+![EditNoteSequenceDiagram](images/EditNoteSequenceDiagram.png)
 
-The find Person by Tag feature (called `findTag`) is facilitated by `FindTagCommand`. It allows users to find all Persons with the given Tags.
+The following activity diagram shows the workflow of `editNote` feature.
 
-Given below is an example usage scenario and how the findTag feature behaves at each step.
+![EditNoteActivityDiagram](images/EditNoteActivityDiagram.png)
 
-Step 1. The user executes `findTag Finance` command to find all Persons in the address book with the tag `Finance`.
+#### Design considerations
 
-Step 2. A `FindTagCommand` is constructed with a `TagsContainsKeywordsPredicate` which will check through the list of persons in the address book and only show those with the tag `Finance`.
+**Aspect: How the note to be edited is specified:**
 
-Step 3. The `FindTagCommand` is executed and the `TagsContainsKeywordsPredicate` is passed to model to update the Person List to only show Persons with the tag `Finance`.
+* **Alternative 1 (current choice):** Note is specified by index or title.
+    * Pros: Better convenience for users.
+    * Cons: Would need to use findNote command for notes specified by title. (more dependencies)
 
-The following sequence diagram shows how the findTag command works:
+* **Alternative 2:** Note is specified by Title.
+    * Pros: Easy to implement
+    * Cons: Not flexible for users.
 
-<img src="images/FindTagSequenceDiagram.png" width="740"/>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindTagCommandParser` and `FindTagCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-#### Design considerations:
-
-**Aspect: How findTag executes:**
-
-* **Alternative 1 (current choice):** Goes through all Persons to check for Tag.
-    * Pros: Easy to implement (Similar to current find command).
-    * Cons: May have performance issues in terms of having to do many more steps.
-
-* **Alternative 2:** Goto searched Tags and get the Persons that each Tag points to.
-    * Pros: Will use fewer steps (Go directly to the Tags rather than looking through all Persons).
-    * Cons: Implementation would be more complicated.
-
+    
 
 ### \[Proposed\] Undo/redo feature
 
