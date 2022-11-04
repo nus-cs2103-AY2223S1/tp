@@ -694,44 +694,31 @@ Format: `view -p --all`
 
 Examples:
 
-Suppose the following patients were added.
+* `view -p --all` will show the list of all patients with tasks along their list of tasks.
 
-`add n/John Doe d/Administer 3ml of example medicine`
-
-`add n/Betsy Crowe d/Change dressing on left arm`
-* `view -p --all` will display:
-    * `Administer 3ml of example medicine FOR John Doe`
-    * `Change dressing on left arm FOR Betsy Crowe`
-
-_Add screenshot here_
+![result for `view -p --all`](images/viewAllTaskResult.png)
+_<div align="center"> Patient and task list displayed after running the `view -p --all` command </div>_
 
 <br>
 
 ### Viewing all tasks of a patient: `view` `-p`
 
-Shows all the tasks that are associated with the specified patient.
+You can view the list of tasks for a patient using the `view` command.
 
 Format: `view -p PATIENT_INDEX`
 
 Examples:
 
-Suppose the following patients were added.
+* `list` followed by `view -p 2` will show the list of tasks for the 2nd patient in the patient list.
 
-`add n/John Doe d/Administer 3ml of example medicine`
-
-`add n/Betsy Crowe d/Change dressing on left arm`
-* `view -p 1` will display:
-    * `Administer 3ml of example medicine`
-* `view -p 2` will display:
-    * `Change dressing on left arm`
-
-_Add screenshot here_
+![result for `view -p 2`](images/viewBerniceTaskResult.png)
+_<div align="center"> Patient and task list displayed after running the `view -p 2` command </div>_
 
 <br>
 
 ### Listing all tasks for a particular day: `view`
 
-Shows a list of all tasks on a particular day.
+You can view the list of tasks for a particular day using the `view` command.
 
 Format: `view DATE`
 
@@ -741,6 +728,18 @@ Examples:
 * `view 25-12-22` lists the tasks on 25th December 2022
 
 _Add screenshot here_
+
+Examples:
+
+Let's say you added the following patients and their tasks:
+* **Physiotherapy appointment** for **Alex Yeoh** at 12:00pm on 2022-11-04
+* **Administer insulin dose** for **Charlotte Oliveiro** at 11:45am on 2022-11-04
+
+If today's date is 2022-11-04, `view --today` will display those 2 tasks.
+
+![result for `view --today`](images/viewTodayResult.png)
+_<div align="center"> Patient and task list displayed after running the `view --today` command </div>_
+
 
 <br>
 
