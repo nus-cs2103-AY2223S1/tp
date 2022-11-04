@@ -192,10 +192,10 @@ Edits the details of the `client` at the specified index number in the displayed
 
 Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 
-| Parameter | Description                                                                                                                                                        |
-|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`   | Refers to the index number shown in the displayed list. <br/> - **Must be positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​ |
-| `FIELDS`  | Refers to the parameters to be changed for the client <br/> - `[n/NAME]` <br/> - `[a/ADDRESS]` <br/> - `[p/PHONE]` <br/> - `[e/EMAIL]`<br/> - `[t/TAG]`            |
+| Parameter | Description                                                                                                                                                                                                                                                           |
+|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | Refers to the index number shown in the displayed list. <br/> - **Must be positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​                                                                                                    |
+| `FIELDS`  | Refers to the parameters to be changed for the client <br/> - `[n/NAME]` <br/> - `[a/ADDRESS]` <br/> - `[p/PHONE]` <br/> - `[e/EMAIL]`<br/> - `[t/TAG]`: Multiple tags are allowed in this command as the entire existing tag list will be replaced with the new tags |
 
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a client.
 
