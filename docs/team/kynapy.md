@@ -11,7 +11,7 @@ Given below are my contributions to the project:
 
 * **Summary of Contributions**:
   * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kynapy&breakdown=true)
-  
+
   * **New Feature**: Implemented the list all, loans and overdue feature
       * What it does: Allows the user to view all loaned and overdue books, as well as refresh the GUI to the default state.
       * Justification: The user would definitely want to be able to keep track of all the loaned out books, in particular the books that are overdue for returns. With that comes the need to refresh the GUI back to the default state after listing all the loans

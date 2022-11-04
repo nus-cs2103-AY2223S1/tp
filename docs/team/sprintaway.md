@@ -19,13 +19,11 @@ title: Ng Yan Jia's Project Portfolio Page
      tried out manually, and it did not parse certain date formats correctly.
       2. It was an entirely new feature that had associations between the `Person` and the `Book` class.
     * Credits: `PrettyTimeParser` was used for its Natural Language Processing feature which supports a variety of formats for parsing.
-    
-  * **Enhancements implemented**: Most of the loan feature including return date functionality, most of the GUI, 
-some refactoring of codebase (mostly renaming and editing of preexisting methods/classes or adding in needed classes to support `Book` class, such as addition of `JsonAdaptedBook`), and tests for loan and return commands.  
+
+  * **Enhancements implemented**: Most of the loan feature including return date functionality, most of the GUI, some refactoring of codebase (mostly renaming and editing of preexisting methods/classes or adding in needed classes to support `Book` class, such as addition of `JsonAdaptedBook`), and tests for loan and return commands.
   * **Contributions to the UG**: Added documentation of `return`, `loan`, `find user`, `find book`, `list users`, `list books` features.
   * **Contributions to the DG**: Update of Model diagram, addition of `loan` and `return` implementation (as well as UML diagrams inside)
-  * **Contributions to team-based tasks**: Renaming the product, slight refactoring of codebase, added `PrettyTimeParser` (external library), 
-some reminder of incoming deadlines in group chat, tagging of some issues with correct tags (eg. v1.3 milestone)
+  * **Contributions to team-based tasks**: Renaming the product, slight refactoring of codebase, added `PrettyTimeParser` (external library), some reminder of incoming deadlines in group chat, tagging of some issues with correct tags (eg. v1.3 milestone)
   * **Review/mentoring contributions**: Examples of PR review: [PR review 1](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/160), [PR review 2](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/158)
   * **Contributions beyond the project team**: Reported 24 bugs for PE-D
   * **Tools**: Integrated a third party library (`PrettyTimeParser`) to the project
