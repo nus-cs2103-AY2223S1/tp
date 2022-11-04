@@ -123,9 +123,26 @@ Shows a message explaining how to access the help page.
 
 **Format:** `help`
 
-### 4.2. Modules
+### 4.2. Module Manager
 
-#### 4.2.1. Viewing list of modules: `mlist`
+As SOC Professors, you would be teaching at least one or more modules.
+In ProfNUS, you are able to add modules in to our module list.
+We are able to save the module's name, unique module code, description
+and other module related information such as your teaching schedule for the module.
+
+#### 4.2.1 Module Manager Command Parameters
+
+Before you get started with this feature, have a look at the common parameters we have used. Take a look before you
+continue!
+
+| Parameter            | Description & Restriction                                                                                                                                                                         | Example                                                          |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| `MODULE_NAME`        | This parameter represents the name of the module you are adding into ProfNUS.<br/>The name should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same names.                     | `Software Engineering`                                           |
+| `MODULE_CODE`        | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS.                    | `CS2030S`                                                        |
+| `MODULE_DESCRIPTION` | This parameter represents the description of the module you are adding into ProfNUS.<br/>The description should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same description. | `This module teaches you about software engineering principles.` |
+| `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                           | `Module Coordinator`                                             |
+
+#### 4.2.2. Viewing list of modules: `mlist`
 
 Shows a list of all modules in ProfNUS.
 You can click on each module to view more details about the module.
@@ -134,7 +151,7 @@ You can click on each module to view more details about the module.
 
 **Format:** `mlist`
 
-#### 4.2.2. Viewing more details of a module in the list of modules: `vtarget`
+#### 4.2.3. Viewing more details of a module in the list of modules: `vtarget`
 
 You can also choose to use a CLI-command to get more information about a module in ProfNUS
 at your specified `INDEX`.
@@ -145,7 +162,7 @@ as well as any tags given to the module will be displayed.
 
 **Examples:** `vtarget 3`
 
-#### 4.2.3. Viewing module details: `mview`
+#### 4.2.4. Viewing module details: `mview`
 
 Shows a list of students and tutors in the module.
 
@@ -158,7 +175,7 @@ Shows a list of students and tutors in the module.
 **Examples:**
 *  `mview c/CS1101S` Views the list of students and tutors in CS1101S.
 
-#### 4.2.4. Adding a module: `madd`
+#### 4.2.5. Adding a module: `madd`
 
 Adds a module to ProfNUS.
 
@@ -172,7 +189,7 @@ A module can have any number of tags or modules(including 0)
 * `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/ModuleCoordinator`
 * `madd n/Introduction to Cybersecurity c/CS2107 d/Cryptography practices t/NEW t/URGENT`
 
-#### 4.2.5. Deleting a module: `mdel`
+#### 4.2.6. Deleting a module: `mdel`
 
 Deletes a module stored in ProfNUS.
 
@@ -676,11 +693,11 @@ _Details coming soon ..._
 
 | Action                                                                                                       | Format                                                             | Example                                                                              |
 |--------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| [List all modules](#421-viewing-list-of-modules-mlist)                                                       | `mlist`                                                            | `mlist`                                                                              |
-| [View more information about a module](#422-viewing-more-details-of-a-module-in-the-list-of-modules-vtarget) | `vtarget INDEX`                                                    | `vtarget 3`                                                                          |
-| [View more information about a module](#423-viewing-module-details-mview)                                    | `mview c/MODULE_CODE`                                              | `mview c/CS1101S`                                                                    |
-| [Add a module](#424-adding-a-module-madd)                                                                    | `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​` | `madd n/Computer Organisation c/CS2100 d/Teaches you more on computer hardware t/Y2` |
-| [Delete a module](#425-deleting-a-module-mdel)                                                               | `mdel c/MODULE_CODE`                                               | `mdel c/CS1101S`                                                                     |
+| [List all modules](#422-viewing-list-of-modules-mlist)                                                       | `mlist`                                                            | `mlist`                                                                              |
+| [View more information about a module](#423-viewing-more-details-of-a-module-in-the-list-of-modules-vtarget) | `vtarget INDEX`                                                    | `vtarget 3`                                                                          |
+| [View more information about a module](#424-viewing-module-details-mview)                                    | `mview c/MODULE_CODE`                                              | `mview c/CS1101S`                                                                    |
+| [Add a module](#425-adding-a-module-madd)                                                                    | `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​` | `madd n/Computer Organisation c/CS2100 d/Teaches you more on computer hardware t/Y2` |
+| [Delete a module](#426-deleting-a-module-mdel)                                                               | `mdel c/MODULE_CODE`                                               | `mdel c/CS1101S`                                                                     |
 
 ### 6.3 Student Manager Command Summary
 
