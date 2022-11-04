@@ -40,7 +40,7 @@ public class SetTeamCommand extends Command {
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to set does not exist!";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
-    private TeamName targetTeamName;
+    private TeamName teamName;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -60,7 +60,7 @@ public class SetTeamCommand extends Command {
         requireNonNull(model);
         List<Team> teamList = model.getTeamList();
         Team currentTeam = model.getTeam();
-        Team targetTeam = new Team(targetTeamName);
+        Team targetTeam = new Team(teamName);
         List<Team> filteredListWithTargetTeam = teamList.stream()
                 .filter(targetTeam::isSameTeam).collect(Collectors.toList());
 
@@ -84,7 +84,7 @@ public class SetTeamCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SetTeamCommand // instanceof handles nulls
-                && targetTeamName.equals(((SetTeamCommand) other).targetTeamName)); // state check
+                && teamName.equals(((SetTeamCommand) other).teamName)); // state check
     }
 
 }

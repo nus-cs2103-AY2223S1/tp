@@ -1,9 +1,13 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_COMPLETE_TASKS_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASKS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
@@ -51,12 +55,25 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListMembersCommand;
 import seedu.address.logic.commands.ListPersonsCommand;
 import seedu.address.logic.commands.ListTasksCommand;
+import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.SetCommand;
+import seedu.address.logic.commands.SetDeadlineCommand;
+import seedu.address.logic.commands.SetTeamCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SortMemberCommand;
+import seedu.address.logic.commands.SortTaskCommand;
+import seedu.address.logic.commands.TasksOfCommand;
+import seedu.address.logic.commands.TasksSummaryCommand;
+import seedu.address.logic.commands.ThemeCommand;
+import seedu.address.logic.commands.UnmarkCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.TeamName;
+import seedu.address.testutil.Assert;
 import seedu.address.testutil.LinkBuilder;
 import seedu.address.testutil.LinkUtil;
 import seedu.address.testutil.ParserHelper;
@@ -326,49 +343,89 @@ public class TruthTableParserTest {
     }
         @Test
     public void parseCommand_mark() throws Exception {
+        MarkCommand command = (MarkCommand) parser.parseCommand(
+                MarkCommand.FULL_COMMAND + " " + INDEX_ONE.getOneBased());
+        assertEquals(INDEX_ONE, ParserHelper.getIndex(command));
     }
 
     @Test
     public void parseCommand_set() throws Exception {
+        SetCommand command = (SetCommand) parser.parseCommand(SetCommand.COMMAND_WORD);
+        assertEquals(new SetCommand(), command);
     }
     @Test
     public void parseCommand_setDeadline() throws Exception {
+        Task task = new TaskBuilder().build();
+        String commandString = SetDeadlineCommand.FULL_COMMAND + " "
+                + INDEX_ONE.getOneBased() + " "
+                + task.getDeadlineStorage();
+        SetDeadlineCommand command = (SetDeadlineCommand) parser.parseCommand(commandString);
+        assertEquals(INDEX_ONE, ParserHelper.getIndex(command));
+        assertEquals(task.getDeadline().get(), ParserHelper.getDeadline(command));
     }
 
     @Test
     public void parseCommand_setTeam() throws Exception {
+        Team team = new TeamBuilder().build();
+        String commandString = SetTeamCommand.FULL_COMMAND + " "
+                + team.getTeamName().toString();
+        SetTeamCommand command = (SetTeamCommand) parser.parseCommand(commandString);
+        assertEquals(team.getTeamName(), ParserHelper.getTeamName(command));
     }
 
     @Test
     public void parseCommand_sort() throws Exception {
+        SortCommand command = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD);
+        assertEquals(new SortCommand(), command);
     }
     @Test
     public void parseCommand_sortMember() throws Exception {
+        String commandString = SortMemberCommand.FULL_COMMAND + " "
+                + "asc";
+        SortMemberCommand command = (SortMemberCommand) parser.parseCommand(commandString);
+        assertEquals(Order.ASCENDING, ParserHelper.getOrder(command));
     }
     @Test
     public void parseCommand_sortTask() throws Exception {
+        String commandString = SortTaskCommand.FULL_COMMAND + " "
+                + "asc";
+        SortTaskCommand command = (SortTaskCommand) parser.parseCommand(commandString);
+        assertEquals(Order.ASCENDING, ParserHelper.getOrder(command));
     }
 
     @Test
     public void parseCommand_taskOf() throws Exception {
+        TasksOfCommand command = (TasksOfCommand) parser.parseCommand(
+                TasksOfCommand.FULL_COMMAND + " " + INDEX_ONE.getOneBased());
+        assertEquals(INDEX_ONE, ParserHelper.getIndex(command));
     }
     @Test
     public void parseCommand_taskSummary() throws Exception {
+        TasksSummaryCommand command = (TasksSummaryCommand) parser.parseCommand(TasksSummaryCommand.COMMAND_WORD);
+        assertEquals(new TasksSummaryCommand(), command);
     }
     @Test
     public void parseCommand_theme() throws Exception {
+        ThemeCommand command = (ThemeCommand) parser.parseCommand(ThemeCommand.COMMAND_WORD);
+        assertEquals(new ThemeCommand(), command);
     }
 
     @Test
     public void parseCommand_unmark() throws Exception {
+        UnmarkCommand command = (UnmarkCommand) parser.parseCommand(
+                UnmarkCommand.FULL_COMMAND + " " + INDEX_ONE.getOneBased());
+        assertEquals(INDEX_ONE, ParserHelper.getIndex(command));
     }
 
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
+
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
+        Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND, HelpCommand.MESSAGE_USAGE), ()
+                -> parser.parseCommand("unknownCommand"));
     }
 }

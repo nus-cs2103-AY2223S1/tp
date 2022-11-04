@@ -37,7 +37,7 @@ public class SetDeadlineCommand extends Command {
             + "There are less than %1$s tasks in your list.";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
-    private Index taskIndex;
+    private Index index;
 
     @CommandLine.Parameters(arity = "1..2", parameterConsumer = LocalDateTimeConverter.class,
             description = FLAG_TASK_DEADLINE_DESCRIPTION)
@@ -61,25 +61,25 @@ public class SetDeadlineCommand extends Command {
         }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();
-        if (taskIndex.getZeroBased() >= taskList.size()) {
-            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex.getOneBased()));
+        if (index.getZeroBased() >= taskList.size()) {
+            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, index.getOneBased()));
         }
 
-        Task originalTask = taskList.get(taskIndex.getZeroBased());
+        Task originalTask = taskList.get(index.getZeroBased());
         Task newTask = originalTask.setDeadline(deadline);
 
         model.getTeam().setTask(originalTask, newTask);
 
         return new CommandResult(String.format(MESSAGE_SET_DEADLINE_SUCCESS,
-                taskList.get(taskIndex.getZeroBased()).getName(),
-                taskList.get(taskIndex.getZeroBased()).getDeadlineAsString()));
+                taskList.get(index.getZeroBased()).getName(),
+                taskList.get(index.getZeroBased()).getDeadlineAsString()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SetDeadlineCommand // instanceof handles nulls
-                && taskIndex.equals(((SetDeadlineCommand) other).taskIndex))
+                && index.equals(((SetDeadlineCommand) other).index))
                 && deadline.equals(((SetDeadlineCommand) other).deadline); // state check
     }
 }

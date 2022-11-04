@@ -34,7 +34,7 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_ALREADY_UNMARKED = "This task has not been marked as done.";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
-    private Index taskIndex;
+    private Index index;
 
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
@@ -50,13 +50,13 @@ public class UnmarkCommand extends Command {
         }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();
-        if (taskIndex.getZeroBased() >= taskList.size()) {
-            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex.getOneBased()));
+        if (index.getZeroBased() >= taskList.size()) {
+            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, index.getOneBased()));
         }
-        if (!taskList.get(taskIndex.getZeroBased()).isComplete()) {
+        if (!taskList.get(index.getZeroBased()).isComplete()) {
             throw new CommandException(MESSAGE_ALREADY_UNMARKED);
         }
-        Task originalTask = taskList.get(taskIndex.getZeroBased());
+        Task originalTask = taskList.get(index.getZeroBased());
         Task unmarkedTask = originalTask.mark(false);
 
         model.getTeam().setTask(originalTask, unmarkedTask);
@@ -69,6 +69,6 @@ public class UnmarkCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UnmarkCommand // instanceof handles nulls
-                && taskIndex == (((UnmarkCommand) other).taskIndex)); // state check
+                && index == (((UnmarkCommand) other).index)); // state check
     }
 }

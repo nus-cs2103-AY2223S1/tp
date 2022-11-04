@@ -38,7 +38,7 @@ public class TasksOfCommand extends Command {
             + "Please input a valid positive integer.";
 
     @CommandLine.Parameters(arity = "1")
-    private Index memberIndex;
+    private Index index;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -57,13 +57,13 @@ public class TasksOfCommand extends Command {
         }
         requireNonNull(model);
         List<Person> members = model.getFilteredMemberList();
-        if (memberIndex.getZeroBased() >= members.size()) {
+        if (index.getZeroBased() >= members.size()) {
             throw new CommandException(
-                    String.format(MESSAGE_MEMBER_INDEX_TOO_LARGE, memberIndex.getOneBased()));
-        } else if (memberIndex.getOneBased() < 1) {
+                    String.format(MESSAGE_MEMBER_INDEX_TOO_LARGE, index.getOneBased()));
+        } else if (index.getOneBased() < 1) {
             throw new CommandException(MESSAGE_MEMBER_INDEX_TOO_SMALL);
         }
-        Person member = members.get(memberIndex.getZeroBased());
+        Person member = members.get(index.getZeroBased());
         Predicate<Task> predicate = task -> task.checkAssignee(member);
         model.updateFilteredTaskList(predicate);
 
@@ -74,6 +74,6 @@ public class TasksOfCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other instanceof TasksOfCommand
-                && memberIndex.equals(((TasksOfCommand) other).memberIndex);
+                && index.equals(((TasksOfCommand) other).index);
     }
 }
