@@ -312,17 +312,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-        requireNonNull(moduleClass);
-        return taAssist.getModuleClassWithSameName(moduleClass);
-    }
-
-    @Override
     public SimpleStringProperty getFocusLabelProperty() {
         return focusLabelProperty;
     }
 
     //=========== Handles queried session state ==================================================================
+
     @Override
     public void querySessionData(Session targetSession) {
         requireAllNonNull(focusedClass, targetSession);

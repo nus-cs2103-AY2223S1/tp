@@ -171,11 +171,6 @@ public class DeletecCommandTest {
         }
 
         @Override
-        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-            return moduleClass;
-        }
-
-        @Override
         public boolean isInFocusMode() {
             return false;
         }
@@ -237,12 +232,6 @@ public class DeletecCommandTest {
         }
 
         @Override
-        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-            requireNonNull(moduleClass);
-            return moduleClass;
-        }
-
-        @Override
         public boolean isInFocusMode() {
             return false;
         }
@@ -286,11 +275,6 @@ public class DeletecCommandTest {
         public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
             requireAllNonNull(moduleClasses);
             moduleClasses.forEach(this::removeModuleClass);
-        }
-
-        @Override
-        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-            return moduleClass;
         }
     }
 }

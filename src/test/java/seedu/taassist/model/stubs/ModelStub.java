@@ -121,11 +121,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void removeModuleClass(ModuleClass moduleClass) {
         throw new AssertionError("This method should not be called.");
     }

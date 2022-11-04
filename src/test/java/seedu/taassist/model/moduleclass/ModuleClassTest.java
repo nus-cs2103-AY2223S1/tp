@@ -1,5 +1,6 @@
 package seedu.taassist.model.moduleclass;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.testutil.Assert.assertThrows;
@@ -35,6 +36,14 @@ public class ModuleClassTest {
     public void constructor_invalidModuleClassName_throwsIllegalArgumentException() {
         String invalidModuleClassName = "+moduleClass*";
         assertThrows(IllegalArgumentException.class, () -> new ModuleClass(invalidModuleClassName));
+    }
+
+    @Test
+    public void constructor_validLowerCaseModuleClassName_returnsModuleClassWithUpperCasedName() {
+        String lowerCaseCs1101s = "cs1101s";
+        ModuleClass cs1101s = new ModuleClass(lowerCaseCs1101s);
+        String cs1101sClassName = cs1101s.getClassName();
+        assertEquals(cs1101sClassName, lowerCaseCs1101s.toUpperCase());
     }
 
     @Test

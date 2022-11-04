@@ -150,11 +150,5 @@ public class AddcCommandTest {
         public void addModuleClasses(Set<ModuleClass> moduleClasses) {
             requireAllNonNull(moduleClasses);
         }
-
-        @Override
-        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-            requireNonNull(moduleClass);
-            return moduleClass;
-        }
     }
 }

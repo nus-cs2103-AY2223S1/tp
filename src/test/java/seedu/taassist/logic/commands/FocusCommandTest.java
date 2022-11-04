@@ -84,11 +84,5 @@ class FocusCommandTest {
         public ModuleClass getFocusedClass() {
             return focusedClass;
         }
-
-        @Override
-        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-            requireNonNull(moduleClass);
-            return moduleClass;
-        }
     }
 }

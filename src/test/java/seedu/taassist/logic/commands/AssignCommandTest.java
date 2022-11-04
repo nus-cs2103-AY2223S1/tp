@@ -130,12 +130,6 @@ class AssignCommandTest {
             requireNonNull(moduleClass);
             return true;
         }
-
-        @Override
-        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-            requireNonNull(moduleClass);
-            return moduleClass;
-        }
     }
 
     /**
@@ -166,12 +160,6 @@ class AssignCommandTest {
         public boolean hasModuleClass(ModuleClass moduleClass) {
             requireNonNull(moduleClass);
             return true;
-        }
-
-        @Override
-        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-            requireNonNull(moduleClass);
-            return moduleClass;
         }
     }
 }

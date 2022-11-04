@@ -7,7 +7,6 @@ import java.util.Collection;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.exceptions.ModuleClassNotFoundException;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 
@@ -15,11 +14,6 @@ import seedu.taassist.model.uniquelist.UniqueList;
  * A ModelStub that will always have no module class.
  */
 public class ModelStubWithNoModuleClass extends ModelStub {
-
-    @Override
-    public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-        throw new ModuleClassNotFoundException();
-    }
 
     @Override
     public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
@@ -50,6 +44,11 @@ public class ModelStubWithNoModuleClass extends ModelStub {
 
     @Override
     public ObservableList<Student> getStudentList() {
+        return new UniqueList<Student>().asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Student> getFilteredStudentList() {
         return new UniqueList<Student>().asUnmodifiableObservableList();
     }
 

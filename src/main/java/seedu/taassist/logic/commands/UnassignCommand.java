@@ -8,14 +8,12 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.List;
 
-import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.logic.parser.ParserStudentIndexUtil;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.exceptions.ModuleClassNotFoundException;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -50,27 +48,19 @@ public class UnassignCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        ModuleClass existingModuleClass;
-
-        try {
-            existingModuleClass = model.getModuleClassWithSameName(moduleClassToUnassign);
-        } catch (ModuleClassNotFoundException mcnfe) {
-            throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
-                    model.getModuleClassList()));
-        }
-
+        CommandUtil.checkModuleClassExists(moduleClassToUnassign, model);
         List<Student> lastShownList = model.getFilteredStudentList();
         List<Student> studentsToUnassign;
+
         try {
             studentsToUnassign = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
         } catch (ParseException pe) {
             throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        studentsToUnassign.forEach(s -> model.setStudent(s, s.removeModuleClass(existingModuleClass)));
+        studentsToUnassign.forEach(s -> model.setStudent(s, s.removeModuleClass(moduleClassToUnassign)));
 
-        return new CommandResult(getSuccessMessage(studentsToUnassign, existingModuleClass));
+        return new CommandResult(getSuccessMessage(studentsToUnassign, moduleClassToUnassign));
     }
 
     public static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {

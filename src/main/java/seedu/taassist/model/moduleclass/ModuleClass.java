@@ -3,7 +3,6 @@ package seedu.taassist.model.moduleclass;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.AppUtil.checkArgument;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.taassist.commons.util.StringUtil.caseInsensitiveEquals;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +21,7 @@ import seedu.taassist.model.uniquelist.Identity;
 public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClass> {
 
     public static final String MESSAGE_CONSTRAINTS = "Class name should be alphanumeric and"
-            + " doesn't exceed 25 characters.";
+            + " shouldn't exceed 25 characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String className;
@@ -37,7 +36,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
     public ModuleClass(String className) {
         requireNonNull(className);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
-        this.className = className;
+        this.className = className.toUpperCase();
         sessions = new ArrayList<Session>();
     }
 
@@ -50,7 +49,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
     public ModuleClass(String className, List<Session> sessions) {
         requireAllNonNull(className, sessions);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
-        this.className = className;
+        this.className = className.toUpperCase();
         this.sessions = sessions;
     }
 
@@ -114,7 +113,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ModuleClass // instanceof handles nulls
-                && caseInsensitiveEquals(className, ((ModuleClass) other).className)
+                && className.equals(((ModuleClass) other).className)
                 && sessions.equals(((ModuleClass) other).sessions));
     }
 
@@ -122,13 +121,13 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      * Returns true if both modules have the same name.
      * This defines a weaker notion of equality between two module classes.
      *
-     * @param otherModule the module class to be compared to.
+     * @param other the module class to be compared to.
      * @return true if both modules have the same name.
      */
     @Override
-    public boolean isSame(ModuleClass otherModule) {
-        return otherModule == this
-                || (otherModule != null && caseInsensitiveEquals(this.className, otherModule.className));
+    public boolean isSame(ModuleClass other) {
+        return other == this
+                || (other != null && className.equals(other.className));
     }
 
     public boolean hasSession(Session toCheck) {
