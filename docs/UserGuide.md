@@ -83,7 +83,11 @@ Throughout the guide, there will also be alerts that look the following.
 This alert contains miscellaneous information
 </div>
 
-<div markdown="block" class="alert alert-info">**Helpful alert**:
+<div markdown="block" class="alert alert-info">**Important alert**:
+This alert contains important information
+</div>
+
+<div markdown="block" class="alert alert-primary">**Helpful alert**:
 This alert contains helpful information
 </div>
 
@@ -114,7 +118,8 @@ The file can be located under the "Assets" section of the page as seen in the im
 appear in a few seconds. We have also added some sample data for you to play around and familiarise yourself with 
    TruthTable's [features](#commands)! ![Ui](images/Ui.png)
 
-4. Before we dive into TruthTable's features, make sure you understand how to [navigate the application](#navigating-truthtables-application-interface) first.
+4. Before we dive into TruthTable's features, make sure you understand how to 
+[navigate the application](#navigating-truthtables-application-interface) first.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -204,10 +209,9 @@ may seem daunting.
 
 But fret not! This section will cover what all these terms actually mean. 
 
-While you're going through this section, don't worry too much about memorising the details for every "command", as  
-they all have their own help messages for your reference at any time. Furthermore, the "commands" in TruthTable are 
-designed to be **easy to remember** and **natural**, so you will get up to speed in no 
-time! 
+While you're going through this section, don't worry too much about memorising the details for every "command", 
+as they all have their own help messages for your reference at any time. Furthermore, the "commands" in TruthTable are 
+designed to be **easy to remember** and **natural**, so you will get up to speed in no time! 
 
 ### Commands, flags, and parameters
 
@@ -219,7 +223,7 @@ require flags to **appear before parameters**.
 
 Note that flags and parameters always **come after the command**.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-primary">
 **:star: Command syntax**
 
 TruthTable's command syntax is actually very similar to other command line applications like
@@ -249,7 +253,7 @@ Specifying an "equal" sign (`=`) after the flag is optional, and it has no effec
 <div markdown="block" class="alert alert-info">
 **:information_source: Important note for parameters**
 
-Use of quotation marks around parameters (`""`) is optional. 
+Use of quotation marks around parameters (`""`) is optional.
 
 **However**, if you are specifying a parameter
 with multiple words, you will need to wrap the words in a quotes. Otherwise, TruthTable will not carry out the
@@ -290,16 +294,16 @@ Here's a summary of what each highlighted section represents.
 brackets (`[]`)**
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 **:bulb: Flags with multiple parameters**
 
-If a flag is displayed with `...` behind it, this means that the flag takes in an unlimited amount of parameters.
+If a flag is displayed with `...` behind it, this means that the flag can take in more than 1 parameter.
 
-For instance, in the `assign task` command, we can specify an unlimited number of assignees (provided they are valid).
+For instance, in the `assign task` command, we can specify more than 1 assignee (provided they are valid).
 A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the assignees to the task with index `1`.
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 **:star: POSIX clustered short options**: TruthTable supports clustered options as specified 
 [here](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02)
 </div>
@@ -466,7 +470,8 @@ Summary of commands can be found [here](#summary-of-member-commands)
 
 #### Adding a new member to the team `add member`
 
-Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the team.
+Adds a new team member to the user’s currently selected team. Will throw an error if the member already exists in 
+the team.
 
 Format: `add member MEMBER_INDEX`
 
@@ -533,7 +538,8 @@ Summary of commands can be found [here](#summary-of-team-commands)
 
 Add a new team to your list of teams. Will show an error there is already an existing team with the same name. 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Team name must consist only of alphanumeric characters (i.e., **Spaces are NOT allowed**).
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+Team name must consist only of alphanumeric characters (i.e., **Spaces are NOT allowed**).
 </div>
 
 Format: `add team TEAM_NAME [-d TEAM_DESCRIPTION]`
@@ -546,7 +552,8 @@ Examples:
 
 #### Set a new team `set team`
 
-Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if the team does not exist
+Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error 
+if the team does not exist
 
 Format: `set team TEAM_NAME`
 
@@ -584,7 +591,8 @@ Summary of commands can be found [here](#summary-of-task-commands)
 Add a new task to your current team. The task name is compulsory, while other fields such as assignee index and
 deadline are optional.
 
-Multiple assignees can be assigned to the same task directly, by specifying the indices of each assignee in the member list, separated by spaces.
+Multiple assignees can be assigned to the same task directly, by specifying the indices of each assignee in the 
+member list, separated by spaces.
 e.g. `add task "Merge PR" -a 1 3 4` will assign members 1, 3 and 4 to the task "Merge PR".
 
 Format: `add task "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
