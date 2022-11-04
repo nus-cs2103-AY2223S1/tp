@@ -437,8 +437,8 @@ For ease of understanding, many of these common use cases have been detailed bel
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Additional Notes:**<br>
-* By default, the command returns all **incomplete** tasks that match the query.<br>
-* In the following examples, 'all tasks' refers to 'all incomplete tasks' for brevity.<br>
+* When the `-a` or `-c` parameters are not specified, the command returns all **incomplete** tasks that match the given query.<br>
+* In the following examples, 'all tasks' will refer to 'all incomplete tasks' for brevity.<br>
 </div>
 
 #### 2. Filtering by Description
