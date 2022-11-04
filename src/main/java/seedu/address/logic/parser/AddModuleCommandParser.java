@@ -40,7 +40,7 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
 
         ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get());
         ModuleCode moduleCode = new ModuleCode(ParserUtil.parseModule(argMultimap
-                .getValue(PREFIX_MODULE_CODE).get().toUpperCase()));
+                .getValue(PREFIX_MODULE_CODE).get()).toUpperCase());
         ModuleDescription moduleDescription = ParserUtil.parseModuleDescription(argMultimap
                 .getValue(PREFIX_MODULE_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
