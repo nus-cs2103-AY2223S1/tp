@@ -128,8 +128,8 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_nullApplicationStatus_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, VALID_EMAIL, null, VALID_APPLICATION_STATUS, VALID_MAJORS, VALID_HAS_PINNED);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Scholarship.class.getSimpleName());
+                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, null, VALID_MAJORS, VALID_HAS_PINNED);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ApplicationStatus.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
 
