@@ -305,12 +305,13 @@ In this section, we list all the parameters you will encounter of following comm
 | `CLASS_GROUP` | This parameter represents the group label if there are multiple lecture, tutorial, lab, or reflection groups. | `L1`          |
 | `VENUE`       | This parameter represents the venue of a class.              | `LT16`        |
 | `INDEX`       | This parameter represents the index of a schedule in the displayed list. Indices are **one-based**. | `1`           |
+| `...`         | This symbol means the parameter before it can appear multiple times. For example, `param...` means you can type `param1 param2 param3 ...` | `...`         |
 
 #### 4.4.2. Add your schedule: `sadd`
 
 You can add a schedule by using this command.
 
-**Format:** `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE`
+**Format:** `sadd c/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE`
 
 <div markdown="block" class="alert alert-info">
 
@@ -333,9 +334,9 @@ You can add a schedule by using this command.
 
 Now, let's use `sadd` to add a schedule with following information:
 
-`m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD`
+`c/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD`
 
-**Step 1:** type command `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` in the command text box.
+**Step 1:** type command `sadd c/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` in the command text box.
 
 ![sadd](images/userguide/sadd_step1.png)
 
@@ -348,7 +349,7 @@ Now, let's use `sadd` to add a schedule with following information:
 
 Edits a schedule in ProfNUS.
 
-**Format:** `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE] `
+**Format:** `sedit INDEX [c/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE] `
 
 <div markdown="block" class="alert alert-info">
 
@@ -421,7 +422,7 @@ Now, let's use `sdelete` command and delete the first schedule in your schedule 
 #### 4.4.5. Clear your schedule: `sclear`
 
 This command helps you clear all schedules/all schedules of selected modules.
-**Format:** `sclear [m/MODULE_CODE]...`
+**Format:** `sclear [c/MODULE_CODE]...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -445,7 +446,7 @@ This command helps you clear all schedules/all schedules of selected modules.
 #### 4.4.6. View your schedule: `view`
 
 You can use this command to view the list of selected/all schedules.
-**Format:** `view [m/MODULE_CODE]... [w/WEEKDAY]...`
+**Format:** `view [c/MODULE_CODE]... [w/WEEKDAY]...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -457,11 +458,11 @@ You can use this command to view the list of selected/all schedules.
 
 </div>
 
-**Example:** `view m/CS2030S w/Monday`
+**Example:** `view c/CS2030S w/Monday`
 
 Now, let's view your schedules of CS2030S and schedules on Monday.
 
-**Step 1:** Type the command `view m/CS2030S w/Monday` in the command box.
+**Step 1:** Type the command `view c/CS2030S w/Monday` in the command box.
 
 ![view_step1](images/userguide/view_step1.png)
 
