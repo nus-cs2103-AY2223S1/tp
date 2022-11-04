@@ -549,6 +549,10 @@ Adding a person to Plannit will bring you back to the home page.
 You can add a person to a module using the `add-person-to-module` command. In other
 words, an association between a person and a module will be created.
 
+This would be useful when you want to find study buddies. In this case, you can add a fellow
+student studying the same module using the `add-person-to-module` command, then use `goto` to
+find your list of potential study buddies.
+
 This command will require two flags:
 
 | Field           | Flag | Constraints                                                                                                                       |
