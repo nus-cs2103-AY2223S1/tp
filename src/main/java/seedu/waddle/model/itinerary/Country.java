@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Itinerary's country in the address book.
+ * Represents an Itinerary's country in Waddle.
  * Guarantees: immutable; is valid as declared in {@link #isValidCountry(String)}
  */
 public class Country {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Country should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Country should only contain alphanumeric characters and spaces";
 
     /*
      * The first character of the country must not be a whitespace,
@@ -42,7 +42,7 @@ public class Country {
     @Override
     public String toString() {
         if (country.equals("default")) {
-            return "(Not planned)";
+            return "(Not specified)";
         }
         return country;
     }

@@ -11,7 +11,7 @@ import seedu.waddle.model.itinerary.ItineraryDuration;
 import seedu.waddle.model.itinerary.People;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Waddle} with sample data.
  */
 public class SampleDataUtil {
     public static Itinerary[] getSampleItineraries() {

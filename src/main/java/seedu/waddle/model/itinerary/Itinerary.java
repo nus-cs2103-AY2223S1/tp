@@ -23,7 +23,7 @@ import seedu.waddle.model.item.UniqueItemList;
 import seedu.waddle.model.item.exceptions.DuplicateItemException;
 
 /**
- * Represents a Person in the address book.
+ * Represents an Itinerary in Waddle.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Itinerary {
