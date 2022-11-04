@@ -166,8 +166,16 @@ public class ModelManager implements Model {
 
     //=========== Venue Book ==================================================================================
 
+    @Override
     public void setVenueBook(ReadOnlyVenueBook venueBook) {
         this.venueBook.resetData(venueBook);
+        List<Venue> newVenues = this.venueBook.getVenueList();
+        if (newVenues.isEmpty()) {
+            currentlyDisplayedVenue.setValue(null);
+        } else {
+            Venue firstVenueInList = newVenues.get(0);
+            currentlyDisplayedVenue.setValue(firstVenueInList);
+        }
     }
 
     @Override
