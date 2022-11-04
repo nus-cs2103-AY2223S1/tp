@@ -50,6 +50,11 @@ public class Location {
                 && value.equals(((Location) other).value)); // state check
     }
 
+    /**
+     * Checks if another {@code location} is similarly spelt to the current {@code location}.
+     * @param other Object to compare to
+     * @return if the two names are spelt similarly (case-insensitive)
+     */
     public boolean similarTo(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Location // instanceof handles nulls

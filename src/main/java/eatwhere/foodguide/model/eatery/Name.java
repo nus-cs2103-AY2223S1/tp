@@ -52,6 +52,11 @@ public class Name {
                 && fullName.equals(((Name) other).fullName)); // state check
     }
 
+    /**
+     * Checks if another {@code name} is similarly spelt to the current {@code name}.
+     * @param other Object to compare to
+     * @return if the two names are spelt similarly (case-insensitive)
+     */
     public boolean similarTo(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
