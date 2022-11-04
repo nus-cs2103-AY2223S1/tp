@@ -1,8 +1,8 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_SESSION;
-import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
+import static seedu.taassist.logic.commands.CommandUtil.requireFocusMode;
+import static seedu.taassist.logic.commands.CommandUtil.requireSessionExists;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
@@ -40,19 +40,10 @@ public class ScoresCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (!model.isInFocusMode()) {
-            throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
-        }
-
+        requireFocusMode(model, COMMAND_WORD);
         ModuleClass focusedClass = model.getFocusedClass();
-
-        if (!focusedClass.hasSession(session)) {
-            throw new CommandException(String.format(MESSAGE_INVALID_SESSION, session.getSessionName(), focusedClass));
-        }
-
+        requireSessionExists(session, focusedClass);
         model.querySessionData(session);
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, session.getSessionName()));
     }
 

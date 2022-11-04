@@ -1,13 +1,13 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.commons.core.csv.CsvConfig.CSV_EMPTY_GRADE;
 import static seedu.taassist.commons.core.csv.CsvConfig.CSV_EXPORT_PATH;
 import static seedu.taassist.commons.core.csv.CsvConfig.CSV_EXTENSION;
 import static seedu.taassist.commons.core.csv.CsvConfig.CSV_LINE_BREAK;
 import static seedu.taassist.commons.core.csv.CsvConfig.CSV_NAME_COLUMN_HEADER;
 import static seedu.taassist.commons.core.csv.CsvConfig.CSV_SEPARATOR;
+import static seedu.taassist.logic.commands.CommandUtil.requireFocusMode;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -41,10 +41,7 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (!model.isInFocusMode()) {
-            throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
-        }
+        requireFocusMode(model, COMMAND_WORD);
 
         ModuleClass focusedClass = model.getFocusedClass();
         IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(focusedClass);

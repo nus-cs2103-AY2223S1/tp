@@ -1,10 +1,10 @@
 package seedu.taassist.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.taassist.commons.core.Messages.MESSAGE_SESSION_DOES_NOT_EXIST;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_LAB1;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.taassist.logic.commands.DeletesCommand.MESSAGE_SESSION_DOES_NOT_EXIST;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalSessions.ASSIGNMENT_1;
 import static seedu.taassist.testutil.TypicalSessions.LAB_1;
@@ -111,11 +111,12 @@ public class DeletesCommandTest {
     @Test
     public void execute_nonExistingSession_success() {
         Session nonExistingSession = LAB_1;
-        assert !model.getFocusedClass().hasSession(nonExistingSession);
+        ModuleClass focusedClass = model.getFocusedClass();
+        assert !focusedClass.hasSession(nonExistingSession);
         Set<Session> sessions = new HashSet<>(List.of(nonExistingSession));
         DeletesCommand command = new DeletesCommand(sessions);
         assertCommandFailure(command, model, String.format(MESSAGE_SESSION_DOES_NOT_EXIST,
-                nonExistingSession.getSessionName()));
+                nonExistingSession.getSessionName(), focusedClass));
     }
 
     //==================================== Model Stubs ===============================================================

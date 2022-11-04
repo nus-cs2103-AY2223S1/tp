@@ -3,7 +3,7 @@ package seedu.taassist.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_SESSION;
+import static seedu.taassist.commons.core.Messages.MESSAGE_SESSION_DOES_NOT_EXIST;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_LAB1;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_TUT3;
 import static seedu.taassist.testutil.Assert.assertThrows;
@@ -41,13 +41,13 @@ class ScoresCommandTest {
         ScoresCommand scoresCommand = new ScoresCommand(new Session(VALID_SESSION_LAB1));
         ModelStubInFocusMode modelStub = new ModelStubInFocusMode();
         String expectedMessage =
-                String.format(MESSAGE_INVALID_SESSION, VALID_SESSION_LAB1, modelStub.getFocusedClass());
+                String.format(MESSAGE_SESSION_DOES_NOT_EXIST, VALID_SESSION_LAB1, modelStub.getFocusedClass());
         assertThrows(CommandException.class, expectedMessage, () -> scoresCommand.execute(modelStub));
 
         // Focused class has sessions, but not the one being queried.
         ModelStubInFocusMode modelStub2 = new ModelStubInFocusMode(new Session(VALID_SESSION_TUT3));
         String expectedMessage2 =
-                String.format(MESSAGE_INVALID_SESSION, VALID_SESSION_LAB1, modelStub2.getFocusedClass());
+                String.format(MESSAGE_SESSION_DOES_NOT_EXIST, VALID_SESSION_LAB1, modelStub2.getFocusedClass());
         assertThrows(CommandException.class, expectedMessage2, () -> scoresCommand.execute(modelStub));
     }
 

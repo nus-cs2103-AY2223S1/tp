@@ -38,7 +38,7 @@ class GradeCommandTest {
     public void execute_focusedClassDoesntHaveSession_throwsCommandException() {
         GradeCommand gradeCommand = new GradeCommand(List.of(INDEX_FIRST_STUDENT), LAB_1, 100);
         ModelStubFocusedClassNoSession modelStub = new ModelStubFocusedClassNoSession();
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_SESSION,
+        String expectedMessage = String.format(Messages.MESSAGE_SESSION_DOES_NOT_EXIST,
                 LAB_1.getSessionName(), modelStub.getFocusedClass());
         assertThrows(CommandException.class, expectedMessage, () -> gradeCommand.execute(modelStub));
     }

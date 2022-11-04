@@ -3,6 +3,7 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
+import static seedu.taassist.logic.commands.CommandUtil.requireModuleClassExists;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class AssignCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        CommandUtil.checkModuleClassExists(moduleClassToAssign, model);
+        requireModuleClassExists(moduleClassToAssign, model);
 
         List<Student> lastShownList = model.getFilteredStudentList();
         List<Student> studentsToAssign;
