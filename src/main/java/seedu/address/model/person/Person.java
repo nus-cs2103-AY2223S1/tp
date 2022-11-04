@@ -98,7 +98,10 @@ public class Person implements seedu.address.model.DeepCopyable {
         while (historyIterator.hasPrevious()) {
             LoanHistory loanHistory = historyIterator.previous();
             totalHistoryPair.add(new Pair<>(previousAmount, loanHistory));
-            previousAmount = new Loan(previousAmount.getAmount() - loanHistory.getLoanChange().getAmount());
+
+            double nextPreviousLoan = previousAmount.getAmount() - loanHistory.getLoanChange().getAmount();
+            nextPreviousLoan = Math.round(nextPreviousLoan * 100.0) / 100.0;
+            previousAmount = new Loan(nextPreviousLoan);
         }
 
         return totalHistoryPair;
