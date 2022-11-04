@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.price.PriceRange;
 
 
 /**

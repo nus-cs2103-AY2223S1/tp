@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.price.PriceRange;
 
 /**
  * An UI component that displays information of a {@code Buyer}.

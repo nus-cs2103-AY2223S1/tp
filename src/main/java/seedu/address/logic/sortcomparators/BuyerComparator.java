@@ -7,7 +7,7 @@ import java.util.Optional;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Priority;
-import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.price.PriceRange;
 
 /**
  * A comparator to compare two Buyers in the list.

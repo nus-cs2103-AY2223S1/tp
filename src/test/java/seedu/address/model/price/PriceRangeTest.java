@@ -1,4 +1,4 @@
-package seedu.address.model.pricerange;
+package seedu.address.model.price;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,7 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.buyer.Name;
-import seedu.address.model.property.Price;
 
 public class PriceRangeTest {
 

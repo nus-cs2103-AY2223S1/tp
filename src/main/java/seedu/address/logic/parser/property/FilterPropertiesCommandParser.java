@@ -19,7 +19,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.price.PriceRange;
 import seedu.address.model.property.FilterPropsByOwnerNamePredicate;
 import seedu.address.model.property.FilterPropsByPricePredicate;
 import seedu.address.model.property.FilterPropsContainingAllCharacteristicsPredicate;
