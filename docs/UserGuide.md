@@ -44,7 +44,7 @@ Linus, Cheng Yi, Yi Hong, Huzaifa, Hong Jin
 ## Features syntax
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**</br>
+**:information_source: Notes about the command format:**
 
 * Words in `lowercase` are commands.
 * Words in `UPPPERCASE` are compulsory arguments.
