@@ -88,8 +88,10 @@ Features marked with * can only be utilised when users are at the home page.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add m/MODULE`, `MODULE` is a parameter which can be used as `add m/MODULE`.
 
-* Items in square brackets are optional. The `*` after a set of square brackets means that it can be used multiple times<br>
+* Items in square brackets are optional.<br>
   e.g. `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
+
+* `*` after a set of square brackets means that it can be used multiple times<br>
   e.g. `[la/LINK_ALIAS]*` can be used as `la/google la/facebook la/luminus` or just as `la/google`.
 
 * A round bracket surrounding multiple square brackets indicate a need for at least one of the items in square brackets
