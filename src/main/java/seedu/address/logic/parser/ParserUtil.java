@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.event.StartTime.MESSAGE_FORMAT_CONSTRAINTS;
+import static seedu.address.model.event.StartTime.MESSAGE_VALUE_CONSTRAINTS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -179,7 +181,7 @@ public class ParserUtil {
 
         //Check if date format is valid.
 
-        if (!Date.isValidDate(date)) {
+        if (!Date.isValidDateFormat(date)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
 
@@ -198,8 +200,10 @@ public class ParserUtil {
     public static StartTime parseStartTime(String startTime) throws ParseException {
         requireNonNull(startTime);
         String trimmedStartTime = startTime.trim();
-        if (!StartTime.isValidStartTime(startTime)) {
-            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
+        if (!StartTime.isValidStartTimeFormat(startTime)) {
+            throw new ParseException(MESSAGE_FORMAT_CONSTRAINTS);
+        } else if (!StartTime.isValidStartTimeValue(startTime)) {
+            throw new ParseException(String.format(MESSAGE_VALUE_CONSTRAINTS, startTime));
         }
         return new StartTime(trimmedStartTime);
     }
