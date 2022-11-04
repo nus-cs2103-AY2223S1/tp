@@ -110,7 +110,7 @@ Format: `help`
 
 #### Clearing all entries: `clear`
 
-Clears all contacts from the address book.
+Clears all contacts and tasks from the address book.
 
 Format: `clear`
 
