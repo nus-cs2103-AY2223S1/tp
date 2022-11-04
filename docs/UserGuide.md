@@ -210,7 +210,7 @@ Each note contains an index, a title, contents and tags.
 </p>
 <center style="font-size:3mm;">A note card.</center>
 
-The index of the notes only applies to the currently displayed list, it **is not** tied to the note itself.
+The index of the notes only applies to the currently displayed list, it is **not** tied to the note itself.
 
 Both the People Panel and Notes Panel share a pool of tags to more easily relate a group of people to a specific note.
 
