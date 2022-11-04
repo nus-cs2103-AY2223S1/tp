@@ -20,13 +20,13 @@ Given below are my contributions to the project.
   * What it does: allows the user to filter the task list to only display tasks that have deadlines specific to and before the input date.
   * Justification: This feature improves the product significantly because a user can now modify the task list and quickly identify specific tasks based on input deadline, without having to search through the entire task list.
   * Credits: Inspiration was taken from the 'find' feature.
-  * Pull requests: [\#84]()
+  * Pull request: [\#84]()
 
 * **New Feature**: Added the ability to find tasks using keywords.
   * What it does: allows the user to find and list all tasks that have names or descriptions that contain any of the input keywords. Keyword matching is case-insensitive.
   * Justification: This feature improves the product significantly because a user can now modify the task list and quickly identify specific tasks based on input keywords, without having to search through the entire task list.
   * Credits: Inspiration was taken from the 'find' feature.
-  * Pull requests: [\#114]()
+  * Pull request: [\#114]()
 
 * **Code contributed**: [RepoSense link]()
 
@@ -36,10 +36,10 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the 'listTasks' feature [\#108]()
+    * Added documentation for the 'listTasks' feature (Pull request [\#108]())
   * Developer Guide:
-    * Added non-function requirements [\#21]()
-    * Added implementation details of the 'filterByDeadline' feature [\#108]()
+    * Added non-function requirements (Pull rqeuest [\#21]())
+    * Added implementation details of the 'filterByDeadline' feature (Pull request [\#108]())
 
 * **Community**:
   * PRs reviewed: [\#42](), [\#88]()
