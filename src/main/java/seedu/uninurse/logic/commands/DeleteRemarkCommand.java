@@ -1,6 +1,5 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_REMARK_INDEX;
@@ -27,16 +26,14 @@ public class DeleteRemarkCommand extends DeleteGenericCommand {
             + PREFIX_OPTION_REMARK_INDEX + " REMARK_INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
             + PREFIX_OPTION_REMARK_INDEX + " 1";
-
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Deleted remark %1$d from %2$s: %3$s";
-
-    public static final CommandType DELETE_REMARK_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final String MESSAGE_SUCCESS = "Deleted remark %1$d from %2$s: %3$s";
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index patientIndex;
     private final Index remarkIndex;
 
     /**
-     * Creates an DeleteRemarkCommand to delete a {@code Remark} from the specified patient.
+     * Creates an DeleteRemarkCommand to delete a Remark from the specified patient.
      *
      * @param patientIndex The index of the patient in the filtered person list to delete the remark.
      * @param remarkIndex The index of the remark in the patient's remark list.
@@ -50,7 +47,7 @@ public class DeleteRemarkCommand extends DeleteGenericCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model);
         List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
@@ -73,8 +70,8 @@ public class DeleteRemarkCommand extends DeleteGenericCommand {
         PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_REMARK_SUCCESS, remarkIndex.getOneBased(),
-                editedPatient.getName(), deletedRemark), DELETE_REMARK_COMMAND_TYPE, patientListTracker);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, remarkIndex.getOneBased(),
+                editedPatient.getName(), deletedRemark), COMMAND_TYPE, patientListTracker);
     }
 
     @Override
@@ -90,7 +87,7 @@ public class DeleteRemarkCommand extends DeleteGenericCommand {
         }
 
         // state check
-        DeleteRemarkCommand command = (DeleteRemarkCommand) other;
-        return patientIndex.equals(command.patientIndex) && remarkIndex.equals((command.remarkIndex));
+        DeleteRemarkCommand o = (DeleteRemarkCommand) other;
+        return patientIndex.equals(o.patientIndex) && remarkIndex.equals((o.remarkIndex));
     }
 }

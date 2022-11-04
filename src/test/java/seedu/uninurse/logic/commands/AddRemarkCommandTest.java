@@ -3,7 +3,8 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.uninurse.logic.commands.AddRemarkCommand.ADD_REMARK_COMMAND_TYPE;
+import static seedu.uninurse.logic.commands.AddRemarkCommand.COMMAND_TYPE;
+import static seedu.uninurse.logic.commands.AddRemarkCommand.MESSAGE_SUCCESS;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -58,14 +59,13 @@ public class AddRemarkCommandTest {
 
         AddRemarkCommand addRemarkCommand = new AddRemarkCommand(INDEX_FIRST_PERSON, remarkToAdd);
 
-        String expectedMessage = String.format(AddRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
-                editedPatient.getName(), remarkToAdd);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, editedPatient.getName(), remarkToAdd);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddRemark, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addRemarkCommand, model, expectedMessage, ADD_REMARK_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(addRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -87,15 +87,14 @@ public class AddRemarkCommandTest {
 
         AddRemarkCommand addRemarkCommand = new AddRemarkCommand(INDEX_FIRST_PERSON, remarkToAdd);
 
-        String expectedMessage = String.format(AddRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
-                editedPatient.getName(), remarkToAdd);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, editedPatient.getName(), remarkToAdd);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setPerson(patientToAddRemark, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addRemarkCommand, model, expectedMessage, ADD_REMARK_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(addRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -122,7 +121,7 @@ public class AddRemarkCommandTest {
         AddRemarkCommand addRemarkCommand = new AddRemarkCommand(INDEX_FIRST_PERSON, REMARK_MEDICAL_ALLERGY);
 
         assertCommandFailure(addRemarkCommand, model,
-                String.format(AddRemarkCommand.MESSAGE_DUPLICATE_REMARK, patientToAddRemark.getName()));
+                String.format(Messages.MESSAGE_DUPLICATE_REMARK, patientToAddRemark.getName()));
     }
 
     @Test
