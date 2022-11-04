@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 * **Plannit** is an **all-in-one application** that streamlines the execution of module
   deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
   **module-mates** (i.e., students in the same module) to increase their productivity.
@@ -19,11 +20,26 @@ Students do not have to worry about forgetting which friend takes which module.
 while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
 
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## 0. How to use this guide
+This guide is targeted at new users who are looking at learning more about 
+our app.
+1. If this is your very first time using the application, welcome! You may head 
+   over to the [quick start](#1-quick-start) section to begin your journey with us!
+2. If you already have a specific feature in mind, you can check out the 
+   [command summary](#11-command-summary) section.
+3. Throughout this guide, you will encounter the icons :bulb:,
+  :information_source: or :eye: icon. Their meanings are as follows:
+
+| Icon                 | Meaning                                                                     |
+|----------------------|-----------------------------------------------------------------------------|
+| :bulb:               | A relevant tip which you may find helpful.                                  |
+| :information_source: | Information that you should **must** note of when using a specific feature. |
+| :eye:                | A feature related to the section you are currently looking at.              |
+
 
 ## 1. Quick start
 
@@ -33,16 +49,21 @@ If you can type fast, Plannit can help you track your module information and tas
 
 3. Copy the file to the folder you want to use as the _home folder_ for Plannit.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
+4. Double-click the file to start the app. The window below should appear in a 
+   few seconds. <br>
 
-<p align="center">
-    <img src="images/Ui.png" width="500"/>
-</p>
 
-6. Type the command in the command box and press Enter to execute it. e.g.
-   `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary)
+    | Screenshot of Plannit                                                                     | Description of labels                                                                                            |
+    |-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+    | {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500"/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Modules list</li><li>Persons list</li></ol>{:/} |
 
-7. Refer to the [Features](#2-features) for details of each command.
+
+5. Type the command in the command box and press Enter to execute it. e.g.
+   `add-module m/CS2103T`. For more commands, you may refer to the [Command summary](#11-command-summary).
+   Alternatively, head over to [Features](#2-features) to find the details of each command.
+
+6. After a command has been executed, a message will be displayed in the result 
+   display to indicate whether the command's execution has been successful.
 
 ### 1.1. Command summary
 
@@ -53,14 +74,14 @@ If you can type fast, Plannit can help you track your module information and tas
 | [`edit-module`](#213-edit-module)                             | `edit-module     INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`              | Edit module belonging to the specified index currently displayed on the screen  |
 | *[`find-module`](#214-find-module)                            | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
 | *[`list-module`](#215-list-module)                            | `list-module`                                                           | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task)                                   | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)                             | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
-| [`swap-task`](#223-reorder-tasks-swap)                        | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
+| [`add-task`](#221-add-task-add-task)                          | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task-delete-task)                 | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
+| [`swap-task`](#223-reorder-tasks-swap-swap-task)              | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
 | [`add-link`](#231-add-link)                                   | `add-link        m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`                | Add link URL with an alias to a module by its specified module code             |
 | [`delete-link`](#232-delete-link)                             | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                           | Delete link URL from a module by its specified module code and alias            |
 | [`open-link`](#233-open-link)                                 | `open-link       m/MODULE_CODE la/LINK_ALIAS`                           | Open link URL from a module by its specified module code and alias              |
 | [`add-person`](#241-add-person)                               | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
-| [`add-person-to-module`](#242-add-person-to-module)           | `add-person-to-module m/MODULE_CODE <br/>n/NAME`                        | Add person with specified name to the module with the specified module code     |
+| [`add-person-to-module`](#242-add-person-to-module)           | `add-person-to-module m/MODULE_CODE n/NAME`                             | Add person with specified name to the module with the specified module code     |
 | [`delete-person`](#243-delete-person)                         | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
 | [`delete-person-from-module`](#244-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                        | Delete person with specified name from a module with specified module code      |
 | [`edit-person`](#245-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
@@ -71,7 +92,7 @@ If you can type fast, Plannit can help you track your module information and tas
 | [`help`](#26-help)                                            | `help`                                                                  | View help                                                                       |
 | [`exit`](#27-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
 
-<div markdown="span" class="alert alert-info">:eye: **See also:** 
+<div markdown="span" class="alert alert-info"> :eye: **See also:**<br/>  
 [Peeking at tasks](#224-peeking-at-tasks).
 </div>
 
@@ -235,6 +256,7 @@ find-module CS
 In either of the above examples, we find every module whose module code starts with CS in Plannit. Here's
 a screenshot of Plannit before and after executing the command:
 
+<<<<<<< HEAD
 | Before executing the command                                                                                                                                | After executing the command                                                                                                                                                          |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p> <p align="right"><i>Notice that only modules with module code starting with `CS` are listed!</i><p/>{:/} |
@@ -244,6 +266,11 @@ a screenshot of Plannit before and after executing the command:
 You will remain on the home page after executing the `find-module` command. This is different
 from the behavior of [`goto`](#251-navigate-between-modules) command, where the person list will be
 updated with the persons associated with the module.
+=======
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>You will
+remain on the home page after executing the `find-module` command. This is different
+from the behavior of [`goto`](#252-navigate-between-modules-goto) command.
+>>>>>>> bc3a0b83759fe86208da55099ab7e9e1b2665ad9
 </div>
 
 #### 2.1.5. List module
@@ -261,21 +288,22 @@ Here's a screenshot of Plannit before and after executing the command:
 <br>
 
 ### 2.2. Tasks
-#### 2.2.1. Add task
-You may add a task using the `add-task` command.
+#### 2.2.1. Add task: `add-task`
+Suppose a particular module has assigned you a task to be completed. You can 
+keep track of it by adding it to Plannit using the `add-task` command.
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:**<br/> 
-Make sure you have [added a module](#211-add-module) to Plannit before 
-proceeding!
+Make sure you have [added a module](#211-add-module-add-module) to Plannit 
+before proceeding!
 </div>
 
-This command will require two flags:
+This command will require two prefixes:
 
-| Field                            | Flag  | Constraints                                             |
-|----------------------------------|-------|---------------------------------------------------------|
-| **Module Code**                  | `m/`  | Can only be non-empty string of alphanumeric characters |
-| **Task Description of New Task** | `td/` | Can be any string of characters                         |
+| Field                            | Prefix | Constraints                                                                                                                            |
+|----------------------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**                  | `m/`   | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/} |
+| **Task Description of New Task** | `td/`  | Can be any string of characters                                                                                                        |
 
 Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
 * Each task must belong to a specific module.
@@ -283,33 +311,38 @@ Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
 
 Example:
 ```
-add-task m/CS2103T td/Complete tP tasks for W07
+add-task m/CS2103T td/Complete week 7's weekly assignments
 ```
-In the above example, we are adding the task `Complete tP tasks for W07` to the
+In the above example, we are adding the task `Complete week 7's weekly assignments` to the
 module `CS2103T`. Here's a screenshot of Plannit before and after executing the
 command:
 
-| Before executing the command                                                    | After executing the command                                                    |
-|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/add-task-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-task-after.png"/></p>{:/} |
+| Before executing the command                                                                                                                             | After executing the command                                                                                                                       |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-task-after.png"/></p><p>A message will appear indicating that a task has been added.</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
 You may view the tasks added to a module by navigating to a module's page 
+<<<<<<< HEAD
 using the [`goto`](##251-navigate-between-modules) command. Alternatively,
 you may double-click on a module to ["peek"](#224-peeking-at-tasks) at a 
+=======
+using the [`goto`](##252-navigate-between-modules-goto) command. Alternatively, 
+you may double-click on a module to ["peek"](#224-peeking-at-modules) at a 
+>>>>>>> bc3a0b83759fe86208da55099ab7e9e1b2665ad9
 module's tasks while on the home page.
 </div>
 
-#### 2.2.2. Delete task
-You may delete a task belonging to a particular module using the
-`delete-task` command.
+#### 2.2.2. Delete task: `delete-task`
+Suppose you have completed a task and would now like to remove it from 
+Plannit. You may delete the task using the `delete-task` command.
 
-This command will require two flags:
+This command will require two prefixes:
 
-| Field                   | Flag  | Constraints                                                                                                                                                       |
-|-------------------------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**         | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                           |
-| **Task Number of Task** | `tn/` | {::nomarkdown}Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul>{:/} |                 
+| Field                   | Prefix | Constraints                                                                                                                                                       |
+|-------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**         | `m/`   | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/}                            |
+| **Task Number of Task** | `tn/`  | {::nomarkdown}Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul>{:/} |                 
 
 Format: `delete-task m/MODULE_CODE tn/TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
@@ -324,20 +357,21 @@ In the above example, we are deleting task number **2** from the module
 `CS2103T`. Here's a screenshot of Plannit before and after executing the 
 command: 
 
-| Before executing the command                                                       | After executing the command                                                       |
-|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/delete-task-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-task-after.png"/></p>{:/} |
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                            |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-task-after.png"/></p><p>A message will appear indicating that a task has been deleted.</p>{:/} |
 
-#### 2.2.3. Reorder tasks (swap)
-You may change the order in which tasks appear in the task list of a 
-particular module using the `swap-task` command.
+#### 2.2.3. Reorder tasks (swap): `swap-task`
+Suppose you have an urgent task which you like to place at the very top of 
+your list. You may change the order of tasks in your module's task list  using
+the `swap-task` command.
 
-This command will require two flags:
+This command will require two prefixes:
 
-| Field                                                     | Flag  | Constraints                                                                                                                                                                                                                                                 |
-|-----------------------------------------------------------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**                                           | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                     |
-| **Task Numbers of Tasks whose ordering is to be swapped** | `ts/` | {::nomarkdown}The two task numbers must: <ul><li>be separated by a <code>SPACE</code> character ("<code> </code>") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul>{:/} |
+| Field                                                     | Prefix | Constraints                                                                                                                                                                                                                                                 |
+|-----------------------------------------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**                                           | `m/`   | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/}                                                                                                                      |
+| **Task Numbers of Tasks whose ordering is to be swapped** | `ts/`  | {::nomarkdown}The two task numbers must: <ul><li>be separated by a <code>SPACE</code> character ("<code> </code>") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul>{:/} |
 
 Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
@@ -355,33 +389,33 @@ task within the task list of the module `CS2103T`. Here's a screenshot of
 Plannit before and after executing the command. Note that ["peek"](#224-peeking-at-tasks)
 has been enabled for clarity:
 
-| Before executing the command                                                                 | After executing the command                                                                                                                              |
-|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png"/></p><p><br/><p/>{:/} | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png"/></p> <p align="right"><i>Notice tasks 1 and 3 have swapped positions!</i><p/>{:/} |
+| Before executing the command                                                                                                                              | After executing the command                                                                                                 |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png"/></p><p>Tasks 1 and 3 have swapped positions!</p>{:/} |
 
 #### 2.2.4. Peeking at tasks
 You may "peek" at a module's tasks by clicking on the module while on the 
 `home` page. <br/>
  **Step 1**: Let's say you wish to view the tasks of `CS2103T SOFTWARE 
-ENGINEERING` (module number 1)
+ENGINEERING` (module number 1).
 <p align="center">
-  <img src="images/home-page.png" width="500"/>
+  <img src="images/home-page-with-cs2103-circled.png" width="500"/>
 </p>
 
 **Step 2**: You will notice a blue glow when hovering your mouse over the 
-module
+module.
 <p align="center">
   <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
 </p>
 
 **Step 3**: Double-clicking on the blue area will allow you to view the 
- tasks of `CS2103T SOFTWARE ENGINEERING`
+ tasks of `CS2103T SOFTWARE ENGINEERING`.
 <p align="center">
   <img src="images/home-page-with-cs2103-tasks.png" width="500"/>
 </p>
 
 **Step 4**: Clicking again on the blue area will close the dropdown and hide 
-the tasks
+the tasks.
 <p align="center">
   <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
 </p>
@@ -390,7 +424,11 @@ the tasks
 **Note:**<br/> 
 You remain on the home page even when you "peek" at a module. To leave the 
 home page and view more details of a specific module, you may use the 
+<<<<<<< HEAD
 [`goto`](#251-navigate-between-modules) command.
+=======
+[`goto`](#252-navigate-between-modules-goto) command.
+>>>>>>> bc3a0b83759fe86208da55099ab7e9e1b2665ad9
 </div>
 
 <br>
