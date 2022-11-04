@@ -13,7 +13,7 @@ and generation of statistics, ArtBuddy is also here to help you grow as an artis
 
 So, focus on your art and leave the rest to ArtBuddy.
 
-Eager to get started? You can refer to our [Quick Start](#Quick_start) section to set ArtBuddy up, or
+Eager to get started? You can refer to our [Quick Start](#quick-start) section to set ArtBuddy up, or
 you can jump right into our [Features](#features) section to learn more about the features ArtBuddy offers.
 
 * Table of Contents
@@ -24,7 +24,46 @@ you can jump right into our [Features](#features) section to learn more about th
 
 This guide walks you through all the features of ArtBuddy and can be used as a quick reference whenever you need any help.
 
-If you are a new user, we welcome you to start from our [introduction](#introduction) to get control of your business.
+If you are a new user, we welcome you to start from our [Introduction](#introduction) section to learn more about ArtBuddy.
+To hop right into setting up ArtBuddy, you might find the [Quick Start](#quick-start) section helpful.  
+
+If you just want to learn more about our features, you can check out our [Features](#features) section.
+For ease of reference, the [Features](#features) section is divided into subsections corresponding to each main feature:
+Customers, Commissions, Iterations and Statistics. Feel free to jump around as you explore ArtBuddy's amazing features!
+
+### Conventions used in this guide
+
+**Formatting conventions**  
+As you read through this guide, you might come across text with special formatting. These specially formatted
+text hold meaning, as described below. 
+
+|                             | Description                                                                                                                                                                                             |
+|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`                      | ArtBuddy commands appear in a monospaced font, with a grey background, as shown on the left. To learn more about ArtBuddy commands, refer to the [CLI section]().                                       |
+| `CODE_UPPER_CASE`           | Certain ArtBuddy commands contain words appear in upper case. These refer to [parameters]() (user input) to be supplied to ArtBuddy.                                                                    |
+| <code>_code_italics_</code> | ArtBuddy commands may also contain words that appear in italics. These refer to example command [parameters](), which you can replace with your own inputs.                                             |
+| [blue hyperlink]()          | Hyperlinks appear in a blue font that is underlined when hovered over by your mouse. These hyperlinks bring you to another section of the user guide containing more relevant information to the topic. |
+| **Bold Title Case**         | References to elements in ArtBuddy's [GUI]() (like buttons and text field labels) are formatted in **bold**, in Title Case.                                                                             |
+
+**Call-out text box conventions**  
+You might also notice call-out text boxes in this guide. These contain additional information tibits that might be useful
+for you.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** Call-outs like this contain information that you should know about ArtBuddy!
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Call-outs like this contain tips that you might find useful when using ArtBuddy.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** Call-outs like this contain warnings that we recommend you read through to avoid
+any unexpected behaviour of ArtBuddy.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 # Introduction
@@ -56,10 +95,10 @@ rest. With optimised support for use via a Command Line Interface (CLI), ArtBudd
 small business at the speed of your fingertips.
 
 Not sure what a CLI is? Don't worry! It's easy to pick up, you can even refer to our short introduction to
-ArtBuddy's CLI to learn more.
+[ArtBuddy's CLI]() to learn more.
 
 More of a visual person? Don't sweat it! Unlike many CLI applications, ArtBuddy still has a sleek, intuitive
-Graphical User Interface (GUI). This means that you can also interact with ArtBuddy using visual controls
+[Graphical User Interface (GUI)](). This means that you can also interact with ArtBuddy using visual controls
 like buttons and pop-ups. There's something for everyone!
 
 --------------------------------------------------------------------------------------------------------------------
