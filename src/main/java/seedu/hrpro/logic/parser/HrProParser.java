@@ -80,7 +80,7 @@ public class HrProParser {
             return new DeleteCommandParser().parse(arguments);
 
         case DeleteStaffCommand.COMMAND_WORD:
-            return new DeleteStaffParser().parse(arguments);
+            return new DeleteStaffCommandParser().parse(arguments);
 
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommandParser().parse(arguments);

@@ -13,7 +13,7 @@ import seedu.hrpro.model.project.ProjectName;
 /**
  * Parses input arguments and creates a new DeleteStaffCommand object
  */
-public class DeleteStaffParser implements Parser<DeleteStaffCommand> {
+public class DeleteStaffCommandParser implements Parser<DeleteStaffCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
