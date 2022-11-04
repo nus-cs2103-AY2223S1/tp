@@ -11,6 +11,7 @@ Class Budget
 Class Deadline
 Class Staff
 Class Tag
+Class UniqueStaffList
 
 Class StaffName
 Class StaffContact
@@ -26,21 +27,22 @@ UniqueProjectList --> "~* all" Project
 Project *--> ProjectName
 Project *--> Budget
 Project *--> Deadline
-Project *---> "*" Tag
-Project *---> "*" Staff
+Project *--> "*" Tag
+Project *--> UniqueStaffList
+
+UniqueStaffList *--> "*" Staff
 
 Staff *--> StaffName
 Staff *--> StaffContact
 Staff *--> StaffDepartment
 Staff *--> StaffInsurance
 Staff *--> StaffTitle
-Staff *--> "*" Tag
+Staff *-right-> "*" Tag
 
 ProjectName -[hidden]right-> Budget
 Budget -[hidden]right-> Deadline
 Deadline -[hidden]right-> Staff
 
 ModelManager -left->"~* filtered" Project
-ModelManager -->"0..1 target" Project
 
 @enduml

@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* `Task` and `Project` were inspired by AB3's `Person` object
+* Commands from AB3 were brought over to `Task` and `Project`
+* `ContainsNameIgnoreCase` method in `StringUtil` is inpsired by https://stackoverflow.com/questions/86780/
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +25,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://github.com/AY2223S1-CS2103T-T09-3/tp/tree/master/docs/diagrams) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -82,7 +84,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays objects such as `Project` residing in the `Model`.
 
 ### Current implementation
 The GUI reflects the entered projects, tasks, and staff members recorded in HR Pro Max++.
@@ -102,10 +104,10 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a project).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delproj 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -128,8 +130,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data consisting of all `Project` objects (which are contained in a `UniqueProjectList` object) and all `Task` objects (which are contained in a `UniqueTaskList` object).
-* stores the currently 'selected' `Project` objects and `Task` objects  (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Project>` or `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the HR Pro Max++ data consisting of all `Project` objects (which are contained in a `UniqueProjectList` object), all `Task` objects (which are contained in a `UniqueTaskList` object) and all `Staff` objects (which are contained in a `UniqueStaffList` object) belonging to the `Project` object that is being viewed (e.g. after a `ViewCommand`).
+* stores the filtered `Project`, `Task` and `Staff` objects  (e.g., results of a `FindCommand`) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<T>`, where `T` is either a `Project`, a `Task` or a `Staff` object, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -192,11 +194,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delproj` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delproj 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th project in the address book. The `delproj` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delproj 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `addproj n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `addproj n/David …​` to add a new project. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -204,7 +206,7 @@ Step 3. The user executes `addproj n/David …​` to add a new person. The `add
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the project was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -249,7 +251,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delproj`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delproj`, just save the proj being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -367,10 +369,6 @@ Pros: Easier to implement then the currrent implementation
 
 Cons: Does not require Staff to be displayed to be deleted, can randomly delete Staff and lose track of what is being deleted from where.
 
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
-
 ### Adding staff feature
 #### Implementation
 The adding staff features is facilitated by `AddStaffCommand`. It extends the `Command` class with functionality
@@ -439,8 +437,8 @@ Finding project to add is not straightforward since only `ProjectName` is passed
 ### Product scope
 
 **Target user profile**:
-HR Pro Max++ aims to help team leads in SME to help track and manage their projects
-and staff members in their team.
+
+HR Pro Max++ aims to help team leads in SME to help track and manage their projects, staff member within each project and tasks related to the projects.
 
 * prefer desktop apps over other types
 * can type fast and prefers it over mouse interactions
@@ -448,8 +446,8 @@ and staff members in their team.
 * need to oversee many projects
 * need to track staff members who are part of each project
 * need to record project details for easy access in the future
-* need to be reminded of impending project deadlines
 * need to contact their team members
+* need to record tasks to track their workload
 
 **Value proposition**:
 * For many SME, a problem they face when setting up their business is a lack of a database to help
@@ -460,21 +458,22 @@ HR Pro Max++ to be a free, easy and comprehensive employee and project managemen
 in our application to keep track of them.
 * Team lead can also record which one of their team members are involved with which project so that they will
 know who to find and how to contact them.
+* Team lead can record down different tasks that are needed to be done for their various projects to be reminded
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                               | So that I can…​                               |
-|----------|-------------|--------------------------------------------|-----------------------------------------------|
-| `* * *`  | team leader | view the projects I am working on          | view my workload                              |
-| `* * *`  | team leader | add deadline to projects                   | aim to finish before then                     |
-| `* * *`  | team leader | add clients to projects                    | find out who to liaise with                   |
-| `* * *`  | team leader | delete projects that are done or cancelled | remove unnecessary information                |
-| `* * *`  | team leader | edit project details                       | to update project with the newest information |
-| `* * *`  | team leader | add staff to a project                     | to track who is working on each project       |
-| `* * *`  | new user    | record staff details one at a time         | ensure that I will not make any mistake       |
+| Priority | As a …​   | I want to …​                               | So that I can…​                               |
+|----------|-----------|--------------------------------------------|-----------------------------------------------|
+| `* * *`  | team lead | view the projects I am working on          | view my workload                              |
+| `* * *`  | team lead | add deadline to projects                   | aim to finish before then                     |
+| `* * *`  | team lead | record down project tasks to do            | track my remaining tasks                      |
+| `* * *`  | team lead | delete projects that are done or cancelled | remove unnecessary information                |
+| `* * *`  | team lead | edit project details                       | to update project with the newest information |
+| `* * *`  | team lead | add staff to a project                     | to track who is working on each project       |
+| `* * *`  | new user  | record staff details one at a time         | ensure that I will not make any mistake       |
 
 
 ### Use cases
@@ -523,8 +522,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons.
-2.  HR Pro Max++ shows a list of persons.
+1.  User requests to list projects.
+2.  HR Pro Max++ shows a list of projects.
 3.  User requests to delete a specific project in the list.
 4.  HR Pro Max++ deletes the project.
 
@@ -618,7 +617,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **SME** Small and medium-sized enterprises, business whose personnel fall below certain limits
 * **Team lead/ Team leader** Someone leading a group of other staff members within the SME
 
@@ -639,7 +637,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -650,17 +648,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a project
 
-1. Deleting a person while all persons are being shown
+1. Deleting a project while all projects are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all projects using the `list` command. Multiple projects in the list.
 
    1. Test case: `delproj 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First project is deleted from the list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delproj 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delproj`, `delproj x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
