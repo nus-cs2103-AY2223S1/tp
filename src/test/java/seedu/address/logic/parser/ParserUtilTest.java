@@ -29,6 +29,7 @@ import seedu.address.model.student.Money;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.timerange.TimeRange;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -38,6 +39,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final Integer INVALID_MONEY_OWED = -1;
     private static final Integer INVALID_MONEY_PAID = -1;
+    private static final String INVALID_DATE_MISSING_DASHES = "2022 10 30";
     private static final String INVALID_CLASS_DATE_TIME = "2022 05 10 1500-1600";
     private static final String INVALID_EMPTY_CLASS_DATE_TIME = "";
     private static final String INVALID_CLASS_DATE_TIME_DURATION = "2022-10-10 1500-1200";
@@ -54,7 +56,9 @@ public class ParserUtilTest {
     private static final Integer VALID_MONEY_OWED = 10;
     private static final Integer VALID_MONEY_PAID = 100;
     private static final String VALID_CLASS_DATE_TIME = "2022-05-10 1500-1600";
+    private static final String VALID_DATE = "2022-05-10";
     private static final String VALID_FLEXIBLE_CLASS_DATE_TIME = "Sun 1500-1600";
+    private static final String VALID_TIME_RANGE = "1200-1400 60";
     private static final String VALID_TAG_1 = "beginner";
     private static final String VALID_TAG_2 = "javaScript";
 
@@ -266,10 +270,17 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseDateToFind_validDate_returnsDate() throws Exception {
+        LocalDate expectedDate = LocalDate.of(2022, 5, 10);
+        assertEquals(expectedDate, ParserUtil.parseDateToFind(VALID_DATE));
+    }
+
+    @Test
     public void parseClassDateTime_invalidDateTime_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS_DATE_TIME));
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_EMPTY_CLASS_DATE_TIME));
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS_DATE_TIME_DURATION));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(""));
     }
 
     @Test
@@ -277,6 +288,39 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_DAY_OF_WEEK));
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_TIME));
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_DATE_TIME_DURATION));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(""));
+    }
+
+    @Test
+    public void parseDateToFind_invalidDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_DATE_MISSING_DASHES));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(""));
+    }
+
+    @Test
+    public void parseTimeRange_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTimeRange(null));
+    }
+
+    @Test
+    public void parseTimeRange_invalidTimeRange_throwsParseException() {
+        // duration exceeds the difference between start time and end time
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimeRange("1000-1100 100"));
+
+        // start time is not before end time
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimeRange("1000-0900 100"));
+
+        // invalid format
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimeRange("1000 1100 30"));
+    }
+
+    @Test
+    public void parseTimeRange_validTimeRange_returnsTimeRange() throws ParseException {
+        LocalTime expectedStartTimeRange = LocalTime.of(12, 0);
+        LocalTime expectedEndTimeRange = LocalTime.of(14, 0);
+        Integer expectedDuration = 60;
+        TimeRange expectedTimeRange = new TimeRange(expectedStartTimeRange, expectedEndTimeRange, expectedDuration);
+        assertEquals(expectedTimeRange, ParserUtil.parseTimeRange(VALID_TIME_RANGE));
     }
 
     @Test
