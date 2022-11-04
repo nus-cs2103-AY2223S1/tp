@@ -332,11 +332,23 @@ public class Class {
 
     /**
      * Returns 1 is this {@code Class} starts before the given {@code aclass}.
-     * {@code Class} and {@code aclass} must be non-null;
+     * {@code Class} and {@code aclass} must be non-null and on the same day;
      */
     public int compareToByStartTime(Class aclass) {
-        requireAllNonNull(this.startTime, aclass.startTime);
+        requireAllNonNull(this.date, this.startTime, aclass.date, aclass.startTime);
+        assert this.date.equals(aclass.date);
         return this.startTime.compareTo(aclass.startTime);
     }
 
+    /**
+     * Returns 1 is the {@code Class} starts before the given {@code aclass}.
+     */
+    public int compareToByClassTime(Class aclass) {
+        requireAllNonNull(this.date, this.startTime, aclass.date, aclass.startTime);
+        if (!this.date.equals(aclass.date)) {
+            return this.date.compareTo(aclass.date);
+        } else {
+            return this.compareToByStartTime(aclass);
+        }
+    }
 }

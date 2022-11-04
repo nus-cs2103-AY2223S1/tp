@@ -304,7 +304,7 @@ public class Student {
         } else if (student.aClass.isEmpty()) {
             return -1;
         } else {
-            return this.aClass.compareToByStartTime(student.aClass);
+            return this.aClass.compareToByClassTime(student.aClass);
         }
     }
 
@@ -321,7 +321,7 @@ public class Student {
         } else if (student.aClass.isEmpty()) {
             return -1;
         } else {
-            return -1 * this.aClass.compareToByStartTime(student.aClass);
+            return -1 * this.aClass.compareToByClassTime(student.aClass);
         }
     }
 
