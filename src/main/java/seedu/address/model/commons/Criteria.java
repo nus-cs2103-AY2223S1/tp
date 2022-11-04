@@ -1,5 +1,7 @@
 package seedu.address.model.commons;
 
+import seedu.address.logic.commands.SortTaskCommand;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -39,5 +41,13 @@ public class Criteria {
 
     public String getCriteria() {
         return criteria;
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Criteria // instanceof handles nulls
+                && criteria.equals(((Criteria) other).criteria)); // state check
     }
 }

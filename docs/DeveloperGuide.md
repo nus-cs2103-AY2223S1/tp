@@ -413,6 +413,53 @@ which stores all the exams.`AddExamCommand#execute()` method returns a `CommandR
 object to display that the exam was successfully added.
 
 
+### Edit Exam Command
+
+#### How the feature works
+The `editExam` command allows users to edit an exam in the `DistinctExamList`
+in `AddressBook`, by changing any of the optional fields of an exam- which include exam module, exam description and exam date. 
+
+
+
+
+### Note 
+Note that the parser class 
+
+#### Sequence of the AddExamCommand
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+![AddExamCommandSequenceDiagram](images/AddExamCommandSequenceDiagram.png)
+
+Step 1. The user launches the application.
+
+Step 2. The user types an `editExam` command.
+
+Step 3. The command calls `LogicManager#execute()` with
+the command input as the argument, which then calls `AddressBookParser#parseCommand() `
+with command input as the argument.
+
+Step 4. `AddressBookParser#parseCommand()` matches the command to be
+a `editExam` command through the command word, which then calls `EditExamCommandParser#parse()`.
+
+Step 5. `EditExamCommandParser#parse()` then parses the command to get `Module`, `ExamDescription`
+and the `ExamDate` objects of the exam by calling their respective `ParserUtil` parse methods. These
+methods will check if the inputted exam description, exam date and module are valid. If it is valid,
+the object will be created. Otherwise, exception will be thrown. Then, an `Exam` object is created
+with the three objects as arguments.
+
+Step 6. `EditExamCommandParser#parse()` returns a new `EditExamCommand` object created with the `Exam`
+object created previously as the argument in the constructor and the \. `LogicManager` class will call
+`AddExamCommand#execute()` with a `Model` object as the argument.
+
+Step 7. `AddExamCommand#execute()` will check if model already contains the module of the exam
+through `Model#hasModule()`. If it does not contain the module, an exception will be thrown to
+indicate the module is not found. It will also check if the model already contains the exam
+through `Model#hasExam()`. If it contains the exam, an exception will be thrown
+to indicate that the exam has already been added.
+
+Otherwise, it will call `ModelManager#addExam()` with the exam as the argument,
+which calls `AddressBook#addExam()` that will add the exam to the `DistinctExamList`,
+which stores all the exams.`AddExamCommand#execute()` method returns a `CommandResult`
+object to display that the exam was successfully added.
 
 
 
