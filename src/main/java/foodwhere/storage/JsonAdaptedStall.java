@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import foodwhere.commons.exceptions.IllegalValueException;
+import foodwhere.logic.parser.ParserUtil;
 import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
@@ -74,10 +75,7 @@ class JsonAdaptedStall {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
+        final Name modelName = ParserUtil.parseName(name);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -103,10 +101,14 @@ class JsonAdaptedStall {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        final Name modelStallName = ParserUtil.parseName(name);
+
+        if (address == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        final Name modelStallName = new Name(name);
+        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
         final Address modelStallAddress = new Address(address);
 
         for (JsonAdaptedReview review : reviews) {

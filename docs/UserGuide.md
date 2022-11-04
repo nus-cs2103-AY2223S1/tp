@@ -174,11 +174,11 @@ Examples:
 
 Finds stalls whose names or tags contain any of the given alphanumeric keywords.
 
-Format: `sfind n/KEYWORD [KEYWORDS]… t/KEYWORD [KEYWORDS]…`
+Format: `sfind n/[KEYWORD]… t/[KEYWORD]…`
 * The search is case-insensitive e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter e.g. `Johns Eatery` will match `Eatery Johns`
 * Using `n/` and `t/` will search name and tag fields of stall respectively.
-* Only full words will be matched e.g. `Joh` will not match `John`, `table` or `tableFor` will not match `tableFor4`.
+* Only full words will be matched e.g. `Joh` will not match `John`, `table` or `tableFor` will not match `tableFor4`
 * Stalls matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/John Doe` will return `John Eatery`, `Doe Restaurant`
 
 Examples:
@@ -190,11 +190,11 @@ Examples:
 
 Finds reviews whose names or tags contain any of the given alphanumeric keywords.
 
-Format: `rfind n/KEYWORD [KEYWORD]… t/KEYWORD [KEYWORD]…`
+Format: `rfind n/[KEYWORD]… t/[KEYWORD]…`
 * The search is case-insensitive e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter e.g. `Johns Eatery` will match `Eatery Johns`
 * Using `n/` and `t/` will search name and tag fields of review respectively.
-* Only full words will be matched e.g. `Joh` will not match `John`, `table` or `tableFor` will not match `tableFor4`.
+* Only full words will be matched e.g. `Joh` will not match `John`, `table` or `tableFor` will not match `tableFor4`
 * Reviews matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/John Doe` will return `John Eatery`, `Doe Restaurant`
 
 Examples:
@@ -270,7 +270,7 @@ If there are no commands entered, simply exiting the program will not generate a
 
 ### Editing the data file
 
-FoodWhere data are saved as a JSON file `[JAR file location]/data/foodwhere.json`. Advanced users are welcome to update data directly by editing that data file while FoodWhere is closed.
+FoodWhere data are saved as a JSON file `[JAR file location]/data/foodwhere.json`. Advanced users are welcome to update data directly by editing that data file while FoodWhere is closed. The allowed format for the data file is outlined in the [Developer Guide](DeveloperGuide.md#).
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Should FoodWhere be unable to interpret the data file, FoodWhere will start with no data. Close FoodWhere without using the `exit` command to avoid overwriting the data file.
@@ -299,13 +299,13 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 | **rdel**  | `rdel REVIEW_INDEX`                                                                                                 |
 | **redit** | `redit REVIEW_INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/EDIT_TAG]…` <br> e.g., `redit 1 d/20/09/2022 c/Great food!`      |
 | **rlist** | `rlist`                                                                                                      |
-| **rfind** | `rfind n/KEYWORD [KEYWORD]… t/KEYWORD [KEYWORD]…` <br> e.g., `rfind n/eatery`                                |
+| **rfind** | `rfind n/[KEYWORD]… t/[KEYWORD]…` <br> e.g., `rfind n/eatery`                                |
 | **rsort** | `rsort CRITERION` <br> e.g., `rsort rating`                                                                  |
 | **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…` <br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South`                |
 | **sdel**  | `sdel STALL_INDEX`                                                                                           |
 | **sedit** | `sedit STALL_INDEX [n/NAME] [a/ADDRESS] [t/EDIT_TAG]…` <br> e.g., `sedit 1 n/John Chicken Rice`                  |
 | **slist** | `slist`                                                                                                      |
-| **sfind** | `sfind n/KEYWORD [KEYWORD]… t/KEYWORD [KEYWORD]…` <br> e.g., `sfind n/eatery`                                |
+| **sfind** | `sfind n/[KEYWORD]… t/[KEYWORD]…` <br> e.g., `sfind n/eatery`                                |
 | **ssort** | `ssort CRITERION` <br> e.g., `ssort reversedname`                                                            |
 
 ## Accepted command arguments
@@ -317,9 +317,9 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 | `CRITERION`    | Valid criteria are stated at the [sfind](#finding-a-stall-sfind), [rfind](#finding-a-review-rfind) commands |
 | `DATE`         | A date in the format DD/MM/YYYY, D/MM/YYYY, DD/M/YYYY, D/M/YYYY, or with dashes instead of slashes          |
 | `EDIT_TAG`     | A possibly empty alphanumeric token without spaces, case insensitive                                        |
-| `KEYWORD`      | An alphanumeric token without spaces, case insensitive                                                      |
+| `KEYWORD`      | A nonempty alphanumeric token without spaces, case insensitive                                              |
 | `NAME`         | A nonempty alphanumeric string with spaces, case insensitive                                                |
-| `RATING`       | An integer from 0 to 5                                                                                      |
+| `RATING`       | An integer from 0 to 5, inclusive                                                                           |
 | `REVIEW_INDEX` | A positive integer from 1 and the number of reviews in the review list, inclusive                           |
 | `STALL_INDEX`  | A positive integer from 1 and the number of stalls in the stall list, inclusive                             |
 | `TAGS`         | A nonempty alphanumeric token without spaces, case insensitive                                              |
@@ -333,7 +333,7 @@ This table highlights how the various data of the stalls and reviews are stored 
 | Address        | Any ASCII text                                                                                            |
 | Content        | Any ASCII text                                                                                            |
 | Date           | DD/MM/YYYY                                                                                                |
-| Name           | Nonempty alphanumeric string with spaces, capitalisation preserved                                        |
+| Name           | Nonempty alphanumeric string with spaces, no repeated spaces, capitalisation preserved                    |
 | Rating         | An integer from 0 to 5                                                                                    |
 | Tag            | Nonempty lowercase alphanumeric token without spaces                                                      |
 

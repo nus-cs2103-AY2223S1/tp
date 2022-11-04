@@ -20,6 +20,8 @@ import foodwhere.testutil.TypicalReviews;
 
 public class JsonAdaptedStallTest {
     private static final String INVALID_NAME = "R@chel";
+    private static final String VALID_NAME_EXTRA_SPACE = "Chicken    Rice";
+    private static final String VALID_NAME_EXTRA_SPACE_PARSED = "Chicken Rice";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
 
@@ -33,6 +35,13 @@ public class JsonAdaptedStallTest {
     public void toModelType_validStallTags_returnsStall() throws Exception {
         JsonAdaptedStall stall = new JsonAdaptedStall(BENSON);
         assertEquals(BENSON, stall.toModelType());
+
+        Stall testStall = new StallBuilder(BENSON)
+                .withName(VALID_NAME_EXTRA_SPACE).build();
+        Stall testStallResult = new StallBuilder(BENSON)
+                .withName(VALID_NAME_EXTRA_SPACE_PARSED).build();
+        JsonAdaptedStall stall2 = new JsonAdaptedStall(testStall);
+        assertEquals(testStallResult, stall2.toModelType());
     }
 
     @Test
@@ -73,6 +82,23 @@ public class JsonAdaptedStallTest {
                 VALID_TAGS, new ArrayList<>());
         String expectedMessage =
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, stall::getModelReviews);
+    }
+
+    @Test
+    public void getModelReviews_invalidAddress_throwsIllegalValueException() {
+        JsonAdaptedStall stall = new JsonAdaptedStall(VALID_NAME, INVALID_ADDRESS,
+                VALID_TAGS, new ArrayList<>());
+        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, stall::getModelReviews);
+    }
+
+    @Test
+    public void getModelReviews_nullAddress_throwsIllegalValueException() {
+        JsonAdaptedStall stall = new JsonAdaptedStall(VALID_NAME, null,
+                VALID_TAGS, new ArrayList<>());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, stall::getModelReviews);
     }
 
