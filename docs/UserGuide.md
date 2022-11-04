@@ -773,6 +773,7 @@ After using the `goto` command, usage of the following commands will be restrict
 * [`list-module`](#215-list-module)
 * [`find-person`](#244-find-person)
 * [`list-person`](#245-list-person)
+
 To re-enable the restricted commands, you may execute any commands that bring you back to the home page
 (i.e. [`home`](#251-navigate-to-home)).
 </div>
