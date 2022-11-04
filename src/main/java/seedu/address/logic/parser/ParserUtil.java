@@ -24,21 +24,17 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
     public static final int MAX_INDEX = 1000;
     public static final int MAX_DAYS = 9999;
-    public static final int MAX_INTEGER_LENGTH = String.valueOf(Integer.MAX_VALUE).length();
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer less than or equal to "
             + "1000.";
-    public static final String MESSAGE_INDEX_TOO_LONG = "Index provided may result in integer overflow.";
     public static final String MESSAGE_INDEX_GREATER_THAN_MAX = "Index provided is greater than max value allowed.";
     public static final String MESSAGE_INVALID_DAYS = "Days provided is not a non-zero unsigned integer less than "
             + "10000.";
-    public static final String MESSAGE_DAYS_TOO_LONG = "Days provided may result in integer overflow.";
     public static final String MESSAGE_DAYS_GREATER_THAN_MAX = "Days provided is greater than max value allowed.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer less than
-     * or equal to 1000).
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer <= 1000).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
