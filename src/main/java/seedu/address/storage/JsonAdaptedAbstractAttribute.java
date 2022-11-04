@@ -97,7 +97,7 @@ class JsonAdaptedAbstractAttribute {
                 throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
             }
 
-            modelAttribute = new Address((String) modelValue);
+            modelAttribute = new Phone((String) modelValue);
             break;
         default:
             modelAttribute = new AbstractAttribute<Object>(modelTypeName, modelValue,
