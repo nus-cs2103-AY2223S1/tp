@@ -357,7 +357,31 @@ Alternatives:
     - Pros: Easy to type
     - Cons: Easier to type the wrong short-form command as they differ by 1 letter
 
+### Set Payment Status Feature
 
+#### Current Implementation
+
+The `SetPaidCommand` marks the payment status of a bill as paid. The `SetPaidCommandParser` parses the bill index input of the user
+and creates a `SetPaidCommand` object with the index passed in as a parameter. The `SetPaidCommand` then calls `Model#setBillAsPaid` to mark the bill as paid. The patient bill panel now shows that the checkbox for the bill is ticked, indicating that the bill is paid.
+
+Given below is an example usage scenario and how the `SetPaidCommand` behaves at each step.
+
+Step 1. The user launches the application and all patients, appointments and bills are shown on different panels as indexed lists.
+
+Step 2. The user executes the `setpaid 1` command to mark the first bill on the bill panel as paid. The `SetPaidCommand` calls `Model#setBillAsPaid`, which marks the bill in the `HealthContact` object as paid. The application displays the bill panel with the first bill's payment status checkbox ticked.
+
+The following sequence diagram shows how the `SetPaidCommand` works:
+![SetPaidCommandSequenceDiagram](images/dg/SetPaidCommandSequenceDiagram.png)
+
+The `SetUnpaidCommand` works similarly to the `SetPaidCommand`, just that it marks the payment status of a bill as unpaid.
+
+Design considerations:
+1. Whether to combine `SetPaidCommand` and `SetUnpaidCommand` into one command or split them
+
+Alternatives:
+1. Combine `SetPaidCommand` and `SetUnpaidCommand` into one command
+    - Pros: Shorter command word, eg. `set`
+    - Cons: Use a prefix to indicate user's intention to set bill as paid or unpaid
 
 ### Sort Feature
 
