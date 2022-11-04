@@ -443,8 +443,8 @@ Travelr data are saved locally automatically after any command. There is no need
 * **GUI**: Stands for Graphical User Interface, which refers to the user interface that you will be interacting with.
 
 ### Icons
-|:-:|:-:|
 |**Icon**|**Explanation**|
+|:-:|:-:|
 |:information_source:|The segment will provide useful information for using the Applicaiton.|
 |:warning:|The segment will provide important notes about our app that you should know.|
 |:point_up:|The segment explains the uses of a feature.|
