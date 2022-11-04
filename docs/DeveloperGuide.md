@@ -377,7 +377,7 @@ They go into full view mode with the `view` command and execute `edit 1 a/2022-0
 
 **Aspect: Format of user input in Attendance**
 
-* **Alternative 1 (current choice):** Use `LocalDateTimeFormatter` as formatter for `LocalDate`.
+* **Alternative 1 (current choice):** Use `LocalDate` to encapsulate user input into a `Session`.
     * Pros: Easier to implement, uses only one imported Java class `LocalDate` for encapsulating user input and intuitive for user.
     * Cons: Cannot differentiate between `Session` timings on the same day. Hence, a `Person` who has two `Session` on the same day, who is present for one or the other cannot be differentiated. 
 
