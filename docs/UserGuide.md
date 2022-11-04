@@ -1,11 +1,12 @@
 ---
 layout: page
 title: User guide
+
 ---
+# Overview <a id="1-overview"></a>
 
 TABS is a project centric desktop application specially designed to manage contacts, groups and tasks within members of the group.
-
-# Target User
+## Target User
 TABS's target users are student project team leaders who are facing issues with **group management** and **task allocation**.
 
 TABS aims to help project team leaders by
@@ -58,7 +59,7 @@ Please refer to the Table of Contents if you are lost at any point of time.
   - [5.4 Miscellaneous Commands](#54-miscellaneous-commands)
 
 ---
-# 1. Quick start
+# 1. Quick start<a id="1-quick-start"></a>
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest TABS.jar.
 3. Copy the file to the folder you want to use as the home folder for your TABS.
@@ -67,8 +68,7 @@ Note how the app contains some sample data.
 <br><br>
 ![TABS example](images/user-guide/Ui.png)
 <br><br>
-5. Refer to the [Features](#features) below for details of each command.
-
+5. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 # 2. Reading the Document
@@ -88,7 +88,7 @@ The features of TABS are as such:
 <div markdown="span" class="alert alert-primary">
   :information_source: **Note**:
 
-**Members** and **Contacts** are different.
+**Members** and **Contacts** are different. 
 - In order to add **Members**, the persons have to be present in TABS as **Contacts**.
 - On deletion of **Members** in **Groups**, the corresponding **Contacts** of the person will still remain.
 
@@ -96,8 +96,30 @@ The features of TABS are as such:
 
 ## 2.3 GUI Interface
 <div markdown="block" class="alert alert-info">
+The images below show the sections of the TABS user interface.
 
-**:information_source: Shortcut keys to use the application:**<br>
+![TABS example](images/user-guide/Ui2.png)
+
+Overview of the sections in the main window:
+
+| Section       | Role                                 |
+|---------------|--------------------------------------|
+| Menu Bar      | Display menu items File and Help     |
+| Command Box   | To type the commands                 |
+| Result Window | Displays the result of user input    |
+| Contacts Pane | Contains the list of persons in TABS |
+| Group Pane    | Contains the list of groups in TABS  |
+
+![TABS example](images/user-guide/Ui3 persontab.png)
+
+Overview of the sections in the contacts pane:
+
+| Section            | Role                                                              |
+|--------------------|-------------------------------------------------------------------|
+| Tab Buttons        | Switch between Contact details and Assignments                    |
+| Assignments        | Contains the assignment allocated to the person sorted by group   |
+| Contact details    | Contains the person's information                                 |
+| Workload indicator | Calculated workload of the person's assignments based on priority |
 
 * Use the `TAB` key to navigate between command box, person pane, and group pane in TABS.
 
@@ -126,8 +148,18 @@ The features of TABS are as such:
 
 * Commands involving the parameter `NAME` is case-sensitive, the `NAME` specified must be exactly the same as the one stored in TABS.
 
-
 ## 2.5 Prefixes
+| Prefix | Field    |
+|--------|----------|
+| n/     | NAME     |
+| p/     | PHONE    |
+| e/     | EMAIL    |
+| a/     | ADDRESS  |
+| t/     | TAG      |
+| g/     | GROUP    |
+| task/  | TASK     |
+| w/     | WORKLOAD |
+| d/     | DEADLINE |
 
 -------------------------------------------------------------------------------------------------------------------
 # 3. Features
@@ -293,7 +325,6 @@ assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0`
 
 A workload indicator is shown beside each person in TABS.
 When the workload of the person increases, the workload indicator will gradually change from green to red.
-
 ![Workload_Indicator](images/user-guide/workload_indicator.png)
 </div>
 
