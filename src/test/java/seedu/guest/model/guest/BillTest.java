@@ -52,6 +52,7 @@ public class BillTest {
         assertTrue(Bill.isValidBill("-0")); // signed zero
         assertTrue(Bill.isValidBill("-1.99")); // signed number with decimals
         assertTrue(Bill.isValidBill(".99")); // starts with decimal point
+        assertTrue(Bill.isValidBill(".1")); // starts with decimal point 1 decimal place
         assertTrue(Bill.isValidBill("+.99")); // signed and starts with decimal point
         assertTrue(Bill.isValidBill("1.")); // no decimal place
         assertTrue(Bill.isValidBill("1.5")); // 1 decimal place
