@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,9 +54,9 @@ public class TeachersPetParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         List<Index> indexes = new ArrayList<>();
-        indexes.add(INDEX_FIRST_PERSON);
+        indexes.add(INDEX_FIRST_STUDENT);
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
         assertEquals(new DeleteCommand(indexes), command);
     }
 
@@ -65,8 +65,8 @@ public class TeachersPetParserTest {
         Student student = new StudentBuilder().build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);
     }
 
     @Test
@@ -98,8 +98,8 @@ public class TeachersPetParserTest {
     @Test
     public void parseCommand_mark() throws Exception {
         MarkCommand command = (MarkCommand) parser.parseCommand(
-                MarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new MarkCommand(INDEX_FIRST_PERSON), command);
+                MarkCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
+        assertEquals(new MarkCommand(INDEX_FIRST_STUDENT), command);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class TeachersPetParserTest {
     @Test
     public void parseCommand_pay() throws Exception {
         PayCommand command = (PayCommand) parser.parseCommand(
-                PayCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " 300");
-        assertEquals(new PayCommand(INDEX_FIRST_PERSON, new Money(300)), command);
+                PayCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased() + " 300");
+        assertEquals(new PayCommand(INDEX_FIRST_STUDENT, new Money(300)), command);
     }
 }

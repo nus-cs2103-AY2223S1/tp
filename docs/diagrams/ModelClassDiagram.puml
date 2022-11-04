@@ -12,8 +12,8 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
+Class UniqueStudentList
+Class Student
 Class Address
 Class AdditionalNotes
 Class Class
@@ -40,22 +40,22 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> NokPhone
-Person *--> Email
-Person *--> Address
-Person *--> Class
-Person *--> Money
-Person *--> AdditionalNotes
-Person *--> "*" Tag
-Person *--> Class
-Person *--> AdditionalNotes
-Person *--> MoneyOwed
-Person *--> MoneyPaid
-Person *--> RatesPerClass
+AddressBook *--> "1" UniqueStudentList
+UniqueStudentList --> "~* all" Student
+Student *--> Name
+Student *--> Phone
+Student *--> NokPhone
+Student *--> Email
+Student *--> Address
+Student *--> Class
+Student *--> Money
+Student *--> AdditionalNotes
+Student *--> "*" Tag
+Student *--> Class
+Student *--> AdditionalNotes
+Student *--> MoneyOwed
+Student *--> MoneyPaid
+Student *--> RatesPerClass
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> NokPhone
@@ -67,5 +67,5 @@ MoneyOwed -[hidden]right-> MoneyPaid
 MoneyPaid -[hidden]right-> RatesPerClass
 RatesPerClass -[hidden]right-> AdditionalNotes
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Student
 @enduml

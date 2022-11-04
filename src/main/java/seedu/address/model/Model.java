@@ -9,14 +9,14 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.student.Class;
 import seedu.address.model.student.Student;
-import seedu.address.model.timeRange.TimeRange;
+import seedu.address.model.timerange.TimeRange;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

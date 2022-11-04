@@ -2,9 +2,11 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_INDEXES;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEXES;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -53,8 +55,8 @@ public class ParserUtilTest {
     private static final Integer VALID_MONEY_PAID = 100;
     private static final String VALID_CLASS_DATE_TIME = "2022-05-10 1500-1600";
     private static final String VALID_FLEXIBLE_CLASS_DATE_TIME = "Sun 1500-1600";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_1 = "beginner";
+    private static final String VALID_TAG_2 = "javaScript";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -72,10 +74,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_STUDENT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_STUDENT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -85,7 +87,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndexes_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEXES, ()
                 -> ParserUtil.parseIndexes(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
@@ -95,6 +97,18 @@ public class ParserUtilTest {
         indexes.add(Index.fromOneBased(2));
         indexes.add(Index.fromOneBased(3));
         assertEquals(ParserUtil.parseIndexes("2 3"), indexes);
+    }
+
+    @Test
+    public void parseIndexes_duplicateInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_DUPLICATE_INDEXES, ()
+                -> ParserUtil.parseIndexes("1 1"));
+    }
+
+    @Test
+    public void parseIndexes_duplicateAndOutOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_DUPLICATE_INDEXES, ()
+                -> ParserUtil.parseIndexes(Long.toString(Integer.MAX_VALUE + 1) + " 1 1"));
     }
 
     @Test
@@ -351,6 +365,29 @@ public class ParserUtilTest {
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+
+        assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTagsList_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTagsList(null));
+    }
+
+    @Test
+    public void parseTagsList_collectionWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTagsList(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    }
+
+    @Test
+    public void parseTagsList_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTagsList(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseTagsList_collectionWithValidTags_returnsTagSet() throws Exception {
+        List<String> actualTagSet = ParserUtil.parseTagsList(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        List<String> expectedTagSet = Arrays.asList(VALID_TAG_1, VALID_TAG_2);
 
         assertEquals(expectedTagSet, actualTagSet);
     }

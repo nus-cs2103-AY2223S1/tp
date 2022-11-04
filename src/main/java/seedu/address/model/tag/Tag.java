@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Tags names be should be alphanumeric, and cannot contain spacings.";
+            "Tags names be should be alphanumeric, cannot contain spacings, and limited to 40 characters long.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -30,6 +30,9 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
+        if (test.length() > 40) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

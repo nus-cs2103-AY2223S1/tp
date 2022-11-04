@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INTERMEDIATE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.getTypicalTeachersPet;
@@ -47,7 +47,7 @@ public class TeachersPetTest {
     @Test
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two students with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_INTERMEDIATE)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         TeachersPetStub newData = new TeachersPetStub(newStudents);
@@ -74,7 +74,7 @@ public class TeachersPetTest {
     @Test
     public void hasStudent_studentWithSameIdentityFieldsInTeachersPet_returnsTrue() {
         teachersPet.addStudent(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_INTERMEDIATE)
                 .build();
         assertTrue(teachersPet.hasStudent(editedAlice));
     }

@@ -39,36 +39,36 @@ public class IndexTest {
 
     @Test
     public void compareTo() {
-        final Index fifthPersonIndex = Index.fromOneBased(5);
-        final Index fourthPersonIndex = Index.fromOneBased(4);
+        final Index fifthStudentIndex = Index.fromOneBased(5);
+        final Index fourthStudentIndex = Index.fromOneBased(4);
 
-        assertTrue(fifthPersonIndex.compareTo(fifthPersonIndex) == 0);
+        assertTrue(fifthStudentIndex.compareTo(fifthStudentIndex) == 0);
 
-        assertTrue(fifthPersonIndex.compareTo(fourthPersonIndex) > 0);
+        assertTrue(fifthStudentIndex.compareTo(fourthStudentIndex) > 0);
 
-        assertTrue(fourthPersonIndex.compareTo(fifthPersonIndex) < 0);
+        assertTrue(fourthStudentIndex.compareTo(fifthStudentIndex) < 0);
 
-        assertFalse(fourthPersonIndex.compareTo(fifthPersonIndex) == 0);
+        assertFalse(fourthStudentIndex.compareTo(fifthStudentIndex) == 0);
     }
 
     @Test
     public void equals() {
-        final Index fifthPersonIndex = Index.fromOneBased(5);
+        final Index fifthStudentIndex = Index.fromOneBased(5);
 
         // same values -> returns true
-        assertTrue(fifthPersonIndex.equals(Index.fromOneBased(5)));
-        assertTrue(fifthPersonIndex.equals(Index.fromZeroBased(4)));
+        assertTrue(fifthStudentIndex.equals(Index.fromOneBased(5)));
+        assertTrue(fifthStudentIndex.equals(Index.fromZeroBased(4)));
 
         // same object -> returns true
-        assertTrue(fifthPersonIndex.equals(fifthPersonIndex));
+        assertTrue(fifthStudentIndex.equals(fifthStudentIndex));
 
         // null -> returns false
-        assertFalse(fifthPersonIndex.equals(null));
+        assertFalse(fifthStudentIndex.equals(null));
 
         // different types -> returns false
-        assertFalse(fifthPersonIndex.equals(5.0f));
+        assertFalse(fifthStudentIndex.equals(5.0f));
 
         // different index -> returns false
-        assertFalse(fifthPersonIndex.equals(Index.fromOneBased(1)));
+        assertFalse(fifthStudentIndex.equals(Index.fromOneBased(1)));
     }
 }

@@ -188,7 +188,7 @@ Adds a student to the Teacher’s Pet.
     - A student can have any number of tags (including 0).
     - Tags must only contain alphanumeric characters.
     
-<div markdown="span" class="alert alert-info">ℹ **Note:** Tags must contain at least 1 alphanumeric character and cannot contain spacings.
+<div markdown="span" class="alert alert-info">ℹ **Note:** Tags must contain at least 1 alphanumeric character, cannot contain spacings and limited to `40` characters long.
 </div>
 
 Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
@@ -383,7 +383,7 @@ Fields supported in `find`:
 - Class Date `dt/`
 - Tag `t/`
 
-<div markdown="span" class="alert alert-danger">❗ **Caution:** Only one field can be searched at once.
+<div markdown="span" class="alert alert-danger">❗ **Caution:** Only one type of prefix should be used in a find command at a time.
 </div>
 
 #### Find by Name:
@@ -429,7 +429,7 @@ Format: `find a/KEYWORD [MORE_KEYWORDS]`
 - The search is case-insensitive. e.g., `Labrador` will match `LABRADOR`.
 - The order of the keywords does not matter. e.g., `Bukit Timah` will match `Timah Bukit`.
 - Students matching at least one keyword will be returned. e.g., `Bukit Timah` will return `Bukit Batok`, `Timah Hill`.
-- Only full words will be matched e.g., `Labra` will not match `Labrador`.
+- Partial words will be matched e.g., `Labra` will match `Labrador`.
 
 Example:
 
@@ -442,6 +442,7 @@ Finds student with the matching contact number.
 Format: `find p/CONTACT_NUMBER`
 
 - Only full numbers will be matched e.g., `8123` will not match `81234567`.
+- Only one contact number can be searched at each time.
 
 Example:
 
@@ -453,6 +454,7 @@ Finds all students with a particular next of kin's contact number.
 
 Formats: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
 
+- Only full numbers will be matched e.g., `8123` will not match `81234567`.
 - Only one contact number can be searched at each time.
 
 <div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one contact number such as find np/91232323 81231232.
@@ -492,15 +494,19 @@ Finds all students with a particular tag.
 Formats: `find t/tagName`
 
 - Only one tag can be searched at each time.
+- The tag is case-insensitive.
 
 <div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one tag such as find t/python java.
 </div>
 
 Examples:
 
-`find t/python` returns all students who have python as a tag, including students who have other tags on top of the
+* `find t/python` returns all students who have a python tag, including students who have other tags on top of the
 python tag.
-`find dt/javascript` returns all students with javascript as a tag and other tags besides javascript.
+* `find t/javascript` returns all students who have a javascript tag, including students who have other tags on top
+of javascript tag 
+* `find t/python t/javascript` returns all students who have javascript and python tags, includings students who have 
+other tags on top of the two tags.
 
 [↑ Back to top](#table-of-contents)
 
@@ -632,9 +638,15 @@ Format: `clear`
 
 ### Undo the last command: `undo`
 
-Undoes the last command executed and restores the Teacher's Pet to the previous state.
+Undoes the last command executed by reverting any recent change in data within the Teacher's Pet.
 
 Format: `undo`
+
+<div markdown="span" class="alert alert-info">ℹ **Note:** Undo command will not change any visual display
+with the latest commands being display-related like
+<a href="#finding-a-student-find">find</a> command. If you wish to remove the filter, the best way is to use
+<a href="#viewing-all-students-list">list</a> command.
+</div>
 
 [↑ Back to top](#table-of-contents)
 

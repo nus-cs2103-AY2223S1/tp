@@ -24,7 +24,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX [OPTIONAL INDEXES] (must be positive integer(s))\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deletion successful!";
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deletion successful!";
     public static final String STUDENT_LIST_EMPTY_ERROR = "There is no student to delete.";
 
     private final List<Index> targetIndexes;
@@ -57,7 +57,7 @@ public class DeleteCommand extends Command {
             model.deleteStudent(studentToDelete);
             ClassStorage.removeExistingClass(studentToDelete);
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS));
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS));
     }
 
     @Override

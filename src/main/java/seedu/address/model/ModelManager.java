@@ -16,7 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.student.Class;
 import seedu.address.model.student.Student;
-import seedu.address.model.timeRange.TimeRange;
+import seedu.address.model.timerange.TimeRange;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -110,8 +110,8 @@ public class ModelManager implements Model {
     @Override
     public void addStudent(Student student) {
         teachersPet.addStudent(student);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-        updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        updateFilteredScheduleList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override

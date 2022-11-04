@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/AY2223S1-CS2103T-T09-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T09-4/tp/actions)
 
-![Ui](docs/images/UG-screenshots/Ui.png)
+[![Teacher's Pet](docs/images/Thumbnail.png)](https://youtu.be/Z4yEM05bJnc)
 
 * Teacher’s Pet is a desktop application for managing contacts of students and classes, optimised for use via a Command
 Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Teacher’s

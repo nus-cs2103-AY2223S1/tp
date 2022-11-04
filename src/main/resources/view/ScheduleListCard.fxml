@@ -27,47 +27,32 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" styleClass="cell_title_label" text="\$first" />
+                <Label fx:id="name" styleClass="cell_title_label" text="\$first" wrapText="true" />
                 <Pane HBox.hgrow="ALWAYS" />
-                <Label fx:id="classTime" styleClass="cell_title_label" text="\$classTime" />
+                <Label fx:id="classTime" styleClass="cell_title_label" text="\$classTime" minWidth="170" />
             </HBox>
-         <HBox prefHeight="0.0" prefWidth="170.0">
-            <children>
-               <VBox prefHeight="27.0" prefWidth="170.0">
-                  <children>
-                        <HBox>
-                            <padding>
-                                <Insets top="5" />
-                            </padding>
-                            <Label styleClass="cell_small_label" text="Address: " >
-                                <minWidth>
-                                    <!-- Ensures that the label text is never truncated -->
-                                    <Region fx:constant="USE_PREF_SIZE" />
-                                </minWidth>
-                            </Label>
-                            <Label fx:id="address" styleClass="cell_small_label" text="\$address">
-                                <minWidth>
-                                    <!-- Ensures that the label text is never truncated -->
-                                    <Region fx:constant="USE_PREF_SIZE" />
-                                </minWidth>
-                            </Label>
-                        </HBox>
-                        <HBox>
-                            <padding>
-                                <Insets top="3" />
-                            </padding>
-                            <Label styleClass="cell_small_label" text="Phone: " />
-                            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-                        </HBox>
-                  </children>
-               </VBox>
-               <Pane HBox.hgrow="ALWAYS" />
-               <Label fx:id="markStatus" styleClass="cell_big_label" text="\$markStatus">
-                  <font>
-                     <Font name="System Bold" size="14.0" />
-                  </font></Label>
-            </children>
-         </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <padding>
+                    <Insets top="5" />
+                </padding>
+                <Label styleClass="cell_small_label" text="Address: " >
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Label fx:id="markStatus" styleClass="cell_mark_label" text="\$markStatus" minWidth="30" />
+            </HBox>
+            <HBox>
+                <padding>
+                    <Insets top="3" />
+                </padding>
+                <Label styleClass="cell_small_label" text="Phone: " />
+                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
+            </HBox>
+
         </VBox>
       <rowConstraints>
          <RowConstraints />

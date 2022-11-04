@@ -14,11 +14,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of students.
  */
 public class ScheduleListPanel extends UiPart<Region> {
     private static final String FXML = "ScheduleListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
     @FXML
     private ListView<Student> scheduleListView;
@@ -27,7 +27,7 @@ public class ScheduleListPanel extends UiPart<Region> {
     private Label classDate;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
     public ScheduleListPanel(ObservableList<Student> scheduleList) {
         super(FXML);
@@ -39,7 +39,7 @@ public class ScheduleListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
     class ScheduleListViewCell extends ListCell<Student> {
         @Override

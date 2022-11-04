@@ -1,6 +1,6 @@
 {
   "students": [ {
-    "name": "Valid Person",
+    "name": "Valid Student",
     "phone": "9482424",
     "nokPhone": "9593535",
     "email": "hans@example.com",
@@ -8,7 +8,7 @@
     "additionalNotes" : "Remind student to submit homework",
     "classDateTime" : ""
   }, {
-    "name": "Person With Invalid Phone Field",
+    "name": "Student With Invalid Phone Field",
     "phone": "948asdf2424",
     "nokPhone": "9593535",
     "email": "hans@example.com",

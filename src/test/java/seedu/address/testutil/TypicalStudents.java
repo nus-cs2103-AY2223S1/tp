@@ -10,8 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BEGINNER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INTERMEDIATE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,15 +28,15 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withNokPhone("88219345")
-            .withTags("friends").build();
+            .withTags("beginner").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withNokPhone("98234312")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "beginner").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withNokPhone("98211225").withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withNokPhone("98720092").withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
+            .withNokPhone("98720092").withEmail("cornelia@example.com").withAddress("10th street").withTags("beginner")
             .build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("94822241")
             .withNokPhone("81239898").withEmail("werner@example.com").withAddress("michegan ave").build();
@@ -62,10 +62,10 @@ public class TypicalStudents {
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withNokPhone(VALID_NOK_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_BEGINNER).build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withNokPhone(VALID_NOK_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_INTERMEDIATE, VALID_TAG_BEGINNER).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

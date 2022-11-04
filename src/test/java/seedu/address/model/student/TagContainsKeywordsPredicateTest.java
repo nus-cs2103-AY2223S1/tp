@@ -53,6 +53,14 @@ public class TagContainsKeywordsPredicateTest {
         // Zero keywords
         predicate = new TagContainsKeywordsPredicate(Collections.emptyList());
         assertTrue(predicate.test(new StudentBuilder().withTags("Java").build()));
+
+        // Multiple keywords
+        predicate = new TagContainsKeywordsPredicate(Arrays.asList("python", "java"));
+        assertTrue(predicate.test(new StudentBuilder().withTags("python", "java").build()));
+
+        // Multiple keywords
+        predicate = new TagContainsKeywordsPredicate(Arrays.asList("python", "java"));
+        assertTrue(predicate.test(new StudentBuilder().withTags("python", "java", "begin").build()));
     }
 
     @Test

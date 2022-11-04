@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
 import seedu.address.model.student.Class;
-import seedu.address.model.timeRange.TimeRange;
+import seedu.address.model.timerange.TimeRange;
 
 /**
  * Finds the next available class schedule
@@ -34,6 +34,6 @@ public class AvailCommand extends Command {
         requireNonNull(model);
         Class classToDisplay = model.findAvailableClass(timeRange);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, classToDisplay));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, classToDisplay.toAvailCommandString()));
     }
 }

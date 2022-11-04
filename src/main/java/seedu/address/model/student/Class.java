@@ -19,9 +19,12 @@ public class Class {
             + " in either 'yyyy-MM-dd 0000-2359' or Day-of-Week 0000-2359 format"
             + "\nExamples:  2022-10-30 1000-1300,  Mon 1000-1300,  tue 1000-1300"
             + "\nDay-of-Week must be 3 letters and is case-insensitive";
-    public static final String INVALID_DATETIME_ERROR_MESSAGE =
+    public static final String INVALID_DATE_ERROR_MESSAGE =
             "Date should be a valid date in the format of yyyy-MM-dd";
-    public static final String INVALID_TIME_ERROR_MESSAGE = "Time should be in the range of 0000 - 2359";
+    public static final String INVALID_TIME_ERROR_MESSAGE =
+            "Time should be in a valid time in the range of 0000 - 2359";
+    public static final String INVALID_DATETIME_ERROR_MESSAGE =
+            INVALID_DATE_ERROR_MESSAGE + ".\n" + INVALID_TIME_ERROR_MESSAGE;
     public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime and duration"
             + " should be less than or equal to the difference between EndTime and StartTime";
     public static final String VALIDATION_DATETIME_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
@@ -109,6 +112,26 @@ public class Class {
     }
 
     /**
+     * Returns a formatted date and time for avail command.
+     */
+    public String toAvailCommandString() {
+        if (date == null) {
+            return "";
+        }
+        return date + " " + this.toAvailCommandTimeString(startTime) + "-" + this.toAvailCommandTimeString(endTime);
+    }
+
+    /**
+     * Returns a formatted time for avail command.
+     */
+    private String toAvailCommandTimeString(LocalTime time) {
+        if (time == null) {
+            return "";
+        }
+        return time.toString().replace(":", "");
+    }
+
+    /**
      * Returns a formatted time duration.
      *
      * @return String.
@@ -190,9 +213,24 @@ public class Class {
      * @return true if a given string fits the format of 'yyyy-MM-dd 0000-2359'.
      */
     public static boolean isValidClassString(String classDateTime) {
-        if (!classDateTime.matches(VALIDATION_STANDARD_CLASS_REGEX)) {
-            return false;
-        }
+        return isValidClassStringFormat(classDateTime) && isValidClassDateString(classDateTime);
+    }
+
+    /**
+     * Validates whether {@code String classDateTime} is of format as {@code String VALIDATION_STANDARD_CLASS_REGEX}.
+     */
+    public static boolean isValidClassStringFormat(String classDateTime) {
+        return classDateTime.matches(VALIDATION_STANDARD_CLASS_REGEX);
+    }
+
+    /**
+     * Validates whether the {@code String classDateTime} can be parsed to a valid date.
+     * Note that this should be always called when {@code String classDateTime} is of correct format
+     * as specified by {@code isValidClassStringFormat}.
+     */
+    public static boolean isValidClassDateString(String classDateTime) {
+        assert isValidClassStringFormat(classDateTime);
+
         String dateStr = classDateTime.substring(0, 10);
         String startTimeStr = classDateTime.substring(11, 15);
         String endTimeStr = classDateTime.substring(16);
@@ -294,11 +332,23 @@ public class Class {
 
     /**
      * Returns 1 is this {@code Class} starts before the given {@code aclass}.
-     * {@code Class} and {@code aclass} must be non-null;
+     * {@code Class} and {@code aclass} must be non-null and on the same day;
      */
     public int compareToByStartTime(Class aclass) {
-        requireAllNonNull(this.startTime, aclass.startTime);
+        requireAllNonNull(this.date, this.startTime, aclass.date, aclass.startTime);
+        assert this.date.equals(aclass.date);
         return this.startTime.compareTo(aclass.startTime);
     }
 
+    /**
+     * Returns 1 is the {@code Class} starts before the given {@code aclass}.
+     */
+    public int compareToByClassTime(Class aclass) {
+        requireAllNonNull(this.date, this.startTime, aclass.date, aclass.startTime);
+        if (!this.date.equals(aclass.date)) {
+            return this.date.compareTo(aclass.date);
+        } else {
+            return this.compareToByStartTime(aclass);
+        }
+    }
 }
