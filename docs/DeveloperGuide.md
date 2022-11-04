@@ -385,6 +385,49 @@ The following sequence diagram shows how the export feature works.
     * Pros: Very intuitive to use and fool-proof.
     * Cons: Users have less customisation.
 
+
+### Import List Feature
+
+#### Implementation
+
+The proposed import mechanism is facilitated by `ImportCommand`. It extends `Command` which parses the file specified 
+by the user in the `import` directory. It uses the `CsvUtils` to scan the CSV file and
+parse each row in the file and converts them into `Person` objects. `FileName` class is 
+used to specify the name of the file being added to avoid adding a file with an incompatible name.
+
+Given below is an example usage scenario and how the export command mechanism behaves at each step.
+
+Step 1. The user types `import mycontacts.csv` and presses enter.
+
+Step 2. The `import mycontacts` will be parsed by `AddressBook#parseCommand()` which will return a `ImportCommandParser`.
+
+Step 3. The `ImportCommandParser` will parse `mycontacts` using `parse()` and then create an `FileName`.
+
+Step 4. `ImportCommandParser` then creates a `ExportCommand` by passing the `FileName` to its constructor.
+
+Step 5. The `ImportCommand` will then be executed using `ImportCommand#execute()`.
+
+Step 6. The `ImportCommand` retrieves the file located in `FileName` and passed into the fileToImport
+parameter of `CsvUtils#importCsv(fileToImport, importLocation)` along with the `FileName` as the importLocation parameter.
+
+Step 7. The `CsvUtils#importCsv(fileToImport, importLocation)` will create a `List<Person>` from the CSV file.
+
+Step 8. The `List<Person>` will then be added to the `AddressBook` and be displayed to the user .
+
+Step 9. A `CommandResult` indicating successful completion.
+
+#### Design considerations:
+
+**Aspect: How to simplify the command for User:**
+
+* **Current Implementation:** Allow users to specify the name of the file they want to import.
+    * Pros: Allows more customisation for the users.
+    * Cons: Might confuse users that are not very familiar with naming files.
+
+* **Alternative:** Create a click-and-drop version where user can simply drop the file they want to import into the GUI.
+    * Pros: Very intuitive to use and fool-proof.
+    * Cons: Hard to implement and goes against the CLI aspect of the application.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -513,9 +556,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student   | find the consultation timing of tutors/professors                       | so I know when I can approach a professor for help                                                        |
 | `* * *`  | Student   | find the location for a specific module                                 | know where my class is                                                                                    |
 | `* * *`  | Student   | find my friends or peers doing the same mod as me                       | know who to ask for help or who to form groups with                                                       |
-| `* * *`  | Student   | filter through the contacts shown in GUI                                | I can search quickly for any contact I want to find                                                       |
-
-
+| `* * *`  | Student   | sort the contact list according to name                                 | I can find the contact I need efficiently                                                                 |
+| `* * *`  | Student   | sort the contact list according to module code                          | I can easily find the professor in charge of my module                                                    |
+| `* * *`  | Student   | export my contact list as a CSV file                                    | I can conveniently share contacts with my peers                                                           |
+| `* * *`  | Student   | import a CSV file containing contact information                        | I can quickly add multiple contacts into my contact book                                                  |
 *{More to be added}*
 
 ### Use cases
