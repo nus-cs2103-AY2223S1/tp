@@ -26,4 +26,3 @@ Given below are my contributions to the project.
     - Added implementation details for Meetings Ui 
   * Community
     * Helped to review and close pull request [#23](https://github.com/AY2223S1-CS2103-F13-3/tp/pull/23)
-    
