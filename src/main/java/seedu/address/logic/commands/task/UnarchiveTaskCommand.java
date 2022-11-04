@@ -27,7 +27,7 @@ public class UnarchiveTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_TASK_SUCCESS = "Archived Task: %1$s";
+    public static final String MESSAGE_MARK_TASK_SUCCESS = "Unarchived Task: %1$s";
     public static final String MESSAGE_ALREADY_UNARCHIVED = "This task is already unarchived.";
 
     private final Index index;

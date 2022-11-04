@@ -87,25 +87,25 @@ Shows a window with a link to this user guide and latest release of YellowBook.
 
 Closes the YellowBook program.
 
-### Undo a command : `undo`
+### Undoing a command : `undo`
 
-Undo the last command.
+Undoes the last command.
 
 Format: `undo`
 
 * For exceptionally large contact/task lists, it may take a few seconds to undo the command.
 
-* Undo is not available for commands that do not modify the contact/task data (e.g. list, help, findC, findT, filterC, filterT etc.)
+* Undo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
 
-### Redo a command : `redo`
+### Redoing a command : `redo`
 
-Redo the last command.
+Redoes the last command.
 
 Format: `redo`
 
 * For exceptionally large contact/task lists, it may take a few seconds to redo the command. 
 
-* Redo is not available for commands that do not modify the contact/task data (e.g. list, help, findC, findT, filterC, filterT etc.)
+* Redo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
 
 ## Section 1: Contacts
 
@@ -149,7 +149,7 @@ Examples:
 
 * `listC` followed by `deleteC 1` deletes the first contact in the address book.
 
-* `findC John` followed by `deleteC 1` deletes the first result of the `findC` command.
+* `findC n/John` followed by `deleteC 1` deletes the first result of the `findC` command.
 
 ### Editing a contact: `editC`
 
@@ -171,7 +171,7 @@ Example:
 
 * `editC 1 n/John p/12345678` edits the first contact’s name to be John and phone number to be 12345678.
 
-### Find a contact: `findC`
+### Finding a contact: `findC`
 
 Finds a contact using one or more information fields (e.g. name, mobile number, email, and/or address)
 
@@ -179,20 +179,20 @@ Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 
 * At least one information field has to be provided.
 
-* The search is case-insensitive, e.g. `dr. doofenshmirtz` will match `Dr. Doofenshmirtz`.
+* The search is case-insensitive, e.g. `dr doofenshmirtz` will match `Dr Doofenshmirtz`.
 
 * The order of the keywords does not matter, e.g. `findC n/John p/91231234` will return the same result as `findC p/91231234 n/John`.
 
 * Only full words will be matched. e.g. `John` will not match `Johnny`.
 
 * Contacts matching at least one keyword will be returned. e.g. `n/Perry Dr.`
-  will match contacts with name `Perry the Platypus` and `Dr. Doofenshmirtz`.
+  will match contacts with name `Perry the Platypus` and `Dr Doofenshmirtz`.
 
 Example:
 
-* `findC n/john p/81113210 e/john@gmail.com a/123 kent ridge road` will return a contact whose name contains the word `john`, phone number `81113210`, email `john@gmail.com`, and address `123 kent ridge road`.
+* `findC n/john p/81113210 e/john@gmail.com a/123` will return a contact whose name contains the word `john`, phone number `81113210`, email `john@gmail.com`, and address containing `123`.
 
-* `findC n/flynn p/91231234 e/flynn@gmail.com` will return `Candace Flynn` and `Phineas Flynn`, provided they have the same phone and email.
+* `findC n/flynn` will return `Candace Flynn` and `Phineas Flynn`.
 
 
 ### Filtering contacts by label: `filterC`
@@ -234,13 +234,13 @@ Example:
 
 
 ## Section 2: Tasks
-### Listing all tasks: `listT`
+### Listing all non-archived tasks: `listT`
 
 Shows all (non-archived) tasks stored in the task list.
 
 Format: `listT`
 
-### Listing all tasks: `listAT`
+### Listing all archived tasks: `listAT`
 
 Shows all archived tasks stored in the task list.
 
@@ -334,7 +334,7 @@ Examples:
 * `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
 * `findT book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
 
-### Find a task: `findT`
+### Finding a task: `findT`
 
 Finds a task using one or more information fields (e.g. description, and/or deadline)
 
@@ -354,8 +354,8 @@ Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)] [s/STATUS (complete / i
 
 Example:
 
-* `findT d/cs2103t D/25-12-2022` will return task(s) with description containing `cs2103t` and deadline `25th December 2022`.
-* 
+* `findT d/cs2103t D/25-12-2022` will return tasks with descriptions containing `cs2103t` and deadline `25th December 2022`.
+
 * `findT s/incomplete` will return task(s) that are not complete.
 
 ### Filtering tasks by label: `filterT`
@@ -447,7 +447,7 @@ Archives a task in the task list, removing it from main task list.
 
 Format: `archiveT INDEX`
 
-### Archiving a task: `unarchiveT`
+### Unarchiving a task: `unarchiveT`
 
 Unarchives a task in the task list, adding it to the main task list.
 
