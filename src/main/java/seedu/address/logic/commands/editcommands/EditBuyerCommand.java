@@ -3,6 +3,7 @@ package seedu.address.logic.commands.editcommands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,6 +23,7 @@ import seedu.address.model.person.Phone;
 public class EditBuyerCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "edit-b";
+    public static final String INVALID_BUYER = "Index %1$s is not a buyer";
 
     public EditBuyerCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         super(index, editPersonDescriptor);
@@ -30,13 +32,18 @@ public class EditBuyerCommand extends EditCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Buyer> lastShownList = model.getFilteredBuyerList();
+        List<Object> lastShownList = model.getFilteredCurrList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Buyer buyerToEdit = lastShownList.get(index.getZeroBased());
+        Object o = lastShownList.get(index.getZeroBased());
+        if (!(o instanceof Buyer)) {
+            throw new CommandException(String.format(INVALID_BUYER, index.getOneBased()));
+        }
+
+        Buyer buyerToEdit = (Buyer) o;
         Buyer editedBuyer = createEditedBuyer(buyerToEdit, editPersonDescriptor);
 
         if (!buyerToEdit.isSamePerson(editedBuyer) && model.hasBuyer(editedBuyer)) {
@@ -45,6 +52,7 @@ public class EditBuyerCommand extends EditCommand {
 
         model.setBuyer(buyerToEdit, editedBuyer);
         model.updateFilteredBuyerList(Model.PREDICATE_SHOW_ALL_BUYERS);
+        model.switchToBuyerList();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedBuyer));
     }
 

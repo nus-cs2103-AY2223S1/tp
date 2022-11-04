@@ -50,13 +50,6 @@ public class MainWindow extends UiPart<Stage> {
     private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-
-    private MainListPanel mainListPanel;
-    private BuyerListPanel buyerListPanel;
-    private DelivererListPanel delivererListPanel;
-    private SupplierListPanel supplierListPanel;
-    private OrderListPanel orderListPanel;
-    private PetListPanel petListPanel;
     private MainListPanel currListPanel;
 
     private ResultDisplay resultDisplay;
@@ -142,14 +135,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // Initialise the list panels
-        buyerListPanel = new BuyerListPanel(logic.getFilteredBuyerList(), logic);
-        supplierListPanel = new SupplierListPanel(logic.getFilteredSupplierList(), logic);
-        delivererListPanel = new DelivererListPanel(logic.getFilteredDelivererList(), logic);
-        orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
-        petListPanel = new PetListPanel(logic.getFilteredPetList());
-        mainListPanel = new MainListPanel(logic.getFilteredMainList(), logic);
-        currListPanel = new MainListPanel(logic.getFilteredCurrList(), logic);
-
         // Set the display window
         refresh();
 
@@ -214,54 +199,6 @@ public class MainWindow extends UiPart<Stage> {
         }
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    /**
-     * Displays all contacts in the app.
-     */
-    public void showAll() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
-    }
-
-    /**
-     * Displays all buyers in the app.
-     */
-    public void showBuyer() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(buyerListPanel.getRoot());
-    }
-
-    /**
-     * Displays all suppliers in the app.
-     */
-    public void showSupplier() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(supplierListPanel.getRoot());
-    }
-
-    /**
-     * Displays all deliverers in the app.
-     */
-    public void showDeliverer() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(delivererListPanel.getRoot());
-    }
-
-    /**
-     * Displays all pets in the app.
-     */
-    public void showPet() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(petListPanel.getRoot());
-    }
-
-    /**
-     * Displays all orders in the app.
-     */
-    public void showOrder() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
     }
 
     /**

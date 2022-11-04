@@ -22,6 +22,7 @@ import seedu.address.model.person.Supplier;
 public class EditSupplierCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "edit-s";
+    public static final String INVALID_SUPPLIER = "Index %1$s is not a supplier";
     public EditSupplierCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         super(index, editPersonDescriptor);
     }
@@ -29,13 +30,18 @@ public class EditSupplierCommand extends EditCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Supplier> lastShownList = model.getFilteredSupplierList();
+        List<Object> lastShownList = model.getFilteredCurrList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Supplier supplierToEdit = lastShownList.get(index.getZeroBased());
+        Object o = lastShownList.get(index.getZeroBased());
+        if (!(o instanceof Supplier)) {
+            throw new CommandException(String.format(INVALID_SUPPLIER, index.getOneBased()));
+        }
+
+        Supplier supplierToEdit = (Supplier) o;
         Supplier editedSupplier = createEditedSupplier(supplierToEdit, editPersonDescriptor);
 
         if (!supplierToEdit.isSamePerson(editedSupplier) && model.hasSupplier(editedSupplier)) {
@@ -44,6 +50,7 @@ public class EditSupplierCommand extends EditCommand {
 
         model.setSupplier(supplierToEdit, editedSupplier);
         model.updateFilteredSupplierList(Model.PREDICATE_SHOW_ALL_SUPPLIERS);
+        model.switchToSupplierList();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedSupplier));
     }
 

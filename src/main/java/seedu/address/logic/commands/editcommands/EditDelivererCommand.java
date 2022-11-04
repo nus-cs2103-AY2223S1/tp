@@ -22,6 +22,7 @@ import seedu.address.model.person.Phone;
 public class EditDelivererCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "edit-d";
+    public static final String INVALID_DELIVERER = "Index %1$s is not a deliverer";
     public EditDelivererCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         super(index, editPersonDescriptor);
     }
@@ -29,13 +30,18 @@ public class EditDelivererCommand extends EditCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Deliverer> lastShownList = model.getFilteredDelivererList();
+        List<Object> lastShownList = model.getFilteredCurrList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Deliverer delivererToEdit = lastShownList.get(index.getZeroBased());
+        Object o = lastShownList.get(index.getZeroBased());
+        if (!(o instanceof Deliverer)) {
+            throw new CommandException(String.format(INVALID_DELIVERER, index.getOneBased()));
+        }
+
+        Deliverer delivererToEdit = (Deliverer) o;
         Deliverer editedDeliverer = createEditedDeliverer(delivererToEdit, editPersonDescriptor);
 
         if (!delivererToEdit.isSamePerson(editedDeliverer) && model.hasDeliverer(editedDeliverer)) {
@@ -44,6 +50,7 @@ public class EditDelivererCommand extends EditCommand {
 
         model.setDeliverer(delivererToEdit, editedDeliverer);
         model.updateFilteredDelivererList(Model.PREDICATE_SHOW_ALL_DELIVERERS);
+        model.switchToDelivererList();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedDeliverer));
     }
 

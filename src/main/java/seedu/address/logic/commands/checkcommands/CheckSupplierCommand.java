@@ -1,2 +1,4 @@
-package seedu.address.logic.commands.checkcommands;public class CheckSupplierCommand {
+package seedu.address.logic.commands.checkcommands;
+
+public class CheckSupplierCommand {
 }
