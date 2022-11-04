@@ -40,7 +40,7 @@ public class AddTagCommand extends Command {
 
     public static final String COMMAND_WORD = "addL";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person/task identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the labels of the person/task identified "
             + "by the index number used in the displayed person/task list. "
             + "New tags will be added on to existing list of tags.\n"
             + "Parameters: " + PREFIX_CONTACT + "INDEX (must be a positive integer) "

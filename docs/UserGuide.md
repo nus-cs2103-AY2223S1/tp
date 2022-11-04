@@ -525,7 +525,7 @@ Format: `deleteL c/INDEX t/INDEX l/label_NAME`
 
 Example:
 
-* `deleteL c/12 t/14 l/CS2101` will remove the label "CS2101" from the 14th task on the task list.
+* `deleteL c/12 t/14 l/CS2101` will remove the label "CS2101" from the 12th contact and 14th task on the task list.
 
 ### Delete all contacts and tasks by label: `deleteA`
 

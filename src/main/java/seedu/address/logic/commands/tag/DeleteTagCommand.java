@@ -39,7 +39,7 @@ public class DeleteTagCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteL";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person/task identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the labels of the person/task identified "
             + "by the index number used in the displayed person/task list. "
             + "Selected tags will be deleted from the existing list of tags.\n"
             + "Parameters: " + PREFIX_CONTACT + "INDEX (must be a positive integer) "
