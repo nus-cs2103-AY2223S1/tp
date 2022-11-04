@@ -11,7 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
  */
 public class Money implements Comparable<Money> {
     public static final String MESSAGE_CONSTRAINTS = "Money can take any positive integer values,"
-            + " and its default value is 0";
+            + " and its default value is 0 and maximum is 2147483647 at all times.";
 
     public static final String MESSAGE_AMOUNT_TOO_LARGE = "Amount of money is too large to handle.";
 
