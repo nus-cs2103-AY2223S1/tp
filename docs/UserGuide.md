@@ -45,7 +45,7 @@ If you want to know more about how **ProfNUS** is able to ease your worries, go 
 6. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. Reading this document
+## 3. About
 
 This section introduces you to some technical terms, syntax and symbols that are used throughout the guide. You may want to familiarize yourself with them before moving on to the next section.
 
