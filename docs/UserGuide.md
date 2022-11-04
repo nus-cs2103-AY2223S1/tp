@@ -172,6 +172,7 @@ This section covers basic application-related commands.
 Clears all Teammates from the address book.
 
 Format: `clear`
+
 ---
 ### Clearing all tasks from Task Panel: `task clear`
 
@@ -191,12 +192,14 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
 ---
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
 ---
 ## Teammate Commands
 Teammate entails all of the members that you can assign tasks to in the future. This section documents how to add, delete, edit and list operations on teammate records.
@@ -447,6 +450,7 @@ Lists all the projects present in the task list.
 
 Format: `task project`
 
+---
 ### Saving the data
 
 Arrow data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
