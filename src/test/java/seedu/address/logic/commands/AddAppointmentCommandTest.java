@@ -1,7 +1,22 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_2;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.HealthContact;
@@ -15,20 +30,6 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.PatientBuilder;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_1;
-import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_2;
 
 public class AddAppointmentCommandTest {
 
@@ -45,18 +46,29 @@ public class AddAppointmentCommandTest {
 
         CommandResult commandResult = new AddAppointmentCommand(validAppointment).execute(modelStub);
 
-        assertEquals(String.format(AddAppointmentCommand.MESSAGE_SUCCESS, validAppointment), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddAppointmentCommand.MESSAGE_SUCCESS, validAppointment),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validAppointment), modelStub.appointmentsAdded);
     }
 
     @Test
-    public void execute_duplicateAppointment_throwsCommandException() {
+    public void execute_duplicateAppointment_throwsCommandException() throws CommandException {
         Appointment validAppointment = new AppointmentBuilder().build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
         ModelStub modelStub = new ModelStubWithAppointment(validAppointment);
-
         assertThrows(CommandException.class,
                 AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT, () -> addAppointmentCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_nameCaseNotMatch_throwsCommandException() throws CommandException {
+        Appointment validAppointment = new AppointmentBuilder().build();
+        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
+        ModelStub modelStub = new ModelStubWithAppointment(new AppointmentBuilder(validAppointment)
+                .withName(validAppointment.getName().fullName.toLowerCase()).build());
+        assertThrows(CommandException.class,
+                AddAppointmentCommand.MESSAGE_PATIENT_NAME_CASE_UNMATCHED, () -> addAppointmentCommand
+                        .execute(modelStub));
     }
 
     @Test
@@ -307,31 +319,37 @@ public class AddAppointmentCommandTest {
      * A Model stub that contains a single patient.
      */
     private class ModelStubWithAppointment extends ModelStub {
-        private final Name patient;
+        private final Name name;
         private final Appointment appointment;
 
         ModelStubWithAppointment(Appointment appointment) {
             requireNonNull(appointment);
-            this.patient = appointment.getName();
+            this.name = appointment.getName();
             this.appointment = appointment;
         }
 
         @Override
         public boolean hasPatient(Patient patient) {
             requireNonNull(patient);
-            return this.patient.isSameName(patient.getName());
+            return this.name.isSameName(patient.getName());
+        }
+
+        @Override
+        public boolean hasPatient(Name name) {
+            requireNonNull(name);
+            return this.name.isSameName(name);
         }
 
         @Override
         public boolean hasPatientWithExactlySameName(Patient patient) {
             requireNonNull(patient);
-            return patient.getName().equals(this.patient.fullName);
+            return patient.getName().equals(this.name.fullName);
         }
 
         @Override
         public boolean hasPatientWithExactlySameName(Name name) {
-            requireNonNull(patient);
-            return name.equals(this.patient.fullName);
+            requireNonNull(this.name);
+            return name.equals(this.name);
         }
 
         @Override
@@ -362,6 +380,12 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public boolean hasPatient(Name name) {
+            requireNonNull(name);
+            return patientsAdded.stream().anyMatch(p -> name.isSameName(p));
+        }
+
+        @Override
         public boolean hasPatient(Patient patient) {
             requireNonNull(patient);
             return patientsAdded.stream().anyMatch(p -> patient.getName().isSameName(p));
@@ -379,11 +403,6 @@ public class AddAppointmentCommandTest {
             return patientsAdded.stream().anyMatch(n -> n.equals(name));
         }
 
-        @Override
-        public boolean hasPatient(Name name) {
-            requireNonNull(name);
-            return patientsAdded.stream().anyMatch(p -> name.isSameName(p));
-        }
 
         @Override
         public void addPatient(Patient patient) {
