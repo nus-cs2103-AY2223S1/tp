@@ -71,7 +71,7 @@ public class VenueTest {
         if (someVenue.getVenueName() != MEETING_ROOM_VENUE_NAME) {
             return false;
         }
-        if (!someVenue.getBookings().equals(List.of(MR_ALICE_MONDAY_5_TO_6PM))) {
+        if (!someVenue.getReadOnlyBookings().equals(List.of(MR_ALICE_MONDAY_5_TO_6PM))) {
             return false;
         }
         return true;
@@ -93,7 +93,7 @@ public class VenueTest {
     @Test
     public void constructor_withoutListOfBookings_returnsVenueWithNoBookings() {
         Venue venue = new Venue(MEETING_ROOM_VENUE_NAME);
-        assertEquals(venue.getBookings(), Collections.emptyList());
+        assertEquals(venue.getReadOnlyBookings(), Collections.emptyList());
     }
 
     // Test the second constructor
@@ -101,7 +101,7 @@ public class VenueTest {
     public void constructor_withListOfBookings_returnsVenueWithSameListOfBookings() {
         List<Booking> bookings = Arrays.asList(MR_ALICE_MONDAY_5_TO_6PM, MR_BOB_TUESDAY_6_TO_7PM);
         Venue venue = new Venue(bookings, MEETING_ROOM_VENUE_NAME);
-        assertEquals(venue.getBookings(), bookings);
+        assertEquals(venue.getReadOnlyBookings(), bookings);
     }
 
     // Null input for first constructor throws NullPointerException
