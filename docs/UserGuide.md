@@ -57,7 +57,17 @@ Below is a quick guide on how to get started.
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest `myStudent.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/releases).
 3. Copy the file to the folder you want to use as the home folder for the application.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Home Folder**
+Home folder refers to the particular folder that will be containing the `myStudent.jar` file and its relevant files.
+Since myStudent will need to read and write files, it is recommended to put `myStudent.jar` in a new folder 
+to ensure a smooth experience for using myStudent.
+
+</div>
+
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. 
 
 <img src="images/StartingUI.png"/>  
 
@@ -156,7 +166,11 @@ This is where the description of a specified student or tutor is shown. When the
 
 #### File
 The ` File`  menu contains `Export` and `Exit`.
-`Export` allows you to export your data into a `.csv` file. 
+
+`Export` allows you to export your data into a `.csv` file.
+
+For more information regarding `Export`, you can click [here](#exporting-address-books-to-csv).
+
 `Exit` allows the software to exit after three seconds of pause.
 
 #### Help
@@ -193,6 +207,8 @@ Examples:
 Plays a neat animation before exiting myStudent.
 
 Format: `exit`
+
+## Adding and Removing Entries
 
 ### Adding a person: `add`
 
@@ -295,6 +311,34 @@ Examples:
 
 This adds the class into the database. Note that the Person Description Panel is not updated.
 
+### Deleting an entry: `delete`
+
+Deletes an entry from the myStudent database.
+
+Format: `delete <index>`
+
+* The index refers to the index number shown in the displayed list. For example, when displaying a student list, the command `delete 2` will delete the 2nd student on that list from the entire database.
+* The index must be a positive integer 1, 2, 3, …
+
+Examples:
+* `delete 2`
+
+<p align="center">
+
+<img src="images/deleteCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/deleteCommand_after.png"/>
+
+</p>
+
+This deletes the person from the database. Note that if the deleted person is displayed in the Person Description Panel, the panel will update to display the previous person.
+
+## Manipulation of data
+
 ### Editing an entity: `edit`
 
 Edits an entity in the myStudent database. 
@@ -369,6 +413,174 @@ Examples:
 
 This edits the specified person. Note that the Person Description Panel and the List are updated.
 
+### Assign class to a person: `assign`
+
+Assign an existing tuition class to a specified student/tutor.
+
+Format: `assign INDEX n/<class name>`
+
+* `assign` command only works when the displayed list is a student or tutor list.
+* The index refers to the index number shown in the displayed list.
+* The index must be a positive integer 1, 2, 3, …
+* Class name must be the name of a tuition class that already exists in the tuition class list.
+* The tuition class to be assigned to the specified student/tutor must not have been assigned beforehand.
+* The class name is case-sensitive.
+
+Examples:
+* `assign 5 n/p1math`
+
+<p align="center">
+
+<img src="images/assignCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/assignCommand_after.png"/>
+
+</p>
+
+### Unassign class from a person: `unassign`
+
+Unassign an existing tuition class from a specified student/tutor.
+
+Format: `unassign INDEX n/<class name>`
+
+* `unassign` command only works when the displayed list is a student or tutor list.
+* The index refers to the index number shown in the displayed list.
+* The index must be a positive integer 1, 2, 3, …
+* Class name must be the name of a tuition class that already exists in the tuition class list.
+* The tuition class to be unassigned from the specified student/tutor must have been assigned to the
+  student/tutor beforehand.
+* The class name is case-sensitive.
+
+Examples:
+* `unassign 5 n/p1math`
+
+<p align="center">
+
+<img src="images/unassignCommand_before.png"/>
+
+</p>
+
+
+<p align="center">
+
+<img src="images/unassignCommand_after.png"/>
+
+</p>
+
+### Add next of kin to a student: `nok`
+
+Adds the next of kin to an existing student.
+
+Formats:
+
+`nok <index>`
+
+`nok <index> n/<name> p/<phone> e/<email> a/<address> r/<relationship> [#/tag]…`
+
+* The current displayed list when executing this command must be a list of students.
+* The index refers to the index number shown in the displayed list.
+* The index must be a positive integer 1, 2, 3, …
+* When adding a next of kin, all fields must be present, except for the optional `<tag>` field.
+* If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+* If no fields are present after the required `index` field, the next of kin from the student of that index will be removed.
+* The constraints of each field must be followed. They are:
+    * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+    * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+    * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
+        1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+        2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+           The domain name must:
+            - end with a domain label at least 2 characters long
+            - have each domain label start and end with alphanumeric characters
+            - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+    * `<address>` field can take any values but should not be left blank.
+    * `<relationship>` should only contain letters, and should be spelt out in full. The valid relationships are:
+        1. Father
+        2. Mother
+        3. Brother
+        4. Sister
+        5. Guardian
+    * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
+
+Examples:
+
+* `nok 5 n/Eddy Doe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`
+  This adds a next of kin to John Doe.
+
+<p align="center">
+
+<img src="images/addNok_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/addNok_after.png"/>
+
+</p>
+
+* `nok 5`
+  This deletes the next of kin of John Doe.
+
+<p align="center">
+
+<img src="images/deleteNok_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/deleteNok_after.png"/>
+
+</p>
+
+## Presentation and Organisation of data
+
+### Showing the details of a person: `show`
+
+In the student and tutor list, the details of the persons are not displayed. You could access the person’s details by executing the show command.
+
+Format: `show INDEX`
+
+* In the student list, `show 1` shows the description of the first student in the list.
+* In the tutor list, `show 1` shows the description of the first tutor in the list.
+* In the class list, `show 1` is invalid as `show` command can only be executed for the student and tutor list.
+
+Examples:
+* `show 3` in the student list
+
+<p align="center">
+
+<img src="images/showCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/showCommand_after.png"/>
+
+</p>
+
+* `show 1` in the class list
+
+<p align="center">
+
+<img src="images/showClassCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/showClassCommand_after.png"/>
+
+</p>
+
+Note that `show` command is invalid for the class list.
+
 ### Listing all entities : `list`
 
 Shows a list of the specified entity type in the myStudent database.
@@ -397,32 +609,6 @@ Examples:
 </p>
 
 This changes the current displayed list to the tutor list.
-
-### Deleting an entity: `delete`
-
-Deletes an entity from the myStudent database.
-
-Format: `delete <index>`
-
-* The index refers to the index number shown in the displayed list. For example, when displaying a student list, the command `delete 2` will delete the 2nd student on that list from the entire database.
-* The index must be a positive integer 1, 2, 3, …
-
-Examples:
-* `delete 2`
-
-<p align="center">
-
-<img src="images/deleteCommand_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/deleteCommand_after.png"/>
-
-</p>
-
-This deletes the person from the database. Note that if the deleted person is displayed in the Person Description Panel, the panel will update to display the previous person.
 
 ### Clears list: `clear`
 
@@ -545,173 +731,9 @@ Note that the current list is the tutor lsit, so `find i/NUS q/Bachelor of Compu
 
 Note that the current list is the class list, so `find d/monday #/tag` returns all classes conducted on Monday and have the tag “hard”.
 
-### Assign class to a person: `assign`
+## Advanced
 
-Assign an existing tuition class to a specified student/tutor.
-
-Format: `assign INDEX n/<class name>`
-
-* `assign` command only works when the displayed list is a student or tutor list.
-* The index refers to the index number shown in the displayed list.
-* The index must be a positive integer 1, 2, 3, …
-* Class name must be the name of a tuition class that already exists in the tuition class list.
-* The tuition class to be assigned to the specified student/tutor must not have been assigned beforehand.
-* The class name is case-sensitive.
-
-Examples:
-* `assign 5 n/p1math`
-
-<p align="center">
-
-<img src="images/assignCommand_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/assignCommand_after.png"/>
-
-</p>
-
-### Unassign class from a person: `unassign`
-
-Unassign an existing tuition class from a specified student/tutor.
-
-Format: `unassign INDEX n/<class name>`
-
-* `unassign` command only works when the displayed list is a student or tutor list.
-* The index refers to the index number shown in the displayed list.
-* The index must be a positive integer 1, 2, 3, …
-* Class name must be the name of a tuition class that already exists in the tuition class list.
-* The tuition class to be unassigned from the specified student/tutor must have been assigned to the 
-student/tutor beforehand.
-* The class name is case-sensitive.
-
-Examples:
-* `unassign 5 n/p1math`
-
-<p align="center">
-
-<img src="images/unassignCommand_before.png"/>
-
-</p>
-
-
-<p align="center">
-
-<img src="images/unassignCommand_after.png"/>
-
-</p>
-
-### Showing the details of a person: `show`
-
-In the student and tutor list, the details of the persons are not displayed. You could access the person’s details by executing the show command.
-
-Format: `show INDEX` 
-
-* In the student list, `show 1` shows the description of the first student in the list.
-* In the tutor list, `show 1` shows the description of the first tutor in the list.
-* In the class list, `show 1` is invalid as `show` command can only be executed for the student and tutor list.
-
-Examples:
-* `show 3` in the student list
-
-<p align="center">
-
-<img src="images/showCommand_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/showCommand_after.png"/>
-
-</p>
-
-* `show 1` in the class list
-
-<p align="center">
-
-<img src="images/showClassCommand_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/showClassCommand_after.png"/>
-
-</p>
-
-Note that `show` command is invalid for the class list.
-
-### Add next of kin to a student: `nok`
-
-Adds the next of kin to an existing student.
-
-Formats: 
-
-`nok <index>`
-
-`nok <index> n/<name> p/<phone> e/<email> a/<address> r/<relationship> [#/tag]…`
-
-* The current displayed list when executing this command must be a list of students.
-* The index refers to the index number shown in the displayed list.
-* The index must be a positive integer 1, 2, 3, …
-* When adding a next of kin, all fields must be present, except for the optional `<tag>` field.
-* If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
-* If no fields are present after the required `index` field, the next of kin from the student of that index will be removed.
-* The constraints of each field must be followed. They are:
-  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
-  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
-  * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
-      1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-      2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-         The domain name must:
-          - end with a domain label at least 2 characters long
-          - have each domain label start and end with alphanumeric characters
-          - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  * `<address>` field can take any values but should not be left blank.
-  * `<relationship>` should only contain letters, and should be spelt out in full. The valid relationships are:
-    1. Father
-    2. Mother
-    3. Brother 
-    4. Sister 
-    5. Guardian
-  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
-
-Examples:
-
-* `nok 5 n/Eddy Doe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`
-This adds a next of kin to John Doe.
-
-<p align="center">
-
-<img src="images/addNok_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/addNok_after.png"/>
-
-</p>
-
-* `nok 5`
-This deltes the next of kin of John Doe.
-
-<p align="center">
-
-<img src="images/deleteNok_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/deleteNok_after.png"/>
-
-</p>
-
-### Exporting address books to csv
+###Exporting address books to csv
 
 Export Students, Tutors, and TuitionClasses address books into their own .csv files to be used in other programs.  
 They are named `students.csv`, `tutors.csv`, and `tuitionClasses.csv` respectively.
@@ -722,7 +744,7 @@ They are named `students.csv`, `tutors.csv`, and `tuitionClasses.csv` respective
 
 </p>
 
-Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and click on "*Export*" in the dropdown menu, as shown in the image above.
+Format: Click on the "*File*" tab located at the top-left corner of `myStudent` and click on "*Export*" in the dropdown menu, as shown in the image above.
 
 * The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
 * The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
@@ -747,6 +769,15 @@ Please close any .csv files that are currently open before clicking on the "*Exp
 **Q:** Can I move myStudent from one computer to another without loss of data?
 
 **A:** Yes, by copying the home folder containing myStudent.jar to another computer, you could resume your work on another computer without loss of data.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Home Folder**
+Home folder refers to the particular folder that will be containing the `myStudent.jar` file and its relevant files.
+Since myStudent will need to read and write files, it is recommended to put `myStudent.jar` in a new folder
+to ensure a smooth experience for using myStudent.
+
+</div>
 
 ---
 
