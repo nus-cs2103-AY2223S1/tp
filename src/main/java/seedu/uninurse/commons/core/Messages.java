@@ -14,6 +14,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_TAG_INDEX = "The tag index provided is invalid.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists for this patient";
-    public static final String MESSAGE_DUPLICATE_CONDITION = "This condition already exists in %1$s's condition list.";
     public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in %1$s's tag list";
+    public static final String MESSAGE_DUPLICATE_CONDITION = "This condition already exists in %1$s's condition list.";
+    public static final String MESSAGE_DUPLICATE_MEDICATION =
+            "This medication already exists in %1$s's medication list";
 }

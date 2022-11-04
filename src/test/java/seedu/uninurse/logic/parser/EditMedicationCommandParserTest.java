@@ -1,6 +1,6 @@
 package seedu.uninurse.logic.parser;
 
-import static seedu.uninurse.logic.commands.EditMedicationCommand.MESSAGE_NOT_EDITED;
+import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -75,8 +75,9 @@ class EditMedicationCommandParserTest {
     @Test
     public void parse_medicationPrefixMissing_failure() {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " ";
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMedicationCommand.MESSAGE_USAGE);
 
-        assertParseFailure(parser, userInput, MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, userInput, expectedMessage);
     }
 
     @Test
