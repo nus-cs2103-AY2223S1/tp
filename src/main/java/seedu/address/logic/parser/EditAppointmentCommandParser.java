@@ -46,14 +46,16 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                 editAppointmentDescriptor.setDateTime(
                     ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_DATE).get()));
             } catch (DateTimeParseException e) {
-                String  str = e.getCause().getMessage();
+                if (e.getCause() == null) {
+                    throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+                }
+                String str = e.getCause().getMessage();
                 if (str.contains(DEFAULT_DAY_OUT_OF_BOUNDS_ERROR_MESSAGE)) {
                     throw new ParseException(DEFAULT_DAY_OUT_OF_BOUNDS_ERROR_MESSAGE);
                 }
                 if (str.contains(DEFAULT_MONTH_OUT_OF_BOUNDS_ERROR_MESSAGE)) {
                     throw new ParseException(DEFAULT_MONTH_OUT_OF_BOUNDS_ERROR_MESSAGE);
                 }
-                throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
             }
         }
 

@@ -54,6 +54,9 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
             appointmentLocation = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).get());
             appointment = ParserUtil.parseAppointment(appointmentDateTime.toString(), appointmentLocation.toString());
         } catch (DateTimeParseException e) {
+            if (e.getCause() == null) {
+                throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+            }
             String str = e.getCause().getMessage();
             if (str.contains(DEFAULT_DAY_OUT_OF_BOUNDS_ERROR_MESSAGE)) {
                 throw new ParseException(DEFAULT_DAY_OUT_OF_BOUNDS_ERROR_MESSAGE);
