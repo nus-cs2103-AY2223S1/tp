@@ -16,6 +16,7 @@ Table of Contents
    3.6. [Common classes](#36-common-classes)<br>
 4. [Implementation](#4-implementation)<br>
    4.1. [Import command](#41-import-command)<br>
+   4.2. [View command](#42-view-command)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix: Requirements](#6-appendix-requirements)<br>
    6.1. [Product scope](#61-product-scope)<br>
@@ -265,6 +266,35 @@ The following sequence diagram shows how the import command works:
 #### Design considerations:
 
 Chose to use OpenCSV to read `CSV` files to avoid reinventing the wheel.
+
+### 4.2. View Command
+
+#### Current Implementation
+
+The view command mainly relies on the following classes:
+* `Person`
+* `Model`
+* `Index`
+* `Messages`
+* `Index`
+* `CommandResult`
+
+1. The user executes the `view` command while providing an index of the client as an argument.
+2. `AddressBookParser#parseCommand` is called, which creates and returns a new `ViewCommandParser` that parses the 
+   provided index.
+3. `ViewCommandParser#parse()` is called, which calls `ViewCommand#parse()` to parse the index of client.
+4. `ViewCommandParser` creates and returns a new `ViewCommand` with the index of client.
+5. `ViewCommand#execute()` is called.
+   1. `ViewCommand#execute()` will get the updated client list using `model#getFilteredPersonList()`.
+   2. `ViewCommand#execute()` will get the specific client using the index given as the parameter.
+   3. `ViewCommand#execute()` then calls `CommandResult` which calls the `Message` to return the success message after each successful execution.
+
+Design considerations:
+1. View person and get portfolio of each client
+2. View portfolio of each client   
+- Option 1 is implemented because it was unnecessary to add a new list of clients containing on the portfolio. Since 
+is an existing method that already gets the updated Person list, hence, we have decided to get the portfolio
+of each client through this Person list as each client will have their own portfolio.
 
 *{More to be added}*
 
