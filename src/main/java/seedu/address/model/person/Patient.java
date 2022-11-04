@@ -10,8 +10,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.category.Category;
 import seedu.address.model.tag.Tag;
 
@@ -26,7 +24,6 @@ public class Patient extends Person {
     public final List<DateSlot> dateSlots = new ArrayList<>();
     private final Optional<Physician> attendingPhysician;
     private final Optional<NextOfKin> nextOfKin;
-    private final List<Appointment> appointments = new ArrayList<>();
 
     /**
      * Initialise patient with no attending physician and no next of kin.
@@ -135,79 +132,5 @@ public class Patient extends Person {
 
     public boolean isPatient() {
         return true;
-    }
-
-    /**
-     * Adds new appointment to current appointment set
-     *
-     * @param newAppointment New appointment to add
-     */
-    public void addAppointment(Appointment newAppointment) {
-        appointments.add(newAppointment);
-        Collections.sort(appointments);
-    }
-
-    /**
-     * Removes appointment from current appointment set
-     *
-     * @param appointment Appointment to remove
-     */
-    public void removeAppointment(Appointment appointment) {
-        appointments.remove(appointment);
-    }
-
-    /**
-     * Returns an optional of an appointment filtered from the appointment set
-     *
-     * @param appointmentDateTime The appointment date time of the requested
-     *                            appointment
-     * @return The optional of the appointment
-     */
-    public Optional<Appointment> findAppointment(AppointmentDateTime appointmentDateTime) {
-        return appointments.stream()
-                .filter(appointment -> appointment.getAppointmentDateTime().equals(appointmentDateTime))
-                .findFirst();
-    }
-
-    /**
-     * Returns an optional of an appointment filtered from the appointment set
-     *
-     * @param nurse               The nurse of the request appointment
-     * @param appointmentDateTime The appointment date time of the requested
-     *                            appointment
-     * @return The optional of the appointment
-     */
-    public Optional<Appointment> findAppointment(Nurse nurse, AppointmentDateTime appointmentDateTime) {
-        return appointments.stream()
-                .filter(appointment -> appointment.getAppointmentDateTime().equals(appointmentDateTime)
-                        && appointment.getNurse().equals(nurse))
-                .findFirst();
-    }
-
-    /**
-     * Returns true if the patient has an appointment at a given appointment date
-     * time
-     *
-     * @param appointmentDateTime The appointment date time to check
-     * @return True if the patient has an appointment at the given appointment date
-     *         time
-     */
-    public boolean hasAppointment(AppointmentDateTime appointmentDateTime) {
-        return appointments.stream().anyMatch(appt -> appt.isDuring(appointmentDateTime));
-    }
-
-    /**
-     * Returns true if the patient is free during the given appointment date time
-     *
-     * @param appointmentDateTime The given appointment date time to check
-     * @return True if the patient does not have an existing appointment at that
-     *         date time
-     */
-    public boolean isFreeDuring(AppointmentDateTime appointmentDateTime) {
-        return !hasAppointment(appointmentDateTime);
-    }
-
-    public List<Appointment> getAppointments() {
-        return appointments;
     }
 }

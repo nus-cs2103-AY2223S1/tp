@@ -15,7 +15,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.index.ReverseIndexComparator;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.AppointmentManager;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.HomeVisit;
@@ -56,7 +55,6 @@ public class AssignCommand extends Command {
     private final Uid uid1;
     private final Uid uid2;
     private final List<Index> dateslotIndex;
-    private final AppointmentManager appointmentManager = new AppointmentManager();
 
     /**
      * Creates an AssignCommand to assgin specific patient's date slot to a nurse.
@@ -123,25 +121,6 @@ public class AssignCommand extends Command {
     }
 
     private void markAssign(Model model, Patient patient, Nurse nurse) throws CommandException {
-        // If the ‘DATE_AND_SLOT_INDEX’ is not indicated (0), then all the date slot of
-        // the patients will be assigned to the nurse.
-
-        // If the ‘DATE_AND_SLOT_INDEX(ES)’ is indicated, then the date slot with the
-        // respective index(es) in the displayed dateslot list will be assigned to the
-        // nurse.
-
-        // try {
-        //     if (dateslotIndex.isEmpty()) {
-        //         appointmentManager.assignNurseForAllAppointments(nurse, patient);
-        //     } else {
-        //         appointmentManager.assignNurseForAppointments(nurse, patient, dateslotIndex);
-        //     }
-        // } catch (NurseIsBusyException e) {
-        //     throw new CommandException(e.getMessage());
-        // }
-
-        // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
         List<DateSlot> patientDateSlotList = patient.getDatesSlots();
         Long nurseUidNo = nurse.getUid().getUid();
         List<HomeVisit> nurseHomeVisitList = nurse.getHomeVisits();
