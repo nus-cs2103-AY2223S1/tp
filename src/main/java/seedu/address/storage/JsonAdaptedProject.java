@@ -35,9 +35,6 @@ class JsonAdaptedProject {
 
     private final JsonAdaptedClient client;
 
-
-    private final List<JsonAdaptedIssue> issues = new ArrayList<>();
-
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
      */
@@ -45,7 +42,6 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(@JsonProperty("name") String name, @JsonProperty("repository") String repository,
                               @JsonProperty("deadline") String deadline,
                               @JsonProperty("client") JsonAdaptedClient client,
-                              @JsonProperty("issues") List<JsonAdaptedIssue> issues,
                               @JsonProperty("projectId") String projectId,
                               @JsonProperty("pin") String pin) {
         this.name = name;
@@ -53,9 +49,6 @@ class JsonAdaptedProject {
         this.deadline = deadline;
         this.client = client;
         this.projectId = projectId;
-        if (issues != null) {
-            this.issues.addAll(issues);
-        }
         this.pin = pin;
     }
 
