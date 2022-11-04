@@ -70,7 +70,7 @@ public class EditCommandTest {
         Activity editedActivity = model.getFilteredActivityList()
                 .get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ACTIVITY_NO_CHANGE, editedActivity);
 
         Model expectedModel = new ModelManager(new HobbyList(model.getHobbyList()), new UserPrefs());
 
