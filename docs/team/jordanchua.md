@@ -13,7 +13,6 @@ Given below are my contributions to the project.
   * What it does:
     * Allows the Professor to mark any FYP Projects in their FYP Manager with any of the 3 supported statuses
       `YTS`, `IP` or `DONE`, and the status is shown at the top right-hand corner in the UI
-    * Note that the 3 statuses are coloured differently, with the colour scheme being similar to that of a traffic light
     * The status of any FYP Project just added to FYP Manager is automatically set to `YTS`
   * Justification:
     * This feature improves the product significantly since users can now mark the current status
