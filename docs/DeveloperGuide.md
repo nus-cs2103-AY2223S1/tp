@@ -645,8 +645,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view all the appointments of a new month in a calendar view.
-2. User inputs a date in the `Jump Box` in the Calendar tab.
-3. Financial Advisor Planner shows all the appointments in the given new month according to their date input.
+2. Financial Advisor Planner shows all the appointments in the new month in a calendar view.
 
     Use case ends.
 
