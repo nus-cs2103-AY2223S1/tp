@@ -291,9 +291,9 @@ We feel that there is a way for us to cut down on repetition of code. More speci
 
 
 
+<!-- problematic, rmb to update the header hashs after complete -->
 
-
-### [problematic, update the header hashs after complete] Edit Client and Edit Meeting feature
+### Edit Client and Edit Meeting feature
 
 `editClient` and `editMeeting` execute in a similar manner to each other.
 Let the term entity refer to either a client or a meeting.
