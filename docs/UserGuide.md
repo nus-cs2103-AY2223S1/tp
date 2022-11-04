@@ -114,9 +114,8 @@ Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 <br>
-1. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
-2. <code>CONTACT</code> must be 5-15 digits long. <i>[COMING SOON: allowing spaces and country codes in contacts]</i><br>
-3. Emails should be of the format local-part@domain and adhere to the following constraints:
+1. <code>CONTACT</code> must be 5-15 digits long. <i>[COMING SOON: allowing spaces and country codes in contacts]</i><br>
+2. Emails should be of the format local-part@domain and adhere to the following constraints:
 <ol>
     <li>
     The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>
@@ -133,6 +132,7 @@ Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/
     </ul>
     </li>
 </ol>
+3. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
 4. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
 5. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list.<br>
 6. Tags must be alphanumeric and cannot contain spaces.
