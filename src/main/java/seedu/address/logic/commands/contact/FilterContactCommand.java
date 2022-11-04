@@ -16,7 +16,8 @@ public class FilterContactCommand extends Command {
 
     public static final String COMMAND_WORD = "filterC";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose label(s) contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all persons whose label(s) contain any of "
             + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " CS2101 CS2103T";

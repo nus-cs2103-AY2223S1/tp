@@ -26,8 +26,6 @@ public class AddTaskCommand extends Command {
             + PREFIX_TASK_DEADLINE + "12-09-2022";
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "New task added: %1$s";
-    // public static final String MESSAGE_MISSING_DESCRIPTION = "A task must have a description";
-    // To be implemented later.
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
 
     private final Task newTask;

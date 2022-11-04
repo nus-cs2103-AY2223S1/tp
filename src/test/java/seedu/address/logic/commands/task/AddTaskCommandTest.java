@@ -25,6 +25,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TypicalTasks;
 
 public class AddTaskCommandTest {
 
@@ -41,7 +42,8 @@ public class AddTaskCommandTest {
         CommandResult commandResult = new AddTaskCommand(validTask).execute(modelStub);
 
         assertEquals(String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, validTask),
-            commandResult.getFeedbackToUser());
+                commandResult.getFeedbackToUser());
+
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
 
@@ -57,26 +59,26 @@ public class AddTaskCommandTest {
 
     @Test
     public void equals() {
-        Task alice = new TaskBuilder().withDescription("eat bread").build();
-        Task bob = new TaskBuilder().withDescription("go to school").build();
-        AddTaskCommand addAliceCommand = new AddTaskCommand(alice);
-        AddTaskCommand addBobCommand = new AddTaskCommand(bob);
+        Task firstTask = TypicalTasks.READ_BOOK;
+        Task secondTask = TypicalTasks.WRITE_TEST_CASES;
+        AddTaskCommand addFirstTaskCommand = new AddTaskCommand(firstTask);
+        AddTaskCommand addSecondTaskCommand = new AddTaskCommand(secondTask);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addFirstTaskCommand.equals(addFirstTaskCommand));
 
         // same values -> returns true
-        AddTaskCommand addAliceCommandCopy = new AddTaskCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddTaskCommand addFirstTaskCommandCopy = new AddTaskCommand(firstTask);
+        assertTrue(addFirstTaskCommand.equals(addFirstTaskCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addFirstTaskCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addFirstTaskCommand.equals(null));
 
         // different task -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addFirstTaskCommand.equals(addSecondTaskCommand));
     }
 
     /**
@@ -285,7 +287,7 @@ public class AddTaskCommandTest {
     }
 
     /**
-     * A Model stub that always accept the task being added.
+     * A Model stub that always accepts the task being added.
      */
     private class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
