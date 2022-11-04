@@ -208,7 +208,7 @@ public class Person {
                 .append(getRiskTag())
                 .append("; Current Plan : ")
                 .append(getPlanTag())
-                .append("; Client Tag: ")
+                .append("; Client Type: ")
                 .append(getClientTag());
 
 
