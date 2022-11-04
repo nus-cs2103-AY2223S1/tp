@@ -68,7 +68,7 @@ Note how the app contains some sample data.
 <br><br>
 ![TABS example](images/user-guide/Ui.png)
 <br><br>
-5. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 # 2. Reading the Document
@@ -88,7 +88,7 @@ The features of TABS are as such:
 <div markdown="span" class="alert alert-primary">
   :information_source: **Note**:
 
-**Members** and **Contacts** are different.
+**Members** and **Contacts** are different. 
 - In order to add **Members**, the persons have to be present in TABS as **Contacts**.
 - On deletion of **Members** in **Groups**, the corresponding **Contacts** of the person will still remain.
 
@@ -325,7 +325,6 @@ assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0`
 
 A workload indicator is shown beside each person in TABS.
 When the workload of the person increases, the workload indicator will gradually change from green to red.
-
 ![Workload_Indicator](images/user-guide/workload_indicator.png)
 </div>
 
