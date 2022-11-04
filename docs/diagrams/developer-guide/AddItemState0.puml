@@ -6,9 +6,9 @@ skinparam classBackgroundColor ORDER_MODEL_COLOR
 skinparam objectBackgroundColor ORDER_MODEL_COLOR
 hide empty members
 
-title "TrackO Application State After Step 2b"
+title "Initial TrackO Model State"
 
-package "Model" {
+package {
     package Inventory {
         Object "__:InventoryList__" as InventoryList ITEM_MODEL_COLOR_T4 {
         }
@@ -17,11 +17,17 @@ package "Model" {
         Object "__:InventoryItem__" as Item1 {
             itemName = "Pen"
             quantity = 296
+            description = "Ballpoint pen"
+            sell price = 1.00
+            cost price = 0.30
         }
 
         Object "__:InventoryItem__" as Item2 {
             itemName = "Eraser"
             quantity = 243
+            description = "soft eraser"
+            sell price = 1.50
+            cost price = 0.40
         }
 
         InventoryList --left> Item1
@@ -33,42 +39,5 @@ package "Model" {
         }
     }
 }
-
-package Logic {
-Object "__:LogicManager__" as LogicManager LOGIC_COLOR_T4 {
-
-}
-
-Object "__:AddOrderCommand__" as AddOrderCommand LOGIC_COLOR_T4 {
-    isAwaitingInput = true
-}
-
-LogicManager -> AddOrderCommand :inProgressCommand >
-
-
-Object "__:Quantity__" as Quantity ORDER_MODEL_COLOR {
-    value = 3
-}
-
-Object "__:ItemQuantityPair__" as ItemQuantityPair ORDER_MODEL_COLOR {
-
-}
-
-Object "__toAdd:Order__" as OrderToAdd ORDER_MODEL_COLOR {
-    name = "John Doe"
-    phone = 98765432
-    email = "johnd@example.com"
-    address = "311, Clementi Ave 2, #02-25"
-}
-
-AddOrderCommand --down> OrderToAdd
-
-OrderToAdd --left> ItemQuantityPair
-
-ItemQuantityPair -up> Quantity
-ItemQuantityPair -right> Item2
-
-}
-
 
 @enduml

@@ -167,7 +167,7 @@ Given below is an example usage scenario and how the add item mechanism behaves 
 Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `InventoryList` will contain sample data. <br>
 The initial state of TrackO Model before running add item command will be as such.
 
-![AddOrderState0](images/developer-guide/AddOrderState0.png)
+![AddItemState0](images/developer-guide/AddItemState0.png)
 
 Step 2. The user executes `addi i/Key q/200 d/Cabinet keys sp/9.90 cp/4.90 t/new` command to add 200 keys to item list in TrackO. 
 The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for 
