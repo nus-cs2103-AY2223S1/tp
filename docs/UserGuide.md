@@ -470,6 +470,8 @@ This list is unique, meaning each label with a distinct name is only shown once,
 Multiple labels can be added in the same command. 
 However, only a maximum of one contact and one task can be labelled within the same command.
 
+Labels must be alphanumeric and one word long.
+
 The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist
 - Contact/task already has the required label
@@ -492,6 +494,8 @@ Otherwise, it is only removed from the specified contact/task label list.
 
 Multiple labels can be deleted in the same command. 
 However, only a maximum of one contact and one task can be edited within the same command.
+
+Labels must be alphanumeric and one word long.
 
 The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist
