@@ -59,7 +59,7 @@ The various GUI components of FypManager are described in the picture below:
 ![LabeledUi](images/LabeledUi.png)
 
 * `Menu bar`: Menu buttons that you can click to exit FypManager or to open up the help window that contains a link to this user guide.
-* `Not completed list`: You can view the list of students who haven't completed their FYP along with their deadlines.
+* `Not completed list`: Sometimes also called `uncompleted list`. You can view the list of students who have yet to complete their FYP, possibly along with their deadlines.
 * `Completed list`: You can view the list of students who have completed their FYP.
 * `Command box`: You can type and enter commands to run in this box.
 * `Result box`: You can view the results from running your commands in this box.
@@ -139,8 +139,6 @@ Refer to the [Features](#3-features) section for details of each command.
 
 </div>
 
-<div style="page-break-after: always;"></div>
-
 ### 3.1. General Features
 
 #### 3.1.1. Viewing help: `help`
@@ -194,7 +192,7 @@ Adds a new FYP of a student to the FYP manager. The same student ID should not e
 
 <div markdown="block" class="alert alert-info">
 
-An `add` command without the `-s` flag specified explicitly will be interpreted as `add -s` by default.
+:information_source: An `add` command without the `-s` flag specified explicitly will be interpreted as `add -s` by default.
 
 </div>
 
@@ -216,7 +214,7 @@ Removes a FYP from the FYP manager. The specified student ID must exist in the F
 
 <div markdown="block" class="alert alert-info">
 
-An `delete` command without the `-s` flag specified explicitly will be interpreted as `delete -s` by default.
+:information_source: An `delete` command without the `-s` flag specified explicitly will be interpreted as `delete -s` by default.
 
 </div>
 
@@ -358,8 +356,6 @@ the data of your previous FypManager home folder.
 | **Find by Student Name**   | `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -n John`                                                                                    |
 | **Find by Tags**           | `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -t Handsome/Look`                                                                           |
 | **Edit**                   | `edit STUDENT_ID [n/STUDENT_NAME] [p/FYP_NAME] [e/EMAIL]`<br> e.g., `edit A0234567H n/John Hoe`                                                     |
-| **Sort by Project Name**   | `sort [-p]`                                                                                                                                         |
-| **Sort by Project Status** | `sort -s`                                                                                                                                           |
 
 ### 5.3. Deadline Commands
 

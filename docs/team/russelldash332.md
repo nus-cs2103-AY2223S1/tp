@@ -33,7 +33,6 @@ Given below are my contributions to the project.
   * Created team organization, setup team repository, CodeCov, and GitHub Actions workflow.
   * Oversaw overall integration of features, especially on lint checks.
   * Renamed all packages to match FypManager, i.e. `seedu.address` to `jeryl.fyp`.
-    * Highlight of effort: 
   * Managed the release of [`v1.2`](https://github.com/AY2223S1-CS2103-F09-1/tp/releases/tag/v1.2), [`v1.3`](https://github.com/AY2223S1-CS2103-F09-1/tp/releases/tag/v1.3), [`v1.3.1`](https://github.com/AY2223S1-CS2103-F09-1/tp/releases/tag/v1.3.1), [`v1.3.2`](https://github.com/AY2223S1-CS2103-F09-1/tp/releases/tag/v1.3.2), and [`v1.4`](https://github.com/AY2223S1-CS2103-F09-1/tp/releases/tag/v1.4) on GitHub by doing JAR release test.
   * Approved PRs and merging them.
   * Set up milestones on GitHub (v1.2, v1.2b, v1.3, v1.3b, v1.4, v1.4b) along with their deadlines.
