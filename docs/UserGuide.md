@@ -195,9 +195,6 @@ Traverse/Scroll **down**: `<Down>`
 | **exit** | `exit`                                                                 |
 
 
-## Miscellaneous
-1. Edit the json files at your own risk!
-
 ## FAQs
 1. What is a `regex` expression?
 
@@ -209,3 +206,8 @@ To learn more about regex, you can refer to [this tutorial](https://regexone.com
 Ans: You are likely coming from our application via the `help` command.  It is intended for the user
 to only view our website (including the user guide) via the command.  If you wish to visit any external links,
 you can copy the link and paste it into your favourite browser!
+
+3. Can I update the json file?
+
+Ans: No! Do not edit the json files on your own! Instead, you should use the command line interface provided by
+CLIMods. We do not take any responsibility for any unexpected behaviour if you insist on editing the json files.
