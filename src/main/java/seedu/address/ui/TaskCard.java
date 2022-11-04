@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Email;
 import seedu.address.model.task.Task;
 
 
@@ -57,11 +58,17 @@ public class TaskCard extends UiPart<Region> {
         category.setText("Category: " + task.getCategory().toString());
         deadline.setText("Deadline: " + task.getDeadline().toString());
         status.setText("Status: " + booleanConvertor(task.getStatus()));
-        personName.setText("Assignee: " + task.getPersonName() + " ( " + task.getEmail() + " )");
+
+        StringBuilder personText = new StringBuilder("Assignee: " + task.getPersonName());
+        if (!task.getEmail().equals(Email.getNoEmailInstance())) {
+            personText.append(" ( " + task.getEmail() + " )");
+        }
+        personName.setText(personText.toString());
     }
 
     /**
      * Converts a boolean value to its string representation
+     *
      * @param isDone the boolean value to be converted
      * @return the string representation of the boolean value
      */
