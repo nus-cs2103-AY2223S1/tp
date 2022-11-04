@@ -15,16 +15,15 @@ Given below are my contributions to the project.
   * Created the following supporting classes:
     * `Cost` and `Duration` fields of the `Item` object
   * Implemented the following classes:
-    * `ItemCard` and `ItemListPanel` 
+    * `ItemCard` and `ItemListPanel`
   * Involved in the implementation of the following classes:
     * `Priority` field of the `Item` object
-  * Various bug fixes
+  * Edited various help messages
+  * Fixed various bugs
 
 * **Project management**:
   * Nothing
 
-* **Enhancements to existing features**:
-  * Wait
 * **Documentation**:
   * User Guide:
     * Wrote the content for the following sections:
