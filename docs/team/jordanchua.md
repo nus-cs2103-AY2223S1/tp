@@ -33,9 +33,8 @@ Given below are my contributions to the project.
       status `IP`. Projects with the status `DONE` are listed on the Completed panel.
   * Justification:
     * This feature improves the product since the user can now sort the FYP projects according to alphabetical order,
-      which could be useful if the user is trying to search for a specific topic
-    * The feature also allows the user to sort the projects by their project status, which is useful as well since
-      projects that have the status `YTS` may be of more urgency compared to those with the status `IP`.
+      which could be useful if the user is trying to search for a specific topic, *OR* by their project status, 
+      since projects that are `YTS` may be more urgent than those `IP`.
   * Highlights:
     * This enhancement was challenging since it required an in depth analysis of the classes
       related to the UI display, which necessitated the introduction of new methods to existing classes
