@@ -4,13 +4,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.function.Predicate;
 
+import seedu.address.logic.commands.findcommands.FindBuyerCommand;
 import seedu.address.logic.commands.findcommands.FindCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.PredicateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Supplier;
 
 /**
@@ -24,7 +24,7 @@ public class FindBuyerCommandParser implements Parser<FindCommand> {
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public FindCommand parse(String args) throws ParseException {
+    public FindBuyerCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -51,7 +51,6 @@ public class FindBuyerCommandParser implements Parser<FindCommand> {
             }
         };
 
-        return new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
-                PersonCategory.getFromString("Buyer"));
+        return new FindBuyerCommand(buyerPredicate, delivererPredicate, supplierPredicate);
     }
 }

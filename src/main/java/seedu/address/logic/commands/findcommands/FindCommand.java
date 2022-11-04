@@ -29,7 +29,7 @@ public class FindCommand extends Command {
             + "For Email, use the prefix 'e' \n"
             + "For Location, use the prefix 'l' \n"
             + "For Name, use the prefix 'n' \n"
-            + "For Phone, use the prefix 'p' \n"
+            + "For Phone, use the prefix 'ph' \n"
             + "Example: " + COMMAND_WORD + " n/Bernice";
 
     private final Predicate<Buyer> buyerPredicate;
