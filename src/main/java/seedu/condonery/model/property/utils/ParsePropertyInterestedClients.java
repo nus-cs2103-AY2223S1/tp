@@ -2,6 +2,7 @@ package seedu.condonery.model.property.utils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import seedu.condonery.model.Model;

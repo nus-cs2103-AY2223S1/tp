@@ -208,9 +208,10 @@ public class Property {
         Set<Client> interestedClients = getInterestedClients();
         if (!interestedClients.isEmpty()) {
             builder.append("; Interested client(s): ");
-            interestedClients.forEach(interestedClient -> builder.append(interestedClient.getName().toString()));
+            interestedClients.forEach(interestedClient -> builder.append(interestedClient.getName().toString() + ", "));
         }
-        return builder.toString();
+        String result = builder.toString();
+        return result.substring(0, result.length() - 2);
     }
 
 }

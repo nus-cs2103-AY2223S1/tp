@@ -134,7 +134,7 @@ Example: `s/AVAILABLE`, `s/PENDING`
 #### Interested clients
 Refers to the clients that are interested in a property.
 Each property can have multiple clients interested in it.
-This option takes in **case-insensitive** arguments and attempts to link it to the name of a client.
+This option takes in **case-sensitive** arguments and attempts to link it to the name of a client.
 Arguments will not be accepted if it links to no clients, or if it links to more than one client.
 
 Option: `ic/`
