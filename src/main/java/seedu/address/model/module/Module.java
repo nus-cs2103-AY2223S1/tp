@@ -83,6 +83,15 @@ public class Module implements Comparable<Module> {
         return moduleCredit;
     }
 
+    public int getNumOfCompletedTasks() {
+        return numOfCompletedTasks;
+    }
+
+    public int getTotalNumOfTasks() {
+        return totalNumOfTasks;
+    }
+
+
     /**
      * Checks whether two modules have the same module code or same module name.
      *
