@@ -8,13 +8,11 @@ title: User Guide
   <h1 align="center"><font size="7">Coydir</font><br><em>The Ultimate Company Directory</em></h1>
 </p>
 
-Welcome to Coydir's User Guide!
-
 ## **Coydir /(‘kohy-də)/**
 
 > **Financial Resources may be the lifeblood of a company, but human resources are the brains.** - Rob Silzer
 
-Revolutionize your company and become an Industry Leader today with Coydir!
+**Revolutionize** your company and become an **Industry Leader** today with Coydir!
 
 ---
 
@@ -32,7 +30,7 @@ Revolutionize your company and become an Industry Leader today with Coydir!
     - [Adding an employee](#adding-an-employee-add)
     - [Editing an employee](#editing-an-employee-edit)
     - [Deleting an employee](#deleting-an-employee-delete)
-    - [Adding multiple employees at once](#adding-multiple-employees-at-once-batchadd)
+    - [Adding multiple employees at once](#adding-multiple-employees-at-once-batch-add)
     - [View details of an employee](#view-details-of-an-employee-view)
     - [Listing all employees](#listing-all-employees-list)
     - [Finding an employee](#finding-an-employee-find)
@@ -45,7 +43,7 @@ Revolutionize your company and become an Industry Leader today with Coydir!
     - [Rating the performance of an employee](#rating-the-performance-of-an-employee-rate)
     - [Employee Performance History](#employee-performance-history)
   - [Managing Departments](#managing-departments)
-    - [View details of a department](#view-details-of-a-department--view-department)
+    - [View details of a department](#view-details-of-a-department-view-department)
   - [Additional Features](#additional-features)
     - [Getting help](#getting-help-help)
     - [Exiting the program](#exiting-the-program-exit)
@@ -66,35 +64,6 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 ### Navigating the User Guide
 
 **[To be updated]**
-
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-   1. If you have installed Java before, check that you have the right version, which is Java `11`.
-      - If you are using Windows, open up command prompt and type `java -version` and enter.
-      - If you are using Mac, open up terminal and type `java -version` and enter.
-   2. If you do not have Java `11`: - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/). - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
-      <br />
-2. Download the latest Coydir v1.3.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
-
-4. Double-click the file to start the app. The GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
-
-  <img src="./images/ui-screenshots/Ui.png"/>
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   - **`list`** : Lists all employees in the company.
-
-   - **`add`** `n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney` : Adds an employee named `John Doe`, with fields phone number, email, job title, department, address, total leaves, and tags to Coydir.
-
-   - **`delete`**`3` : Deletes employee with ID 3.
-
-   - **`exit`** : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
 
 ### The User Interface
 
@@ -318,7 +287,7 @@ Example:
 
 - `edit 2 p/91234567 l/20 t/colleagues` edits the 2nd displayed employee (_Irfan Ibrahim_) to have a phone number `91234567`, a total leave of `20`, and a single tag `colleagues`.
 
-#### Deleting an employee : `delete`
+#### Deleting an employee: `delete`
 
 Deletes the specified employee from Coydir, given the employee ID.
 
@@ -441,13 +410,13 @@ Example:
 Note that an INDEX is different from an ID. More information about the difference in INDEX and ID can be found on the FAQ page.
 </div>
 
-#### Listing all employees : `list`
+#### Listing all employees: `list`
 
 Shows a list of all employees in the company.
 
 Format: `list`
 
-#### Finding an employee : `find`
+#### Finding an employee: `find`
 
 Once you get familiar with Coydir and batch-adding numerous employees into the database, using `list` simply isn't sufficient to look for the right employee.
 The `find` command is a specific, precise function meant for searching through your employee directory.
@@ -701,7 +670,7 @@ DEPARTMENT is case-insensitive.
 To wrap up, let us take a look at a couple of additional features that give _a little boost_ to your HR management on Coydir.
 These features and techniques serve to make your usage of the application **smoother, easier, and more flexible**.
 
-#### Getting help : `help`
+#### Getting help: `help`
 
 If you have read the full User Guide up to this point, well done!
 There can be a lot of information to take in, so if you ever _feel lost_ while using Coydir, getting help with the commands is just a simple step away.
@@ -714,13 +683,13 @@ With this command, you should see a window like this appear.
 
 **[Insert screenshot of updated Help Window]**
 
-#### Exiting the program : `exit`
+#### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-#### Clearing the data : `clear`
+#### Clearing the data: `clear`
 
 Clears all the data currently stored in the database.
 
@@ -739,10 +708,12 @@ Coydir data are saved in the hard disk automatically after any command that chan
 
 #### Editing the data file
 
-Coydir data are saved as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
+Coydir data are saved as a JSON file `[JAR file location]/data/database.json`.
+It is possible to manipulate data by editing the data file directly, but even for advanced users, we **strongly discourage** making any changes to the data file.
+If you still choose to do so, we cannot guarantee that Coydir continues to support your HR operations smoothly.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run. 
 </div>
 
 ---
