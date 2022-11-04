@@ -17,7 +17,6 @@ import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
-import seedu.condonery.model.UserPrefs;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.property.utils.ParsePropertyInterestedClients;
 
