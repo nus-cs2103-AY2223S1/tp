@@ -34,4 +34,21 @@ public class TimetableUserCommand extends TimetableCommand {
         model.commitAddressBook();
         return new CommandResult(MESSAGE_TIMETABLE_ACKNOWLEDGEMENT, false, false, true);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof TimetableUserCommand) {
+            return true;
+        }
+
+        return false;
+    }
 }

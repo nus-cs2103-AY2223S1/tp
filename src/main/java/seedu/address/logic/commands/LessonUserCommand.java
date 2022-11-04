@@ -41,4 +41,22 @@ public class LessonUserCommand extends LessonCommand {
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, lesson.toFullString()));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof LessonUserCommand) {
+            LessonUserCommand command = (LessonUserCommand) o;
+            return command.lesson.equals(this.lesson);
+        }
+
+        return false;
+    }
 }

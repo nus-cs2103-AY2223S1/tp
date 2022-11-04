@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**: Add module to contacts
-  * What it does: Add current. previous and planned modules to any persons saved in contact.
+  * What it does: Add current, previous and planned modules to any persons saved in contact.
   * Justification:
     * Current: Find group mates or people to work with.
     * Previous: Find people to consult or obtain resources like cheatsheets.

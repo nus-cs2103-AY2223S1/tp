@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
@@ -94,6 +95,10 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(PreviousModule::new)
                 .collect(Collectors.toSet());
+    }
+
+    public static Set<Lesson> getLessonSet(Lesson... lessons) {
+        return Arrays.stream(lessons).collect(Collectors.toSet());
     }
 
 }

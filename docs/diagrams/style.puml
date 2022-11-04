@@ -35,6 +35,8 @@
 
 !define USER_COLOR #000000
 
+!define PERSON_COLOR #808080
+
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false

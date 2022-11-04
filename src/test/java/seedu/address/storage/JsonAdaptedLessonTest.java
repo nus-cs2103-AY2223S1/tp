@@ -51,7 +51,7 @@ public class JsonAdaptedLessonTest {
         JsonAdaptedLesson lesson =
                 new JsonAdaptedLesson(VALID_TYPE, INVALID_MODULE, VALID_DAY, VALID_START_TIME, VALID_END_TIME);
         String expectedMessage = Lesson.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalArgumentException.class, expectedMessage, lesson::toModelType);
+        assertThrows(ParseException.class, expectedMessage, lesson::toModelType);
     }
 
     @Test
@@ -65,8 +65,8 @@ public class JsonAdaptedLessonTest {
     public void toModelType_invalidDay_throwsParseException() {
         JsonAdaptedLesson lesson =
                 new JsonAdaptedLesson(VALID_TYPE, VALID_MODULE, INVALID_DAY, VALID_START_TIME, VALID_END_TIME);
-        String expectedMessage = "For input string: \"Thursday\"";
-        assertThrows(NumberFormatException.class, expectedMessage, lesson::toModelType);
+        String expectedMessage = LessonCommand.MESSAGE_INVALID_DAY;
+        assertThrows(ParseException.class, expectedMessage, lesson::toModelType);
     }
 
     @Test
