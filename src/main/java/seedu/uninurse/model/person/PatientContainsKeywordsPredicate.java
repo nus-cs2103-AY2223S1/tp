@@ -10,7 +10,7 @@ import seedu.uninurse.model.remark.RemarkContainsKeywordsPredicate;
 import seedu.uninurse.model.task.TaskContainsKeywordsPredicate;
 
 /**
- * Tests that a {@code Patient} matches any of the keywords given.
+ * Tests that at least one of the Patient's details matches any of the keywords given.
  */
 public class PatientContainsKeywordsPredicate implements Predicate<Patient> {
     private final List<String> keywords;
@@ -18,8 +18,10 @@ public class PatientContainsKeywordsPredicate implements Predicate<Patient> {
 
 
     /**
-     * Constructs a {@code PatientContainsKeywordsPredicate}
-     * which tests {@code Patient} to any of the keywords given.
+     * Constructs a PatientContainsKeywordsPredicate
+     * which tests Patient's details to any of the keywords given.
+     *
+     * @param keywords the keywords
      */
     public PatientContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
