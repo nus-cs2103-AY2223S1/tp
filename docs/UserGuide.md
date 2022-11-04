@@ -389,7 +389,7 @@ Examples:
 
 You can add a tag to a patient with the `add` command.
 
-Format: **`add`**`-p PATIENT_INDEX t/TAG`
+Format: **`add`** `-p PATIENT_INDEX t/TAG`
 
 <div markdown="block" class="alert alert-info">
 
@@ -417,7 +417,7 @@ Examples:
 
 You can edit a tag of a patient with the `edit` command.
 
-Format: **`edit`**`-p PATIENT_INDEX -t TAG_INDEX t/TAG`
+Format: **`edit`** `-p PATIENT_INDEX -t TAG_INDEX t/TAG`
 
 <div markdown="block" class="alert alert-info">
 
@@ -525,7 +525,7 @@ Examples:
 
 You can edit a medical condition of a patient with the `edit` command.
 
-Format: **`edit`**`-p PATIENT_INDEX -c CONDITION_INDEX c/CONDITION`
+Format: **`edit`** `-p PATIENT_INDEX -c CONDITION_INDEX c/CONDITION`
 
 <div markdown="block" class="alert alert-info">
 
@@ -545,7 +545,7 @@ Examples:
 
 You can delete a medical condition of a patient with the `delete` command.
 
-Format: **`delete`**`-p PATIENT_INDEX -c CONDITION_INDEX`
+Format: **`delete`** `-p PATIENT_INDEX -c CONDITION_INDEX`
 
 Examples:
 * `list` followed by `delete -p 2 -c 3` deletes the 3rd condition of the 2nd patient in the patient list.
@@ -667,69 +667,74 @@ _Add screenshot here_
 
 <br>
 
-### Listing all patients for today: `view` `--today`
+### Listing all tasks for today: `view` `--today`
 
-Shows a list of all patients with tasks due today.
+You can view the list of tasks that are due today using the `view` command with the special flag `--today`.
 
-Format: `view --today`
+Format: **`view`** `--today`
+
+Examples:
+
+Let's say you added the following patients and their tasks:
+* **Physiotherapy appointment** for **Alex Yeoh** at 12:00pm on 2022-11-04
+* **Administer insulin dose** for **Charlotte Oliveiro** at 11:45am on 2022-11-04
+
+If today's date is 2022-11-04, `view --today` will display those 2 tasks.
+
+![result for `view --today`](images/viewTodayResult.png)
+_<div align="center"> Patient and task list displayed after running the `view --today` command </div>_
 
 <br>
 
 ### Listing all tasks: `view` `-p` `--all`
 
-Shows a list of all tasks to be completed.
+You can view the list of tasks for all patients using the `view` command with the special flag `--all`.
 
-Format: `view -p --all`
+Format: **`view`** `-p --all`
 
 Examples:
 
-Suppose the following patients were added.
+* `view -p --all` will show a list of all tasks belonging to patients with tasks.
 
-`add n/John Doe d/Administer 3ml of example medicine`
-
-`add n/Betsy Crowe d/Change dressing on left arm`
-* `view -p --all` will display:
-    * `Administer 3ml of example medicine FOR John Doe`
-    * `Change dressing on left arm FOR Betsy Crowe`
-
-_Add screenshot here_
+![result for `view -p --all`](images/viewAllTaskResult.png)
+_<div align="center"> Patient and task list displayed after running the `view -p --all` command </div>_
 
 <br>
 
 ### Viewing all tasks of a patient: `view` `-p`
 
-Shows all the tasks that are associated with the specified patient.
+You can view the list of tasks for a particular patient using the `view` command.
 
-Format: `view -p PATIENT_INDEX`
+Format: **`view`** `-p PATIENT_INDEX`
 
 Examples:
 
-Suppose the following patients were added.
+* `list` followed by `view -p 2` will show the list of tasks for the 2nd patient in the patient list.
 
-`add n/John Doe d/Administer 3ml of example medicine`
-
-`add n/Betsy Crowe d/Change dressing on left arm`
-* `view -p 1` will display:
-    * `Administer 3ml of example medicine`
-* `view -p 2` will display:
-    * `Change dressing on left arm`
-
-_Add screenshot here_
+![result for `view -p 2`](images/viewBerniceTaskResult.png)
+_<div align="center"> Patient and task list displayed after running the `view -p 2` command </div>_
 
 <br>
 
 ### Listing all tasks for a particular day: `view`
 
-Shows a list of all tasks on a particular day.
+You can view the list of tasks for a particular day using the `view` command.
 
-Format: `view DATE`
+Format: **`view`** `DATE`
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
 * The DATE **must be of the specified format** dd-MM-yy
+</div>
 
 Examples:
-* `view 25-12-22` lists the tasks on 25th December 2022
+* `view 5-9-22` lists the tasks on 5th September 2022
+* `view 25-11-22` lists the tasks on 25th November 2022
 
-_Add screenshot here_
+![result for `view 25-11-22`](images/viewSpecificDayResult.png)
+_<div align="center"> Patient and task list displayed after running the `view 25-11-22` command </div>_
+
 
 <br>
 
