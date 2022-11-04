@@ -18,7 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/o-ohst.md)]
 
 * Role: Team Lead
-* Responsibilities: overall project coordination
+* Responsibilities: Overall project coordination
 
 ### Ong Zheng Long
 
@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/zhenglong3.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Iteration, Testing
 
 ### Nguyen Quy Duc
 
@@ -38,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ngquyduc.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Iteration, Testing
 
 ### Yap Sien Soon
 
@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ssyap98.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
 ### Zhang Bokun
 
@@ -58,4 +58,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/bokun2.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI
