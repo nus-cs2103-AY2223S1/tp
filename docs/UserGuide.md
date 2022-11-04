@@ -22,21 +22,21 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
    3. [**Commands on main page**](#commands-on-the-main-page)
       1. [`add` Creating a new itinerary](#creating-a-new-itinerary--add)
       2. [`list` Listing all itineraries](#listing-all-itineraries--list)
-      3. [`edit` Editing the details of an itinerary](#editing-the-details-of-an-itinerary--edit)
-      4. [`delete` Deleting an itinerary](#deleting-an-itinerary--delete)
-      5. [`clear` Clearing itineraries](#clearing-itineraries--clear)
-      6. [`find` Locating itineraries by name](#locating-itineraries-by-name--find)
+      3. [`find` Locating itineraries by name](#locating-itineraries-by-name--find)
+      4. [`edit` Editing the details of an itinerary](#editing-the-details-of-an-itinerary--edit)
+      5. [`delete` Deleting an itinerary](#deleting-an-itinerary--delete)
+      6. [`clear` Clearing itineraries](#clearing-itineraries--clear)
       7. [`select` Selecting an itinerary](#selecting-an-itinerary--select)
    4. [**The planning page**](#the-planning-page)
    5. [**Commands on item planning page**](#commands-on-the-item-planning-page)
       1. [`add` Adding an item](#adding-an-item--add)
       2. [`edit` Editing the details of an item](#editing-the-details-of-an-item--edit)
       3. [`delete` Deleting an item](#deleting-an-item--delete)
-      4. [`plan` Scheduling an item](#scheduling-an-item--plan)
-      5. [`unplan` Unscheduling an item](#unscheduling-an-item--unplan)
-      6. [`free` Viewing vacant timeslots](#viewing-vacant-timeslots--free)
+      4. [`free` Viewing vacant timeslots](#viewing-vacant-timeslots--free)
+      5. [`plan` Scheduling an item](#scheduling-an-item--plan)
+      6. [`unplan` Unscheduling an item](#unscheduling-an-item--unplan)
       7. [`copy` Copying to clipboard](#copying-to-clipboard--copy)
-      8. [`pdf` Exporting to PDF file](#exporting-to-pdf-file--pdf)
+      8. [`pdf` Exporting as PDF file](#exporting-as-pdf-file--pdf)
       9. [`home` Returning to main page](#returning-to-main-page--home)
    6. [**Advanced**](#advanced)
       1. [Saving the data](#saving-the-data)
@@ -56,7 +56,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 
 3. Copy the file to the folder you want to use as the _home folder_ for Waddle.
 
-4. Double-click the file to start the app. This will bring you to the Waddle main page, and graphical user interface (GUI) similar to the below should appear in a few seconds.
+4. Double-click the file to start the app. This will bring you to the Waddle [main page](#the-main-page). A graphical user interface (GUI) similar to the below should appear in a few seconds.
    Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -65,9 +65,9 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 
    * **`list`** : Lists all itineraries.
 
-   * **`add`**`d/My Japan Trip du/14 sd/2023-04-01` : Adds an itinerary named "My Japan Trip".
+   * **`add`**`d/My Japan Trip du/14 sd/2023-04-01` : Adds an itinerary for a 14-day trip named "My Japan Trip", which starts on the 1st of April 2023.
    
-   * **`select`** `1` : Brings you into the planning page for the 1st itinerary shown in the current list.
+   * **`select`**`1` : Brings you into [the planning page](#the-planning-page) for the 1st itinerary shown in the current list.
 
    * **`delete`**`1` : Deletes the 1st itinerary shown in the current list.
 
@@ -86,9 +86,11 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   - e.g. in `add d/DESCRIPTION ...`, `DESCRIPTION` is a parameter which can be used as `add d/My Japan Trip`.
 
+* Unlesss stated otherwise, all parameters should contain alphanumerical characters only.
+
 * Items in square brackets are optional.<br>
   - e.g. `d/DESCRIPTION [c/COUNTRY] sd/START DATE du/DURATION` can be used as `d/My Japan Trip c/Japan sd/2023-04-01 du/14` or as `d/My Japan Trip sd/2023-04-01 du/14`.
-  
+
 * Parameters can be in any order.<br>
   - e.g. if the command specifies `c/COUNTRY d/DESCRIPTION`, `d/DESCRIPTION c/COUNTRY` is also acceptable.
 
@@ -118,7 +120,13 @@ Exits the Waddle program.
 Format: `exit`
 
 ### The main page
-The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app. [Commands exclusive to the main page](#commands-on-the-main-page) can help you add new itineraries, edit or delete existing itineraries, or find an itinerary.
+The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
+
+[Commands exclusive to the main page](#commands-on-the-main-page) can help you:
+* [add](#creating-a-new-itinerary--add) new itineraries
+* [view](#listing-all-itineraries--list) or [find](#locating-itineraries-by-name--find) existing itineraries
+* [edit](#editing-the-details-of-an-itinerary--edit) or [delete](#deleting-an-itinerary--delete) existing itineraries
+* [clear](#clearing-itineraries--clear) all existing itineraries
 
 Using the [`select` command](#selecting-an-itinerary--select)  will bring you to the [planning page](#the-planning-page) of the selected itinerary.
 
@@ -163,6 +171,26 @@ Shows a list of all itineraries in Waddle.
 
 Format: `list`
 
+### Locating itineraries by name : `find`
+
+Finds itineraries with names containing any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g. `india` will match `India`
+* The order of the keywords does not matter. e.g. `Trip Japan My` will match `My Japan Trip`
+* The search is based on itinerary descriptions only.
+* Only full words will be matched e.g. `Jap` will not match `Japan`
+* Itineraries matching at least one of the provided keywords will be returned (i.e. `OR` search).
+  - e.g. `find Japan Trip` will return `My Germany Trip`, since there is a match for the keyword  `Trip`.
+* Use the [`list`](#listing-all-itineraries--list) command to see all itineraries again.
+
+Examples:
+* `find India` returns `My India Trip` and `India Expedition`
+* `find India Trip` returns `My Japan Trip`, `My India Trip`, `India Expedition`
+* `find trip` returns the following result: <br><br>
+  ![result for 'find trip'](images/findTripResult.png)
+
 ### Editing the details of an itinerary : `edit`
 
 Edits an existing itinerary in Waddle.
@@ -204,29 +232,9 @@ Deletes all itineraries in Waddle.
 
 Format: `clear`
 
-### Locating itineraries by name : `find`
-
-Finds itineraries with names containing any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g. `india` will match `India`
-* The order of the keywords does not matter. e.g. `Trip Japan My` will match `My Japan Trip`
-* The search is based on itinerary descriptions only.
-* Only full words will be matched e.g. `Jap` will not match `Japan`
-* Itineraries matching at least one of the provided keywords will be returned (i.e. `OR` search).
-  - e.g. `find Japan Trip` will return `My Germany Trip`, since there is a match for the keyword  `Trip`.
-* Use the [`list`](#listing-all-itineraries--list) command to see all itineraries again.
-
-Examples:
-* `find India` returns `My India Trip` and `India Expedition`
-* `find India Trip` returns `My Japan Trip`, `My India Trip`, `India Expedition`
-* `find trip` returns the following result: <br><br>
-  ![result for 'find trip'](images/findTripResult.png)
-
 ### Selecting an itinerary : `select`
 
-Enters the [item planning page](#commands-on-item-planning-page) for the selected itinerary.
+Enters the [item planning page](#the-planning-page) for the selected itinerary.
 
 Format: `select INDEX`
 
@@ -236,17 +244,23 @@ Format: `select INDEX`
 Examples:
 * `select 1`
 
+
 ### The planning page
 The planning page of an itinerary displays the list of items you have added to the itinerary. Items on the Wishlist that have not been added to you schedule yet will appear on top in order of priority, while scheduled items will appear in order of date and time.
 
-[Commands exclusive to the planning page](#commands-on-the-planning-page) can help you add new items, edit or delete existing items, or find an item.
+Here's an example of how the item planning page looks like:
+![item planning page](images/itemPlanningUi.png)
+
+[Commands exclusive to the planning page](#commands-on-the-planning-page) can help you:
+* [add](#adding-an-item--add) new items
+* [edit](#editing-the-details-of-an-item--edit) or [delete](#deleting-an-item--delete) existing items
+* [view](viewing-vacant-time-slots--free) the vacant time slots on your itinerary
+* [schedule](#scheduling-an-item--plan) or [unschedule](#unscheduling-an-item--unplan) items
+* export your itinerary via your [clipboard](#copying-to-clipboard--copy) or as a [pdf](#exporting-as-pdf-file--pdf) file
 
 Using the [`home` command](#returning-to-main-page--home)  will bring you to the [main page](#the-main-page) of the selected itinerary.
 
 ### Commands on the item planning page
-
-Here's an example of how the item planning page looks like:
-![item planning page](images/itemPlanningUi.png)
 
 ### Adding an item : `add`
 
@@ -311,6 +325,12 @@ Examples:
 * `delete 1` would delete the 1st item in the unscheduled item list.
 * `delete 2.1` would delete the 1st item in the Day 2 item list.
 
+### Viewing vacant timeslots : `free`
+
+Displays the vacant timeslots available for scheduling items.
+
+Format: `free`
+
 ### Scheduling an item : `plan`
 
 Schedules an item from the wishlist.
@@ -350,12 +370,6 @@ Examples:
 * `unplan 2.1` would unschedule the 1st item in the Day 2 item list.
 * `unplan 4.5` would unschedule the 5th item in the Day 4 item list.
 
-### Viewing vacant timeslots : `free`
-
-Displays the vacant timeslots available for scheduling items.
-
-Format: `free`
-
 ### Copying to clipboard : `copy`
 
 Copies the itinerary in a text format onto your device's clipboard so you can paste it anywhere.
@@ -374,9 +388,9 @@ Format: `copy`
 
 </div>
 
-### Exporting to PDF file : `pdf`
+### Exporting as PDF file : `pdf`
 
-Exports the itinerary into a PDF file. The file can be found under the "Waddle" folder in your "Documents" folder.
+Exports the itinerary as a PDF file. The file can be found under the "Waddle" folder in your "Documents" folder.
 
 [//]: # (TODO: include screenshots of where to find it for windows and mac, maybe linux but idk how)
 

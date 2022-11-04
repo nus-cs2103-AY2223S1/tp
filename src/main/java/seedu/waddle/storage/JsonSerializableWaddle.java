@@ -14,7 +14,7 @@ import seedu.waddle.model.Waddle;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable Waddle that is serializable to JSON format.
  */
 @JsonRootName(value = "waddle")
 class JsonSerializableWaddle {
@@ -47,15 +47,15 @@ class JsonSerializableWaddle {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Waddle toModelType() throws IllegalValueException {
-        Waddle addressBook = new Waddle();
+        Waddle waddle = new Waddle();
         for (JsonAdaptedItinerary jsonAdaptedItinerary : itineraries) {
             Itinerary itinerary = jsonAdaptedItinerary.toModelType();
-            if (addressBook.hasItinerary(itinerary)) {
+            if (waddle.hasItinerary(itinerary)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ITINERARY);
             }
-            addressBook.addItinerary(itinerary);
+            waddle.addItinerary(itinerary);
         }
-        return addressBook;
+        return waddle;
     }
 
 }
