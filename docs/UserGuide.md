@@ -162,7 +162,7 @@ TrackO's functionalities!
       
        * This command also helps to add a short description to the item and tags it as `New`.
 
-         You should see this item appear in TrackO at index 5 as shown below:
+         You should see this item appear in TrackO at index `5` as shown below:
    
 
 2. Next, we move on to order management:
