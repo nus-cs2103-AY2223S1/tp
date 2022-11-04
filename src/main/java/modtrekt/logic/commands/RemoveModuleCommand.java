@@ -2,11 +2,8 @@ package modtrekt.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import com.beust.jcommander.Parameter;
 
-import modtrekt.commons.core.Messages;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.CliSyntax;
 import modtrekt.logic.parser.converters.ModCodeConverter;
@@ -28,7 +25,7 @@ public class RemoveModuleCommand extends Command {
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "I successfully deleted the module: %1$s!";
 
-    @Parameter(description = "module code", required = true,
+    @Parameter(description = "<alphanumeric mod code of 6-9 characters>", required = true,
         converter = ModCodeConverter.class)
     private ModCode code;
 
@@ -44,12 +41,9 @@ public class RemoveModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Module> lastShownList = model.getFilteredModuleList();
-
         if (!(model.hasModuleWithModCode(code))) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_CODE_TO_REMOVE);
+            throw new CommandException(String.format("Module code %s does not exist.", code));
         }
-
         Module moduleToDelete = model.parseModuleFromCode(code);
         model.deleteModule(moduleToDelete);
         model.deleteTasksOfModule(moduleToDelete);

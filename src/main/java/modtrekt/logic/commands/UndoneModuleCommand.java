@@ -19,7 +19,7 @@ public class UndoneModuleCommand extends Command {
     public static final String COMMAND_WORD = "undone module";
     public static final String COMMAND_ALIAS = "undone mod";
 
-    @Parameter(description = "<module code>",
+    @Parameter(description = "<alphanumeric mod code of 6-9 characters>",
             required = true, converter = ModCodeConverter.class)
 
     private ModCode moduleCode;
