@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 
 
 **Enhancements implemented**:
-  - Show tasks details for each person in UI ([#55](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/55))
+  - Add placeholder for tasks under each person in UI ([#55](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/55))
   - Add JUnit test cases for `Logic` and `Model` classes ([#82](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/82),
 [#98](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/98),
 [#139](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/139),
@@ -36,7 +36,7 @@ Given below are my contributions to the project.
       - Create a table of commands and buttons to open the UG or copy the URL link of UG.
       - Add CSS to table and buttons.
       - Update format and examples of each command to match with the ones in the popup window.
-  - Fix bugs where GroupList and PersonList are not updated after commands are executed and causes the whole program to fail.
+  - Fix bugs where GroupList and PersonList are not updated after executing commands are executed.
 ([#139](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/139),
 [#146](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/146),
 [#195](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/195))
