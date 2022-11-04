@@ -34,4 +34,11 @@ public class FindDelivererCommand extends FindCommand {
         return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
                 model.getFilteredDelivererList().size()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindDelivererCommand // instanceof handles nulls
+                && getDelivererPredicate().equals(((FindDelivererCommand) other).getDelivererPredicate()));
+    }
 }

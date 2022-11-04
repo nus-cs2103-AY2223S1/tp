@@ -33,4 +33,11 @@ public class FindBuyerCommand extends FindCommand {
         return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
                 model.getFilteredBuyerList().size()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindBuyerCommand // instanceof handles nulls
+                && getBuyerPredicate().equals(((FindBuyerCommand) other).getBuyerPredicate()));
+    }
 }
