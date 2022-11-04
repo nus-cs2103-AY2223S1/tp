@@ -1,12 +1,24 @@
 ---
 layout: page
 title: User guide
+
+---
+# 1. Overview <a id="1-overview"></a>
+---
+TABS is a desktop application which helps student project team leaders **overview tasks assigned to group members**.
+TABS helps in 3 key ways:
+1. Contact details management 
+2. Group management
+3. Delegated task management
+
+TABS aim to reduce the amount of time spent on managing team projects for **students** who already have their academics to contend with. TABS is for people who type quickly as it **optimised for use via Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TABS is available for the **Linux, Windows and Mac OS** operating systems.
+
 ---
 
-TABS helps project team leaders **overview tasks assigned to group members**. It is targeted at individuals with less programming background i.e. **less CLI-intensive** in nature.
-
-- [`Quick start`](#quick-start)
-- [`Features`](#features)
+1. [Overview](#1-overview)
+2. [Quick start](#quick-start)
+3. [GUI interface](#gui-interface)
+4. [Features](#features)
   - [Viewing help: `help`](#viewing-help-help)
   - [Adding a person: `addperson`](#adding-a-person-addperson)
   - [Deleting a person : `deleteperson`](#deleting-a-person-deleteperson)
@@ -25,10 +37,10 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
   - [Deleting a task from all members: `deletetaskall`](#deleting-a-task-from-all-members-deletetaskall)
   - [Clearing existing data: `clear`](#clearing-all-entries-clear)
   - [Exiting the program : `exit`](#exiting-the-program-exit)
-- [`Command summary`](#command-summary)
+- [Command summary](#command-summary)
 
----
-## Quick start
+
+# 2. Quick start<a id="quick-start"></a>
 
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest TABS.jar.
@@ -41,8 +53,11 @@ Note how the app contains some sample data.
 5. Refer to the [Features](#features) below for details of each command.
 
 
---------------------------------------------------------------------------------------------------------------------
+---
+# 3. GUI interface<a id="gui-interface"></a>
 
+
+---
 ## Features
 
 <div markdown="block" class="alert alert-info">
