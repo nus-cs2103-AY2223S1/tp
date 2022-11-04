@@ -153,14 +153,58 @@ Classes used by multiple components are in the `seedu.guest.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
-
-### Add Command
+## **Notable Fields of a Guest**
+### Bill Field
 
 #### Implementation:
 
+* The `Bill` class holds the value that a `Guest` is required to pay to the hotel.
+* Its constructor takes in a string representing a signed `double` with up to 2 decimal places.
+
+#### Design Considerations:
+
+**Aspect: `add()` method of the `Bill` class**
+* As `Bill`s can be added to each other, we abstracted this behaviour into the `add` method.
+
+**Aspect: How to deduct from bills**
+* **Alternative 1:** Create a `subtract` method.
+    * Pros: More understandable code.
+    * Cons: Requires knowledge of which method to call (`add` or `subtract`).
+* **Alternative 2 (current choice):** Use `add()` with a negative `Bill`.
+    * Pros: Less code, more flexibility.
+    * Cons: `Bill` must be allowed to hold negative values, but the bill field for each `Guest`
+      cannot, thus requiring more checks.
+
+Taking into consideration that `double`s are already signed and charges on bills can be negative, we decided to proceed with Alternative 2.
+
+### DateRange Field
+
+#### Implementation:
+
+* The `DateRange` class holds the period of stay of a `Guest`.
+* Its constructor takes in a string representing a check-in date and a check-out date.
+
+#### Design Considerations:
+
+**Aspect: How to represent dates**
+* **Alternative 1:** Separate classes for check-in and check-out dates extended from a `GuestDate` class.
+    * Pros: Easier to parse and edit dates separately.
+    * Cons: Depend on each other for validation (check-in must be earlier than check-out), which increases coupling.
+* **Alternative 2 (current choice):** Single class representing both dates.
+    * Pros: Validation can be done within the class itself which reduces coupling. More intuitive as the dates
+      are often displayed together.
+    * Cons: Parsing, editing, and other operations on the dates are more complex.
+
+Taking into consideration that check-in and check-out dates come as a pair, we decided to proceed with Alternative 2 to reduce coupling.
+
+## **Features**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### Adding a Guest
+* In GuestBook, a user can add a guest using the `add` command. This feature is necessary for hotel operations.
+
+#### Implementation:
 * The `add` command takes in 6 compulsory fields (`Name`, `Phone`, `Email`, `Room`, `Date Range` and `Number Of Guests`) 
 and 1 optional field (`Request`) and is supported by the `AddCommandParser` that extracts out each of the fields 
 from their respective prefixes.
@@ -196,30 +240,9 @@ the initial bill to be 0 and chose to remove `Bill` as it would make the `add` c
 * As adding the guest will be done during check in, the guest might not have any special requests to make for the room. Hence,
 we chose to make `Request` optional and default it as blank should it not be provided.
 
-### Bill Field
 
-#### Implementation:
-
-* The `Bill` class holds the value that a `Guest` is required to pay to the hotel.
-* Its constructor takes in a string representing a signed `double` with up to 2 decimal places.
-
-#### Design Considerations:
-
-**Aspect: `add()` method of the `Bill` class**
-* As `Bill`s can be added to each other, we abstracted this behaviour into the `add` method.
-
-**Aspect: How to deduct from bills**
-* **Alternative 1:** Create a `subtract` method.
-    * Pros: More understandable code.
-    * Cons: Requires knowledge of which method to call (`add` or `subtract`).
-* **Alternative 2 (current choice):** Use `add()` with a negative `Bill`.
-    * Pros: Less code, more flexibility.
-    * Cons: `Bill` must be allowed to hold negative values, but the bill field for each `Guest`
-      cannot, thus requiring more checks.
-
-Taking into consideration that `double`s are already signed and charges on bills can be negative, we decided to proceed with Alternative 2.
-
-### Bill Command
+### Billing a Guest
+* In GuestBook, the user can add to the bill of a guest to track the current expenses incurred by the guest using the `bill` command. This feature was added to help the user track their guests' expenses, without having to manually calculate it each time.
 
 #### Implementation:
 * The `bill` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1) and the `bill` field and is supported by the `BillCommandParser` that extracts the bill value.
@@ -228,7 +251,8 @@ The following activity diagrams summarizes what happens when a user enters a `bi
 
 ![BillActivityDiagram](images/BillActivityDiagram.png)
 
-#### Design Considerations:
+
+##### Design Considerations:
 
 **Aspect: How to update a bill**
 * **Alternative 1:** Set the bill to the input value.
@@ -250,27 +274,10 @@ and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE
 **Aspect: Using the `b/` prefix**
 * To standardise the formatting and testing for field inputs, we decided to include the `b/` prefix in the command syntax.
 
-### DateRange Field
+### Editing a Guest's Details
 
-#### Implementation:
-
-* The `DateRange` class holds the period of stay of a `Guest`.
-* Its constructor takes in a string representing a check-in date and a check-out date.
-
-#### Design Considerations:
-
-**Aspect: How to represent dates**
-* **Alternative 1:** Separate classes for check-in and check-out dates extended from a `GuestDate` class.
-    * Pros: Easier to parse and edit dates separately.
-    * Cons: Depend on each other for validation (check-in must be earlier than check-out), which increases coupling.
-* **Alternative 2 (current choice):** Single class representing both dates.
-    * Pros: Validation can be done within the class itself which reduces coupling. More intuitive as the dates
-      are often displayed together.
-    * Cons: Parsing, editing, and other operations on the dates are more complex.
-
-Taking into consideration that check-in and check-out dates come as a pair, we decided to proceed with Alternative 2 to reduce coupling.
-
-### Edit Command
+* In GuestBook, the user can edit the details of a guest using the `edit` command. Details that do not have values inputted in the `edit` command will remain unchanged. 
+This feature was implemented so that it is easy for the user to change a guest's details according to different scenarios, such as the changing the guest's rooms, or the guest providing incorrect details.
 
 #### Implementation:
 * The `edit` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1)
@@ -290,8 +297,9 @@ The following activity diagram summarizes what happens when a user enters an `ed
 * As the `bill` command allows us to add and subtract to the bill directly, the edit command is redundant and
   may cause user error if they were to replace the `Bill` by accident.
 
-### MarkRoomsUnclean Command
+### Marking all Rooms as Unclean
 
+* In GuestBook, you can mark all the rooms as unclean. This feature was added to make it easier for the hotel to transit to a new working day, as they would usually have to clean all the rooms when a new day starts.
 #### Implementation
 * The `markroomsunclean` command edits all the guests in GuestBook and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields.
 
@@ -322,7 +330,9 @@ Taking into consideration the context of GuestBook that operates for small hotel
 Taking into consideration how GuestBook is optimised for fast-typist, we prefer if the command could be typed faster with lesser chance of mistakes. The readability of the command is also 
 rather insignificant as once the user gets acquainted with the command, reading it would not be a problem. 
 
-### Find Command
+### Finding Guests
+
+* In GuestBook, the user can find guests using the `find` command. The extensibility of this `find` feature makes it easy for the user to locate guests in GuestBook.
 
 #### Implementation:
 * The `find` command takes in multiple keywords separated by spaces, and find all guests whose `fields` contain any of the keywords. The keywords are case-insensitive as well. For example, finding 'Alice' is the same as finding 'aLiCE'.
@@ -340,8 +350,9 @@ The following activity diagram summarizes what happens when a user enters a `fin
 * The `find` command only matches full keywords. For example, typing in 'ali' would not match a Guest named 'Alice'. As we do not want to display possible redundant data to the hotel manager, we decided to limit the `find` command to only full keywords, so that the results displayed are more targeted.
 
 
-### \[Proposed\] Undo/Redo Command
+### \[Proposed\] Undo/Redo Feature
 
+* As there could be the possibility that the user input the wrong commands, or want to revert to older states, being able to undo or redo is a feature that will be included in future iterations of GuestBook.
 #### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedGuestBook`. It extends `GuestBook` with an undo/redo history, stored internally as an `guestBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
@@ -639,8 +650,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 guests without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The response to any use action should become visible within 5 seconds.
-5. The number of guests a user enters should be at least 1 and at most 4.
-6. The guests should have a check-in and check-out date.
 7. The guest cannot stay for a period longer than 1 year.
 8. Data should be saved into a JSON file before exiting the program.
 9. The project is expected to adhere to a schedule that delivers a feature set every two weeks.
@@ -648,9 +657,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Guest**: Refers to the guest who booked the hotel room.
+* **GUI**: Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.
+* **JSON**: Stands for JavaScript Object Notation. It refers to a file format to store data.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Number of guests**: Refers to the total number of people staying in the hotel room
-* **Guest**: Refers to the guest who booked the hotel room.
 
 --------------------------------------------------------------------------------------------------------------------
 
