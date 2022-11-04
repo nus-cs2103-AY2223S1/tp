@@ -259,6 +259,77 @@ The following methods in `TaAssist` manages the adding and deleting of module cl
 - `TaAssist#addModuleClass(ModuleClass moduleClass)` - Adds the provided module class to the list of module classes created.
 - `TaAssist#removeModuleClass(ModuleClass moduleClass)` - Removes the provided module class from the list of module classes created.
 
+
+### Saving and Loading of StudentModuleData and SessionData
+When saving the data, we export all the `Students` and `ModuleClass` objects into two JSON arrays in a JSON file. 
+The `ModuleClass` objects and their corresponding `Session` objects are saved in `moduleClasses` array, while the 
+`Student` objects and their corresponding `StudentModuleData`, and `SessionData` objects are saved in the `students` 
+array.
+
+Each `StudentModuleData` and `SessionData` contains a reference to `ModuleClass` and `Session` objects respectively. 
+But the way we saved the data, the actual `ModuleClass` and `Session` objects are in the `moduleClasses` array, while
+the `StudentModuleData` and `SessionData` need to be in the `students` array and have a way to reference the `ModuleClass`
+and `Session` objects. 
+
+To solve this problem, we only save the `ModuleClass` name for a `StudentModuleData` ignoring the list of
+`Sessions` in the `ModuleClass` object. Similarly, for `SessionData`, we only save the `Session` name ignoring the `Date`.
+In code level, we reference the actual `ModuleClass` and `Session` objects from `Model` when required. 
+
+For example, a `Student` object might be saved in `students` array as follows (ignoring some identity fields): 
+```json
+ {
+  "name" : "Alex Yeoh",
+  "moduleData" : [ {
+    "module" : "CS1231S",
+    "data" : [ {
+      "session" : "Assignment 1",
+      "grade" : 100.0
+    } ]
+  } ]
+}
+```
+While the `ModuleClass` object for the module "CS1231S" might be saved in `moduleClasses` array as follows:
+```json
+{
+  "name" : "CS1231S",
+  "sessions" : [ {
+    "name" : "Assignment 1",
+    "date" : "2020-09-01"
+  } ]
+}
+```
+
+#### Design Considerations
+* Alternative 1 (current choice): The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and
+`Session` name respectively. Because in any of their functionality, we do not need to know the list of `Sessions` in the
+`ModuleClass` object or the `Date` of the `Session` object. 
+  * Pros:
+    * The `StudentModuleData` and `SessionData` objects are independent of the `ModuleClass` and `Session` objects stored
+      in `Model`. 
+    * It makes testing easier due to the independence of the `StudentModuleData` and `SessionData` objects.
+    * It makes loading of data easier, since we can add a `ModuleClass` or `Session` object with only the name when loading
+      `StudentModuleData` and `SessionData` objects. 
+    * According to our JSON format, it is more intuitive to let the `StudentModuleData` and `SessionData` classes only know
+      about the names. 
+  * Cons: The `ModuleClass` and `Session` objects are duplicated, which may cause confusion when we may need to iterate
+    on the session list in the `ModuleClass` object, for example. So we need to remember that the actual `ModuleClass` and
+    `Session` objects are stored in `Model` and not in the `StudentModuleData` and `SessionData` objects.
+* Alternative 2: Same as alternative 1 but we save the names of `ModuleClass` and `Session` as a `String`. 
+  * Pros: Makes the intention more clear that only the names are required in these classes. 
+  * Cons: We lose some functionality of the `ModuleClass` and `Session` objects, such as `isSame`, `toString` and other
+    methods. In this approach, we would need to recreate them for `String` instead. 
+* Alternative 3: While loading the data, we first load `ModuleClass` objects and `Student` objects into two separate lists. 
+  Then for each `Student` object and each `StudentModuleData` object, we iterate through the list of `ModuleClass` objects
+  and reference the correct `ModuleClass` object. Then for each of the `SessionData` in the `StudentModuleData` object, we 
+  iterate through the list of `Sessions` in the `ModuleClass` object and reference the correct `Session` object.
+  * Pros: The `ModuleClass` and `Session` objects are not duplicated. The same object is referenced by both the `Model`
+    and `StudentModuleData` or `SessionData` objects.
+  * Cons: 
+    * Implementation of this loading mechanism would be quite convoluted and hard to test. 
+    * Maintaining this strong coupling can be quite challenging. 
+    * It makes testing more difficult as we need to ensure that the `Model` and `StudentModuleData` or `SessionData` 
+      objects are referencing the same object.
+
 ### Assigning students to module classes
 <img src="images/AssignCommandSequenceDiagram.png" width="500" />
 
