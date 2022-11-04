@@ -1,9 +1,14 @@
 package seedu.uninurse.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 
@@ -16,7 +21,7 @@ public class TaskListCard extends UiPart<Region> {
     public final Task task;
 
     @FXML
-    private HBox cardPane;
+    private HBox taskPane;
     @FXML
     private Label id;
     @FXML
@@ -33,16 +38,19 @@ public class TaskListCard extends UiPart<Region> {
      */
     public TaskListCard(Task task, int displayedIndex) {
         super(FXML);
-        this.cardPane.setSpacing(1);
+        this.taskPane.setSpacing(1);
 
         if (task.getDateTime().isPastDate()) {
-            this.cardPane.setStyle("-fx-background-color: #ffe6a1;"
-                    + "-fx-padding: 1;" + "-fx-border-style: dashed inside;"
+            this.taskPane.setBackground(new Background(new BackgroundFill(
+                    Color.web("ffe6a1"), new CornerRadii(5.0), new Insets(1.0))));
+            this.taskPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
                     + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
                     + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+
         } else {
-            this.cardPane.setStyle("-fx-background-color: #c5e2fc;"
-                    + "-fx-padding: 1;" + "-fx-border-style: dashed inside;"
+            this.taskPane.setBackground(new Background(new BackgroundFill(
+                    Color.web("c5e2fc"), new CornerRadii(5.0), new Insets(1.0))));
+            this.taskPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
                     + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
                     + "-fx-border-radius: 5;" + "-fx-border-color: black;");
         }
@@ -65,7 +73,7 @@ public class TaskListCard extends UiPart<Region> {
             return String.format("%s (Today)", dateString);
         }
         if (daysFromToday == 1) {
-            return String.format("%s (Tommorow)", dateString);
+            return String.format("%s (Tomorrow)", dateString);
         }
         if (daysFromToday < 0) {
             if (daysFromToday == -1) {

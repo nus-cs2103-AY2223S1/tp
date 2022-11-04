@@ -130,6 +130,9 @@ The `Model` component,
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
+* each patient has a TaskList, which holds Tasks which can be NonRecurringTasks or RecurringTasks. The below Class diagram illustrates their relationship.
+<img src="images/TaskClassDiagram.png" width="450" />
+
 </div>
 
 
@@ -359,6 +362,7 @@ After that, `MainWindow` would call `LogicManager#getPatientOfInterest()` to ret
 Below is the sequence diagram which shows the entire interaction between the `UI`, `Logic`, and `Model` components for **adding a patient** (sequence is similar for editing and deleting a patient):
 
 <img src="images/AddPatientSequenceDiagram2.png"  />
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

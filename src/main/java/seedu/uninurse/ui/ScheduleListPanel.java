@@ -41,6 +41,7 @@ public class ScheduleListPanel extends UiPart<Region> {
         ScheduleListViewCell() {
             super();
             setStyle("-fx-padding: 0 5 0 0");
+            prefWidthProperty().bind(scheduleListView.widthProperty().subtract(20.0));
         }
 
         @Override

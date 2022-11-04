@@ -34,7 +34,6 @@ public class ViewTaskCommand extends DisplayTasksGenericCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPersonList();
-        lastShownList.forEach(p -> p.getTasks().showAllTasks()); // In case the previous command filters the task list
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

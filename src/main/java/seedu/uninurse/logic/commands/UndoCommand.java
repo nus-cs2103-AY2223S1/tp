@@ -11,7 +11,7 @@ import seedu.uninurse.model.Model;
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
     public static final String MESSAGE_FAILURE = "Maximum undo limit reached! ";
-    public static final String MESSAGE_SUCCESS = "Undone previous command!";
+    public static final String MESSAGE_SUCCESS = "Undone the following command:\n\n";
 
     public static final CommandType UNDO_COMMAND_TYPE = CommandType.UNDO;
 
@@ -22,7 +22,7 @@ public class UndoCommand extends Command {
             throw new CommandException(MESSAGE_FAILURE);
         }
         model.saveCurrentPatientListTracker();
-        model.undo();
-        return new CommandResult(MESSAGE_SUCCESS, UNDO_COMMAND_TYPE);
+        CommandResult undoneCommandResult = model.undo();
+        return new CommandResult(MESSAGE_SUCCESS + undoneCommandResult.getFeedbackToUser(), UNDO_COMMAND_TYPE);
     }
 }

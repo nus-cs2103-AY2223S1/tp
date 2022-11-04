@@ -1,7 +1,10 @@
 package seedu.uninurse.model;
 
 import java.util.List;
+import java.util.Optional;
 
+import seedu.uninurse.logic.commands.CommandResult;
+import seedu.uninurse.logic.commands.CommandType;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -9,23 +12,23 @@ import seedu.uninurse.model.person.Patient;
  */
 public class UninurseBookSnapshot {
     private final ReadOnlyUninurseBook uninurseBook;
-    private final PatientListTracker patientListTracker;
+    private final CommandResult commandResult;
 
     /**
      * Creates an UninurseBookSnapshot using the Persons in the {@code toBeCopied}
      */
     public UninurseBookSnapshot(ReadOnlyUninurseBook toBeCopied) {
         this.uninurseBook = new UninurseBook(toBeCopied);
-        this.patientListTracker = new PatientListTracker();
+        this.commandResult = new CommandResult("", CommandType.EMPTY);
     }
 
     /**
      * Creates an UninurseBookSnapshot using the Persons in the {@code toBeCopied}
      * and the {@code patientListTracker}.
      */
-    public UninurseBookSnapshot(ReadOnlyUninurseBook toBeCopied, PatientListTracker patientListTracker) {
+    public UninurseBookSnapshot(ReadOnlyUninurseBook toBeCopied, CommandResult commandResult) {
         this.uninurseBook = new UninurseBook(toBeCopied);
-        this.patientListTracker = patientListTracker;
+        this.commandResult = commandResult;
     }
 
     /**
@@ -35,8 +38,12 @@ public class UninurseBookSnapshot {
         return uninurseBook.getPersonList();
     }
 
-    public PatientListTracker getPatientListTracker() {
-        return patientListTracker;
+    public Optional<PatientListTracker> getPatientListTracker() {
+        return commandResult.getPatientListTracker();
+    }
+
+    public CommandResult getCommandResult() {
+        return this.commandResult;
     }
 
     @Override
@@ -44,6 +51,6 @@ public class UninurseBookSnapshot {
         return other == this // short circuit if same object
                 || (other instanceof UninurseBookSnapshot // instanceof handles nulls
                 && uninurseBook.equals(((UninurseBookSnapshot) other).uninurseBook))
-                && patientListTracker.equals(((UninurseBookSnapshot) other).patientListTracker);
+                && commandResult.equals(((UninurseBookSnapshot) other).commandResult);
     }
 }

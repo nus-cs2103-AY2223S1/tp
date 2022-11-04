@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextArea fx:id="resultDisplay" editable="false" styleClass="text-area" wrapText="true" />
    </children>

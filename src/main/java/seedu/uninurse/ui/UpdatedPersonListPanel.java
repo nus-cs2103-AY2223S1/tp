@@ -36,6 +36,7 @@ public class UpdatedPersonListPanel extends UiPart<Region> {
         PersonListViewCell() {
             super();
             setStyle("-fx-padding: 5 5 5 0");
+            prefWidthProperty().bind(personListView.widthProperty().subtract(20.0));
         }
 
         @Override

@@ -44,5 +44,26 @@ public class TruncatedTaskListCard extends UiPart<Region> {
             Label taskLabel = new Label(taskList.get(i).getTaskDescription());
             this.taskPane.getChildren().add(taskLabel);
         }
+
+        if (taskList.size() > TRUNCATION_LIMIT) {
+            VBox additionalTaskBox = new VBox();
+            additionalTaskBox.setStyle("-fx-background-color: #2154ad;"
+                    + "-fx-padding: 3;" + "-fx-border-radius: 2;"
+                    + "-fx-background-radius: 10;");
+            additionalTaskBox.setMaxWidth(150.0);
+
+            Label additionalTaskNumberLabel = new Label();
+            if ((taskList.size() - TRUNCATION_LIMIT) == 1) {
+                additionalTaskNumberLabel.setText("+ 1 more Task");
+            } else {
+                additionalTaskNumberLabel.setText("+ " + (taskList.size() - TRUNCATION_LIMIT) + " more Tasks");
+            }
+            additionalTaskNumberLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
+                    + "-fx-font-size: 13px;"
+                    + "-fx-text-fill: white;");
+
+            additionalTaskBox.getChildren().add(additionalTaskNumberLabel);
+            this.taskPane.getChildren().add(additionalTaskBox);
+        }
     }
 }

@@ -3,6 +3,9 @@ package seedu.uninurse.model.task;
 import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a Recurring Task for a Patient.
  */
@@ -27,13 +30,6 @@ public class RecurringTask extends Task {
     }
 
     /**
-     * Returns whether the task date is past the current date.
-     */
-    public boolean pastTaskDate() {
-        return super.getDateTime().isPastDate();
-    }
-
-    /**
      * Returns the next {@code RecurringTask} that's going to occur at the
      * RecurringTask's frequency
      */
@@ -48,11 +44,16 @@ public class RecurringTask extends Task {
     public static boolean isValidRecurAndFreq(String test) {
         String[] recurAndFreq = test.trim().split(" ");
 
-        if (recurAndFreq.length > 2) {
+        if (recurAndFreq.length != 2) {
             return false;
         }
 
-        int freq = parseInt(recurAndFreq[0].trim(), 10);
+        int freq;
+        try {
+            freq = parseInt(recurAndFreq[0].trim(), 10);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
 
         if (freq <= 0) {
             return false;
@@ -78,6 +79,12 @@ public class RecurringTask extends Task {
         int freq = parseInt(recurAndFreq[0].trim(), 10);
         Recurrence recur = Recurrence.valueOf(recurAndFreq[1].trim().toUpperCase());
 
+        if (freq == 1) {
+            recur = getSingularRecurrence(recur);
+        } else {
+            recur = getPluralRecurrence(recur);
+        }
+
         return new RecurringTask(description, dateTime, recur, freq);
     }
 
@@ -87,6 +94,19 @@ public class RecurringTask extends Task {
 
     public int getFrequency() {
         return frequency;
+    }
+
+    @Override
+    public List<Task> updateTask() {
+        ArrayList<Task> updatedTasks = new ArrayList<>();
+        RecurringTask nextRecurringTask = this;
+
+        while (nextRecurringTask.passedTaskDate()) {
+            updatedTasks.add(nextRecurringTask);
+            nextRecurringTask = nextRecurringTask.getNextRecurringTask();
+        }
+
+        return updatedTasks;
     }
 
     @Override
@@ -114,6 +134,30 @@ public class RecurringTask extends Task {
 
         return this.getTaskDescription().equals(o.getTaskDescription())
                 && this.getDateTime().equals(o.getDateTime())
-                && this.recurrence.equals(o.recurrence);
+                && this.recurrence.equals(o.recurrence)
+                && this.frequency == o.frequency;
+    }
+
+    private static boolean isSingularRecurrence(Recurrence recurrence) {
+        for (Recurrence validRecurrence : Recurrence.values()) {
+            if ((recurrence.toString() + "S").equals(validRecurrence.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static Recurrence getSingularRecurrence(Recurrence recurrence) {
+        if (isSingularRecurrence(recurrence)) {
+            return recurrence;
+        }
+        return Recurrence.valueOf(recurrence.toString().substring(0, recurrence.toString().length() - 1));
+    }
+
+    private static Recurrence getPluralRecurrence(Recurrence recurrence) {
+        if (!isSingularRecurrence(recurrence)) {
+            return recurrence;
+        }
+        return Recurrence.valueOf(recurrence.toString() + "S");
     }
 }

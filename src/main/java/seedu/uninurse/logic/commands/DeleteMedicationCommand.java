@@ -11,6 +11,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Patient;
@@ -68,11 +69,11 @@ public class DeleteMedicationCommand extends DeleteGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedMedicationList);
 
-        model.setPerson(patientToEdit, editedPatient);
+        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_DELETE_MEDICATION_SUCCESS, medicationIndex.getOneBased(),
-                editedPatient.getName(), deletedMedication), DELETE_MEDICATION_COMMAND_TYPE);
+                editedPatient.getName(), deletedMedication), DELETE_MEDICATION_COMMAND_TYPE, patientListTracker);
     }
 
     @Override

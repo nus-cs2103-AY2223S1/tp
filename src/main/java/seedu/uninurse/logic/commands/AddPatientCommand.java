@@ -13,6 +13,7 @@ import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -62,9 +63,10 @@ public class AddPatientCommand extends AddGenericCommand {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        PatientListTracker patientListTracker = model.addPerson(toAdd);
         model.setPatientOfInterest(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ADD_PATIENT_COMMAND_TYPE);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
+                ADD_PATIENT_COMMAND_TYPE, patientListTracker);
     }
 
     @Override

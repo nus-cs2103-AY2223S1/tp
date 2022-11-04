@@ -11,9 +11,11 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
+import seedu.uninurse.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Add a task to an existing person in the patient list.
@@ -60,20 +62,21 @@ public class AddTaskCommand extends AddGenericCommand {
 
         Patient personToEdit = lastShownList.get(index.getZeroBased());
 
+        TaskList updatedTaskList;
 
-        if (personToEdit.getTasks().hasTask(task)) {
+        try {
+            updatedTaskList = personToEdit.getTasks().add(task);
+        } catch (DuplicateTaskException dte) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
         }
 
-        TaskList updatedTaskList = personToEdit.getTasks().add(task);
-
         Patient editedPerson = new Patient(personToEdit, updatedTaskList);
 
-        model.setPerson(personToEdit, editedPerson);
+        PatientListTracker patientListTracker = model.setPerson(personToEdit, editedPerson);
         model.setPatientOfInterest(editedPerson);
 
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, editedPerson.getName().toString(), task),
-                ADD_TASK_COMMAND_TYPE);
+                ADD_TASK_COMMAND_TYPE, patientListTracker);
     }
 
     @Override

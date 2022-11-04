@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="cardPane" alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="cardPane" alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane hgap="5.0">
          <columnConstraints>
@@ -29,7 +29,7 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                        <Label fx:id="name" ellipsisString="" styleClass="cell_big_label" text="\$first" textOverrun="CLIP" wrapText="true" />
                      </children>
                   </HBox>
                   <FlowPane fx:id="tags" prefWrapLength="100.0" />

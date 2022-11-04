@@ -14,6 +14,7 @@ import java.util.Optional;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.commons.util.StringUtil;
 import seedu.uninurse.logic.commands.EditMedicationCommand.EditMedicationDescriptor;
+import seedu.uninurse.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
@@ -28,6 +29,7 @@ import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.task.NonRecurringTask;
 import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
@@ -205,7 +207,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String medication} into a {@code Medication}.
+     * Parses a {@code String medication} into a {@code EditMedicationDescriptor}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code String medication} is invalid.
@@ -276,7 +278,7 @@ public class ParserUtil {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
 
-        return new Task(trimmedTaskDescription);
+        return new NonRecurringTask(trimmedTaskDescription);
     }
 
     private static Task parseTaskWithDateTime(String taskDescription, String dateTime) throws ParseException {
@@ -294,7 +296,7 @@ public class ParserUtil {
         DateTime dateTime1 = trimmedDateTime.contains(" ")
                 ? new DateTime(trimmedDateTime) : DateTime.ofDate(trimmedDateTime);
 
-        return new Task(trimmedTaskDescription, dateTime1);
+        return new NonRecurringTask(trimmedTaskDescription, dateTime1);
     }
 
     private static Task parseRecurringTask(String taskDescription, String dateTime, String recurAndFreq)
@@ -332,6 +334,62 @@ public class ParserUtil {
             tasks.add(parseTask(taskDescription));
         }
         return new TaskList(tasks);
+    }
+
+    /**
+     * Parses a {@code String task} into a {@code parseEditTaskDescriptor}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code String task} is invalid.
+     */
+    public static EditTaskDescriptor parseEditTaskDescriptor(String task) throws ParseException {
+        requireNonNull(task);
+        String[] taskArguments = task.split("\\|");
+
+        if (taskArguments.length > 3) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+
+        String trimmedTaskDescription = taskArguments[0].trim();
+        String trimmedTaskDateAndTime = "";
+        String trimmedTaskRecurrenceAndFrequency = "";
+
+        if (taskArguments.length >= 2) {
+            trimmedTaskDateAndTime = taskArguments[1].trim();
+        }
+
+        if (taskArguments.length == 3) {
+            trimmedTaskRecurrenceAndFrequency = taskArguments[2].trim();
+        }
+
+        Optional<String> optionalTaskDescription = Optional.empty();
+        Optional<DateTime> optionalTaskDateAndTime = Optional.empty();
+        Optional<String> optionalTaskRecurrenceAndFrequency = Optional.empty();
+
+        if (trimmedTaskDescription.length() > 0) {
+            if (!Task.isValidTaskDescription(trimmedTaskDescription)) {
+                throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+            }
+            optionalTaskDescription = Optional.of(trimmedTaskDescription);
+        }
+
+        if (trimmedTaskDateAndTime.length() > 0) {
+            if (!DateTime.isValidDateTime(trimmedTaskDateAndTime) && !DateTime.isValidDate(trimmedTaskDateAndTime)) {
+                throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+            }
+            optionalTaskDateAndTime = Optional.of(trimmedTaskDateAndTime.contains(" ")
+                    ? new DateTime(trimmedTaskDateAndTime) : DateTime.ofDate(trimmedTaskDateAndTime));
+        }
+
+        if (trimmedTaskRecurrenceAndFrequency.length() > 0) {
+            if (!RecurringTask.isValidRecurAndFreq(trimmedTaskRecurrenceAndFrequency)) {
+                throw new ParseException(RecurringTask.MESSAGE_CONSTRAINTS);
+            }
+            optionalTaskRecurrenceAndFrequency = Optional.of(trimmedTaskRecurrenceAndFrequency);
+        }
+
+        return new EditTaskDescriptor(optionalTaskDescription, optionalTaskDateAndTime,
+                optionalTaskRecurrenceAndFrequency);
     }
 
     /**
