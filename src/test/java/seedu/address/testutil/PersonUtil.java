@@ -21,7 +21,7 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
+    public static String getAddPersonCommand(Person person) {
         return AddPersonCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
@@ -33,8 +33,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        person.getTags().stream()
-                .forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
+        person.getTags().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         sb.append(PREFIX_COMPANY + person.getCompany().fullName + " ");
         return sb.toString();
     }

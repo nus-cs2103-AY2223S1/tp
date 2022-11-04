@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK_INDEX;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -140,12 +141,22 @@ public class AddInternshipCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddInternshipCommand // instanceof handles nulls
-                && companyName.equals(((AddInternshipCommand) other).companyName)
-                && internshipRole.equals(((AddInternshipCommand) other).internshipRole)
-                && internshipStatus.equals(((AddInternshipCommand) other).internshipStatus)
-                && contactPersonId != null && contactPersonId.equals(((AddInternshipCommand) other).contactPersonId)
-                && interviewDate.equals(((AddInternshipCommand) other).interviewDate));
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddInternshipCommand)) {
+            return false;
+        }
+
+        // solution adapted from
+        // https://stackoverflow.com/a/36716166
+        AddInternshipCommand otherCommand = (AddInternshipCommand) other;
+        return companyName.equals(otherCommand.companyName)
+                && internshipStatus.equals(otherCommand.internshipStatus)
+                && internshipRole.equals(otherCommand.internshipRole)
+                && Objects.equals(linkIndex, otherCommand.linkIndex)
+                && Objects.equals(interviewDate, otherCommand.interviewDate)
+                && Objects.equals(contactPersonId, otherCommand.contactPersonId);
     }
 }
