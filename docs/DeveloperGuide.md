@@ -202,7 +202,7 @@ The main stylesheet can be found under `resources/view/LightTheme.css`. The prim
 
 - **Aspect: The application only supports a light theme**
 * **Alternative 1 (current choice):** Only implement a light theme.
-
+  
   * Pros:
     * Most applications are light themed by default, thus only support light theme for consistency.
     * Only need to maintain one stylesheet.
@@ -211,7 +211,7 @@ The main stylesheet can be found under `resources/view/LightTheme.css`. The prim
       applications nicely.
 
 * **Alternative 2:** Implement both light theme and dark theme and follow user's system light/dark mode setting.
-
+  
   * Pros:
     * Current theme will blend in with other applications on the system nicely.
   * Cons:
@@ -248,7 +248,7 @@ There are only 2 commands which can modify the Remark for a Person. These are th
 **Aspect: How remark can be modified:**
 
 * **Alternative 1 (current choice):** Only at `add` and `edit` command.
-
+  
   * Pros:
     * Reduces cluttering of commands.
     * More intuitive design as it agrees with the definition of `add` and `edit`.
@@ -256,7 +256,7 @@ There are only 2 commands which can modify the Remark for a Person. These are th
     * Extra typing (`r=New Remark`) to modify the Remark field.
 
 * **Alternative 2:** Create a `remark` command just to modify remarks.
-
+  
   * Pros:
     * Slightly less typing when editing Remark.
   * Cons:
@@ -309,17 +309,17 @@ message delete 1
 #### Design considerations:
 
 - **Aspect: Allow editing:**
-
+  
   - Alternative 1 (current choice): Don't allow editing
-
+    
     - Pros: Simpler command set, easier to implement, messages templates are not frequently edited
-
+    
     - Cons: Less convenient when user actually wants to edit message templates
-
+  
   - Alternative 2: Allow editing
-
+    
     - Pros: (Slightly) more convenient
-
+    
     - Cons: More complicated command set
 
 ### Tag command
@@ -347,7 +347,7 @@ We can also remove tags from a user using the `tag remove` command. For example,
 **Aspect: How tags can be implemented:**
 
 * **Alternative 1 (current choice):** Using a separate set of commands labelled `tag`.
-
+  
   * Pros:
     * A cleaner design as tags, unlike remarks are elements of a set, rather than a String.
   * Cons:
@@ -355,7 +355,7 @@ We can also remove tags from a user using the `tag remove` command. For example,
       to memorize all commands.
 
 * **Alternative 2:** Building on top of the `add` and `edit` commands.
-
+  
   * Pros:
     * It allows a more concise set of operations.
   * Cons:
@@ -416,7 +416,7 @@ filter clear n=bob,alan
 **Aspect: How filters are reduced:**
 
 * **Alternative 1 (current choice):** filters of the same type are reduced with `OR` and filters of different types are reduced with `AND`.
-
+  
   * Pros:
     * Simple to implement
     * Follows the same filtering pattern used by most websites
@@ -424,7 +424,7 @@ filter clear n=bob,alan
     * It might be unintuitive for the user to see the list expanding after a new filter is applied.
 
 * **Alternative 2:** filters in the same command are reduced with `OR` and filters in separate commands are reduced with `AND`.
-
+  
   * Pros:
     * Provides a lot of flexibility for the user
   * Cons:
@@ -519,18 +519,19 @@ reminder 1 d=Zoom meeting dt=22-11-30 11:00
 ```
 
 #### Design considerations:
+
 - **Aspect: Storage for reminders:**
-    - Alternative 1 (current choice): Store reminders in a separate JSON file.
-        - Pros:
-            - Reduced data coupling between contacts and reminders — Corrupted data in reminders will not cause the application to fail to load the address book data.
-        - Cons:
-            - More tedious to implement.
-            - An extra file the user needs to keep track of when transferring data.
-    - Alternative 2: Store all reminders in the address book JSON file
-        - Pros:
-            - Easier to implement.
-        - Cons:
-            - Data coupling — A pre-existing database may fail to load due to changes in how address book or reminders data are stored, and data coupling will increase the amount of data that fails to load.
+  - Alternative 1 (current choice): Store reminders in a separate JSON file.
+    - Pros:
+      - Reduced data coupling between contacts and reminders — Corrupted data in reminders will not cause the application to fail to load the address book data.
+    - Cons:
+      - More tedious to implement.
+      - An extra file the user needs to keep track of when transferring data.
+  - Alternative 2: Store all reminders in the address book JSON file
+    - Pros:
+      - Easier to implement.
+    - Cons:
+      - Data coupling — A pre-existing database may fail to load due to changes in how address book or reminders data are stored, and data coupling will increase the amount of data that fails to load.
 
 ### Motivational quotes
 
@@ -654,7 +655,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 2a. The given index is invalid.
-
+  
   * 2a1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
@@ -673,26 +674,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 2a. The given index is invalid.
-
+  
   * 2a1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2b. No fields were specified
-
+  
   * 2b1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2c. Updated values is not in the right format.
-
+  
   * 2c1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2d. No index was specified but there is a [contact shown](#use-case-show-contact).
-
+  
   * Use case resumes at step 3.
 
 * 2e. No index was specified and there is no [contact shown](#use-case-show-contact).
-
+  
   * Rapportbook shows an error message.
   * Use case resumes at step 2.
 
@@ -703,13 +704,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to show a list of filters already applied.
 
 2. Rapportbook displays a list of filters applied.
-
+   
     Use case ends
    **Extensions**
 * 1a. No filters are applied.
 
 * 2a1. Rapportbook shows a message to indicate there are no filters applied.
-
+  
   #### Use case: Filter clients
 
 **MSS**
@@ -717,7 +718,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to filter clients of a certain tag and/or name.
 
 2. Rapportbook shows a list of clients that contains the tag **and** name specified in the filter query.
-
+   
    Use case ends.
 
 #### Use case: Clear filters
@@ -731,7 +732,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to clear filters that were originally applied.
 
 4. Rapportbook shows a list of contacts without the filters applied.
-
+   
    Use case ends.
 
 **Extensions**
@@ -754,7 +755,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 2a. The given index is invalid.
-
+  
   * 2a1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
@@ -789,23 +790,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 2a. The given index is invalid.
-
+  
   * 2a1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2b. At least one of the specified tag(s) do not exist.
-
+  
   * 2b1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2c. Contact already tagged with certain tag(s) specified but not all the tag(s) specified.
-
+  
   * 2c1. Rapportbook tags the contact with the missing tag(s).
   * 2c2. Rapportbook shows a message indicating which tag(s) the contact already has and which tag(s) were added.
     Use case ends.
 
 * 2d. Contact already tagged with all tag(s) specified.
-
+  
   * 2d1. Rapportbook shows a message indicating that no tags were added.
     Use case ends.
 
@@ -824,20 +825,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 2a. The given index is invalid.
-
+  
   * 2a1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2b. At least one of the specified tag(s) do not exist.
-
+  
   * 2b1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2c. Contact already has at least one of the tag(s) specified.
-
+  
   * 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.
   * Use case resumes at step 2.
-
 
 #### Use case: Generate message templates
 
@@ -962,232 +962,231 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
-
+   
    1. Download the jar file and copy into an empty folder
-
+   
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
-
+   
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
+   
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 ### Adding a client
 
 1. Adding a client
-
+   
    1. Prerequisite: The tag `friends` exists in Rapportbook.
-
+   
    2. Test case: `add n=Laufey p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friends` <br>
-
+      
       Expected: A client named Laufey is successfully added. Details of the added client will be displayed in the status message.
-
+   
    3. Test case: `add p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friends`  or `a p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friends`
-
+      
       Expected: No client is added. Error details shown in the status message. Command box remains the same.
 
 ### Editing a client
 
 1. Editing a client by specifying their index.
-
+   
    1. Prerequisites:
-
+      
       1. The tags specified (eg. `t=friends`)in the command must exist in Rapportbook.
       2. There are clients in the Rapportbook.
-
+   
    2. Test case: `edit 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` or `e 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` <br>
-
+      
       Expected: First client is edited with the information specified. Fields not specified will not be changed.
-
+   
    3. Test case: `edit 1` <br>
-
+      
       Expected: No client is edited. Error details shown in the status message. Command box remains the same.
 
 2. Editing a client with the `show` command.
-
+   
    1. Prerequisites:
-
+      
       1. The tags specified (eg. `t=friends`)in the command must exist in Rapportbook.
-
+      
       2. A client is being shown eg. `show 1`.
-
+   
    2. Test case: `edit n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` or `e n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` <br>
-
+      
       Expected: Client shown is edited with the information specified. Fields not specified will not be changed.
 
 ### Deleting a client
 
 1. Deleting a client by specifying their index.
-
+   
    1. Prerequisites: There are clients in Rapportbook.
-
+   
    2. Test case: `delete 1` or `d 1`<br>
       Expected: First client is deleted from the list. Details of the deleted contact shown in the status message.
-
+   
    3. Test case: `delete 0`<br>
       Expected: No client is deleted. Error details shown in the status message. Command box remains the same.
-
+   
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-
+      
       Expected: Similar to previous.
 
 ### Tagging
 
 1. Creating tags
-
+   
    1. Test case: `tag create friends` or `t c friends`<br>
-
+      
       Expected: The tag `friends` will be created in Rapportbook. A message will be shown indicating the tag created.
-
+   
    2. Test case: `tag create 123`<br>
-
+      
       Expected: No tags will be created. Error details shown in the status message. Command box remains teh same
 
 2. Deleting tags
-
+   
    1. Prerequisite: The tag `friends` exists in Rapportbook.
-
+   
    2. Test case: `tag delete friends` or `t d friends`<br>
-
+      
       Expected: The tag `friend` will be deleted from Rapportbook, and all clients that are tagged with `friends` will lose the tag. A message will be shown indicating successful deletion.
-
+   
    3. Test case: `tag delete abc`<br>
-
+      
       Expected: No tags will be deleted. A message will be shown indicating the tag does not exist.
 
 3. Listing tags
-
+   
    1. Test case: `tag list` or `t l` <br>
-
+      
       Expected: All tags in Rapportbook will be listed in the message box.
 
 4. Adding tags to clients
-
+   
    1. Prerequisites:
-
+      
       1. There are clients in Rapportbook.
-
+      
       2. The tag `friends` exists in Rapportbook.
-
+   
    2. Test case: `tag 1 friends` or `t 1 friends` <br>
-
+      
       Expected: First client will be tagged with `friends`. A message will be shown indicating success.
 
 5. Removing tags from clients
-
+   
    1. Prerequisites:
-
+      
       1. There are clients in Rapportbook.
-
+      
       2. The first client is tagged `friends`.
-
+   
    2. Test case: `tag remove 1 friends` or `t r 1 friends`  <br>
-
+      
       Expected: First client will no longer be tagged with `friend`. A message will be shown indicating success.
 
 ### Filtering
 
 1. Filtering
-
+   
    1. Test case: `filter n=Laufey t=friends` or `f n=Laufey t=friends`
-
+      
       Expected: The list will only show clients named Laufey **and** tagged `friends`. A message will be shown indicating successful filtering.
 
 2. Listing filters
-
+   
    1. Test case: `filter list` or `f l`  <br>
-
+      
       Expected: A list of filters currently applied will be shown in the message box.
-
+   
    2. Test case: `tag delete abc`
-
+      
       Expected: No tags will be deleted. A message will be shown indicating the tag does not exist.
 
 3. Clearing filters
-
+   
    1. Prerequisite: `filter n=Laufey t=friends` has been applied.
-
+   
    2. Test case: `filter clear` or `f c` <br>
-
+      
       Expected: All clients will be shown. Message box will display the number of clients in the list.
-
-   2. Test case: `filter clear t=friends`<br>
-
+   
+   3. Test case: `filter clear t=friends`<br>
+      
       Expected: All clients containing the name `laufey` will be shown. Message box will display the number of clients in the list.
 
 ### Messages
 
 1. Creating messages
-
+   
    1. Test case: `message create Hello, {name}` or `m c Hello, {name}` <br>
-
+      
       Expected: The message box will indicate successful creation of the message.
 
 2. Listing messages:
-
+   
    1. Test case: `message list` or `m l` <br>
-
+      
       Expected: The right panel will show the list of messages created.
 
 3. Generating messages
-
+   
    1. Prerequisites:
-
+      
       1. Messages have been created.
-
+      
       2. There are clients in Rapportbook.
-
+   
    2. Test case: `message generate 1 2` or `m g 1 2`<br>
-
+      
       Expected: The message box will display that the second message has been generated for the first client. The message generated will be copied to your clipboard.
 
 4. Deleting messages
-
+   
    1. Prerequisites:
-
+      
       1. Messages have been created.
-
+      
       2. There are clients in Rapportbook.
-
+   
    2. Test case: `message delete 1` or `m d 1` <br>
-
+      
       Expected: The message will be deleted from Rapportbook. The message box will indicate successful deletion.
 
 ### Reminders
 
 1. Creating reminders
-
-    1. Prerequisites:
-
-        1. There are clients in Rapportbook.
-
-    2. Test case: `reminder 1 d=Zoom meeting dt=22-11-30 11:00` or `r 1 d=Zoom meeting dt=22-11-30 11:00` <br>
-
-       Expected: A reminder will be created for the first client. A message will be shown indicating success.
+   
+   1. Prerequisites:
+      
+      1. There are clients in Rapportbook.
+   
+   2. Test case: `reminder 1 d=Zoom meeting dt=22-11-30 11:00` or `r 1 d=Zoom meeting dt=22-11-30 11:00` <br>
+      
+      Expected: A reminder will be created for the first client. A message will be shown indicating success.
 
 2. Deleting reminders
-
-    1. Prerequisites:
-
-        1. Reminders have been created.
-
-        2. There are clients in Rapportbook.
-
-    2. Test case: `reminder delete 1` or `r d 1` <br>
-
-       Expected: The reminder will be deleted from Rapportbook. The message box will indicate successful deletion.
+   
+   1. Prerequisites:
+      
+      1. Reminders have been created.
+      
+      2. There are clients in Rapportbook.
+   
+   2. Test case: `reminder delete 1` or `r d 1` <br>
+      
+      Expected: The reminder will be deleted from Rapportbook. The message box will indicate successful deletion.
 
 3. Clearing reminders
-
-    1. Prerequisites:
-
-        1. Reminders have been created.
-
-        2. There are clients in Rapportbook.
-
-    2. Test case: `reminder clear` or `r c`<br>
-
-       Expected: The message box will display that reminders have been cleared.
-
+   
+   1. Prerequisites:
+      
+      1. Reminders have been created.
+      
+      2. There are clients in Rapportbook.
+   
+   2. Test case: `reminder clear` or `r c`<br>
+      
+      Expected: The message box will display that reminders have been cleared.
