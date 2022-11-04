@@ -1,11 +1,32 @@
-@startuml
-'https://plantuml.com/sequence-diagram
+@startuml filter-sequence
+!include style.puml
 
-autonumber
+box Logic LOGIC_COLOR_T1
+participant ":CreateTagCommand" as TagCommand LOGIC_COLOR
+end box
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+[->TagCommand : execute(model)
+activate TagCommand
+
+group #Yellow loop [loop through all available tags]
+    TagCommand -> Model : hasTag(tag)
+    activate Model
+    TagCommand <-- Model
+    deactivate Model
+    group #Cyan opt [hasTag is false]
+        TagCommand -> Model : add(tag)
+    end
+    deactivate Model
+end
+
+
+
+<-- TagCommand : commandResult
+deactivate TagCommand
+
+
 @enduml
