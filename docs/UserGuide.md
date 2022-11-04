@@ -45,7 +45,7 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
 
 3. More to be added
 
-4. As you have have noticed, YellowBook's commands are mnemonically named. A [Command Summary](#Command summary) with these helpful tips can be found below.
+4. As you have have noticed, YellowBook's commands are mnemonically named. A [Command Summary](#command-summary) with these helpful tips can be found below.
 
 5. Now that you are ready, feel free to add your own contacts and tasks to YellowBook!
 
@@ -87,25 +87,25 @@ Shows a window with a link to this user guide and latest release of YellowBook.
 
 Closes the YellowBook program.
 
-### Undo a command : `undo`
+### Undoing a command : `undo`
 
-Undo the last command.
+Undoes the last command.
 
 Format: `undo`
 
 * For exceptionally large contact/task lists, it may take a few seconds to undo the command.
 
-* Undo is not available for commands that do not modify the contact/task data (e.g. list, help, findC, findT, filterC, filterT etc.)
+* Undo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
 
-### Redo a command : `redo`
+### Redoing a command : `redo`
 
-Redo the last command.
+Redoes the last command.
 
 Format: `redo`
 
 * For exceptionally large contact/task lists, it may take a few seconds to redo the command. 
 
-* Redo is not available for commands that do not modify the contact/task data (e.g. list, help, findC, findT, filterC, filterT etc.)
+* Redo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
 
 ## Section 1: Contacts
 
@@ -153,7 +153,7 @@ Examples:
 
 * `listC` followed by `deleteC 1` deletes the first contact in the address book.
 
-* `findC John` followed by `deleteC 1` deletes the first result of the `findC` command.
+* `findC n/John` followed by `deleteC 1` deletes the first result of the `findC` command.
 
 ### Editing a contact: `editC`
 
@@ -175,7 +175,7 @@ Example:
 
 * `editC 1 n/John p/12345678` edits the first contact’s name to be John and phone number to be 12345678.
 
-### Find a contact: `findC`
+### Finding a contact: `findC`
 
 Finds a contact using one or more information fields (e.g. name, mobile number, email, and/or address)
 
@@ -183,20 +183,20 @@ Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 
 * At least one information field has to be provided.
 
-* The search is case-insensitive, e.g. `dr. doofenshmirtz` will match `Dr. Doofenshmirtz`.
+* The search is case-insensitive, e.g. `dr doofenshmirtz` will match `Dr Doofenshmirtz`.
 
 * The order of the keywords does not matter, e.g. `findC n/John p/91231234` will return the same result as `findC p/91231234 n/John`.
 
 * Only full words will be matched. e.g. `John` will not match `Johnny`.
 
 * Contacts matching at least one keyword will be returned. e.g. `n/Perry Dr.`
-  will match contacts with name `Perry the Platypus` and `Dr. Doofenshmirtz`.
+  will match contacts with name `Perry the Platypus` and `Dr Doofenshmirtz`.
 
 Example:
 
-* `findC n/john p/81113210 e/john@gmail.com a/123 kent ridge road` will return a contact whose name contains the word `john`, phone number `81113210`, email `john@gmail.com`, and address `123 kent ridge road`.
+* `findC n/john p/81113210 e/john@gmail.com a/123` will return a contact whose name contains the word `john`, phone number `81113210`, email `john@gmail.com`, and address containing `123`.
 
-* `findC n/flynn p/91231234 e/flynn@gmail.com` will return `Candace Flynn` and `Phineas Flynn`, provided they have the same phone and email.
+* `findC n/flynn` will return `Candace Flynn` and `Phineas Flynn`.
 
 
 ### Filtering contacts by label: `filterC`
@@ -243,13 +243,13 @@ These commands allow you to maintain a handy to-do list so you can prioritise wh
 Monitor your progress, track deadlines and archive tasks with a few simple commands.
 Leave your task management to YellowBook, so you can do your best work.
 
-### Listing all tasks: `listT`
+### Listing all non-archived tasks: `listT`
 
 Shows all (non-archived) tasks stored in the task list.
 
 Format: `listT`
 
-### Listing all tasks: `listAT`
+### Listing all archived tasks: `listAT`
 
 Shows all archived tasks stored in the task list.
 
@@ -343,7 +343,7 @@ Examples:
 * `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
 * `findT book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
 
-### Find a task: `findT`
+### Finding a task: `findT`
 
 Finds a task using one or more information fields (e.g. description, and/or deadline)
 
@@ -363,8 +363,8 @@ Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)] [s/STATUS (complete / i
 
 Example:
 
-* `findT d/cs2103t D/25-12-2022` will return task(s) with description containing `cs2103t` and deadline `25th December 2022`.
-* 
+* `findT d/cs2103t D/25-12-2022` will return tasks with descriptions containing `cs2103t` and deadline `25th December 2022`.
+
 * `findT s/incomplete` will return task(s) that are not complete.
 
 ### Filtering tasks by label: `filterT`
@@ -390,13 +390,16 @@ Example:
 
 List tasks in YellowBook with deadlines up to and including the specified date.
 
-Both completed and incomplete tasks are listed.
-Task with deadline that are already past are also listed.
+Format: `remindT DEADLINE`
+
+* Both completed and incomplete tasks are listed.
+
+* Task with deadlines that are already past are also listed.
+
+* Tasks that are complete are also listed so users are reminded to delete them.
 
 The following scenarios should not happen for your command to run successfully:
 - The deadline of the task is not in dd-mm-yyyy format.
-
-Format: `remindT DEADLINE`
 
 Example:
 
@@ -453,7 +456,7 @@ Archives a task in the task list, removing it from main task list.
 
 Format: `archiveT INDEX`
 
-### Archiving a task: `unarchiveT`
+### Unarchiving a task: `unarchiveT`
 
 Unarchives a task in the task list, adding it to the main task list.
 
@@ -486,6 +489,8 @@ However, only a maximum of one contact and one task can be labelled within the s
 addL is case-sensitive! `cs2103t` and `CS2103T` will be added as separate labels in the tag list.
 </div>
 
+Labels must be alphanumeric and one word long.
+
 The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist
 - Contact/task already has the required label
@@ -513,6 +518,9 @@ However, only a maximum of one contact and one task can be edited within the sam
 deleteL is case-sensitive! If you try to delete `cs2103t` but type `CS2103T` in your command, 
 you will encounter an error as YellowBook will not find a match.
 </div>
+
+Labels must be alphanumeric and one word long.
+
 
 The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist

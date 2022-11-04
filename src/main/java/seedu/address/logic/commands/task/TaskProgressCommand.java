@@ -15,7 +15,7 @@ public class TaskProgressCommand extends Command {
     public static final String COMMAND_WORD = "progressT";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Shows percentage completion progress for tasks with any of the specified tags.\n"
+            + ": Shows percentage completion progress for tasks with any of the specified labels.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " CS2101 CS2103T";
 
@@ -23,7 +23,12 @@ public class TaskProgressCommand extends Command {
 
     private final TaskContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates an TaskProgressCommand to with the specified {@code TaskContainsKeywordsPredicate}
+     * @param predicate
+     */
     public TaskProgressCommand(TaskContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 
