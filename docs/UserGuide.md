@@ -134,12 +134,9 @@ Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d
   The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index. This command is invalid if `INDEX` is a non-positive integer.
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
-<<<<<<< HEAD
 - Date format accepted is: `dd/mm/yyyy`.
 - The genders accepted by the application are: `M`/`m`/`Male`/`male`
 for male, `F`/`f`/`Female`/`female` for female.
-=======
->>>>>>> master
 
 Examples:
 *  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
