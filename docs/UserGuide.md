@@ -9,7 +9,7 @@ Tired of configuring multiple ugly spreadsheets on Microsoft Excel or Google She
 
 Or are you perhaps finding it increasingly difficult to manage pen and paper records as your business grows?
 
-Then **TrackO** might just be **the** solution for you! With TrackO, you no longer need to worry about data inconsistencies 
+Then **TrackO** might just be _**the**_ solution for you! With **TrackO**, you no longer need to worry about inconsistencies 
 when you update your data across multiple spreadsheets or paper records. No more complicated formulas to link data 
 between spreadsheets. No need for inefficient paper records that pile up in your storeroom.
 
@@ -22,28 +22,28 @@ If you are looking to help develop this project, take a look at our [Developer G
 
 * [Introduction](#introduction)
 * [Layout](#layout)
-* [Using this guide](#using-this-guide)
-* [Command guide](#command-guide)
-* [Quick start](#quick-start)
+* [Using This Guide](#using-this-guide)
+* [Command Guide](#command-guide)
+* [Quick Start](#quick-start)
 * [Tutorial](#tutorial)
 * [Features](#features)
-  * [Inventory management](#uinventory-managementu)
-    * [Adding an inventory item: `addi`](#adding-an-inventory-item-addi)
-    * [Listing all inventory items: `listi`](#listing-all-inventory-items-listi)
-    * [Finding an inventory item: `findi`](#finding-an-inventory-item-findi)
-    * [Deleting an inventory item: `deletei`](#deleting-an-inventory-item-deletei)
-    * [Editing an inventory item: `editi`](#editing-an-inventory-item-editi)
-  * [Order management](#uorder-managementu)
-    * [Adding an order: `addo`](#adding-an-order-addo)
-    * [Listing all orders: `listo`](#listing-all-orders-listo)
-    * [Finding order(s): `findo`](#finding-orders-findo)
-    * [Sorting orders by time created: `sorto`](#sorting-orders-by-time-created-sorto)
-    * [Deleting an order: `deleto`](#deleting-an-order-deleteo)
-    * [Editing an order: `edito`](#editing-an-order-edito)
-    * [Marking an order as paid/delivered: `marko`](#marking-an-order-as-paiddelivered-marko)
-  * [General features](#ugeneral-featuresu)
-    * [Getting help: `help`](#getting-help-help)
-    * [Clearing data in TrackO: `clear`](#clearing-all-data-in-tracko-clear)
+  * [Inventory Management](#uinventory-managementu)
+    * [Adding an Inventory Item: `addi`](#adding-an-inventory-item-addi)
+    * [Listing all Inventory Items: `listi`](#listing-all-inventory-items-listi)
+    * [Finding an Inventory Item: `findi`](#finding-an-inventory-item-findi)
+    * [Deleting an Inventory Item: `deletei`](#deleting-an-inventory-item-deletei)
+    * [Editing an Inventory Item: `editi`](#editing-an-inventory-item-editi)
+  * [Order Management](#uorder-managementu)
+    * [Adding an Order: `addo`](#adding-an-order-addo)
+    * [Listing all Orders: `listo`](#listing-all-orders-listo)
+    * [Finding Order(s): `findo`](#finding-orders-findo)
+    * [Sorting Orders by Time Created: `sorto`](#sorting-orders-by-time-created-sorto)
+    * [Deleting an Order: `deleto`](#deleting-an-order-deleteo)
+    * [Editing an Order: `edito`](#editing-an-order-edito)
+    * [Marking an Order as Paid/Delivered: `marko`](#marking-an-order-as-paiddelivered-marko)
+  * [General Features](#ugeneral-featuresu)
+    * [Getting Help: `help`](#getting-help-help)
+    * [Clearing Data in TrackO: `clear`](#clearing-all-data-in-tracko-clear)
     * [Exiting TrackO: `exit`](#exiting-tracko--exit)
 * [Command Summary](#command-summary)
 * [Glossary](#glossary)
@@ -76,27 +76,24 @@ Interested? Jump straight to our [Quick Start section](#quick-start) to get star
 
 ---
 ## Using this guide
-Feeling overwhelmed already? Fret not because we're here to help you integrate this application seamlessly into your 
-business operations.
+Feeling overwhelmed already? Fret not because this user guide is meant to help you integrate this application seamlessly
+into your business operations.
 
-As a first time user, we understand that it might be daunting to start up the application without sufficient instructions. So, we have prepared
-a [Quick start](#quick-start) section in this guide to equip you with the knowledge to start up TrackO for your business.
+As a first time user, we understand that it might be daunting to start up the application without sufficient instructions. 
+We have prepared a [Quick Start](#quick-start) section in this guide to equip you with the knowledge to start up TrackO for your business.
 
-Next, after starting up TrackO, you might be confused by the unfamiliar layout. As such, we have prepared a breakdown of the **layout** which
-you can find [here](#layout). This section of the guide will help you understand the different sections of the [GUI](#gui) as well as 
-their roles in this application. 
+The [Layout](#layout) will also help you understand the different sections of TrackO's [GUI](#gui) and their functionalities. 
 
-After familiarising yourself with the [GUI](#gui), we have included a [tutorial section](#tutorial) where you can use some 
-example commands to play around with some of our sample data and get to know TrackO's features a bit better. 
+After familiarising yourself with the [GUI](#gui), head over to the [Tutorial](#tutorial) section where you can learn
+some of the commands by playing with our sample data.
 
-Following that, as our application uses commands which require specific inputs. To help you out with learning the command formats used
-in this guide, you can head over to the [Command Guide](#command-guide) section of this guide. This will come in handy for you when 
-you're ready to get some in-depth exposure to our [features](#features). Because our applications helps your business handle 
-orders and inventory, we have split our commands into 2 sections. You can click [here](#uorder-managementu) to find commands 
-related to **managing orders** and click [here](#uinventory-managementu) to find commands which help with **inventory management**. For more **general features**, 
-you can go to [this section](#ugeneral-featuresu) as well!
+To know more about the general formats of the commands in the application, you can proceed to the [Command Guide](#command-guide).
+This will get you ready for the in-depth explanation of each command's format and use cases which can be found in the [Features](#features) section.
+The features are organised into the core component of the application that they belong to, 
+[order management](#uorder-managementu) and [inventory management](#uinventory-managementu). You can also find [general features](#ugeneral-featuresu)
+that do not belong to those categories.
 
-Lastly, we have included a handy [command summary](#command-summary) for when you're proficient at using TrackO and just want to take a quick look
+Lastly, we have included a handy [Command Summary](#command-summary) section for when you're proficient at using TrackO and just want to take a quick look
 at any commands you need!
 
 p.s. Not too sure about some technical terms in this guide? Check out our [glossary](#glossary) to get a better understand all the technical jargon! 
@@ -114,13 +111,13 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
    data.<br>
    ![Ui](images/Ui.png)
 
-5. To start out with some commands, head over to the [tutorial section](#tutorial) of this user guide!
+5. Head over to the [tutorial](#tutorial) section for a small walkthrough of some of TrackO's commands and use cases.
 
-6. If you'd like to skip the tutorial, head over to the [features section](#features) below for some of the 
-more technical specifications of each command.
+6. If you'd like to skip the tutorial, head over to the [features](#features) section for some of the more technical 
+in-depth explanation of each command's format an use case.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Want start using TrackO from scratch? Enter the [`clear`](##clearing-all-data-in-tracko-clear) command to remove all application data.
+Want to start using TrackO from scratch? Enter the [`clear`](##clearing-all-data-in-tracko-clear) command to remove the loaded sample data.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -134,28 +131,28 @@ TrackO's functionalities!
 
 1. We start off by getting to know how to manage your **inventory**!
    1. Adding an item: `addi`
-       * If your small business has `350` units of the new item, `Teddy bear keychain` currently in your physical inventory.
-         It costs `$0.89` to make these keychains and you will be selling them at `$3.50` each.
-       * You can add these items to TrackO, with the following command:
+       * Suppose you have `350` units of the item `Teddy bear keychain` currently in your physical inventory.
+         Each unit costs `$0.89` to produce and you will be selling them at `$3.50` each.
+       * You can add this as an inventory item to TrackO by entering the following command into the [command box](#layout):
          `addi i/Teddy bear keychains q/350 d/Great for kids! t/New sp/3.50 cp/0.89`
-       * This command also helps to add a short description to the item and tags it as `New`.
+       * This command also adds a short description, `Great for kids!` to the item and tags it as `New`.
 
 You should see this item appear in TrackO at index 5 as shown below:
    <br/>
-2. Next, we move on to order management:
+2. Next, we move on to managing your **orders**!
     1. Adding an order: `addo`
-      * If you have a customer named `Jonathan Chee` living at `43 Clementi Road, 639433` with an email address `JonChee@gmail.com` and phone number of
-        `96785944`. This customer has ordered 1 `Teddy bear keychain`.
-      * First, enter the customer details into the [command box](link to layout section) using the following command:
+      * Suppose a customer by the name `Jonathan Chee` wants his order delivered to `43 Clementi Road, 639433`. He is 
+        contactable by the email `JonChee@gmail.com` and at the phone number`96785944`. He has also has ordered 1 unit of `Teddy bear keychain`.
+      * Firstly, initiate the `addo` command with the customer details by entering the following command into the [command box](#layout):
         ```
         addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com a/43 Clementi Road, 639433
         ```
    
-      * Next, to add the items ordered by the customer, enter the following command into the [command box](link to layout section):
+      * Next, to add the items ordered by the customer, enter the following command into the [command box](#layout):
         ```
         i/teddy bear keychain q/1
         ```
-      * Lastly, type `done` to finish adding an order to TrackO!
+      * Lastly, enter `done` to finish adding the order to TrackO!
       
    You should see this order appear in TrackO at index 5 as shown below:
 
@@ -164,27 +161,27 @@ If an item is not in your inventory, TrackO does not allow you to add that item 
 </div>
 
    2. Finding order(s): `findo`
-      * Our application allows you to search for orders by different fields (eg. payment status, delievery status, customer details).
-      * To find orders to be delivered to `Clementi` which have not been paid for, enter the following command to the [command box](link to layout section):
+      * Our application allows you to search for orders by different data fields (eg. payment status, delivery status, customer details).
+      * To find unpaid orders to be delivered to `Clementi`, enter the following command into the [command box](#layout):
       ```
       findo -P a/Clementi
       ```
-   You should see these orders appear in the [order list](link to layout).
+   You should see these orders appear in the [order list](#layout).
 
    3. Listing order(s): `listo`
        * To view all your orders again, enter `listo`.
 
-   You should see these orders appear in the [order list](link to layout).
+   You should see these orders appear in the [order list](#layout).
 
 Now that you're done trying out some commands, you can enter `exit` to leave the application. We hope that this short tutorial was helpful! 
-To check out more commands, you can head over to our [features section](#features).
+To check out more commands, you can head over to our [Features](#features) section.
 
 -------
 ## Command guide
 This section of the user guide helps to break down the formatting used for commands in this user guide.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addo n/NAME`, `NAME` is a parameter which can be used as `addo n/John Doe`.
+  e.g. in `addo n/NAME`, `NAME` is a parameter which can be used as `addo n/John Doe ...`.
 
 * Parameters in square brackets `[]` are optional. <br>
   e.g. in `findo KEYWORD [MORE_KEYWORDS]`, only the first `KEYWORD` is compulsory. The rest are optional.
@@ -204,7 +201,7 @@ This section of the user guide helps to break down the formatting used for comma
 --------------------------------------------------------------------------------------------------------------------
 ## Features
 
-This section contains some technical specifications of how to use the commands in TrackO.
+This section contains information on each command's format and its use cases.
 
 ### <u>**Inventory management**</u>
 ### Adding an inventory item: `addi`
