@@ -297,8 +297,10 @@ Also, the appointment details will be added to the calendar.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 <br>
-* DATE_AND_TIME has the format `d-M-uuuu HH:mm` (e.g "01-03-2022 18:00" represents 1st March 2022, 6:00 PM)
 
+* DATE_AND_TIME has the format `dd-MM-yyyy HH:mm` (e.g "01-03-2022 18:00" represents 1st March 2022, 6:00 PM)
+* Month, Day, Hour, Minutes can only take in a 2 digit number
+* Year can only take in a 4 digit number
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed.
