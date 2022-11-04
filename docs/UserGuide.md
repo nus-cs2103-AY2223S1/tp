@@ -93,7 +93,7 @@ This application UI is split into `5 sections`.
 * `List Of Clients`: Every client that you have will appear here
 * `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
 * `Remarks Of Specified Client`: Remarks of specified client will appear here
-* `Net amount` : This section displays the net amount transacted with all clients currently displayed in the `List Of Clients` panel on the left.
+* `Net amount` : This section displays the net amount transacted with all clients currently displayed in the `List Of Clients` panel on the left. Currently, only **dollars** is supported in our application. More currency will be added in the future.
 
 [Back to Table of Contents](#table-of-contents)
 
