@@ -16,13 +16,14 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.TaskDeadline;
-import seedu.address.model.task.TaskName;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.PriorityEnum;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskCategoryType;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskName;
+
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -55,41 +56,41 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-                new Task(new TaskName("Create UIUX Design"),
-                        new Description("Use FIGMA"),
-                        new Priority(PriorityEnum.getFromString("medium").get()),
-                        new TaskCategory(TaskCategoryType.getFromString("uiux").get()),
-                        new TaskDeadline(LocalDate.parse("2023-01-02")),
-                        getSamplePersons()[0],
-                        false),
-                new Task(new TaskName("Build PostgreSQL Database"),
-                        new Description("Use google cloud database to host the database"),
-                        new Priority(PriorityEnum.getFromString("high").get()),
-                        new TaskCategory(TaskCategoryType.getFromString("database").get()),
-                        new TaskDeadline(LocalDate.parse("2023-01-02")),
-                        getSamplePersons()[1],
-                        false),
-                new Task(new TaskName("Implement Backend API"),
-                        new Description("Write API endpoints using NodeJS"),
-                        new Priority(PriorityEnum.getFromString("medium").get()),
-                        new TaskCategory(TaskCategoryType.getFromString("uiux").get()),
-                        new TaskDeadline(LocalDate.parse("2023-01-03")),
-                        getSamplePersons()[2],
-                        false),
-                new Task(new TaskName("Implement Frontend"),
-                        new Description("Use ReactJS to create a static web page"),
-                        new Priority(PriorityEnum.getFromString("medium").get()),
-                        new TaskCategory(TaskCategoryType.getFromString("frontend").get()),
-                        new TaskDeadline(LocalDate.parse("2023-01-03")),
-                        getSamplePersons()[3],
-                        false),
-                new Task(new TaskName("Create Presentation"),
-                        new Description("Draft a 3-minutes elevator pitch"),
-                        new Priority(PriorityEnum.getFromString("low").get()),
-                        new TaskCategory(TaskCategoryType.getFromString("presentation").get()),
-                        new TaskDeadline(LocalDate.parse("2023-01-04")),
-                        getSamplePersons()[4],
-                        false),
+            new Task(new TaskName("Create UIUX Design"),
+                    new Description("Use FIGMA"),
+                    new Priority(PriorityEnum.getFromString("medium").get()),
+                    new TaskCategory(TaskCategoryType.getFromString("uiux").get()),
+                    new TaskDeadline(LocalDate.parse("2023-01-02")),
+                    getSamplePersons()[0],
+                    false),
+            new Task(new TaskName("Build PostgreSQL Database"),
+                    new Description("Use google cloud database to host the database"),
+                    new Priority(PriorityEnum.getFromString("high").get()),
+                    new TaskCategory(TaskCategoryType.getFromString("database").get()),
+                    new TaskDeadline(LocalDate.parse("2023-01-02")),
+                    getSamplePersons()[1],
+                    false),
+            new Task(new TaskName("Implement Backend API"),
+                    new Description("Write API endpoints using NodeJS"),
+                    new Priority(PriorityEnum.getFromString("medium").get()),
+                    new TaskCategory(TaskCategoryType.getFromString("uiux").get()),
+                    new TaskDeadline(LocalDate.parse("2023-01-03")),
+                    getSamplePersons()[2],
+                    false),
+            new Task(new TaskName("Implement Frontend"),
+                    new Description("Use ReactJS to create a static web page"),
+                    new Priority(PriorityEnum.getFromString("medium").get()),
+                    new TaskCategory(TaskCategoryType.getFromString("frontend").get()),
+                    new TaskDeadline(LocalDate.parse("2023-01-03")),
+                    getSamplePersons()[3],
+                    false),
+            new Task(new TaskName("Create Presentation"),
+                    new Description("Draft a 3-minutes elevator pitch"),
+                    new Priority(PriorityEnum.getFromString("low").get()),
+                    new TaskCategory(TaskCategoryType.getFromString("presentation").get()),
+                    new TaskDeadline(LocalDate.parse("2023-01-04")),
+                    getSamplePersons()[4],
+                    false),
         };
     }
 
