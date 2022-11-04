@@ -65,3 +65,4 @@ destroy AddScheduleCommand
 deactivate LogicManager
 
 @enduml
+
