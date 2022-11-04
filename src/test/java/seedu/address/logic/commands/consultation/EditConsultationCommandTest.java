@@ -4,16 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CONSULTATION1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CONSULTATION2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CONSULT1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CONSULT1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_CONSULT1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CONSULT1_START;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CONSULT1_END;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CONSULT1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CONSULT1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CONSULT1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CONSULT1_END;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CONSULT1_START;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_CONSULT1;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalConsultations.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.*;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONSULTATION;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CONSULTATION;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,8 +26,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.consultation.Consultation;
-import seedu.address.testutil.EditConsultationDescriptorBuilder;
 import seedu.address.testutil.ConsultationBuilder;
+import seedu.address.testutil.EditConsultationDescriptorBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditConsultationCommand.
  */
@@ -36,10 +37,13 @@ public class EditConsultationCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Consultation editedConsultation = new ConsultationBuilder().build();
-        EditConsultationCommand.EditConsultDescriptor descriptor = new EditConsultationDescriptorBuilder(editedConsultation).build();
-        EditConsultationCommand editConsultationCommand = new EditConsultationCommand(INDEX_FIRST_CONSULTATION, descriptor);
+        EditConsultationCommand.EditConsultDescriptor descriptor =
+                new EditConsultationDescriptorBuilder(editedConsultation).build();
+        EditConsultationCommand editConsultationCommand =
+                new EditConsultationCommand(INDEX_FIRST_CONSULTATION, descriptor);
 
-        String expectedMessage = String.format(EditConsultationCommand.MESSAGE_EDIT_CONSULTATION_SUCCESS, editedConsultation);
+        String expectedMessage =
+                String.format(EditConsultationCommand.MESSAGE_EDIT_CONSULTATION_SUCCESS, editedConsultation);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setConsultation(model.getFilteredConsultationList().get(0), editedConsultation);
@@ -52,24 +56,27 @@ public class EditConsultationCommandTest {
         Index indexLastConsultation = Index.fromOneBased(model.getFilteredConsultationList().size());
         Consultation lastConsultation = model.getFilteredConsultationList().get(indexLastConsultation.getZeroBased());
 
-        ConsultationBuilder ConsultationInList = new ConsultationBuilder(lastConsultation);
-        Consultation editedConsultation = ConsultationInList.withName(VALID_NAME_CONSULT1)
+        ConsultationBuilder consultationInList = new ConsultationBuilder(lastConsultation);
+        Consultation editedConsultation = consultationInList.withName(VALID_NAME_CONSULT1)
                 .withModule(VALID_MODULE_CONSULT1)
                 .withVenue(VALID_VENUE_CONSULT1)
                 .withTimeslot(VALID_TIMESLOT_CONSULT1_START, VALID_TIMESLOT_CONSULT1_END)
                 .withDescription(VALID_DESCRIPTION_CONSULT1)
                 .build();
 
-        EditConsultationCommand.EditConsultDescriptor descriptor = new EditConsultationDescriptorBuilder().withName(VALID_NAME_CONSULT1)
+        EditConsultationCommand.EditConsultDescriptor descriptor =
+                new EditConsultationDescriptorBuilder().withName(VALID_NAME_CONSULT1)
                 .withModuleCode(VALID_MODULE_CONSULT1)
                 .withVenue(VALID_VENUE_CONSULT1)
                 .withTimeSlot(VALID_TIMESLOT_CONSULT1_START, VALID_TIMESLOT_CONSULT1_END)
                 .withDescription(VALID_DESCRIPTION_CONSULT1)
                 .build();
 
-        EditConsultationCommand editConsultationCommand = new EditConsultationCommand(indexLastConsultation, descriptor);
+        EditConsultationCommand editConsultationCommand =
+                new EditConsultationCommand(indexLastConsultation, descriptor);
 
-        String expectedMessage = String.format(EditConsultationCommand.MESSAGE_EDIT_CONSULTATION_SUCCESS, editedConsultation);
+        String expectedMessage =
+                String.format(EditConsultationCommand.MESSAGE_EDIT_CONSULTATION_SUCCESS, editedConsultation);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setConsultation(lastConsultation, editedConsultation);

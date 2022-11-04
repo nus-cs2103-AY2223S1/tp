@@ -2,19 +2,26 @@ package seedu.address.logic.commands.consultation;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CONSULTATION1;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CONSULTATION2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CONSULT2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CONSULT2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CONSULT2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CONSULT2_END;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CONSULT2_START;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_CONSULT2;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.EditConsultationDescriptorBuilder;
 
 public class EditConsultDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditConsultationCommand.EditConsultDescriptor descriptorWithSameValues = 
+        EditConsultationCommand.EditConsultDescriptor descriptorWithSameValues =
                 new EditConsultationCommand.EditConsultDescriptor(DESC_CONSULTATION1);
-        
+
         assertTrue(DESC_CONSULTATION1.equals(descriptorWithSameValues));
 
         // same object -> returns true

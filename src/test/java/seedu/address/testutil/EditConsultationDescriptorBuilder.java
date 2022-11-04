@@ -25,13 +25,13 @@ public class EditConsultationDescriptorBuilder {
     /**
      * Returns an {@code EditConsultationDescriptor} with fields containing {@code Consultation}'s details
      */
-    public EditConsultationDescriptorBuilder(Consultation Consultation) {
+    public EditConsultationDescriptorBuilder(Consultation consultation) {
         descriptor = new EditConsultDescriptor();
-        descriptor.setName(Consultation.getName());
-        descriptor.setModule(Consultation.getModule());
-        descriptor.setVenue(Consultation.getVenue());
-        descriptor.setTimeSlot(Consultation.getTimeslot());
-        descriptor.setDescription(Consultation.getDescription());
+        descriptor.setName(consultation.getName());
+        descriptor.setModule(consultation.getModule());
+        descriptor.setVenue(consultation.getVenue());
+        descriptor.setTimeSlot(consultation.getTimeslot());
+        descriptor.setDescription(consultation.getDescription());
     }
 
     /**
