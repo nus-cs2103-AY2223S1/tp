@@ -38,7 +38,7 @@ to be added
 
 4. Double-click the file to start the app. The default GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/default_gui.png)
-
+_Figure 1_
 5. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
@@ -64,7 +64,21 @@ to be added
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. HobbyList User Interface
-to be added
+
+Refer to Figure 2 below to get yourself familiar with the user interface! 
+
+![HobbyList UI](images/annotated_ui.jpg)
+_Figure 2_
+
+| Section            | Description                                                                                                                                    |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| Toolbar            | Provides functionality for you to exit the application, rename commands, access the help page and change the appearance of the user interface. |
+| Command Input Box  | This is where you can type and perform the different commands available.                                                                       |
+| Command Result Box | This box displays information related to the commands you execute.                                                                             |
+| List of Activites  | This section displays the activity list and can display a subset of activities depending on the command you perform.                           |
+| Activity Details   | This box displays an activity's information after you perform the `select` command.                                                            |
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -110,6 +124,9 @@ Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
 Examples:
 * `add n/42km run d/NUS Run event t/sport`
 * `add n/Badminton d/play badminton t/sport entertainment_2 date/2022-10-19 s/completed`
+
+![AddActivityExample](images/add_command_example.png)
+_Figure 3_
 
 ### 5.2 Editing an activity : `edit`
 
@@ -171,6 +188,11 @@ Example:
 * `rate 1 r/2`
 * `rate 2 r/4 re/Interesting movie`
 
+![BeforeRateActivity](images/rate_command_before.png)
+_Figure 4_
+
+![AfterRateActivity](images/rate_command_after.png)
+_Figure 5_
 
 ### 5.6 Selecting an activity: `select`
 
@@ -182,6 +204,9 @@ Format: `select INDEX`
 * Constraints for `INDEX` is similar to those above in **Rating an activity**
 
 Example: `select 1`
+
+![selectActivity](images/select_command_example.png)
+_Figure 6_
 
 ### 5.7 Finding activities: `find`
 
@@ -223,6 +248,9 @@ Format: `find rate/VALUE`
 
 Example: `find rate/3`
 
+![FindActivityExample](images/find_command_example.png)
+_Figure 7_
+
 ### 5.8 Finding activities with tags : `findTag`
 
 Shows a list of all hobby activities whose tags match the one specified in the command.
@@ -257,6 +285,12 @@ Format: `r/above VALUE`
 * `VALUE` only accepts integer numbers from 1 to 5 (inclusive).
 
 Example: `r/above 1`
+
+![BeforeRateAbove](images/rateabove_before.png)
+_Figure 8_
+
+![AfterRateAbove](images/rateabove_after.png)
+_Figure 9_
 
 ### 5.11 Getting help : `help`
 
