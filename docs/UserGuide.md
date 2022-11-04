@@ -68,6 +68,8 @@ email address, home address, remarks and tags.
 
 * A patient can be added with multiple tags.
 
+* The patient list, appointment list and bill list will show all data after adding.
+
 #### Command word
 
 `addpatient`, `ap`
@@ -120,6 +122,8 @@ slot, and doctor.
 * Doctor and medical test are case-sensitive.
 
 * The input of four parameters must be different with the combination in other appointments, taking into consideration that doctor and medical test are case-sensitive, while patient name is case-insensitive.
+
+* The patient list, appointment list and bill list will show all data after adding.
 
 * The onus is on the user to check and ensure the following before adding an appointment:
   * The appointment times for different patients with the same doctor do not clash with one another.
@@ -175,7 +179,7 @@ Adds a bill attached to an appointment with input information including amount a
 
 * A bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
 
-* The onus is on the user to check that the bill date entered is the same as the appointment date or later.
+* The patient list, appointment list and bill list will show all data after adding.
 
 #### Command word
 
@@ -231,10 +235,10 @@ Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [
 Examples:
 * `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be
    `91234567` and `johndoe@example.com` respectively.
-<img src = "images/editpatient.png" width="800px" height ="400px">
+<img src = "images/ug/editcommand/editpatient.png" width="800px" height ="400px">
 
 * `editpatient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
-<img src = "images/editpatient2.png" width="800px" height ="400px">
+<img src = "images/ug/editcommand/editpatient2.png" width="800px" height ="400px">
 
 ### 1.2.2 Editing an appointment of a patient
 
@@ -253,7 +257,7 @@ Format: `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:m
 Examples:
 * `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
    and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
-<img src = "images/editappointment.png" width="800px" height ="400px">
+<img src = "images/ug/editcommand/editappointment.png" width="800px" height ="400px">
 
 ### 1.2.3 Editing a bill of an appointment
 
@@ -269,7 +273,7 @@ Format: `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill d
 
 Examples:
 * `editbill 1 a/100` Edits the amount of the 1st bill to be `100`.
-<img src="images/editbill.png" width="800px" height ="400px">
+<img src="images/ug/editcommand/editbill.png" width="800px" height ="400px">
 
 * `editbill 1 d/2020-10-10` Edits the bill date of the 1st bill to be `2020-10-10`.
 <img src="images/editbill2.png" width="800px" height ="400px">
@@ -506,10 +510,10 @@ Example:
 * ```setpaid 1``` sets the first bill in the displayed bill list as paid, in this case, `Bernice Yu`'s bill.
 
 Before:
-<img src="images/setpaidcommand.png" width="800px" height ="500px">
+<img src="images/ug/setpaidunpaidcommand/setpaidcommand.png" width="800px" height ="500px">
 
 After:
-<img src="images/setpaidcommandafter.png" width="800px" height ="500px">
+<img src="images/ug/setpaidunpaidcommand/setpaidcommandafter.png" width="800px" height ="500px">
 
 ### 1.6.2 Setting Bill As Unpaid `setunpaid`, `sup`
 
@@ -526,10 +530,10 @@ Example:
 * ```setunpaid 1``` sets the first bill in the displayed bill list as unpaid, in this case, `Bernice Yu`'s bill.
 
 Before:
-<img src="images/setunpaidcommand.png" width="800px" height ="500px">
+<img src="images/ug/setpaidunpaidcommand/setunpaidcommand.png" width="800px" height ="500px">
 
 After:
-<img src="images/setunpaidcommandafter.png" width="800px" height ="500px">
+<img src="images/ug/setpaidunpaidcommand/setunpaidcommandafter.png" width="800px" height ="500px">
 
 ## 1.7 List `list`, `ls`
 
@@ -564,7 +568,7 @@ Format:
 
 Examples:
 `deletepatient 2` deletes patient Bernice Yu and all their related appointments and bills.
-<img src="images/dp.png" width="800px" height ="400px">
+<img src="images/ug/deletecommand/dp.png" width="800px" height ="400px">
 
 ### 1.8.2 Deleting an appointment of a patient `deleteappointment` `da`
 
@@ -584,7 +588,7 @@ Format:
 Examples:
 * `deleteappointment 2` deletes Charlotte Oliveiro's appointment with Dr. Prabhu on 2022-10-21 08:30 for
   knee exam.
-  <img src="images/da.png" width="800px" height ="400px">
+  <img src="images/ug/deletecommand/da.png" width="800px" height ="400px">
 
 ### 1.8.3 Deleting a bill of an appointment `deletebill` `db`
 
@@ -602,7 +606,7 @@ Format:
 
 Examples:
 `deletebill 1` deletes Bernice's bill for her X-Ray appointment
-<img src="images/db.png" width="800px" height ="400px">
+<img src="images/ug/deletecommand/db.png" width="800px" height ="400px">
 
 ## 1.9 Undo `undo`
 
