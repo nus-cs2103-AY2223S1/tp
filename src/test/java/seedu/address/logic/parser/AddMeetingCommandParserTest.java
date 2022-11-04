@@ -104,14 +104,14 @@ public class AddMeetingCommandParserTest {
                         + " " + PREFIX_END_TIME + VALID_END_TIME_MEETING1
                         + INVALID_DATE_DESC
                         + " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MEETING1,
-                MeetingDate.MESSAGE_FORMAT_CONSTRAINTS);
+                MeetingDate.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only second invalid value reported
         assertParseFailure(parser, " " + PREFIX_INDEX + "1" + INVALID_START_TIME_DESC
                         + " " + PREFIX_END_TIME + VALID_END_TIME_MEETING1
                         + INVALID_DATE_DESC
                         + " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MEETING1,
-                MeetingDate.MESSAGE_FORMAT_CONSTRAINTS);
+                MeetingDate.MESSAGE_CONSTRAINTS);
 
     }
 }
