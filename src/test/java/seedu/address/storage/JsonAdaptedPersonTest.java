@@ -7,6 +7,7 @@ import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORM
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -37,6 +40,8 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedPersonGroup> VALID_PERSONGROUPS = BENSON.getPersonGroups().stream()
             .map(JsonAdaptedPersonGroup::new)
             .collect(Collectors.toList());
+    private static final Group group = new Group(new GroupName("GroupName"), new HashSet<>());
+    private static final JsonAdaptedGroup VALID_GROUP = new JsonAdaptedGroup(group);
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {

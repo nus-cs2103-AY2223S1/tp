@@ -11,13 +11,16 @@ import static seedu.address.model.person.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.testutil.PersonBuilder;
+import seedu.address.model.util.SampleDataUtil;
 
 public class UniquePersonListTest {
 
@@ -166,5 +169,16 @@ public class UniquePersonListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void getSampleAddressBook_success() {
+        ReadOnlyAddressBook ab = SampleDataUtil.getSampleAddressBook();
+        assertEquals(ab.getPersonList().get(0).getName(), new Name("Alex Yeoh"));
+    }
+
+    @Test
+    public void iterator_success() {
+        assertTrue(uniquePersonList.iterator() instanceof Iterator);
     }
 }

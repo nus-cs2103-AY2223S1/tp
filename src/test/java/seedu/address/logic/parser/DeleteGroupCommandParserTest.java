@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.DeleteGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupName;
 import seedu.address.model.person.testutil.GroupBuilder;
 
 public class DeleteGroupCommandParserTest {
@@ -34,5 +35,7 @@ public class DeleteGroupCommandParserTest {
     @Test
     public void parse_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> parser.parse("g/"));
+        assertParseFailure(parser, " " + PREFIX_GROUP + "-=/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupName.MESSAGE_CONSTRAINTS));
     }
 }

@@ -12,6 +12,7 @@ import static seedu.address.model.person.testutil.TypicalPersons.FIONA;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,7 @@ public class UniqueGroupListTest {
 
     private final UniqueGroupList uniqueGroupList = new UniqueGroupList();
     private final Group group = new GroupBuilder().build();
+    private final Group group1 = new GroupBuilder().withName("group1").build();
 
     @Test
     public void contains_nullGroup_throwsNullPointerException() {
@@ -128,6 +130,13 @@ public class UniqueGroupListTest {
     }
 
     @Test
+    public void setGroups_listWithExistingEditedGroups_throwsDuplicateGroupException() {
+        uniqueGroupList.add(group);
+        uniqueGroupList.add(group1);
+        assertThrows(DuplicateGroupException.class, () -> uniqueGroupList.setGroup(group, group1));
+    }
+
+    @Test
     public void setGroups_listWithDuplicateGroups_throwsDuplicateGroupException() {
         List<Group> listWithDuplicateGroups = Arrays.asList(group, group);
         assertThrows(DuplicateGroupException.class, () -> uniqueGroupList.setGroups(listWithDuplicateGroups));
@@ -137,5 +146,10 @@ public class UniqueGroupListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () ->
                 uniqueGroupList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void iterator_success() {
+        assertTrue(uniqueGroupList.iterator() instanceof Iterator);
     }
 }

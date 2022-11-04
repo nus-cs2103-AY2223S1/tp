@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_GROUP;
 import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_TASK;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_WORKLOAD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
@@ -29,6 +30,10 @@ public class AssignTaskAllCommandParserTest {
     @Test
     public void parse_invalidInput_throwsParseException() {
 
+        // no input
+        assertParseFailure(parser, " ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
+
         // no group prefix
         assertParseFailure(parser, " " + "Group" + " "
                         + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
@@ -38,6 +43,12 @@ public class AssignTaskAllCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
                 + PREFIX_WORKLOAD + "low",
                 String.format(MESSAGE_NO_PREFIX_TASK, AssignTaskAllCommand.MESSAGE_USAGE));
+
+        // no workload
+        assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
+                        + PREFIX_TASK + "Task" + " "
+                        + PREFIX_DEADLINE + "2022-02-28",
+                String.format(MESSAGE_NO_PREFIX_WORKLOAD, AssignTaskAllCommand.MESSAGE_USAGE));
 
         // invalid task
         assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
