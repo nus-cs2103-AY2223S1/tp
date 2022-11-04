@@ -33,6 +33,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_MAJOR_1 = "Computer Science";
     private static final String VALID_MAJOR_2 = "Mathematics";
+    private static final String VALID_MAJOR_3 = "Business";
+    private static final String DUPLICATE_MAJOR_1 = "computer science";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -179,6 +181,18 @@ public class ParserUtilTest {
     @Test
     public void parseMajors_collectionWithInvalidMajors_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseMajors(Arrays.asList(VALID_MAJOR_1, INVALID_MAJOR)));
+    }
+
+    @Test
+    public void parseMajors_collectionWithNumOfMajorsExceedingConstraints_throwsParseException() {
+        assertThrows(ParseException.class,
+                () -> ParserUtil.parseMajors(Arrays.asList(VALID_MAJOR_1, VALID_MAJOR_2, VALID_MAJOR_3)));
+    }
+
+    @Test
+    public void parseMajors_collectionWithDuplicateMajors_throwsParseException() {
+        assertThrows(ParseException.class,
+                () -> ParserUtil.parseMajors(Arrays.asList(VALID_MAJOR_1, DUPLICATE_MAJOR_1)));
     }
 
     @Test

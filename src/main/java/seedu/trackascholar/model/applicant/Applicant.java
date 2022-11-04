@@ -223,11 +223,11 @@ public class Applicant {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("\n Phone: ")
-                .append(getPhone())
+                .append(getPhoneNumber())
                 .append("\n Email: ")
-                .append(getEmail())
+                .append(getEmailAddress())
                 .append("\n Scholarship: ")
-                .append(getScholarship())
+                .append(getScholarshipName())
                 .append("\n Application Status: ")
                 .append(getStatusOfApplication());
 
