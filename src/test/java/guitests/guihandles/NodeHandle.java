@@ -8,6 +8,8 @@ import guitests.GuiRobot;
 import guitests.guihandles.exceptions.NodeNotFoundException;
 import javafx.scene.Node;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * Provides access to a node in a JavaFx application for GUI testing purposes.
  */
@@ -42,3 +44,4 @@ public abstract class NodeHandle<T extends Node> {
         guiRobot.clickOn(rootNode);
     }
 }
+// @@author
