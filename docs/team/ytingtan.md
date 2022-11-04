@@ -17,7 +17,7 @@ Given below are my contributions to the project.
       * Some example statuses include: Application Received, OA in Progress, Shortlisted for Interview, Accepted, Rejected
       * It is a compulsory attribute of a candidate, as every candidate has an application status. 
       * The Status attribute can be used in two ways: 
-        1. Adding a new candidate `add n/John Doe p/10384280 e/john@mail.com s/Application Received` adds a new candidate with name `John Doe`, phone number `10384280`, email `john@mail.com`, and status of `Application Received`.
+        1. Adding a new candidate `add n/John Doe p/10384280 e/john@mail.com a/Singapore s/Application Received` adds a new candidate with name `John Doe`, phone number `10384280`, email `john@mail.com`, address `Singapore`, and status of `Application Received`.
         2. Editing the status of a candidate `edit 1 s/OA in Progress` edits `Status` field of the 1st candidate in CLInkedIn to `OA in Progress`.
     * Implementation specifications: 
       * Status is internally implemented as a String. 
@@ -30,7 +30,7 @@ Given below are my contributions to the project.
       * Rating is an integer between 1 and 10 inclusive.
       * It is a non-compulsory attribute of a candidate, as the recruiter might not have enough information to rate the candidate at the point of application. 
       * The Rating attribute can be used in three ways: 
-        1. Adding a new candidate `add n/John Doe p/10384280 e/john@mail.com s/Application Received rate/9` adds a new candidate with name `John Doe`, phone number `10384280`, email `john@mail.com`, status of `Application Received` with rating of `9`.
+        1. Adding a new candidate `add n/John Doe p/10384280 e/john@mail.com a/Singapore s/Application Received rate/9` adds a new candidate with name `John Doe`, phone number `10384280`, email `john@mail.com`, address `Singapore`, status of `Application Received` with rating of `9`.
         2. Editing the rating of a candidate `edit 2 rate/9` edits `Rating` of the 2nd candidate in CLInkedIn to `9`.
         3. Deleting rating of a candidate `deleterate 1` deletes rating of the 1st candidate in CLInkedIn. 
     * Implementation specifications: 
