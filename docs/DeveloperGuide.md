@@ -371,8 +371,6 @@ The following class diagram illustrates how Tag is implemented:
 
 ![TagClassDiagram](images/TagClassDiagram.png)
 
-The `ModelManager` class
-
 Note that a Tag field is optional when adding a Person entry into the AddressBook.
 Hence, the default value for a Tag is an empty String.
 
@@ -428,7 +426,7 @@ The following sequence diagram describes how the deletion of tags is done:
   * Pros:
     * It allows a more concise set of operations.
   * Cons:`
-    - add` and `edit` commands will be slightly messier and may contain ambiguities.
+    - `add` and `edit` commands will be slightly messier and may contain ambiguities.
     * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they wish to add or edit one of the many tags the client possesses.
 
 ### Filter Command
