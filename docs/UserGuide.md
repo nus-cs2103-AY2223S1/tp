@@ -287,10 +287,10 @@ Format:
 * The command words are ``findpatient`` or ``fp``.
 * The prefixes are n/ for Name, p/ for Phone, e/ for Email, a/ for Address, r/ for Remark and t/ for Tags.
 * The filter is case-insensitive. e.g. han will match Han
-* Can filter using full words or partial words. e.g. han will match Hannah
-* Can filter using a combination of inputs for a field, according to the constraints of the field.
+* The user can filter using full words or partial words. e.g. han will match Hannah
+* The user can filter using a combination of inputs for a field, according to the constraints of the field.
   e.g. e/@gmail.com
-* Can filter using one field or multiple fields at once. e.g. n/John p/91234567
+* The user can filter using one field or multiple fields at once. e.g. n/John p/91234567
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
@@ -314,10 +314,10 @@ Format:
 * The command words are `findappointment` or `fa`.
 * The prefixes are n/ for Name, t/ for Medical Test, s/ for Slot and d/ for Doctor.
 * The filter is case-insensitive. e.g. han will match Han
-* Can filter using full words or partial words. e.g. han will match Hannah
-* Can filter using a combination of inputs for a field, according to the constraints of the field.
+* The user can filter using full words or partial words. e.g. han will match Hannah
+* The user can filter using a combination of inputs for a field, according to the constraints of the field.
   e.g. s/x-ray
-* Can filter using one field or multiple fields at once, but each field can only be used once in a single command.
+* The user can filter using one field or multiple fields at once, but each field can only be used once in a single command.
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
@@ -342,10 +342,10 @@ Format:
 * The command words are `findbill` or `fb`.
 * The prefixes are n/ for Name, p/ for Payment Status, d/ for Date and a/ for Amount.
 * The filter is case-insensitive. e.g. han will match Han
-* Can filter using full words or partial words. e.g. han will match Hannah
-* Can filter using a combination of character(s) for a field, according to the constraints of the field.
+* The user Can filter using full words or partial words. e.g. han will match Hannah
+* The user can filter using a combination of character(s) for a field, according to the constraints of the field.
   e.g. a/23.45
-* Can filter using one field or multiple fields at once, but each field can only be used once in a single command.
+* The user can filter using one field or multiple fields at once, but each field can only be used once in a single command.
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 

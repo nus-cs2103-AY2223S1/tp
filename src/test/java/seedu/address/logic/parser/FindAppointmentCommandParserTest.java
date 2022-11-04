@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SLOT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailureForPrefix;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_2;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentsHealthContact;
 
 import java.util.Arrays;
@@ -48,6 +49,12 @@ public class FindAppointmentCommandParserTest {
         expectedModel.updateFilteredAppointmentList(secondCommand.getPredicate());
         assertCommandSuccess(secondCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(APPOINTMENT_1), model.getFilteredAppointmentList());
+
+        //multiple fields
+        FindAppointmentCommand thirdCommand = parser.parse(" n/meier t/kidney s/01- d/milly ");
+        expectedModel.updateFilteredAppointmentList(thirdCommand.getPredicate());
+        assertCommandSuccess(thirdCommand, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(APPOINTMENT_2), model.getFilteredAppointmentList());
     }
 
     @Test

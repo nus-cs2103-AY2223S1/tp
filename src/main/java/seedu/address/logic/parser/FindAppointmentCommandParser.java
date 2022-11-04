@@ -111,7 +111,6 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         return new FindAppointmentCommand(finalNamePredicate, finalTestPredicate, finalSlotPredicate,
                 finalDoctorPredicate);
-
     }
 
     /**
