@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.HistoryCommand.MESSAGE_EMPTY;
 import static seedu.address.logic.commands.HistoryCommand.MESSAGE_SUCCESS;
 
 import org.junit.jupiter.api.Test;
