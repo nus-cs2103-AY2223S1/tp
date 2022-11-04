@@ -147,6 +147,11 @@ Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE
   * The deadline of the corresponding `Stage`
 </div>
 
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Caution**
+* adding DateTime like `d/24-Sep-2022 24:00` will be read as `d/25-Sep-2022 00:00`
+</div>
+
 
 
 Examples:
@@ -206,6 +211,7 @@ Format: `find c/COMPANY | r/ROLE | s/STAGE`
 **:exclamation: Caution**
 * Only full words will be matched e.g. `met` will not match `Meta`.
 * Exactly one attribute can be searched for either Company, Role or Stage.
+* If you input keywords for more than one prefix it will result in an invalid command e.g. `find c/Meta s/Interview` will not be accepted
 </div>
 
 
