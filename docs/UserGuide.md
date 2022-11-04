@@ -805,9 +805,7 @@ To ease interpretation, you may read `showNotes` as _"show the **notes panel**"_
 
 #### Locating persons and notes by tag : `findTag`
 
-Finds People and Notes that have the given tag. Both the People Panel and Notes Panel will be updated synchronously with all entities that match the specifiers.
-
-You will notice a `FILTERED` icon next to the People Panel header and Notes Panel header to indicate that the two lists you are viewing are currently filtered.
+Finds People and Notes that have the given tags. Both the People Panel and Notes Panel will be updated synchronously with all entities that match the specifiers.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Both the people panel and notes panel will show a `FILTERED` indicator to inform you that both lists have been filtered.
@@ -819,14 +817,14 @@ Format: `findTag TAG [MORE_TAGS]`
 * Only the tag is searched.
 * Only full words will be matched e.g. `Tech` will not match `Technology`
 * Persons and Notes matching at least one tag will be returned (i.e. `OR` search).
-  e.g. `Operations` will return
+  e.g. `Operations Finance` will return
   * Person `Alex Yeoh` (tag: Friends) (tag: Operations),
-  * Person `Charlotte Oliveiro` (tag: Operations),
+  * Person `Charlotte Oliveiro` (tag: Colleagues) (tag: Finance),
   * Note `Collect funds from operations team` (tag: Operations)
 
 Examples:
-* `findTag Operations` returns Person `Alex Yeoh`, Person `Charlotte Oliveiro` and Note `Collect funds from operations team`
-  ![result for 'findTag Operations'](images/findTagOperations.png)
+* `findTag Operations Finance` returns Person `Alex Yeoh`, Person `Charlotte Oliveiro` and Note `Collect funds from operations team`
+  ![result for 'findTag Operations Finance'](images/findTagOperationsFinance.png)
 
 [Back to Table of Contents](#table-of-contents)
 
