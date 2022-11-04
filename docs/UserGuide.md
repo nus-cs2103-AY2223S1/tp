@@ -723,7 +723,7 @@ Examples:
 Finds the notes whose titles match any of the given keywords.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-The Notes Panel will show a `FILTERED` indicator to inform you that the Notes list have been filtered.
+The Notes Panel will show a `FILTERED` indicator to inform you that the list has been filtered.
 </div>
 
 The search is not case-sensitive. For example, `meeting` will match any notes containing the word `Meeting`. As in find for persons, the order of the keywords also does not matter, and `Meeting Club` will also match a note called `Club Meeting`.
