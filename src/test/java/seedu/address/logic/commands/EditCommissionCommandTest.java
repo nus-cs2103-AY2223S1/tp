@@ -67,7 +67,7 @@ class EditCommissionCommandTest {
 
         String expectedMessage = String.format(EditCommissionCommand.MESSAGE_EDIT_COMMISSION_SUCCESS, editedCommission);
 
-        Model expectedModel = getSetUpModelManager();;
+        Model expectedModel = getSetUpModelManager();
         expectedModel.getSelectedCustomer().getValue().setCommission(lastCommission, editedCommission);
 
         assertCommandSuccess(editCommissionCommand, model, expectedMessage, expectedModel);
@@ -116,7 +116,7 @@ class EditCommissionCommandTest {
         EditCommissionDescriptor descriptor = new EditCommissionDescriptorBuilder(firstCommission).build();
         EditCommissionCommand editCommissionCommand = new EditCommissionCommand(INDEX_SECOND, descriptor);
 
-        assertCommandFailure(editCommissionCommand, model, EditCommissionCommand.MESSAGE_DUPLICATE_COMMISSION);
+        assertCommandFailure(editCommissionCommand, model, null, EditCommissionCommand.MESSAGE_DUPLICATE_COMMISSION);
     }
 
     @Test
@@ -129,7 +129,7 @@ class EditCommissionCommandTest {
         EditCommissionCommand editCommissionCommand = new EditCommissionCommand(INDEX_FIRST,
                 new EditCommissionDescriptorBuilder(commissionInList).build());
 
-        assertCommandFailure(editCommissionCommand, model, EditCommissionCommand.MESSAGE_DUPLICATE_COMMISSION);
+        assertCommandFailure(editCommissionCommand, model, null, EditCommissionCommand.MESSAGE_DUPLICATE_COMMISSION);
     }
 
     @Test
@@ -138,7 +138,7 @@ class EditCommissionCommandTest {
         EditCommissionDescriptor descriptor = new EditCommissionDescriptorBuilder().withTitle(VALID_TITLE_DOG).build();
         EditCommissionCommand editCommissionCommand = new EditCommissionCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommissionCommand, model, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
+        assertCommandFailure(editCommissionCommand, model, null, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
     }
 
     /**
@@ -155,7 +155,7 @@ class EditCommissionCommandTest {
         EditCommissionCommand editCommissionCommand = new EditCommissionCommand(outOfBoundIndex,
                 new EditCommissionDescriptorBuilder().withTitle(VALID_TITLE_DOG).build());
 
-        assertCommandFailure(editCommissionCommand, model, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
+        assertCommandFailure(editCommissionCommand, model, null, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
     }
 
     @Test

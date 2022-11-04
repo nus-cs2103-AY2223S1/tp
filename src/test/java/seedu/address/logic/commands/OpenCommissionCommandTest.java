@@ -31,7 +31,7 @@ class OpenCommissionCommandTest {
     @Test
     public void execute_noIndex_switchesTab() {
         model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
-        CommandResult result = assertDoesNotThrow(() -> new OpenCommissionCommand().execute(model));
+        CommandResult result = assertDoesNotThrow(() -> new OpenCommissionCommand().execute(model, null));
         assertEquals(result.getFeedbackToUser(), OpenCommissionCommand.MESSAGE_USAGE);
         assertEquals(model.getSelectedTab(), GuiTab.COMMISSION);
     }
@@ -50,7 +50,7 @@ class OpenCommissionCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_OPEN_COMMISSION_SUCCESS,
                 commissionToOpen);
 
-        CommandResult result = assertDoesNotThrow(() -> openCommissionCommand.execute(model));
+        CommandResult result = assertDoesNotThrow(() -> openCommissionCommand.execute(model, null));
 
         assertEquals(result.getFeedbackToUser(), expectedMessage);
     }
@@ -59,7 +59,7 @@ class OpenCommissionCommandTest {
     public void execute_indexTooHigh_throwsCommandException() {
         model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
         OpenCommissionCommand openCommissionCommand = new OpenCommissionCommand(INDEX_THIRD);
-        assertCommandFailure(openCommissionCommand, model, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
+        assertCommandFailure(openCommissionCommand, model, null, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
     }
 
     @Test

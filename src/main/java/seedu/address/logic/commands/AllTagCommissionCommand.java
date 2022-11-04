@@ -27,7 +27,7 @@ public class AllTagCommissionCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage...storage) {
+    public CommandResult execute(Model model, Storage storage) {
         requireNonNull(model);
         model.updateFilteredCommissionList(predicate);
         model.selectTab(GuiTab.COMMISSION);
