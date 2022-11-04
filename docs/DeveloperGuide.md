@@ -388,6 +388,22 @@ The sort feature is now separated for the patients, appointments and bills secti
 
 _{more aspects and alternatives to be added}_
 
+### Command Shortcut Feature
+
+The commands in HealthContact make use of `CommandWord` class to allow alternative command words to a command.
+Each command is allowed to have one main command word and any number of alternative command words to get triggered.
+The alternative command words are used to provide shorter command words for convenience in typing long commands.
+
+Given below are examples of usage of the command shortcut:
+* `aa` is equivalent to `addappointment`
+* `dp` is equivalent to `deletepatient`
+* `ls` is equivalent to `list`
+
+Every command stores its command words using the class `CommandWord`.
+
+The `HealthContactParser` invokes the `CommandWord#match(String)` to check if the input String is one of the options of
+the command.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
