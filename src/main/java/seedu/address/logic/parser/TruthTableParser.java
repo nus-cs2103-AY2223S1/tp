@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT_PARSE_EXCEPTION;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS_FORMAT;
@@ -69,7 +70,8 @@ public class TruthTableParser {
             }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT, commandName));
         } catch (CommandLine.PicocliException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                   MESSAGE_INVALID_COMMAND_FORMAT_PARSE_EXCEPTION));
         }
     }
 
