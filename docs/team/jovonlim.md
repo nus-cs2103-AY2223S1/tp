@@ -23,12 +23,11 @@ Enhancements implemented:
 Contributions to the UG:
 
 Updated `Intro`, `Quick Start` sections and added `Book` command, `Edit Appts` command and `History` feature.
-Added some images for `Find` and `Hide` commands.
 
 Contributions to the DG:
 
 Updated UML diagrams and descriptions for `Ui`, `Model` and `Storage`.
-Added UML diagrams and description for `book` command.
+Added UML diagrams and descriptions for `book` and `edit appt` commands.
 
 Contributions to team-based tasks:
 
