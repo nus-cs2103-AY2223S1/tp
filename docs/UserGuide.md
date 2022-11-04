@@ -211,3 +211,8 @@ you can copy the link and paste it into your favourite browser!
 
 Ans: No! Do not edit the json files on your own! Instead, you should use the command line interface provided by
 CLIMods. We do not take any responsibility for any unexpected behaviour if you insist on editing the json files.
+
+4. Why is the application not displaying any modules?
+
+Ans: CLIMods requires internet access because we fetch module data from NUSMods API.  Please ensure that you have
+internet access before launching CLIMods.
