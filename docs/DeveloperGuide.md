@@ -302,11 +302,23 @@ For the `DeleteCommand` class, the idea is rather straightforward where we make 
 
 ### `ViewCommand` feature
 
-This feature allows users to view `Person` objects with specified attributes. This is achieved in the `ViewCommand` and `ViewCommandParser` classes.
+This feature allows users to view `Person` objects with specified attributes. The current implementation supports viewing keywords in any of the following fields
+1. `Name`
+2. `Phone`
+3. `Email`
+4. `Address`
+5. `Gender`
+6. `Birthdate`
+7. `Race`
+8. `Religion`
+9. `Survey`
+10. `Tag`
 
-In `ViewCommandParser`, we make use of `ArugmenetMultimap` to parse the user input and interprets them to get the values of the suffixes input by the user.
+This is a new enhancement in v1.3, as older iterations did not support viewing by `Survey` or `Tag`. We hope that this implementation allows the user to filter and view specific demographics more easily, for example, viewing all chinese males that has participated in a Food survey.
 
-Note that there is a possibility that the values to said suffixes are `null`, but this is handled by wrapping them in an `Optional` by `ArgumentMultimap`.
+This is achieved in the `ViewCommand` and `ViewCommandParser` classes.
+
+In `ViewCommandParser`, we make use of `ArugmenetMultimap` to parse the user input and interprets them to get the values of the suffixes input by the user. Note that there is a possibility that the values to said suffixes are `null`, but this is handled by wrapping them in an `Optional` by `ArgumentMultimap`.
 
 The lists of values of each suffix is used to create a predicate `PersonContainsAttributePredicate` object, which returns true whenever a person contains all attributes as specified by the list of values, and returns false otherwise.
 
@@ -400,6 +412,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 3a1. Survin shows an error message.
     
     Use case resumes at step 2.
+
+**Use case: view surveyees**
+
+Preconditions: User can recall the part of a survey name
+
+**MSS**
+
+1. User would like to search for a specific demographic for a survey
+
+2. User views such surveyees in the desired demographic with `view`
+
+3. Survin displays all surveyees that matches the search and shows whether the survey has been completed
+
+**Extensions**
+
+- 2a. The survey name is not found.
+  - 2a1. Survin returns an empty list.
+  - 2a2. The user tries again with another survey keyword.
+  
+  Steps 2a1-2a2 are repeated until some keywords are matched
+
+  Use case resumes from step 3.
 
 **Use case: Append surveys/tags to a surveyee**
 
