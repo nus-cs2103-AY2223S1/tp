@@ -369,7 +369,7 @@ Examples:
 <a name="mark-reminder"></a>
 #### 4.4.3 Mark a reminder: `mark reminder`
 
-Marks a reminder as complete.
+Sets the reminder status as _completed_.
 
 Format: `mark reminder INDEX`
 
@@ -390,7 +390,7 @@ Examples:
 <a name="unmark-reminder"></a>
 #### 4.4.4 Unmark a reminder: `unmark reminder`
 
-Unmarks a reminder as incomplete.
+Sets a reminder status as _incomplete_.
 
 Format: `unmark reminder INDEX`
 

@@ -19,11 +19,11 @@ public class UnmarkReminderCommand extends Command {
     public static final String COMMAND_WORD = "unmark reminder";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unmarks the reminder identified by the index number used in the reminder list as incomplete.\n"
+            + ": Sets the reminder identified by the index number used in the reminder list as incomplete.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNMARK_REMINDER_SUCCESS = "Reminder is unmarked as incomplete: %1$s";
+    public static final String MESSAGE_UNMARK_REMINDER_SUCCESS = "Reminder is set as incomplete: %1$s";
     public static final String MESSAGE_REMINDER_ALREADY_UNMARKED = "Reminder is yet to be done. "
             + "There is nothing to unmark.";
 
