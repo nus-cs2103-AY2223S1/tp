@@ -21,6 +21,8 @@ import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * Contains tests for closing of the {@code MainWindow}.
  */
@@ -97,3 +99,4 @@ public class MainWindowCloseTest extends GuiUnitTest {
         }
     }
 }
+// @@author

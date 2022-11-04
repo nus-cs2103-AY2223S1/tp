@@ -9,6 +9,8 @@ import guitests.guihandles.exceptions.NodeNotFoundException;
 import javafx.scene.Node;
 import seedu.address.ui.testutil.UiPartExtension;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * A GUI unit test class for AddressBook.
  */
@@ -38,3 +40,4 @@ public abstract class GuiUnitTest {
         return node.orElseThrow(NodeNotFoundException::new);
     }
 }
+// @@author

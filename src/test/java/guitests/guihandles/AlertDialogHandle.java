@@ -4,6 +4,8 @@ import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import seedu.address.ui.UiManager;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * A handle for the {@code AlertDialog} of the UI.
  */
@@ -35,3 +37,4 @@ public class AlertDialogHandle extends StageHandle {
         return dialogPane.getContentText();
     }
 }
+// @@author

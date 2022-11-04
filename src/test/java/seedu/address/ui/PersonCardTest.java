@@ -11,6 +11,8 @@ import guitests.guihandles.PersonCardHandle;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 public class PersonCardTest extends GuiUnitTest {
 
     @Test
@@ -70,3 +72,4 @@ public class PersonCardTest extends GuiUnitTest {
         assertCardDisplaysPerson(expectedPerson, personCardHandle);
     }
 }
+// @@author

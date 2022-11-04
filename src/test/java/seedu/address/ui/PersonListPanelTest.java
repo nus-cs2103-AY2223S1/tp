@@ -27,6 +27,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Reminder;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 public class PersonListPanelTest extends GuiUnitTest {
     private static final ObservableList<Person> TYPICAL_PERSONS =
             FXCollections.observableList(getTypicalPersons());
@@ -106,3 +108,4 @@ public class PersonListPanelTest extends GuiUnitTest {
                 PersonListPanelHandle.PERSON_LIST_VIEW_ID));
     }
 }
+// @@author
