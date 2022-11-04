@@ -101,12 +101,12 @@ Format of parameters:
     * end with a domain label at least 2 characters long
     * have each domain label start and end with alphanumeric characters
     * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-* `Position`: `Student`, `TA`, or `Professor`
+* `Position`: `Student`, `TA`, or `Professor` (case-insensitive)
 * `Address`: Any value, but cannot be blank
 * `Tags`: {Alphanumeric Module}-{Alphanumeric Tutorial group}
 </div>
 
-Adds a new contact with the provided details. Required fields include name, phone number, email, position, and tag. Tags represent the module and tutorial group a person is associated with and must be in the format of module-tutorial group.
+Adds a new contact with the provided details. Required fields include name, phone number, address, email, position, and tag. Tags represent the module and tutorial group a person is associated with and must be in the format of module-tutorial group.
 
 Examples:
 * `add n/Alex Yeoh p/87438807 e/alexyeoh@example.com pos/Student a/Blk 30 Geylang Street 29, #06-40 t/CS2103T-T17`
@@ -225,7 +225,9 @@ Edits a student's grade of an assignment of in TAB.
 
 Format: `grade INDEX assignment/INDEX grade/GRADE`
 
-Edits the grade of an assignment of the person (whose position must be student) at the specified `INDEX`. The first index refers to the index number shown in the displayed person list. The second index refers to the index of the assignment to be edited as shown in the assignment list of the specified student. The indices **must be positive integers** 1, 2, 3, …​
+Edits the grade of an assignment of the person (whose position must be student) at the specified `INDEX`. The first index refers to the index number shown in the displayed person list. The second index refers to the index of the assignment to be edited as shown in the assignment list of the specified student. Grade must follow the format [integer]/[integer]
+
+The indices **must be positive integers** 1, 2, 3, …​
 * The grade shown on the detail page of a student represent the overall grade that the student has achieved, calculated based on the grade and weightage of each assignment.
 
 Examples:
@@ -235,6 +237,7 @@ Examples:
 ### Editing the availability of a TA : `avail`
 
 Edits the availability of an existing TA in TAB.
+Availabilities are case-insensitive.
 
 Format: `avail INDEX avail/AVAILABILITY`
 
@@ -250,7 +253,8 @@ Edits the roles of an existing professor in TAB.
 Format: `roles INDEX roles/ROLE1, ROLE2,...`
 
 Edits the roles of the person (whose position must be professor) at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-*  Multiple roles may be added and must be separated by a comma.
+Roles are case-insensitive 
+* Multiple roles may be added and must be separated by a comma.
 
 Examples:
 *  `roles 1 roles/Coordinator, Lecturer, Advisor` edits the roles of the 1st person to be `Coordinator, Lecturer, Advisor`.
