@@ -407,8 +407,7 @@ Sorts the task list by deadline.
 Format: `task sort`
 
 
-
-### Filtering the Tasks List
+### Filtering the Tasks List: `task list`
 
 The `task list` command is a powerful command that allows you to focus only on the tasks that matter to you.
 
@@ -419,10 +418,6 @@ The format above may look daunting, but this is only because the `task list` com
 However, all the parameters are optional, and in most cases, you will only need a simple query that uses just one or two parameters.
 
 For ease of understanding, many of these common use cases have been detailed below.
-
-
-
-### Filtering the Tasks List: `task list`
 
 
 #### 1. Filtering by Completion Status
