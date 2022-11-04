@@ -38,6 +38,10 @@ public class SampleDataUtil {
     private static final Random random = new Random();
     private static final String PLACEHOLDER_IMAGE_PATH = "/images/placeholderart.png";
 
+    private static final double DEFAULT_FEE_LIMIT = 20;
+    private static final int DEFAULT_COMMISSIONS_PER_CUSTOMER = 3;
+    private static final int DEFAULT_ITERATIONS_PER_COMMISSION = 3;
+
     public static Customer[] getSampleCustomers(Storage storage) {
         Customer[] customers = new Customer[] {
             new Customer.CustomerBuilder(new Name("Alex Yeoh"), new Phone("87438807"),
@@ -63,7 +67,7 @@ public class SampleDataUtil {
 
         try {
             for (Customer customer: customers) {
-                for (int i = 1; i <= 3; i++) {
+                for (int i = 1; i <= DEFAULT_COMMISSIONS_PER_CUSTOMER; i++) {
                     addCommissionToCustomer(customer, storage, i);
                 }
             }
@@ -77,7 +81,8 @@ public class SampleDataUtil {
     }
 
     /**
-     * Adds a sample commission with 3 iterations to a customer.
+     * Adds a sample commission with iterations to a customer. Number of iterations are defined in
+     * DEFAULT_ITERATIONS_PER_COMMISSION.
      * @param customer Customer to add commissions to.
      * @param storage Storage to save placeholder images to for a commission's iterations.
      * @param index Index of the commission.
@@ -86,13 +91,13 @@ public class SampleDataUtil {
     public static void addCommissionToCustomer(Customer customer, Storage storage, int index) throws IOException {
         Commission commission = new Commission.CommissionBuilder(
                 new Title(customer.getName().fullName + " Commission " + index),
-                new Fee(random.nextDouble() * 20),
+                new Fee(random.nextDouble() * DEFAULT_FEE_LIMIT),
                 new Deadline(LocalDate.now()),
                 new CompletionStatus(random.nextBoolean()),
                 new HashSet<>()).build(customer);
 
         BufferedImage placeholderImage = ImageIO.read(MainApp.class.getResourceAsStream(PLACEHOLDER_IMAGE_PATH));
-        for (int j = 1; j <= 3; j++) {
+        for (int j = 1; j <= DEFAULT_ITERATIONS_PER_COMMISSION; j++) {
             Path imageCopyPath = storage.getRandomImagePath();
             storage.saveImage(placeholderImage, imageCopyPath);
             Iteration iteration = new Iteration(
