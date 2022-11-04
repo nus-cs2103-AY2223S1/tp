@@ -247,7 +247,7 @@ constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also
     input separately with a `m/` prefix.
   * Exposed using the `PastApointment#getMedication()` method for use in `JsonAdaptedPastAppointment`.
 
-The following sequence diagram represents the creation of a `PastAppointment` using a `PastAppointmentCommand`:
+The following Sequence Diagram represents the creation of a `PastAppointment` using a `PastAppointmentCommand`:
 [![PastAppointmentCommandSequenceDiagram](images/PastAppointmentSequenceDiagram.png)](images/PastAppointmentSequenceDiagram.png)
 
 #### `UpcomingAppointment`
@@ -286,9 +286,18 @@ By having a parent `GetCommand` class, we can have a series of sub-commands that
 This way, new implementations of other items to be filtered when using the get command can be easily
 added in the future.
 
-This Sequence Diagram below illustrates the implementation of the `GetCommand` component using `GetWardNumberCommand`
-as an example of the sequence of events of a typical get command call.  
-![GetCommandSequence](images/tracing/GetCommandSequenceDiagram.png)
+There are 2 types of inputs for get commands, specifically those that only require a prefix (`/inp` & `/outp`) and 
+those that require a prefix and parameters.
+
+Below is a Sequence Diagram illustrating the implementation of `GetCommand` for get commands that only require a prefix.
+The command `get /inp` will be used for this example.
+
+![GetInpatientSequenceDiagram](images/GetInpatientSequenceDiagram.png)
+
+This Sequence Diagram below illustrates the implementation of the `GetCommand` for get commands that require parameters
+in addition to the prefix. The command `get /hw North` will be used for this example.
+
+![GetHospitalWingDiagram](images/GetHospitalWingSequenceDiagram.png)
 
 All get commands are implemented in the following steps:
 1. User input prefix is matched in `GetCommandParser` class
@@ -348,19 +357,28 @@ Getting the list of inpatients and outpatients involves the following steps:
 If additional parameters are inputted (e.g. `get /inp hello world`), the extra parameters will be ignored, similar to 
 how `help`, `list`, `exit` and `clear` are executed.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("get /inp")` API call.
-
-![GetInpatientSequenceDiagram](images/GetInpatientSequenceDiagram.png)
-
 #### Getting the past appointments of a patient (`/appt`)
 
 Getting the past appointments of a patient involves the following steps:
 1. prefix `/appt` is matched using an instance of `GetCommandParser`
-2. a new `GetPastAppointmentCommandParser` instance is created and parses the user input (specificallly the index inputted)
+2. a new `GetPastAppointmentCommandParser` instance is created and parses the user input (specifically the index inputted)
 3. a `GetPastAppointmentCommand` instance containing the index of the patient to be updated is created and returned
-4. the `GetPastAppointmentCommand` command is executed, accessing the list of `PastAppointment` of the specified patient
+4. the `GetPastAppointmentCommand` is executed, accessing the list of `PastAppointment` of the specified patient
    to be returned in a `CommandResult`
 5. The list of `PastAppointment` will then be displayed in the `ResultDisplay`
+
+#### Getting patients with an appointment on a specified date (`get /appton`)
+
+Getting patients with an appointment on a specified date involves the following steps:
+1. prefix `/appton` is matched using an instance of `GetCommandParser`
+2. a new `GetAppointmentByDateCommandParser` instance is created and parses the user input (specifically the date inputted)
+3. a `GetAppointmentByDateCommand` instance containing the date of the appointment is created and returned
+4. the `GetAppointmentByDateCommand` command is executed, accessing the list of `PastAppointment` of the specified patient
+   to be returned in a `CommandResult`
+5. the model is updated such that the *filtered* list only displays patients who have an appointment on the specified 
+   date.
+
+The date inputted is parsed using `LocalDate`
 
 ### New Add Command
 The new `Add` Command incorporates support for the necessary fields for a patient, namely they are the: `NextOfKin`,
@@ -376,41 +394,6 @@ fields, as shown in the class diagram below.
 ![PersonClassDiagram](images/PersonClassDiagram.png)
 
 The usage of the Add Command remains the same as before.
-
-### Get hospital wing feature (`get /hw`)
-When `get /hw` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the
-prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /hw south`), the extra
-parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
-
-The `GetCommandParser` object will then create the corresponding `GetHospitalWingCommand`  to be
-returned. When executing the `Command`, the model is updated such that the *filtered* list only displays 
-patients within the inputted hospital wing.
-
-![GetHospitalWingDiagram](images/GetHospitalWingSequenceDiagram.png)
-
-### Get next-of-kin data feature (`get /nok`)
-
-When `get /nok` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the
-prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /nok John`), the extra
-parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
-
-The `GetCommandParser` object will then create the corresponding `GetNextOfKinCommand`  to be
-returned. When executing the `Command`, the model is updated such that the *filtered* list only displays
-the next-of-kin details of the inputted patient.
-
-![GetNextOfKinSequenceDiagram](images/GetNextOfKinSequenceDiagram.png)
-
-### Get appointment by date feature (`get /appton`)
-
-When `get /appton` is inputted, the `AddressBookParser` object creates a `GetAppointmentByDateParser` that parses the
-prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /appton 12-12-1212`), the extra
-parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
-
-The `GetCommandParser` object will then create the corresponding `GetAppointmentByDateCommand`  to be
-returned. When executing the `Command`, the model is updated such that the *filtered* list only displays
-all the patients' appointment given a specific date.
-
-![GetAppointmentByDateSequenceDiagram](images/GetAppointmentByDateSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -458,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | hospital staff         | create patient profiles                            | store new patients into the system                                                          |
 | `* * *`  | nurse                  | retrieve patients by medication                    | find out a list of patients under each medication                                           |
 | `* * *`  | hospital staff         | remove patients from the database                  | remove redundant entries that are no longer necessary                                       |
-
+| `* *`    | hospital staff         | view the previous appointments of a patient        | see patients' medical history                                                               |
 *{More to be added}*
 
 ### Use cases
