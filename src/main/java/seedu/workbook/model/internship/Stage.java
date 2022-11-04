@@ -3,6 +3,7 @@ package seedu.workbook.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
+import seedu.workbook.commons.util.StringUtil;
 import seedu.workbook.model.internship.util.StageUtil;
 
 /**
@@ -31,7 +32,8 @@ public class Stage {
     public Stage(String stage) {
         requireNonNull(stage);
         checkArgument(isValidStage(stage), MESSAGE_CONSTRAINTS);
-        value = stage;
+        String modifiedStage = StringUtil.toPascalCase(stage);
+        value = modifiedStage;
     }
 
     /**
