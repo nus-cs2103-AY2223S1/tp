@@ -11,13 +11,14 @@ import seedu.address.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Tasklist has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Task list has been cleared!";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
+        model.updateFilterStatus("Showing all tasks", true);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

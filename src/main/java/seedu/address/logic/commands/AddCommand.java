@@ -17,12 +17,12 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task tracker. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task tracker. \n"
             + "Parameters: "
             + PREFIX_NAME + " NAME "
             + PREFIX_MODULE + " MODULE "
-            + PREFIX_DEADLINE + " YYYY-MM-DD "
-            + "[" + PREFIX_TAG + " TAG]...\n"
+            + "[ " + PREFIX_DEADLINE + " YYYY-MM-DD] "
+            + "[" + PREFIX_TAG + " TAG*]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " Project "
             + PREFIX_MODULE + " CS2103T "
@@ -51,6 +51,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.updateFilterStatus("Showing all tasks", true);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
