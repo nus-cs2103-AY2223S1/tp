@@ -238,9 +238,7 @@ Given below is an example usage scenario and how the grade progress feature beha
 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the sample data.
 
-Step 2. The user uses `view Roy Balakhrisnan` who is a `Person` without any grade progress.
-
-Step 2. The user executes `grade 1 g/Math: B` command to insert the grade, `Math: B` to the `Person`'s `GradeProgressList` in the `AddressBook`.
+Step 2. The user executes `grade 1 g/Math: B` command to insert the grade, `Math: B` to the 1st `Person`'s `GradeProgressList` in the `AddressBook`.
 The `GradeProgress` command calls `GradeProgress#addGradeProgress(GradeProgress)` and adds the task to the list.
 
 Step 3. Upon successful entry of grade inputs, the `CommandResult()` message will be invoked.
@@ -361,9 +359,7 @@ Given below is an example usage scenario and how the adding attendance mechanism
 
 Step 1. The user launches the application for the first time. The address book will be initialized with the initial address book state.
 
-Step 2. The user uses `view Roy Balakhrisnan`, who is a `Person` with no attendance in his attendance list.
-
-Step 3. The user executes `attendance 1 a/2022-08-08` to add attendance to him in the address book.
+Step 2. The user executes `attendance 1 a/2022-08-08` to add attendance to the first `Person`'s attendance list in the address book.
 The `Attendance` command calls `AttendanceList#addAttendance(Attendance)` and adds the task to the list.
 
 The following sequence shows how adding attendance works:
