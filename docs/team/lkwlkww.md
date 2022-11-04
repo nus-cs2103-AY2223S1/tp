@@ -14,6 +14,8 @@ Given below are my contributions to the project.
 * **Code contributed**:
   * Property base classes
   * add property
+  * Interested clients for property
+  * Interested properties for clients
   * Note to self: Include link to my code on the tP code dashboard
 
 * **Enhancements implemented**:
@@ -21,6 +23,7 @@ Given below are my contributions to the project.
     * includes stuff like regex
 
 * **Contibutions to User Guide**:
+  * Completed the 
   * Completed the section for describing features of Condonery's client directory
 
 * **Contributions to Developer Guide**:
