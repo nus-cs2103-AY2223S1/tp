@@ -29,7 +29,7 @@ public class FindCommand extends Command {
             + "For Email, use the prefix 'e' \n"
             + "For Location, use the prefix 'l' \n"
             + "For Name, use the prefix 'n' \n"
-            + "For Phone, use the prefix 'p' \n"
+            + "For Phone, use the prefix 'ph' \n"
             + "Example: " + COMMAND_WORD + " n/Bernice";
 
     private final Predicate<Buyer> buyerPredicate;
@@ -60,25 +60,26 @@ public class FindCommand extends Command {
         this.type = type;
     }
 
+    public Predicate<Buyer> getBuyerPredicate() {
+        return buyerPredicate;
+    }
+
+    public Predicate<Deliverer> getDelivererPredicate() {
+        return delivererPredicate;
+    }
+
+    public Predicate<Supplier> getSupplierPredicate() {
+        return supplierPredicate;
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredBuyerList(buyerPredicate);
         model.updateFilteredDelivererList(delivererPredicate);
         model.updateFilteredSupplierList(supplierPredicate);
-        if (type.equals(PersonCategory.BUYER)) {
-            model.switchToBuyerList();
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredCurrList().size()));
-        } else if (type.equals(PersonCategory.DELIVERER)) {
-            model.switchToDelivererList();
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredCurrList().size()));
-        } else {
-            model.switchToSupplierList();
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredCurrList().size()));
-        }
+        return new CommandResult(
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredMainList().size()));
     }
 
     @Override

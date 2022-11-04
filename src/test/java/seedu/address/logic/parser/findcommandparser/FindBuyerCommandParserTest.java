@@ -9,9 +9,9 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.findcommands.FindBuyerCommand;
 import seedu.address.logic.commands.findcommands.FindCommand;
 import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 
@@ -51,9 +51,7 @@ public class FindBuyerCommandParserTest {
 
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Alice Bob")),
-                        delivererPredicate, supplierPredicate,
-                        PersonCategory.BUYER);
+                new FindBuyerCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Alice Bob")));
         assertParseSuccess(parser, "n/Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords

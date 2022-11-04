@@ -42,7 +42,10 @@ import seedu.address.logic.commands.editcommands.EditDelivererCommand;
 import seedu.address.logic.commands.editcommands.EditSupplierCommand;
 import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
 import seedu.address.logic.commands.filtercommands.FilterPetCommand;
+import seedu.address.logic.commands.findcommands.FindBuyerCommand;
 import seedu.address.logic.commands.findcommands.FindCommand;
+import seedu.address.logic.commands.findcommands.FindDelivererCommand;
+import seedu.address.logic.commands.findcommands.FindSupplierCommand;
 import seedu.address.logic.commands.listcommands.ListAllCommand;
 import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.logic.commands.sortcommands.SortCommand;
@@ -251,43 +254,15 @@ public class AddressBookParserTest {
     public void parseCommand_findBuyer() throws Exception {
         String input = " n/foo";
         Predicate<Buyer> buyerPredicate = PredicateParser.parseBuyer(input);
-        Predicate<Deliverer> delivererPredicate = new Predicate<Deliverer>() {
-            @Override
-            public boolean test(Deliverer deliverer) {
-                return false;
-            }
-            public boolean equals(Object object) {
-                return object instanceof Predicate;
-            }
-        };
-        Predicate<Supplier> supplierPredicate = new Predicate<Supplier>() {
-            @Override
-            public boolean test(Supplier supplier) {
-                return false;
-            }
-            public boolean equals(Object object) {
-                return object instanceof Predicate;
-            }
-        };
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindBuyerCommandParser.PARSE_WORD + input);
-        FindCommand otherCommand = new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
-                TypicalPersonCategories.PERSON_CATEGORY_BUYER);
+        FindCommand otherCommand = new FindBuyerCommand(buyerPredicate);
         assertEquals(otherCommand, command);
     }
 
     @Test
     public void parseCommand_findDeliverer() throws Exception {
         String input = " n/foo";
-        Predicate<Buyer> buyerPredicate = new Predicate<Buyer>() {
-            @Override
-            public boolean test(Buyer buyer) {
-                return false;
-            }
-            public boolean equals(Object object) {
-                return object instanceof Predicate;
-            }
-        };
         Predicate<Deliverer> delivererPredicate = PredicateParser.parseDeliverer(input);
         Predicate<Supplier> supplierPredicate = new Predicate<Supplier>() {
             @Override
@@ -300,37 +275,17 @@ public class AddressBookParserTest {
         };
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindDelivererCommandParser.PARSE_WORD + input);
-        FindCommand otherCommand = new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
-                TypicalPersonCategories.PERSON_CATEGORY_DELIVERER);
+        FindCommand otherCommand = new FindDelivererCommand(delivererPredicate);
         assertEquals(otherCommand, command);
     }
 
     @Test
     public void parseCommand_findSupplier() throws Exception {
         String input = " n/foo";
-        Predicate<Buyer> buyerPredicate = new Predicate<Buyer>() {
-            @Override
-            public boolean test(Buyer buyer) {
-                return false;
-            }
-            public boolean equals(Object object) {
-                return object instanceof Predicate;
-            }
-        };
-        Predicate<Deliverer> delivererPredicate = new Predicate<Deliverer>() {
-            @Override
-            public boolean test(Deliverer deliverer) {
-                return false;
-            }
-            public boolean equals(Object object) {
-                return object instanceof Predicate;
-            }
-        };
         Predicate<Supplier> supplierPredicate = PredicateParser.parseSupplier(input);
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindSupplierCommandParser.PARSE_WORD + input);
-        FindCommand otherCommand = new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
-                TypicalPersonCategories.PERSON_CATEGORY_SUPPLIER);
+        FindCommand otherCommand = new FindSupplierCommand(supplierPredicate);
         assertEquals(otherCommand, command);
     }
 
