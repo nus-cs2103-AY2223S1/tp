@@ -58,7 +58,7 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getWaddle(), new UserPrefs());
         expectedModel.deleteItinerary(itineraryToDelete);
-        showNoPerson(expectedModel);
+        showNoItinerary(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -68,7 +68,7 @@ public class DeleteCommandTest {
         showItineraryAtIndex(model, INDEX_FIRST_ITINERARY);
 
         Index outOfBoundIndex = INDEX_SECOND_ITINERARY;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of Waddle list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getWaddle().getItineraryList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
@@ -99,9 +99,9 @@ public class DeleteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show no itinerary.
      */
-    private void showNoPerson(Model model) {
+    private void showNoItinerary(Model model) {
         model.updateFilteredItineraryList(p -> false);
 
         assertTrue(model.getFilteredItineraryList().isEmpty());

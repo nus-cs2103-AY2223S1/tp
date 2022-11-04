@@ -26,12 +26,12 @@ import seedu.waddle.testutil.ItineraryBuilder;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullItinerary_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_itineraryAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingItineraryAdded modelStub = new ModelStubAcceptingItineraryAdded();
         Itinerary validItinerary = new ItineraryBuilder().build();
 
