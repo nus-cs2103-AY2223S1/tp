@@ -12,5 +12,5 @@
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
 * It is named `CinternS` because it serves the purpose of tracking _Computer Science (CS)_ students' _internship_ applications.
-* For the detailed documentation of this project, see the **[CinternS Product Website]()**.
+* For the detailed documentation of this project, see the **[CinternS Product Website](https://ay2223s1-cs2103-f14-3.github.io/tp/)**.
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
