@@ -437,7 +437,7 @@ For ease of understanding, many of these common use cases have been detailed bel
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Additional Notes:**<br>
-* When the `-a` or `-c` parameters are not specified, the command returns all **incomplete** tasks that match the given query.<br>
+* When the `-a` or `-c` parameters are not specified, the `task list` command returns all **incomplete** tasks that match the given query.<br>
 * In the following examples, 'all tasks' will refer to 'all incomplete tasks' for brevity.<br>
 </div>
 
