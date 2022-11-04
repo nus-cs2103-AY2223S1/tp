@@ -519,9 +519,9 @@ Project team leaders with many projects, members and tasks to assign.
 | `*`      | expert user       | set timers to add/delete groups after a project ends                           | ensure that I do not have too many groups cluttering the database                      |
 
 ---
-## Use cases 
+## Use cases
 
-For all use cases below, the **System** is TABS and the **Actor** is the user, unless specified otherwise.
+For all use cases below, the **System** is `TABS` and the **Actor** is the user, unless specified otherwise.
 
 ### UC1: Add a person
 
@@ -536,7 +536,7 @@ Use case ends.
 **Extensions:**
 
 &nbsp;&nbsp;
-1a. The contact already exists in TABS.
+1a. The person already exists in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS displays that the person already exists in the program.
@@ -591,7 +591,7 @@ Use case ends.
 1a. The person specified is not found in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS displays that the person does not exist in the program.
+1a1. TABS displays that the person does not exist.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -607,39 +607,7 @@ Use case ends.
 Use case ends.
 
 
-### UC3: Delete a person
-
-**MSS**
-
-1. User requests to delete an existing person in TABS.
-2. TABS displays that the person is successfully deleted.
-
-&nbsp;&nbsp;
-Use case ends.
-
-**Extensions:**
-
-&nbsp;&nbsp;
-1a. The person specified is not found in TABS.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS displays that the person does not exist in TABS.
-
-&nbsp;&nbsp;
-Use case ends.
-
-
-&nbsp;&nbsp;
-1a. The name of the person is not given.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS displays the format of the command.
-
-&nbsp;&nbsp;
-Use case ends.
-
-
-### UC4: Find a person
+### UC3: Find a person
 
 **MSS**
 
@@ -671,7 +639,7 @@ Use case ends.
 Use case ends.
 
 
-### UC5: Listing every person in TABS
+### UC4: List every person
 
 **MSS**
 
@@ -682,12 +650,44 @@ Use case ends.
 Use case ends.
 
 
+### UC5: Delete a person
+
+**MSS**
+
+1. User requests to delete an existing person in TABS.
+2. TABS displays that the person is successfully deleted.
+
+&nbsp;&nbsp;
+Use case ends.
+
+**Extensions:**
+
+&nbsp;&nbsp;
+1a. The person specified is not found in TABS.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS displays that the person specified does not exist in TABS.
+
+&nbsp;&nbsp;
+Use case ends.
+
+
+&nbsp;&nbsp;
+1a. The name of the person is not given.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS displays the format of the command.
+
+&nbsp;&nbsp;
+Use case ends.
+
+
 ### UC6: Add a group
 
 **MSS**
 
-1. User requests add a group.
-2. TABS displays the added group.
+1. User requests to add a group in TABS.
+2. TABS adds the group.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -698,7 +698,27 @@ Use case ends.
 1a. The group already exists in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS displays that the group already exists inside TABS.
+1a1. TABS displays that the group already exists in TABS.
+
+&nbsp;&nbsp;
+Use case ends.
+
+
+&nbsp;&nbsp;
+1b. TABS detects a missing required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1b1. TABS displays the format of the command.
+
+&nbsp;&nbsp;
+Use case ends.
+
+
+&nbsp;&nbsp;
+1c. TABS detects an empty required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1c1. TABS displays the format of the empty field.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -708,7 +728,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to display an existing group.
+1. User requests to display a group in TABS.
 2. TABS displays the group with its members.
 
 &nbsp;&nbsp;
@@ -720,34 +740,38 @@ Use case ends.
 1a. The group specified is not found in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS terminates the operation by the user and displays error messages.
+1a1. TABS displays that the group specified does not exist in TABS.
 
 &nbsp;&nbsp;
 Use case ends.
 
-### UC8: Find a group
+
+&nbsp;&nbsp;
+1b. TABS detects missing required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1b1. TABS displays the format of the command.
+
+&nbsp;&nbsp;
+Use case ends.
+
+
+### UC8: List all groups
 
 **MSS**
 
-1. User requests to find an existing group.
-2. TABS displays the groups found.
+1. User requests to display all the groups in TABS.
+2. TABS displays all the group with their respective members.
 
 &nbsp;&nbsp;
 Use case ends.
 
-**Extensions:**
-
-&nbsp;&nbsp;
-2a. The list is empty.
-
-&nbsp;&nbsp;
-Use case ends.
 
 ### UC9: Delete a group
 
 **MSS**
 
-1. User requests to delete an existing group.
+1. User requests to delete a group in TABS.
 2. TABS displays that the group is successfully deleted.
 
 &nbsp;&nbsp;
@@ -756,20 +780,41 @@ Use case ends.
 **Extensions:**
 
 &nbsp;&nbsp;
-1a. The contact specified is not found in TABS.
+1a. The group specified is not found in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS terminates the operation by the user.
+1a1. TABS displays that the group specified does not exist in TABS.
 
 &nbsp;&nbsp;
 Use case ends.
+
+
+&nbsp;&nbsp;
+1b. TABS detects missing required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1b1. TABS displays the format of the command.
+
+&nbsp;&nbsp;
+Use case ends.
+
+
+&nbsp;&nbsp;
+1c. TABS detects an empty required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1c1. TABS displays the format of the empty required field.
+
+&nbsp;&nbsp;
+Use case ends.
+
 
 ### UC10: Add a person to a group
 
 **MSS**
 
-1. User requests to add an existing contact to an existing group.
-2. TABS displays that the contact specified is added to the group.
+1. User requests to add a person to a group in TABS.
+2. TABS displays that the person specified is added to the group specified.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -777,22 +822,34 @@ Use case ends.
 **Extensions:**
 
 &nbsp;&nbsp;
-1a. The contact specified is not found in TABS.
+1a. The person specified or the group specified is not found in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS terminates the operation by the user.
+1a1. TABS displays that the person specified or the group specified does not exist.
 
 &nbsp;&nbsp;
 Use case ends.
 
+
 &nbsp;&nbsp;
-1b. The group specified is not found in TABS.
+1b. TABS detects a missing required field.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS terminates the operation by the user.
+1b1. TABS displays the format of the command.
 
 &nbsp;&nbsp;
 Use case ends.
+
+
+&nbsp;&nbsp;
+1c. TABS detects an empty required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1c1. TABS displays the format of the empty required field.
+
+&nbsp;&nbsp;
+Use case ends.
+
 
 ### UC11: Remove a person from a group
 
@@ -807,29 +864,51 @@ Use case ends.
 **Extensions:**
 
 &nbsp;&nbsp;
-1a. The contact specified is not found in TABS.
+1a. The person specified or the group specified is not found in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS terminates the operation by the user.
+1a1. TABS displays that the person specified or the group specified does not exist.
 
 &nbsp;&nbsp;
 Use case ends.
 
+
 &nbsp;&nbsp;
-1b. The group specified is not found in TABS.
+1b. The group specified does not have the person specified in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS terminates the operation by the user.
+1b1. TABS displays that the person specified is not in the group specified.
 
 &nbsp;&nbsp;
 Use case ends.
+
+
+&nbsp;&nbsp;
+1c. TABS detects a missing required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1c1. TABS displays the format of the command.
+
+&nbsp;&nbsp;
+Use case ends.
+
+
+&nbsp;&nbsp;
+1d. TABS detects an empty required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1d1. TABS displays the format of the empty field.
+
+&nbsp;&nbsp;
+Use case ends.
+
 
 ### UC12: Assign a task to a member
 
 **MSS**
 
-1. User requests to assign a task.
-2. TABS displays that the task is tagged to the person specified under the group.
+1. User requests to assign a task to a member in TABS.
+2. TABS displays that the task is tagged to the person specified under the group specified.
 
 &nbsp;&nbsp;
 Use case ends.
@@ -837,22 +916,44 @@ Use case ends.
 **Extensions:**
 
 &nbsp;&nbsp;
-1a. The contact specified is not found in TABS.
+1a. The person specified or the group specified is not found in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS terminates the operation by the user.
+1a1. TABS displays that the person specified or the group specified does not exist.
 
 &nbsp;&nbsp;
 Use case ends.
 
+
 &nbsp;&nbsp;
-1b. The group specified is not found in TABS.
+1b. The group specified does not have the person specified in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1b1. TABS terminates the operation by the user.
+1b1. TABS displays that the person specified is not in the group specified.
 
 &nbsp;&nbsp;
 Use case ends.
+
+
+&nbsp;&nbsp;
+1c. TABS detects a missing required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1c1. TABS displays the format of the command.
+
+&nbsp;&nbsp;
+Use case ends.
+
+
+&nbsp;&nbsp;
+1d. TABS detects an empty required field.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1d1. TABS displays the format of the empty field.
+
+&nbsp;&nbsp;
+Use case ends.
+
 
 ### UC13: Remove a task from a member
 
@@ -884,7 +985,8 @@ Use case ends.
 &nbsp;&nbsp;
 Use case ends.
 
-### UC16: Group assignment of task
+
+### UC14: Group assignment of task
 
 **MSS**
 
@@ -905,11 +1007,12 @@ Use case ends.
 &nbsp;&nbsp;
 Use case ends.
 
-### UC17: Group removal of task
+
+### UC15: Group removal of task
 
 **MSS**
 
-1. User requests to remove a task from a group.
+1. User requests to remove a task from every member in a group in TABS.
 2. TABS displays that the task is successfully removed.
 
 &nbsp;&nbsp;
@@ -918,22 +1021,23 @@ Use case ends.
 **Extensions:**
 
 &nbsp;&nbsp;
-1a. The group specified is not found in TABS.
+1a. The person specified or the group specified is not found in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS terminates the operation by the user.
+1a1. TABS displays that the person specified or the group specified does not exist.
 
 &nbsp;&nbsp;
 Use case ends.
 
 &nbsp;&nbsp;
-1a. The person does not have the specified task.
+1a. The person specified or the group specified is not found in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-1a1. TABS moves on to the next person in the group.
+1a1. TABS displays that the person specified or the group specified does not exist.
 
 &nbsp;&nbsp;
 Use case ends.
+
 
 ---
 ## Non-functional requirements
