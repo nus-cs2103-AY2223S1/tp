@@ -117,7 +117,15 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 
 2. Download the latest `TrackO.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your TrackO. { INSERT SCREENSHOTS HERE }
+3. Copy the file to the folder you want to use as the _home folder_ for your TrackO. 
+
+    <img src="./images/user-guide/HomeFolder.png" alt="HomeFolder">
+
+    <div markdown="span" class="alert alert-primary">
+        :bulb: **Tip:**
+        Any folder can be a home folder for your TrackO. In this case, the home folder is an 
+        empty folder called `TrackO` located in the `Desktop`.
+    </div>
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. The application will already contain some sample
    data.<br>
@@ -528,16 +536,24 @@ Examples:
 * When you enter `listo` followed by `sorto old`, TrackO sorts all orders such that oldest orders are at the top.
 Executing it on our sample data will display the following result:
 
-<img src="./images/user-guide/SortoOldExample.png">
+  <img src="./images/user-guide/SortoOldExample.png">
 
 * For this example, let us follow the steps described below:
   1. First, enter `addo n/Jessica Doe a/Blk 12 Changi Road 20, #01-15 p/90876543 e/jessicadoe@gmail.com`, followed by
      `i/Chair q/5`, then `done` to add an order of `5 Chairs` for customer `Jessica Doe`. The application will display 
      the following result:
   
-     <img src="">
+     <img src="./images/user-guide/SortoNew1-1.png" alt="SortoNewExample1-1">
      
-  2. 
+  2. Next, enter `findo i/Chair` to display all the orders that have `Chair` in their list of ordered items. The application
+     will display the following result:
+  
+     <img src="./images/user-guide/SortoNew1-2.png" alt="SortoExample1-2">
+    
+  3. When you enter `sorto new`, the currently displayed orders will be sorted from the newest to the oldest. The application 
+     will display the following result:
+
+     <img src="./images/user-guide/SortoNew1-3.png" alt="SortoExample1-3">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
