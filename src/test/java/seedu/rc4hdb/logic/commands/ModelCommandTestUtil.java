@@ -72,7 +72,7 @@ public class ModelCommandTestUtil {
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "A"; //'A' not allowed in gender
     public static final String INVALID_HOUSE_DESC = " " + PREFIX_HOUSE + "2"; //'2' not allowed in house
     public static final String INVALID_MATRIC_NUMBER_DESC =
-            " " + PREFIX_MATRIC_NUMBER + "a0000000u"; //'a' not allowed in matric numbers
+            " " + PREFIX_MATRIC_NUMBER + "b0000000c"; //'a' not allowed in matric numbers
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
