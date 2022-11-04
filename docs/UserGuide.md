@@ -103,9 +103,8 @@ the help window.
 
 :exclamation: **Warning:**<br>
 
-Upon launching the application, some files responsible for the storage of your data will be created in the same folder 
-as `nutrigoals.jar`. If you are a new user, you are advised not to edit these files. If the changes you made to the data
-file invalidates its format, NutriGoals will discard all your data and start with an empty data file.
+Upon launching the application, some files responsible for the storage of your data will be created in a folder called 'data' located in the same folder 
+as `nutrigoals.jar`. If you are a new user, you are advised not to edit these files. If the changes you made to the data file invalidates its format, NutriGoals will discard all your data and start with an empty data file.
 
 </div>
 
@@ -422,7 +421,7 @@ appropriate file for your computer's system (such as macOS and Windows).
 **A**: NutriGoals saves data automatically after every command that changes the data. There is no need to save manually.
 
 **Q**: Where is my NutriGoals data stored?<br>
-**A**: When you use the application, a folder named `Data` will be created in the same folder as `nutrigoals.jar`. Your 
+**A**: When you use the application, a folder named `data` will be created in the same folder as `nutrigoals.jar`. Your 
 data is stored in the file named `nutrigoals.json`, which is located in the `Data` folder.
 
 **Q**: How do I transfer my data to another Computer?<br>
