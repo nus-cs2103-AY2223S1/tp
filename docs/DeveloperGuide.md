@@ -22,6 +22,24 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Introduction 
+
+GuestBook is a **desktop app for managing guests in a hotel,
+optimized for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+GuestBook can get your
+guest management tasks done faster than traditional GUI apps with our efficient
+management workflow.
+The primary target audience of GuestBook is hotel managers of small hotels
+and backpacker's inn who can type fast.
+
+
+GuestBook to track guests and their details including name, email address, phone number,
+room number, dates of stay, number of guests, bill, request, and whether their room has been cleaned.
+With the features to add, edit, delete, and filter guests, GuestBook fulfill all the essential hotel management needs.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -30,7 +48,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
+This section aims to showcase how GuestBook was designed. We first go through the overarching
+architecture of GuestBook then go in more detail about its underlying structure and interactions of
+the four core components.
+
+<div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W16-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
@@ -154,14 +176,18 @@ Classes used by multiple components are in the `seedu.guest.commons` package.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Notable Fields of a Guest**
+
+This section goes in-depth about the design decisions of some fields from the `Guest` class.
+
 ### Bill Field
 
-#### Implementation:
+The `Bill` class holds the value that a `Guest` is required to pay to the hotel.
 
-* The `Bill` class holds the value that a `Guest` is required to pay to the hotel.
+<span style="font-size: large; color: #e46c0a">Implementation:</span>
+
 * Its constructor takes in a string representing a signed `double` with up to 2 decimal places.
 
-#### Design Considerations:
+<span style="font-size: large; color: #e46c0a">Design Considerations:</span>
 
 **Aspect: `add()` method of the `Bill` class**
 * As `Bill`s can be added to each other, we abstracted this behaviour into the `add` method.
@@ -179,12 +205,13 @@ Taking into consideration that `double`s are already signed and charges on bills
 
 ### DateRange Field
 
-#### Implementation:
-
 * The `DateRange` class holds the period of stay of a `Guest`.
+
+<span style="font-size: large; color: #e46c0a">Implementation:</span>
+
 * Its constructor takes in a string representing a check-in date and a check-out date.
 
-#### Design Considerations:
+<span style="font-size: large; color: #e46c0a">Design Considerations:</span>
 
 **Aspect: How to represent dates**
 * **Alternative 1:** Separate classes for check-in and check-out dates extended from a `GuestDate` class.
@@ -197,14 +224,16 @@ Taking into consideration that `double`s are already signed and charges on bills
 
 Taking into consideration that check-in and check-out dates come as a pair, we decided to proceed with Alternative 2 to reduce coupling.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Features**
 
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Adding a Guest
-* In GuestBook, a user can add a guest using the `add` command. This feature is necessary for hotel operations.
+In GuestBook, a user can add a guest using the `add` command. This feature is necessary for hotel operations.
 
-#### Implementation:
+<span style="font-size: large; color: #e46c0a">Implementation:</span>
 * The `add` command takes in 6 compulsory fields (`Name`, `Phone`, `Email`, `Room`, `Date Range` and `Number Of Guests`)
 and 1 optional field (`Request`) and is supported by the `AddCommandParser` that extracts out each of the fields
 from their respective prefixes.
@@ -217,7 +246,7 @@ The following activity diagram summarizes what happens when a user enters an `ad
 * Else, the details of the guest created will not have a `Request`.
 * Finally, the guest is added to the model.
 
-#### Design Considerations:
+<span style="font-size: large; color: #e46c0a">Design Considerations:</span>
 
 **Aspect: How to deal with duplicate entries**
 
@@ -246,9 +275,9 @@ we chose to make `Request` optional and default it as blank should it not be pro
 
 
 ### Billing a Guest
-* In GuestBook, the user can add to the bill of a guest to track the current expenses incurred by the guest using the `bill` command. This feature was added to help the user track their guests' expenses, without having to manually calculate it each time.
+In GuestBook, the user can add to the bill of a guest to track the current expenses incurred by the guest using the `bill` command. This feature was added to help the user track their guests' expenses, without having to manually calculate it each time.
 
-#### Implementation:
+<span style="font-size: large; color: #e46c0a">Implementation:</span>
 * The `bill` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1) and the `bill` field and is supported by the `BillCommandParser` that extracts the bill value.
 
 The following activity diagrams summarizes what happens when a user enters a `bill` command.
@@ -259,7 +288,7 @@ The following activity diagrams summarizes what happens when a user enters a `bi
 * A new guest will be created with the updated bill, while the other details of the guest will remain unchanged.
 * Finally, the new guest is set to the model.
 
-##### Design Considerations:
+<span style="font-size: large; color: #e46c0a">Design Considerations:</span>
 
 **Aspect: How to update a bill**
 * **Alternative 1:** Set the bill to the input value.
@@ -283,10 +312,10 @@ and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE
 
 ### Editing a Guest's Details
 
-* In GuestBook, the user can edit the details of a guest using the `edit` command. Details that do not have values inputted in the `edit` command will remain unchanged.
+In GuestBook, the user can edit the details of a guest using the `edit` command. Details that do not have values inputted in the `edit` command will remain unchanged.
 This feature was implemented so that it is easy for the user to change a guest's details according to different scenarios, such as the changing the guest's rooms, or the guest providing incorrect details.
 
-#### Implementation:
+<span style="font-size: large; color: #e46c0a">Implementation:</span>
 * The `edit` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1)
   and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number Of Guests`, `Is Room Clean` and `Request`)
   and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
@@ -298,7 +327,7 @@ The following activity diagram summarizes what happens when a user enters an `ed
 * A new guest will be created with the updated values based on the values passed to the `edit` command. The other details of the guests will remain unchanged.
 * Finally, the new guest is set to the model.
 
-#### Design Considerations:
+<span style="font-size: large; color: #e46c0a">Design Considerations:</span>
 
 **Aspect: Allowing only specific fields provided to be edited**
 * As the edit command is usually used when there is a change or error in the information provided, it makes more sense for the user to be able to change only selected fields.
@@ -309,18 +338,19 @@ The following activity diagram summarizes what happens when a user enters an `ed
 
 ### Marking all Rooms as Unclean
 
-* In GuestBook, you can mark all the rooms as unclean. This feature was added to make it easier for the hotel to transit to a new working day, as they would usually have to clean all the rooms when a new day starts.
-#### Implementation
+In GuestBook, the user can mark all the rooms as unclean. This feature was added to make it easier for the hotel to transit to a new working day, as they would usually have to clean all the rooms when a new day starts.
+
+<span style="font-size: large; color: #e46c0a">Implementation:</span>
 * The `markroomsunclean` command edits all the guests in GuestBook and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields.
 
 The following activity diagram summarises what happens when a user enters a `markroomsunclean` command.
 
 ![MarkRoomsUncleanActivityDiagram](images/MarkRoomsUncleanActivityDiagram.png)
-* When the user execues the `markroomsunclean` command, GuestBook will retrieve the list of all the guests that requires editing of the isRoomClean status.
+* When the user executes the `markroomsunclean` command, GuestBook will retrieve the list of all the guests that requires editing of the isRoomClean status.
 * A new list of guests will be created with isRoomClean fields set to "no". The other details of the guests will remain unchanged.
 * Finally, the new list of guests is set to the model.
 
-#### Design Considerations:
+<span style="font-size: large; color: #e46c0a">Design Considerations:</span>
 **Aspect: The scope at which the command changes all guests' isRoomClean statuses**
 * Alternative 1: Allow `markroomsunclean` command to operate only on the last shown list instead of the entire list. This is to standardise how edits are made across the commands (e.g. edit and delete).
   * Pros: This might be more intuitive for users, as `edit` and `delete` commands work only on the last shown lists.
@@ -345,9 +375,9 @@ rather insignificant as once the user gets acquainted with the command, reading 
 
 ### Finding Guests
 
-* In GuestBook, the user can find guests using the `find` command. The extensibility of this `find` feature makes it easy for the user to locate guests in GuestBook.
+In GuestBook, the user can find guests using the `find` command. The extensibility of this `find` feature makes it easy for the user to locate guests in GuestBook.
 
-#### Implementation:
+<span style="font-size: large; color: #e46c0a">Implementation:</span>
 * The `find` command takes in multiple keywords separated by spaces, and find all guests whose `fields` contain any of the keywords. The keywords are case-insensitive as well. For example, finding 'Alice' is the same as finding 'aLiCE'.
 
 The following activity diagram summarizes what happens when a user enters a `find` command.
@@ -356,7 +386,7 @@ The following activity diagram summarizes what happens when a user enters a `fin
 * When the user executes the `find` command, GuestBook will find guests matching any of the search terms passed by the user in the `find` command.
 * Once the finding process is complete, the guests that match any of the search terms will be set to the model.
 
-#### Design Considerations:
+<span style="font-size: large; color: #e46c0a">Design Considerations:</span>
 
 **Aspect: Allowing searching only through all fields**
 * As the hotel manager would usually appreciate the ability to search by other fields such as by Room, it is appropriate to make the `find` command to scan through all the fields of the guests.
@@ -367,8 +397,9 @@ The following activity diagram summarizes what happens when a user enters a `fin
 
 ### \[Proposed\] Undo/Redo Feature
 
-* As there could be the possibility that the user input the wrong commands, or want to revert to older states, being able to undo or redo is a feature that will be included in future iterations of GuestBook.
-#### Proposed Implementation
+As there could be the possibility that the user input the wrong commands, or want to revert to older states, being able to undo or redo is a feature that will be included in future iterations of GuestBook.
+
+<span style="font-size: large; color: #e46c0a">Proposed Implementation:</span>
 
 The proposed undo/redo mechanism is facilitated by `VersionedGuestBook`. It extends `GuestBook` with an undo/redo history, stored internally as an `guestBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -431,7 +462,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design Considerations:
+<span style="font-size: large; color: #e46c0a">Design Considerations:</span>
 
 **Aspect: How undo & redo executes:**
 
@@ -445,6 +476,25 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 As the users of this application would be hotel mangers of small hotels, there would not a massive list of guests. Hence, we think that memory usage would not be an issue, and proceeded with Alternative 1.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Summary of commands
+
+This is a quick overview of all the commands and their functionalities.
+
+| Action                 | Format                                                                                                                    | Examples                                                                                                                                                  |
+|------------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`                                       | `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3` <br> Adds guest John Doe to GuestBook with his relevant details.     |
+| **Bill**               | `bill INDEX b/BILL`                                                                                                       | `bill 2 b/99.99` <br> Increases the bill of guest at the second index by 99.99. <br><br> `bill 1 b/-10` <br> Decreases the bill of the first guest by 10. |
+| **Clear**              | `clear`                                                                                                                   | Clears all guest entries in GuestBook.                                                                                                                    |                                                                                                                                                      |
+| **Delete**             | `delete INDEX`                                                                                                            | `delete 3`<br> Deletes the third guest in the current list.                                                                                               |
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]` | `edit 2 rc/yes` <br> Edits the second guest in the current list by changing the guest's the room clean status to "yes".                                   |
+| **Exit**               | `exit`                                                                                                                    | Exits and closes the GuestBook application.                                                                                                               |
+| **Find**               | `find KEYWORD [MORE_KEYWORDS]`                                                                                            | `find James Jake` <br> Searches the entire GuestBook for fields matching "James" and "Jake" and returns the matching guests.                              |
+| **Help**               | `help`                                                                                                                    | Shows a popup on how to get help with GuestBook.                                                                                                          |
+| **List**               | `list`                                                                                                                    | Displays a list containing all the guest in GuestBook.                                                                                                    |
+| **Mark Rooms Unclean** | `markroomsunclean`                                                                                                        | Changes the room clean statuses of all guests to "no".                                                                                                    |                                                                                                                                                       |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -656,16 +706,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-
-
-
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should work on any _mainstream OS_ as long as it has `Java 11` or above installed.
 2. Should be able to hold up to 1000 guests without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The response to any use action should become visible within 5 seconds.
-7. The guest cannot stay for a period longer than 1 year.
 8. Data should be saved into a JSON file before exiting the program.
 9. The project is expected to adhere to a schedule that delivers a feature set every two weeks.
 
@@ -708,113 +754,87 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a guest
 
-1. Deleting a guest while all guests are being shown
-
    1. Prerequisites: List all guests using the `list` command. Multiple guests in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First guest is deleted from the list. Details of the deleted guest shown in the status message. Timestamp in the status bar is updated.
+      Expected: First guest is deleted from the list. Details of the deleted guest shown in the result display.
 
    1. Test case: `delete 0`<br>
-      Expected: No guest is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No guest is deleted. Error details shown in the result display.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-[//]: # (1. _{ more test cases …​ }_)
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-[//]: # (1. _{ more test cases …​ }_)
-
+   
 ### Adding a guest
 
-1. Adding a guest
-
-   1. Prerequisites: Only one guest to be added.
-      The name of the guest to be added should not exist in GuestBook.
+Prerequisites: Only one guest to be added.
+      The `name` and `room` of the guest to be added should not exist in GuestBook.
    The format and data of the command should be valid.
 
-   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com rm/05-73
+   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com rm/05-73
                   dr/13/09/22 - 15/09/22 ng/1 rq/Apply for room service `<br>
-      Expected: Guest add successfully
+      Expected: Guest add successfully.
 
    3. Test case: `add n/John Doe p/98765431 e/johnd@nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added,
-      because the name is already in GuestBook. Error details shown in the status message.
-         Status bar remains the same.
+      because the **`name` is already in GuestBook**. Error details shown in the result display.
 
    4. Test case: `add n/Peter p/98765431 e/johnd@nus.com rm/05-73
          dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
          Expected: No guest is added,
-         because the room is already in GuestBook. Error details shown in the status message.
-         Status bar remains the same.
+         because the **`room` is already in GuestBook**. Error details shown in the result display.
 
    5. Test case: `add n/John@y Doe p/98765431 e/johnd@nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
-      Expected: No guest is added, because the name is invalid. Error details shown in the status message.
-      Status bar remains the same.
+      Expected: No guest is added, because the **`name` is invalid**. Error details shown in the result display.
 
    6. Test case: `add n/Johnny Doe p/+65431 e/johnd@nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
-      Expected: No guest is added, because the phone number is invalid. Error details shown in the status message.
-      Status bar remains the same.
+      Expected: No guest is added, because the **`phone` number is invalid**. Error details shown in the result display.
 
    7. Test case: `add n/Johnny Doe p/98765431 e/nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
-      Expected: No guest is added, because the email address is invalid. Error details shown in the status message.
-      Status bar remains the same.
+      Expected: No guest is added, because the **`email` address is invalid**. Error details shown in the result display.
 
    8. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/!06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
-      Expected: No guest is added, because the room is invalid. Error details shown in the status message.
-      Status bar remains the same.
+      Expected: No guest is added, because the **`room` is invalid**. Error details shown in the result display.
 
    9. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
-                  dr/13/09/22 - 13/09/23 ng/1 rq/Kill the insect `<br>
-      Expected: No guest is added, because the date range is invalid. Error details shown in the status message.
-      Status bar remains the same.
+                  dr/13/09/22 - 12/09/22 ng/1 rq/Kill the insect `<br>
+      Expected: No guest is added, because the **`date range` is invalid**. Error details shown in the result display.
 
    10. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
                    dr/13/09/22 - 15/09/23 ng/5 rq/Kill the insect `<br>
-       Expected: No guest is added, because the number of guest is invalid (>4).
-       Error details shown in the status message.
-          Status bar remains the same.
-
-   11. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
-                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
-       Expected: No guest is added, because the is room clean is invalid. Error details shown in the status message.
-       Status bar remains the same.
-
+       Expected: No guest is added, because the **`number of guest` is invalid** (>4).
+       Error details shown in the result display.
 
    12. Let INVALID_REQUEST be a string of 501 characters long. <br>
        Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
        dr/13/09/22 - 15/09/23 ng/1 rq/INVALID_REQUEST `<br>
-       Expected: No guest is added, because the request is invalid (>500 characters).
-       Status bar remains the same.
+       Expected: No guest is added, because the **`request` is invalid** (>500 characters).
 
 ### Editing a guest
 
-1. Editing a guest
-
-   1. Prerequisite: Only 1 guest to be edited. The guest's index should exist.
+Prerequisite: Only 1 guest to be edited. The guest's index should exist.
    The guest should exist in GuestBook. The format and content of the command should be valid.
 
-   2. Test case: `edit 1 n/Johnny`<br>
-      Expected: Guest edit successfully, the first guest's name will change from "John Doe" to "Johnny"
+   1. Test case: `edit 1 n/Johnny`<br>
+      Expected: Guest edit successfully, the first guest's `name` will change from "John Doe" to "Johnny"
 
    3. Test case: `edit 99999 n/Johnny`<br>
-      Expected: No guest is edited, because the input index does not exist. Error details shown in the status message.
+      Expected: No guest is edited, because the input **index does not exist**. Error details shown in the result display.
 
-   4. Test case: `edit 1 n/Jo@`<br>
-      Expected: No guest is edited, because the name is invalid. Error details shown in the status message.
-      Status bar remains the same.
+   5. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `edit ...`, `edit 1 n/Jo@`<br>
+      Expected: No guest is edited, because the **parameters are invalid**. Error details shown in the result display.
+### Saving data
 
-   5. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `edit ...`<br>
-      Expected: No guest is edited, because the parameters are invalid. Error details shown in the status message.
-      Status bar remains the same.
+1. Dealing with corrupted data files
+
+   1. A possible cause of a corrupted file could be because of duplicate `name` and/or `room` in the data of the Guest.
+   2. While GuestBook throws an exception when a user tries to add a guest with duplicate `name` and/or `room`, a developer
+   can circumvent this by changing the data in the `guestbook.json` file directly. 
+   3. Similarly, to fix this corrupted file you could either:
+      1. Delete the entire `guestbook.json` file and launch the application again, which will automatically create a new `guestbook.json` data file.
+      2. Locate the guest entries with duplicate `name` and/or `room` and change them to be unique.
