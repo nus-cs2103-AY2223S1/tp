@@ -681,7 +681,7 @@ MyInsuRec comes with light and dark color schemes. To change between the two, si
 
 #### 7.6.1 Duplicate clients detection `[coming in v1.5]`
 
-We plan to be able to detect duplicate clients entries in v1.5. For example, 'John Tan' and 'john tan' are likely to be the same person. As such, we plan to add a feature that warns the user when using such similar inputs. We also plan to distinguish between clients of similar names through this feature in v1.5, as such the current version v1.4 will disallow clients of the same names to be added.
+We plan to be able to detect duplicate clients entries in v1.5. For example, 'John Tan' and 'john tan' are likely to be the same person. As such, we plan to add a feature that warns the user when using such similar inputs.
 
 [Return to the top](#)
 
