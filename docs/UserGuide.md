@@ -27,11 +27,12 @@ If you can type fast, Plannit can help you track your module information and tas
 
 ## 1. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 2. Download the latest `plannit.jar` [here](https://github.com/AY2223S1-CS2103T-T10-1/tp/releases/).
 
-3. Copy the file to the folder you want to use as the _home folder_ for Plannit.
+3. Copy the file to the folder you want to use as the _home folder_ for Plannit. In other words, 
+   the folder which `plannit.jar` is will be the folder in which Plannit will store its data.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
 
@@ -39,36 +40,36 @@ If you can type fast, Plannit can help you track your module information and tas
     <img src="images/Ui.png" width="500"/>
 </p>
 
-6. Type the command in the command box and press Enter to execute it. e.g.
-   `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary)
+5. Type a command in the command box and press Enter to execute it. e.g.
+   `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary).
 
-7. Refer to the [Features](#2-features) for details of each command.
+6. Refer to the [features](#2-features) section for details of each command.
 
 ### 1.1. Command summary
 
-| Action                                                        | Format                                                                  | Short Description                                                               |
-|---------------------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [`add-module`](#211-add-module)                               | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
-| [`delete-module`](#212-delete-module)                         | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
-| [`edit-module`](#213-edit-module)                             | `edit-module     INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`              | Edit module belonging to the specified index currently displayed on the screen  |
-| *[`find-module`](#214-find-module)                            | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
-| *[`list-module`](#215-list-module)                            | `list-module`                                                           | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task)                                   | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)                             | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
-| [`swap-task`](#223-reorder-tasks-swap)                        | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
-| [`add-link`](#231-add-link)                                   | `add-link        m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`                | Add link URL with an alias to a module by its specified module code             |
-| [`delete-link`](#232-delete-link)                             | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                           | Delete link URL from a module by its specified module code and alias            |
-| [`open-link`](#233-open-link)                                 | `open-link       m/MODULE_CODE la/LINK_ALIAS`                           | Open link URL from a module by its specified module code and alias              |
-| [`add-person`](#241-add-person)                               | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
-| [`add-person-to-module`](#242-add-person-to-module)           | `add-person-to-module m/MODULE_CODE <br/>n/NAME`                        | Add person with specified name to the module with the specified module code     |
-| [`delete-person`](#243-delete-person)                         | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
-| [`delete-person-from-module`](#244-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                        | Delete person with specified name from a module with specified module code      |
-| [`edit-person`](#245-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
-| *[`find-person`](#246-find-person)                            | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
-| *[`list-person`](#247-list-person)                            | `list-person`                                                           | List all contacts                                                               |
-| [`home`](#251-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
-| [`goto`](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
-| [`exit`](#26-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
+| Action                                                      | Format                                                                            | Short Description                                                               |
+|-------------------------------------------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| [Add module](#211-add-module)                               | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                                  | Add module with a module code and optional module title                         |
+| [Delete module](#212-delete-module)                         | `delete-module   <br/>m/MODULE_CODE`                                              | Delete module by module code                                                    |
+| [Edit module](#213-edit-module)                             | `edit-module     INDEX (<br/>[m/MODULE_CODE] [t/MODULE_TITLE])`                   | Edit module belonging to the specified index currently displayed on the screen  |
+| *[Find module](#214-find-module)                            | `find-module     KEYWORD`      <br/>                                              | Find module that starts with specified keyword in home page                     |
+| *[List module](#215-list-module)                            | `list-module`                 <br/> <br/>                                         | List all modules in home page after finding                                     |
+| [Add task](#221-add-task)                                   | `add-task        m/MODULE_CODE <br/>td/TASK_DESCRIPTION`                          | Add task with specified module code and task description                        |
+| [Delete task](#222-delete-task)                             | `delete-task     m/MODULE_CODE <br/>tn/TASK_NUMBER`                               | Delete task corresponding to specified task number of specified module code     |
+| [Swap task](#223-reorder-tasks-swap)                        | `swap-task       m/MODULE_CODE <br/><br/>ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
+| [Add link](#231-add-link)                                   | `add-link        m/MODULE_CODE <br/><br/>l/LINK_URL la/LINK_ALIAS`                | Add link URL with an alias to a module by its specified module code             |
+| [Delete link](#232-delete-link)                             | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                                     | Delete link URL from a module by its specified module code and alias            |
+| [Open link](#233-open-link)                                 | `open-link       m/MODULE_CODE <br/>la/LINK_ALIAS`                                | Open link URL from a module by its specified module code and alias              |
+| [Add person](#241-add-person)                               | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                             | Add contact with specified name, email, and phone number                        |
+| [Add person to module](#242-add-person-to-module)           | `add-person-to-module <br/><br/><br/>m/MODULE_CODE <br/>n/NAME`                   | Add person with specified name to the module with the specified module code     |
+| [Delete person](#243-delete-person)                         | `delete-person   n/NAME`         <br/>                                            | Delete contact belonging to the specified name                                  |
+| [Delete person from module](#244-delete-person-from-module) | `delete-person-from-module <br/><br/><br/>m/MODULE_CODE n/NAME`                   | Delete person with specified name from a module with specified module code      |
+| [Edit person](#245-edit-person)                             | `edit-person     INDEX ([n/NAME] <br/>[e/EMAIL]  [p/PHONE_NUMBER])`               | Edit contact belonging to the specified index currently displayed on the screen |
+| *[Find person](#246-find-person)                            | `find-person     KEYWORD`          <br/>                                          | Find contacts that starts with specified keyword                                |
+| *[List person](#247-list-person)                            | `list-person`                    <br/>                                            | List all contacts                                                               |
+| [Home](#251-navigate-to-home)                               | `home`                                                                            | Navigate to the home page                                                       |
+| [Goto](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                                | Navigate to specified module page                                               |
+| [Exit](#26-exiting-the-program)                             | `exit`                                                                            | Exit the program                                                                |
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**
 Features marked with * can only be utilised when users are at the home page.
@@ -103,7 +104,7 @@ to be present.
 the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/99999999`, only `p/99999999` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as
+* Any parameter in commands that do not take in parameters (such as
   `home`, `list-module`, `list-person` and `exit`) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as `home`.
 </div>
@@ -760,7 +761,7 @@ There is no need to load manually.
 <br>
 
 ### 2.9. Editing The Data File
-Your data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update
+Your data is saved as a `JSON` file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
