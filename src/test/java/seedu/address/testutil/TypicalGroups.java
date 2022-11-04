@@ -13,14 +13,17 @@ import seedu.address.model.group.Group;
  */
 public class TypicalGroups {
 
-    public static final Group ALPHA = new GroupBuilder().withName("Team_Alpha")
-            .withTags("Important", "Gaming").withAttribute("Meetup", "Saturday").build();
-    public static final Group BETA = new GroupBuilder().withName("Team_Beta")
-            .withTags("Work", "School").withAttribute("Review", "Lecture 3")
-            .withParent(ALPHA).build();
-    public static final Group GAMMA = new GroupBuilder().withName("Team_Gamma")
-            .withTags("Work", "Internship").withAttribute("Number of leave", "3").build();
-
+    public static final Group TEAM_ALPHA = new GroupBuilder().withName("Team_Alpha")
+            .withAttribute("Work", "Internship").withAttribute("Leave_number", "3")
+            .build();
+    public static final Group TEAM_BETA = new GroupBuilder().withName("Team_Beta").build();
+    public static final Group TEAM_OMEGA = new GroupBuilder().withName("Team_Omega")
+            .withAttribute("Urgent", "Do paperwork").withParent(TEAM_ALPHA).build();
+    public static final Group TEAM_GAMMA = new GroupBuilder().withName("Team_Gamma").build();
+    public static final Group TEAM_A = new GroupBuilder().withName("Team_A")
+            .withAttribute("Meetup", "Saturday").withParent(TEAM_ALPHA).build();
+    public static final Group TEAM_B = new GroupBuilder().withName("Team_B").withParent(TEAM_A).build();
+    public static final Group AUTOMATION = new GroupBuilder().withName("Automation").build();
 
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
@@ -31,6 +34,7 @@ public class TypicalGroups {
     }
 
     public static List<Group> getTypicalGroups() {
-        return new ArrayList<>(Arrays.asList(ALPHA, BETA, GAMMA));
+        return new ArrayList<>(Arrays.asList(
+            TEAM_OMEGA, TEAM_A, TEAM_ALPHA, TEAM_B, TEAM_BETA, AUTOMATION, TEAM_GAMMA));
     }
 }

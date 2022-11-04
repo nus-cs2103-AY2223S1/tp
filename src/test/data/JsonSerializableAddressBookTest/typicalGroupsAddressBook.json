@@ -1,13 +1,51 @@
 {
   "persons" : [ ],
   "groups" : [ {
-    "name" : "Automation",
-    "uid" : "96c7e59a-2951-3c3e-9ccf-65175925c021",
+    "name" : "Team_Omega",
+    "uid" : "486394ea-153e-30e1-9127-41828704c42d",
     "tags" : [ ],
-    "attributes" : [ ]
+    "attributes" : [ {
+      "data" : {
+        "type" : "Urgent",
+        "content" : "Do paperwork",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    } ]
+  }, {
+    "name" : "Team_A",
+    "uid" : "6194e27d-8565-3d60-8b3f-3a2419664f0d",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Meetup",
+        "content" : "Saturday",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    } ]
   }, {
     "name" : "Team_Alpha",
     "uid" : "7ab6512c-2b11-3271-b57e-01268273c4be",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Work",
+        "content" : "Internship",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Leave_number",
+        "content" : "3",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    } ]
+  }, {
+    "name" : "Team_B",
+    "uid" : "7674b450-2144-314b-8521-ad83b7ca12ab",
     "tags" : [ ],
     "attributes" : [ ]
   }, {
@@ -16,23 +54,13 @@
     "tags" : [ ],
     "attributes" : [ ]
   }, {
+    "name" : "Automation",
+    "uid" : "96c7e59a-2951-3c3e-9ccf-65175925c021",
+    "tags" : [ ],
+    "attributes" : [ ]
+  }, {
     "name" : "Team_Gamma",
     "uid" : "e609a102-15a9-3ef8-8845-6f4b12355b8e",
-    "tags" : [ ],
-    "attributes" : [ ]
-  }, {
-    "name" : "Team_Omega",
-    "uid" : "486394ea-153e-30e1-9127-41828704c42d",
-    "tags" : [ ],
-    "attributes" : [ ]
-  }, {
-    "name" : "Team_A",
-    "uid" : "6194e27d-8565-3d60-8b3f-3a2419664f0d",
-    "tags" : [ ],
-    "attributes" : [ ]
-  }, {
-    "name" : "Team_B",
-    "uid" : "7674b450-2144-314b-8521-ad83b7ca12ab",
     "tags" : [ ],
     "attributes" : [ ]
   } ],
@@ -47,9 +75,7 @@
     "e609a102-15a9-3ef8-8845-6f4b12355b8e" : [ ]
   },
   "jsonAdaptedAddressBookParser" : {
-    "alias" : {
-    },
-    "macros" : {
-    }
+    "alias" : { },
+    "macros" : { }
   }
 }

@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,12 +15,14 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
 
     public static final Task FIX_BUG = new TaskBuilder().withName("Fix bug")
-            .withTags("BUG", "URGENT").withAttribute("Storage", "Store tasks in hard disk")
-            .build();
-    public static final Task DO_PAPERWORK = new TaskBuilder().withName("Do paperwork").withTags("URGENT")
-            .withAttribute("Paperwork for management", "Organize paperwork neatly").build();
+            .withDescription("Bug related to the Alpha command")
+            .withCompletedTime(LocalDateTime.of(2022, 11, 4, 22, 7, 53, 947688600))
+            .withAttribute("Logic", "Check null value in command").build();
+    public static final Task DO_PAPERWORK = new TaskBuilder().withName("Do paperwork")
+            .withDescription("Administrative tasks by management").build();
     public static final Task BUY_PRINTER = new TaskBuilder().withName("Buy printer")
-            .withTags("URGENT").withAttribute("Priority", "High").build();
+            .withDescription("Buy printer from XYZ street")
+            .withAttribute("Priority", "High").build();
 
     /**
      * Returns an {@code AddressBook} with all the typical tasks.
