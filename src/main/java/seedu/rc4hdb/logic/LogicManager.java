@@ -21,11 +21,8 @@ import seedu.rc4hdb.logic.commands.misccommands.MiscCommand;
 import seedu.rc4hdb.logic.parser.Rc4hdbParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
-import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
-import seedu.rc4hdb.model.venues.VenueName;
-import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.ui.ObservableItem;
 
@@ -93,16 +90,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyResidentBook getResidentBook() {
-        return model.getResidentBook();
-    }
-
-    @Override
-    public ObservableList<Resident> getFilteredResidentList() {
-        return model.getFilteredResidentList();
-    }
-
-    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }
@@ -111,6 +98,16 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Resident> getFilteredResidentList() {
+        return model.getFilteredResidentList();
+    }
+
+    @Override
+    public ObservableItem<Venue> getCurrentlyDisplayedVenue() {
+        return model.getCurrentlyDisplayedVenue();
     }
 
     @Override
@@ -131,16 +128,6 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<String> getHiddenFields() {
         return model.getHiddenFields();
-    }
-
-    @Override
-    public ObservableList<Booking> getObservableBookings() {
-        return model.getObservableBookings();
-    }
-
-    @Override
-    public ObservableItem<VenueName> getCurrentlyDisplayedVenueName() {
-        return model.getCurrentlyDisplayedVenueName();
     }
 
 }

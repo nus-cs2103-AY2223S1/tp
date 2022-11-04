@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
@@ -112,9 +111,9 @@ public class Venue implements BookingField {
 
     //==================== Start of getters =================================
 
-    public ObservableList<Booking> getObservableBookings() {
+    public List<Booking> getBookings() {
         clearExpiredBookings();
-        return FXCollections.observableArrayList(bookings);
+        return bookings;
     }
 
     public VenueName getVenueName() {
