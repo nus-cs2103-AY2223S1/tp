@@ -210,9 +210,11 @@ module code are then same.
 This `Identity` construct is similar to a `<Key, Value>` pair  in a HashMap implementation, where we use the `Key` to
 determine the object's identity and `Value` for its satellite values.
 
-### Immutability of Session, ModuleClass, and Student
+### Immutability of Student, ModuleClass, and related classes 
 
-In the implementation of the `Session`, `ModuleClass` and `Student` classes, it was decided to implement them in an immutable manner.
+In the implementation of the `Student`, `ModuleClass` and other related classes, it was decided to implement them in an 
+immutable manner. 
+
 This is done mainly for three reasons:
 - Java passes its values by-reference, this can cause quite the confusion if objects returned by `Model` are mutated.
 - Simplifies loading data from `Storage` as we do not need to ensure contents of data in one object has is referencing the same object as another.
@@ -221,18 +223,23 @@ This is done mainly for three reasons:
 As such, if the codebase is to be extended to store additional classes within `Model`, it is recommended to implement them
 in an immutable manner unless there's good reason not to do so.
 
-### Managing Sessions within a Class
+### Managing attributes within immutable classes
 
-As `ModuleClass` is immutable, we will construct new `ModuleClass` instances each time we modify the attributes of a `ModuleClass` object.
-The following methods in `ModuleClass` constructs new `ModuleClass` instances based on the current `ModuleClass` instance:
-- `ModuleClass#addSession(session)` - Constructs a new `ModuleClass` with the provided `Session` added into the session list.
-- `ModuleClass#removeSession(session)` - Constructs a new `ModuleClass` with the provided `Session` removed from the session list.
+For each of the immutable classes, each time we modify the attributes of the class, we will construct a new instance of the class.
+
+To streamline the process of constructing new instances, we provide `add*`, `remove*`, `update*` methods in the immutable classes, 
+which will return a new instance of the class with the updated attributes.
+
+For instance, 
+- `ModuleClass#addSession(session)` -- constructs a new `ModuleClass` with the provided `Session` added into the session list.
+- `ModuleClass#removeSession(session)` -- constructs a new `ModuleClass` with the provided `Session` removed from the session list.
+- `Student#addModuleClass(moduleClass)` -- constructs a new `Student` with the provided `ModuleClass` added into the module class list.
+- `StudentModuleData#updateGrade(session, grade)` -- constructs a new `StudentModuleData` with the grade of the provided `Session` updated.
 
 In addition, methods such as `addSessions` and `removeSessions` are also provided in `Model` and
 `TaAssist` to help manage sessions within a class.
 
-For example, the following sequence diagram shows how the command `adds s/Lab1`
-creates a `Session` named "Lab1" and adds it inside the focused class.
+For example, the following sequence diagram shows how the command `adds s/Lab1` creates a `Session` named "Lab1" and adds it inside the focused class.
 
 <img src="images/AddsCommandSequenceDiagram.png" width="1000"/>
 
