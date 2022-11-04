@@ -44,6 +44,7 @@ public class FindLocationCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        String warning = "";
         requireNonNull(model);
         model.updateFilteredEateryList(predicate);
         if (numRandPicks > 0) {
@@ -61,9 +62,14 @@ public class FindLocationCommand extends Command {
                 eateriesChosen.add(model.getFilteredEateryList().get(i));
             }
             model.updateFilteredEateryList(eateriesChosen::contains);
+
+            if (numToShow < numRandPicks) {
+                warning = "\nWarning: there are fewer eateries matching the specified criteria than " +
+                        "the requested number of eateries to randomly select.";
+            }
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_EATERIES_LISTED_OVERVIEW, model.getFilteredEateryList().size()));
+                String.format(Messages.MESSAGE_EATERIES_LISTED_OVERVIEW, model.getFilteredEateryList().size()) + warning);
     }
 
     @Override
