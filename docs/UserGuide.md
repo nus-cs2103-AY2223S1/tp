@@ -14,9 +14,9 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
-myStudent is **a desktop app for managing students of a tuition center, optimized for use via a Command Line Interface 
-(CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, myStudent can get 
-your student management tasks done faster than traditional GUI apps.
+myStudent is **an easy-to-use, portable and aesthetically-pleasing desktop application for managing students of a tuition center**, optimized for use via a Command Line Interface 
+(CLI) while still having the benefits of a Graphical User Interface (GUI). If you're able to type fast, myStudent can get your
+work done faster than a traditional GUI apps.
 
 ---
 ## About
@@ -733,7 +733,7 @@ Note that the current list is the class list, so `find d/monday #/tag` returns a
 
 ## Advanced
 
-###Exporting address books to csv
+### Exporting address books to csv
 
 Export Students, Tutors, and TuitionClasses address books into their own .csv files to be used in other programs.  
 They are named `students.csv`, `tutors.csv`, and `tuitionClasses.csv` respectively.
