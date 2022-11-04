@@ -85,7 +85,7 @@ class JsonSerializableAddressBook {
         }
         for (JsonAdaptedIssue jsonAdaptedIssue : issues) {
             Issue issue = jsonAdaptedIssue.toModelType(addressBook);
-            if (addressBook.hasIssue(issue)) {
+            if (addressBook.hasIssue(issue) || addressBook.hasIssueId(issue.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ISSUE);
             }
             addressBook.addIssue(issue);
