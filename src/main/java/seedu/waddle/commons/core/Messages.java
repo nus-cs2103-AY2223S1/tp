@@ -16,6 +16,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX = "The itinerary index provided is invalid.";
     public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The item index provided is invalid.";
+    public static final String MESSAGE_INVALID_DAY_INDEX = "The day you have selected does not exist";
     public static final String MESSAGE_ITINERARIES_LISTED_OVERVIEW = "%1$d itineraries listed!";
     public static final String MESSAGE_INVALID_STAGE = "The stage you provided is invalid! \n%1$s";
     public static final String MESSAGE_CONFLICTING_ITEMS = "Quack, there is a time clash!"
