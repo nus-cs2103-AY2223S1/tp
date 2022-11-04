@@ -32,7 +32,7 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_APPOINTMENT_DATE + "DATE] "
             + "[" + PREFIX_APPOINTMENT_LOCATION + "LOCATION]\n"
             + "Example: " + COMMAND_WORD + " 3.1 "
-            + PREFIX_APPOINTMENT_DATE + "21-Jan-2023 12:30 PM "
+            + PREFIX_APPOINTMENT_DATE + "21-01-2023 12:30"
             + PREFIX_APPOINTMENT_LOCATION + "Jurong Point, Starbucks";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Appointment was edited \nFrom: %1$s\nTo: %2$s";
