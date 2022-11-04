@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "gender" : "Female",
-    "dob" : "1/1/2000",
+    "dob" : "01/01/2000",
     "uid" : "0ae8093a-6367-4060-bf1d-437646cb26c6"
   }, {
     "name" : "Benson Meier",
@@ -14,7 +14,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "gender" : "Male",
-    "dob" : "1/1/2000",
+    "dob" : "01/01/2000",
     "uid" : "afe9246b-891e-4268-a5c0-c7cbebf1a790"
   }, {
     "name" : "Carl Kurz",
@@ -22,7 +22,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "gender" : "Male",
-    "dob" : "1/1/2000",
+    "dob" : "01/01/2000",
     "uid" : "01023fa5-2164-4fd2-a6fc-bf7268343624"
   }, {
     "name" : "Daniel Meier",
@@ -30,7 +30,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "gender" : "Male",
-    "dob" : "1/1/2000",
+    "dob" : "01/01/2000",
     "uid" : "212e62e6-400f-4b6a-b1e3-e08f4c4cdc0f"
   }, {
     "name" : "Elle Meyer",
@@ -38,7 +38,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "gender" : "Male",
-    "dob" : "1/1/2000",
+    "dob" : "01/01/2000",
     "uid" : "74e09727-d13a-46ae-adee-dccc8e5068c9"
   }, {
     "name" : "Fiona Kunz",
@@ -46,7 +46,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "gender" : "Female",
-    "dob" : "1/1/2000",
+    "dob" : "01/01/2000",
     "uid" : "7cd3e4cc-cde7-47ba-b548-088f8d791e8b"
   }, {
     "name" : "George Best",
@@ -54,7 +54,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "gender" : "Male",
-    "dob" : "1/1/2000",
+    "dob" : "01/01/2000",
     "uid" : "7af240c2-ac3e-4392-bb35-b06c60f183c7"
   } ],
   "events" : [ {
