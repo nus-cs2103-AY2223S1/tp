@@ -6,7 +6,6 @@ import static nus.climods.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import org.junit.jupiter.api.Test;
 
 import nus.climods.logic.commands.PickCommand;
-import nus.climods.logic.parser.parameters.LessonTypeParameter;
 import nus.climods.logic.parser.parameters.ModuleCodeParameter;
 import nus.climods.model.module.LessonTypeEnum;
 
@@ -42,13 +41,6 @@ public class PickCommandParserTest {
         String input = "CS210 lol 999 ";
 
         assertParseFailure(parser, input, String.format(ModuleCodeParameter.PARSE_EXCEPTION_MESSAGE, "CS210"));
-    }
-
-    @Test
-    public void parse_invalidFormatLessonType_throwsParseException() {
-        String input = "CS2100 lol 999 ";
-
-        assertParseFailure(parser, input, String.format(LessonTypeParameter.PARSE_EXCEPTION_MESSAGE, "lol"));
     }
 
     @Test
