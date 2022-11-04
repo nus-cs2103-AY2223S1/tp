@@ -52,6 +52,10 @@ Please refer to the Table of Contents if you are lost at any point of time.
     - [3.4.3 Exiting the program : `exit`](#343-exiting-the-program-exit)
 - [4. Glossary](#4-glossary)
 - [5. Command summary](#5-command-summary)
+  - [5.1 Contact Commands](#51-contact-commands)
+  - [5.2 Group Commands](#52-group-commands)
+  - [5.3 Task Commands](#53-task-commands)
+  - [5.4 Miscellaneous Commands](#54-miscellaneous-commands)
 
 ---
 # 1. Quick start
