@@ -40,7 +40,7 @@ public class TextValidation extends UiPart<Region> {
         } else if (validation.equals("failure")) {
             textValidation.setText(WRONG_FORMAT_MESSAGE);
             textValidation.setStyle(WRONG_FORMAT_STYLE);
-        } else if (validation.equals("invalid")){
+        } else if (validation.equals("invalid")) {
             textValidation.setText(INVALID_VALUE_MESSAGE);
             textValidation.setStyle(WRONG_FORMAT_STYLE);
         } else {
