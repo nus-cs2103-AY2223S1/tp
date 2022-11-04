@@ -109,7 +109,21 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPatient(Name name) {
         requireNonNull(name);
-        return healthContact.getPatientList().stream().anyMatch(patient -> patient.getName().equals(name));
+        return healthContact.getPatientList().stream().anyMatch(patient -> patient.getName().isSameName(name));
+    }
+
+    @Override
+    public boolean hasPatientWithExactlySameName(Patient patient) {
+        requireNonNull(patient);
+        return hasPatientWithExactlySameName(patient.getName());
+    }
+
+    @Override
+    public boolean hasPatientWithExactlySameName(Name name) {
+        requireNonNull(name);
+        return healthContact.getPatientList().stream()
+                .map(p -> p.getName())
+                .anyMatch(n -> n.equals(name));
     }
 
     @Override
@@ -121,7 +135,7 @@ public class ModelManager implements Model {
     @Override
     public void addPatient(Patient patient) {
         healthContact.addPatient(patient);
-        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        resetDisplayedList();
     }
 
     @Override
@@ -151,19 +165,19 @@ public class ModelManager implements Model {
 
     @Override
     public void selectPatient(Patient patient) {
-        updateFilteredAppointmentList(appointment -> appointment.getName().equals(patient.getName()));
-        updateFilteredBillList(bill -> bill.getAppointment().getName().equals(patient.getName()));
+        updateFilteredAppointmentList(appointment -> appointment.getName().isSameName(patient.getName()));
+        updateFilteredBillList(bill -> bill.getAppointment().getName().isSameName(patient.getName()));
     }
 
     @Override
     public void selectAppointment(Appointment appointment) {
-        updateFilteredBillList(bill -> bill.getAppointment().equals(appointment));
+        updateFilteredBillList(bill -> bill.getAppointment().isSameAppointment(appointment));
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
         healthContact.addAppointment(appointment);
-        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        resetDisplayedList();
     }
 
     @Override
@@ -211,7 +225,7 @@ public class ModelManager implements Model {
     @Override
     public void addBill(Bill bill) {
         healthContact.addBill(bill);
-        updateFilteredBillList(PREDICATE_SHOW_ALL_BILLS);
+        resetDisplayedList();
     }
 
     /**
@@ -227,6 +241,12 @@ public class ModelManager implements Model {
     public void setBill(Bill target, Bill editedBill) {
         requireAllNonNull(target, editedBill);
         healthContact.setBill(target, editedBill);
+    }
+
+    private void resetDisplayedList() {
+        updateFilteredBillList(PREDICATE_SHOW_ALL_BILLS);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
     //=========== Filtered Patient List Accessors =============================================================

@@ -24,6 +24,8 @@ import seedu.address.model.HealthContact;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.NameContainsKeywordsPredicateAppointment;
+import seedu.address.model.bill.Bill;
+import seedu.address.model.bill.NameContainsKeywordsPredicateBill;
 import seedu.address.model.patient.NameContainsKeywordsPredicatePatient;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
@@ -152,6 +154,19 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
+     *
+     * @param expectedMessage The message that is expected to be thrown.
+     * @param command        The command that is expected to throw the exception.
+     * @param actualModel   The model that the command is executed on.
+     */
+    public static void assertCommandFailure(String expectedMessage, Command command, Model actualModel) {
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
      * - the HealthContact, filtered patient list and selected patient in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
@@ -194,6 +209,24 @@ public class CommandTestUtil {
         model.updateFilteredAppointmentList(new NameContainsKeywordsPredicateAppointment(predicateName));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the bill at the given {@code targetIndex} in the
+     * {@code model}'s HealthContact.
+     */
+    public static void showBillAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBillList().size());
+
+        Bill bill = model.getFilteredBillList().get(targetIndex.getZeroBased());
+        final String[] splitName = bill.getAppointment().getName().fullName.split("\\s+");
+        String predicateName = splitName[0];
+        for (int i = 1; i < splitName.length; i++) {
+            predicateName += " " + splitName[i];
+        }
+        model.updateFilteredBillList(new NameContainsKeywordsPredicateBill(predicateName));
+
+        assertEquals(1, model.getFilteredBillList().size());
     }
 
 }

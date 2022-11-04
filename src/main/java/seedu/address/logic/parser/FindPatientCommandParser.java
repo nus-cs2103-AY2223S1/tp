@@ -74,8 +74,9 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
             String trimmedArgs = argMultimap.getValue(PREFIX_PHONE).get().trim();
 
-            if (!trimmedArgs.matches("\\d")) {
-                throw new ParseException("Input for finding by phone number should contain only number(s)");
+            if (!trimmedArgs.matches("[0-9]+")) {
+                throw new ParseException("Input for finding by phone number must be a number consisting of one or"
+                        + " more digits");
             }
 
             Predicate<Phone> phonePredicate = (phone -> phone.value.contains(trimmedArgs));

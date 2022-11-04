@@ -9,14 +9,15 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents an Appointment's slot in the HealthContact.
- * Guarantees: immutable; is valid as declared in {@link #isValidDateTime (String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidSlot (String)}
  */
 public class Slot {
 
 
     public static final String MESSAGE_CONSTRAINTS =
             "Slot should be like 'yyyy-MM-dd HH:mm'";
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public final LocalDateTime localDateTime;
 
@@ -27,14 +28,14 @@ public class Slot {
      */
     public Slot(String dateTime) {
         requireNonNull(dateTime);
-        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidSlot(dateTime), MESSAGE_CONSTRAINTS);
         this.localDateTime = LocalDateTime.parse(dateTime, FORMATTER);
     }
 
     /**
      * Returns true if a given string is a valid date time.
      */
-    public static boolean isValidDateTime(String input) {
+    public static boolean isValidSlot(String input) {
         try {
             LocalDateTime test = LocalDateTime.parse(input, FORMATTER);
             return test.format(FORMATTER).equals(input);

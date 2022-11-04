@@ -11,50 +11,50 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Guok Wei Jie
 
-<img src="images/guokweijie.png" width="200px">
+<img src="images/developers/guokweijie.png" width="200px">
 
 [[github](https://github.com/guokweijie)]
 
-[[portfolio](team/guokweijie.md)]
+[[portfolio](images/guokweijie.md)]
 
 * Role: Team Lead
 
 ### Wadia Ganim
 
-<img src="images/wadia82.png" width="200px">
+<img src="images/developers/wadia82.png" width="200px">
 
 [[github](http://github.com/wadia82)]
 
-[[portfolio](team/wadia82.md)]
+[[portfolio](images/wadia82.md)]
 
 * Role: Scheduling and Tracking
 
 ### Fu Zanwen
 
-<img src="images/fuzanwenn.png" width="200px">
+<img src="images/developers/fuzanwenn.png" width="200px">
 
 [[github](http://github.com/Fuzanwenn)]
 
-[[portfolio](team/fuzanwenn.md)]
+[[portfolio](images/fuzanwenn.md)]
 
 * Role: Documentation
 
 ### Gregory Wong Twee Loong
 
-<img src="images/specops2016.png" width="200px">
+<img src="images/developers/specops2016.png" width="200px">
 
 [[github](http://github.com/SpecOps2016)]
 
-[[portfolio](team/specops2016.md)]
+[[portfolio](images/specops2016.md)]
 
 * Role: Testing
 
 ### Li Tianze
 
-<img src="images/tzl0.png" width="200px">
+<img src="images/developers/tzl0.png" width="200px">
 
 [[github](http://github.com/TZL0)]
 
-[[portfolio](team/tzl0.md)]
+[[portfolio](images/tzl0.md)]
 
 * Role: Integration

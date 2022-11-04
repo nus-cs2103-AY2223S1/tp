@@ -34,6 +34,8 @@ public class AddBillCommand extends Command {
     public static final String MESSAGE_DUPLICATE_BILL = "This bill already exists in HealthContact";
     public static final String MESSAGE_APPOINTMENT_NOT_EXIST =
             "This appointment does not exist in HealthContact";
+    public static final String MESSAGE_BILL_DATE_EARLIER_THAN_SLOT =
+            "The bill date must not be earlier than appointment slot";
 
     private final Index indexOfAppointment;
     private final BillDate billDate;
@@ -72,6 +74,10 @@ public class AddBillCommand extends Command {
 
         if (model.hasBill(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_BILL);
+        }
+
+        if (toAdd.getBillDate().localDate.isBefore(toAdd.getAppointment().getSlot().localDateTime.toLocalDate())) {
+            throw new CommandException(MESSAGE_BILL_DATE_EARLIER_THAN_SLOT);
         }
 
         model.addBill(toAdd);
