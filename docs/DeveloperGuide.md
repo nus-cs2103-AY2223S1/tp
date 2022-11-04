@@ -59,10 +59,10 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Each of the four main components (also shown in the diagram above),
+Each of the four main components (also shown in the diagram above):
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* Defines its *API* in an `interface` with the same name as the Component.
+* Implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -80,12 +80,12 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `UI` component:
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Student`, `ModuleClass` and `Session` object residing in the `Model`.
+* Executes user commands using the `Logic` component.
+* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* Depends on some classes in the `Model` component, as it displays `Student`, `ModuleClass` and `Session` object residing in the `Model`.
 
 ### Logic component
 
@@ -126,16 +126,16 @@ The following sequence diagram shows how a generic command `XYZCommand` is parse
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-The `Model` component,
+The `Model` component:
 
-* stores data in TA-Assist:
-  * all `Student` objects are contained in a `UniqueList` object.
-  * all `ModuleClass` objects are also contained in a `UniqueList` object.
-* stores the currently 'selected' `StudentView` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<StudentView>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* the `StudentView` object is a class that encapsulates `Student` data along with a `SessionData` to be displayed to `UI`. More details regarding this class can be referred to in [the Implementation section](#querying-student-grades-for-a-session).
-* stores the currently 'focused' `ModuleClass` object.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (i.e. `Ui`, `Logic` and `Storage`) as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components.
+* Stores data in TA-Assist:
+  * All `Student` objects are contained in a `UniqueList` object.
+  * All `ModuleClass` objects are also contained in a `UniqueList` object.
+* Stores the currently 'selected' `StudentView` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<StudentView>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* The `StudentView` object is a class that encapsulates `Student` data along with a `SessionData` to be displayed to `UI`. More details regarding this class can be referred to in [the Implementation section](#querying-student-grades-for-a-session).
+* Stores the currently 'focused' `ModuleClass` object.
+* Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* Does not depend on any of the other three components (i.e. `Ui`, `Logic` and `Storage`) as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components.
 
 #### UniqueList
 
@@ -165,10 +165,10 @@ The relationship between these classes is shown in the following class diagram:
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component,
-* can save both TA-Assist data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `TaAssistStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+The `Storage` component:
+* Can save both TA-Assist data and user preference data in json format, and read them back into corresponding objects.
+* Inherits from both `TaAssistStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* Depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
@@ -457,8 +457,8 @@ Its implementation is facilitated by two classes:
 
 This encapsulated `SessionData` internally represented with three values:
 * `null`: `SessionData` has not been queried
-* an empty `Optional`: `SessionData` has been queried, but doesn't exist in `Student`.
-* an `Optional` encapsulating a `SessionData`: `SessionData` has been queried and does exist in `Student`.
+* An empty `Optional`: `SessionData` has been queried, but doesn't exist in `Student`.
+* An `Optional` encapsulating a `SessionData`: `SessionData` has been queried and does exist in `Student`.
 
 #### MappedStudentViewList class
 `MappedStudentViewList` maps an `ObservableList<Student>` to an `ObservableList<StudentView>`. 
@@ -552,12 +552,12 @@ It was designed with the following consideration:
 
 **Target user profile**:
 
-* works as teaching assistants.
-* has a need to keep track of students' grades, attendance, and work submission status of relevant modules.
-* prefers desktop apps over other types.
-* can type fast.
-* prefers typing to mouse interactions.
-* is reasonably comfortable using CLI apps.
+* Works as teaching assistants.
+* Has a need to keep track of students' grades, attendance, and work submission status of relevant modules.
+* Prefers desktop apps over other types.
+* Can type fast.
+* Prefers typing to mouse interactions.
+* Is reasonably comfortable using CLI apps.
 
 **Value proposition**:
 * Fast management of students' grades over the typical GUI-driven app.
@@ -756,86 +756,70 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
-
+1. Initial launch:
    1. Download the jar file and copy into an empty folder
-
    1. Double-click the jar file 
-   
+    
    Expected: Shows the GUI with a set of sample students and classes. The window size may not be optimum on certain resolutions.
-
-1. Saving window preferences
-
+ 
+1. Saving window preferences:
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
    1. Re-launch the app by double-clicking the jar file.
    
    Expected: The most recent window size and location is retained.
 
 ### Deleting a student
 
-1. Deleting a student while all students are being shown
-
+1. Deleting a student while all students are being shown:
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
    1. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Adding sessions
 
 1. Adding a session to a class
-
    1. Prerequisites: The class `CS1231S` exists in TA-Assist without any sessions assigned. 
       TA-Assist is currently in focus mode and is focusing on the `CS1231S` class.
-
    1. Test case: `adds s/Tut 1`<br>
       Expected: A session named `Tut 1` is added with the current system date and is displayed on the session list.
-
    1. Test case: `adds s/Tut 1 d/2022-01-01`<br>
       Expected: A session named `Tut 1` is added with its date set to `1st January 2022` and is displayed on the session list.
-
    1. Test case: `adds s/Lab 1 d/2019-02-29`<br>
       Expected: Session is not created as `29th February 2019` is not a valid date.
 
 1. Batch adding sessions to a class
-
    1. Prerequisites: The class `CS1231S` exists in TA-Assist without any sessions assigned.
    TA-Assist is currently in focus mode and is focusing on the `CS1231S` class.
-
    1. Test case: `adds s/Tut 2 s/Lab 2`<br>
       Expected: Two sessions named `Tut 2` and `Lab 2` is added with the current system date and is displayed on the session list.
-
    1. Test case: `adds s/Tut 3 s/Lab 3 d/2000-01-01`<br>
       Expected: Two sessions named `Tut 3` and `Lab3` is added with its date set to `1st January 2000` and is displayed on the session list.
-   
    1. Test case: `adds s/Tut 4 d/2000-02-02 s/Lab 4 d/2020-04-20`<br>
       Expected: Two sessions named `Tut 4` and `Lab 4` is added with its date set to `20th April 2020` and is displayed on the session list.
 
 ### Saving data
 
-1. Data file is corrupted
-
+1. Data file is corrupted:
    1. Prerequisite: Jar file has been launched and data files have been generated.
-
    1. Close the application. Open `data/taassist.json` and add some random characters.
-
    1. Re-launch the app.
-   
    Expected: An alert box appears stating the data file has been corrupted and queries the user if they want to continue
    with a new data file.
-
-1. Data file is missing
-
+    
+1. Data file is missing:
    1. Prerequisite: Jar file has been launched and data files have been generated.
-
    1. Close the application. Rename `data/taassist.json` to `data/taassist.json.bak`.
-
    1. Re-launch the app.
-
    Expected: TA-Assist launches normally and re-generates the sample data similar to when the application is first launched.
+  
+1. Recovering accidentally deleted data: 
+   1. Pre-requisite: Jar file has been launched previously and data files have been generated.
+   1. Modify or delete some data using the application.
+   1. Close the application. Rename `data/taassist.json.bak` to `data/taassist.json`. 
+   1. Re-launch the app.
+   Expected: TA-Assist copied the data from `data/taassist.json` to `data/taassist.json.bak` at launch. After following
+   the instructions, data before modification is recovered.
