@@ -30,9 +30,9 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=Lan-Jingbo&tabRepo=AY2223S1-CS2103T-W16-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-  * Added Github tags, milestones, assignee.
-  * Used Github issue tracker.
-  * Followed the branching workflow.
+  * Added GitHub tags, milestones, assignee.
+  * Used GitHub issue tracker.
+  * Followed the forking workflow.
   * Contributed to meetings by sharing screen and facilitating discussions.
 
 * **Documentation**:
@@ -48,8 +48,7 @@ Given below are my contributions to the project.
   * Facilitated and tidied up contents of postmortem v1.3
 
 * **Review/mentoring contributions**:
-  * Team members' PR reviews (with non-trivial review comments): pull request #201, #200, #197, #194, #190,
-    #118, #114, #111, #104, #95, #80, #78, #74, #73, #67, #48
+  * Team members' PR reviews (with non-trivial review comments): pull request #201, #200, #197, #194, #190, #118, #114, #111, #104, #95, #80, #78, #74, #73, #67, #48
   * Reported bugs for other teams ([ped](https://github.com/Lan-Jingbo/ped/issues)).
 
 * **Contributions beyond the project team**:

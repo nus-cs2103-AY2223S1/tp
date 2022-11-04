@@ -46,9 +46,9 @@ Given below are my contributions to the project.
     * Facilitated and tidied up contents of postmortem v1.2
 
 * **Project management**:
-  * Added Github tags, milestones, assignee.
-  * Used Github issue tracker.
-  * Followed the branching workflow.
+  * Added GitHub tags, milestones, assignee.
+  * Used GitHub issue tracker.
+  * Followed the forking workflow.
   * Contributed to meetings by taking down minutes and facilitating discussions.
 
 * **Review/mentoring contributions**:

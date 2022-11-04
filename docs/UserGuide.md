@@ -20,15 +20,16 @@ in your management workflow. It provides an in-depth description of GuestBook's 
 and how to best use them to suite your needs. With our intuitive design, you will become
 a master at using GuestBook in no time!
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## How to use the User Guide
 
 * For a quick and easy way to **get started** with GuestBook, you can visit the [Quick Start](#quick-start) section.
@@ -61,6 +62,8 @@ section of this user guide or to an external website.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Components of the User Interface
 
 ### Locations of the components
@@ -86,6 +89,7 @@ section of this user guide or to an external website.
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -175,6 +179,7 @@ For example, you can check out the third guest by executing the command below.
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
@@ -196,6 +201,8 @@ to GuestBook) for you to get acquainted with.
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -514,6 +521,7 @@ Advanced users may change data directly by editing this data file.
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -546,6 +554,7 @@ Listed here are some frequently asked questions that we hope will be helpful for
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Field summary
 
@@ -578,6 +587,7 @@ Consider using capital letters as this check is case-sensitive (`rq/Extra bed & 
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
