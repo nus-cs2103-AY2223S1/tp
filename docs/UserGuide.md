@@ -218,30 +218,40 @@ continue!
 
 #### 4.3.2 Adding a student / teaching assistant: `add`
 
-Adds a student / teaching assistant.
+You can add a student / teaching assistant by using this command.
 
 Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/STUDENT_ID h/TELEGRAM [t/TAG]…​ [c/MODULE_CODE]…​ [ta/MODULE_CODE]…​ [cg/CLASS_GROUP]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-:bulb: **Tip:** A student can have any number of tags, modules, ta modules and class groups (including 0).
+**:information_source: Note**<br>
 
-:bulb: **Tip:** A student should not be a teaching assistant and a student of the same module!
+- Refer to section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters
+- A student can have any number of tags, modules, ta modules and class groups (including 0).
 
 </div>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/A0175749U h/@good_user`
-* `add n/Adam Doink e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 i/A0175776U h/@adam_doink c/CS1101S cg/CS1101S:Tut07`
-* `add n/David Lim e/ad4md01nk@example.com a/Tembusu College p/82738419 i/A0175079D h/@david_the_best c/CS2030S ta/CS1101S cg/CS1101S:Tut07`
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+
+- Please make sure you have added the module with `MODULE_CODE` before you add any students with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.
+- A student should not be a teaching assistant and a student of the same module!
+
+</div>
+
+**Example**:
+
+Now, let's use `add` to add a student with the following information.
+
+`n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/good i/A0123456G h/@good_student c/CS2030S ta/CS1101S cg/CS2030S:Tut07`
+
+**Step 1**: type command `add  n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/A0123456G h/@good_student c/CS2030S ta/CS1101S cg/CS2030S:Tut07` in the command text box.
+
+![add](images/userguide/student/add_step1.png)
 
 #### 4.3.2. Editing a student : `editstu`
 
-<<<<<<< HEAD
-Edits an existing student.
-=======
-Edits an existing student in ProfNUS.
->>>>>>> a5fdf512968963ed2e4c615a4cd3b9287247e8f1
 
 Format: `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
 
@@ -259,11 +269,6 @@ Examples:
 
 #### 4.3.3. Editing a teaching assistant : `editta`
 
-<<<<<<< HEAD
-Edits an existing teaching assistant.
-=======
-Edits an existing teaching assistant in ProfNUS.
->>>>>>> a5fdf512968963ed2e4c615a4cd3b9287247e8f1
 
 Format: `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
 
