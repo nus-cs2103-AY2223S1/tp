@@ -7,8 +7,8 @@
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
     "clientTag": "POTENTIAL",
-    "income": "$1000",
-    "monthly": "$1000",
+    "income": "1000",
+    "monthly": "1000",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -18,7 +18,7 @@
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
     "clientTag": "POTENTIAL",
-    "income": "$1000",
-    "monthly": "$1000"
+    "income": "1000",
+    "monthly": "1000"
   } ]
 }

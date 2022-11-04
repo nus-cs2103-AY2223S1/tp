@@ -10,7 +10,7 @@
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <HBox>
       <children>
-         <Label contentDisplay="CENTER" styleClass="label-header" text="Financial Advisor Planner" textFill="WHITE" HBox.hgrow="ALWAYS">
+         <Label contentDisplay="CENTER" minWidth="-Infinity" styleClass="label-header" text="Financial Advisor Planner" textFill="WHITE" HBox.hgrow="ALWAYS">
             <HBox.margin>
                <Insets left="10.0" right="10.0" />
             </HBox.margin>

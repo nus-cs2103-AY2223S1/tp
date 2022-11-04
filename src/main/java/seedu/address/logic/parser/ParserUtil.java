@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
 import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
 import java.time.LocalDateTime;
@@ -89,7 +91,7 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
+        String trimmedName = name.trim().replaceAll(" +", " ");
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -250,7 +252,7 @@ public class ParserUtil {
      */
     public static RiskTag parseRiskTag(String riskTag) throws ParseException {
         requireNonNull(riskTag);
-        String trimmedRiskTag = riskTag.trim();
+        String trimmedRiskTag = riskTag.trim().toUpperCase();
         if (!RiskTag.isValidRiskTagName(trimmedRiskTag)) {
             throw new ParseException(RiskTag.MESSAGE_CONSTRAINTS);
         }
@@ -263,7 +265,7 @@ public class ParserUtil {
      */
     public static ClientTag parseClientTag(String clientTag) throws ParseException {
         requireNonNull(clientTag);
-        String trimmedClientTag = clientTag.trim();
+        String trimmedClientTag = clientTag.trim().toUpperCase();
         if (!ClientTag.isValidClientTagName(trimmedClientTag)) {
             throw new ParseException(ClientTag.MESSAGE_CONSTRAINTS);
         }
@@ -362,17 +364,27 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> monetaryValues} into a {@code List<String>}.
      */
-    public static List<String> parseMonetaryValues(Collection<String> monetaryValues)
+    public static List<String> parseMonetaryValues(Collection<String> monetaryValues, Prefix prefix)
             throws ParseException {
         requireNonNull(monetaryValues);
-        final List<String> incomeLevelList = new ArrayList<>(monetaryValues);
-        for (int i = 0; i < incomeLevelList.size(); i++) {
+        final List<String> moneyList = new ArrayList<>(monetaryValues);
+        for (int i = 0; i < moneyList.size(); i++) {
             if (i == 0) {
-                parseIncomeLevel("$" + incomeLevelList.get(i).substring(1));
+                if (prefix == PREFIX_INCOME) {
+                    parseIncomeLevel(moneyList.get(i).substring(1));
+                } else if (prefix == PREFIX_MONTHLY) {
+                    parseMonthly(moneyList.get(i).substring(1));
+                }
+
             } else {
-                parseIncomeLevel("$" + incomeLevelList.get(i));
+                if (prefix == PREFIX_INCOME) {
+                    parseIncomeLevel(moneyList.get(i));
+                } else if (prefix == PREFIX_MONTHLY) {
+                    parseMonthly(moneyList.get(i));
+                }
+
             }
         }
-        return incomeLevelList;
+        return moneyList;
     }
 }

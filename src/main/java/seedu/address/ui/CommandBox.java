@@ -47,6 +47,10 @@ public class CommandBox extends UiPart<Region> {
 
     }
 
+    public TextField getCommandTextField() {
+        return commandTextField;
+    }
+
     /**
      * Setup down and up arrow key to show previous and next command in commandTextField
      * @param logic gets the previous/next command in CommandHistory

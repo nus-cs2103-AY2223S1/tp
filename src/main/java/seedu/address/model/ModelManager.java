@@ -131,7 +131,6 @@ public class ModelManager implements Model {
     @Override
     public void sortPerson(Comparator<Person> comparator) {
         addressBook.sortPersons(comparator);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
     //=========== Filtered Person List Accessors =============================================================
 
@@ -156,8 +155,11 @@ public class ModelManager implements Model {
         int size = predicates.size();
         HashSet<Person> newPersons = new HashSet<>();
         for (int i = 0; i < size; i++) {
-            FilteredList<Person> currentFilteredList = addressBook.getPersonList().filtered(predicates.get(i));
-            currentFilteredList.stream().forEach(newPersons::add);
+            ObservableList<Person> test = FXCollections.observableArrayList();
+            filteredPersons.forEach(test::add);
+            FilteredList<? extends Person> filteredPersonsCopy = new FilteredList<>(test);
+            filteredPersonsCopy.setPredicate(predicates.get(i));
+            filteredPersonsCopy.stream().forEach(newPersons::add);
         }
         filteredPersons.setPredicate(new SamePersonPredicate(newPersons));
     }

@@ -8,8 +8,8 @@
     "riskTag": "LOW",
     "planTag": "Savings Plan",
     "clientTag": "POTENTIAL",
-    "income": "$1000",
-    "monthly": "$200",
+    "income": "1000",
+    "monthly": "200",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -18,9 +18,9 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
-    "clientTag": "CURRENT",
-    "income": "$1000",
-    "monthly": "$100",
+    "clientTag": "POTENTIAL",
+    "income": "1000",
+    "monthly": "100",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -29,9 +29,9 @@
     "address" : "wall street",
     "riskTag": "LOW",
     "planTag": "Savings Plan",
-    "clientTag": "POTENTIAL",
-    "income": "$1000",
-    "monthly": "$200",
+    "clientTag": "CURRENT",
+    "income": "1000",
+    "monthly": "200",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -41,8 +41,8 @@
     "riskTag": "LOW",
     "planTag": "Savings Plan",
     "clientTag": "CURRENT",
-    "income": "$1000",
-    "monthly": "$300",
+    "income": "1000",
+    "monthly": "300",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -52,8 +52,8 @@
     "riskTag": "MEDIUM",
     "planTag": "Savings Plan",
     "clientTag": "POTENTIAL",
-    "income": "$6000",
-    "monthly": "$250",
+    "income": "6000",
+    "monthly": "250",
     "tagged" : [ ],
     "appointments" : [ {
       "appointmentDateTime" : "22-Jan-2023 01:00 AM",
@@ -67,8 +67,8 @@
     "riskTag": "MEDIUM",
     "planTag": "Savings Plan",
     "clientTag": "CURRENT",
-    "income": "$2000",
-    "monthly": "$500",
+    "income": "2000",
+    "monthly": "500",
     "tagged" : [ ],
     "appointments" : [ {
       "appointmentDateTime" : "23-Mar-2024 01:00 AM",
@@ -82,8 +82,8 @@
     "riskTag": "LOW",
     "planTag": "Savings Plan",
     "clientTag": "POTENTIAL",
-    "income": "$10000",
-    "monthly": "$400",
+    "income": "10000",
+    "monthly": "400",
     "tagged" : [ ],
     "appointments" : [ {
       "appointmentDateTime" : "21-Jan-2023 01:00 AM",

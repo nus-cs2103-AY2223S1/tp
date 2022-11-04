@@ -34,8 +34,8 @@ public class IncomeLevelTest {
         assertFalse(IncomeLevel.isValidIncome("$00001")); // trailing zeroes
 
         // valid name
-        assertTrue(IncomeLevel.isValidIncome("$231231")); // $ + numbers
-        assertTrue(IncomeLevel.isValidIncome("$0")); // $ + numbers
-        assertTrue(IncomeLevel.isValidIncome("$999")); // $ + numbers
+        assertTrue(IncomeLevel.isValidIncome("231231")); // $ + numbers
+        assertTrue(IncomeLevel.isValidIncome("0")); // $ + numbers
+        assertTrue(IncomeLevel.isValidIncome("999")); // $ + numbers
     }
 }

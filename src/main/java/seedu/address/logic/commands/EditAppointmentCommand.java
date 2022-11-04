@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICA
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
 import static seedu.address.logic.parser.EditAppointmentDescriptor.createEditedAppointment;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -103,7 +102,6 @@ public class EditAppointmentCommand extends Command {
 
         appointmentSet.add(editedAppointment);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateCalendarEventList();
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, appointmentToEdit, editedAppointment));
     }

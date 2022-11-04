@@ -9,13 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class IncomeLevel {
 
-    public static final String MESSAGE_CONSTRAINTS = "Income can take in any digit preceded by $ followed by [1-9]";
+    public static final String MESSAGE_CONSTRAINTS = "Income can only take in a non-negative whole number";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^(\\$)(0|[1-9][0-9]*)$";
+    public static final String VALIDATION_REGEX = "^(0|[1-9][0-9]*)$";
 
     public final String value;
 
@@ -27,7 +27,7 @@ public class IncomeLevel {
     public IncomeLevel(String income) {
         requireNonNull(income);
         checkArgument(isValidIncome(income), MESSAGE_CONSTRAINTS);
-        value = income;
+        value = "$" + income;
     }
 
     /**
@@ -54,7 +54,7 @@ public class IncomeLevel {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof IncomeLevel // instanceof handles nulls
-                && value.equals(((IncomeLevel) other).value)); // state check
+                && this.convertIncomeToLong() == (((IncomeLevel) other).convertIncomeToLong())); // state check
     }
 
     @Override

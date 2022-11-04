@@ -16,7 +16,7 @@ public class EventButton extends CalendarButton {
     private static final String FXML = "EventButton.fxml";
     private static final String EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-radius: 5; -fx-min-width: 100;";
     private static final double ORIGIN = 0.0;
-    private static final int TOOLTIP_OFFSET = 15;
+    private static final int HALF_CONTENT_WIDTH = 150;
     private Stage primaryStage;
     private CalendarEvent calendarEvent;
     @FXML
@@ -45,12 +45,14 @@ public class EventButton extends CalendarButton {
         };
         primaryStage.heightProperty().addListener(stageSizeListener);
         primaryStage.widthProperty().addListener(stageSizeListener);
+        primaryStage.xProperty().addListener(stageSizeListener);
+        primaryStage.yProperty().addListener(stageSizeListener);
     }
 
     @FXML @Override
     protected void handleOnAction(ActionEvent event) {
         if (!calendarPopup.getRoot().isShowing()) {
-            displayToolTip();
+            displayPopup();
         }
     }
 
@@ -58,7 +60,7 @@ public class EventButton extends CalendarButton {
     protected void handleFocusedEvent(Observable observable) {
         if (!calendarPopup.getRoot().isShowing() && eventButton.isFocused()) {
             eventButton.setStyle(EVENT_BUTTON_STYLE + ORANGE_BORDER);
-            displayToolTip();
+            displayPopup();
         }
         if (!eventButton.isFocused()) {
             eventButton.setStyle(EVENT_BUTTON_STYLE + GREY_BORDER);
@@ -66,10 +68,11 @@ public class EventButton extends CalendarButton {
         }
     }
 
-    private void displayToolTip() {
+    private void displayPopup() {
         Point2D p = eventButton.localToScene(ORIGIN, ORIGIN);
-        calendarPopup.getRoot().show(eventButton, p.getX()
-                + eventButton.getScene().getX() + eventButton.getScene().getWindow().getX(), p.getY()
-                + eventButton.getScene().getY() + eventButton.getScene().getWindow().getY() + TOOLTIP_OFFSET);
+        calendarPopup.getRoot().show(eventButton,
+                eventButton.getScene().getWindow().getWidth() / 2 - HALF_CONTENT_WIDTH
+                        + eventButton.getScene().getWindow().getX(), p.getY()
+                        + eventButton.getScene().getY() + eventButton.getScene().getWindow().getY());
     }
 }

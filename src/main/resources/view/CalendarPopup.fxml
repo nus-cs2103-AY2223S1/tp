@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Tooltip?>
+<?import javafx.stage.Popup?>
 
 
-<Tooltip fx:id="popup" anchorLocation="WINDOW_BOTTOM_LEFT" autoFix="false" contentDisplay="BOTTOM" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />
+<Popup fx:id="popup" forceIntegerRenderScale="true" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />

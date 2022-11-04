@@ -50,11 +50,11 @@ public class CommandTestUtil {
     public static final String VALID_RISKTAG_HIGH = "HIGH";
     public static final String VALID_RISKTAG_LOW = "LOW";
 
-    public static final String VALID_INCOME_AMY = "$1000";
-    public static final String VALID_INCOME_BOB = "$10000";
+    public static final String VALID_INCOME_AMY = "1000";
+    public static final String VALID_INCOME_BOB = "10000";
     public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_MONTHLY_AMY = "$200";
-    public static final String VALID_MONTHLY_BOB = "$1000";
+    public static final String VALID_MONTHLY_AMY = "200";
+    public static final String VALID_MONTHLY_BOB = "1000";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_DATETIME_21_JAN_2023 = "21-Jan-2023 01:00 AM";
     public static final String VALID_DATETIME_22_JAN_2023 = "22-Jan-2023 01:00 AM";
@@ -97,8 +97,8 @@ public class CommandTestUtil {
     public static final String INVALID_PLANTAG_DESC = " " + PREFIX_PLANTAG + "none"; // must end with Plan
     public static final String INVALID_CLIENTTAG_DESC = " " + PREFIX_CLIENTTAG + "none"; // must be POTENTIAL or CURRENT
     public static final String INVALID_RISKTAG_DESC = " " + PREFIX_RISKTAG + "none"; // must be HIGH LOW or MEDIUM
-    public static final String INVALID_INCOME_DESC = " " + PREFIX_INCOME + "000"; // income should include "$" sign
-    public static final String INVALID_MONTHLY_DESC = " " + PREFIX_MONTHLY + "000"; // monthly should include "$"
+    public static final String INVALID_INCOME_DESC = " " + PREFIX_INCOME + "00asd0"; // income should include "$" sign
+    public static final String INVALID_MONTHLY_DESC = " " + PREFIX_MONTHLY + "00asd0"; // monthly should include "$"
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String INVALID_BOTH_FIELD_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE
@@ -107,6 +107,8 @@ public class CommandTestUtil {
             + INVALID_DATETIME_210_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_NUS;
     public static final String INVALID_LOCATION_FIELD_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE
             + VALID_DATETIME_21_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + INVALID_LOCATION;
+    public static final String VALID_LOCATION_FIELD_APPOINTMENT_DESC = " "
+            + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_NUS;
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
@@ -39,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CalendarDisplay calendarDisplay;
+    private TextField commandTextField;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -92,12 +94,21 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
-    void registerShortcutsForTabs() {
+    private void registerShortcutsForTabs() {
         registerShortcut(tabPane, contactsTab, new KeyCodeCombination(KeyCode.DIGIT1,
                 KeyCombination.CONTROL_DOWN));
         registerShortcut(tabPane, calendarTab, new KeyCodeCombination(KeyCode.DIGIT2,
                 KeyCombination.CONTROL_DOWN));
     }
+
+    private void registerCalendarNavigationForCalendarTab(CalendarDisplay calendarDisplay) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (calendarTab.isSelected() && !commandTextField.isFocused()) {
+                calendarDisplay.handleKeyPressed(event);
+            }
+        });
+    }
+
     /**
      * Sets the accelerator of a MenuItem.
      * @param keyCombination the KeyCombination value of the accelerator
@@ -149,12 +160,14 @@ public class MainWindow extends UiPart<Stage> {
 
         calendarDisplay = new CalendarDisplay(logic, primaryStage);
         calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
+        registerCalendarNavigationForCalendarTab(calendarDisplay);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand, resultDisplay, logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        this.commandTextField = commandBox.getCommandTextField();
     }
 
     /**

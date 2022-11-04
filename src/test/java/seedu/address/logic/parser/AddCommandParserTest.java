@@ -91,7 +91,8 @@ public class AddCommandParserTest {
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
-                + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + CLIENTTAG_DESC_POTENTIAL
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
@@ -104,22 +105,23 @@ public class AddCommandParserTest {
                 + MONTHLY_DESC_BOB + INCOME_DESC_AMY + INCOME_DESC_BOB
                 + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + CLIENTTAG_DESC_POTENTIAL
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
         //multiple riskTags - last riskTag accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
-                + RISKTAG_DESC_LOW + PLANTAG_DESC_SAVINGS + RISKTAG_DESC_HIGH
+                + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + RISKTAG_DESC_HIGH
                 + CLIENTTAG_DESC_POTENTIAL + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         //multiple planTags - last planTag accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
-                + RISKTAG_DESC_LOW + PLANTAG_DESC_SAVINGS + PLANTAG_DESC_SAVINGS
+                + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + PLANTAG_DESC_SAVINGS
                 + CLIENTTAG_DESC_POTENTIAL + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         //multiple clientTags - last planTag accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
-                + RISKTAG_DESC_LOW + PLANTAG_DESC_SAVINGS + CLIENTTAG_DESC_CURRENT
+                + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + CLIENTTAG_DESC_CURRENT
                 + CLIENTTAG_DESC_POTENTIAL + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
