@@ -10,17 +10,17 @@ CinternS is a desktop intern-management application used for managing internship
 Given below are my contributions to the project.
 
 * **New Feature**: Data Archiving
-    * What it does: allows user to hide past applications in the list and refer/retrieve back if necessary.
+    * What it does: Allows user to hide past applications in the list and refer/retrieve back if necessary.
     * Justification: This feature improves the convenience of users in managing their applications significantly as they can hide unwanted data (e.g. past applications) to better manage the actual application list while not losing the benefits of keeping track of old applications (deleting it).
     * Highlights: This enhancement utilises and extends the idea of `FindCommand` filtering the list shown to user. It requires in-depth analysis of past commands to find alternatives that fits the existing implementation most. This feature provides three additional commands:
-      1. `ListArchiveCommand`: Allow users to list all archived applications.
-      2. `ArchiveCommand`: Allow users to archive selected application.
-      3. `RetrieveCommand`: Allow users to retrieve selected application.
-   * Credits: Idea Inspired by `FindCommand` implementation from [address-book-level-3](https://github.com/se-edu/addressbook-level3)
+      1. `ListArchiveCommand`: Allows users to list all archived applications.
+      2. `ArchiveCommand`: Allows users to archive selected application.
+      3. `RetrieveCommand`: Allows users to retrieve selected application.
+   * Credits: Idea inspired by `FindCommand` implementation from [address-book-level-3](https://github.com/se-edu/addressbook-level3)
 
 * **New Feature**: Showing statistic
-    * What it does: a simple feature that allows user to review his overall applications' statistic.
-    * Justification: This feature assist user in fast reviewing his internship/job applications performance especially when there are many applications added in CinternS.
+    * What it does: A simple feature that allows user to review his overall applications' statistic.
+    * Justification: This feature assists user in reviewing his internship application performance quickly especially when there are many applications added in CinternS.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=eesung00&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 

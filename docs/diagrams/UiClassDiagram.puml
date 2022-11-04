@@ -34,11 +34,11 @@ HiddenOutside ..> Ui
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
-MainWindow --> "0..1" HelpWindow
+MainWindow --> "1" HelpWindow
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" ApplicationListPanel
 MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" ReminderWindow
+MainWindow --> "1" ReminderWindow
 MainWindow *-down-> "1" InterviewListPanel
 
 ApplicationListPanel -down--> "*" ApplicationCard

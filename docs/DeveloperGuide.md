@@ -236,7 +236,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Implementation
 
 The purpose of this enhancement is to allow user to archive applications that are not applicable in the current time (applications that are rejected/offered/no-response )
-* Data archiving of `Application` is done with adding a boolean attribute to the Application class as the record of its archive status.
+* Data archiving of `Application` is done by adding a boolean attribute to the Application class as a record of its archive status.
 * Two predicates in Model to adjust its FilterList shown to the user.
 * By applying predicates to the `FilterList` in `ModelManager`, the archived `Application` can be hidden from the user.
 * The list showing to user in the UI is either showing the unarchived applications or the archived application using `ListCommand` and `ListArchiveCommand` respectively unless `FindCommand` is used.
@@ -421,29 +421,29 @@ Aspect: How should the remind command filter out upcoming interviews?
 ### Statistic Feature
 
 #### Implementation
-The statistic feature is a simple feature that allow user to obtain a summarized statistics of the whole application list.
+The statistic feature is a simple feature that allows users to obtain a summarized statistics of the whole application list.
 
-The results of the statistic is shown on the UI using the `ResultDisplay` section. The sequence diagram below shows the working flow of statistic feature. It gets the list of applications in the model and count the respective information. The calculation result is then output through `CommandResult`.
+The summary statistic is shown on the UI using the `ResultDisplay` section. The sequence diagram below shows the workflow of the statistic feature. It gets the list of applications from the model and tabulates the respective information. The tabulation result is then output through `CommandResult`.
 
 ![Statistic Sequence Diagram](images/StatisticSequenceDiagram.png)
 
 
 #### Constraints of Statistic Feature
-The statistic of the applications will only show when user enter `stats` command. Possible future improvement is to reorganise UI section to display real-time statistics on one section while the list view of applications and interviews are not affected.
+The statistic of the applications will only show when user enter `stats` command. Possible future improvement is to reorganise the UI section to display real-time statistics in one section and the list view of applications and interviews are in another section.
 
 #### Design Considerations
 
 Aspect: How should the statistic feature be presented?
 
 * Alternative 1 (current choice): Utilise `ResultDisplay` section in UI to show user the statistics.
-    * Pros: Does not need extra space in the UI to show the statistic and more simple and straight-forward implementation.
+    * Pros: Does not need extra space in the UI to show the statistic, and simpler and more straightforward implementation.
     * Cons: Increase coupling between `ModelManager` and `StatsCommand` as it requires the list of applications in `ModelManager`.
 
 * Alternative 2: Create a new section in UI to show user real-time statistics.
     * Pros: Does not increase coupling between classes and align with the implementation of Applications and Interviews list views.
     * Cons: Space usage for UI might be inefficient as user will not always want to review the statistic of the applications.
 
-- Alternative 1 is chosen as our team justified that the implementation is simple, and it will less likely to have bugs despite the accessing application list from `ModelManager`. Furthermore, interview and application list are more important to be shown in UI when comparing with the statistics.
+- Alternative 1 is chosen as our team justified that the implementation is simpler, and is less likely to contain bugs despite the accessing application list from `ModelManager`. Furthermore, interview and application lists are more important to be shown on the GUI when compared to the statistics.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -612,7 +612,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First application is deleted from the list. Details of the deleted application shown in the status message. Timestamp in the status bar is updated.
+      Expected: First application is deleted from the list. Details of the deleted application shown in the status message.
 
    1. Test case: `delete 0`<br>
       Expected: No application is deleted. Error details shown in the status message. Status bar remains the same.
