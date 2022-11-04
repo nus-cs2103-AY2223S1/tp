@@ -1,6 +1,7 @@
 package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
 import java.util.List;
 
@@ -15,10 +16,10 @@ import seedu.uninurse.model.person.Patient;
  * Deletes a patient identified using it's displayed index from the Patient list.
  */
 public class DeletePatientCommand extends DeleteGenericCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
+            + ": Deletes a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Patient: %1$s";
 

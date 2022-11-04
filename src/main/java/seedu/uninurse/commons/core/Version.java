@@ -10,11 +10,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * Represents a version with major, minor and patch number
  */
 public class Version implements Comparable<Version> {
-
     public static final String VERSION_REGEX = "V(\\d+)\\.(\\d+)\\.(\\d+)(ea)?";
-
     private static final String EXCEPTION_STRING_NOT_VERSION = "String is not a valid Version. %s";
-
     private static final Pattern VERSION_PATTERN = Pattern.compile(VERSION_REGEX);
 
     private final int major;
@@ -23,7 +20,12 @@ public class Version implements Comparable<Version> {
     private final boolean isEarlyAccess;
 
     /**
-     * Constructs a {@code Version} with the given version details.
+     * Constructs a Version with the given version details.
+     *
+     * @param major the integer of the version's major number
+     * @param minor the integer of the version's minor number
+     * @param patch the integer of the version's patch number
+     * @param isEarlyAccess indicating if the version is an early access version
      */
     public Version(int major, int minor, int patch, boolean isEarlyAccess) {
         this.major = major;
@@ -93,16 +95,16 @@ public class Version implements Comparable<Version> {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
+    public boolean equals(Object other) {
+        if (other == null) {
             return false;
         }
-        if (!(obj instanceof Version)) {
+        if (!(other instanceof Version)) {
             return false;
         }
-        final Version other = (Version) obj;
+        Version o = (Version) other;
 
-        return compareTo(other) == 0;
+        return compareTo(o) == 0;
     }
 
     @Override

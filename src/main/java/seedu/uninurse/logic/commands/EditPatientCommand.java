@@ -3,7 +3,7 @@ package seedu.uninurse.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.List;
@@ -30,15 +30,12 @@ import seedu.uninurse.model.task.TaskList;
  * Edits the details of an existing patient in the uninurse book.
  */
 public class EditPatientCommand extends EditGenericCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
-            + "by the index number used in the displayed patient list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a patient's contact details.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
