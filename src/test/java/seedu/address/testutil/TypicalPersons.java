@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_BOB;
+import static seedu.address.logic.commands.SocialTestUtil.getAmySocial;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,5 +86,13 @@ public class TypicalPersons {
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static AddressBook getSocialAddressBook() {
+        AddressBook ab = new AddressBook();
+        ab.addPerson(new PersonBuilder().withOccupation(VALID_OCCUPATION_AMY).withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withTutorial(VALID_TUTORIAL_AMY)
+                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).withSocial(getAmySocial()).build());
+        return ab;
     }
 }

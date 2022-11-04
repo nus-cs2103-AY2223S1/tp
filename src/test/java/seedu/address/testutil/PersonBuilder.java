@@ -135,6 +135,17 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Social} of the {@code Person} that we are building.
+     *
+     * @param social input social
+     * @return person with social
+     */
+    public PersonBuilder withSocial(Social social) {
+        this.social = social;
+        return this;
+    }
+
     public Person build() {
         return new Person(occupation, name, phone, email, tutorial, address, tags, social, groups);
     }
