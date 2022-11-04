@@ -4,12 +4,13 @@ title: Developer Guide
 ---
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [NUSMods API](https://api.nusmods.com/v2/) for providing information on NUS modules
+* [Open API](https://www.openapis.org/) for generating boiler plate API classes
+* Our Developer Guide is inspired by [AB3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103-F14-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -52,7 +53,8 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user 
+issues the command `rm CS2103`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -69,24 +71,27 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103-F14-1/tp/blob/master/src/main/java/nus/climods/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`,  `SavedModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+Modules are represented by `ModuleCard` and `SavedModuleCard` respectively. These parts encapsulate `Pill`s to capture information such as the semester that the mod is available in and the Module Credits of that mod.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the 
+[`MainWindow`](https://github.com/AY2223S1-CS2103-F14-1/tp/blob/master/src/main/java/nus/climods/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F14-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `ModuleCard` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F14-1/tp/tree/master/src/main/java/nus/climods/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -94,13 +99,13 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `CliModsParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `ListCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. list all modules offered by the CS Faculty).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("rm cs2103")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `rm CS2103` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -182,8 +187,6 @@ An exception will be thrown if semester code is invalid.
 - Create a `SemesterParameter` class
 - Modify `AddCommand` class
 
-// Keep this part for future reference
-
 ### Command History - `<Up>/<Down>` command
 
 The command history feature allows user to traverse and scroll through the command history that is
@@ -209,7 +212,7 @@ generator-like method to update and retrieve the user position in the command hi
       the next position (downwards) in the command history.
 
 > Note that both of these operations are not pure, since the internal `ListIterator`
-> is updated after an invocation of either operations.t p
+> is updated after an invocation of either operations.
 
 #### Design considerations
 
@@ -232,87 +235,6 @@ We do not control other websites, and we want the user to only view the user gui
 We also considered just displaying the link with a `Copy URL` button.  However, the user has to copy the link into
 their web browser, making the user experience not smooth.  
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedCliMods`. It extends `CliMods` with an undo/redo history, stored internally as an `CliModsStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedCliMods#commit()` — Saves the current module list state in its history.
-* `VersionedCliMods#undo()` — Restores the previous module list state from its history.
-* `VersionedCliMods#redo()` — Restores a previously undone module list state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitCliMods()`, `Model#undoCliMods()` and `Model#redoCliMods()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedCliMods` will be initialized with the initial module list state, and the `currentStatePointer` pointing to that single module list state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the module list. The `delete` command calls `Model#commitCliMods()`, causing the modified state of the module list after the `delete 5` command executes to be saved in the `CliModsStateList`, and the `currentStatePointer` is shifted to the newly inserted module list state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitCliMods()`, causing another modified module list state to be saved into the `CliModsStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCliMods()`, so the module list state will not be saved into the `CliModsStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCliMods()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous module list state, and restores the module list to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial CliMods state, then there are no previous CliMods states to restore. The `undo` command uses `Model#canUndoCliMods()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoCliMods()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the module list to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `CliModsStateList.size() - 1`, pointing to the latest module list state, then there are no undone CliMods states to restore. The `redo` command uses `Model#canRedoCliMods()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the module list, such as `list`, will usually not call `Model#commitCliMods()`, `Model#undoCliMods()` or `Model#redoCliMods()`. Thus, the `CliModsStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitCliMods()`. Since the `currentStatePointer` is not pointing at the end of the `CliModsStateList`, all module list states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire module list.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
@@ -367,8 +289,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student (non freshman)                                   | track and add modules I have taken                                         | keep track of my progress in University                                   |
 | `* * *`  | student                                                  | know what modules are offered in NUS                                       | find modules to do to fulfill my graduation requirement                   |
 | `* *`    | potential user exploring CLIMods                         | have a tutorial or detailed documentation on features of app               | easily adapt and use the app proficiently                                 |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -443,21 +363,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: Selecting Lesson Slot**
+
+**MSS**
+
+1.  User requests to view a specific module
+2.  CLIMods shows detailed information of that module
+3.  User clicks on the desired lesson type
+4.  CLIMods shows all lesson slots under that lesson type for the module
+5.  User picks a lesson slot using the `pick` command
+6.  CLIMods adds the lesson slot under the `My Modules` list
+
+
+    Use case ends.
+
+**Extensions**
+
+* 5a. The module has not been added
+
+    * 5a1. CLIMods shows an error message.
+
+* 1a. The given module code is invalid
+
+    * 3a1. CLIMods shows an error message.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
-
-*{More to be added}*
+3.  Connected to internet
 
 ### Glossary
 * **Student**: The person who uses the app
 * **Module(s)**: The modules/class to be taken by the students
 
-*{More to be added}*
-
+The picture below shows the terms used for different parts of the UI shown on CLIMods.
+1. **Module list**: List of modules offered by NUS. Possibly filtered according to execution of various commands
+2. **My modules**: List of modules the user is taking
+3. **Result window**: Window showing result after execution of commands
+4. **Command box**: Box where the user types commands
+   <img src="images/Glossary.png" width="600" />
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -470,44 +416,69 @@ testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
+Refer to instructions in [Quick Start](https://ay2223s1-cs2103-f14-1.github.io/tp/UserGuide.html#quick-start) for
+launch.
+Use the [exit](https://ay2223s1-cs2103-f14-1.github.io/tp/UserGuide.html#exiting-the-program-exit) command to
+shutdown the application.
 
-1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+### `add`: Adding a module
+0. Prerequisite: CS2103 has not been added to `My modules`.
+1. Type `add CS2103 s1` in the command box to add CS2103 to your module list (under Semester 1)
+2. Expected result: CS2103 is now added to `My modules`
+3. Typing the same command as in Step 1 should now show an error message in the result window as CS2103 has already
+   been added
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+### `view`: Viewing classes for a module
+1. Type `view CS2103` in the command box
+2. The detailed description for CS2103 is now visible in the module list
 
-1. Saving window preferences
+### `pick`: Picking classes for a module
+0. Prerequisite: Add CS2103 to `My modules` by typing `add CS2103 s1`
+1. Type `pick CS2103 tut 02` to add tutorial 2 to picked classes for CS2103
+2. Expected result: Tutorial 02 is added to your class list for CS2103 under `My modules`
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### `preq`: Viewing prerequisites for a module
+1. Type `preq CS2103` in the command box
+2. Expected result: The module list is now filtered to show some prerequisites of CS2103. As explained in the User
+   Guide,
+   not all prerequisites are necessarily shown in the module list due to limitations of the NUSMods API.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a User Module
+### `rm`: Deleting a User Module
 
 1. Deleting a module while all User Modules are being shown
 
-   0. Prerequisites: Open CLImods and add CS2103 using `add cs2103`. 
+   0. Prerequisites: Open CLIMods and add CS2103 by typing `add cs2103` in the command box
 
    1. Test case: `rm cs2103`<br>
    Expected: CS2103 is deleted and removed from `My Modules`.
-   A success message of "Deleted Module: CS2103" should be displayed.
+   A success message of "Deleted Module: CS2103" should be displayed in the result window
 
    3. Test case: `rm cs2103`<br>
-      Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No module is deleted. Error details shown in the result window.
 
    4. Other incorrect delete commands to try: `rm`, `rm x`, `...` (where x is an invalid module code)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### `find`: Finding modules by keyword or regex
+
+1. Finding modules that match the input keywords or input regex
+
+    0. Prerequisites: Open CLIMods with stable internet connection
+
+    1. Test case: `find operating`<br>
+       Expected: CG2271, CS2106, CS2106R, CS3221, CS5250, YSC3217 are listed.
+       A success message of "6 modules listed!" should be displayed.
+
+   2. Test case: `find ^CS20\d0$`<br>
+       Expected: CS2030, CS2040 are returned. <br>
+       A success message of "2 modules listed!" should be displayed.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Edit the local json save file and erase the saved folders till it is corrupted
+   2. Launch the app
+   3. CLIMods will not load the save file
+   4. Adding mods will overwrite the corrupted file
