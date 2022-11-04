@@ -209,14 +209,12 @@ Format: `[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/R
   - `view ra/chinese ra/malay g/male g/female` lists female malay persons, ignores `ra/chinese` and `g/male`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Fields that are specified must have a non-empty value! 
-</div>
-
-The following are considered empty and Survin will throw a `ParceException`.
-- Only empty spaces `view n/    `
-- Only empty spaces in quotations `view n/"  "`
-- Empty string `view n/` or `view n/""`
+Fields that are specified must have a non-empty value! The following is a non-exhaustive list of invalid examples.<br />
+- Only empty spaces `view n/    `<br />
+- Only empty spaces in quotations `view n/"  "`<br />
+- Empty string `view n/` or `view n/""`<br />
 - Any combination of the above and its variants `view n/  "   "  `
+</div>
 
 Examples:
 
