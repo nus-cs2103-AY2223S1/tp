@@ -240,13 +240,19 @@ _To be added_
 
 Example:`c/Parkinson's disease`
 
-### `m/MEDICATION | DOSAGE`
+### `m/MEDICATION_TYPE | DOSAGE`
 
-_To be added_
+`MEDICATION_TYPE` accepts any values.
+`DOSAGE` should only contain alphanumeric characters, decimal points and spaces.
+
+Example:`m/Amoxicillin | 0.5g every 8 hours`
 
 ### `r/REMARK`
 
-_To be added_
+`REMARK` accepts any values.
+
+Example:`r/Allergic to peanuts`
+
 
 
 _Clean up Task parameters, some should be put in the feature, while things like date format maybe be put in this section_
@@ -459,12 +465,6 @@ Examples:
 * `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-7-22` adds a task to the 2nd patient in results of the `find` command, on 12th July 2022 0000 hours.
 * `add -p 3 d/Take X-rays | 23-4-22 1345 | 3 weeks` adds a recurring task to the 3rd patient for every 3 weeks starting from 23rd April 2022 1345 hours.
 
-<div markdown="block" class="alert alert-success">
-
-:bulb: **Tip:** You can add multiple medical conditions at once when you first [add a patient](#adding-a-patient-add).
-
-</div>
-
 <br>
 
 ### Editing a task: `edit` `-p` `-d`
@@ -519,6 +519,12 @@ Examples:
 * `list` followed by `add -p 1 c/Diabetes` adds the `Diabetes` condition to the 1st patient in the patient list.
 * `find Betsy` followed by `add -p 2 c/Alzheimer's disease` adds the `Diabetes` condition to the 2nd patient in the results of the `find Betsy` command.
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can add multiple medical conditions at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
+
 <br>
 
 ### Editing a medical condition: `edit` `-p` `-c`
@@ -555,67 +561,122 @@ Examples:
 
 ### Adding a medication: `add` `-p`
 
-Format: `add -p PATIENT_INDEX m/MEDICATION_TYPE | DOSAGE`
-* Adds a medication to a patient at the specified `PATIENT_INDEX`.
+You can add a medication to a patient with the `add` command.
+
+Format: **`add`** `-p PATIENT_INDEX m/MEDICATION_TYPE | DOSAGE`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only add one medication at a time.
+* You cannot add duplicate medications.
+* Medications are considered duplicates only when both `MEDICATION_TYPE` and `DOSAGE` are the same e.g. `Paracetamol | 1 tab every 6 hours` is different from `Paracetamol | 2 tabs every 6 hours`.
+* Medications are case-sensitive e.g. `Paracetamol` is distinct from `paracetamol`.
+
+</div>
 
 Examples:
+* `list` followed by `add -p 1 m/Paracetamol | 2 tabs every 6 hours` adds the `Paracetamol` medication with the dosage `2 tabs every 6 hours` to the 1st patient in the patient list.
+* `find Alice` followed by `add -p 2 m/Amoxicillin | 0.5g every 8 hours` adds the `Amoxicillin` medication with the dosage `0.5g every 8 hours` to the 2nd patient in the results of the `find Alice` command.
 
-_To be added_
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can add multiple medications at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
 
 <br>
 
 ### Editing a medication: `edit` `-p` `-m`
 
-Format: `edit -p PATIENT_INDEX -m MEDICATION_INDEX m/MEDICATION_TYPE | DOSAGE`
-* Edits the medication at the specified `MEDICATION_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can edit a medication of a patient with the `edit` command.
+
+Format: **`edit`** `-p PATIENT_INDEX -m MEDICATION_INDEX m/<MEDICATION_TYPE> | <DOSAGE>`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only edit one medication at a time.
+* If no new `MEDICATION_TYPE` or `DOSAGE` are provided, then original values will be used.
+* At least one of `MEDICATION_TYPE` or `DOSAGE` must be present, or else the medication will not be edited.
+* If there are duplicate medications after editing a medication, it will not be edited.
+
+</div>
 
 Examples:
-
-_To be added_
+* `list` followed by `edit -p 1 -m 1 d/Amoxicillin` edits the medication type of the 1st medication of the 1st patient in the patient list to `Amoxicillin`, while retaining the original dosage.
+* `find Alice` followed by `edit -p 2 -m 3 d/| 2 tabs every 6 hours` edits the dosage of the 3rd medication of the 2nd patient in results of the `find Alice` command, while retaining the original medication type.
 
 <br>
 
 ### Deleting a medication: `delete` `-p` `-m`
 
-Format: `delete -p PATIENT_INDEX -m MEDICATION_INDEX`
-* Deletes the medication at the specified `MEDICATION_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can delete a medication of a patient with the `delete` command.
+
+Format: **`delete`** `-p PATIENT_INDEX -m MEDICATION_INDEX`
 
 Examples:
-
-_To be added_
+* `list` followed by `delete -p 2 -m 3` deletes the 3rd medication of the 2nd patient in the patient list.
+* `find Alice` followed by `delete -p 1 -m 2` deletes the 2nd medication of the 1st patient in the results of the `find Alice` command.
 
 <br>
 
 ### Adding a remark: `add` `-p`
 
-Format: `add -p PATIENT_INDEX r/REMARK`
-* Adds a remark to a patient at the specified `PATIENT_INDEX`.
+You can add a remark to a patient with the `add` command.
+
+Format: **`add`** `-p PATIENT_INDEX r/REMARK`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only add one remark at a time.
+* You cannot add duplicate remarks.
+* Remarks are case-sensitive e.g. `allergic to peanuts` is distinct from `Allergic to Peanuts`.
+
+</div>
 
 Examples:
+* `list` followed by `add -p 1 r/Requires wheelchair to move around` adds the `Requires wheelchair to move around` remark to the 1st patient in the patient list.
+* `find Rachel` followed by `add -p 2 r/Allergic to Peanuts` adds the `Allergic to Peanuts` remark to the 2nd patient in the results of the `find Rachel` command.
 
-_To be added_
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can add multiple remarks at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
 
 <br>
 
 ### Editing a remark: `edit` `-p` `-r`
 
-Format: `edit -p PATIENT_INDEX -r REMARK_INDEX r/REMARK`
-* Edits the remark at the specified `REMARK_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can edit a remark of a patient with the `edit` command.
+
+Format: **`edit`** `-p PATIENT_INDEX -r REMARK_INDEX r/REMARK`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only edit one remark at a time.
+* If there are duplicate remarks after editing a remark, it will not be edited.
+
+</div>
 
 Examples:
-
-_To be added_
+* `list` followed by `edit -p 2 -r 3 r/Allergic to Amoxicillin` edits the 3rd remark of the 2nd patient in the patient list to `Allergic to Amoxicillin`.
+* `find Rachel` followed by `edit -p 1 -r 2 r/Allergic to Amoxicillin` edits the 2nd remark of the 1st patient in the results of the `find Rachel` command to `Allergic to Amoxicillin`.
 
 <br>
 
 ### Deleting a remark: `delete` `-p` `-r`
 
-Format: `delete -p PATIENT_INDEX -r REMARK_INDEX`
-* Deletes the remark at the specified `REMARK_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can delete a medical condition of a patient with the `delete` command.
+
+Format: **`delete`** `-p PATIENT_INDEX -r REMARK_INDEX`
 
 Examples:
-
-_To be added_
+* `list` followed by `delete -p 2 -r 3` deletes the 3rd remark of the 2nd patient in the patient list.
+* `find Rachel` followed by `delete -p 1 -r 2` deletes the 2nd remark of the 1st patient in the results of the `find Rachel` command.
 
 <br>
 
