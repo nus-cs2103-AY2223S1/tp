@@ -493,6 +493,7 @@ NUScheduler checks the following:
   * Only alphanumeric characters and these special characters, `+`, `_`, `.`, `-` are allowed
   * The local part cannot start or end with a special character
   * The local part must begin and end with an alphabet or number 
+  * 2 consecutive special characters are not allowed (e.g. `+_`, `..` and `-+` are all not allowed)
 
 * Domain (the characters in your email after `@`) of the emails must be one of the following valid NUS email domains:
 
