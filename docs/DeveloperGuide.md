@@ -230,21 +230,21 @@ The `summary` command is implemented by the `SummaryCommandParser` and `SummaryC
 `SummaryCommand` class is responsible for generating the summary statistic for the specified duration
 
 Below is a sequence diagram and explanation of how the SummaryCommand is executed.
-![Interactions Inside the Logic Component for the `summary mo/08-2022` Command](images/SummarySequenceDiagram.png)
+![Interactions Inside the Logic Component for the `summary mo/2022-08` Command](images/SummarySequenceDiagram.png)
 
-Step 1.The user enters `summary mo/08-2022` command in the main window
+Step 1.The user enters `summary mo/2022-08` command in the main window
 
 Step 2. The command is handled by `LogicManager#execute` method,
 which then calls the `PennyWiseParser#parseCommand` method
 
-Step 3. The `PennyWiseParser` matches the word summary in the string and extracts the argument string `mo/08-2022`
+Step 3. The `PennyWiseParser` matches the word summary in the string and extracts the argument string `mo/2022-08`
 
 Step 4. The `PennyWiseParser` then calls `SummaryCommandParser#parse` method
 and the argument string is converted to a List
 
-Step 5. The `SummaryCommandParser` creates a new MonthPredicate instance to handle the filter
+Step 5. The `SummaryCommandParser` creates a new EntryInYearMonthPredicate instance to handle the filter
 
-Step 6. The `SummaryCommandParser` creates a new `SummaryCommand` instance with the `MonthPredicate` instance and
+Step 6. The `SummaryCommandParser` creates a new `SummaryCommand` instance with the `EntryInYearMonthPredicate` instance and
 returns it to `PennyWiseParser`, which in turn returns to `LogicManger`.
 
 Step 7. The `LogicManager` calls the `SummaryCommand#execute` method.
