@@ -24,6 +24,8 @@ public class VenueDeleteCommand extends VenueCommand implements ModelCommand {
 
     public static final String MESSAGE_SUCCESS = "The following venue was successfully deleted: %s";
     public static final String MESSAGE_VENUE_NOT_FOUND = "The venue %s was not found.";
+    public static final String MESSAGE_TRYING_TO_DELETE_CURRENT_VENUE = "%s is the venue that you are currently "
+            + "viewing.\nPlease switch to viewing another venue before trying again.";
 
     /**
      * Creates a VenueDeleteCommand to add the specified {@code Venue}
@@ -35,6 +37,9 @@ public class VenueDeleteCommand extends VenueCommand implements ModelCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.getCurrentlyDisplayedVenue().getValue().isSameVenue(venueName)) {
+            throw new CommandException(String.format(MESSAGE_TRYING_TO_DELETE_CURRENT_VENUE, venueName));
+        }
         try {
             model.deleteVenue(venueName);
             return new CommandResult(String.format(MESSAGE_SUCCESS, venueName));

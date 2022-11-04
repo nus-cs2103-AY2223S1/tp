@@ -35,12 +35,15 @@ public class ModelManager implements Model {
     private final ResidentBook residentBook;
     private final VenueBook venueBook;
     private final UserPrefs userPrefs;
+
+    /* A filterable list of residents to be displayed on the ResidentTableView */
     private final FilteredList<Resident> filteredResidents;
 
-    private final ObservableItem<VenueName> currentlyDisplayedVenueName;
-    private final ObservableList<Booking> observableBookingList;
-    private final ObservableList<Venue> observableVenueList;
+    /* A venue whose bookings are to be displayed in the BookingTableView */
+    private final ObservableItem<Venue> currentlyDisplayedVenue;
+    /* A list of strings that corresponds to the fields of Resident to be displayed on the ResidentTableView */
     private final ObservableList<String> visibleFields;
+    /* A list of strings that corresponds to the fields of Resident to be hidden on the ResidentTableView */
     private final ObservableList<String> hiddenFields;
 
     /**
@@ -51,23 +54,23 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with resident book: " + residentBook + ", user prefs " + userPrefs
                 + ", venue book: " + venueBook);
+
+        // Initialising ModelManager with resident, venue and user prefs data
         this.residentBook = new ResidentBook(residentBook);
         this.venueBook = new VenueBook(venueBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
 
         // Set up observable instances
-        this.visibleFields = FXCollections.observableArrayList(ResidentField.LOWERCASE_FIELDS);
-        this.hiddenFields = FXCollections.observableArrayList();
-        this.observableVenueList = this.venueBook.getVenueList();
-        if (observableVenueList.isEmpty()) {
+        filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
+        visibleFields = FXCollections.observableArrayList(ResidentField.LOWERCASE_FIELDS);
+        hiddenFields = FXCollections.observableArrayList();
+        List<Venue> venueList = this.venueBook.getVenueList();
+        if (venueList.isEmpty()) {
             logger.info("No venues found in venue list.");
-            this.observableBookingList = FXCollections.observableArrayList();
-            this.currentlyDisplayedVenueName = new ObservableItem<>(null);
+            currentlyDisplayedVenue = new ObservableItem<>(null);
         } else {
             // Set first venue in list to be currently displayed
-            this.observableBookingList = observableVenueList.get(0).getObservableBookings();
-            this.currentlyDisplayedVenueName = new ObservableItem<>(observableVenueList.get(0).getVenueName());
+            currentlyDisplayedVenue = new ObservableItem<>(venueList.get(0));
         }
     }
 
@@ -230,51 +233,41 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<String> getVisibleFields() {
-        return this.visibleFields;
+        return visibleFields;
     }
 
     @Override
     public void setVisibleFields(List<String> fieldsToShow) {
-        this.visibleFields.setAll(fieldsToShow);
+        visibleFields.setAll(fieldsToShow);
     }
 
     @Override
     public ObservableList<String> getHiddenFields() {
-        return this.hiddenFields;
+        return hiddenFields;
     }
 
     @Override
     public void setHiddenFields(List<String> fieldsToHide) {
-        this.hiddenFields.setAll(fieldsToHide);
+        hiddenFields.setAll(fieldsToHide);
     }
 
     //=========== Observable Venue List Accessors =============================================================
 
     @Override
     public ObservableList<Venue> getObservableVenues() {
-        return this.observableVenueList;
+        return venueBook.getVenueList();
+    }
+
+    //=========== Currently Displayed Venue Accessors =========================================================
+
+    @Override
+    public ObservableItem<Venue> getCurrentlyDisplayedVenue() {
+        return currentlyDisplayedVenue;
     }
 
     @Override
-    public void setObservableVenues(List<Venue> modifiableFields) {
-        this.observableVenueList.setAll(modifiableFields);
-    }
-
-    @Override
-    public ObservableItem<VenueName> getCurrentlyDisplayedVenueName() {
-        return currentlyDisplayedVenueName;
-    }
-
-    //=========== Observable Booking List Accessors =============================================================
-    @Override
-    public ObservableList<Booking> getObservableBookings() {
-        return this.observableBookingList;
-    }
-
-    @Override
-    public void setObservableBookings(VenueName venueName) throws VenueNotFoundException {
-        this.observableBookingList.setAll(venueBook.getBookings(venueName));
-        this.currentlyDisplayedVenueName.setValue(venueName);
+    public void setCurrentlyDisplayedVenue(VenueName venueName) {
+        currentlyDisplayedVenue.setValue(venueBook.getVenueWithName(venueName));
     }
 
 }

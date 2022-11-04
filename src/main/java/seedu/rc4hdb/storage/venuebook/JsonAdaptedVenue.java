@@ -40,7 +40,7 @@ public class JsonAdaptedVenue {
      */
     public JsonAdaptedVenue(Venue source) {
         // to be updated with logic that builds other types of bookings when other types of bookings are added.
-        bookings.addAll(source.getObservableBookings()
+        bookings.addAll(source.getBookings()
                 .stream().map(booking -> new JsonAdaptedRecurrentBooking((RecurrentBooking) booking))
                 .collect(Collectors.toList()));
         venueName = source.getVenueName().value;

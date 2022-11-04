@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
@@ -17,7 +17,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.DailySchedule;
-import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 
 /**
@@ -43,13 +43,14 @@ public class BookingTableView extends UiPart<Region> {
     private ObservableList<DailySchedule> weeklySchedule = FXCollections.observableArrayList();
 
     /**
-     * Constructor for a BookingTableView
-     * @param bookingList The list of bookings to be displayed.
+     * Constructor for a BookingTableView.
+     * @param currentlyDisplayedVenue The venue whose bookings are to be displayed.
      */
-    public BookingTableView(ObservableList<Booking> bookingList) {
+    public BookingTableView(ObservableValue<Venue> currentlyDisplayedVenue) {
         super(FXML);
-        requireNonNull(bookingList);
+        requireNonNull(currentlyDisplayedVenue);
 
+        // Set up booking table
         this.bookingTableView.setItems(weeklySchedule);
         this.hourColumn = hours.stream()
                 .map(title -> new TableColumn<DailySchedule, Resident[]>(title))
@@ -57,9 +58,10 @@ public class BookingTableView extends UiPart<Region> {
         addColumns();
         populateRows();
         configureTableProperties();
+        updateTable(null, null, currentlyDisplayedVenue.getValue());
 
-        updateTable(bookingList);
-        bookingList.addListener((ListChangeListener<? super Booking>) c -> updateTable(c.getList()));
+        // Set up listener
+        currentlyDisplayedVenue.addListener(this::updateTable);
     }
 
     private void addColumns() {
@@ -126,8 +128,13 @@ public class BookingTableView extends UiPart<Region> {
         }
     }
 
-    public void updateTable(List<? extends Booking> bookings) {
-        this.weeklySchedule.setAll(DailySchedule.generateWeeklySchedule(bookings));
+    /**
+     * Listener for updating the booking table.
+     */
+    public void updateTable(ObservableValue<? extends Venue> observable, Venue oldValue, Venue newValue) {
+        if (newValue != null) {
+            this.weeklySchedule.setAll(DailySchedule.generateWeeklySchedule(newValue.getBookings()));
+        }
     }
 
 }
