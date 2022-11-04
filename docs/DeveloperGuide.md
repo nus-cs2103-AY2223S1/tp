@@ -602,7 +602,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample Contacts and Meetings. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -610,30 +610,154 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
+   
+### Find by Tag
+1. Find contact using tags 
+   1. Prerequisite: Have at least one person with the tag `Friends`
+   2. Test Case: `findtag friends` <br>
+      Expected: A success message should appear. Persons with the tag `friends` will appear on the contact list.
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test Case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated. Furthermore, if the Person is included in a meeting, they should be deleted from the meeting as well. 
 
-   1. Test case: `delete 0`<br>
+   1. Test Case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting a person while they are the last person in a meeting
+   1. Prerequisite: Have a Person be the last person in a meeting. Assume that this "Last Person" has an Index of 1
+
+   2. Test Case: `delete 1` <br>
+      Expected: Person is not deleted and an error message stating that the meeting Person at Index 1 is the last member of must be deleted first.
+
+### Editing a person
+1. Editing a person while all persons are being shown
+   1. Prerequisites: List all persons using the `list` command. Multiple persons are assumed to be in the list.
+   2. Test Case: `edit 1 n/editedName p/123456 e/email@email.com a/address land 123` <br>
+      Expected: Person at Index 1 should be updated with the new information. 
+   3. Test case: `edit 0 n/editedName p/123456 e/email@email.com a/address land 123`<br>
+   Expected: No person is edited. Error details shown in the status message. Status bar remains the same.
+2. Editing a person should reflect in a meeting if they are a part of it.
+   1. Prerequisites: Person at Index 1 should belong to a meeting.
+   2. Test Case: `edit 1 n/edited name` <br>
+      Expected: Person at Index 1 should be updated with a new name, the meeting they are in also should be updated with the new information.
+
+### List Meetings
+1. Listing out all meetings
+   1. Prerequisites: Have at least one (recommended more) meeting objects in Yellow Pages.
+   2. Test Case: `listmeeting` <br>
+      Expected: All meetings should be listed in the status message, as well as displayed in the UI.
+
+### Create Meetings
+1. Create Meeting
+   1. Prerequisites: Have two Persons named `John` and `Alex` in the contact list.
+   2. Test Case: `meet John }} Alex ;;; Meeting ;;; 10-10-2022 1530 ;;; UTown`
+      Expected: A success message should appear. A meeting with the above parameters should be created as well.
+   
+2. Create Meeting with similar named persons
+   1. Prerequisites: Have two Persons named `John Tan` and `John Doe` in the contact list.
+   2. Test Case: `meet John Tan;;; Meeting ;;; 10-10-2022 1530 ;;; UTown` <br>
+      Expected: A success message should appear. A meeting with the above parameters should be created as well.
+   3. Test Case: `meet John Tan;;; Meeting ;;; 10-10-2022 1530 ;;; UTown` <br>
+      Expected: Error message should appear. Contact list should also display contacts with the keyword `John` in their names.
+
+### Edit Meetings
+1. Edit Meeting
+    1. Prerequisites: Have at least one meeting.
+    2. Test Case: `editmeeting 1 d/a name dd/10-10-2022 1000 l/COM3` <br>
+       Expected: A success message should appear. Meeting at Index 1 should be updated with the parameters used.
+
+### Delete Meetings
+1. Delete Meeting
+   1. Prerequisites: Have at least one meeting.
+   2. Test Case: `deletemeeting 1` <br> 
+      Expected: A success message should appear. Meeting at Index 1 should be deleted.
+
+### Add Person to Meeting
+1. Add Person to a Meeting
+    1. Prerequisites: Have a person named `Alex` and at least one meeting, assuming `Alex` is not in the meeting at Index 1.
+    2. Test Case: `addpersontomeeting 1; Alex` <br>
+       Expected: A success message should appear. Meeting at Index 1 should have `Alex` added to it.
+
+2. Add similar named persons to a meeting
+    1. Prerequisites: Have two Persons named `John Tan` and `John Doe` in the contact list and at least one meeting, assuming `John Doe` is not in meeting at Index 1.
+    2. Test Case: `addpersontomeeting 1; John Doe` <br>
+       Expected: A success message should appear. `John Doe` should be added to the meeting at Index 1.
+    3. Test Case: `addpersontomeeting 1; John` <br>
+       Expected: Error message should appear. Person is not added to the meeting and the contact list should also display contacts with the keyword `John` in their names.
+
+3. Add person already in meeting
+   1. Prerequisites: Have a person called `Alex` and `Alex` should be in the meeting at Index 1.
+   2. Test Case: `addpersontomeeting 1; Alex` <br>
+      Expected: Error message should appear. Person is not added to the meeting again.
+
+### Delete Person from Meeting
+1. Delete Person from Meeting
+   1. Prerequisite: Have a persons named `John Doe` and `Mary Sue` be in the meeting at Index 1, and they are not the only two people in said meeting.
+   2. Test Case: `deletepersonfrommeeting 1; John, Mary` <br>
+      Expected: A success message should appear. `John Doe` and `Mary Sue` should be removed from the meeting at Index 1.
+2. Add delete similar named persons from a meeting
+    1. Prerequisites: Have two Persons named `John Tan` and `John Doe` in the contact list and at least one meeting, assuming `John Doe` is in meeting at Index 1.
+    2. Test Case: `deletepersonfrommeeting 1; John Doe` <br>
+       Expected: A success message should appear. `John Doe` should be removed from the meeting at Index 1.
+    3. Test Case: `deletepersonfrommeeting 1; John` <br>
+       Expected: Error message should appear. Person is not removed from the meeting and the contact list should also display contacts with the keyword `John` in their names.
+3. Deleting the last person from a meeting
+   1. Prerequisite: Have a meeting at Index 1 with only one person, `John Doe`.
+   2. Test Case: `deletepersonfrommeeting 1; John Doe`
+      Expected: Error message should appear. Person is not removed from the meeting.
+
+### Filter Meetings
+1. Filter meetings between two dates
+   1. Prerequisites: Have at least one meeting that falls between the dates `10-10-2022 0000` and `15-10-2022 0000`
+   2. Test Case: `filtermeetingsbetween 10-10-2022 0000 ;;; 15-10-2022 0000` <br>
+       Expected: A success message should appear. Only meeting(s) that fall between those two dates should be listed. All other meetings should not appear.
+2. Filter meetings based on a single date
+   1. Prerequisites: Have at least one meeting that falls on `10-10-2022 0000`
+   2. Test Case: `filtermeetingsbetween 10-10-2022 0000 ;;; 10-10-2022 0000` <br>
+      Expected: A success message should appear. Only meeting(s) that fall on `10-10-2022 0000` will be listed.
+
+### Sort Meetings
+1. Sort meetings in ascending order
+   1. Prerequisites: Have at least three meetings with different dates.
+   2. Test Case: `sortmeetings asc` or `sortmeetings desc` <br>
+      A success message should appear. Should sort the meeting list by date in ascending or descending order (based on the command). 
+   3. Close and open Yellow Pages again, the meeting list should still be sorted.
+
+### Find Meetings
+1. Find meeting with description
+   1. Prerequisites: Have several meetings with at least one meeting with the description `AMeeting`.
+   2. Test Case: `findmeeting /named AMeeting` <br>
+      Expected: A success message should appear. Meetings with descriptions containing the keyword `AMeeting` should be listed. 
+2. Find meeting with location
+   1. Prerequisites: Have several meetings with at least one meeting with the location `UTown`
+   2. Test Case: `findmeeting /at UTown` <br>
+      Expected: A success message should appear. Meetings with their location set as `UTown` should be listed.
+3. Find meeting with people
+   1. Prerequisites: Have several meetings with at least one meeting with a Person `John`
+   2. Test Case: `findmeeting /with John` <br>
+      Expected: A success message should appear. All meetings with `John` should appear, meetings with other persons with the keyword `John`
+ should also appear
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisite: `meetinglist.json` and `addressbook.json` were somehow corrupted
+   2. Delete both files in the /data file found in the root folder of `Yellow Pages.jar`
+   3. Run `Yellow Pages.jar` again, it will generate default information.
 
-1. _{ more test cases …​ }_
+## Appendix: Effort
+
+Compared to AB3, Yellow Pages makes extensive use of dates. This caused plenty of unforeseen consequences in the form of date conversion and manipulation. 
+Creating a utility class that let us convert dates in String to actual LocalDateTime objects or converting dates in String to other formats
+helped us to centralize and better manage this issue.
+

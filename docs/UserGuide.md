@@ -194,6 +194,7 @@ Format: `clear`
 Creates a meeting and adds it to the meeting list.
 
 Format: `meet [NAMES_OF_PERSONS_TO_MEET (separated by }})] ;;; MEETING_DESCRIPTION ;;; MEETING_DATE_AND_TIME (in dd-MM-yyyy HHmm format) ;;; MEETING_LOCATION`
+
 Example: `meet Alex }} Bernice ;;; Project Meeting ;;; 29-01-2022 1530 ;;; UTown`
 
 * The names of the people to meet must correspond to the names of actual contacts, otherwise an error message will be displayed 
