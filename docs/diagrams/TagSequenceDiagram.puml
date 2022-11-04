@@ -5,9 +5,9 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FoodRemParser" as FoodRemParser LOGIC_COLOR
 participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
-participant "t:TagCommand" as TagCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":TagCommand" as TagCommand LOGIC_COLOR
 participant ":Item" as Item LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 
 end box
 
@@ -70,7 +70,7 @@ activate CommandResult
 CommandResult --> TagCommand
 deactivate CommandResult
 
-TagCommand --> LogicManager : result
+TagCommand --> LogicManager
 deactivate TagCommand
 
 [<--LogicManager
