@@ -31,7 +31,7 @@ import seedu.application.model.application.Application;
 public class TypicalApplicationsWithInterview {
 
     public static final Application SHOPEE = new ApplicationBuilder().withCompany("Shopee")
-            .withContact("94201239").withDate("2022-12-31")
+            .withContact("94201239").withDate("2022-10-30")
             .withEmail("shopee@example.com").withPosition("Frontend Engineer").withTags("consumerTech")
             .withInterview(INTERVIEW_SHOPEE).build();
     public static final Application BYTEDANCE = new ApplicationBuilder().withCompany("ByteDance")

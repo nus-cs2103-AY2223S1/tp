@@ -15,6 +15,7 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_LOCATION_GO
 import static seedu.application.logic.commands.CommandTestUtil.VALID_ROUND_GOOGLE;
 import static seedu.application.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.application.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.application.logic.parser.ParserUtil.MESSAGE_INDEX_OVERFLOW;
 import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.application.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
 
@@ -62,6 +63,9 @@ public class AddInterviewCommandParserTest {
 
         // zero index
         assertParseFailure(parser, "0" + userInput, MESSAGE_INVALID_FORMAT);
+
+        // index greater than Integer.MAX_VALUE
+        assertParseFailure(parser, ((long) Integer.MAX_VALUE + 1) + userInput, MESSAGE_INDEX_OVERFLOW);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);

@@ -38,13 +38,46 @@ public class StringUtilTest {
         assertFalse(StringUtil.isNonZeroUnsignedInteger("1 0")); // Spaces in the middle
 
         // EP: number larger than Integer.MAX_VALUE
-        assertFalse(StringUtil.isNonZeroUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
+        assertFalse(StringUtil.isNonZeroUnsignedInteger(Long.toString((long) Integer.MAX_VALUE + 1)));
 
         // EP: valid numbers, should return true
         assertTrue(StringUtil.isNonZeroUnsignedInteger("1")); // Boundary value
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
+    //---------------- Tests for isNonZeroUnsignedBigInteger --------------------------------------
+
+    @Test
+    public void isNonZeroUnsignedBigInteger() {
+
+        // EP: empty strings
+        assertFalse(StringUtil.isNonZeroUnsignedBigInteger("")); // Boundary value
+        assertFalse(StringUtil.isNonZeroUnsignedBigInteger("  "));
+
+        // EP: not a number
+        assertFalse(StringUtil.isNonZeroUnsignedBigInteger("a"));
+        assertFalse(StringUtil.isNonZeroUnsignedBigInteger("aaa"));
+
+        // EP: zero
+        assertFalse(StringUtil.isNonZeroUnsignedBigInteger("0"));
+
+        // EP: zero as prefix
+        assertTrue(StringUtil.isNonZeroUnsignedBigInteger("01"));
+
+        // EP: signed numbers
+        assertFalse(StringUtil.isNonZeroUnsignedBigInteger("-1"));
+        assertFalse(StringUtil.isNonZeroUnsignedBigInteger("+1"));
+
+        // EP: numbers with white space
+        assertFalse(StringUtil.isNonZeroUnsignedBigInteger(" 10 ")); // Leading/trailing spaces
+        assertFalse(StringUtil.isNonZeroUnsignedBigInteger("1 0")); // Spaces in the middle
+
+        // EP: valid numbers, should return true
+        assertTrue(StringUtil.isNonZeroUnsignedBigInteger("1")); // Boundary value
+        assertTrue(StringUtil.isNonZeroUnsignedBigInteger("10"));
+        // number larger than Integer.MAX_VALUE also return true
+        assertTrue(StringUtil.isNonZeroUnsignedBigInteger(Long.toString((long) Integer.MAX_VALUE + 1)));
+    }
 
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 

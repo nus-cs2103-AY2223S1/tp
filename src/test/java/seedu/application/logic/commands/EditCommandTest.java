@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.logic.commands.CommandTestUtil.DESC_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.DESC_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.INVALID_FUTURE_DATE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_COMPANY_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_CONTACT_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
@@ -27,6 +28,7 @@ import seedu.application.model.Model;
 import seedu.application.model.ModelManager;
 import seedu.application.model.UserPrefs;
 import seedu.application.model.application.Application;
+import seedu.application.model.application.exceptions.InvalidFutureApplicationException;
 import seedu.application.testutil.ApplicationBuilder;
 import seedu.application.testutil.EditApplicationDescriptorBuilder;
 
@@ -149,6 +151,16 @@ public class EditCommandTest {
                 new EditApplicationDescriptorBuilder(applicationInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_APPLICATION);
+    }
+
+    @Test
+    public void execute_futureDateEdited_failure() {
+        showApplicationAtIndex(model, INDEX_FIRST_APPLICATION);
+        EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder()
+                .withDate(INVALID_FUTURE_DATE).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_APPLICATION, descriptor);
+
+        assertCommandFailure(editCommand, model, new InvalidFutureApplicationException().getMessage());
     }
 
     @Test

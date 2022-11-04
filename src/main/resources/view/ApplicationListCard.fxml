@@ -19,7 +19,7 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
+      <HBox spacing="5">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
@@ -28,27 +28,42 @@
         </Label>
         <Label fx:id="company" styleClass="cell_big_label" text="\$company" />
         <Label alignment="CENTER" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
-        <Label fx:id="isArchived" text="archived" />
-        <Label fx:id="status" text="\$status" />
+        <Label fx:id="isArchived" styleClass="cell_status" text="archived" />
+        <Label fx:id="status" styleClass="cell_status" text="\$status" />
+            <padding>
+               <Insets bottom="3.0" />
+            </padding>
       </HBox>
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="tags" prefWrapLength="300.0">
+            <padding>
+               <Insets bottom="3.0" />
+            </padding></FlowPane>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
             <Label styleClass="cell_small_label_fade" text="Contact" />
                <Label fx:id="contact" styleClass="cell_small_label" text="\$contact" />
             </children>
+            <padding>
+               <Insets bottom="3.0" />
+            </padding>
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
             <Label styleClass="cell_small_label_fade" text="Position" />
                <Label fx:id="position" styleClass="cell_small_label" text="\$position" />
             </children>
+            <padding>
+               <Insets bottom="3.0" />
+            </padding>
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
             <Label styleClass="cell_small_label_fade" text="E-mail" />
                <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
             </children>
+            <padding>
+               <Insets bottom="3.0" />
+            </padding>
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>

@@ -1,5 +1,8 @@
 package seedu.application.testutil;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import seedu.application.model.application.interview.Interview;
 import seedu.application.model.application.interview.InterviewDate;
 import seedu.application.model.application.interview.InterviewTime;
@@ -58,10 +61,26 @@ public class InterviewBuilder {
     }
 
     /**
+     * Sets the {@code InterviewDate} of the {@code Interview} that we are building.
+     */
+    public InterviewBuilder withInterviewDate(LocalDate interviewDate) {
+        this.interviewDate = new InterviewDate(InterviewDate.COMMAND_DATE_FORMATTER.format(interviewDate));
+        return this;
+    }
+
+    /**
      * Sets the {@code InterviewTime} of the {@code Interview} that we are building.
      */
     public InterviewBuilder withInterviewTime(String interviewTime) {
         this.interviewTime = new InterviewTime(interviewTime);
+        return this;
+    }
+
+    /**
+     * Sets the {@code InterviewTime} of the {@code Interview} that we are building.
+     */
+    public InterviewBuilder withInterviewTime(LocalTime interviewTime) {
+        this.interviewTime = new InterviewTime(InterviewTime.COMMAND_TIME_FORMATTER.format(interviewTime));
         return this;
     }
 

@@ -47,7 +47,7 @@ public class Position implements Comparable<Position> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
-                && value.equals(((Position) other).value)); // state check
+                && value.toLowerCase().equals(((Position) other).value.toLowerCase())); // state check
     }
 
     @Override
