@@ -16,8 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/donljh)]
 [[portfolio](team/donljh.md)]
 
-* Role: to be determined
-* Responsibilities: to be determined
+* Role: Team lead
+* Responsibilities: Overall project coordination, integration and code quality control
 
 ### Melissa Anastasia Harijanto
 
@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/melissaharijanto)]
 [[portfolio](team/melissaharijanto.md)]
 
-* Role: to be determined
-* Responsibilities: to be determined
+* Role: Developer
+* Responsibilities: UI
 
 ### Janelle Loh Jen Teng
 
@@ -36,8 +36,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/janelleljt)]
 [[portfolio](team/janelleljt.md)]
 
-- Role: to be determined
-- Responsibilities: to be determined
+- Role: Developer
+- Responsibilities: Documentation
 
 ### Yang Jiacheng
 
@@ -46,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jiacheng-y)]
 [[portfolio](team/jiacheng-y.md)]
 
-- Role: to be determined
-- Responsibilities: to be determined
+- Role: Developer
+- Responsibilities: Testing
 
 ### Soh Enze
 
@@ -56,5 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/sohenze)]
 [[portfolio](team/sohenze.md)]
 
-- Role: to be determined
-- Responsibilities: to be determined
+- Role: Developer
+- Responsibilities: Feature design

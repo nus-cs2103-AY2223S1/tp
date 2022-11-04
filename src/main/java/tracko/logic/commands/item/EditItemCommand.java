@@ -35,20 +35,20 @@ public class EditItemCommand extends Command {
             + "by the index number used in the displayed inventory list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + CliSyntax.PREFIX_ITEM + "ITEM NAME "
-            + CliSyntax.PREFIX_QUANTITY + "QUANTITY "
-            + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION "
-            + CliSyntax.PREFIX_TAG + "TAG... "
-            + CliSyntax.PREFIX_SELL_PRICE + "SELL PRICE "
-            + CliSyntax.PREFIX_COST_PRICE + "COST PRICE \n"
+            + "[" + CliSyntax.PREFIX_ITEM + "ITEM NAME] "
+            + "[" + CliSyntax.PREFIX_QUANTITY + "QUANTITY] "
+            + "[" + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + CliSyntax.PREFIX_SELL_PRICE + "SELL PRICE] "
+            + "[" + CliSyntax.PREFIX_COST_PRICE + "COST PRICE] "
+            + "[" + CliSyntax.PREFIX_TAG + "TAG]... \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + CliSyntax.PREFIX_ITEM + "Paper "
             + CliSyntax.PREFIX_QUANTITY + "1000 "
             + CliSyntax.PREFIX_DESCRIPTION + "White printing paper "
-            + CliSyntax.PREFIX_TAG + "Limited "
-            + CliSyntax.PREFIX_TAG + "New "
             + CliSyntax.PREFIX_SELL_PRICE + "2.00 "
-            + CliSyntax.PREFIX_COST_PRICE + "1.98 ";
+            + CliSyntax.PREFIX_COST_PRICE + "1.98 "
+            + CliSyntax.PREFIX_TAG + "Limited "
+            + CliSyntax.PREFIX_TAG + "New ";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item:\n%1$s";
 

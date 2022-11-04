@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import tracko.commons.core.index.Index;
+import tracko.commons.util.AppUtil;
 import tracko.commons.util.StringUtil;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.item.Description;
@@ -147,11 +148,8 @@ public class ParserUtil {
      * @throws ParseException if the specified quantity is invalid (not non-zero unsigned integer).
      */
     public static Quantity parseQuantity(String quantity) throws ParseException {
-        String trimmedQuantity = quantity.trim();
-        if (!StringUtil.isNonNegativeUnsignedInteger(trimmedQuantity)) {
-            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
-        }
-        return new Quantity(Integer.parseInt(trimmedQuantity));
+        Integer integerQuantity = parseNonNegativeUnsignedInteger(quantity);
+        return new Quantity(integerQuantity);
     }
 
     /**
@@ -178,19 +176,31 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
-        Double doublePrice;
 
-        try {
-            doublePrice = Double.parseDouble(trimmedPrice);
-        } catch (NumberFormatException e) {
+        if (!(StringUtil.isNonNegativeUnsignedDouble(trimmedPrice))) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
 
-        if (!(StringUtil.isNonNegativeUnsignedFloat(trimmedPrice)
-                && Price.isValidPrice(doublePrice))) {
+        Double doublePrice = Double.parseDouble(trimmedPrice);
+
+        if (!Price.isValidPrice(doublePrice)
+                || !AppUtil.checkDoubleLessThanMaxInt(doublePrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
 
         return new Price(doublePrice);
+    }
+
+    /**
+     * Parses {@code String integer} into an {@code Integer} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified integer is invalid (not non-zero unsigned integer).
+     */
+    public static Integer parseNonNegativeUnsignedInteger(String integer) throws ParseException {
+        String trimmedInteger = integer.trim();
+        if (!StringUtil.isNonNegativeUnsignedInteger(trimmedInteger)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return Integer.parseInt(trimmedInteger);
     }
 }
