@@ -151,6 +151,7 @@ Here are some general guidelines for you to better understand the command format
 
 ### Key Definitions
 #### Patient
+
 | Input Fields | Flag | Description                                                                       |
 |--------------|------|-----------------------------------------------------------------------------------|
 | Name         | n/   | Name of the patient, which accepts alphanumeric characters, and must not be blank |
@@ -160,12 +161,14 @@ Here are some general guidelines for you to better understand the command format
 | Address      | a/   | Address of the patient, taking any value but cannot be blank                      |
 
 #### Appointment
+
 | Input Fields | Flag  | Description                                                                                                               |
 |--------------|-------|---------------------------------------------------------------------------------------------------------------------------|
 | Index        | NIL   | Index of the patient                                                                                                      |
 | Date & Time  | d/    | Date and time of the appointment, given in the format dd-MM-yyyy HHmm <br/> Note: Appointments cannot be set in the past! |                                     |
 
 #### Record
+
 | Input Fields   | Flag | Description                                                                                                 |
 |----------------|------|-------------------------------------------------------------------------------------------------------------|
 | Date & Time    | d/   | Date and time of the record, given in the format dd-MM-yyyy HHmm <br/> Note: Dates cannot be in the future! |
@@ -186,6 +189,7 @@ What you should expect to find:
 
 ### Patient Commands
 > Commands relating to the patient list, such as adding and deleting patients
+
 #### Listing all patients: `list`
 
 Returns to the patient list from the record list screen.
@@ -198,7 +202,7 @@ Format: `list`
 
 #### Adding a patient: `add`
 
-Adds a patient to the patient record database.
+> Adds a patient to the patient record database.
 
 Format: `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -225,7 +229,7 @@ Examples:
 
 #### Deleting a patient: `delete`
 
-Deletes the specified patient from the patient database.
+> Deletes the specified patient from the patient database.
 
 Format: `delete INDEX`
 
@@ -243,7 +247,7 @@ Examples:
 
 #### Editing a patient: `edit`
 
-Edits an existing patient in the address book.
+> Edits an existing patient in the address book.
 
 Format: `edit INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -268,7 +272,7 @@ Examples:
 
 #### Finding patients by name: `find`
 
-Finds patients whose names contain any of the given keywords.
+> Finds patients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -288,7 +292,7 @@ Examples:
 
 #### Clearing all patient entries: `clear`
 
-Clears all patients from Omnihealth.
+> Clears all patients from Omnihealth.
 
 * The command can only be called when the patient addressbook is displayed (after using `list`).
 
@@ -301,7 +305,7 @@ Format: `clear`
 
 #### Adding an appointment: `appt`
 
-Adds an appointment for a specified patient. This command is only valid in the patient list view.
+> Adds an appointment for a specified patient. This command is only valid in the patient list view.
 
 Format: `appt INDEX d/APPOINTMENT_DATE_TIME`
 
@@ -328,7 +332,7 @@ Examples:
 
 #### Clearing an appointment: `apptcl`
 
-Clears the appointment for a specified patient. This command is only valid in the patient list view.
+> Clears the appointment for a specified patient. This command is only valid in the patient list view.
 
 Format: `apptcl INDEX`
 
@@ -349,7 +353,7 @@ Examples:
 
 #### Adding a record: `radd`
 
-Adds a new record to a given patient.
+> Adds a new record to a given patient.
 
 Format: `radd d/RECORD_DATE_TIME r/RECORD_DETAILS [m/MEDICATION]…` 
 
@@ -370,7 +374,7 @@ Examples:
 
 #### Deleting a record: `rdelete`
 
-Deletes the specified record from the currently viewed patient’s records.
+> Deletes the specified record from the currently viewed patient’s records.
 
 Format: `rdelete RECORD_INDEX`
 
@@ -386,7 +390,7 @@ Examples:
 
 #### Listing all records of a patient: `rlist`
 
-Shows a list of all records for the specified patient.
+> Shows a list of all records for the specified patient.
 
 Format: `rlist PATIENT_INDEX`
 
@@ -404,7 +408,7 @@ Examples:
 
 #### Editing a record: `redit`
 
-Edits an existing record in the record list.
+> Edits an existing record in the record list.
 
 Format: `redit INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`
 
@@ -454,7 +458,7 @@ Examples:
 
 #### Clearing all patient records : `rclear`
 
-Clears all records of a specific patient from Omnihealth.
+> Clears all records of a specific patient from Omnihealth.
 
 * The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
 
@@ -467,17 +471,16 @@ Format: `rclear`
 
 #### Viewing help: `help`
 
-Shows a message explaining how to access the help page.
+> Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
+Format: `help`
 
 [Back to TOC](#table-of-contents)
 
-Format: `help`
-
 #### Displaying the full list: `showall`
 
-Clears search parameters of a find or rfind command to undo the search.
+> Clears search parameters of a find or rfind command to undo the search.
 
 * If the patient list is displayed, the unfiltered patient list will be shown instead.
 * If the record list is displayed, the unfiltered record list will be shown instead.
@@ -488,7 +491,7 @@ Format: `showall`
 
 #### Exiting the program: `exit`
 
-Exits the program.
+> Exits the program.
 
 Format: `exit`
 
@@ -559,4 +562,5 @@ The data file can be found in the JSON file under `[JAR file location]/data/pati
 | **Edit Record**          | `redit INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever m/Paracetamol`                                                       |
 | **Find Record**          | `rfind [d/RECORD_DATE] [r/RECORD_DETAILS] [m/MEDICATION] `<br> e.g., `rfind d/10-2022 r/Covid-19 m/Panadol`                                                                             |
 | **Clear Records**        | `rclear`                                                                                                                                                                                |
+
 [Back to TOC](#table-of-contents)
