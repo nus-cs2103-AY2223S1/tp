@@ -32,11 +32,11 @@ Given below are my contributions to the project.
     * User Guide:
   Wrote documentation for 
       * FindTasks command, 
-      * FindModules command,
-      * ListTasks command,
-      * ListModules command,
-      * AddExamCommand,
-      * EditExamCommand.
+      * FindModules command, 
+      * ListTasks command,  
+      * ListModules command, 
+      * AddExamCommand, 
+      * EditExamCommand. 
     * Developer Guide:
         * AddExamCommand. Included the sequence diagram. 
 
