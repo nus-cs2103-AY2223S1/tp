@@ -173,6 +173,7 @@ This section describes some noteworthy details on how certain features are imple
 #### 3.1.1 Add client with product feature
 
 Syntax: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
+
 Purpose: Adds a client with the given information to the internal model and storage
 
 Here, we are interested in the use of adding a client and associating it with a product.
@@ -194,6 +195,7 @@ This is to try and maintain the overall cleanliness and housekeeping of _MyInsuR
 #### 3.2.1 Add Meeting feature
 
 Syntax: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+
 Purpose: Adds a meeting with the given information to the internal model and storage
 
 ##### Implementation
