@@ -291,7 +291,7 @@ public interface Model {
     ArrayList<Tag> getTagList();
 
     /**
-     * Sets the tagList into SoConnect.
+     * Sets the tagList in SoConnect.
      *
      * @param tagList The tagList to be set.
      */
