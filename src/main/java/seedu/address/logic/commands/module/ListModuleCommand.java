@@ -21,7 +21,7 @@ public class ListModuleCommand extends Command {
         requireNonNull(model);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(MESSAGE_SUCCESS, false, false, true,
-                false, false, false, false, false);
+                false, false, false, false, false, false);
     }
 }
 

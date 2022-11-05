@@ -22,6 +22,6 @@ public class ListCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
         return new CommandResult(MESSAGE_SUCCESS, false, false, false,
-                true, false, false, false, false);
+                true, false, false, false, false, false);
     }
 }

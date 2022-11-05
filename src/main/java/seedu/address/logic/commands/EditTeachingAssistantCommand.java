@@ -129,6 +129,6 @@ public class EditTeachingAssistantCommand extends EditStuCommand {
         model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent),
                 false, false, false,
-                true, false, false, false, false);
+                true, false, false, false, false, false);
     }
 }

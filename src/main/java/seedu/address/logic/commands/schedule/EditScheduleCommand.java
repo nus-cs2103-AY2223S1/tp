@@ -89,7 +89,7 @@ public class EditScheduleCommand extends Command {
         model.setSchedule(target, editedSchedule);
         logger.fine("EditScheduleCommand executes successfully.");
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedSchedule), false, false, false,
-                false, false, true, false, false);
+                false, false, false, true, false, false);
 
     }
     /**

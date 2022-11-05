@@ -48,8 +48,8 @@ public class ViewTargetModuleCommand extends Command {
         model.viewModule(targetModuleCode);
 
         return new CommandResult(String.format(MESSAGE_VIEW_TARGET_MODULE_SUCCESS, targetModule),
-                false, false, true,
-                false, false, false, false, false);
+                false, false, false, false,
+                true, false, false, false, false);
     }
 
     @Override
