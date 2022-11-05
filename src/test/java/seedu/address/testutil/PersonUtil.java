@@ -29,9 +29,9 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Task task) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + task.getName().fullName + " ");
-        sb.append(PREFIX_MODULE + task.getModule().fullName + " ");
-        sb.append(PREFIX_DEADLINE + task.getDeadline().value + " ");
+        sb.append(PREFIX_NAME + " " + task.getName().fullName + " ");
+        sb.append(PREFIX_MODULE + " " + task.getModule().fullName + " ");
+        sb.append(PREFIX_DEADLINE + " " + task.getDeadline().value + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -43,15 +43,17 @@ public class PersonUtil {
      */
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getModule().ifPresent(module -> sb.append(PREFIX_MODULE).append(module.fullName).append(" "));
-        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" ").append(name.fullName).append(" "));
+        descriptor.getModule().ifPresent(
+                module -> sb.append(PREFIX_MODULE).append(" ").append(module.fullName).append(" "));
+        descriptor.getDeadline().ifPresent(
+                deadline -> sb.append(PREFIX_DEADLINE).append(" ").append(deadline.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(" ").append(s.tagName).append(" "));
             }
         }
         return sb.toString();

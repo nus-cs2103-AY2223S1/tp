@@ -35,20 +35,26 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HIGH_PRIORITY = "high";
     public static final String VALID_TAG_TUTORIAL = "tutorial";
 
-    public static final String NAME_DESC_ALPHA = " " + PREFIX_NAME + VALID_NAME_TASK_ALPHA;
-    public static final String NAME_DESC_BETA = " " + PREFIX_NAME + VALID_NAME_TASK_BETA;
-    public static final String MODULE_DESC_ALPHA = " " + PREFIX_MODULE + VALID_MODULE_ALPHA;
-    public static final String MODULE_DESC_BETA = " " + PREFIX_MODULE + VALID_MODULE_BETA;
-    public static final String DEADLINE_DESC_ALPHA = " " + PREFIX_DEADLINE + VALID_DEADLINE_ALPHA;
-    public static final String DEADLINE_DESC_BETA = " " + PREFIX_DEADLINE + VALID_DEADLINE_BETA;
-    public static final String TAG_DESC_TUTORIAL = " " + PREFIX_TAG + VALID_TAG_TUTORIAL;
-    public static final String TAG_DESC_HIGH_PRIORITY = " " + PREFIX_TAG + VALID_TAG_HIGH_PRIORITY;
+    public static final String NAME_DESC_ALPHA = " " + PREFIX_NAME + " " + VALID_NAME_TASK_ALPHA;
+    public static final String NAME_DESC_BETA = " " + PREFIX_NAME + " " + VALID_NAME_TASK_BETA;
+    public static final String MODULE_DESC_ALPHA = " " + PREFIX_MODULE + " " + VALID_MODULE_ALPHA;
+    public static final String MODULE_DESC_BETA = " " + PREFIX_MODULE + " " + VALID_MODULE_BETA;
+    public static final String DEADLINE_DESC_ALPHA = " " + PREFIX_DEADLINE + " " + VALID_DEADLINE_ALPHA;
+    public static final String DEADLINE_DESC_BETA = " " + PREFIX_DEADLINE + " " + VALID_DEADLINE_BETA;
+    public static final String TAG_DESC_TUTORIAL = " " + PREFIX_TAG + " " + VALID_TAG_TUTORIAL;
+    public static final String TAG_DESC_HIGH_PRIORITY = " " + PREFIX_TAG + " " + VALID_TAG_HIGH_PRIORITY;
 
     // '&' not allowed in names
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Assignment&Homework";
-    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "CS2103T-"; // Only alphanumeric allowed
-    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "23-06-2022"; // Must be in YYYY-MM-DD
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "tutorial*"; // '*' not allowed in tags
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + " " + "Assignment&Homework";
+
+    // Only alphanumeric allowed
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + " " + "CS2103T-";
+
+    // Must be in YYYY-MM-DD
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + " " + "23-06-2022";
+
+    // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + " " + "tutorial*";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

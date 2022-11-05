@@ -49,7 +49,7 @@ public class MarkCommand extends Command {
 
         model.setTask(taskToMark, markedTask);
 
-        return new CommandResult(String.format(MESSAGE_MARK_AS_DONE_SUCCESS, taskToMark));
+        return new CommandResult(String.format(MESSAGE_MARK_AS_DONE_SUCCESS, markedTask));
     }
 
     /**

@@ -35,18 +35,13 @@ a graphical user interface.
 3. Move the file to the folder you want to use as the home folder for NotionUS. Note that a new folder will be created
    in the same location as the file, which will contain the application data.
 
-4. Double-click the file to start the app. As seen below, some sample data has been pre-loaded for you to experiment with.
+4. Double-click the file to start the app. The app should look like the image below, and have some sample data has been pre-loaded to experiment with.
 
-   ![Ui](images/user-guide/Ui.png)
+    ![Ui](images/user-guide/Ui.png)
 
---------------------------------------------------------------------------------------------------------------------
+### Understanding the Graphical User Interface (GUI)
 
-## Understanding the GUI
-
-We would first like to give a walk-around of the User Interface (UI) to allow you, the user to have a smoother experience as you will 
-be able to use the app to its full potential.
-
-Here is an image of the UI of the app.
+Understanding the GUI is essential to making the most out of your experience in the app.
 
 ![GUIwalkaround](images/user-guide/GUIwalkaround.png)
 
@@ -64,12 +59,44 @@ From top to bottom:
     * This displays all your *current* tasks.
 
 4. Result display:
-    * The result display displays any information regarding command inputs, such as success or errors.
+    * The result display displays any information regarding command inputs, such as success or err    rs.
 
 5. Command box:
     * This is where you enter commands to control the app.
 
-### Autocomplete
+To learn more about other GUI Features, click [**here**](#gui-features).
+
+Now that you understand the GUI, lets try inputting a command into the app!
+
+Try typing the command `ls --module CS2103T` in the “Enter command here...” box and press “ENTER” to execute the command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **What does this command do?**
+Lists all tasks associated with the module `CS2103T`.
+</div>
+
+The GUI should be updated as shown below:
+
+![GUIwalkaround2](images/user-guide/GUIwalkaround2.png)
+
+   Some other example commands you can try:
+   - `add -n Tutorial 3 -m CS2103T -d 2022-10-10`:
+     Adds a task called `Tutorial 3` for the module `CS2103T` with the deadline `2022-09-16` into the task list.
+   - `mark 1` :
+     Marks the first task in the list as complete.
+   - `delete 2` : 
+     Deletes the second task in the list.
+   - `edit 3 -n Assignment 2` : 
+     Changes the name of the third task in the list to `Assignment 2`.
+   - `find tutorial` :
+     Finds anything with the keyword 'tutorial' (not case-sensitive or strictly matched words)
+
+   You can also continue reading the [**command features**](#command-features) section to read more about how to use each command!
+
+--------------------------------------------------------------------------------------------------------------------
+
+## GUI Features
+
+#### Autocomplete
 
 When the user starts to type in the start of a command in the _Command Box_, a pop-up menu will appear with options to complete your input.
 Use the `Up` and `Down` arrow keys on your keyboard to navigate through the options and press the `Enter` key to fill the command box with the command
@@ -81,16 +108,17 @@ Here is an example of autocomplete in action:
 
 However, it is recommended to read through the [Features](#features) section to understand the syntax for commands that require additional input.
 
-### Command history : `Up`/`Down` keys
+#### Returning to a previous command : `Up`/`Down` keys
+
 Loads previous command into the _Command Box_.
 While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your keyboard to navigate through the command history that is automatically loaded in.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Command Features
 
 In this section, we will be explaining our commands. Under every command, you will find it's "Format". This refers to the text that you can enter in order to execute that command. 
-To understand the notation of these "Formats", read on! 
+To understand the notation of these "Format"s, read on! 
 
 <div markdown="block" class="alert alert-info" >
 
@@ -254,8 +282,6 @@ Current filters applied will be shown in the UI at the top bar.
 ![Before image of List Command](images/user-guide/ListCommandBefore.png)
 ![After image of List Command](images/user-guide/ListCommandAfter.png)
 
-**Note that `find` searches globally, across all of a task's attributes**
-
 #### Listing all tasks : `ls -a`
 
 Shows a list of all tasks in the task list.
@@ -322,7 +348,7 @@ Example: `ls -n task1`
 Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match. It is also case-insensitive.
 </div>
 
-### Find tasks by name : `find`
+### Find task names or tags: `find`
 
 The `find` command finds the task names that **contain** the keywords and tags which **exactly match** with the 
 keywords. Meaning that names does not have to be an exact match (Example: searching `tap` with return a task with a 
@@ -404,6 +430,10 @@ Terminates and exits the program.
 
 Format: `exit`
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Other Features
+
 ### Saving the data
 NotionUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -461,3 +491,15 @@ Format meanings:
 | **Tagging** a task          | `tag TASK_NUMBER (-t TAG_NAME)*`                                                                                                                                                                                                                                                                                                                                                                                                       | `tag 1 -t highPriority -t homework`          |
 | **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                   | `unmark 2`                                   |
 | Accessing previous commands | Use the `Up` and `Down` arrow keys                                                                                                                                                                                                                                                                                                                                                                                                     |                                              |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+| Word    | Definition                                                                   |
+|---------|------------------------------------------------------------------------------|
+| **GUI** | Graphical User Interface - what the user sees when interacting with the app. |
+|         |                                                                              |
+|         |                                                                              |
+|         |                                                                              |
+
