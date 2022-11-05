@@ -33,4 +33,11 @@ public class RSortCommand extends Command {
         model.sortReviews(reviewsComparator.getComparator());
         return new CommandResult(String.format(MESSAGE_SUCCESS, reviewsComparator.getCriteria()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof RSortCommand // instanceof handles nulls
+                && reviewsComparator.equals(((RSortCommand) other).reviewsComparator)); // state check
+    }
 }

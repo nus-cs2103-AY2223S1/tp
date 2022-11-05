@@ -1,7 +1,10 @@
 package foodwhere.logic.commands;
 
 import static foodwhere.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import foodwhere.testutil.TypicalIndexes;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.model.Model;
@@ -32,6 +35,28 @@ public class SSortCommandTest {
         expectedModel.sortStalls(comparator.getComparator());
         String expectedMessage = String.format(SSortCommand.MESSAGE_SUCCESS, comparator.getCriteria());
         assertCommandSuccess(new SSortCommand(comparator), model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        SSortCommand sortByName = new SSortCommand(StallsComparatorList.valueOf("NAME"));
+        SSortCommand sortByReversedName = new SSortCommand(StallsComparatorList.valueOf("REVERSEDNAME"));
+
+        // same object -> returns true
+        assertTrue(sortByName.equals(sortByName));
+
+        // same values -> returns true
+        SSortCommand sortByNameCopy = new SSortCommand(StallsComparatorList.valueOf("NAME"));
+        assertTrue(sortByName.equals(sortByNameCopy));
+
+        // different types -> returns false
+        assertFalse(sortByName.equals(1));
+
+        // null -> returns false
+        assertFalse(sortByName.equals(null));
+
+        // different criterion -> returns false
+        assertFalse(sortByName.equals(sortByReversedName));
     }
 
     /**

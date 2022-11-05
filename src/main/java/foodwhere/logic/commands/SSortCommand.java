@@ -33,4 +33,11 @@ public class SSortCommand extends Command {
         model.sortStalls(stallsComparator.getComparator());
         return new CommandResult(String.format(MESSAGE_SUCCESS, stallsComparator.getCriteria()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SSortCommand // instanceof handles nulls
+                && stallsComparator.equals(((SSortCommand) other).stallsComparator)); // state check
+    }
 }
