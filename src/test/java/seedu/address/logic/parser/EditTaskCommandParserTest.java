@@ -49,17 +49,17 @@ public class EditTaskCommandParserTest {
 
     @Test
     public void parse_invalidPreamble_failure() {
+        // invalid arguments being parsed as preamble
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+
+        // invalid prefix being parsed as preamble
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+
         // negative index
         assertParseFailure(parser, "-5" + MODULE_DESC_CS2030, MESSAGE_INVALID_TASK_INDEX);
 
         // zero index
         assertParseFailure(parser, "0" + MODULE_DESC_CS2030, MESSAGE_INVALID_TASK_INDEX);
-
-        // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_TASK_INDEX);
-
-        // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_TASK_INDEX);
 
         // big integer
         assertParseFailure(parser, "2147483648" + MODULE_DESC_CS2030, MESSAGE_INVALID_TASK_INDEX);

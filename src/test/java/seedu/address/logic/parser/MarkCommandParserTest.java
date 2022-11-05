@@ -28,13 +28,17 @@ public class MarkCommandParserTest {
         assertParseFailure(parser, " ", String.format(
             MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
 
-        // non-integer
-        assertParseFailure(parser, "a", MESSAGE_INVALID_TASK_INDEX);
+        // non-number
+        assertParseFailure(parser, "a", String.format(
+            MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
 
         // zero index
         assertParseFailure(parser, "0", MESSAGE_INVALID_TASK_INDEX);
 
         // big integer
         assertParseFailure(parser, "2147483648", MESSAGE_INVALID_TASK_INDEX);
+
+        // negative integer
+        assertParseFailure(parser, "-21", MESSAGE_INVALID_TASK_INDEX);
     }
 }
