@@ -9,7 +9,7 @@ import seedu.realtime.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteOfferCommand object
  */
-public class DeleteOfferCommandParser {
+public class DeleteOfferCommandParser implements Parser<DeleteOfferCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteOfferCommand

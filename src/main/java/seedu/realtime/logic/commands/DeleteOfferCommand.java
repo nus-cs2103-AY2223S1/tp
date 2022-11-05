@@ -36,7 +36,7 @@ public class DeleteOfferCommand extends Command {
         List<Offer> lastShownList = model.getFilteredOfferList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_OFFER_DISPLAYED_INDEX);
         }
 
         Offer offerToDelete = lastShownList.get(targetIndex.getZeroBased());

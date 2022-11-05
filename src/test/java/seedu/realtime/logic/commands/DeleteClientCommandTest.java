@@ -20,7 +20,7 @@ import seedu.realtime.model.person.Client;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteClientCommand}.
  */
 public class DeleteClientCommandTest {
 
@@ -68,7 +68,7 @@ public class DeleteClientCommandTest {
         showClientAtIndex(model, FIRST_INDEX);
 
         Index outOfBoundIndex = SECOND_INDEX;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of realtime list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getRealTime().getClientList().size());
 
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);

@@ -24,6 +24,8 @@ import seedu.realtime.model.RealTime;
 import seedu.realtime.model.listing.IdContainsKeywordsPredicate;
 import seedu.realtime.model.listing.Listing;
 import seedu.realtime.model.listing.exceptions.ListingNotFoundException;
+import seedu.realtime.model.offer.Offer;
+import seedu.realtime.model.offer.OfferContainsListingIdPredicate;
 import seedu.realtime.model.person.Client;
 import seedu.realtime.model.person.NameContainsKeywordsPredicate;
 import seedu.realtime.testutil.EditClientDescriptorBuilder;
@@ -199,6 +201,20 @@ public class CommandTestUtil {
         model.updateFilteredListingList(new IdContainsKeywordsPredicate(id));
 
         assertEquals(1, model.getFilteredListingList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the offer at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showOfferAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredOfferList().size());
+
+        Offer offer = model.getFilteredOfferList().get(targetIndex.getZeroBased());
+        final String[] splitListingId= offer.getListing().value.split("\\s+");
+        model.updateFilteredOfferList(new OfferContainsListingIdPredicate(Arrays.asList(splitListingId[0])));
+
+        assertEquals(1, model.getFilteredOfferList().size());
     }
 
 }
