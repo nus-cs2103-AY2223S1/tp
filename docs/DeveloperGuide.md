@@ -231,9 +231,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Display trip's events
+### \[Implemented\] Display trip's events
 
-#### Proposed Implementation
+#### Implementation
 The proposed display trip's events mechanism is facilitated by the use of `EventInItineraryPredicate`.
 It extends `Predicate` with a test that checks if an event is part of the given Itinerary, which is stored
 interally as an `Itinerary`. This predicate is then set as the predicate of the `filteredEventList`, which
@@ -242,7 +242,7 @@ contains all events added to Travelr.
 Given below is an example usage scenario of how the display trip's events mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `TravelrBook` will be initialised with the
-initial Travelr book state, with no trips and events added.
+sample Travelr data.
 
 Step 2. The user executes `add n/Trip to Japan ...` to add a new trip, and also executes `add-e n/Try Takoyakis ...`
 to add a new event to Travelr.
