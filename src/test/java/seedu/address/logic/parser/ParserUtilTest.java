@@ -252,7 +252,7 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("elementa"));
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("e"));
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("addition"));
-        assertThrows(ParseException.class, () -> ParserUtil.parseSubject("e"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseSubject("a"));
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("english eubject"));
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("mathematics eubject"));
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("physics eubject"));
