@@ -62,7 +62,7 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_duplicateClients_throwsIllegalValueException() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_CLIENT_FILE,
                 JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_INVALID_CLIENT,
+        assertThrows(IllegalValueException.class, StorageUtil.MESSAGE_INVALID_CLIENT,
                 dataFromFile::toModelType);
     }
 
@@ -70,7 +70,7 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_duplicateProjects_throwsIllegalValueException() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PROJECT_FILE,
                 JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PROJECT,
+        assertThrows(IllegalValueException.class, StorageUtil.MESSAGE_DUPLICATE_PROJECT,
                 dataFromFile::toModelType);
     }
 
@@ -78,7 +78,7 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_duplicateIssues_throwsIllegalValueException() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ISSUE_FILE,
                 JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_ISSUE,
+        assertThrows(IllegalValueException.class, StorageUtil.MESSAGE_DUPLICATE_ISSUE,
                 dataFromFile::toModelType);
     }
 

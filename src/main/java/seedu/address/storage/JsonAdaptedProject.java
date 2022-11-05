@@ -16,15 +16,10 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
 
-
-
-
 /**
  * Jackson-friendly version of {@link Project}.
  */
 class JsonAdaptedProject {
-
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing!";
 
     private final String name;
     private final String repository;
@@ -65,109 +60,17 @@ class JsonAdaptedProject {
     }
 
     /**
-     * Parses project name string from storage.
-     */
-    public Name readNameFromStorage(String name) throws IllegalValueException {
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new Name(name);
-    }
-
-    /**
-     * Parses repository string from storage.
-     */
-    public Repository readRepositoryFromStorage(String repository) throws IllegalValueException {
-        if (repository == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Repository.class.getSimpleName()));
-        }
-        if (repository.isEmpty()) {
-            return Repository.EmptyRepository.EMPTY_REPOSITORY;
-        } else {
-            if (!Repository.isValidRepository(repository)) {
-                throw new IllegalValueException(Repository.MESSAGE_CONSTRAINTS);
-            }
-            return new Repository(repository);
-        }
-    }
-
-    /**
-     * Parses deadline string from storage.
-     */
-    public Deadline readDeadlineFromStorage(String deadline) throws IllegalValueException {
-        if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Deadline.class.getSimpleName()));
-        }
-        if (deadline.isEmpty()) {
-            return Deadline.EmptyDeadline.EMPTY_DEADLINE;
-        } else {
-            if (!Deadline.isValidDeadline(deadline)) {
-                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
-            }
-            return new Deadline(deadline);
-        }
-    }
-
-    /**
-     * Parses client json object from storage.
-     */
-    public Client readClientFromStorage(JsonAdaptedClient client) throws IllegalValueException {
-        if (client == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Project.class.getSimpleName()));
-        }
-
-        return client.toModelType();
-    }
-
-    /**
-     * Parses pin string from storage.
-     */
-    public Pin readPinFromStorage(String pin) throws IllegalValueException {
-        if (pin == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Pin.class.getSimpleName()));
-        }
-        if (!Pin.isValidPin(pin)) {
-            throw new IllegalValueException(Pin.MESSAGE_CONSTRAINTS);
-        }
-        return new Pin(Boolean.parseBoolean(pin));
-    }
-
-    /**
-     * Parses project ID string from storage.
-     */
-    public ProjectId readProjectIdFromStorage(String projectId) throws IllegalValueException {
-        if (projectId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectId.class.getSimpleName()));
-        }
-        if (!ProjectId.isValidProjectId(projectId)) {
-            throw new IllegalValueException(ProjectId.MESSAGE_CONSTRAINTS);
-        }
-        final ProjectId modelProjectId = new ProjectId(Integer.parseInt(projectId));
-
-        assert modelProjectId.getIdInt() >= 0 : "Project ID should be positive";
-
-        return modelProjectId;
-    }
-
-    /**
      * Converts this Jackson-friendly adapted project object into the model's {@code Project} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
-        final Name modelName = readNameFromStorage(name);
-        final Repository modelRepository = readRepositoryFromStorage(repository);
-        final Deadline modelDeadline = readDeadlineFromStorage(deadline);
-        final Client modelClient = readClientFromStorage(client);
-        final Pin modelPin = readPinFromStorage(pin);
-        final ProjectId modelProjectId = readProjectIdFromStorage(projectId);
+        final Name modelName = StorageUtil.readNameFromStorage(name, Project.class.getSimpleName());
+        final Repository modelRepository = StorageUtil.readRepositoryFromStorage(repository);
+        final Deadline modelDeadline = StorageUtil.readDeadlineFromStorage(deadline, Project.class.getSimpleName());
+        final Client modelClient = StorageUtil.readClientFromStorage(client);
+        final Pin modelPin = StorageUtil.readPinFromStorage(pin, Project.class.getSimpleName());
+        final ProjectId modelProjectId = StorageUtil.readProjectIdFromStorage(projectId);
         final List<Issue> modelIssues = new ArrayList<>();
         return new Project(modelName, modelRepository, modelDeadline,
                 modelClient, modelIssues, modelProjectId, modelPin);
