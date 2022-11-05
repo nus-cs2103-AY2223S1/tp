@@ -59,8 +59,6 @@ Any warnings or errors will be printed out to the console.
   * LINE is the line of the file where the error occurred and MESSAGE is the message explaining the error.
 * Check scripts must exit with a non-zero exit code if any errors occur.
 
----
-
 ## Making a release
 
 Here are the steps to create a new release.
