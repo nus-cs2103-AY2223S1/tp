@@ -152,7 +152,7 @@ Edits the information of a specified batchmate in the _Students panel_.
 
 __Format:__ `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`
 
-* Edits the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Edits the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Students panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing interests, the existing interests of the batchmate will be completely replaced by the new ones.
@@ -171,7 +171,7 @@ Deletes a specified batchmate from the _Students panel_.
 
 __Format:__ `delete INDEX`
 
-* Deletes the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Deletes the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Students panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 
 __Examples:__
 * `list` followed by `delete 2` deletes the 2nd batchmate in the full list of batchmates you have in Mass Linkers.
@@ -233,8 +233,8 @@ Adds interest(s) to a specified batchmate in the _Students panel_.
 
 __Format:__ `addInt INDEX INTEREST [MORE_INTERESTS]...`
 
-* Adds interest(s) to the batchmate at the specific INDEX in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
-* Interests added are case-insensitive, they will be displayed in lower casing.
+* Adds interest(s) to the batchmate at the specific INDEX in the __currently displayed list__ in the _Students panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
+* Interests added are case-insensitive, they will be displayed in lower casing. 
 
 __Examples:__
 * `addInt 1 algo` adds the interest `algo` to the 1st batchmate in the currently displayed list.
@@ -246,7 +246,7 @@ Delete interest(s) from a specified batchmate in the _Students panel_.
 
 __Format:__ `deleteInt INDEX INTEREST [MORE_INTERESTS]...`
 
-* Deletes interest(s) from the batchmate at the specific INDEX in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Deletes interest(s) from the batchmate at the specific INDEX in the __currently displayed list__ in the _Students panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 
 __Examples:__
 * `deleteInt 1 ai` deletes the interest `ai` from the 1st batchmate in the currently displayed list.
@@ -269,8 +269,8 @@ __Examples:__
 Module commands handle the management of a batchmate's list of modules, such as addition of modules, deletion of modules and searching batchmates with specified modules.
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
-Commands used to manage a batchmate's personal information in [Batchmate commands](#batchmate-commands) and [Interest commands](#interest-commands) follow the 1 command word syntax. E.g., `add`, `addInt`.
-Whereas, commands that manage a module detail in [Module commands](#module-commands) can have multiple command words preceded by the `mod` keyword. E.g., `mod add`, `mod mark all`, `mod find taken`.
+Commands used to manage a batchmate's personal information in [Batchmate commands](#51-batchmate-commands) and [Interest commands](#52-interest-commands) follow the 1 command word syntax. E.g., `add`, `addInt`.
+Whereas, commands that manage a module detail in [Module commands](#53-module-commands) can have multiple command words preceded by the `mod` keyword. E.g., `mod add`, `mod mark all`, `mod find taken`.
 
 This is to facilitate easy distinction between the nature of commands.
 
@@ -283,7 +283,7 @@ Left-click the row with the batchmate's name in the Students panel.
 
 - The selected row would turn blue and the Modules panel would display all the modules of the batchmate.
 
-This is the GUI after you left-click the 1st batchmate in the Students panel. The 1st row turns blue and the Modules panel displays all the modules of the 1st batchmate.
+Below is the GUI after you left-click the 1st batchmate in the Students panel. The 1st row turns blue and the Modules panel displays all the modules of the 1st batchmate.
 ![UgViewMod](images/UgViewMod.png)
 
 #### 5.3.2. Add module to a batchmate: `mod add`
@@ -292,14 +292,14 @@ Adds module(s) to a specified batchmate in the _Modules panel_.
 
 __Format:__ `mod add INDEX MODULE [MORE_MODULES]...`
 
-* Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 * Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#56-module-categorisation).
 
 __Examples:__
 * `mod add 1 ma1521` adds the module `MA1521` to the 1st batchmate in the currently displayed list.
 * `mod add 3 cs2100 cs2103t cs2101 cs2105` adds the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` to the 3rd batchmate in the currently displayed list.
 
-This is the GUI after executing `mod add 1 ma1521`. The module `MA1521` is successfully added to the 1st batchmate and automatically categorised as `Mathematics`. The expected changes is annotated with a purple rectangular box below.
+Below is the GUI after executing `mod add 1 ma1521`. The module `MA1521` is successfully added to the 1st batchmate and automatically categorised as `Mathematics`. The expected changes is annotated with a purple rectangular box below.
 ![UgModAdd](images/UgModAdd.png)
 
 #### 5.3.3. Delete module from a batchmate: `mod delete`
@@ -308,14 +308,14 @@ Deletes module(s) from a specified batchmate in the _Modules panel_.
 
 __Format:__ `mod delete INDEX MODULE [MORE_MODULES]...`
 
-* Deletes module(s) from the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Deletes module(s) from the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 
 __Examples:__
 * `mod delete 1 cs2103t` deletes the module `CS2103T` from the 1st batchmate in the currently displayed list.
 * `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` from the 3rd batchmate in the currently displayed list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To edit a module, simply delete that module using [__mod delete__](#delete-module-from-a-batchmate-mod-delete) and add the new module using [__mod add__](#add-module-to-a-batchmate-mod-add).
+To edit a module, simply delete that module using [`mod delete`](#533-delete-module-from-a-batchmate-mod-delete) and add the new module using [`mod add`](#532-add-module-to-a-batchmate-mod-add).
 </div>
 
 #### 5.3.4. Mark module as taken: `mod mark`
@@ -324,13 +324,13 @@ Marks module(s) of a specified batchmate as `taken` in the _Modules panel_, whic
 
 __Format:__ `mod mark INDEX MODULE [MORE_MODULES]...`
 
-* Marks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Marks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 
 __Examples:__
 * `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
 * `mod mark 3 cs2100 cs2103t cs2101 cs2105` marks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `taken`.
 
-This is the GUI after executing `mod mark 3 cs2100 cs2103t cs2101 cs2105`. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`. The expected changes is annotated with purple rectangular boxes below.
+Below is the GUI after executing `mod mark 3 cs2100 cs2103t cs2101 cs2105`. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`. The expected changes is annotated with purple rectangular boxes below.
 ![UgModMark](images/UgModMark.png)
 
 
@@ -340,14 +340,15 @@ Unmarks module(s) of a specified batchmate and updates the status as `taking` in
 
 __Format:__ `mod unmark INDEX MODULE [MORE_MODULES]...`
 
-* Unmarks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Unmarks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 
 __Examples:__
 * `mod unmark 1 cs2103t` unmarks the module `CS2103T` of the 1st batchmate in the currently displayed list as `not taken`.
 * `mod unmark 3 cs2100 cs2103t cs2101 cs2105` unmarks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `not taken`.
 
 #### 5.3.6. Mark all modules as taken: `mod mark all`
-<div markdown="span" class="alert alert-warning">:warning: **Warning:** The __mod mark all__ command is irreversible. Only execute it if you intend to mark all existing modules for all batchmates as taken.
+
+<div markdown="span" class="alert alert-warning">:warning: **Warning:** The `mod mark all` command is irreversible. Only execute it if you intend to mark __all existing modules__ for __all batchmates__ as taken. 
  </div>
 
 Marks all current modules of every batchmate in Mass Linkers as `taken` in the _Modules panel_. This makes it convenient to update the module status of all existing modules of every batchmate as taken after each semester.
@@ -369,7 +370,7 @@ __Examples:__
 
 #### 5.3.8. Find modules taken or taking: `mod find taken` or `mod find taking`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-This is an <i>extension</i> of [__mod find__](#find-batchmates-taking-specified-modules-mod-find). The rules listed above for [__mod find__](#find-batchmates-taking-specified-modules-mod-find) apply to this feature too.
+This is an <i>extension</i> of [`mod find`](#537-find-batchmates-taking-specified-modules-mod-find). The rules listed above for [`mod find`](#537-find-batchmates-taking-specified-modules-mod-find) apply to this feature too.
 </div>
 
 Finds batchmates who have taken or are taking __all__ the specified modules.
@@ -393,9 +394,11 @@ Shows a brief summary of commands with their syntax and a link to the user guide
 __Format:__ `help`
 
 #### 5.4.2. Clear all data: `clear`
-<div markdown="span" class="alert alert-warning">:warning: **Warning:** The __clear__ command is irreversible. Only execute it if you intend to clear all existing data.
+
+<div markdown="span" class="alert alert-warning">:warning: **Warning:** The `clear` command is irreversible. Only execute it if you intend to clear __all existing data__. 
  </div>
-Clears all existing data in Mass Linkers.
+
+Clears all existing data in Mass Linkers. 
 
 __Format:__ `clear`
 
