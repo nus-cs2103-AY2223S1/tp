@@ -8,6 +8,7 @@ import static seedu.taassist.commons.util.StringUtil.caseInsensitiveEquals;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.exceptions.SessionNotFoundException;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
@@ -81,7 +82,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      * Returns an immutable sessions list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Session> getSessions() {
+    public ObservableList<Session> getSessions() {
         return sessions.asUnmodifiableObservableList();
     }
 
