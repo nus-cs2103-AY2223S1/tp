@@ -141,12 +141,14 @@ Examples:
     Before executing the AddCommand:
     <br>
     <img src="images/screenshots/AddCommand/AddCommand.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the AddCommand:
     <br>
     <img src="images/screenshots/AddCommand/AddCommandResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+    
 ### 2.2 Editing a Customer’s details: `edit`
 
 Edits an existing Customer in bobaBot.
@@ -168,12 +170,13 @@ Examples:
     Before executing the EditCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/EditCommand/EditCommand_Phone.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the EditCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/EditCommand/EditCommand_PhoneResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 * `edit e/charlie@puth.com e/taylor@swift.com`
     <details>
@@ -184,12 +187,14 @@ Examples:
     Before executing the EditCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/EditCommand/EditCommand_Email.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the EditCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/EditCommand/EditCommand_EmailResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+    
 ### 2.3 Increasing a Customer’s Reward points: `incr`
 
 Increases the Reward points of existing Customer in bobaBot.
@@ -206,12 +211,13 @@ Examples:
     Before executing the IncreaseCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhone.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the IncreaseCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhoneResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 * `incr 1000 e/alexyeoh@example.com`
     <details>
@@ -222,12 +228,14 @@ Examples:
     Before executing the IncreaseCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmail.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the IncreaseCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmailResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+    
 ### 2.4 Decreasing a Customer’s Reward points: `decr`
 
 Decreases the Reward points of existing Customer in bobaBot.
@@ -244,12 +252,13 @@ Examples:
     Before executing the IncreaseCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhone.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the IncreaseCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhoneResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 * `decr 500 e/taylor@swift.com`
     <details>
@@ -260,12 +269,14 @@ Examples:
     Before executing the IncreaseCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmail.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the IncreaseCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmailResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+    
 ### 2.5 Listing all customers : `list`
 
 Shows a list of all Customers in bobaBot.
@@ -281,11 +292,13 @@ Before executing the ListCommand:
 <br>
 <img src="images/screenshots/ListCommand/ListCommand.png"><br>
 <div style="page-break-after: always;"></div>
+
 After executing the ListCommand:
 <br>
 <img src="images/screenshots/ListCommand/ListCommandResult.png"><br>
 </details>
 <div style="page-break-after: always;"></div>
+
 ### 2.6 Locating customers by name / email / phone number: `find`
 
 Finds Customers whose information (including name, phone, email, address) contain any of the given keywords.
@@ -312,12 +325,13 @@ Examples:
     Before executing the FindCommand:
     <br>
     <img src="images/screenshots/FindCommand/FindCommandNormal.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the FindCommand:
     <br>
     <img src="images/screenshots/FindCommand/FindCommandNormalResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 * `find alex david` returns `Alex Yeoh`, `David Li`
     <details>
@@ -328,12 +342,13 @@ Examples:
     Before executing the FindCommand (with at least one keyword):
     <br>
     <img src="images/screenshots/FindCommand/FindCommandMultiple.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the FindCommand (with at least one keyword):
     <br>
     <img src="images/screenshots/FindCommand/FindCommandMultipleResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 * `find Bob` returns `Bob` and `Bop`
     <details>
@@ -344,12 +359,13 @@ Examples:
     Before executing the FindCommand (with FuzzySearch):
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_Fuzzy.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the FindCommand (with FuzzySearch):
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_FuzzyResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 * `find 8000` returns both `Roy Balakrishnan` and `Bob`
     <details>
@@ -360,7 +376,8 @@ Examples:
     Before executing the FindCommand (with matching keywords <code>8000</code>):
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_General.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the FindCommand (with matching keywords <code>8000</code>):
     <br>
     <ul>
@@ -368,7 +385,7 @@ Examples:
     </ul><br>
     <img src="images/screenshots/FindCommand/FindCommand_GeneralResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 * `find p/87438807` returns only `Alex Yeoh`
     <details>
@@ -379,12 +396,13 @@ Examples:
     Before executing the FindCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_Phone.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the FindCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_PhoneResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 * `find e/charlotte@example.com` returns only `Charlotte Oliveiro`
     <details>
@@ -395,12 +413,14 @@ Examples:
     Before executing the FindCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_Email.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the FindCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_EmailResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+    
 ### 2.7 Deleting a Customer : `delete`
 
 Removes a Customer from bobaBot.
@@ -424,12 +444,13 @@ Examples:
     Before executing the DeleteCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_Phone.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the DeleteCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_PhoneResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 * `delete e/royb@example.com` removes the Customer with the email `royb@example.com`.
     <details>
@@ -440,12 +461,14 @@ Examples:
     Before executing the DeleteCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_Email.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the DeleteCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_EmailResult.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+
 ### 2.8 Undo a Command : `undo`
 
 Reverts a command that has been executed. Returns bobaBot to the previous state before executing the command.
@@ -461,6 +484,7 @@ Before executing the UndoCommand (after a DeleteCommand):
 <br>
 <img src="images/screenshots/UndoAndRedoCommand/UndoCommand.png"><br>
 <div style="page-break-after: always;"></div>
+
 After executing the UndoCommand (Deleted Customer <code>Alex Yeoh</code> is back into bobaBot):
 <br>
 <img src="images/screenshots/UndoAndRedoCommand/UndoCommandResult.png"><br>
@@ -472,6 +496,7 @@ After executing the UndoCommand (Deleted Customer <code>Alex Yeoh</code> is back
 * bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
 </div>
 <div style="page-break-after: always;"></div>
+
 ### 2.9 Redo an UndoCommand : `redo`
 
 Reverts the UndoCommand. Returns bobaBot to the state before executing the UndoCommand.
@@ -490,6 +515,7 @@ Before executing the RedoCommand:
 </ul>
 <img src="images/screenshots/UndoAndRedoCommand/RedoCommand.png"><br>
 <div style="page-break-after: always;"></div>
+
 After executing the RedoCommand (The Customer <code>Alex Yeoh</code> is removed from bobaBot again):
 <br>
 <img src="images/screenshots/UndoAndRedoCommand/RedoCommandResult.png"><br>
@@ -501,6 +527,7 @@ After executing the RedoCommand (The Customer <code>Alex Yeoh</code> is removed 
 * bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
 </div>
 <div style="page-break-after: always;"></div>
+
 ### 2.10 Clearing all entries : `clear`
 
 Clears all Customers from the bobaBot.
@@ -516,11 +543,13 @@ Before executing the ClearCommand:
 <br>
 <img src="images/screenshots/ClearCommand/ClearCommand.png"><br>
 <div style="page-break-after: always;"></div>
+
 After executing the ClearCommand:
 <br>
 <img src="images/screenshots/ClearCommand/ClearCommandResult.png"><br>
 </details>
 <div style="page-break-after: always;"></div>
+
 ### 2.11 Calculate: `calc`
 
 Do basic arithmetic calculation including +, -, *, /. Allow multiple operators and precedence
@@ -538,6 +567,7 @@ Before executing the CalculateCommand:
 <br>
 <img src="images/screenshots/CalculateCommand/NewCalculateCommand.png"><br>
 <div style="page-break-after: always;"></div>
+
 After executing the CalculateCommand:
 <br>
 <img src="images/screenshots/CalculateCommand/NewCalculateCommandResult.png"><br>
@@ -549,6 +579,7 @@ After executing the CalculateCommand:
 * Please do not enter spaces, e.g.`1 + 1` does not work.
 </div>
 <div style="page-break-after: always;"></div>
+
 ### 2.12 GUI Calculator: `calc-gui`
 
 Launch a GUI calculator. A calculator window will pop-up
@@ -564,11 +595,13 @@ Before executing the CalculatorGuiCommand:
 <br>
 <img src="images/screenshots/CalculateCommand/NewCalculatorGUI.png"><br>
 <div style="page-break-after: always;"></div>
+
 After executing the CalculatorGuiCommand:
 <br>
 <img src="images/screenshots/CalculateCommand/NewCalculatorGUIResult.png"><br>
 </details>
 <div style="page-break-after: always;"></div>
+
 ### 2.13 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -577,6 +610,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 <div style="page-break-after: always;"></div>
+
 ### 2.14 Exiting the program : `exit`
 
 Exits the program.
@@ -592,6 +626,7 @@ Before executing the ExitCommand:
 <br>
 <img src="images/screenshots/ExitCommand/ExitCommand.png"><br>
 <div style="page-break-after: always;"></div>
+
 After executing the ExitCommand:
 <br>
 <ul>
@@ -599,6 +634,7 @@ After executing the ExitCommand:
 </ul>
 </details>
 <div style="page-break-after: always;"></div>
+
 ### Saving the data
 
 bobaBot data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
