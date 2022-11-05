@@ -39,7 +39,7 @@ public class ClearCommand extends MultiLevelCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ClearCommand  // instanceof handles nulls
+                || (other instanceof ClearCommand // instanceof handles nulls
                 && this.isAwaitingInput == ((ClearCommand) other).isAwaitingInput
                 && this.isCancelled == ((ClearCommand) other).isCancelled);
     }
