@@ -132,4 +132,14 @@ public class LogicManager implements Logic {
                 .collect(Collectors.toList());
         return FXCollections.observableList(petsFromSupplier);
     }
+
+    @Override
+    public void switchToBuyer() {
+        model.switchToBuyerList();
+    }
+
+    @Override
+    public void switchToSupplier() {
+        model.switchToSupplierList();
+    }
 }

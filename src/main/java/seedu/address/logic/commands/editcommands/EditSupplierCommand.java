@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Supplier;
@@ -65,9 +66,10 @@ public class EditSupplierCommand extends EditCommand {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(supplierToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(supplierToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(supplierToEdit.getAddress());
+        Location updatedLocation = editPersonDescriptor.getLocation().orElse(supplierToEdit.getLocation());
         List<UniqueId> pets = supplierToEdit.getPetIds();
 
-        return new Supplier(updatedName, updatedPhone, updatedEmail, updatedAddress, pets);
+        return new Supplier(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedLocation, pets);
     }
 
 }

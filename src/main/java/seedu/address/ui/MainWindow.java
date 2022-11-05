@@ -202,7 +202,8 @@ public class MainWindow extends UiPart<Stage> {
      * @param addType Typo of person to be added.
      */
     public void handleAddByPopup(String addType) {
-        addCommandPopupWindow = new AddCommandPopupWindow(logic, addType, resultDisplay);
+        addCommandPopupWindow = new AddCommandPopupWindow(logic, addType, resultDisplay, currListPanel,
+                personListPanelPlaceholder);
         addCommandPopupWindow.show();
         addCommandPopupWindow.fillContentPlaceholder(addType);
     }

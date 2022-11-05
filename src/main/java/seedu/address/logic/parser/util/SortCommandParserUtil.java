@@ -147,7 +147,11 @@ public class SortCommandParserUtil {
     public static Comparator<Deliverer> parseToSelectedDelivererComparator(String attribute) throws ParseException {
         if (attribute.isEmpty() || CommandUtil.isValidParameter(
                 CommandUtil.ACCEPTABLE_SORT_ORDER_SIZE_PARAMETER, attribute)) {
-            return DELIVERER_COMPARATOR;
+
+            @SuppressWarnings("unchecked")
+            Comparator<Deliverer> personNameComparator = (Comparator<Deliverer>) PERSON_NAME_COMPARATOR;
+
+            return personNameComparator;
         }
         if (parseToSelectedPersonComparator(attribute) == null) {
             throw new ParseException(String.format(SortDelivererCommand.MESSAGE_WRONG_ATTRIBUTE, attribute,

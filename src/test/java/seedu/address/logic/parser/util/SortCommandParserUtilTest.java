@@ -294,7 +294,7 @@ public class SortCommandParserUtilTest {
         try {
             Comparator<Deliverer> delivererComparator = SortCommandParserUtil
                     .parseToSelectedDelivererComparator("");
-            int expected = TypicalDeliverers.ALICE.compareTo(TypicalDeliverers.DANIEL);
+            int expected = TypicalDeliverers.ALICE.getName().compareTo(TypicalDeliverers.DANIEL.getName());
             int result = delivererComparator.compare(TypicalDeliverers.ALICE, TypicalDeliverers.DANIEL);
             assertEquals(result, expected);
         } catch (ParseException e) {

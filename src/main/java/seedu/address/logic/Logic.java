@@ -76,4 +76,14 @@ public interface Logic {
      * @return An {@code ObservableList} instance containing all the supplier's pets.
      */
     ObservableList<Pet> getPetAsObservableListFromSupplier(Supplier supplier);
+
+    /**
+     * Switches to buyer list.
+     */
+    void switchToBuyer();
+
+    /**
+     * Switches to supplier list.
+     */
+    void switchToSupplier();
 }

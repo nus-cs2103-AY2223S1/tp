@@ -13,6 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -64,9 +65,10 @@ public class EditBuyerCommand extends EditCommand {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(buyerToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(buyerToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(buyerToEdit.getAddress());
+        Location updatedLocation = editPersonDescriptor.getLocation().orElse(buyerToEdit.getLocation());
         List<UniqueId> updateOrders = buyerToEdit.getOrderIds();
 
-        return new Buyer(updatedName, updatedPhone, updatedEmail, updatedAddress, updateOrders);
+        return new Buyer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedLocation, updateOrders);
     }
 
 }
