@@ -298,8 +298,6 @@ zero times.
   e.g. if you specify `p/1234 p/5678`, only `p/5678` will be taken.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list_contact`, `exit` and `clear`) will be **ignored**.<br>
   e.g. if your specify `help 123`, it will be interpreted as `help`.
-- Contact and task name should only contain alphanumeric characters, commas, hyphens, apostrophe and spaces.<br>
-  e.g. `n/Dr. John-Doe` is acceptable, but `n/John!` is not.
 
 </div>
 
@@ -323,8 +321,8 @@ A contact can have any number of tags (including 0)
 
 **Examples:**
 
-- `add_contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add_contact n/Betsy Crowe t/developer e/betsycrowe@example.com a/Newgate office p/1234567 t/client`
+- `add_contact n/Mark Yang p/12345678 e/mark@example.com a/block 123` adds a contact named `Mark Yang` with a phone number of `12345678`, email of `mark@example.com`, and address of `block 123`.
+- `add_contact n/Anne Marie t/developer e/anne@example.com a/Newgate office p/87654321 t/client` adds a contact named `Anne Marie` with a tag of `developer` and `friend`, email of `anne@example.com`, address of `Newgate office`, and phone number of `87654321`.
 
 #### Listing all contacts: `list_contact`
 
@@ -340,12 +338,12 @@ A contact can have any number of tags (including 0)
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- The search is **case-insensitive**. e.g. `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
+- The search is **case-insensitive**. e.g. `mark` will match `Mark`
+- The order of the keywords does not matter. e.g. `Mark Wilson` will match `Wilson Mark`
+- Only the name of contacts is searched.
+- Only full words will be matched e.g. `Mark` will not match `Marks`
 - Contacts matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Mark Wilson` will return `Mark Yang`, `Steve Wilson`
 
 </div>
 
@@ -359,13 +357,11 @@ A contact can have any number of tags (including 0)
 
 > Edits an existing contact.
 
-**Format:** `edit_contact INDEX [n/CONTACT_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+**Format:** `edit_contact CONTACT_INDEX [n/CONTACT_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- Edits the contact at the specified `INDEX`.
-- The index refers to the index number shown in the **displayed contact list**.
-- The index **must be a positive integer** 1, 2, 3, …​
+- Edits the contact at the specified `CONTACT_INDEX`.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
@@ -382,15 +378,7 @@ A contact can have any number of tags (including 0)
 
 > Deletes the specified contact.
 
-**Format:** `delete_contact INDEX`
-
-<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
-
-- Deletes the contact at the specified `INDEX`.
-- The index refers to the index number shown in the **displayed contact list**.
-- The index **must be a positive integer** 1, 2, 3, …​
-
-</div>
+**Format:** `delete_contact CONTACT_INDEX`
 
 **Examples:**
 
@@ -401,15 +389,7 @@ A contact can have any number of tags (including 0)
 
 > Selects the specified contact and displays the contact's assigned tasks.
 
-**Format:** `select_contact INDEX`
-
-<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
-
-- Selects the contact at the specified `INDEX`.
-- The index refers to the index number shown in the **displayed contact list**.
-- The index **must be a positive integer** 1, 2, 3, …​
-
-</div>
+**Format:** `select_contact CONTACT_INDEX`
 
 **Examples:**
 
@@ -424,20 +404,10 @@ A contact can have any number of tags (including 0)
 
 **Format:** `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`
 
-<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
-
-- Adds and assigns a task to contacts at the specified `CONTACT_INDEX`.
-- The contact index refers to the index number shown in the **displayed contact list**.
-- The contact index **must be a positive integer** 1, 2, 3, …​
-- Deadline must be in the format of **`dd-MM-yyyy HHmm`**.
-- If `HHmm` exceeds `2359`, it will overflow to the next day.
-
-</div>
-
 **Examples:**
 
-- `add_task n/CS2103T iP d/Finish milestones dl/12-12-2022 2359 c/1`
-- `add_task n/CS2101 Assignment dl/12-12-2022 2359 c/2 c/3`
+- `add_task n/CS2103T iP d/Finish milestones dl/12-12-2022 2359 c/1` adds a task assigned to the 1st displayed contact. The task has a name of `CS2103T`, description of `Finish milestones`, and deadline of `12 December 2022 23:59`.
+- `add_task n/CS2101 Assignment dl/12-12-2022 2359 c/2 c/3` adds a task assigned to the 2nd and 3rd displayed contact. The task has a name of `CS2101 Assignment` and deadline of `12 December 2022 23:59`.
 
 #### Listing all tasks: `list_task`
 
@@ -447,7 +417,7 @@ A contact can have any number of tags (including 0)
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- Tasks are sorted chronologically by deadline. 
+- Tasks are **sorted chronologically by deadline**. 
 - Tasks without deadlines are listed below tasks with deadlines and sorted by their names alphabetically.
 
 </div>
@@ -478,17 +448,13 @@ Finds tasks whose names contain any of the given keywords.
 
 > Edits an existing task.
 
-**Format:** `edit_task INDEX [n/TASK_NAME] [d/DESCRIPTION] [dl/DEADLINE]`
+**Format:** `edit_task TASK_INDEX [n/TASK_NAME] [d/DESCRIPTION] [dl/DEADLINE]`
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- Edits the task at the specified `INDEX`. 
-- The index refers to the index number shown in the **displayed task list**. 
-- The index **must be a positive integer** 1, 2, 3, …​
+- Edits the task at the specified `TASK_INDEX`. 
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- Deadline must be in the format of **`dd-MM-yyyy HHmm`**.
-- If `HHmm` exceeds `2359`, it will overflow to the next day.
 
 </div>
 
@@ -501,15 +467,7 @@ Finds tasks whose names contain any of the given keywords.
 
 > Deletes an existing task in task list.
 
-**Format:** `delete_task INDEX`
-
-<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
-
-- Deletes the task at the specified `INDEX`. 
-- The index refers to the index number shown in the displayed task list. 
-- The index **must be a positive integer** 1, 2, 3, …​
-
-</div>
+**Format:** `delete_task TASK_INDEX`
 
 **Examples:**
 
@@ -520,15 +478,7 @@ Finds tasks whose names contain any of the given keywords.
 
 > Selects the specified task and displays the contacts assigned to the task.
 
-**Format:** `select_task INDEX`
-
-<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
-
-- Selects the task at the specified `INDEX`.
-- The index refers to the index number shown in the **displayed task list**.
-- The index **must be a positive integer** 1, 2, 3, …​
-
-</div>
+**Format:** `select_task TASK_INDEX`
 
 **Examples:**
 
@@ -539,13 +489,10 @@ Finds tasks whose names contain any of the given keywords.
 
 > Marks the specified task as completed.
 
-**Format:** `mark INDEX`
+**Format:** `mark TASK_INDEX`
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- Marks the task at the specified `INDEX` as completed.
-- The index refers to index number shown in the **displayed task list**.
-- The index **must be a positive integer** 1, 2, 3, …​
 - Specified task must be currently incomplete for command to succeed.
 
 </div>
@@ -559,13 +506,10 @@ Finds tasks whose names contain any of the given keywords.
 
 > Marks the specified task as incomplete.
 
-**Format:** `unmark INDEX`
+**Format:** `unmark TASK_INDEX`
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- Marks the task at the specified `INDEX` as incomplete.
-- The index refers to index number shown in the **displayed task list**.
-- The index **must be a positive integer** 1, 2, 3, …​
 - Specified task must be currently completed for command to succeed.
 
 </div>
@@ -584,8 +528,7 @@ Finds tasks whose names contain any of the given keywords.
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
 - Assigns the task at the specified `TASK_INDEX` to the contact at the specified `CONTACT_INDEX`. 
-- The task and contact indices refer to the index numbers shown in the **displayed task list and contact list** respectively. 
-- The indices **must be a positive integer** 1, 2, 3, …​
+- Existing assignments are not affected.
 
 </div>
 
@@ -603,8 +546,6 @@ Finds tasks whose names contain any of the given keywords.
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
 - Removes the contact at the specified `CONTACT_INDEX` from the task at the specified `TASK_INDEX`. 
-- The task and contact indices refer to the index numbers shown in the **displayed task list and contact list** respectively. 
-- The indices **must be a positive integer** 1, 2, 3, …​
 
 </div>
 
@@ -622,7 +563,7 @@ Finds tasks whose names contain any of the given keywords.
 **Format:** `Ctrl + Tab`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
-Alternatively, you can also click on the **Contacts and Tasks button** in the top toolbar.
+Alternatively, you can click on the **Contacts and Tasks button** in the top toolbar.
 </div>
 
 #### Viewing help: `help`
@@ -630,7 +571,7 @@ Alternatively, you can also click on the **Contacts and Tasks button** in the to
 Shows a message explaining how to access the user guide.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
-Alternatively, you can also click on the **Help button** in the top toolbar.
+Alternatively, you can click on the **Help button** in the top toolbar.
 </div>
 
 **Format:** `help`
@@ -648,7 +589,7 @@ Alternatively, you can also click on the **Help button** in the top toolbar.
 **Format:** `exit`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
-Alternatively, you can also click on the **Exit button** in the top toolbar.
+Alternatively, you can click on the **Exit button** in the top toolbar.
 </div>
  
 ### Command suggestion and autocomplete
@@ -690,23 +631,23 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 
 ## **Command Summary**
 
-| Action             | Format                                                                                 |
-|--------------------|----------------------------------------------------------------------------------------|
-| **Add Contact**    | `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                |
-| **Add Task**       | `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`               |
-| **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                                  |
-| **Clear Data**     | `clear`                                                                                |
-| **Delete Contact** | `delete_contact INDEX`                                                                 |
-| **Delete Task**    | `delete_task INDEX`                                                                    |
-| **Edit Contact**   | `edit_contact INDEX [n/CONTACT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
-| **Edit Task**      | `edit_task INDEX [n/TASK_NAME] [d/DESCRIPTION] [dl/DEADLINE]`                          |
-| **Find Contacts**  | `find_contact KEYWORD [MORE_KEYWORDS]`                                                 |
-| **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                                    |
-| **Help**           | `help`                                                                                 |
-| **List Contacts**  | `list_contact`                                                                         |
-| **List Tasks**     | `list_task`                                                                            |
-| **Mark Task**      | `mark INDEX`                                                                           |
-| **Select Contact** | `select_contact INDEX`                                                                 |
-| **Select Task**    | `select_task INDEX`                                                                    |
-| **Unassign Task**  | `unassign c/CONTACT_INDEX t/TASK_INDEX`                                                |
-| **Unmark Task**    | `unmark INDEX`                                                                         |
+| Action             | Format                                                                                         |
+|--------------------|------------------------------------------------------------------------------------------------|
+| **Add Contact**    | `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                        |
+| **Add Task**       | `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`                       |
+| **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                                          |
+| **Clear Data**     | `clear`                                                                                        |
+| **Delete Contact** | `delete_contact CONTACT_INDEX`                                                                 |
+| **Delete Task**    | `delete_task TASK_INDEX`                                                                       |
+| **Edit Contact**   | `edit_contact CONTACT_INDEX [n/CONTACT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
+| **Edit Task**      | `edit_task TASK_INDEX [n/TASK_NAME] [d/DESCRIPTION] [dl/DEADLINE]`                             |
+| **Find Contacts**  | `find_contact KEYWORD [MORE_KEYWORDS]`                                                         |
+| **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                                            |
+| **Help**           | `help`                                                                                         |
+| **List Contacts**  | `list_contact`                                                                                 |
+| **List Tasks**     | `list_task`                                                                                    |
+| **Mark Task**      | `mark TASK_INDEX`                                                                              |
+| **Select Contact** | `select_contact CONTACT_INDEX`                                                                 |
+| **Select Task**    | `select_task TASK_INDEX`                                                                       |
+| **Unassign Task**  | `unassign c/CONTACT_INDEX t/TASK_INDEX`                                                        |
+| **Unmark Task**    | `unmark TASK_INDEX`                                                                            |
