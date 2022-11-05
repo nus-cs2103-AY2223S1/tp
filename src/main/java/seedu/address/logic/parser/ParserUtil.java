@@ -144,7 +144,7 @@ public class ParserUtil {
         requireNonNull(dayTimeInWeek);
         String trimmed = dayTimeInWeek.trim();
         if (DayTimeInWeek.isFindTimeNow(trimmed)) {
-            trimmed = CurrentTimeParser.findTimeNowInString();
+            trimmed = CurrentTimeConverter.findTimeNowInString();
         }
         if (!DayTimeInWeek.isValidDayTimeInWeekRegex(trimmed)) {
             throw new ParseException(DayTimeInWeek.MESSAGE_CONSTRAINTS);
