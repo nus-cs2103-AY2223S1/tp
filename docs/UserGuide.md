@@ -66,33 +66,55 @@ You can also refer to the [Glossary](#glossary) section for definitions of commo
 
 In order to help you pay attention, we have used some icons along with highlighted text throughout this guide.
 
-| Icon                                                                                 | Meaning                                       |
-|--------------------------------------------------------------------------------------|-----------------------------------------------|
-| <div markdown="block" class="alert alert-primary"> :memo: **Note** </div>            | You should pay attention to this.             |
-| <div markdown="block" class="alert alert-success"> :bulb: **Tip** </div>             | You might find this useful.                   |
-| <div markdown="block" class="alert alert-info"> :information_source: **Info** </div> | You can get additional information from this. |
-| <div markdown="block" class="alert alert-warning"> :warning: **Warning** </div>      | You should be cautious about this.            |
-| <div markdown="block" class="alert alert-danger"> :rotating_light: **Danger** </div> | You should pay **extra** attention to this.   |
+| Icon                                                                                             | Meaning                                       |
+|--------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| <div markdown="block" class="alert alert-primary"> <br/> **:memo: Note** <br/> </div>            | You should pay attention to this.             |
+| <div markdown="block" class="alert alert-success"> <br/> **:bulb: Tip** <br/> </div>             | You might find this useful.                   |
+| <div markdown="block" class="alert alert-info"> <br/> **:information_source: Info** <br/> </div> | You can get additional information from this. |
+| <div markdown="block" class="alert alert-warning"> <br/> **:warning: Warning** <br/> </div>      | You should be cautious about this.            |
+| <div markdown="block" class="alert alert-danger"> <br/> **:rotating_light: Danger** <br/> </div> | You should pay **extra** attention to this.   |
 
 ### 4.3. Formatting and Notation
 
-In case you are wondering why certain texts are styled differently, here are our explanation.
+In case you are wondering why certain texts are styled differently, here are the meaning behind:
+
+1. Words in big size, numbered and in purple color are section titles and subtitles.
+2. **Words in bold** are phrases that we want you to read.
+3. [Links in blue]() will navigate you to place where you can find more explanation about the words.
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Installation
 
+### 5.1. How to Install
+
+1. Ensure you have [Java 11](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) installed on your computer.
+2. Download the latest `SoConnect.jar` file from our [release page](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases).
+3. Copy the file to an empty folder you want to use as the _home folder_ for SoConnect. You can find more on how to do that [here](https://www.digitaltrends.com/computing/how-to-create-folder-on-desktop/#:~:text=Create%20a%20folder%20on%20a%20Windows%20desktop,-Creating%20a%20folder&text=Step%201%3A%20Right%2Dclick%20a,a%20name%20of%20your%20own.).
+
+<div markdown="block" class="alert alert-primary">
+**:memo: Note** <br/> 
+Empty folder is needed because all additional storage data and files will be saved in this folder.
+</div> 
+
+4. Double-click the file to start SoConnect.
+
+### 5.2. Operating Systems
+
+SoConnect currently can run smoothly on these operating systems:
+
+1. Ubuntu
+2. MacOS
+3. Windows
+
+You only need to download [`SoConnect.jar`](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases), regardless of which one is your operating system.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## 6. Quickstart
 
-1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `SoConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your SoConnect.
-
-1. Double-click the file to start the app. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
