@@ -210,7 +210,7 @@ The following is a use case for changing command names.
 
 Changing themes is handled by 5 different methods. Each comes with a unique css file.
 
-Each css file applies a set of different stylesheets to `MainWindow` `ActivityCard` `ActivityListPanel` `CommandBox` and `ResultDisplay`
+Each css file applies a set of different stylesheets to `MainWindow`, `ActivityCard`, `ActivityListPanel`, `CommandBox` and `ResultDisplay`.
 
 The following sequence diagram shows what happens when the user decide to change a theme. Take change the theme to Dark as an example.
 
@@ -231,7 +231,7 @@ The following is a use case for changing themes.
 
 #### Design Considerations
 
-**Aspect:** How prevent adding multiple stylesheets to the scene:
+**Aspect:** How to prevent adding multiple stylesheets to the scene:
 
 **Current choice:** Remove all stylesheets and then add a new one.
 
@@ -471,11 +471,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The date format is wrong
-    * 2a1. HobbyList shows a message about the right format.
+* 1a. The date format is wrong
+    * 1a1. HobbyList shows a message about the right format.
   
-* 2b. There are multiple dates in the add command
-    * 2b1. HobbyList will save the last date typed in.
+* 1b. There are multiple dates in the add command
+    * 1b1. HobbyList will save the last date typed in.
   
       Use case ends.
 
@@ -490,8 +490,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The edit content of date is empty
-    * 2a1. HobbyList delete the original date.
+* 1a. The edit content of date is empty
+    * 1a1. HobbyList delete the original date.
 
       Use case ends.
 

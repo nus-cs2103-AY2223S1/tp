@@ -102,14 +102,13 @@ Adds a hobby activity to HobbyList.
 Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
 
 * `[t/TAG]...` only accepts alphanumeric with underscores.
-* `[date/DATE]` only accepts date with a format of **yyyy-mm-dd** with the year greater than or equal to 1000.
+* `[date/DATE]` only accepts date with a format of **yyyy-mm-dd** with the year greater than 0.
 * `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** as STATUS. e.g. `s/ongoing`(case-insensitive).
 * If `STATUS` is not specified, it will be displayed as **Status: NONE** by default.
 * If multiple dates or status are detected, the last one will be taken to add. But any number of tags will be accepted and added.
 
 Examples:
 * `add n/42km run d/NUS Run event t/sport`
-* `add n/Badminton d/play badminton t/sport t/entertainment_2 date/2022-10-19 s/completed`
 
 ### 5.2 Editing an activity : `edit`
 
