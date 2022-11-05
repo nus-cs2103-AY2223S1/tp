@@ -39,9 +39,9 @@ public class ModelManager implements Model {
 
         this.friday = new Friday(friday);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.filteredStudents = new FilteredList<>(this.friday.getStudentList());
-        this.sortedStudents = new SortedList<>(this.friday.getStudentList());
         this.students = this.friday.getStudentList();
+        this.filteredStudents = new FilteredList<>(students);
+        this.sortedStudents = new SortedList<>(students);
     }
 
     public ModelManager() {

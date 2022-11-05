@@ -13,41 +13,32 @@ type fast, FRIDAY can get your contact management tasks done faster than traditi
 --------------------------------------------------------------------------------------------------------------------
 ## Quickstart
 
-1. Ensure you have Java 11 or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
-2. Download the latest FRIDAY.jar from here
+2. Download the latest `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the home folder for your FRIDAY system.
+3. Copy the file to the folder you want to use as the *home folder* for your FRIDAY.
 
-4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Startup.png](images/Startup.png)
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+    * **`add n/Alex Yeoh t/al3xx c/2022-10-25`** : Adds a student named `Alex Yeoh` to FRIDAY.
+
+    * **`list`** : Lists all students.
+    
+    * **`delete 2`** : Deletes the 2nd student shown in the current list.
+
+    * **`clear`** : Deletes all students.
+
+    * **`exit`** : Exits FRIDAY.
+   
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-![Startup.png](images/Startup.png)
+
 ## Features
-
-1. Add students
-2. Delete students
-3. Edit details of students
-   1. Name
-   2. Telegram handle
-   3. Consultation dates
-   4. Dates of Mastery Checks
-   6. Remarks
-4. Record grades of students
-5. Find individual student details
-6. View all students
-7. Mark Mastery Checks of students
-8. Unmark Mastery Checks of students
-8. Sort students
-9. Add aliases
-10. Delete aliases
-11. View all aliases
-12. Get user guide link
-13. Get help
-
---------------------------------------------------------------------------------------------------------------------
-
-## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -96,19 +87,19 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 A student can have any number of tags (including 0).
 </div>
 
-Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16`
+Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/quiet`
 
 Outcome: a student named Alex Yeoh is added.
 ![AddCommandOutcome.png](images/AddCommandOutcome.png)
 
 ### Deleting a student: `delete`
 
-Deletes the student at the given index from FRIDAY.
+Deletes the student at the given index from FRIDAY. The index of the student must be specified and there should be 
+exactly one INDEX parameter.
 
 Format: `delete INDEX`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index of the student must be specified and there should be exactly one INDEX parameter.<br>
 The index of the student can be seen from the student list.
 </div>
 
@@ -189,7 +180,8 @@ Format: `sort CRITERIA/ORDER`
 * Names and Telegram handles are sorted in alphabetical order
 * Consultations and Mastery Checks are sorted by time
 * Grades are sorted in numerical order
-* Students with missing details (e.g. missing Telegram handles) will be shown first when sorted in descending order.
+* Students with missing information will be sorted first in descending order, e.g. students with no Telegram handles 
+  will be shown before students with Telegram handles
 
 Example: enter `sort m/a` with an unsorted list of students.
 ![SortCommand.png](images/SortCommand.png)

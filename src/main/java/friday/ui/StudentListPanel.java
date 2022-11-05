@@ -34,7 +34,6 @@ public class StudentListPanel extends UiPart<Region> {
      */
     public void setList(ObservableList<Student> studentList) {
         studentListView.setItems(studentList);
-
         studentListView.setCellFactory((listView -> new StudentListViewCell()));
     }
 

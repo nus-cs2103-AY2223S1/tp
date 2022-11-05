@@ -60,12 +60,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setFridayFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setFridayFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setFridayFilePath_validPath_setsFridayFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setFridayFilePath(path);
         assertEquals(path, modelManager.getFridayFilePath());
@@ -77,12 +77,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasStudent_studentNotInAddressBook_returnsFalse() {
+    public void hasStudent_studentNotInFriday_returnsFalse() {
         assertFalse(modelManager.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
-    public void hasStudent_studentInAddressBook_returnsTrue() {
+    public void hasStudent_studentInFriday_returnsTrue() {
         modelManager.addStudent(TypicalStudents.ALICE);
         assertTrue(modelManager.hasStudent(TypicalStudents.ALICE));
     }
@@ -96,7 +96,7 @@ public class ModelManagerTest {
     public void equals() {
         Friday addressBook = new FridayBuilder().withStudent(TypicalStudents.ALICE)
                 .withStudent(TypicalStudents.BENSON).build();
-        Friday differentAddressBook = new Friday();
+        Friday differentFriday = new Friday();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
@@ -114,7 +114,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentFriday, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = TypicalStudents.ALICE.getName().fullName.split("\\s+");

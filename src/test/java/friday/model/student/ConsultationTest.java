@@ -31,10 +31,15 @@ public class ConsultationTest {
         assertFalse(Consultation.isValidConsultation("2022--09--01")); // double '-' symbol
         assertFalse(Consultation.isValidConsultation("2022-09-0-1")); // extra '-' symbol
 
+        assertFalse(Consultation.isValidConsultation("1899-12-31")); // only years 1900 - 2999 are valid
+        assertFalse(Consultation.isValidConsultation("3000-01-01")); // only years 1900 - 2999 are valid
 
         // valid dates
         assertTrue(Consultation.isValidConsultation("2022-09-01"));
         assertTrue(Consultation.isValidConsultation("2020-02-28"));
+
+        assertTrue(Consultation.isValidConsultation("1900-01-01")); // only years 1900 - 2999 are valid
+        assertTrue(Consultation.isValidConsultation("2999-12-31")); // only years 1900 - 2999 are valid
     }
 
     @Test

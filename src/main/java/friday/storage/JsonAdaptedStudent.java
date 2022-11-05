@@ -1,6 +1,9 @@
 package friday.storage;
 
 import static friday.model.grades.GradesList.EXAMS_COUNT;
+import static friday.model.student.Consultation.EMPTY_CONSULTATION;
+import static friday.model.student.MasteryCheck.EMPTY_MASTERYCHECK;
+import static friday.model.student.TelegramHandle.EMPTY_TELEGRAMHANDLE;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -108,9 +111,10 @@ class JsonAdaptedStudent {
         if (!TelegramHandle.isValidOrEmptyJson(telegramHandle)) {
             throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
+
         final TelegramHandle modelTelegramHandle;
-        if (telegramHandle.equals("")) {
-            modelTelegramHandle = TelegramHandle.EMPTY_TELEGRAMHANDLE;
+        if (telegramHandle.equals(EMPTY_TELEGRAMHANDLE.value)) {
+            modelTelegramHandle = EMPTY_TELEGRAMHANDLE;
         } else {
             modelTelegramHandle = new TelegramHandle(telegramHandle);
         }
@@ -122,9 +126,10 @@ class JsonAdaptedStudent {
         if (!Consultation.isValidOrEmptyJson(consultation.toString())) {
             throw new IllegalValueException(Consultation.MESSAGE_CONSTRAINTS);
         }
+
         final Consultation modelConsultation;
-        if (consultation.equals(LocalDate.of(0001, 01, 01))) {
-            modelConsultation = Consultation.EMPTY_CONSULTATION;
+        if (consultation.equals(EMPTY_CONSULTATION.getValue())) {
+            modelConsultation = EMPTY_CONSULTATION;
         } else {
             modelConsultation = new Consultation(consultation);
         }
@@ -136,9 +141,10 @@ class JsonAdaptedStudent {
         if (!MasteryCheck.isValidOrEmptyJson(masteryCheck.toString())) {
             throw new IllegalValueException(MasteryCheck.MESSAGE_CONSTRAINTS);
         }
+
         final MasteryCheck modelMasteryCheck;
-        if (masteryCheck.equals(LocalDate.of(0001, 01, 01))) {
-            modelMasteryCheck = MasteryCheck.EMPTY_MASTERYCHECK;
+        if (masteryCheck.equals(EMPTY_MASTERYCHECK.getValue())) {
+            modelMasteryCheck = EMPTY_MASTERYCHECK;
         } else {
             modelMasteryCheck = new MasteryCheck(masteryCheck, masteryCheckIsDone);
         }

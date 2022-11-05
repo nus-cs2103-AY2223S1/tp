@@ -25,20 +25,20 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students in FRIDAY. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students in FRIDAY.\n"
             + "Parameters: CONDITION/ORDER, where CONDITION is "
-            + PREFIX_NAME.toString().replace("/", "") + ", "
-            + PREFIX_TELEGRAMHANDLE.toString().replace("/", "") + ", "
-            + PREFIX_CONSULTATION.toString().replace("/", "") + ", "
-            + PREFIX_MASTERYCHECK.toString().replace("/", "") + ", "
-            + PREFIX_RA1.toString().replace("/", "") + ", "
-            + PREFIX_RA2.toString().replace("/", "") + ", "
-            + PREFIX_MIDTERM.toString().replace("/", "") + ", "
-            + PREFIX_PRACTICAL.toString().replace("/", "") + ", or "
-            + PREFIX_FINALS.toString().replace("/", "")
-            + ", and ORDER is "
+            + PREFIX_NAME.getPrefixWithoutSlash() + ", "
+            + PREFIX_TELEGRAMHANDLE.getPrefixWithoutSlash() + ", "
+            + PREFIX_CONSULTATION.getPrefixWithoutSlash() + ", "
+            + PREFIX_MASTERYCHECK.getPrefixWithoutSlash() + ", "
+            + PREFIX_RA1.getPrefixWithoutSlash() + ", "
+            + PREFIX_RA2.getPrefixWithoutSlash() + ", "
+            + PREFIX_MIDTERM.getPrefixWithoutSlash() + ", "
+            + PREFIX_PRACTICAL.getPrefixWithoutSlash() + ", or "
+            + PREFIX_FINALS.getPrefixWithoutSlash()
+            + "; ORDER is "
             + ORDER_ASCENDING + " or "
-            + ORDER_DESCENDING + "...\n"
+            + ORDER_DESCENDING + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + ORDER_ASCENDING;
 

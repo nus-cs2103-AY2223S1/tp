@@ -37,10 +37,12 @@ public class SortCommandParser implements Parser<SortCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TELEGRAMHANDLE, PREFIX_CONSULTATION,
                         PREFIX_MASTERYCHECK, PREFIX_RA1, PREFIX_RA2, PREFIX_MIDTERM, PREFIX_PRACTICAL, PREFIX_FINALS);
 
+        // no valid tokens in the command
         if (argMultimap.size() < 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
+        // too many tokens
         if (argMultimap.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortCommand.MESSAGE_TOO_MANY_CRITERIA));
@@ -54,24 +56,27 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         Prefix prefix = argMultimap.getFirstPrefix().orElse(null);
 
-        // Since parse asserts that there will be one valid prefix in the argMultimap, prefix object should not be null
+        // Since parse asserts that there will be one and only one valid prefix in the argMultimap, prefix object
+        // should not be null
         assert !isNull(prefix);
 
         Comparator<Student> comparator = getComparator(argMultimap, prefix);
 
+        // comparator should never be null as the valid prefix will always have a value
         assert !isNull(comparator);
 
         return new SortCommand(comparator);
     }
 
     private Comparator<Student> getComparator(ArgumentMultimap argMultimap, Prefix prefix) throws ParseException {
-        if (argMultimap.getValue(prefix).isPresent()) {
-            Order order = ParserUtil.parseOrder(argMultimap.getValue(prefix).get());
-            return (student1, student2) -> order.equals(ORDER_ASCENDING)
-                    ? compare(prefix, student1, student2)
-                    : compare(prefix, student2, student1);
+        if (argMultimap.getValue(prefix).isEmpty()) {
+            return null;
         }
-        return null;
+
+        Order order = ParserUtil.parseOrder(argMultimap.getValue(prefix).get());
+        return (student1, student2) -> order.equals(ORDER_ASCENDING)
+                ? compare(prefix, student1, student2)
+                : compare(prefix, student2, student1);
     }
 
     private int compare(Prefix prefix, Student student1, Student student2) {
@@ -101,6 +106,9 @@ public class SortCommandParser implements Parser<SortCommand> {
         } else if (prefix.equals(PREFIX_FINALS)) {
             exam = "Finals";
         }
+
+        assert !exam.equals("");
+
         return Double.compare(
                 Double.parseDouble(student1.getGradesList().getGrade(exam).getScore()),
                 Double.parseDouble(student2.getGradesList().getGrade(exam).getScore()));
