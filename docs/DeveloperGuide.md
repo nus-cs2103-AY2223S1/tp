@@ -182,21 +182,23 @@ class does not implement the interface as its attributes are `String`s.
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
 1. FRIDAY initialises an `ObservableList<Student>` named `students` and
-a `SortedList<Student>` named `sortedStudents` upon launch.
+   a `SortedList<Student>` named `sortedStudents` upon launch.
 
 2. The user executes `sort n/a` command to sort the students by name in ascending order.
 
 3. The user input is passed to
-`LogicManager`, which then calls the `SortCommandParser#parse` method to parse the argument `n/a`.
+   `LogicManager`, which then calls the `SortCommandParser#parse` method to parse the argument `n/a`.
 
 4. The `SortCommandParser` checks that the criteria and order are valid, and creates a `SortCommand` with a `Comparator`
-that orders the student names alphabetically.
+   that orders the student names alphabetically.
 
 5. The `LogicManager` calls the `SortCommand#execute` method, which in turn calls  `Model#updateSortedStudentList`
-to update `sortedStudents` with the given `Comparator`.
+   to update `sortedStudents` with the given `Comparator`.
 
-6. The list `students` is set to `sortedStudents`, and the `StudentListPanel#setList` method is called to refresh the
-`ListView` in the UI with the new `students` list.
+6. The list `students` is set to `sortedStudents`, after which  `CommandResult` is returned by the `SortCommand` to signal success.
+
+7. The `StudentListPanel#setList` method is called to refresh the
+   `ListView` in the UI with the new `students` list, and the success message from `CommandResult` is displayed.
 
 The following Sequence Diagram summarises the aforementioned steps.
 
@@ -204,28 +206,12 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 #### Design considerations
 
-**Aspect: How many criteria should the sort command accept**
+**Aspect: How many criteria should the `sort` command accept**
 
-* **Alternative 1 (current choice):** Accept only one criterion
-    * Pros: Clear to the user, and easy to implement.
-    * Cons: Unable to further sort students with a secondary criteria when the first criteria of some students match.
-
-* **Alternative 2:** Accept multiple criteria and sort in the order they are given
-    * Pros: More precise sorting when many students have matching details, e.g. same Mastery Check dates.
-    * Cons: Sorting becomes confusing for the user and difficult to implement if many criteria are given.
-
-**Aspect: How to sort missing details**
-
-* **Alternative 1 (current choice)** Students with missing details are sorted last in ascending order, and first in descending order
-    * Pros: When sorting in ascending order, students with missing details are shown at the bottom to reduce clutter.
-            Users can sort a detail in descending order to see which students have the detail missing.
-    * Cons: Top of the list may be cluttered with students with missing details when sorted in descending order.
-
-* **Alternative 2** Students with missing details are sorted last in descending order.
-  * Pros: Students with relevant details are immediately available at the top of the list.
-
-Reason for choosing alternative 1: provide a way for users to quickly see which students have missing details.
-
+|              | **Pros**   | **Cons** |
+| -------------|------------|----------|
+| **Option 1 (current choice)** <br> Accept only one criterion | Easier to implement and also clearer for the user | Unable to further sort students with a secondary criteria should the first criteria of some students match |
+| **Option 2** <br> Accept multiple criteria and sort in the order they are given | More precise sorting when many students have matching details, e.g. same Mastery Check dates | Sorting becomes confusing for the user and difficult to implement if many criteria are given |
 
 ### Alias feature
 
@@ -464,38 +450,7 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 <br>
 
-**Use Case 4: Add details to a student**
-
-**MSS**
-
-1. User requests to list students
-2. FRIDAY shows a list of students
-3. User requests to add details for a specific student in the list
-4. FRIDAY adds details for the student
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. FRIDAY shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given details have the wrong formats or tags
-
-    * 3b1. FRIDAY shows an error message.
-
-      Use case resumes at step 2.
-
-<br>
-
-**Use Case 5: Edit details of a student**
+**Use Case 4: Edit details of a student**
 
 **MSS**
 
@@ -526,7 +481,7 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 <br>
 
-**Use Case 6: Edit remarks for a student**
+**Use Case 5: Edit remarks for a student**
 
 **MSS**
 
@@ -557,7 +512,7 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 <br>
 
-**Use Case 7: Delete details of a student**
+**Use Case 6: Delete details of a student**
 
 **MSS**
 
@@ -588,7 +543,7 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 <br>
 
-**Use Case 8: Edit grades for a student**
+**Use Case 7: Edit grades for a student**
 
 **MSS**
 
@@ -619,42 +574,38 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 <br>
 
-**Use Case 9: Sort students**
-
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 8: Sort students**
 
 **MSS**
 
-1. User requests to sort students with a specific criteria and order
-2. FRIDAY displays the students in sorted order
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to sort all students with a specific criteria and order
+4. FRIDAY displays the students in sorted order
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given criteria is invalid.
+* 2a. The list is empty.
 
-    * 1a1. FRIDAY shows an error message listing the accepted criteria.
+  Use case ends.
 
-      Use case resumes at step 1.
+* 3a. The given criteria or order is invalid.
 
-* 1b. The given order is invalid.
+    * 3a1. FRIDAY shows an error message listing the accepted criteria and orders.
 
-    * 1b1. FRIDAY shows an error message listing the accepted orders.
+      Use case resumes at step 3.
 
-      Use case resumes at step 1.
+* 3b. More than one criterion is given.
 
-* 1c. More than one criterion is given.
+    * 3b1. FRIDAY shows an error message.
 
-    * 1c1. FRIDAY shows an error message.
-
-      Use case resumes at step 1.
+      Use case resumes at step 3.
 
 <br>
 
-**Use Case 10: Mark a student's Mastery Check as passed.**
+**Use Case 9: Mark a student's Mastery Check as passed.**
 
 **MSS**
 
@@ -685,7 +636,7 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 <br>
 
-**Use Case 11: Unmark a student's Mastery Check.**
+**Use Case 10: Unmark a student's Mastery Check.**
 
 **MSS**
 
@@ -773,15 +724,11 @@ testers are expected to do more *exploratory* testing.
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
-
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
    1. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
