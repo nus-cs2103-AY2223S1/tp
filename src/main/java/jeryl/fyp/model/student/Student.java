@@ -95,6 +95,20 @@ public class Student {
     }
 
     /**
+     * Returns true if both students have the same email.
+     * This is to avoid student with the same email being added to the system.
+     */
+    public boolean hasSameEmail(Student otherStudent) {
+        if (otherStudent == this) {
+            return true;
+        }
+
+        return otherStudent != null
+                && !(this.isSameStudentId(otherStudent))
+                && otherStudent.getEmail().equals(getEmail());
+    }
+
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */

@@ -27,16 +27,25 @@ import jeryl.fyp.model.student.exceptions.StudentNotFoundException;
  */
 public class UniqueStudentList implements Iterable<Student> {
 
+    private static final String MESSAGE_STUDENT_NOT_EXIST = "This student specified is not in the student list "
+            + "currently, Please retry with another student ID. ";
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
     /**
      * Returns true if the list contains an equivalent student as the given argument.
      */
     public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameStudentId);
+    }
+
+    /**
+     * Returns true if the list contains an student using the same email.
+     */
+    public boolean containsEmail(Student toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::hasSameEmail);
     }
 
     /**
@@ -149,14 +158,18 @@ public class UniqueStudentList implements Iterable<Student> {
     /**
      * Returns unique Student if {@code students} contains the student with the specified studentId.
      */
-    public Student getStudentByStudentId(StudentId studentId) {
+    public Student getStudentByStudentId(StudentId studentId) throws StudentNotFoundException {
         Student student = null;
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getStudentId().equals(studentId)) {
                 student = internalList.get(i);
             }
         }
-        return student;
+        if (student == null) {
+            throw new StudentNotFoundException(MESSAGE_STUDENT_NOT_EXIST);
+        } else {
+            return student;
+        }
     }
 
     public Index getIndexByStudentId(StudentId studentId) {

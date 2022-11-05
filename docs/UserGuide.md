@@ -126,8 +126,14 @@ Refer to the [Features](#3-features) section for details of each command.
 * `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 uppercase letter)**. <br>
   e.g. `A0123456G`.
 
-* `FYP_NAME` and `DEADLINE_NAME` should only include alphanumeric characters and spaces but
+* `STUDENT_NAME` Student names should only contain alphabetic characters, spaces and some supported characters given below, and it should not be blank: <br> / \ ( ) [ ] { } . - <br>
+  **Cannot start with a non-alphabetic character**.<br>
+  **Leading and trailing spaces will be trimmed**.<br>
+
+* `FYP_NAME`  should only include alphanumeric characters and spaces but
 **cannot start with a space**.<br>
+* and `DEADLINE_NAME` should only include alphanumeric characters and spaces but
+  **cannot start with a space**.<br>
   e.g. ` Support vector machine: some improvements` is invalid
 
 * `DEADLINE_DATETIME` can be in the format of **"DD-MM-YYYY HH:mm"** or **"YYYY-MM-DD HH:mm"**.<br>
@@ -323,14 +329,15 @@ Example:
 
 #### 3.3.2 Removing a student's deadline: `delete -d`
 
-Removes a deadline assigned to a student specified by ID & a priority rank. The specified deadline must exist in the student's deadline list previously.
-
+Removes a deadline assigned to a student specified by ID & a priority rank (Below highlighted task has a priority rank of 2). The specified deadline must exist in the student's deadline list previously.
+![Priority](images/Priority.png) <br>
 Format: `delete -d i/STUDENT_ID r/DEADLINE_RANK`
 
 Example:
 
 * `delete -d i/A0123456G r/1`
 
+  
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>

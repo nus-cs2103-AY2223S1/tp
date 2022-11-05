@@ -14,6 +14,7 @@ import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.LogsCenter;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.model.student.Deadline;
+import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 
@@ -228,7 +229,6 @@ public class ModelManager implements Model {
     public ObservableList<Student> getSortedCompletedStudentList() {
         return sortedCompletedStudents;
     }
-
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
@@ -236,7 +236,10 @@ public class ModelManager implements Model {
         completedStudents.setPredicate(predicate);
         uncompletedStudents.setPredicate(predicate);
     }
-
+    @Override
+    public DeadlineList listDeadlineUnderStudent(Student student) {
+        return fypManager.getDeadlineList(student);
+    }
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
