@@ -117,6 +117,7 @@ section of this user guide or to an external website.
 
 2. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases). <br> <br>
    ![Ui](images/DownloadInstruction.png) <br><br>
+<div style="page-break-after: always;"></div>
 
 3. Copy the file to the folder you want to use as the **home folder** for your GuestBook. <br> <br>
    ![Ui](images/GuestBookIcon.png) <br><br>
@@ -159,7 +160,8 @@ For example, you can charge the third guest _30.35_ by running the command below
 For example, you can check out the third guest by executing the command below.
     * `delete 3` : Deletes the third guest shown in the current list.
           <br><br>
-
+<div style="page-break-after: always;"></div>
+    
 12. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
     * `clear` : Deletes all guests.
     <div markdown="block" class="alert alert-danger">

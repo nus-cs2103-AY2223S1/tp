@@ -22,21 +22,21 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction 
+## **Introduction** 
 
 GuestBook is a **desktop app for managing guests in a hotel,
 optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
-GuestBook can get your
-guest management tasks done faster than traditional GUI apps with our efficient
+The primary target audiences of GuestBook are hotel mangers of small hotels, 
+such as budget hotels and backpacker's inns, who can type fast
+In summary, GuestBook can accomplish
+guest management tasks faster than traditional GUI apps with our efficient
 management workflow.
-The primary target audience of GuestBook is hotel managers of small hotels
-and backpacker's inn who can type fast.
 
 
-GuestBook to track guests and their details including name, email address, phone number,
+GuestBook tracks guests and their details including name, email address, phone number,
 room number, dates of stay, number of guests, bill, request, and whether their room has been cleaned.
-With the features to add, edit, delete, and filter guests, GuestBook fulfill all the essential hotel management needs.
+With features to add, edit, delete, and filter guests, GuestBook fulfill all the essential hotel management needs.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -173,6 +173,10 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.guest.commons` package.
 
+An example of a class in `commons` package is `IllegalValueException` class that is thrown when data inputted
+does not fulfil a constraint.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Notable Fields of a Guest**
@@ -205,7 +209,7 @@ Taking into consideration that `double`s are already signed and charges on bills
 
 ### DateRange Field
 
-* The `DateRange` class holds the period of stay of a `Guest`.
+The `DateRange` class holds the period of stay of a `Guest`.
 
 <span style="font-size: large; color: #e46c0a">Implementation:</span>
 
@@ -256,29 +260,31 @@ The following activity diagram summarizes what happens when a user enters an `ad
 
 * **Alternative 2:** Allow duplicate entries to be added with no consequences.
     * Pros: Allows for multiple guests of the same name or room to be added.
-    * Cons: Easy to abuse the command intentionally (to break the program) or unintentionally (accidentally). Inappropriate to put 2 or more unrelated guests in the same room.
+    * Cons: Easy to abuse the command intentionally (to break the program) or unintentionally (accidentally). By allowing duplicate rooms, 
+the user might allocate the two different guests to the same room. 
 
 In small hotels, the chances of getting two guests that have identical full names are
-incredibly unlikely. Also, guests would prefer to stay alone or with their families and friends. With these considerations in mind, we decided to proceed with Alternative 1.
+incredibly unlikely. Also, having two different guests allocated to the same room is a rather disastrous mistake and should be avoided. With these considerations in mind, we decided to proceed with Alternative 1.
 
-**Aspect: Excluding `isRoomClean` in the `add` command**
-* As adding the guest will be done during check in, the room should by default be cleaned for the guest to immediately
+**Aspect: Excluding `isRoomClean` field in the `add` command**
+* As adding a guest will be done during check in, the room should by default be cleaned for the guest to immediately
 be able to enter their room. Hence, we chose to remove `isRoomClean` as it would make the `add` command unnecessarily longer.
 
-**Aspect: Excluding `Bill` in the `add` command**
-* As adding the guest will be done during check in, the guest should not have incurred any bill costs yet. Hence, we set
+**Aspect: Excluding `Bill` field in the `add` command**
+* As adding a guest will be done during check in, the guest should not have incurred any bill costs yet. Hence, we set
 the initial bill to be 0 and chose to remove `Bill` as it would make the `add` command unnecessarily longer.
 
-**Aspect: Making `Request` in the `add` command**
-* As adding the guest will be done during check in, the guest might not have any special requests to make for the room. Hence,
-we chose to make `Request` optional and default it as blank should it not be provided.
+**Aspect: Making `Request` optional in the `add` command**
+* As adding a guest will be done during check in, the guest may or may not have any special requests to make for the room. Hence,
+we chose to make `Request` optional and default it as blank should it not be provided. This would also reduce the length
+of `add` command in the event that there is no request from the guest.
 
 
 ### Billing a Guest
 In GuestBook, the user can add to the bill of a guest to track the current expenses incurred by the guest using the `bill` command. This feature was added to help the user track their guests' expenses, without having to manually calculate it each time.
 
 <span style="font-size: large; color: #e46c0a">Implementation:</span>
-* The `bill` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1) and the `bill` field and is supported by the `BillCommandParser` that extracts the bill value.
+* The `bill` command takes in an `INDEX` indicating the index of the guest to edit in the current panel (starting from 1) and the `bill` field and is supported by the `BillCommandParser` that extracts the bill value.
 
 The following activity diagrams summarizes what happens when a user enters a `bill` command.
 
@@ -305,7 +311,7 @@ Taking into consideration the much higher probability of the user using the bill
 and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE`), we decided to proceed with Alternative 2.
 
 **Aspect: Accepting signed and unsigned positive values**
-* As the user may prefer to see `+` differentiating positive and negative values, or leave out the `+` sign for convenience, we decided to accept both formats for positive values.
+* As the user may prefer to see the `+` sign to differentiate between positive and negative values, or leave out the `+` sign for convenience, we decided to accept both formats for positive values.
 
 **Aspect: Using the `b/` prefix**
 * To standardise the formatting and testing for field inputs, we decided to include the `b/` prefix in the command syntax.
@@ -316,7 +322,7 @@ In GuestBook, the user can edit the details of a guest using the `edit` command.
 This feature was implemented so that it is easy for the user to change a guest's details according to different scenarios, such as the changing the guest's rooms, or the guest providing incorrect details.
 
 <span style="font-size: large; color: #e46c0a">Implementation:</span>
-* The `edit` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1)
+* The `edit` command takes in an `INDEX` indicating the index of the guest to edit in the current panel (starting from 1)
   and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number Of Guests`, `Is Room Clean` and `Request`)
   and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
 
@@ -343,29 +349,34 @@ In GuestBook, the user can mark all the rooms as unclean. This feature was added
 <span style="font-size: large; color: #e46c0a">Implementation:</span>
 * The `markroomsunclean` command edits all the guests in GuestBook and changes their `isRoomClean` statuses to `no`. It takes in no additional inputs or fields.
 
-The following activity diagram summarises what happens when a user enters a `markroomsunclean` command.
+The following activity diagram summarizes what happens when a user enters a `markroomsunclean` command.
 
 ![MarkRoomsUncleanActivityDiagram](images/MarkRoomsUncleanActivityDiagram.png)
-* When the user executes the `markroomsunclean` command, GuestBook will retrieve the list of all the guests that requires editing of the `isRoomClean` status.
+* When the user executes the `markroomsunclean` command, GuestBook will retrieve the list of all the guests in GuestBook.
 * A new list of guests will be created with `isRoomClean` fields set to `no`. The other details of the guests will remain unchanged.
 * Finally, the new list of guests is set to the model.
 
 <span style="font-size: large; color: #e46c0a">Design Considerations:</span>
+
+
 **Aspect: The scope at which the command changes all guests' `isRoomClean` statuses**
-* Alternative 1: Allow `markroomsunclean` command to operate only on the last shown list instead of the entire list. This is to standardise how edits are made across the commands (e.g. `edit` and `delete`).
+* **Alternative 1:** Allow `markroomsunclean` command to operate only on the last shown list instead of the entire guest list. This is to standardise how edits are made across the commands (e.g. `edit` and `delete`).
   * Pros: This might be more intuitive for users, as `edit` and `delete` commands work only on the last shown lists.
   * Cons: User is unable to change all the guests' `isRoomClean` statuses in a single command.
-* Alternative 2 (current choice): Allow `markroomsunclean` command to change all guests' `isRoomClean` statuses in GuestBook instead of the last shown list.
-  * Pros: User is able to change all the guests' `isRoomClean` statuses in a single command.
+* **Alternative 2 (current choice):** Allow `markroomsunclean` command to change all guests' `isRoomClean` statuses in GuestBook instead of the last shown list.
+  * Pros: User is able to change all the guests' `isRoomClean` statuses in a single command. This improves efficiency for users.
   * Cons: There is less flexibility in marking groups of guests' rooms as unclean.
 
-Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' `isRoomClean` statuses differently as the types of rooms as mostly homogenous. Hence, we decided to proceed with Alternative 2.
+Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely 
+to have a case in which the user has to mark different groups of guests' `isRoomClean` statuses 
+differently as the rooms are mostly of the same type. Hence, we decided to proceed with Alternative 2.
 
 **Aspect: Naming of the `markroomsunclean` command**
-* Alternative 1: Using camel case for the command, i.e., `markRoomsUnclean`.
+
+* **Alternative 1:** Using camel case for the command, i.e., `markRoomsUnclean`.
   * Pros: Better readability of the command for the user.
   * Cons: Takes a longer time to type and there may be a higher chance of typing the wrong command due to the capitalisation of the letters.
-* Alternative 2: Using lowercase for the command, i.e., `markroomsunclean`.
+* **Alternative 2 (current choice):** Using lowercase for the command, i.e., `markroomsunclean`.
   * Pros: Faster and easier to type, lesser chance of typing the wrong command due to consistent lowercasing of letters. It is also consistent with lowercasing of all the other commands, thus the
   commands have greater standardisation.
   * Cons: Might be harder to read the command.
@@ -378,7 +389,7 @@ rather insignificant as once the user gets acquainted with the command, reading 
 In GuestBook, the user can find guests using the `find` command. The extensibility of this `find` feature makes it easy for the user to locate guests in GuestBook.
 
 <span style="font-size: large; color: #e46c0a">Implementation:</span>
-* The `find` command takes in multiple keywords separated by spaces, and find all guests whose `fields` contain any of the keywords. The keywords are case-insensitive as well. For example, finding 'Alice' is the same as finding 'aLiCE'.
+* The `find` command takes in multiple search terms separated by spaces, and find all guests whose fields contain any of the search terms. The search terms are case-insensitive as well. For example, finding 'Alice' is the same as finding 'aLiCE'.
 
 The following activity diagram summarizes what happens when a user enters a `find` command.
 
@@ -389,7 +400,7 @@ The following activity diagram summarizes what happens when a user enters a `fin
 <span style="font-size: large; color: #e46c0a">Design Considerations:</span>
 
 **Aspect: Allowing searching only through all fields**
-* As the hotel manager would usually appreciate the ability to search by other fields such as by Room, it is appropriate to make the `find` command to scan through all the fields of the guests.
+* As the user would usually appreciate the ability to search by other fields such as by `room`, it is appropriate to make the `find` command to scan through all the fields of the guests.
 
 **Aspect: Only matching full keywords**
 * The `find` command only matches full keywords. For example, typing in 'ali' would not match a Guest named 'Alice'. As we do not want to display possible redundant data to the hotel manager, we decided to limit the `find` command to only full keywords, so that the results displayed are more targeted.
@@ -479,22 +490,22 @@ As the users of this application would be hotel mangers of small hotels, there w
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Summary of commands
+## **Summary of commands**
 
 This is a quick overview of all the commands and their functionalities.
 
-| Action                 | Format                                                                                                                    | Examples                                                                                                                                                |
-|------------------------|---------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`                                       | `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3` <br> Adds guest John Doe to GuestBook with his relevant details.   |
+| Action                 | Format                                                                                                                    | Examples                                                                                                                                                  |
+|------------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`                                       | `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3` <br> Adds guest John Doe to GuestBook with his relevant details.     |
 | **Bill**               | `bill INDEX b/BILL`                                                                                                       | `bill 2 b/99.99` <br> Increases the bill of guest at the second index by 99.99. <br><br> `bill 1 b/-10` <br> Decreases the bill of the first guest by 10. |
-| **Clear**              | `clear`                                                                                                                   | Clears all guest entries in GuestBook.                                                                                                                  |                                                                                                                                                      |
-| **Delete**             | `delete INDEX`                                                                                                            | `delete 3`<br> Deletes the third guest in the current list.                                                                                             |
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]` | `edit 2 rc/yes` <br> Edits the second guest in the current list by changing the guest's room clean status to `yes`.                                     |
-| **Exit**               | `exit`                                                                                                                    | Exits and closes the GuestBook application.                                                                                                             |
+| **Clear**              | `clear`                                                                                                                   | Clears all guest entries in GuestBook.                                                                                                                    |                                                                                                                                                      |
+| **Delete**             | `delete INDEX`                                                                                                            | `delete 3`<br> Deletes the third guest in the current list.                                                                                               |
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]` | `edit 2 rc/yes` <br> Edits the second guest in the current list by changing the guest's room clean status to `yes`.                                       |
+| **Exit**               | `exit`                                                                                                                    | Exits and closes the GuestBook application.                                                                                                               |
 | **Find**               | `find KEYWORD [MORE_KEYWORDS]`                                                                                            | `find James Jake` <br> Searches the entire GuestBook for fields matching `James` and `Jake` and returns the matching guests.                              |
-| **Help**               | `help`                                                                                                                    | Shows a popup on how to get help with GuestBook.                                                                                                        |
-| **List**               | `list`                                                                                                                    | Displays a list containing all the guest in GuestBook.                                                                                                  |
-| **Mark Rooms Unclean** | `markroomsunclean`                                                                                                        | Changes the room clean statuses of all guests to `no`.                                                                                                  |                                                                                                                                                       |
+| **Help**               | `help`                                                                                                                    | Shows a popup on how to get help with GuestBook.                                                                                                          |
+| **List**               | `list`                                                                                                                    | Displays a list containing all the guest in GuestBook.                                                                                                    |
+| **Mark Rooms Unclean** | `markroomsunclean`                                                                                                        | Changes the room clean statuses of all guests to `no`.                                                                                                    |                                                                                                                                                       |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -514,7 +525,7 @@ This is a quick overview of all the commands and their functionalities.
 
 **Target user profile**:
 * hotel manager of a small-sized hotel
-* hotel manager who want to keep track of guests
+* hotel manager who want to keep track of guests' details
 * has a need to manage a significant number of guests
 * prefer desktop apps over other types
 * can type fast
@@ -522,10 +533,12 @@ This is a quick overview of all the commands and their functionalities.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* To know when the guests check in and check out
-* To keep track of the guests' bills
-* To note down all the requirements/requests that the guests asked for
-* To note down the status of the room, if the room is cleaned or not cleaned
+* To keep track of the essential information of a guest such as name, phone number and email address.
+* To keep track of the room which the guest stays in.
+* To know when the guests check in and check out.
+* To keep track of the guests' bills.
+* To note down all the requests that the guests asked for.
+* To note down the status of the room, if the room is cleaned or not cleaned.
 
 ### User stories
 
@@ -542,9 +555,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | first time hotel manager | be able to delete data of all guests at one go                     | have a clean slate to work on should I need to                                            |
 | `* * *`  | hotel manager            | view the check-in date of a guest                                  | prepare the room for the incoming guests                                                  |
 | `* * *`  | hotel manager            | view the check-out date of a guest                                 | prepare when to clean the room                                                            |
-| `* * *`  | hotel manager            | delete a guest after they check out of my hotel                    | do not keep unnecessary data on my guests                                                 |
+| `* * *`  | hotel manager            | delete a guest after they check out of my hotel                    | not keep unnecessary data on my guests                                                    |
 | `* * *`  | hotel manager            | be able to save the details of the guests                          | the data is not lost between sessions                                                     |
-| `* * *`  | hotel manager            | search guests by keyword                                           | see details of specific guests                                                            |
+| `* * *`  | hotel manager            | search guests by keyword                                           | efficiently locate the details of a guest                                                 |
 | `* * *`  | hotel manager            | view the number of guests in each room                             | prepare proper bed suites                                                                 |
 | `* * *`  | hotel manager            | add the details of a new guest when they are staying at my hotel   | know the details of who is staying at my hotel                                            |
 | `* * *`  | hotel manager            | be able to edit the name of the guest                              | update it if there are any changes                                                        |
@@ -556,8 +569,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | hotel manager            | be able to add to the bill of the hotel guest                      | update it if there are any changes                                                        |
 | `* *`    | hotel manager            | be able to deduct from the bill of the hotel guest                 | update it if there are any changes                                                        |
 | `* *`    | hotel manager            | view if a room has been cleaned                                    | allocate my cleaners cleaning duties                                                      |
-| `* *`    | hotel manager            | mark a room as clean                                               | my cleaners will not need to waste time cleaning the room again                           |
-| `* *`    | hotel manager            | mark a room as not clean                                           | my cleaners will know which room to clean                                                 |
+| `* *`    | hotel manager            | mark a room as clean                                               | ensure my cleaners will not need to waste time cleaning the room again                    |
+| `* *`    | hotel manager            | mark a room as not clean                                           | ensure my cleaners will know which room to clean                                          |
 | `* *`    | hotel manager            | get the details of any special requests from the guests            | serve the guest as requested                                                              |
 | `* *`    | hotel manager            | mark all the rooms as not cleaned at one go                        | save time from editing all the guests in GuestBook as cleaning of rooms is a daily affair |
 | `* `     | hotel manager            | get the details of where the guests booked their hotel stay from   | decide which booking platform I need to pay more attention to                             |
@@ -731,8 +744,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Guest**: Refers to the guest who booked the hotel room.
-* **GUI**: Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.
-* **JSON**: Stands for JavaScript Object Notation. It refers to a file format to store data.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Number of guests**: Refers to the total number of people staying in the hotel room
 
@@ -761,9 +772,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-[//]: # (1. _{ more test cases …​ }_)
-
+   
 ### Deleting a guest
 
    1. Prerequisites: List all guests using the `list` command. Multiple guests in the list.
@@ -774,8 +783,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No guest is deleted. Error details shown in the result display.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Other incorrect delete commands to try: `delete`, ` delete john`, `delete x` (where x is larger than the list size)<br>
+      Expected: No guest is deleted. Error details shown in the result display.
    
 ### Adding a guest
 
@@ -842,7 +851,7 @@ Prerequisite: Only 1 guest to be edited. The guest's index should exist.
       Expected: No guest is edited, because the **parameters are invalid**. Error details shown in the result display.
 ### Saving data
 
-1. Dealing with corrupted data files
+Dealing with corrupted data files
 
    1. A possible cause of a corrupted file could be because of duplicate `name` and/or `room` in the data of the Guest.
    2. While GuestBook throws an exception when a user tries to add a guest with duplicate `name` and/or `room`, a developer
