@@ -1,8 +1,8 @@
 package seedu.masslinkers.logic.parser;
 
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INTERESTS;
-import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_MISSING_ARGUMENTS;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.masslinkers.logic.parser.ParserUtil.parseIndex;
 
 import java.util.Arrays;
@@ -37,7 +37,7 @@ public class AddInterestCommandParser implements Parser<AddInterestCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, AddInterestCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MISSING_ARGUMENTS, AddInterestCommand.MESSAGE_USAGE));
         }
 
         String indexFromCommand = getIndexFromCommand(trimmedArgs);
