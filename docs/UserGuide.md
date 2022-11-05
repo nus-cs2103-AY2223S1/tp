@@ -77,7 +77,7 @@ e.g. [`commands`](#glossary) [`PARAMETERS`](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Features
+## 4. GUI overview
 
 ![GUI](images/AnnotatedUi.png)
 
@@ -90,11 +90,16 @@ Displays a feedback message after a command is executed.
 **<span style="color:dodgerblue;">Navigation Tab</span>**<br>
 Displays the tabs that you can navigate to.
 
-**<span style="color:white;">Main Display</span>**<br>
+**<span style="color:grey;">Main Display</span>**<br>
 Displays the list of your chosen tab.
 
 **<span style="color:purple;">Reminder List</span>**<br>
 Displays your list of reminders.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 5. Features
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -121,10 +126,10 @@ Displays your list of reminders.
 
 </div>
 
-### 4.1 Student Features
+### 5.1 Student Features
 
 <a name="add-student"></a>
-#### 4.1.1 Adding a student: `add student`
+#### 5.1.1 Adding a student: `add student`
 
 Adds a student to the specified module.
 
@@ -144,7 +149,7 @@ Examples:
 * `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
 
 <a name="list"></a>
-#### 4.1.2 Listing all students: `list`
+#### 5.1.2 Listing all students: `list`
 
 Shows a list of all students in ModQuik.
 
@@ -159,7 +164,7 @@ Alternatively, you can use the [`switch`] command if you would like to only use 
 Format: `list`
 
 <a name="edit-student"></a>
-#### 4.1.3 Editing a student: `edit student`
+#### 5.1.3 Editing a student: `edit student`
 
 Edits an existing student in a specified module.
 
@@ -181,7 +186,7 @@ Examples:
 * [`find`] `m/CS2103T` followed by `edit student 2 n/Betsy Crower` Edits the name of the 2nd student to be `Betsy Crower` in the results of the [`find`] command.
 
 <a name="find"></a>
-#### 4.1.4 Locating students by their attributes: `find`
+#### 5.1.4 Locating students by their attributes: `find`
 
 Finds students by names, student ID, module or tutorial, by checking if respective attribute contains any of the given keywords.
 
@@ -204,7 +209,7 @@ Examples:
 * `find m/CS2103T` returns list of students in CS2103T<br>
 
 <a name="delete-student"></a>
-#### 4.1.5 Deleting a student: `delete student`
+#### 5.1.5 Deleting a student: `delete student`
 
 Deletes the specified student from the list of students.
 
@@ -220,7 +225,7 @@ Examples:
 * [`find`] `m/CS2103T` followed by `delete student 2` deletes the 2nd student in the results of the [`find`] command.
 
 <a name="extract-emails"></a>
-#### 4.1.6 Extracting student's emails: `extract emails`
+#### 5.1.6 Extracting student's emails: `extract emails`
 
 Copies all emails in the displayed student list onto the clipboard.
 
@@ -234,10 +239,10 @@ Examples:
 * [`find`] `m/CS2103T` followed by `extract emails` copies all the emails of the students in the results of the [`find`] command.
 
 
-### 4.2 Tutorial Features
+### 5.2 Tutorial Features
 
 <a name="add-tutorial"></a>
-#### 4.2.1 Adding a tutorial: `add tutorial`
+#### 5.2.1 Adding a tutorial: `add tutorial`
 
 Adds a tutorial to ModQuik.
 
@@ -249,7 +254,7 @@ Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
 
 <a name="edit-tutorial"></a>
-#### 4.2.2 Editing a tutorial: `edit tutorial`
+#### 5.2.2 Editing a tutorial: `edit tutorial`
 
 Edits an existing student in ModQuik.
 
@@ -265,7 +270,7 @@ Examples:
 * `edit tutorial 2 T/14:00-16:00 D/2` Edits the timeslot of the 2nd tutorial to be `14:00 to 16:00` and sets tutorial day to `Tue`.
 
 <a name="delete-tutorial"></a>
-#### 4.2.3 Deleting a tutorial: `delete tutorial`
+#### 5.2.3 Deleting a tutorial: `delete tutorial`
 
 Deletes a specified tutorial from ModQuik.
 
@@ -278,10 +283,10 @@ Format: `delete tutorial INDEX`
 Examples:
 * `delete tutorial 3`
 
-### 4.3 Consultation Features
+### 5.3 Consultation Features
 
 <a name="add-consultation"></a>
-#### 4.3.1 Adding a consultation: `add consultation`
+#### 5.3.1 Adding a consultation: `add consultation`
 
 Adds a consultation to ModQuik.
 
@@ -295,7 +300,7 @@ Examples:
 * `add consultation n/JakeKim m/CS2103T D/2023-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
 
 <a name="edit-consultation"></a>
-#### 4.3.2 Editing a consultation: `edit consultation`
+#### 5.3.2 Editing a consultation: `edit consultation`
 
 Edits an existing consultation in ModQuik.
 
@@ -312,7 +317,7 @@ Examples:
 * `edit consultation 2 T/14:00-16:00 D/2023-10-10` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Oct 10`.
 
 <a name="delete-consultation"></a>
-#### 4.3.3 Deleting a consultation: `delete consultation`
+#### 5.3.3 Deleting a consultation: `delete consultation`
 
 Deletes a specified consultation from ModQuik.
 
@@ -325,10 +330,10 @@ Format: `delete consultation INDEX`
 Examples:
 * `delete consultation 3`
 
-### 4.4 Reminder Features
+### 5.4 Reminder Features
 
 <a name="add-reminder"></a>
-#### 4.4.1 Adding a reminder: `add reminder`
+#### 5.4.1 Adding a reminder: `add reminder`
 
 Adds a reminder to ModQuik. Users can add reminders such as "Mark Assignment 1" by a specified deadline.
 
@@ -348,7 +353,7 @@ Examples:
 * `add reminder n/Update Grades T/16:00 D/2023-01-01 d/20 students to update p/MEDIUM`
 
 <a name="edit-reminder"></a>
-#### 4.4.2 Editing a reminder: `edit reminder`
+#### 5.4.2 Editing a reminder: `edit reminder`
 
 Edits an existing reminder in ModQuik. Users would be able to edit any field of an existing reminder in the event that there are changes, such as extension of a deadline.
 
@@ -367,7 +372,7 @@ Examples:
 * `edit reminder 2 T/14:00 D/2023-10-10` Edits the time of the 2nd reminder to be `14:00` and the date to `2023 Oct 10`.
 
 <a name="mark-reminder"></a>
-#### 4.4.3 Mark a reminder: `mark reminder`
+#### 5.4.3 Mark a reminder: `mark reminder`
 
 Sets the reminder status as _completed_.
 
@@ -388,7 +393,7 @@ Examples:
  </table>
 
 <a name="unmark-reminder"></a>
-#### 4.4.4 Unmark a reminder: `unmark reminder`
+#### 5.4.4 Unmark a reminder: `unmark reminder`
 
 Sets a reminder status as _incomplete_.
 
@@ -398,7 +403,7 @@ Examples:
 * `unmark reminder 3`
 
 <a name="delete-reminder"></a>
-#### 4.4.5 Deleting a reminder: `delete reminder`
+#### 5.4.5 Deleting a reminder: `delete reminder`
 
 Deletes the specified reminder from ModQuik. Users can delete a reminder if they think it is no longer relevant.
 
@@ -412,7 +417,7 @@ Examples:
 * `delete reminder 3`
 
 <a name="sort-reminder"></a>
-#### 4.4.6 Sort reminders: `sort reminder`
+#### 5.4.6 Sort reminders: `sort reminder`
 
 Sort reminders by a chosen criteria. Users would be able to view the list of reminders based on the criteria they want.
 
@@ -431,7 +436,7 @@ Examples:
 * `sort reminder by/priority`
 
 <a name="switch"></a>
-### 4.5 Switch tabs: `switch`
+### 5.5 Switch tabs: `switch`
 
 Switch the tabs displayed.
 
@@ -447,7 +452,7 @@ Examples:
 _Figure 2. Grade Chart Tab_
 
 <a name="clear"></a>
-### 4.6 Clearing all data: `clear`
+### 5.6 Clearing all data: `clear`
 
 Clears all data in a specific field or the entire app.
 
@@ -460,23 +465,23 @@ Examples:
 * `clear f/all`
 
 <a name="help"></a>
-### 4.7 Viewing help: `help`
+### 5.7 Viewing help: `help`
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
 <a name="edit"></a>
-### 4.8 Exiting the program: `exit`
+### 5.8 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 4.9 Saving the data
+### 5.9 Saving the data
 
 All data in ModQuik is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
 
-### 4.10 Editing the data file
+### 5.10 Editing the data file
 
 All data in ModQuik is saved as a JSON file `[JAR file location]/data/modquik.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -484,17 +489,17 @@ All data in ModQuik is saved as a JSON file `[JAR file location]/data/modquik.js
 If your changes to the data file makes its format invalid, ModQuik will discard all data and start with an empty data file at the next run.
 </div>
 
-### 4.11 Archiving data files `[coming in v2.0]`
+### 5.11 Archiving data files `[coming in v2.0]`
 
 _Details coming soon..._
 
-### 4.12 Add existing student into multiple modules `[coming in v2.0]`
+### 5.12 Add existing student into multiple modules `[coming in v2.0]`
 
 _Details coming soon..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModQuik home folder.
@@ -505,9 +510,9 @@ _Details coming soon..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Appendix
+## 7. Appendix
 
-### 6.1 Glossary
+### 7.1 Glossary
 
 | Term                               | Description                                                                                                                                                                                    |
 |------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -518,10 +523,10 @@ _Details coming soon..._
 | **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix. |
 | **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                   |
 
-### 6.2 Notes
+### 7.2 Notes
 
 <a name="notes-autocorrect-dates"></a>
-#### 6.2.1 Note on autocorrecting invalid dates
+#### 7.2.1 Note on autocorrecting invalid dates
 
 ModQuik will assume some invalid dates to be correct and autocorrect the date to the last valid day of that month. See the below examples for a better explanation.
 
@@ -532,7 +537,7 @@ Examples:
 * `add reminder n/mark papers D/2022-11-32 T/13:00 p/HIGH d/300 papers to mark` will show an error instead. This is because none of the months have 32 days, and the date is more likely to be a user typo.
 
 
-### 6.2 Command summary
+### 7.3 Command summary
 
 | Action                                           | Format, Examples                                                                                                                                                                                                                                           |
 |--------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -560,7 +565,7 @@ Examples:
 | [**Exit**][`exit`]                               | `exit`                                                                                                                                                                                                                                                     |
 
 
-### 6.3 Prefix summary
+### 7.4 Prefix summary
 
 * The prefixes `D/` and `T/`, have more than 1 definition, depending on the type of command inputted.
 
