@@ -76,13 +76,13 @@ activate Model
 Model --> EditItemCommand : filteredItemList
 deactivate Model
 
-EditItemCommand -> EditItemCommand : createEditedItem(itemToEdit, descriptor)
+EditItemCommand -> EditItemCommand : createEditedItem(inventoryItemToEdit, descriptor)
 activate EditItemCommand
 
-EditItemCommand --> EditItemCommand : editedItem
+EditItemCommand --> EditItemCommand : editedInventoryItem
 deactivate EditItemCommand
 
-EditItemCommand -> Model : setItem(itemToEdit, editedItem)
+EditItemCommand -> Model : setItem(inventoryItemToEdit, editedInventoryItem)
 activate Model
 deactivate Model
 
