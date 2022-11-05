@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.AddPersonCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -25,15 +25,15 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTruthTable;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TruthTable;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.TruthTable;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.team.Link;
-import seedu.address.model.team.Team;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.Team;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -62,8 +62,8 @@ public class AddPersonCommandTest {
         Person validPerson = new PersonBuilder().build();
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
         commandLine.parseArgs(PersonUtil.convertPersonToArgs(validPerson));
-        assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON,
-                () -> commandToBeTested.execute(modelStub));
+        assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON, ()
+                -> commandToBeTested.execute(modelStub));
     }
 
     @Test

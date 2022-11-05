@@ -4,7 +4,10 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -18,7 +21,6 @@ import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
 import seedu.address.testutil.TaskUtil;
 import seedu.address.testutil.TypicalPersons;
 import seedu.address.testutil.TypicalTasks;
-import java.util.List;
 
 class EditTaskCommandTest {
 
@@ -71,9 +73,9 @@ class EditTaskCommandTest {
         model.getTeam().addMember(TypicalPersons.ALICE);
         model.getTeam().addTask(TypicalTasks.TASK_1);
         Task validTask = TypicalTasks.TASK_3;
-        commandLine.parseArgs(TaskUtil.convertEditOOBTaskToArgs(validTask));
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX,
-                () -> commandToBeTested.execute(model));
+        commandLine.parseArgs(TaskUtil.convertEditOutOfBoundsTaskToArgs(validTask));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, ()
+                -> commandToBeTested.execute(model));
     }
 
     @Test
@@ -84,8 +86,8 @@ class EditTaskCommandTest {
         TaskNameContainsKeywordsPredicate predicate = new TaskNameContainsKeywordsPredicate(List.of("three"));
         model.updateFilteredTaskList(predicate);
         Task validTask = model.getFilteredTaskList().get(0);
-        commandLine.parseArgs(TaskUtil.convertEditOOBTaskToArgs(validTask));
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX,
-                () -> commandToBeTested.execute(model));
+        commandLine.parseArgs(TaskUtil.convertEditOutOfBoundsTaskToArgs(validTask));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, ()
+                -> commandToBeTested.execute(model));
     }
 }

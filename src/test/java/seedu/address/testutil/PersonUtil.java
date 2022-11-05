@@ -42,6 +42,10 @@ public class PersonUtil {
         return sb.toString();
     }
 
+    /**
+     * @param person
+     * @return String array containing person fields
+     */
     public static String[] convertPersonToArgs(Person person) {
         List<String> argList = new ArrayList<>();
         argList.add(FLAG_NAME_STR);
@@ -61,6 +65,10 @@ public class PersonUtil {
         return argList.toArray(new String[0]);
     }
 
+    /**
+     * @param person
+     * @return String array containing person fields
+     */
     public static String[] convertEditPersonToArgs(Person person) {
         List<String> argList = new ArrayList<>();
         argList.add("2");
@@ -81,6 +89,10 @@ public class PersonUtil {
         return argList.toArray(new String[0]);
     }
 
+    /**
+     * @param person
+     * @return String array containing person fields
+     */
     public static String[] convertEditFirstPersonPartialToArgs(Person person) {
         List<String> argList = new ArrayList<>();
         argList.add("1");
@@ -91,6 +103,10 @@ public class PersonUtil {
         return argList.toArray(new String[0]);
     }
 
+    /**
+     * @param person
+     * @return String array containing person fields
+     */
     public static String[] convertEditSecondPersonPartialToArgs(Person person) {
         List<String> argList = new ArrayList<>();
         argList.add("2");
@@ -101,7 +117,11 @@ public class PersonUtil {
         return argList.toArray(new String[0]);
     }
 
-    public static String[] convertEditPersonOOBToArgs(Person person) {
+    /**
+     * @param person
+     * @return String array containing person fields
+     */
+    public static String[] convertEditPersonOutOfBoundsToArgs(Person person) {
         List<String> argList = new ArrayList<>();
         argList.add("20");
         argList.add(FLAG_NAME_STR);

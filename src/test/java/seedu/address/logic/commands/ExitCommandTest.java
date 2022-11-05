@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEM
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TruthTableParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;

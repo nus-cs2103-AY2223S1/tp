@@ -29,7 +29,8 @@ class AddTaskCommandTest {
         model.getTeam().addMember(TypicalPersons.ALICE);
         Task validTask = TypicalTasks.TASK_3;
         commandLine.parseArgs(TaskUtil.convertTaskToArgs(validTask));
-        CommandResult expectedResult = new CommandResult(String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, validTask));
+        CommandResult expectedResult = new CommandResult(String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS,
+                validTask));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
@@ -39,26 +40,21 @@ class AddTaskCommandTest {
         Task validTask = TypicalTasks.TASK_3;
         Task validPartialTask = TypicalTasks.TASK_3_NO_DEADLINE;
         commandLine.parseArgs(TaskUtil.convertPartialTaskToArgs(validTask));
-        CommandResult expectedResult = new CommandResult(String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, validPartialTask));
+        CommandResult expectedResult = new CommandResult(String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS,
+                validPartialTask));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
     @Test
     public void execute_duplicateTask_throwsCommandException() {
-//        model.getTeam().addMember(TypicalPersons.ALICE);
-//        model.getTeam().addTask(TypicalTasks.TASK_3);
-//        Task validTask = TypicalTasks.TASK_3;
-//        commandLine.parseArgs(TaskUtil.convertTaskToArgs(validTask));
-//        assertThrows(CommandException.class, AddTaskCommand.MESSAGE_DUPLICATE_TASK,
-//                () -> commandToBeTested.execute(model));
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Task validTask = TypicalTasks.TASK_3;
         commandLine.parseArgs(TaskUtil.convertTaskToArgs(validTask));
-        assertThrows(CommandException.class, AddTaskCommand.MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS,
-                () -> commandToBeTested.execute(model));
+        assertThrows(CommandException.class, AddTaskCommand.MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS, ()
+                -> commandToBeTested.execute(model));
     }
 
     @Test
