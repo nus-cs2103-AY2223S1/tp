@@ -362,16 +362,24 @@ Consequently, the commands are split into **5** main sections:
 
 <div markdown="block" class="alert alert-info">**:information_source: Notes about command format**
 
-- Syntax for each command adheres to the structure laid out in the 
+- Format for each command adheres to the structure laid out in the 
 [help command section](#example-command-help-message---add-person---help)
 - Every command has a `-h` and `--help` flag available to see their help message
 - Parameters are in uppercase and wrapped with angle brackets, e.g. `<PARAMETER>`
 - Flags and parameters in square brackets (`[]`) are optional 
 - Flags and parameters can be specified in any order
+  - For e.g. `-n name -p 98765432` is the same as `-p 98765432 -n name`
 - Flags and parameters wrapped with brackets (`()`) indicates that at least 1 flag/parameter inside the brackets is 
   must be specified
-- Parameters with ellipsis (`...`) behind them means that more than 1 parameter can be specified
+  - For e.g. see the [edit person command](#editing-a-person--edit-person)
+- Flags/Parameters with ellipsis (`...`) behind them means that more than 1 parameter can be specified
+  - For `[-t [TAGS...]]...`, the following are valid
+    1. `-t`
+    2. `-t one`
+    3. `-t one two`
+    4. `-t one -t two`
 - If an extra parameter is specified, the command will not execute and an error message will be displayed
+  - For e.g. `help with extra words` will display an error message
 </div>
 
 [//]: # (TODO: add reference to flags/parameter summary)
