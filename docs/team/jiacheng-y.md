@@ -10,20 +10,34 @@ in the form of an integrated solution built using Java with around 15 kLOC. The 
 CLI, and the application responds with its GUI, created with JavaFX.
 
 ### Summary of Contributions
-  - **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jiacheng-y&breakdown=true)
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jiacheng-y&breakdown=true)
 
-  - **Enhancements implemented**: to be added soon
+* **Enhancements implemented**:
+  * Notable Feature: **Mark Order Command**
+    * Function:
+    * Purpose:
+    * Relevant pull request(s):
+  * Notable Feature/Enhancement: **Add Item Command**
+    * Function: 
+    * Purpose: 
+    * Relevant pull request(s): 
+  * Notable Enhancement: **Clear Command**
+    * Function: 
+    * Purpose: 
+    * Relevant pull request(s): 
 
-  - **Contributions to the UG**: to be added soon
+* **Contributions to the UG**: 
+  * Features added in documentation: 
+    * Add item
+    * Mark item as paid and/or delivered
+    * Clear
+  * Relevant pull requests: 
 
-  - **Contributions to the DG**: to be added soon
+* **Contributions to the DG**: 
+  * 
 
-  - **Contributions to team-based tasks**: to be added soon
+* **Contributions to team-based tasks**: to be added soon
 
-  - **Review/mentoring contributions:**: to be added soon
+* **Review/mentoring contributions:**: to be added soon
 
-  - **Contributions beyond the project team:**: to be added soon
-
-  - **Contributions to the Developer Guide (Extracts)**: to be added soon
-
-  - **Contributions to the User Guide (Extracts)**: to be added soon
+* **Contributions beyond the project team:**: to be added soon
