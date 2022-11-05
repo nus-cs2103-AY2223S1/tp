@@ -111,6 +111,7 @@ Parameters are extra inputs the command may require.
 
 * Words in `UPPER_CASE` are the parameters you will specify.<br>
   e.g. in `profile -a n/NAME`, `NAME` is a parameter which can be used as `profile -a n/John Doe`.
+* Parameters may require a prefix, and the prefix is case-sensitive.
 * Parameters in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Parameters with `…`​ after them can be used multiple times, including zero times for optional items.<br>
@@ -118,7 +119,6 @@ Parameters are extra inputs the command may require.
   e.g. `pr/PROFILE_INDEX…​` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Parameters may require a prefix, and the prefix is case-sensitive.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
