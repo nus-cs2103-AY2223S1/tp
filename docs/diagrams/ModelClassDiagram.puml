@@ -52,5 +52,7 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
+note right of UniquePersonList : UniqueLists also exists for Modules, Teaching Assistants and Schedules
+
 ModelManager -->"~* filtered" Person
 @enduml
