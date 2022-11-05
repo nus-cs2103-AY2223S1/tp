@@ -51,6 +51,7 @@ public class EditProjectCommand extends ProjectCommand {
     public static final String MESSAGE_PROJECT_NOT_FOUND = "Project id %1$d does not exist in the project book";
     public static final String MESSAGE_DUPLICATE_PROJECT_NAME = "A project with this name already "
             + "exists in the project book";
+    public static final String MESSAGE_PROJECT_ALREADY_HAS_THAT_NAME = "This project already has that name";
 
     private final ProjectId projectToEditId;
     private final Name newName;
@@ -86,6 +87,9 @@ public class EditProjectCommand extends ProjectCommand {
         if (newName != null) {
             for (Project p : model.getFilteredProjectList()) {
                 if (p.getProjectName().equals(newName)) {
+                    if (toEditProject.getProjectName().equals(newName)) {
+                        throw new CommandException(MESSAGE_PROJECT_ALREADY_HAS_THAT_NAME);
+                    }
                     throw new CommandException(MESSAGE_DUPLICATE_PROJECT_NAME);
                 }
             }
