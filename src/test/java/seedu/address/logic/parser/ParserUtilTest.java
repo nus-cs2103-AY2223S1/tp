@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventSortField;
 import seedu.address.model.person.Address;
+import seedu.address.model.date.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -23,12 +24,16 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
 
     private static final String INVALID_GENDER = "unknown";
+    private static final String INVALID_DOB = "1.1.2000";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_GENDER = "Female";
+    private static final String VALID_DOB = "12/12/2012";
+
+    private static final String FUTURE_DOB = "12/12/2012";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -304,5 +309,41 @@ public class ParserUtilTest {
         String genderWithWhitespace = WHITESPACE + VALID_GENDER + WHITESPACE;
         Gender expectedGender = new Gender(VALID_GENDER);
         assertEquals(expectedGender, ParserUtil.parseGender(genderWithWhitespace));
+    }
+
+    //=========== parseDate() Tests =========================================================================
+
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate((String) null, Boolean.FALSE));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DOB, Boolean.FALSE));
+    }
+
+    @Test
+    public void parseDate_futureDateNotAllowed_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(FUTURE_DOB, Boolean.FALSE));
+    }
+
+    @Test
+    public void parseDate_validValueWithoutWhitespace_returnsDate() throws Exception {
+        Date expectedDate = new Date(VALID_DOB);
+        assertEquals(expectedDate, ParserUtil.parseDate(VALID_DOB, Boolean.FALSE));
+    }
+
+    @Test
+    public void parseDate_validValueWithWhitespace_returnsTrimmedDate() throws Exception {
+        String dateWithWhitespace = WHITESPACE + VALID_DOB + WHITESPACE;
+        Date expectedDob = new Date(VALID_DOB);
+        assertEquals(expectedDob, ParserUtil.parseDate(dateWithWhitespace, Boolean.FALSE));
+    }
+
+    @Test
+    public void parseDate_FutureDateAllowed_returnsDate() throws Exception {
+        Date expectedDob = new Date(FUTURE_DOB);
+        assertEquals(expectedDob, ParserUtil.parseDate(FUTURE_DOB, Boolean.TRUE));
     }
 }
