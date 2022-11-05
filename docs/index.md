@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Mass Linkers
+
 ---
 <div align="center">
 <img src="../docs/images/Logo.png" width="360">
