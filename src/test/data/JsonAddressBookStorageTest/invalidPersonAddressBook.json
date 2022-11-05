@@ -1,30 +1,27 @@
 {
   "persons" : [ {
-    "fields" : {
-      "fieldList" : [ ]
-    },
     "name" : "Person with invalid name field: Ha!ns Mu@ster",
-    "uid" : "e18b1774-c755-3701-875f-c7e32483ebe7",
+    "uid" : "a2af5cb4-0db5-3638-9f21-2b9efa99d166",
     "tags" : [ ],
     "attributes" : [ {
       "data" : {
         "type" : "Phone",
-        "content" : "9482424",
-        "display_format" : 63,
+        "content" : "93938282",
+        "display_format" : 31,
         "style_format" : 288
       }
     }, {
       "data" : {
         "type" : "Email",
         "content" : "hans@example.com",
-        "display_format" : 63,
+        "display_format" : 31,
         "style_format" : 288
       }
     }, {
       "data" : {
         "type" : "Address",
         "content" : "4th street",
-        "display_format" : 63,
+        "display_format" : 31,
         "style_format" : 288
       }
     } ]
@@ -32,6 +29,10 @@
   "groups" : [ ],
   "tasks" : [ ],
   "itemRelationship" : {
-    "e18b1774-c755-3701-875f-c7e32483ebe7" : [ ]
+    "a2af5cb4-0db5-3638-9f21-2b9efa99d166" : [ ]
+  },
+  "jsonAdaptedAddressBookParser" : {
+    "alias" : { },
+    "macros" : { }
   }
 }
