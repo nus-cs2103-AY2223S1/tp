@@ -244,7 +244,7 @@ Our team decided to change the user input format of the cancel command from `can
 to `cancel APPOINTMENT_INDEX`, so it is faster for
 the user to key in, and also more similar to the other commands with only 1 index.
 
-### \[Implemented\] Hide Feature
+### Hide Feature
 - The `hide patients` command hides patients based on at least 1 tag or name given. If more than 1 tag or name is given,
 then any patients that match that tag or name will be hidden.
 For example, `hide patients t/nose t/ear` will hide all patients that has either a nose or ear tag.
