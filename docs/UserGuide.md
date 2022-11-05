@@ -368,7 +368,7 @@ Format:
 
 2. **Assigned to** Format: `task event o/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
-3. **Self-assigned** Format: `task event d/DESCRIPTION t/DATE`
+3. **Self-assigned** Format: `task event d/DESCRIPTION t/DATE [#/TAG]…`
 
 * Adds an event assigned by (`m/`) or assigned to (`o/`) a contact.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
