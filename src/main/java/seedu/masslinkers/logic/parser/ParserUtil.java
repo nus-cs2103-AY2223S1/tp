@@ -3,7 +3,6 @@ package seedu.masslinkers.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_ARGUMENTS;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INDEX;
-import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INPUT;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_MORE_THAN_ONE_INDEX;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_UNEXPECTED_PREFIX;
 import static seedu.masslinkers.logic.parser.ModCommandParser.INDEX_FORMAT;
