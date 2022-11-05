@@ -515,6 +515,38 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command is correct.
 
+### Reminder feature
+
+#### Implementation
+
+The reminder mechanism is facilitated by `TaskUntilDeadlinePredicate`. It implements `Predicate<Task>`, which means it is a functional interface that tests a task object against a condition.
+
+Additionally, it implements the following operations:
+
+* `TaskUntilDeadlinePredicate#test()` — Returns true if the task object contains all the keywords given by the user.
+
+Given below is an example usage scenario and how the reminder mechanism behaves at each step.
+
+Step 1. The user launches the application, which already has some tasks with different deadlines listed.
+
+Step 2. The user executes `remindT 12-09-2022` command to list tasks with deadlines up to and including the specified date. The `addT` command calls `Model#updateFilteredTaskList(Predicate<Task> predicate)`, which filters the task list by the given predicate.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The remindT command will fail its execution if its format is incorrect, and the task list will not be updated. An error message will be displayed informing the user.
+
+</div>
+
+#### Design considerations:
+
+**Aspect: How remind task executes:**
+
+* **Alternative 1 (current choice):** Implement a TaskUntilDeadlinePredicate class to handle creation of predicates for the ReminderCommand class.
+    * Pros: Reduces dependency on other classes.
+    * Pros: Abides by the Single Responsibility Principle.
+    * Cons: The code becomes longer as a new class must be implemented.
+
+* **Alternative 2:** Modify the PersonContainsKeywordsPredicate class to handle deadlines also.
+    * Pros: Does not require implementation of a new class.
+    * Cons: The FilterTaskCommand and ReminderCommand classes become dependent on the modified PersonContainsKeywordsPredicate class. This increases coupling.
 
 --------------------------------------------------------------------------------------------------------------------
 
