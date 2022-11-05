@@ -116,11 +116,27 @@ public class Task {
         }
     }
 
-    public String getDeadlineStorage() {
+    public String getDeadlineInputAsString() {
         if (deadline == null) {
             return "";
         } else {
             return deadline.format(DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm"));
+        }
+    }
+
+    public String getDateInputAsString() {
+        if (deadline == null) {
+            return "";
+        } else {
+            return deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+    }
+
+    public String getTimeInputAsString() {
+        if (deadline == null) {
+            return "";
+        } else {
+            return deadline.format(DateTimeFormatter.ofPattern("HH:mm"));
         }
     }
 
