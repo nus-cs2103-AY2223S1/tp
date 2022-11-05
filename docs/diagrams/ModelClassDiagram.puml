@@ -12,14 +12,21 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
-
+Class DistinctTaskList
+Class DistinctExamList
+Class DistinctModuleList
+Class Task
+Class Module
+Class Exam
+Class ModuleCode
+Class ModuleCredit
+Class ModuleName
+Class TaskDescription
+Class TaskStatus
+Class PriorityTag
+Class DeadlineTag
+Class ExamDate
+Class ExamDescription
 }
 
 Class HiddenOutside #FFFFFF
@@ -34,17 +41,51 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" DistinctTaskList
+AddressBook *--> "1" DistinctModuleList
+AddressBook *--> "1" DistinctExamList
+DistinctTaskList --> "~* all" Task
+DistinctModuleList -> "~* all" Module
+DistinctExamList ---> "~* all" Exam
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ModelManager -->"~* filtered" Task
+ModelManager ---------->"~* filtered" Exam
+ModelManager ------>"~* filtered" Module
 
-ModelManager -->"~* filtered" Person
+Module *--> "1" ModuleCode
+Module *--> "0..1" ModuleName
+Module *--> "0..1" ModuleCredit
+
+Task --> "1" Module
+Task *---> "1" TaskDescription
+Task *-----> "1" TaskStatus
+Task --> "0..1" Exam
+Task *--> "0..1" PriorityTag
+Task *--> "0..1" DeadlineTag
+
+Exam ----> "1" Module
+Exam *--> "1" ExamDate
+Exam --> "1" ExamDescription
+
+DistinctTaskList -[hidden]up- AddressBook
+DistinctTaskList -[hidden]up- ModelManager
+DistinctModuleList -[hidden]up- AddressBook
+DistinctModuleList -[hidden]up- ModelManager
+DistinctExamList -[hidden]up- AddressBook
+DistinctExamList -[hidden]up- ModelManager
+
+DistinctTaskList -[hidden]left- DistinctModuleList
+DistinctModuleList -[hidden]left- DistinctExamList
+
+Task -[hidden]up- DistinctTaskList
+Module -[hidden]up- DistinctModuleList
+Exam -[hidden]up- DistinctExamList
+
+
+Module -[hidden]right- Task
+
+DistinctExamList -[hidden]left- DistinctTaskList
+DistinctTaskList -[hidden]left- DistinctModuleList
+
+
 @enduml
