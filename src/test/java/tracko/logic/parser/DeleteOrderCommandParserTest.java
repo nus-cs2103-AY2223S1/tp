@@ -1,5 +1,6 @@
 package tracko.logic.parser;
 
+
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -18,8 +19,6 @@ import tracko.logic.parser.order.DeleteOrderCommandParser;
  * therefore should be covered by the ParserUtilTest.
  */
 public class DeleteOrderCommandParserTest {
-    // TODO: Update test cases according to new implementations
-
     private DeleteOrderCommandParser parser = new DeleteOrderCommandParser();
 
     @Test

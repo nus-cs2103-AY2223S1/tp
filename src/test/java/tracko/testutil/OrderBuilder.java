@@ -145,15 +145,16 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code isPaid} status of the {@code Order} that we are building.
+     * Sets the delivery status of the {@code Order} that we are building.
      */
+
     public OrderBuilder withPaidStatus(Boolean status) {
         this.isPaid = status;
         return this;
     }
 
     /**
-     * Sets the {@code isDelivered} status of the {@code Order} that we are building.
+     * Sets the payment status of the {@code Order} that we are building.
      */
     public OrderBuilder withDeliveredStatus(Boolean status) {
         this.isDelivered = status;
