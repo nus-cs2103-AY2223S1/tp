@@ -1,7 +1,3 @@
----
-layout: page title: Dilys' Project Portfolio Page
----
-
 ### Project: SETA
 
 SETA is a desktop application for CS2103T Teaching Assistants to track their students’ and tutorials’ details, and
