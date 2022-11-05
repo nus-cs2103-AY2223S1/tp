@@ -585,7 +585,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | 12  | Teacher using Class-ify regularly               | Undo previous commands                                       | Revert any accidental changes I made                             | **       |
 | 13  | Teacher with many classes                       | Organise my students into their classes                      | Keep my records organised and tidy                               | ***      |
 | 14  | Teacher with many classes                       | View a list of all my students in a class                    | Have an overview of all my students in the class                 | ***      |
-| 15  | Teacher with many classes                       | Hide parentâ€™s information from view                        | Have an uncluttered view of my students                          | ***      |
+| 15  | Teacher with many classes                       | Hide parental information from view                          | Have an uncluttered view of my students                          | ***      |
 | 16  | Teacher using Class-ify for the first time      | Have some sample records of students                         | See how Class-ify will look like when it is in use               | **       |
 | 17  | Teacher using Class-ify for the first time      | Delete all sample records of students                        | Start adding in my own students                                  | ***      |
 | 18  | Teacher using Class-ify for the first time      | See a summary of operations I can perform on Class-ify       | Have an idea of what I can do                                    | **       |

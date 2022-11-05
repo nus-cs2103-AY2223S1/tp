@@ -42,7 +42,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format("Invalid data or " + Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     EditCommand.MESSAGE_USAGE), pe);
         }
 
