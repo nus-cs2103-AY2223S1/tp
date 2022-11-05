@@ -26,6 +26,7 @@ import seedu.address.logic.parser.EmailConverter;
 import seedu.address.logic.parser.IndexConverter;
 import seedu.address.logic.parser.NameConverter;
 import seedu.address.logic.parser.PhoneConverter;
+import seedu.address.logic.parser.TagConverter;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTruthTable;
@@ -37,6 +38,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
@@ -57,7 +59,8 @@ public class EditPersonCommandTest {
             .registerConverter(Index.class, new IndexConverter())
             .registerConverter(Name.class, new NameConverter())
             .registerConverter(Email.class, new EmailConverter())
-            .registerConverter(Phone.class, new PhoneConverter());
+            .registerConverter(Phone.class, new PhoneConverter())
+            .registerConverter(Tag.class, new TagConverter());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -286,7 +289,7 @@ public class EditPersonCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends EditPersonCommandTest.ModelStub {
+    private static class ModelStubWithPerson extends EditPersonCommandTest.ModelStub {
         private final Person person;
 
         ModelStubWithPerson(Person person) {
@@ -304,7 +307,7 @@ public class EditPersonCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends EditPersonCommandTest.ModelStub {
+    private static class ModelStubAcceptingPersonAdded extends EditPersonCommandTest.ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override

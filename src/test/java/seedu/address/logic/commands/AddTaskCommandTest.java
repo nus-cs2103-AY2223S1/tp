@@ -7,7 +7,9 @@ import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 import org.junit.jupiter.api.Test;
 
 import picocli.CommandLine;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.IndexConverter;
 import seedu.address.logic.parser.TaskNameConverter;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -25,7 +27,8 @@ class AddTaskCommandTest {
     private Model expectedModel = model;
     private final Command commandToBeTested = new AddTaskCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
-            .registerConverter(TaskName.class, new TaskNameConverter());
+            .registerConverter(TaskName.class, new TaskNameConverter())
+            .registerConverter(Index.class, new IndexConverter());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
