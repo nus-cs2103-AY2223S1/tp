@@ -45,4 +45,26 @@ public class SuggestCommandParserTest {
                 + PREFIX_KEYWORD + "12345 " + PREFIX_KEYWORD + "victoria", expected);
     }
 
+    @Test
+    public void parse_missingPrefixes_throwsParseException() {
+        String message = "test";
+        assertParseFailure(parser, message,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SuggestCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_missingPrefixForDayTimeInWeek_throwsParseException() {
+        // no leading and trailing whitespaces
+        String message = " mon@2359 " + PREFIX_KEYWORD + " test";
+        assertParseFailure(parser, message,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SuggestCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_missingPrefixForKeywords_throwsParseException() {
+        String message = " test_keyword " + PREFIX_DAY_TIME_OF_WEEK + " mon@2359";
+        assertParseFailure(parser, message,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SuggestCommand.MESSAGE_USAGE));
+    }
+
 }
