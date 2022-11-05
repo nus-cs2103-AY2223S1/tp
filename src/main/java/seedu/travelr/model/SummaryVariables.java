@@ -62,7 +62,20 @@ public class SummaryVariables {
             uniqueLocations.add(trip.getLocation().locationName.toUpperCase());
         }
 
-        this.totalUniqueLocations.set(uniqueLocations.size());
+        this.set(uniqueLocations.size(),
+                totalTripsCompleted,
+                totalEventsCompleted,
+                tripProgressPercent,
+                eventProgressPercent);
+    }
+
+    public void set(int totalUniqueLocations,
+                    int totalTripsCompleted,
+                    int totalEventsCompleted,
+                    double tripProgressPercent,
+                    double eventProgressPercent) {
+
+        this.totalUniqueLocations.set(totalUniqueLocations);
         this.totalTripsCompleted.set(String.format("%d", totalTripsCompleted));
         this.totalEventsCompleted.set(String.format("%d", totalEventsCompleted));
         this.tripsProgress.set(String.format("%.1f%s of trips completed",
