@@ -438,7 +438,7 @@ Removal of modules does not check the module lists to see if the module is prese
 ### Checking modules left
 
 This feature compares the user's current and previous modules list with a fixed list of CS Core Requirements or focus area
-modules. The program then finds the difference between the user's lists and the fixed list and outputs it onto the ResultDisplay. 
+modules. The program then finds the difference between the user's lists and the fixed list and outputs it onto the ResultDisplay.
 
 #### Implementation flow
 
@@ -796,27 +796,33 @@ We help NUS CS Students to have a collection of fellow NUS CS Students to find p
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                   | I want to …​                                     | So that I can…​                                                                         |
-|----------|-------------------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------|
-| `* * *`  | new user                                  | see usage instructions                           | refer to instructions when I forget how to use the App                                  |
-| `* * *`  | user                                      | save my own profile                              | keep track of my own information                                                        |
-| `* * *`  | user                                      | edit my own profile                              | update my own information when there are changes                                        |
-| `* * *`  | user                                      | delete my own profile                            | remove my information in case of any data breach                                        |
-| `* * *`  | user                                      | save a new contact                               | contact them if i wish to collaborate with them                                         |
-| `* * *`  | user                                      | edit my friends' contact information             | change and update the contacts in my friend's list to make sure it is always up to date |
-| `* * *`  | user                                      | delete a person                                  | remove entries that I no longer need                                                    |
-| `* * *`  | user                                      | list out all my friend's contact/ info           | look through all my contacts at once                                                    |
-| `* * *`  | user                                      | keep track of the modules I have taken           | plan my modules easily                                                                  |
-| `* * *`  | user                                      | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                            |
-| `* * *`  | user                                      | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                      |
-| `* * *`  | user                                      | see what modules my friends are planning to take | plan my modules together with them                                                      |
-| `* *`    | user                                      | view my timetable                                | be clear on what classes are coming up                                                  |
-| `* *`    | user                                      | check what core modules I have left to clear     | plan my following semesters better to accommodate these modules                         |
-| `*`      | user                                      | view my own exam schedule                        | be clear on which exams are coming up  <br/>                                            |
+| Priority | As a …​                          | I want to …​                                     | So that I can…​                                                                         |
+|----------|----------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *`  | new user                         | see usage instructions                           | refer to instructions when I forget how to use the App                                  |
+| `* * *`  | user                             | save my own profile with my details and modules  | keep track of my own information                                                        |
+| `* * *`  | user                             | edit my own profile's details or modules         | update my own information when there are changes                                        |
+| `* * *`  | user                             | delete my own profile                            | remove my information in case of any data breach                                        |
+| `* * *`  | user                             | save a new contact with details and modules      | contact them if i wish to collaborate with them                                         |
+| `* * *`  | user                             | edit my friends' details or modules              | change and update the contacts in my friend's list to make sure it is always up to date |
+| `* * *`  | user                             | delete a person                                  | remove entries that I no longer need                                                    |
+| `* * *`  | user                             | tag my contacts                                  | keep track of groups we have in common                                                  |
+| `* * *`  | user                             | list out all my friend's information             | look through all my contacts at once                                                    |
+| `* * *`  | user currently studying          | keep track of my modules                         | keep track and plan my academic progress                                                |                                           |
+| `* * *`  | user with group projects         | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                            |
+| `* * *`  | user with academic queries       | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                      |
+| `* * *`  | user                             | see what modules my friends are planning to take | plan my modules together with them                                                      |
+| `* *`    | user                             | add lessons to my timetable                      | keep track of my schedule easily                                                        |
+| `* *`    | user                             | delete lessons from my timetable                 | keep my schedule accurate                                                               |
+| `* *`    | user                             | view my timetable                                | be clear on what classes are coming up                                                  |
+| `* *`    | user                             | add lessons to my contacts' timetable            | keep track of my friend's schedule easily                                               |
+| `* *`    | user                             | delete lessons from my contacts' timetable       | keep my friend's schedule accurate                                                      |
+| `* *`    | user with project meetings       | view my contacts' timetable                      | plan for project meetings easily by knowing their free time                             |
+| `* *`    | user with many modules           | check what core modules I have left to clear     | plan my following semesters better to accommodate these modules                         |
+| `* *`    | user                             | filter by contacts                               | view only those relevant to what I am looking for                                       |
+| `*`      | user                             | view my own exam schedule                        | be clear on which exams are coming up                                                   |
+| `*`      | user with projects involving Git | copy my contact's GitHub url                     | add them into organisation repos during projects                                        |
 
 
-
-*{More to be added}*
 
 ### Use cases
 
@@ -1088,9 +1094,118 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
   Use case ends.
 
+
 **System: ConnectNUS**
 
-**Use case: UC13 - Show User's Timetable**
+**Use case: UC13 - Add lesson to user**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to add a lesson to the user profile.
+2. ConnectNUS adds a new lesson with the data to the user profile.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+  * 1a1. ConnectNUS requests for the correct format.
+  * 1a2. User enters a new command in the correct format.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+    Use case resumes at step 2.
+
+* 1b. ConnectNUS detects an existing lesson at the same time or overlapping time.
+  * 1b1. ConnectNUS informs user of overlapping lesson.
+  * 1b2. User inputs a new lesson with valid timing.
+    Steps 1b1 and 1b2 are repeated until the lesson entered does not have an invalid timing.
+    Use case resumes at step 2.
+
+
+**System: ConnectNUS**
+
+**Use case: UC14 - Add lesson to contact**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to add a lesson to contact at an index.
+2. ConnectNUS adds a new lesson with the data to the contact at the index specified.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format or invalid index.
+  * 1a1. ConnectNUS requests for the correct format or valid index.
+  * 1a2. User enters a new command in the correct format and index.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+    Use case resumes at step 2.
+
+* 1b. ConnectNUS detects an existing lesson at the same time or overlapping time.
+  * 1b1. ConnectNUS informs user of overlapping lesson.
+  * 1b2. User inputs a new lesson with valid timing.
+    Steps 1b1 and 1b2 are repeated until the lesson entered does not have an invalid timing.
+    Use case resumes at step 2.
+
+
+**System: ConnectNUS**
+
+**Use case: UC15 - Remove lesson from user**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to remove a lesson from the user profile.
+2. ConnectNUS removes the lesson with the data specified from the user profile.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+  * 1a1. ConnectNUS requests for the correct format.
+  * 1a2. User enters a new command in the correct format.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+    Use case resumes at step 2.
+
+* 1b. ConnectNUS does not find a lesson with the data specified.
+  * 1b1. ConnectNUS informs user non-existing lesson.
+  * 1b2. User inputs new command with fields of an existing lesson to be removed.
+    Steps 1b1 and 1b2 are repeated until the lesson entered exists.
+    Use case resumes at step 2.
+
+
+**System: ConnectNUS**
+
+**Use case: UC16 - Remove lesson from contact**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to remove a lesson from a contact at an index.
+2. ConnectNUS removes the lesson with the data specified from contact at the index specified.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format or invalid index.
+  * 1a1. ConnectNUS requests for the correct format or valid index.
+  * 1a2. User enters a new command in the correct format and index.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+    Use case resumes at step 2.
+
+* 1b. ConnectNUS does not find a lesson with the data specified.
+  * 1b1. ConnectNUS informs user non-existing lesson.
+  * 1b2. User inputs new command with fields of an existing lesson to be removed.
+    Steps 1b1 and 1b2 are repeated until the lesson entered exists.
+    Use case resumes at step 2.
+
+
+**System: ConnectNUS**
+
+**Use case: UC17 - Show User's Timetable**
 
 **Actor: CS Students**
 
@@ -1108,13 +1223,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1a1-1a2 are repeated until the data entered are correct.
       Use case resumes at step 2.
 
-* 1b. No user, or no current modules for user, or no lessons for current modules.
+* 1b. No user, or no lessons for user.
     * 1b1. ConnectNUS informs user of missing data.
     * Use case ends.
 
 **System: ConnectNUS**
 
-**Use case: UC14 - Show contact's Timetable**
+**Use case: UC18 - Show contact's Timetable**
 
 **Actor: CS Students**
 
@@ -1132,13 +1247,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1a1-1a2 are repeated until the data entered are correct.
       Use case resumes at step 2.
 
-* 1b. No current modules for contact, or no lessons for current modules.
+* 1b. No lessons added to contact.
     * 1b1. ConnectNUS informs user of missing data.
     * Use case ends.
 
 **System: ConnectNUS**
 
-**Use case: UC15 - Check core modules left that user must take**
+**Use case: UC19 - Check core modules left that user must take**
 
 **Actor: CS Students**
 
@@ -1161,8 +1276,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Use case ends.
 
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1176,7 +1289,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. Should be able to package into a single JAR file.
 10. JAR file size should not exceed 100MB and Documents should not exceed 15 MB per file.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -1201,16 +1313,20 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Exit
+
+   1. input `exit` on running ConnectNUS
+
+   Expected: app closes and data is saved in `data/ConnectNUS.json`
 
 ### Adding a user
 
@@ -1241,7 +1357,7 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect edit commands to try: `edit user curr/CS2100`, `edit user x/John Doe`, `...` <br>
       Expected: Similar to previous.
-   
+
 2. Editing a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
@@ -1316,10 +1432,13 @@ testers are expected to do more *exploratory* testing.
 1. Checking modules left when there is an existing user profile
 
    1. Prerequisites: There is currently a user profile stored in the application.
+
    2. Test case: `modsleft 1` <br>
       Expected: CS core modules left to clear by the user is listed out.
+
    3. Test case: `modsleft 0` <br>
       Expected: Error details shown in the status message. Status bar remains the same.
+
    4. Other incorrect modules left commands to try: `modsleft hi`, `module x`, `...` (where x is larger than 11)<br>
       Expected: Similar to previous.
 
@@ -1327,50 +1446,85 @@ testers are expected to do more *exploratory* testing.
 ### Adding a lesson, Showing the timetable
 
 1. Add a lesson to user
+
    1. Prerequisites: User profile has been created. Multiple persons in the list.
+
    2. Test case: `timetable user` <br>
       Expected: Status message shows "No lessons added to user!".
+
    3. Test case: `lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00` then run `timetable user` <br>
       Expected: Status message shows that lesson is added to user. Timetable window opens and shows that user has a lesson "CS2103T Tutorial 12:00 to 13:00" on Monday.
+
+
 2. Add a lesson to contact
-   4. Test case: `timetable 1` <br>
+
+   1. Test case: `timetable 1` <br>
       Expected: Status message shows "No lessons added to contact!".
-   5. Test case: `lesson 1 l/lab m/cS2100 d/4 start/16:00 end/17:00` then run `timetable 1` <br>
+
+   2. Test case: `lesson 1 l/lab m/cS2100 d/4 start/16:00 end/17:00` then run `timetable 1` <br>
       Expected: Status message shows that lesson is added to contact. Timetable window opens and shows that contact has a lesson "CS2100 Lab 16:00 to 17:00" on Tuesday.
-   6. Test case: `lesson 0`<br>
+
+   3. Test case: `lesson 0`<br>
       Expected: No lesson is added. Error details shown in the status message.
-   7. Other incorrect delete commands to try: `lesson`, `lesson x`, `...` (where x is larger than the list size)<br>
+
+   4. Other incorrect delete commands to try: `lesson`, `lesson x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   8. Test case: `timetable 0`<br>
+
+   5. Test case: `timetable 0`<br>
       Expected: Timetable window does not open.
-   9. Other incorrect delete commands to try: `timetable 0`, `timetable x`, `...` (where x is larger than the list size)<br>
+
+   6. Other incorrect delete commands to try: `timetable 0`, `timetable x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
 
 ### Removing a lesson, Showing the timetable
 
 1. Remove a lesson from user
+
    1. Prerequisites: User profile has been created. Multiple persons in the list. User and contacts have existing lesson added.
+
    2. Test case: `timetable user` <br>
       Expected: Timetable window opens and shows that user has a lesson "CS2103T Tutorial 12:00 to 13:00" on Monday.
+
    3. Test case: `remove user l/tut m/CS2103T d/1 start/12:00 end/13:00` then run `timetable user` <br>
       Expected: Status message shows that lesson is removed from user. Status message shows "No lessons added to user!"
+
 2. Remove a lesson from contact
+
    1. Test case: `timetable 1` <br>
       Expected: Timetable window opens and shows that contact has a lesson "CS2100 Lab 16:00 to 17:00" on Tuesday.
+
    2. Test case: `remove 1 l/lab m/cS2100 d/4 start/16:00 end/17:00` then run `timetable 1` <br>
       Expected: Status message shows that lesson is removed from contact. Status message shows "No lessons added to contact!"
+
    3. Test case: `remove 0`<br>
       Expected: No lesson is added. Error details shown in the status message.
+
    4. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-
-{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: `data` folder with `ConnectNUS.json` file has been created.
 
-1. _{ more test cases …​ }_
+   2. Add invalid data into any contact or user e.g.
+      * Email invalid such as missing @example.com
+      * " " as address
+      * Invalid module name (non-alphanumeric e.g. `@@@`) in `currModules`, `prevModules` or `planModules`.
+      * Non-numeric inputs or numeric inputs < 3 digits for phone
+      * Invalid data for `lessons`
+        * `type` not of `tut`, `lec`, `lab` or `rec`
+        * Invalid module name
+        * `day` not an integer between 1 and 7
+        * `startTime` and `endTime` not of HH:mmm format
+
+      Expected: ConnectNUS starts on blank window
+
+2. Saving data accurately
+
+   1. Run ConnectNUS normally and try `add`, `user`, `module`, `lesson` or `remove` command.
+
+   Expected: `data/ConnectNUS.json` updates and contains correct data.

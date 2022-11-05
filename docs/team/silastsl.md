@@ -30,7 +30,7 @@ Given below are my contributions to the project.
     * Current: Find group mates or people to work with.
     * Previous: Find people to consult or obtain resources like cheatsheets.
     * Planned: Find people to plan tutorials with.
-    
+
 
 * **Documentation**:
   * User Guide:
