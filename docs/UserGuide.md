@@ -15,8 +15,10 @@ Interested to use SoConnect? Then you are in the right place! In this user guide
 
 ## Table of Contents
 
-* Table of Contents
-{:toc}
+<div class="toc-remove-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 

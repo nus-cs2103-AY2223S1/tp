@@ -261,3 +261,12 @@
     width: calc(50% - (#{$spacing-unit} / 2));
   }
 }
+
+
+
+/**
+ * Remove bullet points from Table of Contents
+ */
+.toc-remove-bullet-points ul, .toc-remove-bullet-points ol {
+  list-style-type: none;
+}
