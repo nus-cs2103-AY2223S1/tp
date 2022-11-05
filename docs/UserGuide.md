@@ -160,7 +160,7 @@ incomes, you need to tell PennyWise the following:
 
 To familiarise yourself with our user interface, please refer to the following diagram and table to get comfortable with the application.
 
-When you first open up the application, this is the *default view*:
+When you first open up the application, this is the *default view*, which shows the list of expenditures (or incomes):
 
 ![UserInterfaceExplanation](images/ug/UserInterfaceExplanation.png)
 
