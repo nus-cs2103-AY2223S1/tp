@@ -331,7 +331,7 @@ This example is a follow-up of [`removing a Tag`](#removing-a-tag-from-a-contact
 
 ### Viewing tags `[Coming soon in v1.5]`
 
-Now that you made it here, you have successfully mastered the tag features! Refer to the [Commannd summary](#command-summary) for a quick reference to all tag commands. Let us move on to the [Customisation Features](#customisation-features).
+Congratulations on completing this section on Tag Management Features, you have successfully mastered the tag features! Refer to the [Command summary](#command-summary) for a quick reference to all tag commands. Let us move on to the [Customisation Features](#customisation-features).
 
 ## Customisation Features
 
