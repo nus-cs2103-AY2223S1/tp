@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -13,10 +15,22 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.ModuleCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.module.CurrentModule;
 import seedu.address.model.module.Lesson;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.user.User;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -171,8 +185,51 @@ public class ModelManager implements Model {
 
     @Override
     public void nextSem() throws CommandException {
-        getFilteredPersonList().forEach(person -> person.updatePrevMods());
+        List<Person> currentPeopleList = getFilteredPersonList();
+
+        for (int i = 0; i < currentPeopleList.size(); i++) {
+            Person personToEdit = currentPeopleList.get(i);
+            ModuleCommand.EditModuleDescriptor editModuleDescriptor = new ModuleCommand.EditModuleDescriptor();
+            editModuleDescriptor.setCurrModules(null);
+            editModuleDescriptor.setPlanModules(personToEdit.getPlanModules());
+            Set<PreviousModule> updatedPreviousModules = new HashSet<>();
+            for (int n = 0; n < personToEdit.getCurrModules().size(); n++) {
+                Object currCurrentModule = personToEdit.getCurrModules().toArray()[n];
+                if (currCurrentModule instanceof CurrentModule) {
+                    CurrentModule currentModule = (CurrentModule) currCurrentModule;
+                    updatedPreviousModules.add(currentModule.toPrevModule());
+                }
+            }
+            updatedPreviousModules.addAll(personToEdit.getPrevModules());
+            editModuleDescriptor.setPrevModules(updatedPreviousModules);
+            Person editedPerson = createEditedPerson(personToEdit, editModuleDescriptor);
+            setPerson(personToEdit, editedPerson);
+        }
+
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         getUser().updatePrevMods();
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editModuleDescriptor}.
+     */
+    private static Person createEditedPerson(Person personToEdit,
+                                             ModuleCommand.EditModuleDescriptor editModuleDescriptor) {
+        assert personToEdit != null;
+
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Github github = personToEdit.getGithub();
+        Set<Tag> tags = personToEdit.getTags();
+        Set<CurrentModule> setCurrentModules = editModuleDescriptor.getCurrModules();
+        Set<PreviousModule> setPreviousModules = editModuleDescriptor.getPrevModules();
+        Set<PlannedModule> setPlannedModules = editModuleDescriptor.getPlanModules();
+
+        return new Person(name, phone, email, address, github, tags, setCurrentModules, setPreviousModules,
+                setPlannedModules);
     }
 
     @Override

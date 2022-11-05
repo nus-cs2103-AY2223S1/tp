@@ -250,7 +250,7 @@ public class ModulesLeftCommand extends Command {
         Set<Module> modulesLeft = modulesChecker;
         modulesLeft.removeAll(userPrevMods);
         modulesLeft.removeAll(userCurrMods);
-
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleSetToString(modulesLeft)));
     }
 

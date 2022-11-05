@@ -33,7 +33,7 @@ public class VersionedAddressBook extends AddressBook {
     }
 
     /**
-     * Undos to the previous AddressBook state and returns the previous AddressBook state.
+     * Reverts to the previous AddressBook state and returns the previous AddressBook state.
      */
     public void undo() {
         this.currentStatePointer--;
@@ -41,7 +41,7 @@ public class VersionedAddressBook extends AddressBook {
     }
 
     /**
-     * Redos to the forward AddressBook state and returns the forward AddressBook state.
+     * Reverts to the forward AddressBook state and returns the forward AddressBook state.
      */
     public void redo() {
         this.currentStatePointer++;
