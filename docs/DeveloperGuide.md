@@ -370,13 +370,18 @@ One possible implementation was to store a reference to the `ResidentTableView` 
 UI directly whenever a command modified the field lists in `ModelManager`. However, this would increase the coupling 
 between the UI and the model components, which would make integration and reuse of the module significantly harder. 
 
-Our solution for this issue was to use getters to obtain unmodifiable `ObservableList<String>` instances of the 
-corresponding `ObservableList<String>` objects in `ModelManager`, before passing them into the constructor of 
-`ResidentTableView`. Within `ResidentTableView`, we attached listeners to each of these unmodifiable lists,
-updating the column visibilities whenever the `ObservableList<String>` objects in `ModelManager` changed.
+Our solution for this was to use getters to obtain the unmodifiable `ObservableList<String>` instances of the 
+fields to show and hide from `ModelManager`, before passing them into the constructor of `ResidentTableView`. 
+Within `ResidentTableView`, we attached listeners to each of these unmodifiable lists, updating the column visibilities 
+whenever the base `ObservableList<String>` objects in `ModelManager` changed.
 
 This allowed us to apply the Observer pattern in our code, thereby minimising the coupling between `ResidentTableView`
 and `ModelManager`.
+
+One interesting point to note is that there is a need to hold a reference to these unmodifiable `ObservableList<String>`
+instances in `ModelManager`. This is because the `unmodifiableObservableList` method of `FXCollections` creates a wrapper 
+around and adds a *weak listener* to the original, backing `ObservableList`. If no reference to this wrapped 
+(unmodifiable) list is held, it would end up being garbage collected. More information can be found [here](https://stackoverflow.com/questions/44341400/whats-the-purpose-of-fxcollections-unmodifiableobservablelist).
 
 <br>
 
