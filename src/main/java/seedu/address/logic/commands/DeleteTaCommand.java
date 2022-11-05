@@ -46,7 +46,7 @@ public class DeleteTaCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, taToDelete),
                 false, false, false,
-                true, false, false, false, false);
+                true, false, false, false, false, false);
     }
 
     @Override

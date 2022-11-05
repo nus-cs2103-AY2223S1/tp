@@ -66,7 +66,7 @@ public class ViewScheduleCommand extends Command {
         return new CommandResult(String.format(
                 String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
                 false, false, false, false,
-                false, true, false, false);
+                false, false, true, false, false);
     }
 
     @Override

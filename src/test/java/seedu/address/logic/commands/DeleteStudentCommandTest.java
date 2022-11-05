@@ -34,7 +34,7 @@ public class DeleteStudentCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete),
                 false, false, false,
-                true, false, false, false, false);
+                true, false, false, false, false, false);
 
         ModelManager expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -60,7 +60,7 @@ public class DeleteStudentCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete),
                 false, false, false,
-                true, false, false, false, false);;
+                true, false, false, false, false, false);;
 
         Model expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);

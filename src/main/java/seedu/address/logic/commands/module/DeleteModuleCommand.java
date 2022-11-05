@@ -74,7 +74,7 @@ public class DeleteModuleCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete),
                 false, false, true,
-                false, false, false, false, false);
+                false, false, false, false, false, false);
     }
 
     @Override
