@@ -8,15 +8,18 @@ StudMap *-down-> "1" UniqueStudentList
 StudMap *-down-> "1" UniqueTagList
 StudMap *-down-> "1" UniqueAttendanceList
 StudMap *-down-> "1" UniqueAssignmentList
+StudMap *-down-> "1" UniqueParticipationList
 
 UniqueStudentList -down-> Student
 UniqueTagList *-down-> "*" Tag
 UniqueAttendanceList *-down-> "*" Attendance
 UniqueAssignmentList *-down-> "*" Assignment
+UniqueParticipationList *-down-> "*" Participation
 
 Student -up-> "*" Tag
 Student -up-> "*" Attendance
 Student -up-> "*" Assignment
+Student -up-> "*" Participation
 
 Student *--> "1" Name
 Student *--> "1" StudentID

@@ -106,8 +106,7 @@ The `UI` component,
 
 ### Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -116,7 +115,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `StudMapParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g. `AddCommand`) which is
    executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -136,24 +135,23 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 
 * When called upon to parse a user command, the `StudMapParser` class creates an `XYZCommandParser` (`XYZ` is a
-  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `StudMapParser` returns back as
+  placeholder for the specific command name e.g. `AddCommandParser`) which uses the other classes shown above to parse
+  the user command and create a `XYZCommand` object (e.g. `AddCommand`) which the `StudMapParser` returns back as
   a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
+* All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
-**
-API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
 
 * stores the student map data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
-* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which
+* stores the currently 'selected' `Student` objects (e.g. results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
@@ -163,14 +161,13 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `StudMap`, which `Student` references. This allows `StudMap` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="600" />
 
 </div>
 
 ### Storage component
 
-**
-API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -210,6 +207,8 @@ The 'FilterCommand' supports one operation:
   operation to be executed. This will update the filtered list in the dashboard shown to the user based on the tag set
   by the user
 
+#### General flow for FilterCommand
+
 The flow for 'FilterCommand#execute' is as such:
 
 Step 1: The tag to be used for filtering is retrieved from the user input
@@ -222,7 +221,7 @@ tags
 Step 4: The result list of students will then be shown back to the user via the dashboard
 
 ## **EditStudent features**
-This is a set of features with similar implementations that allows user to modify the `Student` object. Currently, the featuresEditStudent features include:
+This is a set of features with similar implementations that allows user to modify the `Student` object. Currently, the features supported are:
 1. `edit` :  `EditCommand`
 <br>Edit basic attributes of a student (E.g. Name, Phone, etc)
 2. `tag`:`TagCommand` and `untag` : `UntagCommand`
@@ -231,10 +230,12 @@ This is a set of features with similar implementations that allows user to modif
 <br> Add, modify and remove attendance status of a student
 4. `grade` : `GradeCommand` and `ungrade` : `UngradeCommand`
 <br> Add, modify and remove assignment grading status of a student.
+5. `participate` : `ParticipateCommand` and `unparticipate` : `UnparticipateCommand`
+   <br> Add, modify and remove participation records of a student.
 
 Each of these features are implemented through the corresponding commands which extends the generic `EditStudentCommand` abstract class.
 
-The implementation of the `execute` method is contained in the parent class `EditStudentCommand#execute`. The `execute` method which the respective concrete implementations of `EditStudentCommand` will in turn call the `editStudent` method of the corresponding `StudentEditor` (e.g. `MarkCommand.MarkStudentEditor#editStudent`). A brief summary of the class structure is illustrated in the class diagram below, using `MarkCommand` as the example. Since all concrete implementations of the `EditStudentCommand` share the same class structure, the example of `MarkCommand` will also be used to explain the implementation details.
+The implementation of the `execute` method is contained in the parent class `EditStudentCommand#execute()`. The `execute` method which the respective concrete implementations of `EditStudentCommand` will in turn call the `editStudent` method of the corresponding `StudentEditor` (e.g. `MarkCommand.MarkStudentEditor#editStudent()`). A brief summary of the class structure is illustrated in the class diagram below, using `MarkCommand` as the example. Since all concrete implementations of the `EditStudentCommand` share the same class structure, the example of `MarkCommand` will also be used to explain the implementation details.
 
 ![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png)
 
@@ -243,29 +244,33 @@ The instance of `IndexListGenerator` can be either
 * `AllIndexGenerator`, which corresponds to all indexes of the filtered list (meaning all listed students are modified)
 * `SingleIndexGenerator`, which corresponds to a single index (meaning one selected student is modified)
 
-`StudentEditor` is an abstract class which contains all the logic for modifying the student. Concrete implementations of `EditStudentCommand` such as the `MarkCommand` also contains an implementation its corresponding `StudentEditor` (E.g. `MarkCommandStudentEditor` in the case of `MarkCommand`).
+`StudentEditor` is an abstract class which contains all the logic for modifying the student. Concrete implementations of `EditStudentCommand` such as the `MarkCommand` also contains an implementation of its corresponding `StudentEditor` (E.g. `MarkCommandStudentEditor` in the case of `MarkCommand`).
 
-The corresponding `EditCommandParser` instantaites both its `IndexListGenerator` and the `StudentEditor` based on inputs and passed them to the constructor of the respective command (`MarkCommand` in this case). The example class structure using `MarkCommandParser` is illustrated in the class diagram
+The corresponding `EditCommandParser` instantiates both its `IndexListGenerator` and the `StudentEditor` based on inputs and passed them to the constructor of the respective command (`MarkCommand` in this case). The example class structure using `MarkCommandParser` is illustrated in the class diagram
 below.
 
-![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)]
+![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)
 
 
-#### **General flow for update using EditStudentCommand**
+#### General flow for update using EditStudentCommand
 
-Given below is the typical flow for `EditStudentCommand` such as the  `MarkCommand#execute`.
+Given below is the typical flow for `EditStudentCommand` such as the  `MarkCommand#execute()`.
 
 Step 1. The command loops through the list of indexes to be modified, as indicated in the `IndexListGenerator`.
 
-Step 3. The command replaces the old student with the newly edited student in the `Model` of the old student .
+Step 2. Here we have `editedStudent` replacing the old student in the `Model` of through `Model#setStudent()`.
 
 Below is a more detailed sequence diagram for the execution of the command using the same example of `MarkCommand`.
 ![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
 
 #### Other notes or implementation
 `tag`/`untag` : This command adds/modifies/removes tags that are represented by the `Tag` class and does not include any status.
+
 `mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by the `Attendance` class and include 2 status (absent/present).
-`mark` /`unmark` : This command adds/modifies/removes a student's assignment grading record that are represented by the `Assigment` class and include 3 status (new/received, marked).
+
+`grade` /`ungrade` : This command adds/modifies/removes a student's assignment grading record that are represented by the `Assigment` class and include 3 status (new/received, marked).
+
+`participate` /`unparticipate` : This command adds/modifies/removes a student's participation record that are represented by the `Participation` class and include 2 status (yes/no) for participated and not participated respectively.
 
 ### Design considerations:
 
@@ -295,11 +300,17 @@ The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortCommandSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### General flow for FilterCommand
+
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
 Step 1. The user executes `sort asc a/name` to sort the students in the student map by their names in ascending order.
 
-Step 2. `SortCommandParser` handles the parsing of user input to ensure a valid `attributeType` and `sortingOrder` is supplied. The checks are done by `Attribute#isValidAttributeType()` and `Order#isValidOrderName()` respectively. For valid attributes and order, the `Comparator` and `Order` will be supplied by `Attribute#getAttributeComparator()` and `ParserUtil#ParseOrder()` to create a `SortCommand`.
+Step 2. `SortCommandParser` handles the parsing of user input to ensure a valid `attributeType` and `sortingOrder` is supplied. The checks are done by `Attribute#isValidAttributeType()` and `Order#isValidOrderName()` respectively. For valid attributes and order, the `Comparator` and `Order` will be supplied by `Attribute#getAttributeComparator()` and `ParserUtil#parseOrder()` to create a `SortCommand`.
 
 Step 3. `SortCommand` calls `Model#sortFilteredStudentList()` with the `Comparator` for sorting names and the ascending `Order` required.
 
@@ -309,7 +320,7 @@ Step 5. Note that StudMap stores the student list in a `UniqueStudentList`. `Uni
 
 Step 6. The `internalList` stored in the `UniqueStudentList` is an `FXCollections.observableArrayList` which will then be sorted using the `Comparator`. The ordering of the list is reversed using `FXCollections#reverse()` if `isDescending` is true.
 
-Step 5. The sorted list is displayed to the user.
+Step 7. The sorted list is displayed to the user.
 
 #### Design considerations:
 

@@ -21,7 +21,8 @@ Given below are my contributions to the project.
   - _Highlights_: `participate` and `unparticipate` works well with the `all` command to do mass recording of participation efficiently. Participation rates derived from the participation records works well with `sort` to give a StudMap sorted by participation rates.
 
 * **Documentation**:
-  - Provided the necessary documentation for the `sort`, `participate`, `unparticipate` features for both the User Guide and Developer Guide(WIP) with UML Diagrams.[#108](https://github.com/AY2223S1-CS2103T-W13-1/tp/pull/108)
+  - Provided the necessary documentation for the `sort`, `participate`, `unparticipate` features for both the User Guide and Developer Guide with UML Diagrams.[#108](https://github.com/AY2223S1-CS2103T-W13-1/tp/pull/108)
+  - Reviewed User Guide and Developer Guide as a whole for final submission
 
 * **Project management**:
   * Review and merge functional PRs for `v1.3`

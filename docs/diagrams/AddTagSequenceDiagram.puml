@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddTagCommand" as AddTagCommand LOGIC_COLOR
+participant ":StudentEditDescriptor" as Descriptor LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> AddTagCommand : execute("addtag 1")
+activate AddTagCommand
+
+AddTagCommand -> AddTagCommand : executeSingle()
+activate AddTagCommand
+
+AddTagCommand -> Descriptor : setTags(toBeAddedTags)
+activate Descriptor
+
+Descriptor -> AddTagCommand
+deactivate Descriptor
+
+create EditCommand
+AddTagCommand -> EditCommand : new EditCommand(Descriptor)
+activate EditCommand
+
+EditCommand -> AddTagCommand
+deactivate EditCommand
+
+AddTagCommand -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : setPerson()
+activate Model
+
+Model -> EditCommand:
+deactivate Model
+
+EditCommand -> AddTagCommand
+deactivate EditCommand
+
+
+[<--AddTagCommand
+deactivate AddTagCommand
+@enduml

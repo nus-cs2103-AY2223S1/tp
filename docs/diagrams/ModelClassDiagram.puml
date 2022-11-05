@@ -24,6 +24,7 @@ Class TeleHandle
 Class Tag
 Class Attendance
 Class Assignment
+Class Participation
 
 }
 
@@ -52,6 +53,7 @@ Student *--> "0..1" TeleHandle
 Student *--> "*" Tag
 Student *--> "*" Attendance
 Student *--> "*" Assignment
+Student *--> "*" Participation
 
 ModelManager -->"~* filtered" Student
 @enduml
