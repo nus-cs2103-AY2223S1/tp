@@ -84,7 +84,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Order` and `Item` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Order` and `InventoryItem` object residing in the `Model`.
 
 ### Logic component
 
@@ -123,13 +123,13 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the TrackO data i.e., all `Item` and `Order` objects (which are contained in an `InventoryList` and `OrderList` object respectively).
-* stores the currently 'selected' `Item` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the TrackO data i.e., all `InventoryItem` and `Order` objects (which are contained in an `InventoryList` and `OrderList` object respectively).
+* stores the currently 'selected' `InventoryItem` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<InventoryItem>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the currently selected `Order` objects (e.g., results of a search query) as a separate _filtered_ list, which is wrapped within a _sorted_ list (`Order` objects can be sorted by time of creation), which is exposed to outsiders as an unmodifiable `ObservableList<Order>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TrackO`, which `Item` references. This allows `TrackO` to only require one `Tag` object per unique tag, instead of each `Item` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TrackO`, which `InventoryItem` references. This allows `TrackO` to only require one `Tag` object per unique tag, instead of each `InventoryItem` needing their own `Tag` objects.<br>
 
 ![BetterModelClassDiagram](images/developer-guide/BetterModelClassDiagram.png)
 
@@ -157,7 +157,7 @@ Classes used by multiple components are in the `tracko.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Item feature
+### Add Item Feature
 
 The add item feature allows users to add an `InventoryItem` to be tracked by the system. 
 
@@ -172,7 +172,7 @@ The initial state of TrackO Model before running add item command will be as suc
 
 ![AddItemState0](images/developer-guide/AddItemState0.png)
 
-Step 2. The user executes `addi i/Key q/200 d/Cabinet keys sp/9.90 cp/4.90 t/new` command to add 200 keys to item list in TrackO.
+Step 2. The user executes `addi i/Key q/200 d/Cabinet keys sp/9.90 cp/4.90 t/new` command to add 200 keys to the inventory list in TrackO.
 The `addi` command creates an `AddItemCommandParser` which checks that the following input arguments are present 
 before parsing the arguments into an `AddItemCommand` object: 
 * item name (prefixed by `i/`)
@@ -184,12 +184,12 @@ before parsing the arguments into an `AddItemCommand` object:
 Tags (which are prefixed by `t/`) are optional inputs and will be parsed into the `AddItemCommand` 
 as well if they are present.
 
-The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
+The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the inventory list.
 
 ![AddItemState1](images/developer-guide/AddItemState1.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, 
-it will not call `Model#addItem()`, so the incomplete item will not be saved to `ItemsList`.
+it will not call `Model#addItem()`, so the incomplete item will not be saved to `InventoryList`.
 
 </div>
 
@@ -216,7 +216,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Delete Item Feature
 
-The delete item feature allows the user to delete an `Item` currently being tracked by the system.
+The delete item feature allows the user to delete an `InventoryItem` currently being tracked by the system.
 
 #### Implementation
 
@@ -230,7 +230,7 @@ Step 1. The user inputs the command `deletei 1`. This calls:
 3. `DeleteItemCommandParser#parse()` parses the arguments and returns an `DeleteItemCommand` with the target `Index`.
 
 Step 2. `DeleteItemCommand#execute()` is called and the `DeleteItemCommand` calls `Model#deleteItem()` which deletes
-the `Item` at the target `Index` from the `Model`.
+the `InventoryItem` at the target `Index` from the `Model`.
 
 The sequence diagram below illustrates this process.
 
@@ -244,16 +244,16 @@ end of diagram.
 #### Design Considerations
 
 **Aspect: How deletei is implemented**
-- **Alternative 1 (current choice)**: The command deletes the target `Item` based on the target `Index`.
+- **Alternative 1 (current choice)**: The command deletes the target `InventoryItem` based on the target `Index`.
   - Pros: Easier to implement, 
-  - Cons: The user must check for the `Item` for its `Index`.
-- **Alternative 2**: The command can delete `Item` objects based on their `ItemName`.
-  - Pros: User do not need to check for the `Item` object's `Index`.
+  - Cons: The user must check for the `InventoryItem` for its `Index`.
+- **Alternative 2**: The command can delete `InventoryItem` objects based on their `ItemName`.
+  - Pros: User do not need to check for the `InventoryItem` object's `Index`.
   - Cons: Harder to implement.
 
 ### List Items Feature
 
-The list items feature allows the user to list all the existing `Item`s in the inventory.
+The list items feature allows the user to list all the existing `InventoryItem`s in the inventory.
 
 #### Implementation
 
@@ -265,7 +265,7 @@ Step 1. The user inputs `listi`. This calls `LogicManager#execute()`, which then
 This method will return a new instance of `ListItemsCommand`.
 
 Step 2. `ListItemsCommand#execute()` is called, which then calls the method
-`Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS)`. This will show all the `Item`s in the existing
+`Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS)`. This will show all the `InventoryItem`s in the existing
 inventory list.
 
 The sequence diagram below illustrates this process.
@@ -300,7 +300,7 @@ keychain or apple. The `findi` command calls `FindItemCommandParser` which check
 syntax and separates the keywords, utilising each space as a delimiter.
 
 Step 2. The keywords are then passed into a constructor for `ItemContainsKeywordsPredicate`,
-which extends `Predicate<Item>`, to construct a predicate that will filter the items according to the keywords.
+which extends `Predicate<InventoryItem>`, to construct a predicate that will filter the items according to the keywords.
 The predicate is passed into a new instance of `FindItemCommand`. `FindItemCommand` then calls
 `Model#updateFilteredItemList()` to filter `Model#filteredOrders` according to the previously constructed
 `ItemContainsKeywordsPredicate`.
@@ -326,7 +326,7 @@ reaches the end of diagram.
 
 ### Edit Item Feature
 
-The edit item feature allows the user to edit an `Item` currently being tracked by the system.
+The edit item feature allows the user to edit an `InventoryItem` currently being tracked by the system.
 
 #### Implementation
 
@@ -340,21 +340,21 @@ Step 1. The user inputs the command `editi 1 i/Chair q/20`. This calls:
 3. `EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target `Index` and the
 appropriate `EditItemDescriptor` as input.
 
-The `EditItemDescriptor` contains information which the newly edited `Item`
-should have and is used in the creation of the new `Item` object. In this case, the `EditItemDescriptor` contains a new
-`ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing `Item` at the
+The `EditItemDescriptor` contains information which the newly edited `InventoryItem`
+should have and is used in the creation of the new `InventoryItem` object. In this case, the `EditItemDescriptor` contains a new
+`ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing `InventoryItem` at the
 target `Index` 1.
 
-Step 2. `EditItemCommand#execute()` is called and the `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`.
-It then checks if this `Item` already exists in the inventory list by using `Model#hasItem()`. If it already exists, a
+Step 2. `EditItemCommand#execute()` is called and the `EditItemCommand` creates a new `InventoryItem` using `createEditedItem()` and the `EditItemDescriptor`.
+It then checks if this `InventoryItem` already exists in the inventory list by using `Model#hasItem()`. If it already exists, a
 `CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`.
 
 An item already exists if there is another item in the
-inventory list with same `ItemName`. `Item#isSameItem()` returns true when both `Item` have the same `ItemName`. This is
-because having 2 `Item` with the same `ItemName` can be confusing to the user and this safeguards the user from such a
+inventory list with same `ItemName`. `InventoryItem#isSameItem()` returns true when both `InventoryItem` have the same `ItemName`. This is
+because having 2 `InventoryItem` with the same `ItemName` can be confusing to the user and this safeguards the user from such a
 situation.
 
-Step 3. The `Item` at the target index is then replaced by the newly created `Item` using `Model#setItem()`,
+Step 3. The `InventoryItem` at the target index is then replaced by the newly created `InventoryItem` using `Model#setItem()`,
 successfully executing the edit item command in the `Model`. 
 
 The sequence diagram below illustrates this process.
@@ -401,7 +401,7 @@ The order management feature is supported by the `Order` class, represented by t
 
 The `Order` class encapsulates order-related data packaged in the following classes/attributes:
 * `Name`, `Phone`, `Email`, `Address` - customer data related to the `Order`
-* `ItemQuantityPair` - represents an ordered `Item` in the `Order`, with an accompanying `Quantity` that represents the amount of units of said `Item` ordered by the customer
+* `ItemQuantityPair` - represents an ordered `InventoryItem` in the `Order`, with an accompanying `Quantity` that represents the amount of units of said `InventoryItem` ordered by the customer
 * `LocalDateTime` - the time at which the order entry was created in the system
 * `isPaid`/`isDelivered` - represents the completion status of the order (an `Order` is considered complete if both fields are true)
 
@@ -527,17 +527,17 @@ The following sequence diagram shows how the find order operation works:
 #### Design considerations
 
 **Aspect: What fields the find order command should search by:**
-- Alternative 1: The command finds orders based on the order's `ItemName`
-  - Pros: Easier to implement, and users do not have to use prefixes to find items
-  - Cons: Cannot search based on other fields, such as the customer's details (eg. name, address) and order's delivery or payment status
-- Alternative 2 (current choice): The command finds orders based on `ItemName`, `Name`, `Address`, delivery status and payment status
+- **Alternative 1:** The command finds orders based on the `ItemName` of ordered items of each other.
+  - Pros: Easier to implement, and users do not have to use prefixes to find items.
+  - Cons: Cannot search based on other fields, such as the customer's details (eg. name, address) and order's delivery or payment status.
+- **Alternative 2 (current choice):** The command finds orders based on `ItemName`, `Name`, `Address`, delivery status and payment status.
   - Pros: More robust searching functionality, allowing users to search by more fields at once. This benefits users with a large customer base. 
   The ability to search by delivery and payment status also allows users to keep track of the orders which have yet to be paid/delivered. 
   - Cons: Harder to implement.
 
 ### Edit Order Feature
 
-The edit order feature allows the user to edit an `Order` to be tracked by the system.
+The edit order feature allows the user to edit an `Order` currently tracked by the system.
 
 #### Implementation
 
@@ -553,23 +553,23 @@ Step 1. The user inputs `edito 3 n/John Doe i/Banana q/5`. The following methods
 `EditOrderCommand` with the target index and `EditOrderDescriptor` as input. 
 
 The `EditOrderDescriptor` contains information that a newly edited order should have; in this case, 
-it contains a `Name`, `Item`, and `Quantity`. The rest of the fields that are not provided are copied from the existing 
+it contains a `Name`, `InventoryItem`, and `Quantity`. The rest of the fields that are not provided are copied from the existing 
 order at target index `3` (This index is **one-based**).
 
 Step 2. `EditOrderCommand#execute` is called, and it will check whether the `orderToEdit` is completed; if it is, it
 will throw a `CommandException` with `MESSAGE_ORDER_ALREADY_COMPLETED`. Otherwise, the method continues to run.
 
 Step 3. The `EditOrderCommand#createEditedOrder` creates an edited order using the information in the
-`EditOrderDescriptor`. When the user inputs an `Item` and `Quantity`, it checks whether:
+`EditOrderDescriptor`. When the user inputs an `InventoryItem` and `Quantity`, it checks whether:
 
-- **the `Item` exists in the `InventoryList`.**
+- **the `InventoryItem` exists in the `InventoryList`.**
   - If it does not exist, the method will throw a `CommandException` with `MESSAGE_NONEXISTENT_ITEM`.
   *This is because customers cannot order things that are not in stock*.
   - If it exists, the method will keep running.
-- **the `Item` exists in the `Order`'s list of ordered items, which is stored as a `List<ItemQuantityPair>`.** This is
-done by `Item#isSameItem`, which returns true if both the newly inputted `Item` and the `Item` referenced in 
+- **the `InventoryItem` exists in the `Order`'s list of ordered items, which is stored as a `List<ItemQuantityPair>`.** This is
+done by `InventoryItem#isSameItem`, which returns true if both the newly inputted `InventoryItem` and the `InventoryItem` referenced in 
 `ItemQuantityPair` share the same `ItemName` (case-insensitive).
-  - If it does not exist, then the `Item` and `Quantity` will form a
+  - If it does not exist, then the `InventoryItem` and `Quantity` will form a
     new instance of `ItemQuantityPair` which will be added to the `List<ItemQuantityPair>`.
   - If it exists, it will check whether:
     - The `Quantity` is `0`. If it is, then:
