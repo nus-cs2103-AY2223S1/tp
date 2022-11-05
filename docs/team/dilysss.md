@@ -56,8 +56,7 @@ Given below are my contributions to the project.
         * Changed the layout of the application.
           * Added a close button
           * Changed the look of the help button
-          * Added header
-          * Fixed window size of application
+          * Amended window size of application
         * Changed the GUI colour scheme.
 
 * **Documentation**:
