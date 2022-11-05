@@ -8,10 +8,10 @@
       "mobile" : "7",
       "email" : "alexcom",
       "clientId" : "1",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "1"
+    "projectId" : "1",
+    "pin" : "false"
   } ],
   "issues" : [ ]
 }

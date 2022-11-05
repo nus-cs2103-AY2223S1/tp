@@ -104,7 +104,9 @@ public class EditProjectCommand extends ProjectCommand {
             }
         }
 
-        toEditProject.setName(newName);
+        if (newName != null) {
+            toEditProject.setName(newName);
+        }
 
         if (newRepository != null) {
             toEditProject.setRepository(newRepository);
