@@ -93,7 +93,7 @@ Given below are my contributions to the project.
 
 * **Team based tasks**:
     * Necessary general code enhancements:
-        * Refactored `contact` related commands to `person` after feedback from teammates
+        * Refactored `contact` commands to `person` after feedback from teammates
           ([#86](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/86))
     * Maintaining the issue tracker:
         * Created and assigned the majority of labels and milestones.
