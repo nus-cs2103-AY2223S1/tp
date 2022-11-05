@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-## Welcome to SoConnect's User Guide!
+## 1. Welcome to SoConnect's User Guide!
 
 Everything you need to know about **SoConnect**, an ultimate solution for your everyday contacts and tasks management problem, is finally here!
 
@@ -13,7 +13,7 @@ Interested to use SoConnect? Then you are in the right place! In this user guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Table of Contents
+## 2. Table of Contents
 
 <div class="toc-remove-bullet-points">
   * Table of Contents
@@ -22,10 +22,10 @@ Interested to use SoConnect? Then you are in the right place! In this user guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction
+## 3. Introduction
 
 
-# Quick start
+## 4. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
