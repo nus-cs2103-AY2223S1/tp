@@ -18,7 +18,7 @@ class JsonAdaptedSessionData {
 
     @JsonProperty("session")
     private final String sessionName;
-    private final String grade;
+    private final Double grade;
 
     /**
      * Constructs a {@code JsonAdaptedSessionData} with the given {@code session} and list
@@ -26,7 +26,7 @@ class JsonAdaptedSessionData {
      */
     @JsonCreator
     public JsonAdaptedSessionData(@JsonProperty("session") String sessionName,
-                                  @JsonProperty("grade") String grade) {
+                                  @JsonProperty("grade") Double grade) {
         this.sessionName = sessionName;
         this.grade = grade;
     }
@@ -36,7 +36,7 @@ class JsonAdaptedSessionData {
      */
     public JsonAdaptedSessionData(SessionData source) {
         sessionName = source.getSessionName();
-        grade = String.valueOf(source.getGrade());
+        grade = source.getGrade();
     }
 
     /**
@@ -57,7 +57,7 @@ class JsonAdaptedSessionData {
         if (!SessionData.isValidGrade(grade)) {
             throw new IllegalValueException(MESSAGE_INVALID_GRADE);
         }
-        return new SessionData(new Session(sessionName), Double.parseDouble(grade));
+        return new SessionData(new Session(sessionName), grade);
     }
 
 }

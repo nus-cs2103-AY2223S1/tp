@@ -37,11 +37,11 @@ public class TypicalStudents {
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withModuleClasses(CS1101S).build()
-            .updateGrade(CS1101S, LAB_1, 100);
+            .updateGrade(CS1101S, LAB_1, 100.0);
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withModuleClasses(CS1231S).build()
-            .updateGrade(CS1231S, TUTORIAL_1, 1);
+            .updateGrade(CS1231S, TUTORIAL_1, 1.0);
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")

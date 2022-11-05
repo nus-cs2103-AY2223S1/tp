@@ -33,7 +33,7 @@ public class GradeCommandParser implements Parser<GradeCommand> {
 
         List<Index> indices;
         Session session;
-        double grade;
+        Double grade;
 
         try {
             indices = ParserUtil.parseIndices(argMultimap.getPreamble());

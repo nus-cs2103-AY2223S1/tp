@@ -20,7 +20,7 @@ class StudentModuleDataTest {
 
     @Test
     public void findSessionData_sessionExists_returnsSessionData() {
-        SessionData sessionData = new SessionData(LAB_1, 100);
+        SessionData sessionData = new SessionData(LAB_1, 100.0);
         StudentModuleData studentModuleData = new StudentModuleData(CS1231S, List.of(sessionData));
         Optional<SessionData> sessionDataOptional = studentModuleData.findSessionData(LAB_1);
         assertTrue(sessionDataOptional.isPresent() && sessionDataOptional.get().equals(sessionData));
@@ -35,7 +35,7 @@ class StudentModuleDataTest {
 
     @Test
     public void removeSession_sessionExists_removesSession() {
-        SessionData sessionData = new SessionData(LAB_1, 100);
+        SessionData sessionData = new SessionData(LAB_1, 100.0);
         StudentModuleData originalData = new StudentModuleData(CS1231S, List.of(sessionData));
 
         StudentModuleData updatedData = originalData.removeSession(LAB_1);
@@ -46,17 +46,17 @@ class StudentModuleDataTest {
     @Test
     public void updateGrade_sessionDoesntExist_addsNewGrade() {
         StudentModuleData originalData = new StudentModuleData(CS1231S);
-        StudentModuleData updatedData = originalData.updateGrade(LAB_1, 100);
-        StudentModuleData expectedData = new StudentModuleData(CS1231S, List.of(new SessionData(LAB_1, 100)));
+        StudentModuleData updatedData = originalData.updateGrade(LAB_1, 100.0);
+        StudentModuleData expectedData = new StudentModuleData(CS1231S, List.of(new SessionData(LAB_1, 100.0)));
         assertTrue(expectedData.equals(updatedData));
     }
 
     @Test
     public void updateGrade_sessionExists_updatesGrade() {
-        SessionData sessionData = new SessionData(LAB_1, 100);
+        SessionData sessionData = new SessionData(LAB_1, 100.0);
         StudentModuleData originalData = new StudentModuleData(CS1231S, List.of(sessionData));
-        StudentModuleData updatedData = originalData.updateGrade(LAB_1, 50);
-        StudentModuleData expectedData = new StudentModuleData(CS1231S, List.of(new SessionData(LAB_1, 50)));
+        StudentModuleData updatedData = originalData.updateGrade(LAB_1, 50.0);
+        StudentModuleData expectedData = new StudentModuleData(CS1231S, List.of(new SessionData(LAB_1, 50.0)));
         assertTrue(expectedData.equals(updatedData));
     }
 

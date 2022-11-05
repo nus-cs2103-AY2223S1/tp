@@ -137,8 +137,8 @@ public class Student implements Identity<Student>, Comparable<Student> {
      * given {@code session} in {@code moduleClass}.
      * Assumption: The student is assigned to the module class, and the session exists in the module class.
      */
-    public Student updateGrade(ModuleClass moduleClass, Session session, double grade) {
-        requireAllNonNull(moduleClass, session);
+    public Student updateGrade(ModuleClass moduleClass, Session session, Double grade) {
+        requireAllNonNull(moduleClass, session, grade);
         List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
                 .map(d -> d.getModuleClass().isSame(moduleClass) ? d.updateGrade(session, grade) : d)
                 .collect(Collectors.toList());

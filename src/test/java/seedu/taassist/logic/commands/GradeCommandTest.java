@@ -28,7 +28,7 @@ class GradeCommandTest {
 
     @Test
     public void execute_notInFocusMode_throwsCommandException() {
-        GradeCommand gradeCommand = new GradeCommand(List.of(INDEX_FIRST_STUDENT), LAB_1, 100);
+        GradeCommand gradeCommand = new GradeCommand(List.of(INDEX_FIRST_STUDENT), LAB_1, 100.0);
         ModelStubNotInFocusMode modelStub = new ModelStubNotInFocusMode();
         String expectedMessage = String.format(Messages.MESSAGE_NOT_IN_FOCUS_MODE, GradeCommand.COMMAND_WORD);
         assertThrows(CommandException.class, expectedMessage, () -> gradeCommand.execute(modelStub));
@@ -36,7 +36,7 @@ class GradeCommandTest {
 
     @Test
     public void execute_focusedClassDoesntHaveSession_throwsCommandException() {
-        GradeCommand gradeCommand = new GradeCommand(List.of(INDEX_FIRST_STUDENT), LAB_1, 100);
+        GradeCommand gradeCommand = new GradeCommand(List.of(INDEX_FIRST_STUDENT), LAB_1, 100.0);
         ModelStubFocusedClassNoSession modelStub = new ModelStubFocusedClassNoSession();
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_SESSION,
                 LAB_1.getSessionName(), modelStub.getFocusedClass());
@@ -45,7 +45,7 @@ class GradeCommandTest {
 
     @Test
     public void execute_indexOutOfBounds_throwsCommandException() {
-        GradeCommand gradeCommand = new GradeCommand(List.of(INDEX_SECOND_STUDENT), LAB_1, 100);
+        GradeCommand gradeCommand = new GradeCommand(List.of(INDEX_SECOND_STUDENT), LAB_1, 100.0);
         ModelStubOneStudentNoGrades modelStub = new ModelStubOneStudentNoGrades();
         assertThrows(CommandException.class,
                 Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, () -> gradeCommand.execute(modelStub));
@@ -53,10 +53,10 @@ class GradeCommandTest {
 
     @Test
     public void execute_oneStudentNewGrade_addsGrade() throws CommandException {
-        GradeCommand gradeCommand = new GradeCommand(List.of(INDEX_FIRST_STUDENT), LAB_1, 100);
+        GradeCommand gradeCommand = new GradeCommand(List.of(INDEX_FIRST_STUDENT), LAB_1, 100.0);
         ModelStubOneStudentNoGrades modelStub = new ModelStubOneStudentNoGrades();
 
-        Student expectedStudent = ALICE.updateGrade(modelStub.getFocusedClass(), LAB_1, 100);
+        Student expectedStudent = ALICE.updateGrade(modelStub.getFocusedClass(), LAB_1, 100.0);
         String expectedMessage = String.format(GradeCommand.MESSAGE_SUCCESS,
                 "100.0", LAB_1.getSessionName(), expectedStudent.getName());
 
@@ -67,11 +67,11 @@ class GradeCommandTest {
 
     @Test
     public void execute_oneStudentExistingGrade_updatesGrade() throws CommandException {
-        GradeCommand gradeCommand = new GradeCommand(List.of(INDEX_FIRST_STUDENT), ASSIGNMENT_1, 100);
+        GradeCommand gradeCommand = new GradeCommand(List.of(INDEX_FIRST_STUDENT), ASSIGNMENT_1, 100.0);
         ModelStubOneStudentWithGrades modelStub = new ModelStubOneStudentWithGrades();
 
         Student expectedStudent = modelStub.students.get(0)
-                .updateGrade(modelStub.getFocusedClass(), ASSIGNMENT_1, 100);
+                .updateGrade(modelStub.getFocusedClass(), ASSIGNMENT_1, 100.0);
         String expectedMessage = String.format(GradeCommand.MESSAGE_SUCCESS,
                 "100.0", ASSIGNMENT_1.getSessionName(), expectedStudent.getName());
 
@@ -84,11 +84,11 @@ class GradeCommandTest {
     @Test
     public void execute_multipleStudentsUpdateGrade_updatesGrade() throws CommandException {
         GradeCommand gradeCommand = new GradeCommand(
-                List.of(INDEX_FIRST_STUDENT, INDEX_SECOND_STUDENT), LAB_1, 100);
+                List.of(INDEX_FIRST_STUDENT, INDEX_SECOND_STUDENT), LAB_1, 100.0);
         ModelStubTwoStudentsWithGrades modelStub = new ModelStubTwoStudentsWithGrades();
 
-        Student expectedStudent1 = ALICE.updateGrade(modelStub.getFocusedClass(), LAB_1, 100);
-        Student expectedStudent2 = BENSON.updateGrade(modelStub.getFocusedClass(), LAB_1, 100);
+        Student expectedStudent1 = ALICE.updateGrade(modelStub.getFocusedClass(), LAB_1, 100.0);
+        Student expectedStudent2 = BENSON.updateGrade(modelStub.getFocusedClass(), LAB_1, 100.0);
 
         String expectedMessage = String.format(GradeCommand.MESSAGE_SUCCESS,
                 "100.0", LAB_1.getSessionName(), expectedStudent1.getName() + ", " + expectedStudent2.getName());
@@ -181,8 +181,8 @@ class GradeCommandTest {
         // Assumption of the view command is that the student is in the focused class.
         private final ObservableList<Student> students = FXCollections.observableArrayList(
             ALICE.addModuleClass(CS1231S)
-                .updateGrade(CS1231S, ASSIGNMENT_1, 50)
-                .updateGrade(CS1231S, LAB_1, 100)
+                .updateGrade(CS1231S, ASSIGNMENT_1, 50.0)
+                .updateGrade(CS1231S, LAB_1, 100.0)
         );
 
         @Override
@@ -225,8 +225,8 @@ class GradeCommandTest {
 
         // Assumption of the view command is that the student is in the focused class.
         private final ObservableList<Student> students = FXCollections.observableArrayList(
-            ALICE.addModuleClass(CS1231S).updateGrade(CS1231S, LAB_1, 50),
-            BENSON.addModuleClass(CS1231S).updateGrade(CS1231S, LAB_1, 50)
+            ALICE.addModuleClass(CS1231S).updateGrade(CS1231S, LAB_1, 50.0),
+            BENSON.addModuleClass(CS1231S).updateGrade(CS1231S, LAB_1, 50.0)
         );
 
         @Override

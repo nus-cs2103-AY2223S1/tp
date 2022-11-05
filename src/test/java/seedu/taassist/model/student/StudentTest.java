@@ -45,9 +45,9 @@ public class StudentTest {
 
     @Test
     public void updateGrade_gradeDoesntExist_givesNewGrade() {
-        Student student = ALICE.addModuleClass(CS1231S).updateGrade(CS1231S, LAB_1, 100);
+        Student student = ALICE.addModuleClass(CS1231S).updateGrade(CS1231S, LAB_1, 100.0);
 
-        SessionData sessionData = new SessionData(LAB_1, 100);
+        SessionData sessionData = new SessionData(LAB_1, 100.0);
         StudentModuleData moduleData = new StudentModuleData(CS1231S, List.of(sessionData));
         Student expectedStudent = new StudentBuilder(ALICE).withModuleData(List.of(moduleData)).build();
 
@@ -57,10 +57,10 @@ public class StudentTest {
     @Test
     public void updateGrade_gradeExists_updatesGrade() {
         Student student = ALICE.addModuleClass(CS1231S)
-                .updateGrade(CS1231S, LAB_1, 100)
-                .updateGrade(CS1231S, LAB_1, 50);
+                .updateGrade(CS1231S, LAB_1, 100.0)
+                .updateGrade(CS1231S, LAB_1, 50.0);
 
-        SessionData sessionData = new SessionData(LAB_1, 50);
+        SessionData sessionData = new SessionData(LAB_1, 50.0);
         StudentModuleData moduleData = new StudentModuleData(CS1231S, List.of(sessionData));
         Student expectedStudent = new StudentBuilder(ALICE).withModuleData(List.of(moduleData)).build();
 
