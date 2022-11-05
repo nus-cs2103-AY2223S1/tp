@@ -77,6 +77,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.tutorialGroups.setTutorialGroups(groups);
     }
 
+    private void setGrades(ObservableMap<GradeKey, Grade> gradeMap) {
+        this.grades.setGradeMapWithMap(gradeMap);
+    }
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -86,6 +89,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setStudents(newData.getStudentList());
         setTasks(newData.getTaskList());
         setTutorialGroups(newData.getTutorialGroupList());
+        setGrades(newData.getGradeMap());
     }
 
     //// person-level operations
