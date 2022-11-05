@@ -4,8 +4,8 @@ package seedu.address.ui;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.logic.CalendarLogic;
@@ -22,7 +22,7 @@ public class CalendarDisplay extends UiPart<Region> {
     @FXML
     private GridPane calendarDisplay;
     @FXML
-    private HBox topCalendar;
+    private FlowPane topCalendar;
     private JumpText jumpText;
 
     /**
