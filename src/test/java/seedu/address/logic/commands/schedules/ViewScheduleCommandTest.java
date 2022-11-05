@@ -55,14 +55,17 @@ public class ViewScheduleCommandTest {
         ViewScheduleCommand viewFirstCommand = new ViewScheduleCommand(firstPredicate, first);
         ViewScheduleCommand viewFirstCommandCopy = new ViewScheduleCommand(firstPredicate, first);
         ViewScheduleCommand viewSecondCommand = new ViewScheduleCommand(secondPredicate, second);
+        ViewScheduleCommand viewEmptyCommand = new ViewScheduleCommand();
+        ViewScheduleCommand viewEmptyCommandCopy = new ViewScheduleCommand();
 
 
         // same object -> returns true
         assertTrue(viewFirstCommand.equals(viewFirstCommand));
+        assertTrue(viewEmptyCommand.equals(viewEmptyCommand));
 
         // same values -> returns true
-
         assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
+//        assertTrue(viewEmptyCommand.equals(viewEmptyCommandCopy));
 
         // different types -> returns false
         assertFalse(viewFirstCommand.equals(1));

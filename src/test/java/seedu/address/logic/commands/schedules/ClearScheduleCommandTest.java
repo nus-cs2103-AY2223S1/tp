@@ -39,7 +39,7 @@ public class ClearScheduleCommandTest {
 
         // same values -> returns true
         assertTrue(clearScheduleFirstCommand.equals(new ClearScheduleCommand(allModuleCodes)));
-//        assertTrue(clearScheduleEmptyCommand.equals(new ClearScheduleCommand()));
+        assertTrue(clearScheduleEmptyCommand.equals(new ClearScheduleCommand()));
 
         // different types -> returns false
         assertFalse(clearScheduleFirstCommand.equals(1));
@@ -49,9 +49,6 @@ public class ClearScheduleCommandTest {
 
         // different predicate -> returns false
         assertFalse(clearScheduleFirstCommand.equals(clearScheduleEmptyCommand));
-
-
-
 
     }
 
@@ -76,8 +73,25 @@ public class ClearScheduleCommandTest {
         assertThrows(CommandException.class, () -> clearScheduleCommand.execute(model));
     }
 
+
     @Test
-    public void execute_allModuleCodes_throwCommandException() {
+    public void execute_emptyInput_success() {
+        ArrayList<ModuleCode> allModuleCodes = getTypicalModuleCodeFromTypicalSchedules();
+        ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand();
+
+        Model expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
+        expectedModel.clearSchedules(allModuleCodes);
+
+        CommandResult expectedCommandResult = new CommandResult(
+                ClearScheduleCommand.MESSAGE_CLEAR_ALL_SCHEDULES_SUCCESS, false, false,
+                false, false,
+                false, true, false, false);
+
+        assertCommandSuccess(clearScheduleCommand, model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_allModuleCodes_success() {
         ArrayList<ModuleCode> allModuleCodes = getTypicalModuleCodeFromTypicalSchedules();
         ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand(allModuleCodes);
 
@@ -93,7 +107,7 @@ public class ClearScheduleCommandTest {
     }
 
     @Test
-    public void execute_partialModuleCodes_throwCommandException() {
+    public void execute_partialModuleCodes_success() {
         ArrayList<ModuleCode> partialCodes = getTypicalModuleCodeFromTypicalSchedules();
         partialCodes.remove(0);
         ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand(partialCodes);
