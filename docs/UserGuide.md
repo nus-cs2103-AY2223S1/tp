@@ -301,7 +301,7 @@ Example:
 
 :information_source: **What is the difference between address and location?** <br>
 
-* **Address** is the specific street number and unit number of the place.
+* **Address** is the specific street number and unit number of the place. <br>
 * **Location** is the country this person is based. <br>
 
 Since PetCode caters to international pet sale, it is good to have location as a separate attribute.
@@ -440,14 +440,6 @@ Examples:
 
 * To add an order to the buyer at index 1 of the display list: `add-o 1 o_st/Pending o_r/add-r o_a/1 o_sp/German shepherd o_c/golden o_cp/pure color o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
 * To add an order to the buyer at index 2 of the display list: `add-o 2 o_st/Negotiating o_r/add-r o_a/3 o_sp/chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: When you input a price range for your orders, the order of the lower bound of the price range and the upper bound does
-not matter because our app will configure the lower bound of the price range to be the smaller input and the upper
-bound to be the larger input.
-
-</div>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -670,7 +662,7 @@ Displays **all** contacts which match **one** specific attribute. This command i
 find contacts based on a keyword.
 
 There are five possible attributes for finding contact(s):
-Address, Email, Location, Name, Phone.
+Address, Email, Location, Name, Phone. Please provide **one** out of the five when using this command.
 
 Format: `find prefix/ATTRIBUTE`
 
@@ -750,12 +742,14 @@ Examples:
 ### Filtering items by attributes : `filter`
 
 Displays items based on the specified attribute(s). This command is especially useful when you want to coordinate
-sales between a Buyer and Supplier, by filtering out orders that are still "Pending" etc.
+sales between a Buyer and Supplier, by filtering out orders that are still "Pending", etc.
+Please provide **at least one** attribute when using this command.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="span" class="alert alert-info">
 
-:exclamation:**Caution:** This command has to be used **AFTER** a list command, i.e When filtering orders, use the
-command `list orders` before using `filter-o`. When filtering pets, use the command `list pets`, before using `filter-p`.
+:information_source: **What is the difference between find command and filter command?** <br>
+* Find command: Finds **contact(s)**; only **one** attribute is allowed. <br>
+* Filter command: Filters **item(s)**; **multiple** attributes are allowed. 
 
 </div>
 
@@ -764,13 +758,13 @@ command `list orders` before using `filter-o`. When filtering pets, use the comm
 Displays only Orders based on the given attribute(s). There are three possible attributes to filter: Additional
 requests, Order status, Price range.
 
-| Attribute           | Prefix | Format                       | Example           |
-|---------------------|--------|------------------------------|-------------------|
-| Additional requests | o_ar   | o_ar/KEYWORD                 | o_ar/non-shedding |
-| Order Status        | o_st   | o_st/KEYWORD                 | o_st/Negotiating  |
-| Price Range         | o_pr   | o_pr/LOWER_PRICE-UPPER_PRICE | o_pr/100-456        |
+Format: `filter-o PREFIX/ATTRIBUTE`
 
-Format: `filter-o PREFIX/INPUT`
+| Attribute           | Prefix | Format                       | Example            |
+|---------------------|--------|------------------------------|--------------------|
+| Additional requests | o_ar   | o_ar/KEYWORD                 | o_ar/non-shedding  |
+| Order Status        | o_st   | o_st/KEYWORD                 | o_st/Negotiating   |
+| Price Range         | o_pr   | o_pr/LOWER_PRICE-UPPER_PRICE | o_pr/100-456       |
 
 Examples:
 
@@ -780,16 +774,9 @@ Examples:
 
 Notes:
 
-* For additional requests, there cannot be spaces (ie. filter-o o_ar/good for kids).
+* For additional requests, there cannot be spaces (i.e. filter-o o_ar/good for kids).
 * Having multiple prefixes of the same type is allowed. One example of this is:
-`filter-o os/Pending os/Delivering`. However, only the latest input will be taken, in the example above, the order status the app will use to filter orders is the "Delivering" status.
-* Note that Order Statuses are case-sensitive, so the input `filter-o os/delivering` may throw an error. To play safe, use the following words for Order status only:
-
-| Order Status | Input word  | Usage                   |
-|--------------|-------------|-------------------------|
-| PENDING      | Pending     | filter-o os/Pending     |
-| NEGOTIATING  | Negotiating | filter-o os/Negotiating |
-| DELIVERING   | Delivering  | filter-o os/Delivering  |
+`filter-o o_st/Pending o_st/Delivering`. However, only the latest input will be taken, in the example above, the order status the app will use to filter orders is the "Delivering" status.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
