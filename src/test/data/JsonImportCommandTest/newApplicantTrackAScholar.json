@@ -1,5 +1,5 @@
 {
-  "_comment": "TrackAScholar save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "TrackAScholar save file which contains the same Applicant values as in TypicalApplicants#getTypicalTrackAScholar()",
   "applicants" : [ {
     "name" : "Anderson",
     "phone" : "43214321",

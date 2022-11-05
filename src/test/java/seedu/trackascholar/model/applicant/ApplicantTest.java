@@ -3,7 +3,7 @@ package seedu.trackascholar.model.applicant;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_COMPUTER_SCIENCE;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
@@ -37,7 +37,7 @@ public class ApplicantTest {
 
         // same name, all other attributes different -> returns true
         Applicant editedAlice = new ApplicantBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withScholarship(VALID_SCHOLARSHIP_BOB).withMajors(VALID_MAJOR_HUSBAND).build();
+                .withScholarship(VALID_SCHOLARSHIP_BOB).withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
         assertTrue(ALICE.isSameApplicant(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -127,7 +127,7 @@ public class ApplicantTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different majors -> returns false
-        editedAlice = new ApplicantBuilder(ALICE).withMajors(VALID_MAJOR_HUSBAND).build();
+        editedAlice = new ApplicantBuilder(ALICE).withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

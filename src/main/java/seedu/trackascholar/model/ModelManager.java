@@ -158,7 +158,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Applicant} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedTrackAScholar}.
      */
     @Override
     public ObservableList<Applicant> getFilteredApplicantList() {
@@ -170,6 +170,13 @@ public class ModelManager implements Model {
         FilteredList<Applicant> pinnedList = new FilteredList<>(this.trackAScholar.getApplicantList());
         pinnedList.setPredicate(PREDICATE_SHOW_PINNED_APPLICANTS);
         return pinnedList;
+    }
+
+    @Override
+    public ObservableList<Applicant> getAllApplicants() {
+        FilteredList<Applicant> applicantList = new FilteredList<>(this.trackAScholar.getApplicantList());
+        applicantList.setPredicate(PREDICATE_SHOW_ALL_APPLICANTS);
+        return applicantList;
     }
 
     @Override

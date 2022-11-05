@@ -21,13 +21,14 @@ import seedu.trackascholar.model.applicant.ScholarshipContainsKeywordsPredicate;
 import seedu.trackascholar.model.major.MajorContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform to the expected format.
      */
     public FindCommand parse(String args) throws ParseException {
@@ -85,7 +86,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @param applicantPredicateList Predicate list to combine.
      * @return A chain of combined predicate list.
      */
-    private static Predicate<Applicant> combinePredicateList(List<Predicate<Applicant>> applicantPredicateList) {
+    public static Predicate<Applicant> combinePredicateList(List<Predicate<Applicant>> applicantPredicateList) {
         return applicantPredicateList.stream().reduce(Predicate::and).orElse(x -> true);
     }
 
@@ -111,10 +112,11 @@ public class FindCommandParser implements Parser<FindCommand> {
      * by whitespaces to allow for partial searching.
      *
      * @return List of partial keywords.
-     * @throws ParseException if the user input does not conform the expected format.
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     private static List<String> getKeywordsList(ArgumentMultimap argumentMultimap,
                                                 Prefix prefix) throws ParseException {
+        // Example of defensive programming here
         if (argumentMultimap.getValue(prefix).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
