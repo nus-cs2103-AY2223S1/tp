@@ -164,6 +164,10 @@ public class Student extends Person {
             return true;
         }
 
+        if (!(otherPerson instanceof Student)) {
+            return false;
+        }
+
         return otherPerson != null
                 && otherPerson instanceof Student
                 && otherPerson.getName().equals(getName())

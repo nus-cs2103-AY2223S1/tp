@@ -138,6 +138,10 @@ public class Tutor extends Person {
             return true;
         }
 
+        if (!(otherPerson instanceof Tutor)) {
+            return false;
+        }
+
         return otherPerson != null
                 && otherPerson instanceof Tutor
                 && otherPerson.getName().equals(getName())
