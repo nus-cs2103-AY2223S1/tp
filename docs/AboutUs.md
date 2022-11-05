@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/guokweijie)]
 
-[[portfolio](images/guokweijie.md)]
+[[portfolio](team/guokweijie.md)]
 
 * Role: Team Lead
 
@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/wadia82)]
 
-[[portfolio](images/wadia82.md)]
+[[portfolio](team/wadia82.md)]
 
 * Role: Scheduling and Tracking
 
@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/Fuzanwenn)]
 
-[[portfolio](images/fuzanwenn.md)]
+[[portfolio](team/fuzanwenn.md)]
 
 * Role: Documentation
 
@@ -45,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/SpecOps2016)]
 
-[[portfolio](images/specops2016.md)]
+[[portfolio](team/specops2016.md)]
 
 * Role: Testing
 
@@ -55,6 +55,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/TZL0)]
 
-[[portfolio](images/tzl0.md)]
+[[portfolio](team/tzl0.md)]
 
 * Role: Integration
