@@ -7,6 +7,8 @@ title: User Guide
   <img src="./images/user-guide/tuthub.png" />
 </p>
 
+
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -25,9 +27,9 @@ Tuthub is a desktop app for NUS professors who wish to track and choose their ne
 This section will introduce you to the symbols frequently used in this User Guide as well as Tuthub application layout and command format to aid your understanding of the document.
 
 If you would like to:
-- Find out more about specific terms used, please visit our [Glossary](#glossary).
 - Install Tuthub and try out some quick commands, please visit our [Quick Start](#quick-start) section.
 - Find out more comprehensive details about Tuthub commands, please visit our [Features](#features) section.
+- Find out more about specific terms used, please visit our [Glossary](#glossary).
 
 ### Symbols and Syntax
 
@@ -85,6 +87,20 @@ The following table describes the sections in detail:
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+### Notes About Frequently Used Command Parameters
+| Parameter             | Note                                                                                                                                                                                                                                                        |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`               | - Index refers to a **valid** index number shown in displayed tutor list and  **must be a positive integer**, i.e. 1, 2, 3.                                                                                                                                 |
+| `NAME`                | - Names must contain at least 1 word, and at most 1 space is allowed between words. <br/>- Only English alphabets and the symbols `/`,`'`,`-` are accepted and cannot be surrounded by spaces. e.g. `Smith - Jones` is invalid, but `Smith-Jones` is valid. |
+| `PHONE`               | - Phone numbers can only contain digits, i.e.`0-9` and must be at least 3 digits long.                                                                                                                                                                      |
+| `EMAIL`               | - Emails must be the tutor's NUSNet ID, e.g. `E1234567` or `E1234567@u.nus.edu`, where the `E` is case-insensitive. <br/>- If `@u.nus.edu` is not provided, Tuthub will automatically append it for you.                                                    |
+| `MODULE`              | - Modules consist of the following (in order): 2 compulsory letters, 2 optional letters, 4 compulsory digits, 2 optional letters.                                                                                                                           |
+| `YEAR`                | - Year takes in an integer from 0 to 6.                                                                                                                                                                                                                     |
+| `STUDENTID`           | - Student IDs consists of an `A` followed by 7 digits and any single capital letter behind.                                                                                                                                                                 |
+| `TEACHINGNOMINATIONS` | - Teaching nominations take in positive integers including 0. Leading zeros in the teaching nominations will not be allowed. e.g. `00001` is invalid.                                                                                                       |
+| `RATING`              | - Ratings take in numbers **between 0 and 5 inclusive**. <br/>- Decimal values are optional but only a **maximum of 2 decimals** is allowed.                                                                                                                |
+| `TAG`                 | - A person can have any number of tags (including 0). <br/>- Tags should be alphanumeric and should not contain any spaces.                                                                                                                                 |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -152,7 +168,7 @@ You may also click on the Help Toolbar to access the command summary table.
 
 Adds a tutor to the Tuthub.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`
+Format: `add n/NAME p/PHONE e/EMAIL m/MODULE y/YEAR s/STUDENTID tn/TEACHINGNOMINATIONS r/RATING [t/TAG]…​`
 
 <div markdown="block" class="alert alert-info">
 
@@ -161,75 +177,10 @@ Tutors are regarded as the same if they have the **same email or student ID**!
 
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
-:information_source: **About Name:**
-- Names must contain at least 1 word, and allow for the following symbols: `/`,`'`,`-`.
-- At most 1 space is allowed between 2 words.
-- Symbols cannot be surrounded by spaces. e.g. `Smith - Jones` is invalid, but `Smith- Jones` is valid.
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **About Phone Number:**
-- Phone numbers can only contain digits, i.e.`0-9` and must be at least 3 digits long.
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **About Email:**
-- Emails must be the tutor's NUSNet ID, e.g. `E1234567` or `E1234567@u.nus.edu`
-- The `E` in front is case-insensitive.
-- If `@u.nus.edu` is not provided, Tuthub will automatically append it for you.
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **About Module:**
-- Modules consist of the following in order: 2 compulsory letters, 2 optional letters,
-4 compulsory digits, 2 optional letters.
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **About Year:**
-- Year takes in 1 integer from 0 to 6.
-- Years 1-4 correspond to the respective undergraduate years, while 5 represents a Masters tutor and 6 represents a PhD tutor.
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **About Student ID:**
-- Student IDs must consist of the following: `A` followed by 7 digits and any capital letter behind.
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **About Teaching Nomination:**
-- Teaching nominations take in positive integers including 0.
-- Leading zeros in the teaching nominations will not be allowed. e.g. `0`, `1` is valid but `00001` is invalid.
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **About Rating:**
-- Ratings take in numbers **between 0 and 5 inclusive**.
-- Decimal values are optional, but only a **maximum of 2** (no decimals, 1 decimal and 2 decimals are valid) decimals can be provided.
-- Ratings only accept "**`.`**" as the decimal seperator (e.g. `4.5` is valid, `4,5` is invalid).
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **About Tags:**
-- A person can have any number of tags (including 0).
-- Tags should be alphanumeric and should not contain any spaces.
+:bulb: **About parameters:**
+Refer to [this section](#notes-about-command-parameters) for more information about various parameters!
 
 </div>
 
@@ -291,13 +242,24 @@ Examples:
 
 Edits an existing tutor in Tuthub.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHINGNOMINATIONS] [r/RATING] [t/TAG]…​`
 
-* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed tutor list. The index **must be a positive integer** 1, 2, 3, …​
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the tutor will be removed i.e. adding of tags is not cumulative.
-* You can remove all the tutor’s tags by typing t/ without specifying any tags after it.
+* To remove all tags from a tutor, type `t/` without specifying any tags after it, i.e. `edit 1 t/ `.
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+Refer to [this section](#notes-about-command-parameters) for more information about various parameters!
+
+</div>
 
 Examples:
 * `edit 1 p/91234567 e/e7654321` Edits the phone number and email address of the 1st tutor to be 91234567 and johndoe@example.com respectively.
@@ -312,12 +274,25 @@ command allows you to do so by searching through the list of tutors based on spe
 tutors along with the search keywords provided.
 
 Format: `find PREFIX/KEYWORDS [KEYWORDS]`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
 * The find command works by entering only **one** prefix corresponding to a tutor's profile attribute, followed by the keyword(s) to search
 * The search is case-insensitive. e.g. hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the attribute that corresponds to the prefix entered is searched.
 * **Partial words** will be matched e.g. Han will match Hans
 * Tutors with attributes being searched that match at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+Refer to [this section](#notes-about-command-parameters) for more information about various parameters!
+
+</div>
 
 Examples:
 * `find n/John` returns all tutors with names that contains `John`.
@@ -352,7 +327,7 @@ measures, such as rating and teaching nomination. More specifications on the sor
 Format: `sort ORDER PREFIX`
 * `ORDER` can be one of the two values: a (ascending) or d (descending).
 * `PREFIX` refers to one of the prefixes of quantitative measures (e.g. `r/`).
-* Currently, sort is implemented for the prefixes `r/` (`Rating`) and `tn/` (`TeachingNomination`).
+* Currently, sort is implemented for the prefixes `r/` (`RATING`) and `tn/` (`TEACHINGNOMINATIONS`).
 
 Examples:
 * `sort a r/` sorts the tutors in ascending order (low to high) based on tutor ratings.
@@ -416,21 +391,21 @@ Format: `exit`
 
 ## Command Summary
 
-| Action                     | Format                                                                                                                     | Examples (if any)                                                                                      |
-|----------------------------|----------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| See **Help**               | `help`                                                                                                                     |                                                                                                        |
-| **List** All Tutors        | `list`                                                                                                                     |                                                                                                        |
-| **View** a Tutor           | `view`                                                                                                                     | `view 1`                                                                                               |
-| **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`                 | `add n/Betsy Crowe t/  e/E1234567@u.nus.edu  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
-| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                  | `comment 1 c/Tasks not Finished`                                                                       |
-| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`                                                    | `deletecomment 1 1`, `dc 1 1`                                                                          |
-| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                      |
-| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                          | `find n/Alex`                                                                                          |
-| **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                      | `mail 3`                                                                                               |
-| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                        | `sort a r/`                                                                                            |
-| **Delete** a _Tutor_       | `delete INDEX`                                                                                                             | `delete 3`                                                                                             |
-| **Clear** Tutor List       | `clear`                                                                                                                    |                                                                                                        |
-| **Exit** Tuthub            | `exit`                                                                                                                     |                                                                                                        |
+| Action                     | Format                                                                                                                    | Examples (if any)                                                                                      |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| See **Help**               | `help`                                                                                                                    |                                                                                                        |
+| **List** All Tutors        | `list`                                                                                                                    |                                                                                                        |
+| **View** a Tutor           | `view`                                                                                                                    | `view 1`                                                                                               |
+| **Add** Tutor              | `add n/NAME p/PHONE e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHINGNOMINATIONS r/RATING [t/TAG]…​`                        | `add n/Betsy Crowe t/  e/E1234567@u.nus.edu  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
+| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                 | `comment 1 c/Tasks not Finished`                                                                       |
+| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`                                                   | `deletecomment 1 1`, `dc 1 1`                                                                          |
+| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHINGNOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                      |
+| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                         | `find n/Alex`                                                                                          |
+| **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                     | `mail 3`                                                                                               |
+| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                       | `sort a r/`                                                                                            |
+| **Delete** a _Tutor_       | `delete INDEX`                                                                                                            | `delete 3`                                                                                             |
+| **Clear** Tutor List       | `clear`                                                                                                                   |                                                                                                        |
+| **Exit** Tuthub            | `exit`                                                                                                                    |                                                                                                        |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
