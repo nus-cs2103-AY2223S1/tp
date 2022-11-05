@@ -22,11 +22,19 @@ This user guide provides you with the information necessary to start using NUSch
 
 In this user guide, you may encounter the following icons:
 
-|         Icon         | Definition                                                                       |
+|         Icon         | Description                                                                      |
 |:--------------------:|----------------------------------------------------------------------------------|
 | :information_source: | Provides general information that you might find helpful                         |
 |        :bulb:        | Provides good to know information on how to more effectively utilise NUScheduler |
-|   :exclamation:      | Provides important information to prevent undesired behaviour                    |
+|    :exclamation:     | Provides important information to prevent undesired behaviour                    |
+
+You may also encounter the following text formatting:
+
+|     Format     | Description                                      |
+|:--------------:|--------------------------------------------------|
+|  <a>Link</a>   | A link                                           |
+| <kbd>key</kbd> | A keyboard input                                 |
+|  `Highlights`  | A command or application output                  |
 
 If you are a new user, check out the [Quick Start](#quick-start) to get started with NUScheduler.
 
@@ -123,7 +131,7 @@ Parameters are extra inputs the command may require.
 Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 </div>
 
-| Prefix | Parameter                                   | Remarks                                                   |
+| Prefix | Parameter                                   | Description                                               |
 |--------|---------------------------------------------|-----------------------------------------------------------|
 |        | `INDEX`                                     | The position of the profile or event in the list          |
 |        | `EVENT_INDEX`                               | The position of the event in the event list displayed     |
