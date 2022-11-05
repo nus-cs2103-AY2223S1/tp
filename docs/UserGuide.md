@@ -8,40 +8,7 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 If you can type fast, Condonery can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-- [**Quick start**](#quick-start)
-- [**Property and client attributes**](#property-and-client-attributes)
-  - [Shared attributes](#shared-attributes)
-  - [Property attributes](#property-attributes)
-  - [Client attributes](#client-attributes)
-- [**Features systax**](#features-syntax)
-- [**Features in Condonery**](#features-in-condonery)
-  - [Undoing commands : `undo`](#undoing-commands--undo)
-  - [Viewing help : `help`](#viewing-help--help)
-  - [Exiting the program : `exit`](#exiting-the-program--exit)
-- [**Property Directory Features**](#property-directory-features)
-    - [Adding a property: `add -p`](#adding-a-property-add--p)
-    - [Listing all properties : `list -p`](#listing-all-properties--list--p)
-    - [Editing a property : `edit -p`](#editing-a-property--edit--p)
-    - [Locating properties by name: `find -p`](#locating-properties-by-name-find--p)
-    - [Deleting a property : `delete -p`](#deleting-a-property--delete--p)
-    - [Filtering properties by tags: `filter -p`](#filtering-properties-by-tags-filter--p)
-    - [Filtering properties within price range: `range -p`](#filtering-properties-within-price-range-range--p)
-    - [Filtering properties by status: `status -p`](#filtering-properties-by-status-status--p)
-    - [Filtering properties by type: `type -p`](#filtering-properties-by-type-type--p)
-    - [Selecting a property: `select -p`](#selecting-a-property-select--p-index)
-    - [Clearing all entries : `clear`](#clearing-all-entries--clear--p)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-- [**Client Directory Features**](#client-directory-features)
-    - [Adding a client profile: `add -c`](#adding-a-client-profile-add--c)
-    - [Listing all client profiles: `list -c`](#listing-all-client-profiles-list--c)
-    - [Editing a client profile: `edit -c`](#editing-a-client-profile-edit--c)
-    - [Locating client profiles by name: `find -c`](#locating-client-profiles-by-name-find--c)
-    - [Deleting a client profile: `delete -c`](#deleting-a-client-profile-delete--c-index)
-    - [Filtering client profiles by tags: `filter -c`](#filtering-client-profiles-by-tags-filter--c)
-    - [Selecting a client profile: `select -c`](#selecting-a-client-profile-select--c-index)
-- [**FAQ**](#faq)
-- [**Command summary**](#command-summary)
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -328,7 +295,7 @@ Returns a filtered list of clients that fulfil the filter conditions.
 Format: `range -p l/100,000 u/1,000,000`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:**
-* Lower and upper price boundaries only accept integer values (commas acceptable).
+* Lower and upper price boundaries only accept integer values (commas acceptable) between 0 and 2,147,483,647
 </div>
 
 Examples:
