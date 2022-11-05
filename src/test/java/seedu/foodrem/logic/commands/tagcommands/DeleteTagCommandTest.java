@@ -23,7 +23,7 @@ import seedu.foodrem.testutil.TypicalTags;
 import seedu.foodrem.viewmodels.TagsWithMessage;
 
 public class DeleteTagCommandTest {
-    private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in the FoodRem";
+    private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in FoodRem";
     private static final String EXPECTED_SUCCESS_MESSAGE = "Tag deleted:";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
