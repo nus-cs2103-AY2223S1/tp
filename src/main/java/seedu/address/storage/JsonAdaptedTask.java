@@ -1,14 +1,11 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
-import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javafx.collections.ObservableList;
-import seedu.address.MainApp;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
@@ -26,7 +23,6 @@ import seedu.address.model.task.TaskName;
  */
 public class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     private final String name;
     private final String categoryName;
