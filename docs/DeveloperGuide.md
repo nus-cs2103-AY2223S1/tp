@@ -1021,7 +1021,7 @@ More information on usage: [stats command](UserGuide.html#viewing-statistics-of-
 ### Exiting application
 
 Command: `exit` <br>
-More information on usage: [exit command](UserGuide.md#exiting-the-program-exit)
+More information on usage: [exit command](UserGuide.html#exiting-the-program-exit)
 
 1. Test case: `exit` <br>
    Expected: Exits InTrack and all data is saved.
@@ -1029,7 +1029,7 @@ More information on usage: [exit command](UserGuide.md#exiting-the-program-exit)
 ### Adding an internship
 
 Command: `add` <br>
-More information on usage: [add command](UserGuide.md#adding-an-internship-application-add)
+More information on usage: [add command](UserGuide.html#adding-an-internship-application-add)
 
 1. Adding an internship application while all internship applications are being shown.
 
@@ -1057,7 +1057,7 @@ More information on usage: [add command](UserGuide.md#adding-an-internship-appli
 ### Deleting an internship
 
 Command: `delete` <br>
-More information on usage: [delete command](UserGuide.md#deleting-an-internship-application-delete)
+More information on usage: [delete command](UserGuide.html#deleting-an-internship-application-delete)
 
 1. Deleting an internship while all internships are being shown
 
@@ -1083,7 +1083,7 @@ More information on usage: [delete command](UserGuide.md#deleting-an-internship-
 ### Updating status of an internship
 
 Command: `status` <br>
-More information on usage: [status command](UserGuide.md#updating-status-of-an-internship-application--status)
+More information on usage: [status command](UserGuide.html#updating-status-of-an-internship-application--status)
 
 1. Updating status of an internship while all internships are shown.
 
@@ -1108,7 +1108,7 @@ More information on usage: [status command](UserGuide.md#updating-status-of-an-i
 ### Adding tags to an internship
 
 Command: `addtag` <br>
-More information on usage: [addtag command](UserGuide.md#adding-a-tag-to-an-internship-application--addtag)
+More information on usage: [addtag command](UserGuide.html#adding-a-tag-to-an-internship-application--addtag)
 
 1. Adding tags to an internship while all internships are shown.
 
@@ -1144,7 +1144,7 @@ More information on usage: [addtag command](UserGuide.md#adding-a-tag-to-an-inte
 ### Deleting tags from an internship
 
 Command: `deltag` <br>
-More information on usage: [deltag command](UserGuide.md#deleting-a-tag-from-an-internship-application--deltag)
+More information on usage: [deltag command](UserGuide.html#deleting-a-tag-from-an-internship-application--deltag)
 
 1. Deleting tags from an internship while all internships are shown.
 
@@ -1174,7 +1174,7 @@ More information on usage: [deltag command](UserGuide.md#deleting-a-tag-from-an-
 ### Selecting an internship
 
 Command: `select` <br>
-More information on usage: [select command](UserGuide.md#selecting-an-internship-application--select)
+More information on usage: [select command](UserGuide.html#selecting-an-internship-application--select)
 
 1. Selecting an internship while all internships are shown.
 
@@ -1200,7 +1200,7 @@ More information on usage: [select command](UserGuide.md#selecting-an-internship
 ### Editing an internship
 
 Command: `edit` <br>
-More information on usage: [edit command](UserGuide.md#editing-an-internship-application--edit)
+More information on usage: [edit command](UserGuide.html#editing-an-internship-application--edit)
 
 1. Editing a selected internship.
 
@@ -1230,7 +1230,7 @@ More information on usage: [edit command](UserGuide.md#editing-an-internship-app
 ### Adding a task to an internship
 
 Command: `addtask` <br>
-More information on usage: [addtask command](UserGuide.md#adding-a-task-to-a-selected-internship-application--addtask)
+More information on usage: [addtask command](UserGuide.html#adding-a-task-to-a-selected-internship-application--addtask)
 
 1. Adding a task to a selected internship.
 
@@ -1256,7 +1256,7 @@ More information on usage: [addtask command](UserGuide.md#adding-a-task-to-a-sel
 ### Deleting a task from an internship
 
 Command: `deltask` <br>
-More information on usage: [deltask command](UserGuide.md#deleting-a-task-from-a-selected-internship-application--deltask)
+More information on usage: [deltask command](UserGuide.html#deleting-a-task-from-a-selected-internship-application--deltask)
 
 1. Deleting a task from a selected internship.
 
@@ -1282,7 +1282,7 @@ More information on usage: [deltask command](UserGuide.md#deleting-a-task-from-a
 ### Adding a remark to an internship
 
 Command: `remark` <br>
-More information on usage: [remark command](UserGuide.md#adding-a-remark-to-an-internship-application--remark)
+More information on usage: [remark command](UserGuide.html#adding-a-remark-to-an-internship-application--remark)
 
 1. Adding a remark to a selected internship.
 
@@ -1304,7 +1304,7 @@ More information on usage: [remark command](UserGuide.md#adding-a-remark-to-an-i
 ### Sending an email
 
 Command: `mail` <br>
-More information on usage: [mail command](UserGuide.md#sending-an-email-to-a-company--mail)
+More information on usage: [mail command](UserGuide.html#sending-an-email-to-a-company--mail)
 
 1. Sending an email to the email of the selected internship
 
@@ -1324,7 +1324,7 @@ More information on usage: [mail command](UserGuide.md#sending-an-email-to-a-com
 ### Clearing data
 
 Command: `clear` <br>
-More information on usage: [clear command](UserGuide.md#clearing-all-internship-applications--clear)
+More information on usage: [clear command](UserGuide.html#clearing-all-internship-applications--clear)
 
 1. Test case: `clear` <br>
    Expected: All data is cleared from InTrack.
@@ -1332,7 +1332,7 @@ More information on usage: [clear command](UserGuide.md#clearing-all-internship-
 ### Filtering internships by company name
 
 Command: `findc` <br>
-More information on usage: [findc command](UserGuide.md#finding-internship-applications-by-company-name--findc)
+More information on usage: [findc command](UserGuide.html#finding-internship-applications-by-company-name--findc)
 
 1. Filtering internships by company name while all internships are being shown.
 
@@ -1357,7 +1357,7 @@ More information on usage: [findc command](UserGuide.md#finding-internship-appli
 ### Filtering internships by position name
 
 Command: `findp` <br>
-More information on usage: [findp command](UserGuide.md#finding-internship-applications-by-position--findp)
+More information on usage: [findp command](UserGuide.html#finding-internship-applications-by-position--findp)
 
 1. Filtering internships by position name while all internships are being shown.
 
@@ -1382,7 +1382,7 @@ More information on usage: [findp command](UserGuide.md#finding-internship-appli
 ### Filtering internships by tags
 
 Command: `findt` <br>
-More information on usage: [findt command](UserGuide.md#finding-internship-applications-by-tags--findt)
+More information on usage: [findt command](UserGuide.html#finding-internship-applications-by-tags--findt)
 
 1. Filtering internships by tags while all internships are being shown.
 
@@ -1407,7 +1407,7 @@ More information on usage: [findt command](UserGuide.md#finding-internship-appli
 ### Filtering internships by status 
 
 Command: `filter` <br>
-More information on usage: [filter command](UserGuide.md#filtering-internship-applications-by-status--filter)
+More information on usage: [filter command](UserGuide.html#filtering-internship-applications-by-status--filter)
 
 1. Filtering internships by status while all internships are being shown.
 
@@ -1429,7 +1429,7 @@ More information on usage: [filter command](UserGuide.md#filtering-internship-ap
 ### Sorting internships 
 
 Command: `sort` <br>
-More information on usage: [sort command](UserGuide.md#sorting-internship-applications-sort)
+More information on usage: [sort command](UserGuide.html#sorting-internship-applications-sort)
 
 1. Sorting internships while all internships are being shown.
 
