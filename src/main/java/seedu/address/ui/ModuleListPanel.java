@@ -2,18 +2,14 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.schedule.Schedule;
-import seedu.address.ui.schedule.ScheduleListPanel;
 
 
 /**
@@ -40,27 +36,7 @@ public class ModuleListPanel extends UiPart<Region> {
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListPanel.ModuleListViewCell());
         logger.info("=================[Modules loaded]=================");
-        moduleListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                try {
-                    Module moduleInterested = moduleListView.getSelectionModel().getSelectedItem();
-                    ObservableList<Module> list = FXCollections.observableArrayList();
-                    ObservableList<Schedule> schedules = FXCollections.observableArrayList();
-                    list.add(moduleInterested);
-                    moduleInterested.getSchedules().forEach(x -> schedules.add(x));
-                    targetModuleView.setItems(list);
-                    targetModuleView.setCellFactory(listView ->
-                            new ModulePanel.ModuleViewCell());
-                    scheduleListView.setItems(schedules);
-                    scheduleListView.setCellFactory(listView ->
-                            new ScheduleListPanel.ScheduleListViewCell());
-                    resultDisplay.setFeedbackToUser("Selected a module!");
-                } catch (NullPointerException e) {
-                    logger.info("=================[Invalid module selected]=================");
-                }
-            }
-        });
+
     }
 
     public ListView<Module> getTargetModuleList() {
