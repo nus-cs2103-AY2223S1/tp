@@ -332,31 +332,49 @@ The following activity diagram shows the workflow for the autocomplete feature.
 
 <img src="images/AutoCompleteActivityDiagram.png" width="750" />
 
-### Display Friend Preferences and Socials as Tags
+### Available timings 
 
-Whenever the user enters or modifies the in-game preferences or social handles of a friend, it is displayed as 
-various coloured tags under the friend's profile.
+The user can save the available timings of a friend to their profile, as a time interval throughout the week. 
 
 #### Implementation
 
-The display feature is facilitated through the `PersonCard`, `PersonListPanel`, `PersonListViewCell` and `UIPart` class, 
+The available timings of a friend is stored as a `TimeInterval` attribute in the `Person` class. 
+Each `TimeInterval` object will have two `DayTimeInWeek` fields, representing its start time and its end time.
+
+The time stamp that is parsed into the `DayTimeInWeek` class is then saved as the number of elapsed minutes since Monday 12am.
+
+#### Additional details
+
+To support our `Suggest` command in finding friends who are available at a certain time, the `TimeInterval` class implements the `isAvailable()` method in the `ITimesAvailable` interface. 
+The `isAvailable()` method takes in a time stamp as a `DayTimeInWeek` object, and calculates if it lies within the available time interval of the friend.
+
+The following class diagram shows the relationship between the classes:
+
+<img src="images/TimeIntervalClassDiagram.png" width="550" />
+
+### Servers, GameType and Socials as Coloured Tags in Friend's profile
+Whenever the user updates the in-game preferences or social handles of a friend, it is displayed as 
+distinct coloured tags under the friend's profile.
+
+#### Implementation
+
+The display feature is facilitated through the `PersonCard`, `PersonListPanel` and `UIPart` class, 
 and configured using the `DarkTheme.css` **FXML** file.
 
-The `PersonCard` class inherits from the `UIPart` class, representing the panel that displays each friend's profile.
-Its information is set by the `setGraphic()` method in the nested `PersonListViewCell` class in the `PersonListPanel` class. 
-
+The `PersonCard` class inherits from the `UIPart` class, representing the panel that displays each friend's profile. 
 Inside the `PersonCard` class, there are multiple `FlowPane` fields, each representing a type of user preference.
 Each `FlowPane` field is tagged with the **@FXML** notation, for use by **FXML** markup.
 
-Everytime the user updates a friend's in-game preferences or social handles, a new `PersonCard` object is created. The object 
-will retrieve the corresponding user information and add them as individual labelled tags under the friend's profile.
+Everytime the user updates a friend's information, a new `PersonCard` object is created. The object 
+will retrieve the corresponding friend's information using the `toDisplayString()` method in the `Person` class, and add
+their in-game preferences and social handles as labelled tags under the friend's profile.
 
 Each type of user preference is then tagged with a different colour, specified in the `DarkTheme.css` file, for 
 easy differentiation of information.
 
 The following class diagram shows the relationship between the classes in the UI system:
 
-<img src="images/TagClassDiagram-0.png" width="550" />
+<img src="images/PersonTagClassDiagram.png" width="550" />
 
 #### Design Considerations:
 
@@ -368,11 +386,11 @@ The following class diagram shows the relationship between the classes in the UI
     * Less cluttered, cleaner user interface.
   * Cons: 
     * We have to decide which user details are of higher priority to Minecraft users, which may differ from user to user.
-* Alternative 2: Show all user information as tags.
+* Alternative 2: Show all information as tags.
   * Pros:
     * Easy to implement as the format is consistent for all information.
   * Cons:
-    * Too many tags displayed can make it harder to users to find the information they need at one glance.
+    * Too many tags displayed can make it harder to users to find the information they need in one glance.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -703,27 +721,31 @@ Priority legend
 ## **Appendix D: Glossary**
 
 ### Minecraft-related terminologies
-| Terminology    | Definition                                                                                       |
-|----------------|--------------------------------------------------------------------------------------------------|
-| Minecraft      | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
-| Minefriends    | The name of our app                                                                              |
-| Username       | The uniquely identifiable Minecraft username of each player                                      |
-| Server         | A multiplayer Minecraft server                                                                   |
-| Player         | A person who plays Minecraft                                                                     |
-| Mojang Studios | The company that created and owns Minecraft                                                      |
-| Microsoft      | The company that bought over Mojang Studios in 2014                                              |
-| Game mode      | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
-| Game type      | A synonym for game mode                                                                          |
+
+
+| Terminology        | Definition                                                                                       |
+|--------------------|--------------------------------------------------------------------------------------------------|
+| **Minecraft**      | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
+| **Minefriends**    | The name of our app                                                                              | 
+| **Username**       | The uniquely identifiable Minecraft username of each player                                      |                                                  
+| **Server**         | A multiplayer Minecraft server                                                                   |
+| **Player**         | A person who plays Minecraft                                                                     |
+| **Mojang Studios** | The company that created and owns Minecraft                                                      |
+| **Microsoft**      | The company that bought over Mojang Studios in 2014                                              |  
+| **Game mode**      | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
+| **Game type**      | A synonym for game mode                                                                          | 
 
 For a complete glossary of Minecraft terms, please visit this page on the
 [Minecraft wiki](https://minecraft.fandom.com/wiki/Tutorials/Game_terms).
 
 ### Other terminologies
-| Terminology   | Definition                                                                 |
-|---------------|----------------------------------------------------------------------------|
-| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X        |
-| Socials       | A person's social media account information, such as their Telegram handle |
-| CLI           | An acronym for "command line interface"                                    |
+
+| Terminology   | Definition                                                                  |
+|---------------|-----------------------------------------------------------------------------|
+| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X         |
+| Socials       | A person's social media account information, such as their Telegram handle  |
+| CLI           | An acronym for "command line interface"                                     |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
