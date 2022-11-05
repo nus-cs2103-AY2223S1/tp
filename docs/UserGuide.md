@@ -1020,14 +1020,14 @@ commands. The tables below contain the full summary of our commands and how they
 
 ### Viewing Resident Commands
 
-| Action     | Format, Examples                                                                                           |
-|------------|------------------------------------------------------------------------------------------------------------|
-| **List**   | `list`                                                                                                    |
-| **Show**   | `showonly LETTER [MORE_LETTERS]`<br/>e.g. `showonly n p e t`                                               |
-| **Hide**   | `hideonly LETTER [MORE_LETTERS]`<br/>e.g. `hideonly i r g h m`                                             |
-| **Reset**  | `reset`                                                                                                    |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                  |
-| **Filter** | `filter /specifier KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g. `filter /all h/D g/M`        |
+| Action        | Format, Examples                                                                                           |
+|---------------|------------------------------------------------------------------------------------------------------------|
+| **List**      | `list`                                                                                                     |
+| **Show only** | `showonly LETTER [MORE_LETTERS]`<br/>e.g. `showonly n p e t`                                               |
+| **Hide only** | `hideonly LETTER [MORE_LETTERS]`<br/>e.g. `hideonly i r g h m`                                             |
+| **Reset**     | `reset`                                                                                                    |
+| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                  |
+| **Filter**    | `filter /specifier KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g. `filter /all h/D g/M`          |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
