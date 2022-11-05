@@ -270,6 +270,17 @@ An inventory item's name must be more than 1 character long.
 An inventory item can have 0 or more tags. A tag should only consist of 1 word. A tag **cannot** have more than 30 characters.
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes on tags:**<br>
+
+* An inventory item can have 0 or more tags.
+* Tags should only consist of 1 word.
+* Tags **cannot** have more than 30 characters.
+* Tags should be alphanumeric.
+
+</div>
+
 Example(s):
 
 - When you enter `addi i/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1 t/Souvenir` to our sample data,
@@ -305,8 +316,8 @@ Format: `findi KEYWORD [MORE_KEYWORDS]`
 - The order of the keywords does not matter. e.g. `pants long` will match `long pants`
 - Only the name of the item is searched.
 - Only full words will be matched. e.g. `key` will not match `Keychain`
-- Items matching at least one keyword will be returned (i.e. OR search).
-  e.g. `shirt` will return `dress shirt`, `collared shirt`
+- Items matching at least one keyword will be displayed.
+  e.g. `shirt` will display `dress shirt`, `collared shirt`
 
 Example(s):
 - When you enter `findi mattress` to our sample data, TrackO will find items that contain the word `mattress` in their 
@@ -487,8 +498,8 @@ in their address.
 * Only full words will be matched. <br>
   e.g. `Gardens,` will not match `Gardens` and `keychain` will not match `keychains`
 
-* Orders matching at least one keyword will be returned (i.e. `OR` search). <br>
-  e.g. `findo i/apple keychain` will return `apple painting` and `banana keychain`
+* Orders matching at least one keyword will be displayed. <br>
+  e.g. `findo i/apple keychain` will display `apple painting` and `banana keychain`
 
 </div>
 
@@ -504,12 +515,12 @@ data will display the following result:
   
   <img src="./images/user-guide/FindoExample2.png" alt="FindoExample2">
 
-* When you enter `findo -d n/Charlotte`, TrackO returns all orders with the name `Charlotte` which have been `delivered`.
+* When you enter `findo -d n/Charlotte`, TrackO displays all orders with the name `Charlotte` which have been `delivered`.
 Executing it on our sample data will display the following result:
 
   <img src="./images/user-guide/FindoExample3.png" alt="FindoExample3">
   
-* When you enter `findo -d -p n/Alex` returns all orders with the name `Alex` which have been `paid` and `delivered`.
+* When you enter `findo -d -p n/Alex` displays all orders with the name `Alex` which have been `paid` and `delivered`.
 Executing it on our sample data will display the following result:
 
     <img src="./images/user-guide/FindoExample4.png" alt="FindoExample4">
@@ -706,7 +717,7 @@ Shows a window with a link to the user guide.
 
 If you want clear all sample data present, `clear` is the command for you. 
 
-The command `clear` clears all data (in both `Order List` and `Inventory List`) from TrackO.
+The command `clear` clears all data (in both [Order List](#layout) and [Inventory List](#layout)) from TrackO.
 
 1. Initiate the command to clear all data from TrackO. <br>
     Format: `clear`
