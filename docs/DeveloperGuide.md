@@ -276,6 +276,61 @@ should end at destroy marker (X) but due to a limitation of PlantUML, the lifeli
  
 Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for add command access to the model.
 
+### Delete Command Feature
+
+A key functionality of DevEnable is the ability to delete projects, issues, and clients into the system. The command 
+word for deleting will be `project`, `issue`, or `client`, depending on which entity is being deleted.
+This is followed by the flag `-d`, representing a Delete command. Next, it is followed by a compulsory argument to 
+initialise the entity.
+When a user enters a valid Delete command in the interface, `AddressBookParser#parseCommand` will be called which 
+processes the inputs, creates an instance of a command parser, and calls the `ProjectCommandParser#parse`,
+`IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on which entity is being added. Within 
+this method, the flag `-d` will be detected, calling `ProjectCommandParser#parseDeleteProjectCommand`,
+`IssueCommandParser#parseDeleteIssueCommand`, or `ClientCommandParser#parseDeleteClientCommand`, depending on which 
+entity is deleted, which checks for input argument validity with methods in `ParserUtil`.
+Finally, the parsed arguments are passed into and returned in an instance of the Delete Command entity and the 
+`DeleteProjectCommand#execute`, `DeleteIssueCommand#execute`, or `AddClientCommand#execute` is called depending
+on which entity is deleted, which retrieves the respective entity list from the system, deletes the entity from the 
+list to update it, and have the UI display the updated filtered entity list.
+
+#### Delete Project Command
+Compulsory prefix: p/<valid project id>
+Example Use: `project -d 1`
+
+#### Delete Issue Command
+Compulsory prefix: i/<valid issue id>
+Example Use: `issue -d 2`
+
+#### Delete Client Command
+Compulsory prefix: p/<valid client id>
+Example Use: `client -d 3`
+
+#### The following sequence diagram shows how the delete command operation works for adding a project entity:
+Example: `client -d 1`
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `AddProjectCommand` 
+should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Design considerations:
+
+**Aspect: Delete command access to the model: **
+
+**Alternative 1: (current choice)** Only `ProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
+* Pros: No coupling between Parser class and Model class.
+* Cons: Mappings could not be performed within the parser.
+*
+**Alternative 2: ** Refactor `ProjectCommandParser:parseDeleteProjectCommand`, 
+`IssueCommandParser:parseDeleteIssueCommand` and `ClientCommandParser:parseDeleteClientCommand` to have access to 
+the Model.
+* Pros: Mappings could be performed within the parser which fitted its responsibility.
+* Cons: May result in extra coupling between Parser class and Model class.
+
+Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for delete command access to the model.
+
 ### Edit Command Feature
 
 A key functionality of DevEnable is the ability to edit projects, issues and clients currently in the system. The command word for editing will be `project`, `issue`, or `client`, depending on which entity it being edited.
