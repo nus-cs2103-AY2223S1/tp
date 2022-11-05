@@ -25,15 +25,15 @@ public class MonthlyContainsKeywordsPredicate extends FindPredicate {
         Monthly personMonthly = person.getMonthly();
         for (String predicateMonthlyName : monthly) {
             if (predicate.equals(">")) {
-                if (personMonthly.convertMonthlyToLong() >= Integer.parseInt(predicateMonthlyName)) {
+                if (personMonthly.convertMonthlyToLong() >= Long.parseLong(predicateMonthlyName)) {
                     return true;
                 }
             } else if (predicate.equals("<")) {
-                if (personMonthly.convertMonthlyToLong() <= Integer.parseInt(predicateMonthlyName)) {
+                if (personMonthly.convertMonthlyToLong() <= Long.parseLong(predicateMonthlyName)) {
                     return true;
                 }
             } else if (predicate.equals("=")) {
-                if (personMonthly.convertMonthlyToLong() == Integer.parseInt(predicateMonthlyName)) {
+                if (personMonthly.convertMonthlyToLong() == Long.parseLong(predicateMonthlyName)) {
                     return true;
                 }
             }
