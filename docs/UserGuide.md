@@ -314,6 +314,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * No need to type in the whole word. e.g `9927` will match `27859927`
 * For precise searching, specify the corresponding attribute (phone number or email)
   e.g. `find p/88888888` will only match the customer with phone number `88888888`
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -625,7 +626,6 @@ Format: `exit`
 Before executing the ExitCommand:
 <br>
 <img src="images/screenshots/ExitCommand/ExitCommand.png"><br>
-<div style="page-break-after: always;"></div>
 
 After executing the ExitCommand:
 <br>
