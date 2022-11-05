@@ -36,14 +36,22 @@ Given below are my contributions to the project.
   * FindAppointmentCommand
   * SetPaidCommand
   * SetUnPaidCommand
-  * Saving the data
-  * Editing the data file
-* Added the Quickstart guide
+  * Save the data
+  * Edit the data file
+* Added the Quick Start guide
 * Added the target user group and value proposition
 * Added the FAQ section
+* Added Navigation for Feature list
+* Modified and standardised headings, screenshot descriptions and spacing for consistency
 
 ### Contributions to the Developer Guide:
-to be added soon
+* Added the Appendix: Effort
+* Added the Non-Functional Requirements
+* Added the Glossary
+* Added Target User Profile, Product Scope and Value Proposition
+* Modified all the user stories and wrote use case UC-01
+* Added the Find feature implementation with a Sequence diagram
+* Added the SetPaid and SetUnPaid feature implementation with a Sequence diagram
 
 ### Contributions to other Documentations:
 * Ui image of the product for landing page

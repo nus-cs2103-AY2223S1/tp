@@ -1218,3 +1218,13 @@ testers are expected to do more *exploratory* testing.
 
 ## Appendix: Effort
 
+* Find feature 
+
+| AB3 (FindCommand)                                                          | HealthContact (FindPatientCommand, FindAppointmentCommand, FindBillCommand                                      |
+|----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| Finds persons only                                                         | Finds patients, appointments and bills separately                                                               |
+| Finds by name only                                                         | Finds by respective fields of patients, appointments and bills                                                  |
+| Finds by one field at a time                                               | Finds by multiple fields at a time                                                                              |
+| A new predicate class needs to be created for each field to be filtered by | Optional predicates are used instead                                                                            |
+| Find by one entity, i.e. Person                                            | Find by multiple entities separately, i.e. Patient, Appointment and Bill                                        |
+| Can only find using full words                                             | Can find using partial and full words, numbers and special characters depending on respective field constraints |
