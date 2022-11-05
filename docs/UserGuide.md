@@ -44,9 +44,9 @@ If you are a returning user, the [Command Summary](#command-summary) provides yo
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have **Java 11** or above installed in your Computer.
 
-2. Download the latest `NUScheduler.jar` from [here](https://github.com/AY2223S1-CS2103T-T17-3/tp/releases).
+2. Download the latest **NUScheduler.jar** from [here](https://github.com/AY2223S1-CS2103T-T17-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your NUScheduler.
 
