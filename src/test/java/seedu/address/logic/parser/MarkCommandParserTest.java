@@ -24,11 +24,17 @@ public class MarkCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        // non-integer
-        assertParseFailure(parser, "a", String.format(
+        // empty
+        assertParseFailure(parser, " ", String.format(
             MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
+
+        // non-integer
+        assertParseFailure(parser, "a", MESSAGE_INVALID_TASK_INDEX);
 
         // zero index
         assertParseFailure(parser, "0", MESSAGE_INVALID_TASK_INDEX);
+
+        // big integer
+        assertParseFailure(parser, "2147483648", MESSAGE_INVALID_TASK_INDEX);
     }
 }

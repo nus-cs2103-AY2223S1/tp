@@ -20,9 +20,7 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
      */
     public UnmarkCommand parse(String args) throws ParseException {
 
-        try {
-            Integer.parseInt(args.trim());
-        } catch (NumberFormatException ne) {
+        if (args.trim().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkCommand.MESSAGE_USAGE));
         }
         try {
