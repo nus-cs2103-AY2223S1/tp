@@ -14,8 +14,8 @@ import seedu.taassist.model.session.Session;
  */
 class JsonAdaptedSession {
 
-    public static final String MISSING_NAME_MESSAGE_FORMAT = "Session's name field is missing!";
-    public static final String MISSING_DATE_MESSAGE_FORMAT = "Session's date field is missing!";
+    public static final String MESSAGE_MISSING_NAME = "Session's name field is missing!";
+    public static final String MESSAGE_MISSING_DATE = "Session's date field is missing!";
 
     @JsonProperty("name")
     private final String sessionName;
@@ -49,13 +49,13 @@ class JsonAdaptedSession {
      */
     public Session toModelType() throws IllegalValueException {
         if (sessionName == null) {
-            throw new IllegalValueException(MISSING_NAME_MESSAGE_FORMAT);
+            throw new IllegalValueException(MESSAGE_MISSING_NAME);
         }
         if (!Session.isValidSessionName(sessionName)) {
             throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
         }
         if (date == null) {
-            throw new IllegalValueException(MISSING_DATE_MESSAGE_FORMAT);
+            throw new IllegalValueException(MESSAGE_MISSING_DATE);
         }
         return new Session(sessionName, new Date(date));
     }

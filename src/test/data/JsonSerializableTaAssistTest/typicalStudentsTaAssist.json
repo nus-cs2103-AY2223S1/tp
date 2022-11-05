@@ -26,7 +26,13 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "moduleData" : [ ]
+    "moduleData" : [ {
+      "module" : "CS1101S",
+      "data" : [ {
+        "session": "Lab 1",
+        "grade": 100.0
+      } ]
+    } ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -34,7 +40,10 @@
     "address" : "10th street",
     "moduleData" : [ {
       "module" : "CS1231S",
-      "data" : [ ]
+      "data" : [ {
+        "session": "Tutorial 1",
+        "grade": 1.0
+      } ]
     } ]
   }, {
     "name" : "Elle Meyer",
@@ -56,10 +65,19 @@
     "moduleData" : [ ]
   } ],
   "moduleClasses" : [ {
-    "name" : "CS1231S",
-    "sessions" : [ ]
-  }, {
     "name" : "CS1101S",
-    "sessions" : [ ]
+    "sessions" : [ {
+      "name" : "Lab 1",
+      "date" : "2022-10-12"
+    } ]
+  }, {
+    "name" : "CS1231S",
+    "sessions" : [ {
+      "name" : "Assignment 1",
+      "date" : "2022-01-01"
+    }, {
+      "name" : "Tutorial 1",
+      "date" : "2022-02-28"
+    } ]
   } ]
 }

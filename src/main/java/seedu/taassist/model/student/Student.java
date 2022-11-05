@@ -9,9 +9,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.session.Session;
-import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.uniquelist.Identity;
 import seedu.taassist.model.uniquelist.UniqueList;
 
@@ -139,8 +137,8 @@ public class Student implements Identity<Student>, Comparable<Student> {
      * given {@code session} in {@code moduleClass}.
      * Assumption: The student is assigned to the module class, and the session exists in the module class.
      */
-    public Student updateGrade(ModuleClass moduleClass, Session session, double grade) {
-        requireAllNonNull(moduleClass, session);
+    public Student updateGrade(ModuleClass moduleClass, Session session, Double grade) {
+        requireAllNonNull(moduleClass, session, grade);
         List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
                 .map(d -> d.getModuleClass().isSame(moduleClass) ? d.updateGrade(session, grade) : d)
                 .collect(Collectors.toList());

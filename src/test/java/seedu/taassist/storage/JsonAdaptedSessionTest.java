@@ -3,8 +3,8 @@ package seedu.taassist.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_SESSION_NAME;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_LAB1;
-import static seedu.taassist.storage.JsonAdaptedSession.MISSING_DATE_MESSAGE_FORMAT;
-import static seedu.taassist.storage.JsonAdaptedSession.MISSING_NAME_MESSAGE_FORMAT;
+import static seedu.taassist.storage.JsonAdaptedSession.MESSAGE_MISSING_DATE;
+import static seedu.taassist.storage.JsonAdaptedSession.MESSAGE_MISSING_NAME;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalSessions.ASSIGNMENT_1;
 
@@ -35,14 +35,14 @@ public class JsonAdaptedSessionTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedSession session = new JsonAdaptedSession(null, VALID_DATE);
-        String expectedMessage = MISSING_NAME_MESSAGE_FORMAT;
+        String expectedMessage = MESSAGE_MISSING_NAME;
         assertThrows(IllegalValueException.class, expectedMessage, session::toModelType);
     }
 
     @Test
     public void toModelType_nullDate_throwsIllegalValueException() {
         JsonAdaptedSession session = new JsonAdaptedSession(VALID_SESSION_LAB1, null);
-        String expectedMessage = MISSING_DATE_MESSAGE_FORMAT;
+        String expectedMessage = MESSAGE_MISSING_DATE;
         assertThrows(IllegalValueException.class, expectedMessage, session::toModelType);
     }
 

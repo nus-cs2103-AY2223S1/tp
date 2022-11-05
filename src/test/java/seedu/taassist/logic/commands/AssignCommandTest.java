@@ -60,8 +60,10 @@ class AssignCommandTest {
         indices.add(Index.fromOneBased(1));
 
         AssignCommand assignCommand = new AssignCommand(indices, CS1101S);
+
         Student expectedStudent = new StudentBuilder(ALICE).withModuleClasses(CS1101S).build();
         String expectedMessage = AssignCommand.getSuccessMessage(new ArrayList<>(List.of(expectedStudent)), CS1101S);
+
         assertEquals(expectedMessage, assignCommand.execute(modelStub).getFeedbackToUser());
         assertEquals(expectedStudent, modelStub.student);
     }

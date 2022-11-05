@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.model.Model;
-import seedu.taassist.model.student.NameContainsKeywordsPredicate;
+import seedu.taassist.model.student.predicate.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all students in TaAssist whose name contains any of the argument keywords.
