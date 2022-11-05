@@ -132,8 +132,8 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     /**
-     * Adds a tag to the foodRem.
-     * The tag must not already exist in the foodRem.
+     * Adds a tag to FoodRem.
+     * The tag must not already exist in FoodRem.
      */
     public void addTag(Tag t) {
         tags.add(t);
@@ -142,7 +142,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     /**
      * Replaces the {@code originalTag} with the {@code renamedTag} in the item.
      * The {@code originalTag} must exist in foodRem
-     * The tag in {@code renamedTag} must not be the same as another existing tag in the foodRem.
+     * The tag in {@code renamedTag} must not be the same as another existing tag in FoodRem.
      */
     public void renameTag(Tag originalTag, Tag renamedTag) {
         requireNonNull(originalTag);
@@ -161,7 +161,7 @@ public class FoodRem implements ReadOnlyFoodRem {
 
     /**
      * Removes {@code key} from this {@code FoodRem}.
-     * {@code key} must exist in the foodRem.
+     * {@code key} must exist in FoodRem.
      */
     public void removeTag(Tag tag) {
         requireNonNull(tag);
