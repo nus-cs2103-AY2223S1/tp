@@ -296,11 +296,11 @@ Format:
 </div>
 
 Examples:
-1. `task todo m/Alex Yeoh d/Finish user guide` adds a todo called “Finish user guide” assigned by Alex Yeoh to you.
+1. `task todo m/Alex Yeoh d/Finish user guide` adds a todo called "Finish user guide" assigned by Alex Yeoh to you.
 
-2. `task todo o/Bernice Yu d/Finish the assignment #/cs2103` adds a todo called “Finish the assignment” tagged as "cs2103" and assigned to Bernice Yu.
+2. `task todo o/Bernice Yu d/Finish the assignment #/cs2103` adds a todo called "Finish the assignment" tagged as "cs2103" and assigned to Bernice Yu.
 
-3. `task todo o/Myself d/Upload slides` adds a todo called “Upload slides” which is self-assigned by you.
+3. `task todo o/Myself d/Upload slides` adds a todo called "Upload slides" which is self-assigned by you.
 
 4. `task todo d/Finish essay` adds a todo called "Finish essay" which you assign to yourself.
 
@@ -341,13 +341,13 @@ Format:
 </div>
 
 Examples:
-1. `task deadline m/Alex Yeoh d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by Alex Yeoh to you.
+1. `task deadline m/Alex Yeoh d/Finish user guide t/2022-12-31` adds a deadline called "Finish user guide" assigned by Alex Yeoh to you.
 
-2. `task deadline o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called “Finish the assignment” and tagged as "cs2103" which is assigned to Bernice Yu.
+2. `task deadline o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called "Finish the assignment" and tagged as "cs2103" which is assigned to Bernice Yu.
 
-3. `task deadline o/Myself d/Upload slides t/2022-12-31` adds a deadline called “Upload Slides” which self-assigned by you.
+3. `task deadline o/Myself d/Upload slides t/2022-12-31` adds a deadline called "Upload Slides" which self-assigned by you.
 
-4. `task deadline d/Finish essay t/Jan 31 2022` adds a deadline called “Finish essay” which you assign to yourself.
+4. `task deadline d/Finish essay t/Jan 31 2022` adds a deadline called "Finish essay" which you assign to yourself.
 
 <figure>
 <p>
@@ -385,13 +385,13 @@ Format:
 </div>
 
 Examples:
-1. `task event m/Alex Yeoh d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by Alex Yeoh to you.
+1. `task event m/Alex Yeoh d/Finish user guide t/2022-12-31` adds an event called "Finish user guide" assigned by Alex Yeoh to you.
 
-2. `task event o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called “Finish the assignment” tagged as "cs2103" which is assigned to Bernice Yu.
+2. `task event o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called "Finish the assignment" tagged as "cs2103" which is assigned to Bernice Yu.
 
-3. `task event o/Myself d/Upload Slides t/Jan 31 2022` adds an event called “Upload Slides” which is self-assigned by you.
+3. `task event o/Myself d/Upload Slides t/Jan 31 2022` adds an event called"“Upload Slides" which is self-assigned by you.
 
-4. `task event d/Finish essay t/Jan 31 2022` adds an event called “Finish essay” which you assigned to yourself.
+4. `task event d/Finish essay t/Jan 31 2022` adds an event called "Finish essay" which you assigned to yourself.
 
 <figure>
 <p>
