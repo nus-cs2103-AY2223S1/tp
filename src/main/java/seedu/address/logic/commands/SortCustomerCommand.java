@@ -51,7 +51,7 @@ public class SortCustomerCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage...storage) {
+    public CommandResult execute(Model model, Storage storage) {
         requireNonNull(model);
         model.updateSortedCustomerList(comparator);
         model.selectTab(GuiTab.CUSTOMER);

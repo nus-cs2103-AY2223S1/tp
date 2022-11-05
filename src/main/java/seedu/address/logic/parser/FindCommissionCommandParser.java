@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.FindCommissionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commission.CompositeCommissionPredicate;
@@ -68,9 +69,10 @@ public class FindCommissionCommandParser implements Parser<FindCommissionCommand
                     ArgumentTokenizer.tokenize(rawKeywords, PREFIX_KEYWORD);
             List<String> givenKeywords = argMultimap.getAllValues(PREFIX_KEYWORD);
             for (String givenKeyword : givenKeywords) {
-                if (!givenKeyword.isBlank()) {
-                    keywords.add(givenKeyword);
+                if (givenKeyword.isBlank()) {
+                    throw new ParseException(Messages.MESSAGE_KEYWORD_EMPTY);
                 }
+                keywords.add(givenKeyword);
             }
         }
 

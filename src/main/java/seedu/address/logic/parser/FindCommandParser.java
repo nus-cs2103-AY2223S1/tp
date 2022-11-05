@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commission.CompositeCustomerPredicate;
@@ -62,14 +63,16 @@ public class FindCommandParser implements Parser<FindCommand> {
         Set<Tag> intersectTags = new HashSet<>();
         Set<Tag> unionTags = new HashSet<>();
         if (!rawKeywords.isEmpty()) {
+            // Whitespace required for tokenize()
             rawKeywords = " " + rawKeywords;
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(rawKeywords, PREFIX_KEYWORD);
             List<String> givenKeywords = argMultimap.getAllValues(PREFIX_KEYWORD);
             for (String givenKeyword : givenKeywords) {
-                if (!givenKeyword.isBlank()) {
-                    keywords.add(givenKeyword);
+                if (givenKeyword.isBlank()) {
+                    throw new ParseException(Messages.MESSAGE_KEYWORD_EMPTY);
                 }
+                keywords.add(givenKeyword);
             }
         }
 

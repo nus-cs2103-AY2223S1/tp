@@ -38,7 +38,7 @@ class DeleteCommissionCommandTest {
         String expectedMessage = String.format(DeleteCommissionCommand.MESSAGE_DELETE_COMMISSION_SUCCESS,
                 commissionToDelete);
 
-        CommandResult result = assertDoesNotThrow(() -> deleteCommissionCommand.execute(model));
+        CommandResult result = assertDoesNotThrow(() -> deleteCommissionCommand.execute(model, null));
 
         assertEquals(result.getFeedbackToUser(), expectedMessage);
         assertFalse(model.getSelectedCustomer().getValue().getCommissionList().contains(commissionToDelete));
@@ -48,7 +48,7 @@ class DeleteCommissionCommandTest {
     public void execute_indexTooHigh_throwsCommandException() {
         model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
         DeleteCommissionCommand deleteCommissionCommand = new DeleteCommissionCommand(INDEX_FIRST);
-        assertCommandFailure(deleteCommissionCommand, model, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommissionCommand, model, null, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
     }
 
     @Test

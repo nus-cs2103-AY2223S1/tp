@@ -37,7 +37,7 @@ public class OpenCustomerCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage...storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         model.selectTab(GuiTab.CUSTOMER);
