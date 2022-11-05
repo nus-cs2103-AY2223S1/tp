@@ -9,18 +9,19 @@ package modtrekt.commons.core.index;
  * convert it back to an int if the index will not be passed to a different component again.
  */
 public class Index {
-    private int zeroBasedIndex;
+    private final int zeroBasedIndex;
+    private final int enteredIndex;
 
     /**
      * Index can only be created by calling {@link Index#fromZeroBased(int)} or
      * {@link Index#fromOneBased(int)}.
      */
-    private Index(int zeroBasedIndex) {
+    private Index(int zeroBasedIndex, int enteredIndex) {
         if (zeroBasedIndex < 0) {
             throw new IndexOutOfBoundsException();
         }
-
         this.zeroBasedIndex = zeroBasedIndex;
+        this.enteredIndex = enteredIndex;
     }
 
     public int getZeroBased() {
@@ -35,14 +36,14 @@ public class Index {
      * Creates a new {@code Index} using a zero-based index.
      */
     public static Index fromZeroBased(int zeroBasedIndex) {
-        return new Index(zeroBasedIndex);
+        return new Index(zeroBasedIndex, zeroBasedIndex);
     }
 
     /**
      * Creates a new {@code Index} using a one-based index.
      */
     public static Index fromOneBased(int oneBasedIndex) {
-        return new Index(oneBasedIndex - 1);
+        return new Index(oneBasedIndex - 1, oneBasedIndex);
     }
 
     @Override
@@ -50,5 +51,10 @@ public class Index {
         return other == this // short circuit if same object
                 || (other instanceof Index // instanceof handles nulls
                 && zeroBasedIndex == ((Index) other).zeroBasedIndex); // state check
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(enteredIndex);
     }
 }
