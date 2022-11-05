@@ -16,7 +16,7 @@ public class ListContactCommand extends Command {
     public static final String COMMAND_WORD = "list_contact";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>();
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all contacts";
 
 
     @Override

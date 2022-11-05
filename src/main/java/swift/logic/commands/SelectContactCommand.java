@@ -31,7 +31,7 @@ public class SelectContactCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SELECT_CONTACT_SUCCESS = "Person Selected!";
+    public static final String MESSAGE_SELECT_CONTACT_SUCCESS = "Contact Selected!";
 
     private final Index targetIndex;
 
