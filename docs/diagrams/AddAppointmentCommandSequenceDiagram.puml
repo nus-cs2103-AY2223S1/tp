@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+
+
+participant "a:AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
+
+participant ":Model" as Model MODEL_COLOR
+
+[-> AddAppointmentCommand : execute()
+
+
+activate AddAppointmentCommand
+
+AddAppointmentCommand -> Model: hasPatient(p)
+activate Model
+Model -> AddAppointmentCommand
+deactivate Model
+
+AddAppointmentCommand -> Model: hasAppointment(a)
+activate Model
+Model -> AddAppointmentCommand
+deactivate Model
+
+alt Patient exists and Appointment is not already in the HealthContact
+    AddAppointmentCommand -> Model : addAppointment(p)
+    activate Model
+    Model -> Model: resetDisplayedList()
+    activate Model
+    Model --> Model
+    deactivate Model
+    Model --> AddAppointmentCommand
+    deactivate Model
+end
+
+
+[<--AddAppointmentCommand : result
+deactivate AddAppointmentCommand
+[<-[Hidden]- AddAppointmentCommand
+destroy AddAppointmentCommand
+
+@enduml
