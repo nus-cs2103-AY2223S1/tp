@@ -7,9 +7,7 @@ title: Samuel Koh's Project Portfolio Page
 
 bobaBot is a desktop application for managing customers’ membership details. It is optimized for Command Line Interface (CLI) while retaining some benefits of the Graphical User Interface (GUI). If you are a cashier working at a bubble tea shop and can type fast, bobaBot can help you easily find and manage your customers’ membership information as compared to other GUI applications.
 
-bobaBot contains a database of customers’ information and supports operations to add, update, delete and even find customers based on various inputs. Every entry in the database contains the customer's name, phone number, email address, birthday month, reward points and membership tags.
-
-bobaBot is written in Java and has about 13 kLoC.
+bobaBot contains a database of customers’ information and supports operations to add, update, delete and even find customers based on various inputs. Every entry in the database contains the customer's name, phone number, email address, birthday month, reward points and membership tags. bobaBot is written in Java and has about 13 kLoC.
 
 Given below are my contributions to the project.
 
