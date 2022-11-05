@@ -1,11 +1,14 @@
 ---
-layout: page
+layout: ppp
 title: Eugene Tan's Project Portfolio Page
 ---
 
+<!-- markdownlint-disable-next-line blanks-around-headers -->
 ### Project: FoodRem
+{: .no_toc}
 
-FoodRem is an Inventory Management System that empowers small food and beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. It is written in Java, and has about 20 kLoC.
+<!-- markdownlint-disable-next-line proper-names -->
+{{ site.data.foodrem.about.summary }}
 
 Given below are my contributions to the project.
 
