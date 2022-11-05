@@ -7,6 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.Pin;
 import seedu.address.model.project.ProjectId;
 
+// @@author Dernbu
 /**
  * This class represents a partial initialisation of issue (without access to model).
  * The reason why this exists is to separate Parser classes, and to ensure they are not dependent on

@@ -281,7 +281,7 @@ public class ParserUtil {
                 trimmedStatus.equalsIgnoreCase("completed")
                         || trimmedStatus.equalsIgnoreCase("incomplete");
         if (!isValidStringCounterpart) {
-            throw new ParseException(Status.MESSAGE_STRING_CONSTRAINTS);
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
     }
 

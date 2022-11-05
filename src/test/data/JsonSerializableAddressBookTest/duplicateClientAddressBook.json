@@ -8,10 +8,10 @@
       "mobile" : "87438807",
       "email" : "alexyeoh@example.com",
       "clientId" : "1",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "1"
+    "projectId" : "1",
+    "pin" : "false"
   }, {
     "name" : "Team Project",
     "repository" : "johndoe/tp",
@@ -21,10 +21,10 @@
       "mobile" : "87438807",
       "email" : "alexyeoh@example.com",
       "clientId" : "2",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "2"
+    "projectId" : "2",
+    "pin" : "false"
   } ],
-  "issues" : [ ]
+  "issues" : [  ]
 }

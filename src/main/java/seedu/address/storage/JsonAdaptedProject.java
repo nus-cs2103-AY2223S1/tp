@@ -16,15 +16,10 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
 
-
-
-
 /**
  * Jackson-friendly version of {@link Project}.
  */
 class JsonAdaptedProject {
-
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing!";
 
     private final String name;
     private final String repository;
@@ -35,9 +30,6 @@ class JsonAdaptedProject {
 
     private final JsonAdaptedClient client;
 
-
-    private final List<JsonAdaptedIssue> issues = new ArrayList<>();
-
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
      */
@@ -45,7 +37,6 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(@JsonProperty("name") String name, @JsonProperty("repository") String repository,
                               @JsonProperty("deadline") String deadline,
                               @JsonProperty("client") JsonAdaptedClient client,
-                              @JsonProperty("issues") List<JsonAdaptedIssue> issues,
                               @JsonProperty("projectId") String projectId,
                               @JsonProperty("pin") String pin) {
         this.name = name;
@@ -53,9 +44,6 @@ class JsonAdaptedProject {
         this.deadline = deadline;
         this.client = client;
         this.projectId = projectId;
-        if (issues != null) {
-            this.issues.addAll(issues);
-        }
         this.pin = pin;
     }
 
@@ -77,71 +65,13 @@ class JsonAdaptedProject {
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        Repository modelRepository;
-        if (repository == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Repository.class.getSimpleName()));
-        }
-        if (repository.isEmpty()) {
-            modelRepository = Repository.EmptyRepository.EMPTY_REPOSITORY;
-        } else {
-            if (!Repository.isValidRepository(repository)) {
-                throw new IllegalValueException(Repository.MESSAGE_CONSTRAINTS);
-            }
-            modelRepository = new Repository(repository);
-        }
-
-        Deadline modelDeadline;
-        if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Deadline.class.getSimpleName()));
-        }
-        if (deadline.isEmpty()) {
-            modelDeadline = Deadline.EmptyDeadline.EMPTY_DEADLINE;
-        } else {
-            if (!Deadline.isValidDeadline(deadline)) {
-                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
-            }
-            modelDeadline = new Deadline(deadline);
-        }
-
-        if (client == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Project.class.getSimpleName()));
-        }
-
-        final Client modelClient = client.toModelType();
-
+        final Name modelName = StorageUtil.readNameFromStorage(name, Project.class.getSimpleName());
+        final Repository modelRepository = StorageUtil.readRepositoryFromStorage(repository);
+        final Deadline modelDeadline = StorageUtil.readDeadlineFromStorage(deadline, Project.class.getSimpleName());
+        final Client modelClient = StorageUtil.readClientFromStorage(client);
+        final Pin modelPin = StorageUtil.readPinFromStorage(pin, Project.class.getSimpleName());
+        final ProjectId modelProjectId = StorageUtil.readProjectIdFromStorage(projectId);
         final List<Issue> modelIssues = new ArrayList<>();
-
-        Pin modelPin;
-        if (pin == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Pin.class.getSimpleName()));
-        }
-        if (!Pin.isValidPin(pin)) {
-            throw new IllegalValueException(Pin.MESSAGE_CONSTRAINTS);
-        }
-        modelPin = new Pin(Boolean.parseBoolean(pin));
-
-        if (projectId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectId.class.getSimpleName()));
-        }
-        if (!ProjectId.isValidProjectId(projectId)) {
-            throw new IllegalValueException(ProjectId.MESSAGE_CONSTRAINTS);
-        }
-        final ProjectId modelProjectId = new ProjectId(Integer.parseInt(projectId));
-
-        assert modelProjectId.getIdInt() >= 0 : "Project ID should be positive";
-
         return new Project(modelName, modelRepository, modelDeadline,
                 modelClient, modelIssues, modelProjectId, modelPin);
     }

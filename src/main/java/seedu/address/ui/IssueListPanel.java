@@ -46,7 +46,7 @@ public class IssueListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new IssueCard(issue, getIndex() + 1).getRoot());
+                setGraphic(new IssueCard(issue).getRoot());
             }
         }
     }

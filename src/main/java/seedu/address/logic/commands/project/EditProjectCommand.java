@@ -34,10 +34,10 @@ public class EditProjectCommand extends ProjectCommand {
             + ": Edits a project in the project book. \n"
             + "Parameters: "
             + PREFIX_PROJECT_ID + "PROJECT_ID "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_CLIENT_ID + "CLIENT_ID "
-            + PREFIX_REPOSITORY + "REPOSITORY "
-            + PREFIX_DEADLINE + "DEADLINE \n"
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_CLIENT_ID + "CLIENT_ID] "
+            + "[" + PREFIX_REPOSITORY + "REPOSITORY] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_PROJECT_ID + "1 "
@@ -51,6 +51,7 @@ public class EditProjectCommand extends ProjectCommand {
     public static final String MESSAGE_PROJECT_NOT_FOUND = "Project id %1$d does not exist in the project book";
     public static final String MESSAGE_DUPLICATE_PROJECT_NAME = "A project with this name already "
             + "exists in the project book";
+    public static final String MESSAGE_PROJECT_ALREADY_HAS_THAT_NAME = "This project already has that name";
 
     private final ProjectId projectToEditId;
     private final Name newName;
@@ -86,10 +87,12 @@ public class EditProjectCommand extends ProjectCommand {
         if (newName != null) {
             for (Project p : model.getFilteredProjectList()) {
                 if (p.getProjectName().equals(newName)) {
+                    if (toEditProject.getProjectName().equals(newName)) {
+                        throw new CommandException(MESSAGE_PROJECT_ALREADY_HAS_THAT_NAME);
+                    }
                     throw new CommandException(MESSAGE_DUPLICATE_PROJECT_NAME);
                 }
             }
-            toEditProject.setName(newName);
         }
 
         if (newClientId != null) {
@@ -103,6 +106,10 @@ public class EditProjectCommand extends ProjectCommand {
                 throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         EditProjectCommand.MESSAGE_INVALID_CLIENT));
             }
+        }
+
+        if (newName != null) {
+            toEditProject.setName(newName);
         }
 
         if (newRepository != null) {

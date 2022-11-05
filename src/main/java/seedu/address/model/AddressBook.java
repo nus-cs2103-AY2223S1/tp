@@ -510,7 +510,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        // TODO: Check for appropriate hashcode
         return clients.hashCode();
     }
 

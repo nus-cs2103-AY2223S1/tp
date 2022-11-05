@@ -7,7 +7,7 @@ import static java.lang.Boolean.parseBoolean;
  */
 public class Status {
 
-    public static final String MESSAGE_STRING_CONSTRAINTS = "Status should be completed or incomplete.";
+    public static final String MESSAGE_CONSTRAINTS = "Status should be completed or incomplete.";
     /**
      * Represents and empty Issue status.
      */
@@ -24,17 +24,15 @@ public class Status {
         }
     }
 
-    public static final String MESSAGE_CONSTRAINTS = "STATUS NOT IMPLEMENTED";
-
-    private boolean completed;
+    private boolean isCompleted;
 
     /**
      * Constructs an issue completion Status.
      *
-     * @param completionStatus true/false to indicate if issue is completed.
+     * @param isCompleted true/false to indicate if issue is completed.
      */
-    public Status(boolean completionStatus) {
-        this.completed = completionStatus;
+    public Status(boolean isCompleted) {
+        this.isCompleted = isCompleted;
     }
 
     /**
@@ -49,11 +47,11 @@ public class Status {
     }
 
     public boolean getStatus() {
-        return this.completed;
+        return this.isCompleted;
     }
 
-    public void setStatus(boolean completionStatus) {
-        this.completed = completionStatus;
+    public void setStatus(boolean isCompleted) {
+        this.isCompleted = isCompleted;
     }
 
     public boolean isEmpty() {
@@ -64,7 +62,7 @@ public class Status {
      * Returns the ui representation of the status
      */
     public String uiRepresentation() {
-        if (this.completed == true) {
+        if (this.isCompleted == true) {
             return "Status: Completed";
         } else {
             return "Status: Incomplete";
@@ -76,7 +74,7 @@ public class Status {
      * @return String representing whether the issue is completed.
      */
     public String getCompletionStatus() {
-        if (this.completed) {
+        if (this.isCompleted) {
             return "Completed";
         } else {
             return "Incomplete";
@@ -85,7 +83,7 @@ public class Status {
 
     @Override
     public String toString() {
-        return String.valueOf(this.completed);
+        return String.valueOf(this.isCompleted);
     }
 
     /**
@@ -103,7 +101,7 @@ public class Status {
         }
 
         Status otherStatus = (Status) other;
-        return otherStatus.completed == this.completed;
+        return otherStatus.isCompleted == this.isCompleted;
 
     }
 }
