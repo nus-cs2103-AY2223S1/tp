@@ -761,17 +761,22 @@ testers are expected to do more *exploratory* testing.
 1. Displaying all patients that has an appointment on the query appointment date
     1. Prerequisites: List all patients using the `list` command. At least one inpatient in the list of people.
     2. Test case: `get /appton 14-12-1212`<br>
-       Expected: All patients having appointments on 14th December are listed.
+       Expected: All patients having appointments on 14th December 1212 are listed.
        The number of patients listed is displayed in the result box.
-    3. Test case: `get /appton 2020-08-08`<br>
+    3. Test case: `get /appton 14-12-1212 15-12-2020`<br>
+       Expected: All patients having appointments on 14th December 1212 or 15th December 2020 are listed.
+       The number of patients listed is displayed in the result box.
+    4. Test case: `get /appton 2020-08-08`<br>
        Expected: The current list remains unchanged. Error message is displayed in the result box.
-    4. Test case: `get /appton 14-12-1212 /hw south`<br>
+    5. Test case: `get /appton 14-12-1212 /hw south`<br>
        Expected: The current list remains unchanged. Error message is displayed in the result box.
-    5. Test case: `get appton`<br>
+    6. Test case: `get /appton 14-12-1212 5`<br>
        Expected: The current list remains unchanged. Error message is displayed in the result box.
-    6. Test case: `get appton/`<br>
+    7. Test case: `get appton`<br>
        Expected: The current list remains unchanged. Error message is displayed in the result box.
-
+    8. Test case: `get appton/`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    
 ### Displaying all past appointments of a patient
 
 1. Displaying the past appointment of a patient when all patients have past appointments.
