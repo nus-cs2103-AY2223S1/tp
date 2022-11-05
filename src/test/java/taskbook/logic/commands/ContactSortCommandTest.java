@@ -10,8 +10,6 @@ import taskbook.logic.commands.contacts.ContactSortAddedChronologicalCommand;
 import taskbook.logic.commands.contacts.ContactSortCommand;
 import taskbook.logic.commands.contacts.ContactSortNameAlphabeticalCommand;
 import taskbook.logic.commands.contacts.ContactSortNameReverseAlphabeticalCommand;
-import taskbook.logic.commands.contacts.ContactSortPhoneAscendingCommand;
-import taskbook.logic.commands.contacts.ContactSortPhoneDescendingCommand;
 import taskbook.model.Model;
 import taskbook.model.ModelManager;
 import taskbook.model.UserPrefs;
@@ -70,28 +68,6 @@ public class ContactSortCommandTest {
         expectedModel.updateSortedPersonList((p1, p2) -> p1.compareByNameReverseAlphabeticalTo(p2));
         String expectedMessage = String.format(ContactSortCommand.MESSAGE_SORT_TASK_SUCCESS
                 + ContactSortNameReverseAlphabeticalCommand.MESSAGE_SORT_TYPE);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_contactSortPhoneAscending_commandSuccess() {
-        ContactSortPhoneAscendingCommand command = new ContactSortPhoneAscendingCommand();
-        Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
-        expectedModel.updateSortedPersonList((p1, p2) -> p1.compareByPhoneNumberAscendingTo(p2));
-        String expectedMessage = String.format(ContactSortCommand.MESSAGE_SORT_TASK_SUCCESS
-                + ContactSortPhoneAscendingCommand.MESSAGE_SORT_TYPE);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_contactSortPhoneDescending_commandSuccess() {
-        ContactSortPhoneDescendingCommand command = new ContactSortPhoneDescendingCommand();
-        Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
-        expectedModel.updateSortedPersonList((p1, p2) -> p1.compareByPhoneNumberDescendingTo(p2));
-        String expectedMessage = String.format(ContactSortCommand.MESSAGE_SORT_TASK_SUCCESS
-                + ContactSortPhoneDescendingCommand.MESSAGE_SORT_TYPE);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 }

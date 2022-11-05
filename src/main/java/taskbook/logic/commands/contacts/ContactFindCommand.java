@@ -21,8 +21,8 @@ public class ContactFindCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Displaying matching persons.";
     public static final String MESSAGE_USAGE =
             ContactCategoryParser
-                    .CATEGORY_WORD + " " + COMMAND_WORD
-                    + ": Searches all contact names that contain the given query.\n"
+                    .CATEGORY_WORD + " " + COMMAND_WORD + " " + PREFIX_QUERY + "QUERY: "
+                    + "Searches all persons for names that contain the given query.\n"
                     + "Parameters:\n"
                     + PREFIX_QUERY + "QUERY\n"
                     + "Only names with exact matches with QUERY will be displayed. Can be multiple words. "

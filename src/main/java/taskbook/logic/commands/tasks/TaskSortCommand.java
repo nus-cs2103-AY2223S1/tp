@@ -14,7 +14,7 @@ public abstract class TaskSortCommand extends Command {
     public static final String MESSAGE_USAGE =
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
                     + " s/SORT_TYPE: Sorts list of tasks in some order.\n"
-                    + "Available SORT_TYPEs:\n"
+                    + "Available SORT_TYPE parameters:\n"
                     + "a: sorts description of tasks in alphabetical order.\n"
                     + "ra: sorts description of tasks in reverse alphabetical order.\n"
                     + "ca: sorts chronologically, by time tasks were added.\n"
