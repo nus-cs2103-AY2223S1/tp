@@ -435,7 +435,7 @@ These properties must be within the buyer's price range and satisfy at least one
 
 Syntax: `matchbuyer INDEX [-strict]`
 
-The `INDEX` indicates which buyer in the list we are choosing to match.
+The `INDEX` indicates which buyer in the list we are choosing to match.<br>
 The `-strict` flag indicates to reduce the matches to only properties that match *all* the buyer's characteristics.<br>
 
 Examples:<br>
@@ -448,7 +448,7 @@ These buyers must be able to accept the property's price and desire at least one
 
 Syntax: `matchprop INDEX [-strict]`
 
-The `INDEX` indicates which property in the list we are choosing to match.
+The `INDEX` indicates which property in the list we are choosing to match.<br>
 The `-strict` flag indicates to reduce the matches to only buyers that desire *all* the property's characteristics.<br>
 
 Examples:<br>
