@@ -389,7 +389,7 @@ Examples:
 
 2. `task event o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called "Finish the assignment" tagged as "cs2103" which is assigned to Bernice Yu.
 
-3. `task event o/Myself d/Upload Slides t/Jan 31 2022` adds an event called “Upload Slides" which is self-assigned by you.
+3. `task event o/Myself d/Upload Slides t/Jan 31 2022` adds an event called "Upload Slides" which is self-assigned by you.
 
 4. `task event d/Finish essay t/Jan 31 2022` adds an event called "Finish essay" which you assigned to yourself.
 
