@@ -15,7 +15,7 @@ Given below are my contributions to the project.
     * Justification: Allows administrative staff to manage scholarship applicants more easily by organising them based on their specific application status.
     * Credits: Feature developed in tandem with Jie Hui.
 
-* **New Feature**: Added `PinCommand` and `UnPinCommand` class under `applicant` package with its respective parsers: [#105](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/105), [#115](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/115) and [#116](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/116)
+* **New Feature**: Added the ability to pin and unpin existing applicants: [#105](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/105), [#115](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/115) and [#116](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/116)
     * What it does: Allows the user to pin scholarship applicants, which will be shown on the right-side panel.
     Moreover, the user will be able to unpin a pinned applicant, such that the applicant will be removed from the right-side panel.
     * Justification: This feature allows a user to pin certain applicants with special circumstances (such as possessing any form of disability or currently still undergoing National Service), 
@@ -40,7 +40,8 @@ Given below are my contributions to the project.
   * User Guide: 
     * Added unpin command in features. [#125](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/125)
   * Developer Guide: 
-    * Added the filter command implementation, filter command sequence diagram, filter command activity diagram. [#96](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/96/files)
+    * Added the filter command implementation, sequence diagram and activity diagram. [#96](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/96)
+    * Added the pin and unpin command implementation, sequence diagrams and activity diagrams. [#198](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/198)
     * Added use case 3
 
 * **Community**: 
