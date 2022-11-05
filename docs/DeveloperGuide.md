@@ -321,9 +321,8 @@ As logic should be handled in the parser and to minimise modifications of the en
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* needs to store projects and stakeholders securely
 
-**Value proposition**: manage projects and project contacts faster than a typical mouse/GUI driven app, in a secure manner.
+**Value proposition**: manage projects and project contacts faster than a typical mouse/GUI driven app.
 
 
 ### User stories
