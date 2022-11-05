@@ -43,11 +43,56 @@ public class UniqueTutorListTest {
     }
 
     @Test
-    public void contains_tutorWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_tutorWithSameFieldsInList_returnsTrue() {
         uniqueTutorList.add(TUTOR1);
-        Tutor editedTutor1 = new TutorBuilder(TUTOR1).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Tutor editedTutor1 = new TutorBuilder(TUTOR1).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueTutorList.contains(editedTutor1));
+    }
+
+    @Test
+    public void contains_studentWithSameNameInList_returnsFalse() {
+        uniqueTutorList.add(TUTOR1);
+        Tutor editedTutor1 = new TutorBuilder(TUTOR2).withName(TUTOR1.getName().fullName)
+                .build();
+        assertFalse(uniqueTutorList.contains(editedTutor1));
+    }
+
+    @Test
+    public void contains_studentWithDifferentFieldInList_returnsFalse() {
+        uniqueTutorList.add(TUTOR1);
+
+        //1 field different
+        Tutor editedTutor1 = new TutorBuilder(TUTOR1).withName(TUTOR2.getName().fullName)
+                .build();
+        assertFalse(uniqueTutorList.contains(editedTutor1));
+
+        editedTutor1 = new TutorBuilder(TUTOR1).withPhone(TUTOR2.getPhone().value)
+                .build();
+        assertFalse(uniqueTutorList.contains(editedTutor1));
+
+        editedTutor1 = new TutorBuilder(TUTOR1).withEmail(TUTOR2.getEmail().value)
+                .build();
+        assertFalse(uniqueTutorList.contains(editedTutor1));
+
+        editedTutor1 = new TutorBuilder(TUTOR1).withAddress(TUTOR2.getAddress().value)
+                .build();
+        assertFalse(uniqueTutorList.contains(editedTutor1));
+
+        editedTutor1 = new TutorBuilder(TUTOR1).withQualification(TUTOR2.getQualification().qualification)
+                .build();
+        assertFalse(uniqueTutorList.contains(editedTutor1));
+
+        editedTutor1 = new TutorBuilder(TUTOR1).withInstitution(TUTOR2.getInstitution().institution)
+                .build();
+        assertFalse(uniqueTutorList.contains(editedTutor1));
+
+        //2 fields different
+        editedTutor1 = new TutorBuilder(TUTOR1).withPhone(TUTOR2.getPhone().value)
+                .withInstitution(TUTOR2.getInstitution().institution)
+                .build();
+        assertFalse(uniqueTutorList.contains(editedTutor1));
+
     }
 
     @Test
