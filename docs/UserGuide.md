@@ -154,7 +154,7 @@ Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
 * If provided module title is empty, then a module without a title will be added to Plannit. 
 * You cannot add a duplicate module code.
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:** Module codes in Plannit are **case-insensitive**, as opposed to person [names](#241-add-person) which are case-sensitive.
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br>Module codes in Plannit are **case-insensitive**, as opposed to person [names](#241-add-person) which are case-sensitive.
 </div>
 
 Examples:
@@ -186,7 +186,7 @@ Here's a screenshot of Plannit before and after executing the command:
 </table>
 {:/}
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Adding a module will bring you back to the home page.
 </div>
 
@@ -216,7 +216,7 @@ Here's a screenshot of Plannit before and after executing the command:
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/delete-module-before.png" width="300"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-module-after.png" width="300"/></p><p>A message will appear indicating that <code>CS2104</code> has been deleted. Observe that <code>CS2104</code> has been removed from the modules list.</p>{:/} |
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Deleting a module will bring you back to the home page.
 </div>
 
@@ -268,7 +268,7 @@ Here's a screenshot of Plannit before and after executing the command:
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/edit-module-before.png" width="300"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/edit-module-after.png" width="300"/></p><p>A message will appear indicating that a module has been edited. Observe that the third module in the modules list has its module code changed to <code>CS2104</code> and its module title changed to `Programming Language Concepts`. Note that the module index has changed since Plannit automatically sorts modules in ascending order of module code.</p>{:/} |
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Editing a module will bring you back to the home page.
 </div>
 
@@ -403,9 +403,9 @@ task within the task list of the module `CS2103T`. Here's a screenshot of
 Plannit before and after executing the command. Note that ["peek"](#224-peeking-at-tasks)
 has been enabled for clarity:
 
-| Before executing the command                                                                                                                              | After executing the command                                                                                                 |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png"/></p><p>Tasks 1 and 3 have swapped positions!</p>{:/} |
+| Before executing the command                                                                                                                                          | After executing the command                                                                                                                     |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png" width="500"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png" width="500"/></p><p>Tasks 1 and 3 have swapped positions!<br><br></p>{:/} |
 
 #### 2.2.4. Peeking at tasks
 You may "peek" at a module's tasks by clicking on the module while on the 
@@ -596,7 +596,7 @@ add-person n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
 In the above example, we are adding a contact with name `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number
 `91234567` into Plannit.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Adding a person to Plannit will bring you back to the home page.
 </div>
 
@@ -632,8 +632,8 @@ Here's a screenshot of Plannit before and after executing the command:
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/add-person-to-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-person-to-module-after.png"/></p><p>A message will appear indicating that <code>Charlotte Oliveiro</code> has been added to <code>CS2103T</code>.</p>{:/} |
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**
-If you wish to view the list of people added to a particular module, you may do so by navigating to that
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br>
+If you wish to view a person added to a particular module, you may do so by navigating to that
 module using the [`goto`](#252-navigate-between-modules) command.
 </div>
 
@@ -656,7 +656,7 @@ delete-person n/Dinosaur Lim
 ```
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Deleting a person from Plannit will bring you back to the home page.
 </div>
 
@@ -715,7 +715,7 @@ edit-person 1 n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
 `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number `91234567` in Plannit.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Editing a person will bring you back to the home page.
 </div>
 
@@ -770,7 +770,7 @@ The following commands also navigate you back to the home page:
 * [`edit-person`](#245-edit-person)
 </div>
 
-<div markdown="block" class="alert alert-info"> :information_source: **Note:**
+<div markdown="block" class="alert alert-info"> :information_source: **Note:**<br>
 After using the [`goto`](#252-navigate-between-modules) command, executing the `home` command will 
 re-enable the following commands:
 * [`find-module`](#214-find-module)
@@ -792,7 +792,7 @@ goto CS2109S
 ```
 In the above example, we are navigating to the module with module code `CS2109S`.
 
-<div markdown="span" class="alert alert-primary"> :bulb: **Tips:**
+<div markdown="span" class="alert alert-primary"> :bulb: **Tips:**<br>
 You may return to home page by executing the [`home`](#251-navigate-to-home) command.
 </div>
 
@@ -834,7 +834,7 @@ There is no need to load manually.
 Your data is saved as a `JSON` file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 If your changes to the data file makes its format invalid, Plannit will discard
 all data and start with an empty data file at the next run.
 </div>
