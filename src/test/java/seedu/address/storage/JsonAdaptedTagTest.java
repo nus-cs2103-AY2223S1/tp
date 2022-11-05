@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTags.BIOLOGY_PROJECT;
+import static seedu.address.testutil.TypicalTags.CS2103T;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,13 +13,13 @@ public class JsonAdaptedTagTest {
     private static final String INVALID_TAG = "#friend";
     private static final String MULTI_WORD_TAG = "best friend";
 
-    private static final String VALID_TAG = BIOLOGY_PROJECT.getName();
-    private static final int VALID_COUNT = BIOLOGY_PROJECT.getCount();
+    private static final String VALID_TAG = CS2103T.getName();
+    private static final int VALID_COUNT = CS2103T.getCount();
 
     @Test
     public void toModelType_validTagDetails_returnsTag() throws Exception {
-        JsonAdaptedTag tag = new JsonAdaptedTag(BIOLOGY_PROJECT);
-        assertEquals(BIOLOGY_PROJECT, tag.toModelType());
+        JsonAdaptedTag tag = new JsonAdaptedTag(CS2103T);
+        assertEquals(CS2103T, tag.toModelType());
     }
 
     @Test
