@@ -179,7 +179,7 @@ This command will require one flag:
 | **Module Code** | `m/` | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/} |
 
 Format: `delete-module m/MODULE_CODE`
-* Module code must correspond to currently displayed module on screen (case-insensitive)
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
 
 Example:
 
@@ -291,7 +291,7 @@ This command will require two prefixes:
 
 Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
 * Each task must belong to a specific module.
-* You should provide a module code of an existing module in Plannit.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
 
 Example:
 ```
@@ -324,7 +324,7 @@ This command will require two prefixes:
 | **Task Number of Task** | `tn/`  | {::nomarkdown}Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul>{:/} |                 
 
 Format: `delete-task m/MODULE_CODE tn/TASK_NUMBER`
-* You should provide a module code of an existing module in Plannit.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
 * You should provide a task number corresponding to that of an existing task in
 the module.
 
@@ -353,7 +353,7 @@ This command will require two prefixes:
 | **Task Numbers of Tasks whose ordering is to be swapped** | `ts/`  | {::nomarkdown}The two task numbers must: <ul><li>be separated by a <code>SPACE</code> character ("<code> </code>") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul>{:/} |
 
 Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
-* You should provide a module code of an existing module in Plannit.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
 * You should provide a pair of task numbers corresponding to those of existing 
   tasks in the module.
 * You may only specify two task numbers at once. Both task numbers must be 
@@ -437,9 +437,10 @@ Plannit provides no guarantee of the link URL's existence.
 | **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS [l/LINK_URL la/LINK_ALIAS]*`
-* You cannot add a link to a non-existent module code.
-* You cannot add a link using a link alias that already exists in the module represented by the module code.
-* You cannot add a link using a link URL that already exists in the module represented by the module code.
+* Each link must belong to a specific module.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
+* You cannot add a link using a link alias that already exists in the module.
+* You cannot add a link using a link URL that already exists in the module.
 (HTTP headers are ignored for uniqueness of link URLs.)
   * E.g., 'https://www.google.com', 'http://www.google.com', 'www.google.com' are considered the same link URL
 
@@ -476,8 +477,8 @@ none of the links in the command will be deleted.
 | **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
 
 Format: `delete-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
-* You cannot delete a link from a non-existent module code.
-* You cannot delete a link using a non-existent link alias from an existing module.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
+* You cannot delete a link using a non-existent link alias within the module.
 
 Example:
 ```
@@ -522,8 +523,8 @@ Permissions from your operating system may be required for some users to open li
 | **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
 
 Format: `open-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
-* You cannot open a link from a non-existent module code.
-* You cannot open a link using a non-existent link alias from an existing module.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
+* You cannot open a link using a non-existent link alias within the module.
 
 Example:
 ```
