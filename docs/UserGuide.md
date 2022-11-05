@@ -327,7 +327,7 @@ This example is a follow-up of [`removing a Tag`](#removing-a-tag-from-a-contact
 
 (insert successful deletion og `Test2` tag)
 
-4. Terrific! You have successfully deleted a tag.
+4. Wonderful! You have successfully deleted a tag.
 
 ### Viewing tags `[Coming soon in v1.5]`
 
