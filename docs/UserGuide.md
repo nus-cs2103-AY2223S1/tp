@@ -30,22 +30,23 @@ to use and what it does for all the features available in myStudent.
 * Prefixes are user inputs that consist of a character followed by a slash  
   e.g. `n/` or `p/`
 
+* Fields are 
 
-* `< >` - represent parameters that are supplied by the user.  
-  e.g. `add n/<name>, where <name>` is just the name of the parameter and users can input `add n/John Doe`. <br>
+* `< >` - represent fields that are supplied by the user.  
+  e.g. `add n/<name>, where <name>` is just the name of the field and users can input `add n/John Doe`. <br>
 
 
-* `[ ]` - represent parameters that are optional.  
+* `[ ]` - represent fields that are optional.  
         e.g `n/<name> [#/<tag>]`, users can input `add n/John Doe` or `n/John Doe #/male`.
 
 
-* Users can input parameters of prefixes in any order.  
+* Users can input fields of prefixes in any order.  
   e.g. `nok <index> n/<name> p/<phone>`, users can either input `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`.  
   However, `nok n/John Doe p/91234567 2` where the `<index>` is at the end of the input, is not a valid command.
 
 
-* Extra input from the user for commands that do not take in parameters will be ignored.  
-  e.g. the `clear` command does not have any other parameters, thus the user input `clear asdfghjkl` is logically the same as if the user typed in `clear`.
+* Extra input from the user for commands that do not take in fields will be ignored.  
+  e.g. the `clear` command does not have any other fields, thus the user input `clear asdfghjkl` is logically the same as if the user typed in `clear`.
 
 </div>
 
@@ -55,7 +56,11 @@ Below is a quick guide on how to get started.
 
 ## Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
+
+
 2. Download the latest `myStudent.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/releases).
+
+
 3. Copy the file to the folder you want to use as the home folder for the application.
 
 <div markdown="block" class="alert alert-info">
@@ -79,8 +84,14 @@ A `preference.json` file will be created when you first run the application. Use
 
 **What users can change:**
 * The size of the window such as its height and width (in pixels).
+
+
 * At which part of the screen the app will be displayed.
+
+
 * The default theme.
+
+
 * Where data will be loaded from and stored into.
 
 | Settings 	                            | Default Value 	                       |
@@ -197,10 +208,14 @@ Shows help information that will be useful to you.
 Format: `help [<command>]`
 
 * To view all the commands, type `help` and press <kbd>Enter</kbd>.
+
+
 * To view information regarding a specific command, type `help` followed by said command and press <kbd>Enter</kbd>.
 
 Examples:
 * `help add`
+
+
 * `help edit`
 
 <p align="center">
@@ -228,7 +243,11 @@ Formats:
 `add tutor n/<name> p/<phone> e/<email> a/<address> q/<qualification> i/<institution> [#/<tag>]…`
 
 * All fields as per the kind of person being added must be present, except for the optional `<tag>` field.
+
+
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+
+
 * Generally,
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
@@ -241,15 +260,27 @@ Formats:
        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
   * `<address>` field can take any values but should not be left blank.
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
-* For students,
-  * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
-* For tutors,
-  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
-  * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+
+
+  * For students,
+    * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+    * `<level>` field should be one of the valid academic levels.
+      The valid academic levels are:
+        1. Primary 1 to 6
+        2. Secondary 1 to 4
+    
+      (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
+
+
+  * For tutors,
+    * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
+    * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
   
 Examples:
-* `add tutor n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate st, block 123, #01-01 q/MSc, Master of Science i/National University of Singapore #/mostLiked`
 * `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
+
+
+* `add tutor n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate st, block 123, #01-01 q/MSc, Master of Science i/National University of Singapore #/mostLiked`
 
 <p align="center">
 
@@ -271,10 +302,14 @@ Adds a class to the myStudent database.
 
 Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 
-* All fields must be present , except for the optional `<tag>` field.
+* All fields must be present, except for the optional `<tag>` field.
+
+
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+
+
 * Generally,
-  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank. Also, there should not be an existing class with the same name.
   * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
     The valid subjects are:
     1. English
@@ -284,11 +319,15 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
     5. Biology
     6. Elementary Mathematics
     7. Additional Mathematics
+
+    (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
   * `<level>` field should be one of the valid academic levels.
     The valid academic levels are:
       1. Primary 1 to 6
       2. Secondary 1 to 4
-  * `<day>` field should be a valid day of the week.
+
+    (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
+  * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
   * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
     1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
     2. Start and end timings specified must respect chronology. The end time cannot occur before the start time. 
@@ -302,6 +341,8 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 
 Examples:
 * `add class n/S1ENGT10 s/Math l/Secondary 1 d/Thursday t/10am to 12pm`
+
+
 * `add class n/P2MATHF12 s/Math l/Primary 2 d/Friday t/12:00 - 14:00`
 
 <p align="center">
@@ -325,6 +366,8 @@ Deletes an entry from the myStudent database.
 Format: `delete <index>`
 
 * The index refers to the index number shown in the displayed list. For example, when displaying a student list, the command `delete 2` will delete the 2nd student on that list from the entire database.
+
+
 * The index must be a positive integer 1, 2, 3, …
 
 Examples:
@@ -352,17 +395,30 @@ Edits an entity in the myStudent database.
 
 Formats:
 
+To edit a student, <br>
 `edit <index> [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [s/<school>] [l/<level>] [#/<tag>]…`
 
+To edit a tutor, <br>
 `edit <index> [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [q/<qualification>] [i/<institution>] [#/<tag>]…`
 
+To edit a class, <br>
 `edit <index> [n/<name>] [s/<subject>] [l/<level>] [d/<day>] [t/<time>] [#/<tag>]…`
 
 * The index refers to the index number shown in the displayed list.
+
+
 * The index must be a positive integer 1, 2, 3, …
+
+
 * All fields are optional except for the `<index>` field; however, at least one optional field must be present at all times. Fields present will overwrite the existing values.
+
+
 * Fields must be valid in correspondence to the entity list being displayed currently. For example, when a student list is displayed, specifying a qualification when executing the edit command is disallowed.
+
+
 * If a specific optional field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+
+
 * The constraints of each optional field must be followed. They are:
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
@@ -380,6 +436,8 @@ Formats:
     The valid academic levels are:
       1. Primary 1 to 6
       2. Secondary 1 to 4
+
+    (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
   * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
   * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
   * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
@@ -391,7 +449,9 @@ Formats:
       5. Biology
       6. Elementary Mathematics
       7. Additional Mathematics
-  * `<day>` field should be a valid day of the week.
+
+    (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
+  * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
   * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
       1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
       2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
@@ -399,12 +459,14 @@ Formats:
          Some valid examples are:
           - 12pm - 3pm
           - 1:00pm 2:00pm
-          - 2200 to 2330t
+          - 2200 to 2330
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 Examples:
-* edit 2 l/Primary 5 d/Monday
-* edit 1 n/Tom Doe
+* `edit 2 l/Primary 5 d/Monday`
+
+
+* `edit 1 n/Tom Doe`
 
 <p align="center">
 
@@ -424,14 +486,22 @@ This edits the specified person. Note that the Person Description Panel and the 
 
 Assign an existing tuition class to a specified student/tutor.
 
-Format: `assign INDEX n/<class name>`
+Format: `assign <index> n/<name>`
 
 * `assign` command only works when the displayed list is a student or tutor list.
+
+
 * The index refers to the index number shown in the displayed list.
+
+
 * The index must be a positive integer 1, 2, 3, …
-* Class name must be the name of a tuition class that already exists in the tuition class list.
+
+
+* `<name>` field refers to name of the class being assigned and should only contain alphanumeric characters and spaces, and should not be left blank. The specified tuition class (case-sensitive) must already exist in the tuition class list.
+
+
 * The tuition class to be assigned to the specified student/tutor must not have been assigned beforehand.
-* The class name is case-sensitive.
+
 
 Examples:
 * `assign 5 n/p1math`
@@ -452,15 +522,22 @@ Examples:
 
 Unassign an existing tuition class from a specified student/tutor.
 
-Format: `unassign INDEX n/<class name>`
+Format: `unassign <index> n/<name>`
 
 * `unassign` command only works when the displayed list is a student or tutor list.
+
+
 * The index refers to the index number shown in the displayed list.
+
+
 * The index must be a positive integer 1, 2, 3, …
-* Class name must be the name of a tuition class that already exists in the tuition class list.
+
+
+* `<name>` field refers to name of the class being assigned and should only contain alphanumeric characters and spaces, and should not be left blank. The specified tuition class (case-sensitive) must already exist in the tuition class list.
+
+
 * The tuition class to be unassigned from the specified student/tutor must have been assigned to the
   student/tutor beforehand.
-* The class name is case-sensitive.
 
 Examples:
 * `unassign 5 n/p1math`
@@ -480,7 +557,7 @@ Examples:
 
 ### Add next of kin to a student: `nok`
 
-Adds the next of kin to an existing student.
+Adds the next of kin to an existing student. If there is an existing next of kin, it will be overwritten.
 
 Formats:
 
@@ -489,11 +566,23 @@ Formats:
 `nok <index> n/<name> p/<phone> e/<email> a/<address> r/<relationship> [#/tag]…`
 
 * The current displayed list when executing this command must be a list of students.
+
+
 * The index refers to the index number shown in the displayed list.
+
+
 * The index must be a positive integer 1, 2, 3, …
+
+
 * When adding a next of kin, all fields must be present, except for the optional `<tag>` field.
+
+
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+
+
 * If no fields are present after the required `index` field, the next of kin from the student of that index will be removed.
+
+
 * The constraints of each field must be followed. They are:
     * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
     * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
@@ -551,10 +640,14 @@ Examples:
 
 In the student and tutor list, the details of the persons are not displayed. You could access the person’s details by executing the show command.
 
-Format: `show INDEX`
+Format: `show <index>`
 
 * In the student list, `show 1` shows the description of the first student in the list.
+
+
 * In the tutor list, `show 1` shows the description of the first tutor in the list.
+
+
 * In the class list, `show 1` is invalid as `show` command can only be executed for the student and tutor list.
 
 Examples:
@@ -597,10 +690,14 @@ Format: `list <entity>`
   1. student
   2. tutor
   3. class
+
+
 * The lists of each entity type can be displayed by clicking any of the tabs above the current displayed list.
 
 Examples:
 * `list student`
+
+
 * `list class`
 
 <p align="center">
@@ -643,11 +740,12 @@ Note that the clear command clears the current displayed list only, which in thi
 
 Sorts the current list chronologically, alphabetically, or in reverse order.
 
-Format: `sort [default/alpha/reverse]`
+Format: `sort <order>`
 
-* **default**: Sorts the list in order of entries updated from oldest to newest. Editing an entry is considered as updating it.
-* **alpha**: Sorts the list alphabetically with reference to the name.
-* **reverse**: Sorts the list in reverse order.
+* `<order>` field should be a valid sort order. The valid sort orders are as follows:
+  * **default**: Sorts the list in order of entries updated from oldest to newest. Editing an entry is considered as updating it.
+  * **alpha**: Sorts the list alphabetically with reference to the name.
+  * **reverse**: Sorts the list in reverse order.
 
 Examples:
 * `sort alpha`
@@ -680,13 +778,29 @@ Format: `find [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [q/<qualification
 Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 
 * All fields are optional, but at least one pair of `PREFIX/KEYWORD` must be specified.
+
+
 * The input `PREFIX` is case-sensitive and must be in lowercase. e.g. `n/hans e/notgmail.com`
+
+
 * The input `KEYWORD` is case-insensitive. e.g. `n/hans` will match a student named “Hans”
+
+
 * Partial `KEYWORDS` will be matched e.g. `n/Ha` will match a student named “Hans Jones”
+
+
 * The order of the `PREFIX/KEYWORD` pair does not matter. e.g. `n/Alice p/12345678` vs `p/12345678 n/Alice`
+
+
 * `KEYWORDS` must not contain the `/` character.
+
+
 * If there are repeated `PREFIXES`, only the latest one will be taken.
+
+
 * The `<time>` field should be searched in the `HH:MM-HH:MM` format. e.g. `find t/18:00` or `find t/09:00-11:00`
+
+
 * When searching the `<level>` field, a space must be included between the level and number if the number is to be specified. e.g. `find l/secondary 1` instead of `find l/secondary1`
 
 Examples:
@@ -754,7 +868,11 @@ They are named `students.csv`, `tutors.csv`, and `tuitionClasses.csv` respective
 Format: Click on the "*File*" tab located at the top-left corner of `myStudent` and click on "*Export*" in the dropdown menu, as shown in the image above.
 
 * The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
+
+
 * The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
+
+
 * Exporting will replace any csv files that were exported previously, if they exist.
 
 <div markdown="block" class="alert alert-warning">
