@@ -96,6 +96,10 @@ public class AssignTaskCommand extends Command {
 
         // add assignees
         for (Person assignee : assigneePersonList) {
+            // tasks cannot have duplicate assignees
+            if (task.checkAssignee(assignee)) {
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_ASSIGNMENT, assignee.getName()));
+            }
             Task newTask = task.addAssignee(assignee);
 
             team.setTask(task, newTask);
