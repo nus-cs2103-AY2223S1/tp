@@ -47,7 +47,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Category} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withCategory(TaskCategory category) {
         descriptor.setCategory(category);
@@ -55,15 +55,15 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Description} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withDescription(String description) {
-        descriptor.setDescription(new Description(description));
+    public EditTaskDescriptorBuilder withDescription(Description description) {
+        descriptor.setDescription(description);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Priority} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withPriority(Priority priority) {
         descriptor.setPriority(priority);
@@ -71,8 +71,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditTaskDescriptor}
-     * that we are building.
+     * Sets the {@code Deadline} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withDeadline(TaskDeadline deadline) {
         descriptor.setDeadline(deadline);
@@ -80,8 +79,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditTaskDescriptor}
-     * that we are building.
+     * Sets the person's {@code Email} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withPersonEmail(Email email) {
         descriptor.setPersonEmail(email);
@@ -89,8 +87,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditTaskDescriptor}
-     * that we are building.
+     * Sets the {@code Done} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withIsDone(Boolean isDone) {
         descriptor.setDone(isDone);
