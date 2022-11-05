@@ -257,9 +257,11 @@ public class CommandTestUtil {
      */
     public static void showModuleAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
         final String[] moduleCode = {module.getModuleCode().moduleCode.toLowerCase()};
         model.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(moduleCode)));
+
         assertEquals(1, model.getFilteredModuleList().size());
     }
 
