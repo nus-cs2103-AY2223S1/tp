@@ -243,6 +243,10 @@ public interface Model {
      */
     void updateFilteredScheduleList(Predicate<Schedule> predicate);
 
+    /**
+     * Checks if the filtered schedule list is empty.
+     */
+    boolean isScheduleListEmpty();
 
 
 }

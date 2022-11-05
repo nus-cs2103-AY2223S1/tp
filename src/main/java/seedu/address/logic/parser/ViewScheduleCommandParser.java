@@ -43,7 +43,7 @@ public class ViewScheduleCommandParser implements Parser<ViewScheduleCommand> {
         keywords.addAll(weekdaysList);
         keywords.addAll(modulesList);
 
-        return new ViewScheduleCommand(new ScheduleContainsKeywordsPredicate(keywords));
+        return new ViewScheduleCommand(new ScheduleContainsKeywordsPredicate(keywords), modulesList);
     }
 
     /**

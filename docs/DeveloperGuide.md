@@ -7,13 +7,13 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **1. Acknowledgements**
 
 * Adapted `Theme` class to switch between dark and light mode from [here](https://github.com/junlong4321/tp/blob/master/src/main/java/tutorspet/ui/stylesheet/Stylesheet.java).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Introduction**
+## **2. Introduction**
 
 Made for SOC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** 
 It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands while providing users with a simple and clean Graphical User Interface (GUI). 
@@ -29,20 +29,20 @@ The purpose of this Developer Guide is to help you to understand the design and 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **3. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **4. Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### 4.1. Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -68,7 +68,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletestu 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -83,35 +83,35 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 4.2. UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/resources/view/HelpWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
-### Logic component
+### 4.3. Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. When `Logic` is called upon to execute a command, it uses the `ProfNUSParser` class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddStuCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delstu 1")` API call.
@@ -129,16 +129,16 @@ How the parsing works:
 * When called upon to parse a user command, the `ProfNUSParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddStuCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddStuCommand`) which the `ProfNUSParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddStuCommandParser`, `DeleteStuCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+### 4.4. Model component
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the data from ProfNUS i.e., all `Student` objects (which are contained in a `UniquePersonList` object) etc.
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -147,7 +147,7 @@ The `Model` component,
 
 </div>
 
-#### Schedule
+#### 4.4.1. Schedule
 
 **API** : [Schedule.java](https://github.com/AY2223S1-CS2103T-W11-2/tp/tree/master/src/main/java/seedu/address/model/module/schedule)
 
@@ -158,14 +158,13 @@ The `Schedule` component
 - represents a schedule of its corresponding module
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to make `Schedule` abstract class, and create `LectureSchedule`, `TutorialSchedule`, `LabSchedule`, `RefelectionSchedule` that extend the `Schedule` class. The diagram is as follows: <br>
-<div align=center>
-    <img src="images/ScheduleAlt.png" alt="NewScheduleUML" width=450; />
+    <div align=center>
+        <img src="images/ScheduleAlt.png" alt="NewScheduleUML" width=450; />
 </div>
 
-</div>
 
 
-### Storage component
+### 4.5. Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -178,20 +177,18 @@ The `Storage` component,
 
 
 
-### Common classes
+### 4.6. Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
-
-</div>
+Classes used by multiple components are in the `seedu.profnus.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 
-## **Implementation**
+## **5. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Person Model, Student Class and Student ID
+### 5.1. Person Model, Student Class and Student ID
 
 #### Implementation
 
@@ -243,7 +240,7 @@ Additionally, it will also contain these fields:
   * Cons:
     * NUS has many students, and it is inevitable that some of them will share the exact same name
 
-### The edit student feature
+### 5.2. The edit student feature
 
 #### Implementation
 
@@ -255,13 +252,7 @@ at the index provided by the user.
 The following sequence diagram shows how the `editstu` command works:
 ![EditStuCommandSequenceDisgram](./images/EditStuCommandSequenceDiagram.png)
 
-
-
-
-
-
-
-### Find module details by module code feature
+### 5.3. View module details feature
 
 #### Implementation
 
@@ -291,8 +282,9 @@ Reason for choosing option 1:
 Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Engineering". If we allow searching by module name, the program would not know which "Software Engineering" module to display.
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
 
-### [Proposed] Edit a module feature
-### Proposed Implementation
+### 5.4. Edit a module feature
+
+#### Implementation
 
 The proposed edit module functionality is facilitated by `EditModuleCommand`. It extends `Command` and overrides the method `Command#execute(Model model)`.
 
@@ -316,11 +308,11 @@ The following activity diagram summarizes what happens when a user executes a `m
 | **Option 2** <br/> Edit by making use of indexing in list | Allows convenience if module code is forgotten | Have to use `mlist` command to obtain the indexing |
 
 Reason for choosing option 1:
-A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence,
-an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
+A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence, an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
 
-### [Proposed] AddSchedule feature
-#### Proposed Implementation
+###  5.5. AddSchedule feature
+
+#### Implementation
 
 The proposed add schedule functionality is accomplished by `AddScheduleCommand` which extends the `Command` class. The `AddScheduleCommand` overrides the following method:
 
@@ -339,10 +331,9 @@ During the execution, the following validity checks will be conducted:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.</div>
 
+### 5.6. EditSchedule feature
 
-### [Proposed] EditSchedule feature
-
-#### Proposed Implementation
+#### Implementation
 
 The proposed edit schedule functionality is accomplished by `EditScheduleCommand` which extends the `Command` class. The `EditScheduleCommand` overrides the following method:
 
@@ -363,11 +354,22 @@ During the execution, the following validity checks will be conducted:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the edit schedule command isn't executed successfully and a `CommandException` or `ParserException` is thrown, then no schedule will be edited.</div>
 
+#### Design consideration:
 
+##### Aspect: How medit executes
 
-### [Proposed] ViewSchedule feature
+|                                                              | Pros                                                | Cons                                                    |
+| ------------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------- |
+| **Option 1** <br/> Edit by module code, class type, and class group | Allows convenience if he knows the schedule details | Too much information to type.                           |
+| **Option 2** <br/> Edit by making use of indexing in list    | Allows convenience if schedule detail is forgotten  | Have to use `view` command to obtain the schedule list. |
 
-#### Proposed Implementation
+Reason for choosing Option 2: 
+
+To locate a schedule uniquely with schedule, a user needs to know the module code, class type, and class group. For example, `CS2103T tut W11`. However, when there are too many groups, professors can easily forget which group he is looking for. Therefore, using the index is better in this case.
+
+### 5.7. ViewSchedule feature
+
+#### Implementation
 
 The proposed view schedule functionality is accomplished by `ViewScheduleCommand` which extends the `Command` class. The `ViewScheduleCommand` overrides the following method:
 
@@ -380,7 +382,7 @@ The following sequence diagram shows how view schedule operation works :
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **6. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -390,9 +392,9 @@ The following sequence diagram shows how view schedule operation works :
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **7. Appendix A: Requirements**
 
-### Product scope
+### 7.1. Product scope
 
 **Target user profile**:
 
@@ -407,7 +409,7 @@ The following sequence diagram shows how view schedule operation works :
 **Value proposition**: The application helps NUS SOC Professors manage their students and TA in the various modules, by providing a quick and easy way to find and contact them.
 
 
-### User stories
+### 7.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -427,7 +429,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 7.3. Use cases
 
 (For all use cases below, the **System** is the `ProfNUS` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -565,13 +567,81 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a schedule
-2. ProfNUS adds the new schedule to schedule list
-3. 
+1. User requests to add a schedule.
+
+2. ProfNUS adds the new schedule to schedule list.
+
+3. ProfNUS shows the schedule list.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The module of the schedule doesn't exist
+
+  - 1a1. ProfNUS shows an error message.
+
+    Use case ends.
+
+- 1b. The schedule conflicts with existing schedules
+
+  - 1b1. ProfNUS shows an error message.
+
+    Use case ends.
+
+
+
+**Use case: Edit a schedule**
+
+**MSS**
+
+1. User requests to edit a schedule.
+
+2. ProfNUS edits the target schedule with new information.
+
+3. ProfNUS shows the schedule list.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. No field is edited.
+
+  - 1a1. ProfNUS shows an error message.
+
+    Use case ends.
+
+- 1b. The given index is invalid
+
+  - 1b1. ProfNUS shows an error message.
+
+    Use case ends.
+
+
+
+**Use case: Delete a schedule**
+
+**MSS**
+
+1. User requests to delete a schedule.
+
+2. ProfNUS deletes the target schedule.
+
+3. ProfNUS shows the schedule list.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The given index is invalid
+
+  - 1a1. ProfNUS shows an error message.
+
+  Use case ends.
 
 *{More to be added}*
 
-### Non-Functional Requirements
+### 7.4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -582,7 +652,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
+### 7.5. Glossary
 
 1. **Mainstream OS**: Windows, Linux, Unix, OS-X
 2. **Private contact detail**: A contact detail that is not meant to be shared with others
@@ -593,7 +663,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **8. Appendix B: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -602,44 +672,81 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 8.1. Launch and shutdown
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   2. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The most recent window size and location is retained.
+   
+### 8.2. Add/Delete a module
 
-1. _{ more test cases …​ }_
+1. Adding a module to ProfNUS.
 
-### Deleting a person
+    1. Prerequisites: Arguments are valid and all compulsory parameters are provided. No duplicate module is allowed in ProfNUS.
 
-1. Deleting a person while all persons are being shown
+    2. Test case: `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/ModuleCoordinator`<br>
+       Expected: Adds a new module with the module name `Introduction to SWE`, unique module code `CS2103T`, module description `Teach students SWE principles and practices` and tag `ModuleCoordinator`.
+
+    3. Test case: `madd n/Programming Methodology I`<br>
+       Expected: No module is added. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect delete commands to try: `madd`, `madd x` and `madd n/Programming Methodology I t/ModuleCooridnator`<br>
+       Expected: Similar to previous.
+
+2. Deleting a module 
+
+    1. Prerequisites: Arguments are valid and all compulsory parameters are provided. Module code provided exists.
+
+    2. Test case: `mdel c/CS2103T`<br>
+       Expected: Module with module code CS2103T is deleted from the list. Details of the deleted module shown in the status message. Timestamp in the status bar is updated.
+
+    3. Test case: `mdel 0`<br>
+       Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect delete commands to try: `mdel`, `mdel c/x`, `...` (where x module code does not exist)<br>
+       Expected: Similar to previous.
+
+### 8.3. Add/Delete a student
+
+1. Adding a student to ProfNUS. 
+
+    1. Prerequisites: Arguments are valid and all compulsory parameters are provided. No duplicate student is allowed in ProfNUS.
+      
+    2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/A0123456G h/@good_student c/CS2030S`<br>
+       Expected: Adds a new student with the name `John Doe`, phone number `98765432`, email address `johnd@example.com`, address `311, Clementi Ave 2, #02-25`, student id `A0123456G`, telegram handle `@good_student`and module code `CS2030S`.
+
+   3. Test case: `add n/John Doe`<br>
+      Expected: No student is added. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect delete commands to try: `add`, `add x` and `add n/John Doe p/98765432`<br>
+      Expected: Similar to previous.
+
+2. Deleting a student while all students are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `deletestu 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `deletestu 0`<br>
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+## **9. Appendix C: Effort**
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+Creating **ProfNUS** was a challenging but yet fulfilling journey for all of us. This project required much effort from
+all team members equally. This can be substantiated by our **15,000** lines of code combined which was written in a span of
+less than 10 weeks, placing us within the top 10 in the cohort for total code contribution. Despite our busy schedules,
+we managed to maintain a healthy and consistent communication with at least one online Zoom meeting per week. The hard work
+and dedication from our team was what made this project a successful and memorable learning experience. 

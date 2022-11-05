@@ -5,9 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULES;
 
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
 
@@ -25,23 +28,39 @@ public class ViewScheduleCommand extends Command {
             + "Example: " + COMMAND_WORD + " \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_WEEKDAY + " Friday " + PREFIX_MODULE_OF_SCHEDULE + " cs2103t\n";
 
-    private final ScheduleContainsKeywordsPredicate predicate;
+    public static final String MESSAGE_MODULE_NOT_EXIST = "The module you are looking for doesn't exist.";
 
+    private final ScheduleContainsKeywordsPredicate predicate;
+    private final Set<String> modules;
+
+    /**
+     * Creates a view schedule command without predicate
+     */
     public ViewScheduleCommand() {
         this.predicate = null;
+        this.modules = null;
     }
 
-    public ViewScheduleCommand(ScheduleContainsKeywordsPredicate predicate) {
+    /**
+     * Creates a view schedule command with predicate
+     */
+    public ViewScheduleCommand(ScheduleContainsKeywordsPredicate predicate, Set<String> modules) {
         this.predicate = predicate;
+        this.modules = modules;
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
         if (this.predicate == null) {
             model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
         } else {
+            for (String module: modules) {
+                if (model.getModuleByModuleCode(module) == null) {
+                    throw new CommandException(MESSAGE_MODULE_NOT_EXIST);
+                }
+            }
             model.updateFilteredScheduleList(predicate);
         }
         return new CommandResult(String.format(
