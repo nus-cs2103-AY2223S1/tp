@@ -73,9 +73,11 @@ The following table describes the sections in detail:
 
 </div>
 
-<div markdown="block" class="alert alert-primary">
+### Notes About Frequently Used Command Parameters
 
-:bulb: **Tips:**
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Some notes about parameters:**
 
 * Parameters with a prefix can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
@@ -88,7 +90,6 @@ The following table describes the sections in detail:
 
 </div>
 
-### Notes About Frequently Used Command Parameters
 | Parameter              | Note                                                                                                                                                                                                                                                        |
 |------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `INDEX`                | - Index refers to a **valid** index number shown in displayed tutor list and  **must be a positive integer**, i.e. 1, 2, 3, …​.                                                                                                                             |
@@ -100,7 +101,7 @@ The following table describes the sections in detail:
 | `STUDENT_ID`           | - Student IDs consists of an `A` followed by 7 digits and any single capital letter behind.                                                                                                                                                                 |
 | `TEACHING_NOMINATIONS` | - Teaching nominations take in positive integers including 0. Leading zeros in the teaching nominations will not be allowed. e.g. `00001` is invalid.                                                                                                       |
 | `RATING`               | - Ratings take in numbers **between 0 and 5 inclusive**. <br/>- Decimal values are optional but only a **maximum of 2 decimals** is allowed.                                                                                                                |
-| `TAG`                  | - A tutor can have any number of tags (including 0). <br/>- Tags should be alphanumeric and should not contain any spaces.                                                                                                                                 |
+| `TAG`                  | - A tutor can have any number of tags (including 0). <br/>- Tags should be alphanumeric and should not contain any spaces.                                                                                                                                  |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
