@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+
+Class "{abstract}\nColumnManipulatorCommand" as ColumnManipulatorCommand
+Class "{abstract}\nColumnManipulatorCommandParser" as ColumnManipulatorCommandParser
+Class ShowOnlyCommand
+Class HideOnlyCommand
+Class ShowOnlyCommandParser
+Class HideOnlyCommandParser
+
+}
+
+ShowOnlyCommand -up-|> ColumnManipulatorCommand
+HideOnlyCommand -up-|> ColumnManipulatorCommand
+ShowOnlyCommandParser -up-|> ColumnManipulatorCommandParser
+HideOnlyCommandParser -up-|> ColumnManipulatorCommandParser
+
+HideOnlyCommandParser .up.> HideOnlyCommand : creates >
+ShowOnlyCommandParser ..> ShowOnlyCommand : creates >
+
+ColumnManipulatorCommand -[hidden]right-> ColumnManipulatorCommandParser
+HideOnlyCommand -[hidden]right-> HideOnlyCommandParser
+ShowOnlyCommand -[hidden]right-> ShowOnlyCommandParser
+
+@enduml

@@ -354,14 +354,14 @@ of any sizeable overhead.
 
 <br>
 
-### Show/hide feature for resident fields
+### Show only/hide only feature for resident fields
 
-**Changes to Model component:**
+#### Changes to Model component:
 
-For the show/hide features, we wanted to allow the `ResidentTableView` class in the UI to automatically update its 
-columns based on user commands that affected the model. There needed to be some way for the `ResidentTableView` class 
-to synchronise its columns with the corresponding field lists in `ModelManager`. From the below diagram, we can see
-that there is no reference between `ModelManager` and `ResidentTableView`. 
+For the `showonly` and `hideonly` features, we wanted to allow the `ResidentTableView` class in the UI to automatically 
+update its columns based on user commands that affected the model. There needed to be some way for the 
+`ResidentTableView` class to synchronise its columns with the corresponding field lists in `ModelManager`. 
+From the below diagram, we can see that there is no association between `ModelManager` and `ResidentTableView`. 
 
 ![MainWindowRelationships](images/MainWindowRelationships.png)
 
@@ -369,15 +369,73 @@ One possible implementation was to store a reference to the `ResidentTableView` 
 UI directly whenever a command modified the field lists in `ModelManager`. However, this would increase the coupling 
 between the UI and the model components, which would make integration and reuse of the module significantly harder. 
 
-Our solution was to store lists of fields to show and hide in *both* `ModelManager` and the `ResidentTableView` classes.
-Using listeners to propagate changes in the `ModelManager` field lists to the `ResidentTableView` field lists, we were
-able to minimise coupling between both components. 
+Our solution for this issue was to use getters to obtain unmodifiable `ObservableList<String>` instances of the 
+corresponding `ObservableList<String>` objects in `ModelManager`, before passing them into the constructor of 
+`ResidentTableView`. Within `ResidentTableView`, we attached listeners to each of these unmodifiable lists,
+updating the column visibilities whenever the `ObservableList<String>` objects in `ModelManager` changed.
 
-Additionally, the use of `ObservableList<String>` as our choice of field lists allowed us to use the Observer pattern 
-in our application. Moving forward, our design for the Observer pattern could be better improved, 
-for example, by combining `Observer` and `Observable` interfaces to remove the need to instantiate listeners 
-in separate classes.
+This allowed us to apply the Observer pattern in our code, thereby minimising the coupling between `ResidentTableView`
+and `ModelManager`.
 
+<br>
+
+#### Use of abstract classes for `showonly` and `hideonly`
+
+The `hideonly` command alone is sufficient for users to hide their unwanted columns from the table view. However, 
+we added support for both commands in order to improve the quality-of-life of RC4HDB users. Users can save time by 
+using the complement command depending on the relative number of fields they want to show or hide. 
+
+After making this change, however, there were instances of undesirable code duplication in both the commands and the 
+command parsers for the `showonly` and `hideonly` features.
+
+Our solution was to abstract these commonalities into an abstract class, namely, `ColumnManipulatorCommand` for 
+the `showonly` and `hideonly` commands, and `ColumnManipulatorCommandParser` for `showonly` and `hideonly` command
+parsers.
+
+![AbstractClassesForShowHideFeature](images/AbstractClassesForShowHideFeature.png)
+
+Some of these commonalities include input validation for the column identifiers, as well as utility methods for 
+generating the complement list from a given list. 
+
+Adding these abstract classes also increased the extendability of our application, as one of the future developments
+for our application would be to implement column manipulation features for the venue booking tables.
+
+<br>
+
+#### Choice of `ObservableList<String>` over `ObservableList<Field>`
+
+While the lists of fields to show and hide could be represented in either an `ObservableList<String>`
+or an `ObservableList<Field>`, we decided to use an `ObservableList<String>` to minimise the additional need for 
+getters if `Field` was used instead. 
+
+The only information required by the lists of fields to show and hide in `ModelManager` was the column identifier, 
+and hence the use of an `ObservableList<Field>` was redundant as none of the additional `Field` attributes 
+had to be referenced.
+
+<br>
+
+#### Optional reading: Predecessors to `showonly` and `hideonly`
+
+For our previous iteration of RC4HDB, the `showonly` and `hideonly` features were handled by the `list /i` and 
+`list /e` features, which have since been removed. 
+
+For these overloaded `list` commands, the user could show or hide columns by specifying which columns should be 
+included or excluded when listing. 
+
+However, there were two main issues with `list /i` and `list /e`:
+
+1. These commands would cause the full list of residents to be displayed, removing the effects of the `filter` and 
+`find` commands.
+   
+2. The columns to include or exclude were based on the full, default set of columns. Columns that were already 
+excluded from the table had to be re-specified if additional columns were to be excluded. 
+   
+While it was convenient for the column manipulation feature to be bundled with the list command, we ultimately decided
+to remove the coupling between both features, by replacing `list /i` and `list /e` with the `showonly` and `hideonly` 
+commands. To make our commands more intuitive, we also made the `showonly` and `hideonly` commands state-dependent, so
+that the user did not have to re-specify columns that were already hidden.
+
+<br>
 
 ### Filter feature to filter residents according to fields
 
