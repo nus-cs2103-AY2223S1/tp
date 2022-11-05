@@ -118,15 +118,28 @@ Parameters are extra inputs the command may require.
   e.g. `pr/PROFILE_INDEX…​` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Parameters may be prefixed, and the prefix is case-sensitive.
+* Parameters may require a prefix, and the prefix is case-sensitive.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 </div>
 
-| Prefix | Parameter |
-|:------:|:---------:|
-| hello  |   world   |
+| Prefix | Parameter                                   | Remarks                                                                                                                                                                      |
+|--------|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|        | `INDEX`                                     | The position of the profile or event in the list.                                                                                                                            |
+|        | `EVENT_INDEX`                               | The position of the event in the event list displayed.                                                                                                                       |
+| `pr/`  | `PROFILE_INDEX`                             | For adding attendees, it is the position of the profile in the profile list displayed. For deleting attendees, it is the position of the profile under the particular event. |
+| `n/`   | `NAME`                                      | Name of the profile.                                                                                                                                                         |
+| `p/`   | `PHONE_NUMBER`                              | Phone number of the profile.                                                                                                                                                 |
+| `e/`   | `EMAIL`                                     | Email of the profile.                                                                                                                                                        |
+| `tg/`  | `TELEGRAM_USERNAME`                         | Telegram username of the profile.                                                                                                                                            |
+| `t/`   | `TAG`                                       | Tag of the profile or event.                                                                                                                                                 |
+|        | `KEYWORD`, `MORE_KEYWORDS`                  | The keywords to search for when finding profiles.                                                                                                                            |
+| `n/`   | `TITLE`                                     | Title of the event.                                                                                                                                                          |
+| `s/`   | `START`                                     | The start date (and time) of the event.                                                                                                                                      |
+| `e/`   | `END`                                       | The end date (and time) of the event.                                                                                                                                        |
+|        | `DAYS`                                      | The number of upcoming days to search for.                                                                                                                                   |
+|        | `KEYWORD_OR_DATE`, `MORE_KEYWORDS_OR_DATES` | The keyword or dates to search for when finding events.                                                                                                                      |
 
 --------------------------------------------------------------------------------------------------------------------
 
