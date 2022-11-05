@@ -228,17 +228,23 @@ The person model now contains a `Net Worth` field.
     * Pros: Flexibility in creating a contact.
     * Cons: No means of comparison between a contact of different currency.
 
-### Upcoming Meetings
-The upcoming meetings feature allows the users to pull up a list of clients who he has a meeting with in the next 7 days. The upcoming meetings is represented with a `MeetingsWindow` that can be instantiated with the keyboard key `f2`.
 
-Implementation of the upcoming meeting feature is built on top of [Meeting Feature]().
+### Meeting Feature
+`MeetingTime` is used to model a meeting with a client.
+
+#### Implementation
+`MeetingTime` stores meetings primarily as a `value`, `displayValue` and `date`.
+
+* `value` of type `String`: Used to for storing `MeetingTime` as a Json Object
+* `displayValue` of type `String`: Used for displaying `MeetingTime` on `MeetingCard`, `PersonCard` and `PersonProfile`
+* `date` of type `java.time.LocalDateTime`: Used for sorting `MeetingTime`s for `MeetingsWindow` and `SyncCommand`
 
 #### Design Considerations
 **Aspect: MeetingTime Object**
-* **Choice 1 (current choice): Person object contains its own set of MeetingTime**
+* **Alternative 1 (current choice): Person object contains its own set of MeetingTime**
   * Pros: Easier to implement given the short amount of time
   * Cons: Harder to sort/filter/manipulate
-* **Choice 2 (ideal choice): Bidirectional navigation between MeetingTime and Person**
+* **Alternative 2 (ideal choice): Bidirectional navigation between MeetingTime and Person**
   * Pros: Better abstraction therefore easier to perform MeetingTime specific tasks(e.g. sort, filter)
   * Cons: More complicated to implement
 
