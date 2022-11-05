@@ -271,25 +271,20 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 {more aspects and alternatives to be added}
 
-### \[Proposed\] Display completed trips and events
+### \[Implemented\] Display completed trips and events
 
-#### Proposed Implementation
-The proposed display completed trips and events mechanism is facilitated by the use of `EventCompletedPredicate`
+#### Implementation
+The display completed trips and events mechanism is facilitated by the use of `EventCompletedPredicate`
 and `TripCompletedPredicate`. `TripCompletedPredicate` and `EventCompletedPredicate` extends `Predicate` with
-a test that checks if an event is part of a list of itineararies belonging to completed trips.
+a test that checks if an event is part of a list of itineraries belonging to completed trips.
 
-These predicates
-are then set as the predicate of the `filteredTripList` and `filteredEventList` respectively, which will result
+These predicates are then set as the predicate of the `filteredTripList` and `filteredEventList` respectively, which will result
 in the display of completed trips and events.
-The proposed display trip's events mechanism is facilitated by the use of `EventInItineraryPredicate`.
-It extends the `Predicate` with a test that checks if an event is part of the given Itinerary, which is stored
-interally as an `Itinerary`. This predicate is then set as the predicate of the `filteredEventList`, which
-contains all events added to Travelr.
 
 Given below is an example usage scenario of how the display trip's events mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `TravelrBook` will be initialised with the
-initial Travelr book state, with no trips and events added.
+Step 1. The user launches the application for the first time. `Travelr` will be initialised with the
+initial Travelr book state.
 
 Step 2. The user executes `add n/Trip to Japan ...` to add a new trip, and also executes `add-e n/Try Takoyakis ...`
 to add a new event to Travelr.
@@ -301,6 +296,10 @@ Step 4. The user executes `mark 1`, which marks the first trip as well as the ev
 
 Step 5. The user executes `completed`, which displays all completed trips and events, which includes both 'Trip to Japan'
 and 'Try Takoyakis'.
+
+The following sequence diagram shows how the completed command works:
+
+<img src="images/ViewCompletedSequenceDiagram.png" width="550" />
 
 ### \[Implemented\] Display Travelr Summary Window
 #### Implementation
