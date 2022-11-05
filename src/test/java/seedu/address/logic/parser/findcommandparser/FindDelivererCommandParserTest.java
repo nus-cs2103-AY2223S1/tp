@@ -29,7 +29,7 @@ public class FindDelivererCommandParserTest {
     public void parse_validArgs_returnsFindCommandDeliverer() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindDelivererCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Charlie Bob")));
+                new FindDelivererCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Charlie", "Bob")));
         assertParseSuccess(parser, "n/Charlie Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords

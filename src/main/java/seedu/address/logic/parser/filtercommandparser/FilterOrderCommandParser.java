@@ -1,10 +1,15 @@
 package seedu.address.logic.parser.filtercommandparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
 
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.PredicateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -14,9 +19,6 @@ import seedu.address.model.order.Order;
  * Parses input arguments and creates a new FilterOrderCommand object.
  */
 public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
-    public static final String ADDITIONAL_REQUEST_PREFIX = "o_ar";
-    public static final String ORDER_STATUS_PREFIX = "o_st";
-    public static final String PRICE_RANGE_PREFIX = "o_pr";
 
     private static Predicate<Order> defaultPredicate = new Predicate<Order>() {
         @Override
@@ -39,31 +41,30 @@ public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(trimmedArgs, PREFIX_ORDER_ADDITIONAL_REQUESTS, PREFIX_ORDER_STATUS,
+                        PREFIX_ORDER_PRICE_RANGE);
 
         Predicate<Order> additionalRequestPredicate = defaultPredicate;
         Predicate<Order> orderStatusPredicate = defaultPredicate;
         Predicate<Order> priceRangePredicate = defaultPredicate;
 
-        for (int i = 0; i < nameKeywords.length; i++) {
-            String arg = nameKeywords[i];
-            arg = arg.trim();
-
-            switch (arg.substring(0, 4)) {
-            case ADDITIONAL_REQUEST_PREFIX:
-                additionalRequestPredicate = PredicateParser.parseOrder(arg);
-                break;
-            case ORDER_STATUS_PREFIX:
-                orderStatusPredicate = PredicateParser.parseOrder(arg);
-                break;
-            case PRICE_RANGE_PREFIX:
-                priceRangePredicate = PredicateParser.parseOrder(arg);
-                break;
-            default:
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
-            }
+        if (argMultimap.getValue(PREFIX_ORDER_ADDITIONAL_REQUESTS).isPresent()) {
+            additionalRequestPredicate = PredicateParser.parseOrder(argMultimap
+                    .getValue(PREFIX_ORDER_ADDITIONAL_REQUESTS).get(), PREFIX_ORDER_ADDITIONAL_REQUESTS.getPrefix());
         }
+
+        if (argMultimap.getValue(PREFIX_ORDER_STATUS).isPresent()) {
+            orderStatusPredicate = PredicateParser.parseOrder(argMultimap.getValue(PREFIX_ORDER_STATUS).get(),
+                    PREFIX_ORDER_STATUS.getPrefix());
+        }
+
+        if (argMultimap.getValue(PREFIX_ORDER_PRICE_RANGE).isPresent()) {
+            priceRangePredicate = PredicateParser.parseOrder(argMultimap.getValue(PREFIX_ORDER_PRICE_RANGE).get(),
+                    PREFIX_ORDER_PRICE_RANGE.getPrefix());
+        }
+
         return new FilterOrderCommand(additionalRequestPredicate, orderStatusPredicate, priceRangePredicate);
     }
 }

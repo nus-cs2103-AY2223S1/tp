@@ -49,9 +49,9 @@ public class PredicateParser {
     private static final String VACCINATION_PREFIX = "p_v";
 
     //For orders
-    private static final String ADDITIONAL_REQUEST_PREFIX = "o_ar";
-    private static final String ORDER_STATUS_PREFIX = "o_st";
-    private static final String PRICE_RANGE_PREFIX = "o_pr";
+    private static final String ADDITIONAL_REQUEST_PREFIX = "o_ar/";
+    private static final String ORDER_STATUS_PREFIX = "o_st/";
+    private static final String PRICE_RANGE_PREFIX = "o_pr/";
 
     /**
      * Parses the given {@code String} of arguments in the context of a Predicate
@@ -59,7 +59,7 @@ public class PredicateParser {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public static Predicate<Buyer> parseBuyer(String input) throws ParseException {
-        String[] nameKeywords = input.trim().split("/", 2);
+        String[] nameKeywords = input.trim().split("/");
         if (nameKeywords.length < 2 || nameKeywords[1].isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -71,9 +71,9 @@ public class PredicateParser {
         case EMAIL_PREFIX:
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
-            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
-            return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
@@ -100,9 +100,9 @@ public class PredicateParser {
         case EMAIL_PREFIX:
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
-            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
-            return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
@@ -129,9 +129,9 @@ public class PredicateParser {
         case EMAIL_PREFIX:
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
-            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
-            return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
@@ -178,31 +178,31 @@ public class PredicateParser {
      * and returns a Predicate.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public static Predicate<Order> parseOrder(String input) throws ParseException {
-        String[] nameKeywords = input.trim().split("/", 2);
-        if (nameKeywords.length < 2 || nameKeywords[1].isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+    public static Predicate<Order> parseOrder(String input, String prefix) throws ParseException {
+        input = input.trim();
+
+        if (input.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
-        String query = nameKeywords[1].trim();
-        switch (nameKeywords[0]) {
+
+        switch (prefix) {
         case ADDITIONAL_REQUEST_PREFIX:
-            return new AdditionalRequestPredicate<>(Arrays.asList(query));
+            return new AdditionalRequestPredicate<>(Arrays.asList(input));
         case ORDER_STATUS_PREFIX:
-            if (!OrderStatus.isValidOrderStatus(query)) {
+            if (!OrderStatus.isValidOrderStatus(input)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         FilterOrderCommand.MESSAGE_USAGE));
             }
-            if (query.equals(OrderStatus.DELIVERING.toString())) {
+            if (input.equals(OrderStatus.DELIVERING.toString())) {
                 return new OrderStatusPredicate<>(OrderStatus.DELIVERING);
-            } else if (query.equals(OrderStatus.NEGOTIATING.toString())) {
+            } else if (input.equals(OrderStatus.NEGOTIATING.toString())) {
                 return new OrderStatusPredicate<>(OrderStatus.NEGOTIATING);
-            } else if (query.equals(OrderStatus.PENDING.toString())) {
+            } else if (input.equals(OrderStatus.PENDING.toString())) {
                 return new OrderStatusPredicate<>(OrderStatus.PENDING);
             }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         case PRICE_RANGE_PREFIX:
-            String[] prices = query.split("-");
+            String[] prices = input.split("-");
             Price lowerBound = new Price(Double.parseDouble(prices[0]));
             Price upperBound = new Price(Double.parseDouble(prices[1]));
 
@@ -212,6 +212,8 @@ public class PredicateParser {
             }
             return new PriceRangePredicate<>(lowerBound, upperBound);
         default:
+            System.out.println(prefix);
+            System.out.println(input);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
     }

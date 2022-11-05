@@ -46,6 +46,8 @@ public class FilterOrderCommandTest {
                 new OrderStatusPredicate<>(OrderStatus.DELIVERING),
                 new PriceRangePredicate<>(new Price(56.4), new Price(190.33)));
 
+        assertTrue(firstCommand.equals(firstCommandCopy));
+
         assertFalse(firstCommand.equals(1));
 
         assertFalse(firstCommand.equals(null));

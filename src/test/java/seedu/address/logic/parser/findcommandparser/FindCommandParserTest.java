@@ -30,9 +30,9 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFind() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Alice Bob")),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList("Alice Bob")),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList("Alice Bob")),
+                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Alice", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Alice", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Alice", "Bob")),
                         PersonCategory.BUYER);
         assertParseSuccess(parser, "n/Alice Bob", expectedFindCommand);
 
