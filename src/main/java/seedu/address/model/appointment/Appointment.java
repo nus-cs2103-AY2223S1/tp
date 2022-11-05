@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;

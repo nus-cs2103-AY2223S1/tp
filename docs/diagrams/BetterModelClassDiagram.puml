@@ -6,22 +6,27 @@ skinparam classBackgroundColor MODEL_COLOR
 
 AddressBook *-down-> "1" UniquePersonList
 AddressBook *-down-> "1" UniqueTagList
+AddressBook *-down-> "1" UniqueAppointmentList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
+UniqueAppointmentList -[hidden]down- UniquePersonList
 
 UniqueTagList *-down-> "*" Tag
 UniquePersonList -right-> Person
+UniqueAppointmentList *-down-> Appointment
 
 Person *-up-> "*" Tag
-Person *-up-> "*" SpecialTag
-
 Person *--> "1" Name
 Person *--> "1" Phone
 Person *--> "1" Email
-Person *--> "0..3" Appointment
+Person *-up-> "0..3" Appointment
 Person *--> "1" Address
 Person *--> "1" IncomeLevel
 Person *--> "1" MonthlySavings
+
+NormalTag -up-|> Tag
+RiskTag -up-|> Tag
+PlanTag -up-|> Tag
 
 Appointment *--> "1" DateTime
 Appointment *--> "1" Location

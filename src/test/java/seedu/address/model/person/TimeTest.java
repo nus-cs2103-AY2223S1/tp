@@ -8,6 +8,8 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.appointment.Time;
+
 public class TimeTest {
     private static final Time TIME_TWELVE_THIRTY_PM = new Time(LocalTime.of(12, 30));
     private static final Time TIME_ONE_THIRTY_AM = new Time(LocalTime.of(1, 30));

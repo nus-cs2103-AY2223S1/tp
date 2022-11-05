@@ -10,6 +10,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Date;
+import seedu.address.model.appointment.DateTime;
+import seedu.address.model.appointment.Location;
+import seedu.address.model.appointment.Time;
 
 public class AppointmentTest {
     private class InvalidDateTimeStub extends DateTime {

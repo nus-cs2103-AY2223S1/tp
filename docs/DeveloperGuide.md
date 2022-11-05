@@ -31,6 +31,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
+*Figure 1. Architecture Diagram of Financial Advisor Planner*
+
+
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
@@ -55,7 +58,9 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="574"/>
+
+*Figure 2. Sequence diagram showing the interaction between components for the `delete 1` command*
 
 Each of the four main components (also shown in the diagram above),
 
@@ -66,6 +71,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <img src="images/ComponentManagers.png" width="300" />
 
+*Figure 3. Class diagram showing the interaction between Logic, Model and Storage interfaces*
+
 The sections below give more details of each component.
 
 ### UI component
@@ -73,6 +80,8 @@ The sections below give more details of each component.
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+
+*Figure 4. Class diagram showing the structure of the `Ui` component*
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `CalendarDisplay` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -93,6 +102,8 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
+*Figure 5. Class diagram showing the structure of the `Ui` component*
+
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
@@ -103,6 +114,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
+*Figure 6. Sequence diagram showing the interactions within the `Logic` component for the `execute("delete 1")` command*
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -110,6 +123,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.png" width="600"/>
 
+*Figure 7. Class diagram showing the classes in the `Logic` component used for parsing a command* 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
@@ -117,9 +131,9 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="750" />
 
-
+*Figure 8. Class diagram showing the classes in the `Model`*
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
@@ -128,10 +142,11 @@ The `Model` component,
 * stores a `CommandHistory` object that represents the user’s command history. This is exposed to the outside as a `ReadOnlyCommandHistory` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list and an `Appointment` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag and one `Appointment` object per unique appointment, instead of each `Person` needing their own `Tag` and `Appointment` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
+*Figure 8. Improved class diagram showing the classes in the `Model`*
 </div>
 
 
@@ -140,6 +155,8 @@ The `Model` component,
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
+
+*Figure 9. Class diagram showing the classes in the `Storage`*
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -179,17 +196,24 @@ The appointment feature currently supports 3 different commands.
 #### Add Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
+
 Step 2. If the user input matches the format for the command word for the `AddAppointmentCommand`, `AddressBookParser` will create an `AddAppointmentCommandParser` and will call the `AddAppointmentCommandParser##parse(args)` to parse the command.
+
 Step 3. Validation for the user input is performed, such as validating the client's `Index`, the format of the `DateTime` and `Location`.
+
 Step 4. If the user input is valid, a new `AddAppointmentCommand` object is created and returned to the `LogicManager`.
+
 Step 5. `LogicManager` will call `AddAppointmentCommand##execute(model)` method. Further validation is performed, such as checking whether a duplicate `Appointment` exists and whether the user has already scheduled the maximum number, 3, of `Appointments` for the specified client.
+
 Step 6. If the command is valid, the `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
+
 Step 7. `AddAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
 
 ![Add Appointment Sequence Diagram](images/AddAppointmentCommandSequenceDiagram.png)
-<br> *Figure xx: Add Appointment Command Sequence Diagram*
+
+*Figure 11: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be added for each command**
@@ -280,45 +304,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Filter feature
-
-#### Proposed Implementation
-
-The proposed filter mechanism is facilitated by `FilteredAddressBook`. It extends `AddressBook` with a temporary history, stored internally as an `savedAddressBook`, with a `currentStatePointer` showing if the filtered list or the original list is shown. Additionally, it implements the following operations:
-
-* `FilteredAddressBook#filter()` — Filters and saves the filtered address book state from the current address book state.
-* `FilteredAddressBook#restore()` — Restores and shows the current address book state.
-
-These operations are exposed in the `Model` interface as `Model#filterAddressBook()` and `Model#restoreAddressBook()` respectively.
-
-Given below is an example usage scenario and how the filter mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `FilteredAddressBook` will be initialized with the current address book state.
-
-
-Step 2. The user executes `filter LOW` command to show only contacts with risk tag LOW in the address book. The `filter` command calls `Model#filterAddressBook()`, causing the modified state of the address book after the `filter LOW` command executes to be saved in the `savedAddressBook`, and the `currentStatePointer` is shifted to the filtered address book state.
-
-
-The `clear` command does the opposite — it calls `Model#restoreAddressBook()`, which shifts the `currentStatePointer` to the current address book state, and restores the address book to that state.
-
-
-
-Step 3. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#filterAddressBook()` or `Model#restoreAddressBook()`. Thus, the `savedAddressBook` remains unchanged.
-
-
-
-#### Design considerations:
-
-**Aspect: How filter executes:**
-
-
-_{more aspects and alternatives to be added}_
-
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 #### Parameter hint feature
 

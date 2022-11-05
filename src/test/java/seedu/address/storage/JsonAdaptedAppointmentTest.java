@@ -10,8 +10,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.DateTime;
-import seedu.address.model.person.Location;
+import seedu.address.model.appointment.DateTime;
+import seedu.address.model.appointment.Location;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class JsonAdaptedAppointmentTest {

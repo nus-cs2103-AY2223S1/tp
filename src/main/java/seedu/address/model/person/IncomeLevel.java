@@ -20,9 +20,9 @@ public class IncomeLevel {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Income}.
      *
-     * @param income A valid address.
+     * @param income A valid income level.
      */
     public IncomeLevel(String income) {
         requireNonNull(income);
@@ -31,7 +31,7 @@ public class IncomeLevel {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid income.
      */
     public static boolean isValidIncome(String test) {
         return test.matches(VALIDATION_REGEX);

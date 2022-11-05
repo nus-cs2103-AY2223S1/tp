@@ -1,23 +1,28 @@
 @startuml
 !include style.puml
 
+skinparam Sequence {
+    ArrowFontSize 20
+}
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddAppointmentCommandParser " as AddAppointmentCommandParser  LOGIC_COLOR
-participant "d:AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
+participant "a:AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "appointmentSet:MaximumSortedList" as MaximumSortedList MODEL_COLOR
+participant ":MaximumSortedList" as MaximumSortedList MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
 participant ":Appointment" as Appointment MODEL_COLOR
 end box
 
-[-> LogicManager : execute("aa 1 d/21-Jan-2023 12:30 PM l/Starbucks")
+[-> LogicManager : execute("aa 1 d/21-Jan-2023 \n 12:30 PM l/Starbucks")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("aa 1 d/21-Jan-2023 12:30 PM l/Starbucks")
+LogicManager -> AddressBookParser : parseCommand("aa 1 d/21-Jan-2023 \n 12:30 PM l/Starbucks")
 activate AddressBookParser
 
 create AddAppointmentCommandParser
@@ -27,14 +32,14 @@ activate AddAppointmentCommandParser
 AddAppointmentCommandParser  --> AddressBookParser
 deactivate AddAppointmentCommandParser
 
-AddressBookParser -> AddAppointmentCommandParser  : parse("1 d/21-Jan-2023 12:30 PM l/Starbucks")
+AddressBookParser -> AddAppointmentCommandParser  : parse("1 d/21-Jan-2023 \n 12:30 PM l/Starbucks")
 activate AddAppointmentCommandParser
 
 create Appointment
 AddAppointmentCommandParser -> Appointment : Appointment(dateTime, location)
 activate Appointment
 
-Appointment --> AddAppointmentCommandParser : a
+Appointment --> AddAppointmentCommandParser :
 deactivate Appointment
 
 create AddAppointmentCommand
@@ -62,7 +67,11 @@ activate MaximumSortedList
 MaximumSortedList --> AddAppointmentCommand
 deactivate MaximumSortedList
 
+AddAppointmentCommand -> Model : updateCalendarEventList
+activate Model
 
+Model --> AddAppointmentCommand
+deactivate Model
 
 create CommandResult
 AddAppointmentCommand -> CommandResult : CommandResult(successMsg)

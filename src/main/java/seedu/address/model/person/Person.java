@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.tag.ClientTag;
 import seedu.address.model.tag.NormalTag;
