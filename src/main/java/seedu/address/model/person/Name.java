@@ -17,7 +17,7 @@ public class Name implements DeepCopyable {
     /*
      * Disallows only numbers or Strings that contain numbers surrounded by whitespaces.
      */
-    public static final String VALIDATION_REGEX = "^(?:[a-zA-Z]+|(?:\\S*[^\\d\\s]\\d+\\S*|\\S*\\d+[^\\d\\s]\\S*)| )+$";
+    public static final String VALIDATION_REGEX = "^(?:[a-zA-Z]+|(?:[a-zA-Z0-9]*[^\d\s]\d+[a-zA-Z0-9]*|[a-zA-Z0-9]*\d+[^\d\s][a-zA-Z0-9]*)| )+$";
 
     public final String fullName;
 
