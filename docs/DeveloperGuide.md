@@ -29,6 +29,8 @@ This *Developer Guide* provides general information for developers who are inter
 
 * This project is based on [AddressBook-Level3](https://se-education.org/addressbook-level3/) by [SE-EDU initiative](https://se-education.org/).
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [PlantUML](https://plantuml.com/).
+* Font packages used: [Ancient Olive Sans Serif Font](https://www.downloadfonts.io/ancient-olive-sans-serif-font/).
+* Logos used: [Flaticon](https://www.flaticon.com/free-icons/official).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -652,6 +654,11 @@ Having a `mod view INDEX` command would give users an option to select a batchma
 Currently, the _Students panel_ does not scroll to the bottom when a batchmate is added and the row exceeds the currently displayed list of batchmates in the _Students panel_. 
 
 Implementing the _Students panel_ to display the most-recently added batchmate would help in enhancing the user experience and users do not need to manually scroll to the bottom each time.
+
+### 4. Display students by alphabetical order
+Currently, students are displayed in the _Students panel_ based on chronological order, the most recently added student would be the last. 
+
+Looking ahead, we would implement the display of students to be based on alphabetical order of their names. This would make it much more intuitive and easier to search for users.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Instructions for manual testing**
