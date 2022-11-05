@@ -5,8 +5,8 @@ box UI UI_COLOR_T1
 participant ":StackedBarPanel" as StackedBarPanel UI_COLOR
 end box
 
-box Logic LOGIC_COLOR_T1
-participant ":Statistic" as Statistic LOGIC_COLOR
+box Model MODEL_COLOR_T1
+participant ":Statistic" as Statistic MODEL_COLOR
 
 end box
 [-> StackedBarPanel : updateBar()
