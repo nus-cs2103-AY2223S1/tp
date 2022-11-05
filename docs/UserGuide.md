@@ -373,14 +373,14 @@ These are the valid companies and their corresponding codes.
 | TML          | Tokio Marine Life Insurance        |
 | AIA          | AIA Singapore Private Limited      |
 | AVI          | Aviva Limited                      |
-| FWD          | Singapore Private Limited          |
+| FWD          | FWD Singapore Private Limited      |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Commissions must take positive percentages within 0% to 100%! (e.g. 10%, 3.5%, 1.0%)
 </div>  
 
 Examples:
-* `addPolicy ti/PruShield cmp/AIA cms/10% 5% 1% cov/LIFE`
+* `addPolicy ti/PruShield cmp/PRU cms/10% 5% 1% cov/LIFE`
 * `addPolicy ti/ManuInvest Duo cmp/MNF cms/6% 3% 1.5% cov/INVESTMENT cov/LIFE`
 
 
@@ -406,16 +406,16 @@ Example Result: Shows the currently listed policies on the screen.
 ### Viewing all policies in the address book : `allPolicies`
 Switches the display to show **all** the policies stored in the address book.
 
-Format: `allPolicies`
-Example Usage: `allPolicies`
+Format: `allPolicies` <br />
+Example Usage: `allPolicies` <br />
 Example Result: Shows all policies stored in the address book, on the screen.
 
 ### Deleting a policy : `deletePolicy`
-* Format: `deletePolicy POLICY_INDEX`
+Deletes the policy at the specified `INDEX`.
+The index refers to the index number shown in the displayed list of policies.
+The index **must be a positive integer** 1, 2, 3, …​
 
-* Deletes the policy at the specified `INDEX`.
-* The index refers to the index number shown in the displayed list of policies.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `deletePolicy POLICY_INDEX`
 
 Examples:
 * `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in the address book.
@@ -437,8 +437,7 @@ The following table illustrates the details of each metric and their search rang
 | Company  | cmp/   | - Policies which belong to the specified company will be listed                                                                                                                                                                                                                             |
 
 Examples:
-
-* `findPolicy ti/Health plan` returns `health plan` and `life plan`
+* `findPolicy ti/Health plan` returns policies with the title `health plan` and `life plan`
 * `findPolicy cov/LIFE cov/HEALTH` returns policies that cover both LIFE and HEALTH
 * `findPolicy cmp/PRU` returns policies that belong to Prudential Assurance Company
 * `findPolicy ti/Shield cov/LIFE` returns polices with Shield in its title and covers the LIFE coverage type
@@ -479,7 +478,7 @@ Format: `listAssigned CLIENT_INDEX`
 Example Usage:
 
 1. `findClient n/John Doe` to filter the list of clients to find `John Doe`.
-2. `listAssigned CLIENT_INDEX` to list out the policies assigned to the first client in the list from Step 1.
+2. `listAssigned 1` to list out the policies assigned to the first client in the list from Step 1.
 
 ### Deleting assigned policies from a client : `deleteAssigned`
 
@@ -491,8 +490,6 @@ Format: `deleteAssigned CLIENT_INDEX ASSIGNED_POLICY_INDEX`
 Example Usage:
 1. Similar to [listAssigned](#listing-out-policies-assigned-to-a-clientlistassigned), filter the list for the desired client and find out which policies they have been assigned to.
 2. `deleteAssigned 1 1` to delete the first assigned policy in the assigned policy list from Step 1, of the first client obtained from filtering the client list.
-
-This allows you to sort your clients in the address book based on a specified metric.
 
 ### Tracking your Income  : `viewIncome`
 
