@@ -139,7 +139,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `gimbook.commons` package.
+Classes used by multiple components are in the `gim.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
