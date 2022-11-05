@@ -2,7 +2,6 @@
 layout: page
 title: Koh Rui Jie's Project Portfolio Page
 ---
-
 ## Overview
 ConnectNUS is a desktop address book application used for NUS CS students to keep track of their own modules, and their friend's modules and contacts as well. This is to facilitate NUS CS students to keep track of their friends to work with so that they can easily find friends to collaborate with.
 
