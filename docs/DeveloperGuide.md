@@ -10,7 +10,6 @@ title: Developer Guide
 ## **Table of Contents**
 
 * [**Introduction**](#introduction)
-* [**Acknowledgements**](#acknowledgements)
 * [**Design**](#design)
     * [Architecture](#architecture)
     * [Ui](#ui-component)
@@ -25,6 +24,7 @@ title: Developer Guide
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
     * [Command history](#command-history)
+* [**Acknowledgements**](#acknowledgements)
 * [**Conclusion**](#conclusion)
 * [**Appendix: Project requirements**](#appendix-project-requirements)
     * [Product scope](#product-scope)
@@ -71,21 +71,6 @@ With our resident and venue functionalities in place, we wish to enhance RC4HDB 
 ### Getting started
 
 A good place to start off with would be to take a look at the [design](#design) section of our guide, where you will find out about the high-level design details of **RC4HDB**. Otherwise, have a look at our [table of contents](#table-of-contents) for any sections of our guide that you may be interested in. If you are eager to work on the project, do refer to our section on how you can [join us](#joining-us).
-
----
-
-## **Acknowledgements**
-
-[comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
-
-RC4HDB is built-upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that provides
-a starting point for Software Engineering (SE) students enrolled in CS2103T.
-
-### Credits for code adapted from external sources
-
-1. `populateTagColumn` in `ResidentTableView`, and `populateNthColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items) on StackOverflow.
-2. `populateIndexColumn` in `ResidentTableView`, and `populateDayColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx) on StackOverflow.
-3. `cleanBom` in `CsvReader` was adapted from this [thread](https://mkyong.com/java/java-how-to-add-and-remove-bom-from-utf-8-file/) on mkyong's website.
 
 ---
 
@@ -604,6 +589,24 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+---
+
+## **Acknowledgements**
+
+[comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
+
+It is here that we want to acknowledge all the help we have received from our professors, tutors and any online sources.
+
+RC4HDB is built-upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that provides
+a starting point for Software Engineering (SE) students enrolled in CS2103T.
+
+### Credits for code adapted from external sources
+
+1. `populateTagColumn` in `ResidentTableView`, and `populateNthColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items) on StackOverflow.
+2. `populateIndexColumn` in `ResidentTableView`, and `populateDayColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx) on StackOverflow.
+3. `cleanBom` in `CsvReader` was adapted from this [thread](https://mkyong.com/java/java-how-to-add-and-remove-bom-from-utf-8-file/) on mkyong's website.
+4. `NoSelectionModel` was adapted from [this thread](https://stackoverflow.com/questions/20621752/javafx-make-listview-not-selectable-via-mouse) on StackOverflow.
 
 ---
 
