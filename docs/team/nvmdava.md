@@ -11,18 +11,19 @@ JavaFx.
 
 Given below are my contributions to the project.
 
-* **New Feature**: [to be added soon]
+* **New Feature**:
+  * Adding image for our <code>additer</code> command.
+  * Adding <code>opencus</code> for our project.
+  * Adding tag filter which was extended to <code>findcom</code>, <code>findcus</code>.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nvmdava)
 
-* **Project management**: [to be added soon]
-
-* **Enhancements to existing features**: [to be added soon]
+* **Project management**:
+  * Idea generation.
 
 * **Documentation**:
-  * User Guide: [to be added soon]
-  * Developer Guide: [to be added soon]
+  * User Guide: Refactor User Guide and categorize the features appropriately.
+  * Developer Guide: Update Glossary. 
 
-* **Community**: [to be added soon]
-
-* **Tools**: [to be added soon]
+* **Community**:
+  * Represent team during meetings with teaching team in CS2101 & CS2103T.
