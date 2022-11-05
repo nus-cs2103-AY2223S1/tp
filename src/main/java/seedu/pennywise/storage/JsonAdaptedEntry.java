@@ -61,6 +61,9 @@ public abstract class JsonAdaptedEntry {
         if (!Amount.isValidAmount(amount)) {
             throw new IllegalValueException(Amount.MESSAGE_CONSTRAINTS);
         }
+        if (!Amount.isAmountWithinLimits(amount)) {
+            throw new IllegalValueException(Amount.MESSAGE_TOO_LARGE);
+        }
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }

@@ -8,34 +8,55 @@ import java.text.DecimalFormat;
 
 /**
  * Represents an {@code Entry}'s amount in the PennyWise application.
- * Guarantees: immutable; is valid as declared in {@link #isValidAmount(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidAmount(String)} and
+ * {@link #isAmountWithinLimits(String)}
  */
 public class Amount {
-
-    public static final String MESSAGE_CONSTRAINTS = "Expense amount should only contain positive numbers, "
+    public static final String MESSAGE_CONSTRAINTS = "Amount should only contain positive numbers, "
         + "and it should be formatted to accept 2 decimal places";
+    public static final String MESSAGE_TOO_LARGE = "Amount value is too large and should be smaller than 1 000 000";
+
     public static final String VALIDATION_REGEX = "^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$";
     private static final DecimalFormat df = new DecimalFormat("0.00");
+
+    private static final Double AMOUNT_LIMIT = 1000000.00;
+
     private final double amount;
     private final String amountString;
 
     /**
      * Constructs a {@code Amount}.
      *
-     * @param amount A valid expense amount.
+     * @param amount A valid amount.
      */
     public Amount(String amount) {
         requireNonNull(amount);
         checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
+        checkArgument(isAmountWithinLimits(amount), MESSAGE_TOO_LARGE);
         this.amount = parseDouble(amount);
         this.amountString = df.format(this.amount);
     }
 
     /**
-     * Returns true if a given string is a valid expense amount.
+     * Returns true if a given string {@code test} is a valid amount format.
      */
     public static boolean isValidAmount(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string {@code test} is within computable limits.
+     */
+    public static boolean isAmountWithinLimits(String test) {
+        try {
+            double amount = parseDouble(test);
+            if (Double.isInfinite(amount) || Double.compare(amount, AMOUNT_LIMIT) > 0) {
+                return false;
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public double getValue() {
