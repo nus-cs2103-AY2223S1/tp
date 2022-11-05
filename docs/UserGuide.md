@@ -272,7 +272,7 @@ This example is based on [`Adding a tag`](#adding-a-tag-to-a-contact-tag-add). F
 2. Press `Enter` on your keyboard.
 3. You should now see `Tag has changed from [Test] to [Test2]` in the Command result box. You can also refer to the Before and After comparison below. Within each contact, those with the `Test` tag, will now display `Test2` instead.
 
-before:
+Before:
 (insert image a contact with `Test` tag)
 
 After:
