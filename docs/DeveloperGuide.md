@@ -610,31 +610,281 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+
+### Adding a patient
+
+1. Adding a patient to the current list of patients.
+
+   1. Test case: `addpatient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/swims regularly t/owesMoney` <br>
+      Expected: A patient John Doe is added to the list of patients. Details of the added patient shown in the status message.
+
+   2. Test case: `addpatient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/swims regularly t/owesMoney` <br>
+      Expected: No patient is added to the list. Error details are shown in the status message.
+
+   3. Other incorrect add commands to try: `addpatient`, `addpatient n/Bob p/98765432  a/311, Clementi Ave 3, #04-26` (missing fields) <br>
+      Expected: Similar to previous.
+
+### Adding an appointment
+
+1. Adding an appointment to the list of current appointments.
+
+    1. Prerequisites: A list of patients exists with at least 1 patient in the list.
+
+    1. Test case: `addappointment n/John Doe t/Computed Tomography s/2022-11-12 12:34 d/Muhammad Wong` <br>
+       Expected: An appointment for the patient John Doe is added to the list of appointments. Details of the added appointment shown in the status message.
+
+    2. Test case: `addappointment n/John Doe t/Computed Tomography s/2022-11-12 12:34 d/Muhammad Wong` <br>
+       Expected: No appointment is added to the list. Error details are shown in the status message.
+
+    3. Other incorrect add commands to try: `addappointment`, `addappointment n/x t/X-Ray s/2023-11-08 12:55` (x is not an existing patient) <br>
+       Expected: Similar to previous.
+
+### Adding a bill
+
+1. Adding a bill to the list of current bills.
+
+    1. Prerequisites: A list of appointments exists with at least 1 appointment in the list.
+
+    1. Test case: `addbill 1 d/2022-11-12 12:34 a/200` <br>
+       Expected: A bill for appointment 1 is added to the list of appointments. Details of the added appointment shown in the status message.
+
+    2. Test case: `addbill 1 d/2022-11-12 12:34 a/200` <br>
+       Expected: No bill is added to the list. Error details are shown in the status message.
+
+    3. Other incorrect add commands to try: `addbill`, `addbill x d/2022-11-12 12:34 a/200` (a bill has already been added for x) <br>
+       Expected: Similar to previous.
 
 ### Deleting a patient
 
-1. Deleting a patient while all patients are being shown
+1. Deleting a patient while a list of patients is being shown
 
-   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
+   1. Prerequisites: A list of patients are being shown with at least 1 patient in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `deletepatient 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `deletepatient 0`<br>
+      Expected: No patient is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `deletepatient`, `deletepatient x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+   
+### Deleting an appointment
+
+1. Deleting an appointment while a list of appointments is being shown
+
+    1. Prerequisites: A list of appointments are being shown with at least 1 appointment in the list.
+
+    1. Test case: `deleteappointment 1`<br>
+       Expected: First appointment is deleted from the list. Details of the deleted appointment are shown in the status message. 
+
+    1. Test case: `deleteappointment 0`<br>
+       Expected: No appointment is deleted. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `deleteappointment`, `deleteappointment x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+
+### Deleting a bill
+
+1. Deleting a bill while a list of bills is being shown
+
+    1. Prerequisites: A list of bills is being shown with at least 1 bill in the list.
+
+    2. Test case: `deletebill 1`<br>
+       Expected: First bill is deleted from the list. Details of the deleted bill are shown in the status message. 
+
+    3. Test case: `deletebill 0`<br>
+       Expected: No bill is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `deletebill`, `deletebill x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Finding patients
+
+1. Finding patient(s) from a list of patients
+
+    1. Prerequisites: A list of patients is being shown.
+
+    2. Test case: `findpatient n/Bernice`<br>
+       Expected: A list of all patients with name containing 'Bernice'(case-insesitive) is displayed. The number of patients found is displayed in the status message.
+
+    3. Test case: `findpatient n/Al a/25`<br>
+       Expected: A list of all patients with names containing 'al'(case-insensitive) and 25 in their address is displayed. The number of patients found is displayed in the status message.
+    
+    4. Test case: `findpatient`<br>
+       Expected: Displayed list is not updated. Error details shown in the status message.
+
+### Finding appointments
+
+1. Finding appointment(s) from a list of appointments
+
+    1. Prerequisites: A list of appointments is being shown.
+
+    2. Test case: `findappointment n/Bernice`<br>
+       Expected: A list of all appointments for patients with name containing 'Bernice'(case-insensitive) is displayed. The number of appointments found is displayed in the status message.
+
+    3. Test case: `findappointment n/Al d/Yu`<br>
+       Expected: A list of all appointments for patients with names containing 'Al'(case-insensitive) and doctors 'Yu' are displayed. The number of appointments found is displayed in the status message.
+
+    4. Test case: `findappointment`<br>
+       Expected: Displayed list is not updated. Error details shown in the status message.
+
+### Finding bills
+
+1. Finding bill(s) from a list of bills
+
+    1. Prerequisites: A list of bills is being shown.
+
+    2. Test case: `findbill n/Bernice`<br>
+       Expected: A list of all bills for patients with name containing 'Bernice'(case-insesitive) is displayed. The number of bills found is displayed in the status message.
+
+    3. Test case: `findbill n/Al p/paid`<br>
+       Expected: A list of all bills for patients with names containing 'Al'(case-insensitive) and payment status of paid is displayed. The number of bills found is displayed in the status message.
+
+    4. Test case: `findbill`<br>
+       Expected: Displayed list is not updated. Error details shown in the status message.
+
+### Editing patient details
+
+1. Editing a certain patient's details
+
+    1. Prerequisites: A list of patients is being shown with at least 1 patient in the list.
+ 
+    2. Test case: `editpatient 1 n/Edward`<br> 
+       Expected: The name of the first patient displayed in the list is changed to Edward and the complete list of patients 
+       is displayed. The details of the edited patient is shown in the status message.
+
+    3. Test case: `editpatient 1 n/Edward a/34 Baker's Street`<br>
+       Expected: The name and the address of the first patient displayed in the list is changed to specified and the complete list of patients
+       is displayed. The details of the edited patient is shown in the status message.
+
+    4. Test case: `editpatient 0 n/Ed`<br>
+       Expected: No patient is edited. Error details shown in the status message.
+
+    5. Other incorrect edit commands to try: `editpatient`, `editpatient 1`(missing field(s)), `editpatient x n/Ed`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Editing appointment details
+
+1. Editing a certain appointment's details
+
+    1. Prerequisites: A list of appointments is being shown with at least 1 appointment in the list.
+
+    2. Test case: `editappointment 1 n/Edward`<br>
+       Expected: The patient for the first appointment displayed in the list is changed to Edward and the complete list of appointments
+       is displayed. The details of the edited appointment is shown in the status message.
+
+    3. Test case: `editappointment 1 n/Edward t/X-Ray`<br>
+       Expected: The patient for the first appointment displayed in the list is changed to Edward and their test is changed to X-Ray and the complete list of appointments
+       is displayed. The details of the edited appointment is shown in the status message.
+
+    4. Test case: `editappointment 0 n/Ed`<br>
+       Expected: No appointment is edited. Error details shown in the status message.
+
+    5. Other incorrect edit commands to try: `editappointment`, `editappointment 1`(missing field(s)), `editappointment x n/Ed`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Editing bill details
+
+1. Editing a certain bill's details
+
+    1. Prerequisites: A list of bills is being shown with at least 1 appointment in the list.
+
+    2. Test case: `editbill 1 n/Edward`<br>
+       Expected: The patient for the first bill displayed in the list is changed to Edward and the complete list of bills
+       is displayed. The details of the edited bill is shown in the status message.
+
+    3. Test case: `editbill 1 n/Edward p/unpaid`<br>
+       Expected: The patient for the first bill displayed in the list is changed to Edward and the payment status of the bill is changed to not paid and the complete list of bills
+       is displayed. The details of the edited bill is shown in the status message.
+
+    4. Test case: `editbill 0 n/Ed`<br>
+       Expected: No bill is edited. Error details shown in the status message.
+
+    5. Other incorrect edit commands to try: `editbill`, `editbill 1`(missing field(s)), `editbill x n/Ed`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Set payment status
+
+1. Set a bill's payment status to paid
+
+    1. Prerequisites: A list of bills is being shown with at least 1 bill in the list.
+
+    2. Test case: `setpaid 1`<br>
+       Expected: Set's the first bill's payment status to paid.
+
+    3. Test case: `setpaid 0`<br>
+       Expected: Payment status of no bill is changed. Error details shown in the status message.
+
+    4. Other incorrect set payment status commands to try: `setpaid`, `setpaid x`, `...` (where x is larger than the list size)<br>
+           Expected: Similar to previous.
+   
+2. Set a bill's payment status to unpaid
+
+    1. Prerequisites: A list of bills is being shown with at least 1 bill in the list.
+
+    2. Test case: `setunpaid 1`<br>
+       Expected: Set's the first bill's payment status to unpaid.
+
+    3. Test case: `setunpaid 0`<br>
+       Expected: Payment status of no bill is changed. Error details shown in the status message.
+
+    4. Other incorrect set payment status commands to try: `setunpaid`, `setunpaid x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Sorting patients
+
+1. Sorting patients by a criteria in either ascending or descending order.
+
+   1. Prerequisites: A list of patients is being shown.
+
+   2. Test case: `sortpatient c/name o/asc`<br>
+      Expected: Patients are sorted by their names in ascending order. Status message states successful sort.
+
+   3. Test case: `sortpatient c/name`<br>
+      Expected: Patients are not sorted. Error details shown in the status message.
+
+   4. Other incorrect sort commands to try: `sortpatient`, `sortpatient o/asc`<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Sorting appointments
+
+1. Sorting appointments by a criteria in either ascending or descending order.
+
+    1. Prerequisites: A list of appointments is being shown.
+
+    2. Test case: `sortappointment c/slot o/desc`<br>
+       Expected: Appointments are sorted by their slots in descending order. Status message states successful sort.
+
+    3. Test case: `sortappointment c/name`<br>
+       Expected: Appointments are not sorted. Error details shown in the status message.
+
+    4. Other incorrect sort commands to try: `sortappointment`, `sortappointment o/asc`<br>
+       Expected: Similar to previous.
+    
+### Sorting bills
+
+1. Sorting bills by a criteria in either ascending or descending order.
+
+    1. Prerequisites: A list of bills is being shown.
+
+    2. Test case: `sortbill c/amount o/desc`<br>
+       Expected: Bills are sorted by their amounts in descending order. Status message states successful sort.
+
+    3. Test case: `sortbill c/name`<br>
+       Expected: Bills are not sorted. Error details shown in the status message.
+
+    4. Other incorrect sort commands to try: `sortbill`, `sortbill o/asc`<br>
+       Expected: Similar to previous.
+
 
 ### Saving data
 
