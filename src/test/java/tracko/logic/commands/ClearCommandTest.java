@@ -17,21 +17,21 @@ import tracko.testutil.OrderBuilder;
 
 public class ClearCommandTest {
 
-     @Test
-     public void execute_emptyTrackO_success() {
-         Model model = new ModelManager();
-         Model expectedModel = new ModelManager();
+    @Test
+    public void execute_emptyTrackO_success() {
+        Model model = new ModelManager();
+        Model expectedModel = new ModelManager();
 
-         ClearCommand command = new ClearCommand();
+        ClearCommand command = new ClearCommand();
 
-         // Test for confirmation message displayed to user
-         assertCommandSuccess(command, model, ClearCommand.CLEAR_CONFIRMATION_MESSAGE, expectedModel);
+        // Test for confirmation message displayed to user
+        assertCommandSuccess(command, model, ClearCommand.CLEAR_CONFIRMATION_MESSAGE, expectedModel);
 
-         // simulate confirmation from user
-         command.setAwaitingInput(false);
+        // simulate confirmation from user
+        command.setAwaitingInput(false);
 
-         assertCommandSuccess(command, model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
-     }
+        assertCommandSuccess(command, model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
 
     @Test
     public void execute_emptyTrackO_cancelled() {
@@ -50,23 +50,23 @@ public class ClearCommandTest {
         assertCommandSuccess(command, model, ClearCommand.MESSAGE_COMMAND_ABORTED, expectedModel);
     }
 
-     @Test
-     public void execute_nonEmptyTrackO_success() {
-         Model model = new ModelManager(getTrackOWithTypicalOrders(), new UserPrefs());
-         Model expectedModel = new ModelManager(getTrackOWithTypicalOrders(), new UserPrefs());
+    @Test
+    public void execute_nonEmptyTrackO_success() {
+        Model model = new ModelManager(getTrackOWithTypicalOrders(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTrackOWithTypicalOrders(), new UserPrefs());
 
-         ClearCommand command = new ClearCommand();
+        ClearCommand command = new ClearCommand();
 
-         // Test for confirmation message displayed to user
-         assertCommandSuccess(command, model, ClearCommand.CLEAR_CONFIRMATION_MESSAGE, expectedModel);
+        // Test for confirmation message displayed to user
+        assertCommandSuccess(command, model, ClearCommand.CLEAR_CONFIRMATION_MESSAGE, expectedModel);
 
-         // simulate confirmation from user
-         command.setAwaitingInput(false);
+        // simulate confirmation from user
+        command.setAwaitingInput(false);
 
-         expectedModel.setTrackO(new TrackO());
+        expectedModel.setTrackO(new TrackO());
 
-         assertCommandSuccess(command, model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
-     }
+        assertCommandSuccess(command, model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
 
     @Test
     public void execute_nonEmptyTrackO_cancelled() {
