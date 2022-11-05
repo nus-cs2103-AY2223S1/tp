@@ -156,9 +156,9 @@ Classes used by multiple components are in the `fridaybook.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Sort feature
-
 #### Rationale
-This is a feature that enables the sorting of students using various criteria. With many students to keep track of, we
+Students in FRIDAY have details such as name, Telegram handle, consultation and Mastery Check dates, and grades. 
+This feature enables the sorting of students using the aforementioned details as criteria. With many students to keep track of, we
 decided to add this feature to allow users to quickly organize their students in different ways.
 
 #### Implementation
@@ -385,17 +385,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | intermediate user | have suggestions on comments to give students for generic  feedback | provide fast feedback                                            |
 | `*`      | intermediate user | customize the look and feel of the software                         | make the software feel like my own                               |
 
-*{More to be added}*
-
 ### Use cases
 
-(For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: Delete a student**
+**Use Case 1: Add a student**
 
-**System: FRIDAY**
+**MSS**
 
-**Actor: User**
+1. User requests to add a student with details
+2. FRIDAY adds the student
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given details are not supported in FRIDAY. 
+
+    * 1a1. FRIDAY shows an error message listing the supported details.
+
+      Use case resumes at step 1.
+
+* 1b. The given details are supported but have the wrong format.
+
+    * 1b1. FRIDAY shows an error message providing the correct format.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use Case 2: Delete a student**
 
 **MSS**
 
@@ -418,11 +437,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: List a student's details**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 3: List a student's details**
 
 **MSS**
 
@@ -445,12 +462,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<br>
 
-**Use case: Add details to a student**
-
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 4: Add details to a student**
 
 **MSS**
 
@@ -479,11 +493,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit details of a student**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 5: Edit details of a student**
 
 **MSS**
 
@@ -512,11 +524,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit remarks for a student**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 6: Edit remarks for a student**
 
 **MSS**
 
@@ -545,11 +555,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Delete details of a student**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 7: Delete details of a student**
 
 **MSS**
 
@@ -578,11 +586,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit grades for a student**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 8: Edit grades for a student**
 
 **MSS**
 
@@ -611,7 +617,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Sort students**
+<br>
+
+**Use Case 9: Sort students**
 
 **System: FRIDAY**
 
@@ -628,13 +636,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given criteria is invalid.
 
-    * 1a1. FRIDAY shows an error message.
+    * 1a1. FRIDAY shows an error message listing the accepted criteria.
 
       Use case resumes at step 1.
 
 * 1b. The given order is invalid.
 
-    * 1b1. FRIDAY shows an error message.
+    * 1b1. FRIDAY shows an error message listing the accepted orders.
 
       Use case resumes at step 1.
 
@@ -644,11 +652,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Mark a student's Mastery Check as passed.**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 10: Mark a student's Mastery Check as passed.**
 
 **MSS**
 
@@ -677,11 +683,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Unmark a student's Mastery Check.**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 11: Unmark a student's Mastery Check.**
 
 **MSS**
 
@@ -716,8 +720,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 100 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -757,7 +759,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a student
 1. Adding a student with different details
-   1. Prerequisites: A student named "Alex Yeoh" and a student with Telegram handle "tommy123" have already been added.
+   1. Prerequisites: A student named `Alex Yeoh` and a student with Telegram handle `tommy123` have already been added.
    2. Test case: `add n/Jacelyn c/2022-07-08` <br>
       Expected: A student named Jacelyn with consultation date 8 July 2022 is added.
    3. Test case: `add n/alex yeoh` <br>
@@ -788,12 +790,12 @@ testers are expected to do more *exploratory* testing.
 1. Sorting students with different criteria and order
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
     2. Test case: `sort t/a` <br>
-       Expected: Students sorted by Telegram handle in alphabetical order. Students with missing Telegram handles are sorted last.
+       Expected: Students sorted by Telegram handle in ascending alphabetical order. Students with missing Telegram handles are sorted last.
     3. Test case: `sort m/d` <br>
        Expected: Students sorted by Mastery Check dates, from latest to earliest. Students with missing Mastery Check dates are sorted first.
     4. Test case: `sort g/a` <br>
        Expected: Students not sorted. Error details shown in the status message.
-    5. Other incorrect delete commands to try: `sort`, `sort n/`, `sort n/b` <br>
+    5. Other incorrect delete commands to try: `sort`, `sort n/`, `sort c/b` <br>
        Expected: Similar to previous.
 
 

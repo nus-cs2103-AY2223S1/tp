@@ -47,7 +47,7 @@ You can reach us at the consultation `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jorrdansoh.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops
+* Responsibilities: Data
 
 ### Yeo Kai Jiun
 
