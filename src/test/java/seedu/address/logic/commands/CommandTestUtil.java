@@ -37,7 +37,6 @@ import seedu.address.testutil.EditTaskDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
     public static final String VALID_MODULE_1 = "CS2001";
     public static final String VALID_MODULE_2 = "CS2002";
 
@@ -133,6 +132,7 @@ public class CommandTestUtil {
     public static final String MODULE_DESC_CS2040 = " " + PREFIX_MODULE + "cs2040";
     public static final String DESCRIPTION_DESC_DO_TUTORIAL = " " + PREFIX_DESCRIPTION + "do tutorial";
     public static final String DESCRIPTION_DESC_WATCH_LECTURE = " " + PREFIX_DESCRIPTION + "watch lecture";
+    public static final String DESCRIPTION_DESC_TASK_A = " " + PREFIX_DESCRIPTION + "Task A";
 
     // module codes should be at least 6 characters long
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "cs";
