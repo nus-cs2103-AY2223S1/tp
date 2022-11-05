@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
@@ -19,12 +20,18 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.ContainsKeywordsPredicate;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.InternshipHasApplicationStatusPredicate;
+import seedu.address.model.internship.SortCriteria;
 import seedu.address.testutil.EditInternshipDescriptorBuilder;
 import seedu.address.testutil.InternshipBuilder;
 import seedu.address.testutil.InternshipUtil;
@@ -75,6 +82,30 @@ public class FindMyInternParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new ContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        ApplicationStatus applicationStatus = ApplicationStatus.Applied;
+        FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+                + " " + applicationStatus);
+        assertEquals(new FilterCommand(new InternshipHasApplicationStatusPredicate(applicationStatus)), command);
+    }
+
+    @Test
+    public void parseCommand_mark() throws Exception {
+        ApplicationStatus applicationStatus = ApplicationStatus.Interviewed;
+        MarkCommand command = (MarkCommand) parser.parseCommand(MarkCommand.COMMAND_WORD
+                + " " + INDEX_FIRST_INTERNSHIP.getOneBased() + " " + PREFIX_APPLICATION_STATUS + applicationStatus);
+        assertEquals(new MarkCommand(INDEX_FIRST_INTERNSHIP, applicationStatus), command);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        SortCriteria sortCriteria = SortCriteria.Applied;
+        SortCommand command = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD
+                + " " + sortCriteria);
+        assertEquals(new SortCommand(sortCriteria), command);
     }
 
     @Test

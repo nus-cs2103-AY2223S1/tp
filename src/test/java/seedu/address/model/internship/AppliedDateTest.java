@@ -6,6 +6,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.TypicalDateTimes;
+
 public class AppliedDateTest {
 
     @Test
@@ -15,8 +17,7 @@ public class AppliedDateTest {
 
     @Test
     public void constructor_invalidAppliedDate_throwsIllegalArgumentException() {
-        String invalidAppliedDate = "03 Oct 22";
-        assertThrows(IllegalArgumentException.class, () -> new AppliedDate(invalidAppliedDate));
+        assertThrows(IllegalArgumentException.class, () -> new AppliedDate(TypicalDateTimes.SECOND_INVALID_DATE));
     }
 
 
@@ -26,15 +27,20 @@ public class AppliedDateTest {
         assertThrows(NullPointerException.class, () -> AppliedDate.isValidAppliedDate(null));
 
         // invalid applied dates
-        assertFalse(AppliedDate.isValidAppliedDate("23 October 2022")); // only MMM or M
-        assertFalse(AppliedDate.isValidAppliedDate("23 Oct 22")); // only uuuu
-        assertFalse(AppliedDate.isValidAppliedDate("29 Feb 2023")); // 29 Feb on non-leap years
+        assertFalse(AppliedDate.isValidAppliedDate(TypicalDateTimes.FIRST_INVALID_DATE)); // only MMM or M
+        assertFalse(AppliedDate.isValidAppliedDate(TypicalDateTimes.SECOND_INVALID_DATE)); // only uuuu
+        assertFalse(AppliedDate.isValidAppliedDate(TypicalDateTimes.THIRD_INVALID_DATE)); // 29 Feb on non-leap years
+        assertFalse(AppliedDate.isValidAppliedDate(TypicalDateTimes.FIRST_NONSTANDARD_DATE)); // does not exist
+        assertFalse(AppliedDate.isValidAppliedDate(TypicalDateTimes.SECOND_NONSTANDARD_DATE)); // does not exist
+
+        // empty applied date
+        assertFalse(AppliedDate.isValidAppliedDate(" "));
 
         // valid applied dates
-        assertTrue(AppliedDate.isValidAppliedDate("23 Oct 2022")); // d MMM uuuu
-        assertTrue(AppliedDate.isValidAppliedDate("23 Oct")); // d MMM
-        assertTrue(AppliedDate.isValidAppliedDate("23/10/2022")); // d/M/uuuu
-        assertTrue(AppliedDate.isValidAppliedDate("23/10")); // d/M
-        assertTrue(AppliedDate.isValidAppliedDate("29/02/2024")); // 29 Feb on leap year
+        assertTrue(AppliedDate.isValidAppliedDate(TypicalDateTimes.FIRST_VALID_DATE)); // d MMM uuuu
+        assertTrue(AppliedDate.isValidAppliedDate(TypicalDateTimes.SECOND_VALID_DATE)); // d MMM
+        assertTrue(AppliedDate.isValidAppliedDate(TypicalDateTimes.THIRD_VALID_DATE)); // d/M/uuuu
+        assertTrue(AppliedDate.isValidAppliedDate(TypicalDateTimes.FOURTH_VALID_DATE)); // d/M
+        assertTrue(AppliedDate.isValidAppliedDate(TypicalDateTimes.FIFTH_VALID_DATE)); // 29 Feb on leap year
     }
 }

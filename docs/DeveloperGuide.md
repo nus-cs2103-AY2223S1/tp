@@ -9,7 +9,19 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+Third-party libraries and licenses are listed here.
+
+##### Bootstrap 5
+
+Used in User Guide and Developer Guide.
+
+Bootstrap 5.2 license: [https://getbootstrap.com/docs/5.2/about/license/](https://getbootstrap.com/docs/5.2/about/license/)
+
+##### IBM Plex Sans
+
+Font by IBM, used as typeface in FindMyIntern.
+
+IBM Plex Sans Open Font License: [https://github.com/IBM/plex/blob/master/LICENSE.txt](https://github.com/IBM/plex/blob/master/LICENSE.txt)
 
 --------------------------------------------------------------------------------------------------------------------
 

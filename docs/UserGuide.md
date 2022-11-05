@@ -196,7 +196,7 @@ Adds an internship application to FindMyIntern.
   * There are no restrictions on what can be a `TAG`, other than containing only alphabets and spaces.
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
-<div class="d-flex alert alert-info mb-2">
+<div class="d-flex alert alert-info mb-1">
 <div class="me-3">
   <span class="badge text-bg-info">INFO</span>
 </div>
@@ -263,7 +263,7 @@ Edits an existing internship application in FindMyIntern.
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
 
-<div class="d-flex alert alert-info mb-2">
+<div class="d-flex alert alert-info">
 <div class="me-3">
   <span class="badge text-bg-info">INFO</span>
 </div>

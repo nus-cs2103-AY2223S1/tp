@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.APPLICATION_STATUS_IN
 import static seedu.address.logic.commands.CommandTestUtil.APPLICATION_STATUS_INVALID;
 import static seedu.address.logic.commands.CommandTestUtil.APPLICATION_STATUS_REJECTED;
 import static seedu.address.logic.commands.CommandTestUtil.APPLICATION_STATUS_SHORTLISTED;
+import static seedu.address.logic.commands.MarkCommand.MESSAGE_NOT_EDITED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
@@ -67,6 +69,17 @@ public class MarkCommandParserTest {
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
+    @Test
+    public void parse_emptyArgs_failure() {
+        Index targetIndex = INDEX_FIRST_INTERNSHIP;
+
+        // valid index but no prefix and no application status
+        assertParseFailure(parser, targetIndex.getOneBased() + " ", MESSAGE_NOT_EDITED);
+
+        // valid index and valid prefix but no application status
+        assertParseFailure(parser, targetIndex.getOneBased()
+                + " " + PREFIX_APPLICATION_STATUS, ApplicationStatus.MESSAGE_CONSTRAINTS);
+    }
 
     @Test
     public void parse_invalidApplicationStatus_failure() {
