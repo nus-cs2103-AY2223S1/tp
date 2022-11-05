@@ -10,7 +10,7 @@ Friendnancial is a **desktop application, optimized for use by financial advisor
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Short Glossary for non-technical Users.
+## Short Glossary For Non-technical Users
 
 | Technical Terms | Meaning                                                                                   | 
 |-----------------|-------------------------------------------------------------------------------------------|
