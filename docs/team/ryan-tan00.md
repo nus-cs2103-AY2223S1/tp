@@ -23,13 +23,14 @@ created with JavaFX. It is written in Java, and has about 15 kLoC.
   * Justification: Easier for hospital staff to identify which patients are staying in the hospital.
 
 * Get the past appointments of patients: `get /appt`
-  * Obtains all past appointments of a specified patient.
-  * Hospital staff can view the medical history of a patient.
+  * Description: Obtains all past appointments of a specified patient.
+  * Justification: Hospital staff can view the medical history of a patient.
 
 * Implemented sorting for past appointments
-  * Past appointments will be arranged from the most recent to oldest when added to the list of past appointments
-  * Instead of sorting appointments by date whenever `get /appt` is called, sorting the appointments as it is added 
-    makes it more efficient as long as it 
+  * Description: Past appointments will be arranged from the most recent to oldest when added to the list of past 
+                 appointments
+  * Justification: Instead of sorting appointments by date whenever `get /appt` is called, sorting the appointments as 
+                   it is added makes it more efficient as we foresee more `get /appt` commands than `appt` commands.
 
 ### Contributions to the UG
 
