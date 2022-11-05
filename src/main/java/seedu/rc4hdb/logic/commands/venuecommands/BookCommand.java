@@ -52,7 +52,7 @@ public class BookCommand extends VenueCommand implements ModelCommand {
     /**
      * Creates a BookCommand to add the specified {@code Booking}
      */
-    public BookCommand(Index residentIndex, BookingDescriptor bookingDescriptor){
+    public BookCommand(Index residentIndex, BookingDescriptor bookingDescriptor) {
         super(bookingDescriptor.getVenueName().get());
         requireAllNonNull(residentIndex, bookingDescriptor);
         this.residentIndex = residentIndex;
