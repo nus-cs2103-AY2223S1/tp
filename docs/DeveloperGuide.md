@@ -123,8 +123,8 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddStuCommand`) which
    is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletestu 1")`
 API call.
@@ -132,7 +132,7 @@ API call.
 
 ![Interactions Inside the Logic Component for the `deletestu 1` Command](images/DeleteStuSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStuCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -240,6 +240,8 @@ that the student has been successfully added.
 
 The following sequence diagram shows how the add student operation works:
 ![AddStuSequenceDiagram](images/AddStuSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddStuCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 The following activity diagram summarizes what happens when a user executes a new `addstu` command.
 
@@ -293,6 +295,8 @@ Step 5. After successfully editing the response attribute, `AddResponseCommand` 
 
 The following sequence diagram shows how the add response feature is executed:
 ![AddResponseSequenceDiagram](images/AddResponseSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddResponseCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 The following activity diagram summarizes what happens when a user executes a new command:  
 ![AddResponseActivityDiagram](images/AddResponseActivityDiagram.png)
@@ -397,6 +401,9 @@ Step 5. After successfully editing the attendance attribute, `AttendanceCommand`
 
 The following sequence diagram shows how the attendance feature is executed.
 ![AttendanceSequenceDiagram](images/AttendanceSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddStuCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 ![AttendanceSequenceDiagramReferenceFrame](images/AttendanceSequenceDiagramReferenceFrame.png)
 
 The following activity diagram summarizes what happens when a user executes a new `attendance` command.
@@ -436,10 +443,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 * has a need to manage a significant amount of tasks in a week other than their tutorials
 * prefer desktop apps over other types
 * can type fast and is reasonably comfortable using CLI apps
-* has no access to other time management systems
 
-**Value proposition**: They have difficulties keeping track of students' participation in zoom, telegram handles and
-schedule. The UI of the current application is not aesthetically pleasing and not intuitive enough.
+**Value proposition**: They have difficulties keeping track of their student's and tutorial's details as well as collating questions asked by their students. The UI of the current application(s) that they are using is not aesthetically pleasing and intuitive enough.
 
 ### User stories
 
@@ -448,7 +453,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​    | I want to …​                                        | So that I can…​                                                     |
 |----------|------------|-----------------------------------------------------|---------------------------------------------------------------------|
 | `* * *`  | CS2103T TA | add a new student                                   | keep track of my student's name, email and telegram handle          |
-| `* * *`  | CS2103T TA | edit a student                                      | correct any errors or make any changes if needed                    |
+| `* * `   | CS2103T TA | edit a student                                      | correct any errors or make any changes if needed                    |
 | `* * *`  | CS2103T TA | delete a student                                    | remove entries I no longer need                                     |
 | `* * *`  | CS2103T TA | add student's attendance                            | track student's attendance for grading purposes                     |
 | `* * *`  | CS2103T TA | add students' response count                        | keep track of student's participation                               |
@@ -468,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `SETA` and the **Actor** is the `CS2103T TA`, unless specified
+(For all use cases below, the **System** is `SETA` and the **Actor** is the `CS2103T TA`, unless specified
 otherwise)
 
 ****
@@ -809,7 +814,6 @@ otherwise)
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -824,9 +828,9 @@ exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file, `SETA.jar` and copy into an empty folder
 
-    2. Double-click the jar file Expected: Shows the GUI. The window size will take up the full screen.
+    2. Double-click the jar file. Expected: Shows the GUI.
 
 
 2. Saving window preferences
