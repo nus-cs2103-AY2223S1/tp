@@ -129,7 +129,7 @@ The diagram also includes some new classes involved. For example, the `find` com
 <img src="images/CommandClasses.png" width="1200"/>
 
 
-## BobaBotModel component
+### BobaBotModel component
 
 **API** : [`BobaBotModel.java`](https://github.com/AY2223S1-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/boba/model/BobaBotModel.java)
 
@@ -289,8 +289,6 @@ The activity diagram below illustrates how the `delete` operation works.
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
-#### Design Considerations
-
 **Aspect: How `delete` is executed**
 * **Alternative 1 (current choice):** User can delete a customer via either `PHONE_NUMBER` or `EMAIL`.
 
@@ -349,8 +347,6 @@ or just search for occurrence of keywords (including name) vaguely.
 
 
 ### Undo/Redo feature
-
-#### Implementation
 
 The undo/redo mechanism is facilitated by `VersionedBobaBot`. It extends `BobaBot` with an undo/redo history, stored internally as an `bobaBotStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -416,8 +412,6 @@ Step 6. The user executes `clear`, which calls `BobaBotModel#commitBobaBot()`. S
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
