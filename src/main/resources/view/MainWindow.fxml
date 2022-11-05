@@ -23,9 +23,9 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@Extensions.css" />
-        <URL value="@Theme.css" />
-            <URL value="@Fonts.css" />
+         <URL value="@Extensions.css" />
+         <URL value="@Theme.css" />
+         <URL value="@Fonts.css" />
       </stylesheets>
 
             <VBox prefWidth="600.0">
@@ -36,9 +36,6 @@
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
         </MenuBar>
             <GridPane prefWidth="600.0">
               <columnConstraints>
@@ -55,13 +52,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </padding>
                      <children>
-                   <StackPane fx:id="personListPanelContainer" prefWidth="300.0">
-                           <stylesheets>
-                              <URL value="@Fonts.css" />
-                              <URL value="@Theme.css" />
-                              <URL value="@Extensions.css" />
-                           </stylesheets>
-                        </StackPane>
+                   <StackPane fx:id="personListPanelContainer" prefWidth="300.0" />
                      </children>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" />
@@ -69,12 +60,7 @@
               </VBox>
                   <VBox prefWidth="300.0" styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <StackPane fx:id="outputPanelContainer" prefWidth="300.0">
-                           <stylesheets>
-                              <URL value="@Theme.css" />
-                              <URL value="@Extensions.css" />
-                              <URL value="@Fonts.css" />
-                           </stylesheets></StackPane>
+                        <StackPane fx:id="outputPanelContainer" prefWidth="300.0" />
                      </children>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" />

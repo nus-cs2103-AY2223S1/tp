@@ -44,7 +44,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" spacing="5">
                            <children>
-                              <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
+                              <Label fx:id="name" styleClass="label_big" text="\$first" wrapText="true" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="5.0" />
@@ -54,9 +54,9 @@
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin></FlowPane>
-                        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
-                        <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
-                        <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
+                        <Label fx:id="phone" styleClass="attribute_label" text="\$phone" wrapText="true" />
+                        <Label fx:id="address" styleClass="attribute_label" text="\$address" wrapText="true" />
+                        <Label fx:id="email" styleClass="attribute_label" text="\$email" wrapText="true" />
                      </children>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -72,9 +72,9 @@
                   </HBox>
                   <VBox spacing="5.0" GridPane.columnIndex="2">
                      <children>
-                        <VBox fx:id="conditionHeaderPane" styleClass="cell_small_label_header_border">
+                        <VBox fx:id="conditionHeaderPane" styleClass="attribute_header_border">
                            <children>
-                              <Label fx:id="conditionHeader" styleClass="cell_small_label_light" text="\$conditionheader" wrapText="true" />
+                              <Label fx:id="conditionHeader" styleClass="attribute_label_light" text="\$conditionheader" wrapText="true" />
                            </children>
                         </VBox>
                         <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="150.0" minHeight="20.0">
@@ -86,9 +86,9 @@
                               </VBox>
                            </content>
                         </ScrollPane>
-                        <VBox fx:id="medicationHeaderPane" styleClass="cell_small_label_header_border">
+                        <VBox fx:id="medicationHeaderPane" styleClass="attribute_header_border">
                            <children>
-                              <Label fx:id="medicationHeader" styleClass="cell_small_label_light" text="\$medicationheader" wrapText="true" />
+                              <Label fx:id="medicationHeader" styleClass="attribute_label_light" text="\$medicationheader" wrapText="true" />
                            </children>
                         </VBox>
                         <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="150.0" minHeight="20.0">
@@ -123,9 +123,9 @@
                <children>
                   <VBox spacing="5.0">
                      <children>
-                        <VBox fx:id="taskHeaderPane" styleClass="cell_small_label_header_border">
+                        <VBox fx:id="taskHeaderPane" styleClass="attribute_header_border">
                            <children>
-                              <Label fx:id="taskHeader" styleClass="cell_small_label_light" text="\$taskheader" wrapText="true" />
+                              <Label fx:id="taskHeader" styleClass="attribute_label_light" text="\$taskheader" wrapText="true" />
                            </children>
                         </VBox>
                         <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="400.0">
@@ -144,9 +144,9 @@
                   </VBox>
                   <VBox spacing="5.0" GridPane.columnIndex="1">
                      <children>
-                        <VBox fx:id="remarkHeaderPane" styleClass="cell_small_label_header_border">
+                        <VBox fx:id="remarkHeaderPane" styleClass="attribute_header_border">
                            <children>
-                              <Label fx:id="remarkHeader" styleClass="cell_small_label_light" text="\$remarkheader" wrapText="true" />
+                              <Label fx:id="remarkHeader" styleClass="attribute_label_light" text="\$remarkheader" wrapText="true" />
                            </children>
                         </VBox>
                         <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="400.0">
