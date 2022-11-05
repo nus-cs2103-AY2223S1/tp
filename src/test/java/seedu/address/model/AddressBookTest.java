@@ -111,9 +111,9 @@ public class AddressBookTest {
         }
 
         @Override
-        public String getCensus(Model model) {
+        public String getCensus() {
             StringBuilder sb = new StringBuilder();
-            sb.append(String.format(MESSAGE_COUNT, model.getPersonCount()));
+            sb.append(String.format(MESSAGE_COUNT, getPersonList().size()));
             sb.append(getMedicationMap());
             return sb.toString();
         }
