@@ -38,7 +38,7 @@ Given below are my contributions to the project.
     * Updated appendix to be consistent with new features
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
+  * PRs reviewed (with non-trivial review comments): [\#54](), [\#90]()
   * Reported bugs and suggestions for other teams in the class
  
 
