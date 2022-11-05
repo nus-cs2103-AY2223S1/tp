@@ -133,11 +133,13 @@ the parameter will be taken.<br>
 </div>
 
 ### 2.1. Modules
+In Plannit, you can organise tasks and links by academic
+module. You can also add study buddies to a module so that you can keep track of who could
+potentially be your study buddy.
 
 #### 2.1.1. Add module
-You can add a module into Plannit. In Plannit, you will organise tasks and links by academic 
-module. You can also add study buddies to a module so that you can keep track of who could 
-potentially be your study buddy.
+You can add a module into Plannit. To prepare for the modules in the upcoming semester, you can add
+your list of modules, one by one, into Plannit.
 
 This command will require one flag, and one flag is optional:
 
