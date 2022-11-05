@@ -14,7 +14,7 @@ title: Documentation Guide
   * :bulb: In addition to updating content files, you might have to update the config files `docs\_config.yml` and `docs\_sass\minima\_base.scss` (which contains a reference to `AB-3` that comes into play when converting documentation pages to PDF format).
 * If you are using Intellij for editing documentation files, you can consider enabling 'soft wrapping' for `*.md` files, as explained in [_[se-edu/guides] **Intellij IDEA: Useful settings**_](https://se-education.org/guides/tutorials/intellijUsefulSettings.html#enabling-soft-wrapping)
 
-## Style guidance
+## Style Guide
 
 * Follow the [**_Google developer documentation style guide_**](https://developers.google.com/style).
 
