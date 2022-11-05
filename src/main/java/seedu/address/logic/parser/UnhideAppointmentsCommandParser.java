@@ -21,6 +21,8 @@ import seedu.address.model.person.predicates.HideAppointmentPredicate;
  */
 public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointmentsCommand> {
 
+    private HideAppointmentPredicate.HideBy cond;
+    private List<String> val;
     /**
      * Parses the given {@code String} of arguments in the context of the FilterPatientCommand
      * and returns a FilterPatientCommand object for execution.
@@ -35,9 +37,16 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhideAppointmentsCommand.MESSAGE_USAGE));
         }
+        processArgMap(argMultimap);
+        return new UnhideAppointmentsCommand(new HideAppointmentPredicate(cond, val));
+    }
 
-        HideAppointmentPredicate.HideBy cond;
-        List<String> val;
+    /**
+     * Assigns the correct keywords and condition from the argument map to unhide appointments by.
+     * @param argMultimap The given argument map to be processed.
+     * @throws ParseException If the arguments found are invalid.
+     */
+    private void processArgMap(ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
             val = argMultimap.getAllValues(PREFIX_REASON);
             cond = HideAppointmentPredicate.HideBy.KEYWORD;
@@ -61,7 +70,6 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhideAppointmentsCommand.MESSAGE_USAGE));
         }
-        return new UnhideAppointmentsCommand(new HideAppointmentPredicate(cond, val));
     }
 
     /**
