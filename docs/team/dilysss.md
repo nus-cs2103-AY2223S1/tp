@@ -9,8 +9,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add a student.
     * What it does: Allows the user to add a student with their name, email and telegram handle.
-    * Justification: This feature improves the product significantly because a user can add students into SETA in order
-      to keep track of his or her students under him.
+    * Justification: This feature improves the product significantly because a user can add students into SETA to keep track of his or her students under him.
     * Highlights: This enhancement requires me to create new classes. It was also tricky because I added some additional checks within this feature, such as including an internal 
       check to ensure that adding a student name will be case-insensitive. 
       (E.g. if a student with the name "Alice Tan" is already in the addressbook, "alice   Tan" cannot be added).
@@ -71,8 +70,8 @@ Given below are my contributions to the project.
           and `StorageClassDiagram`.
 
 * **Team-based tasks**:
-  * Maintaining the issue tracker by adding issues to be addressed by myself and other team members.
-  * Documenting parts in UG not specific to my features (E.g. Quick start (Adding UI image), FAQ).
+  * Maintaining issue tracker by adding issues addressed to myself or other team members.
+  * Documenting parts in UG not specific to my features (E.g. Quick start, FAQ).
   * Helped to merge Pull Requests of team members.
 
 * **Community**:
