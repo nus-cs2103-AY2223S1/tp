@@ -67,6 +67,10 @@ public abstract class CustomiseCommand extends Command {
      */
     protected void toggleAttributes(Model model, boolean isSetToHide, List<Attribute> attributeList)
             throws CommandException {
+        if (attributeList == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+
         GuiSettings currSettings = model.getGuiSettings();
         String currHiddenAttributes = currSettings.getHiddenAttributes().trim();
         boolean[] isHidden = new boolean[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES];
@@ -102,6 +106,8 @@ public abstract class CustomiseCommand extends Command {
      *                 index 2 represents phone and index 3 represents tags.
      */
     private void setCurrentHiddenState(String[] strArr, boolean[] isHidden) {
+        assert isHidden != null;
+
         for (String s : strArr) {
             isHidden[convertAttributeToIndex(s)] = true;
         }
@@ -115,6 +121,8 @@ public abstract class CustomiseCommand extends Command {
      * @param isSetToHide Is set to true to hide and false to show.
      */
     private void setNewHiddenState(boolean[] isHidden, boolean isSetToHide, List<Attribute> attributeList) {
+        assert isHidden != null;
+
         for (Attribute argument : attributeList) {
             isHidden[convertAttributeToIndex(argument.toString())] = isSetToHide;
         }
@@ -127,10 +135,8 @@ public abstract class CustomiseCommand extends Command {
      *                 index 2 represents phone and index 3 represents tags.
      * @return A string representation of what attributes are hidden.
      */
-    private String convertHiddenToString(boolean[] isHidden) throws CommandException {
-        if (isHidden == null || isHidden.length != NUMBER_OF_CUSTOMISABLE_ATTRIBUTES) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
-        }
+    private String convertHiddenToString(boolean[] isHidden) {
+        assert isHidden != null;
 
         StringBuilder sb = new StringBuilder();
         if (isHidden[0]) {

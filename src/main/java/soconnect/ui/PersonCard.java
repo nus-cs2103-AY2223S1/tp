@@ -84,7 +84,7 @@ public class PersonCard extends UiPart<Region> {
         if (flowpanes[1] != null) {
             flowpanes[1].maxWidthProperty().bind(Bindings.add(-100, cardPane.widthProperty()));
             Label email = new Label(person.getEmail().value);
-            email.maxWidthProperty().bind(flowpanes[0].maxWidthProperty());
+            email.maxWidthProperty().bind(flowpanes[1].maxWidthProperty());
             email.setStyle("-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; "
                     + "-fx-wrap-text: true;");
             flowpanes[1].getChildren().add(email);
@@ -92,7 +92,7 @@ public class PersonCard extends UiPart<Region> {
         if (flowpanes[2] != null) {
             flowpanes[2].maxWidthProperty().bind(Bindings.add(-100, cardPane.widthProperty()));
             Label phone = new Label(person.getPhone().value);
-            phone.maxWidthProperty().bind(flowpanes[0].maxWidthProperty());
+            phone.maxWidthProperty().bind(flowpanes[2].maxWidthProperty());
             phone.setStyle("-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; "
                     + "-fx-wrap-text: true;");
             flowpanes[2].getChildren().add(phone);
