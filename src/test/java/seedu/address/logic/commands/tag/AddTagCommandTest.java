@@ -110,8 +110,8 @@ public class AddTagCommandTest {
 
     @Test
     public void equals() {
-        Tag firstTag = TypicalTags.BIOLOGY_PROJECT;
-        Tag secondTag = TypicalTags.FAMILY_MEMBER;
+        Tag firstTag = TypicalTags.CS2103T;
+        Tag secondTag = TypicalTags.CS2101;
         EditPersonDescriptor editPersonDescriptor1 = new EditPersonDescriptor();
         EditTaskDescriptor editTaskDescriptor1 = new EditTaskDescriptor();
         EditPersonDescriptor editPersonDescriptor2 = new EditPersonDescriptor();

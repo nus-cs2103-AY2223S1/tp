@@ -17,13 +17,21 @@ import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
  */
 public class TypicalTags {
 
-    public static final Tag BIOLOGY_PROJECT = new TagBuilder()
-            .withName("biology")
+    public static final Tag CS2103T = new TagBuilder()
+            .withName("CS2103T")
             .withCount(2)
             .build();
-    public static final Tag FAMILY_MEMBER = new TagBuilder()
-            .withName("family")
-            .withCount(5)
+    public static final Tag CS2101 = new TagBuilder()
+            .withName("CS2101")
+            .withCount(1)
+            .build();
+    public static final Tag FRIENDS = new TagBuilder()
+            .withName("friends")
+            .withCount(1)
+            .build();
+    public static final Tag OWESMONEY = new TagBuilder()
+            .withName("owesMoney")
+            .withCount(1)
             .build();
 
     private TypicalTags() {} // prevents instantiation
@@ -46,6 +54,6 @@ public class TypicalTags {
     }
 
     public static List<Tag> getTypicalTags() {
-        return new ArrayList<>(Arrays.asList(BIOLOGY_PROJECT, FAMILY_MEMBER));
+        return new ArrayList<>(Arrays.asList(CS2103T, CS2101, FRIENDS, OWESMONEY));
     }
 }
