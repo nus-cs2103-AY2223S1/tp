@@ -162,7 +162,9 @@ public class UnlinkCommand extends Command {
         }
 
         UnlinkCommand otherCommand = (UnlinkCommand) other;
-        return personIndex.equals(otherCommand.personIndex)
-                && internshipIndex.equals(otherCommand.internshipIndex);
+        return ((personIndex == null && otherCommand.personIndex == null)
+                || (personIndex != null && personIndex.equals(otherCommand.personIndex)))
+                && ((internshipIndex == null && otherCommand.internshipIndex == null)
+                || (internshipIndex != null && internshipIndex.equals(otherCommand.internshipIndex)));
     }
 }
