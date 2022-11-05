@@ -8,8 +8,27 @@ const options = {
 };
 
 const HOST = process.env.HOST ?? "http://localhost:4000";
+const PATHS_TO_CHECK = [
+  // Basic
+  "/",
+  "/UserGuide.html",
+  "/DeveloperGuide.html",
+  // Other Pages
+  "/AboutUs.html",
+  "/Configuration.html",
+  "/DevOps.html",
+  "/Documentation.html",
+  "/Logging.html",
+  "/SettingUp.html",
+  "/Testing.html",
+  // PPP
+  "/team/bryanljx.html",
+  "/team/eugenetanwl3881.html",
+  "/team/ferusel.html",
+  "/team/richdom2185.html",
+  "/team/yixiann.html",
+];
 
-const PATHS_TO_CHECK = ["/", "/UserGuide.html", "/DeveloperGuide.html"];
 const links = new Set();
 const fragments = new Set();
 for (const path of PATHS_TO_CHECK) {
