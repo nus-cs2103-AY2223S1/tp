@@ -1,11 +1,10 @@
 @startuml
 !include style.puml
 
-skinparam defaultFontSize 30
-skinparam titleFontSize 30
+skinparam defaultFontSize 15
+skinparam titleFontSize 15
 
-
-title Edit arse Args
+title Edit Parse Args
 
 box Logic LOGIC_COLOR_T1
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR

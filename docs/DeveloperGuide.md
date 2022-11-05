@@ -225,6 +225,43 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Command
+The `add` command is used to create a new patient in the app and set the necessary fields for that patient,
+namely they are the: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
+`Medications` and `UpcomingAppointment` fields. Note that the `PastAppointment` field cannot be updated in this command,
+that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-command ) commands.
+
+When `add <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+input. This then creates an instance of the `AddCommandParser` to parse the `args` via the respective static
+`ParserUtil` functions. If duplicate parameters are inputted (e.g. `add n/Joe n/Mel`), only the last instance is taken,
+similar to how [`edit`](#edit-command), [`appt`](#pastappointment) and [`consult`](#consult-command) are executed.
+
+The `AddCommandParser` will then create the corresponding `Person` object and then feed it to a `AddCommand` object it
+creates and returns. The `LogicManager` then executes the `AddCommand`, which adds the `Person` to the model.
+
+![AddCommandSequenceDiagram](images/dg-images/AddCommandSequenceDiagram.png)
+
+![AddCommandParseArgsSequenceDiagram](images/dg-images/AddCommandParseArgsSequenceDiagram.png)
+
+### Edit Command
+The `edit` coommand is used to change the information of an existing patient in the app. The fields supported are: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
+`Medications` and `UpcomingAppointment`. Note that the `PastAppointment` field cannot be updated in this command,
+that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-command ) commands.
+
+When `edit INDEX <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+input. This then creates an instance of the `EditCommandParser` to parse the `INDEX` and `args` via the respective static
+`ParserUtil` functions. If duplicate parameters are inputted (e.g. `add n/Joe n/Mel`), only the last instance is taken,
+similar to how [`add`](#add-command), [`appt`](#pastappointment) and [`consult`](#consult-command)  are executed.
+
+The `EditCommandParser` will then create the corresponding `EditPersonDescriptor` object and then feed it to a
+`EditCommand` object it creates and returns. The `LogicManager` then executes the `EditCommand`, which adds creates a
+`Person` from the `EditPersonDescriptor` provided and updates the model with this new `Person`.
+
+![Edit Command Sequence Diagram](images/dg-images/EditCommandSequenceDiagram.png)
+
+![Edit Command Parse Args Sequence Diagram](images/dg-images/EditCommandParseArgsSequenceDiagram.png)
+
+
 ### Appointments feature
 
 ![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
@@ -282,6 +319,49 @@ Step 3. The medical assistant creates an `UpcomingAppointment` for John by execu
 now has an `UpcomingAppointment` associated with him.
 
 ![AppointmentObjectDiagramWithBothAppt](images/AppointmentObjectDiagramWithBothAppt.png)
+
+
+#### DelAppt Command
+The purpose of the `delappt` command is to remove the first [`PastAppointment`](#pastappointment) from the selected
+patient. If there is no appointment to delete, the Command will display an error to the user.
+
+The format accepted by the `delappt` command is `delappt INDEX`.
+
+When `delappt INDEX` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+input. This then creates an instance of the `DeletePastAppointmentCommandParser` to parse the `INDEX` with static
+_`ParserUtil#parseIndex()`_ function. If the `INDEX` format is invalid, a `ParseException` will be thrown.
+
+The `DeletePastAppointmentCommandParser` then creates the `DeletePastAppointmentCommand` and returns it. The
+`LogicManager` then executes the `DeletePastAppointmentCommand`, which first gets the current list of patients from the
+`Model`. Then it gets the patient pointed to by `INDEX`, throwing a `CommandException` if the `INDEX` is out of bounds.
+Finally, it checks that the patient has at least 1 [`PastAppointment`](#pastappointment) and removes the most recent one.
+If there are no [`PastAppointment`](#pastappointment)s, it will throw a `CommandException`.
+
+![DelApptSequenceDiagram](images/dg-images/DelApptSequenceDiagram.png)
+
+#### Consult Command
+The purpose of the `consult` command is to simplify the process of creating a [`PastAppointment`](#pastappointment) for
+doctors. It will create a [`PastAppointment`](#pastappointment) for the specified patient on the current date and if the
+patient has an `UpcomingAppointment` for the current date, it will clear it. In this way, the doctor can attend to a
+patient with just 1 command. As the command builds upon the functionality of other commands, it similarly utilises the
+[`appt`](#pastappointment) and [`edit`](#edit-command) in its implementation.
+
+The format accepted by the `consult` command is `consult INDEX diag/DIAGNOSIS [m/MEDICATION]...`
+
+When `consult ...` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+input. This then creates an instance of the `ConsultCommandParser` to parse the `INDEX`, `DIAGNOSIS` and
+`MEDICATION`(if any) with their respective static _`ParserUtil`_ functions. If any of the inputs formats are invalid,
+a `ParseException` will be thrown. The `ConsultCommandParser` then creates a `PastAppointment` for the current date and
+an `EditPersonDescriptor` which will reset a patient's upcoming appointment to blank if used.
+
+The `ConsultCommandParser` then creates the `ConsultCommand` and returns it. The `LogicManager` then executes the
+`ConsultCommand`, which first creates a [`CreatePastAppointmentCommand`](#pastappointment) and executes it to add the
+past appointment to the patient. Then it checks if the patient has an upcoming appointment for the current date, if so,
+the `ConsultCommand` creates an [`EditCommand`](#edit-command) and executes it to reset the patient's upcoming
+appointment field.
+
+![ConsultCommandSequenceDiagram](images/dg-images/ConsultCommandSequenceDiagram.png)
+
 
 ### Get Features (By prefixes)
 
@@ -367,81 +447,6 @@ Getting the past appointments of a patient involves the following steps:
 4. the `GetPastAppointmentCommand` command is executed, accessing the list of `PastAppointment` of the specified patient
    to be returned in a `CommandResult`
 5. The list of `PastAppointment` will then be displayed in the `ResultDisplay`
-
-### Add Command
-The `add` command is used to create a new patient in the app and set the necessary fields for that patient, 
-namely they are the: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
-`Medications` and `UpcomingAppointment` fields. Note that the `PastAppointment` field cannot be updated in this command,
-that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-command ) commands.
-
-When `add <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the 
-input. This then creates an instance of the `AddCommandParser` to parse the `args` via the respective static 
-`ParserUtil` functions. If duplicate parameters are inputted (e.g. `add n/Joe n/Mel`), only the last instance is taken, 
-similar to how [`edit`](#edit-command), [`appt`](#pastappointment) and [`consult`](#consult-command) are executed.
-
-The `AddCommandParser` will then create the corresponding `Person` object and then feed it to a `AddCommand` object it 
-creates and returns. The `LogicManager` then executes the `AddCommand`, which adds the `Person` to the model.
-
-![AddCommandSequenceDiagram](images/dg-images/AddCommandSequenceDiagram.png)
-![AddCommandParseArgsSequenceDiagram](images/dg-images/AddCommandParseArgsSequenceDiagram.png)
-
-### Edit Command
-The `edit` coommand is used to change the information of an existing patient in the app. The fields supported are: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
-`Medications` and `UpcomingAppointment`. Note that the `PastAppointment` field cannot be updated in this command,
-that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-command ) commands.
-
-When `edit INDEX <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
-input. This then creates an instance of the `EditCommandParser` to parse the `INDEX` and `args` via the respective static
-`ParserUtil` functions. If duplicate parameters are inputted (e.g. `add n/Joe n/Mel`), only the last instance is taken,
-similar to how [`add`](#add-command), [`appt`](#pastappointment) and [`consult`](#consult-command)  are executed.
-
-The `EditCommandParser` will then create the corresponding `EditPersonDescriptor` object and then feed it to a 
-`EditCommand` object it creates and returns. The `LogicManager` then executes the `EditCommand`, which adds creates a 
-`Person` from the `EditPersonDescriptor` provided and updates the model with this new `Person`.
-
-![Edit Command Sequence Diagram](images/dg-images/EditCommandSequenceDiagram.png)
-![Edit Command Parse Args Sequence Diagram](images/dg-images/EditCommandParseArgsSequenceDiagram.png)
-
-### DelAppt Command
-The purpose of the `delappt` command is to remove the first [`PastAppointment`](#pastappointment) from the selected 
-patient. If there is no appointment to delete, the Command will display an error to the user.
-
-The format accepted by the `delappt` command is `delappt INDEX`.
-
-When `delappt INDEX` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the 
-input. This then creates an instance of the `DeletePastAppointmentCommandParser` to parse the `INDEX` with static
-_`ParserUtil#parseIndex()`_ function. If the `INDEX` format is invalid, a `ParseException` will be thrown.
-
-The `DeletePastAppointmentCommandParser` then creates the `DeletePastAppointmentCommand` and returns it. The 
-`LogicManager` then executes the `DeletePastAppointmentCommand`, which first gets the current list of patients from the 
-`Model`. Then it gets the patient pointed to by `INDEX`, throwing a `CommandException` if the `INDEX` is out of bounds.
-Finally, it checks that the patient has at least 1 [`PastAppointment`](#pastappointment) and removes the most recent one. 
-If there are no [`PastAppointment`](#pastappointment)s, it will throw a `CommandException`.
-
-![DelApptSequenceDiagram](images/dg-images/DelApptSequenceDiagram.png)
-
-### Consult Command
-The purpose of the `consult` command is to simplify the process of creating a [`PastAppointment`](#pastappointment) for
-doctors. It will create a [`PastAppointment`](#pastappointment) for the specified patient on the current date and if the
-patient has an `UpcomingAppointment` for the current date, it will clear it. In this way, the doctor can attend to a 
-patient with just 1 command. As the command builds upon the functionality of other commands, it similarly utilises the 
-[`appt`](#pastappointment) and [`edit`](#edit-command) in its implementation.
-
-The format accepted by the `consult` command is `consult INDEX diag/DIAGNOSIS [m/MEDICATION]...`
-
-When `consult ...` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
-input. This then creates an instance of the `ConsultCommandParser` to parse the `INDEX`, `DIAGNOSIS` and 
-`MEDICATION`(if any) with their respective static _`ParserUtil`_ functions. If any of the inputs formats are invalid,
-a `ParseException` will be thrown. The `ConsultCommandParser` then creates a `PastAppointment` for the current date and 
-an `EditPersonDescriptor` which will reset a patient's upcoming appointment to blank if used.
-
-The `ConsultCommandParser` then creates the `ConsultCommand` and returns it. The `LogicManager` then executes the 
-`ConsultCommand`, which first creates a [`CreatePastAppointmentCommand`](#pastappointment) and executes it to add the 
-past appointment to the patient. Then it checks if the patient has an upcoming appointment for the current date, if so,
-the `ConsultCommand` creates an [`EditCommand`](#edit-command) and executes it to reset the patient's upcoming 
-appointment field.
-
-![ConsultCommandSequenceDiagram](images/dg-images/ConsultCommandSequenceDiagram.png)
 
 ### Patient Details Panel
 
