@@ -35,6 +35,6 @@ Given below are my contributions to the project.
     * Added target user profile (Pull Request [#25](https://github.com/AY2223S1-CS2103T-T12-3/tp/pull/25))
     * Added use cases for `add` an activity, `delete` an activity and `list` out all activity (Pull Request [#26](https://github.com/AY2223S1-CS2103T-T12-3/tp/pull/26))
     * Updated UI and Model diagrams (Pull request [#107](https://github.com/AY2223S1-CS2103T-T12-3/tp/pull/107))
-
+    * Added implementation for `SelectCommand` (Pull request [#231](https://github.com/AY2223S1-CS2103T-T12-3/tp/pull/231))
 * **Community**:
   * Spotted 10 bugs for team CS2103T-W10-4 (Refer [here](https://github.com/ngquyduc/ped/issues))
