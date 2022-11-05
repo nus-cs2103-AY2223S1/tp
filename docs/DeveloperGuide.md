@@ -263,7 +263,7 @@ the person object. It also returns a boolean describing if the assigned policy a
 Given below is an example usage scenario and how an `assign` command is executed.
 
 The interactions between the components during the usage scenario is shown in the *Sequence Diagram* below.
-The use of `"command details"` serves to substitute the command `assign 1 1 \npr/200 sd/2020-10-12 \ned/2022-10-12` for readability. 
+The use of `command_details` serves to substitute the command `assign 1 1 \npr/200 sd/2020-10-12 \ned/2022-10-12` for readability. 
 
 <p align="center" >
   <img src="images/AssignPolicySequenceDiagram.png" width="700"/>
