@@ -116,6 +116,8 @@ public class DeletesCommandTest {
         model.setModuleClass(focusedClass, focusedClass.addSession(LAB_1));
         expectedModel.setModuleClass(focusedClass, focusedClass.addSession(LAB_1));
         assert model.getFocusedClass().hasSession(LAB_1);
+        assert expectedModel.getFocusedClass().hasSession(LAB_1);
+
         Set<Session> sessions = new HashSet<>(List.of(LAB_1));
         DeletesCommand command = new DeletesCommand(sessions);
         command.execute(expectedModel);
@@ -131,6 +133,8 @@ public class DeletesCommandTest {
 
         assert model.getFocusedClass().hasSession(LAB_1);
         assert model.getFocusedClass().hasSession(TUTORIAL_1);
+        assert expectedModel.getFocusedClass().hasSession(LAB_1);
+        assert expectedModel.getFocusedClass().hasSession(TUTORIAL_1);
 
         Set<Session> sessions = new HashSet<>(List.of(LAB_1, TUTORIAL_1));
         DeletesCommand command = new DeletesCommand(sessions);
