@@ -173,5 +173,9 @@
     "description" : "Exam two",
     "date" : "20-10-2023",
     "moduleCode" : "CS2040S"
-  } ]
+  }, {
+      "description": "CS2040 Finals",
+      "date": "29-11-2022",
+      "moduleCode": "cs2040"
+    }]
 }
