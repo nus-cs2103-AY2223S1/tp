@@ -286,6 +286,11 @@ public class AddModuleCommandTest {
         public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean isScheduleListEmpty() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

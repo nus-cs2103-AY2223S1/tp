@@ -8,6 +8,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULES;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
 
@@ -25,6 +26,8 @@ public class ViewScheduleCommand extends Command {
             + "Example: " + COMMAND_WORD + " \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_WEEKDAY + " Friday " + PREFIX_MODULE_OF_SCHEDULE + " cs2103t\n";
 
+    public static final String MESSAGE_MODULE_NOT_EXIST = "The module you are looking for doesn't exist.";
+
     private final ScheduleContainsKeywordsPredicate predicate;
 
     public ViewScheduleCommand() {
@@ -36,13 +39,16 @@ public class ViewScheduleCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
         if (this.predicate == null) {
             model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
         } else {
             model.updateFilteredScheduleList(predicate);
+        }
+        if (model.isScheduleListEmpty()) {
+            throw new CommandException(MESSAGE_MODULE_NOT_EXIST);
         }
         return new CommandResult(String.format(
                 String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
