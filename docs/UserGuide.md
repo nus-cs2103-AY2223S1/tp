@@ -157,18 +157,24 @@ Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
 
 Examples:
 ```
-add-module m/CS2103T
+add-module m/CS2104
 ```
 OR
 ```
-add-module m/CS2103T t/
+add-module m/CS2104 t/
 ```
-In either of the above examples, we are adding a module `CS2103T` without a title.
+In either of the above examples, we are adding a module `CS2104` without a title.
 
 ```
-add-module m/CS2103T t/Software Engineering
+add-module m/CS2104 t/Programming Language Concepts
 ```
-In the above example, we are adding a module `CS2103T` which has the title `Software Engineering`.
+In the above example, we are adding a module `CS2104` which has the title `Programming Language Concepts`.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                               | After executing the command                                                                                                                                                                                           |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-module-after.png"/></p><p>A message will appear indicating that a module has been added. Observe that the new module has been added to the modules list.</p>{:/} |
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Adding a module will bring you back to the home page.
