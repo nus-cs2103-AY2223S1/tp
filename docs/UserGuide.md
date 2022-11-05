@@ -334,7 +334,7 @@ manually.
 
 ### Editing the data file
 
-SETA data are saved as a JSON file `[JAR file location]/data/seta.json`. Advanced users are welcome to update data
+SETA data are saved as a JSON file `[JAR file location]/data/SETA.json`. Advanced users are welcome to update data
 directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
