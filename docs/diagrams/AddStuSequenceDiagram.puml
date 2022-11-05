@@ -19,7 +19,7 @@ LogicManager -> AddressBookParser : parseCommand(addstu n/John h/@johnlim e/john
 activate AddressBookParser
 
 create AddStuCommandParser
-AddressBookParser -> AddStuCommandParser
+AddressBookParser -> AddStuCommandParser :AddStuCommandParser()
 activate AddStuCommandParser
 
 AddStuCommandParser --> AddressBookParser
@@ -29,7 +29,7 @@ AddressBookParser -> AddStuCommandParser : parse("n/John h/@johnlim e/john@gmail
 activate AddStuCommandParser
 
 create AddStuCommand
-AddStuCommandParser -> AddStuCommand
+AddStuCommandParser -> AddStuCommand :AddStuCommand()
 activate AddStuCommand
 
 AddStuCommand --> AddStuCommandParser
