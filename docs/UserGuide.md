@@ -146,7 +146,7 @@ Edits the information of a specified batchmate in the _Students panel_.
 
 __Format:__ `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`
 
-* Edits the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Edits the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Students panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing interests, the existing interests of the batchmate will be completely replaced by the new ones.
@@ -165,7 +165,7 @@ Deletes a specified batchmate from the _Students panel_.
 
 __Format:__ `delete INDEX`
 
-* Deletes the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Deletes the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Students panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 
 __Examples:__
 * `list` followed by `delete 2` deletes the 2nd batchmate in the full list of batchmates you have in Mass Linkers.
@@ -227,7 +227,7 @@ Adds interest(s) to a specified batchmate in the _Students panel_.
 
 __Format:__ `addInt INDEX INTEREST [MORE_INTERESTS]...`
 
-* Adds interest(s) to the batchmate at the specific INDEX in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Adds interest(s) to the batchmate at the specific INDEX in the __currently displayed list__ in the _Students panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 * Interests added are case-insensitive, they will be displayed in lower casing. 
 
 __Examples:__
@@ -240,7 +240,7 @@ Delete interest(s) from a specified batchmate in the _Students panel_.
 
 __Format:__ `deleteInt INDEX INTEREST [MORE_INTERESTS]...`
 
-* Deletes interest(s) from the batchmate at the specific INDEX in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Deletes interest(s) from the batchmate at the specific INDEX in the __currently displayed list__ in the _Students panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 
 __Examples:__
 * `deleteInt 1 ai` deletes the interest `ai` from the 1st batchmate in the currently displayed list.
@@ -286,7 +286,7 @@ Adds module(s) to a specified batchmate in the _Modules panel_.
 
 __Format:__ `mod add INDEX MODULE [MORE_MODULES]...`
 
-* Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 * Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#56-module-categorisation).
 
 __Examples:__
@@ -302,7 +302,7 @@ Deletes module(s) from a specified batchmate in the _Modules panel_.
 
 __Format:__ `mod delete INDEX MODULE [MORE_MODULES]...`
 
-* Deletes module(s) from the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Deletes module(s) from the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 
 __Examples:__
 * `mod delete 1 cs2103t` deletes the module `CS2103T` from the 1st batchmate in the currently displayed list.
@@ -318,7 +318,7 @@ Marks module(s) of a specified batchmate as `taken` in the _Modules panel_, whic
 
 __Format:__ `mod mark INDEX MODULE [MORE_MODULES]...`
 
-* Marks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Marks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 
 __Examples:__
 * `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
@@ -334,7 +334,7 @@ Unmarks module(s) of a specified batchmate and updates the status as `taking` in
 
 __Format:__ `mod unmark INDEX MODULE [MORE_MODULES]...`
 
-* Unmarks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#5-features) for more details.
+* Unmarks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
 
 __Examples:__
 * `mod unmark 1 cs2103t` unmarks the module `CS2103T` of the 1st batchmate in the currently displayed list as `not taken`.
