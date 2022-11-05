@@ -195,7 +195,7 @@ The `-c` flag indicates the characteristics that the buyer is looking for in a p
 The `-pr` flag indicates the priority of the buyer.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The range field and the characteristics field are optional.
+The price range field and the characteristics field are optional.
 That is, it is perfectly okay to try and add a buyer that does not have these fields.
 </div>
 
@@ -216,6 +216,11 @@ The `-d` flag indicates the property’s description (characteristics).<br>
 The `-c` flag indicates the characteristics associated with the property.<br>
 The `-o` flag indicates the name of the owner of the property.<br>
 The `-ph` flag indicates the phone number of the owner of the property.<br>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The characteristics field are optional.
+That is, it is perfectly okay to try and add a property that does not have this field.
+</div>
 
 Examples: <br>
 `addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -owner Bob -ph 91234567`: Adds a property called "Peak Residences" to the database along with its relevant description.
@@ -450,6 +455,12 @@ This command filters the buyers list to only display buyers who have criteria th
 
 Examples:<br>
 `matchprop 5`: Matches property 5 to existing buyers in the database.
+
+### Clearing the program: `clear`
+
+Clears Cobb (clears the Buyer List and Property List)
+
+Format: `clear`
 
 ### Exiting the program: `exit`
 
