@@ -393,11 +393,11 @@ Use case ends.
 Extensions:
   * 3a. HackAssist detects that the member already exists
      * 3a1. Hackassist shows an error message
-       Use case ends.
+     * Use case ends.
        
  * 3b. HackAssist detects that one of the input fields is incorrectly formated
    * 3b1. Hackassist shows an error message, showing the incorrectly formated field and the specifications of that field
-      Use case ends.
+   * Use case ends.
 
 
 **Use case: Delete a team member**
@@ -417,11 +417,11 @@ Use case ends.
 Extensions:
   * 3a. HackAssist detects that the index is not a number
      * 3a1. Hackassist shows an error message warnging that the command format is invalid
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
   
   * 3b. HackAssist detects that the index is invalid
      * 3b1. Hackassist shows an error message warnging that the index is invalid
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
 
 **Use case: Edit a team member**
 
@@ -439,19 +439,19 @@ Use case ends.
 Extensions:
   * 3a. HackAssist detects that the index is not a number
      * 3a1. Hackassist shows an error message warning that the command format is invalid
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
   
   * 3b. HackAssist detects that the index is invalid
      * 3b1. Hackassist shows an error message warning that the index is invalid
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
        
   * 3c. HackAssist detects that none of optional fields were inputed
      * 3c1. Hackassist shows an error message warning that at least one field must be edited
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
      
 * 3d. HackAssist detects that not all the optional fields are different from existing fields
      * 3d1. Hackassist shows an error message warning that the fields must be different from the ones inputed
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
        
  **Use case: Add a task**
 
@@ -468,19 +468,19 @@ Use case ends.
 Extensions:
   * 3a. HackAssist detects that the task already exists
      * 3a1. Hackassist shows an error message
-       Use case ends.
+     * Use case ends.
  
  * 3b. HackAssist detects that the deadline has already past
      * 3b1. Hackassist shows an error message, warning that the deadline must be a future date
-       Use case ends.
+     * Use case ends.
        
  * 3c. HackAssist detects that the priority or category is not one of the accepted values
     * 3c1. Hackassist shows an error message, showing the incorrect priority or category and showing the correct values
-      Use case ends.
+    * Use case ends.
       
  * 3d. HackAssist detects that one of the input fields is incorrectly formated
     * 3d1. Hackassist shows an error message, showing the incorrectly formated field and the specifications of that field
-      Use case ends.
+    * Use case ends.
       
 **Use case: Delete a task**
 
@@ -499,11 +499,11 @@ Use case ends.
 Extensions:
   * 3a. HackAssist detects that the index is not a number
      * 3a1. Hackassist shows an error message warnging that the command format is invalid
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
   
   * 3b. HackAssist detects that the index is invalid
      * 3b1. Hackassist shows an error message warnging that the index is invalid
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
        
 **Use case: Assign a task to an existing team member**
 
@@ -524,11 +524,11 @@ Extensions:
  
  * 3a. The format of the input email is invalid
     * 3a1 Hackassist shows an error message that shows what is the expected input
-       Use case resumes from step 2.
+    * Use case resumes from step 2.
 
  * 3b. There are no members with the specified email
     * 3b1 Hackassist shows an error message that there are no members
-       Use case resumes from step 2.
+    * Use case resumes from step 2.
 
 
  **Use case: Edit a task**
@@ -545,25 +545,90 @@ Use case ends.
 Extensions:
   * 3a. HackAssist detects that the index is not a number
      * 3a1. Hackassist shows an error message warning that the command format is invalid
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
   
   * 3b. HackAssist detects that the index is invalid
      * 3b1. Hackassist shows an error message warning that the index is invalid
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
        
   * 3c. HackAssist detects that none of optional fields were inputed
      * 3c1. Hackassist shows an error message warning that at least one field must be edited
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
   
   * 3d. HackAssist detects that the priority or category is not one of the accepted values
     * 3d1. Hackassist shows an error message, showing the incorrect priority or category and showing the correct values
-      Use case ends.
+    * Use case ends.
        
   * 3e. HackAssist detects that not all the optional fields are different from existing fields
      * 3e1. Hackassist shows an error message warning that the fields must be different from the ones inputed
-       Use case resumes from step 2.
+     * Use case resumes from step 2.
+  
+**Use case: Filter the tasks by category**
+
+**MSS**
+
+1.  User requests to filter the tasks by category
+2.  User inputs the category
+3.  HackAssist shows a the filtered task list
+Use case ends.
+
+Extensions:
+  * 2a. HackAssist detects that category is not one of the accepted values
+     * 2a1. Hackassist shows an error message warning that the command format is invalid
+     * Use case resumes from step 2.
+  
+  * 2b. HackAssist detects that the command is incorrectly formated
+     * 2b1. Hackassist shows an error message warning that command is incorrectly formated
+     * Use case resumes from step 2.
        
-*{More to be added}*
+**Use case: Filter the tasks by deadline**
+
+**MSS**
+
+1.  User requests to filter the tasks by category
+2.  User inputs the category
+3.  HackAssist shows a the filtered task list
+Use case ends.
+
+Extensions:
+  * 2a. HackAssist detects that deadline has already past
+     * 2a1. Hackassist shows an error message warning that the deadline has past
+     * Use case resumes from step 2.
+  
+  * 2b. HackAssist detects that the command is incorrectly formated
+     * 2b1. Hackassist shows an error message warning that command is incorrectly formated
+     * Use case resumes from step 2.
+
+
+**Use case: Sort the tasks by priority**
+
+**MSS**
+
+1.  User requests to sort the tasks by priority
+2.  User inputs ascending or descending
+3.  HackAssist shows a the sorted task list
+Use case ends.
+
+Extensions:
+ * 2a. HackAssist detects that the command is incorrectly formated
+     * 2a1. Hackassist shows an error message warning that command is incorrectly formated
+     * Use case resumes from step 2.
+
+ **Use case: Sort the tasks by deadline**
+
+**MSS**
+
+1.  User requests to sort the tasks by deadline
+2.  User inputs ascending or descending
+3.  HackAssist shows a the sorted task list
+Use case ends.
+
+Extensions:
+ * 2a. HackAssist detects that the command is incorrectly formated
+     * 2a1. Hackassist shows an error message warning that command is incorrectly formated
+     * Use case resumes from step 2.
+       
+
 
 ### Non-Functional Requirements
 
