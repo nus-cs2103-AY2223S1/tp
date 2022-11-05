@@ -1,17 +1,19 @@
 package seedu.address.logic.parser;
 
-
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.*;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.Exam;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
-import seedu.address.model.person.Address;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.task.FilterPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.*;
+import seedu.address.ui.ModuleUtil;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,8 +21,11 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.*;
 import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.*;
+import static seedu.address.testutil.TypicalModules.CS2030;
 
 public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
@@ -38,11 +43,10 @@ public class AddressBookParserTest {
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand("t" + " " +
                 DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
         DeleteTaskCommand commandTwo = (DeleteTaskCommand) parser.parseCommand("T" + " " +
-                DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+                DeleteTaskCommand.COMMAND_WORD.toUpperCase() + " " + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new DeleteTaskCommand(INDEX_FIRST_TASK), command);
         assertEquals(new DeleteTaskCommand(INDEX_FIRST_TASK), commandTwo);
     }
-
 
 
     @Test
@@ -62,16 +66,45 @@ public class AddressBookParserTest {
     }
 
 
-//    @Test
-//    public void parseCommand_sortTasks() throws Exception {
-//        SortTaskCommand sortTaskCommand = (SortTaskCommand) parser.parseCommand("t" + " " +
-//                SortTaskCommand.COMMAND_WORD + " " + "c/priority" );
-//        assertEquals(new SortTaskCommand(new Criteria("priority")), sortTaskCommand);
-//        SortTaskCommand sortTaskCommandTwo = (SortTaskCommand) parser.parseCommand("t" + " " +
-//                SortTaskCommand.COMMAND_WORD + " " + "c/deadline ");
-//        assertEquals(new SortTaskCommand(new Criteria("deadline")), sortTaskCommandTwo);
-//
-//    }
+    @Test
+    public void parseCommand_sortTasks() throws Exception {
+        SortTaskCommand sortTaskCommand = (SortTaskCommand) parser.parseCommand("t " +
+                SortTaskCommand.COMMAND_WORD + " " + "c/PRIORITY" );
+        assertEquals(new SortTaskCommand(new Criteria("PRIORITY")), sortTaskCommand);
+        SortTaskCommand sortTaskCommandTwo = (SortTaskCommand) parser.parseCommand("t " +
+                SortTaskCommand.COMMAND_WORD + " " + "c/deadline ");
+        assertEquals(new SortTaskCommand(new Criteria("deadline")), sortTaskCommandTwo);
+        SortTaskCommand sortTaskCommandThree = (SortTaskCommand) parser.parseCommand("t " +
+                SortTaskCommand.COMMAND_WORD + " " + "c/module ");
+        assertEquals(new SortTaskCommand(new Criteria("module")), sortTaskCommandThree);
+        SortTaskCommand sortTaskCommandFour = (SortTaskCommand) parser.parseCommand("t " +
+                SortTaskCommand.COMMAND_WORD + " " + "c/description ");
+        assertEquals(new SortTaskCommand(new Criteria("description")), sortTaskCommandFour);
+
+    }
+
+    @Test
+    public void parseCommand_filterTasks() throws Exception {
+        FilterTasksCommand filterTasksCommand = (FilterTasksCommand) parser.parseCommand(
+                "t " + FilterTasksCommand.COMMAND_WORD + " " + PREFIX_MODULE + "cs2030");
+        assertEquals(new FilterTasksCommand(
+                new FilterPredicate(Optional.of(CS2030),
+                        Optional.empty(),Optional.empty())), filterTasksCommand);
+
+        FilterTasksCommand filterTasksCommandTwo = (FilterTasksCommand) parser.parseCommand(
+                "t " + FilterTasksCommand.COMMAND_WORD + " " + PREFIX_MODULE + "cs2030" + " "
+                        + PREFIX_IS_COMPLETE + "y" + " " + PREFIX_IS_LINKED + "y");
+        assertEquals(new FilterTasksCommand(
+                new FilterPredicate(Optional.of(CS2030),
+                        Optional.of(true),Optional.of(true))), filterTasksCommandTwo);
+
+        FilterTasksCommand filterTasksCommandThree = (FilterTasksCommand) parser.parseCommand(
+                "t " + FilterTasksCommand.COMMAND_WORD + " " + PREFIX_MODULE + "cs2030" + " "
+                        + PREFIX_IS_COMPLETE + "y" );
+        assertEquals(new FilterTasksCommand(
+                new FilterPredicate(Optional.of(CS2030),
+                        Optional.of(true),Optional.empty())), filterTasksCommandThree);
+    }
 
     @Test
     public void parseCommand_findTasks() throws Exception {
@@ -103,18 +136,24 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD.toUpperCase()) instanceof ExitCommand);
+        assertTrue(parser.parseCommand("ExiT") instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD.toUpperCase()) instanceof HelpCommand);
+        assertTrue(parser.parseCommand("HelP") instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_clearAll() throws Exception {
         assertTrue(parser.parseCommand(ClearAllCommand.COMMAND_WORD) instanceof ClearAllCommand);
+        assertTrue(parser.parseCommand(ClearAllCommand.COMMAND_WORD.toUpperCase()) instanceof ClearAllCommand);
+        assertTrue(parser.parseCommand("CLEARaLL") instanceof ClearAllCommand);
         assertTrue(parser.parseCommand(ClearAllCommand.COMMAND_WORD + " 3") instanceof ClearAllCommand);
     }
 
@@ -175,7 +214,28 @@ public class AddressBookParserTest {
 
     }
 
-    //m add and edit
+
+    @Test
+    public void parseCommand_addModule() throws Exception {
+        Module module = new ModuleBuilder().build();
+        AddModuleCommand command = (AddModuleCommand) parser.parseCommand(ModuleUtil.getAddModuleCommand(module));
+        assertEquals(new AddModuleCommand(module), command);
+    }
+
+    @Test
+    public void parseCommand_editModule() throws Exception {
+        Module module = new ModuleBuilder().build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleCommand.EditModuleDescriptor();
+        descriptor.setModuleCode(module.getModuleCode());
+        descriptor.setModuleName(module.getModuleName());
+        descriptor.setModuleCredit(module.getModuleCredit());
+
+        EditModuleCommand command = (EditModuleCommand) parser.parseCommand("m" + " "
+                + EditModuleCommand.COMMAND_WORD + " " + INDEX_THIRD_MODULE.getOneBased() + " "
+                + ModuleUtil.getEditModuleDescriptorDetails(descriptor));
+        assertEquals(new EditModuleCommand(INDEX_THIRD_MODULE, descriptor), command);
+    }
+
 
     @Test
     public void parseCommand_deleteModule() throws Exception {
@@ -223,7 +283,7 @@ public class AddressBookParserTest {
         DeleteExamCommand command = (DeleteExamCommand) parser.parseCommand("e " +
                 DeleteExamCommand.COMMAND_WORD + " " + INDEX_FIRST_EXAM.getOneBased());
         DeleteExamCommand commandTwo = (DeleteExamCommand) parser.parseCommand("E" + " " +
-                DeleteExamCommand.COMMAND_WORD + " " + INDEX_FIRST_EXAM.getOneBased());
+                DeleteExamCommand.COMMAND_WORD.toUpperCase() + " " + INDEX_FIRST_EXAM.getOneBased());
         assertEquals(new DeleteExamCommand(INDEX_FIRST_EXAM), command);
         assertEquals(new DeleteExamCommand(INDEX_FIRST_EXAM), commandTwo);
     }
@@ -250,19 +310,26 @@ public class AddressBookParserTest {
         assertEquals(new ListExamTasksCommand(INDEX_FIRST_EXAM), command);
     }
 
-    //filter and sort
 
+    @Test
+    public void parseCommand_unrecognisedInput_throwsParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+            -> parser.parseCommand(""));
+    }
 
-//
-//    @Test
-//    public void parseCommand_unrecognisedInput_throwsParseException() {
-//        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-//            -> parser.parseCommand(""));
-//    }
-//
-//    @Test
-//    public void parseCommand_unknownCommand_throwsParseException() {
-//        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
-//    }
+    @Test
+    public void parseCommand_unrecognisedInputWithFeatureType_throwsParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_FEATURE_TYPE_FORMAT, "exam"), ()
+                -> parser.parseCommand("e adda"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_FEATURE_TYPE_FORMAT, "module"), ()
+                -> parser.parseCommand("m adda"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_FEATURE_TYPE_FORMAT, "task"), ()
+                -> parser.parseCommand("t adda"));
+    }
+
+    @Test
+    public void parseCommand_unknownCommand_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
 
 }

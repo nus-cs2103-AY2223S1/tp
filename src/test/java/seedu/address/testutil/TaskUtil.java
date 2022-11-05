@@ -1,13 +1,7 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditTaskCommand;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 import static seedu.address.logic.parser.CliSyntax.*;
@@ -18,14 +12,14 @@ import static seedu.address.logic.parser.CliSyntax.*;
 public class TaskUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add task command string for adding the {@code task}.
      */
     public static String getAddTaskCommand(Task task) {
         return "t " + AddTaskCommand.COMMAND_WORD + " " + getTaskDetails(task);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code task}'s details.
      */
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
@@ -35,7 +29,7 @@ public class TaskUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditTaskDescriptor}'s details.
      */
     public static String getEditTaskDescriptorDetails(EditTaskCommand.EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
