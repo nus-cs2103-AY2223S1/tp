@@ -3,25 +3,34 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR
 skinparam classBackgroundColor LOGIC_COLOR
+skinparam classStereotypeFontColor #000000
 
 package Logic {
 
+Class "<<interface>>\nModelCommand" as ModelCommand
+Class "<<interface>>\nParser" as Parser<ColumnManipulatorCommand>
 Class "{abstract}\nColumnManipulatorCommand" as ColumnManipulatorCommand
 Class "{abstract}\nColumnManipulatorCommandParser" as ColumnManipulatorCommandParser
 Class ShowOnlyCommand
 Class HideOnlyCommand
+Class ResetCommand
+Class ListCommand
 Class ShowOnlyCommandParser
 Class HideOnlyCommandParser
 
 }
 
+ColumnManipulatorCommand .up.|> ModelCommand
+ColumnManipulatorCommandParser .up.|> Parser
+ListCommand -up-|> ColumnManipulatorCommand
+ResetCommand -up-|> ColumnManipulatorCommand
 ShowOnlyCommand -up-|> ColumnManipulatorCommand
 HideOnlyCommand -up-|> ColumnManipulatorCommand
 ShowOnlyCommandParser -up-|> ColumnManipulatorCommandParser
 HideOnlyCommandParser -up-|> ColumnManipulatorCommandParser
 
 HideOnlyCommandParser .up.> HideOnlyCommand : creates >
-ShowOnlyCommandParser ..> ShowOnlyCommand : creates >
+ShowOnlyCommandParser .up.> ShowOnlyCommand : creates >
 
 ColumnManipulatorCommand -[hidden]right-> ColumnManipulatorCommandParser
 HideOnlyCommand -[hidden]right-> HideOnlyCommandParser

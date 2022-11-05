@@ -395,8 +395,8 @@ After making this change, however, there were instances of undesirable code dupl
 command parsers for the `showonly` and `hideonly` features.
 
 Our solution was to abstract these commonalities into an abstract class, namely, `ColumnManipulatorCommand` for 
-the `showonly` and `hideonly` commands, and `ColumnManipulatorCommandParser` for `showonly` and `hideonly` command
-parsers.
+the `showonly` and `hideonly` commands (as well as `list` and `reset), and `ColumnManipulatorCommandParser` for the 
+`showonly` and`hideonly` command parsers.
 
 ![AbstractClassesForShowHideFeature](images/AbstractClassesForShowHideFeature.png)
 
@@ -437,7 +437,7 @@ However, there were two main issues with `list /i` and `list /e`:
 excluded from the table had to be re-specified if additional columns were to be excluded. 
    
 While it was convenient for the column manipulation feature to be bundled with the list command, we ultimately decided
-to remove the coupling between both features, by replacing `list /i` and `list /e` with the `showonly` and `hideonly` 
+to decrease coupling between both features, by replacing `list /i` and `list /e` with the `showonly` and `hideonly` 
 commands. To make our commands more intuitive, we also made the `showonly` and `hideonly` commands state-dependent, so
 that the user did not have to re-specify columns that were already hidden.
 
