@@ -188,7 +188,7 @@ It appears when you execute the `help` command.
 ### Add Commands
 #### Adding a buyer to the database: `addbuyer`
 
-Adds a buyer to the database with relevant buyer information<br>
+Adds a buyer to the database with relevant buyer information.<br>
 Syntax: `addbuyer -n NAME -ph PHONE -e EMAIL -a address [-r PRICE RANGE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>]`
 
 The `-n` flag indicates the buyer's name.<br>
@@ -201,18 +201,19 @@ The `-pr` flag indicates the priority of the buyer.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The price range, characteristics and priority fields are optional.<br>
-Only the price range and characteristics fields can be reset to "Not Specified" by entering an empty flag.
+Only the price range and characteristics fields can be reset to "Not Specified" by entering an empty flag e.g. "-c  ".
 The priority field will default to "Normal" if the flag is not used.
-e.g. `-c  `.
 </div>
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 You cannot add duplicate buyers that have the same phone number or email.
 </div>
 
+
 Examples:<br>
-`addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234 -pr HIGH` : Adds a buyer named Tim who has high priority.<br>
-`addbuyer -n Jane -ph 89991237 -e jane@gmail.com -a S123456 -r 200000-500000 -c bright; 5-room` : Adds a buyer named Jane who is looking for a "5-room" property that is "bright" and costs between $200000 - $500000.
+`addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234 -pr HIGH`: Adds a buyer named Tim who has high priority.<br>
+`addbuyer -n Jane -ph 89991237 -e jane@gmail.com -a S123456 -r 200000-500000 -c bright; 5-room`: Adds a buyer named Jane who is looking for a "5-room" property that is "bright" and costs between $200000 - $500000.
 
 #### Adding a property to the database: `addprop`
 
@@ -222,7 +223,7 @@ Syntax: `addprop -n NAME -p PRICE -a ADDRESS -d DESCRIPTION -o OWNER NAME -ph PH
 The `-n` flag indicates the property's name.<br>
 The `-p` flag indicates the property’s price.<br>
 The `-a` flag indicates the property’s address.<br>
-The `-d` flag indicates the property’s description (notes).<br>
+The `-d` flag indicates the property’s description.<br>
 The `-o` flag indicates the name of the property owner.<br>
 The `-ph` flag indicates the phone number of the property owner.<br>
 The `-c` flag indicates the characteristics associated with the property.<br>
@@ -232,9 +233,11 @@ The characteristics field is optional and can be reset to "Not Specified" by ent
 e.g. `-c  `.
 </div>
 
+
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 You cannot add duplicate properties that have the same address.
 </div>
+
 
 Examples: <br>
 `addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -o Bob -ph 91234567 -c Toa Payoh; Bright`: Adds a property called "Peak Residences" owned by Bob with a phone number of 91234567.
@@ -284,6 +287,7 @@ Only the price range and characteristics fields can be edited to "Not Specified"
 e.g. `-c  `.
 </div>
 
+
 Examples:<br>
 `editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -pr HIGH`: Edits buyer at index 3 to have a new name "John Doe", new email "johndoe@yahoo.com", new acceptable price range of $40000 - $500000, and a high priority.<br>
 `editbuyer 1 -c bright; sunny`: Edits buyer at index 1 to have new desired characteristics of "bright" and "sunny".
@@ -306,6 +310,7 @@ The `-ph` flag indicates the property's owner's new phone number.<br>
 Only the characteristics fields can be edited to "Not Specified" by entering an empty flag.
 e.g. `-c  `.
 </div>
+
 
 Examples:<br>
 `editprop 3 -n Hill Residence -a Block 225 -ph 750000`: Edits property at index 3 of the list to have a new name Hill Residence, a new address Block 225 and price 750000.
@@ -360,7 +365,7 @@ The `-fuzzy` flag indicates that fuzzy filtering will be applied
 - the `-c` flag will filter buyers that have at least one of the specified `;`-separated characteristics rather than all
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-By default, if multiple conditions are provided, the filter command will filter buyers who match __all__ of the conditions, unless the `fuzzy` flag is provided.
+By default, if multiple conditions are provided, the filter command will filter buyers who match ALL the conditions, unless the `fuzzy` flag is provided.
 
 The `-c` flag will take in `;`-separated characteristics. This means that if we supply the following input: `filterbuyers -c bright; sunny -fuzzy`,
 Cobb will match buyers that have either `bright` or `sunny` in their characteristics, that is, these two characteristics
@@ -368,7 +373,7 @@ are taken as individual characteristics.
 </div>
 
 Examples:<br>
-`filterbuyers -p 500000 -c bright; sunny -pr HIGH`: Filters all buyers that have a price range containing $500000 *AND* desired characteristics of bright *AND* sunny *AND* a `HIGH` priority.
+`filterbuyers -p 500000 -c bright; sunny -pr HIGH`: Filters all buyers that have a price range containing $500000 *AND* desired characteristics of bright *AND* sunny *AND* a `HIGH` priority.<br>
 `filterbuyers -p 500000 -c bright; sunny -pr HIGH -fuzzy`: Filters all buyers that have a price range containing $500000 *OR* desired characteristics of bright *OR* sunny *OR* a `HIGH` priority.
 
 
@@ -389,7 +394,7 @@ See above for more information regarding the `-c` and `-fuzzy` flags.
 </div>
 
 Examples:<br>
-`filterprops -r 500000-1000000 -c bright; sunny -owner GARY`: Filters all properties that have a price in the range $500000 - $1000000 *AND* have characteristics of bright *AND* sunny *AND* is owned by Gary.
+`filterprops -r 500000-1000000 -c bright; sunny -owner GARY`: Filters all properties that have a price in the range $500000 - $1000000 *AND* have characteristics of bright *AND* sunny *AND* is owned by Gary.<br>
 `filterprops -r 500000-1000000 -c bright; sunny -owner GARY -fuzzy`: Filters all properties that have a price in the range $500000 - $1000000 *OR* have characteristics of bright *OR* sunny *OR* is owned by Gary.
 
 ### Sort Commands
