@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-### FoodRem Admonition Boxes
+### Admonition Boxes
 
-Throughout this guide, you may find coloured boxes containing highlighted pieces of text. Please take note of the content within.
+Throughout this guide, you may find coloured boxes containing highlighted pieces of text. These are known as admonition boxes, or simply, [[ admonitions ]]. Please take note of the content within.
 
 | Icon                                             | Meaning                                                     |
 |--------------------------------------------------|-------------------------------------------------------------|
