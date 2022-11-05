@@ -3,14 +3,13 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
-skinparam groupInheritance 2
 
 Class "{abstract}\nCommand" as Command
 Class "{abstract}\nSortCommand" as SortCommand
-Class SortByInterviewCommand extends SortCommand
-Class SortByDateCommand extends SortCommand
-Class SortByPositionCommand extends SortCommand
-Class SortByCompanyCommand extends SortCommand
+Class SortByInterviewCommand
+Class SortByDateCommand
+Class SortByPositionCommand
+Class SortByCompanyCommand
 
 Class "<<interface>>\nParser" as Parser
 Class SortCommandParser
@@ -21,6 +20,11 @@ SortCommandParser .up.> SortByInterviewCommand : creates >
 SortCommandParser .up.> SortByDateCommand : creates >
 SortCommandParser .up.> SortByPositionCommand : creates >
 SortCommandParser .up.> SortByCompanyCommand : creates >
+
+SortByInterviewCommand -up-|> SortCommand
+SortByDateCommand -up-|> SortCommand
+SortByPositionCommand -up-|> SortCommand
+SortByCompanyCommand -up-|> SortCommand
 
 SortCommandParser -left-|> Parser
 ApplicationBookParser .left.> SortCommandParser : creates >

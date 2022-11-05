@@ -251,6 +251,7 @@ The features of the new and modified commands are summarized as follows:
 * `ListCommand`: Show user the unarchived applications in CinternS.
 
 The following sequence diagram shows how the ModelManager works when archive command is executed to update the list shown in UI:
+
 ![ModelManagerUsingArchiveSequenceDiagram](images/ModelManagerUsingArchiveSequenceDiagram.png)
 
 After`ApplicationBook#setArchive` is called the `Model#archiveApplication` will apply the predicate that hides the archive application to the FilterList in Model and the archived application will be hidden from the updated list shown in UI.
@@ -409,6 +410,7 @@ The `remind` feature allows the user to view a list of upcoming interviews withi
 The rationale for this enhancement is that the interview list on the main GUI window shows all non-archived interviews, including interviews that have passed and interviews scheduled weeks to months later. This feature enables a focused view of only approaching interviews within the next week.
 
 The sequence diagram below shows the crucial components involved in executing the `remind` command:
+
 ![Remind Sequence Diagram](images/RemindSequenceDiagram.png)
 
 #### Design Considerations
