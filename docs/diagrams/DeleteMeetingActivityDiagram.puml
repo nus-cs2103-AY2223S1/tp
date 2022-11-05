@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:"deletemeeting 2";
+
+if () then (arguments are empty)
+    :Throw ParseException;
+    :Display error message in UI;
+else (arguments are not empty)
+    if () then ( Index of meeting to delete \n is not a non-negative integer)
+        :Throw ParseException;
+        :Display error message in UI;
+    else ( Index of meeting to delete is a non-negative integer)
+        if () then ( index of meeting to delete \n exceeds the index of the \n last meeting)
+            :Throw CommandException;
+            :Display error message in UI;
+        else ( index of meeting to delete \n does not exceed the index of the \n last meeting)
+            :The corresponding meeting is \n deleted from the Meeting List \n and removed from the UI;
+        endif
+    endif
+endif
+
+stop
+
+@enduml
