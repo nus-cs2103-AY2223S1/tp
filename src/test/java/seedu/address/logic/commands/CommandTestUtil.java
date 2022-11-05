@@ -55,7 +55,8 @@ public class CommandTestUtil {
     public static final String VALID_END_TIME_MEETING2 = "0820";
     public static final String VALID_DATE_MEETING1 = LocalDate.now().plusDays(1)
             .format(DateTimeFormatter.ofPattern("ddMMyyyy"));
-    public static final String VALID_DATE_MEETING2 = "05052020";
+    public static final String VALID_DATE_MEETING2 = LocalDate.now().plusDays(5)
+            .format(DateTimeFormatter.ofPattern("ddMMyyyy"));
     public static final String INVALID_PRODUCT_1 = "Unadded Product";
 
     public static final String VALID_DESCRIPTION_MEETING1 = "meeting1";
