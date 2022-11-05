@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":GetCommandParser" as GetCommandParser LOGIC_COLOR
-participant "g:GetInpatientCommand" as GetInpatientCommand LOGIC_COLOR
+participant ":GetInpatientCommand" as GetInpatientCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -33,16 +33,16 @@ create GetInpatientCommand
 GetCommandParser -> GetInpatientCommand
 activate GetInpatientCommand
 
-GetInpatientCommand --> GetCommandParser : g
+GetInpatientCommand --> GetCommandParser : instance of GetInpatientCommand
 deactivate GetInpatientCommand
 
-GetCommandParser --> AddressBookParser : g
+GetCommandParser --> AddressBookParser : instance of GetInpatientCommand
 deactivate GetCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 GetCommandParser -[hidden]-> AddressBookParser
 destroy GetCommandParser
 
-AddressBookParser --> LogicManager : g
+AddressBookParser --> LogicManager : instance of GetInpatientCommand
 deactivate AddressBookParser
 
 LogicManager -> GetInpatientCommand : execute()

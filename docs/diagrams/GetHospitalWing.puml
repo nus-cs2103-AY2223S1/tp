@@ -5,7 +5,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":GetCommandParser" as GetCommandParser LOGIC_COLOR
-participant "hw:GetHospitalWingCommand" as GetHospitalWingCommand LOGIC_COLOR
+participant ":GetHospitalWingParser" as GetHospitalWingParser LOGIC_COLOR
+participant ":GetHospitalWingCommand" as GetHospitalWingCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("get /hw")
+[-> LogicManager : execute("get /hw North")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("get /hw")
+LogicManager -> AddressBookParser : parseCommand("get /hw North")
 activate AddressBookParser
 
 create GetCommandParser
@@ -26,15 +27,31 @@ activate GetCommandParser
 GetCommandParser --> AddressBookParser
 deactivate GetCommandParser
 
-AddressBookParser -> GetCommandParser : parse("/hw")
+AddressBookParser -> GetCommandParser : parse("/hw North")
 activate GetCommandParser
 
+create GetHospitalWingParser
+GetCommandParser -> GetHospitalWingParser
+activate GetHospitalWingParser
+
+GetHospitalWingParser --> GetCommandParser
+deactivate GetHospitalWingParser
+
+GetCommandParser -> GetHospitalWingParser : parse("North")
+activate GetHospitalWingParser
+
 create GetHospitalWingCommand
-GetCommandParser -> GetHospitalWingCommand
+GetHospitalWingParser -> GetHospitalWingCommand
 activate GetHospitalWingCommand
 
-GetHospitalWingCommand --> GetCommandParser
+GetHospitalWingCommand --> GetHospitalWingParser
 deactivate GetHospitalWingCommand
+
+GetHospitalWingParser --> GetCommandParser
+deactivate GetHospitalWingParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GetHospitalWingParser -[hidden]-> GetCommandParser
+destroy GetHospitalWingParser
 
 GetCommandParser --> AddressBookParser
 deactivate GetCommandParser
