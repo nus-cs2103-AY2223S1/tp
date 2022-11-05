@@ -24,7 +24,7 @@ import static gim.logic.commands.CommandTestUtil.WEIGHT_DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.WEIGHT_DESC_BENCH_PRESS;
 import static gim.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static gim.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static gim.testutil.TypicalExercises.ARM_CURLS;
+import static gim.testutil.TypicalExercises.ARM_CURLS_WITHOUT_DATE;
 import static gim.testutil.TypicalExercises.BENCH_PRESS;
 
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,6 @@ import gim.logic.commands.AddCommand;
 import gim.model.date.Date;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
-import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.testutil.ExerciseBuilder;
@@ -68,11 +67,10 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Exercise expectedExercise = new ExerciseBuilder(ARM_CURLS).withDate(VALID_DATE).build();
+    public void parse_optionalDateMissing_success() {
+        Exercise expectedExercise = new ExerciseBuilder(ARM_CURLS_WITHOUT_DATE).build();
         assertParseSuccess(parser, NAME_DESC_ARM_CURLS + WEIGHT_DESC_ARM_CURLS
-                        + SETS_DESC_ARM_CURLS + REPS_DESC_ARM_CURLS + DATE_DESC,
+                        + SETS_DESC_ARM_CURLS + REPS_DESC_ARM_CURLS,
                 new AddCommand(expectedExercise));
     }
 
@@ -95,11 +93,6 @@ public class AddCommandParserTest {
                 + VALID_SETS_BENCH_PRESS + REPS_DESC_BENCH_PRESS,
                 expectedMessage);
 
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS
-                + SETS_DESC_BENCH_PRESS + VALID_REPS_BENCH_PRESS,
-                expectedMessage);
-
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BENCH_PRESS + VALID_WEIGHT_BENCH_PRESS
                 + VALID_SETS_BENCH_PRESS + VALID_REPS_BENCH_PRESS,
@@ -119,10 +112,6 @@ public class AddCommandParserTest {
         // invalid sets
         assertParseFailure(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS + INVALID_SETS_DESC
                 + REPS_DESC_BENCH_PRESS + DATE_DESC, Sets.MESSAGE_CONSTRAINTS);
-
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
-                + INVALID_REPS_DESC + DATE_DESC, Reps.MESSAGE_CONSTRAINTS);
 
         // invalid date
         assertParseFailure(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
