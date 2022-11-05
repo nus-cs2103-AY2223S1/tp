@@ -13,7 +13,7 @@ public class Quantity {
     public static final String VALIDATION_REGEX = "\\d{1,}";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity should only contain a positive integer.";
+            "Quantity should only contain an unsigned positive integer.";
 
     public static final String MESSAGE_CONSTRAINTS_ZERO =
             "Quantity should not be 0.";
@@ -71,7 +71,7 @@ public class Quantity {
             isDouble = false;
         }
 
-        return isDouble;
+        return isDouble && !test.contains("+");
     }
 
     /**

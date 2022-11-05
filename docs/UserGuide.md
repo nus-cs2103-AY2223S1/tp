@@ -303,13 +303,13 @@ Formats:
 
 Parameter constraints:
 
-| Parameter  | Constraints                                                                                                                                                                              |
-|:-----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`    | - Refers to the index number shown in the displayed **List Of Clients**. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​    |
-| `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - **Must be a positive integer**<br/> - **Must not contain any signs**                                                             |
-| `GOODS`    | - Refers to the name of the goods transacted. <br/> - **Must contain alphanumeric characters**<br/>- **Must not be blank**.                                                              |
-| `PRICE`    | - Refers to the price of the goods transacted. <br/> - **Must be a positive number** e.g. 1.5, 2.3, 5<br/>- **Must not contain any signs**                                               |
-| `DATE`     | - Refers to the date of the transaction. <br/> - **Must be in the format of DD/MM/YYYY.** <br/> - If `DATE` is left empty, the current date that you entered the `command` will be used. |
+| Parameter  | Constraints                                                                                                                                                                                          |
+|:-----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`    | - Refers to the index number shown in the displayed **List Of Clients**. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​                |
+| `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - **Must be a positive integer**<br/> - **Must not contain any signs**                                                                         |
+| `GOODS`    | - Refers to the name of the goods transacted. <br/> - **Must contain alphanumeric characters**<br/>- **Must not be blank**.                                                                          |
+| `PRICE`    | - Refers to the price of the goods transacted. <br/> - **Must be a positive number** e.g. 1.5, 2.3, 5<br/>- **Must not contain any signs** <br/>- **Prices will be rounded up to 2 decimal places.** |
+| `DATE`     | - Refers to the date of the transaction. <br/> - **Must be in the format of DD/MM/YYYY.** <br/> - If `DATE` is left empty, the current date that you entered the `command` will be used.             |
 
 Examples (refer to diagram below as well):
 * `buy 3 q/100 g/apples price/1.5` creates a buy transaction for the 3<sup>rd</sup> client (Charlie) in the list.

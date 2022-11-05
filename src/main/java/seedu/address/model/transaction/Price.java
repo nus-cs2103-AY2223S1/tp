@@ -20,7 +20,7 @@ public class Price {
             "Price should be less than 1 million.";
 
     public static final String MESSAGE_CONSTRAINTS_GENERAL =
-            "Price should be a positive number and contain only 1 decimal point.";
+            "Price should be an unsigned positive number and contain only 1 decimal point.";
 
 
     public final String price;
@@ -65,7 +65,7 @@ public class Price {
         } catch (NumberFormatException e) {
             isDouble = false;
         }
-        return isDouble;
+        return isDouble && !test.contains("+");
     }
 
     /**

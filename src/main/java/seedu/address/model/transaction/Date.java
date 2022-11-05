@@ -16,8 +16,13 @@ public class Date {
     public static final DateTimeFormatter NEW_PATTERN = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public static final DateTimeFormatter DISPLAY_PATTERN = DateTimeFormatter.ofPattern("d MMM yyyy");
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the format DD/MM/YYYY";
+    public static final String MESSAGE_CONSTRAINTS_WRONG_FORMAT =
+            "Date should contain numbers in the format DD/MM/YYYY";
+
+    public static final String MESSAGE_CONSTRAINTS_WRONG_DATE = "Date inputted is not a valid date.";
+
+    private static final String VALIDATION_REGEX = "[\\d\\/]*";
+
 
     public final LocalDate date;
 
@@ -28,14 +33,25 @@ public class Date {
      */
     public Date(String date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDateFormat(date), MESSAGE_CONSTRAINTS_WRONG_FORMAT);
+        checkArgument(isValidDateInput(date), MESSAGE_CONSTRAINTS_WRONG_DATE);
         this.date = LocalDate.parse(date, NEW_PATTERN);
     }
 
     /**
+     * Returns true if a given string is a valid input.
+     */
+    public static boolean isValidDateFormat(String test) {
+        requireNonNull(test);
+        return test.matches(VALIDATION_REGEX);
+    }
+
+
+    /**
      * Returns true if a given string is a valid date.
      */
-    public static boolean isValidDate(String test) {
+    public static boolean isValidDateInput(String test) {
+        requireNonNull(test);
         try {
             LocalDate.parse(test, NEW_PATTERN);
             String[] testArr = test.split("/");
