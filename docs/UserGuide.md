@@ -66,17 +66,18 @@ You can also refer to the [Glossary](#glossary) section for definitions of commo
 
 In order to help you pay attention, we have used some icons along with highlighted text throughout this guide.
 
-| Icon                                                                         | Meaning                                       |
-|------------------------------------------------------------------------------|-----------------------------------------------|
-| <div markdown="span" class="alert alert-primary"> :memo: **Note**            | You should pay attention to this.             |
-| <div markdown="span" class="alert alert-success"> :bulb: **Tip**             | You might find this useful.                   |
-| <div markdown="span" class="alert alert-info"> :information_source: **Info** | You can get additional information from this. |
-| <div markdown="span" class="alert alert-warning"> :warning: **Warning**      | You should be cautious about this.            |
-| <div markdown="span" class="alert alert-danger"> :rotating_light: **Danger** | You should pay **extra** attention to this.   |
+| Icon                                                                                 | Meaning                                       |
+|--------------------------------------------------------------------------------------|-----------------------------------------------|
+| <div markdown="block" class="alert alert-primary"> :memo: **Note** </div>            | You should pay attention to this.             |
+| <div markdown="block" class="alert alert-success"> :bulb: **Tip** </div>             | You might find this useful.                   |
+| <div markdown="block" class="alert alert-info"> :information_source: **Info** </div> | You can get additional information from this. |
+| <div markdown="block" class="alert alert-warning"> :warning: **Warning** </div>      | You should be cautious about this.            |
+| <div markdown="block" class="alert alert-danger"> :rotating_light: **Danger** </div> | You should pay **extra** attention to this.   |
 
 ### 4.3. Formatting and Notation
 
-You might be wondering why certain texts 
+In case you are wondering why certain texts are styled differently, here are our explanation.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
