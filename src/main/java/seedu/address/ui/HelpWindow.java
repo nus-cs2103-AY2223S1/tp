@@ -11,7 +11,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -128,7 +127,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     private void handleTooltips() {
         Tooltip userGuideUrlTooltip = new Tooltip("Copy link");
-        userGuideUrlTooltip.setShowDelay(Duration.millis(250));
+        userGuideUrlTooltip.setShowDelay(TOOLTIP_DELAY);
         userGuideUrl.setTooltip(userGuideUrlTooltip);
     }
 }
