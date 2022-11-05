@@ -100,5 +100,5 @@ Given below are my contributions to the project.
   * Detected bug - no user found in `Logic` and `Model` class despite being added to `AddressBook`
 
 
-* **Contributions beyond the project team**: 
+* **Contributions beyond the project team**:
   * Reported bugs and suggestions for other teams in the class [SectresBook](https://github.com/AY2223S1-CS2103T-T11-4/tp)

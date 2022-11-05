@@ -1274,7 +1274,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. No user, or no current and previous modules for user.
     * 1b1. ConnectNUS informs user of missing data.
     * Use case ends.
-    
+
 
 ### Non-Functional Requirements
 
@@ -1325,7 +1325,7 @@ testers are expected to do more *exploratory* testing.
 3. Exit
 
    1. input `exit` on running ConnectNUS
-   
+
    Expected: app closes and data is saved in `data/ConnectNUS.json`
 
 ### Adding a user
@@ -1357,7 +1357,7 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect edit commands to try: `edit user curr/CS2100`, `edit user x/John Doe`, `...` <br>
       Expected: Similar to previous.
-   
+
 2. Editing a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
@@ -1432,13 +1432,13 @@ testers are expected to do more *exploratory* testing.
 1. Checking modules left when there is an existing user profile
 
    1. Prerequisites: There is currently a user profile stored in the application.
-   
+
    2. Test case: `modsleft 1` <br>
       Expected: CS core modules left to clear by the user is listed out.
-   
+
    3. Test case: `modsleft 0` <br>
       Expected: Error details shown in the status message. Status bar remains the same.
-   
+
    4. Other incorrect modules left commands to try: `modsleft hi`, `module x`, `...` (where x is larger than 11)<br>
       Expected: Similar to previous.
 
@@ -1448,31 +1448,31 @@ testers are expected to do more *exploratory* testing.
 1. Add a lesson to user
 
    1. Prerequisites: User profile has been created. Multiple persons in the list.
-   
+
    2. Test case: `timetable user` <br>
       Expected: Status message shows "No lessons added to user!".
-   
+
    3. Test case: `lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00` then run `timetable user` <br>
       Expected: Status message shows that lesson is added to user. Timetable window opens and shows that user has a lesson "CS2103T Tutorial 12:00 to 13:00" on Monday.
-   
+
 
 2. Add a lesson to contact
 
    1. Test case: `timetable 1` <br>
       Expected: Status message shows "No lessons added to contact!".
-   
+
    2. Test case: `lesson 1 l/lab m/cS2100 d/4 start/16:00 end/17:00` then run `timetable 1` <br>
       Expected: Status message shows that lesson is added to contact. Timetable window opens and shows that contact has a lesson "CS2100 Lab 16:00 to 17:00" on Tuesday.
-   
+
    3. Test case: `lesson 0`<br>
       Expected: No lesson is added. Error details shown in the status message.
-   
+
    4. Other incorrect delete commands to try: `lesson`, `lesson x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   
+
    5. Test case: `timetable 0`<br>
       Expected: Timetable window does not open.
-   
+
    6. Other incorrect delete commands to try: `timetable 0`, `timetable x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
@@ -1482,34 +1482,34 @@ testers are expected to do more *exploratory* testing.
 1. Remove a lesson from user
 
    1. Prerequisites: User profile has been created. Multiple persons in the list. User and contacts have existing lesson added.
-   
+
    2. Test case: `timetable user` <br>
       Expected: Timetable window opens and shows that user has a lesson "CS2103T Tutorial 12:00 to 13:00" on Monday.
-   
+
    3. Test case: `remove user l/tut m/CS2103T d/1 start/12:00 end/13:00` then run `timetable user` <br>
       Expected: Status message shows that lesson is removed from user. Status message shows "No lessons added to user!"
-   
+
 2. Remove a lesson from contact
 
    1. Test case: `timetable 1` <br>
       Expected: Timetable window opens and shows that contact has a lesson "CS2100 Lab 16:00 to 17:00" on Tuesday.
-   
+
    2. Test case: `remove 1 l/lab m/cS2100 d/4 start/16:00 end/17:00` then run `timetable 1` <br>
       Expected: Status message shows that lesson is removed from contact. Status message shows "No lessons added to contact!"
-   
+
    3. Test case: `remove 0`<br>
       Expected: No lesson is added. Error details shown in the status message.
-   
+
    4. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. Prerequisites: `data` folder with `ConnectNUS.json` file has been created.
-   
+
    2. Add invalid data into any contact or user e.g.
       * Email invalid such as missing @example.com
       * " " as address
@@ -1520,11 +1520,11 @@ testers are expected to do more *exploratory* testing.
         * Invalid module name
         * `day` not an integer between 1 and 7
         * `startTime` and `endTime` not of HH:mmm format
-        
+
       Expected: ConnectNUS starts on blank window
 
 2. Saving data accurately
 
    1. Run ConnectNUS normally and try `add`, `user`, `module`, `lesson` or `remove` command.
-   
+
    Expected: `data/ConnectNUS.json` updates and contains correct data.
