@@ -188,9 +188,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         Text text = ParserUtil.parseText(arguments[1]);
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Remark remark = new Remark(text, tagList);
+        Remark remark = new Remark(text);
 
         return new EditRemarkCommand(index, remark);
     }
