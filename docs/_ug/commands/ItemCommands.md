@@ -11,15 +11,15 @@ Example of an [Item](#item):
 
 ```info
 * All fields apart from `ITEM_NAME` are optional.
-* The `BOUGHT_DATE` ideally should not be after the `EXPIRY_DATE` but we will allow that.
+* The `BOUGHT_DATE` should not be after the `EXPIRY_DATE`.
 * The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
   * dd: Day of the month. For example, "10" would represent the 10th day of the month.
   * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
   * yyyy: The current year. For example, "2019" would represent the year 2019.
+* The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if it is not provided.
 * The default values for `QUANTITY` and `PRICE` is `0`.
 * The default values for `UNIT` is blank.
-* The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if not provided.
-* The value of `REMARKS` will be `-` if not provided.
+* The value of `REMARKS` will be `-` if is it not provided.
 * `PRICE` do not require you to include the currency. Only include the value.
 * You cannot create an item with a tag immediately.
 * If two or more of the same parameters are provided, the last parameter will be taken.
@@ -31,9 +31,7 @@ Example of an [Item](#item):
 new n/Potato qty/70 u/kg bgt/22-02-2022 exp/22-03-2022
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 New item added:
@@ -64,9 +62,7 @@ Tags: {}
 list
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Listed all items
@@ -104,9 +100,7 @@ Item List Box:
 find potato carrot cucumbers
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 1 item listed!
@@ -147,9 +141,7 @@ Item List Box:
 sort n/
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 3 items sorted!
@@ -181,9 +173,7 @@ Item List Box:
 view 1
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Name: Onions
@@ -214,9 +204,7 @@ Tags: {vegetables}
 inc 1 qty/3
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Incremented Item:
@@ -247,9 +235,7 @@ Tags: {vegetables}
 dec 1 qty/4
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Decremented Item:
@@ -272,6 +258,7 @@ Tags: {vegetables}
 
 ```info
 * All fields are optional. However, you need to include at least one parameter.
+* The `BOUGHT_DATE` should not be after the `EXPIRY_DATE`.
 * The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
   * dd: Day of the month. For example, "10" would represent the 10th day of the month.
   * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
@@ -286,9 +273,7 @@ Tags: {vegetables}
 edit 1 qty/100 n/Potatoes
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Edited Item:
@@ -320,9 +305,7 @@ Tags: {vegetables}
 rmk 1 r/For Party
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Remark Added:
@@ -349,9 +332,7 @@ Tags: {vegetables}
 del 1
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Deleted Item:

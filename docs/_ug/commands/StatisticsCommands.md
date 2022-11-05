@@ -20,9 +20,7 @@ The cost of an item is the price of the item multiplied by the quantity of the i
 stats
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Statistics

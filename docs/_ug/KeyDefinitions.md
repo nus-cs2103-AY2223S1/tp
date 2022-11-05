@@ -1,18 +1,18 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 #### Item
 
-An Item in FoodRem represents something in your inventory. This can be an ingredient, a piece of equipment, and more. Feel free to include or exclude certain attributes for each item, although you must minimally provide a name for the item.
+An [[ item:Item ]] in FoodRem represents something in your inventory. This can be an ingredient, a piece of equipment, and more. Feel free to include or exclude certain attributes for each item, although you must minimally provide a name for the item.
 
 The following are the attributes stored for each item:
 
 * Item name
-* Item quantity
+* Item [[ quantity ]]
 * Item unit (unit of measurement e.g. `kg`, `packets`)
-* Item bought date
-* Item expiry date
+* Item [[ bought-date:bought date]]
+* Item [[ expiry-date:expiry date]]
 * Item price
 * Item remarks
-* Item tags
+* Item [[ tag:tags ]]
 
 FoodRem Items are unique by name and case-sensitive. This means you cannot add two or more items of the same name.
 
@@ -63,3 +63,5 @@ The placeholders `INDEX`, `COMMAND_WORD`, and `KEYWORD` do not have any correspo
 ```
 
 {% include_relative _ug/Placeholders.md %}
+
+{% include page-break.html %}

@@ -25,4 +25,7 @@ src/test/data/sandbox/
 
 # MacOS custom attributes files created by Finder
 .DS_Store
+
+# Docs build/output files
 docs/_site/
+docs/release

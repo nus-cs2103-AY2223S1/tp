@@ -1,12 +1,11 @@
 package seedu.foodrem.model.item.itemvalidators;
 
 import static seedu.foodrem.commons.util.AppUtil.checkArgument;
-import static seedu.foodrem.model.item.ItemBoughtDate.BOUGHT_DATE_FORMATTER;
-import static seedu.foodrem.model.item.ItemBoughtDate.BOUGHT_DATE_PATTERN_REGEX;
 
 import java.time.LocalDate;
 
 import seedu.foodrem.commons.util.ValidationUtil;
+import seedu.foodrem.model.item.ItemDate;
 
 /**
  * Validation class for item dates.
@@ -34,11 +33,11 @@ public class ItemBoughtDateValidator implements Validator {
      */
     public static Void validate(String dateString) {
         boolean isDateStringInRightFormat = dateString.matches("[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]");
-        boolean isDateStringParsable = ValidationUtil.isParsableDateString(dateString, BOUGHT_DATE_PATTERN_REGEX);
+        boolean isDateStringParsable = ValidationUtil.isParsableDateString(dateString, ItemDate.DATE_PATTERN_REGEX);
         checkArgument(isDateStringInRightFormat, MESSAGE_FOR_BOUGHT_DATE_NOT_DDMMYYYY);
         checkArgument(isDateStringParsable, MESSAGE_FOR_BOUGHT_DATE_DO_NOT_EXIST);
 
-        LocalDate date = LocalDate.parse(dateString, BOUGHT_DATE_FORMATTER);
+        LocalDate date = LocalDate.parse(dateString, ItemDate.DATE_FORMATTER);
 
         boolean isYearLessThanEqualToMaxYear = date.getYear() <= MAX_YEAR;
         boolean isYearMoreThanEqualToMinYear = date.getYear() >= MIN_YEAR;
