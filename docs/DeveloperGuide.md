@@ -769,7 +769,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `add n/Sush! t/breakfast c/300`<br />
        Expected: Sush! is not added into the food list as the food name (Sush!) is invalid. Error details are shown on the result display.
 
-    5. Other invalid add commands to try: `add n/Sushi c/300.5 t/lunch`, `add n/Sushi c/300 t/supper`, `...` (where each field specified does not conform to the expected format).
+    5. Other invalid add commands to try: `add n/Sushi c/300.5 t/lunch`, `add n/Sushi c/300 t/supper`, `...` (where any field specified does not conform to the expected format).
 
 ### Deleting a food
 
