@@ -238,7 +238,7 @@ Steps to take:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** 
 
-This example is based of [`Creating a Tag`](#creating-a-tag-tag-create). Feel free to replace `1` and Test` with the contact and tag of your choice.
+This example is based on [`Creating a Tag`](#creating-a-tag-tag-create). Feel free to replace `1` and Test` with the contact index and tag of your choice.
 </div>
 
 2. Press `Enter` on your keyboard.
