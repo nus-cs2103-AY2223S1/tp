@@ -1,13 +1,15 @@
 package coydir.model.person;
 
 import static coydir.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
 import coydir.logic.parser.exceptions.ParseException;
-
-import java.time.LocalDate;
 
 public class RatingTest {
     private Rating rating1;
@@ -27,7 +29,9 @@ public class RatingTest {
             rating5 = new Rating("5", "29-06-2019");
             rating6 = new Rating("3");
             rating7 = new Rating();
-        } catch (ParseException ignored) {}
+        } catch (ParseException ignored) {
+            // ignored
+        }
     }
 
     @Test
