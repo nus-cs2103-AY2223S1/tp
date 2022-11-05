@@ -5,10 +5,10 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyHrPro" as ReadOnlyHrPro
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class HrPro
 Class ModelManager
 Class UserPrefs
 
@@ -26,25 +26,26 @@ Class Staff
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+HrPro .up.|> ReadOnlyHrPro
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyHrPro
+ModelManager -left-> "1" HrPro
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-ModelManager ---->"~* filtered" Project
-ModelManager --->"~* filtered" Task
-
-AddressBook *--> "1" UniqueProjectList
-UniqueProjectList .up.> "~* all" Project
-AddressBook *--> "1" UniqueStaffList
-UniqueStaffList .up.> "~* all" Staff
 ModelManager ---> "~* filtered" Staff
+ModelManager --->"~* filtered" Task
+ModelManager --->"~* filtered" Project
 
-AddressBook *--> "1" UniqueTaskList
+HrPro *--> "1" UniqueStaffList
+UniqueStaffList .up.> "~* all" Staff
+
+HrPro *--> "1" UniqueTaskList
 UniqueTaskList .up.> "~* all" Task
+
+HrPro *--> "1" UniqueProjectList
+UniqueProjectList .up.> "~* all" Project
 
 @enduml

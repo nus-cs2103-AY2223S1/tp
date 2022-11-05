@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* `Task` and `Project` were inspired by AB3's `Person` object
+* Commands from AB3 were brought over to `Task` and `Project`
+* `ContainsNameIgnoreCase` method in `StringUtil` is inpsired by https://stackoverflow.com/questions/86780/
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +25,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://github.com/AY2223S1-CS2103T-T09-3/tp/tree/master/docs/diagrams) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -82,7 +84,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays objects such as `Project` residing in the `Model`.
 
 ### Current implementation
 The GUI reflects the entered projects, tasks, and staff members recorded in HR Pro Max++.
@@ -102,12 +104,12 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a project).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delproj 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delproj 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -121,20 +123,21 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="550" />
 
 
 The `Model` component,
 
-* stores the address book data consisting of all `Project` objects (which are contained in a `UniqueProjectList` object) and all `Task` objects (which are contained in a `UniqueTaskList` object).
-* stores the currently 'selected' `Project` objects and `Task` objects  (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Project>` or `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the data in HR Pro Max++ consisting of all `Project` and `Task` objects which are contained in their respective unique list (e.g. `UniqueProjectList` object).
+* The `UniqueStaffList` contains only staff members belonging to the `Project` object that is being viewed (e.g. after a `ViewCommand`).
+* stores the filtered `Project`, `Task` and `Staff` objects (e.g., results of a `FindCommand`) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<T>`, where `T` is either a `Project`, a `Task` or a `Staff` object, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 
-**API** : [`Project.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/project/Project.java)
+**API** : [`Project.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/project/Project.java)
 
 <img src="images/ModelProjectClassDiagram.png" width="650" />
 
@@ -142,10 +145,18 @@ The `Project` class,
 
 * stores the details of a particular project (i.e. `ProjectName`, `Budget`, `Deadline`).
 * stores the details of all Staff members (which are contained in a `UniqueStaffList` object) working on the project.
-* at most one of this `Project` object (e.g., result of a view query) is stored in a separate _target_ list whose `UniqueStaffList` will be shown to outsiders e.g. the UI can be bound to this list so that the UI automatically updates when the data in this list changes.
+* The `UniqueStaffList` of a chosen `Project` object in HR Pro Max++ is copied over to the `UniqueStaffList` in `HrPro` which is used to display the staff list shown to outsiders.
+* The copying is done whenever the user edits the `UniqueStaffList` of the `Project` object being viewed (e.g. `AddStaffCommand`, `EditStaffCommand`) or when the user wants to view a different `Project` object (e.g. after a `ViewCommand`)
 
+**API** : [`Staff.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/staff/Staff.java)
 
-**API** : [`Task.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
+<img src="images/ModelStaffClassDiagram.png" width="650" />
+
+The `Staff` class,
+
+* stores the details of a particular staff (i.e. `StaffName`, `StaffContact`, `StaffTitle`).
+
+**API** : [`Task.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/task/Task.java)
 
 <img src="images/ModelTaskClassDiagram.png" width="550" />
 
@@ -155,7 +166,7 @@ The `Task` class,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/hrpro/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -192,11 +203,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delproj` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delproj 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delproj 5` command to delete the 5th project in the address book. The `delproj` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delproj 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `addproj n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `addproj n/David …​` to add a new project. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -204,7 +215,7 @@ Step 3. The user executes `addproj n/David …​` to add a new person. The `add
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the project was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -249,10 +260,29 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delproj`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delproj`, just save the project being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+
+### View Command
+
+#### Implementation:
+* The `ViewCommand` copies the `UniqueStaffList` from a `Project` object that is currently on the displayed list of `Project` objects.
+* This `Project` object is specified by the compulsory index argument following the `ViewCommand` e.g. `view 1` takes the first `Project` object on the displayed list.
+* The `UniqueStaffList` in `HrPro` will then be set to the contents of the copied `UniqueStaffList`.
+* In `MainWindow`, the `StaffListPanel` is set to an `ObservableList<Staff>` which has a listener that detects any changes made to the `UniqueStaffList` in `HrPro`.
+* The changes to the `UniqueStaffList` in `HrPro` made by the `ViewCommand` changes the displayed list of `Staff`.
+
+The following sequence diagram shows how the view command works.
+
+![view command](images/ViewCommandSequenceDiagram.png)
+
+#### Design considerations:
+* The `execute` method in `ViewCommand` interacts only with methods in `Model` to maintain the same level of abstraction.
+* We also decided to create a defensive copy of the project's `UniqueStaffList`, which exists in `HrPro`, to be linked to the UI for display.
+* Initially, we decided to create a target project attribute in `Model` that keeps track of the `Project` object being viewed, but we realised that this design exposes the `UniqueStaffList` attribute of the project to other components like UI. Also, other commands could potentially mutate this target project which would result in a lot of bugs.
+* The last viewed staff list would also be saved in `Storage` for convenience to users.
 
 ### Task List
 
@@ -269,7 +299,7 @@ regarding the description and deadline of a task.
 
 ![img.png](images/TaskListUML.png)
 
-#### Design considerations
+#### Design considerations:
 
 * A `UniqueTaskList` ensures that all tasks are different so that the tasks that are needed to be done
 are well-defined.
@@ -298,7 +328,7 @@ The following sequence diagram shows how the mark command will run throughout HR
 
 ![mark command](images/MarkCommandSequenceDiagram.png)
 
-#### Design Consideration:
+#### Design Considerations:
 
 * Users when done with a Task might just delete it and thus the need to mark
 Task as complete or not is redundant.
@@ -318,8 +348,8 @@ specifically for staff called `delstaff`. This `Staff` is then deleted.
 `delstaff Index pn/PROJECT_NAME ` : Get the Staff name of the Staff on the displayed Staff list identified
 by the INDEX. It then deletes the Staff from the Project identified by the PROJECT_NAME if the Staff exist.
 
-To align with the current implementation of deleting from only the displayed Project and Staff list, we 
-will only allow Staff that are displayed to be deleted. Since we do not save which Project is currently on 
+To align with the current implementation of deleting from only the displayed Project and Staff list, we
+will only allow Staff that are displayed to be deleted. Since we do not save which Project is currently on
 display, we pass in the PROJECT_NAME to delete the Staff from the Project identified by the PROJECT_NAME. However, if the Project
 with the PROJECT_NAME is not displayed, the Staff cannot be deleted also due to the above-mentioned reason.
 
@@ -357,7 +387,7 @@ The activity diagram below shows how the `delstaff` command propagates through H
 
 ![delstaff command](images/DeleteStaffCommandActivityDiagram.png)
 
-#### Design Consideration:
+#### Design Considerations:
 
 The `delstaff` command could be implemented in the form `delstaff pn/PROJECT_NAME sn/STAFF_NAME`.
 * The `PROJECT_NAME` would then refer to a Project specified by the PROJECT_NAME in the Project List to delete the Staff from.
@@ -366,10 +396,6 @@ The `delstaff` command could be implemented in the form `delstaff pn/PROJECT_NAM
 Pros: Easier to implement then the currrent implementation
 
 Cons: Does not require Staff to be displayed to be deleted, can randomly delete Staff and lose track of what is being deleted from where.
-
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
 
 ### Adding staff feature
 #### Implementation
@@ -407,7 +433,7 @@ Step 4. The `Staff` is added to the `Project`. The `execute()` method updates th
 Sequence diagram for the execution of `AddStaffCommand`
 ![AddStaffCommandExecution](images/AddStaffCommandExecution.png)
 
-#### Design Considerations
+#### Design Considerations:
 **Aspect: Finding project to add**
 
 Finding project to add is not straightforward since only `ProjectName` is passed as argument to the `AddStaffCommand`.
@@ -439,8 +465,8 @@ Finding project to add is not straightforward since only `ProjectName` is passed
 ### Product scope
 
 **Target user profile**:
-HR Pro Max++ aims to help team leads in SME to help track and manage their projects
-and staff members in their team.
+
+HR Pro Max++ aims to help team leads in SMEs to help track and manage their projects, staff members within each project and tasks related to the projects.
 
 * prefer desktop apps over other types
 * can type fast and prefers it over mouse interactions
@@ -448,8 +474,8 @@ and staff members in their team.
 * need to oversee many projects
 * need to track staff members who are part of each project
 * need to record project details for easy access in the future
-* need to be reminded of impending project deadlines
 * need to contact their team members
+* need to record tasks to track their workload
 
 **Value proposition**:
 * For many SME, a problem they face when setting up their business is a lack of a database to help
@@ -460,28 +486,29 @@ HR Pro Max++ to be a free, easy and comprehensive employee and project managemen
 in our application to keep track of them.
 * Team lead can also record which one of their team members are involved with which project so that they will
 know who to find and how to contact them.
+* Team lead can record down different tasks that are needed to be done for their various projects to be reminded
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                               | So that I can…​                               |
-|----------|-------------|--------------------------------------------|-----------------------------------------------|
-| `* * *`  | team leader | view the projects I am working on          | view my workload                              |
-| `* * *`  | team leader | add deadline to projects                   | aim to finish before then                     |
-| `* * *`  | team leader | add clients to projects                    | find out who to liaise with                   |
-| `* * *`  | team leader | delete projects that are done or cancelled | remove unnecessary information                |
-| `* * *`  | team leader | edit project details                       | to update project with the newest information |
-| `* * *`  | team leader | add staff to a project                     | to track who is working on each project       |
-| `* * *`  | new user    | record staff details one at a time         | ensure that I will not make any mistake       |
+| Priority | As a …​   | I want to …​                               | So that I can…​                               |
+|----------|-----------|--------------------------------------------|-----------------------------------------------|
+| `* * *`  | team lead | view the projects I am working on          | view my workload                              |
+| `* * *`  | team lead | add deadline to projects                   | aim to finish before then                     |
+| `* * *`  | team lead | record down project tasks to do            | track my remaining tasks                      |
+| `* * *`  | team lead | delete projects that are done or cancelled | remove unnecessary information                |
+| `* * *`  | team lead | edit project details                       | to update project with the newest information |
+| `* * *`  | team lead | add staff to a project                     | to track who is working on each project       |
+| `* * *`  | new user  | record staff details one at a time         | ensure that I will not make any mistake       |
 
 
 ### Use cases
 
 (For all use cases below, the **System** is the `HR Pro Max++` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01- Add a project**
+###**Use case: UC01- Add a project**
 
 **MSS**
 
@@ -497,7 +524,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resume at step 1.
 
-**Use case: UC02- Add staff member to project**
+###**Use case: UC02- Add staff member to project**
 
 **MSS**
 
@@ -519,12 +546,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC03- Delete a Project**
+###**Use case: UC03- Delete a Project**
 
 **MSS**
 
-1.  User requests to list persons.
-2.  HR Pro Max++ shows a list of persons.
+1.  User requests to list projects.
+2.  HR Pro Max++ shows a list of projects.
 3.  User requests to delete a specific project in the list.
 4.  HR Pro Max++ deletes the project.
 
@@ -544,7 +571,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: UC04- Edit Project details**
+###**Use case: UC04- Edit Project details**
 
 **MSS**
 
@@ -554,7 +581,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC05- Edit Staff details**
+###**Use case: UC05- Edit Staff details**
 
 **MSS**
 
@@ -586,7 +613,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resume at step 5.
 
-**Use case: UC06- View Staff details**
+###**Use case: UC06- View Staff details**
 
 **MSS**
 
@@ -618,7 +645,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **SME** Small and medium-sized enterprises, business whose personnel fall below certain limits
 * **Team lead/ Team leader** Someone leading a group of other staff members within the SME
 
@@ -639,7 +665,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -650,22 +676,22 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a project
 
-1. Deleting a person while all persons are being shown
+1. Deleting a project while all projects are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all projects using the `list` command. Multiple projects in the list.
 
    1. Test case: `delproj 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First project is deleted from the list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delproj 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delproj`, `delproj x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -674,3 +700,38 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+For the effort placed into our group project, we felt that our group might have placed more than the average needed just in case.
+
+The initial AB3 had only `Person`, however our group refactored `Person` into `Project` and from there added `Staff` into each project,
+and a `Task`. While the `Task` is quite similar to the `Person` in terms of implementation for model and logic component, the difficult for both
+lied within making the regex for their fields. `TaskMark`, `Deadline` and `Tag`, required us to do some reading up on how the regex API works, and for `Deadline`,
+initally we have tried to do it using Java regex but decided to change implementation into `LocalDate`, which API we also had to read upon.
+
+The biggest challenge for the project was the `Staff` and everything related to it. `Staff` existed as a `UniqueStaffList` within `Project`, something not in `Person`. Hence
+there was nothing to reference too. We had many consideration on the implementation, perhaps wanting to save it independent from `Project` and to instead save a list of
+`Project` within each `Staff`. This caused many days of debate on the implementation. Such implementation also affected how it works when it came to UI and the logic for the commands.
+For `Staff` related commands, we had to switch between many implementation, whether we change the parameters passed or changed the way it is stored and reference to in modelManager. One other
+implementation was not to use a filterStaffList, but instead a targetProject field, which had us needing to change how storage and UI would work. Due to the difficulty of this, we could easily take a few days
+every week, contemplating on how `Staff` and its related commands should work, be implemented, and then implement them.
+
+For logic, we added many commands. Some of them like `taskMark`, `sortProj`, and `view` to name a few required us to understand how `modelManager`,
+the old `addressBook` worked before we could try to create these commands. We had to consider how to write the logic that follows OOP standards from scratch
+and had to read Java API such as for `Optional` and `Comparator` to reach a satisfactory implementation.
+
+For the UI, we wanted a design that made us different from AB3, even if just a little. Our group has never worked with CSS files before or JavaFx, so we
+had to experiment for ourselves, searching for help through API and suggestion offered online. We tried using VBox and HBox to fit our design but ultimately changed
+to splitpane when our dimensions were wrong. We had to learn how the different attributes in fxml and CSS worked, if we wanted to increase the number of fields displayed,
+change to different colours and also how to make a flowpane display different colours based on different conditions. All of these took lots of time
+and even back in V1.2, we nearly could not finish by the deadline since we could not figure out some bugs with the UI.
+
+With storage, we also did not have experience with JSON files, and had to learn how they were created and saved using the original for `Person`.
+We had much difficult as we wanted `Project` to store a list of `Staff` objects but were unsure how to do it. Unlike the `Tag`, each `Staff` also had its
+own fields to save and load, due to that we had to experiment for numerous days till we saved it.
+
+For the test cases, we started them since V1.2, and faced many challenges when having to due with the many Stubs used and also just the general
+difficulty of writing good test cases. We have been doing test cases for every command made, every addition to model and have been aiming to ensure that we
+keep our code coverage at 75% and above. The biggest challenge was writing test cases for `Staff` since the original stubs used were not applicable as `Staff` cannot
+exist without a `Project`, a dependency that `Person` did not have. Therefore, we could not refer to anything and had to create one for testing purposes.
