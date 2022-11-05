@@ -12,6 +12,7 @@ public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain numbers and an optional exponent within the maximum range of a Double."
             + " For example: 123.45";
+    private static final String VALIDATION_REGEX = "^[0-9]*\\.*[0-9]+$";
     private static final double EPSILON = 0.01d;
     public final String value;
     private final double numericalValue;
@@ -25,11 +26,6 @@ public class Price {
         requireNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
 
-        char c = price.charAt(price.length() - 1);
-        if (c == 'd' || c == 'f') {
-            price = price.substring(0, price.length() - 1);
-        }
-
         value = price;
         numericalValue = Double.parseDouble(price);
     }
@@ -38,13 +34,16 @@ public class Price {
      * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
-        double value;
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        // check for possible overflow
         try {
-            value = Double.parseDouble(test);
+            Double.parseDouble(test);
         } catch (NumberFormatException e) {
             return false;
         }
-        return value >= 0;
+        return true;
     }
 
     /**
