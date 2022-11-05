@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,23 +48,23 @@ public class FindSupplierCommandTest {
 
     @Test
     public void execute_zeroKeywords_noSupplierFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW,
+                TypicalSuppliers.getTypicalSuppliers().size());
         NameContainsKeywordsPredicate<Supplier> predicate = preparePredicateSupplier("    ");
         FindSupplierCommand command = new FindSupplierCommand(predicate);
         sExpectedModel.updateFilteredSupplierList(predicate);
         assertCommandSuccess(command, sModel, expectedMessage, sExpectedModel);
-        assertEquals(Collections.emptyList(), sModel.getFilteredSupplierList());
+        assertEquals(sExpectedModel.getFilteredSupplierList(), sModel.getFilteredSupplierList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleSuppliersFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate<Supplier> predicate = preparePredicateSupplier("Kurz Elle Kunz");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate<Supplier> predicate = preparePredicateSupplier("Elle Meyer");
         FindCommand command = new FindSupplierCommand(predicate);
         sExpectedModel.updateFilteredSupplierList(predicate);
         assertCommandSuccess(command, sModel, expectedMessage, sExpectedModel);
-        assertEquals(Arrays.asList(TypicalSuppliers.CARL, TypicalSuppliers.ELLE, TypicalSuppliers.FIONA),
-                sModel.getFilteredSupplierList());
+        assertEquals(Arrays.asList(TypicalSuppliers.ELLE), sModel.getFilteredSupplierList());
     }
 
     /**
