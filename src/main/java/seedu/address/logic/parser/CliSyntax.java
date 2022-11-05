@@ -29,6 +29,11 @@ public class CliSyntax {
     public static final String FLAG_TAG_STR = "-t";
     public static final String FLAG_TAG_STR_LONG = "--tag";
 
+    /** Flag and parameter labels */
+    public static final String LABEL_PERSON_INDEX = "<person_index>";
+    public static final String LABEL_MEMBER_INDEX = "<member_index>";
+    public static final String LABEL_KEYWORDS = "<keywords>";
+
     /* Descriptions for flags */
     public static final String FLAG_HELP_DESCRIPTION = "Shows this message";
     public static final String FLAG_PERSON_NAME_DESCRIPTION = "Name of person (e.g. \"John Doe\")";

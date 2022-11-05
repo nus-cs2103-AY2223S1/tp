@@ -64,12 +64,12 @@ productivity while using TruthTable.
 
 Here are the symbols and text styles to look out for while using this guide:
 
-| Symbol               | Meaning                                          |
-|----------------------|--------------------------------------------------|
-| :information_source: | Important information for all users to take note |
-| :bulb:               | Tip for all users                                |
-| :star:               | Tip for advanced users                           |
-| :exclamation:        | Critical information to be wary of               |
+| Symbol               | Meaning                                                                        |
+|----------------------|--------------------------------------------------------------------------------|
+| :information_source: | Important information for all users to take note                               |
+| :bulb:               | Tip for all users                                                              |
+| :star:               | Tip for advanced users                                                         |
+| :exclamation:        | Critical information to be wary of                                             |
 
 | Text Style                 | Meaning                                              |
 |----------------------------|------------------------------------------------------|
@@ -406,13 +406,13 @@ Adds a person to TruthTable.
 
 **Format:** `add person [-h] -e=<EMAIL> -n=<NAME> -p=<PHONE> [-t[=<TAGS>...]]...`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
-| `-e`, `--email`   | ✔        | Email of person (e.g. truth@table.com)                 |
-| `-n`, `--name`    | ✔        | Name of person (e.g. "Truth Table")                    |
-| `-p`,`--phone`    | ✔        | Phone of person (e.g. 98765432)                        |
-| `-t`,`--tags`     |          | Tags of person (e.g. Frontend, Backend)                |
+| Flags           | Required           | Remarks                                 |
+|-----------------|:-------------------|-----------------------------------------|
+| `-h`, `--help`  |                    | Shows help message                      |
+| `-e`, `--email` | :heavy_check_mark: | Email of person (e.g. truth@table.com)  |
+| `-n`, `--name`  | :heavy_check_mark: | Name of person (e.g. "Truth Table")     |
+| `-p`,`--phone`  | :heavy_check_mark: | Phone of person (e.g. 98765432)         |
+| `-t`,`--tags`   |                    | Tags of person (e.g. Frontend, Backend) |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -451,12 +451,12 @@ Edits an existing person in TruthTable.
 | Flags           | Required   | Remarks                                 |
 |-----------------|:-----------|-----------------------------------------|
 | `-h`, `--help`  |            | Shows help message                      |
-| `-e`, `--email` | *️⃣        | Email of person (e.g. truth@table.com)  |
-| `-n`, `--name`  | *️⃣        | Name of person (e.g. "Truth Table")     |
-| `-p`,`--phone`  | *️⃣        | Phone of person (e.g. 98765432)         |
-| `-t`,`--tags`   | *️⃣        | Tags of person (e.g. Frontend, Backend) |
+| `-e`, `--email` | :asterisk: | Email of person (e.g. truth@table.com)  |
+| `-n`, `--name`  | :asterisk: | Name of person (e.g. "Truth Table")     |
+| `-p`,`--phone`  | :asterisk: | Phone of person (e.g. 98765432)         |
+| `-t`,`--tags`   | :asterisk: | Tags of person (e.g. Frontend, Backend) |
 
-*️⃣ - at least one of the flags must be specified
+:asterisk: - at least one of the flags must be specified
 
 * Edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the 
 [persons section](#persons-section) 
@@ -534,17 +534,35 @@ Summary of commands can be found [here](#summary-of-member-commands)
 Adds a new team member to the user’s currently selected team. Will throw an error if the member already exists in 
 the team.
 
-**Format:** `add member MEMBER_INDEX`
+**Format:** `add member [-h] <PERSON_INDEX>`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
+* `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `add m`
+- `a member`
+- `a m`
 
 **Examples:** 
 
-- `add member 1` will add the first person in the list of people as a member of the current team.
+- `add member 1` will add the first person in the [persons sections](#persons-section) as a new member to the 
+  [currently selected team](#current-team-section).
 
 #### Delete a member from team `delete member`
 
 Delete a team member from the user’s team.
 
-**Format:** `delete member TEAM_MEMBER_INDEX`
+**Format:** `delete member <MEMBER_INDEX>`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
+* `MEMBER_INDEX` **must be a positive integer**: 1, 2, 3,...
 
 **Examples:** 
 
@@ -561,6 +579,10 @@ should not use both `-n` and `-e` in the `find member` command.
 
 
 Format:`find member [-n MEMBER_NAME] [-e MEMBER_EMAIL]`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -581,10 +603,18 @@ View all the members currently in the team, in the form of a list.
 
 **Format:** `list members`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 #### Sort members : `sort members`
 Sorts all members in the current team by name and displays them in the member list.
 
 **Format:** `sort members ORDER`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
 Examples
 * `sort members asc` sorts your team members in **alphabetical** order (as per their names).
@@ -605,6 +635,10 @@ Team name must consist only of alphanumeric characters (i.e., **Spaces are NOT a
 
 **Format:** `add team TEAM_NAME [-d TEAM_DESCRIPTION]`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 **Examples:** 
 
 - `add team CS2103` will create a new team by the name of "CS2103"
@@ -618,6 +652,10 @@ if the team does not exist
 
 **Format:** `set team TEAM_NAME`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 **Examples:** 
 
 - `set team CS2103` will change the current working team to be the "CS2103" team.
@@ -625,6 +663,10 @@ if the team does not exist
 #### Edit current team `edit team`
 
 **Format:** `edit team [-n TEAM_NAME] [-d TEAM_DESCRIPTION]`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
 **Examples:** 
 - `edit team -n CS2103 -d "Software Engineering"` will edit the name of the current team to CS2103 and description
@@ -638,6 +680,10 @@ Delete an existing team from the user's list of teams. Throws an error under the
 - The target team is the only existing team.
 
 **Format:** `delete team TEAM_NAME`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
 **Examples:** 
 
@@ -658,6 +704,10 @@ e.g. `add task "Merge PR" -a 1 3 4` will assign members 1, 3 and 4 to the task "
 
 **Format:** `add task "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 **Examples:** 
 
 * `add task "Merge PR" -a 1 -d 2022-12-02 23:59` will add a task with the name "Merge PR", assign the task to the
@@ -676,6 +726,10 @@ e.g. `edit task 1 -a 1 3 4` will assign members 1, 3 and 4.
 
 **Format:** `edit task TASK_INDEX -n "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 **Examples:** 
 
 * `edit task 1 "Merge PR" -a 1 -d 2022-12-02 23:59` will edit the first task in the current team's task
@@ -692,6 +746,10 @@ the task is not found in the user’s team.
 
 **Format:** `assign task TASK_INDEX -a MEMBER_INDEX`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 **Examples:** 
 
 - `assign task 1 -a 1` will assign the first task on the task list to the first member in the team.
@@ -705,6 +763,10 @@ or if the task has already been assigned to all members of the team.
 
 **Format:** `assign random TASK_INDEX`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 **Examples:** 
 
 - `assign random 1` will assign the first task on the task list to a random team member.
@@ -716,6 +778,10 @@ If a deadline has been set for the task before, a new deadline will be set if co
 The deadline must be specified in `YYYY-MM-DD HH:MM` format.
 
 **Format:** `set deadline TASK_INDEX DEADLINE`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
 **Examples:** 
 
@@ -729,6 +795,10 @@ the user’s team, i.e., when the index exceeds the number of tasks.
 
 **Format:** `delete task TASK_INDEX`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 **Examples:** 
 
 - `delete task 1` will delete the first task of the current team.
@@ -739,6 +809,10 @@ Mark a specified task as done. To undo this command, see the `unmark` command be
 
 **Format:** `mark TASK_INDEX`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 **Examples:** 
 
 - `mark 1` will mark the first task in the team as done.
@@ -748,6 +822,10 @@ Mark a specified task as done. To undo this command, see the `unmark` command be
 Mark a specified task as incomplete. This will undo the `mark` command.
 
 **Format:** `unmark TASK_INDEX`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
 **Examples:** 
 
@@ -760,6 +838,10 @@ Find all tasks in the current team whose names contain any of the given keywords
 To reset the task list, see `list tasks` command below.
 
 **Format:** `find task -n TASK_NAME`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
 * The search is case-insensitive. e.g. `user guide` will match `User Guide`
 * The order of the keywords does not matter. e.g. `User Guide` will match `guide user`
@@ -780,6 +862,10 @@ The command `list tasks` can also be used to view all tasks again after the `fin
 
 **Format:** `list tasks [-i] [-c]`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 **Examples:** 
 - `list tasks` will list all the tasks of the current team.
 - `list tasks -i` will list all the incomplete tasks of the current team.
@@ -791,13 +877,21 @@ View the number of tasks assigned to each user in the team.
 
 **Format:** `summary`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 #### Sort tasks : `sort tasks`
 
 Sorts all tasks in the current team by name and displays them in the task list
 
 **Format:** `sort tasks ORDER`
 
-Examples
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
+**Examples:**
 * `sort tasks asc` sorts the tasks in **ascending** order.
 * `sort tasks dsc` sorts the tasks in **descending** order.
 * `sort tasks res` **resets** the order of the tasks shown.
@@ -808,7 +902,11 @@ Find all tasks in your current team that have been assigned to a particular team
 
 **Format:** `tasksof MEMBER_INDEX`
 
-Examples
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
+**Examples:**
 * `tasksof 1` will show all tasks assigned to the first member in your current team's member list.
 
 ### Commands to Manage Links / URLs
@@ -821,6 +919,10 @@ Add a new link to the user's currently selected team.
 
 **Format:** `add link -n NAME -l URL`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 **Examples:** 
 
 - `add link -n google -l https://google.com` will add a link named "google" with the URL "https://google.com"
@@ -830,6 +932,10 @@ Add a new link to the user's currently selected team.
 Edit an existing link in the user's currently selected team.
 
 **Format:** `edit link LINK_INDEX [-n NAME] [-l URL]`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
 **Examples:** 
 
@@ -841,6 +947,10 @@ Edit an existing link in the user's currently selected team.
 Delete the specified link from the user's currently selected team.
 
 **Format:** `delete link LINK_INDEX`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
 **Examples:** 
 
@@ -856,11 +966,19 @@ Deletes all the people from the application.
 
 **Format:** `clear`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 #### Switching between light and dark theme: `theme`
 
 Toggles between light theme and dark theme.
 
 **Format:** `theme`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
 #### Exiting the program : `exit`
 
@@ -868,11 +986,19 @@ Exits the program.
 
 **Format:** `exit`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
 #### Viewing help : `help`
 
 Shows the URL to this help page, which will list all available commands.
 
 **Format:** `help`
+
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
 #### Saving the data
 
