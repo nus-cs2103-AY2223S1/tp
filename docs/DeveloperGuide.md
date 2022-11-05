@@ -362,6 +362,8 @@ These operations are exposed in the `BobaBotModel` interface as `BobaBotModel#co
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The bobaBotStatelist only keeps track of 20 of the most recent state changes! This is by design to minimise the storage space required for bobaBot application. However, you may configure the limit depending on your needs.
 
+</div>
+
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedBobaBot` will be initialized with the initial bobaBot state, and the `currentStatePointer` pointing to that single bobaBot state.
@@ -654,24 +656,115 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a customer
+### \[Insert Numbering\] Adding a customer
 
-1. Deleting a customer while all customers are being shown
+### \[Insert Numbering\] Editing a customer
 
-   1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
+### \[Insert Numbering\] Increasing a customer's reward
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### \[Insert Numbering\] Decreasing a customer's reward
 
-   1. Test case: `delete 0`<br>
-      Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
+### \[Insert Numbering\] Listing all customers
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+1. Viewing all customers within bobaBot
+
+    1. Prerequisites: Ensure that some customer data/information has been added into bobaBot.
+
+    2. Test case: `list`<br>
+       Expected: All customers' data should be listed (listing order follows the order of addition).
+
+### \[Insert Numbering\] Finding a customer
+
+### \[Insert Numbering\] Deleting a customer
+
+1. Deleting a customer via `PHONE_NUMBER`
+
+   1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file
+
+   2. Test case: `delete p/87438807`<br>
+      Expected: The customer with`PHONE_NUMBER` corresponding to `87438807` (in this case `Alex Yeoh`) will be deleted from the list. Details of the deleted customer is shown in the status message.
+
+   3. Test case: `delete p/11111111`<br>
+      Expected: No customer is deleted since `11111111` does not correspond to any customer's `PHONE_NUMBER`. Error details shown in the status message.
+
+   4. Other incorrect delete commands to try: `delete`, `delete p/`, `delete hello`, `...`<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting a customer via `EMAIL`
 
-### Saving data
+    1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file
+
+    2. Test case: `delete e/charlotte@example.com`<br>
+       Expected: The customer with`EMAIL` corresponding to `charlotte@example.com` (in this case `Charlotte Oliveiro`) will be deleted from the list. Details of the deleted customer is shown in the status message.
+
+    3. Test case: `delete e/bruno@mars.com`<br>
+       Expected: No customer is deleted since `bruno@mars.com` does not correspond to any customer's `EMAIL`. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete e/`, `delete hello`, `...`<br>
+       Expected: Similar to previous.
+
+### \[Insert Numbering\] Undoing an unintended command
+
+1. Undo an unintended command that has been executed.
+
+   1. Prerequisites: Commands which causes a state change should have been executed before executing the `undo` command. Commands such as `list`, `help`, `calc`, `calc-gui`, `exit` and `find` DO NOT result in a state change.
+   
+   2. Test case: `undo` command after `delete e/charlotte@example.com`<br>
+      Expected: The customer `Charlotte Oliveiro` that has been deleted previously is back into bobaBot.
+   
+   3. Test case: `undo` command when the JAR file is just launched <br>
+      Expected: `No previous state found` error message will be shown in the status message as bobaBot is in the initialised state.
+
+   4. Other incorrect undo commands to try: `undo anya`, `undo 123`, `...`<br>
+      Expected: Similar to previous
+
+### \[Insert Numbering\] Redoing an UndoCommand
+
+1. Redo an UndoCommand that has been executed.
+
+    1. Prerequisites: One or more successful UndoCommands should have been executed before executing the `redo` command.
+
+    2. Test case: `redo` command after an `undo` command on `delete e/charlotte@example.com`<br>
+       Expected: The customer `Charlotte Oliveiro` removed from bobaBot again.
+
+    3. Test case: `redo` command when no `undo` command has been executed <br>
+       Expected: `No next state found` error message will be shown in the status message as bobaBot is in the most updated state.
+
+    4. Other incorrect undo commands to try: `redo anya`, `redo 123`, `...`<br>
+       Expected: Similar to previous
+
+### \[Insert Numbering\] Clearing all customers in bobaBot
+
+1. Clearing all customers within bobaBot
+
+   1. Prerequisites: Ensure that some customer data/information has been added into bobaBot.
+   
+   2. Test case: `clear`<br>
+      Expected: All customers' data cleared.
+
+### \[Insert Numbering\] Calculating simple arithmetic
+
+1. Performs simple arithmetic calculation
+
+   1. Prerequisites: Ensure that there are no spaces in between the arithmetic operands and symbols
+
+   2. Test case: `calc 5+2*(4-2)`<br>
+      Expected: The answer of `9.00` should be shown in the status message.
+   
+   3. Test case: `calc 5 + 2 * (4 - 2)`<br>
+      Expected: The `invalid expression` message will be shown in the status message.
+   
+   4. Other incorrect delete commands to try: `calc`, `calc hello`, `...`<br>
+      Expected: Similar to previous.
+
+### \[Insert Numbering\] Viewing Help
+
+1. View Help
+
+   1. Test case: `help`<br>
+      Expected: Help window appears.
+
+### \[Insert Numbering\] Saving data
 
 1. Dealing with missing/corrupted data files
 
