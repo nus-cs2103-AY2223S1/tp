@@ -1,6 +1,7 @@
 @startuml
 !include style.puml
 
+group sd get suggested workouts
 box LOGIC_COLOR_T1
 
 participant "g:GenerateCommand" as GenerateCommand LOGIC_COLOR
@@ -8,13 +9,14 @@ participant GeneratorFactory as "<<class>>\nGeneratorFactory" LOGIC_COLOR
 participant "s:EasyGenerator" as EasyGeneratorSquat LOGIC_COLOR
 participant "d:EasyGenerator" as EasyGeneratorDeadlift LOGIC_COLOR
 
+
 activate GenerateCommand
-GenerateCommand -> GeneratorFactory : getGenerator(squat, EASY)
+GenerateCommand -> GeneratorFactory : getGenerator(squatPR, EASY)
 
 activate GeneratorFactory
 create EasyGeneratorSquat
 
-GeneratorFactory -> EasyGeneratorSquat : EasyGenerator(squat)
+GeneratorFactory -> EasyGeneratorSquat : EasyGenerator(squatPR)
 activate EasyGeneratorSquat
 
 EasyGeneratorSquat --> GeneratorFactory : s
@@ -32,12 +34,12 @@ deactivate EasyGeneratorSquat
 EasyGeneratorSquat -[hidden]> GenerateCommand
 destroy EasyGeneratorSquat
 
-GenerateCommand -> GeneratorFactory : getGenerator(deadlift, EASY)
+GenerateCommand -> GeneratorFactory : getGenerator(deadliftPR, EASY)
 
 activate GeneratorFactory
 create EasyGeneratorDeadlift
 
-GeneratorFactory -> EasyGeneratorDeadlift : EasyGenerator(deadlift)
+GeneratorFactory -> EasyGeneratorDeadlift : EasyGenerator(deadliftPR)
 activate EasyGeneratorDeadlift
 
 EasyGeneratorDeadlift --> GeneratorFactory : d
@@ -55,4 +57,5 @@ deactivate EasyGeneratorDeadlift
 EasyGeneratorDeadlift -[hidden]> GenerateCommand
 destroy EasyGeneratorDeadlift
 
+end
 @enduml

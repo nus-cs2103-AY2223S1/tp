@@ -322,9 +322,13 @@ Step 2: The user enters the command `:pr n/Squat` to view their personal record 
     * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition.
     * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow.
 
-### \[Proposed\] Generating a suggested workout routine
+### Generating a suggested workout routine
 
-#### Proposed Implementation
+#### Implementation
+
+Workout suggestions are suggested by `Generator` objects. The suggestion mechanism follows the command pattern. The `GeneratorFactory` creates a concrete `Generator` object, and passes it to the `GenerateCommand` object, which treats all generators as a general `Generator` type. `GenerateCommand` is able to get a workout suggestion without knowledge of the type of generator. The following class diagram illustrates this.
+
+![GeneratorCommandPattern](images/GeneratorCommandPattern.png)
 
 The mechanism for generating a suggested workout routine is facilitated by `GenerateCommand`, which extends from `Command`.
 
@@ -341,29 +345,27 @@ Step 1. The user launches the application, and already has 2 exercises, squat an
 
 Step 2: The user enters the command `:gen 1,2 l/easy` to generate an easy workout routine consisting of the exercises squat and deadlift.
 
-The following sequence diagram shows how the `GenerateCommand` works:
+The following sequence diagram shows how the `GenerateCommand` works.
+A `Name` object `exerciseName` is returned to `g:GenerateCommand` by calling a method in `:Model`. 
+For the sake of brevity, this interaction is omitted from the diagram.
 
 ![GenerateWorkoutSequenceDiagram](images/GenerateWorkoutSequenceDiagram.png)
 
-The diagram detailing the interaction between `g:GenerateCommand` and `GeneratorFactory` class is shown below.
+The diagram below illustrates the interaction between `g:GenerateCommand` and `GeneratorFactory` class.
 The static method `GeneratorFactory#getGenerator()` creates a `Generator` of the correct difficulty level, such as `EasyGenerator`.
 The number of `Generator` objects created is equal to the number of unique exercise names. They are `s:EasyGenerator` and `d:EasyGenerator` for squat and deadlift respectively.
 
 ![GetSuggestionSequenceDiagram](images/GetSuggestionSequenceDiagram.png)
 
-#### Design considerations:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The sd frame should capture the entire diagram here, but due to a limitation of PlantUML, it appears as such.
 
-**Aspect: Type of arguments to accept:**
-* **Alternative 1 (current choice)**: Accept index as arguments.
-    * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition.
-    * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow.
-* **Alternative 2**: Accept exercise names.
-    * Pros: Easier to implement.
-    * Cons: Would require users to type more characters; also require users to enter exercise names accurately.
+</div>
+
+#### Design considerations:
 
 **Aspect: Number of `Generator` objects:**
 * **Current choice**: Pairing each unique exercise to one `Generator`.
-    * Rationale: Allow generating suggestions of different difficulty level for different exercises, possibly in the future.
+    * Rationale: The current `:gen` command specifies a single difficulty level for all exercises listed in the command. A possible extension in the future would be to allow each exercise to be linked to its own difficulty level, for example, `:gen deadlift/easy squat/hard`. This design would make such an implementation possible.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -761,11 +763,32 @@ Guarantees: Personal Record (PR) for exercise(s) will be calculated and displaye
     * 1a1. Gim displays the error message.
       <br>Use case ends.
 * 1b. User enters the name of exercise(s) wrongly.
-    * 2a1. Gim displays exercise(s) not registered in system message.
+    * 1b1. Gim displays exercise(s) not registered in system message.
       <br>Use case ends.
 
 #### Use case 10: Generate
 
+System: Gim <br>
+Use case: UC10 - Generate workout suggestion for exercise(s) <br>
+Actor: User <br>
+Guarantees: Sample workout suggestion will be displayed.
+
+**MSS**
+
+1. User wishes to generate a workout suggestion.
+2. User enters the exercise and difficulty level desired.
+3. Gim computes a sample workout for the user.
+   <br>Use case ends.
+
+**Extensions**
+
+* 2a. Gim detects an error in the command format.
+    * 2a1. Gim requests user to enter a valid command format.
+    * 2a2. User enters new command.
+      <br>Steps 2a1-2a2 are repeated until the command entered is of valid format.
+      Use case resumes from step 3.
+
+  
 #### Use case 11: Exit Gim
 
 System: Gim <br>
@@ -797,6 +820,7 @@ Guarantees: Gim will exit.
 * **Reps**: Number of times you perform a specific exercise
 * **Sets**: Number of cycles of reps that you complete
 * **Weight**: Total weight (include barbell if applicable, exclude body weight)
+* **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
 
 --------------------------------------------------------------------------------------------------------------------
 
