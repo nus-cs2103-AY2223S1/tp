@@ -10,6 +10,8 @@ fitness goals that you have set for yourself! However, without the right tools, 
 tedious and disorganised. With NutriGoals, you can keep track of your consumption quickly and easily, without 
 worrying about organising your data.
 
+## Table of contents
+
 * Table of Contents
 {:toc}
 
@@ -22,13 +24,9 @@ worrying about organising your data.
 
 * If you are a **new user**, the [Quick start](#quick-start) section provides instructions for you on how to get started.
 
-
-* Once you have set up NutriGoals, you can check out the [Screen layout](#screen-layout) section to get familiar with the different components of NutriGoals. 
-To learn the basics of using NutriGoals, head over to the [Features](#features) section.
-
+* Once you have set up NutriGoals, you can check out the [Screen layout](#screen-layout) section to get familiar with the different components of NutriGoals. To learn the basics of using NutriGoals, head over to the [Features](#features) section.
 
 * If you are an **experienced user**, you can refer to the [Command summary](#command-summary) section for an overview of NutriGoals' commands.
-
 
 * If you have any queries about using NutriGoals, you can check out the [FAQ](#faq) section. 
 
@@ -95,8 +93,7 @@ the help window.
 
 :exclamation: **Warning:**<br>
 
-Upon launching the application, some files responsible for the storage of your data will be created in a folder called 'data' located in the same folder 
-as `nutrigoals.jar`. If you are a new user, you are advised not to edit these files. If the changes you made to the data file invalidates its format, NutriGoals will discard all your data and start with an empty data file.
+Upon launching the application, some files responsible for the storage of your data will be created in a folder called 'data' located in the same folder as `nutrigoals.jar`. If you are a new user, you are advised not to edit these files. If the changes you made to the data file invalidates its format, NutriGoals will discard all your data and start with an empty data file.
 
 </div>
 
@@ -117,8 +114,7 @@ as `nutrigoals.jar`. If you are a new user, you are advised not to edit these fi
 
 * Progress Bar changes based on the total calorie intake for the current day as compared to the target calorie intake.
 * To check the total calorie intake for the current day and the target calorie intake, refer to the `review` command [here](#viewing-a-summary-of-the-calorie-intake-progress-review).
-* The Progress Bar percentage can go beyond 100%, but note that if the target calorie intake is set to 0, the 
-percentage will be fixed at 100%.
+* The Progress Bar percentage can go beyond 100%, but note that if the target calorie intake is set to 0, the percentage will be fixed at 100%.
 * To set the target calorie intake, refer to the `target` command [here](#setting-a-target-calorie-intake-target).
 
 </div>
@@ -132,28 +128,66 @@ percentage will be fixed at 100%.
 **:information_source: Notes about the command format:**<br>
 
 * Texts in `UPPER_CASE` in this guide should be replaced with user inputs.
-  * E.g. for the function `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`, you may input `add n/sushi c/300 t/dinner`, where the
-  parameters `FOOD_NAME`, `CALORIE` and `MEAL_TYPE` replaced by`sushi`,  `300` and `dinner` respectively.
+  * E.g. for the function `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`, you may input `add n/sushi c/300 t/dinner`, where the parameters `FOOD_NAME`, `CALORIE` and `MEAL_TYPE` replaced by`sushi`,  `300` and `dinner` respectively.
 * Parameters in square brackets are optional.
 * The parameters can be in any order.
   * E.g. `add n/bubble tea c/200 t/dinner` is the same as `add c/200 n/bubble tea t/dinner`.
-* Integer values are values between 1 and 2147483647 (inclusive).
 * Commands that require an `INDEX` will only accept positive integer values as the `INDEX`.
+  * Positive integer values refers to any value between 1 and 2147483647.
   * E.g. `edit 2147483648` is an invalid command regardless of the inputs provided.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.
   * E.g. `help 123` will be interpreted as `help`.
 
 </div>
 
-### Viewing help : `help`
+### Getting started
 
-Shows a message explaining how to access the help page and information on the usage of commands.
+#### Setting up a user profile: `setup`
 
-![help message](images/helpMessage.png)
+Sets up a user profile.
 
-Format: `help`
+Format: `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE`
 
-### Adding the calorie content of a food item : `add`
+* Sets up the user profile using the information provided by the user.
+* `GENDER` can only take 2 values: M or F (case-insensitive).
+* `WEIGHT` and `IDEAL_WEIGHT` can only take on integer values between 10 and 199 (in kg).
+* `HEIGHT` can only take on integer values between 100 and 219 (in cm).
+* `AGE` can only take on integer values between 1 and 99 (in years).
+
+Example:
+
+* `setup g/f w/50 h/165 i/48 a/20` sets up a user profile for a 20-year-old female who is 50kg and 165cm, who has an ideal weight of 48kg.
+* `setup g/m w/70 h/175 i/70 a/20` sets up a user profile for a 20-year-old male who is 70kg and 175cm, who has an ideal weight of 70kg.
+
+<div id="setup-eg"></div>
+
+Example after entering `setup g/m w/70 h/175 i/70 a/20`:
+
+![setup](images/setup.png)
+
+#### Viewing the user's profile: `profile`
+
+Displays the user's information stored after [setup](#setting-up-a-user-profile-setup).
+
+Format: `profile`
+
+Example after entering `profile`:
+
+* The user's details are listed on the right.
+
+![profile](images/profile.png)
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Warning:**<br>
+
+This feature is only available provided you have [setup](#setting-up-a-user-profile-setup) a profile beforehand.
+
+</div>
+
+### Managing the food list
+
+#### Adding a food item : `add`
 
 Adds a food item with its calorie content.
 
@@ -161,9 +195,9 @@ Format: `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`
 
 * Adds a food item into the food list for the current day, together with its calorie content and meal type.
 * Each field can only be specified once.
-* `MEAL_TYPE` can only take on one of three values: breakfast, lunch or dinner.
-* `CALORIE` can only take in a non-negative integer that is less than 2147483648
 * `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not exceed 27 characters.
+* `CALORIE` can only take in a non-negative integer that is less than 2147483648.
+* `MEAL_TYPE` can only take on one of three values: breakfast, lunch or dinner.
 
 Example:
 
@@ -194,7 +228,7 @@ A food item will **not** be added into the food list if the resulting total calo
 
 </div>
 
-### Deleting a food item : `delete`
+#### Deleting a food item : `delete`
 
 Removes a food item from the displayed list of foods.
 
@@ -209,7 +243,7 @@ Example:
 * `delete 1` deletes the first item in the food list.
 * `list 2022-10-23` followed by `delete 1` deletes the first food item recorded on 23 October 2022. Refer to the `list` command [here](#listing-all-foods-for-a-day-list) for more information.
 
-### Editing a food item : `edit`
+#### Editing a food item : `edit`
 
 Edits a food item from the displayed list of foods.
 
@@ -219,10 +253,9 @@ Format: `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`
 * The index refers to the index shown in the displayed food lists.
 * The index **must be a positive** integer.
 * At least one of the optional fields must be provided.
+* `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not exceed 27 characters.
+* `CALORIE` can only take in a non-negative integer that is less than 2147483648.
 * `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner.
-* `CALORIE` can only take in a non-negative integer that is less than 2147483648
-* `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not
-  exceed 27 characters.
 
 Example:
 
@@ -253,7 +286,7 @@ More meal categories will be added, e.g. `snack`.
 
 </div>
 
-### Listing all foods for a day: `list`
+#### Listing all foods for a day: `list`
 
 Shows a list of all food items and their calories for the specified day (if any).
 
@@ -278,15 +311,16 @@ Example:
 
 </div>
 
-### Finding the calorie content of a food item: `find`
+### Managing calorie goals
+
+#### Finding the calorie content of a food item: `find`
 
 Finds the calorie content of a commonly-found food item.
 
 Format: `find FOOD_NAME`
 
 * By default, only the calorie contents of certain food items are included. Refer to the list of food items in the [FAQ](#faq).
-* If the user has entered a specific food item before, the `find` command will return the average caloric content of 
-that food item. _(This includes entries on previous days, **on top of** the current day's entries.)_
+* If the user has entered a specific food item before, the `find` command will return the average caloric content of that food item. _(This includes entries on previous days, **on top of** the current day's entries.)_
 
 Example:
 
@@ -302,7 +336,7 @@ Example:
 
 </div>
 
-### Setting a target calorie intake: `target`
+#### Setting a target calorie intake: `target`
 
 Sets a target calorie intake for the current day.
 
@@ -319,7 +353,7 @@ Example after entering `target 2500`:
 
 ![target](images/target.png)
 
-### Viewing a summary of the calorie intake progress: `review`
+#### Viewing a summary of the calorie intake progress: `review`
 
 Shows the total calories consumed, the calorie target and the deficient/excess amount of calories for the current day. The list of foods for the current day will also be displayed.
 
@@ -329,63 +363,12 @@ Example after entering `review`:
 
 ![review](images/review.png)
 
-### Setting up a user profile: `setup`
-
-Sets up a user profile.
-
-Format: `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE`
-
-* Sets up the user profile using the information provided by the user.
-* `GENDER` can only take 2 values: M or F (case-insensitive).
-* `WEIGHT` and `IDEAL_WEIGHT` can only take on integer values between 10 and 199 (in kg).
-* `HEIGHT` can only take on integer values between 100 and 219 (in cm).
-* `AGE` can only take on integer values between 1 and 99 (in years).
-
-Example:
-
-* `setup g/f w/50 h/165 i/48 a/20` sets up a user profile for a 20-year-old female who is 50kg and 165cm, 
-who has an ideal weight of 48kg.
-* `setup g/m w/70 h/175 i/70 a/20` sets up a user profile for a 20-year-old male who is 70kg and 175cm,
-who has an ideal weight of 70kg.
-
-<div id="setup-eg"></div>
-
-Example after entering `setup g/m w/70 h/175 i/70 a/20`:
-
-![setup](images/setup.png)
-
-### Viewing the user's profile: `profile`
-
-Displays the user's information stored after [setup](#setting-up-a-user-profile-setup).
-
-Format: `profile`
-
-Example after entering `profile`:
-
-* The user's details are listed on the right.
-
-![profile](images/profile.png)
-
-<div markdown="block" class="alert alert-warning">
-
-:exclamation: **Warning:**<br>
-
-This feature is only available provided you have [setup](#setting-up-a-user-profile-setup) a profile beforehand.
-
-</div>
-
-### Suggesting a daily calorie intake: `suggest`
+#### Suggesting a daily calorie intake: `suggest`
 
 Suggests an estimated daily calorie intake to allow the user to attain his/her ideal weight.
 
 Format: `suggest`
 
-Example after entering `suggest`:
-
-* `setup g/m w/82 h/178 i/75 a/22` followed by `suggest` results in the screen below, with the suggested amount of calories.
-
-![suggest](images/suggest-daily-calorie.png)
-
 <div markdown="block" class="alert alert-warning">
 
 :exclamation: **Warning:**<br>
@@ -393,7 +376,6 @@ Example after entering `suggest`:
 This feature is only available provided you have [setup](#setting-up-a-user-profile-setup) a profile beforehand.
 
 </div>
-
 
 Example after entering `suggest`:
 
@@ -407,8 +389,9 @@ The suggested amount of calorie is based on the example user profile created [he
 
 </div>
 
+### Fitness and health tips
 
-### Locating the nearest gym in NUS: `locate`
+#### Locating the nearest gym in NUS: `locate`
 
 Locates and ranks the nearest gyms to user's location in NUS.
 
@@ -432,7 +415,7 @@ More locations in NUS will be added.
 
 </div>
 
-### Suggesting a healthy-lifestyle tip: `tip`
+#### Suggesting a healthy-lifestyle tip: `tip`
 
 Suggests a random tip to help the user adopt a healthier lifestyle.
 
@@ -442,13 +425,23 @@ Example after entering `tip`:
 
 ![tip](images/tip.png)
 
-### Clearing all food items: `clear`
+### General
+
+#### Viewing help : `help`
+
+Shows a message explaining how to access the help page and information on the usage of commands.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+#### Clearing all food items: `clear`
 
 Clears all food items on all days from NutriGoals.
 
 Format: `clear`
 
-### Exiting the program: `exit`
+#### Exiting the program: `exit`
 
 Exits the program.
 
@@ -458,25 +451,31 @@ Format: `exit`
 
 ## FAQ
 
-**Q**: I do not have Java `11` installed in my Computer. How do I install it?<br>
-**A**: To download Java `11`, visit this [website](https://www.oracle.com/java/technologies/downloads/#java11) and download the 
-appropriate file for your computer's system (such as macOS and Windows).
+### I do not have Java `11` installed in my Computer. How do I install it?
 
-**Q**: How do I save my data in NutriGoals?<br>
-**A**: NutriGoals saves data automatically after every command that changes the data. There is no need to save manually.
+To download Java `11`, visit this [website](https://www.oracle.com/java/technologies/downloads/#java11) and download the appropriate file for your computer's system (such as macOS and Windows).
 
-**Q**: Where is my NutriGoals data stored?<br>
-**A**: When you use the application, a folder named `data` will be created in the same folder as `nutrigoals.jar`. Your 
-data is stored in the file named `nutrigoals.json`, which is located in the `Data` folder.
+### How do I save my data in NutriGoals?
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and replace the empty data file created with your original NutriGoals data file from its home folder.
+NutriGoals saves data automatically after every command that changes the data. There is no need to save manually.
 
-**Q**: Does NutriGoals need an internet connection to work?<br>
-**A**: No, NutriGoals can still work normally without an internet connection.
+### Where is my NutriGoals data stored?
 
-**Q**: What are the default food items for the [find](#finding-the-calorie-content-of-a-food-item-find) feature?<br>
-**A**: The food items are:<br>
+When you use the application, a folder named `data` will be created in the same folder as `nutrigoals.jar`. Your 
+data is stored in the file named `nutrigoals.json`, which is located in the `data` folder.
+
+### How do I transfer my data to another computer?
+
+Install the app in the other computer and replace the empty data file created with your original NutriGoals data file from its home folder.
+
+### Does NutriGoals need an internet connection to work?
+
+No, NutriGoals can still work normally without an internet connection.
+
+### What are the default food items for the [`find`](#finding-the-calorie-content-of-a-food-item-find) feature?<br>
+
+The food items are:
+
 * ban mian
 * bubble tea
 * chicken rice

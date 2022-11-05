@@ -3,6 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
+## Table of contents
+
 * Table of Contents
 {:toc}
 
@@ -90,8 +92,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified
-in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/nutrigoals/ui/Ui.java)
+**API**: [`Ui.java`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/nutrigoals/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -515,8 +516,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `NutriGoals` application and the **Actor** is the `user`, unless
-specified otherwise)
+For all use cases below, the **System** is the `NutriGoals` application and the **Actor** is the `user`, unless specified otherwise.
 
 **Use case: UC-1 List food items**
 
