@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalTeams.TYPICAL_MEMBERS;
+import static seedu.address.testutil.TypicalTeams.TYPICAL_MEMBERS_CARL;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,5 +25,9 @@ public class TypicalTasks {
 
     public static final Task TASK_1_DETAILS = new Task(new TaskName("task"),
             TYPICAL_MEMBERS, false,
+            LocalDateTime.parse("2023-12-25 23:59",  DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+
+    public static final Task TASK_2_DETAILS = new Task(new TaskName("task 123"),
+            TYPICAL_MEMBERS_CARL, false,
             LocalDateTime.parse("2023-12-25 23:59",  DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 }

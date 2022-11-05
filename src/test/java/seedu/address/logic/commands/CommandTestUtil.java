@@ -52,6 +52,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_SECOND_TEAM = "second";
 
+    public static final String VALID_DEADLINE = "2029-12-25 23:59";
+
     public static final String VALID_DESCRIPTION_SECOND_TEAM = "second team description";
 
 

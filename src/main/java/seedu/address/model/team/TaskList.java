@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.DuplicateTaskException;
 import seedu.address.model.person.exceptions.TaskNotFoundException;
+import seedu.address.model.team.exceptions.DuplicateTeamException;
 
 /**
  * A list of tasks to be completed by the team.
@@ -59,7 +60,7 @@ public class TaskList implements Iterable<Task> {
         }
 
         if (!target.equals(editedTask) && contains(editedTask)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTaskException();
         }
 
         internalList.set(index, editedTask);

@@ -17,6 +17,9 @@ public class TypicalTeams {
 
     public static final ArrayList<Person> TYPICAL_MEMBERS = new ArrayList<>(
             Arrays.asList(TypicalPersons.BENSON, TypicalPersons.ALICE));
+
+    public static final ArrayList<Person> TYPICAL_MEMBERS_CARL = new ArrayList<>(
+            Arrays.asList(TypicalPersons.BENSON, TypicalPersons.CARL));
     public static final ArrayList<Task> TYPICAL_TASKS = new ArrayList<>(
             Arrays.asList(TypicalTasks.TASK_1, TypicalTasks.TASK_2));
 
