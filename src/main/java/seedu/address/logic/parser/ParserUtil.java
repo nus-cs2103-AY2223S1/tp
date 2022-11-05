@@ -181,13 +181,13 @@ public class ParserUtil {
 
         //Check if date format is valid.
 
-        if (!Date.isValidDateFormat(date)) {
+        if (!Date.isValidDateFormat(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
 
         //Check if date is after current date and if it is allowed.
 
-        if (Date.isAfterCurrentDate(date) & !isFutureDateAllowed) {
+        if (Date.isAfterCurrentDate(trimmedDate) & !isFutureDateAllowed) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS_DOB);
         }
         return new Date(trimmedDate);

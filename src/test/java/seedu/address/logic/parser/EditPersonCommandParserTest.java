@@ -89,7 +89,7 @@ public class EditPersonCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_GENDER_DESC, Gender.MESSAGE_CONSTRAINTS); // invalid gender
-        assertParseFailure(parser, "1" + INVALID_DOB_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
+        assertParseFailure(parser, "1" + INVALID_DOB_DESC, Date.MESSAGE_CONSTRAINTS); // invalid dob
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -162,7 +162,7 @@ public class EditPersonCommandParserTest {
         expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // date
+        // dob
         userInput = targetIndex.getOneBased() + DOB_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withDob(VALID_DOB_AMY).build();
         expectedCommand = new EditPersonCommand(targetIndex, descriptor);
@@ -177,7 +177,7 @@ public class EditPersonCommandParserTest {
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + DOB_DESC_BOB + EMAIL_DESC_BOB + GENDER_DESC_BOB;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withGender(VALID_GENDER_BOB).build();
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withGender(VALID_GENDER_BOB).withDob(VALID_DOB_BOB).build();
         EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

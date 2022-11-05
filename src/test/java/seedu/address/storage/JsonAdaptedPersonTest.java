@@ -126,7 +126,7 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidDate_throwsIllegalValueException() {
+    public void toModelType_invalidDob_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_EMAIL,
                         VALID_ADDRESS, VALID_GENDER, INVALID_DOB, VALID_UID);
@@ -135,7 +135,7 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_nullDate_throwsIllegalValueException() {
+    public void toModelType_nullDob_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                         VALID_ADDRESS, VALID_GENDER, null, VALID_UID);

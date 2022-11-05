@@ -53,7 +53,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different dob -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withGender(VALID_DOB_BOB).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDob(VALID_DOB_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different gender -> returns false

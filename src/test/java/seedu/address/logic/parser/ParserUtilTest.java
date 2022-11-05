@@ -31,9 +31,9 @@ public class ParserUtilTest {
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_GENDER = "Female";
-    private static final String VALID_DOB = "12/12/2012";
+    private static final String VALID_DOB = "12/12/2000";
 
-    private static final String FUTURE_DOB = "12/12/2012";
+    private static final String FUTURE_DOB = "12/12/3000";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -342,7 +342,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDate_FutureDateAllowed_returnsDate() throws Exception {
+    public void parseDate_futureDateAllowed_returnsDate() throws Exception {
         Date expectedDob = new Date(FUTURE_DOB);
         assertEquals(expectedDob, ParserUtil.parseDate(FUTURE_DOB, Boolean.TRUE));
     }

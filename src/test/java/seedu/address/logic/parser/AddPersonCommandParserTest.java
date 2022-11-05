@@ -50,7 +50,7 @@ public class AddPersonCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withGender(VALID_GENDER_BOB).build();
+        Person expectedPerson = new PersonBuilder(BOB).withGender(VALID_GENDER_BOB).withDob(VALID_DOB_BOB).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -82,9 +82,9 @@ public class AddPersonCommandParserTest {
                 + ADDRESS_DESC_BOB + GENDER_DESC_AMY + GENDER_DESC_BOB + DOB_DESC_BOB,
                 new AddPersonCommand(expectedPerson));
 
-        // multiple dates - last date accepted
+        // multiple dobs - last dob accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + GENDER_DESC_BOB + DOB_DESC_BOB + DOB_DESC_AMY,
+                + ADDRESS_DESC_BOB + GENDER_DESC_BOB + DOB_DESC_AMY + DOB_DESC_BOB,
                 new AddPersonCommand(expectedPerson));
     }
 
@@ -120,7 +120,7 @@ public class AddPersonCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + VALID_GENDER_BOB + DOB_DESC_BOB, expectedMessage);
 
-        // missing date prefix
+        // missing dob prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + GENDER_DESC_BOB + VALID_DOB_BOB, expectedMessage);
 
@@ -151,7 +151,7 @@ public class AddPersonCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_GENDER_DESC + DOB_DESC_BOB, Gender.MESSAGE_CONSTRAINTS);
 
-        // invalid date
+        // invalid dob
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + GENDER_DESC_BOB + INVALID_DOB_DESC, Date.MESSAGE_CONSTRAINTS);
 
