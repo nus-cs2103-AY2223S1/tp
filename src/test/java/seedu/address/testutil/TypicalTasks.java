@@ -16,14 +16,14 @@ public class TypicalTasks {
             new TaskBuilder()
                     .withTitle("Add tasks to list")
                     .withCompleted(false)
-                    .withDeadline("?")
+                    .withDeadline("UNSPECIFIED")
                     .withContacts("Alice Pauline")
                     .build();
     public static final Task TASK_TWO =
             new TaskBuilder()
                     .withTitle("Assign contacts to task")
                     .withCompleted(false)
-                    .withDeadline("01 January 2023")
+                    .withDeadline("1 January 2023")
                     .withProject("CS2103T")
                     .withContacts("George Best")
                     .build();

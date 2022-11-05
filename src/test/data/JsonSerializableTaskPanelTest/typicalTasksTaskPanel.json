@@ -9,7 +9,7 @@
   }, {
     "title": "Assign contacts to task",
     "isCompleted": "false",
-    "deadline": "01 January 2023",
+    "deadline": "1 January 2023",
     "project": "CS2103T",
     "assigned": [ "George Best" ]
   } ]

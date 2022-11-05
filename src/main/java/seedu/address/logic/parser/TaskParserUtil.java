@@ -52,7 +52,7 @@ public class TaskParserUtil {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Deadline.MESSAGE_PARSE_FAILURE);
         }
 
         if (trimmedDeadline.equals("?") || trimmedDeadline.equals(Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER)) {
@@ -61,11 +61,10 @@ public class TaskParserUtil {
 
         List<Date> parseResult = new PrettyTimeParser().parse(trimmedDeadline);
 
-        if (!parseResult.isEmpty()) {
-            return Deadline.of(TaskParserUtil.convertToLocalDate(parseResult.get(0)));
-        } else {
+        if (parseResult.isEmpty()) {
             throw new ParseException(Deadline.MESSAGE_PARSE_FAILURE);
         }
+        return Deadline.of(TaskParserUtil.convertToLocalDate(parseResult.get(0)));
     }
 
     /**
@@ -171,10 +170,10 @@ public class TaskParserUtil {
      * correct format.
      */
     public static LocalDate convertStringToLocalDate(String date) {
-        List<Date> result = new PrettyTimeParser().parse(date);
         if (date.trim().equals("?") || date.trim().equals(Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER)) {
             return Deadline.UNSPECIFIED.getDate();
         }
+        List<Date> result = new PrettyTimeParser().parse(date);
         return TaskParserUtil.convertToLocalDate(result.get(0));
     }
 

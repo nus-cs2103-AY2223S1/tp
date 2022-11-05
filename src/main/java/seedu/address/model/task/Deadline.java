@@ -7,6 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.regex.Pattern;
 
 /**
  * Represents a deadline for a task.
@@ -22,8 +23,12 @@ public class Deadline implements Comparable<Deadline> {
             DateTimeFormatter.ofPattern("EEE, dd MMM yyyy");
     public static final DateTimeFormatter READABLE_FORMATTER_WITHOUT_YEAR =
             DateTimeFormatter.ofPattern("EEE, dd MMM");
+    public static final Pattern PATTERN_UNSPECIFIED = Pattern.compile("\\?");
+    public static final Pattern PATTERN_NATURAL_LANGUAGE = Pattern.compile("\\p{Alpha}[\\p{Alpha} ]*");
+    public static final Pattern PATTERN_ENGLISH_DATE =
+            Pattern.compile("([1-9]|1[0-9]|2[0-9]/3[0-1]{1,2}) (\\p{Alnum}+) (\\d{4})");
+
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-    private static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ?]+$";
 
     private final LocalDate date;
 
@@ -58,7 +63,9 @@ public class Deadline implements Comparable<Deadline> {
      * Returns true if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
-        return !test.isBlank() && test.matches(VALIDATION_REGEX);
+        return PATTERN_ENGLISH_DATE.matcher(test).matches()
+                || PATTERN_NATURAL_LANGUAGE.matcher(test).matches()
+                || PATTERN_UNSPECIFIED.matcher(test).matches();
     }
 
     /**
@@ -102,8 +109,6 @@ public class Deadline implements Comparable<Deadline> {
 
     /**
      * Formats the Deadline into a more readable format.
-     * //TODO: Update
-     * @return
      */
     public String formatForUi() {
         LocalDate startOfYear = LocalDate.now().with(firstDayOfYear());

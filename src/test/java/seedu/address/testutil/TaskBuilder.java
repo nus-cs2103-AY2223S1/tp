@@ -18,7 +18,6 @@ public class TaskBuilder {
 
     public static final String DEFAULT_TITLE = "Add task functionality to Arrow";
     public static final boolean DEFAULT_IS_COMPLETED = false;
-    public static final String DEFAULT_DEADLINE = "?";
 
     private Title title;
     private boolean isCompleted;
