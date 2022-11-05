@@ -1237,8 +1237,6 @@ testers are expected to do more *exploratory* testing.
     7. Note the incorrect command: `filter` or `filter /all`<br>
        Expected: The list of residents displayed does not change. Error details shown in the status message. 
        
-    8. Other incorrect commands to try: `list asdfghjkl`, `list /all`<br>
-       Expected: Similar to previous.
 
 2. Listing all resident fields after calling `showonly` or `hideonly` (sequential testing)
 
@@ -1256,9 +1254,7 @@ testers are expected to do more *exploratory* testing.
        
     4. Note the incorrect command: `showonly` or `hideonly`.
        Expected: The set of fields displayed does not change. Error details shown in the status message.
-       
-    5. Other incorrect commands to try: `list asdfghjkl`, `list /all`<br>
-       Expected: Similar to previous.
+
        
 #### Showing/hiding and resetting resident fields
 
@@ -1272,8 +1268,8 @@ testers are expected to do more *exploratory* testing.
        columns are shown in the table.
        
     3. Enter `showonly r m g h`.
-       Expected: The set of resident fields being displayed does not change as the specified fields are not present
-       in the current table. Error details are shown in the status message. 
+       Expected: Invalid columns specified. The set of resident fields being displayed does not change as the specified 
+       fields are not present in the current table. Error details are shown in the status message. 
        
     4. Enter `showonly n`.
        Expected: The list of residents being displayed does not change, but only the `name` column is shown in 
@@ -1297,8 +1293,8 @@ testers are expected to do more *exploratory* testing.
        columns are shown in the table.
 
     3. Enter `hideonly r h`.
-       Expected: The set of resident fields being displayed does not change as the specified fields are not present
-       in the current table. Error details are shown in the status message.
+       Expected: Invalid columns specified. The set of resident fields being displayed does not change as the specified 
+       fields are not present in the current table. Error details are shown in the status message.
 
     4. Enter `hideonly p e`.
        Expected: The list of residents being displayed does not change, but only the `name` column is shown in
