@@ -1,8 +1,11 @@
 package modtrekt.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +14,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.UnixStyleUsageFormatter;
 
+import modtrekt.commons.core.LogsCenter;
 import modtrekt.commons.core.Messages;
 import modtrekt.commons.util.StringUtil;
 import modtrekt.logic.commands.AddModuleCommand;
@@ -39,6 +43,7 @@ public class ModtrektParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Logger LOGGER = LogsCenter.getLogger(ModtrektParser.class);
 
     /**
      * Parses user input into command for execution.
@@ -53,7 +58,7 @@ public class ModtrektParser {
         }
         // devs: Instantiate your commands here by passing it to addCommand() -
         //       you don't need any CommandParser classes anymore.
-        JCommander jcommander = JCommander.newBuilder().programName("")
+        JCommander jcommander = JCommander.newBuilder().acceptUnknownOptions(false).programName("")
                 // tasks
                 .addCommand(ListTasksCommand.COMMAND_PHRASE, new ListTasksCommand(),
                         ListTasksCommand.COMMAND_ALIAS
@@ -96,6 +101,7 @@ public class ModtrektParser {
 
             // Parse the command tokens with JCommander.
             // Invalid commands as well as missing, duplicate, or invalid options will throw a ParameterException.
+            validateCommandArity(tokens);
             jcommander.parse(tokens.toArray(new String[0]));
 
             // This cast is safe since we only pass Command objects to jcommander::addCommand.
@@ -134,6 +140,51 @@ public class ModtrektParser {
             // it displays the error message in the UI.
             throw new ParseException(usageBuilder.toString());
         }
+    }
+
+    /**
+     * Validates the arity of commands which require a main parameter.
+     * JCommander does this validation too late (after conversion to the parameter value)
+     * which may throw an exception with a wrong error message, hence the need for this.
+     * Currently only validates the few commands which throw the wrong error message when the exception
+     * is thrown due to the feature freeze.
+     */
+    private void validateCommandArity(List<String> tokens) {
+        requireNonNull(tokens);
+        if (tokens.isEmpty()) {
+            return; // missing command phrase, can't do anything
+        }
+        String phrase = tokens.get(0);
+        Set<String> targets = Set.of(
+                RemoveTaskCommand.COMMAND_WORD, RemoveTaskCommand.COMMAND_ALIAS,
+                DoneTaskCommand.COMMAND_WORD, UndoneTaskCommand.COMMAND_WORD,
+                EditTaskCommand.COMMAND_WORD
+        ); // these are the task commands that require a main parameter (we want to check that exactly one is present)
+        if (!targets.contains(phrase)) {
+            return; // not a command that requires arity validation, nothing to do
+        }
+
+        // We must have exactly as many values as there are parameters (the main parameter counts as 1 and is required).
+        long numberOfFlags = tokens.stream().filter(token -> token.startsWith("-")).count();
+        long numberOfParameters = numberOfFlags + 1; // +1 to include the main parameter
+        long numberOfValues = tokens.size() - numberOfFlags - 1; // -1 to exclude the command phrase
+
+        LOGGER.fine(() -> "tokens: " + tokens);
+        LOGGER.info(String.format("got %d of %d value(s) expected for `%s`",
+                numberOfValues, numberOfParameters, phrase)
+        );
+
+        // Throw an exception if there is are missing or excess values.
+        if (numberOfValues < numberOfParameters) { // missing values
+            // JCommander will take care of the exception for missing parameters,
+            // and we can't change this error message displayed because of the feature freeze.
+            return; // can't do anything
+        } else if (numberOfValues > numberOfParameters) { // excess values
+            throw new ParameterException(
+                    "Too many values provided. If your values contain spaces, surround them with quotes."
+            );
+        }
+        // else: correct number of values, nothing to do
     }
 
     private Command parseLegacyCommand(String userInput) throws ParseException {
