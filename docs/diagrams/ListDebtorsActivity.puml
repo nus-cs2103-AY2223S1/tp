@@ -1,0 +1,16 @@
+@startuml
+start
+:user requests to list debtors;
+if () is (amount is specified) then
+:PayMeLah finds persons who owe at least the amount specified;
+else (else)
+:PayMeLah finds persons who owe any amount;
+endif
+:PayMeLah displays the list of person(s) that satisfy the condition;
+if () is (at least 1 person listed) then
+:PayMeLah shows message for command success;
+else (else)
+:PayMeLah shows message for no debtors found;
+endif
+stop
+@enduml
