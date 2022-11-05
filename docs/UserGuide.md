@@ -82,7 +82,6 @@ In case you are wondering why certain texts are styled differently, here are the
 2. **Words in bold** are phrases that we want you to read.
 3. [Links in blue](#) will navigate you to place where you can find more explanation about the words.
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Installation
@@ -197,7 +196,13 @@ If your changes to the data file makes its format invalid, SoConnect will discar
 
 Adds a contact to your SoConnect.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The tag has to be created first before you can add it into a contact. 
+
+Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
+</div>
 
 * Duplicate name is not allowed. A name is considered duplicate if it has the exact same characters (case-sensitive) with an existing contact's name. For example, `Alex Yeoh` and `Alex yeoh` is considered different. This is to increase users' easiness in differentiating between contacts in the future. It is also to prevent users from creating new contacts when their actual intention is to edit a field from existing contacts.
 * `NAME` currently only accepts alphanumeric values. This is to prevent users from supplying mistyped names into their contacts. However, numbers are still accepted to provide users a mean to differentiate between similar names and to account for special names that originally have numbers in it. 
@@ -334,12 +339,14 @@ Format: `clear`
 
 #### 7.2.8. Creating a Tag: `tag create`
 
-Creates a new tag
+You can create a new `TAG` and add it into the tag list.
 
 Format: `tag create t/TAG`
 
-Example:
-* `tag create t/family` creates a `family` tag.
+Steps to take:
+1. Input `tag create t/Test` into the Command box and press `Enter` on your keyboard. 
+2. You should now see `New Tag added: [Test]` in the Command result box just like the image below.
+
 
 <br>
 

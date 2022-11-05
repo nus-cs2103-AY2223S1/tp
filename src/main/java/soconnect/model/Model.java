@@ -1,6 +1,8 @@
 package soconnect.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -274,11 +276,25 @@ public interface Model {
     void deleteTag(Tag tag);
 
     /**
-     * Returns the right tag from the Tag list.
+     * Returns the right tag from the taglist.
      *
      * @param tag The reference tag.
-     * @return the tag that has the same name as the reference tag.
+     * @return The tag that has the same name as the reference tag.
      */
     Tag getTagFromList(Tag tag);
+
+    /**
+     * Gets the tagList.
+     *
+     * @return The tagList.
+     */
+    ArrayList<Tag> getTagList();
+
+    /**
+     * Sets the tagList in SoConnect.
+     *
+     * @param tagList The tagList to be set.
+     */
+    void setTagList(List<Tag> tagList);
 
 }
