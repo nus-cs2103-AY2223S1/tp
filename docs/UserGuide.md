@@ -697,12 +697,11 @@ Reverses the most recent command.
 * If there are no commands to undo, an error message will be shown.
 * Only commands that change the state of HealthContact can be undone. (Commands such as list, find, select cannot be undone)
 
-<<<<<<< HEAD
 #### Examples:
 
 =======
 Example:
->>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
+
 * ```undo``` undoes the most recent command.
 
 1. Original Data
@@ -727,13 +726,15 @@ Reverses the most recent undo command.
 * The command word is `redo`.
 * The command can be used multiple times to redo multiple commands.
 * If there are no commands to redo, an error message will be shown.
+* Executing any command other than undo will clear the redo stack. (i.e. Redo will not work after executing any command other than undo)
+
 
 <<<<<<< HEAD
 #### Examples:
 
 =======
 Example:
->>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
+
 * ```redo``` redoes the most recent undo command.
 
 1. Original Data
