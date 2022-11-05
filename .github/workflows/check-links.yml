@@ -1,0 +1,15 @@
+name: Check all links on website are valid
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  check-links:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set up repository
+        uses: actions/checkout@main
+      - name: Install Jekyll
+        run: apt-get update && apt-get install -y jekyll
+      - name: Set up server and check all links are valid
+        working-directory: ${{ github.workspace }}/cli-test/linkchecker
+        run: python serve-and-check.py
