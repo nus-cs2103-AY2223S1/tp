@@ -6,7 +6,7 @@ import seedu.hrpro.logic.commands.exceptions.CommandException;
 import seedu.hrpro.model.Model;
 
 /**
- * Sorts the projects in the project book by deadline.
+ * Sorts the projects in HR Pro Max++ by deadline.
  */
 public class SortCommand extends Command {
 

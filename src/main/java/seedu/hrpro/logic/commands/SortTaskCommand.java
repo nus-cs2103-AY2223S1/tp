@@ -6,7 +6,7 @@ import seedu.hrpro.logic.commands.exceptions.CommandException;
 import seedu.hrpro.model.Model;
 
 /**
- * Sorts the tasks by deadline.
+ * Sorts the tasks in HR Pro Max++ by deadline.
  */
 public class SortTaskCommand extends Command {
     public static final String COMMAND_WORD = "sorttask";

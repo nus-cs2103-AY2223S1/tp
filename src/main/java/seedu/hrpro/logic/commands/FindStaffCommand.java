@@ -8,7 +8,7 @@ import seedu.hrpro.model.Model;
 import seedu.hrpro.model.staff.StaffNameContainsKeywordsPredicate;
 
 /**
- * Finds a staff within the currently active project in HR Pro Max++.
+ * Finds a staff within the currently displayed staff list in HR Pro Max++.
  */
 public class FindStaffCommand extends Command {
 

@@ -37,7 +37,7 @@ public class ModelManager implements Model {
     private final ArrayList<Task> targetTask = new ArrayList<>();
 
     /**
-     * Initializes a ModelManager with the given hrPro and userPrefs.
+     * Initializes a ModelManager with the given {@code hrPro} and {@code userPrefs}.
      */
     public ModelManager(ReadOnlyHrPro hrPro, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(hrPro, userPrefs);
@@ -253,6 +253,12 @@ public class ModelManager implements Model {
     //=========== Tasks ================================================================================
 
     @Override
+    public boolean isValidTaskIndex(Index taskIndex) {
+        requireNonNull(taskIndex);
+        return taskIndex.getZeroBased() < this.filteredTasks.size();
+    }
+
+    @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return hrPro.hasTask(task);
@@ -301,6 +307,15 @@ public class ModelManager implements Model {
         setTask(task, newTask);
     }
 
+    @Override
+    public Optional<Task> getTaskWithIndex(Index taskIndex) {
+        if (!isValidTaskIndex(taskIndex)) {
+            return Optional.empty();
+        }
+        return Optional.<Task>of(this.filteredTasks.get(taskIndex.getZeroBased()));
+    }
+
+    @Override
     public void sortTasks() {
         hrPro.sortTasks();
     }

@@ -5,7 +5,6 @@ import static seedu.hrpro.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.hrpro.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.hrpro.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.util.List;
 import java.util.Optional;
 
 import seedu.hrpro.commons.core.Messages;
@@ -55,20 +54,18 @@ public class EditTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
+        Optional<Task> taskToEdit = model.getTaskWithIndex(index);
+        Task toEdit = taskToEdit.orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX));
 
-        Task taskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        Task editedTask = createEditedTask(toEdit, editTaskDescriptor);
 
-        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+        if (!toEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        model.setTask(taskToEdit, editedTask);
+        model.setTask(toEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
