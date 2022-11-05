@@ -1,10 +1,13 @@
-<div align="center">
-<img src="docs/images/Logo.png" width="360">
-
-[![CI Status](https://github.com/AY2223S1-CS2103T-T11-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T11-4/tp/actions)
-[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T11-4/tp/branch/master/graph/badge.svg?token=SQHP14Y75Q)](https://codecov.io/gh/AY2223S1-CS2103T-T11-4/tp)
-
-</div>
+<p align="center">
+    <img src="docs/images/Logo.png" width="360">
+</p>
+<p align="center">
+    <a href="https://github.com/AY2223S1-CS2103T-T11-4/tp/actions">
+        <img src="https://github.com/AY2223S1-CS2103T-T11-4/tp/workflows/Java%20CI/badge.svg" /></a>
+    <a href="https://codecov.io/gh/AY2223S1-CS2103T-T11-4/tp">
+        <img alt="Coverage" src="https://codecov.io/gh/AY2223S1-CS2103T-T11-4/tp/branch/master/graph/badge.svg?token=SQHP14Y75Q">
+    </a>
+</p>
 
 Mass Linkers is a powerful Desktop application tool that helps Computer Science (CS) students find study support from batchmates, making it easier to form study groups and look for module-related guidance.<br>
 
