@@ -469,7 +469,7 @@ The following activity diagram below illustrates the general flow of the user's 
 **Aspect: How the add order command receives input and executes**
 * **Alternative 1**: Single level command, user inputs all required information in one long command.
     * Pros: Easier to implement as the implementation will follow the already in-place command execution structure.
-    * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data (e.g, enter multiple instances of "i/ITEM_NAME q/QUANTITY" on the same line of input).
+    * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data (e.g, enter multiple instances of `i/ITEM_NAME q/QUANTITY` on the same line of input).
 * **Alternative 2 (current choice)**: Multi-level command. User enters inputs in levels (customer data -> multiple iterations of item/quantity information -> "done"/"cancel" ).
   * Pros: Better user experience. Users can be sure that any previously entered input is already validated by the application, making it less overwhelming to input large amounts of information.
   * Cons: Harder to implement as it deviates from the original command execution structure (where one instance of user input relates to one full command execution).
