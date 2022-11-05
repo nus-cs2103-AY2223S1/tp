@@ -577,7 +577,7 @@ After executing the CalculateCommand:
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the CalculateCommand:**<br>
-* Please do not enter spaces, e.g.`5 + 2 * (4 - 2)` does not work.
+* Please do not enter spaces, e.g.`calc 5 + 2 * (4 - 2)` does not work.
 </div>
 <div style="page-break-after: always;"></div>
 
