@@ -107,8 +107,7 @@ public class AddCommandParserTest {
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB,
-                String.format(MESSAGE_INVALID_ARGUMENTS, VALID_NAME_BOB)
-                        + "\n" + AddCommand.MESSAGE_USAGE);
+                String.format(MESSAGE_INVALID_ARGUMENTS, VALID_NAME_BOB));
 
         // missing telegram prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -119,7 +118,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
                         + VALID_TELEGRAM_BOB + VALID_GITHUB_BOB,
                 String.format(MESSAGE_INVALID_ARGUMENTS, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
-                        + VALID_TELEGRAM_BOB + VALID_GITHUB_BOB) + "\n" + AddCommand.MESSAGE_USAGE);
+                        + VALID_TELEGRAM_BOB + VALID_GITHUB_BOB));
     }
 
     @Test
@@ -160,7 +159,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB + INTEREST_DESC_SWE + INTEREST_DESC_AI,
-                String.format(MESSAGE_INVALID_ARGUMENTS, PREAMBLE_NON_EMPTY)
-                        + "\n" + AddCommand.MESSAGE_USAGE);
+                String.format(MESSAGE_INVALID_ARGUMENTS, PREAMBLE_NON_EMPTY));
     }
 }

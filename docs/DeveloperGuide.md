@@ -655,6 +655,11 @@ Currently, the _Students panel_ does not scroll to the bottom when a batchmate i
 
 Implementing the _Students panel_ to display the most-recently added batchmate would help in enhancing the user experience and users do not need to manually scroll to the bottom each time.
 
+### 4. Display students by alphabetical order
+Currently, students are displayed in the _Students panel_ based on chronological order, the most recently added student would be the last. 
+
+Looking ahead, we would implement the display of students to be based on alphabetical order of their names. This would make it much more intuitive and easier to search for users.
+
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Instructions for manual testing**
 

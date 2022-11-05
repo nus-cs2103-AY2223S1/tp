@@ -30,7 +30,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + DeleteCommand.MESSAGE_USAGE);
+            throw new ParseException(pe.getMessage());
         }
     }
 

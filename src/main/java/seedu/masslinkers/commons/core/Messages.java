@@ -11,7 +11,6 @@ public class Messages {
     public static final String MESSAGE_MISSING_ARGUMENTS = "Missing arguments for the given command! \n%1$s";
     public static final String MESSAGE_INVALID_ARGUMENTS = "Input with missing parameter prefixes found! \n"
             + "Invalid Input: %1$s";
-    public static final String MESSAGE_INVALID_INPUT = "%1$s should not have any spaces.";
     public static final String MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX = "The student index provided is invalid or "
             + "not a non-zero unsigned integer.";
     public static final String MESSAGE_PHONE_WARNING = "This student's phone number appears to be invalid to "

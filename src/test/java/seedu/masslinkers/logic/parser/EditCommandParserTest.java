@@ -65,7 +65,7 @@ public class EditCommandParserTest {
     public void parse_missingParts_failure() {
         // no index specified
         assertParseFailure(parser, VALID_NAME_AMY, String.format(MESSAGE_INVALID_ARGUMENTS,
-                VALID_NAME_AMY.split("\\s+")[0]) + "\n" + EditCommand.MESSAGE_USAGE);
+                VALID_NAME_AMY.split("\\s+")[0]));
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -77,20 +77,17 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX
-                + "\n" + EditCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX
-                + "\n" + EditCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", String.format(MESSAGE_INVALID_ARGUMENTS,
-                "some") + "\n" + EditCommand.MESSAGE_USAGE);
+                "some"));
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 o/ string", String.format(MESSAGE_UNEXPECTED_PREFIX, "o/")
-                + "\n" + EditCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "1 o/ string", String.format(MESSAGE_UNEXPECTED_PREFIX, "o/"));
     }
 
     @Test
