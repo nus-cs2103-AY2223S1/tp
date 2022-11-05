@@ -202,7 +202,7 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 ![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How many criteria should the sort command accept**
 
@@ -253,7 +253,7 @@ _{To add sequence diagram}_
 
 _{To add activity diagram}_
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How alias command is implemented:**
 
@@ -282,7 +282,7 @@ Practical Assessment for the 5th student in FRIDAY. `GradeCommandParser` checks 
 The following Sequence Diagram shows the aforementioned steps.
 <img src="images/GradeSequenceDiagram.png" width="574" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Should we allow users to determine the examinations:**
 * **Alternative 1 (current choice): Fix the examinations in the list of grades for every student**
