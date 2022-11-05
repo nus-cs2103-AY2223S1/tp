@@ -152,9 +152,10 @@ The person model now contains a `Tag` field.
 `Tag` is implemented as a class where it contains a `final string value`, `final static string`
 `MESSAGE_CONSTRAINTS` and `final static string` `VALIDATION_REGEX`.
 - Tag field's `VALIDATION_REGEX` ensures that only `Tag` values of `SECURED` or `POTENTIAL` are accepted.
-- Tag is implemented as a Set which means a Person object can have more than one tag. However, due to limitations we were not able to change set a 1 tag constraint to the tag field since the logic behind the 2 tags are mutually exclusive.
+- Tag is implemented as a Set which means a Person object can have more than one tag.
 
 **Improvements**
+- Due to limitations we were not able to set an ideal 1 tag constraint to the tag field since the logic behind the 2 tags are mutually exclusive.
 - A check should be made to ensure that a person only has one tag to prevent one client from having both mutually exclusive tags.
 
 ##### Enhancement 3 : FilePath
