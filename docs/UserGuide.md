@@ -30,7 +30,7 @@ tasks done faster than traditional GUI apps.
 
     * **`list`** : Lists all students.
 
-    * **`add`**`n/John Doe m/CS2103T s/E1234567` : <br> Adds a student
+    * **`add`**`n/John Doe m/CS2103T id/E1234567` : <br> Adds a student
       named `John Doe` to the StudMap.
 
     * **`delete`**`3` : Deletes the 3rd student shown in the current list.
@@ -84,7 +84,7 @@ Format: `help`
 
 Adds a student to the StudMap.
 
-Format: `add n/NAME m/MODULE s/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​`
+Format: `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 A student can have any number of tags (including 0)
@@ -92,9 +92,9 @@ A student can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe m/CS2103T s/E1234567`
-* `add n/Betsy Crowe t/PotentialTA e/betsycrowe@example.com s/E3141592 m/CS2101 p/1234567`
-* `add n/Silos Yao t/StrongStudent g/silosyao s/E1234567 m/MA5203`
+* `add n/John Doe m/CS2103T id/E1234567`
+* `add n/Betsy Crowe t/PotentialTA e/betsycrowe@example.com id/E3141592 m/CS2101 p/1234567`
+* `add n/Silos Yao t/StrongStudent g/silosyao id/E1234567 m/MA5203`
 
 ### Listing all students : `list`
 
@@ -106,7 +106,7 @@ Format: `list`
 
 Edits an existing student in the StudMap.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [id/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
   The index **must be a positive integer** 1, 2, 3, …​ or use `all` to edit all students currently displayed.
@@ -430,10 +430,10 @@ the data of your previous StudMap home folder.
 
 Action | Format, Examples
 -------|------------------
-**[Add](#adding-a-student-add)** | `add n/NAME m/MODULE s/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T s/E1234567 g/user1 h/@user1 t/friends t/owesMoney`
+**[Add](#adding-a-student-add)** | `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T id/E1234567 g/user1 h/@user1 t/friends t/owesMoney`
 **[Clear](#clearing-all-entries--clear)** | `clear`
 **[Delete](#deleting-a-student--delete)** | `delete INDEX`<br> e.g., `delete 3`
-**[Edit](#editing-a-student--edit)** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
+**[Edit](#editing-a-student--edit)** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [id/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
 **[Find](#locating-students-by-name-find)** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **[List](#listing-all-students--list)** | `list`
 **[Help](#viewing-help--help)** | `help`

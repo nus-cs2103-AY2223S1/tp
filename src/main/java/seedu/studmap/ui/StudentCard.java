@@ -112,7 +112,7 @@ public class StudentCard extends UiPart<Region> {
         TextFlow partTextFlow = new TextFlow(participationRateName, participationRateLabel);
         participationRate.setGraphic(partTextFlow);
 
-        Label assignmentRateName = new Label("Unmarked: ");
+        Label assignmentRateName = new Label("Ungraded: ");
         participationRateName.setId("info");
         Label assignmentRateLabel = new Label(String.format("%d",
                 student.getAssignmentUnmarkedCount()));
