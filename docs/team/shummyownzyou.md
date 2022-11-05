@@ -9,8 +9,9 @@ TrackAScholar is a desktop application used for managing scholarship application
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java, and has about 14 kLoC.
 
-* **New Feature**: Added the ability to filter applicants by application status together with Benjy: [#56](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/56), [#62](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/62), [#68](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/68)
+* **New Feature**: Added the ability to filter applicants by their scholarship application status: [#56](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/56), [#62](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/62), [#68](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/68)
   * Justification: Allows administrative staff to manage scholarship applicants more easily by organising them based on their specific application status.
+  * Credits: Developed in tandem with Benjy's help.
   
 * **New Feature**: Added the ability to sort applicants by name, scholarship or application status: [#85](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/85), [#87](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/87), [#88](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/88), [#92](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/92)
   * Justification: Allows administrative staff to manage scholarship applicants more easily by sorting them based on their name or scholarship.
