@@ -26,7 +26,7 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_NAME_POTATOES = "Potatoes";
     public static final String VALID_ITEM_QUANTITY_POTATOES = "10";
     public static final String VALID_ITEM_UNIT_POTATOES = "kg";
-    public static final String VALID_ITEM_BOUGHT_DATE_POTATOES = "11-11-2022";
+    public static final String VALID_ITEM_BOUGHT_DATE_POTATOES = "11-10-2022";
     public static final String VALID_ITEM_EXPIRY_DATE_POTATOES = "11-11-2022";
     public static final String VALID_ITEM_PRICE_POTATOES = "10.30";
     public static final String VALID_ITEM_REMARKS_POTATOES = "For Mashed Potatoes";
@@ -34,7 +34,7 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_NAME_CUCUMBERS = "Cucumbers";
     public static final String VALID_ITEM_QUANTITY_CUCUMBERS = "2000";
     public static final String VALID_ITEM_UNIT_CUCUMBERS = "grams";
-    public static final String VALID_ITEM_BOUGHT_DATE_CUCUMBERS = "12-12-2022";
+    public static final String VALID_ITEM_BOUGHT_DATE_CUCUMBERS = "12-10-2022";
     public static final String VALID_ITEM_EXPIRY_DATE_CUCUMBERS = "12-12-2022";
     public static final String VALID_ITEM_PRICE_CUCUMBERS = "8";
     public static final String VALID_ITEM_REMARKS_CUCUMBERS = "For Salad";

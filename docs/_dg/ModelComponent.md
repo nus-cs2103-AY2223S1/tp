@@ -1,5 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-**API** : [`Model.java`](/src/main/java/seedu/foodrem/model/Model.java)
+The Model component holds the data of the App in memory.
+
+**API** : [Model.java]({{ page.master_branch }}/{{ page.main_src }}/model/Model.java)
 
 ![](images/ModelClassDiagram.png)
 

@@ -3,7 +3,7 @@ layout: page
 title: Setting up and getting started
 ---
 
-{% include toc.md header=true %}
+{% include toc.md header=true ordered=true %}
 
 ## Setting Up The Project in Your Computer
 
