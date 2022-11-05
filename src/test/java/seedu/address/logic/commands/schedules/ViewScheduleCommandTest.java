@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
 
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,9 +42,15 @@ public class ViewScheduleCommandTest {
         ScheduleContainsKeywordsPredicate secondPredicate =
                 new ScheduleContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        ViewScheduleCommand viewFirstCommand = new ViewScheduleCommand(firstPredicate);
-        ViewScheduleCommand viewFirstCommandCopy = new ViewScheduleCommand(firstPredicate);
-        ViewScheduleCommand viewSecondCommand = new ViewScheduleCommand(secondPredicate);
+        Set<String> first = new HashSet<>();
+        first.add("first");
+
+        Set<String> second = new HashSet<>();
+        second.add("second");
+
+        ViewScheduleCommand viewFirstCommand = new ViewScheduleCommand(firstPredicate, first);
+        ViewScheduleCommand viewFirstCommandCopy = new ViewScheduleCommand(firstPredicate, first);
+        ViewScheduleCommand viewSecondCommand = new ViewScheduleCommand(secondPredicate, second);
 
 
         // same object -> returns true
