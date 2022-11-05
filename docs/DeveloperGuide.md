@@ -170,7 +170,7 @@ Classes used by multiple components are in the `seedu.boba.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-### \[Insert Numbering\] Add feature
+### Add feature
 The Add feature is facilitated by `LogicManager`. The `AddCommandParser` parses the command arguments, and returns
 an `AddCommand` that is executed by the `LogicManager`.
 
@@ -210,7 +210,7 @@ The following activity diagram summarizes the flow of when a user enters an add 
 * **Future Extension:** bobaBot can support adding more customer details such as birthday month to provide more timely deals for customers.
 
 
-### \[Insert Numbering\] Edit feature
+### Edit feature
 The Edit feature is facilitated by `LogicManager`. The `EditCommandParser` parses the command arguments, and returns
 an `EditCommand` that is executed by the `LogicManager`.
 
