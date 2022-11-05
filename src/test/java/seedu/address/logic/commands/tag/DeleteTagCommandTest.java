@@ -18,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EditPersonDescriptor;
 import seedu.address.logic.commands.EditTaskDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -74,6 +75,23 @@ public class DeleteTagCommandTest {
                 commandResult.getFeedbackToUser());
 
         assertEquals(expectedTags, model.getFilteredTagList());
+    }
+
+    @Test
+    public void execute_tagNotFoundOnContact_deleteUnsuccessful() throws Exception {
+        initialise();
+        deleteTagFromTask = false;
+        Tag validTag = new TagBuilder().withName("tagThatDoesNotExist").build();
+        Set<Tag> tagSet = new HashSet<>();
+        tagSet.add(validTag);
+        editPersonDescriptor.setTags(tagSet);
+        editTaskDescriptor.setTags(tagSet);
+        tagList.add(validTag.getName());
+
+        assertThrows(CommandException.class,
+                DeleteTagCommand.MESSAGE_TAGS_DO_NOT_EXIST, () -> new DeleteTagCommand(contactIndex, taskIndex,
+                editPersonDescriptor, editTaskDescriptor, deleteTagFromContact, deleteTagFromTask, tagList)
+                .execute(model));
     }
 
     @Test
