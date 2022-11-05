@@ -172,7 +172,6 @@ public class CommandResult {
 
     public boolean isUpdateDescription() {
         return this.commandType == CommandType.ASSIGN
-                || this.commandType == CommandType.EDIT
                 || this.commandType == CommandType.SHOW
                 || this.commandType == CommandType.NOK;
     }
@@ -183,6 +182,10 @@ public class CommandResult {
 
     public boolean isAdd() {
         return this.commandType == CommandType.ADD;
+    }
+
+    public boolean isEdit() {
+        return this.commandType == CommandType.EDIT;
     }
 
     @Override
