@@ -129,11 +129,15 @@ public class ParserUtil {
     public static Client parseClientName(String clientName) throws ParseException {
         requireNonNull(clientName);
         String trimmedClientName = clientName.trim();
-        return new Client(
+        try {
+            return new Client(
                 new Name(clientName),
                 new Address("placeholder"),
                 new HashSet<>()
-                );
+            );
+        } catch (IllegalArgumentException ex) {
+            throw new ParseException("Interested Client name not valid, please enter alphanumeric name.");
+        }
     }
 
     /**
