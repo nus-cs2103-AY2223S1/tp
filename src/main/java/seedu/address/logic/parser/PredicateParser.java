@@ -69,12 +69,20 @@ public class PredicateParser {
         case ADDRESS_PREFIX:
             return new AddressContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case EMAIL_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
             return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
             return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
             throw new ParseException(
@@ -98,12 +106,20 @@ public class PredicateParser {
         case ADDRESS_PREFIX:
             return new AddressContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case EMAIL_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
             return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
             return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
             throw new ParseException(
@@ -127,12 +143,20 @@ public class PredicateParser {
         case ADDRESS_PREFIX:
             return new AddressContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case EMAIL_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
             return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
             return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
             throw new ParseException(
