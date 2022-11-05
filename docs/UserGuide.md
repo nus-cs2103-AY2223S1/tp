@@ -31,7 +31,8 @@ If this is the first time you are using this user guide, it is highly recommende
 - **[Commands](#commands)**
     * [Viewing help](#viewing-help--help)
     * [Listing contacts or items](#listing-contacts-or-items--list)
-    * [Adding a contact or item](#adding-a-contact-or-item-add)
+    * [Checking which item belongs to which contact](#checking-which-item-belongs-to-which-contact--check)
+    * [Adding a contact or item](#adding-a-contact-or-item--add)
         + [Adding a buyer](#adding-a-buyer--add-b)
         + [Adding a deliverer](#adding-a-deliverer--add-d)
         + [Adding a supplier](#adding-a-supplier--add-s)
@@ -49,7 +50,6 @@ If this is the first time you are using this user guide, it is highly recommende
         + [Filtering orders](#filtering-orders--filter-o)
         + [Filtering pets](#filtering-pets--filter-p)
     * [Sorting contacts](#sorting-contacts--sort)
-    * [Checking which item belongs to which contact](#checking-which-item-belongs-to-which-contact--check)
     * [Clearing all contacts](#clearing-all-entries--clear)
     * [Exiting the program](#exiting-the-program--exit)
 - **[How data is stored](#how-data-is-stored)**
@@ -219,6 +219,41 @@ Examples:
 * `list all` or `list a`, lists all Buyer, Deliverer, Supplier contacts and their respective pets and orders details.
 * `list order` or `list o`, lists all Orders.
 * `list pet` or `list p`, lists all Pets.
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
+### Checking which item belongs to which contact : `check`
+
+Checks a contact at the specified index and shows his/her items, or checks an item at the specified index and shows the contact it belongs to.
+This command is especially useful when you want to switch the display between related buyers and orders, or switch the display between related suppliers and pets.
+
+Format: `check KEY INDEX`
+
+#### KEY Table
+
+| Contact / Item to Check |     KEY      |
+|:-----------------------:|:------------:|
+|          Buyer          |   buyer, b   |
+|        Supplier         | supplier, s  |
+|          Order          |   order, o   |
+|           Pet           |    pet, p    |
+
+#### Expected Behaviour for each type of the Check command
+
+| Examples        | Expected behaviour                                                                        |
+|-----------------|-------------------------------------------------------------------------------------------|
+| `check buyer 1` | Shows the list of orders from the buyer at index 1, if at index 1 is a buyer.             |
+| `check s 2`     | Shows the list of pets on sale from the supplier at index 2, if at index 2 is a supplier. |
+| `check order 3` | Shows the buyer of the order at index 3, if at index 3 is an order.                       |
+| `check p 4`     | Shows the supplier of the pet at index 4, if at index 4 is a pet.                         |
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** For the current version of PetCode, `check deliverer INDEX` will just display an empty list, since adding orders to deliverers is not yet implemented.
+In the future, you may be able to transfer orders from buyers to deliverers and check out the deliverers' orders.
+
+</div>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -508,7 +543,7 @@ only **open the file explorer** and **do nothing more**. You may be able to uplo
 ### Matching pets to an order : `match`
 
 Matches the "best fit" pet to an order. This is especially useful when you receive an order
-and want to find out **which pet(s)** on sales is the **best fit** (i.e. description of the pet matches as many requirements specified in the order as possible).
+and want to find out **which pet(s)** on sale is the **best fit** (i.e. description of the pet matches as many requirements specified in the order as possible).
 With this information, you may contact the suppliers who own these pets for further negotiation.
 
 <div markdown="span" class="alert alert-info">
@@ -841,42 +876,6 @@ Examples:
 * `sort pet price height weight`
 * `sort s n /loc`
 * `sort -o pr s p`
-
-[Go back to [Table of Contents](#table-of-contents)]
-[Go back to [Commands](#commands)]
-
-### Checking which item belongs to which contact : `check`
-
-Checks a contact at specified index, the application will display different windows for each list input.
-This command is especially useful for checking which Order belongs to which Buyer, and which Pet belongs to which
-Supplier.
-
-Format: `check LIST_PARAMETER INDEX`
-
-<div markdown="span" class="alert alert-warning">
-
-:exclamation: **Caution:** This command **does not support** the Deliverers list. The input index has to be a **valid index**.
-
-</div>
-
-Check out the acceptable List Parameters for different types of contacts /
-items [here](#list-key-types-table).
-
-#### Application Behaviour for the Check command
-
-| List type | Application behaviour                                                     |
-|-----------|---------------------------------------------------------------------------|
-| Buyer     | shows only the list of orders from the buyer at specified index.          |
-| Supplier  | shows only the list of pets on sale from the supplier at specified index. |
-| Order     | shows the Buyer of the order at specified index.                          |
-| Pet       | shows the Supplier of the pet at specified index.                         |
-
-Examples: (Assuming all are valid indexes)
-
-* `check buyer 1`
-* `check -s 3`
-* `check o 2`
-* `check /p 4`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
