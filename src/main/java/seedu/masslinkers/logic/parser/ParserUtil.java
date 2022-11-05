@@ -1,6 +1,11 @@
 package seedu.masslinkers.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_ARGUMENTS;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_MORE_THAN_ONE_INDEX;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_UNEXPECTED_PREFIX;
+import static seedu.masslinkers.logic.parser.ModCommandParser.INDEX_FORMAT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.masslinkers.commons.core.index.Index;
 import seedu.masslinkers.commons.util.StringUtil;
+import seedu.masslinkers.logic.commands.ModCommand;
 import seedu.masslinkers.logic.parser.exceptions.ParseException;
 import seedu.masslinkers.model.interest.Interest;
 import seedu.masslinkers.model.student.Email;
@@ -28,17 +34,12 @@ import seedu.masslinkers.model.student.Telegram;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
-    public static final String MESSAGE_INVALID_INDEX = "Index is missing or not a non-zero unsigned integer.";
-    public static final String MESSAGE_UNEXPECTED_CHARACTERS = "There appears to be extraneous characters "
-            + "being supplied to the command.\nRefer to help for the command format.";
-    public static final String MESSAGE_UNEXPECTED_PREFIX = "The prefix %1$s is not recognised "
-            + "by Mass Linkers.\nRefer to help for the command format.";
     public static final String PREFIX_REGEX = "(?i)[a-z]/.*";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses the preamble, {@code oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -48,7 +49,14 @@ public class ParserUtil {
         // checks if index has extraneous characters
         String[] splittedArgs = trimmedIndex.split("\\s+");
         if (splittedArgs.length > 1) {
-            throw new ParseException(MESSAGE_UNEXPECTED_CHARACTERS);
+            List<String> illegalChars = Arrays.stream(splittedArgs)
+                    .filter(x -> !StringUtil.isNonZeroUnsignedInteger(x))
+                    .collect(Collectors.toList());
+            // if there is more than 2 valid indexes
+            if (illegalChars.isEmpty()) {
+                throw new ParseException(MESSAGE_MORE_THAN_ONE_INDEX);
+            }
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENTS, illegalChars.get(0)));
         }
 
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
@@ -97,6 +105,7 @@ public class ParserUtil {
         requireNonNull(handle);
         String trimmedHandle = handle.trim();
         checkForPrefix(trimmedHandle);
+
         if (!Telegram.isValidTelegram(trimmedHandle)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
@@ -112,6 +121,7 @@ public class ParserUtil {
     public static GitHub parseGitHub(String username) throws ParseException {
         String trimmedUsername = username.trim();
         checkForPrefix(trimmedUsername);
+
         if (!GitHub.isValidGitHub(trimmedUsername)) {
             throw new ParseException(GitHub.MESSAGE_CONSTRAINTS);
         }
@@ -127,6 +137,7 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         String trimmedEmail = email.trim();
         checkForPrefix(trimmedEmail);
+
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -142,6 +153,7 @@ public class ParserUtil {
     public static Interest parseInterest(String interest) throws ParseException {
         String trimmedInterest = interest.trim();
         checkForPrefix(trimmedInterest);
+
         if (!Interest.isValidInterest(trimmedInterest)) {
             throw new ParseException(Interest.MESSAGE_CONSTRAINTS);
         }
@@ -166,8 +178,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code mod} is invalid.
      */
     public static Mod parseMod(String mod) throws ParseException {
-        String trimmedUpperCasedMod = mod.trim().toUpperCase();
-        checkForPrefix(trimmedUpperCasedMod);
+        String trimmedMod = mod.trim();
+        checkForPrefix(trimmedMod);
+        String trimmedUpperCasedMod = trimmedMod.toUpperCase();
+
         if (!Mod.isValidModName(trimmedUpperCasedMod)) {
             throw new ParseException(Mod.MESSAGE_CONSTRAINTS);
         }
@@ -194,8 +208,12 @@ public class ParserUtil {
      */
     public static ModCategory parseModsToCategory(String modName) {
         assert modName != null;
+        String prefix = modName.split("[0-9]")[0];
 
-        String modPrefix = modName.split("[0-9]")[0].substring(0, 2);
+        // prefix should be at least of length 2 as checked by the VALIDATION_REGEX in Mod.
+        assert prefix.length() > 1;
+
+        String modPrefix = prefix.substring(0, 2);
         switch (modPrefix) {
         case "CS":
         case "IS":
@@ -233,5 +251,31 @@ public class ParserUtil {
                         stringsWithInvalidPrefix.iterator().next().substring(0, 2)));
             }
         }
+    }
+
+    //@@author jonasgwt
+    /**
+     * Extracts out the index of the student specified in the user command.
+     *
+     * @param args The user command.
+     * @return The index of the student in String.
+     */
+    public static String getIndexFromCommand(String args) throws ParseException {
+        String[] splittedArgs = args.split("\\s+");
+        List<String> validIndexes = Arrays.stream(splittedArgs)
+                .filter(x -> INDEX_FORMAT.matcher(x.trim()).matches())
+                .collect(Collectors.toList());
+
+        // no valid index
+        if (validIndexes.isEmpty()) {
+            throw new ParseException(ModCommand.MESSAGE_INDEX_EMPTY);
+        }
+
+        // valid index is not after the command word
+        if (!validIndexes.get(0).equals(splittedArgs[0])) {
+            throw new ParseException(String.format(ModCommand.INVALID_ARGUMENTS, splittedArgs[0]));
+        }
+
+        return validIndexes.iterator().next();
     }
 }

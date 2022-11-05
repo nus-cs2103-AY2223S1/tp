@@ -20,6 +20,7 @@ import seedu.masslinkers.ui.MainWindow;
 public class ModAddCommand extends ModCommand {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_SUCCESS = "Successfully added the specified mod(s).";
+    public static final String MESSAGE_USAGE = "Command Usage:\nmod add INDEX MODULE [MORE_MODULES]...";
     private MainWindow mainWindow;
     private final Index targetIndex;
     private final ObservableList<Mod> mods;
