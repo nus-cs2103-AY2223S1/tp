@@ -1,8 +1,6 @@
 package seedu.address.storage;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -78,13 +76,10 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
         }
-        LocalDateTime parsedDeadline;
-        try {
-            parsedDeadline = LocalDateTime.parse(deadline, DEADLINE_FORMATTER);
-        } catch (DateTimeParseException e) {
+        if (!Deadline.isValidDeadline(deadline)) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        Deadline modelDeadline = new Deadline(parsedDeadline);
+        Deadline modelDeadline = new Deadline(deadline);
 
         if (status == null) {
             throw new IllegalValueException(

@@ -11,8 +11,7 @@ import java.util.Objects;
  */
 public class Module {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Module codes should not contain spaces and should not be blank.";
+    public static final String MESSAGE_CONSTRAINTS = "Module codes should be alphanumeric and should not be blank.";
 
     /*
      * The first character of the name must not be a whitespace,

@@ -4,7 +4,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.FINISH_TUTORIAL;
+import static seedu.address.testutil.TypicalTasks.BUY_GROCERIES;
 import static seedu.address.testutil.TypicalTasks.WATCH_LECTURE;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.TaskList;
 
@@ -45,6 +46,21 @@ public class JsonTaskListStorageTest {
     }
 
     @Test
+    public void read_notJsonFormat_exceptionThrown() {
+        assertThrows(DataConversionException.class, () -> readTaskList("notJsonFormatTaskList.json"));
+    }
+
+    @Test
+    public void readTaskList_invalidTaskTaskList_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTaskList("invalidTaskTaskList.json"));
+    }
+
+    @Test
+    public void readTaskList_invalidAndValidTaskTaskList_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTaskList("invalidAndValidTaskTaskList.json"));
+    }
+
+    @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempTaskList.json");
         TaskList original = getTypicalTaskList();
@@ -56,13 +72,14 @@ public class JsonTaskListStorageTest {
         assertEquals(original, new TaskList(readBack));
 
         // Modify data, overwrite exiting file, and read back
+        original.addTask(BUY_GROCERIES);
         original.removeTask(WATCH_LECTURE);
         jsonTaskListStorage.saveTaskList(original, filePath);
         readBack = jsonTaskListStorage.readTaskList(filePath).get();
         assertEquals(original, new TaskList(readBack));
 
         // Save and read without specifying file path
-        original.removeTask(FINISH_TUTORIAL);
+        original.addTask(WATCH_LECTURE);
         jsonTaskListStorage.saveTaskList(original); // file path not specified
         readBack = jsonTaskListStorage.readTaskList().get(); // file path not specified
         assertEquals(original, new TaskList(readBack));

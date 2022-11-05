@@ -150,7 +150,7 @@ public interface Model {
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     /**
-     * Updates the comparartor of the sorted task  list to filter by the given {@code comparator}.
+     * Updates the comparartor of the sorted task list to sort by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedTaskList(Comparator<Task> comparator);

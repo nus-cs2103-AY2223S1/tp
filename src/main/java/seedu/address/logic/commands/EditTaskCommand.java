@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
@@ -30,10 +29,8 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "TASK NAME] "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_MODULE + "MODULE]...\n"
+            + "Parameters: {task_index} (must be a positive integer) "
+            + "{field_prefix + field_description}\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "2022-12-12 16:00 "
             + PREFIX_MODULE + "CS2040S";

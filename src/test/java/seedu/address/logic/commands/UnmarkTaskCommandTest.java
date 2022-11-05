@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -52,6 +55,39 @@ public class UnmarkTaskCommandTest {
 
         assertCommandFailure(unmarkTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_validIndexFilteredList_success() {
+        showTaskAtIndex(model, INDEX_FIRST);
+
+        Task taskToUnmark = model.getSortedTaskList().get(INDEX_FIRST.getZeroBased());
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(INDEX_FIRST);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
+        Task unmarkedTask = new Task(
+                taskToUnmark.getName(), taskToUnmark.getModule(), taskToUnmark.getDeadline(), new Status(false));
+        showTaskAtIndex(expectedModel, INDEX_FIRST);
+        expectedModel.setTask(taskToUnmark, unmarkedTask);
+
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask);
+
+        assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
+        showTaskAtIndex(model, INDEX_FIRST);
+
+        Index outOfBoundIndex = INDEX_SECOND;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskList().getTaskList().size());
+
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(outOfBoundIndex);
+
+        assertCommandFailure(unmarkTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+
 
     @Test
     public void excecute_unmarkMarkedTask_success() {

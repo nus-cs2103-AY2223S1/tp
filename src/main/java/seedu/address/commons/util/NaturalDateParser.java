@@ -11,6 +11,8 @@ import com.mdimension.jchronic.Options;
 import com.mdimension.jchronic.tags.Pointer;
 import com.mdimension.jchronic.utils.Span;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 //@@author parnikkapore-reused
 // Taken from Parnikkapore's ip. Note for graders: The test code is new
 
@@ -25,14 +27,20 @@ public class NaturalDateParser {
      * @return The parsed string.
      * @throws DateTimeNotFoundException if neither a date nor a time can be resolved.
      */
-    public static LocalDateTime parse(String input) throws DateTimeNotFoundException {
+    public static LocalDateTime parse(String input) throws DateTimeNotFoundException, ParseFailureException {
         requireNonNull(input);
 
         Options options = new Options();
         options.setContext(Pointer.PointerType.FUTURE);
         options.setGuess(false);
 
-        Span parsedDate = Chronic.parse(input, options);
+        Span parsedDate;
+        try {
+            parsedDate = Chronic.parse(input, options);
+        } catch (RuntimeException e) {
+            throw new ParseFailureException(input, e);
+        }
+
         if (parsedDate == null) {
             throw new DateTimeNotFoundException(input);
         }
@@ -46,11 +54,27 @@ public class NaturalDateParser {
     /**
      * Neither a date nor a time can be found in the given string.
      */
-    public static class DateTimeNotFoundException extends IllegalArgumentException {
+    public static class DateTimeNotFoundException extends ParseException {
         private final String parsedString;
 
         private DateTimeNotFoundException(String parsedString) {
             super("Cannot find a date in " + parsedString);
+            this.parsedString = parsedString;
+        }
+
+        public String getParsedString() {
+            return parsedString;
+        }
+    }
+
+    /**
+     * Represents the situation that parsing, for some reason, failed.
+     */
+    public static class ParseFailureException extends ParseException {
+        private final String parsedString;
+
+        private ParseFailureException(String parsedString, Throwable cause) {
+            super("Failed to parse " + parsedString, cause);
             this.parsedString = parsedString;
         }
 
@@ -65,7 +89,11 @@ public class NaturalDateParser {
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
-        LocalDateTime test = parse("2 Jan 2006 15:04:05");
-        System.out.println(test);
+        try {
+            LocalDateTime test = parse("2 Jan 2006 15:04:05");
+            System.out.println(test);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

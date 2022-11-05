@@ -38,5 +38,7 @@ public class StatusTest {
     public void getIsComplete() {
         assertFalse(new Status("Not complete").getIsComplete());
         assertTrue(new Status("Complete").getIsComplete());
+        assertFalse(new Status(false).getIsComplete());
+        assertTrue(new Status(true).getIsComplete());
     }
 }

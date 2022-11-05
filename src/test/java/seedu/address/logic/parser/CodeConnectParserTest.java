@@ -41,9 +41,9 @@ import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TaskUtil;
 
-public class AddressBookParserTest {
+public class CodeConnectParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final CodeConnectParser parser = new CodeConnectParser();
 
     @Test
     public void parseCommand_addc() throws Exception {

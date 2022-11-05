@@ -17,4 +17,14 @@ public class DeadlineComparator implements Comparator<Task> {
         return 0;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) { // short circuit if same object
+            return true;
+        } else if (other instanceof DeadlineComparator) { // instanceof handles nulls
+            return true;
+        }
+        return false;
+    }
+
 }

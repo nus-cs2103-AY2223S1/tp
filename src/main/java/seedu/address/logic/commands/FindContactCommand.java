@@ -2,12 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 
 /**
@@ -26,7 +29,7 @@ public class FindContactCommand extends Command {
      */
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons matching a given filter.\n"
-            + "Parameters: [type_prefix] [key_1] ...\n"
+            + "Parameters: {field_prefix + keyword} ...\n"
             + "Example 1: " + COMMAND_WORD + " n/ Jacob n/ Alice";
 
     private final Predicate<Person> predicate;
@@ -40,8 +43,17 @@ public class FindContactCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (predicate instanceof CanHelpWithTaskPredicate) {
+            CanHelpWithTaskPredicate taskPredicate = (CanHelpWithTaskPredicate) predicate;
+            List<Task> lastShownList = model.getSortedTaskList();
+            if (taskPredicate.getTaskIndex().getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            }
+        }
+
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));

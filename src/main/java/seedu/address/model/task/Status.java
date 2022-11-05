@@ -18,7 +18,9 @@ public class Status {
     private final boolean isComplete;
 
     /**
-     * Constructs a new Status with a boolean parameter. Every field must be present and not null.
+     * Constructs a {@code Status} with a boolean parameter. Every field must be present and not null.
+     *
+     * @param isComplete A boolean indicating whether a Status is complete.
      */
     public Status(boolean isComplete) {
         requireNonNull(isComplete);
@@ -26,7 +28,9 @@ public class Status {
     }
 
     /**
-     * Constructs a new Status with a String parameter. Every field must be present and not null.
+     * Constructs a {@code Status} with a String parameter. Every field must be present and not null.
+     *
+     * @param status A valid string representing a status.
      */
     public Status(String status) {
         requireNonNull(status);

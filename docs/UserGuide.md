@@ -85,7 +85,7 @@ However, you may also choose to head over to the relevant sections as described 
 
 </div>
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: A Note on Indexes
 
@@ -116,7 +116,7 @@ Examples:
 * `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
 * `add finish SEP application by/2022-12-25 23:59`
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: Deadline Formats
 
@@ -133,7 +133,7 @@ Due to the library's limitations, "6/4/2022" will format it to 4 June.
 
 </div>
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: Flexible Module Format
 
@@ -143,18 +143,26 @@ However, only alphanumeric characters are allowed! (i.e. no spaces, special char
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+:bulb: Adding past deadlines
+
+CodeConnect will happily accept deadlines that are in the past, in case you want to use it to track start dates or track an assignment due a few hours ago you just found out about!
+
+</div>
+
 #### Editing a task: `edit`
 
 Edits the specified task.
 
 Format:
-`edit {task_index} {field_prefix}{field_description}`
+`edit {task_index} {field_prefix + field_description}`
 
 Examples:
 * `edit 2 n/Rewatch lecture 6` - Renames task at index 2 to "Rewatch lecture 6"
 * `edit 3 m/CS2040S by/2022-12-12 23:59` - Changes the module and deadline of the task at index 3
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :question: Field Prefixes
 
@@ -235,6 +243,15 @@ Format: `list`  `list time`
 * `list` - displays a list of all tasks in the order of most recent task added
 * `list time` - displays a list of all tasks in the order of the earliest deadline
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb: About extraneous parameters in `list`
+
+`list time` is the only exception to the list command ignoring extraneous parameters.
+* `list abc` and `list time abc` will be both interpreted as `list`.
+
+</div>
+
 <br>
 Click [here](#) to return to the top of the page.
 
@@ -250,7 +267,7 @@ Examples:
 * `addc n/Bob Martin p/98765432 e/bobbymartini@gmail.com m/CS1101S CS1231S gh/bobby tele/bmartin`
 * `addc n/Betsy Crowe p/89985432 tele/croweybetty`
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: Tags and Modules
 
@@ -294,7 +311,7 @@ Examples:
 
 ![editContact](images/editContact.png)
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :question: Field Prefixes
 
@@ -326,7 +343,7 @@ Example:
 1. The task at **index 1** belongs to the `CS1101S` module.
 2. Entering `saveme` will display all contacts that take the `CS1101S` module.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :question: What if I need help with a task that isn't index 1?
 
@@ -364,7 +381,7 @@ CodeConnect data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-CodeConnect data are saved as a JSON file `[JAR file location]/data/codeconnect.json`. Advanced users are welcome to update data directly by editing that data file.
+CodeConnect data are saved as a JSON file either in  `[JAR file location]/data/contacts.json` for contacts or `[JAR file location]/data/task.json` for your tasks. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CodeConnect will discard all data and start with an empty data file at the next run.
@@ -388,7 +405,7 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**                   | `help`                                                                                                                                                                                                        |
 | **Add task**               | `add {task_name} by/{deadline} [m/{module_code}]` <br> e.g. `add finish problem set 5 by/next week sunday m/CS2040S`                                                                                          |
-| **Edit task**              | `edit {task_index} {field prefix}{field description}` <br> e.g. `edit 2 by/2022-12-12 23:59`                                                                                                                  |
+| **Edit task**              | `edit {task_index} {field prefix + field description}` <br> e.g. `edit 2 by/2022-12-12 23:59`                                                                                                                 |
 | **Delete task**            | `del {task_index}` <br> e.g. `del 5`                                                                                                                                                                          |
 | **Delete completed tasks** | `clean`                                                                                                                                                                                                       |
 | **Mark task**              | `mark {task_index}` <br> e.g. `mark 3`                                                                                                                                                                        |
@@ -398,7 +415,7 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 | **Add contact**            | `addc n/{name} p/{phone_number} [e/{email}] [a/{address}] [t/{tag}]... [m/{module}...] [gh/{github}] [tele/{telegram}]` <br> e.g., `addc n/Bob Martin p/98765432 tele/bobmartin00 m/CS1101S CS1231S t/friend` |
 | **List contacts**          | `listc`                                                                                                                                                                                                       |
 | **Delete contact**         | `delc {contact_index}`<br> e.g., `delc 3`                                                                                                                                                                     |
-| **Edit contact**           | `editc {contact_index} {field prefix + field description}` <br> e.g. `editc 2 p/91919100`                                                                                                                     |
+| **Edit contact**           | `editc {contact_index} {field_prefix + field_description}` <br> e.g. `editc 2 p/91919100`                                                                                                                     |
 | **Find contacts**          | `findc n/{name}` <br> `findc m/{module}`<br> `findc ts/{task_index}` <br> e.g., `findc n/John`, `findc m/CS1231S`, `findc ts/3`                                                                               |
 | **Quick contact search**   | `saveme`                                                                                                                                                                                                      |
 | **Clear contacts**         | `clear`                                                                                                                                                                                                       |

@@ -60,6 +60,6 @@ public class CanHelpWithTaskPredicateTest {
     @Test
     public void getTaskIndex() {
         CanHelpWithTaskPredicate testPredicate = new CanHelpWithTaskPredicate(99);
-        assertEquals(99, testPredicate.getTaskIndex());
+        assertEquals(99, testPredicate.getTaskIndex().getOneBased());
     }
 }
