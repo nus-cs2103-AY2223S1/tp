@@ -11,10 +11,11 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 /**
  * Converter from {@code String} to {@code NameContainsKeywordsPredicate}.
  */
-public class NameContainsKeywordsPredicateConverter implements
-        CommandLine.IParameterConsumer {
+public class NameContainsKeywordsPredicateConverter implements CommandLine.IParameterConsumer {
 
-    public static final String VALIDATION_REGEX = Name.VALIDATION_REGEX;
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}]+";
+    public static final String MESSAGE_CONSTRAINTS = "Keywords should only contain alphanumeric characters without"
+            + "any spaces";
 
     @Override
     public void consumeParameters(Stack<String> args, CommandLine.Model.ArgSpec argSpec,

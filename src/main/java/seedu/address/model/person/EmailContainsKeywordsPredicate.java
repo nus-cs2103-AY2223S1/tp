@@ -21,6 +21,10 @@ public class EmailContainsKeywordsPredicate implements Predicate<Person> {
                 .anyMatch(keyword -> StringUtil.containsSubstring(person.getEmail().value, keyword));
     }
 
+    public String getKeywordsAsString() {
+        return keywords.toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
