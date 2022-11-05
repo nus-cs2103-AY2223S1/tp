@@ -20,7 +20,7 @@ import seedu.address.logic.sortcomparators.PriceComparator;
 import seedu.address.logic.sortcomparators.PropertyComparator;
 import seedu.address.logic.sortcomparators.PropertyNameComparator;
 import seedu.address.logic.sortcomparators.TimeComparator;
-import seedu.address.model.property.Price;
+import seedu.address.model.price.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
 

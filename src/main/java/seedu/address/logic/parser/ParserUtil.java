@@ -13,10 +13,10 @@ import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.price.Price;
+import seedu.address.model.price.PriceRange;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Owner;
-import seedu.address.model.property.Price;
 import seedu.address.model.property.PropertyName;
 
 

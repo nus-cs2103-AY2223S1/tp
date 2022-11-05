@@ -1,0 +1,97 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+Participant ":MatchBuyerCommand" as matchCommand LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant ":List<Buyer>" as list USER_COLOR
+Participant ":ArrayList<Predicate>" as arrayList USER_COLOR
+Participant ":Stream<Predicate>" as stream USER_COLOR
+Participant ":FilterPropsByPricePredicate" as pricePred MODEL_COLOR_T1
+Participant ":FilterPropsContainingAnyCharacteristicPredicate" as charPred MODEL_COLOR_T1
+Participant ":FilterPropertiesCommand" as filterProps LOGIC_COLOR
+
+
+[-[LOGIC_COLOR]> matchCommand: execute(model)
+activate matchCommand
+
+matchCommand -[LOGIC_COLOR]> model: getFilteredBuyerList()
+activate model
+
+create list
+model -[MODEL_COLOR]> list
+activate list
+list --[USER_COLOR]> model
+deactivate list
+
+model --[MODEL_COLOR]> matchCommand: List<Buyer>
+deactivate model
+destroy model
+
+matchCommand -[LOGIC_COLOR]> list: get(0)
+activate list
+list --[USER_COLOR]> matchCommand: Buyer
+deactivate list
+destroy list
+
+create arrayList
+matchCommand -[LOGIC_COLOR]> arrayList
+activate arrayList
+arrayList --[USER_COLOR]> matchCommand
+deactivate arrayList
+
+create pricePred
+matchCommand -[LOGIC_COLOR]> pricePred: Buyer's PriceRange
+activate pricePred
+pricePred --[MODEL_COLOR_T1]> matchCommand
+deactivate pricePred
+
+matchCommand -[LOGIC_COLOR]> arrayList: add(filterPropsByPricePredicate)
+activate arrayList
+arrayList --[USER_COLOR]> matchCommand
+deactivate arrayList
+
+create charPred
+matchCommand -[LOGIC_COLOR]> charPred: Buyer's Characteristics
+activate charPred
+charPred --[MODEL_COLOR_T1]> matchCommand
+deactivate charPred
+
+matchCommand -[LOGIC_COLOR]> arrayList: add(filterPropsContainingAnyCharacteristicPredicate)
+activate arrayList
+arrayList --[USER_COLOR]> matchCommand
+deactivate arrayList
+
+matchCommand -[LOGIC_COLOR]> arrayList: stream()
+activate arrayList
+
+create stream
+arrayList -[USER_COLOR]> stream
+activate stream
+stream --[USER_COLOR]> arrayList
+deactivate stream
+
+arrayList --[USER_COLOR]> matchCommand: Stream<Predicate>
+deactivate arrayList
+
+matchCommand -[LOGIC_COLOR]> stream: reduce(Predicate::and)
+activate stream
+stream --[LOGIC_COLOR]> matchCommand: combinedPredicate
+deactivate stream
+destroy stream
+
+create filterProps
+matchCommand -[LOGIC_COLOR]> filterProps: combinedPredicate
+activate filterProps
+filterProps --[LOGIC_COLOR]> matchCommand
+deactivate filterProps
+
+matchCommand -[LOGIC_COLOR]> filterProps: execute(model)
+activate filterProps
+filterProps --[LOGIC_COLOR]> matchCommand
+deactivate filterProps
+
+[<[LOGIC_COLOR]-- matchCommand: CommandResult
+deactivate matchCommand
+
+@enduml

@@ -2,7 +2,7 @@ package seedu.address.model.buyer;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.property.Price;
+import seedu.address.model.price.Price;
 
 /**
  * Tests that a {@code Buyer}'s {@code PriceRange} contains the given price value.

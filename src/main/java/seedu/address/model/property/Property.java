@@ -11,6 +11,7 @@ import seedu.address.model.address.Address;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.price.Price;
 
 /**
  * Represents a Property in the property book.
