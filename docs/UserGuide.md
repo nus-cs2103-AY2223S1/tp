@@ -83,14 +83,19 @@ Let's first begin with the commands available in the default mode.
 
 {% include note.html content="
 
-Redirects you to this User Guide page. If the attempt was unsuccessful, the following help window appears.
-" %}
+Automatically redirects you to this User Guide page.
 
-![help message](images/helpMessage.png)
-The above message emerges when the redirection fails.
+" %}
 
 
 Format: `help`
+* If the attempt to redirect you to this User Guide page fails, the following help window appears:
+
+  ![help message](images/helpMessage.png)
+
+  You can click on the "**Copy URL**" button to copy the URL shown in the help window, then paste the URL in the address bar of your
+  favourite browser to visit this User Guide page.
+
 
 ### Add a student: `add`
 
@@ -122,8 +127,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 Examples:
 * `edit 2 n/John Doe` changes the 2nd student’s name to **John Doe**.
 * `edit 4 e/john.doe@example.com a/38 College Avenue East, 138601` changes the 4th student’s:
-  * E-mail to **john.doe@example.com**
-  * Address to **38 College Avenue East, 138601**
+  * E-mail to **john.doe@example.com**.
+  * Address to **38 College Avenue East, 138601**.
 
 ### Delete a student: `delete`
 
@@ -157,9 +162,9 @@ Format: `find KEYWORD...
 Examples:
 * `find bert` finds students with **bert** in their name (case-insensitive), i.e. **Edbert Geraldy**, **Bert Hendrick**, **Gerard Albert**, etc.
 * `find ben chris` finds students with either **ben** or a **chris** in their name, i.e. **chris ben**, **wonders ChRIs**, **bEn ten**, etc.
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find alex david` returns `Alex Yeoh`, `David Li`.
 
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  <img src="images/findAlexDavidResult.png" width="600"/>
 
 {% include tip.html content="
 
@@ -194,13 +199,12 @@ Adds one or more classes to TA-Assist.
 " %}
 
 Format: `addc c/CLASS_NAME...`
-* Add classes with specified names. 
+* Adds the classes with the specified names.
+* Class names are converted to **upper-case**.
+  * e.g. `addc c/cs1101s` adds a class **CS1101S**.
 * The class names are **case-insensitive**.
-  * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` does not add a
-  new class `cs1101s`.
-* If there are duplicate class names, the class name is taken to be the last valid class parameter `c/`.
-  * e.g. If a class with a name **CS1101S** does not exist, `addc c/CS1101S c/cs1101s` adds one class with the name
-  **cs1101s**.
+  * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` does not add
+  another **CS1101S** class.
 
 Examples:
 * `addc c/CS2103T c/CS2100` adds the classes named **CS2103T** and **CS2100**.
@@ -283,7 +287,8 @@ Format: `focus c/CLASS_NAME`
 * The class name is **case-insensitive**.
 * If successful, the GUI changes to one that is similar to the one below:
 
-![Example Excel file](images/sampleFocusedGui.png)
+
+  <img src="images/sampleFocusedGui.png" width="600"/>
 
 Example:
 * `focus c/CS1231S` enters focus mode for the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
@@ -351,11 +356,11 @@ overall grade for the module CS2100.
 Format: `adds s/SESSION_NAME... [d/DATE]`
 * Creates new sessions with names `SESSION_NAME` on the same `DATE`. If the `DATE` field is empty, the current date is used instead.
 * `DATE` field should follow the format `YYYY-MM-DD`.
+* Session names are **capitalised** (i.e. the first character of each word will be converted to upper-case. The remaining characters
+  of the word will be converted to lower-case).
+  * e.g. `adds s/tutorial ONE` adds a session **Tutorial One**. `adds s/_tutorial_2` adds a session **_tutorial_2**.
 * The session names are **case-insensitive**.
-  * e.g. If a session **Lab 1** already exists, `adds s/lab 1` does not create a new session **lab 1**. 
-* If there are session names, the session name is taken to be the last valid session parameter `s/`.
-  * e.g. If a session with a name **LAB1** does not exist, `adds s/LAB1 s/lab1` adds one session with the name
-    **lab1**.
+  * e.g. If a session **Lab 1** already exists, `adds s/lab 1` does not create another **Lab 1** session.
 
 Example:
 - `adds s/Lab1 s/Tutorial1 d/2022-08-11` creates sessions `Lab1` and `Tutorial1` on 11 August 2022.
@@ -407,13 +412,12 @@ Format: `scores s/SESSION_NAME`
 Example:
 
 * `scores s/tutorial 1` shows the grades of all students for the session **tutorial 1**, as shown below.
-  <br/>   
-
-  <img src="images/scoresAssignment1Result.png" width="600"/>
+  
+  <img src="images/sampleScoresGui.png" width="600"/>
 
   In the above example,
-  * **Bernice Yu** has been allocated a score of **10.0** for **tutorial 1**.
-  * **tutorial 1** for **Alex Yeoh**, **Charlotte Oliveiro** and **Irfan Ibrahim** have not been graded, hence their cells have been marked red.
+  * **Bernice Yu** has been allocated a score of **10.0** for **Tutorial 1**.
+  * **Tutorial 1** for **David Li** and **Roy Balakrishnan** has not been graded, hence their cells have been marked red.
 
 ### View session grades of student: `view`
 
@@ -445,15 +449,14 @@ of all the data.
 " %}
 
 Format: `export`
-
-- The exported class data includes:
+* The exported class data includes:
   * Student names of the class.
   * All session names of the class.
   * The grades of the students corresponding to each session.
-- An example generated csv file when opened in Microsoft Excel:
+* An example generated csv file when opened in Microsoft Excel:
 ![Example Excel file](images/exampleExcelFile.png)
-  - First column shows all the student names.
-  - Subsequent columns show the grade for a student for a session (e.g. **David Li** scores **0** for **Tutorial 1**).
+  * First column shows all the student names.
+  * Subsequent columns show the grade for a student for a session (e.g. **David Li** scores **0** for **Tutorial 1**).
 
 ### Exit focus mode: `unfocus`
 
@@ -487,36 +490,36 @@ Format: `unfocus`
 For all parameters, the following constraints are applied:
 * As Ta-Assist uses prefixes such as `p/` and `c/` to identify the start of a new parameter, all parameters have the implicit constraint that they must not contain prefixes
   of another parameter if that other parameter is being used in a command. 
-  * e.g. We can not add a student with the address `Commongrove n/123A` as the `n/123A` prefix will be parsed by Ta-Assist as the Student's name.
+  * e.g. You cannot add a student with the address `Commongrove n/123A` as the `n/123A` prefix will be parsed by Ta-Assist as the Student's name.
 
 The following is the list of all parameters used in TA-Assist along with its constraints:
 
 * `INDEX` 
-  * Indices must be a positive integer
-  * Indices must be within the indices shown in the displayed list
+  * Indices must be a positive integer.
+  * Indices must be within the indices shown in the displayed list.
 * `KEYWORD` 
-  * Search keywords can not contain spaces
+  * Search keywords can not contain spaces.
 * `n/NAME` 
-  * Student names must not be empty 
-  * Student names must only contain alphanumeric characters and spaces
+  * Student names must not be empty.
+  * Student names must only contain alphanumeric characters and spaces.
 * `p/PHONE_NUMBER`
-  * Phone numbers must only contain numbers
-  * Phone numbers must be at least 3 digits long
+  * Phone numbers must only contain numbers.
+  * Phone numbers must be at least 3 digits long.
 * `e/EMAIL`
-  * E-mails must be of the format `local-part@domain`, i.e. `johndoe+work@s.mail.com`
-  * `local-part` must only contain alphanumeric characters and these special characters, excluding the parentheses, (`+_.-`)
-  * `domain` is made up of domain labels, seperated by period
-    * Each `domain` must end with a domain label of at least 2 characters long
-    * Each domain label must start and end with alphanumeric characters
+  * E-mails must be of the format `local-part@domain`, i.e. `johndoe+work@s.mail.com`.
+  * `local-part` must only contain alphanumeric characters and these special characters, excluding the parentheses, (`+_.-`).
+  * `domain` is made up of domain labels, seperated by period.
+    * Each `domain` must end with a domain label of at least 2 characters long.
+    * Each domain label must start and end with alphanumeric characters.
     * Each domain label must consists of only alphanumeric characters, seperated only by hyphens, if any.
 * `a/ADDRESS`
-  * Addresses must not be empty
+  * Addresses must not be empty.
 * `c/CLASS_NAME`
-  * Class names must be alphanumeric
-  * Class names must not exceed 25 characters
+  * Class names must be alphanumeric.
+  * Class names must not exceed 25 characters.
 * `s/SESSION_NAME`
-  * Session names must not be empty
-  * Session names must only contain alphanumeric characters, underscores, and spaces
+  * Session names must not be empty.
+  * Session names must only contain alphanumeric characters, underscores, and spaces.
 * `d/DATE`
-  * Dates must be of the format `YYYY-MM-DD`, i.e. 25th May 2022 must be written as `2022-05-25`
-  * Dates must be a valid date, i.e. `2001-02-29` is not a valid date
+  * Dates must be of the format `YYYY-MM-DD`, i.e. 25th May 2022 must be written as `2022-05-25`.
+  * Dates must be a valid date, i.e. `2001-02-29` is not a valid date because the year 2001 is not a leap year.
