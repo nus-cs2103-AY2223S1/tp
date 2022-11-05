@@ -1,0 +1,94 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
+participant ":UnPinCommandParser" as UnPinCommandParser LOGIC_COLOR
+participant "u:UnPinCommand" as UnPinCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "newApplicant:Applicant" as Applicant MODEL_COLOR
+participant "name:Name" as Name MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unpin Alex Yeoh")
+activate LogicManager
+
+LogicManager -> TrackAScholarParser : parseCommand("unpin Alex Yeoh")
+activate TrackAScholarParser
+
+create UnPinCommandParser
+TrackAScholarParser -> UnPinCommandParser: UnPinCommandParser()
+activate UnPinCommandParser
+
+UnPinCommandParser --> TrackAScholarParser
+deactivate UnPinCommandParser
+
+TrackAScholarParser -> UnPinCommandParser : parse("Alex Yeoh")
+activate UnPinCommandParser
+
+create Name
+UnPinCommandParser -> Name : Name("Alex Yeoh")
+activate Name
+
+Name --> UnPinCommandParser : name
+deactivate Name
+
+
+create UnPinCommand
+UnPinCommandParser -> UnPinCommand : UnPinCommand(name)
+activate UnPinCommand
+
+UnPinCommand --> UnPinCommandParser : u
+deactivate UnPinCommand
+
+UnPinCommandParser --> TrackAScholarParser : u
+deactivate UnPinCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+UnPinCommandParser -[hidden]-> TrackAScholarParser
+destroy UnPinCommandParser
+
+TrackAScholarParser --> LogicManager : u
+deactivate TrackAScholarParser
+
+LogicManager -> UnPinCommand : execute()
+activate UnPinCommand
+
+UnPinCommand -> Model : getAllApplicants()
+activate Model
+Model --> Model : get()
+Model --> UnPinCommand : oldApplicant
+deactivate Model
+
+UnPinCommand --> UnPinCommand : createUnPinnedApplicant(oldApplicant)
+
+create Applicant
+UnPinCommand -> Applicant : Applicant()
+activate Applicant
+
+Applicant --> UnPinCommand
+deactivate Applicant
+
+UnPinCommand -> Model : setApplicant(1,newApplicant)
+activate Model
+
+Model --> UnPinCommand
+deactivate Model
+
+create CommandResult
+UnPinCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UnPinCommand
+deactivate CommandResult
+
+UnPinCommand --> LogicManager : result
+deactivate UnPinCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
