@@ -64,12 +64,20 @@ public class Student {
         return id.toString();
     }
 
+    public String getCmpIdString() {
+        return id.toCmpString();
+    }
+
     public GitName getGitName() {
         return gitName;
     }
 
     public String getGitString() {
         return gitName.toString();
+    }
+
+    public String getCmpGitString() {
+        return gitName.toCmpString();
     }
 
     public TeleHandle getTeleHandle() {
@@ -80,12 +88,20 @@ public class Student {
         return teleHandle.toString();
     }
 
+    public String getCmpHandleString() {
+        return teleHandle.toCmpString();
+    }
+
     public Module getModule() {
         return module;
     }
 
     public String getModuleString() {
         return module.toString();
+    }
+
+    public String getCmpModuleString() {
+        return module.toCmpString();
     }
 
     public Name getName() {
@@ -96,6 +112,10 @@ public class Student {
         return name.toString();
     }
 
+    public String getCmpNameString() {
+        return name.toCmpString();
+    }
+
     public Phone getPhone() {
         return phone;
     }
@@ -104,12 +124,20 @@ public class Student {
         return phone.toString();
     }
 
+    public String getCmpPhoneString() {
+        return phone.toCmpString();
+    }
+
     public Email getEmail() {
         return email;
     }
 
     public String getEmailString() {
         return email.toString();
+    }
+
+    public String getCmpEmailString() {
+        return email.toCmpString();
     }
 
     /**
@@ -174,12 +202,60 @@ public class Student {
     }
 
     /**
+     * Returns attendance in percentage for descending order sorting.
+     */
+    public float getAttendancePercentageForDsc() {
+        float numOfClasses = getAttendances().size();
+        if (numOfClasses == 0) {
+            return -Float.MIN_VALUE;
+        }
+        float presentFor = (float) getAttendances().stream().filter(x -> x.hasAttended).count();
+        return presentFor / numOfClasses * 100;
+    }
+
+    /**
+     * Returns attendance in percentage for ascending order sorting.
+     */
+    public float getAttendancePercentageForAsc() {
+        float numOfClasses = getAttendances().size();
+        if (numOfClasses == 0) {
+            return Float.MAX_VALUE;
+        }
+        float presentFor = (float) getAttendances().stream().filter(x -> x.hasAttended).count();
+        return presentFor / numOfClasses * 100;
+    }
+
+    /**
      * Returns assignments marked in percentage.
      */
     public float getAssignmentPercentage() {
         float numOfAssignments = getAssignmentCount();
         float marked = (float) getAssignmentMarkedCount();
         return marked / numOfAssignments * 100;
+    }
+
+    /**
+     * Returns participation in percentage for descending order sorting.
+     */
+    public float getParticipationPercentageForDsc() {
+        float numOfPart = getParticipations().size();
+        if (numOfPart == 0) {
+            return -Float.MIN_VALUE;
+        }
+        float participatedFor = (float) getParticipations().stream().filter(x -> x.hasParticipated).count();
+        return participatedFor / numOfPart * 100;
+    }
+
+    /**
+     * Returns participation in percentage for ascending order sorting.
+     */
+    public float getParticipationPercentageForAsc() {
+        float numOfPart = getParticipations().size();
+        if (numOfPart == 0) {
+            return Float.MAX_VALUE;
+        }
+        float participatedFor = (float) getParticipations().stream().filter(x -> x.hasParticipated).count();
+        return participatedFor / numOfPart * 100;
     }
 
     /**
@@ -197,6 +273,30 @@ public class Student {
     public int getAssignmentMarkedCount() {
         return (int) getAssignments().stream()
                 .filter(x -> x.markingStatus == Assignment.Status.MARKED).count();
+    }
+
+    /**
+     * Returns number of assignments marked for descending order sorting.
+     */
+    public int getAssignmentMarkedCountForDsc() {
+        if (getAssignments().stream().count() == 0) {
+            return Integer.MIN_VALUE;
+        } else {
+            return (int) getAssignments().stream()
+                                         .filter(x -> x.markingStatus == Assignment.Status.MARKED).count();
+        }
+    }
+
+    /**
+     * Returns number of assignments marked for ascending order sorting.
+     */
+    public int getAssignmentMarkedCountForAsc() {
+        if (getAssignments().stream().count() == 0) {
+            return Integer.MAX_VALUE;
+        } else {
+            return (int) getAssignments().stream()
+                                         .filter(x -> x.markingStatus == Assignment.Status.MARKED).count();
+        }
     }
 
     /**

@@ -5,6 +5,7 @@ import static seedu.studmap.model.attribute.AttributeType.valueOf;
 import java.util.Comparator;
 
 import seedu.studmap.model.attribute.exceptions.AttributeNotFoundException;
+import seedu.studmap.model.order.Order;
 import seedu.studmap.model.student.Student;
 
 /**
@@ -30,42 +31,104 @@ public abstract class Attribute {
     /**
      * Returns the Comparator to sort the given attribute
      */
-    public static Comparator<Student> getAttributeComparator(AttributeType attributeTypeEnum)
+    public static Comparator<Student> getAttributeComparator(AttributeType attributeTypeEnum, Order order)
             throws AttributeNotFoundException {
         Comparator<Student> resultComparator;
 
         switch (attributeTypeEnum) {
 
         case NAME:
-            resultComparator = Comparator.comparing(Student::getNameString);
+            if (order.isDescending()) {
+                resultComparator = Comparator.comparing(Student::getCmpNameString,
+                        Comparator.nullsFirst(String::compareToIgnoreCase));
+            } else {
+                resultComparator = Comparator.comparing(Student::getCmpNameString,
+                        Comparator.nullsLast(String::compareToIgnoreCase));
+            }
             break;
 
         case PHONE:
-            resultComparator = Comparator.comparing(Student::getPhoneString);
+            if (order.isDescending()) {
+                resultComparator = Comparator.comparing(Student::getCmpPhoneString,
+                        Comparator.nullsFirst(String::compareToIgnoreCase));
+            } else {
+                resultComparator = Comparator.comparing(Student::getCmpPhoneString,
+                        Comparator.nullsLast(String::compareToIgnoreCase));
+            }
             break;
 
         case MODULE:
-            resultComparator = Comparator.comparing(Student::getModuleString);
+            if (order.isDescending()) {
+                resultComparator = Comparator.comparing(Student::getCmpModuleString,
+                        Comparator.nullsFirst(String::compareToIgnoreCase));
+            } else {
+                resultComparator = Comparator.comparing(Student::getCmpModuleString,
+                        Comparator.nullsLast(String::compareToIgnoreCase));
+            }
             break;
 
         case ID:
-            resultComparator = Comparator.comparing(Student::getIdString);
+            if (order.isDescending()) {
+                resultComparator = Comparator.comparing(Student::getCmpIdString,
+                        Comparator.nullsFirst(String::compareToIgnoreCase));
+            } else {
+                resultComparator = Comparator.comparing(Student::getCmpIdString,
+                        Comparator.nullsLast(String::compareToIgnoreCase));
+            }
             break;
 
         case GIT:
-            resultComparator = Comparator.comparing(Student::getGitString);
+            if (order.isDescending()) {
+                resultComparator = Comparator.comparing(Student::getCmpGitString,
+                        Comparator.nullsFirst(String::compareToIgnoreCase));
+            } else {
+                resultComparator = Comparator.comparing(Student::getCmpGitString,
+                        Comparator.nullsLast(String::compareToIgnoreCase));
+            }
             break;
 
         case HANDLE:
-            resultComparator = Comparator.comparing(Student::getHandleString);
+            if (order.isDescending()) {
+                resultComparator = Comparator.comparing(Student::getCmpHandleString,
+                        Comparator.nullsFirst(String::compareToIgnoreCase));
+            } else {
+                resultComparator = Comparator.comparing(Student::getCmpHandleString,
+                        Comparator.nullsLast(String::compareToIgnoreCase));
+            }
             break;
 
         case EMAIL:
-            resultComparator = Comparator.comparing(Student::getEmailString);
+            if (order.isDescending()) {
+                resultComparator = Comparator.comparing(Student::getCmpEmailString,
+                        Comparator.nullsFirst(String::compareToIgnoreCase));
+            } else {
+                resultComparator = Comparator.comparing(Student::getCmpEmailString,
+                        Comparator.nullsLast(String::compareToIgnoreCase));
+            }
             break;
 
         case ATTENDANCE:
-            resultComparator = Comparator.comparing(Student::getAttendancePercentage);
+            if (order.isDescending()) {
+                resultComparator = Comparator.comparing(Student::getAttendancePercentageForDsc);
+            } else {
+                resultComparator = Comparator.comparing(Student::getAttendancePercentageForAsc);
+            }
+            break;
+
+        case ASSIGNMENT:
+            if (order.isDescending()) {
+                resultComparator = Comparator.comparing(Student::getAssignmentMarkedCountForDsc);
+            } else {
+                resultComparator = Comparator.comparing(Student::getAssignmentMarkedCountForAsc);
+            }
+            break;
+
+        case PARTICIPATION:
+            if (order.isDescending()) {
+                resultComparator = Comparator.comparing(Student::getParticipationPercentageForDsc);
+            } else {
+                resultComparator = Comparator.comparing(Student::getParticipationPercentageForAsc);
+            }
             break;
 
         default:

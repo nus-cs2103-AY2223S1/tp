@@ -44,6 +44,15 @@ public class Name {
         return fullName;
     }
 
+    /**
+     * Returns string used for sorting name.
+     */
+    public String toCmpString() {
+        return this.fullName.isEmpty()
+               ? null
+               : fullName;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

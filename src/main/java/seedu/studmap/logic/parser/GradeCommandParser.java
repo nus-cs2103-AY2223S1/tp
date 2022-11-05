@@ -16,8 +16,8 @@ import seedu.studmap.model.student.Assignment;
  */
 public class GradeCommandParser extends EditStudentCommandParser<GradeCommand.GradeCommandStudentEditor> {
 
-    public static final String MESSAGE_INVALID_OPTION = "Option must either be \n'new' or"
-            + "'received' or 'marked' for assignment";
+    public static final String MESSAGE_INVALID_OPTION = "Option must either be 'new' or "
+            + "'received' or 'marked' for assignment status";
 
     @Override
     public Prefix[] getPrefixes() {
@@ -39,16 +39,18 @@ public class GradeCommandParser extends EditStudentCommandParser<GradeCommand.Gr
     public EditStudentCommand<GradeCommand.GradeCommandStudentEditor> getIndexCommand(
             ArgumentMultimap argMultimap, IndexListGenerator indexListGenerator) throws ParseException {
 
-        String[] preamble = argMultimap.getPreamble().split("\\s+");
-        if (preamble.length != 2) {
-            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
-        }
+        String[] preamble = separatePreamble(argMultimap.getPreamble());
 
         GradeCommand.GradeCommandStudentEditor editor = null;
 
+        Assignment.Status markingStatus = parseStatus(preamble[1]);
+
+        if (argMultimap.getValue(PREFIX_ASSIGNMENT).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, getUsageMessage()));
+        }
+
         String assignmentName = ParserUtil.parseAssignmentName(
                 argMultimap.getValue(PREFIX_ASSIGNMENT).orElse(""));
-        Assignment.Status markingStatus = parseStatus(preamble[1]);
         Assignment assignment = new Assignment(assignmentName, markingStatus);
         editor = new GradeCommand.GradeCommandStudentEditor(assignment);
 
@@ -60,7 +62,7 @@ public class GradeCommandParser extends EditStudentCommandParser<GradeCommand.Gr
         try {
             return Assignment.stringToStatus(status);
         } catch (IllegalValueException e) {
-            throw new ParseException(e.getMessage());
+            throw new ParseException(MESSAGE_INVALID_OPTION);
         }
     }
 

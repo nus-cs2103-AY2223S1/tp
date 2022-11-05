@@ -21,11 +21,11 @@ public class UngradeCommand extends EditStudentCommand<UngradeCommand.UngradeCom
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Remove the assignment for student identified by the index number used in the displayed student list."
-            + "\n Removes the specified assignment.\n"
+            + "\nRemoves the specified assignment.\n"
             + "Parameters: INDEX (must be positive integer) "
-            + PREFIX_ASSIGNMENT + " [CLASS]"
-            + "\n Example: " + COMMAND_WORD + " 1 " + PREFIX_ASSIGNMENT + " A01"
-            + "\n Example: " + COMMAND_WORD + " all " + PREFIX_ASSIGNMENT + " A02";
+            + PREFIX_ASSIGNMENT + "ASSIGNMENT"
+            + "\nExample: " + COMMAND_WORD + " 1 " + PREFIX_ASSIGNMENT + " A01"
+            + "\nExample: " + COMMAND_WORD + " all " + PREFIX_ASSIGNMENT + " A02";
 
     public static final String MESSAGE_UNGRADE_SINGLE_ASSIGNMENT_SUCCESS = "Removed Assignment %1$s from Student: %2$s";
 

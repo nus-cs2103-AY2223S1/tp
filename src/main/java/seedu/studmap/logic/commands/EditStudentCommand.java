@@ -2,7 +2,6 @@ package seedu.studmap.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.studmap.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
-import static seedu.studmap.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +44,7 @@ public abstract class EditStudentCommand<T extends StudentEditor> extends Comman
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        CommandResult c = executeNoRefresh(model);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return c;
+        return executeNoRefresh(model);
     }
 
     /**

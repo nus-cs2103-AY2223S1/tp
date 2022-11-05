@@ -40,7 +40,7 @@ public class Assignment {
     public Assignment(String assignmentName, Status markingStatus) {
         requireAllNonNull(assignmentName, markingStatus);
         checkArgument(isValidAssignmentName(assignmentName), MESSAGE_CONSTRAINTS);
-        this.assignmentName = assignmentName;
+        this.assignmentName = assignmentName.toUpperCase();
         this.markingStatus = markingStatus;
     }
 

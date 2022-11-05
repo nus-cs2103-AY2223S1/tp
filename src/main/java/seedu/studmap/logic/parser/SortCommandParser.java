@@ -43,7 +43,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             }
             if (Attribute.isValidAttributeType(attributeType)) {
                 AttributeType attributeTypeEnum = AttributeType.valueOf(attributeType.toUpperCase());
-                comparator = Attribute.getAttributeComparator(attributeTypeEnum);
+                comparator = Attribute.getAttributeComparator(attributeTypeEnum, order);
             } else {
                 throw new ParseException("Caused by: Invalid attribute\n");
             }

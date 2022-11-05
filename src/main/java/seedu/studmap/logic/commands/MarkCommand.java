@@ -21,13 +21,12 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the attendance for a student identified by the index number used in the displayed"
-            + " student list."
-            + "\n  Marks attendance for the class or tutorial specified in the parameter."
-            + "\n  Parameters: INDEX (must be positive integer or use \"all\" to mark everyone currently displayed)"
-            + " OPTION (must be absent/present) "
-            + PREFIX_CLASS + " [CLASS]"
-            + "\n Example: " + COMMAND_WORD + " 1 present " + PREFIX_CLASS + "T01"
-            + "\n Example: " + COMMAND_WORD + " all present " + PREFIX_CLASS + "T07";
+            + " student list.\n"
+            + "Marks attendance for the class or tutorial specified in the parameter.\n"
+            + "Parameters: INDEX (must be positive integer or use \"all\" to mark everyone currently displayed)"
+            + " OPTION (must be absent/present) " + PREFIX_CLASS + "CLASS\n"
+            + "Example: " + COMMAND_WORD + " 1 present " + PREFIX_CLASS + "T01\n"
+            + "Example: " + COMMAND_WORD + " all present " + PREFIX_CLASS + "T07";
 
     public static final String MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE = "Marked Student as %1$s: %2$s";
     public static final String MESSAGE_MARK_MULTI_SUCCESS_ATTENDANCE = "Marked %1$s students as %2$s";

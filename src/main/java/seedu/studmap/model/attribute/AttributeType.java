@@ -11,5 +11,7 @@ public enum AttributeType {
     GIT,
     HANDLE,
     EMAIL,
-    ATTENDANCE
+    ATTENDANCE,
+    PARTICIPATION,
+    ASSIGNMENT
 }

@@ -7,24 +7,24 @@ StudMap (SM) is a desktop app for managing your students, optimized for use via 
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, SM can get your student management
 tasks done faster than traditional GUI apps.
 
-* Table of Contents 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `studmap.jar` [Coming soon].
+2. Download the latest `studmap.jar` [Coming soon].
 
-1. Copy the file to the folder you want to use as the _home folder_ for your StudMap.
+3. Copy the file to the folder you want to use as the _home folder_ for your StudMap.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
@@ -39,7 +39,7 @@ tasks done faster than traditional GUI apps.
 
     * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ tasks done faster than traditional GUI apps.
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
   the parameter will be taken.<br>
@@ -106,7 +106,7 @@ Format: `list`
 
 Edits an existing student in the StudMap.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITUSER] [h/TELEHANDLE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
   The index **must be a positive integer** 1, 2, 3, …​ or use `all` to edit all students currently displayed.
@@ -187,10 +187,14 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 
 Sorts the list by the specified attribute in the specified order.
 
+When managing your students, you might want to focus on a certain aspect of the module to track. For instance, you may wish to clamp down on absenteeism and identify students who are constantly missing from class. To achieve this, we can sort the StudMap by `ATTENDANCE`.
+
 Format: `sort ORDER a/ATTRIBUTE`
 
-- `ORDER` should be `asc` for ascending and `dsc` for descending order
-- `ATTRIBUTE` currently supported are
+- `ORDER`: You can specify the order you wish to sort your StudMap. 
+  - `asc`: Sort in ascending order.
+  - `dsc`: Sort in descending order.
+- `ATTRIBUTE`: You can specify the attribute which you want to sort the StudMap by. Currently, the following attributes are supported:
   - `NAME`
   - `MODULE`
   - `PHONE`
@@ -199,12 +203,24 @@ Format: `sort ORDER a/ATTRIBUTE`
   - `HANDLE`
   - `EMAIL`
   - `ATTENDANCE`
+  - `ASSIGNMENT`
+  - `PARTICIPATION`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note 1:** If student has no records for the specified sorting attribute, they will be sorted to the end of the StudMap. <br>
+
+**:information_source: Note 2:** When sorting by `ASSIGNMENT`, we are actually sorting by number of marked assignments. 
+
+**:information_source: Note 3:** When sorting by `ATTENDANCE` and `PARTICIPATION`, we are sorting by percentage of classes attended and percentage of participation components participated correspondingly. <br>
+
+</div>
 
 Examples:
 
-* `sort asc a/name`
-* `sort dsc a/phone`
-* `sort asc a/attendance`
+* `sort asc a/attendance` sorts list by `ATTENDANCE` in ascending order
+* `sort asc a/name` sorts list by `NAME` in ascending order
+* `sort dsc a/phone` sorts list by `PHONE` in descending order
 
 ### Filtering the students: `filter`
 
@@ -259,57 +275,89 @@ Examples:
 * `unmark 1 c/T01` removes the attendance record for class `T01` from the 1st student
 * `unmark all c/T04` marks all students as absent for class `T04` from all students in the list
 
-### Tag student with label: `tag`
+### Add tag to student: `tag`
 
-Tag a student with one or more text labels. The tag should be short (i.e. no spaces) and limited to only alphabets
-and/or numbers.
-
-<  markdown="block" class="alert alert-info">
-
-</div>
+You can tag the student(s) with one or more text labels. This can help you to better identify and keep track of them.
 
 <div markdown="block" class="alert alert-info">
-   
-  **:information_source: Note** The tagging command is cumulative, that is, new tags are simply added to the student and
-  do not replace their previous tags. To remove tags from a student, see below [untag](https://ay2223s1-cs2103t-w13-1.github.io/tp/UserGuide.html#remove-tag-from-student-untag) <br>
-   
-</div>
 
-<div markdown="block" class="alert alert-info">
-   
-  **:information_source: Note** The tags are case-sensisitve. For example, `goodStudent` and `GoodStudent` will
-  be recognised as different labels. <br>
+  **:information_source: Note 1:** The tag should be short and limited to only alphabets and/or numbers (i.e. no spaces). <br>
+
+  **:information_source: Note 2:** The tags are case-sensisitve. For example, `goodStudent` and `goodstudent` will
+  be recognised as different labels.
+
+  **:information_source: Note 3:** The tagging command is cumulative, that is, new tags are simply added to the student(s) and
+  do not replace their previous tags. To remove tags from the student(s), see [untag](#remove-tag-from-student-untag) below. <br>
 
 </div>
 
 Format: `tag INDEX/ALL t/TAG [t/OTHER]`
 
-- `INDEX` could be specified or use `ALL` to add the new tags to everyone in the list
-- `TAG` the label for the student to be added. There should be at least one new label to be added when you use this command
-- `OTHER` optional tags that you might also want to add to your students
-
+- `INDEX`: You can specify the index of the student you want to add the tag to. Alternatively, you can use `ALL` to add the new tags to everyone in the currently display list.
+- `TAG`: You can specify the label to be added to the student. At least one label should be specified when you use this command
+- `OTHER`: You can also optional tags that you might also want to add to your students.
 
 Examples:
 
-* `tag 1 t/goodStudent`
-* `tag all t/goodstudent t/potentialTA`
+* `tag 1 t/goodStudent` adds the tag of "goodStudent" to the first student in the current list.
+* `tag all t/goodstudent t/potentialTA` add both "goodStudent" and "potentialTA" tag to the all student in the current list.
 
 ### Remove tag from student: `untag`
 
 Remove the specified tag(s) from the student(s).
 
-
 Format: `untag INDEX/ALL t/TAG [t/OTHER]`
 
-- `INDEX` could be specified or use `ALL` to record participation component for all students in the list
-- `TAG` the label for the student to be removed.There should be at least  one label to be removed when you use this command
-- `OTHER` optional tags that you might also want to remove from your student(s)
+- `INDEX`: You can specify index of the student to remove the tag from or use `ALL` to remove the tag for all students in the currently displayed list.
+- `TAG`: You can specify the `TAG` to remove.There should be at least one label to be removed when you use this command. For the restrictions on the format of a `TAG`, see Note 1 for [Add tag to student](#add-tag-to-student-tag).
+- `OTHER`: You can also include multiple tags to be removed from your student(s).
 
 
 Examples:
 
 * `untag 1 t/needMoreTime`
 * `untag all t/needMoreTime t/late`
+
+
+### Grade assignment for student: `grade`
+
+You can change the grading status for the assignments using this command. If the record of the assignment does not yet exist for the specified student, a new entry for the assignment will be automatically created for the student. This can help you to better keep track of assignments that you have graded or received.
+
+<div markdown="block" class="alert alert-info">
+
+  **:information_source: Note 1:** The name of assignments should contain only numbers and alphabets (all upper case). If you include any lower case in the assignment name, it will be automatically converted to upper case.
+
+</div>
+
+Format: `grade INDEX/ALL STATUS a/ASSIGNMENT`
+
+- `INDEX`: You can specify the index of the student you want to change the assignment grading status for. Alternatively, you can use `ALL` to modify the assignment grading status for every students in the currently displayed list.
+- `STATUS`: You can specify the grading status for the assignment. Currently, following three statuses are supported:
+  - `new`: The assignment has just been assigned to the student and hence it has not been submitted nor marked yet.
+  - `received`: You have received the assignment submission from the student but you have not graded it yet.
+  - `marked`: You have received and graded the assignment.
+- `ASSIGNEMNT`: You can specify the assignment which you want to change the grading status for.
+
+
+Examples:
+
+* `grade 1 new a/A01` changes the assignment grading status for assignment "A01" of the first student in the list to `new`. Add an entry of A01 into the first student's record if it does not exist yet.
+* `grade all marked a/A02` changes the assignment grading status for assignment "A02" of every students in the list to `marked`.
+
+### Remove assignment from student: `ungrade`
+
+You can remove the specified assignment from the student's record.
+
+Format: `ungrade INDEX/ALL a/ASSIGNMENT`
+
+- `INDEX`: You can specify index of the student remove the assignment from or use `ALL` to remove the assignment for all students in the currently displayed list.
+- `ASSIGNMENT`: You can specify the record of the assignment to be removed.
+
+Examples:
+
+* `ungrade 1 a/A01`
+* `ungrade all a/A01`
+
 
 ### Recording participation of a student: `participate`
 
@@ -347,10 +395,27 @@ Imports student data from a CSV file stored on your computer.
 
 Format: `import`
 
+* Importing student data will add students to the existing student list, and will not clear any existing students 
 * Running the command will open a file browser for you to select the CSV file to import
 * The CSV format accepted by StudMap is strict! Please use the template provided in the link below
-* :warning: StudMap currently does not support any commas in any data field (cell) when importing a CSV file
-* [template csv](files/import_template.csv)
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: <b>Caution:</b>
+StudMap currently does not support any commas in any data field (cell) when importing a CSV file. Please avoid inputting any data
+that has commas in the CSV.
+</div>
+
+For your convenience, please download the import template here: [template csv](files/import_template.csv)
+
+Example Usage: Importing a fresh batch of students as a new StudMap user
+
+1. Remove the default list of students by typing `clear`
+2. Modify the import template using the CSV editor of your choice (e.g. Excel, Notepad)
+   ![example CSV](images/exampleCSV.png)
+   *Example of a properly edited import template*
+3. Type the `import` command and select the CSV file you have modified 
+4. If done correctly, StudMap will create the new students using the data from the CSV file uploaded
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -361,24 +426,25 @@ the data of your previous StudMap home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action | Format, Examples
---------|------------------
-
-**Add** | `add n/NAME m/MODULE s/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T s/E1234567 g/user1 h/@user1 t/friends t/owesMoney`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITUSER] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
-**Sort** | `sort ORDER a/ATTRIBUTE` <br> e.g., `sort asc a/name`
-**Filter** | `filter`
-**Mark** | `mark INDEX/ALL ATTENDANCE c/CLASS` <br> e.g., `mark 1 present c/T01`
-**Unmark** | `unmark INDEX/ALL c/CLASS` <br> e.g., `mark 1 c/T01`
-**Add tag** | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`
-**Remove tag** | `untag INDEX t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`
-**Record participation** | `participate INDEX/ALL STATUS p/COMPONENT` <br> e.g., `participate 2 yes p/C01`
-**Remove participation** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 c/C01`
-**Import CSV** | `import`
+-------|------------------
+**[Add](#adding-a-student-add)** | `add n/NAME m/MODULE s/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T s/E1234567 g/user1 h/@user1 t/friends t/owesMoney`
+**[Clear](#clearing-all-entries--clear)** | `clear`
+**[Delete](#deleting-a-student--delete)** | `delete INDEX`<br> e.g., `delete 3`
+**[Edit](#editing-a-student--edit)** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
+**[Find](#locating-students-by-name-find)** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**[List](#listing-all-students--list)** | `list`
+**[Help](#viewing-help--help)** | `help`
+**[Sort](#sorting-the-students-sort)** | `sort ORDER a/ATTRIBUTE` <br> e.g., `sort asc a/name`
+**[Filter](#filtering-the-students-filter)** | `filter`
+**[Mark](#mark-attendance-of-student-mark)** | `mark INDEX/ALL ATTENDANCE c/CLASS` <br> e.g., `mark 1 present c/T01`
+**[Unmark](#unmark-attendance-of-a-student-unmark)** | `unmark INDEX/ALL c/CLASS` <br> e.g., `mark 1 c/T01`
+**[Add tag](#tag-student-with-label-tag)** | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`
+**[Remove tag](#remove-tag-from-student-untag)** | `untag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`
+**[Grade assignment](#grade-assignment-for-student-grade)** | `grade INDEX/ALL STATUS a/ASSIGNMENT` <br> e.g., `grade 1 new a/A01`
+**[Remove assignment](#remove-assignment-from-student-ungrade)** | `ungrade INDEX/ALL a/ASSIGNMENT` <br> e.g., `ungrade 1 a/A01`
+**[Record participation](#recording-participation-of-a-student-participate)** | `participate INDEX/ALL STATUS p/COMPONENT` <br> e.g., `participate 2 yes p/C01`
+**[Remove participation](#removing-participation-of-a-student-unparticipate)** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 p/C01`
+**[Import CSV](#import-students-from-csv-file-import)** | `import`

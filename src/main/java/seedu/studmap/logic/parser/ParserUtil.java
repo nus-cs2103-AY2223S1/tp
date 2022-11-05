@@ -208,7 +208,7 @@ public class ParserUtil {
      */
     public static String parseAssignmentName(String assignmentName) throws ParseException {
         requireNonNull(assignmentName);
-        String trimmedAssignment = assignmentName.trim();
+        String trimmedAssignment = assignmentName.trim().toUpperCase();
         if (!Assignment.isValidAssignmentName(trimmedAssignment)) {
             throw new ParseException(getInvalidMessage(Assignment.MESSAGE_CONSTRAINTS, assignmentName));
         }

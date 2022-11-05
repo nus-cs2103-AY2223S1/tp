@@ -62,6 +62,15 @@ public class TeleHandle {
                 : value;
     }
 
+    /**
+     * Returns string used for sorting telegram handle.
+     */
+    public String toCmpString() {
+        return this.value.isEmpty()
+               ? null
+               : value;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

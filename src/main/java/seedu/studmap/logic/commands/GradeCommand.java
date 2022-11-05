@@ -21,14 +21,14 @@ public class GradeCommand extends EditStudentCommand<GradeCommand.GradeCommandSt
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Specifies the assignment status for a student identified by the index number used in the displayed"
-            + " student list.\n This commands creates a new assignment for the student if it does not exist."
-            + "\n Grades the status for the assignment specified in the parameter.\n"
+            + " student list.\nThis commands creates a new assignment for the student if it does not exist.\n"
+            + "Grades the status for the assignment specified in the parameter.\n"
             + "Parameters: INDEX (must be positive integer or use \"all\" to mark everyone currently displayed)"
-            + " OPTION (must be marked/received/new where 'new' "
+            + " OPTION (must be marked/received/new where 'new'"
             + " also represents a new assignment that is not yet received) "
-            + PREFIX_ASSIGNMENT + " [CLASS]\n"
+            + PREFIX_ASSIGNMENT + "ASSIGNMENT\n"
             + "Example: " + COMMAND_WORD + " 1 new " + PREFIX_ASSIGNMENT + "A01\n"
-            + "Example: " + COMMAND_WORD + " all marked " + PREFIX_ASSIGNMENT + "A07";;
+            + "Example: " + COMMAND_WORD + " all marked " + PREFIX_ASSIGNMENT + "A07";
 
     public static final String MESSAGE_GRADE_SINGLE_SUCCESS_ASSIGNMENT =
             "Set assignment %1$s for student %2$s as %3$s:" + " \n%4$s";
