@@ -51,7 +51,7 @@ public class SortAppointmentCommand extends Command {
             DoctorComparator doctorComparator = new DoctorComparator();
             model.sortAppointments(doctorComparator, this.isAscending);
         } else {
-            throw new CommandException(Messages.MESSAGE_INVALID_SORT_CRITERIA);
+            throw new CommandException(MESSAGE_USAGE);
         }
 
         String message = String.format(MESSAGE_SORT_SUCCESS, this.criteria);
@@ -64,7 +64,7 @@ public class SortAppointmentCommand extends Command {
     public class NameComparator implements Comparator<Appointment> {
         @Override
         public int compare(Appointment first, Appointment second) {
-            return first.getName().toString().compareTo(second.getName().toString());
+            return first.getName().toString().compareToIgnoreCase(second.getName().toString());
         }
     }
 
@@ -74,7 +74,7 @@ public class SortAppointmentCommand extends Command {
     public class TestComparator implements Comparator<Appointment> {
         @Override
         public int compare(Appointment first, Appointment second) {
-            return first.getMedicalTest().toString().compareTo(second.getMedicalTest().toString());
+            return first.getMedicalTest().toString().compareToIgnoreCase(second.getMedicalTest().toString());
         }
     }
 
@@ -84,7 +84,7 @@ public class SortAppointmentCommand extends Command {
     public class SlotComparator implements Comparator<Appointment> {
         @Override
         public int compare(Appointment first, Appointment second) {
-            return first.getSlot().toString().compareTo(second.getSlot().toString());
+            return first.getSlot().toString().compareToIgnoreCase(second.getSlot().toString());
         }
     }
 
@@ -94,7 +94,7 @@ public class SortAppointmentCommand extends Command {
     public class DoctorComparator implements Comparator<Appointment> {
         @Override
         public int compare(Appointment first, Appointment second) {
-            return first.getDoctor().toString().compareTo(second.getDoctor().toString());
+            return first.getDoctor().toString().compareToIgnoreCase(second.getDoctor().toString());
         }
     }
 }

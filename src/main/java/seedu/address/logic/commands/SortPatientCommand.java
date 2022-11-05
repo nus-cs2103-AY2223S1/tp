@@ -51,7 +51,7 @@ public class SortPatientCommand extends Command {
             AddressComparator addressComparator = new AddressComparator();
             model.sortPatients(addressComparator, this.isAscending);
         } else {
-            throw new CommandException(Messages.MESSAGE_INVALID_SORT_CRITERIA);
+            throw new CommandException(MESSAGE_USAGE);
         }
 
         String message = String.format(MESSAGE_SORT_SUCCESS, this.criteria);
@@ -64,7 +64,7 @@ public class SortPatientCommand extends Command {
     public class NameComparator implements Comparator<Patient> {
         @Override
         public int compare(Patient first, Patient second) {
-            return first.getName().toString().compareTo(second.getName().toString());
+            return first.getName().toString().compareToIgnoreCase(second.getName().toString());
         }
     }
 
@@ -74,7 +74,7 @@ public class SortPatientCommand extends Command {
     public class PhoneComparator implements Comparator<Patient> {
         @Override
         public int compare(Patient first, Patient second) {
-            return first.getPhone().toString().compareTo(second.getPhone().toString());
+            return first.getPhone().toString().compareToIgnoreCase(second.getPhone().toString());
         }
     }
 
@@ -84,7 +84,7 @@ public class SortPatientCommand extends Command {
     public class EmailComparator implements Comparator<Patient> {
         @Override
         public int compare(Patient first, Patient second) {
-            return first.getEmail().toString().compareTo(second.getEmail().toString());
+            return first.getEmail().toString().compareToIgnoreCase(second.getEmail().toString());
         }
     }
 
@@ -94,7 +94,7 @@ public class SortPatientCommand extends Command {
     public class AddressComparator implements Comparator<Patient> {
         @Override
         public int compare(Patient first, Patient second) {
-            return first.getAddress().toString().compareTo(second.getAddress().toString());
+            return first.getAddress().toString().compareToIgnoreCase(second.getAddress().toString());
         }
     }
 }

@@ -53,10 +53,10 @@ to be added soon
 * Updated user docs not specific to feature
 
 ### Review/mentoring contributions:
-* Reviewed PRs
+~~* Reviewed PRs
   * [#1](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/174)
   * [#2](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/172)
-  * [#3](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/158)
+  * [#3](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/158)~~
 
 ### Contributions beyond the project team:
 to be added soon
