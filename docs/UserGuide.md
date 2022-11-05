@@ -146,7 +146,9 @@ Refer to the [Command Format](#command-format) section on how to use flags and p
 
 #### Parameter
 
-A parameter represents placeholders where you input data. Usually, parameters follow immediately after their corresponding flag.
+A parameter represents placeholders where you input data. Usually, parameters follow immediately after their corresponding flag. 
+
+Each parameter has unique constraints, which restricts what you can type in for the parameter. Refer to the table below for details.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note**<br>
 Some parameters, such as `CONTACT_INDEX` and `KEYWORD`, may not follow after flags.
@@ -154,19 +156,120 @@ Some parameters, such as `CONTACT_INDEX` and `KEYWORD`, may not follow after fla
 
 Refer to the [Command Format](#command-format) section on how to use flags and parameters together.
 
-| Parameter       | Corresponding Flag | Description                                                |
-|-----------------|--------------------|------------------------------------------------------------|
-| `ADDRESS`       | `a/`               | The address of a contact.                                  |
-| `CONTACT_INDEX` | `c/`               | The displayed index of a contact.                          |
-| `CONTACT_NAME`  | `n/`               | The name of a contact.                                     |
-| `DEADLINE`      | `dl/`              | The deadline of a task.                                    |
-| `DESCRIPTION`   | `d/`               | The description of a task.                                 |
-| `EMAIL`         | `e/`               | The email of a contact.                                    |
-| `KEYWORD`       | Not applicable     | The keywords to search for when finding contacts or tasks. |
-| `TASK_INDEX`    | `t/`               | The displayed index of a task.                             |
-| `TASK_NAME`     | `n/`               | The name of a task.                                        |
-| `PHONE_NUMBER`  | `p/`               | The phone number of a contact.                             |
-| `TAG`           | `t/`               | The tag of a contact.                                      |
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Corresponding Flag</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td markdown="span">`ADDRESS`</td>
+        <td markdown="span">`a/`</td>
+        <td markdown="block">Specifies the address of a contact.
+
+- Cannot be blank.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`CONTACT_INDEX`</td>
+        <td markdown="span">`c/`</td>
+        <td markdown="block">Refers to the index number shown in the **displayed contact list**.
+
+- Must be a **positive whole number**, e.g. 1, 2, 3.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`CONTACT_NAME`</td>
+        <td markdown="span">`n/`</td>
+        <td markdown="block">Specifies the name of a contact.
+
+- Should only contain alphanumeric characters, spaces, and the following symbols: `,` `-` `'`.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`DEADLINE`</td>
+        <td markdown="span">`dl/`</td>
+        <td markdown="block">Specifies the due date of a task.
+
+- Must be in the format of **`dd-MM-yyyy HHmm`**, e.g. `12-06-2020 1234` represents `12 June 2020 12:34`.
+- If `HHmm` is specified as `2400`, the date will increase to the following day with the time at 00:00.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`DESCRIPTION`</td>
+        <td markdown="span">`d/`</td>
+        <td markdown="block">Specifies the description and further details of a task.
+
+- Should only contain alphanumeric characters, spaces, and the following symbols: `$` `&` `+` `,` `:` `;` `=` `?` `@` `#` `|` `'` `<` `>` `.` `\` `-` `^` `*` `(` `)` `%` `!`.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`EMAIL`</td>
+        <td markdown="span">`e/`</td>
+        <td markdown="block">Specifies the email of a contact.
+
+- Must be in the format of **`USERNAME@DOMAIN`**.
+- `USERNAME` should only contain alphanumeric characters and the following special symbols: `+` `_` `.` `-`.
+- `USERNAME` cannot start or end with the above special symbols.
+- `DOMAIN` consists of domain labels separated by periods (`.`), e.g. `nus.edu.sg`.
+- `DOMAIN` must end with a domain label with at least 2 characters, e.g. `.com`.
+- Each domain label must only consist of alphanumeric characters, separated only by hyphens, if any, e.g. `swift-plus.com`.
+- Each domain label start and end with alphanumeric characters.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`KEYWORD`</td>
+        <td>Not applicable</td>
+        <td markdown="block">Specifies the keywords to search for when finding contacts or tasks.
+
+- Can contain alphanumeric characters, spaces, and any special characters.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`PHONE_NUMBER`</td>
+        <td markdown="span">`p/`</td>
+        <td markdown="block">Specifies the phone number of a contact.
+
+- Should only contain numbers.
+- Must be at least 3 digits long.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`TAG`</td>
+        <td markdown="span">`t/`</td>
+        <td markdown="block">Specifies the tag to categorize a contact under.
+
+- Should only contain alphanumeric characters.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`TASK_INDEX`</td>
+        <td markdown="span">`t/`</td>
+        <td markdown="block">Refers to the index number shown in the **displayed task list**.
+
+- Must be a **positive whole number**, e.g. 1, 2, 3.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`TASK_NAME`</td>
+        <td markdown="span">`n/`</td>
+        <td markdown="block">Specifies the name of a task.
+
+- Should only contain alphanumeric characters, spaces, and the following symbols: `,` `-` `'`.
+
+</td>
+    </tr>
+</table>
 
 #### Command Format
 
