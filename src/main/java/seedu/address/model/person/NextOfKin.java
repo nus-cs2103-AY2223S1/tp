@@ -12,7 +12,8 @@ public class NextOfKin {
     public static final String MESSAGE_CONSTRAINTS = "Next of Kin should not be blank "
             + "and should come in the format: Name, Relationship, Contact";
 
-    public static final String VALIDATION_REGEX = "[A-Za-z\\s]+,[a-zA-Z\\s]+,[0-9\\s]+";
+    public static final String STRING_VALIDATION_REGEX = "[A-Za-z\\s]+";
+    public static final String INTEGER_VALIDATION_REGEX = "[0-9\\s]+";
 
     public final String value;
 
@@ -31,7 +32,18 @@ public class NextOfKin {
      * Returns true if a given string is a valid Next of Kin.
      */
     public static boolean isValidNextOfKin(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            String[] nextOfKinData = test.split(",", 3);
+            String name = nextOfKinData[0].trim();
+            String relationship = nextOfKinData[1].trim();
+            String contact = nextOfKinData[2].trim();
+            Boolean isValidName = !name.equals("") && name.matches(STRING_VALIDATION_REGEX);
+            Boolean isValidRelationship = !relationship.equals("") && relationship.matches(STRING_VALIDATION_REGEX);
+            Boolean isValidContact = !contact.equals("") && contact.matches(INTEGER_VALIDATION_REGEX);
+            return isValidContact && isValidRelationship && isValidName;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return false;
+        }
     }
 
     @Override
@@ -62,5 +74,4 @@ public class NextOfKin {
     public int hashCode() {
         return value.hashCode();
     }
-
 }
