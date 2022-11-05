@@ -44,7 +44,8 @@ Given below are my contributions to the project.
     * Added use cases 1 to 5, 8 and table of user stories. ([#38](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/38), [#259](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/259))
     * Added implementation of Review class and updated User Interface UML diagrams. ([#180](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/180))
     * Added use case for clear command. ([#259](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/259))
-    * Fixed numbering and formatting. ([#339](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/339))
+    * Fixed numbering and formatting. ([#339](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/339), [#365](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/365))
+    * Add new column in user stories to indicate features implemented in current version. ([#365](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/365))
 * **Community**
   * Updated the user guide URL in the HelpWindow. ([#44](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/44))
   * Modify the default package name to `foodwhere`. ([#71](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/71))

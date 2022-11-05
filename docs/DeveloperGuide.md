@@ -100,10 +100,10 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a review).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("rdel 1")` API call.
+![Interactions inside the Logic Component for the `rdel 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -169,7 +169,7 @@ A `Review`,
 A `Review` contains the following attributes,
 1. a `Name`, which represent the name of the Stall associated with the Review
 1. an `Address`, which represent the address of the Stall associated with the Review
-2. a `Date`, which represent the day, month and year as specified in `DD/MM/YYYY` format
+2. a `Date`, which represent the day, month and year as specified in `DD/MM/YYYY`, or any of the specified formats in [here](#file-format-for-foodwhere)
 3. a `Content`, which represent the review of the Stall by the user
 4. a `Rating`, which represent the rating of the Stall from 0 to 5 inclusive
 5. can be assigned to a single `Stall`
@@ -185,30 +185,30 @@ A `Review` contains the following attributes,
     * Pros: Less overhead as fewer objects are created
     * Cons: Prone to error as a Component might not be correctly changed
 
-### Review Adding feature
+### Review adding feature
 
-#### What is Review Adding feature about?
+#### What is Review adding feature about?
 
 The Add Review mechanism is facilitated by `AddressBook`. This feature enhances `AddressBook` by allowing to store not only `Stall`, but also `Review`. This is stored internally as a `UniqueStallList` and `UniqueReviewList`. `Review` requires a `Stall` as `Review` is stored in `Stall`. Additionally, the feature implements the following operations:
 
 * `AddressBook#addReview(Review)` —  Adds the `Review` to `UniqueReviewList`
 
-For the command, the feature extends `command`, and is implemented as such:
+For the command, the feature extends `Command`, and is implemented as such:
 * `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`
 
-#### Implementation Flow of Review Adding feature
+#### Implementation flow of Review adding feature
 
 Given below is an example usage scenario and how the Review adding mechanism behaves at each step.
 
 Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
 
-Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data. Ensure that there is an existing `Stall` with index 1.
 
 Step 2. The user executes `radd s/1 d/20-09-2022 c/The food was good, the chicken rice was fresh. r/4` command to create a new `Review` for `Stall` with index 1.
 
 ![AddReview](images/AddReview.png)
 
-#### UML Diagram for Adding Review
+#### UML diagram for adding Review
 
 The following activity diagram summarizes what happens when a user executes a new `radd` command:
 
@@ -218,37 +218,42 @@ The following activity diagram summarizes what happens when a user executes a ne
 - The Review adding commands are straight to the point and efficient for users to add Review for Stall in FoodWhere.
 - The prefixes allow users to understand what the different types of data fields Review need in order to be created.
 
-### Finding stalls and reviews feature
+### Finding Stalls and Reviews feature
 
-#### What is finding stalls and reviews feature about?
+#### What is finding Stall and Review feature about?
 
 This feature is used to find stalls and reviews in FoodWhere by name and/or by tags. It uses the following two commands:
 * `sfind`: Finds stalls
 * `rfind`: Finds reviews
 
-`sfind` allows users to find stalls in `AddressBook` by names, through matching of input keyword(s) with stall names. Additionally, users can find stalls by tags, through matching of input keyword(s) with stall tags.
+`sfind` allows users to find stalls in `AddressBook` by **name**, through matching of input keyword(s) with stall names. Additionally, users can find stalls by **tags**, through matching of input keyword(s) with stall tags.
 
-`rfind` allows users to find reviews in `AddressBook` by names, through matching of input keyword(s) with review names. Additionally, users can find reviews by tags, through matching of input keyword(s) with review tags.
+`rfind` allows users to find reviews in `AddressBook` by **name**, through matching of input keyword(s) with review names. Additionally, users can find reviews by **tags**, through matching of input keyword(s) with review tags.
 
-For the command, the feature extends `command`, and is implemented as such:
+For the command, the feature extends `Command`, and is implemented as such:
 * `sfind n/[NAME_KEYWORDS]… t/[TAG_KEYWORDS]…`
 * `rfind n/[NAME_KEYWORDS]… t/[TAG_KEYWORDS]…`
 
-#### Implementation Flow of finding stalls and reviews feature
+#### Implementation flow of finding Stalls and Reviews feature
 
 Given below is an example usage scenario and how the finding stalls and reviews mechanism behaves at each step.
 
 Step 1. The user executes `sfind n/eatery` command to find all stalls where stall name contains the word 'eatery'.
+
 Step 2. The user input will be sent to `SFindCommandParser`.
+
 Step 3. The keyword `eatery` will be parsed as a Name.
+
 Step 4. The parser creates a `StallContainsKeywordsPredicate` using the Name created, while setting the tag attribute to null.
+
 Step 5. The predicate is used to create a new `SFindCommand`.
+
 Step 6. When the SFindCommand executes, the predicate will be sent to ModelManager to filter out stalls that satisfy the predicate.
 
 
 ![AddTodo1](images/sfind.png)
 
-#### UML Diagram for finding stalls/ reviews
+#### UML diagram for finding Stalls/Reviews
 
 The following activity diagram summarizes what happens when a user executes a new `sfind` or `rfind` command:
 
@@ -264,10 +269,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 The listing of all reviews mechanism is facilitated by `Model`. This feature allows the user to list all reviews.
 
-For the command, the feature extends `command`, and is implemented as such:
+For the command, the feature extends `Command`, and is implemented as such:
 * `rlist`
 
-#### Implementation Flow of listing all Reviews feature
+#### Implementation flow of listing all Reviews feature
 
 Given below is an example usage scenario and how the listing of all reviews mechanism behaves at each step.
 
@@ -275,26 +280,26 @@ Note: FoodWhere comes with preloaded data, and can be started on a fresh state w
 
 Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
 
-Step 2. The user executes `rlist` to list all reviews on the FoodWhere User Interface.
+Step 2. The user executes `rlist` to list **all** reviews on the FoodWhere User Interface.
 
 ![ListReview](images/ListReview.png)
 
-#### UML Diagram for listing of all Reviews
+#### UML diagram for listing of all Reviews
 
 The following activity diagram summarizes what happens when a user executes a new `rlist` command:
 
 <img src="images/ListReviewActivityDiagram.png" width="250" />
 
-### Review Deleting feature
+### Review deleting feature
 
-#### What is Review Deleting feature about?
+#### What is Review deleting feature about?
 
 The Delete Review mechanism is facilitated by `AddressBook`. This feature allows the user to delete a review.
 
-For the command, the feature extends `command`, and is implemented as such:
+For the command, the feature extends `Command`, and is implemented as such:
 * `rdel REVIEW_INDEX`
 
-#### Implementation Flow of Review Deleting feature
+#### Implementation flow of Review deleting feature
 
 Given below is an example usage scenario and how the listing of all reviews mechanism behaves at each step.
 
@@ -308,24 +313,24 @@ Step 3. The user executes `rdel 2` command to delete the last review with index 
 
 ![DeleteReview](images/DeleteReview.png)
 
-#### UML Diagram for Deleting Review
+#### UML diagram for deleting Review
 
 The following activity diagram summarizes what happens when a user executes a new `rdel` command:
 
 <img src="images/DeleteReviewActivityDiagram.png" width="250" />
 
-### Review Editing feature
+### Review editing feature
 
-#### What is Review Editing feature about?
+#### What is Review editing feature about?
 
 The Edit Review mechanism is facilitated by `REditCommandParser` and `REditCommand`. This feature allows the user to edit a review after it has been created.
 
 `REditCommandParser.parse()` - parses the user input and returns a `REditCommand` object. `REditCommand.execute()` - creates a new `Review` object based on the parsed user input and calls `Model.setReview()` to replace the old `Review` object with the new `Review` object.
 
-For the command, the feature extends `command`, and is implemented as such:
+For the command, the feature extends `Command`, and is implemented as such:
 * `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…`
 
-#### Implementation Flow of Review Editing feature
+#### Implementation flow of Review editing feature
 
 Given below is an example usage scenario and how the listing of all reviews mechanism behaves at each step.
 
@@ -349,7 +354,7 @@ Step 7. `model.setReview()` will interact with the model to have it replace the 
 
 ![REditSequenceDiagram](images/REditSequenceDiagram.png)
 
-#### UML Diagram for Editing Review
+#### UML diagram for editing Review
 
 The following activity diagram summarizes what happens when a user executes a new `redit` command:
 
@@ -358,22 +363,19 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design considerations:
 - Multiple fields of a Review can be edited in one go to increase the efficiency of the user of our application.
 
-
-### Review Sorting feature
-=======
 ### Sorting Stalls and Reviews feature
 
-#### What is sorting stalls and reviews feature about?
+#### What is sorting Stalls and Reviews feature about?
 
 `ssort`: The Sort Stalls mechanism is facilitated by `Model` and `StallsComparatorList`. This feature allows the user to sort all stalls by specified criterion. The list of supported sorting criteria is stored in `StallsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Stall>` field that will be passed in as an argument for `Model.sortStalls()` for sorting the stall list.
 
 `rsort`: The Sort Reviews mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion. The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
 
-For the command, the feature extends `command`, and is implemented as such:
+For the command, the feature extends `Command`, and is implemented as such:
 * `ssort CRITERION`
 * `rsort CRITERION`
 
-#### Implementation Flow of Sorting Stalls and Reviews feature
+#### Implementation flow of sorting Stalls and Reviews feature
 
 Given below is an example usage scenario and how the sorting of all stalls and reviews mechanism behaves at each step.
 
@@ -393,16 +395,15 @@ Step 6. `model.sortReviews()` will interact with the model to sort reviews using
 
 ![SortReview](images/SortReview.png)
 
-#### UML Diagram for Sorting Stalls/Reviews
+#### UML diagram for sorting Stalls/Reviews
 
 The following activity diagram summarizes what happens when a user executes a new `ssort` or `rsort` command:
 
-<img src="images/SortReviewActivityDiagram.png" width="250" />
-=======
+<img src="images/SortActivityDiagram.png" width="250" />
 
 ### File format for FoodWhere
 
-The Foodwhere data is stored as a JSON file.
+FoodWhere data is stored as a JSON file.
 * The file stores the stalls in the `"stalls"` property of the object
 * Each of the stalls is represented by an object with the properties `"name"`, `"address"`, `"tags"`, `"reviews"`.
 * The reviews for a stall is stored in the `"reviews"` property of the object representing the stall.
@@ -436,7 +437,6 @@ Below is an example of one stall with one review.
 }
 ```
 
-=======
 
 ### \[Proposed\] Undo/redo feature
 
@@ -558,46 +558,46 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                              | I want to …​                                                                                                                  | So that I can…​                                                                                                                                         |
-|----------|-------------------------------------|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | user                                | create reviews for a food stall                                                                                              | record which food stall that I have visited have nice food                                                                                             |
-| `* * *`  | user                                | view reviews for a food stall                                                                                                | easily find out the best food I have eaten                                                                                                             |
-| `* * *`  | user                                | delete review for food stall                                                                                                 | delete any erroneous entries I have made                                                                                                               |
-| `* *`    | user                                | modify details of review for food stall                                                                                      | rectify any erroneous details in the entry                                                                                                             |
-| `* * *`  | user                                | list out food stall                                                                                                          | have a overview of the food stalls I have been to                                                                                                      |
-| `* *`    | user                                | list out food stall according from high to low reviews                                                                       | see the top few food stall                                                                                                                             |
-| `* * *`  | user                                | find food stall by matching a word in the name                                                                               | find the exact food stall I am interested in                                                                                                           |
-| `*`      | user                                | find food stall by approximate name                                                                                          | find the exact food stall I am interested in even when I’m not very sure about the stall name                                                          |
-| `*`      | user                                | tag a food stall with a tag                                                                                                  | categorize food stalls effectively                                                                                                                     |
-| `*`      | user                                | list out food place according to given tag                                                                                   | get an overview of the food place with the tag I am interested in                                                                                      |
-| `*`      | user                                | include photo along with the review                                                                                          | easily identify which photo belongs to which stall and upload them to social media                                                                     |
-| `* * *`  | user                                | purge existing data                                                                                                          | get rid of any sample data                                                                                                                             |
-| `* * *`  | user                                | add food stall addresses                                                                                                     | add a new location I can review                                                                                                                        |
-| `* * *`  | user                                | delete food stall addresses                                                                                                  | remove a stall when it closes                                                                                                                          |
-| `* * *`  | new user                            | see the application populated with sample data                                                                               | view what the app should look like                                                                                                                     |
-| `* *`    | user                                | modify the address of a place/food stall                                                                                     | update when a hawker moves to a different place                                                                                                        |
-| `*`      | user                                | find places close to my current location                                                                                     | choose where to go next effectively                                                                                                                    |
-| `*`      | user                                | store individual food ratings of a place                                                                                     | see which food I have reviewed from a place                                                                                                            |
-| `*`      | user                                | search food places by food type                                                                                              | organize my work to sure variety in food type in my reviews (for example, same/different types of food in the same review or to facilitate comparison) |
-| `*`      | user                                | send the reviews through other social media platforms                                                                        | share the review with my friends without having to make separate posts                                                                                 |
-| `* * *`  | user                                | include a date/day on my reviews                                                                                             | track how much reviewing I have done over time                                                                                                         |
-| `*`      | user                                | see review that are most recent (sorting)                                                                                    | get the most updated review                                                                                                                            |
-| `*`      | user                                | archive existing stalls / review                                                                                             | not be distracted by previous reviews made                                                                                                             |
-| `* * *`  | new user                            | check out what tools are available in this application                                                                       | learn how to use the application                                                                                                                       |
-| `* * *`  | user helping another user           | import data                                                                                                                  | get existing lists from friends/coworkers to work on                                                                                                   |
-| `* * *`  | user                                | export data                                                                                                                  | archive my data entries somewhere else                                                                                                                 |
-| `*`      | user                                | set a deadline to review a particular stall                                                                                  | remind myself to complete the task                                                                                                                     |
-| `*`      | experienced user                    | see statistics of total number of reviews or stalls created                                                                  | keep track of my performance and targets for the year                                                                                                  |
-| `*`      | user                                | include custom rating metrics on my review (star system? Health benefits?)                                                   | be more nuanced on my review                                                                                                                           |
-| `* * *`  | user                                | include stall opening and closing times                                                                                      | plan my schedule on when to visit the stall accordingly                                                                                                |
-| `*`      | impatient user                      | manage up to 1000 stalls and reviews in reasonable time                                                                      | minimize my waiting time                                                                                                                               |
-| `*`      | impatient user                      | open the app quickly                                                                                                         | not wait so long                                                                                                                                       |
-| `*`      | impatient user                      | get a visualisation for any loading times                                                                                    | know how long I need to wait                                                                                                                           |
-| `* *`    | user                                | search for past reviews by substring                                                                                         | see places I’ve been to before                                                                                                                         |
-| `* *`    | user                                | filter for past reviews by stall                                                                                             | see places I’ve been to before                                                                                                                         |
-| `*`      | advanced user                       | add command aliases                                                                                                          | speed up my workflow                                                                                                                                   |
-| `*`      | user                                | plan my social media posting schedule of my current reviews <br/> (i.e. I want to post about this stall at this future date) | manage my social media presence                                                                                                                        |                                                                                                                                                     
-| `*`      | advanced user                       | access data files in csv format                                                                                              | modify the data files used in the app programmatically to do custom things                                                                             |
+| Priority | As a …​                   | I want to …​                                                                                                                 | So that I can…​                                                                                                                                        | Implemented in current Version                    |
+|----------|---------------------------|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
+| `* * *`  | user                      | create reviews for a food stall                                                                                              | record which food stall that I have visited have nice food                                                                                             | Yes                                               |
+| `* * *`  | user                      | view reviews for a food stall                                                                                                | easily find out the best food I have eaten                                                                                                             | Yes                                               |
+| `* * *`  | user                      | delete review for food stall                                                                                                 | delete any erroneous entries I have made                                                                                                               | Yes                                               |
+| `* *`    | user                      | modify details of review for food stall                                                                                      | rectify any erroneous details in the entry                                                                                                             | Yes                                               |
+| `* * *`  | user                      | list out food stall                                                                                                          | have a overview of the food stalls I have been to                                                                                                      | Yes                                               |
+| `* *`    | user                      | list out food stall according from high to low reviews                                                                       | see the top few food stall                                                                                                                             | No                                                |
+| `* * *`  | user                      | find food stall by matching a word in the name                                                                               | find the exact food stall I am interested in                                                                                                           | Yes                                               |
+| `*`      | user                      | find food stall by approximate name                                                                                          | find the exact food stall I am interested in even when I’m not very sure about the stall name                                                          | No                                                |
+| `*`      | user                      | tag a food stall with a tag                                                                                                  | categorize food stalls effectively                                                                                                                     | Yes                                               |
+| `*`      | user                      | list out food place according to given tag                                                                                   | get an overview of the food place with the tag I am interested in                                                                                      | Yes                                               |
+| `*`      | user                      | include photo along with the review                                                                                          | easily identify which photo belongs to which stall and upload them to social media                                                                     | No                                                |
+| `* * *`  | user                      | purge existing data                                                                                                          | get rid of any sample data                                                                                                                             | Yes                                               |
+| `* * *`  | user                      | add food stall addresses                                                                                                     | add a new location I can review                                                                                                                        | Yes (by adding a Stall)                           |
+| `* * *`  | user                      | delete food stall addresses                                                                                                  | remove a stall when it closes                                                                                                                          | Yes                                               |
+| `* * *`  | new user                  | see the application populated with sample data                                                                               | view what the app should look like                                                                                                                     | Yes                                               |
+| `* *`    | user                      | modify the address of a place/food stall                                                                                     | update when a hawker moves to a different place                                                                                                        | Yes                                               |
+| `*`      | user                      | find places close to my current location                                                                                     | choose where to go next effectively                                                                                                                    | No                                                |
+| `*`      | user                      | store individual food ratings of a place                                                                                     | see which food I have reviewed from a place                                                                                                            | Yes                                               |
+| `*`      | user                      | search food places by food type                                                                                              | organize my work to sure variety in food type in my reviews (for example, same/different types of food in the same review or to facilitate comparison) | Yes (by Tag)                                      |
+| `*`      | user                      | send the reviews through other social media platforms                                                                        | share the review with my friends without having to make separate posts                                                                                 | No                                                |
+| `* * *`  | user                      | include a date/day on my reviews                                                                                             | track how much reviewing I have done over time                                                                                                         | Yes (by Content)                                  |
+| `*`      | user                      | see review that are most recent (sorting)                                                                                    | get the most updated review                                                                                                                            | No                                                |
+| `*`      | user                      | archive existing stalls / review                                                                                             | not be distracted by previous reviews made                                                                                                             | Yes (by copying data file to another location)    |
+| `* * *`  | new user                  | check out what tools are available in this application                                                                       | learn how to use the application                                                                                                                       | Yes                                               |
+| `* * *`  | user helping another user | import data                                                                                                                  | get existing lists from friends/coworkers to work on                                                                                                   | Yes (by copying data into `foodwhere.json` file   |
+| `* * *`  | user                      | export data                                                                                                                  | archive my data entries somewhere else                                                                                                                 | Yes (by copying data file to another location)    |
+| `*`      | user                      | set a deadline to review a particular stall                                                                                  | remind myself to complete the task                                                                                                                     | No                                                |
+| `*`      | experienced user          | see statistics of total number of reviews or stalls created                                                                  | keep track of my performance and targets for the year                                                                                                  | No                                                |
+| `*`      | user                      | include custom rating metrics on my review (star system? Health benefits?)                                                   | be more nuanced on my review                                                                                                                           | No                                                |
+| `* * *`  | user                      | include stall opening and closing times                                                                                      | plan my schedule on when to visit the stall accordingly                                                                                                | Yes (by Tag)                                      |
+| `*`      | impatient user            | manage up to 1000 stalls and reviews in reasonable time                                                                      | minimize my waiting time                                                                                                                               | Yes                                               |
+| `*`      | impatient user            | open the app quickly                                                                                                         | not wait so long                                                                                                                                       | Yes                                               |
+| `*`      | impatient user            | get a visualisation for any loading times                                                                                    | know how long I need to wait                                                                                                                           | No                                                |
+| `* *`    | user                      | search for past reviews by substring                                                                                         | see places I’ve been to before                                                                                                                         | No (Exact string match as of now by Review name)  |
+| `* *`    | user                      | filter for past reviews by stall                                                                                             | see places I’ve been to before                                                                                                                         | Yes                                               |
+| `*`      | advanced user             | add command aliases                                                                                                          | speed up my workflow                                                                                                                                   | No                                                |
+| `*`      | user                      | plan my social media posting schedule of my current reviews <br/> (i.e. I want to post about this stall at this future date) | manage my social media presence                                                                                                                        | No                                                |                                                                                                                                                     
+| `*`      | advanced user             | access data files in csv format                                                                                              | modify the data files used in the app programmatically to do custom things                                                                             | No (Current user however, can edit the JSON file) |
 
 ### Use cases
 
@@ -607,6 +607,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 > Guarantees:
 > - For any use cases below that changes any data, FoodWhere will guarantee that the data is updated and saved.
+
 ****
 
 **Use case 1: Add a food stall**
@@ -669,6 +670,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ****
 
 **Use case 4: Delete a food review**
+
 **MSS**
 
 1. User starts FoodWhere.
