@@ -7,20 +7,26 @@ import org.junit.jupiter.api.Test;
 
 import coydir.logic.parser.exceptions.ParseException;
 
+import java.time.LocalDate;
+
 public class RatingTest {
     private Rating rating1;
     private Rating rating2;
     private Rating rating3;
     private Rating rating4;
     private Rating rating5;
+    private Rating rating6;
+    private Rating rating7;
     
     public RatingTest() {
         try {
-            rating1 = new Rating("3", "05-01-2022");
-            rating2 = new Rating("3");
-            rating3 = new Rating();
-            rating4 = new Rating("3", "05-01-2022");
-            rating5 = new Rating("3", "05-01-2022");
+            rating1 = new Rating("1", "05-01-2022");
+            rating2 = new Rating("2", "06-02-2006");
+            rating3 = new Rating("3", "07-07-1999");
+            rating4 = new Rating("4", "12-11-2020");
+            rating5 = new Rating("5", "29-06-2019");
+            rating6 = new Rating("3");
+            rating7 = new Rating();
         } catch (ParseException ignored) {}
     }
 
@@ -62,7 +68,24 @@ public class RatingTest {
 
     @Test
     public void getRating() {
-        assertEquals("3", rating1.toString());
+        assertEquals("1", rating1.toString());
+        assertEquals("2", rating2.toString());
+        assertEquals("3", rating3.toString());
+        assertEquals("4", rating4.toString());
+        assertEquals("5", rating5.toString());
+        assertEquals("3", rating6.toString());
+        assertEquals("N/A", rating7.toString());
+    }
+
+    @Test
+    public void getTimestamp() {
+        assertEquals("2022-01-05", rating1.getTime().toString());
+        assertEquals("2006-02-06", rating2.getTime().toString());
+        assertEquals("1999-07-07", rating3.getTime().toString());
+        assertEquals("2020-11-12", rating4.getTime().toString());
+        assertEquals("2019-06-29", rating5.getTime().toString());
+        assertEquals(LocalDate.now().toString(), rating6.getTime().toString());
+        assertEquals(LocalDate.now().toString(), rating7.getTime().toString());
     }
     
 }
