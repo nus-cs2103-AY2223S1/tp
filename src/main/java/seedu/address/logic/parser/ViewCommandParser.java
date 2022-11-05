@@ -94,10 +94,14 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         if (input.trim().isEmpty()) {
             return new ArrayList<>();
         }
+        input = input.replaceAll("\"", " \" ");
         ArrayList<String> parsedArray = new ArrayList<>();
         Matcher m = Pattern.compile("\\s*([^\"]\\S*|\".+?\")\\s*").matcher(input);
         while (m.find()) {
-            parsedArray.add(m.group(1).replace("\"", ""));
+            String toAdd = m.group(1).replace("\"", "").trim();
+            if (!toAdd.isEmpty()) {
+                parsedArray.add(toAdd);
+            }
         }
         return parsedArray;
     }
@@ -117,7 +121,10 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     private static boolean areAllPrefixValuesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
-                .noneMatch(prefix -> argumentMultimap.getValue(prefix).get().trim().isEmpty());
+                .noneMatch(prefix -> {
+                    String value = argumentMultimap.getValue(prefix).get().trim();
+                    return parseWithQuotations(value).isEmpty();
+                });
     }
 
 }

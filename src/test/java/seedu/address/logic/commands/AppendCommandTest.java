@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSurvin;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -13,9 +13,9 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.Survin;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Survey;
@@ -24,7 +24,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AppendCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSurvin(), new UserPrefs());
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -53,9 +53,9 @@ public class AppendCommandTest {
 
         String expectedMessage = String.format(AppendCommand.MESSAGE_APPEND_SUCCESS, appendedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Survin(model.getSurvin()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), appendedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
         assertCommandSuccess(appendCommand, model, expectedMessage, expectedModel);
     }
@@ -79,9 +79,9 @@ public class AppendCommandTest {
 
         String expectedMessage = String.format(AppendCommand.MESSAGE_APPEND_SUCCESS, appendedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Survin(model.getSurvin()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), appendedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
         assertCommandSuccess(appendCommand, model, expectedMessage, expectedModel);
     }
@@ -107,9 +107,9 @@ public class AppendCommandTest {
 
         String expectedMessage = String.format(AppendCommand.MESSAGE_APPEND_SUCCESS, appendedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Survin(model.getSurvin()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), appendedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
         assertCommandSuccess(appendCommand, model, expectedMessage, expectedModel);
     }

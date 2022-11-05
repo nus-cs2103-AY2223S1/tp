@@ -71,7 +71,7 @@ public class AppendCommand extends Command {
 
         model.setPerson(personToAppend, appendedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.commitAddressBook();
+        model.commitSurvin();
         return new CommandResult(String.format(MESSAGE_APPEND_SUCCESS, appendedPerson));
     }
 

@@ -21,7 +21,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Survey;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to Survin.
  */
 public class AddCommand extends Command {
 
@@ -37,7 +37,7 @@ public class AddCommand extends Command {
             + "Christian " + PREFIX_SURVEY + "Shopping survey " + PREFIX_TAG + "friends " + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in Survin";
 
     private final Person toAdd;
 
@@ -68,7 +68,7 @@ public class AddCommand extends Command {
         } else {
             model.addPerson(toAdd);
         }
-        model.commitAddressBook();
+        model.commitSurvin();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -179,7 +179,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getSurvinFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -216,11 +216,10 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleHelpForCommand(String helpMessageForCommand) {
         helpWindowForCommand.setTextString(helpMessageForCommand);
-        if (!helpWindowForCommand.isShowing()) {
-            helpWindowForCommand.show();
-        } else {
-            helpWindowForCommand.focus();
-        }
+        //update the dimensions of the help window
+        helpWindowForCommand.hide();
+        helpWindowForCommand.show();
+        helpWindowForCommand.focus();
     }
 
     void show() {

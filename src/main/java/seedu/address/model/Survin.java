@@ -10,10 +10,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the address-book level Duplicates are not allowed (by
+ * Wraps all data at the Survin level Duplicates are not allowed (by
  * .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class Survin implements ReadOnlySurvin {
 
     private final UniquePersonList persons;
 
@@ -29,13 +29,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {
+    public Survin() {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an Survin using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public Survin(ReadOnlySurvin toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -51,9 +51,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Survin} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlySurvin newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -63,7 +63,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in
-     * the address book.
+     * Survin.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -76,8 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book. The person must not already exist in the
-     * address book.
+     * Adds a person to Survin. The person must not already exist in Survin
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -85,9 +84,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given person {@code target} in the list with
-     * {@code editedPerson}. {@code target} must exist in the address book. The
+     * {@code editedPerson}. {@code target} must exist in Survin. The
      * person identity of {@code editedPerson} must not be the same as another
-     * existing person in the address book.
+     * existing person in Survin.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -96,8 +95,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in
-     * the address book.
+     * Removes {@code key} from this {@code Survin}. {@code key} must exist in
+     * Survin.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -119,8 +118,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                        && persons.equals(((AddressBook) other).persons));
+                || (other instanceof Survin // instanceof handles nulls
+                        && persons.equals(((Survin) other).persons));
     }
 
     @Override

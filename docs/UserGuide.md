@@ -146,7 +146,7 @@ Format: `clone INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRT
 
 - Clones the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to clone, as shown in the display list. The index must be a **positive integer**.
 - At least one of the unique optional fields (Name, Phone or Email) has to be provided.
-- A new person with updated values in specified field will be added to the address book.
+- A new person with updated values in specified field will be added to Survin.
 - When updating tags or surveys, the existing tags or surveys of the person will be removed i.e adding of tags is not cumulative.
 - You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 - You can remove all the person’s surveys by typing `s/` without specifying any surveys after it.
@@ -162,19 +162,58 @@ Views the attributes of all surveyees with some specified attributes.
 
 Format: `[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`
 
--   The search is case-insensitive. e.g `alex` will match `Alex`
--   The order of the keywords does not matter. e.g. `Alex Tan` will match `Tan Alex`
--   Only full words are matched. e.g. `Ale` will not match `Alex`
--   Use quotation marks to match exact phrases. e.g. `"Alex Tan"` will not match `Tan Alex`
--   Quotation marks only match exact phrases. e.g. `Alex T` will not match `Alex Tan`
--   For all attributes except `email` and `birthdate`, only full words will be matched e.g. `Ale` will not match `Alex`
--   For multiple worded input, `view` lists all persons whose attributes contain any of the words or phrases specified.
-    e.g. `view n/Jane Doe "Alex Tan"` lists all persons whose names contain any of the following: `Jane`, `Doe` or `Alex Tan`.
--   When using `view` on an attribute with multiple objects (e.g. `Survey` or `Tag`), `view` performs the search on each survey and tag.
--   When using `view` on any attribute, only the last prefix is parsed. e.g. `view ra/chinese ra/malay g/male g/female` lists female malay persons, ignores `ra/chinese` and `g/male`.
+- The search is case-insensitive.
+  - `alex` will match `Alex`
+- For all fields except `email` and `birthdate`, only full words are matched.
+  - In the `name` field, `Ale` will not match `Alex`
+- For the `email` and `birthdate` field, only substrings are matched.
+  - In the `email` field, `google` will match `alextan@google.com`.
+  - In the `birthdate` field, `10` will match any of the following
+    - `2010-12-25`, 25th December 2010.
+    - `2022-10-03`, 3rd October 2022.
+    - `2022-03-10`, 10th March 2022.
+
+- If no quotation marks are used, the order of the keywords does not matter.
+  - `Alex Tan` will match `Tan Alex`
+- If a pair of quotation marks are used, `view` matches exact phrases (not substrings) and order matters
+  - `"Alex T"` will not match `Alex Tan`
+  - `"Alex Tan"` will not match `Tan Alex`
+- If multiple words are used, `view` matches any of the words or phrases specified.
+  - `view n/Jane Doe "Alex Tan"` lists all persons whose names contain any of the following: `Jane`, `Doe` or `Alex Tan`.
+  - `view n/Jane Doe Alex Tan` lists all persons whose names contain any of the following: `Jane`, `Doe`, `Alex`, or `Tan`.
+- If an odd number of quotation marks `"` is used, then its last occurrence is ignored.
+  - `view n/"Jane Doe" Alex Tan"` is equivalent to `view n/"Jane Doe" Alex Tan`
+- When using `view` on an attribute with multiple objects (e.g. `Survey` or `Tag`), `view` performs the search on each survey and tag.
+  - Views surveyees who have a survey that contains the word `airport`
+    ```
+    view s/airport
+    > 2 persons listed!
+    > Jane Doe ... [Changi Airport Survey][Food Survey]
+    > Jenette Doe ... [Seletar Airport Survey][Academic Survey]
+    ```
+  - View surveyees who have a survey that contains the word `changi` or `airport`.
+    ```
+    view s/Changi Airport
+    > 2 persons listed!
+    > Jane Doe ... [Changi Airport Survey][Food Survey]
+    > Jenette Doe ... [Seletar Airport Survey][Academic Survey]
+    ```
+  - View surveyees who have a survey that contains the phrase `changi airport`.  
+    ```
+    view s/"Changi Airport"
+    > 1 person listed!
+    > Jane Doe ... [Changi Airport Survey][Food Survey]
+    ```
+
+- Only the last prefix instance is parsed.
+  - `view ra/chinese ra/malay g/male g/female` lists female malay persons, ignores `ra/chinese` and `g/male`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Fields must be non-empty.
+Fields that are specified must have a non-empty value! The following is a non-exhaustive list of invalid examples.<br />
+- Only empty spaces `view n/                `<br />
+- Only empty spaces in quotations `view n/"          "`<br />
+- Empty string `view n/` or `view n/""`<br />
+- Any combination of the above and its variants `view n/       "       "          `
 </div>
 
 Examples:

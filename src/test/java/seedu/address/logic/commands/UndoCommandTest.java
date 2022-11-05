@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.deletePersonAtIndex;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSurvin;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,15 +18,15 @@ public class UndoCommandTest {
 
     @Test
     public void execute_undoAfterDelete() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalSurvin(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSurvin(), new UserPrefs());
 
         Index index = Index.fromZeroBased(0);
 
         deletePersonAtIndex(model, index);
         deletePersonAtIndex(expectedModel, index);
 
-        expectedModel.undoAddressBook();
+        expectedModel.undoSurvin();
         assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         assertCommandFailure(new UndoCommand(), model, UndoCommand.MESSAGE_CANNOT_UNDO);
@@ -34,16 +34,16 @@ public class UndoCommandTest {
 
     @Test
     public void execute_undoAfterAdd() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalSurvin(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSurvin(), new UserPrefs());
         Person validPerson = new PersonBuilder().build();
 
         model.addPerson(validPerson);
-        model.commitAddressBook();
+        model.commitSurvin();
         expectedModel.addPerson(validPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSurvin();
 
-        expectedModel.undoAddressBook();
+        expectedModel.undoSurvin();
         assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         assertCommandFailure(new UndoCommand(), model, UndoCommand.MESSAGE_CANNOT_UNDO);

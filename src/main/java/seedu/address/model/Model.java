@@ -36,64 +36,62 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Survin file path.
      */
-    Path getAddressBookFilePath();
+    Path getSurvinFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' Survin file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setSurvinFilePath(Path survinFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces Survin data with the data in {@code survin}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setSurvin(ReadOnlySurvin survin);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns Survin */
+    ReadOnlySurvin getSurvin();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in
-     * the address book.
+     * the Survin.
      */
     boolean hasPerson(Person person);
 
     Optional<Person> getPerson(Person person);
 
     /**
-     * Deletes the given person. The person must exist in the address book.
+     * Deletes the given person. The person must exist in Survin.
      */
     void deletePerson(Person target);
 
     /**
-     * Adds the given person. {@code person} must not already exist in the address
-     * book.
+     * Adds the given person. {@code person} must not already exist in Survin
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book. The person identity of
-     * {@code editedPerson} must not be the same as another existing person in the
-     * address book.
+     * {@code target} must exist in Survin. The person identity of
+     * {@code editedPerson} must not be the same as another existing person in Survin.
      */
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Stores the current state of the address book.
+     * Stores the current state of Survin.
      */
-    void commitAddressBook();
+    void commitSurvin();
 
     /**
-     * Undoes changes to the address book.
+     * Undoes changes to Survin.
      */
-    void undoAddressBook();
+    void undoSurvin();
 
     /**
-     * Returns a boolean that indicates whether the address book can be undone.
+     * Returns a boolean that indicates whether Survin can be undone.
      */
-    boolean canUndoAddressBook();
+    boolean canUndoSurvin();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

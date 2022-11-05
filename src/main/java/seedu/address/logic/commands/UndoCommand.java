@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Restores address book to a previous state.
+ * Restores survin to a previous state.
  *
  */
 public class UndoCommand extends Command {
@@ -26,11 +26,11 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.canUndoAddressBook()) {
+        if (!model.canUndoSurvin()) {
             throw new CommandException(MESSAGE_CANNOT_UNDO);
         }
 
-        model.undoAddressBook();
+        model.undoSurvin();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
