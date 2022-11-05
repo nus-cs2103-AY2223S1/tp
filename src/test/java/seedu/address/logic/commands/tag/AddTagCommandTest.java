@@ -77,7 +77,7 @@ public class AddTagCommandTest {
     @Test
     public void execute_duplicateTagOnPerson_throwsCommandException() {
         initialise();
-        Tag validTag = new TagBuilder().withName("friends").build();
+        Tag validTag = new TagBuilder().withName("CS2103T").build();
         Set<Tag> tagSet = new HashSet<>();
         tagSet.add(validTag);
         editPersonDescriptor.setTags(tagSet);

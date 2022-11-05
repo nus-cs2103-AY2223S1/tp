@@ -58,7 +58,7 @@ public class DeleteTagCommandTest {
     public void execute_tagRemovedByModelFromContact_deleteSuccessful() throws Exception {
         initialise();
         deleteTagFromTask = false;
-        Tag validTag = new TagBuilder().withName("friends").build();
+        Tag validTag = new TagBuilder().withName("CS2103T").build();
         Set<Tag> tagSet = new HashSet<>();
         tagSet.add(validTag);
         editPersonDescriptor.setTags(tagSet);
