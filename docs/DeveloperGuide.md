@@ -802,7 +802,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `adds s/Tut 2 s/Lab 2`<br>
       Expected: Two sessions named `Tut 2` and `Lab 2` is added with the current system date and is displayed on the session list.
    1. Test case: `adds s/Tut 3 s/Lab 3 d/2000-01-01`<br>
-      Expected: Two sessions named `Tut 3` and `Lab3` is added with its date set to `1st January 2000` and is displayed on the session list.
+      Expected: Two sessions named `Tut 3` and `Lab 3` is added with its date set to `1st January 2000` and is displayed on the session list.
    1. Test case: `adds s/Tut 4 d/2000-02-02 s/Lab 4 d/2020-04-20`<br>
       Expected: Two sessions named `Tut 4` and `Lab 4` is added with its date set to `20th April 2020` and is displayed on the session list.
 
