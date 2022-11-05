@@ -1,6 +1,6 @@
 {% comment %}
   Copyright 2022 Richard Dominick
-  
+
   Pure Liquid HTML (safe) minifier (minified to give no blank lines at the top of the rendered HTML).
 {% endcomment %}{% capture newline %}
 {% endcapture %}{% comment %} MOVE COMMENTS TO NEW LINES {% endcomment %}{% assign replacement = '>' | append: newline | append: '<!-- ' %}{% assign content = content | replace: '><!-- ', replacement %}{% comment %} HARDCODE MULTIPLE SPACE REPLACEMENT {% endcomment %}{% assign content = content
