@@ -114,7 +114,7 @@ Given below are my contributions to the project.
 
 Text Extract:
 
-<div style="background-color:LightCyan; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: LightCyan;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
 
 <h2>User Interface</h2>
 
@@ -199,7 +199,7 @@ This section is too long to be reproduced in entirety. Here is an example of the
 
 Text extract:
 
-<div style="background-color:LightCyan; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: LightCyan;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
 
 <h3 id="email">Email</h3>
 <p>This pertains to the email address of the person to be recorded in the SectresBook. It serves mainly as a point of information regarding the person, but has no additional features tied to it.</p>
@@ -237,7 +237,7 @@ The local part and domain part <b>must</b> be connected by a <code>@</code> symb
 
 `inspect` text extracted (images removed):
 
-<div style="background-color:LightCyan; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: LightCyan;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
 
 <h4>Inspecting a person: <code>inspect</code></h4>
 
@@ -271,7 +271,7 @@ The text for `showNotes` and `hideNotes` are not remarkable enough to be extract
 
 Glossary text extracted:
 
-<div style="background-color:LightCyan; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: LightCyan;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
 
 <table>
     <tr>
@@ -334,7 +334,7 @@ Glossary text extracted:
 
 3. Wrote the section involving UI design
 
-<div style="background-color:LightCyan; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: LightCyan;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
 
 <h3>General UI Design and Mechanism</h3>
 
@@ -395,7 +395,7 @@ During the creation of the new UI, a lot of the FXML structure and the relations
 
 7. Wrote the section involving `inspect`, `showNotes` and `hideNotes`
 
-<div style="background-color:LightCyan; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: LightCyan;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
 
 <h3 id="inspect-feature">Inspect Feature</h3>
 <h4 id="implementation">Implementation</h4>
