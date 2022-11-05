@@ -477,32 +477,32 @@ If your changes to the data file makes its format invalid, SoConnect will discar
 
 ## Glossary
 
-### Mainstream OS
-Windows, Linux, Unix, OS-X. 
+### Autocomplete
+A feature that shows a list of completed words or strings without the user needing to type them in full.
 
 ### CLI
-A text-based user interface used to run programs. 
+A text-based user interface used to run programs.
 
 ### GUI
 A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
 
 ### JavaFX
-A Java library used to develop client applications. 
+A Java library used to develop client applications.
 
 ### kLoC
 Stands for thousands of lines of code.
 
+### Mainstream OS
+Windows, Linux, Unix, OS-X.
+
 ### NUS
 National University of Singapore.
 
+### Private Contact Detail
+A contact detail that is not meant to be shared with others.
+
 ### SoC
 School of Computing, a computing school in NUS.
-
-### Private Contact Detail
-A contact detail that is not meant to be shared with others. 
-
-### Autocomplete
-A feature that shows a list of completed words or strings without the user needing to type them in full. 
 
 ### Todo
 A task that the user needs to complete.
