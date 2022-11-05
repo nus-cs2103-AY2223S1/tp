@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import longtimenosee.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all clients in the LTNS to the user.
  */
 public class PolicyCommand extends Command {
 

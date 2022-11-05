@@ -8,7 +8,7 @@ import static longtimenosee.testutil.TypicalIndexes.INDEX_FIRST_POLICY;
 
 import org.junit.jupiter.api.Test;
 
-import longtimenosee.logic.commands.PolicyDeleteAssignedCommand;
+import longtimenosee.logic.commands.PolicyAssignedDeleteCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -17,19 +17,19 @@ import longtimenosee.logic.commands.PolicyDeleteAssignedCommand;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class PolicyDeleteAssignedCommandParserTest {
+public class PolicyAssignedDeleteCommandParserTest {
 
     private PolicyAssignedDeleteCommandParser parser = new PolicyAssignedDeleteCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, "1 1",
-                new PolicyDeleteAssignedCommand(INDEX_FIRST_PERSON, INDEX_FIRST_POLICY));
+                new PolicyAssignedDeleteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_POLICY));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                PolicyDeleteAssignedCommand.MESSAGE_USAGE));
+                PolicyAssignedDeleteCommand.MESSAGE_USAGE));
     }
 }

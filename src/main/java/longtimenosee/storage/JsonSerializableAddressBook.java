@@ -12,6 +12,8 @@ import longtimenosee.commons.exceptions.IllegalValueException;
 import longtimenosee.model.AddressBook;
 import longtimenosee.model.ReadOnlyAddressBook;
 import longtimenosee.model.event.Event;
+import longtimenosee.model.event.exceptions.OverlapEventException;
+import longtimenosee.model.event.exceptions.PersonNotFoundException;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.Policy;
 
@@ -77,7 +79,13 @@ class JsonSerializableAddressBook {
             if (addressBook.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
-            addressBook.addEvent(event);
+            try {
+                addressBook.addEvent(event);
+            } catch (PersonNotFoundException personNotFound) {
+                throw new PersonNotFoundException();
+            } catch (OverlapEventException overlapEvent) {
+                throw new OverlapEventException();
+            }
         }
 
         return addressBook;

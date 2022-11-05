@@ -23,7 +23,7 @@ import longtimenosee.model.Model;
 import longtimenosee.model.person.Person;
 
 /**
- * Sorts the address book
+ * Sorts the list of Clients based on a user specified metric.
  */
 public class SortCommand extends Command {
 

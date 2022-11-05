@@ -8,6 +8,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import longtimenosee.model.event.Event;
 import longtimenosee.model.event.UniqueEventList;
+import longtimenosee.model.event.exceptions.PersonNotFoundException;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.UniquePersonList;
 import longtimenosee.model.policy.Policy;
@@ -201,8 +202,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hasPersonByName(personName);
     }
 
-    public void addEvent(Event e) {
-        events.add(e);
+    /**
+     * When adding a new event, it checks that the person's name exists.
+     * @param eventToAdd
+     */
+    public void addEvent(Event eventToAdd) {
+        if (!hasPersonByName(eventToAdd.getPersonName().fullName)) {
+            throw new PersonNotFoundException();
+        }
+        events.add(eventToAdd);
     }
 
     public boolean hasEvent(Event toAdd) {
