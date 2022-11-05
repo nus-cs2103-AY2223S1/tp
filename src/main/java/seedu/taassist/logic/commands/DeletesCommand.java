@@ -23,7 +23,7 @@ public class DeletesCommand extends Command {
 
     public static final String MESSAGE_USAGE = "> Deletes sessions for a class.\n"
             + "Parameters: "
-            + PREFIX_SESSION + "SESSION_NAME\n"
+            + PREFIX_SESSION + "SESSION_NAME...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SESSION + "Lab1";
 
