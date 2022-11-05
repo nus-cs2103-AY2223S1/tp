@@ -20,7 +20,6 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
-import seedu.address.storage.ClassStorage;
 
 /**
  * Marks an existing student as present for his/her class.
@@ -71,9 +70,6 @@ public class MarkCommand extends Command {
             throw new CommandException(MESSAGE_MARKED_PREVIOUSLY);
         }
 
-        ClassStorage.saveClass(markedStudent, this.targetIndex.getZeroBased());
-        ClassStorage.removeExistingClass(studentToMark);
-
         model.setStudent(studentToMark, markedStudent);
 
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -103,8 +99,6 @@ public class MarkCommand extends Command {
         Money currentRatesPerClass = studentToMark.getRatesPerClass();
         AdditionalNotes currentNotes = studentToMark.getAdditionalNotes();
         Set<Tag> currentTags = studentToMark.getTags();
-        Class displayedClass = currentClassDateTime;
-        Class updatedClassDateTime = currentClassDateTime.addDays(DAYS_IN_A_WEEK);
         Mark updatedMarkStatus = new Mark(Boolean.TRUE);
         Money updatedMoneyOwed;
 
@@ -115,8 +109,8 @@ public class MarkCommand extends Command {
         }
 
         return new Student(currentName, currentPhone, currentNokPhone, currentEmail, currentAddress,
-                updatedClassDateTime, updatedMoneyOwed, currentMoneyPaid, currentRatesPerClass, currentNotes,
-                currentTags, updatedMarkStatus, displayedClass);
+                currentClassDateTime, updatedMoneyOwed, currentMoneyPaid, currentRatesPerClass, currentNotes,
+                currentTags, updatedMarkStatus);
     }
 
     @Override
