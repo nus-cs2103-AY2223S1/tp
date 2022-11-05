@@ -67,10 +67,10 @@ Given below are my contributions to the project.
 
 ## Enhancements implemented:
   * **Feature**: Edit By Name
-  * What it does: Adding onto the ability to edit by index, I implemented an ability to edit by any keyword of the person's name. This uses the `FindCommand` to first find by name and ensure that only 1 person exists from the result of finding the keyword. After this, the first index is fetched, which must correspond to a unique person found. Otherwise, if more than 1 person is found or no persons are found, the edit command will halt its operation, display the filtered list of persons returned and feedbacks to the user the people found.
-  * Justificaton: It is easier to recall a person's name than to read the index from the list.
-  * Highlights: `edit NAME ` + any field specifier and change of property will edit by name just as easily as edit by index. The concept introduced to create this ability is ricocheted in many other features authored by other members, which now also include the ability to perform operations by name.
-  * Credits: Rui Han
+  * **What it does**: Adding onto the ability to edit by index, I implemented an ability to edit by any keyword of the person's name. This uses the `FindCommand` to first find by name and ensure that only 1 person exists from the result of finding the keyword. After this, the first index is fetched, which must correspond to a unique person found. Otherwise, if more than 1 person is found or no persons are found, the edit command will halt its operation, display the filtered list of persons returned and feedbacks to the user the people found.
+  * **Justificaton**: It is easier to recall a person's name than to read the index from the list.
+  * **Highlights**: `edit NAME ` + any field specifier and change of property will edit by name just as easily as edit by index. The concept introduced to create this ability is ricocheted in many other features authored by other members, which now also include the ability to perform operations by name.
+  * **Credits**: Rui Han
 
   <br>
 
