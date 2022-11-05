@@ -38,5 +38,4 @@ public class JsonAdaptedQuestionTest {
         JsonAdaptedQuestion question2 = new JsonAdaptedQuestion(INVALID_DESCRIPTION_EMPTY_STRING, VALID_IMPORTANT_TAG);
         assertThrows(IllegalArgumentException.class, expectedMessage, question2::toModelType);
     }
-
 }
