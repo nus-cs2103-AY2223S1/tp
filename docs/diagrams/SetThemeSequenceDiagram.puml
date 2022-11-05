@@ -3,34 +3,23 @@
 
 box Ui UI_COLOR_T1
 participant ":MainWindow" as MainWindow UI_COLOR
-end box
-
-box Ui
-participant "primaryStage:Stage" as Stage #darkgrey
-
-
-box Ui LOGIC_COLOR_T1
-participant ":Scene" as Scene LOGIC_COLOR
+participant ":Scene" as Scene #darkgrey
 end box
 
 
 
-[-> MainWindow: handleDark()
+[-> MainWindow : handleDark()
 activate MainWindow
-MainWindow -> Stage : getScene()
-activate Stage
-Stage -> Scene : getStyleSheets()
-activate Scene
-Scene -> Scene : removeAll()
-return
-return
-MainWindow -> Stage : getScene()
-activate Stage
-Stage -> Scene : getStyleSheets()
-activate Scene
-Scene -> Scene : add()
-return
-return
-return
 
+MainWindow -> MainWindow: getScene()
+MainWindow -> Scene: getScene()
+activate Scene
+return
+MainWindow -> MainWindow: removeAll()
+MainWindow -> MainWindow: getScene()
+MainWindow -> Scene: getScene()
+activate Scene
+return
+MainWindow -> MainWindow: add()
+return
 @enduml
