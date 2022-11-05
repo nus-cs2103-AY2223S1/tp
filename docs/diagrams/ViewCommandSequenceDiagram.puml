@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 40
+skinparam SequenceReferencebackgroundColor LightYellow
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant ":ViewCommand" as ViewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(userInput)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(userInput)
+activate AddressBookParser
+
+create ViewCommandParser
+AddressBookParser -> ViewCommandParser++
+return
+
+AddressBookParser -> ViewCommandParser : parse(args)
+activate ViewCommandParser
+
+ViewCommandParser -> ParserUtil : parseIndex(oneBasedIndex)
+activate ParserUtil
+return
+
+create ViewCommand
+ViewCommandParser -> ViewCommand++
+return
+
+return viewCommand
+destroy ViewCommandParser
+return viewCommand
+
+LogicManager -> ViewCommand : execute(model)
+activate ViewCommand
+
+ViewCommand -> Model : getFilteredPersonList()
+activate Model
+return
+
+ViewCommand -> Model : updateCurrentlyViewedPerson(index, person)
+activate Model
+return
+
+create CommandResult
+ViewCommand -> CommandResult++
+return
+return
+return
+
+@enduml

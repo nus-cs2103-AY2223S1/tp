@@ -2,7 +2,6 @@
 !include style.puml
 
 skinparam defaultFontSize 40
-skinparam SequenceReferencebackgroundColor LightYellow
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -15,7 +14,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Person" as Person MODEL_COLOR
-participant ":Model" as Model MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute(userInput)
@@ -33,7 +32,7 @@ activate DeletePastAppointmentCommandParser
 
 DeletePastAppointmentCommandParser -> ParserUtil : parseIndex(oneBasedIndex)
 activate ParserUtil
-return index
+return
 
 create DeletePastAppointmentCommand
 DeletePastAppointmentCommandParser -> DeletePastAppointmentCommand++

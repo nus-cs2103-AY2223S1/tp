@@ -369,15 +369,15 @@ Getting the past appointments of a patient involves the following steps:
 5. The list of `PastAppointment` will then be displayed in the `ResultDisplay`
 
 ### Add Command
-The `Add` Command is used to create a new patient in the app and set the necessary fields for that patient, 
+The `add` command is used to create a new patient in the app and set the necessary fields for that patient, 
 namely they are the: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
 `Medications` and `UpcomingAppointment` fields. Note that the `PastAppointment` field cannot be updated in this command,
-that is done in the `Appt` and [`DelAppt`](#delappt-command ) commands.
+that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-command ) commands.
 
 When `add <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the 
 input. This then creates an instance of the `AddCommandParser` to parse the `args` via the respective static 
 `ParserUtil` functions. If duplicate parameters are inputted (e.g. `add n/Joe n/Mel`), only the last instance is taken, 
-similar to how `edit`, `appt` and `consult` are executed.
+similar to how [`edit`](#edit-command), [`appt`](#pastappointment) and [`consult`](#consult-command) are executed.
 
 The `AddCommandParser` will then create the corresponding `Person` object and then feed it to a `AddCommand` object it 
 creates and returns. The `LogicManager` then executes the `AddCommand`, which adds the `Person` to the model.
@@ -386,10 +386,27 @@ creates and returns. The `LogicManager` then executes the `AddCommand`, which ad
 ![AddCommandParseArgsSequenceDiagram](images/dg-images/AddCommandParseArgsSequenceDiagram.png)
 
 ### Edit Command
+The `edit` coommand is used to change the information of an existing patient in the app. The fields supported are: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
+`Medications` and `UpcomingAppointment`. Note that the `PastAppointment` field cannot be updated in this command,
+that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-command ) commands.
+
+When `edit INDEX <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+input. This then creates an instance of the `EditCommandParser` to parse the `INDEX` and `args` via the respective static
+`ParserUtil` functions. If duplicate parameters are inputted (e.g. `add n/Joe n/Mel`), only the last instance is taken,
+similar to how [`add`](#add-command), [`appt`](#pastappointment) and [`consult`](#consult-command)  are executed.
+
+The `EditCommandParser` will then create the corresponding `EditPersonDescriptor` object and then feed it to a 
+`EditCommand` object it creates and returns. The `LogicManager` then executes the `EditCommand`, which adds creates a 
+`Person` from the `EditPersonDescriptor` provided and updates the model with this new `Person`.
+
+![Edit Command Sequence Diagram](images/dg-images/EditCommandSequenceDiagram.png)
+![Edit Command Parse Args Sequence Diagram](images/dg-images/EditCommandParseArgsSequenceDiagram.png)
 
 ### DelAppt Command
 The purpose of the `delappt` command is to remove the first [`PastAppointment`](#pastappointment) from the selected 
 patient. If there is no appointment to delete, the Command will display an error to the user.
+
+The format accepted by the `delappt` command is `delappt INDEX`.
 
 When `delappt INDEX` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the 
 input. This then creates an instance of the `DeletePastAppointmentCommandParser` to parse the `INDEX` with static
@@ -405,11 +422,87 @@ If there are no [`PastAppointment`](#pastappointment)s, it will throw a `Command
 
 ### Consult Command
 The purpose of the `consult` command is to simplify the process of creating a [`PastAppointment`](#pastappointment) for
-doctors. It will create a [`PastAppointment`](#pastappointment) for 
+doctors. It will create a [`PastAppointment`](#pastappointment) for the specified patient on the current date and if the
+patient has an `UpcomingAppointment` for the current date, it will clear it. In this way, the doctor can attend to a 
+patient with just 1 command. As the command builds upon the functionality of other commands, it similarly utilises the 
+[`appt`](#pastappointment) and [`edit`](#edit-command) in its implementation.
 
-### PersonViewPanel Clickability
+The format accepted by the `consult` command is `consult INDEX diag/DIAGNOSIS [m/MEDICATION]...`
+
+When `consult ...` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+input. This then creates an instance of the `ConsultCommandParser` to parse the `INDEX`, `DIAGNOSIS` and 
+`MEDICATION`(if any) with their respective static _`ParserUtil`_ functions. If any of the inputs formats are invalid,
+a `ParseException` will be thrown. The `ConsultCommandParser` then creates a `PastAppointment` for the current date and 
+an `EditPersonDescriptor` which will reset a patient's upcoming appointment to blank if used.
+
+The `ConsultCommandParser` then creates the `ConsultCommand` and returns it. The `LogicManager` then executes the 
+`ConsultCommand`, which first creates a [`CreatePastAppointmentCommand`](#pastappointment) and executes it to add the 
+past appointment to the patient. Then it checks if the patient has an upcoming appointment for the current date, if so,
+the `ConsultCommand` creates an [`EditCommand`](#edit-command) and executes it to reset the patient's upcoming 
+appointment field.
+
+![ConsultCommandSequenceDiagram](images/dg-images/ConsultCommandSequenceDiagram.png)
+
+### Patient Details Panel
+
+The Patient Details Panel provides a detailed view into the information of a specific patient. All the patient's personal 
+particulars and appointment details are reflected in this panel. The patient being viewed defaults to the first patient
+in the app, if present. Whenever the [`add`](#add-command) or [`edit`](#edit-command) is called on a patient, the patient 
+displayed switches to that patient in question. To manually change the person being viewed, the [`view`](#view-command) 
+can be used.
+
+#### Clickability
+
+Although Checkup is a CLI based application, Patient Details Panel supports clicking on individual fields to bring up the 
+required `edit` command. To illustrate this in more detail, an example is shown below of what happens when `Alex Yeoh`'s
+`email` field is clicked on.
+![Alex Yeohs' email clicked](images/ug-images/Person-Details-Panel-Clickability.png)
+
+When Alex Yeoh's email field is clicked on, `MainWindow` will recursively go through its child elements until it finds 
+the first matching `EventHandler`, which is the `email#getOnMouseCLicked()` handler. This will then call 
+`PersonViewPanel#CheckCLickType(event, prefix)` to ensure that the event was a double primary click. (Note that the `prefix`
+passed is different for each field, in this case it is _`PREFIX_EMAIL`_) 
+
+If so, it will call the `MainWindow#handlePersonViewClick(prefix)` which will combine the command word, prefix and index 
+of the person currently being viewed into a string, which is `edit 1 e/`. Then it will use 
+`CommandBox#setCommandTextField(str)` to update the text inside the `CommandBox`.
+
+![Patient Details Panel Sequence Diagram](images/dg-images/PersonDetailsPanelSequenceDiagram.png)
+_Note that the Persons Details Panel is known as PersonViewPanel in the code_
+
+### View Command
+
+The purpose of the `view` command is to manually change the patient currently displayed in the Patient Details Panel.
+
+The format accepted by the `view` command is `view INDEX`
+
+When `view INDEX` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+input. This then creates an instance of the `ViewCommandParser` to parse the `INDEX` with static
+_`ParserUtil#parseIndex()`_ function. If the `INDEX` format is invalid, a `ParseException` will be thrown.
+
+The `ViewCommandParser` then creates the `ViewCommand` and returns it. The `LogicManager` then executes the
+`ViewCommand`, which updates the `ModelManager#currentlyViewedPerson` in the `ModelManager` to the one specified in the
+`INDEX` if it is valid. A `CommandException` is thrown if the `INDEX` is out of bounds.
+
+![View Command Sequence Diagram](images/dg-images/ViewCommandSequenceDiagram.png)
 
 ### Keyboard Shortcuts
+
+To improve the user experience, three keyboard shortcuts are added to the `CommandBox` to make typing in commands easier.
+They are:
+1. `UP` arrow key: bring up the previous command, if any.
+2. `Down` arrow key: bring up the next command, if any.
+3. `Ctrl` + `Shift` + `C` keys: clears the `CommandBox#commandTextField` of text.
+
+When a key is pressed, `MainWindow` will recursively go through its child elements until it finds the first matching 
+`EventHandler`, which is the `CommandBox#commandTextField#getOnKeyPressed()` handler. This will then call the 
+`CommandBox#handleKeyPress(event)` to check the key pressed. If the 'UP' arrow key was pressed, 
+`CommandHistory#previousCommand()` is called to set the command to the previous command, if any. If the 'DOWN' arrow key
+was pressed, `CommandHistory#nextCommand()` is called to set the command to the next command, if any. If the `Ctrl` + 
+`Shift` + `C` keys were pressed together, it will clear all the text in the `commandTextField` with the 
+`CommandBox#setCommandTextField(str)` command. 
+
+![Keyboard Shortcuts Sequence Diagram](images/dg-images/KeyboardShortcutsSequenceDiagram.png)
 
 ### Get hospital wing feature (`get /hw`)
 When `get /hw` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the

@@ -215,9 +215,12 @@ Format: `add {Prefix}/{Parameter}…​`
 A patient can have any number of medications (including 0)!
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If patient type is outpatient, user should not input the prefixes and any value for
-hospital wing, floor number, and ward number. 
+<div markdown="block" class="alert alert-info">
+
+**:notebook: Notes about Patient Type:**<br>
+When the patient is an outpatient, `add` will throw an error if any values are input for the `hw/`, `fn/` and `wn/` fields.
+Similarly, for an inpatient, `add` will throw an error if values are **not** input any of the `hw/`, `fn/` and `wn/` fields.
+Please see the [Examples](#add-examples) below for more information.
 </div>
 
 **Upon Execution**
@@ -227,6 +230,7 @@ If the command was successfully executed, you should see something similar to th
 
 If not, please follow the error message given and format above to enter the correct command.
 
+<a id="add-examples"></a>
 **Examples:**
 
 If patient type is inpatient: <br>

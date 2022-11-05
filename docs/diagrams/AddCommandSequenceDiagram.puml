@@ -14,7 +14,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Person" as Person MODEL_COLOR
-participant ":Model" as Model MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute(userInput)
@@ -27,7 +27,8 @@ create AddCommandParser
 AddressBookParser -> AddCommandParser++
 return
 
-AddressBookParser -> AddCommandParser++:parse(args)
+AddressBookParser -> AddCommandParser:parse(args)
+activate AddCommandParser
 
 ref over AddCommandParser
   Parse Args
