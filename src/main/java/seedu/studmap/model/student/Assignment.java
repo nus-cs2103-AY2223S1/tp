@@ -12,9 +12,9 @@ import seedu.studmap.commons.exceptions.IllegalValueException;
 public class Assignment {
 
     public static final String MESSAGE_CONSTRAINTS = "Assignment names should consist of "
-            + "alphanumerics, space, dash and underscore";
+            + "alphanumerics, space, dash and underscore.";
     public static final String MESSAGE_STATUS_CONSTRAINTS = "Assignment marking status should be one of "
-            + "new, received or marked";
+            + "new, received or marked.";
     public static final String VALIDATION_REGEX = "[\\p{Alnum} \\-_]+";
     /**
      * Represents the possible status the assignment can take.

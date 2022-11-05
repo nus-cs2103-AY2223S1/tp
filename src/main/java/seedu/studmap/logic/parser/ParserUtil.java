@@ -30,6 +30,11 @@ import seedu.studmap.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String RECEIVED = "Received: ";
+
+    public static String getInvalidMessage(String invalidMessage, String receivedInput) {
+        return invalidMessage + " " + RECEIVED + receivedInput;
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -61,7 +66,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(getInvalidMessage(Name.MESSAGE_CONSTRAINTS, name));
         }
         return new Name(trimmedName);
     }
@@ -76,7 +81,7 @@ public class ParserUtil {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(getInvalidMessage(Phone.MESSAGE_CONSTRAINTS, phone));
         }
         return new Phone(trimmedPhone);
     }
@@ -91,7 +96,7 @@ public class ParserUtil {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(getInvalidMessage(Email.MESSAGE_CONSTRAINTS, email));
         }
         return new Email(trimmedEmail);
     }
@@ -106,7 +111,7 @@ public class ParserUtil {
         requireNonNull(module);
         String trimmedModule = module.trim().toUpperCase();
         if (!Module.isValidModule(trimmedModule)) {
-            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+            throw new ParseException(getInvalidMessage(Module.MESSAGE_CONSTRAINTS, module));
         }
         return new Module(trimmedModule);
     }
@@ -133,7 +138,7 @@ public class ParserUtil {
         requireNonNull(gitName);
         String trimmedGit = gitName.trim();
         if (!GitName.isValidGitName(trimmedGit)) {
-            throw new ParseException(GitName.MESSAGE_CONSTRAINTS);
+            throw new ParseException(getInvalidMessage(GitName.MESSAGE_CONSTRAINTS, gitName));
         }
         return new GitName(trimmedGit);
     }
@@ -148,7 +153,7 @@ public class ParserUtil {
         requireNonNull(handle);
         String trimmedHandle = handle.trim();
         if (!TeleHandle.isValidTeleHandle(trimmedHandle)) {
-            throw new ParseException(TeleHandle.MESSAGE_CONSTRAINTS);
+            throw new ParseException(getInvalidMessage(TeleHandle.MESSAGE_CONSTRAINTS, handle));
         }
         return new TeleHandle(trimmedHandle);
     }
@@ -163,7 +168,7 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(getInvalidMessage(Tag.MESSAGE_CONSTRAINTS, tag));
         }
         return new Tag(trimmedTag);
     }
@@ -190,7 +195,7 @@ public class ParserUtil {
         requireNonNull(className);
         String trimmedClass = className.trim();
         if (!Attendance.isValidClassName(trimmedClass)) {
-            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+            throw new ParseException(getInvalidMessage(Attendance.MESSAGE_CONSTRAINTS, className));
         }
         return trimmedClass;
     }
@@ -205,7 +210,7 @@ public class ParserUtil {
         requireNonNull(assignmentName);
         String trimmedAssignment = assignmentName.trim().toUpperCase();
         if (!Assignment.isValidAssignmentName(trimmedAssignment)) {
-            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+            throw new ParseException(getInvalidMessage(Assignment.MESSAGE_CONSTRAINTS, assignmentName));
         }
         return trimmedAssignment;
     }
@@ -220,7 +225,7 @@ public class ParserUtil {
         requireNonNull(order);
         String trimmedOrder = order.trim();
         if (!Order.isValidOrderName(trimmedOrder)) {
-            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+            throw new ParseException(getInvalidMessage(Order.MESSAGE_CONSTRAINTS, order));
         }
         return trimmedOrder.matches("asc") ? ORDER_ASC : ORDER_DSC;
     }
@@ -235,7 +240,7 @@ public class ParserUtil {
         requireNonNull(participationComponent);
         String trimmedPartCom = participationComponent.trim();
         if (!Participation.isValidParticipationName(trimmedPartCom)) {
-            throw new ParseException(Participation.MESSAGE_CONSTRAINTS);
+            throw new ParseException(getInvalidMessage(Participation.MESSAGE_CONSTRAINTS, participationComponent));
         }
         return trimmedPartCom;
     }

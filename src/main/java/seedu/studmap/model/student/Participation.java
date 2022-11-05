@@ -10,7 +10,7 @@ import static seedu.studmap.commons.util.CollectionUtil.requireAllNonNull;
 public class Participation {
 
     public static final String MESSAGE_CONSTRAINTS = "Participation component should consist of "
-            + "alphanumerics, space, dash and underscore";
+            + "alphanumerics, space, dash and underscore.";
     public static final String VALIDATION_REGEX = "[\\p{Alnum} \\-_]+";
     public static final String PARTICIPATION_TRUE = "Participated";
     public static final String PARTICIPATION_FALSE = "Did not participate";
