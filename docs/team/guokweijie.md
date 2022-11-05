@@ -29,6 +29,7 @@ Given below are my contributions to the project.
 * SetUnPaidCommand
   * It sets the payment status of a patient's bill to "UNPAID".
 * Fixed bug in Email class by modifying the regex for the constraints of the email field.
+* Wrote tests for FindPatientCommand, FindAppointmentCommand, FindPatientCommandParser, FindAppointmentCommandParser, SetPaidCommand, SetPaidCommandParser, SetUnPaidCommand and SetUnpaidCommandParser.
 
 ### Contributions to the User Guide:
 * Added documentation and screenshots for:
@@ -38,43 +39,41 @@ Given below are my contributions to the project.
   * SetUnPaidCommand
   * Save the data
   * Edit the data file
-* Added the Quick Start guide
-* Added the target user group and value proposition
-* Added the FAQ section
-* Added Navigation for Feature list
+* Added the __Quick Start__ guide
+* Added the __Target User Group__ and __Value Proposition__ descriptions
+* Added the __FAQ__ section
+* Added Navigation for __Features__ list
 * Modified and standardised headings, screenshot descriptions and spacing for consistency
 
 ### Contributions to the Developer Guide:
-* Added the Appendix: Effort
-* Added the Non-Functional Requirements
-* Added the Glossary
-* Added Target User Profile, Product Scope and Value Proposition
+* Added the __Find Feature__ section with 3 Sequence diagrams
+* Added the __Set Payment Status Feature__ section with 2 Sequence diagrams
+* Contributed to the __Appendix: Effort__ section
+* Added the __Non-Functional Requirements__
+* Added the __Glossary__
+* Added __Target User Profile, Product Scope and Value Proposition__
 * Modified all the user stories and wrote use case UC-01
-* Added the Find feature implementation with a Sequence diagram
-* Added the SetPaid and SetUnPaid feature implementation with a Sequence diagram
 
 ### Contributions to other Documentations:
-* Ui image of the product for landing page
-* README.md
+* Product Ui image for landing page
+* Wrote the README.md
 
 ### Contributions to the team-based tasks:
-* Created milestones v1.2, v1.2b, v1.3, v1.3b, v1.4
-* Closed milestones
-* Maintained the issue tracker
-* Released JAR files
-* Updated user docs not specific to feature
-* Debugged and fixed most bugs from PE Dry Run
-* Triaged and assigned all 58 PE Dry Run issues and bugs for the team
-* Managed, resolved and closed most issues from PE Dry Run
+* Milestone management
+* Maintained the issue tracker and helped teammates to link some PRs to issues
+* Release management
+* Updated user docs not specific to feature as mentioned above (Quick Start, FAQ, Glossary, Target User Group, Value Proposition, Non-Functional Requirements)
+* Added developer docs not specific to feature as mentioned above (Appendix: Effort, Target User Profile, Product Scope, Value Proposition)
+* Triaged and managed all 58 issues from PE Dry Run
+* Debugged and fixed more than half of the bugs from PE Dry Run
+* Organised team meetings and discussions
+* Led the team by assigning tasks, reminding teammates to complete them and checking through their work
 
 ### Review/mentoring contributions:
-~~* Reviewed PRs
+* Reviewed PRs
   * [#1](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/174)
   * [#2](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/172)
-  * [#3](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/158)~~
-
-### Contributions beyond the project team:
-to be added soon
+  * [#3](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/158)
 
 ### Tools:
 to be added soon
