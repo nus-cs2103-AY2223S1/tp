@@ -14,7 +14,7 @@ Code contributed: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dash
 
 Enhancements implemented:
 * `Appointment` Class with storage: To create different appointments for the patients and store those objects into JSON format.
-* `Observer` pattern: Made use of observable and extractors to automatically update the patients lists and appointment lists when appointments are updated, added or removed.
+* `Observer` pattern: Made use of Observable and Callback to automatically update the patients lists and appointment lists when appointments are updated, added or removed.
 * `Book` Command: Allows users to book a new appointment for the specified patient. Appointments are automatically sorted according to their dateTime.
 * `Edit Appt` Command: Allows users to edit an existing appointment details.
 * `Mark` Command: Marking a recurring appointment will automatically book a new appointment for the patient, provided the patient does not have an existing appointment at the new dateTime.
