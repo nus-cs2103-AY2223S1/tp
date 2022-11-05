@@ -17,20 +17,24 @@ import foodwhere.logic.commands.RAddCommand;
 import foodwhere.logic.commands.RDeleteCommand;
 import foodwhere.logic.commands.RFindCommand;
 import foodwhere.logic.commands.RListCommand;
+import foodwhere.logic.commands.RSortCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.SDeleteCommand;
 import foodwhere.logic.commands.SEditCommand;
 import foodwhere.logic.commands.SFindCommand;
 import foodwhere.logic.commands.SListCommand;
+import foodwhere.logic.commands.SSortCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
 import foodwhere.model.review.ReviewBuilder;
 import foodwhere.model.review.ReviewContainsKeywordsPredicate;
+import foodwhere.model.review.comparator.ReviewsComparatorList;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.StallBuilder;
 import foodwhere.model.stall.StallContainsKeywordsPredicate;
+import foodwhere.model.stall.comparator.StallsComparatorList;
 import foodwhere.testutil.EditStallDescriptorBuilder;
 import foodwhere.testutil.StallUtil;
 import foodwhere.testutil.TypicalIndexes;
@@ -129,6 +133,18 @@ public class AddressBookParserTest {
     public void parseCommand_rlist() throws Exception {
         assertTrue(parser.parseCommand(RListCommand.COMMAND_WORD) instanceof RListCommand);
         assertTrue(parser.parseCommand(RListCommand.COMMAND_WORD + " 3") instanceof RListCommand);
+    }
+
+    @Test
+    public void parseCommand_ssort() throws Exception {
+        SSortCommand command = (SSortCommand) parser.parseCommand(SSortCommand.COMMAND_WORD + " " + "name");
+        assertEquals(new SSortCommand(StallsComparatorList.valueOf("NAME")), command);
+    }
+
+    @Test
+    public void parseCommand_rsort() throws Exception {
+        RSortCommand command = (RSortCommand) parser.parseCommand(RSortCommand.COMMAND_WORD + " " + "name");
+        assertEquals(new RSortCommand(ReviewsComparatorList.valueOf("NAME")), command);
     }
 
     @Test
