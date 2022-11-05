@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import seedu.application.model.CommonRegex;
+
 
 /**
  * Represents the Date that the user applied to the Position of the Company.
@@ -41,6 +43,18 @@ public class Date implements Comparable<Date> {
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    /**
+     * Returns true if a given string contains another prefix or prefix, argument pair.
+     */
+    public static boolean hasAPrefix(String test) {
+        String[] filteredTest = test.split(" ");
+        if (filteredTest.length == 2) {
+            return filteredTest[1].matches(CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX)
+                    || filteredTest[1].matches(CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX_AND_ARGUMENT);
+        }
+        return false; //error not cause by extra prefix
     }
 
     boolean isAfter(LocalDate date) {

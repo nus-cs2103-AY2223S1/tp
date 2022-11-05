@@ -3,6 +3,8 @@ package seedu.application.model.application;
 import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.AppUtil.checkArgument;
 
+import seedu.application.model.CommonRegex;
+
 /**
  * Represents a Company's internship position in the application list.
  * Guarantees: immutable; is valid as declared in {@link #isValidPosition(String)}
@@ -36,6 +38,14 @@ public class Position implements Comparable<Position> {
      */
     public static boolean isValidPosition(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string contains another prefix or prefix, argument pair.
+     */
+    public static boolean hasAPrefix(String test) {
+        return test.matches(VALIDATION_REGEX + CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX)
+                || test.matches(VALIDATION_REGEX + CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX_AND_ARGUMENT);
     }
 
     @Override

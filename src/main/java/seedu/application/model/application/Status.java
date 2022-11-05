@@ -3,6 +3,8 @@ package seedu.application.model.application;
 import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.AppUtil.checkArgument;
 
+import seedu.application.model.CommonRegex;
+
 /**
  * Represents a Status of an internship application.
  * Must be one of the values: interview, offered, pending, rejected.
@@ -38,6 +40,18 @@ public enum Status {
             }
         }
         return false;
+    }
+
+    /**
+     * Returns true if a given string contains another prefix or prefix, argument pair.
+     */
+    public static boolean hasAPrefix(String test) {
+        String[] filteredTest = test.split(" ");
+        if (filteredTest.length == 2) {
+            return filteredTest[1].matches(CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX)
+                    || filteredTest[1].matches(CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX_AND_ARGUMENT);
+        }
+        return false; //error not cause by extra prefix
     }
 
     /**

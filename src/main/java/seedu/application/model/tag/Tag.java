@@ -3,6 +3,8 @@ package seedu.application.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.AppUtil.checkArgument;
 
+import seedu.application.model.CommonRegex;
+
 /**
  * Represents a Tag in the application book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
@@ -33,6 +35,15 @@ public class Tag {
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX) && test.length() <= CHAR_LIMIT;
     }
+
+    /**
+     * Returns true if a given string contains another prefix or prefix, argument pair.
+     */
+    public static boolean hasAPrefix(String test) {
+        return test.matches(VALIDATION_REGEX + CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX)
+                || test.matches(VALIDATION_REGEX + CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX_AND_ARGUMENT);
+    }
+
 
     @Override
     public boolean equals(Object other) {

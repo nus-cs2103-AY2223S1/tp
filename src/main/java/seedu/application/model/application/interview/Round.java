@@ -3,6 +3,8 @@ package seedu.application.model.application.interview;
 import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.AppUtil.checkArgument;
 
+import seedu.application.model.CommonRegex;
+
 /**
  * Represents an Interview's Round. e.g. Round 1 online assessment, Round 2 technical interview, etc.
  * Guarantees: immutable; is valid as declared in {@link #isValidRound(String)}
@@ -36,6 +38,14 @@ public class Round {
      */
     public static boolean isValidRound(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string contains another prefix or prefix, argument pair.
+     */
+    public static boolean hasAPrefix(String test) {
+        return test.matches(VALIDATION_REGEX + CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX)
+                || test.matches(VALIDATION_REGEX + CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX_AND_ARGUMENT);
     }
 
 
