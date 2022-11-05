@@ -137,6 +137,17 @@ public class EditModuleCommand extends Command {
         private ModuleName moduleName;
         private ModuleCredit moduleCredit;
 
+        public EditModuleDescriptor() {}
+
+        /**
+         * Copy constructor.
+         */
+        public EditModuleDescriptor(EditModuleCommand.EditModuleDescriptor toCopy) {
+            setModuleCode(toCopy.moduleCode);
+            setModuleName(toCopy.moduleName);
+            setModuleCredit(toCopy.moduleCredit);
+        }
+
         /**
          * Returns true if at least one field is edited.
          */

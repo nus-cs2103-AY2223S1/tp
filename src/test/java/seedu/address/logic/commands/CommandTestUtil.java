@@ -32,6 +32,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditExamDescriptorBuilder;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
@@ -50,6 +51,13 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_EXAMTWO = "CS2040S";
     public static final String VALID_DATE_EXAMONE = "20-08-2023";
     public static final String VALID_DATE_EXAMTWO = "20-10-2023";
+
+    public static final String VALID_MODULE_CODE_ONE = "CS2030S";
+    public static final String VALID_MODULE_CODE_TWO = "CS3217";
+    public static final String VALID_MODULE_NAME_ONE = "Module One";
+    public static final String VALID_MODULE_NAME_TWO = "Module Two";
+    public static final int VALID_MODULE_CREDIT_ONE = 4;
+    public static final int VALID_MODULE_CREDIT_TWO = 5;
 
     public static final String MODULE_1 = " " + PREFIX_MODULE + VALID_MODULE_1;
     public static final String MODULE_2 = " " + PREFIX_MODULE + VALID_MODULE_2;
@@ -109,6 +117,8 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditExamCommand.EditExamDescriptor DESC_EXAMONE;
     public static final EditExamCommand.EditExamDescriptor DESC_EXAMTWO;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_MODULEONE;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_MODULETWO;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -121,6 +131,10 @@ public class CommandTestUtil {
                 .withDescription(VALID_DESCRIPTION_EXAMONE).withDate(VALID_DATE_EXAMONE).build();
         DESC_EXAMTWO = new EditExamDescriptorBuilder().withModule(VALID_MODULE_EXAMTWO)
                 .withDescription(VALID_DESCRIPTION_EXAMTWO).withDate(VALID_DATE_EXAMTWO).build();
+        DESC_MODULEONE = new EditModuleDescriptorBuilder().withModuleCode(VALID_MODULE_CODE_ONE)
+                .withModuleName(VALID_MODULE_NAME_ONE).withModuleCredit(VALID_MODULE_CREDIT_ONE).build();
+        DESC_MODULETWO = new EditModuleDescriptorBuilder().withModuleCode(VALID_MODULE_CODE_TWO)
+                .withModuleName(VALID_MODULE_NAME_TWO).withModuleCredit(VALID_MODULE_CREDIT_TWO).build();
 
     }
 
@@ -156,8 +170,6 @@ public class CommandTestUtil {
     public static final String EXAMDESCRIPTIONTWO = " " + PREFIX_EXAM_DESCRIPTION + VALID_DESCRIPTION_EXAMTWO;
     public static final String EXAMDATEONE = " " + PREFIX_EXAM_DATE + VALID_DATE_EXAMONE;
     public static final String EXAMDATETWO = " " + PREFIX_EXAM_DATE + VALID_DATE_EXAMTWO;
-
-
 
     public static final EditTaskCommand.EditTaskDescriptor DESC_TUTORIAL;
     public static final EditTaskCommand.EditTaskDescriptor DESC_LECTURE;
