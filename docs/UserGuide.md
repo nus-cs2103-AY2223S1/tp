@@ -239,8 +239,8 @@ Adds an attendance list to a student in contacts.
 Format: `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`
 
 Examples:
-* `attendance add 1 c/CS2030 s/10`
-* `attendance add 1 c/CS2040 s/1`
+* `attendance add 1 c/CS2030 s/10` creates an attendance list of size 10 and class CS2030 for the 1st student in the shown student list.
+* `attendance add 1 c/CS2040 s/1` creates an attendance list of size 1  and class CS2040 for the 1st student in the shown student list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
 Currently, we support a maximum of 12 lessons. If the size of the attendance list keyed in is 0, the attendance list will be listed as N.A. 
@@ -267,8 +267,8 @@ We adopted such an approach as it is faster for you to type numerical values ove
 </div>
 
 Examples:
-* `attendance mark 1 l/1 m/1`
-* `attendance mark 1 l/1 m/0`
+* `attendance mark 1 l/1 m/1` marks the attendance of the 1st lesson with a 1 for the 1st student in the shown student list.
+* `attendance mark 1 l/2 m/0` marks the attendance of the 2nd lesson with a 0 for the 1st student in the shown student list.
 
 Expected outcome:
 ![AttendanceMark](images/AttendanceMark.png)
@@ -276,13 +276,13 @@ After using ```attendance mark``` command
 
 ### Deleting attendance of a student: `attendance delete`
 
-Deletes the entire attendance list of a student in the contacts.
+Deletes the entire attendance list of a student in the student list.
 
 Format: `attendance delete INDEX`
 
 Examples:
-* `attendance delete 1`
-* `attendance delete 2`
+* `attendance delete 1` deletes the attendance list for the 1st student in the shown student list.
+* `attendance delete 2` deletes the attendance list for the 2nd student in the shown student list.
 
 Expected outcome:
 ![AttendanceDelete](images/AttendanceDelete.png)
@@ -311,8 +311,8 @@ Format: `task t/TITLE d/DESC`
 * Both title and description should not be left blank.
 
 Examples:
-* `task t/Prepare slides for studio d/Topic Environment Model`
-* `task t/Collect robot d/At MakersLab`
+* `task t/Prepare studio slides d/Topic Environment Model` adds a ToDo with title "Prepare studio slides" and description "Topic Environment Model" to the task list.
+* `task t/Collect robot d/At MakersLab` adds a ToDo with title "Collect robot" and description "MakersLab" to the task list.
 
 Expected outcome: <br>
 ![AddingToDo](images/AddingToDo.png) <br>
@@ -333,8 +333,8 @@ Format: `task t/TITLE d/DESC by/YYYY-MM-DD`
 </div>
 
 Examples:
-* `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`
-* `task t/Collect robot d/At MakersLab by/2019-09-10`
+* `task t/Prepare studio slides d/Topic Lists by/2020-12-12` adds a Deadline with title "Prepare studio slides", description "Topic Lists" and date 2020-12-12 to the task list.
+* `task t/Collect robot d/At MakersLab by/2019-09-10` adds a Deadline with title "Collect robot", description "At MakersLab" and date 2019-09-10 to the task list.
 
 Expected outcome: <br>
 ![AddingDeadline](images/AddingDeadline.png) <br>
@@ -352,8 +352,13 @@ Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
 * Both title and description should not be left blank.
 
 Examples:
-* `task t/Assignment 1 d/Description here addStu/Adam Tan, Wong Zhu Yi, Robin Hood`
-* `task t/Midterm Assignment d/This is a challenging assignment addStu/Alvin, Simon, Theodore`
+* `task t/Assignment 1 d/Midterm addStu/Adam Tan, Wong Zhu Yi` adds an Assignment with title "Assignment 1", description "Midterm" and two students, to the task list.
+* `task t/Mock PE d/Simulates actual PE addStu/Alvin, Simon, Theodore` adds an Assignment with title "Mock PE", description "Simulates actual PE" and three students, to the task list.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
+Currently, we allow Assignment tasks to take in any student name, even if they do not exist in the Student list yet.
+However we will link the students to the Assignments in future versions of GREWZ such that only students in the Student list can be added.
+</div>
 
 Expected outcome: <br>
 ![AddingAssignment](images/AddingAssignment.png) <br>
@@ -380,7 +385,7 @@ Format: `edit-task [t/TITLE] [d/DESCRIPTION] [by/YYYY-MM-DD] [addStu/STUDENT_1, 
 
 Examples:
 * `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang`
-  Edits the title, description and student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
+  Edits the title, description and adds to student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and adds `Adam Lee, Ben Tang` respectively.
 * `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task in the task list to delete the name `Jackie Chan`. All other students in the student list of the task are not affected.
 
 ### Removing a Task : `remove-task`
@@ -394,7 +399,8 @@ Format: `remove-task INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `remove-task 2` deletes the 2nd task in the task list.
+* `remove-task 2` removes the 2nd task in the task list.
+* `remove-task 1` removes the 1st task in the task list.
 ---
 
 ### Clearing all entries : `clear`
