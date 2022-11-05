@@ -10,23 +10,21 @@ const options = {
 const HOST = "http://localhost:4000";
 
 const PATHS_TO_CHECK = ["/", "/UserGuide.html", "/DeveloperGuide.html"];
+const links = new Set();
+const fragments = new Set();
 for (const path of PATHS_TO_CHECK) {
   console.log("Checking URL: " + HOST + path);
-  check(HOST + path, options).then(
-    ({ brokenLinks, brokenFragments }) => {
-      if (brokenLinks.length > 0) {
-        console.log("Broken Links:");
-        console.log(brokenLinks);
-        process.exitCode = 1;
-      }
-      if (brokenFragments.length > 0) {
-        console.log("Broken Fragments:");
-        console.log(brokenFragments);
-        process.exitCode = 1;
-      }
-    },
-    (err) => {
-      console.log(`Error: ${err}`);
-    }
-  );
+  const { brokenLinks, brokenFragments } = await check(HOST + path, options);
+  brokenLinks.forEach(({ link }) => links.add(link));
+  brokenFragments.forEach(({ link }) => fragments.add(link));
+}
+if (links.size > 0) {
+  process.stderr.write("Broken Links: ");
+  console.error(links);
+  process.exitCode = 1;
+}
+if (fragments.size > 0) {
+  process.stderr.write("Broken Fragments: ");
+  console.error(fragments);
+  process.exitCode = 1;
 }
