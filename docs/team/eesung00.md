@@ -9,7 +9,7 @@ CinternS is a desktop intern-management application used for managing internship
 
 Given below are my contributions to the project.
 
-* **New Feature**: Data Archiving
+* **New Feature**: Data Archiving [#91](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/91)
     * What it does: Allows user to hide past applications in the list and refer/retrieve back if necessary.
     * Justification: This feature improves the convenience of users in managing their applications significantly as they can hide unwanted data (e.g. past applications) to better manage the actual application list while not losing the benefits of keeping track of old applications (deleting it).
     * Highlights: This enhancement utilises and extends the idea of `FindCommand` filtering the list shown to user. It requires in-depth analysis of past commands to find alternatives that fits the existing implementation most. This feature provides three additional commands:
@@ -18,7 +18,7 @@ Given below are my contributions to the project.
       3. `RetrieveCommand`: Allows users to retrieve selected application.
    * Credits: Idea inspired by `FindCommand` implementation from [address-book-level-3](https://github.com/se-edu/addressbook-level3)
 
-* **New Feature**: Showing statistic
+* **New Feature**: Showing statistic [#134](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/134)
     * What it does: A simple feature that allows user to review his overall applications' statistic.
     * Justification: This feature assists user in reviewing his internship application performance quickly especially when there are many applications added in CinternS.
 
@@ -27,6 +27,7 @@ Given below are my contributions to the project.
 * **Project management**:
     * Managed releases `v1.2` - `v1.3` (2 releases) on Github.
     * Managed issues, pull request and milestones on Github.
+    * Setup meeting links for team meeting.
 
 * **Documentation**:
     * User Guide:
