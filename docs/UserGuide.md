@@ -279,7 +279,7 @@ Format:
 
 2. **Assigned to** Format:  `task todo o/NAME d/DESCRIPTION [#/TAG]…`
 
-3. **Self-assigned** Format:  `task todo d/DESCRIPTION`
+3. **Self-assigned** Format:  `task todo d/DESCRIPTION [#/TAG]…`
 
 * Adds a todo assigned by (`m/`) or assigned to (`o/`) a contact.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself a todo.
