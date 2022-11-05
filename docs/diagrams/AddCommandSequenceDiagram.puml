@@ -43,7 +43,7 @@ AddCommandParser -> AddCommand++
 return
 return addCommand
 destroy AddCommandParser
-return command
+return addCommand
 LogicManager->AddCommand++: execute(model)
 
 AddCommand -> Model: addPerson(toAdd)
@@ -55,5 +55,6 @@ AddCommand ->CommandResult++
 return
 
 return commandResult
+return
 
 @enduml

@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 40
+skinparam SequenceReferencebackgroundColor LightYellow
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeletePastAppointmentCommandParser" as DeletePastAppointmentCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant ":DeletePastAppointmentCommand" as DeletePastAppointmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(userInput)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(userInput)
+activate AddressBookParser
+
+create DeletePastAppointmentCommandParser
+AddressBookParser -> DeletePastAppointmentCommandParser++
+return
+
+AddressBookParser -> DeletePastAppointmentCommandParser : parse(args)
+activate DeletePastAppointmentCommandParser
+
+DeletePastAppointmentCommandParser -> ParserUtil : parseIndex(oneBasedIndex)
+activate ParserUtil
+return index
+
+create DeletePastAppointmentCommand
+DeletePastAppointmentCommandParser -> DeletePastAppointmentCommand++
+return
+
+return delApptCommand
+destroy DeletePastAppointmentCommandParser
+return delApptCommand
+
+LogicManager -> DeletePastAppointmentCommand : execute(model)
+activate DeletePastAppointmentCommand
+
+DeletePastAppointmentCommand -> Model : getFilteredPersonList()
+activate Model
+return
+
+DeletePastAppointmentCommand -> Person : getPastAppointmentCount()
+activate Person
+return p
+
+opt if p > 0
+DeletePastAppointmentCommand -> Person : deleteMostRecentPastAppointment()
+activate Person
+return
+end opt
+
+create CommandResult
+DeletePastAppointmentCommand -> CommandResult++
+return
+return commandResult
+return
+
+@enduml
