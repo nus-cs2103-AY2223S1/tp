@@ -616,8 +616,8 @@ To delete everyone at the same time, please refer to the <a href="#clearing-all-
 [Back to Table of Contents](#table-of-contents)
 
 #### Locating persons by name or contact number : `find`
-
-Finds persons whose names match any of the given keywords, or phone numbers start with any of the given keywords (in digits).
+Finds the names of persons that match the given keywords, or phone numbers of persons that start with any of the given keywords (in digits).
+Finds persons whose names match any of the given keywords, or persons whose phone numbers start with any of the given keywords (in digits).
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 The People Panel will show a `FILTERED` indicator to inform you that the list has been filtered.
