@@ -103,7 +103,7 @@ Most commands used in NUScheduler follow this command format:
 
 ### Parameters
 
-* Words in `UPPER_CASE` are the parameters to you will specify.<br>
+* Words in `UPPER_CASE` are the parameters you will specify.<br>
   e.g. in `profile -a n/NAME`, `NAME` is a parameter which can be used as `profile -a n/John Doe`.
 * Parameters in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
