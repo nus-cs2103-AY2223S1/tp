@@ -41,6 +41,6 @@ class RepositoryTest {
 
     @Test
     public void getRepositoryUrl_validRepoName_stringConversionToGitHubUrlSuccess() {
-        assertEquals(new Repository("peterjack/tp").getUiRepresentation(), "https://github.com/peterjack/tp");
+        assertEquals(new Repository("peterjack/tp").uiRepresentation(), "https://github.com/peterjack/tp");
     }
 }

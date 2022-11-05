@@ -52,7 +52,7 @@ public class ProjectCard extends UiPart<Region> {
         repository.setText(project.getRepository().uiRepresentation());
         deadline.setText(project.getDeadline().uiRepresentation());
         client.setText(project.getClient().uiRepresentation());
-        issueCount.setText(project.listUiRepresentation());
+        issueCount.setText(project.issueListUiRepresentation());
 
         repository.setOnMouseClicked(e -> copyRepoUrl(project.getRepository().isEmpty() ? ""
                 : project.getRepository().uiRepresentation()));

@@ -81,6 +81,9 @@ public class Name {
         return this.fullName;
     }
 
+    /**
+     * Returns the UI string representation of the name.
+     */
     public String uiRepresentation(boolean isPinned, String id) {
         return this.fullName + " " + id
                 + (isPinned ? " \uD83D\uDCCC" : "");
