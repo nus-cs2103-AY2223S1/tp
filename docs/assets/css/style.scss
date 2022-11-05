@@ -9,6 +9,10 @@
   "minima/skins/{{ site.minima.skin | default: 'classic' }}",
   "minima/initialize";
 
+html {
+  scroll-behavior: smooth;
+}
+
 .icon {
     height: 21px;
     width: 21px
