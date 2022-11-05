@@ -1,5 +1,7 @@
 {% comment %}
   Copyright 2022 Richard Dominick
+  
+  Pure Liquid HTML (safe) minifier.
 {% endcomment %}
 {% capture newline %}
 {% endcapture %}
@@ -32,5 +34,8 @@
 {% assign content = without_comments | join: newline %}
 {% comment %} REMOVE BLANK LINES {% endcomment %}
 {% assign content = content | split: newline | where_exp: 'item', 'item != ""' | join: newline %}
+{% comment %} MINIFY LINES {% endcomment %}
+{% assign replacement = '>' | append: newline | append: '<' %}
+{% assign content = content | replace: replacement, '><' %}
 {% comment %} RENDER {% endcomment %}
 {{ content }}
