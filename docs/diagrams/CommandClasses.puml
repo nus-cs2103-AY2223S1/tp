@@ -80,15 +80,15 @@ class CommandResult {
 AddCommand --> "1 toAdd" Person
 
 
-AddressBookParser ..|> EditCommandParser: creates >
-AddressBookParser ..|> AddCommandParser: creates >
-AddressBookParser ..|> DeleteCommandParser: creates >
-AddressBookParser ..|> FindCommandParser: creates >
+BobaBotParser ..|> EditCommandParser: creates >
+BobaBotParser ..|> AddCommandParser: creates >
+BobaBotParser ..|> DeleteCommandParser: creates >
+BobaBotParser ..|> FindCommandParser: creates >
 
-AddressBookParser ..|> ListCommand: creates >
-AddressBookParser ..|> ClearCommand: creates >
-AddressBookParser ..|> HelpCommand: creates >
-AddressBookParser ..|> ExitCommand: creates >
+BobaBotParser ..|> ListCommand: creates >
+BobaBotParser ..|> ClearCommand: creates >
+BobaBotParser ..|> HelpCommand: creates >
+BobaBotParser ..|> ExitCommand: creates >
 
 
 FindCommandParser .....|> FindCommand : creates >

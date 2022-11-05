@@ -7,7 +7,7 @@ skinparam activity {
     arrowColor #7F5539
 }
 :User executes EditCommand;
-:AddressBookParser parses the command;
+:BobaBotParser parses the command;
 :EditCommandParser parses the arguments provided;
 if () then ([command is valid])
     :Get Phone/ Email details as identifier;
