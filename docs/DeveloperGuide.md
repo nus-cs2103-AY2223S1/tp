@@ -246,6 +246,7 @@ The following is a more detailed explanation on how `AttendanceDeleteCommand` wo
 Activity diagram for AttendanceDeleteCommand
 ![attendance delete sequence](images/AttendanceDeleteSequenceDiagram.png)
 Sequence diagram for AttendanceDeleteCommand
+
 #### Design considerations:
 
 **Aspect: Command Syntax**
@@ -278,7 +279,6 @@ The following is a more detailed explanation of how the `UploadPictureCommand` w
 Activity diagram for PictureUploadCommand
 ![picture upload sequence](images/PictureUploadSequenceDiagram.png)
 Sequence diagram for PictureUploadCommand
-
 
 #### Design considerations:
 
@@ -530,7 +530,7 @@ Activity Diagram for Improved AddCommand Feature
 
 **Target user profile**:
 
-* Tech savvy university teaching assistants
+* Tech-savvy university teaching assistants
 * has a need to manage student contacts
 * Prefer desktop apps over other types
 * Can type fast
@@ -678,48 +678,7 @@ Use case ends.
     * Repeat steps until data is correct.
     Use case resumes in step 2.
 
-**Use case: UC09 - Add a ToDo Task**
-
-**Guarantees:** A user can add a ToDo task to the TaskBook with a given title and description.
-
-**MSS**
-1. User enters correct command with title and description into the command input.
-2. GREWZ adds the ToDo task to the TaskBook and displays it.
-Use case ends.
-
-**Extensions**
-* 1a. GREWZ detects an error in the given command format.
-    * 1a1. GREWZ responds with an error message.
-    * 1a2. User re-enters the command with title and description.
-    * Repeat steps until command input is correct.
-    Use case resumes in step 2.
-
-**Use case: UC10 - Add a Deadline Task**
-
-**Guarantees:**  A user can add a deadline to the TaskBook along with a given deadline.
-
-**MSS**
-1. User adds task to student by entering command with title, description and deadline.
-2. Task is added to the TaskBook and the deadline is displayed as well.
-   Use case ends.
-
-**Extensions**
-* 1a. GREWZ detects an error in the given date format.
-    * 1a1. GREWZ responds with an error message.
-    * 1a2. User enters command with corrected date format.
-    * Repeat steps until data is correct.
-      Use case resumes in step 2.
-
-**Use case: UC11 - Add an Assignment Task**
-
-**Guarantees:**  A user can add an assignment to the TaskBook along with a given list of student names.
-
-**MSS**
-1. User adds task to student by entering command with title, description and list of students.
-2. Task is added to the TaskBook and the list of students is displayed as well.
-   Use case ends.
-
-**Use case: UC12 - Uploading a Student Picture**
+**Use case: UC09 - Uploading a Student Picture**
 
 **MSS**
 1. User enters a upload picture command with the index of student.
@@ -737,9 +696,115 @@ Use case ends.
 * 3a. Picture is not of JPG format.
   * 3a1. GREWZ detects invalid file.
   * 3a2. GREWZ responds with an error message.
-  Use case ends.
+    Use case ends.
 
-**Use case: UC13 - Remove a Task**
+
+**Use case: UC10 - Add a ToDo Task**
+
+**Guarantees:** A user can add a ToDo task to the TaskBook with a given title and description.
+
+**MSS**
+1. User enters correct command with title and description into the command input.
+2. GREWZ adds the ToDo task to the TaskBook and displays it.
+Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in the given command format.
+    * 1a1. GREWZ responds with an error message.
+    * 1a2. User re-enters the command with title and description.
+    * Repeat steps until command input is correct.
+    Use case resumes in step 2.
+
+**Use case: UC11 - Add a Deadline Task**
+
+**Guarantees:**  A user can add a deadline to the TaskBook along with a given deadline.
+
+**MSS**
+1. User adds task to student by entering command with title, description and deadline.
+2. Task is added to the TaskBook and the deadline is displayed as well.
+   Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in the given date format.
+    * 1a1. GREWZ responds with an error message.
+    * 1a2. User enters command with corrected date format.
+    * Repeat steps until data is correct.
+      Use case resumes in step 2.
+
+**Use case: UC12 - Add an Assignment Task**
+
+**Guarantees:**  A user can add an assignment to the TaskBook along with a given list of student names.
+
+**MSS**
+1. User adds task to student by entering command with title, description and list of students.
+2. Task is added to the TaskBook and the list of students is displayed as well.
+   Use case ends.
+
+**Use case: UC13 - Edit a ToDo Task**
+
+**Guarantees:** A user can edit a ToDo task in the TaskBook with a given title and description.
+
+**MSS**
+1. User enters correct command with task index, title and description into the command input.
+2. GREWZ edits the ToDo task to the TaskBook and displays it.
+   Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an invalid task index.
+  * 1a1. GREWZ responds with an error message.
+  * 1a2. User enters command with correct task index.
+  * Repeat steps until index is valid.
+    Use case resumes in step 2.
+
+
+**Use case: UC14 - Edit a Deadline Task**
+
+**Guarantees:** A user can edit a Deadline task in the TaskBook with a given title, description and deadline.
+
+**MSS**
+1. User enters correct command with task index, title, description and deadline into the command input.
+2. GREWZ edits the Deadline task to the TaskBook and displays it.
+   Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an invalid task index.
+  * 1a1. GREWZ responds with an error message.
+  * 1a2. User enters command with correct task index.
+  * Repeat steps until index is valid.
+    Use case resumes in step 2.
+* 1b. GREWZ detects an error in the given date format.
+  * 1b1. GREWZ responds with an error message.
+  * 1b2. User enters command with corrected date format.
+  * Repeat steps until data is correct.
+    Use case resumes in step 2.
+* 1c. GREWZ detects wrong task type being edited.
+  * 1c1. GREWZ responds with an error message.
+  * 1c2. User enters command with corrected format for that task or changes task index to correct task.
+  * Repeat steps until data is correct.
+    Use case resumes in step 2.
+
+**Use case: UC15 - Edit an Assignment Task**
+
+**Guarantees:** A user can edit a Assignment task in the TaskBook with a given title, description and student list.
+
+**MSS**
+1. User enters correct command with task index, title, description and student list into the command input.
+2. GREWZ edits the Assignment task to the TaskBook and displays it.
+   Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an invalid task index.
+  * 1a1. GREWZ responds with an error message.
+  * 1a2. User enters command with correct task index.
+  * Repeat steps until index is valid.
+    Use case resumes in step 2.
+* 1b. GREWZ detects wrong task type being edited.
+  * 1b1. GREWZ responds with an error message.
+  * 1b2. User enters command with corrected format for that task or changes task index to correct task.
+  * Repeat steps until data is correct.
+    Use case resumes in step 2.
+
+**Use case: UC16 - Remove a Task**
 
 **Guarantees:** A user can remove a task from the TaskBook with the given index.
 
@@ -751,10 +816,10 @@ Use case ends.
 * 1a. GREWZ detects an invalid task index.
   * 1a1. GREWZ responds with an error message.
   * 1a2. User enters command with correct task index.
-  * Repat steps until index is valid.
+  * Repeat steps until index is valid.
   Use case resumes in step 2.
 
-**Use case: UC14 - Navigating through previously keyed in commands**
+**Use case: UC17 - Navigating through previously keyed in commands**
 
 **MSS**
 1. User goes to previous command by pressing a key.
