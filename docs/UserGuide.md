@@ -174,14 +174,15 @@ In the above example, we are adding a module `CS2104` which has the title `Progr
 Here's a screenshot of Plannit before and after executing the command:
 
 {::nomarkdown}
+<!-- Solution adapted from https://stackoverflow.com/questions/5671687/i-want-to-align-the-text-in-a-td-to-the-top and https://stackoverflow.com/questions/2919980/table-with-100-width-with-equal-size-columns -->
 <table>
     <tr>
-        <td width="50%">Before executing the command</td>
-        <td width="50%">After executing the command</td>
+        <td width="50%"><b>Before executing the command</b></td>
+        <td width="50%"><b>After executing the command</b></td>
     </tr>
     <tr>
-        <td><p align="center"><img src="images/add-module-before.png" width="300"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
-        <td><p align="center"><img src="images/add-module-after.png" width="300"/></p><p>A message will appear indicating that <code>CS2104</code> has been added. Observe that `CS2104` has been added to the modules list.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/add-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/add-module-after.png"/></p><p>A message will appear indicating that <code>CS2104</code> has been added. Observe that <code>CS2104</code> has been added to the modules list.</p></td>
     </tr>
 </table>
 {:/}
@@ -212,9 +213,19 @@ delete-module m/CS2104
 In the above example, we are deleting module `CS2104` from Plannit.
 Here's a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                                              | After executing the command                                                                                                                                                                                                                                |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/delete-module-before.png" width="300"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-module-after.png" width="300"/></p><p>A message will appear indicating that <code>CS2104</code> has been deleted. Observe that <code>CS2104</code> has been removed from the modules list.</p>{:/} |
+{::nomarkdown}
+<!-- Solution adapted from https://stackoverflow.com/questions/5671687/i-want-to-align-the-text-in-a-td-to-the-top and https://stackoverflow.com/questions/2919980/table-with-100-width-with-equal-size-columns -->
+<table>
+    <tr>
+        <td width="50%"><b>Before executing the command</b></td>
+        <td width="50%"><b>After executing the command</b></td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top"><p align="center"><img src="images/add-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/delete-module-after.png"/></p><p>A message will appear indicating that <code>CS2104</code> has been deleted. Observe that <code>CS2104</code> has been removed from the modules list.</p></td>
+    </tr>
+</table>
+{:/}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Deleting a module will bring you back to the home page.
@@ -264,9 +275,19 @@ In the above example, we are changing the module code of the third module on Pla
 and at the same time, changing the module title to `Programming Language Concepts`.
 Here's a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                                            | After executing the command                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/edit-module-before.png" width="300"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/edit-module-after.png" width="300"/></p><p>A message will appear indicating that a module has been edited. Observe that the third module in the modules list has its module code changed to <code>CS2104</code> and its module title changed to `Programming Language Concepts`. Note that the module index has changed since Plannit automatically sorts modules in ascending order of module code.</p>{:/} |
+{::nomarkdown}
+<!-- Solution adapted from https://stackoverflow.com/questions/5671687/i-want-to-align-the-text-in-a-td-to-the-top and https://stackoverflow.com/questions/2919980/table-with-100-width-with-equal-size-columns -->
+<table>
+    <tr>
+        <td width="50%"><b>Before executing the command</b></td>
+        <td width="50%"><b>After executing the command</b></td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top"><p align="center"><img src="images/edit-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/edit-module-after.png"/></p><p>A message will appear indicating that a module has been edited. Observe that the third module in the modules list has its module code changed to <code>CS2104</code> and its module title changed to `Programming Language Concepts`. Note that the module index has changed since Plannit automatically sorts modules in ascending order of module code.</p></td>
+    </tr>
+</table>
+{:/}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Editing a module will bring you back to the home page.
@@ -628,9 +649,19 @@ add-person-to-module m/CS2106 n/Charlotte Oliveiro
 In the above example, we are adding the person `Charlotte Oliveiro` to module `CS2106`.
 Here's a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                                         | After executing the command                                                                                                                                                                                    |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/add-person-to-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-person-to-module-after.png"/></p><p>A message will appear indicating that <code>Charlotte Oliveiro</code> has been added to <code>CS2103T</code>.</p>{:/} |
+{::nomarkdown}
+<!-- Solution adapted from https://stackoverflow.com/questions/5671687/i-want-to-align-the-text-in-a-td-to-the-top and https://stackoverflow.com/questions/2919980/table-with-100-width-with-equal-size-columns -->
+<table>
+    <tr>
+        <td width="50%"><b>Before executing the command</b></td>
+        <td width="50%"><b>After executing the command</b></td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top"><p align="center"><img src="images/add-person-to-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/add-person-to-module-after.png"/></p><p>A message will appear indicating that <code>Charlotte Oliveiro</code> has been added to <code>CS2103T</code>.</p></td>
+    </tr>
+</table>
+{:/}
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**<br>
 If you wish to view a person added to a particular module, you may do so by navigating to that
