@@ -60,6 +60,12 @@ public class DateTest {
     }
 
     @Test
+    public void constructor_invalidDateSix_throwsIllegalArgumentExcception() {
+        String invalidDateFormatSix = "10/10/0000";
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatSix));
+    }
+
+    @Test
     public void constructor_invalidDateWhitespaces_throwsIllegalArgumentException() {
         String invalidDateWhitespaces = "     ";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateWhitespaces));
