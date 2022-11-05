@@ -94,7 +94,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
+        // zero majors
         Applicant expectedApplicant = new ApplicantBuilder(AMY).withMajors().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + SCHOLARSHIP_DESC_AMY
                 + APPLICATION_STATUS_DESC_AMY, new AddCommand(expectedApplicant));

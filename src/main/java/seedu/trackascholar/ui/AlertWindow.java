@@ -7,14 +7,15 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
 
 /**
- * Prompts an alert window
+ * Controller for an alert window.
  */
 public class AlertWindow {
     private boolean isConfirmed = false;
 
     /**
-     * Returns official confirmation user reply and displays an alert window
-     * @param  message prompted to user
+     * Returns official confirmation user reply and displays an alert window.
+     *
+     * @param  message prompted to user.
      */
     public boolean display(String message) {
         ButtonType closeButtonType = new ButtonType("Close", ButtonBar.ButtonData.CANCEL_CLOSE);

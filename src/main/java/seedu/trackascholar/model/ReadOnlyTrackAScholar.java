@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.trackascholar.model.applicant.Applicant;
 
 /**
- * Unmodifiable view of TrackAScholar
+ * Unmodifiable view of TrackAScholar.
  */
 public interface ReadOnlyTrackAScholar {
 

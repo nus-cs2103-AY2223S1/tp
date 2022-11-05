@@ -31,9 +31,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ApplicantListPanel applicantListPanel;
 
-    private PinList pinnedPersonListPanel;
+    private PinList pinnedApplicantListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -44,10 +44,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane applicantListPanelPlaceholder;
 
     @FXML
-    private StackPane pinnedPersonListPanelPlaceholder;
+    private StackPane pinnedApplicantListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -83,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -115,11 +116,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredApplicantList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        applicantListPanel = new ApplicantListPanel(logic.getFilteredApplicantList());
+        applicantListPanelPlaceholder.getChildren().add(applicantListPanel.getRoot());
 
-        pinnedPersonListPanel = new PinList(logic.getPinnedApplicantList());
-        pinnedPersonListPanelPlaceholder.getChildren().add(pinnedPersonListPanel.getRoot());
+        pinnedApplicantListPanel = new PinList(logic.getPinnedApplicantList());
+        pinnedApplicantListPanelPlaceholder.getChildren().add(pinnedApplicantListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -171,8 +172,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ApplicantListPanel getApplicantListPanel() {
+        return applicantListPanel;
     }
 
     /**
