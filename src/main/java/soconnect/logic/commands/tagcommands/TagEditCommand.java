@@ -20,7 +20,7 @@ public class TagEditCommand extends TagCommand {
             + COMMAND_WORD + ": Edits a tag in the taglist of SoConnect.\n"
             + "Parameters: "
             + PREFIX_TAG + "TAG" + " "
-            + PREFIX_TAG + "TAG...\n"
+            + PREFIX_TAG + "TAG\n"
             + "Example: " + TagCommand.COMMAND_WORD + " "
             + COMMAND_WORD + " "
             + PREFIX_TAG + "friend"
