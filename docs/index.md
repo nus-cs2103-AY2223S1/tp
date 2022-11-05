@@ -2,9 +2,12 @@
 layout: page
 title: Mass Linkers
 ---
+<div align="center">
+<img src="../docs/images/Logo.png" width="360">
 
 [![CI Status](https://github.com/AY2223S1-CS2103T-T11-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T11-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T11-4/tp/branch/master/graph/badge.svg?token=SQHP14Y75Q)](https://codecov.io/gh/AY2223S1-CS2103T-T11-4/tp)
+</div>
 
 ![Ui](images/Ui.png)
 
