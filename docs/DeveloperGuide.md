@@ -169,15 +169,15 @@ The initial state of TrackO Model before running add item command will be as suc
 
 ![AddItemState0](images/developer-guide/AddItemState0.png)
 
-Step 2. The user executes `addi i/Key q/200 d/Cabinet keys sp/9.90 cp/4.90 t/new` command to add 200 keys to item list in TrackO. 
-The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for 
+Step 2. The user executes `addi i/Key q/200 d/Cabinet keys sp/9.90 cp/4.90 t/new` command to add 200 keys to item list in TrackO.
+The `addi` command creates an `AddItemCommandParser` which checks that the following input arguments are present 
+before parsing the arguments into an `AddItemCommand` object: 
 * item name (prefixed by `i/`)
 * quantity (prefixed by `q/`) 
 * description (prefixed by `d/`)
 * sell price (prefixed by `sp/`)
 * cost price (prefied by `cp`)
 
-are present before parsing the arguments into an `AddItemCommand` object. 
 Tags (which are prefixed by `t/`) are optional inputs and will be parsed into the `AddItemCommand` 
 as well if they are present.
 
