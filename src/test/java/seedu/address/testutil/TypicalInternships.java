@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_ABC;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_INTERVIEW_ABC;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_INTERVIEW_BOBBY;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_NAME_ABC;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_NAME_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_ROLE_ABC;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_ROLE_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_STATUS_ABC;
@@ -87,12 +87,14 @@ public class TypicalInternships {
 
     // Manually added - Internship's details found in {@code InternshipCommandTestUtil}
     public static final Internship ABC = new InternshipBuilder()
-            .withCompanyName(VALID_NAME_ABC).withRole(VALID_ROLE_ABC)
+            .withCompanyName(VALID_COMPANY_NAME_ABC)
+            .withRole(VALID_ROLE_ABC)
             .withStatus(VALID_STATUS_ABC)
             .withInterviewDate(VALID_INTERVIEW_ABC)
             .build();
     public static final Internship BOBBY = new InternshipBuilder()
-            .withCompanyName(VALID_NAME_BOBBY).withRole(VALID_ROLE_BOBBY)
+            .withCompanyName(VALID_COMPANY_NAME_BOBBY)
+            .withRole(VALID_ROLE_BOBBY)
             .withStatus(VALID_STATUS_BOBBY)
             .withInterviewDate(VALID_INTERVIEW_BOBBY)
             .build();

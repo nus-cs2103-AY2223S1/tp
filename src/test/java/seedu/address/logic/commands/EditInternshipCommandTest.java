@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.DESC_ABC;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.DESC_BOBBY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_INTERVIEW_BOBBY;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_NAME_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_ROLE_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.assertCommandSuccess;
@@ -55,13 +55,13 @@ class EditInternshipCommandTest {
 
         InternshipBuilder internshipInList = new InternshipBuilder(lastInternship);
         Internship editedInternship = internshipInList
-                .withCompanyName(VALID_NAME_BOBBY)
+                .withCompanyName(VALID_COMPANY_NAME_BOBBY)
                 .withRole(VALID_ROLE_BOBBY)
                 .withInterviewDate(VALID_INTERVIEW_BOBBY)
                 .build();
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder()
-                .withCompanyName(VALID_NAME_BOBBY)
+                .withCompanyName(VALID_COMPANY_NAME_BOBBY)
                 .withInternshipRole(VALID_ROLE_BOBBY)
                 .withInterviewDate(VALID_INTERVIEW_BOBBY).build();
         EditInternshipCommand editInternshipCommand = new EditInternshipCommand(indexLastInternship, descriptor);
@@ -95,10 +95,10 @@ class EditInternshipCommandTest {
                 .get(INDEX_FIRST_INTERNSHIP.getZeroBased());
 
         Internship editedInternship = new InternshipBuilder(internshipInFilteredList)
-                .withCompanyName(VALID_NAME_BOBBY).build();
+                .withCompanyName(VALID_COMPANY_NAME_BOBBY).build();
         EditInternshipCommand editInternshipCommand = new EditInternshipCommand(
                 INDEX_FIRST_INTERNSHIP,
-                new EditInternshipDescriptorBuilder().withCompanyName(VALID_NAME_BOBBY).build());
+                new EditInternshipDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_BOBBY).build());
 
         String expectedMessage = String.format(EditInternshipCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
@@ -135,7 +135,7 @@ class EditInternshipCommandTest {
     public void execute_invalidInternshipIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder()
-                .withCompanyName(VALID_NAME_BOBBY).build();
+                .withCompanyName(VALID_COMPANY_NAME_BOBBY).build();
         EditInternshipCommand editInternshipCommand = new EditInternshipCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editInternshipCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
@@ -153,7 +153,7 @@ class EditInternshipCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getInternshipList().size());
 
         EditInternshipCommand editInternshipCommand = new EditInternshipCommand(outOfBoundIndex,
-                new EditInternshipDescriptorBuilder().withCompanyName(VALID_NAME_BOBBY).build());
+                new EditInternshipDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_BOBBY).build());
 
         assertCommandFailure(editInternshipCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
