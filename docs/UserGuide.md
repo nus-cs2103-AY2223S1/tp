@@ -32,7 +32,7 @@ Let's look at the overview of our main features.
 
 ### 3.1. Contact Management
 
-SoConnect allows you to store all your contact information, so that you no longer need to stress about forgetting someone. In particular, you can:
+SoConnect allows you to store all your contact information, so that you no longer need to stress about forgetting someone. You can:
 1. Quickly **add, view, edit and delete** your contact.
 2. **Sort** your displayed contact list by name, email, address, phone number and tag.
 3. **Tag** specific people in your contact list, which can also be edited and removed.
@@ -41,7 +41,7 @@ SoConnect allows you to store all your contact information, so that you no longe
 
 ### 3.2. Todo Management
 
-SoConnect helps you keep track of your [todo](#todo) list, so that you can focus on finishing tasks quickly. In particular, you can:
+SoConnect helps you keep track of your [todo](#todo) list, so that you can focus on finishing tasks quickly. You can:
 1. Quickly **add, view, edit and delete** your todo.
 2. **Filter** your todo according to deadline, tag and priority.
 3. **Tag** specific todo in your list, so that you can leverage on our Contact Management feature to find people who might be able to help you finish the task quickly!
@@ -66,13 +66,13 @@ You can also refer to the [Glossary](#glossary) section for definitions of commo
 
 In order to help you pay attention, we have used some icons along with highlighted text throughout this guide.
 
-| Icon                                                                         | Meaning                                       |
-|------------------------------------------------------------------------------|-----------------------------------------------|
-| <div markdown="span" class="alert alert-primary"> **:memo: Note**            | You should pay attention to this.             |
-| <div markdown="span" class="alert alert-success"> **:bulb: Tip**             | You might find this useful.                   |
-| <div markdown="span" class="alert alert-info"> **:information_source: Info** | You can get additional information from this. |
-| <div markdown="span" class="alert alert-warning"> **:warning: Warning**      | You should be cautious about this.            |
-| <div markdown="span" class="alert alert-danger"> **:rotating_light: Danger** | You should pay **extra** attention to this.   |
+| Icon                                                                                | Meaning                                       |
+|-------------------------------------------------------------------------------------|-----------------------------------------------|
+| <div markdown="span" class="alert alert-primary"> **:memo: Note** </div>            | You should pay attention to this.             |
+| <div markdown="span" class="alert alert-success"> **:bulb: Tip** </div>             | You might find this useful.                   |
+| <div markdown="span" class="alert alert-info"> **:information_source: Info** </div> | You can get additional information from this. |
+| <div markdown="span" class="alert alert-warning"> **:warning: Warning** </div>      | You should be cautious about this.            |
+| <div markdown="span" class="alert alert-danger"> **:rotating_light: Danger** </div> | You should pay **extra** attention to this.   |
 
 ### 4.3. Formatting and Notation
 
@@ -121,14 +121,6 @@ Upon completing this section, you should be able to explore SoConnect on your ow
 
 ### 6.3. Command Format
 
-### 6.4. How to Use the CLI
-
---------------------------------------------------------------------------------------------------------------------
-
-## 7. Commands
-
-<div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -150,7 +142,12 @@ Upon completing this section, you should be able to explore SoConnect on your ow
 
 * `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed contact list and todo list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
 
-</div>
+### 6.4. How to Use the CLI
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 7. Commands
+
 
 ### 7.1. General Commands
 
@@ -162,15 +159,21 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+<br>
+
 #### 7.1.2. Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
+<br>
+
 #### 7.1.3. Saving the data
 
 SoConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+<br>
 
 #### 7.1.4. Editing the data file
 
@@ -181,6 +184,8 @@ Advanced users are welcome to update data directly by editing these data file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, SoConnect will discard all data and start with an empty data file at the next run.
 </div>
+
+<br>
 
 #### 7.1.5. Archiving data files `[coming in v2.0]`
 
@@ -201,6 +206,8 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
+<br>
+
 #### 7.2.2. Editing a contact : `edit`
 
 Edits an existing contact in your SoConnect.
@@ -215,11 +222,15 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the 2nd contact to be `Betsy Crower`.
 
+<br>
+
 #### 7.2.3. Listing all contacts : `list`
 
 Shows a list of all contacts in your SoConnect.
 
 Format: `list`
+
+<br>
 
 #### 7.2.4. Searching for a contact: `search`
 
@@ -260,6 +271,8 @@ Example:
 * `search or n/John a/N` displays a list of search queries containing `search and n/John a/N`, `search and n/John a/NUS`, `search and n/John a/NYC` if SoConnect has contacts with address `NTU` and `NYC`, does not have to care about the name in the contact since it is `or` condition.
 * `search or n/John a/N` displays nothing if SoConnect does not have contacts with address starts with `N`.
 
+<br>
+
 #### 7.2.5. Sorting contacts : `sort`
 
 Sorts the list of contacts displayed by 1 or more parameter(s) chosen by you.
@@ -295,6 +308,8 @@ Example:
 * `sort t/!friend` sorts by the `friend` tag in reverse. (e.g. `Mike` appears before `David` who has the `friend` tag)
 * `sort t/friend n/` sorts by the `friend` tag first, followed by names. (e.g. `David` and `Fred` who have the `friend` tag appear before `Mike`, `David` appears before `Fred`)
 
+<br>
+
 #### 7.2.6. Deleting a contact : `delete`
 
 Deletes the specified contact from your SoConnect.
@@ -307,11 +322,15 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in your SoConnect.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
+<br>
+
 #### 7.2.7. Clearing all contacts : `clear`
 
 Clears all contacts from your SoConnect.
 
 Format: `clear`
+
+<br>
 
 #### 7.2.8. Creating a Tag: `tag create`
 
@@ -321,6 +340,8 @@ Format: `tag create t/TAG`
 
 Example:
 * `tag create t/family` creates a `family` tag.
+
+<br>
 
 #### 7.2.9. Deleting a Tag: `tag delete`
 
@@ -335,6 +356,8 @@ Format: `tag delete t/TAG`
 Example:
 * `tag delete t/family` deletes the `family` tag.
 
+<br>
+
 #### 7.2.10. Editing a Tag: `tag edit`
 
 Renames an existing tag.
@@ -345,6 +368,8 @@ Format: `tag edit t/TAG1 t/ TAG2`
 
 Example:
 * `tag edit t/friend t/bestFriend` changes the friend tag to a bestFriend tag.
+
+<br>
 
 #### 7.2.11. Adding a Tag to a Contact: `tag add`
 
@@ -366,6 +391,8 @@ A contact can have any number of tags. Add as many as you want.
 Example:
 * `tag add 1 t/friend` adds the friend tag to the first contact shown in the list.
 
+<br>
+
 #### 7.2.12. Removing a Tag from a Contact: `tag remove`
 
 Removes an existing tag from an existing contact.
@@ -378,6 +405,7 @@ Format: `tag remove INDEX t/TAG`
 Example:
 * `tag remove 1 t/friend` removes the friend tag from the first contact shown in the list.
 
+<br>
 
 #### 7.2.13. Customising order of details: `customise order`
 
@@ -394,6 +422,8 @@ Example:
 * `customise order a/ e/ p/` The application will show address first, followed by email, phone number, then tags.
 * `customise order a/` The application will show address first. The rest of the information will follow the default order. Therefore, address will be followed by tags, phone number and then email.
 
+<br>
+
 #### 7.2.14. Hiding contact details: `customise hide`
 
 Hide certain information of all contacts displayed.
@@ -407,6 +437,8 @@ Format: `customise hide [t/] [p/] [e/] [a/]`
 Example:
 * `customise hide e/` The application no longer shows emails in the list of contacts.
 * `customise hide p/ t/` The application no longer shows phone numbers and tags in the list of contacts.
+
+<br>
 
 #### 7.2.15. Showing contact details: `customise show`
 
@@ -441,6 +473,8 @@ A [todo](#glossary-todo) is a task that needs completing. A todo consists of
 
 </div>
 
+<br>
+
 #### 7.3.1. Adding a todo: `todo add`
 
 Adds a todo to your SoConnect.
@@ -453,6 +487,8 @@ Format: `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
 Examples:
 * `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`
 * `todo add d/Prepare slides for OP2 date/25-03-2022 pr/high t/CS2101 t/CS2103T`
+
+<br>
 
 #### 7.3.2. Editing a todo : `todo edit`
 
@@ -470,6 +506,8 @@ Examples:
 *  `todo edit 1 d/Read notes for ST2334` Edits the description of the 1st todo to be `Read notes for ST2334`.
 *  `todo edit 1 pr/medium t/ST2334` Edits the priority of the 2nd contact to be `medium` and changes its tags to just `ST2334`.
 
+<br>
+
 #### 7.3.3. Deleting a todo : `todo delete`
 
 Deletes the specified todo from your SoConnect.
@@ -481,11 +519,15 @@ Format: `delete INDEX`
 Examples:
 * `todo show` followed by `todo delete 2` deletes the 2nd todo shown in your SoConnect.
 
+<br>
+
 #### 7.3.4. Clearing all todos : `todo clear`
 
 Clears all todos from your SoConnect.
 
 Format: `todo clear`
+
+<br>
 
 #### 7.3.5. Filtering todos shown : `todo show`
 
