@@ -17,6 +17,7 @@ public class FilterPropsByPriceRangePredicate extends AbstractFilterPropsPredica
      * Standard constructor for the predicate.
      */
     public FilterPropsByPriceRangePredicate(PriceRange priceRange) {
+        requireNonNull(priceRange);
         this.priceRange = priceRange;
     }
 

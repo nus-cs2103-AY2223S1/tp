@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STRICT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.buyer.MatchBuyerCommand;
-import seedu.address.logic.commands.property.MatchPropertyCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
