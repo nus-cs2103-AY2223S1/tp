@@ -3,7 +3,6 @@ package seedu.address.model.meeting;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.logic.parser.DateKeyword;
-import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;

@@ -1,15 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETING;
 
-import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import seedu.address.logic.parser.DateKeyword;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.MeetingDate;
 
 /**
  * Lists all meetings in the client book to the user.

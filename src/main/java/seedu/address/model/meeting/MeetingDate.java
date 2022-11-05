@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import seedu.address.logic.parser.DateKeyword;
-import seedu.address.model.client.Birthday;
 
 /**
  * Represents a Meeting's date in MyInsuRec.
