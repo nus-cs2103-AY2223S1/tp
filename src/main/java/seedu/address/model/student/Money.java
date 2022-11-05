@@ -90,7 +90,8 @@ public class Money implements Comparable<Money> {
     }
 
     /**
-     * Returns 1 if this is greater than the given {@code money}, 0 if equal, -1 if smaller.
+     * Returns compared result between {@code this} and the given {@code money}.
+     * Returns positive integer if {@code this} is larger, 0 if same, and negative if smaller.
      */
     @Override
     public int compareTo(Money money) {
