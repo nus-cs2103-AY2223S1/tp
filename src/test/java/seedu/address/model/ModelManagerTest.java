@@ -6,25 +6,40 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalTasks.COOK;
+import static seedu.address.testutil.TypicalTasks.STUDY;
 import static seedu.address.testutil.TypicalTeams.BACKEND;
 import static seedu.address.testutil.TypicalTeams.FRONTEND;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.task.Name;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.exceptions.TeamNotFoundException;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
+
+    private static final String DATE_FORMAT = "dd-MM-uuuu";
+    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern(DATE_FORMAT)
+            .withResolverStyle(ResolverStyle.STRICT);
+
 
     @Test
     public void constructor() {
@@ -107,9 +122,92 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void deleteTeam_validTeamName_teamNotInModelManager() {
-
+    public void deleteTeam_teamNotInModelManager_throwsTeamNotFoundException() {
+        assertThrows(TeamNotFoundException.class, () -> modelManager.deleteTeam(FRONTEND));
     }
+
+    @Test
+    public void deleteTeam_teamInModeManager_teamIsRemoved() {
+        modelManager.addTeam(FRONTEND);
+        Team teamToDelete = modelManager.getTeam(FRONTEND.getName());
+        modelManager.deleteTeam(teamToDelete);
+        assertFalse(modelManager.hasTeam(teamToDelete));
+    }
+
+    @Test
+    public void addPersonToTeam_validTeam_teamIsAdded() {
+        modelManager.addTeam(FRONTEND);
+        modelManager.addPersonToTeam(DANIEL, FRONTEND);
+        assertTrue(FRONTEND.containMember(DANIEL));
+    }
+
+    @Test
+    public void teamHasTask_nullIndex_throwsNullPointerException() {
+        modelManager.addTeam(FRONTEND);
+        assertThrows(NullPointerException.class, () -> modelManager.teamHasTask(null, STUDY));
+    }
+
+    @Test
+    public void teamHasTask_nullTask_throwsNullPointerException() {
+        modelManager.addTeam(FRONTEND);
+        assertThrows(NullPointerException.class, () -> modelManager.teamHasTask(INDEX_FIRST_TEAM, null));
+    }
+
+    @Test
+    public void teamHasTask_teamHasTasks_returnsTrue() {
+        modelManager.addTeam(FRONTEND);
+        assertTrue(modelManager.teamHasTask(INDEX_FIRST_TEAM, STUDY));
+    }
+
+    @Test
+    public void teamHasTask_teamHasNoTasks_returnsFalse() {
+        modelManager.addTeam(FRONTEND);
+        assertFalse(modelManager.teamHasTask(INDEX_FIRST_TEAM, COOK));
+    }
+
+    @Test
+    public void addTask_nullIndex_throwsNullPointerException() {
+        modelManager.addTeam(FRONTEND);
+        assertThrows(NullPointerException.class, () -> modelManager.addTask(null, COOK));
+    }
+
+    @Test
+    public void addTask_nullTask_throwsNullPointerException() {
+        modelManager.addTeam(FRONTEND);
+        assertThrows(NullPointerException.class, () -> modelManager.addTask(INDEX_FIRST_TEAM, null));
+    }
+
+    @Test
+    public void addTask_validTaskAndIndex_taskIsAdded() {
+        modelManager.addTeam(FRONTEND);
+        Team teamToAddTask = modelManager.getTeam(FRONTEND.getName());
+        modelManager.addTask(INDEX_FIRST_TEAM, COOK);
+        assertTrue(teamToAddTask.containTask(COOK));
+    }
+
+    @Test
+    public void editTask_nullTeamIndex_throwsNullPointerException() {
+        Name newName = new Name("Database");
+        LocalDate newDeadline = LocalDate.parse("12-12-2022", DATE_TIME_FORMAT);
+        assertThrows(NullPointerException.class, () -> modelManager.editTask(null, INDEX_FIRST_TASK, newName, newDeadline));
+    }
+
+    @Test
+    public void editTask_nullTaskIndex_throwsNullPointerException() {
+        modelManager.addTeam(FRONTEND);
+        Name newName = new Name("Database");
+        LocalDate newDeadline = LocalDate.parse("12-12-2022", DATE_TIME_FORMAT);
+        assertThrows(NullPointerException.class, () -> modelManager.editTask(INDEX_FIRST_TEAM, null, newName, newDeadline));
+    }
+
+    @Test
+    public void editTask_validParameters_editTask() {
+        modelManager.addTeam(FRONTEND);
+        Name newName = new Name("Database");
+        LocalDate newDeadline = LocalDate.parse("12-12-2022", DATE_TIME_FORMAT);
+        modelManager.editTask(INDEX_FIRST_TEAM, INDEX_FIRST_TASK, newName, newDeadline);
+    }
+
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
