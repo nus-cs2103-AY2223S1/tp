@@ -108,9 +108,9 @@ Given below are my contributions to the project.
 
 ## Contributions to the UG:
 
-1. Added images and icons (UI image, person card image, note card image, icons used throughout the program and the filtered icon)
+1\. Added images and icons (UI image, person card image, note card image, icons used throughout the program and the filtered icon)
 
-2. Added the User Interface section of the UG with pointers to which part corresponds to what function and usage. [Link to UI section](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#user-interface)
+2\. Added the User Interface section of the UG with pointers to which part corresponds to what function and usage. [Link to UI section](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#user-interface)
 
 Text Extract:
 
@@ -201,7 +201,7 @@ Check Notes Features to learn more about the commands you can execute related to
 
 <br>
 
-3. Added description of properties for both people and notes in the UG.
+3\.Added description of properties for both people and notes in the UG.
 
 This section is too long to be reproduced in entirety. Here is an example of the person property `email` extracted. The entire section can be found [here](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#properties)
 
@@ -241,7 +241,7 @@ The local part and domain part <b>must</b> be connected by a <code>@</code> symb
 
 <br>
 
-4. Added description of command [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#inspecting-a-person--inspect), [`hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#hiding-notes-panel--hidenotes) and [`showNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#showing-notes-panel--shownotes) (links to document section included).
+4\. Added description of command [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#inspecting-a-person--inspect), [`hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#hiding-notes-panel--hidenotes) and [`showNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#showing-notes-panel--shownotes) (links to document section included).
 
 `inspect` text extracted (images removed):
 
@@ -271,11 +271,13 @@ You may wish to use more unique keywords to reduce ambiguity, or inspect by an i
 
 </div>
 
-The text for `showNotes` and `hideNotes` are not remarkable enough to be extracted here.
+The text for `showNotes` and `hideNotes` are not remarkable enough to be extracted here. The sections can be found [here](https://rui-han-crh.github.io/tp/UserGuide.html#hiding-notes-panel--hidenotes).
 
-5. Improved description and detail of the UG by writing more complete sentences 
-6. Corrected some English terms
-7. Added Glossary terms
+5\. Improved description and detail of the UG by writing more complete sentences 
+
+6\. Corrected some English terms
+
+7\. Added Glossary terms
 
 Glossary text extracted:
 
@@ -332,15 +334,15 @@ Glossary text extracted:
 
 ### Contributions to the DG:
 
-1. Added Edit sequence diagram involving either searching by index or by name
+1\. Added Edit sequence diagram involving either searching by index or by name
 
 ![EditSequenceDiagram](../images/EditSequenceDiagram.png)
 
-2. Added Sequence diagram for the `inspect` command
+2\. Added Sequence diagram for the `inspect` command
 
 ![InspectSequenceDiagram](../images/InspectSequenceDiagram.png)
 
-3. Wrote the section involving UI design
+3\. Wrote the section involving UI design
 
 <div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: Khaki;">
 
@@ -394,18 +396,18 @@ During the creation of the new UI, a lot of the FXML structure and the relations
 
 <br>
 
-4. UI activity diagram that describes how a user would interact with the UI
+4\. UI activity diagram that describes how a user would interact with the UI
 
 ![](../images/UIActivityDiagram.png)
 
-5. Updated the UI Class Diagram to reflect the current state of the UI organisation.
+5\. Updated the UI Class Diagram to reflect the current state of the UI organisation.
 ![](../images/UiClassDiagram.png)
 
-7. Updated the Person Class Diagram by adding the loans property to the Person Class Diagram
+6\. Updated the Person Class Diagram by adding the loans property to the Person Class Diagram
 
 ![Person Class Diagram](../images/PersonClassDiagram.png)
 
-7. Wrote the section involving `inspect`, `showNotes` and `hideNotes`
+7\. Wrote the section involving `inspect`, `showNotes` and `hideNotes`
 
 <div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: Khaki;">
 
