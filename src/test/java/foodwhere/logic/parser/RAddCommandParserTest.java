@@ -5,6 +5,10 @@ import static foodwhere.logic.commands.CommandTestUtil.CONTENT_DESC_BOB;
 import static foodwhere.logic.commands.CommandTestUtil.DATE_DESC_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.DATE_DESC_BOB;
 import static foodwhere.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_STALL_INDEX_A;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_STALL_INDEX_B;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_STALL_INDEX_C;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_STALL_INDEX_D;
 import static foodwhere.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static foodwhere.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static foodwhere.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
@@ -18,6 +22,7 @@ import static foodwhere.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_RATING_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static foodwhere.logic.commands.RAddCommand.MESSAGE_INVALID_INDEX_ERROR;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static foodwhere.testutil.TypicalIndexes.INDEX_FIRST_STALL;
@@ -25,6 +30,7 @@ import static foodwhere.testutil.TypicalIndexes.INDEX_FIRST_STALL;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
+import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.RAddCommand;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Date;
@@ -54,6 +60,13 @@ public class RAddCommandParserTest {
                 expectedReviewMultipleTags.getRating(), expectedReviewMultipleTags.getTags());
         assertParseSuccess(parser, STALL_INDEX_DESC + DATE_DESC_BOB + CONTENT_DESC_BOB + RATING_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, expectedCommandMultipleTags);
+
+        // index 999999
+        RAddCommand expectedCommand = new RAddCommand(Index.fromOneBased(999999), expectedReview.getDate(),
+                expectedReview.getContent(), expectedReview.getRating(), expectedReview.getTags());
+        assertParseSuccess(parser, " " + CliSyntax.PREFIX_STALL_INDEX + "999999"
+                        + DATE_DESC_AMY + CONTENT_DESC_AMY + RATING_DESC_AMY,
+                expectedCommand);
     }
 
     @Test
@@ -75,6 +88,32 @@ public class RAddCommandParserTest {
         assertParseFailure(parser, INDEX_FIRST_STALL
                         + DATE_DESC_AMY + CONTENT_DESC_AMY + RATING_DESC_AMY,
                 expectedMessage);
+    }
+
+    @Test
+    public void parse_stallIndexInvalid_failure() {
+        String expectedMessage = MESSAGE_INVALID_INDEX_ERROR;
+
+        // "hubby*" for index
+        assertParseFailure(parser, INVALID_STALL_INDEX_A
+                        + DATE_DESC_AMY + CONTENT_DESC_AMY + RATING_DESC_AMY,
+                expectedMessage);
+
+        // -5 for index
+        assertParseFailure(parser, INVALID_STALL_INDEX_B
+                        + DATE_DESC_AMY + CONTENT_DESC_AMY + RATING_DESC_AMY,
+                expectedMessage);
+
+        // "test" for index
+        assertParseFailure(parser, INVALID_STALL_INDEX_C
+                        + DATE_DESC_AMY + CONTENT_DESC_AMY + RATING_DESC_AMY,
+                expectedMessage);
+
+        // blank index
+        assertParseFailure(parser, INVALID_STALL_INDEX_D
+                        + DATE_DESC_AMY + CONTENT_DESC_AMY + RATING_DESC_AMY,
+                expectedMessage);
+
     }
 
     @Test

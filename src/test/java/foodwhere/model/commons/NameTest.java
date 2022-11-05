@@ -1,12 +1,10 @@
-package foodwhere.model.stall;
+package foodwhere.model.commons;
 
 import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import foodwhere.model.commons.Name;
 
 public class NameTest {
 

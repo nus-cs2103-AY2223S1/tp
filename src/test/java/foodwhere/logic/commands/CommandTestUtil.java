@@ -61,6 +61,14 @@ public class CommandTestUtil {
             + CliSyntax.PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " "
             + CliSyntax.PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_STALL_INDEX_A = " "
+            + CliSyntax.PREFIX_STALL_INDEX + "hubby*";
+    public static final String INVALID_STALL_INDEX_B = " "
+            + CliSyntax.PREFIX_STALL_INDEX + "-5";
+    public static final String INVALID_STALL_INDEX_C = " "
+            + CliSyntax.PREFIX_STALL_INDEX + "test";
+    public static final String INVALID_STALL_INDEX_D = " "
+            + CliSyntax.PREFIX_STALL_INDEX + "";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
