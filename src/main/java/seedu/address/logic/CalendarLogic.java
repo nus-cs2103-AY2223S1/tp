@@ -20,9 +20,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
 import seedu.address.model.person.Date;
+
 import seedu.address.ui.CalendarEventListPanel;
 import seedu.address.ui.JumpText;
 import seedu.address.ui.NextButton;
@@ -35,7 +38,6 @@ import seedu.address.ui.TextValidation;
 public class CalendarLogic {
     private static final String SUCCESS_MESSAGE = "success";
     private static final String WRONG_FORMAT_MESSAGE = "failure";
-    private static final String INVALID_VALUE_MESSAGE = "invalid";
     private static final String EMPTY_MESSAGE = "";
 
 
@@ -183,7 +185,7 @@ public class CalendarLogic {
     public void next() {
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getNextMonth(currentMonth);
-        textValidation.setTextValidation("");
+        textValidation.setTextValidation(EMPTY_MESSAGE);
         updateCalendarMonth();
     }
     /**
@@ -199,30 +201,24 @@ public class CalendarLogic {
 
         String inputDate = jumpText.getText();
         jumpText.clear();
-        if (inputDate.startsWith("0")) {
-            textValidation.setTextValidation(WRONG_FORMAT_MESSAGE);
-            return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
-        }
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMM-uuuu");
-            formatter = formatter.withResolverStyle(ResolverStyle.LENIENT);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-uuuu");
+            formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
             LocalDate ld = LocalDate.parse(inputDate, formatter);
-            String copyDate = ld.format(formatter);
-            if (!inputDate.equals(copyDate)) { //Checks for invalid input
-                textValidation.setTextValidation(INVALID_VALUE_MESSAGE);
-                return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
-            } else {
-                Date jumpDate = new Date(ld);
-                int newMonth = jumpDate.getMonth() - 1;
-                int newYear = jumpDate.getYear();
-                textValidation.setTextValidation(SUCCESS_MESSAGE);
-                return new GregorianCalendar(newYear, newMonth, 1);
-            }
+            Date jumpDate = new Date(ld);
+            int newMonth = jumpDate.getMonth() - 1;
+            int newYear = jumpDate.getYear();
+            textValidation.setTextValidation(SUCCESS_MESSAGE);
+            return new GregorianCalendar(newYear, newMonth, 1);
         } catch (DateTimeParseException e) {
-            textValidation.setTextValidation(WRONG_FORMAT_MESSAGE);
+            if (e.getCause() == null) {
+                textValidation.setTextValidation(WRONG_FORMAT_MESSAGE);
+            } else {
+                String str = e.getCause().getMessage();
+                textValidation.setTextValidation(str);
+            }
         }
         return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
-
     }
 
     private void updateCalendarMonth() {
