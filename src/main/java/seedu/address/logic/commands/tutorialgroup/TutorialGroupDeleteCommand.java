@@ -30,7 +30,7 @@ public class TutorialGroupDeleteCommand extends Command {
     public static final String COMMAND_WORD = "tutorial delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a tutorial group from the address book. "
-        + "Parameters: index of the tutorial group";
+        + "Parameters: index of the tutorial group (must be positive and NOT TOO BIG)";
 
     public static final String MESSAGE_DELETE_TUTORIAL_GROUP_SUCCESS = "This tutorial group deleted: %1$s";
 

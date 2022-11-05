@@ -35,7 +35,7 @@ public class StudentExpelCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Expel the student identified to the given tutorial "
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer and NOT TOO BIG) "
             + PREFIX_TUTORIAL_GROUP + "TUTORIAL GROUP ";
 
     public static final String MESSAGE_EXPEL_PERSON_SUCCESS = "Expelled Student from: %1$s ";

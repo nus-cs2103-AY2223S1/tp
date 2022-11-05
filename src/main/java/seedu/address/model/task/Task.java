@@ -76,6 +76,16 @@ public class Task {
     }
 
     /**
+     * Returns true if the task is assigned to the specified student.
+     *
+     * @param student given student
+     * @return true if the task is assigned to the given student, false otherwise
+     */
+    public boolean hasStudent(Student student) {
+        return students.contains(student);
+    }
+
+    /**
      * Returns true if both tasks of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two tasks.
      */

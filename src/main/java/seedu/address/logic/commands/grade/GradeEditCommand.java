@@ -26,7 +26,7 @@ public class GradeEditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the grade of the student's task "
             + "by the index number used in the displayed student list and task list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: STUDENT_INDEX TASK_INDEX (must be positive integers)"
+            + "Parameters: STUDENT_INDEX TASK_INDEX (must be positive integers and NOT TOO BIG)"
             + "[" + PREFIX_GRADE + "GRADE (T or F)]...\n"
             + "Example: " + COMMAND_WORD + " 1 2 "
             + PREFIX_GRADE + "T";
@@ -62,11 +62,9 @@ public class GradeEditCommand extends Command {
         } else if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-
-        // TODO check if student is in task
         Student studentGradeToEdit = lastShownStudentList.get(studentIndex.getZeroBased());
         Task taskGradeToEdit = lastShownTaskList.get(taskIndex.getZeroBased());
-        if (!taskGradeToEdit.getStudents().contains(studentGradeToEdit)) {
+        if (!taskGradeToEdit.hasStudent(studentGradeToEdit)) {
             throw new CommandException(MESSAGE_STUDENT_TASK_PAIR_NOT_FOUND);
         }
         Grade editedGrade = createEditedGrade(studentGradeToEdit, taskGradeToEdit, editGradeDescriptor);

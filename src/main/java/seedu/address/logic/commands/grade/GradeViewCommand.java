@@ -22,7 +22,7 @@ public class GradeViewCommand extends Command {
     public static final String COMMAND_WORD = "grade view";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": View the grade of the student's task "
             + "by the index number used in the displayed student list and task list.\n"
-            + "Parameters: STUDENT_INDEX TASK_INDEX (must be positive integers)"
+            + "Parameters: STUDENT_INDEX TASK_INDEX (must be positive integers and NOT TOO BIG)"
             + "\n"
             + "Example: " + COMMAND_WORD + " 1 2";
     public static final String MESSAGE_VIEW_GRADE_SUCCESS = "Grade: %s";
