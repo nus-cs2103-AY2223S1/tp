@@ -21,9 +21,13 @@ import static seedu.rc4hdb.testutil.TypicalVenues.HALL_STRING;
 import static seedu.rc4hdb.testutil.TypicalVenues.getTypicalVenueBook;
 import static seedu.rc4hdb.testutil.TypicalVenues.getTypicalVenues;
 
-import javafx.collections.ObservableList;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.logic.commands.CommandResult;
@@ -42,10 +46,6 @@ import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 import seedu.rc4hdb.testutil.BookingBuilder;
 import seedu.rc4hdb.testutil.BookingDescriptorBuilder;
 import seedu.rc4hdb.testutil.TypicalResidents;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 /**
  * Contains unit tests for BookCommand.
@@ -74,7 +74,7 @@ public class BookCommandTest {
 
         String expectedMessage = String.format(BookCommand.MESSAGE_SUCCESS, validBooking);
 
-        ModelStubAcceptingBookingAdded modelStub= new ModelStubAcceptingBookingAdded();
+        ModelStubAcceptingBookingAdded modelStub = new ModelStubAcceptingBookingAdded();
 
         CommandResult commandResult = bookCommand.execute(modelStub);
 
@@ -92,8 +92,8 @@ public class BookCommandTest {
 
         String expectedMessage = "No value present";
 
-        assertThrows(NoSuchElementException.class, expectedMessage,
-                () -> new BookCommand(INDEX_FIRST_RESIDENT, invalidBookingDescriptor));
+        assertThrows(NoSuchElementException.class, expectedMessage, ()
+                -> new BookCommand(INDEX_FIRST_RESIDENT, invalidBookingDescriptor));
     }
 
     @Test
@@ -107,8 +107,8 @@ public class BookCommandTest {
 
         String expectedMessage = BookCommand.MESSAGE_USAGE;
 
-        assertThrows(CommandException.class, expectedMessage,
-                () -> bookCommand.execute(model));
+        assertThrows(CommandException.class, expectedMessage, ()
+                -> bookCommand.execute(model));
     }
 
     @Test
@@ -122,8 +122,8 @@ public class BookCommandTest {
 
         String expectedMessage = BookCommand.MESSAGE_USAGE;
 
-        assertThrows(CommandException.class, expectedMessage,
-                () -> bookCommand.execute(model));
+        assertThrows(CommandException.class, expectedMessage, ()
+                -> bookCommand.execute(model));
     }
 
     @Test
@@ -136,8 +136,8 @@ public class BookCommandTest {
 
         ModelStubWithExistingBooking modelStub = new ModelStubWithExistingBooking();
 
-        assertThrows(CommandException.class, expectedMessage,
-                () -> bookCommand.execute(modelStub));
+        assertThrows(CommandException.class, expectedMessage, ()
+                -> bookCommand.execute(modelStub));
 
     }
 
@@ -150,8 +150,8 @@ public class BookCommandTest {
 
         ModelStubWithExistingBooking modelStub = new ModelStubWithExistingBooking();
 
-        assertThrows(CommandException.class, expectedMessage,
-                () -> bookCommand.execute(modelStub));
+        assertThrows(CommandException.class, expectedMessage, ()
+                -> bookCommand.execute(modelStub));
     }
 
     /**
@@ -174,34 +174,9 @@ public class BookCommandTest {
                         .withHourPeriod(HP_5_TO_6PM_STRING)
                         .build());
 
-        assertThrows(CommandException.class, expectedMessage,
-                () -> bookCommand.execute(model));
+        assertThrows(CommandException.class, expectedMessage, ()
+                -> bookCommand.execute(model));
     }
-
-
-
-
-//    @Test
-//    public void execute_duplicateResidentFilteredList_failure() {
-//        showResidentAtIndex(model, INDEX_FIRST_RESIDENT);
-//
-//        // edit resident in filtered list into a duplicate in address book
-//        Resident residentInList = model.getResidentBook().getResidentList().get(INDEX_SECOND_RESIDENT.getZeroBased());
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_RESIDENT,
-//                new ResidentDescriptorBuilder(residentInList).build());
-//
-//        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_RESIDENT);
-//    }
-//
-//    @Test
-//    public void execute_invalidResidentIndexUnfilteredList_failure() {
-//        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredResidentList().size() + 1);
-//        ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withName(VALID_NAME_BOB).build();
-//        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
-//
-//        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
-//    }
-//
 
     @Test
     public void equals() {
@@ -262,25 +237,25 @@ public class BookCommandTest {
     public static class ModelStubWithExistingBooking extends ModelStub {
 
         public final Booking booking = MR_ALICE_MONDAY_5_TO_7PM;
-        Venue MEETING_ROOM = new Venue(getTypicalVenues().get(0).getVenueName());
+        private Venue meetingRoom = new Venue(getTypicalVenues().get(0).getVenueName());
+
+        /**
+         * Constructs a model stub with a single venue that has a single booking.
+         */
+        private ModelStubWithExistingBooking() {
+            meetingRoom.addBooking(MR_ALICE_MONDAY_5_TO_7PM);
+        }
 
         @Override
         public ObservableList<Resident> getFilteredResidentList() {
             return TypicalResidents.getTypicalResidentBook().getResidentList();
         }
 
-        /**
-         * Constructs a model stub with a single venue that has a single booking.
-         */
-        private ModelStubWithExistingBooking() {
-            MEETING_ROOM.addBooking(MR_ALICE_MONDAY_5_TO_7PM);
-        }
-
         @Override
         public void addBooking(VenueName venueName, Booking booking) throws VenueNotFoundException {
             requireAllNonNull(venueName, booking);
-            if (MEETING_ROOM.isSameVenue(venueName)) {
-                MEETING_ROOM.addBooking(booking);
+            if (meetingRoom.isSameVenue(venueName)) {
+                meetingRoom.addBooking(booking);
             } else {
                 throw new VenueNotFoundException();
             }
