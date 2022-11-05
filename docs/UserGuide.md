@@ -45,6 +45,7 @@ If you are looking to help develop this project, take a look at our [Developer G
     * [Getting help: `help`](#getting-help-help)
     * [Clearing data in TrackO: `clear`](#clearing-all-data-in-tracko-clear)
     * [Exiting TrackO: `exit`](#exiting-tracko-exit)
+    * [Editing the data file](#editing-the-data-file)
 * [**Command Summary**](#command-summary)
 * [**Glossary**](#glossary)
 
@@ -231,7 +232,7 @@ This section of the user guide helps to break down the formatting used for comma
   e.g. if the command specifies `i/ITEM_NAME q/QUANTITY`, `q/QUANTITY i/ITEM_NAME` is also acceptable.
 
 * All command keywords (e.g. `addo`, `marko`, `editi`, etc.), prefixes (e.g. `p/`, `i/`, etc.)
-  and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**.<br/>
+  and flags (e.g. `-p`, `-D`, etc.) are **case-sensitive**, unless stated otherwise.<br/>
   e.g. `addo` is a valid command keyword, but `addO` is invalid. 
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
@@ -308,7 +309,7 @@ Format: `findi KEYWORD [MORE_KEYWORDS]`
 - The order of the keywords does not matter. e.g. `pants long` will match `long pants`
 - Only the name of the item is searched.
 - Only full words will be matched. e.g. `key` will not match `Keychain`
-- Items matching at least one keyword will be returned (i.e. OR search).
+- Items matching at least one keyword will be returned.
   e.g. `shirt` will return `dress shirt`, `collared shirt`
 
 Example(s):
@@ -345,7 +346,7 @@ Example(s):
   <img src="./images/user-guide/DeleteiExample1.png" alt="DeleteiExample1">
   
 * When you enter `deletei 2` to our sample data, TrackO will remind you that the item you are trying to delete is currently
-  involved in an order (in this case, the order at index `2`). You will not be able to delete the item until the order is 
+  involved in an uncompleted order (in this case, the order at index `2`). You will not be able to delete the item until the order is 
   completed. To do so, see [`marko`](#marking-an-order-as-paiddelivered-marko).
 
   <img src="./images/user-guide/DeleteiExample2.png" alt="DeleteiExample2">
@@ -358,14 +359,23 @@ Edits an existing item in the inventory list.
 
 Format: `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [sp/SELL_PRICE] [cp/COST_PRICE] [t/TAG]…​`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
 * Edits the item at the specified `INDEX`.
+
 * `INDEX` refers to the index number shown in the displayed inventory list.
+
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
+
 * You can remove all the item’s tags by typing `t/` without
   specifying any tags after it.
 
+</div>
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-When an `Item` is involved in an order, you cannot edit its `Item Name`, `Sell Price`, and `Cost Price`.
+When an `Item` is involved in an uncompleted order, you cannot edit its `Item Name`, `Sell Price`, and `Cost Price`.
 You can only edit its `Quantity`, `Description`, `Tag`.
 </div>
 
@@ -381,12 +391,12 @@ Example(s):
   <img src="./images/user-guide/EditiExample2.png" alt="EditiExample2">
 
 * When you enter `editi 3 i/Cookies d/Delicious home-made cookies` to our sample data, TrackO will remind you that the item
-you are trying to edit is currently involved in an order (in this case, the order at index `3`) and the item will not be edited.
+you are trying to edit is currently involved in an uncompleted order (in this case, the order at index `3`) and the item will not be edited.
   
   <img src="./images/user-guide/EditiExample3.png" alt="EditiExample3">
   
-* When you enter `editi 3 q/500` to our sample data, the `Quantity` of the `Item` at index `3`, `Bolster`, will be restocked to
-`500 units`.
+* When you enter `editi 3 q/500` to our sample data, the quantity of the item at index `3`, `Bolster`, will be restocked to
+`500` units.
 
   <img src="./images/user-guide/EditiExample4.png" alt="EditiExample4">
 
@@ -423,10 +433,23 @@ You can repeat this step until all desired item data has been added to the creat
 
 Format: `i/ITEM_NAME q/QUANTITY`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
 * You must input an item name that matches an existing item in your inventory list.
-* The name matching is case-insensitive, e.g. `i/pEn q/3` and `i/pen q/3` will both add `3` quantities (or units) of the inventory item `Pen` to the created order.
-* You must input a quantity of integer value more than 0, e.g. `q/1` or `q/3` but NOT `q/0` or `q/-1`.
-* If you input an item name that matches previously entered item, the quantity of the added item will be updated instead, e.g. `i/Box q/3` followed by `i/Box q/4` will only add a total of `4` quantities (or units) of `Box` to the created order
+
+* The name matching is case-insensitive. <br>
+e.g. `i/pEn q/3` and `i/pen q/3` will both add `3` quantities (or units) of the inventory item `Pen` to the 
+created order.
+
+* You must input a quantity of integer value more than 0, <br> e.g. `q/1` or `q/3` but NOT `q/0` or `q/-1`.
+
+* If you input an item name that matches previously entered item, the quantity of the added item will be updated instead. <br>
+e.g. `i/Box q/3` followed by `i/Box q/4` will only add a total of `4` quantities (or units) of `Box` to the created order
+
+
+</div>
 
 Lastly, to end the command, you can enter `done` to tell TrackO to track the order or `cancel` to completely abort the command.
 
@@ -447,7 +470,7 @@ Lists all the orders a store has.
 Format: `listo`
 
 Example(s):
-- When you enter `listo` to our sample data, TrackO will list all the existing orders in the `Order List`. Executing it 
+- When you enter `listo` to our sample data, TrackO will list all the existing orders in the [order list](#layout). Executing it 
 on our sample data will display the following result:
   
   <img src="./images/user-guide/ListoExample.png" alt="ListoExample">
@@ -456,19 +479,19 @@ on our sample data will display the following result:
 
 ### Finding order(s): `findo`
 
-Finds an order with item names containing any of the given keywords.
+Finds order(s) according to input flags/keywords.
 
 Format: `findo [-d OR -D] [-p OR -P]` <br> 
 `[i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]]` <br> 
 `[a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]]` <br> 
 `[n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`
 
-* All 4 flags (`-d`, `-D`, `-p`, `-P`) are optional
+* All 4 flags (`-d`, `-D`, `-p`, `-P`) are optional.
   * `-d`: search for orders which are delivered
   * `-D`: search for orders which are not delivered
   * `-p`: search for orders which are paid
   * `-P`: search for orders which are not paid
-* There are 3 prefixes (`a/`, `n/`, `i/`). If there are no flags present, at least one of the 3 prefixes must be used in the `findo` command
+* There are 3 prefixes (`a/`, `n/`, `i/`). **If there are no flags present**, at least one of the 3 prefixes must be used.
   * `a/`: searches by address
   * `n/`: searches by name
   * `i/`: searches by order item
@@ -490,7 +513,7 @@ in their address.
 * Only full words will be matched. <br>
   e.g. `Gardens,` will not match `Gardens` and `keychain` will not match `keychains`
 
-* Orders matching at least one keyword will be returned (i.e. `OR` search). <br>
+* Orders matching at least one keyword will be returned <br>
   e.g. `findo i/apple keychain` will return `apple painting` and `banana keychain`
 
 </div>
@@ -507,18 +530,18 @@ data will display the following result:
   
   <img src="./images/user-guide/FindoExample2.png" alt="FindoExample2">
 
-* When you enter `findo -d n/Charlotte`, TrackO returns all orders with the name `Charlotte` which have been `delivered`.
-Executing it on our sample data will display the following result:
+* When you enter `findo -d n/Charlotte`, TrackO returns all orders with the name `Charlotte` which have been marked as 
+`delivered`. Executing it on our sample data will display the following result:
 
   <img src="./images/user-guide/FindoExample3.png" alt="FindoExample3">
   
-* When you enter `findo -d -p n/Alex` returns all orders with the name `Alex` which have been `paid` and `delivered`.
-Executing it on our sample data will display the following result:
+* When you enter `findo -d -p n/Alex` returns all orders with the name `Alex` which have been marked as `paid` and 
+`delivered`. Executing it on our sample data will display the following result:
 
     <img src="./images/user-guide/FindoExample4.png" alt="FindoExample4">
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Completed orders are orders which have been paid **and** delivered. You can search using both -p **and** -d to find completed orders! 
+Completed orders are orders which have been paid **and** delivered. You can search using both `-p` **and** `-d` to find completed orders! 
 </div>
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
@@ -564,7 +587,7 @@ Deletes an order from the list of tracked orders.
 
 Format: `deleteo INDEX`
 
-* Deletes the order at the specified INDEX.
+* Deletes the order at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed order list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …
 
@@ -653,7 +676,7 @@ Example(s):
 
      <img src="./images/user-guide/EditoExample1-3.png" alt="EditoExample1-3">
   
-  4. Finally, try entering `edito 4 i/Chair q/10`. TrackO will update the `Quantity` of ordered `Chairs` in the fourth order to `10`.
+  4. Finally, try entering `edito 4 i/Chair q/10`. TrackO will update the quantity of ordered `Chairs` in the fourth order to `10`.
 
      <img src="./images/user-guide/EditoExample1-4.png" alt="EditoExample1-4">
 
@@ -749,6 +772,16 @@ Format: `exit`
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+### Editing the data file
+
+TrackO's data is saved as a JSON file in `[JAR file home folder]/data/trackO.json`. Advanced users are welcome to 
+update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, TrackO will discard all data and start with an empty 
+data file at the next run.
+</div>
+
 ## Command summary
 
 | Action                                                              | Format, Examples                                                                                                                                                                                                                                                                |
@@ -779,21 +812,33 @@ Format: `exit`
 Through a `CLI`, users interact with a system or application by typing in commands in the form of text. The system then executes
 the typed in command in response.
 
+### Command
+
+An instruction for the application to execute.
+
 ### GUI
 
 `GUI` stands for `Graphical User Interface`. A `GUI` is a user interface that provides interactive visual components _(e.g. icons, etc.)_.
 Through a `GUI`, users interact with a system or application by clicking on these elements. The system then responds to the user's actions
 by updating the user interface.
 
+### Index
+
+`Index` refers to the position of an order or item in the list. When we say that an `item` is at `Index 2`, it means that
+the item is currently in the second position on the list.
+
+### Inventory
+
+Any item that the business needs to operate.
+
+### Order
+
+Any sales promise that needs to be fulfilled.
+
 ### Parameter
 
 `Parameter`s are the changeable inputs that you can give for a specific part of a command. For example, in the portion 
 `i/NAME` of the `addi` command, `NAME` can be replaced with the input that is meaningful to you (e.g, `i/Cookie` or 
 `i/Keychain`).
-
-### Index
-
-`Index` refers to the position of an order or item in the list. When we say that an `item` is at `Index 2`, it means that
-the item is currently in the second position on the list.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
