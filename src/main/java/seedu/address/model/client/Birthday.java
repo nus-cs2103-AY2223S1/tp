@@ -16,7 +16,7 @@ public class Birthday extends Date {
             "Birthday should be in the format DDMMYYYY and should be a valid day of the year";
     public static final String MESSAGE_DATE_CONSTRAINTS =
             "Birthday should be at most 100 years before and no more than the date of creation";
-    private static final int yearsBefore = 100;
+    private static final int YEARS_BEFORE = 100;
 
     /**
      * Constructs a {@code birthdayDate}.
@@ -50,11 +50,10 @@ public class Birthday extends Date {
 
     /**
      * Returns true if and only if the given date {@code birthday} is not after today
-     * and not before {@code yearsBefore}.
+     * and not before {@code YEARS_BEFORE}.
      */
     public static boolean isDateInValidPeriod(Birthday birthday) {
-        return !birthday.date.isAfter(LocalDate.now())
-                && !birthday.date.isBefore(LocalDate.now().minusYears(yearsBefore));
+        return isBeforePeriod(birthday, YEARS_BEFORE);
     }
 
     /**

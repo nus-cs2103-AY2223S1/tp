@@ -32,14 +32,6 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Returns true if and only if the date checked {@code checkDate} is before today.
-     */
-    public static boolean isBeforeToday(Date checkDate) {
-        LocalDate today = LocalDate.now();
-        return checkDate.date.isBefore(today);
-    }
-
-    /**
      * Returns true is and only if the date falls within the period {@code keyword}.
      */
     public boolean isInPeriod(DateKeyword keyword) {
@@ -89,4 +81,19 @@ public class Date implements Comparable<Date> {
                 && date.equals(((Date) other).date));
     }
 
+    /**
+     * Returns true if and only if the date checked {@code checkDate} is before today.
+     */
+    public static boolean isBeforeToday(Date checkDate) {
+        LocalDate today = LocalDate.now();
+        return checkDate.date.isBefore(today);
+    }
+
+    /**
+     * Returns true if and only if the date checked {@code checkDate} is within the period {@code}.
+     */
+    public static boolean isBeforePeriod(Date checkDate, int period) {
+        return !checkDate.date.isAfter(LocalDate.now())
+                && !checkDate.date.isBefore(LocalDate.now().minusYears(period));
+    }
 }
