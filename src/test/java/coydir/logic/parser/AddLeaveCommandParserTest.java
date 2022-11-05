@@ -32,7 +32,8 @@ public class AddLeaveCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        AddLeaveCommand expectedAddLeaveCommand = new AddLeaveCommand(new EmployeeId("1"), new Leave("01-01-2022", "01-01-2022"));
+        AddLeaveCommand expectedAddLeaveCommand = new AddLeaveCommand(new EmployeeId("1"),
+                new Leave("01-01-2022", "01-01-2022"));
 
         // no leading and trailing whitespaces
         assertParseSuccess(parser, " id/1 sd/01-01-2022 ed/01-01-2022", expectedAddLeaveCommand);

@@ -35,16 +35,16 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPosition("Software Engineer").withDepartment("Information Technology")
             .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(15)
-            .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).build();
+            .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPosition("Product Manager").withDepartment("Product Management")
             .withPhone("98765432").withRating("3").withTags("owesMoney", "friends").withTotalLeave(20)
-            .withLeavePeriod(new Leave("02-01-2022", "05-01-2022")).build();
+            .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withPosition("Fire Support Officer").withDepartment("Operations")
             .withAddress("wall street").withRating("3").withTotalLeave(10)
-            .withLeavePeriod(new Leave("10-01-2022", "21-01-2022")).build();
+            .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withPosition("Junior Research Analyst")
             .withDepartment("Research and Development").withAddress("10th street").withTags("friends")

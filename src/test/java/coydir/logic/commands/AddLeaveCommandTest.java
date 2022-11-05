@@ -28,7 +28,7 @@ public class AddLeaveCommandTest {
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
         .withPosition("Software Engineer").withDepartment("Information Technology")
         .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(15)
-        .withLeavePeriod(leave2).build();
+        .withLeavePeriod(leave2).withEmployeeId("1").build();
 
         Person personToAddLeaveCopy = new PersonBuilder().withName("Alice Pauline")
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -55,7 +55,7 @@ public class AddLeaveCommandTest {
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
         .withPosition("Software Engineer").withDepartment("Information Technology")
         .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(0)
-        .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).build();
+        .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
         model.addPerson(personWithNoLeave);
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(ID_FIRST_EMPLOYEE, leave);
 
@@ -70,7 +70,7 @@ public class AddLeaveCommandTest {
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
         .withPosition("Software Engineer").withDepartment("Information Technology")
         .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(10)
-        .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).build();
+        .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
         model.addPerson(personWithOverlappingLeave);
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(ID_FIRST_EMPLOYEE, leave);
         
@@ -85,7 +85,7 @@ public class AddLeaveCommandTest {
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
         .withPosition("Software Engineer").withDepartment("Information Technology")
         .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(10)
-        .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).build();
+        .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
         model.addPerson(personWithDuplicateLeave);
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(ID_FIRST_EMPLOYEE, leave);
         assertCommandFailure(addLeaveCommand, model, AddLeaveCommand.MESSAGE_DUPLICATE_LEAVE);
