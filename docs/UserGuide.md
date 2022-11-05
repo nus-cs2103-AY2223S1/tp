@@ -154,7 +154,7 @@ Format: `help`
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**
-Empty commands such as ` ` (whitespace) will display the usage of the `help` command to redirect new users to the list of commands.
+Empty commands (e.g. whitespace) will display the usage of the `help` command to redirect new users to the list of commands.
 
 </div>
 
@@ -201,8 +201,6 @@ If you would like to find out more about a particular tutor, view a tutor to see
 
 Format: `view INDEX`
 
-* Displays the tutor at the specified `INDEX`.
-
 Examples:
 * `view 2` causes the corresponding `Tutor Details Pane` of the 2nd tutor to appear on the right, as shown below:
   ![view](images/user-guide/view.png)
@@ -221,8 +219,6 @@ Adds a comment on the specified tutor.
 
 Format: `comment INDEX c/COMMENT`
 
-* Comments on the tutor at the specified `INDEX`.
-
 Examples:
 * `comment 1 c/Tasks not Finished` adds a comment of "Tasks not Finished" on the 1st tutor, reflected on their `Tutor Details Pane` as shown below:
 
@@ -230,11 +226,18 @@ Examples:
 
 ### Deleting comments on a tutor: `deletecomment` or `dc`
 
-Deletes a comment from the specified tutor.
+Deletes a specific comment from the specified tutor.
 
-Format: `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`
+Format: `deletecomment TUTOR_INDEX COMMENT_INDEX` or `dc TUTOR_INDEX COMMENT_INDEX`
 
-* Deletes the comment at the specified index of the specified tutor. The tutor index refers to the index number shown in the displayed tutor list. The comment index refers to the index number of the comment shown in the comment section. Both indices **must be positive integers** 1, 2, 3, …​
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
+* `TUTOR_INDEX` refers to the index number shown in the displayed tutor list.
+* `COMMENT_INDEX` refers to the index number of the comment shown in the comment section. 
+* Both indices **must be positive integers** 1, 2, 3, …​
+
+</div>
 
 Examples:
 * `deletecomment 1 1` and `dc 1 1` deletes the 1st comment from the 1st tutor.
@@ -314,8 +317,14 @@ Examples:
 Contacting targeted tutors is made easy with the mail command. The command opens the user's default mail client and specifies the "to" section in emails with the targeted tutors.
 
 Format: `mail INDEX` or `mail all`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
 * `INDEX` refers to any index in range of the tutor list.
 * `all` allows you to email all the current tutors displayed in the tutor list.
+
+</div>
 
 Examples:
 * `mail 3` opens the user's default mail client with the "to" specified as the third tutor's email.
@@ -330,28 +339,26 @@ list of tutors in ascending or descending order based on different quantitative
 measures, such as rating and teaching nomination. More specifications on the sort command is visible below.
 
 Format: `sort ORDER PREFIX`
-* `ORDER` can be one of the two values: a (ascending) or d (descending).
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
+* `ORDER` can be one of the two values: `a` (ascending) or `d` (descending).
 * `PREFIX` refers to one of the prefixes of quantitative measures (e.g. `r/`).
 * Currently, sort is implemented for the prefixes `r/` (`RATING`) and `tn/` (`TEACHING_NOMINATIONS`).
+* Sort only accepts **one prefix**, hence `sort a tn/ r/` will return an error.
+
+</div>
 
 Examples:
 * `sort a r/` sorts the tutors in ascending order (low to high) based on tutor ratings.
 * `sort d tn/` sorts the tutors in descending order (high to low) based on tutor teaching nominations.
 
-<div markdown="block" class="alert alert-info">
-
-:information_source: **Note:**
-Sort only accepts **one prefix**, hence `sort a tn/ r/` will return an error.
-
-</div>
-
 ### Deleting a tutor: `delete`
 
-Deletes the specified tutors from Tuthub.
+Deletes the specified tutor from Tuthub.
 
 Format: `delete INDEX`
-
-* Deletes the tutor at the specified `INDEX`.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -365,7 +372,7 @@ Examples:
 
 ### Clearing all entries: `clear`
 
-Clears all entries from Tuthub. This could be particularly useful if you would like to clear all the sample data when using Tuthub for the first time.
+Clears all entries from Tuthub. You may find this particularly useful if you would like to clear all the sample data when using Tuthub for the first time.
 
 Format: `clear`
 
