@@ -7,8 +7,6 @@ title: User Guide
   <img src="./images/user-guide/tuthub.png" />
 </p>
 
-
-## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -216,7 +214,7 @@ You may also click on a `Tutor List Card` to execute a `view` command instead
 
 ### Commenting on a tutor: `comment`
 
-Adds a comment on the specified tutor.
+Tracking a tutor? Use the comment command to add comments to a tutor.
 
 Format: `comment INDEX c/COMMENT`
 
@@ -245,7 +243,7 @@ Examples:
 
 ### Editing a tutor: `edit`
 
-Edits an existing tutor in Tuthub.
+Edits an existing tutor in Tuthub. This is useful for updating information of tutors that has changed or has been wrongly input.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENT_ID] [tn/TEACHING_NOMINATIONS] [r/RATING] [t/TAG]…​`
 
@@ -357,7 +355,7 @@ Examples:
 
 ### Deleting a tutor: `delete`
 
-Deletes the specified tutor from Tuthub.
+Deletes the specified tutors from Tuthub. This could be useful if you are removing tutors that have already graduated or if you are trying to better organise Tuthub to only contain tutors that you have hired.
 
 Format: `delete INDEX`
 
