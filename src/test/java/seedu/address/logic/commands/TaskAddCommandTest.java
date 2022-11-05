@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAM;
 import static seedu.address.testutil.TypicalTeams.FRONTEND;
 
 import java.nio.file.Path;
@@ -42,7 +42,7 @@ public class TaskAddCommandTest {
     @Test
     public void execute_indexOutOfRange_throwsCommandException() {
         Task validTask = new TaskBuilder().build();
-        Index validIndex = INDEX_SECOND_PERSON;
+        Index validIndex = INDEX_SECOND_TEAM;
         TaskAddCommand taskAddCommand = new TaskAddCommand(validIndex, validTask);
         ModelStub modelStub = new ModelStubWithTeam(FRONTEND);
 
@@ -53,7 +53,7 @@ public class TaskAddCommandTest {
     @Test
     public void execute_duplicateTask_throwsCommandException() {
         Task validTask = new TaskBuilder().build();
-        Index validIndex = INDEX_FIRST_PERSON;
+        Index validIndex = INDEX_FIRST_TEAM;
         TaskAddCommand taskAddCommand = new TaskAddCommand(validIndex, validTask);
         ModelStubWithTeam modelStub = new ModelStubWithTeam(FRONTEND);
         modelStub.addTask(validIndex, validTask);
@@ -66,7 +66,7 @@ public class TaskAddCommandTest {
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(FRONTEND);
         Task validTask = new TaskBuilder().build();
-        Index validIndex = INDEX_FIRST_PERSON;
+        Index validIndex = INDEX_FIRST_TEAM;
         CommandResult commandResult = new TaskAddCommand(validIndex, validTask).execute(modelStub);
 
         assertEquals(String.format(TaskAddCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
