@@ -544,7 +544,7 @@ Listed here are some frequently asked questions that we hope will be helpful for
 **A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file has been **corrupted**, causing GuestBook to reset it to prevent any malicious files from being used.
 
 **Q**: Why am I getting error messages for fields that are correct, or that I'm not editing?<br>
-**A**: If you are using the `add` or `edit` commands and inputting the `name` or `request` fields, ensure that they **do not contain any field prefixes** after whitespace in their content (e.g., `rq/Extra bed & p/c`), as GuestBook could be parsing part of your input as another field. **Consider using capital letters** as this check is case-sensitive (e.g, `rq/Extra bed & P/C` will be parsed correctly as part of a `request`). You may refer to [Field summary](#field-summary) for more information about field constraints.
+**A**: If you are using the `add` or `edit` commands and inputting the `name` or `request` fields, ensure that they **do not contain any field prefixes** after whitespace in their content (e.g., `rq/Extra bed & p/c`), as GuestBook may mistake part of your input as another field. **Consider using capital letters** as this check is case-sensitive (e.g., `rq/Extra bed & P/C` will be handled correctly as part of a `request`). You may refer to [Field summary](#field-summary) for more information about field constraints.
 
 **Q**: I cannot find a guest staying on a particular date even though it should be within the dates of stay. Why is that so?<br>
 **A**: You may have entered a date **between** the start and end dates of the guest's stay (e.g, searching for `13/01/22 - 15/01/22` by entering `14/01/22`). Currently, this feature is **not supported** by GuestBook, and we are looking into implementing it in future iterations of GuestBook!
@@ -569,7 +569,7 @@ In the case where GuestBook rejects your field inputs, you can refer to this sec
 
 * If you are specifying the `name` or `request` fields, ensure that they do not contain any field prefixes after whitespace in their content
 (e.g., `rq/Extra bed & p/c`), as GuestBook may mistake part of your input as another field.
-**Consider using capital letters** as this check is case-sensitive (`rq/Extra bed & P/C` will be understood correctly as part of a `request`).
+**Consider using capital letters** as this check is case-sensitive (`rq/Extra bed & P/C` will be handled correctly as part of a `request`).
 </div>
 
 | Field                  | Corresponding prefix | Format/Constraints                                                                                                                                                                                                                                                                                                                                                                                                                            |
