@@ -30,18 +30,18 @@ public class StudentTest {
                 .withResponse(VALID_RESPONSE_AMY).withAttendance(VALID_ATTENDANCE_BOB).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
-        // different name, all other attributes same -> returns false
+        // different name, all other attributes same -> returns true
         editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        assertTrue(BOB.isSameStudent(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
+        // name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        assertTrue(BOB.isSameStudent(editedBob));
     }
 
     @Test

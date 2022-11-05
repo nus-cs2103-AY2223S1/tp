@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.question.exceptions.DuplicateQuestionException;
 import seedu.address.model.question.exceptions.QuestionNotFoundException;
 
@@ -136,5 +137,26 @@ public class UniqueQuestionList implements Iterable<Question> {
             }
         }
         return true;
+    }
+
+    /**
+     * Marks the question with the given index {@code index} in the question list as important.
+     * {@code index} must be a valid index.
+     */
+    public void markQuestion(Index index) {
+        requireNonNull(index);
+        Question questionToEdit = internalList.get(index.getZeroBased());
+        internalList.set(index.getZeroBased(), new Question(questionToEdit.getDescription(), new ImportantTag(true)));
+    }
+
+    /**
+     * Marks the question with the given index {@code index} in the question list as important.
+     * {@code index} must be a valid index.
+     */
+    public void unmarkQuestion(Index index) {
+        requireNonNull(index);
+        Question questionToEdit = internalList.get(index.getZeroBased());
+        internalList.set(index.getZeroBased(), new Question(questionToEdit.getDescription(), new ImportantTag(false)));
+
     }
 }

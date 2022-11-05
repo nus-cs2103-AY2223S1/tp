@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
@@ -24,7 +24,6 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Question> filteredQuestions;
     private final FilteredList<Tutorial> filteredTutorials;
     private final FilteredList<Student> filteredStudents;
@@ -39,7 +38,6 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredQuestions = new FilteredList<>(this.addressBook.getQuestionList());
         filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
@@ -96,31 +94,6 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
-    //=========== Person================================================================================
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
     //=========== Student ================================================================================
 
     @Override
@@ -174,6 +147,20 @@ public class ModelManager implements Model {
         addressBook.setQuestion(target, editedQuestion);
     }
 
+    @Override
+    public void markQuestion(Index index) {
+        requireAllNonNull(index);
+
+        addressBook.markQuestion(index);
+    }
+
+    @Override
+    public void unmarkQuestion(Index index) {
+        requireAllNonNull(index);
+
+        addressBook.unmarkQuestion(index);
+    }
+
     //=========== Tutorial ================================================================================
 
     @Override
@@ -216,23 +203,6 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
     }
 
     //=========== Filtered Question List Accessors =============================================================
@@ -283,7 +253,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStudents.equals(other.filteredStudents)
+                && filteredQuestions.equals(other.filteredQuestions)
+                && filteredTutorials.equals(other.filteredTutorials);
     }
 
 }

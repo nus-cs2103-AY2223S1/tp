@@ -64,6 +64,15 @@ public class Student {
     }
 
     /**
+     * Returns a StuName object with its fullname attribute converted to all lowercase and with spaces removed.
+     */
+    public StuName nameToLowercaseRemoveSpaces(String name) {
+        name = name.replaceAll("\\s", "");
+        name = name.toLowerCase();
+        return new StuName(name);
+    }
+
+    /**
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
      */
@@ -73,7 +82,8 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+                && nameToLowercaseRemoveSpaces(otherStudent.getName().fullName)
+                .equals(nameToLowercaseRemoveSpaces(getName().fullName));
     }
 
     /**

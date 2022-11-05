@@ -13,8 +13,11 @@ public class AddQCommand extends Command {
 
     public static final String COMMAND_WORD = "addq";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a question to the question list. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a question to the question list. " + "\nExample"
+            + ": addq What is the purpose of UML diagrams?";
 
+    public static final String MESSAGE_EMPTY_DESCRIPTION =
+            "The question description cannot be empty.\n" + MESSAGE_USAGE;
     public static final String MESSAGE_SUCCESS = "New question added: %1$s";
     public static final String MESSAGE_DUPLICATE_QUESTION = "This question already exists in the address book";
 

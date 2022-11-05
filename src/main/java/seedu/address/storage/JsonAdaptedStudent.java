@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.HelpTag;
 import seedu.address.model.student.Response;
@@ -83,7 +82,7 @@ public class JsonAdaptedStudent {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, StuEmail.class.getSimpleName()));
         }
-        if (!StuEmail.isValidEmail(email)) {
+        if (!StuEmail.isValidStuEmail(email)) {
             throw new IllegalValueException(StuEmail.MESSAGE_CONSTRAINTS);
         }
         final StuEmail modelEmail = new StuEmail(email);
@@ -93,7 +92,7 @@ public class JsonAdaptedStudent {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Response.class.getSimpleName()));
         }
         if (!Response.isValidResponse(response)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Response.MESSAGE_CONSTRAINTS);
         }
         final Response modelResponse = new Response(response);
 
@@ -102,7 +101,7 @@ public class JsonAdaptedStudent {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
         }
         if (!Attendance.isValidAttendance(attendance)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
         }
         final Attendance modelAttendance = new Attendance(attendance);
 

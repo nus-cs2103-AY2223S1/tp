@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -20,18 +19,18 @@
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="id" styleClass="cell_big_label">
+                <Label fx:id="id" styleClass="cell_big_label" text="\$index">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
             </HBox>
-            <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram" />
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-            <Label fx:id="response" styleClass="cell_small_label" text="$response" />
-            <Label fx:id="attendance" styleClass="cell_small_label" text="$attendance" />
+             <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
+            <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram" wrapText="true" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
+            <Label fx:id="response" styleClass="cell_small_label" text="$response" wrapText="true" />
+            <Label fx:id="attendance" styleClass="cell_small_label" text="$attendance" wrapText="true" />
             <Label fx:id="helpTag" styleClass="cell_small_label" text="\$helpTag" />
         </VBox>
       <rowConstraints>
