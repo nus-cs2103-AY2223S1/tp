@@ -22,7 +22,9 @@ public class AmountTest {
         assertThrows(IllegalArgumentException.class, () -> new Amount(" "));
         assertThrows(IllegalArgumentException.class, () -> new Amount("123.1212"));
         assertThrows(IllegalArgumentException.class, () -> new Amount("abc"));
-        assertThrows(IllegalArgumentException.class, () -> new Amount("99999999999999999999999999999999999999999999999999999999999999"));
+        assertThrows(IllegalArgumentException.class, () -> new Amount(
+                "99999999999999999999999999999999999999999999999999999999999999"
+        ));
     }
 
     @Test
