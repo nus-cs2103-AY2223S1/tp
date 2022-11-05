@@ -816,7 +816,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The target calorie is set to 2500 calories. Success message is displayed on the result display.
 
     2. Test case: `target 2500.5`<br />
-       Expected: Target calorie is not set. Error details is shown on the result display.
+       Expected: Target calorie is not set. Error details are shown on the result display.
 
     3. Other invalid target command formats to try: `target x` (where x is not an integer value).
 
