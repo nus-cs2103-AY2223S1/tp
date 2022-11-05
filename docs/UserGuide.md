@@ -238,7 +238,7 @@ ___
 ## Managing Offers
 
 In this section, we provide you the basic steps needed to [add](#adding-an-offer-addo), [delete](#deleting-an-offer--delo),
-and [edit](#editing-an-offer--edito) offers. 
+and [edit](#editing-an-offer--edito) offers.
 
 We are also planning to introduce 2 new features in the future, namely [finding](#finding-an-offer--coming-soon) and
 [listing](#listing-offers-coming-soon), so stay tuned!

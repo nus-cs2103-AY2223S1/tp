@@ -447,7 +447,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all client using the `list` command. Multiple client in the list.
    2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. 
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 Timestamp in the status bar is updated.
    3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
