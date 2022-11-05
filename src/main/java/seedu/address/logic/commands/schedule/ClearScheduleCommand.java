@@ -43,8 +43,7 @@ public class ClearScheduleCommand extends Command {
         model.clearSchedules(modulesToClear);
 
 
-        if (! this.modulesToClear.isEmpty()) {
-
+        if (this.modulesToClear != null) {
             for (ModuleCode module : modulesToClear) {
                 if (model.getModuleByModuleCode(module.fullCode) == null) {
                     throw new CommandException(MESSAGE_MODULE_NOT_EXIST);
