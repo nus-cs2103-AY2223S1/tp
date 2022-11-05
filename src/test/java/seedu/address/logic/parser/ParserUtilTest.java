@@ -572,7 +572,6 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
-    //TODO: add more for other methods in ParserUtil
 
     @Test
     public void parseRelationship_null_throwsNullPointerException() {
