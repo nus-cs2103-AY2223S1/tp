@@ -416,7 +416,7 @@ The following sequence diagram shows how the undo operation works:
 
 ---
 
-### [Proposed] Find-by feature
+### Find-by feature
 
 This feature allows the user (teacher) to find a list of students from Teacher's Pet by one of the specified keywords.
 
@@ -617,7 +617,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 **Extensions**
 
 - 1a. Teacher requests to find by address without providing any query.
-    - 1a1. Teacher’s Pet displays invalid command format message.
+    - 1a1. Teacher’s Pet displays invalid address command message.
 
       Use case ends.
 
