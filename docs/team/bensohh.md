@@ -15,7 +15,7 @@ Given below are my contributions to the project.
 * **New Feature**: `UndoCommand` (Pull Requests [#141](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/141))
     * **What it does**: This feature allows the user to undo previously executed commands by storing the previous versions of bobaBot and retrieving them when the `undo` command is executed.
 
-    * **Justification**: When the user makes a mistake and executed an unintended command, they can easily execute `undo` to return the state before executing the unintended command. For e.g., if the user accidentally deletes a customer from bobaBot, they can call `undo` to return to the previous state (where the customer is not deleted) instead of having trouble finding out all the details and adding the customer back into the system again.
+    * **Justification**: When the user executes an unintended command, they can easily execute `undo` to return the state before. For e.g., if the user accidentally deletes a customer, they can call `undo` to return to the previous state (where the customer is not deleted) instead of having trouble repeating the whole process again.
 
     *  **Credits**: Inspiration from AB3's Developer's Guide
 
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * **New Feature**: `RedoCommand` (Pull Requests [#141](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/141))
     * **What it does**: This feature allows the user to revert the previously executed `undo` commands by storing the versions of bobaBot and retrieving them when the `redo` command is executed.
 
-    * **Justification**: When the user makes a mistake and executes an unintended `undo` command, they can easily execute `redo` to return the state before executing the unintended `undo` command. For e.g., if the user adds a customer into bobaBot and accidentally executes an `undo` command (returns to state where the customer is not added into bobaBot), they can call `redo` to return to the state (where the customer is added) instead of having trouble finding out all the details and adding the customer back into the system again.
+    * **Justification**: When the user executes an unintended `undo` command, they can easily execute `redo` to return the state before. For e.g., if the user adds a customer into bobaBot and accidentally executes an `undo` command (returns to state where the customer is not added into bobaBot), they can call `redo` to return to the state (where the customer is added) instead of having trouble repeating the whole process again.
 
     *  **Credits**: Inspiration from AB3's Developer's Guide
 
