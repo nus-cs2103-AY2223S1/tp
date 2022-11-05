@@ -9,7 +9,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedHealthContact" as VersionedHealthContact MODEL_COLOR
+
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
@@ -30,15 +30,8 @@ deactivate HealthContactParser
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoHealthContact()
-activate Model
+UndoCommand -> Model : undo()
 
-Model -> VersionedHealthContact : undo()
-activate VersionedHealthContact
-
-VersionedHealthContact -> VersionedHealthContact :resetData(ReadOnlyHealthContact)
-VersionedHealthContact --> Model :
-deactivate VersionedHealthContact
 
 Model --> UndoCommand
 deactivate Model

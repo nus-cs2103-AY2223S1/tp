@@ -186,14 +186,14 @@ This section describes some noteworthy details on how certain features are imple
 
 The undo/redo mechanism is facilitated by `History`. It tracks the states of `HealthContact` with an undo/redo history, stored internally as an `healthContactHistory` and `redoHealthContactHistory`. Additionally, it implements the following operations:
 
-* `History#updateHealthContactHistory()` — Saves the current HealthContact state, the FilteredPatients state, the FilteredAppointment state and FilteredBills state in `undoFilteredPatientsHistory`, `undoFilteredAppointmentHistory` and `undoFilteredBillsHistory` respectively.
+* `History#updateHealthContactHistory()` — Saves the current HealthContact state in `HealthContactHistory`.
 * `History#getHealthContactHistory(int index)` — Get the saved state of HealthContact given an index. This method is used for restoring the previous HealthContact state from its history.
-* `History#updateRedoContactHistory()` — Saves the current HealthContact state, the FilteredPatients state, the FilteredAppointment state and FilteredBills state before an Undo command in `redoFilteredPatientsHistory`, `redoFilteredAppointmentHistory` and `redoFilteredBillsHistory` respectively.
+* `History#updateRedoContactHistory()` — Saves the current HealthContact state before an Undo command in `redoHealthContactHistory`
 * `History#getRedoHealthContactHistory(int index)` — Get the saved state of HealthContact given an index. This method is used for restoring the previous HealthContact state from its history after an Undo Command.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `undoHealthContactHistory`, `redoHealthContactHistory`, `undoFilteredPatientsHistory`, `redoFilteredPatientsHistory`, `undoFilteredAppointmentHistory`, `redoFilteredAppointmentHistory`, `undoFilteredBillsHistory` and `redoFilteredBillsHistory` will be initialized empty.
+Step 1. The user launches the application for the first time. The `HealthContactHistory` and `redoHealthContactHistory` will be initialized empty.
 
 ![UndoRedoState0](images/dg/UndoRedoState0.png)
 
@@ -205,7 +205,7 @@ Step 3. The user executes `addpatient n/David … ` to add a new patient. The `a
 
 ![UndoRedoState2](images/dg/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitHealthContact()`, so the HealthContact state will not be saved into the `healthContactStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `History#updateHealthContactHistory()`, so the HealthContact state will not be saved into the `healthContactHistory`.
 
 </div>
 
@@ -224,23 +224,15 @@ The following sequence diagram shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Model#redo()`, which will get the latest HealthContact state from `redoHealthContactHistory` using `History#getRedoHealthContactHistory(int index)` and restores it to that version.
 
+The following sequence diagram shows how the redo operation works:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `healthContactStateList.size() - 1`, pointing to the latest HealthContact state, then there are no undone HealthContact states to restore. The `redo` command uses `Model#canRedoHealthContact()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
+![RedoSequenceDiagram](images/dg/RedoSequenceDiagram.png)
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the HealthContact, such as `list`, will still call `Model#undo()` but it will compare the HealthContact state to the latest HealthContact state in `healthContactHistory`. Therefore, if the states are the same, the Undo command will not be performed.
 
 ![UndoRedoState4](images/dg/UndoRedoState4.png)
 
 
-![UndoRedoState5](images/dg/UndoRedoState5.png)
-
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/dg/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -516,6 +508,9 @@ of the application as indexed lists.
 
 Step 2. The user executes `sortpatient c/name o/asc` command to sort all patients by name in ascending order.
 The command calls `Model#sortPatients(Comparator<Patient> comparator, boolean isAscending)` to sort `UniquePatientList` according to the comparator and the order.
+
+The following sequence diagram shows how the `SortPatientCommand` is executed:
+![SortPatientCommandSequenceDiagram](images/dg/SortPatientCommandSequenceDiagram.png)
 
 Step 3. The application displays the list of patients sorted according to the patients' name and in ascending order.
 

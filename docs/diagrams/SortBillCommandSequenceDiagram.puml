@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HealthContactParser" as HealthContactParser LOGIC_COLOR
+participant "s:SortBillCommand" as SortBillCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":HealthContact" as HealthContact MODEL_COLOR
+participant ":UniqueBillList" as UniqueBillList MODEL_COLOR
+end box
+
+[-> LogicManager : execute(sob c/name o/asc)
+activate LogicManager
+
+LogicManager -> HealthContactParser : parseCommand(sob c/name o/asc)
+activate HealthContactParser
+
+create SortBillCommand
+HealthContactParser -> SortBillCommand
+activate SortBillCommand
+
+SortBillCommand --> HealthContactParser
+deactivate SortBillCommand
+
+HealthContactParser --> LogicManager : s
+deactivate HealthContactParser
+
+LogicManager -> SortBillCommand : execute()
+activate SortBillCommand
+
+SortBillCommand -> Model : sortBills(Comparator<Bill> comparator, boolean isAscending)
+activate Model
+
+Model -> HealthContact: sortBills(Comparator<Bill> comparator, boolean isAscending)
+activate HealthContact
+
+HealthContact -> UniqueBillList : sort(Comparator<Bill> comparator, boolean isAscending)
+activate UniqueBillList
+
+UniqueBillList --> HealthContact : sortedBillList
+deactivate UniqueBillList
+
+HealthContact --> Model : sortedBillList
+deactivate HealthContact
+
+Model --> SortBillCommand
+deactivate Model
+
+SortBillCommand --> LogicManager : result
+deactivate SortBillCommand
+SortBillCommand -[hidden]-> LogicManager : result
+destroy SortBillCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
