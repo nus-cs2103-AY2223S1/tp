@@ -159,6 +159,8 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Creating a buyer: `addbuyer`
 
+The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
+
 The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
 denote his budget, requirements for the property, and buyer priority respectively.
 
@@ -170,13 +172,24 @@ This is the class diagram of a `Buyer`.
 
 ![BuyerClassDiagram](images/BuyerClassDiagram.png)
 
-The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
+The object diagram below shows the new objects in the internal state when a valid `addbuyer` command `addbuyer -n Jane -ph 89991237 -e jane@gmail.com -a Bishan Street 12 -r 2000-5000` is input by the user.
+Note that a new `LocalDateTime` object is created by default and a new `Priority` object is also created albeit the user did not specify the priority parameter in the command.
+In addition, a new `Optional<PriceRange>` object containing a new `PriceRange` object is created since the user specified a price range parameter while a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
+The latter is omitted from the diagram for simplicity purposes.
+
+![BuyerObjectDiagram](images/AddBuyerObjectDiagram-Final_state.png)
+
+The activity diagram below denotes the behavior of Cobb when the user inputs an `addbuyer` command with valid syntax.  
+
+(Insert activity diagram)
 
 #### Design considerations:
 No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the name but different contact numbers can be added. However, we decided against it as there could be two people with the exact same name. Therefore, we decided to use phone or email since these should be unique to every person.
 The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortbuyers` command.
 
 ### Creating a property: `addprop`
+
+The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
 The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
 
@@ -187,7 +200,11 @@ This is the class diagram of a `Property`.
 
 ![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
 
-The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
+The object diagram below shows the new objects in the internal state when a valid `addprop` command `addprop -n Jane -ph 89991237 -e jane@gmail.com -a Bishan Street 12 -r 2000-5000` is input by the user.
+Note that a new `LocalDateTime` object is created by default and a new `Priority` object is also created albeit the user did not specify the priority parameter in the command.
+In addition, a new `Optional<PriceRange>` object containing a new `PriceRange` object is created since the user specified a price range parameter while a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
+The latter is omitted from the diagram for simplicity purposes.
+
 
 #### Design considerations:
 No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
