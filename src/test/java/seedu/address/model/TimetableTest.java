@@ -60,4 +60,37 @@ public class TimetableTest {
         assertThrows(NullPointerException.class, () -> timetable.toWeek());
     }
 
+    @Test
+    public void timetableToString_isFormattedCorrectly() {
+        TypicalTimetable typicalTimetable = new TypicalTimetable();
+        Set<Lesson> unsortedLessons = typicalTimetable.getUnsortedLessonSet();
+        Timetable timetable = new Timetable(unsortedLessons);
+        String expected = "Monday: \n"
+                + "No classes on this day. \n"
+                + "\n"
+                + "Tuesday: \n"
+                + "CS2101 Tutorial 12:00 to 14:00\n"
+                + "CS2100 Recitation 16:00 to 18:00\n"
+                + "\n"
+                + "Wednesday: \n"
+                + "CS2109S Tutorial 17:00 to 18:00\n"
+                + "\n"
+                + "Thursday: \n"
+                + "CS2103T Tutorial 14:00 to 15:00\n"
+                + "CS2100 Lab 16:00 to 17:00\n"
+                + "CS2100 Tutorial 17:00 to 18:00\n"
+                + "\n"
+                + "Friday: \n"
+                + "CS2109S Lecture 10:00 to 12:00\n"
+                + "CS2101 Tutorial 12:00 to 14:00\n"
+                + "\n"
+                + "Saturday: \n"
+                + "No classes on this day. \n"
+                + "\n"
+                + "Sunday: \n"
+                + "No classes on this day. \n"
+                + "\n";
+        assertEquals(expected, timetable.toString());
+    }
+
 }
