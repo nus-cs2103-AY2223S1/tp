@@ -15,8 +15,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -56,7 +56,7 @@ public class CalendarLogic {
     @FXML
     private GridPane calendarDisplay;
     @FXML
-    private HBox topCalendar;
+    private FlowPane topCalendar;
     private Stage primaryStage;
     private Logic logic;
     private Calendar currentMonth;
@@ -67,7 +67,7 @@ public class CalendarLogic {
      * Constructs a {@code CalendarLogic} with the given {@code Logic}, {@code Stage}
      * {@code GridPane} and {@code HBox}.
      */
-    public CalendarLogic(Logic logic, Stage primaryStage, GridPane calendarDisplay, HBox topCalendar) {
+    public CalendarLogic(Logic logic, Stage primaryStage, GridPane calendarDisplay, FlowPane topCalendar) {
         requireAllNonNull(logic, primaryStage, calendarDisplay, topCalendar);
         this.calendarDisplay = calendarDisplay;
         this.topCalendar = topCalendar;
