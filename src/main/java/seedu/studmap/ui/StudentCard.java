@@ -8,6 +8,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextFlow;
+import seedu.studmap.model.student.Assignment;
+import seedu.studmap.model.student.Attendance;
+import seedu.studmap.model.student.Participation;
 import seedu.studmap.model.student.Student;
 
 /**
@@ -136,7 +139,7 @@ public class StudentCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(attendance -> attendance.identifier))
                 .map(attendance -> {
                     Label x = new Label(attendance.identifier);
-                    x.setId(attendance.state.toString());
+                    x.setId(attendance.state == Attendance.Status.PRESENT ? "present" : "absent");
                     return x;
                 })
                 .forEach(attendance -> attendances.getChildren().add(attendance));
@@ -144,7 +147,8 @@ public class StudentCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(assignment -> assignment.identifier))
                 .map(assignment -> {
                     Label x = new Label(assignment.identifier);
-                    x.setId(assignment.state.toString());
+                    x.setId(assignment.state == Assignment.Status.NEW ? "new"
+                            : assignment.state == Assignment.Status.RECEIVED ? "received" : "marked");
                     return x;
                 })
                 .forEach(assignment -> assignments.getChildren().add(assignment));
@@ -152,7 +156,8 @@ public class StudentCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(participation -> participation.identifier))
                 .map(participation -> {
                     Label x = new Label(participation.identifier);
-                    x.setId(participation.state.toString());
+                    x.setId(participation.state == Participation.Status.PARTICIPATED ? "participated"
+                            : "didNotParticipate");
                     return x;
                 })
                 .forEach(participation -> participations.getChildren().add(participation));
