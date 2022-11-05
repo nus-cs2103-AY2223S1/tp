@@ -41,7 +41,7 @@ public class DeleteIterationCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage...storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasSelectedCommission()) {

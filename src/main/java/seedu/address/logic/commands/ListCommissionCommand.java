@@ -14,7 +14,7 @@ public class ListCommissionCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Displayed the unfiltered list of commissions.";
 
     @Override
-    public CommandResult execute(Model model, Storage...storage) {
+    public CommandResult execute(Model model, Storage storage) {
         requireNonNull(model);
         model.updateFilteredCommissionList(Model.PREDICATE_SHOW_ALL_COMMISSIONS);
         model.selectTab(GuiTab.COMMISSION);

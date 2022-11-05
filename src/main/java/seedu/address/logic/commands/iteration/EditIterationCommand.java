@@ -99,7 +99,7 @@ public class EditIterationCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage... storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasSelectedCommission()) {
@@ -114,7 +114,7 @@ public class EditIterationCommand extends Command {
         }
 
         Iteration iterationToEdit = lastShownList.get(index.getZeroBased());
-        Iteration editedIteration = createEditedIteration(storage[0], iterationToEdit, editIterationDescriptor);
+        Iteration editedIteration = createEditedIteration(storage, iterationToEdit, editIterationDescriptor);
 
         if (!iterationToEdit.isSameIteration(editedIteration)
                 && selectedCommission.hasIteration(editedIteration)) {

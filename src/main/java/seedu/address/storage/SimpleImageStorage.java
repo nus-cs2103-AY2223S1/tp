@@ -64,6 +64,8 @@ public class SimpleImageStorage implements ImageStorage {
             try {
                 String mimeType = Files.probeContentType(path);
                 return ImageIO.getImageWritersByMIMEType(mimeType).hasNext();
+            } catch (IllegalArgumentException e) {
+                return false;
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;

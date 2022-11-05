@@ -41,7 +41,7 @@ public class AddCustomerCommandIntegrationTest {
     public void execute_duplicateCustomer_throwsCommandException() {
         Customer customerInList = model.getAddressBook().getCustomerList().get(0);
         assertCommandFailure(new AddCustomerCommand(customerInList),
-                model, AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
+                model, null, AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
     }
 
 }

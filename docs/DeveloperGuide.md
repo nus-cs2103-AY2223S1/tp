@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the SE-EDU initiative. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -124,11 +124,13 @@ The `Model` component,
 * stores the art buddy data i.e., all `Customer` objects (which are contained in a `UniqueCustomerList` object).
 * stores all `Commission` objects within their respective `Customer` object (which are contained in a `UniqueCommissionList` object).
 * stores all `Iteration` objects within their respective `Commission` object (which are contained in a `UniqueIterationList` object).
-* stores the currently 'selected' `Customer` as an `ObservableObject<Customer>` which lets us listen to changes to the selected customer for performing UI updates.
-* stores the current 'filtered' `Customer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Customer` as an `ObservableObject<Customer>` respectively, which lets us listen to changes to the selected customer for performing UI updates.
+  * the same applies to the currently selected `Commission`.
+* stores the current 'sorted' and 'filtered' objects (sorted based on the `sortcus` or `find` commands) as a separate _sorted_ and _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the current list of `Commission` objects belonging to the selected `Customer` (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Commission>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* keeps track of the currently selected GUI tab using a `GuiTab` enum. The tab that the GUI displays is updated after each command is executed. 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Customer` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Customer` needing their own `Tag` objects.<br>
 
@@ -756,7 +758,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. From the terminal, `cd` into that empty folder and run `java -jar artbuddy.jar`
+   
+      Expected: Shows the GUI with a set of sample customers, commissions and iterations. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -765,29 +769,217 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Shutdown
+   2. Shutdown the application via closing the window or using the `exit` command.
 
-### Deleting a customer
+### Commands
 
+#### Customer-related commands
+> Note that you can run customer-related commands, even in the Commission view. That is a **feature**, not
+a bug.
+
+##### 1. `addcus` Command
+  1. Prerequisites: None. 
+     1. Test case: `addcus n/John Doe p/98765432 e/johnd@example.com t/tag`
+        1. Expected:  New customer named John Doe appears on the customer list. Application switched to the Customer view. 
+           Details of new customer shown on the right pane.
+     1. Test case: `addcus n/John Doe p/98765432 e/johnd@example.com t/tag`
+        1. Expected: Duplicate customer not added. Error message is displayed.
+
+##### 2. `editcus` Command
+1. Prerequisites: There is at least one customer.
+  1. Test case: `editcus 1 t/new tag`
+     1. Expected: The first customer should now only have one tag. Application switched to customer view. Edited customer's
+    details displayed on the right pane.
+  1. Test case: `editcus 1`
+     1. No customer edited. Error details displayed.
+  1. Test case: `editcus 0 t/new tag`
+     1. No customer edited. Error details displayed.
+
+##### 3. `delcus` Command
 1. Deleting a customer while all customers are being shown
+    1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
+    1. Test case: `delcus 1`<br>
+       1. Expected: First contact is deleted from the list. Details of the deleted customer shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delcus 0`<br>
+       1. Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Other incorrect delete commands to try: `delcus`, `delcus x`, `...` (where x is larger than the list size)<br>
+       1. Expected: Similar to previous.
 
-   1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
+##### 4. `opencus` Command
+1. Prerequisites: At least one customer.
+   1. Test case: `opencus 1`
+      1. Expected: Customer's details shown on the right pane. If customer has any commissions, they can be seen with
+      `listcom`.
+   1. Test case: `opencus`
+      1. Expected: No customer is selected. Error details in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+#### Commission-related commands
+> Note that you can run commission-related commands, even in the Customer view. That is a **feature**, not
+a bug.
 
-   1. Test case: `delete 0`<br>
-      Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
+##### 5. `addcom` Command
+1. Prerequisites:
+    1. There are customers.
+    2. a **customer should be selected** (i.e. in the Customer view, you should see a customer on the right pane.)
+       If not fulfilled, run the `opencus` command, e.g `opencus 1`.
+1. Test case: `addcom n/Tokyo Ghoul Kaneki f/50 d/2022-10-10 s/False p/Unfamiliar, I will need to do up a reference board first. t/digital t/neon`
+   1. Expected: Commission added to customer's commission list. Application switches to the commission view. New
+      commission details displayed on the right pane.
+1. Test case:  `addcom n/Tokyo Ghoul Kaneki f/50 d/2022-10-10 s/False p/commission with the same name`
+   1. Expected: Commission is not added. Error message displayed.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+##### 6. `editcom` Command
+1. Prerequisites:
+    1. There are commissions in the displayed commission list.
+1. Test case: `editcom 1 t/tag`
+    1. Expected: Commission is edited. Application switches to Commission view. Edited commission's details displayed on
+       the right pane.
+1. Test case: `editcom 0`
+    1. Expected: No commission is edited. Error message displayed.
 
-1. _{ more test cases …​ }_
+##### 7. `delcom` Command
+1. Prerequisites:
+    1. There are commissions in the displayed commission list.
+1. Test case: `delcom 1`
+    1. Expected: Commission is deleted. Application switches to Commission view. If deleted commission was the selected
+       commission, selected commission is reset on the right pane.
+1. Test case: `delcom 0`
+    1. Expected: No commission is deleted. Error message displayed.
+
+##### 8. `opencom` Command
+1. Prerequisites:
+    1. There are commissions in the displayed commission list.
+1. Test case: `opencom 1`
+    1. Expected: Application switches to Commission view. Selected commission's details displayed on right pane.
+1. Test case: `opencom 0`
+    1. Expected: No commission is selected. Error message displayed.
+
+#### Iteration-related commands
+> Note that you can run iteration-related commands, even in the Customer view. That is a **feature**, not
+a bug.
+
+##### 9. `additer` Command
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Our commands use file paths, which means they are dependent on your computer. Please try the following command with an
+absolute filepath, that is **unique to you**, of images when testing our `additer` command. You can refer to the User
+Guide for more information.
+</div>
+
+1. Prerequisites:
+   1. A commission is selected. If not fulfilled, use the `opencom` command first.
+1. Test case: <code>additer d/2022-10-10 n/Changed the colour scheme. p/<span style="color:red;">{YOUR OWN FILE PATH HERE}</span> f/Updated colour scheme is much better.</code>
+   1. Expected: A new iteration is created. You can see it in the right pane of the Commission's view, at the bottom of the iteration's list.
+1. Test case: <code>additer d/2022-10-10 n/Changed the colour scheme. p/<span style="color:red;">{YOUR OWN FILE PATH HERE}</span> f/Updated colour scheme is much better.</code>
+   1. Expected: Duplicate iteration not created. Error details displayed.
+
+##### 10. `edititer` Command
+1. Prerequisites:
+   1. A commission is selected. If not fulfilled, use the `opencom` command first.
+   1. The selected commission has at least one iteration.
+1. Test case: `edititer 1 f/feedback changed`
+   1. Expected: Feedback of first iteration changed.
+1. Test case: `edititer 0`
+   1. Expected: No iteration edited. Error details displayed.
+
+##### 11. `deliter` Command
+1. Prerequisites:
+    1. A commission is selected. If not fulfilled, use the `opencom` command first.
+    1. The selected commission has at least one iteration.
+1. Test case: `deliter 1`
+    1. Expected: Iteration deleted.
+1. Test case: `deliter 0`
+   1. Expected: No iteration deleted. Error details displayed.
+
+#### Filtering / Sorting commands
+
+##### 12. `list` Command
+1. Prerequisites: None.
+1. Test case: `list`
+   1. Expected: Switched to the Customer view. Customer list shows all customers.
+
+##### 13. `find` Command
+1. Prerequisites: Technically, none. However, it is better to have some customers, so you can see the results of this command.
+1. Test case: `find k/Alex`
+   1. Expected: Switched to customer view. Filtered customer list shows all customers with `Alex` in their name.
+
+##### 14. `sortcus` Command
+1. Prerequisites: Technically, none. However, it is better to have some customers, so you can see the results of this command.
+1. Test case: `sortcus n/-`
+   1. Expected: Switched to Customer view. Customer list sorted in descending order of name.
+1. Test case: `sortcus n/+`
+   1. Expected: Switched to Customer view. Customer list sorted in ascending order of name.
+
+##### 15. `listcom` Command
+1. Prerequisites: None.
+1. Test case: `listcom`
+   1. Expected: If a customer is selected, show all of customer's commissions. Otherwise, show all commissions.
+
+##### 16. `allcom` Command
+1. Prerequisites: None.
+1. Test case: `allcom`
+   1. Expected: Switched to Commission view. Commission List shows all commissions.
+
+##### 17. `findcom` Command
+1. Prerequisites: Similar to `find`, technically, none. However, having some commissions will make it easier to see the results of this command.
+1. Test case: `findcom k/1`
+   1. Expected: Switched to Commission view. All commissions with `1` in their name are displayed.
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites:
+      1. There is a data file. By default, it should be at `data/artbuddy.json`
+   1. Remove the starting `{`, then launch ArtBuddy.
+   1. ArtBuddy's customer and commission list will all be empty. The corrupted data file will be overwritten when new
+      customers are added to ArtBuddy.
+   1. To restart the application with sample data, delete the corrupted json file and re-run the application.
 
-1. _{ more test cases …​ }_
+## **Appendix: Effort**
+
+A significant volume of effort was expended to develop ArtBuddy from the original AB3.
+This is due to AB3 dealing primarily with only one entity Person while ArtBuddy deals with three entities, `Customer`,
+`Commission` and `Iteration`.
+
+### Major changes:
+* Adding two entirely new entity types, `Commission` and `Iteration`
+* Refactoring `Customer` and `Commission` to use the Builder Pattern to support optional arguments
+* Supporting Images for `Iteration`
+* Creating CRUD commands for the two completely new models, `Commission` and `Iteration`
+* Designing `sort` command for `Customer` with many options for the user
+* Implementing `find` commands for both `Customer` and `Commission` with added tag filtering functionality
+* Redesigning the GUI
+
+### Challenges faced:
+
+#### Revamping the GUI
+Amongst these changes, the most challenging change must be updating the GUI.
+
+Firstly, ArtBuddy's three entities are very closely linked, with `Commission`s belonging to a `Customer` and
+`Iteration`s belonging to a `Commission`. As a result, a lot of effort was expended to ensure the UI can properly
+observe the models and filtered list. This is mostly facilitated by ArtBuddy's custom `ObservableObject` class.
+A lot of listeners also had to be added in many parts of `Model` and `Ui` to ensure changes are properly propagated.
+
+Secondly, ArtBuddy's GUI has changed significantly from the original AB3 GUI. Multiple new components have been added,
+including tabs and split panes, pie charts for statistics, and even pop up windows and image drag and drop as an
+alternate way of adding customers, commissions and iterations. There are also a lot of CSS changes to make the product
+look more appealing to the user.
+
+#### Creating new entities
+`Commission` and `Iteration` are new entities and had to be written from scratch and integrated properly into all of
+AB3's components, such as `Ui`, `Model`, `Storage` without breaking existing abstractions. The design had to clearly
+thought out (e.g. which classes should help store the model and what methods are necessary) for easier implementation
+of commands.
+
+#### Implementing Images
+Images for Iterations are a novel feature for ArtBuddy. There were many complications to consider:
+* What if the file path is invalid?
+* What if the file is not an image?
+* What if the file is an image but not supported by JavaFx?
+* What if the image file name is the same as another image?
+* Images can have different dimensions. How should this be rendered in the GUI?
+
+As a result, the implementation for this had to keep evolving in ArtBuddy, from a naive file copy to a more robust
+implementation, a `SimpleImageStorage` class using classes such as `ImageIO` and `BufferedImage`.

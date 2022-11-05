@@ -18,7 +18,7 @@ public class ListCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model, Storage...storage) {
+    public CommandResult execute(Model model, Storage storage) {
         requireNonNull(model);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         model.selectTab(GuiTab.CUSTOMER);

@@ -106,7 +106,7 @@ public class EditCustomerCommandTest {
         EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder(firstCustomer).build();
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(INDEX_SECOND, descriptor);
 
-        assertCommandFailure(editCustomerCommand, model, EditCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
+        assertCommandFailure(editCustomerCommand, model, null, EditCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class EditCustomerCommandTest {
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(INDEX_FIRST,
                 new EditCustomerDescriptorBuilder(customerInList).build());
 
-        assertCommandFailure(editCustomerCommand, model, EditCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
+        assertCommandFailure(editCustomerCommand, model, null, EditCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
     }
 
     @Test
@@ -127,7 +127,7 @@ public class EditCustomerCommandTest {
         EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(editCustomerCommand, model, null, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
     }
 
     /**
@@ -144,7 +144,7 @@ public class EditCustomerCommandTest {
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(outOfBoundIndex,
                 new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(editCustomerCommand, model, null, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
     }
 
     @Test
