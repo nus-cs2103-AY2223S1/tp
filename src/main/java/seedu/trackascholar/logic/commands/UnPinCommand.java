@@ -66,14 +66,14 @@ public class UnPinCommand extends Command {
         throw new CommandException(MESSAGE_NO_SUCH_APPLICANT_FOUND);
     }
 
-    private static Applicant createUnPinnedApplicant(Applicant applicantToPin) {
-        assert applicantToPin != null;
-        Name name = applicantToPin.getName();
-        Phone phone = applicantToPin.getPhone();
-        Email email = applicantToPin.getEmail();
-        Scholarship scholarship = applicantToPin.getScholarship();
-        ApplicationStatus applicationStatus = applicantToPin.getApplicationStatus();
-        Set<Major> tags = applicantToPin.getMajors();
+    private static Applicant createUnPinnedApplicant(Applicant applicantToUnPin) {
+        assert applicantToUnPin != null;
+        Name name = applicantToUnPin.getName();
+        Phone phone = applicantToUnPin.getPhone();
+        Email email = applicantToUnPin.getEmail();
+        Scholarship scholarship = applicantToUnPin.getScholarship();
+        ApplicationStatus applicationStatus = applicantToUnPin.getApplicationStatus();
+        Set<Major> tags = applicantToUnPin.getMajors();
         Pin pin = new Pin(false);
 
         return new Applicant(name, phone, email, scholarship, applicationStatus, tags, pin);

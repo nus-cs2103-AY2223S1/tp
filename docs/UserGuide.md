@@ -342,11 +342,11 @@ find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...
 
 Examples:
 * `find n/John n/Sam` returns applicant with Name `john`, applicant with Name `John Doe` and applicant with Name `Sam Ong`.
-* `find n/Alex n/Irfan m/Business` returns only applicant with Name `Alex` and taken Major of `Business`.
+* `find n/Alex n/Irfan m/Medicine` returns only applicant with Name `Alex` and taken Major of `Medicine`.
 
-Sample output for `find n/Alex n/Irfan m/Business`:
+Sample output for `find n/Alex n/Irfan m/Medicine`:
 
-![find message]()
+![find message](images/UserGuideCommands/find.png)
 
 [Return to top](#table-of-contents)
 
