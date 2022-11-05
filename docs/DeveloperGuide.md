@@ -1481,4 +1481,4 @@ More information on usage: [sort command](UserGuide.html#sorting-internship-appl
    
    3. Test case: Exit InTrack, then delete `preferences.json`. Reopen InTrack.
    Expected: The previous user preferences such as the size of the window will be deleted. InTrack starts
-   with default settings. 
+   with default settings.
