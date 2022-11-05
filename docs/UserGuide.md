@@ -885,23 +885,17 @@ Please close any .csv files that are currently open before clicking on the "*Exp
 ---
 
 ### FAQs
-**Q:** Does myStudent need an Internet connection?
-
+**Q:** Does myStudent need an Internet connection?  
 **A:** No, myStudent is an offline software that does not need Internet connection to use.
 
-**Q:** Can I move myStudent from one computer to another without loss of data?
-
+**Q:** Can I move myStudent from one computer to another without loss of data?  
 **A:** Yes, by copying the home folder containing myStudent.jar to another computer, you could resume your work on another computer without loss of data.
 
-<div markdown="block" class="alert alert-info">
+**Q:** I can export my data to .csv files, but can I import .csv files into myStudent?  
+**A:** No, currently the import feature is still a work in progress. Stay tuned for it!
 
-:information_source: **Home Folder**
-Home folder refers to the particular folder that will be containing the `myStudent.jar` file and its relevant files.
-Since myStudent will need to read and write files, it is recommended to put `myStudent.jar` in a new folder
-to ensure a smooth experience for using myStudent.
-
-</div>
-
+**Q:** I can't seem to open myStudent when I tried to double-click it like a normal application. What do I do?
+**A:** You can refer to our troubleshooting guide [here](#troubleshooting).
 ---
 
 ### Troubleshooting
