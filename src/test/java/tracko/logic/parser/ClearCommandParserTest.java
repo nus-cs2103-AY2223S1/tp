@@ -29,7 +29,7 @@ public class ClearCommandParserTest {
     }
 
     @Test
-    public void parseAndUpdate_validInput_confirm_success() {
+    public void parseAndUpdate_validConfirm_success() {
 
         ClearCommand expectedCommand = new ClearCommand();
         expectedCommand.setAwaitingInput(false);
@@ -44,7 +44,7 @@ public class ClearCommandParserTest {
     }
 
     @Test
-    public void parseAndUpdate_validInput_cancel_success() {
+    public void parseAndUpdate_validCancel_success() {
 
         ClearCommand expectedCommand = new ClearCommand();
         expectedCommand.setAwaitingInput(false);
