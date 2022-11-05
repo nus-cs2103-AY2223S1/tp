@@ -25,27 +25,20 @@ public class DeleteClientCommandParserTest {
                 ParserUtil.MESSAGE_INVALID_INDEX);
     }
 
-    //Here onwards are tests for equivalent partition
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, " i/1", new DeleteClientCommand(INDEX_FIRST_ELEMENT));
     }
 
     @Test
-    public void parse_negativeIndex_throwsParseException() {
-        assertParseFailure(parser, " i/-1",
-                ParserUtil.MESSAGE_INVALID_INDEX);
-    }
+    public void parse_invalidIndex_throwsParseException() {
+        //Negative Index
+        assertParseFailure(parser, " i/-1", ParserUtil.MESSAGE_INVALID_INDEX);
 
-    @Test
-    public void parse_zeroIndex_throwsParseException() {
-        assertParseFailure(parser, " i/0",
-                ParserUtil.MESSAGE_INVALID_INDEX);
-    }
+        //Zero Index
+        assertParseFailure(parser, " i/0", ParserUtil.MESSAGE_INVALID_INDEX);
 
-    @Test
-    public void parse_noIndex_throwsParseException() {
-        assertParseFailure(parser, " i/",
-                ParserUtil.MESSAGE_INVALID_INDEX);
+        //Empty Index
+        assertParseFailure(parser, " i/", ParserUtil.MESSAGE_INVALID_INDEX);
     }
 }

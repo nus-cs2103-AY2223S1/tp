@@ -69,7 +69,7 @@ public class DeleteMeetingCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_outOfBoundIndexFilteredList_throwsCommandException() {
         showMeetingAtIndex(model, INDEX_FIRST_ELEMENT);
 
         Index outOfBoundIndex = INDEX_SECOND_ELEMENT;
