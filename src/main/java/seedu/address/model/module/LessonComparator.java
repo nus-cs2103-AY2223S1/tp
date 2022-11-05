@@ -26,7 +26,5 @@ public class LessonComparator implements Comparator<Lesson> {
                 return 0;
             }
         }
-
-
     }
 }

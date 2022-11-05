@@ -181,22 +181,22 @@ public class Person {
                 int compareEndTime = lessonEndTime.compareTo(existingEndTime);
                 int compareStartTimeToEndTime = lessonStartTime.compareTo(existingEndTime);
                 int compareEndTimeToStartTime = lessonEndTime.compareTo(existingStartTime);
-                // case 1 : start time is after existing end time - valid
-                if (compareStartTimeToEndTime > 0) {
+                // case 1 : start time is after or the same as existing end time - valid
+                if (compareStartTimeToEndTime >= 0) {
                     continue;
-                    // case 2 : end time is before existing start time - valid
-                } else if (compareEndTimeToStartTime < 0) {
+                // case 2 : end time is before or the same as existing start time - valid
+                } else if (compareEndTimeToStartTime <= 0) {
                     continue;
-                    // case 3 : start or end time is the same - invalid
+                // case 3 : start or end time is the same - invalid
                 } else if ((compareStartTime == 0) || (compareEndTime == 0)) {
                     throw new CommandException(String.format("Lesson has same start/end time as %s", existingLesson));
-                    // case 4 : start time is later, end time is earlier - invalid
+                // case 4 : start time is later, end time is earlier - invalid
                 } else if ((compareStartTime > 0) && (compareEndTime < 0)) {
                     throw new CommandException(String.format("Lesson timing overlaps with %s", existingLesson));
-                    // case 5 : start time is later, but earlier than existing end time - invalid
+                // case 5 : start time is later, but earlier than existing end time - invalid
                 } else if ((compareStartTime > 0) && (compareStartTimeToEndTime < 0)) {
                     throw new CommandException(String.format("Lesson timing overlaps with %s", existingLesson));
-                    // case 6 : end time is earlier, but later than existing start time - invalid
+                // case 6 : end time is earlier, but later than existing start time - invalid
                 } else if ((compareEndTime < 0) && (compareEndTimeToStartTime > 0)) {
                     throw new CommandException(String.format("Lesson timing overlaps with %s", existingLesson));
                 }

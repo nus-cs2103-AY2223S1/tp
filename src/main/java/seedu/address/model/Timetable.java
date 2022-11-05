@@ -19,13 +19,23 @@ public class Timetable {
         this.lessons = lessons;
     }
 
-    private ArrayList<Lesson> sort() {
+    /**
+     * Sorts the User's or Person's lessons in chronological order.
+     *
+     * @return An ArrayList of the User's or Person's lessons in chronological order.
+     */
+    public ArrayList<Lesson> sort() {
         ArrayList<Lesson> lessonsList = new ArrayList<>(lessons);
         lessonsList.sort(new LessonComparator());
         return lessonsList;
     }
 
-    private ArrayList<Lesson>[] toWeek() {
+    /**
+     * Sorts the User's or Person's lessons in chronological order then categorising the lessons by day of the week.
+     *
+     * @return an array separating the User's or Person's lessons by each day of the week.
+     */
+    public ArrayList<Lesson>[] toWeek() {
         assert (!lessons.equals(null)) : "Timetable not initialised";
 
         ArrayList<Lesson> lessonsList = this.sort();
