@@ -10,7 +10,7 @@ import seedu.address.logic.parser.DateKeyword;
 /**
  * Represents Dates that are used in MyInsuRec
  */
-public class Date implements Comparable<Date> {
+public abstract class Date implements Comparable<Date> {
     public final LocalDate date;
 
     /**
