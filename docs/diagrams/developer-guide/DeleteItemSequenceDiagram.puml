@@ -48,10 +48,10 @@ deactivate TrackOParser
 LogicManager -> DeleteItemCommand : execute(model)
 activate DeleteItemCommand
 
-DeleteItemCommand -> Model : getFilteredList()
+DeleteItemCommand -> Model : get item by index
 activate Model
 
-Model --> DeleteItemCommand : filteredList
+Model --> DeleteItemCommand : inventoryItemToDelete
 deactivate Model
 
 DeleteItemCommand -> Model : deleteItem(inventoryItemToDelete)
