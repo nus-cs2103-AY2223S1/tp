@@ -185,7 +185,7 @@ TrackO's functionalities!
          `i/teddy bear keychains q/1`
        * Finally, enter `done` to finish adding the order to TrackO!
       
-         You should see this order appear in TrackO at index 5 as shown below:
+         You should see this order appear in TrackO at index `5` as shown below:
 
          <img src="./images/user-guide/Tutorial2.png" alt="Tutorial2">
     
@@ -313,12 +313,12 @@ Format: `findi KEYWORD [MORE_KEYWORDS]`
 
 Example(s):
 - When you enter `findi mattress` to our sample data, TrackO will find items that contain the word `mattress` in their 
-  `Item Name` and display the following result:
+  item name and display the following result:
 
   <img src="./images/user-guide/FindiExample1.png" alt="FindiExample1">
   
 - When you enter `findi mattress chair` to our sample data, TrackO will find items that contain the word `mattress` or 
-  `chair` in their `Item Name`, and display the following result:
+  `chair` in their item name, and display the following result:
 
   <img src="./images/user-guide/FindiExample2.png" alt="FindiExample2">
 
@@ -671,8 +671,8 @@ paid and/or delivered.
 Format: `marko INDEX [-p] [-d]`
 
 * Marks the order at the specified `INDEX` as paid and/or delivered. 
-* The 'INDEX' refers to the index number shown in the currently displayed list. 
-* The 'INDEX' **must be a positive integer** 1, 2, 3, …​ 
+* The `INDEX` refers to the index number shown in the currently displayed list. 
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​ 
 * Flag `-p` marks the order as paid. 
 * Flag `-d` marks the order as delivered. 
 * Flags are case-sensitive and specific to the character. 
@@ -703,7 +703,7 @@ Example(s):
 
 ### <u>General features</u>
 
-The commands included here are `TrackO`'s general features for you to clear the sample data, access the help window, 
+The commands included here are TrackO's general features for you to clear the sample data, access the help window, 
 or to exit the application.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
