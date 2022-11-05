@@ -250,7 +250,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Edit a Friend
+### *Edit a Friend*
 
 The "edit" feature allows users to edit details of their friends.
 
@@ -268,7 +268,7 @@ The following class diagram shows the organization of the classes for "edit".
 
 <img src="images/editCommand.png" width="550" />
 
-### Suggest a Friend
+### *Suggest a Friend*
 
 The `suggest` feature suggests a friend for the user to play Minecraft with based on a given
 set of constraints. A detailed description of its usage can be found [here](https://ay2223s1-cs2103t-t10-4.github.io/tp/UserGuide.html#suggest-me-a-friend-suggest) in the user guide.
@@ -332,7 +332,7 @@ The following activity diagram shows the workflow for the autocomplete feature.
 
 <img src="images/AutoCompleteActivityDiagram.png" width="750" />
 
-### Available timings 
+### *Available timings*
 
 The user can save the available timings of a friend to their profile, as a time interval throughout the week. 
 
@@ -352,7 +352,7 @@ The following class diagram shows the relationship between the classes:
 
 <img src="images/TimeIntervalClassDiagram.png" width="550" />
 
-### Servers, GameType and Socials as Coloured Tags in Friend's profile
+### *Servers, GameType and Socials as Coloured Tags in Friend's profile*
 Whenever the user updates the in-game preferences or social handles of a friend, it is displayed as 
 distinct coloured tags under the friend's profile.
 
@@ -472,10 +472,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### \[Proposed\] Amending Representation of Various Servers
 
 The proposed representation of various Minecraft servers is in the format 
@@ -559,7 +555,7 @@ Priority legend
 
 ## **Appendix B: Use cases**
 
-(For all use cases below, the **System** is the `MineFriends` and the **Actor** is the `friend`, unless specified otherwise)
+(For all use cases below, the **System** is the `MineFriends` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a friend**
 
