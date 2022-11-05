@@ -188,7 +188,7 @@ public class SuggestCommandTest {
                 new PersonSuggestionPredicate(dayTimeInWeekSet, keywordSet);
         SuggestCommand command = new SuggestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage,expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(JUSTIN),
                 model.getFilteredPersonList());
     }
