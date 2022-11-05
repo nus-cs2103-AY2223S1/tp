@@ -415,7 +415,7 @@ The following sequence diagram shows how the unpin operation works:
 
 The following activity diagram summarizes what happens when a user executes a unpin command:
 
-![Pin command activity diagram](images/UnPinCommandActivityDiagram.png)
+![Pin command activity diagram](images/UnPinCommandActivityDiagram.png) 
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configuration, dev-ops**
