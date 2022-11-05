@@ -99,13 +99,13 @@ public class DeleteTagCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_OR_TASK_DISPLAYED_INDEX);
         }
 
-        if (deleteTagFromContact &&
-        !personToEdit.getTags().containsAll(editPersonDescriptor.getTags().orElse(new HashSet<>()))) {
+        if (deleteTagFromContact
+            && !personToEdit.getTags().containsAll(editPersonDescriptor.getTags().orElse(new HashSet<>()))) {
             throw new CommandException(MESSAGE_TAGS_DO_NOT_EXIST);
         }
 
-        if (deleteTagFromTask &&
-        !taskToEdit.getTags().containsAll(editTaskDescriptor.getTags().orElse(new HashSet<>()))) {
+        if (deleteTagFromTask
+            && !taskToEdit.getTags().containsAll(editTaskDescriptor.getTags().orElse(new HashSet<>()))) {
             throw new CommandException(MESSAGE_TAGS_DO_NOT_EXIST);
         }
 
