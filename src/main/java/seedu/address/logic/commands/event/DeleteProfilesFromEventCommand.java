@@ -27,7 +27,7 @@ public class DeleteProfilesFromEventCommand extends EventCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
             + ": Deletes profiles in the displayed list of attendees of an event identified by the index "
             + "in the displayed event list.\n"
-            + "Parameters: EVENT_INDEX (must be a positive integer) "
+            + "Parameters: EVENT_INDEX (must be a positive integer less than or equal to 1000) "
             + PREFIX_PROFILE + "PROFILE_INDEX...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 1 "
             + PREFIX_PROFILE + "1 "

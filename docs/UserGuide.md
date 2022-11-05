@@ -100,7 +100,11 @@ The following is the main user interface of NUScheduler.
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
   e.g. `pr/PROFILE_INDEX…​` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
 
-* For Event and Profile commands, option flags (-x where x is a placeholder for valid flags e.g. a, d, v) must be used after the event and profile command word.
+* For `Event` and `Profile` commands, option flags (-x where x is a placeholder for valid flags e.g. a, d, v) must be used after the `event` and `profile` command word.
+
+* For `Event` and `Profile` commands which require an `INDEX`, the `INDEX` must be provided after the option flag.
+
+* In addition, the `INDEX` provided must be a positive number less than or equal to 1000 as NUScheduler is designed to handle a maximum of 1000 entries for `Profile`s and `Event`s which covers the needs for most NUS students.
 
 * The other parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -123,8 +127,8 @@ Each profile is a set of contact information about a person in your NUS communit
 A profile must contain the following information:
 
 * Name, limited to 24 alphanumeric characters including spaces
-* A phone number, at least 3 digits and at most 15 digits long
-* A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email domains
+* Phone number, limited to numeric characters with at least 3 characters and at most 15 characters
+* A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email formats
 
 A profile may also contain:
 
@@ -160,7 +164,7 @@ Edits an existing profile in NUScheduler.
 
 Format: `profile -e INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…`
 
-* Edits the profile at the specified `INDEX`. The index refers to the index number shown in the displayed profile list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the profile at the specified `INDEX`. The index refers to the index number shown in the displayed profile list. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * You can remove the profile's telegram username by typing `tg/` without specifying any username after it.
@@ -199,7 +203,7 @@ Format: `profile -d INDEX`
 
 * Deletes the profile at the specified `INDEX`.
 * The index refers to the index number shown in the displayed profile list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 
 Example:
 * `profile -d 1` deletes the first profile listed.
@@ -248,7 +252,7 @@ Adds one or more existing profiles as attendees to an existing event in NUSchedu
 
 Format: `event -ap EVENT_INDEX pr/PROFILE_INDEX…`
 
-* Adds profiles at the specified `PROFILE_INDEX`. This index refers to the index number shown in the displayed profile list. The index **must be a positive integer** 1, 2, 3, ...
+* Adds profiles at the specified `PROFILE_INDEX`. This index refers to the index number shown in the displayed profile list. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * Profiles are added to the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `PROFILE_INDEX`.
 * At least one `PROFILE_INDEX` must be provided.
 * Existing attendees will not be overwritten i.e. adding of profiles is cumulative.
@@ -267,7 +271,7 @@ Removes one or more attendees from an existing event in NUScheduler.
 
 Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`
 
-* Removes attendees at the specified `ATTENDEE_INDEX`. This index refers to the index number shown in the displayed attendee list of the event. The index **must be a positive integer** 1, 2, 3, ...
+* Removes attendees at the specified `ATTENDEE_INDEX`. This index refers to the index number shown in the displayed attendee list of the event. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * Attendees are removed from the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `ATTENDEE_INDEX`.
 * At least one `ATTENDEE_INDEX` must be provided.
 
@@ -279,12 +283,20 @@ Note how the first and third attendee under the first listed event `Discuss pres
 
 #### Viewing upcoming events: `event -u`
 
-Displays a list of upcoming events, ordered by the date, for the next specified number of days.
+Displays a list of upcoming events, ordered by the date, which starts in the next specified number of days.
 
 Format: `event -u DAYS`
 
-* The days refer to the number of days from the current date. All events within this time frame will be displayed. Events occurring on the day the command is entered will not be displayed.
-* The days **must be a positive integer** 1, 2, 3, …​
+* The days refer to the number of days after the current date. All events that start within this time frame will be displayed. Events starting and occurring on the day the command is entered will not be displayed.
+* The days **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about usage:**<br>
+
+* DAYS entered is limited to 9999 days as this sufficiently covers the usage for most NUS students.
+
+</div>
 
 Example:
 * `event -u 5` when used on `22-10-2022` displays all events taking place in the next 5 days from `23-10-22` to `27-10-22` with both dates included.
@@ -301,7 +313,7 @@ Edits an existing event in NUScheduler.
 
 Format: `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`
 
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the event will be removed i.e adding of tags is not cumulative.
@@ -336,7 +348,7 @@ Format: `event -d INDEX`
 
 * Deletes the events at the specified `INDEX`.
 * The index refers to the index number shown in the displayed event list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 
 Example:
 * `event -v` followed by `event -d 2` deletes the 2nd event displayed.
@@ -474,13 +486,22 @@ Example:
 
 ### Accepted email formats
 
-NUScheduler checks the emails of your profiles against a list of valid NUS email domains.
+NUScheduler checks the following:
 
-* `@u.nus.edu`
-* `@u.duke.nus.edu`
-* `@nus.edu.sg`
-* `@comp.nus.edu.sg`
-* `@u.yale-nus.edu.sg`
+* Local part (the characters in your email before `@`) of the emails must follow these rules: 
+
+  * Only alphanumeric characters and these special characters, `+`, `_`, `.`, `-` are allowed
+  * The local part cannot start or end with a special character
+  * The local part must begin and end with an alphabet or number 
+  * 2 consecutive special characters are not allowed (e.g. `+_`, `..` and `-+` are all not allowed)
+
+* Domain (the characters in your email after `@`) of the emails must be one of the following valid NUS email domains:
+
+  * `u.nus.edu`
+  * `u.duke.nus.edu`
+  * `nus.edu.sg`
+  * `comp.nus.edu.sg`
+  * `u.yale-nus.edu.sg`
 
 ### Transfer data to another computer
 
@@ -490,7 +511,7 @@ You can simply install the app in the other computer and overwrite the data file
 
 ## Command summary
 
-| Action                             | Format                                                                                 |
+| Action                             | Format, Examples                                                                       |
 |------------------------------------|----------------------------------------------------------------------------------------|
 | **Add Profile**                    | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`             |
 | **Delete Profile**                 | `profile -d INDEX`                                                                     |
