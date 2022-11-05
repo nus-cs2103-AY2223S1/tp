@@ -171,7 +171,7 @@ public interface Model {
     void addStaffToProject(Index projectIndex, Staff toAdd);
 
     /**
-     * Edits the staff {@code toEdit} in the staff list of hthe project with {@code projectName}
+     * Edits the staff {@code toEdit} in the staff list of the project with {@code projectName}
      * with {@code editWith}.
      */
     void editStaffInProject(ProjectName projectName, Staff toEdit, Staff editWith);
@@ -220,14 +220,14 @@ public interface Model {
     void sortComplete();
 
     /**
-     * Update the task of the filtered task list to set it to be a completed task.
+     * Updates the task of the filtered task list to set it to be a completed task.
      *
      * @param targetIndex The index of the task in the filtered task list.
      */
     void markTask(Index targetIndex);
 
     /**
-     * Update the task of the filtered task list to set it to be a uncompleted task.
+     * Updates the task of the filtered task list to set it to be a uncompleted task.
      *
      * @param targetIndex The index of the task in the filtered task list.
      */
@@ -238,4 +238,15 @@ public interface Model {
      */
     void sortTasks();
 
+    /**
+     * Returns an Optional that may or may not contain a Task with given {@code taskIndex}.
+     */
+    Optional<Task> getTaskWithIndex(Index taskIndex);
+
+    /**
+     * Returns true if the {@code taskIndex} is within the filtered task list.
+     * @param taskIndex
+     * @return boolean
+     */
+    boolean isValidTaskIndex(Index taskIndex);
 }

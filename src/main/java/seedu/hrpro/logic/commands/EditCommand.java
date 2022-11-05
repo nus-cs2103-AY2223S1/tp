@@ -9,7 +9,6 @@ import static seedu.hrpro.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -68,20 +67,18 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Project> lastShownList = model.getFilteredProjectList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
-        }
+        Optional<Project> projectToEdit = model.getProjectWithIndex(index);
+        Project toEdit = projectToEdit.orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX));
 
-        Project projectToEdit = lastShownList.get(index.getZeroBased());
-        Project editedProject = createEditedProject(projectToEdit, editProjectDescriptor);
+        Project editedProject = createEditedProject(toEdit, editProjectDescriptor);
 
-        if (!projectToEdit.isSameProject(editedProject) && model.hasProject(editedProject)) {
+        if (!toEdit.isSameProject(editedProject) && model.hasProject(editedProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
 
-        model.setProject(projectToEdit, editedProject);
+        model.setProject(toEdit, editedProject);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject));
     }

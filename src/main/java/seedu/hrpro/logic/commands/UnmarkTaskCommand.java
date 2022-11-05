@@ -11,7 +11,7 @@ import seedu.hrpro.model.Model;
 import seedu.hrpro.model.task.Task;
 
 /**
- * Marks the task at the specified index to be uncompleted.
+ * Marks the task at the specified index as uncompleted.
  */
 public class UnmarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "unmarktask";

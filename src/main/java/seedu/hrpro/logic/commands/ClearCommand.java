@@ -6,7 +6,7 @@ import seedu.hrpro.model.HrPro;
 import seedu.hrpro.model.Model;
 
 /**
- * Clears HR Pro Max++ save file.
+ * Clears all data in HR Pro Max++.
  */
 public class ClearCommand extends Command {
 

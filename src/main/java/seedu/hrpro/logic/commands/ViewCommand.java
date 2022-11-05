@@ -2,7 +2,7 @@ package seedu.hrpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
+import java.util.Optional;
 
 import seedu.hrpro.commons.core.Messages;
 import seedu.hrpro.commons.core.index.Index;
@@ -11,7 +11,7 @@ import seedu.hrpro.model.Model;
 import seedu.hrpro.model.project.Project;
 
 /**
- * Display all staff members for a given project in HR Pro Max++ to the user.
+ * Displays all staff members for a given project in HR Pro Max++ to the user.
  */
 public class ViewCommand extends Command {
 
@@ -35,16 +35,14 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Project> lastShownList = model.getFilteredProjectList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
-        }
+        Optional<Project> projectToView = model.getProjectWithIndex(targetIndex);
+        Project toView = projectToView.orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX));
 
-        Project projectToView = lastShownList.get(targetIndex.getZeroBased());
-        model.setFilteredStaffList(projectToView.getStaffList());
+        model.setFilteredStaffList(toView.getStaffList());
         model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, projectToView));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toView));
     }
 
     @Override

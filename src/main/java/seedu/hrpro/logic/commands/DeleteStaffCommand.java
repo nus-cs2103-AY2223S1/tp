@@ -17,7 +17,7 @@ import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.staff.Staff;
 
 /**
- * Delete a staff from a project.
+ * Delete a staff from a project in HR Pro Max++.
  */
 public class DeleteStaffCommand extends Command {
     public static final String COMMAND_WORD = "delstaff";

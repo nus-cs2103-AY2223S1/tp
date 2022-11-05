@@ -19,7 +19,7 @@ import seedu.hrpro.model.project.Project;
 import seedu.hrpro.model.staff.Staff;
 
 /**
- * Adds a staff to HR Pro Max++.
+ * Adds a staff to a project in HR Pro Max++.
  */
 public class AddStaffCommand extends Command {
     public static final String COMMAND_WORD = "addstaff";

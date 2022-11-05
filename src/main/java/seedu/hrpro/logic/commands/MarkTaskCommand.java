@@ -2,16 +2,13 @@ package seedu.hrpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.hrpro.commons.core.Messages;
 import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.logic.commands.exceptions.CommandException;
 import seedu.hrpro.model.Model;
-import seedu.hrpro.model.task.Task;
 
 /**
- * Marks the task at the specified index to be completed.
+ * Marks the task at the specified index as completed.
  */
 public class MarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "marktask";
@@ -32,9 +29,8 @@ public class MarkTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (!model.isValidTaskIndex(targetIndex)) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 

@@ -265,6 +265,16 @@ public class AddTaskCommandTest {
         public void unmarkTask(Index index) {
             throw new AssertionError("this mehtod should not be called.");
         }
+
+        @Override
+        public Optional<Task> getTaskWithIndex(Index taskIndex) {
+            throw new AssertionError(("This method should not be called."));
+        }
+
+        @Override
+        public boolean isValidTaskIndex(Index taskIndex) {
+            throw new AssertionError(("This method should not be called."));
+        }
     }
 
     /**
