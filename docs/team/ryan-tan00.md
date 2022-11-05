@@ -32,11 +32,19 @@ created with JavaFX. It is written in Java, and has about 15 kLoC.
   * Justification: Instead of sorting appointments by date whenever `get /appt` is called, sorting the appointments as 
                    it is added makes it more efficient as we foresee more `get /appt` commands than `appt` commands.
 
+* Implemented the ability to click on patients in the person list panel
+  * Description: Clicking on a person card in the person list panel updates their details on the person view panel.
+  * Justification: Easier access to patient's details, rather than typing in the `view` command.
+
 ### Contributions to the UG
 
-
+* Added documentation for `get /inp` & `get /outp`
+* Added documentation for `edit`
 
 ### Contributions to the DG
+
+* Added documentation for `get /inp` & `get /outp`
+  * Created a sequence diagram for `get /inp` to illustrate how the `Logic` component executes a `get /inp` command.
 
 ### Contributions to team-based tasks
 
