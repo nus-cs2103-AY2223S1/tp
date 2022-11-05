@@ -182,6 +182,11 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay.setFeedbackToUser(WELCOME_MESSAGE);
     }
 
+    /**
+     * Sets up the clickable student and tutor's card such that
+     * the selected student or tutor will be displayed in the
+     * description panel.
+     */
     public void setUpClickableCards() {
         studentListPanel.getStudentListView().getSelectionModel().selectedItemProperty()
                 .addListener(new ChangeListener<Student>() {
@@ -232,6 +237,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the current theme to the light theme.
+     * Accessed by the "Light Theme" tab in the Menu of Ui.
      */
     @FXML
     private void updateToLightTheme() {
@@ -242,6 +248,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the current theme to the dark theme.
+     * Accessed by the "Dark Theme" tab in the Menu of Ui.
      */
     @FXML
     private void updateToDarkTheme() {
@@ -252,6 +259,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the current theme to the green theme.
+     * Accessed by the "Green Theme" tab in the Menu of Ui.
      */
     @FXML
     private void updateToGreenTheme() {
@@ -262,6 +270,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the current theme to the pink theme.
+     * Accessed by the "Pink Theme" tab in the Menu of Ui.
      */
     @FXML
     private void updateToPinkTheme() {
@@ -299,6 +308,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Plays an opening animation when the application starts.
+     */
     void show() {
         primaryStage.show();
         PauseTransition pause = new PauseTransition(Duration.seconds(1));
@@ -345,18 +357,23 @@ public class MainWindow extends UiPart<Stage> {
         logic.export();
     }
 
-    /** Shows the specified entity **/
-    private void updateDescription(int index) {
-        Model.ListType type = logic.getCurrentListType();
-        descriptionEntityType = type;
+    /**
+     * Updates the description of the specified entity
+     */
+    private void updateDescription(ListType type, int index) {
+        assert(type != ListType.TUITIONCLASS_LIST);
         switch(type) {
         case STUDENT_LIST:
+            descriptionEntityType = type;
             studentListPanel.getStudentListView().getSelectionModel().clearSelection();
             studentListPanel.getStudentListView().getSelectionModel().select(index);
+            descriptionEntityType = ListType.STUDENT_LIST;
             break;
         case TUTOR_LIST:
+            descriptionEntityType = type;
             tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
             tutorListPanel.getTutorListView().getSelectionModel().select(index);
+            descriptionEntityType = ListType.TUTOR_LIST;
             break;
         default:
             break;
@@ -367,17 +384,26 @@ public class MainWindow extends UiPart<Stage> {
      * Updates the displayed list.
      */
     private void handleList() {
-        Model.ListType type = logic.getCurrentListType();
+        ListType type = logic.getCurrentListType();
+        int index;
         switch (type) {
         case STUDENT_LIST:
+            index = studentListPanel.getStudentListView().getSelectionModel().getSelectedIndex();
+            studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+            setUpClickableCards();
             tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            studentListPanel.getStudentListView().getSelectionModel().select(index);
             break;
         case TUTOR_LIST:
+            index = tutorListPanel.getTutorListView().getSelectionModel().getSelectedIndex();
+            tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
+            setUpClickableCards();
             studentListPanel.getStudentListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+            tutorListPanel.getTutorListView().getSelectionModel().select(index);
             break;
         case TUITIONCLASS_LIST:
             tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
@@ -390,25 +416,35 @@ public class MainWindow extends UiPart<Stage> {
         setLabelStyle();
     }
 
-    /** Displays the added entity in Description Panel. **/
-    private void handleAdd() {
+    /**
+     * Displays the added student in Description Panel if the
+     * current list is the student list.
+     */
+    private void handleAddStudent() {
         ListType type = logic.getCurrentListType();
         int listSize;
-        switch(type) {
-        case STUDENT_LIST:
+        if (type == ListType.STUDENT_LIST) {
             entityDescriptionPlaceholder.getChildren().clear();
             listSize = logic.getFilteredStudentList().size();
             studentListPanel.getStudentListView().getSelectionModel().clearSelection();
             studentListPanel.getStudentListView().getSelectionModel().select(listSize - 1);
-            break;
-        case TUTOR_LIST:
+            descriptionEntityType = ListType.STUDENT_LIST;
+        }
+    }
+
+    /**
+     * Displays the added tutor in Description Panel if the
+     * current list is the tutor list.
+     */
+    private void handleAddTutor() {
+        ListType type = logic.getCurrentListType();
+        int listSize;
+        if (type == ListType.TUTOR_LIST) {
             entityDescriptionPlaceholder.getChildren().clear();
             listSize = logic.getFilteredTutorList().size();
             tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
             tutorListPanel.getTutorListView().getSelectionModel().select(listSize - 1);
-            break;
-        default:
-            break;
+            descriptionEntityType = ListType.TUTOR_LIST;
         }
     }
 
@@ -427,7 +463,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /** Clears the current Description Panel if the displayed is the deleted entity **/
+    /**
+     * Clears the current Description Panel if the displayed is the deleted entity
+     */
     private void handleDelete(CommandResult commandResult) {
         ListType type = logic.getCurrentListType();
         switch (type) {
@@ -443,12 +481,54 @@ public class MainWindow extends UiPart<Stage> {
                 entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
             }
             break;
+        case TUITIONCLASS_LIST:
+            if (descriptionEntityType == ListType.STUDENT_LIST) {
+                int index = studentListPanel.getStudentListView().getSelectionModel().getSelectedIndex();
+                updateDescription(ListType.STUDENT_LIST, index);
+            } else {
+                assert(descriptionEntityType == ListType.TUTOR_LIST);
+                int index = tutorListPanel.getTutorListView().getSelectionModel().getSelectedIndex();
+                updateDescription(ListType.TUTOR_LIST, index);
+            }
+            break;
         default:
             break;
         }
     }
 
-    /** Switches to the student list when the student tab is clicked **/
+    /**
+     * Updates the description if the edited type is Student or Tutor.
+     *  Updates the list view and the set the description to empty if
+     *  the edited type is Class.
+     */
+    private void handleEdit(int index) {
+        ListType type = logic.getCurrentListType();
+        switch (type) {
+        case STUDENT_LIST:
+            updateDescription(ListType.STUDENT_LIST, index);
+            break;
+        case TUTOR_LIST:
+            updateDescription(ListType.TUTOR_LIST, index);
+            break;
+        case TUITIONCLASS_LIST:
+
+            if (descriptionEntityType == ListType.STUDENT_LIST) {
+                index = studentListPanel.getStudentListView().getSelectionModel().getSelectedIndex();
+                updateDescription(ListType.STUDENT_LIST, index);
+            } else {
+                assert(descriptionEntityType == ListType.TUTOR_LIST);
+                index = tutorListPanel.getTutorListView().getSelectionModel().getSelectedIndex();
+                updateDescription(ListType.TUTOR_LIST, index);
+            }
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
+     * Switches to the student list when the student tab is clicked
+     */
     @FXML
     private void switchToStudentList() throws CommandException, ParseException {
         try {
@@ -461,7 +541,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /** Switches to the tutor list when the tutor tab is clicked **/
+    /**
+     * Switches to the tutor list when the tutor tab is clicked
+     */
     @FXML
     private void switchToTutorList() throws CommandException, ParseException {
         try {
@@ -474,7 +556,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /** Switches to the class list when the class tab is clicked **/
+    /**
+     * Switches to the class list when the class tab is clicked
+     */
     @FXML
     private void switchToTuitionClassList() throws CommandException, ParseException {
         try {
@@ -488,7 +572,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
 
-    /** Updates the ui of the tabs **/
+    /**
+     * Updates the Ui style of the tabs
+     */
     private void setLabelStyle() {
         studentLabelPanel.getStyleClass().clear();
         tutorLabelPanel.getStyleClass().clear();
@@ -520,8 +606,7 @@ public class MainWindow extends UiPart<Stage> {
      * This is needed as ObservableList does not keep track of the
      * changes in the elements of the list but only changes in the list itself.
      */
-    private void updateListView() {
-        Model.ListType type = logic.getCurrentListType();
+    private void updateListView(ListType type) {
         switch(type) {
         case STUDENT_LIST:
             entityListPanelPlaceholder.getChildren().clear();
@@ -564,23 +649,31 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isUpdateListView()) {
-                updateListView();
+                updateListView(logic.getCurrentListType());
             }
 
             if (commandResult.isUpdateDescription()) {
-                updateDescription(commandResult.getIndex());
+                updateDescription(logic.getCurrentListType(), commandResult.getIndex());
             }
 
             if (commandResult.isClear()) {
                 handleClear();
             }
 
-            if (commandResult.isAdd()) {
-                handleAdd();
+            if (commandResult.isAddStudent()) {
+                handleAddStudent();
+            }
+
+            if (commandResult.isAddTutor()) {
+                handleAddTutor();
             }
 
             if (commandResult.isDelete()) {
                 handleDelete(commandResult);
+            }
+
+            if (commandResult.isEdit()) {
+                handleEdit(commandResult.getIndex());
             }
 
             return commandResult;
