@@ -8,7 +8,7 @@ Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyRealTime" as ReadOnlyRealTime
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class realTime
+Class RealTime
 Class ModelManager
 Class UserPrefs
 
@@ -25,16 +25,16 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-realTime .up.|> ReadOnlyRealTime
+RealTime .up.|> ReadOnlyRealTime
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyRealTime
-ModelManager -left-> "1" realTime
+ModelManager -left-> "1" RealTime
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-realTime *--> "1" UniquePersonList
+RealTime *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone

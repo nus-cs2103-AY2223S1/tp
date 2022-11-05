@@ -14,7 +14,7 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "realTime Storage" #F4F6F6{
+package "RealTime Storage" #F4F6F6{
 Class "<<interface>>\nRealTimeStorage" as RealTimeStorage
 Class JsonRealTimeStorage
 Class JsonSerializableRealTime

@@ -47,9 +47,9 @@ public class TestUtil {
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the client in the {@code model}'s client list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Person getClient(Model model, Index index) {
+        return model.getFilteredClientList().get(index.getZeroBased());
     }
 }

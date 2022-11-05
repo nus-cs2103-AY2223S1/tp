@@ -16,9 +16,9 @@ import seedu.realtime.model.offer.Offer;
 import seedu.realtime.model.person.Client;
 
 /**
- * An Immutable realTime that is serializable to JSON format.
+ * An Immutable RealTime that is serializable to JSON format.
  */
-@JsonRootName(value = "realTime")
+@JsonRootName(value = "RealTime")
 class JsonSerializableRealTime {
 
 
@@ -56,7 +56,7 @@ class JsonSerializableRealTime {
     }
 
     /**
-     * Converts this address book into the model's {@code realTime} object.
+     * Converts realtime into the model's {@code RealTime} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

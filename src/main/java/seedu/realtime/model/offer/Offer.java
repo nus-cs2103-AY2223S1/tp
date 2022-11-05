@@ -85,11 +85,6 @@ public class Offer implements Comparable<Offer> {
     }
 
     /**
-     * String representation of offer.
-     * @return String
-     */
-
-    /**
      * Returns true if both offers have the same identity and data fields.
      * This defines a stronger notion of equality between two offers.
      */
@@ -109,6 +104,11 @@ public class Offer implements Comparable<Offer> {
                 && otherOffer.getOfferPrice().equals(getOfferPrice());
     }
 
+
+    /**
+     * String representation of offer.
+     * @return String
+     */
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

@@ -24,8 +24,8 @@ public class JsonSerializableRealTimeTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableRealTime dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableRealTime.class).get();
-        realTime realTimeFromFile = dataFromFile.toModelType();
-        realTime typicalPersonsRealTime = TypicalPersons.getTypicalRealTime();
+        RealTime realTimeFromFile = dataFromFile.toModelType();
+        RealTime typicalPersonsRealTime = TypicalPersons.getTypicalRealTime();
         assertEquals(realTimeFromFile, typicalPersonsRealTime);
     }
 

@@ -60,14 +60,14 @@ public class TypicalClients {
     private TypicalClients() {} // prevents instantiation
 
     /**
-     * Returns an {@code realTime} with all the typical Clients.
+     * Returns an {@code RealTime} with all the typical Clients.
      */
     public static RealTime getTypicalRealTime() {
-        RealTime ab = new RealTime();
+        RealTime rt = new RealTime();
         for (Client client : getTypicalClients()) {
-            ab.addClient(client);
+            rt.addClient(client);
         }
-        return ab;
+        return rt;
     }
 
     public static List<Client> getTypicalClients() {

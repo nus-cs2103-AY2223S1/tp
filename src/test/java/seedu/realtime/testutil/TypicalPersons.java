@@ -60,14 +60,14 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code realTime} with all the typical persons.
+     * Returns an {@code RealTime} with all the typical persons.
      */
     public static RealTime getTypicalRealTime() {
-        RealTime ab = new RealTime();
+        RealTime rt = new RealTime();
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            rt.addPerson(person);
         }
-        return ab;
+        return rt;
     }
 
     public static List<Person> getTypicalPersons() {

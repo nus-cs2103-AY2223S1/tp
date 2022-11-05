@@ -55,14 +55,14 @@ public class TypicalListings {
     private TypicalListings() {} // prevents instantiation
 
     /**
-     * Returns an {@code realTime} with all the typical Listings.
+     * Returns an {@code RealTime} with all the typical Listings.
      */
     public static RealTime getTypicalRealTime() {
-        RealTime ab = new RealTime();
+        RealTime rt = new RealTime();
         for (Listing listing : getTypicalListings()) {
-            ab.addListing(listing);
+            rt.addListing(listing);
         }
-        return ab;
+        return rt;
     }
 
     public static List<Listing> getTypicalListings() {

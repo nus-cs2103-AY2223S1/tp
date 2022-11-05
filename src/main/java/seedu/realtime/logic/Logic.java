@@ -28,7 +28,7 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the realTime.
+     * Returns the RealTime.
      *
      * @see seedu.realtime.model.Model#getRealTime()
      */

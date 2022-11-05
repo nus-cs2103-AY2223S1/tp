@@ -20,7 +20,7 @@ import seedu.realtime.model.person.UniqueClientList;
 import seedu.realtime.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the real-time level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class RealTime implements ReadOnlyRealTime {
@@ -105,7 +105,7 @@ public class RealTime implements ReadOnlyRealTime {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in realtime.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -113,8 +113,8 @@ public class RealTime implements ReadOnlyRealTime {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to realtime.
+     * The person must not already exist in realtime.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -131,8 +131,8 @@ public class RealTime implements ReadOnlyRealTime {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in realtime.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in realtime.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -142,7 +142,7 @@ public class RealTime implements ReadOnlyRealTime {
 
     /**
      * Removes {@code key} from this {@code RealTime}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in realtime.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -167,7 +167,7 @@ public class RealTime implements ReadOnlyRealTime {
     //// client-level operations
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in realtime.
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
@@ -175,8 +175,8 @@ public class RealTime implements ReadOnlyRealTime {
     }
 
     /**
-     * Adds a client to the address book.
-     * The client must not already exist in the address book.
+     * Adds a client to realtime.
+     * The client must not already exist in realtime.
      */
     public void addClient(Client p) {
         clients.add(p);
@@ -193,8 +193,8 @@ public class RealTime implements ReadOnlyRealTime {
 
     /**
      * Replaces the given client {@code target} in the list with {@code editedClient}.
-     * {@code target} must exist in the address book.
-     * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
+     * {@code target} must exist in realtime.
+     * The client identity of {@code editedClient} must not be the same as another existing client in realtime.
      */
     public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
@@ -204,7 +204,7 @@ public class RealTime implements ReadOnlyRealTime {
 
     /**
      * Removes {@code key} from this {@code RealTime}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in realtime.
      */
     public void removeClient(Client key) {
         clients.remove(key);
@@ -213,7 +213,7 @@ public class RealTime implements ReadOnlyRealTime {
     //// listing-level operations
 
     /**
-     * Returns true if a listing with the same identity as {@code listing} exists in the address book.
+     * Returns true if a listing with the same identity as {@code listing} exists in realtime.
      */
     public boolean hasListing(Listing listing) {
         requireNonNull(listing);
@@ -221,8 +221,8 @@ public class RealTime implements ReadOnlyRealTime {
     }
 
     /**
-     * Adds a lsiting to the address book.
-     * The listing must not already exist in the address book.
+     * Adds a lsiting to realtime.
+     * The listing must not already exist in realtime.
      */
     public void addListing(Listing l) {
         listings.add(l);
@@ -239,9 +239,9 @@ public class RealTime implements ReadOnlyRealTime {
 
     /**
      * Replaces the given listing {@code target} in the list with {@code editedListing}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in realtime.
      * The listing identity of {@code editedListing} must not be the same
-     * as another existing listing in the address book.
+     * as another existing listing in realtime.
      */
     public void setListing(Listing target, Listing editedListing) {
         requireNonNull(editedListing);
@@ -250,7 +250,7 @@ public class RealTime implements ReadOnlyRealTime {
 
     /**
      * Removes {@code listing} from this {@code RealTime}.
-     * {@code listing} must exist in the address book.
+     * {@code listing} must exist in realtime.
      */
     public void removeListing(Listing listing) {
         listings.remove(listing);
@@ -267,7 +267,7 @@ public class RealTime implements ReadOnlyRealTime {
     //// offer-level operations
 
     /**
-     * Returns true if an offer with the same identity as {@code offer} exists in the address book.
+     * Returns true if an offer with the same identity as {@code offer} exists in realtime.
      */
     public boolean hasOffer(Offer offer) {
         requireNonNull(offer);
@@ -275,8 +275,8 @@ public class RealTime implements ReadOnlyRealTime {
     }
 
     /**
-     * Adds an offer to the address book.
-     * The offer must not already exist in the address book.
+     * Adds an offer to realtime.
+     * The offer must not already exist in realtime.
      */
     public void addOffer(Offer o) {
         offers.add(o);
@@ -294,8 +294,8 @@ public class RealTime implements ReadOnlyRealTime {
 
     /**
      * Replaces the given offer {@code target} in the list with {@code editedOffer}.
-     * {@code target} must exist in the address book.
-     * The offer identity of {@code editedOffer} must not be the same as another existing offer in the address book.
+     * {@code target} must exist in realtime.
+     * The offer identity of {@code editedOffer} must not be the same as another existing offer in realtime.
      */
     public void setOffer(Offer target, Offer editedOffer) {
         requireNonNull(editedOffer);
@@ -305,14 +305,14 @@ public class RealTime implements ReadOnlyRealTime {
 
     /**
      * Removes {@code key} from this {@code RealTime}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in realtime.
      */
     public void removeOffer(Offer key) {
         offers.remove(key);
     }
 
     /**
-     * Returns true if a meeting with the same identity as {@code meeting} exists in the address book.
+     * Returns true if a meeting with the same identity as {@code meeting} exists in realtime.
      */
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
@@ -321,15 +321,15 @@ public class RealTime implements ReadOnlyRealTime {
 
     /**
      * Removes {@code key} from this {@code RealTime}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in realtime.
      */
     public void removeMeeting(Meeting meeting) {
         meetings.remove(meeting);
     }
 
     /**
-     * Adds a meeting to the address book.
-     * The meeting must not already exist in the address book.
+     * Adds a meeting to realtime.
+     * The meeting must not already exist in realtime.
      */
     public void addMeeting(Meeting meeting) {
         meetings.add(meeting);
@@ -347,8 +347,8 @@ public class RealTime implements ReadOnlyRealTime {
 
     /**
      * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
-     * {@code target} must exist in the address book.
-     * The meeting identity of {@code editedMeeting} must not be the same as another existing offer in the address book.
+     * {@code target} must exist in realtime.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing offer in realtime.
      */
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireNonNull(editedMeeting);

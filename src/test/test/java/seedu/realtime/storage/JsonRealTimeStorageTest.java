@@ -63,7 +63,7 @@ public class JsonRealTimeStorageTest {
     @Test
     public void readAndSaveRealTime_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempRealTime.json");
-        realTime original = getTypicalRealTime();
+        RealTime original = getTypicalRealTime();
         JsonRealTimeStorage jsonRealTimeStorage = new JsonRealTimeStorage(filePath);
 
         // Save in new file and read back
@@ -92,7 +92,7 @@ public class JsonRealTimeStorageTest {
     }
 
     /**
-     * Saves {@code realTime} at the specified {@code filePath}.
+     * Saves {@code RealTime} at the specified {@code filePath}.
      */
     private void saveRealTime(ReadOnlyRealTime realTime, String filePath) {
         try {
@@ -105,6 +105,6 @@ public class JsonRealTimeStorageTest {
 
     @Test
     public void saveRealTime_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveRealTime(new realTime(), null));
+        assertThrows(NullPointerException.class, () -> saveRealTime(new RealTime(), null));
     }
 }

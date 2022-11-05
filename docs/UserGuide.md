@@ -139,7 +139,7 @@ ___
 
 ### Editing the data file
 
-REal-Time data are saved as a JSON file `[JAR file location]/data/realTime.json`.
+REal-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**

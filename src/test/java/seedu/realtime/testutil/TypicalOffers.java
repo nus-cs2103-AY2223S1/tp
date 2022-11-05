@@ -51,14 +51,14 @@ public class TypicalOffers {
     private TypicalOffers() {} // prevents instantiation
 
     /**
-     * Returns an {@code realTime} with all the typical Offers.
+     * Returns an {@code RealTime} with all the typical Offers.
      */
     public static RealTime getTypicalRealTime() {
-        RealTime ab = new RealTime();
+        RealTime rt = new RealTime();
         for (Offer offer : getTypicalOffers()) {
-            ab.addOffer(offer);
+            rt.addOffer(offer);
         }
-        return ab;
+        return rt;
     }
 
     public static List<Offer> getTypicalOffers() {

@@ -1,5 +1,5 @@
 {
-  "_comment": "realTime save file which contains the same Person values as in TypicalPersons#getTypicalRealTime()",
+  "_comment": "RealTime save file which contains the same Person values as in TypicalPersons#getTypicalRealTime()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

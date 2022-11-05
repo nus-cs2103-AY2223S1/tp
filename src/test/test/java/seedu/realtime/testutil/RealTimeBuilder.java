@@ -1,19 +1,19 @@
 package seedu.realtime.testutil;
 
 import seedu.realtime.model.RealTime;
-import seedu.realtime.model.person.Client;
+import seedu.realtime.model.person.Person;
 
 /**
  * A utility class to help with building RealTime objects.
  * Example usage: <br>
- *     {@code realTime rt = new RealTimeBuilder().withClient("John", "Doe").build();}
+ *     {@code RealTime rt = new RealTimeBuilder().withPerson("John", "Doe").build();}
  */
 public class RealTimeBuilder {
 
     private RealTime realTime;
 
     public RealTimeBuilder() {
-        realTime = new RealTime();
+        RealTime = new realTime();
     }
 
     public RealTimeBuilder(RealTime realTime) {
@@ -21,10 +21,10 @@ public class RealTimeBuilder {
     }
 
     /**
-     * Adds a new {@code Client} to the {@code RealTime} that we are building.
+     * Adds a new {@code Person} to the {@code RealTime} that we are building.
      */
-    public RealTimeBuilder withClient(Client client) {
-        realTime.addClient(client);
+    public RealTimeBuilder withPerson(Person person) {
+        realTime.addPerson(person);
         return this;
     }
 

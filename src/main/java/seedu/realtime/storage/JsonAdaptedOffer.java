@@ -2,6 +2,7 @@ package seedu.realtime.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.realtime.commons.exceptions.IllegalValueException;
 import seedu.realtime.model.listing.ListingId;
 import seedu.realtime.model.offer.Offer;

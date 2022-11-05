@@ -97,18 +97,18 @@ public class SampleDataUtil {
 
 
     public static ReadOnlyRealTime getSampleRealTime() {
-        RealTime sampleAb = new RealTime();
+        RealTime sampleRt = new RealTime();
         for (Client sampleClient : getSampleClients()) {
-            sampleAb.addClient(sampleClient);
+            sampleRt.addClient(sampleClient);
         }
         for (Offer sampleOffer : getSampleOffers()) {
-            sampleAb.addOffer(sampleOffer);
+            sampleRt.addOffer(sampleOffer);
         }
 
         for (Listing sampleListing : getSamepleListings()) {
-            sampleAb.addListing(sampleListing);
+            sampleRt.addListing(sampleListing);
         }
-        return sampleAb;
+        return sampleRt;
     }
 
     /**

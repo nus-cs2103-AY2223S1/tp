@@ -16,7 +16,6 @@ public class JsonAdaptedOfferTest {
     private static final String INVALID_BUYER = "R@chel";
     private static final String INVALID_LISTING = " ";
     private static final String INVALID_OFFER_PRICE = "-1";
-    
     private static final String VALID_BUYER = BENSON.getClient().toString();
     private static final String VALID_LISTING = BENSON.getListing().toString();
     private static final String VALID_OFFER_PRICE = BENSON.getOfferPrice().toString();
