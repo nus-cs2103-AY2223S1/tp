@@ -107,9 +107,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TrackAScholarParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -324,21 +324,22 @@ Given below is an example usage scenario and how the find command operates in Tr
    This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `find` and
    the arguments `n/ john`.
 
-2. `TrackAScholarParser` identifies the `find` command and `FindCommandParser` will be instantiated which calls `FindCommandParser#parse()`
-    It checks for a valid prefix which can be of type name, scholarship or major.It throws out an error if a valid prefix is not found.
+2. `TrackAScholarParser` identifies the `find` command and argument `n/john`. `FindCommandParser` will be instantiated which calls `FindCommandParser#parse()`
+    
+3. `FindCommandParser#parse()` first checks for a valid prefix which can be of type name, scholarship or major.It throws out an error if a valid prefix is not found.
 
-3. Since a valid prefix for name is present `FindCommandParser#parse()` will then call `parsePredicates` with the argument `john`.
+4. Since a valid prefix for name is present `FindCommandParser#parse()` will then call `parsePredicates` with the argument `john`.
 
-4. In `parsePredicates` an empty is first created `applicantPredicateList` before, it checks for the type of prefix accompanying the argument which be of type  name, scholarship or major.
+5. In `parsePredicates` an empty is first created `applicantPredicateList` before, it checks for the type of prefix accompanying the argument which be of type  name, scholarship or major.
 
-5. After identifying the prefix is of type name it will call `getKeywordsList` to get the keyword for searching and in this case it will be `john`.
+6. After identifying the prefix is of type name it will call `getKeywordsList` to get the keyword for searching and in this case it will be `john`.
 
-6. After identifying the keyword `john` the method, `NameContainsKeywordsPredicate` will be invoked with the argument `john`.
+7. After identifying the keyword `john` the method, `NameContainsKeywordsPredicate` will be invoked with the argument `john`.
 
-7. `NameContainsKeywordsPredicate` will check if any names in the main list has `john` present in their names.If `john` is present, that name in the main
+8. `NameContainsKeywordsPredicate` will check if any names in the main list has `john` present in their names.If `john` is present, that name in the main
     list will be added to `applicantPredicateList`.All valid names are added to `applicantPredicateList`
 
-8. `FilterCommand#execute()` finishes with returning a FindCommand containing all the individuals with names matching the keyword `john`. 
+9. `FindCommand#execute()` finishes with returning a FindCommand containing all the individuals with names matching the keyword `john`. 
 
 --------------------------------------------------------------------------------------------------------------------
 ### Edit applicant feature
@@ -381,6 +382,12 @@ The following activity diagram summarizes what happens when a user executes a ed
 
 
 ![Edit command activity diagram](images/EditCommandActivityDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+## **Future iterations**
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
