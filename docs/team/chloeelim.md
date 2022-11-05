@@ -60,10 +60,10 @@ Given below are my contributions to the project.
   using Figma, and updated the styling in AB according to the mockup designed
   ([#72](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/72) and
   [#93](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/93)).
-  
+
   * Added UI Components `CommissionDetailsPane` [#84](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/84)
   and `IterationListItem` [#89](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/89): To display a view of a commission's details, and a list view of its iterations.
-  
+
   * Added test cases for `Iteration` classes and its related commands (`additer`, `deliter`, and `edititer`)
   ([#100](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/100) and
   [#111](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/111)).
@@ -87,7 +87,7 @@ Given below are my contributions to the project.
     [#68](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/68),
     [#92](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/92).
   * Reported [bugs and suggestions](https://github.com/chloeelim/ped/issues) for other teams in the class.
-  
+
 
 * **Project management**:
   * Released [v1.2](https://github.com/AY2223S1-CS2103T-W11-3/tp/releases/tag/v1.2)

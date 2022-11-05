@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide: Refactor User Guide and categorize the features appropriately.
-  * Developer Guide: Update Glossary. 
+  * Developer Guide: Update Glossary.
 
 * **Community**:
   * Represent team during meetings with teaching team in CS2101 & CS2103T.
