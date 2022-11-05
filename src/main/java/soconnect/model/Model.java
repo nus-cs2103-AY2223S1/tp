@@ -279,7 +279,7 @@ public interface Model {
      * Returns the right tag from the taglist.
      *
      * @param tag The reference tag.
-     * @return the tag that has the same name as the reference tag.
+     * @return The tag that has the same name as the reference tag.
      */
     Tag getTagFromList(Tag tag);
 
@@ -291,7 +291,7 @@ public interface Model {
     ArrayList<Tag> getTagList();
 
     /**
-     * Sets the tagList into SoConnect.
+     * Sets the tagList in SoConnect.
      *
      * @param tagList The tagList to be set.
      */

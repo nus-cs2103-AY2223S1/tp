@@ -74,7 +74,7 @@ Adds a contact to your SoConnect.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** The tag has to be made first before you can add it into a contact. 
+**:information_source: Note:** The tag has to be created first before you can add it into a contact. 
 
 Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
 </div>
@@ -227,7 +227,7 @@ A contact can have any number of tags. Add as many as you want.
 </div>
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** The tag has to be made first before you can add it into a contact.
+**:information_source: Note:** The tag has to be created first before you can add it into a contact.
 
 Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
 </div>
@@ -238,7 +238,7 @@ Steps to take:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** 
 
-This example is based of [`Creating a Tag`](#creating-a-tag-tag-create). Feel free to replace `1` and Test` with the contact and tag of your choice.
+This example is based on [`Creating a Tag`](#creating-a-tag-tag-create). Feel free to replace `1` and Test` with the contact index and tag of your choice.
 </div>
 
 2. Press `Enter` on your keyboard.
@@ -246,11 +246,11 @@ This example is based of [`Creating a Tag`](#creating-a-tag-tag-create). Feel fr
 
 (insert image of a successful addition of the `Test` tag to contact `1`)
 
-4. Awesome! You have successfully added the `Test` to the first contact in your contact list.
+4. Awesome! You have successfully added the `Test` tag to the first contact in your contact list.
 
 ### Editing a Tag: `tag edit`
 
-If you make a mistake or  want to update your tags, you can simply update them accordingly.
+If you make a mistake or want to update your tags, you can simply update them accordingly.
 
 Format: `tag edit t/TAG1 t/TAG2`
 
@@ -266,13 +266,13 @@ Steps to take:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** 
 
-This example is based of [`Adding a tag`](#adding-a-tag-to-a-contact-tag-add). Feel free to replace `Test` and `Test2` with any existing tag and a fresh new tag.
+This example is based on [`Adding a tag`](#adding-a-tag-to-a-contact-tag-add). Feel free to replace `Test` with any existing tag and `Test2` with a new name for the tag.
 </div>
 
 2. Press `Enter` on your keyboard.
-3. You should now see `Tag has changed from [Test] to [Test2]` in the Command result box. Images of Before and After are provided below. Within each contact, those which have `Test` tag, will now display `Test2` instead.
+3. You should now see `Tag has changed from [Test] to [Test2]` in the Command result box. You can also refer to the Before and After comparison below. Within each contact, those with the `Test` tag, will now display `Test2` instead.
 
-before:
+Before:
 (insert image a contact with `Test` tag)
 
 After:
@@ -293,7 +293,7 @@ Steps to take:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** 
 
-This example is based of [`Editing a Tag`](#editing-a-tag-tag-edit). Feel free to replace `1` and `Test2` with any contact index and an existing tag within the contact indexed.
+This example is based on [`Editing a Tag`](#editing-a-tag-tag-edit). Feel free to replace `1` and `Test2` with the index of any contact and a tag of that contact.
 </div>
 
 2. Press `Enter` on your keyboard.
@@ -319,7 +319,7 @@ Steps to take:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** 
 
-This example is a follow-up of [`removing a Tag`](#removing-a-tag-from-a-contact-tag-remove). Feel free to replace `Test2` wit any existing tag.
+This example is a follow-up of [`removing a Tag`](#removing-a-tag-from-a-contact-tag-remove). Feel free to replace `Test2` with any existing tag.
 </div>
 
 2. Press `Enter` on your keyboard.
@@ -327,11 +327,11 @@ This example is a follow-up of [`removing a Tag`](#removing-a-tag-from-a-contact
 
 (insert successful deletion og `Test2` tag)
 
-4. Terrific! You have successfully deleted a tag.
+4. Wonderful! You have successfully deleted a tag.
 
 ### Viewing tags `[Coming soon in v1.5]`
 
-Now that you made it here, you have successfully mastered the tag features! Refer to the [Commannd summary](#command-summary) for a quick reference to all tag commands. Let us move on to the [Customisation Features](#customisation-features).
+Congratulations on completing this section on Tag Management Features, you have successfully mastered the tag features! Refer to the [Command summary](#command-summary) for a quick reference to all tag commands. Let us move on to the [Customisation Features](#customisation-features).
 
 ## Customisation Features
 

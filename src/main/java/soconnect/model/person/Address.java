@@ -15,7 +15,6 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
-    private static final int CHARACTER_LIMIT = 45;
     public final String value;
 
     /**

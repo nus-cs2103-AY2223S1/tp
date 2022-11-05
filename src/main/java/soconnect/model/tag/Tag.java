@@ -26,7 +26,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidLength(tagName), String.format(MESSAGE_TAG_TOO_LONG, CHARACTER_LIMIT));
+        checkArgument(isValidLength(tagName), MESSAGE_TOO_LONG);
         this.tagName = tagName;
     }
 
@@ -44,7 +44,7 @@ public class Tag {
      * @return True if it does not exceed the character limit. False if otherwise.
      */
     public static boolean isValidLength(String text) {
-        return text.length() > CHARACTER_LIMIT ? false : true;
+        return !(text.length() > CHARACTER_LIMIT);
     }
 
     @Override
