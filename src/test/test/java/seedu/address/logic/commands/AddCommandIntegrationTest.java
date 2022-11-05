@@ -1,17 +1,17 @@
-package seedu.address.logic.commands;
+package seedu.realtime.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
+import static seedu.realtime.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.realtime.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.realtime.testutil.TypicalClients.getTypicalRealTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Client;
-import seedu.address.testutil.ClientBuilder;
+import seedu.realtime.model.Model;
+import seedu.realtime.model.ModelManager;
+import seedu.realtime.model.UserPrefs;
+import seedu.realtime.model.person.Client;
+import seedu.realtime.testutil.ClientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -22,14 +22,14 @@ public class AddClientCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalRealTime(), new UserPrefs());
     }
 
     @Test
     public void execute_newClient_success() {
         Client validClient = new ClientBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getRealTime(), new UserPrefs());
         expectedModel.addClient(validClient);
 
         assertCommandSuccess(new AddCommand(validClient), model,
@@ -38,7 +38,7 @@ public class AddClientCommandIntegrationTest {
 
     @Test
     public void execute_duplicateClient_throwsCommandException() {
-        Client clientInList = model.getAddressBook().getClientList().get(0);
+        Client clientInList = model.getRealTime().getClientList().get(0);
         assertCommandFailure(new AddCommand(clientInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

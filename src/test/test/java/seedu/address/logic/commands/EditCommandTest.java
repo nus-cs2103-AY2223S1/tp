@@ -1,38 +1,38 @@
-package seedu.address.logic.commands;
+package seedu.realtime.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
+import static seedu.realtime.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.realtime.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.realtime.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.realtime.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.realtime.logic.commands.CommandTestUtil.showClientAtIndex;
+import static seedu.realtime.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.realtime.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.realtime.testutil.TypicalClients.getTypicalRealTime;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Client;
-import seedu.address.testutil.EditClientDescriptorBuilder;
-import seedu.address.testutil.ClientBuilder;
+import seedu.realtime.commons.core.Messages;
+import seedu.realtime.commons.core.index.Index;
+import seedu.realtime.logic.commands.EditCommand.EditClientDescriptor;
+import seedu.realtime.model.realTime;
+import seedu.realtime.model.Model;
+import seedu.realtime.model.ModelManager;
+import seedu.realtime.model.UserPrefs;
+import seedu.realtime.model.person.Client;
+import seedu.realtime.testutil.EditClientDescriptorBuilder;
+import seedu.realtime.testutil.ClientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditClientCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalRealTime(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class EditClientCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new realTime(model.getRealTime()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditClientCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new realTime(model.getRealTime()), new UserPrefs());
         expectedModel.setClient(lastClient, editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class EditClientCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new realTime(model.getRealTime()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +92,7 @@ public class EditClientCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new realTime(model.getRealTime()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -112,7 +112,7 @@ public class EditClientCommandTest {
         showClientAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit client in filtered list into a duplicate in address book
-        Client clientInList = model.getAddressBook().getClientList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Client clientInList = model.getRealTime().getClientList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditClientDescriptorBuilder(clientInList).build());
 
@@ -137,7 +137,7 @@ public class EditClientCommandTest {
         showClientAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getClientList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getRealTime().getClientList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());

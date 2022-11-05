@@ -1,31 +1,31 @@
-package seedu.address.logic.commands;
+package seedu.realtime.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalClients.CARL;
-import static seedu.address.testutil.TypicalClients.ELLE;
-import static seedu.address.testutil.TypicalClients.FIONA;
-import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
+import static seedu.realtime.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.realtime.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.realtime.testutil.TypicalClients.CARL;
+import static seedu.realtime.testutil.TypicalClients.ELLE;
+import static seedu.realtime.testutil.TypicalClients.FIONA;
+import static seedu.realtime.testutil.TypicalClients.getTypicalRealTime;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.realtime.model.Model;
+import seedu.realtime.model.ModelManager;
+import seedu.realtime.model.UserPrefs;
+import seedu.realtime.model.client.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindClientCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalRealTime(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalRealTime(), new UserPrefs());
 
     @Test
     public void equals() {

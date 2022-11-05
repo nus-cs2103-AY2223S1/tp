@@ -1,10 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.realtime.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.realtime.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -14,14 +14,14 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Client;
-import seedu.address.testutil.ClientBuilder;
+import seedu.realtime.commons.core.GuiSettings;
+import seedu.realtime.logic.commands.exceptions.CommandException;
+import seedu.realtime.model.realTime;
+import seedu.realtime.model.Model;
+import seedu.realtime.model.ReadOnlyRealTime;
+import seedu.realtime.model.ReadOnlyUserPrefs;
+import seedu.realtime.model.person.Client;
+import seedu.realtime.testutil.ClientBuilder;
 
 public class AddClientCommandTest {
 
@@ -99,12 +99,12 @@ public class AddClientCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getRealTimeFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setRealTimeFilePath(Path realTimeFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +114,12 @@ public class AddClientCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setRealTime(ReadOnlyRealTime newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyRealTime getRealTime() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,8 +186,8 @@ public class AddClientCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyRealTime getRealTime() {
+            return new realTime();
         }
     }
 

@@ -1,25 +1,25 @@
-package seedu.address.logic.commands;
+package seedu.realtime.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.realtime.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.realtime.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.realtime.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.realtime.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.realtime.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.realtime.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Client;
-import seedu.address.testutil.EditClientDescriptorBuilder;
+import seedu.realtime.commons.core.index.Index;
+import seedu.realtime.logic.commands.exceptions.CommandException;
+import seedu.realtime.model.realTime;
+import seedu.realtime.model.Model;
+import seedu.realtime.model.person.NameContainsKeywordsPredicate;
+import seedu.realtime.model.person.Client;
+import seedu.realtime.testutil.EditClientDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -104,11 +104,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        realTime expectedRealTime = new realTime(actualModel.getRealTime());
         List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredClientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedRealTime, actualModel.getRealTime());
         assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
     }
     /**

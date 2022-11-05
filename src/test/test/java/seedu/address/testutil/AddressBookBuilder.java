@@ -1,34 +1,34 @@
-package seedu.address.testutil;
+package seedu.realtime.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Person;
+import seedu.realtime.model.realTime;
+import seedu.realtime.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building realTime objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code realTime ab = new RealTimeBuilder().withPerson("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class RealTimeBuilder {
 
-    private AddressBook addressBook;
+    private realTime realTime;
 
-    public AddressBookBuilder() {
-        addressBook = new AddressBook();
+    public RealTimeBuilder() {
+        realTime = new realTime();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
+    public RealTimeBuilder(realTime realTime) {
+        this.realTime = realTime;
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Person} to the {@code realTime} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+    public RealTimeBuilder withPerson(Person person) {
+        realTime.addPerson(person);
         return this;
     }
 
-    public AddressBook build() {
-        return addressBook;
+    public realTime build() {
+        return realTime;
     }
 }
