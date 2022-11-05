@@ -173,7 +173,7 @@ TrackO's functionalities!
          <img src="./images/user-guide/Tutorial1.png" alt="Tutorial1">
     
 2. Next, we move on to managing your **orders**!
-    1. Adding an order: `addo`
+    1. **Adding an order: `addo`**
        * Suppose a customer by the name `Jonathan Chee` wants his order delivered to `43 Clementi Road, 639433`. He is 
         contactable by the email `JonChee@gmail.com` and at the phone number`96785944`. He has also ordered 1 unit of `Teddy bear keychain`.
        * Firstly, initiate the `addo` command with the customer details by entering the following command into the [command box](#layout): <br>
@@ -274,9 +274,9 @@ Example(s):
 
 - When you enter `addi i/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1 t/Souvenir` to our sample data,
 TrackO will add `20 units` of `Keychain` to your inventory list, with the cost price of `$1` and selling price `$3.50`. 
-The `Item` has the description `Silicone keychain with a metal buckle` and tag `Souvenir`.
-  <br>
-  The following result will be displayed in the application:
+The `Item` has the description `Silicone keychain with a metal buckle` and tag `Souvenir`. <br>
+The following result will be displayed in the application:
+  
   <img src="./images/user-guide/AddiExample.png" alt="AddiExample">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
@@ -335,7 +335,7 @@ Format: `deletei INDEX`
 TrackO does not allow items that are currently involved with unpaid or undelivered orders to be deleted.
 </div>
 
-Examples:
+Example(s):
 * When you enter `deletei 1` to our sample data, TrackO deletes the first item, `Chair` from the inventory list. 
   Notice how the order involving `Chair` is completed, which allows the `Chair` to be deleted:
 
@@ -366,7 +366,7 @@ When an `Item` is involved in an order, you cannot edit its `Item Name`, `Sell P
 You can only edit its `Quantity`, `Description`, `Tag`.
 </div>
 
-Examples:
+Example(s):
 
 * When you enter `editi 1 i/Table q/200 d/Metal Table t/Fragile` to our sample data, TrackO will edit the item name, quantity, 
   description and tag of the 1st item, which was `Chair`, to be `Table`, `200`, `Metal Table` and `Fragile` respectively.
@@ -379,9 +379,13 @@ Examples:
 
 * When you enter `editi 3 i/Cookies d/Delicious home-made cookies` to our sample data, TrackO will remind you that the item
 you are trying to edit is currently involved in an order (in this case, the order at index `3`) and the item will not be edited.
-
+  
+  <img src="./images/user-guide/EditiExample3.png" alt="EditiExample3">
+  
 * When you enter `editi 3 q/500` to our sample data, the `Quantity` of the `Item` at index `3`, `Bolster`, will be restocked to
 `500 units`.
+
+  <img src="./images/user-guide/EditiExample4.png" alt="EditiExample4">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
@@ -404,7 +408,7 @@ The first step is to initiate the command with the customer's data.
 
 Format: `addo n/NAME p/PHONE e/EMAIL a/ADDRESS`
 
-Examples:
+Example(s):
 * `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` creates an order for customer `John Doe`, who is contactable at `91234567` and `johndoe@example.com` and wants the order delivered to `48 Westwood Terrace`
 * `addo n/Betty White p/92345678 e/bettywhite@example.com a/39 Ocean Drive` creates an order for customer `Betty White`, who is contactable at `92345678` and `bettywhite@example.com` and wants the order delivered to `39 Ocean Drive`
 
@@ -526,11 +530,11 @@ Format: `sorto new` or `sorto old`
 * `sorto new` sorts the order list such that the newest orders are at the top.
 * `sorto old` sorts the order list such that the oldest orders are at the top.
 
-Examples:
+Example(s):
 * When you enter `listo` followed by `sorto old`, TrackO sorts all orders such that oldest orders are at the top.
 Executing it on our sample data will display the following result:
 
-  <img src="./images/user-guide/SortoOldExample.png">
+  <img src="./images/user-guide/SortoOldExample.png" alt="SortoOldExample">
 
 * For this example, let us follow the steps described below:
   1. First, enter `addo n/Jessica Doe a/Blk 12 Changi Road 20, #01-15 p/90876543 e/jessicadoe@gmail.com`, followed by
@@ -561,7 +565,7 @@ Format: `deleteo INDEX`
 * `INDEX` refers to the index number shown in the displayed order list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …
 
-Examples:
+Example(s):
 * When you enter `listo` followed by `deleteo 2`, TrackO deletes the 2nd order from the order list. Executing it on our 
 sample data will display this result:
 
@@ -580,9 +584,10 @@ sample data will display this result:
 
 * For the third example, let us follow the steps described below:
   1. First, enter `sorto new`. TrackO will sort the orders from the newest to the oldest, with the most recent 
-     order at the top.
+     order at the top. <br>
      <img src="./images/user-guide/DeleteoExample3-1.png" alt="DeleteoExample3-1">
-  2. When you enter `deleteo 1`, TrackO will delete the order currently displayed at index `1`, i.e. the most recent order.
+  
+  2. When you enter `deleteo 1`, TrackO will delete the order currently displayed at index `1`, i.e. the most recent order. <br>
      <img src="./images/user-guide/DeleteoExample3-2.png" alt="DeleteoExample3-2">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
@@ -623,17 +628,20 @@ the `2` `Apples`.
 
 </div>
 
-Examples:
+Example(s):
 * For this example, let us follow the steps described below:
   1. When you enter `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`, TrackO will edit the name, 
      phone, email, and address of the second order in the list to `Peter`,`98765432`, `peter@email.com`, and 
      `123 Apartment Unit, #05-11` respectively. It will display this result when executed on our sample data: <br>
      <img src="./images/user-guide/EditoExample1-1.png" alt="EditoExample1-1">
+  
   2. Next, entering `edito 4 i/Chair q/5` will add `5 Chairs` to the fourth order's list of ordered items, as shown below: <br>
      <img src="./images/user-guide/EditoExample1-2.png" alt="EditoExample1-2">
+  
   3. Now, let us try entering `edito 4 i/mattress q/0`. Doing this will remove the item `Mattress` from the fourth order's 
      list of ordered items. <br>
      <img src="./images/user-guide/EditoExample1-3.png" alt="EditoExample1-3">
+  
   4. Finally, try entering `edito 4 i/Chair q/10`. TrackO will update the `Quantity` of ordered `Chairs` in the fourth order to `10`. <br>
      <img src="./images/user-guide/EditoExample1-4.png" alt="EditoExample1-4">
 
@@ -667,7 +675,7 @@ You can mark an order with insufficient stock as paid (to record payments for pr
 mark an order as **delivered** if there is **insufficient stock** of the item(s) involved in the order.
 </div>
 
-Examples:
+Example(s):
 * When you enter `marko 4 -p` on our sample data, TrackO will mark the order at index `4` in the currently displayed 
   list as `paid`, as shown below: <br>
   <img src="./images/user-guide/MarkoExample1.png" alt="MarkoExample1">
@@ -714,6 +722,7 @@ The keywords `confirm` and `done` are case-sensitive. Thus, only the keywords in
 </div>
 
 An empty TrackO should look like this:
+
 <img src="./images/user-guide/Clear.png" alt="Clear">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
