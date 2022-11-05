@@ -7,12 +7,10 @@ title: User Guide
 
 {:toc}
 
-- [GUI](#gui)
-- [Quick Start](#quick-start)
-- [Features](#features)
-- [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Introduction
 
 EZLead is a **desktop app for tech leads to manage teams optimized for use via a Command Line Interface (CLI)**.
 As a tech lead, you will be able to easily keep track of all the teams under you as well as each team's current and
@@ -69,26 +67,29 @@ future tasks. With our app, teams management would be easier than ever.
 * Commands are case-sensitive.
   e.g. You cannot enter HeLp instead of help
 
+* The command keyword (e.g. `add`, `create`, `taskedit` etc.) and parameters without a prefix must be put in front (i.e. follow the format given). 
+  However, parameters with a prefix can be placed in any order (i.e. for `edit`, `edit 1 n/John p/12345678` and `edit 1 p/12345678 n/John` gives the same result) .
+
 </div>
 
-### Parameters
+### Parameters Summary
 
 Here is a summary of all the parameters used in EZLead commands:
 
-
-| Parameter               | Refers to                                                                           | Required format                                                                                                                                                    |
-|-------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **NAME**                | The name of the member.                                                             | It should only contain alphanumeric characters and spaces, and should not be blank.                                                                                |
-| **PHONE-NUMBER**        | The phone number of the member.                                                     | It should only contain numbers, is exactly 8 numbers long, and should not be blank.                                                                                |
-| **EMAIL**               | The email of the member.                                                            | It should follow the _local-part@domain_ format and should not be blank.                                                                                           | 
-| **ADDRESS**             | The address of the member.                                                          | It can take any value, but it should not be blank.                                                                                                                 | 
-| **TAG**                 | Additional information about the member.                                            | It should only contain alphanumeric characters, or it can be blank.                                                                                                |
-| **GLOBAL-MEMBER-INDEX** | The index number of the member as shown in the **userlist window**.                 | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid. |
-| **TEAM-NAME**           | The name of the team.                                                               | It should only contain alphanumeric characters, spaces, and parentheses. But it should not be blank.                                                               | 
-| **TEAM-INDEX**          | The index of the team as shown in the **main window**.                              | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid. |
-| **TASK-NAME**           | The name of the task.                                                               | It should only contain alphanumeric characters, spaces, parentheses, and the apostrophe. But it should not be blank.                                               |
-| **DEADLINE**            | The deadline of the task.                                                           | It should be a valid date in `DD-MM-YYYY` format.                                                                                                                  |
-| **TASK-INDEX**          | The index of the task as shown in the task list of the team in the **main window**. | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid. |
+| Parameter               | Refers to                                                                           | Required format                                                                                                                                                     |
+|-------------------------|-------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **NAME**                | The name of the member.                                                             | It should only contain alphanumeric characters and spaces, and should not be blank.                                                                                 |
+| **PHONE-NUMBER**        | The phone number of the member.                                                     | It should only contain numbers, is exactly 8 numbers long, and should not be blank.                                                                                 |
+| **EMAIL**               | The email of the member.                                                            | It should follow the _local-part@domain_ format and should not be blank.                                                                                            | 
+| **ADDRESS**             | The address of the member.                                                          | It can take any value, but it should not be blank.                                                                                                                  | 
+| **TAG**                 | Additional information about the member.                                            | It should only contain alphanumeric characters, or it can be blank.                                                                                                 |
+| **GLOBAL-PERSON-INDEX** | The index number of the member as shown in the **userlist window**.                 | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid.  |
+| **MEMBER-INDEX**        | The index number of the member as shown in the **userlist window**                  | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid.  |
+| **TEAM-NAME**           | The name of the team.                                                               | It should only contain alphanumeric characters, spaces, and parentheses. But it should not be blank.                                                                | 
+| **TEAM-INDEX**          | The index of the team as shown in the **main window**.                              | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid.  |
+| **TASK-NAME**           | The name of the task.                                                               | It should only contain alphanumeric characters, spaces, parentheses, and the apostrophe. But it should not be blank.                                                |
+| **DEADLINE**            | The deadline of the task.                                                           | It should be a valid date in `DD-MM-YYYY` format.                                                                                                                   |
+| **TASK-INDEX**          | The index of the task as shown in the task list of the team in the **main window**. | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid.  |
 
 ### Viewing help: `help`
 
@@ -114,7 +115,7 @@ person with the following details to the global member list.
 
 Edits a member's details. Require at least one optional parameters.
 
-Format: `edit INDEX [n/NAME] [p/PHONE-NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+Format: `edit GLOBAL-PERSON-INDEX [n/NAME] [p/PHONE-NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 Examples:
 * `edit 1 n/Johny p/91234567 e/johndoe@example.com` Edits the first member's name in the global member list to Johny,
@@ -288,7 +289,7 @@ to load in an EMPTY state.
 | **Help**            | `help`                                                                                                                                                         |
 | **Member Add**      | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g. `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` |
 | **Member Delete**   | `delete p/GLOBAL-PERSON-INDEX` <br> e.g. `delete p/1`                                                                                                          |
-| **Member Edit**     | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g.`edit 1 n/Johny p/91234567 e/johndoe@example.com`                                      |
+| **Member Edit**     | `edit GLOBAL-PERSON-INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g.`edit 1 n/Johny p/91234567 e/johndoe@example.com`                        |
 | **Member List**     | `userlist`                                                                                                                                                     |
 | **Team Add**        | `create n/TEAM-NAME` <br> e.g. `create n/TEAM1`                                                                                                                |
 | **Team Delete**     | `delteam TEAM-INDEX` <br> e.g. `delteam 1`                                                                                                                     |
