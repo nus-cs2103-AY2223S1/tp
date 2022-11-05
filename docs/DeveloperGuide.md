@@ -983,38 +983,502 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file <br>
+   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Display help
+
+Command: `help` <br>
+More information on usage: [help command](UserGuide.html#viewing-help-help)
+
+1. Test case: `help` <br>
+   Expected: Help window with list of commands is displayed
+
+### Listing all internships
+
+Command: `list` <br>
+More information on usage: [list command](UserGuide.html#listing-all-internship-applications--list)
+
+1. Test case: `list` <br>
+   Expected: Shows a list of all internship applications in InTrack.
+
+### Viewing statistics
+
+Command: `stats` <br>
+More information on usage: [stats command](UserGuide.html#viewing-statistics-of-internship-applications-stats)
+
+1. Test case: `stats` <br>
+   Expected: Statistics of the current list of internship applications are displayed, showing the number of offered, in 
+   progress and rejected applications.
+
+### Exiting application
+
+Command: `exit` <br>
+More information on usage: [exit command](UserGuide.md#exiting-the-program-exit)
+
+1. Test case: `exit` <br>
+   Expected: Exits InTrack and all data is saved.
+
+### Adding an internship
+
+Command: `add` <br>
+More information on usage: [add command](UserGuide.md#adding-an-internship-application-add)
+
+1. Adding an internship application while all internship applications are being shown.
+
+    1. Prerequisites: List all internship applications using the `list` command. 
+   
+    2. Test case: `add c/Google p/SWE e/hr@google.com w/https://careers.google.com/ s/5000 t/Urgent`<br>
+    Expected: An internship application with the company `Google` with the following attributes are added to the 
+    internship applications list. The new internship is added to the last index of the internship list. The new 
+    internship application card appeared at the bottom of the list. The details of the newly added internship is shown
+    in the success message.
+   
+    3. Test case: `add c/Google p/Data Analyst e/hr@google.com w/https://careers.google.com/ s/5000 t/Urgent`<br>
+    Expected: An internship application with the company `Google` with the following attributes are added to the
+    internship applications list. Note that the `COMPANY` of this internship is that same as the test case above. 
+    However, the new internship's `POSIITON` is different. The new internship is added to the last index of the 
+    internship list. The new internship application card appeared at the bottom of the list. The details of the newly 
+    added internship is shown in the success message.
+   
+    4. Test case: `add c/Google`<br>
+    Expected: No internship application added. Error details shown in error message.
+    
+    5. Other incorrect add commands to try: `add`, `add c/Google p/Data Analyst`<br>
+    Expected: Similar to previous.
 
 ### Deleting an internship
 
+Command: `delete` <br>
+More information on usage: [delete command](UserGuide.md#deleting-an-internship-application-delete)
+
 1. Deleting an internship while all internships are being shown
 
-   1. Prerequisites: List all internships using the `list` command. Multiple internships in the list.
+    1. Prerequisites: List all internships using the `list` command. Multiple internships in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `delete 1`<br>
+       Expected: First internship is deleted from the list. Details of the deleted internship is shown in the success 
+       message. 
 
-   1. Test case: `delete 0`<br>
-      Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
+    3. Test case: `delete 0`<br>
+        Expected: No internship is deleted. Error details shown in the error message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    4. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting an internship while internships are being filtered.
+
+    1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple internships in the list.
+
+    2. Test case: Similar to previous<br>
+    Expected: Similar to previous
+
+### Updating status of an internship
+
+Command: `status` <br>
+More information on usage: [status command](UserGuide.md#updating-status-of-an-internship-application--status)
+
+1. Updating status of an internship while all internships are shown.
+
+    1. Prerequisites: List all internships using the `list` command. Multiple internships in the list.
+
+    2. Test case: `status 1 o`<br>
+       Expected: First internship's status is set to `Offered` which is displayed as green on the internship card.
+
+    3. Test case: `status 0 o`<br>
+       Expected: No internship status is changed. Error details shown in the error message.
+
+    4. Other incorrect status commands to try: `status 1 j`, `status x o` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Deleting an internship while internships are being filtered.
+
+   1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple internships in the list.
+
+   2. Test case: Similar to previous<br>
+      Expected: Similar to previous
+
+### Adding tags to an internship
+
+Command: `addtag` <br>
+More information on usage: [addtag command](UserGuide.md#adding-a-tag-to-an-internship-application--addtag)
+
+1. Adding tags to an internship while all internships are shown.
+
+    1. Prerequisites: List all internships using the `list` command. Multiple internships in the list. The first 
+       internship in the list has only the `Urgent` tag (case-sensitive).
+
+    2. Test case: `addtag 1 Remote`<br>
+        Expected: `Remote` tag is added to the first internship. 
+
+    3. Test case: `addtag 1 Urgent Remote`<br>
+       Expected: `Remote` tag is added to the first internship.
+   
+    4. Test case: `addtag 1 Important Remote`<br>
+       Expected: `Important` and `Remote` tags are both added to the first internship.
+       
+    5. Test case: `addtag 1 Urgent`<br>
+       Expected: No tags are added to any internship. Success message is shown.
+   
+    6. Test case: `addtag 0 Urgent`<br>
+       Expected: No tags are added to any internship. Error details shown in the error message.
+
+    7. Other incorrect addtag commands to try: `addtag 1`, `addtag x Urgent` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Adding tags to an internship while internships are being filtered.
+
+    1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple 
+       internships in the list. The first internship in the list has only the `Urgent` tag (case-sensitive).
+
+    2. Test case: Similar to previous<br>
+       Expected: Similar to previous
+
+### Deleting tags from an internship
+
+Command: `deltag` <br>
+More information on usage: [deltag command](UserGuide.md#deleting-a-tag-from-an-internship-application--deltag)
+
+1. Deleting tags from an internship while all internships are shown.
+
+    1. Prerequisites: List all internships using the `list` command. Multiple internships in the list. The first
+       internship in the list has only the `Urgent` tag (case-sensitive).
+
+    2. Test case: `deltag 1 Urgent`<br>
+       Expected: The `Urgent` tag is deleted from the first internship in the list.
+
+    3. Test case: `deltag 1 Urgent Remote`<br>
+       Expected: No tags are deleted from the any internship. Error details shown in error message.
+
+    4. Test case: `deltag 0 Urgent`<br>
+       Expected: No tags are added to any internship. Error details shown in the error message.
+
+    5. Other incorrect status commands to try: `deltag 1`, `deltag x Urgent` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Adding tags to an internship while internships are being filtered.
+
+    1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple 
+       internships in the list. The first internship in the list has only the `Urgent` tag (case-sensitive).
+
+    2. Test case: Similar to previous<br>
+       Expected: Similar to previous
+
+### Selecting an internship
+
+Command: `select` <br>
+More information on usage: [select command](UserGuide.md#selecting-an-internship-application--select)
+
+1. Selecting an internship while all internships are shown.
+
+    1. Prerequisites: List all internships using the `list` command. Multiple internships in the list. 
+
+    2. Test case: `select 1`<br>
+       Expected: The first internship is selected and its details are shown on the right panel.
+
+    3. Test case: `select 0`<br>
+       Expected: No internship is selected. Error details shown in error message.
+    
+    5. Other incorrect select commands to try: `select`, `select x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Adding tags to an internship while internships are being filtered.
+
+    1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple
+       internships in the list. 
+
+    2. Test case: Similar to previous<br>
+       Expected: Similar to previous
+
+### Editing an internship
+
+Command: `edit` <br>
+More information on usage: [edit command](UserGuide.md#editing-an-internship-application--edit)
+
+1. Editing a selected internship.
+
+    1. Prerequisites: An internship application is selected and displayed on the right panel. The selected internship
+    has `POSITION` as `Software Engineer` and has only `Urgent` tag.
+
+    2. Test case: `edit p/Data Analyst`<br>
+       Expected: The `POSITION` field of the selected internship is set to `Data Analyst`
+
+    3. Test case: `edit p/Data Analyst t/Remote`<br>
+       Expected: The `POSITION` field of the selected internship is set to `Data Analyst` and the selected internship 
+       only contains the `Remote` tag.
+   
+    4. Test case: `edit q/invalid prefix`<br>
+       Expected: No internship is edited. Error details shown in error message. 
+
+    5. Other incorrect edit commands to try: `edit`<br>
+       Expected: Similar to previous.  
+   
+2. Editing without any internship selected
+
+   1. Prerequisites: No internship is selected and shown on the right panel.
+   
+   2. Test case: `edit p/Data Analyst`<br>
+      Expected: No internship is edited. Error details shown in error message.
+
+### Adding a task to an internship
+
+Command: `addtask` <br>
+More information on usage: [addtask command](UserGuide.md#adding-a-task-to-a-selected-internship-application--addtask)
+
+1. Adding a task to a selected internship.
+
+    1. Prerequisites: An internship application is selected and displayed on the right panel. 
+
+    2. Test case: `addtask Technical Interview /at 12-01-2023 15:00`<br>
+       Expected: `Technical Interview` task is added to the task list of the selected internship, added in chronological
+       order with the specified time.
+
+    3. Test case: `addtask Technical Interview /at 31-02-2023 12:00`<br>
+       Expected: No task is added to the selected internship. Error details shown in error message
+    
+    4. Other incorrect edit commands to try: `addtask`, `addtask Technical Interview`<br>
+        Expected: Similar to previous.
+
+2. Adding a task without any internship selected
+
+    1. Prerequisites: No internship is selected and shown on the right panel.
+
+    2. Test case: `addtask Technical Interview /at 12-01-2023 15:00`<br>
+       Expected: No task is added to any internship. Error details shown in error message.
+
+### Deleting a task from an internship
+
+Command: `deltask` <br>
+More information on usage: [deltask command](UserGuide.md#deleting-a-task-from-a-selected-internship-application--deltask)
+
+1. Deleting a task from a selected internship.
+
+    1. Prerequisites: An internship application is selected and displayed on the right panel. The selected internship 
+    contains at least one task.
+
+    3. Test case: `deltask 1`<br>
+       Expected: The first task on the task list of the selected internship is deleted.
+
+    4. Test case: `deltask 0`<br>
+       Expected: No task is deleted from the selected internship. Error details shown in error message
+
+    5. Other incorrect edit commands to try: `deltask`, `deltask x` (where x is larger than the task list size)<br>
+       Expected: Similar to previous.
+
+2. Deleting a task without any internship selected
+
+    1. Prerequisites: No internship is selected and shown on the right panel.
+
+    2. Test case: `deltask 1`<br>
+       Expected: No task is deleted from any internship. Error details shown in error message.
+
+### Adding a remark to an internship
+
+Command: `remark` <br>
+More information on usage: [remark command](UserGuide.md#adding-a-remark-to-an-internship-application--remark)
+
+1. Adding a remark to a selected internship.
+
+    1. Prerequisites: An internship application is selected and displayed on the right panel. 
+
+    2. Test case: `remark r/Read up beforehand`<br>
+        Expected: The remark `Read up beforehand` is added to the remark field of the selected internship.
+
+    3. Test case: `remark`<br>
+       Expected: No remark is added to the selected internship. Error details shown in error message
+
+2. Adding a remark without any internship selected
+
+    1. Prerequisites: No internship is selected and shown on the right panel.
+
+    2. Test case: `remark r/Read up beforehand`<br>
+       Expected: No remark is added to any internship. Error details shown in error message.
+   
+### Sending an email
+
+Command: `mail` <br>
+More information on usage: [mail command](UserGuide.md#sending-an-email-to-a-company--mail)
+
+1. Sending an email to the email of the selected internship
+
+    1. Prerequisites: An internship application is selected and displayed on the right panel.
+
+    2. Test case: `mail`<br>
+       Expected: The default mail app is launched with the email of the selected internship in the 
+       recipient field.
+    
+2. Sending an email without any internship selected
+
+    1. Prerequisites: No internship is selected and shown on the right panel.
+
+    2. Test case: `mail`<br>
+       Expected: No mail app is launched. Error details shown in error message.
+
+### Clearing data
+
+Command: `clear` <br>
+More information on usage: [clear command](UserGuide.md#clearing-all-internship-applications--clear)
+
+1. Test case: `clear` <br>
+   Expected: All data is cleared from InTrack.
+
+### Filtering internships by company name
+
+Command: `findc` <br>
+More information on usage: [findc command](UserGuide.md#finding-internship-applications-by-company-name--findc)
+
+1. Filtering internships by company name while all internships are being shown.
+
+    1. Prerequisites: List all internships using the `list` command. Multiple internships in the list.
+
+    2. Test case: `findc Microsoft`<br>
+       Expected: All internship applications with `Microsoft` (case-insensitive) in the company name are shown.
+
+    3. Test case: `findc Microsoft Amazon`<br>
+       Expected: All internship applications with `Microsoft` or `Amazon` (case-insensitive) in the company name are shown.
+
+    4. Test case: `findc`<br>
+       Expected: Internship list is not filtered. Error details shown in error message.
+
+2. Filtering internships by company name while internships are being filtered.
+
+    1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple internships in the list.
+
+    2. Test case: Similar to previous.<br>
+       Expected: Similar to previous. Filters do not stack on one another.
+
+### Filtering internships by position name
+
+Command: `findp` <br>
+More information on usage: [findp command](UserGuide.md#finding-internship-applications-by-position--findp)
+
+1. Filtering internships by position name while all internships are being shown.
+
+    1. Prerequisites: List all internships using the `list` command. Multiple internships in the list.
+
+    2. Test case: `findp SWE`<br>
+       Expected: All internship applications with `SWE` (case-insensitive) in the position name are shown.
+
+    3. Test case: `findp Frontend Backend`<br>
+       Expected: All internship applications with `Frontend` or `Backend` (case-insensitive) in the position name are shown.
+
+    4. Test case: `findp`<br>
+       Expected: Internship list is not filtered. Error details shown in error message.
+
+2. Filtering internships by position name while internships are being filtered.
+
+    1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple internships in the list.
+
+    2. Test case: Similar to previous.<br>
+       Expected: Similar to previous. Filters do not stack on one another.
+
+### Filtering internships by tags
+
+Command: `findt` <br>
+More information on usage: [findt command](UserGuide.md#finding-internship-applications-by-tags--findt)
+
+1. Filtering internships by tags while all internships are being shown.
+
+    1. Prerequisites: List all internships using the `list` command. Multiple internships in the list.
+
+    2. Test case: `findt Urgent`<br>
+       Expected: All internship applications with `Urgent` (case-sensitive) tag are shown.
+
+    3. Test case: `findt Urgent Remote`<br>
+       Expected: All internship applications with either `Urgent` or `Remote` (case-sensitive) tag or both are shown.
+
+    4. Test case: `findt`<br>
+       Expected: Internship list is not filtered. Error details shown in error message.
+
+2. Filtering internships by tags while internships are being filtered.
+
+    1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple internships in the list.
+
+    2. Test case: Similar to previous.<br>
+       Expected: Similar to previous. Filters do not stack on one another.
+
+### Filtering internships by status 
+
+Command: `filter` <br>
+More information on usage: [filter command](UserGuide.md#filtering-internship-applications-by-status--filter)
+
+1. Filtering internships by status while all internships are being shown.
+
+    1. Prerequisites: List all internships using the `list` command. Multiple internships in the list.
+
+    2. Test case: `filter o`<br>
+       Expected: All internship applications with `Offered` status are shown.
+    
+    3. Test case: `filter s`<br>
+        Expected: Internship list is not filtered. Error details shown in error message.
+
+2. Filtering internships by status while internships are being filtered.
+
+    1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple internships in the list.
+
+    2. Test case: Similar to previous.<br>
+       Expected: Similar to previous. Filters do not stack on one another.
+
+### Sorting internships 
+
+Command: `sort` <br>
+More information on usage: [sort command](UserGuide.md#sorting-internship-applications-sort)
+
+1. Sorting internships while all internships are being shown.
+
+    1. Prerequisites: List all internships using the `list` command. Multiple internships in the list.
+
+    2. Test case: `sort time a`<br>
+       Expected: The currently displayed internships are sorted in ascending manner by upcoming tasks, with the 
+       internship with the task with the earliest date and time that is after the current date and time at the top.
+
+    3. Test case: `sort salary a`<br>
+       Expected: The currently displayed internships are sorted in ascending manner by salary, with the internship with the lowest 
+       salary at the top.
+   
+    4. Test case: `sort salary j`<br>
+       Expected: Internship list is not sorted. Error details shown in error message.
+
+2. Sorting internships while internships are being filtered.
+
+    1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple internships in the list.
+
+    2. Test case: Similar to previous.<br>
+       Expected: Similar to previous. 
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Open `InTrack.jar` and make any changes to the internship list with the commands provided, being sure to leave at 
+   least one internship in the list.
+   
+   3. Edit the `data/intrack.json` file by making any one of the following changes before saving the file and reopening `InTrack.jar`.
+   
+      1. Test case: Edit the salary field of the first internship to `invalid`.
+      Expected: InTrack starts with an empty internship list.
+      
+      2. Test case: Edit the status field of the first internship to `invalid`.
+      Expected: Similar to previous.
+      
+      3. Test case: Edit the email field of the first internship to `invalid`.
+      Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Dealing with missing files.
+   
+   1. Test case: Exit InTrack, then delete the `data/intrack.json` file. Reopen InTrack.
+   Expected: All internships are deleted. InTrack will start as expected with sample data provided.
+   
+   2. Test case: Exit InTrack, then delete the `config.json` file. Reopen InTrack.
+   Expected: InTrack starts as expected.
+   
+   3. Test case: Exit InTrack, then delete `preferences.json`. Reopen InTrack.
+   Expected: The previous user preferences such as the size of the window will be deleted. InTrack starts
+   with default settings. 
