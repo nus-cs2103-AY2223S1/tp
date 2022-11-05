@@ -680,6 +680,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+
+**Use case: Checkout a JSON file**
+
+**MSS**
+
+1.  User requests to checkout a JSON file
+2.  InternConnect loads all applicants.
+3.  InternConnect displays the loaded applicants.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given file name does not exist.
+
+    * 1a1. InternConnect creates a new JSON file with the given file name.
+    * 1a2. InternConnect displays a sample addressbook.
+
+      Use case ends.
+
+* 1b. The given file has invalid values, and/or incorrect format, and/or duplicate applicants.
+
+    * 1b1. InternConnect wipes the data from the file.
+    * 1b2. InternConnect displays an empty addressbook.
+
+      Use case ends.
+
+
 **Use case: Exit**
 
 **MSS**
