@@ -14,6 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.realtime.logic.parser.exceptions.ParseException;
+import seedu.realtime.model.listing.ListingId;
+import seedu.realtime.model.offer.Price;
 import seedu.realtime.model.person.Address;
 import seedu.realtime.model.person.Email;
 import seedu.realtime.model.person.Name;
@@ -26,6 +28,8 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_PRICE = "-1";
+    private static final String INVALID_LISTING_ID = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +37,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_PRICE = "123456";
+    private static final String VALID_LISTING_ID = "BEDOK_SOUTH";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +198,51 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parsePrice_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePrice((String) null));
+    }
+
+    @Test
+    public void parsePrice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(INVALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithoutWhitespace_returnsPrice() throws Exception {
+        Price expectedPhone = new Price(VALID_PRICE);
+        assertEquals(expectedPhone, ParserUtil.parsePrice(VALID_PHONE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithWhitespace_returnsTrimmedPrice() throws Exception {
+        String priceWithWhitespace = WHITESPACE + VALID_PRICE + WHITESPACE;
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(priceWithWhitespace));
+    }
+
+    @Test
+    public void parseListingId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseListingId((String) null));
+    }
+
+    @Test
+    public void parseListingId_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseListingId(INVALID_LISTING_ID));
+    }
+
+    @Test
+    public void parseListingId_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        ListingId expectedListingId = new ListingId(VALID_LISTING_ID);
+        assertEquals(expectedListingId, ParserUtil.parseListingId(VALID_LISTING_ID));
+    }
+
+    @Test
+    public void parseListingId_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+        String ListingIdWithWhitespace = WHITESPACE + VALID_LISTING_ID + WHITESPACE;
+        ListingId expectedListingId = new ListingId(VALID_LISTING_ID);
+        assertEquals(expectedListingId, ParserUtil.parseListingId(ListingIdWithWhitespace));
     }
 }
