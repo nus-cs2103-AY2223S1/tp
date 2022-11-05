@@ -86,27 +86,6 @@ class JsonAdaptedClient {
     }
 
     /**
-     * Converts a given {@code Client} and {@code JsonAdaptedMeeting} into this class for Jackson use.
-     */
-    public JsonAdaptedClient(Client source, JsonAdaptedMeeting adaptedMeeting) {
-        meetings.add(adaptedMeeting);
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().isEmpty()
-                ? ""
-                : source.getEmail().get().toString();
-        address = source.getAddress().isEmpty()
-                ? ""
-                : source.getAddress().toString();
-        birthday = source.getBirthday().isEmpty()
-                ? ""
-                : source.getBirthday().toString();
-        products.addAll(source.getProducts().stream()
-                .map(JsonAdaptedProduct::new)
-                .collect(Collectors.toList()));
-    }
-
-    /**
      * Converts this Jackson-friendly adapted client object into the model's {@code Client} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.

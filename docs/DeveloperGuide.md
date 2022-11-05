@@ -347,6 +347,10 @@ We chose to implement the changing of view panels through `CommandResult` due to
 
 - Ultimately, we believe that we will not have too many views (likely a maximum of 6 as we only have to consider `Client`, `Meeting`, `Product` and their detailed variant). As such, we felt that passing the `CommandSpecific` is a cheaper (in terms of effort and programming hours and research) and better solution for now.
 
+**Aspect: Different view panels do not inherit from a single abstract panel class
+
+- Within in view panel class, there are similar structures (FXML file name attribute, Logger, ListView, constructor, overwriting ListCell etc.), but that is where the similarities end. We feel that having the panels inherit from a single panel does not necessarily add any value, as they do not share any attribute or methods. We find that the use of polymorphism here is an example of over engineering and adds no value to justify the effort of doing so.
+
 
 
 
