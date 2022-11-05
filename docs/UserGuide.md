@@ -18,7 +18,7 @@ title: User Guide
 ## 1. Introduction
 
 ### 1.1. What is Gim?
-Gim is a desktop app for **managing gym exercises**. Gim allows you to **keep track of your progress** and **craft personalised workout plans**. Gim commands are inspired by those of [Vim](#9-glossary-of-terminologies). Gim is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+Gim is a desktop app for **managing gym exercises**. Gim allows you to **keep track of your progress** and **craft personalised workout plans**. Gim commands are inspired by those of [Vim](#8-glossary-of-terminologies). Gim is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ### 1.2. Who is this guide for?
 Are you a gym-goer looking to use Gim to track your exercises? This user guide will get you started in no time and help you navigate through Gim's features. For a quick start guide, head over to [Getting Started](#3-getting-started).
@@ -31,10 +31,9 @@ Gim uses a Command Line Interface (CLI), which may be new to some users. If you 
 * Refer to our [Getting Started](#3-getting-started) guide to learn how to setup Gim.
 * Refer to our [GUI Orientation](#4-gui-orientation) to better orientate yourself around the GUI.
 * Refer to our [Commands](#5-commands) section to learn in detail the different features and commands available in Gim.
-* Refer to our [Tips and Tricks](#6-tips-and-tricks) for some tips and tricks specific to Gim.
-* Refer to our [FAQ](#7-faq) to read common queries that new users may have.
-* Refer to our [Command Summary](#8-command-summary) to have a quick overview of the different commands and their respective formats.
-* Refer to our [Glossary of Terminologies](#9-glossary-of-terminologies) to learn key terms that are used in this User Guide.
+* Refer to our [FAQ](#6-faq) to read common queries that new users may have.
+* Refer to our [Command Summary](#7-command-summary) to have a quick overview of the different commands and their respective formats.
+* Refer to our [Glossary of Terminologies](#8-glossary-of-terminologies) to learn key terms that are used in this User Guide.
 
 ### 2.1 Useful Notations
 While exploring Gim's features with this user guide, do take note of these symbols used in the user guide and what they represent.
@@ -66,6 +65,8 @@ While exploring Gim's features with this user guide, do take note of these symbo
 
 6. Refer to the [Commands Section](#5-commands) below for details of each command.
 
+<a href="#top">Back To Top</a>
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -79,7 +80,7 @@ The `Command Box` is where you can input your commands.
 
 ### 4.2. Exercise List
 
-The `Exercise List` displays exercise entries. When the application is first launched, the `Exercise List` displays all exercise entries in the system, arranged by the order in which they were added. Whenever you issue commands that may truncate/reorder the `Exercise List`, they will **only act upon the entries that are currently displayed in the `Exercise List`**.
+The `Exercise List` displays exercise entries. When the application is first launched, the `Exercise List` displays all exercise entries in the system, arranged by the order in which they were added. Whenever you issue commands that may truncate/reorder the `Exercise List`, they will **only act upon the entries that are currently displayed in the** `Exercise List`.
 
 ### 4.3. Result Display
 
@@ -90,30 +91,28 @@ The `Result Display Window` displays feedback after executing a command. This in
 The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered in the system.
 <br><br>
 
-Notice there are two counts under the list. 
+Notice that there are two counts. 
 
-* **Count #1**: Displays the number of exercise names registered in the system (list circled in green).  
-* **Count #2**: Displays the total number of exercise entries in the system, inclusive of duplicates. 
+* **Count #1**: Displays the number of exercise names registered in the system (i.e. does not include duplicates)   
+* **Count #2**: Displays the total number of exercise entries in the system (i.e. includes duplicates)
 
-There are multiple "Squat" entries in the picture. They are registered under the same name "Squat" by the system, which is reflected by the first count. The second count includes duplicates and hence, it counts each exercise entry individually even if they are registered under the same name.
+For illustrative purposes, let us refer to the image below. There are multiple Squat entries in the system registered under the same name Squat, which is reflected by **Count #1**. On the other hand, because **Count #2** includes duplicates, it will count both "Squat" entries individually even if they are registered under the same name.
+
+![RecognisedList](images/RecognisedExercisesOrientation.png)
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** Use the list circled in green to identify any mispellings in your exercise entries!<br><br>
 
-E.g. If you see an entry for "Squatz" in the green list when you normally name your exercise "Squat", it means you have at least one entry that is spelled wrongly.
+E.g. If you see an entry for Squatz in the green list when you normally name your exercise Squat, it means you may have an incorrectly spelled entry. 
 </div> 
-
-![RecognisedList](images/RecognisedExercisesOrientation.png)
-
-**Adding and Deleting from the Exercise Name List**
-
-The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised Exercise Name List is automatically updated whenever you add or delete an exercise entry from the system.
 
 <div id="names" markdown="span" class="alert alert-danger">:exclamation: **Caution:**<br>
 Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br>
-i.e. "Bench Press", "BENCH PRESS", "BenchPress" will be logged as the same exercise for your convenience in adding.<br><br>
+i.e. Bench Press, BENCH PRESS, BenchPress will be logged as the same exercise for your convenience in adding.<br><br>
 However, the first time you add an exercise with an unrecognised name, the Recognised Exercise Name List will save the form you have input. Choose wisely!
 </div>
+
+<a href="#top">Back To Top</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -126,22 +125,22 @@ However, the first time you add an exercise with an unrecognised name, the Recog
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `n/NAME w/WEIGHT`, `NAME` and `WEIGHT` are parameters which can be used as `n/Squat w/100`.
+  E.g. In `n/NAME w/WEIGHT`, `NAME` and `WEIGHT` are parameters which can be used as `n/Squat w/100`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [d/DATE]` can be used as `n/Deadlift d/27-10-22` or as `n/Deadlift`.
+  E.g. `n/NAME [d/DATE]` can be used as `n/Deadlift d/27-10-2022` or as `n/Deadlift`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[n/NAME]…` can be used as ` ` (i.e. 0 times), `n/Squat` (i.e. 1 time), `n/Squat n/Deadlift` (i.e. 2 times) etc.
+  E.g. `[n/NAME]…` can be used as ` ` (i.e. 0 times), `n/Squat` (i.e. 1 time), `n/Squat n/Deadlift` (i.e. 2 times) etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME w/WEIGHT`, `w/WEIGHT n/NAME` is also acceptable.
+  E.g. If the command specifies `n/NAME w/WEIGHT`, `w/WEIGHT n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `n/Squat n/Deadlift`, only `n/Deadlift` will be taken.
+  E.g. If you specify `n/Squat n/Deadlift`, only `n/Deadlift` will be taken.
 
 * Redundant inputs for commands that do not take in additional parameters (such as `:list`, `:sort`, `:help` `:wq`) will be ignored.<br>
-  e.g. if the command specifies `:help 123`, it will be interpreted as `help`.
+  E.g. If you specify `:help 123`, it will be interpreted as `:help`.
 
 </div>
 
@@ -160,10 +159,14 @@ If an exercise (identified by their names) is added for the first time, it is au
 
 Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** If `d/DATE` field is left empty, the system will store the exercise with the current date.
+</div> 
+
 Parameter constraints:
 * The name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**.
   * Examples: Squat, Bench press, Deadlift...
-* The weight **must be a positive decimal number, up to 3 digits for the whole number and up to 2 digits for the decimal place**.
+* The weight **must be a non-negative decimal number, up to 3 digits for the whole number and up to 2 digits for the decimal place**.
   * Examples: 0, 0.55, 35, 100.1, 200.00...
 * The sets **must be a positive integer, up to 3 digits, with no leading zeroes**.
   * Examples: 1, 2, 3, 10, 100...
@@ -171,23 +174,22 @@ Parameter constraints:
   * Examples: 1, 2, 3, 10, 100...
 * The date **must be a valid date**.
   * Accepted formats:
-    * DAY/MONTH/YEAR
-    * YEAR/MONTH/DAY
-    * DAY-MONTH-YEAR
-    * YEAR-MONTH-DAY
-    * DAY MONTH YEAR
-    * YEAR MONTH DAY
-  * DAY: 1 or 2 valid digits allowed
-  * MONTH: 1 or 2 valid digits allowed
-  * YEAR: 4 valid digits allowed
-  * Examples: 27/10/2022, 27-10-2022...
-  * `d/DATE` field is left optional, will store exercise with current date if no date field is found
+    * day/month/year
+    * year/month/day
+    * day-month-year
+    * year-month-day
+    * day month year
+    * year month day
+  * The day **must be a positive integer, up to 2 digits**. 
+  * The month **must be a positive integer, up to 2 digits**.
+  * The year **must be a positive integer, with exactly 4 digits**.
+  * Examples: 27/10/2022, 01-10-2022...
 
 <div style="page-break-after: always;"></div>
 
 Examples:
-* `:add n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps for today's date.
-* `:add n/Deadlift w/60 s/1 r/1 d/27/01/2022` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th January 2022.
+* `:add n/Squat w/30 s/3 r/5` Adds a Squat exercise of weight 30kg for 3 sets of 5 reps for today's date.
+* `:add n/Deadlift w/60 s/1 r/1 d/27/01/2022` Adds a Deadlift exercise of weight 60kg for 1 set of 1 rep for 27th January 2022.
 
 ![AddCommand](images/AddCommand.png)
 
@@ -195,7 +197,7 @@ Examples:
 
 ### 5.2. Deleting an exercise : `:del`
 
-Deletes a particular exercise from our list. The index refers to the index number shown in the displayed exercise list.
+Deletes a particular exercise from our list. The index refers to the index number shown in the current [Exercise List](#42-exercise-list).
 
 <div markdown="block" class="alert alert-info">
 
@@ -207,7 +209,8 @@ If the deleted exercise was the last exercise with the same name, then the exerc
 Format: `:del INDEX`
 
 Parameter constraints:
-* The index **must be a positive integer** 1, 2, 3, ...
+* The index **must be a positive integer**.
+  * Example: 1, 2, 3, ...
 
 Example:
 * `:del 9` Deletes an exercise at index 9 of the list.
@@ -219,7 +222,7 @@ Clears the saved exercises and resets the data in the system.
 Format: `:clear confirm/`
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:** <br>
-Redundant inputs (before and after the `confirm/` flag) will be ignored. <br> e.g. if the command specifies `:clear abc confirm/ 123`, it will be interpreted as `:clear confirm/`.
+Redundant inputs (before and after the `confirm/` flag) will be ignored. <br> E.g. If the command specifies `:clear abc confirm/ 123`, it will be interpreted as `:clear confirm/`.
 </div>
 
 Example:
@@ -281,6 +284,17 @@ Shows all exercises, among exercises in the current [Exercise List](#42-exercise
 Format (1) : `:range start/START_DATE end/END_DATE`
 
 Parameter constraints:
+* The START_DATE and END_DATE **must be a valid date**.
+  * Accepted formats:
+    * day/month/year
+    * year/month/day
+    * day-month-year
+    * year-month-day
+    * day month year
+    * year month day
+  * The day **must be a positive integer, up to 2 digits**.
+  * The month **must be a positive integer, up to 2 digits**.
+  * The year **must be a positive integer, with exactly 4 digits**.
 * Start date should be before end date. Otherwise, no exercises will be displayed.
 
 Example:
@@ -293,7 +307,7 @@ Example:
 Format (2) : `:range last/NUMBER_OF_DAYS`
 
 Parameter constraints:
-* Number of days **can only take non-negative integer values**, up to 5 digits.
+* Number of days **can only take non-negative integer values** up to 5 digits, excluding leading zeroes.
 
 Example:
 * `:range last/3` Shows the exercises done today and the last 3 days.
@@ -309,7 +323,7 @@ Shows a list of all exercises.
 <div markdown="block" class="alert alert-warning">
 
 **:thinking: When should I use this?**<br>
-I should use this when I want to reset my exercise list view back to the original.
+I should use this when I want to reset my Exercise List back to the default state (before any sorting/filtering commands were used).
 
 </div>
 
@@ -329,7 +343,7 @@ If you want to view your squat progression over the past week, here's a nifty se
 
 ### 5.8. Listing Personal Records (PR): `:pr`
 
-Finds the [Personal Record](#9-glossary-of-terminologies) of certain exercises in the exercise tracker.
+Finds the [Personal Record](#8-glossary-of-terminologies) of certain exercises in the exercise tracker.
 
 <div markdown="block" class="alert alert-info">
 
@@ -340,12 +354,12 @@ Finds the [Personal Record](#9-glossary-of-terminologies) of certain exercises i
 Format (1): `:pr n/NAME [n/NAME]...`
 
 Parameter constraints:
-* Name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**
+* Name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**.
   * Examples: Squat, Bench press, Deadlift...
 
 Examples:
-* `:pr n/Squat` Lists the personal record for the 'Squat' exercise (if any).
-* `:pr n/Deadlift n/Bench press n/Squat` Lists the personal records for the 'Deadlift', 'Bench press' and 'Squat' exercises (if any).
+* `:pr n/Squat` Lists the personal record for the Squat exercise (if found).
+* `:pr n/Deadlift n/Bench press n/Squat` Lists the personal records for the Deadlift, Bench press and Squat exercises (if found).
 
 ![PrCommandExample1](images/PrCommandExample1.png)
 
@@ -354,7 +368,7 @@ Examples:
 Format (2): `:pr all/`
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:** <br>
-Redundant inputs (before and after the `all/` flag) will be ignored. <br> e.g. if the command specifies `:pr abc all/ 123`, it will be interpreted as `:pr all/`.
+Redundant inputs (before and after the `all/` flag) will be ignored. <br> E.g. If the command specifies `:pr abc all/ 123`, it will be interpreted as `:pr all/`.
 </div>
 
 Example:
@@ -369,7 +383,7 @@ Generates a sample workout suggestion based on existing personal records of the 
 <div markdown="block" class="alert alert-warning">
 
 **:thinking: When should I use this?**<br>
-I should use this when I want to get a quick workout based on how I am feeling.
+I should use this when I want to get a quick workout plan based on how I am feeling.
 
 </div>
 
@@ -384,7 +398,8 @@ I should use this when I want to get a quick workout based on how I am feeling.
 Format (1): `:gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL`
 
 Parameter constraints:
-* The index **must be a positive integer** 1, 2, 3, ...
+* The index **must be a positive integer**.
+  * Example: 1, 2, 3, ...
 * The difficulty level must be supported; currently supported are: easy, medium, hard.
 
 Example:
@@ -399,7 +414,7 @@ Format (2): `:gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL`
 
 Parameter constraints:
 * Name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**.
-* The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}.
+* The difficulty level must be one that is supported; currently supported are: easy, medium, hard.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:** <br>
 Redundant inputs (before the first `n/` flag) will be ignored.<br>
@@ -408,7 +423,7 @@ E.g. if the command specifies `:gen 1,2,3 n/Squat level/easy`, it will be interp
 
 Example:
 * `:gen n/Squat n/Squat level/easy` Generates a sample workout for Squat; this command is equivalent to `:gen n/Squat level/easy` since both exercise names are the same.
-* `:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift.
+* `:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift (if found).
 
 ![GenerateCommandNameExample1](images/GenerateCommandNameExample1.png)
 
@@ -416,7 +431,7 @@ Example:
 
 ### 5.10. Viewing help : `:help`
 
-Access the help menu, containing a brief summary of the commands supported. The help menu also provides a link to the user guide.
+Accesses the help menu. The help menu contains a brief summary of the commands supported and provides a link to the user guide.
 
 Format: `:help`
 
@@ -435,15 +450,17 @@ Format: `:wq`
 
 </div>
 
+<a href="#top">Back To Top</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
 ## 6. FAQ
 
-**Q**: When should I use the `:list` command?
+**Q**: Do I have to update the [Recognised Exercise Name List Window](#44-recognised-exercise-name-list) manually?
 <br>
-**A**: The `:list` command resets the display of the exercise list, displaying all the exercise entries in the system (in the order the entries were input in the system). This can be used after commands, such as `:filter` or `:range` are used to change the display list.
+**A**: You do not have to update it manually as the Recognised Exercise Name List is already updated automatically whenever you add or delete an exercise entry from the system.
 
 **Q**: Can I change the name of my uniquely registered exercise?
 <br>
@@ -461,7 +478,11 @@ Format: `:wq`
 
 **Q**: Why is `:filter`, `:range` or `:sort` not showing the "correct" list even though I have input valid parameters?
 <br>
-**A**: The three commands works on the exercises in the current [Exercise List](#42-exercise-list). If your current Exercise List has been altered by list-changing commands such as `:range` or `:filter`, the commands will act on the current Exercise List rather than the full list comprising all exercises in the system. If you would like to operate on the full list instead, try executing the command `:list` to display the full list before running the commands again.
+**A**: The three commands works on the exercises in the current [Exercise List](#42-exercise-list). If your current Exercise List has been altered by list-changing commands such as `:range` or `:filter`, the commands will act on the current Exercise List rather than the full list comprising all exercises in the system.
+
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** If you would like to operate on the full list instead, try executing the command `:list` to display the full list before running the commands again.
+</div> 
 
 **Q**: How is data stored in Gim?
 <br>
@@ -470,6 +491,9 @@ Format: `:wq`
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Gim will discard all data and start with an empty data file at the next run.
 </div>
+
+<a href="#top">Back To Top</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -493,6 +517,8 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 | **Help menu**                   | :help                                          | :help                                     |
 | **Exit program**                | :wq                                            | :wq                                       |
 
+<a href="#top">Back To Top</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -500,6 +526,7 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 ## 8. Glossary of Terminologies
 * **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
 * **Parameters**: Inputs for commands that you come up with.
+* **Index** : Number associated to an Exercise in the Exercise List. 
 * **Exercise** : Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
 * **Reps** : Number of times you perform a specific exercise.
 * **Sets** : Number of cycles of reps that you complete.
