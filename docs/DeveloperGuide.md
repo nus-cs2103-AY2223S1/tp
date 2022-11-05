@@ -172,9 +172,9 @@ How the parsing works:
   a `Command` object.
 * When parsing a `get` command, the `AddressBookParser` class creates a `GetCommandParser` to parse the prefix of the 
   `get` command (e.g., `/hw`). If the `get` command only requires a prefix (e.g., `get /inp` & `get /outp`), the 
-  respective `GetXYZCommand` object is created. If the `get` command requires parameters (e.g., `get /hw North`), the
-  respective `GetXYZCommandParser` is created to parse the parameters and create the appropriate `GetXYZCommand` to be
-  returned.
+  respective `GetXYZCommand` object is created. If the `get` command requires parameters (e.g., `get /hw North`), the 
+  prefix is parsed accordingly within the `GetCommandParser` before the respective `GetXYZCommandParser` is created to
+  parse the parameters and create the appropriate `GetXYZCommand` to be returned.
 * All `XYZCommandParser` and `GetXYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) 
   inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
@@ -378,7 +378,7 @@ Getting patients with an appointment on a specified date involves the following 
 1. prefix `/appton` is matched using an instance of `GetCommandParser`
 2. a new `GetAppointmentByDateCommandParser` instance is created and parses the user input (specifically the date inputted)
 3. a `GetAppointmentByDateCommand` instance containing the date of the appointment is created and returned
-4. the `GetAppointmentByDateCommand` command is executed, accessing the list of `PastAppointment` of the specified patient
+4. the `GetAppointmentByDateCommand` is executed, accessing the list of `PastAppointment` of the specified patient
    to be returned in a `CommandResult`
 5. the model is updated such that the *filtered* list only displays patients who have an appointment on the specified 
    date.
