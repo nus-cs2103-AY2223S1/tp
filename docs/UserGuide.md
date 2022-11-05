@@ -66,13 +66,13 @@ You can also refer to the [Glossary](#glossary) section for definitions of commo
 
 In order to help you pay attention, we have used some icons along with highlighted text throughout this guide.
 
-| Icon                                                                                             | Meaning                                       |
-|--------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| <div markdown="block" class="alert alert-primary"> <br/> **:memo: Note** <br/> </div>            | You should pay attention to this.             |
-| <div markdown="block" class="alert alert-success"> <br/> **:bulb: Tip** <br/> </div>             | You might find this useful.                   |
-| <div markdown="block" class="alert alert-info"> <br/> **:information_source: Info** <br/> </div> | You can get additional information from this. |
-| <div markdown="block" class="alert alert-warning"> <br/> **:warning: Warning** <br/> </div>      | You should be cautious about this.            |
-| <div markdown="block" class="alert alert-danger"> <br/> **:rotating_light: Danger** <br/> </div> | You should pay **extra** attention to this.   |
+| Icon                                                                         | Meaning                                       |
+|------------------------------------------------------------------------------|-----------------------------------------------|
+| <div markdown="span" class="alert alert-primary"> **:memo: Note**            | You should pay attention to this.             |
+| <div markdown="span" class="alert alert-success"> **:bulb: Tip**             | You might find this useful.                   |
+| <div markdown="span" class="alert alert-info"> **:information_source: Info** | You can get additional information from this. |
+| <div markdown="span" class="alert alert-warning"> **:warning: Warning**      | You should be cautious about this.            |
+| <div markdown="span" class="alert alert-danger"> **:rotating_light: Danger** | You should pay **extra** attention to this.   |
 
 ### 4.3. Formatting and Notation
 
@@ -80,7 +80,7 @@ In case you are wondering why certain texts are styled differently, here are the
 
 1. Words in big size, numbered and in purple color are section titles and subtitles.
 2. **Words in bold** are phrases that we want you to read.
-3. [Links in blue]() will navigate you to place where you can find more explanation about the words.
+3. [Links in blue](#) will navigate you to place where you can find more explanation about the words.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -92,13 +92,12 @@ In case you are wondering why certain texts are styled differently, here are the
 1. Ensure you have [Java 11](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) installed on your computer.
 2. Download the latest `SoConnect.jar` file from our [release page](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases).
 3. Copy the file to an empty folder you want to use as the _home folder_ for SoConnect. You can find more on how to do that [here](https://www.digitaltrends.com/computing/how-to-create-folder-on-desktop/#:~:text=Create%20a%20folder%20on%20a%20Windows%20desktop,-Creating%20a%20folder&text=Step%201%3A%20Right%2Dclick%20a,a%20name%20of%20your%20own.).
+4. Double-click the file to start SoConnect. You can head over to the [Quickstart](#6-quickstart) section for a guided tutorial on how to use the app.
 
 <div markdown="block" class="alert alert-primary">
-**:memo: Note** <br/> 
+**:memo: Note** <br/> <br/> 
 Empty folder is needed because all additional storage data and files will be saved in this folder.
-</div> 
-
-4. Double-click the file to start SoConnect.
+</div>
 
 ### 5.2. Operating Systems
 
@@ -114,26 +113,19 @@ You only need to download [`SoConnect.jar`](https://github.com/AY2223S1-CS2103T-
 
 ## 6. Quickstart
 
+Upon completing this section, you should be able to explore SoConnect on your own. We will start by explaining [different parts of the GUI](#61-layout), [key definitions](#62-key-definitions), [command format](#63-command-format), as well as [trying out simple commands](#64-how-to-use-the-cli).
 
+### 6.1. Layout
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+### 6.2. Key Definitions
 
-   * **`list`** : Lists all contacts.
+### 6.3. Command Format
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to your SoConnect.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits SoConnect.
-
-1. Refer to the [Features](#features) below for details of each command.
+### 6.4. How to Use the CLI
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Commands
+## 7. Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -160,9 +152,43 @@ You only need to download [`SoConnect.jar`](https://github.com/AY2223S1-CS2103T-
 
 </div>
 
-## Contact Management Features
+### 7.1. General Commands
 
-### Adding a contact: `add`
+#### 7.1.1. Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+#### 7.1.2. Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+#### 7.1.3. Saving the data
+
+SoConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+#### 7.1.4. Editing the data file
+
+SoConnect contacts data are saved as a JSON file `[JAR file location]/data/soconnect.json`.<br>
+SoConnect todos data are saved as a JSON file `[JAR file location]/data/todolist.json`.<br>
+Advanced users are welcome to update data directly by editing these data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, SoConnect will discard all data and start with an empty data file at the next run.
+</div>
+
+#### 7.1.5. Archiving data files `[coming in v2.0]`
+
+<br>
+
+### 7.2. Contact Management Commands
+
+#### 7.2.1. Adding a contact: `add`
 
 Adds a contact to your SoConnect.
 
@@ -175,7 +201,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-### Editing a contact : `edit`
+#### 7.2.2. Editing a contact : `edit`
 
 Edits an existing contact in your SoConnect.
 
@@ -189,13 +215,13 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the 2nd contact to be `Betsy Crower`.
 
-### Listing all contacts : `list`
+#### 7.2.3. Listing all contacts : `list`
 
 Shows a list of all contacts in your SoConnect.
 
 Format: `list`
 
-### Searching for a contact: `search`
+#### 7.2.4. Searching for a contact: `search`
 
 Search for contacts using partial information.
 
@@ -215,7 +241,7 @@ Example:
 * `search or t/friends t/family` returns all contacts tagged with either friends or family.
 * `search n/Johm` is supposed to return an empty result since there is no contact named `Johm` in the list of contacts, but now it will return contacts with names similar to that. For example, `John`.
 
-### Autocompleting search: `search`
+Autocompleting search: `search`
 
 Displays a list of search queries based on the current search query with the last parameter completed. The completed parameter will depend on the contacts that match the current search query. User can choose one of the search queries and perform the searching without having to type the full parameter.
 
@@ -234,7 +260,7 @@ Example:
 * `search or n/John a/N` displays a list of search queries containing `search and n/John a/N`, `search and n/John a/NUS`, `search and n/John a/NYC` if SoConnect has contacts with address `NTU` and `NYC`, does not have to care about the name in the contact since it is `or` condition.
 * `search or n/John a/N` displays nothing if SoConnect does not have contacts with address starts with `N`.
 
-### Sorting contacts : `sort`
+#### 7.2.5. Sorting contacts : `sort`
 
 Sorts the list of contacts displayed by 1 or more parameter(s) chosen by you.
 
@@ -269,7 +295,7 @@ Example:
 * `sort t/!friend` sorts by the `friend` tag in reverse. (e.g. `Mike` appears before `David` who has the `friend` tag)
 * `sort t/friend n/` sorts by the `friend` tag first, followed by names. (e.g. `David` and `Fred` who have the `friend` tag appear before `Mike`, `David` appears before `Fred`)
 
-### Deleting a contact : `delete`
+#### 7.2.6. Deleting a contact : `delete`
 
 Deletes the specified contact from your SoConnect.
 
@@ -281,15 +307,13 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in your SoConnect.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
-### Clearing all contacts : `clear`
+#### 7.2.7. Clearing all contacts : `clear`
 
 Clears all contacts from your SoConnect.
 
 Format: `clear`
 
-## Tag Management Features
-
-### Creating a Tag: `tag create`
+#### 7.2.8. Creating a Tag: `tag create`
 
 Creates a new tag
 
@@ -298,7 +322,7 @@ Format: `tag create t/TAG`
 Example:
 * `tag create t/family` creates a `family` tag.
 
-### Deleting a Tag: `tag delete`
+#### 7.2.9. Deleting a Tag: `tag delete`
 
 Deletes a tag.
 
@@ -311,7 +335,7 @@ Format: `tag delete t/TAG`
 Example:
 * `tag delete t/family` deletes the `family` tag.
 
-### Editing a Tag: `tag edit`
+#### 7.2.10. Editing a Tag: `tag edit`
 
 Renames an existing tag.
 
@@ -322,7 +346,7 @@ Format: `tag edit t/TAG1 t/ TAG2`
 Example:
 * `tag edit t/friend t/bestFriend` changes the friend tag to a bestFriend tag.
 
-### Adding a Tag to a Contact: `tag add`
+#### 7.2.11. Adding a Tag to a Contact: `tag add`
 
 Adds an existing tag to an existing contact.
 * `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
@@ -342,7 +366,7 @@ A contact can have any number of tags. Add as many as you want.
 Example:
 * `tag add 1 t/friend` adds the friend tag to the first contact shown in the list.
 
-### Removing a Tag from a Contact: `tag remove`
+#### 7.2.12. Removing a Tag from a Contact: `tag remove`
 
 Removes an existing tag from an existing contact.
 * `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
@@ -354,9 +378,8 @@ Format: `tag remove INDEX t/TAG`
 Example:
 * `tag remove 1 t/friend` removes the friend tag from the first contact shown in the list.
 
-## Customisation Features
 
-### Customising order of details: `customise order`
+#### 7.2.13. Customising order of details: `customise order`
 
 Customise the order of information shown in all contacts shown.
 
@@ -371,7 +394,7 @@ Example:
 * `customise order a/ e/ p/` The application will show address first, followed by email, phone number, then tags.
 * `customise order a/` The application will show address first. The rest of the information will follow the default order. Therefore, address will be followed by tags, phone number and then email.
 
-### Hiding contact details: `customise hide`
+#### 7.2.14. Hiding contact details: `customise hide`
 
 Hide certain information of all contacts displayed.
 
@@ -385,7 +408,7 @@ Example:
 * `customise hide e/` The application no longer shows emails in the list of contacts.
 * `customise hide p/ t/` The application no longer shows phone numbers and tags in the list of contacts.
 
-### Showing contact details: `customise show`
+#### 7.2.15. Showing contact details: `customise show`
 
 Show certain information of all contacts displayed.
 
@@ -400,7 +423,9 @@ Example:
 * `customise show a/` The application now shows addresses in the list of contacts.
 * `customise show p/ t/` The application now shows phone numbers and tags in the list of contacts.
 
-## Todo Management Features
+<br>
+
+### 7.3. Todo Management Commands
 
 A [todo](#glossary-todo) is a task that needs completing. A todo consists of 
 1. a description
@@ -416,7 +441,7 @@ A [todo](#glossary-todo) is a task that needs completing. A todo consists of
 
 </div>
 
-### Adding a todo: `todo add`
+#### 7.3.1. Adding a todo: `todo add`
 
 Adds a todo to your SoConnect.
 
@@ -429,7 +454,7 @@ Examples:
 * `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`
 * `todo add d/Prepare slides for OP2 date/25-03-2022 pr/high t/CS2101 t/CS2103T`
 
-### Editing a todo : `todo edit`
+#### 7.3.2. Editing a todo : `todo edit`
 
 Edits an existing todo in your SoConnect.
 
@@ -445,7 +470,7 @@ Examples:
 *  `todo edit 1 d/Read notes for ST2334` Edits the description of the 1st todo to be `Read notes for ST2334`.
 *  `todo edit 1 pr/medium t/ST2334` Edits the priority of the 2nd contact to be `medium` and changes its tags to just `ST2334`.
 
-### Deleting a todo : `todo delete`
+#### 7.3.3. Deleting a todo : `todo delete`
 
 Deletes the specified todo from your SoConnect.
 
@@ -456,13 +481,13 @@ Format: `delete INDEX`
 Examples:
 * `todo show` followed by `todo delete 2` deletes the 2nd todo shown in your SoConnect.
 
-### Clearing all todos : `todo clear`
+#### 7.3.4. Clearing all todos : `todo clear`
 
 Clears all todos from your SoConnect.
 
 Format: `todo clear`
 
-### Filtering todos shown : `todo show`
+#### 7.3.5. Filtering todos shown : `todo show`
 
 Shows a filtered list of todos in your SoConnect.
 
@@ -481,48 +506,16 @@ Examples:
 * `todo show pr/high`: Shows all todos with the priority `high`.
 * `todo show t/friends`: Shows all todos with the tag `friends`.
 
-## General Features
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-SoConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-SoConnect contacts data are saved as a JSON file `[JAR file location]/data/soconnect.json`.<br>
-SoConnect todos data are saved as a JSON file `[JAR file location]/data/todolist.json`.<br>
-Advanced users are welcome to update data directly by editing these data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, SoConnect will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
 --------------------------------------------------------------------------------------------------------------------
 
-# FAQ
+## 8. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SoConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Command summary
+## 9. Command summary
 
 | Action          | Format, Examples                                                                                                                                                                                                     |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -548,34 +541,34 @@ If your changes to the data file makes its format invalid, SoConnect will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
+## 10. Glossary
 
-### Autocomplete
+### 10.1. Autocomplete
 A feature that shows a list of completed words or strings without the user needing to type them in full.
 
-### CLI
+### 10.2. CLI
 A text-based user interface used to run programs.
 
-### GUI
+### 10.3. GUI
 A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
 
-### JavaFX
+### 10.4. JavaFX
 A Java library used to develop client applications.
 
-### kLoC
+### 10.5. kLoC
 Stands for thousands of lines of code.
 
-### Mainstream OS
+### 10.6. Mainstream OS
 Windows, Linux, Unix, OS-X.
 
-### NUS
+### 10.7. NUS
 National University of Singapore.
 
-### Private Contact Detail
+### 10.8. Private Contact Detail
 A contact detail that is not meant to be shared with others.
 
-### SoC
+### 10.9. SoC
 School of Computing, a computing school in NUS.
 
-### Todo
+### 10.10. Todo
 A task that the user needs to complete.
