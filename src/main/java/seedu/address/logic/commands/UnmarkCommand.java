@@ -48,7 +48,7 @@ public class UnmarkCommand extends Command {
         Task markedTask = createUnmarkedTask(taskToMark);
         model.setTask(taskToMark, markedTask);
 
-        return new CommandResult(String.format(MESSAGE_MARK_AS_NOT_DONE_SUCCESS, taskToMark));
+        return new CommandResult(String.format(MESSAGE_MARK_AS_NOT_DONE_SUCCESS, markedTask));
     }
 
     /**
