@@ -57,4 +57,5 @@ Given below are my contributions to the project.
   * Guided coding architecture for additional Module classes
   * Guided how the AB3 storage system works
   * Guided potential Timetable UI
+  * Guided bug fix for NextSem command
   * Reported bugs and suggestions for other team's in the class [FinBook](https://github.com/SilasTSL/ped/issues)

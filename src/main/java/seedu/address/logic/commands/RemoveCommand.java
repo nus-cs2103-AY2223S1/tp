@@ -39,6 +39,7 @@ public class RemoveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.commitAddressBook();
         return new CommandResult("");
     }
 }

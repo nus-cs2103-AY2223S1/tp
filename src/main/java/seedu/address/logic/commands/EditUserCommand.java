@@ -72,8 +72,10 @@ public class EditUserCommand extends EditCommand {
         Set<PreviousModule> previousModules = userToEdit.getPrevModules();
         Set<PlannedModule> plannedModules = userToEdit.getPlanModules();
 
-        return new ExistingUser(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGithub,
-                currentModules, previousModules, plannedModules);
+        ExistingUser updatedUser = new ExistingUser(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedGithub, currentModules, previousModules, plannedModules);
+        updatedUser.setLessons(userToEdit.getLessons());
+        return updatedUser;
     }
 
     @Override

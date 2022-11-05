@@ -36,7 +36,7 @@ public class ExistingUser extends User {
     private final Set<CurrentModule> currModules = new HashSet<>();
     private final Set<PreviousModule> prevModules = new HashSet<>();
     private final Set<PlannedModule> planModules = new HashSet<>();
-    private final Set<Lesson> lessons = new HashSet<>();
+    private Set<Lesson> lessons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -172,6 +172,10 @@ public class ExistingUser extends User {
 
     public Set<Lesson> getLessons() {
         return Collections.unmodifiableSet(lessons);
+    }
+
+    public void setLessons(Set<Lesson> lessons) {
+        this.lessons = lessons;
     }
 
     /**
