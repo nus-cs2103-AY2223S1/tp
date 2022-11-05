@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Set up repository
         uses: actions/checkout@main
+      - name: Set up PATH
+        run: echo "$HOME/.gem/ruby/2.7.0/bin" >> $GITHUB_PATH
       - name: Set up server dependencies
         working-directory: ${{ github.workspace }}/docs
         run: gem install --user-install bundler && bundle install
