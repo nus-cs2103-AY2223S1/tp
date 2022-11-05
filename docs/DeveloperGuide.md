@@ -171,6 +171,7 @@ An `Exercise` contains the following attributes,
 5. a `Date`, which represent the date an exercise was performed
 
 #### **Date Implementation**
+<img src="images/DateClassDiagram.png" width="450" />
 
 The default format for date follows `dd/MM/uuuu`. `uuuu` is chosen over `yyyy` because this avoids unexpected exceptions
 under strict parsing by the Java API `DateTimeFormatter`, such as those exceptions related to year-of-era.
@@ -244,34 +245,23 @@ The following sequence diagram shows how the sort command is executed.
 
 #### **Implementation**
 
-`ExerciseTrackerParser` will call the `parse` method in `RangeCommandParser`. `ArgumentTokenizer` will
-create an `ArgumentMultimap` containing the arguments of the range command.
-
-`RangeCommandParser` will first determine whether the command follows variation one or variation two.
-Within `RangeCommandParser`, the method `parseArguments` will be called. Based on the arguments in the `ArgumentMultimap`,
-this method will return an enum type `Variation` - either `Variation.ONE` or `Variation.TWO` representing the two range command
-variations respectively.
-
-Back in the `parse` method, we will call the method `getVariationOne` if we previously obtained `Variation.ONE`. Otherwise,
-the method `getVariationTwo` will be called if we previously obtained `Variation.TWO`.
-
-Within the `getVariationOne` method, we obtain the start date and end date which are the two arguments
-expected to be inside the `ArgumentMultimap` passed in to this method. The method `parseDate` in `ParserUtil` will be
-called to obtain the `Date` objects for the start and end dates. These two resulting `Date` objects will be
-be used to create the `DateWithinRangePredicate` object that is passed in to the constructor of `RangeCommand`.
-The method will finally return `RangeCommand`.
-
-Within the `getVariationTwo` method, we obtain the number of days which is the only argument expected to be inside the
-`ArgumentMultimap` passed into this method. The method will return a `RangeCommand` object created with a
-`DateWithinRangePredicate` that has a start date based on the number of days from the argument and an end date of today.
-
-Then, the `execute()` method of the resulting `RangeCommand` object will be called, returning a
+* `ExerciseTrackerParser` calls `RangeCommandParser#parse`.
+* `RangeCommandParser#parseArguments` will return an enum type `Variation` according to the arguments in the
+`ArgumentMultimap` created.
+* When we obtain `Variation.ONE`, `RangeCommandParser#getVariationOne` will be called. 
+  * In this case, the arguments expected to be inside the `ArgumentMultimap` will be the start date and
+    end date.
+* When we obtain `Variation.TWO`, `RangeCommandParser#getVariationTwo` will be called.
+    * In this case, we expect the number of days to be the only argument inside `ArgumentMultimap`.
+* `ParserUtil#parseDate` will be called to obtain the `Date` object(s).
+* `RangeCommand` is returned.
+* Then, the `execute()` method of the resulting `RangeCommand` object will be called, returning a
 `CommandResult` object with the appropriate message.
 
 #### Execution
 
-When the command `:range start/START_DATE end/END_DATE` is entered, the `Ui` sends the command to `Logic`.
-`LogicManager` parses and identifies the `:range` command that was entered, and creates an instance of it.
+When the command `:range start/START_DATE end/END_DATE` or `:range last/NUMBER_OF_DAYS` is entered, the `Ui` sends 
+the command to `Logic`. `LogicManager` parses and identifies the `:range` command that was entered, and creates an instance of it.
 
 `LogicManager` then executes the command by calling `execute()` in `RangeCommand`.
 

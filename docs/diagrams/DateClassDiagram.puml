@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+
+Class Date
+Class FormatterList
+Class RegexList
+
+}
+
+Date --> "1" FormatterList: uses >
+Date --> "1" RegexList: uses >
+
+
+@enduml
