@@ -12,7 +12,7 @@ idENTify - ENT doctors treat patients who often have chronic conditions and our 
 Given below are my contributions to the project.
 
 
-Code contributed: 
+Code contributed:
 - [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicholastyd&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 
@@ -20,7 +20,7 @@ Enhancements implemented:
 - `mark` command: Allows users to mark appointments as completed.
 - `unmark` command: Allows users to unmark appointments as incomplete.
 - Improved `list` command to list both patients and appointments simutaneously.
-- Improved `find` command: 
+- Improved `find` command:
     - Instead of being only able to search using the patient's name, the user is now able to find results using a patient's phones, email, address, tags and/or an appointment's reason, date or tags.
     - It is possible to find results using several fields simutaneously. (E.g It is possible to find patients with a certain name and a certain tag with a single command input.)
     - Only returns relevant search results. For example, if finding by patient name and appointment reason simutaneously:

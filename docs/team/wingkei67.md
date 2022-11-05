@@ -17,7 +17,7 @@ Enhancements implemented:
 * `group appts` command: Allows the model to group appointments based on some keys. e.g. group by appointment tag, status or date.
 * `ungroup` command: Allows the model to ungroup patients or appointments.
 * `sort patients` feature: Enables the model to auto-sort patients in the patient list.
-* `sort appts` features: Enables the model to auto-sort appointments in the appointment list. 
+* `sort appts` features: Enables the model to auto-sort appointments in the appointment list.
 * Implement light and dark modes for our app.
 * Beautify the styles and layouts of our GUI.
 
