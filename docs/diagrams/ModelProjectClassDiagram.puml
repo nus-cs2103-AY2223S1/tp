@@ -9,21 +9,15 @@ Class Project
 Class ProjectName
 Class Budget
 Class Deadline
-Class Staff
 Class Tag
 Class UniqueStaffList
-
-Class StaffName
-Class StaffContact
-Class StaffDepartment
-Class StaffInsurance
-Class StaffTitle
 }
 
+Class Staff
 Class UniqueProjectList
 Class ModelManager
 
-UniqueProjectList --> "~* all" Project
+UniqueProjectList -> "~* all" Project
 Project *--> ProjectName
 Project *--> Budget
 Project *--> Deadline
@@ -32,17 +26,11 @@ Project *--> UniqueStaffList
 
 UniqueStaffList *--> "*" Staff
 
-Staff *--> StaffName
-Staff *--> StaffContact
-Staff *--> StaffDepartment
-Staff *--> StaffInsurance
-Staff *--> StaffTitle
-Staff *-right-> "*" Tag
-
 ProjectName -[hidden]right-> Budget
 Budget -[hidden]right-> Deadline
 Deadline -[hidden]right-> Staff
 
 ModelManager -left->"~* filtered" Project
 
+note right of UniqueStaffList: The UniqueStaffList in HrPro \nrepresents the UniqueStaffList in \none the Projects in UniqueProjectList \nbut they are not the same reference. 
 @enduml

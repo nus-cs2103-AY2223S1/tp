@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HrProParser" as HrProParser LOGIC_COLOR
+participant "u:ViewCommand" as ViewCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":HrPro" as HrPro MODEL_COLOR
+end box
+[-> LogicManager : execute(View)
+activate LogicManager
+
+LogicManager -> HrProParser : parseCommand(View)
+activate HrProParser
+
+create ViewCommand
+HrProParser -> ViewCommand
+activate ViewCommand
+
+ViewCommand --> HrProParser
+deactivate ViewCommand
+
+HrProParser --> LogicManager : u
+deactivate HrProParser
+
+LogicManager -> ViewCommand : execute()
+activate ViewCommand
+
+ViewCommand -> Model : ViewHrPro()
+activate Model
+
+Model -> HrPro : View()
+activate HrPro
+
+HrPro -> HrPro :resetData(ReadOnlyHrPro)
+HrPro --> Model :
+deactivate HrPro
+
+Model --> ViewCommand
+deactivate Model
+
+ViewCommand --> LogicManager : result
+deactivate ViewCommand
+ViewCommand -[hidden]-> LogicManager : result
+destroy ViewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
