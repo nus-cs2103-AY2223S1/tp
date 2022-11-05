@@ -46,4 +46,11 @@ public class DeletePastAppointmentCommand extends Command {
         patient.deleteMostRecentPastAppointment();
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeletePastAppointmentCommand // instanceof handles nulls
+                && index.equals(((DeletePastAppointmentCommand) other).index)); // state check
+    }
 }

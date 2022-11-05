@@ -330,6 +330,9 @@ Getting the list of patients in the query hospital wing involves the following s
 3. a `GetHospitalWingCommand` instance is returned
 4. the model is updated such that the *filtered* list only displays patients who are in the query hospital wing
 
+Strict restrictions are placed to prevent too many varieties of hospital wings. Hospital wings only accepts 
+the following values (case-insensitive) `south` `north` `east` `west` as valid inputs. 
+
 #### Next of Kin (/nok)
 
 Getting the information of the next of kin of the list of query patient names involves the following steps:
@@ -351,6 +354,16 @@ Getting the list of patients in the query ward number involves the following ste
 Strict restrictions are placed to prevent too many varieties of ward number inputs. This way the regex for searching
 for ward numbers is simplified. Due to differing places having different ways of numbering their ward numbers, we
 have standardised it to be in the format of `Uppercase Alphabet` + `3 Numbers`. For example, `A123`, `B241`, `C005`, etc.
+
+#### Appointment Date (/appton)
+
+Getting the list of patients in th query appointment date involves the following steps:
+1. prefix "/appton" is matched in `GetCommandParser` class
+2. a new `GetAppointmentByDateCommandParser` instance is created and parsers the user input
+3. a `GetAppointmentByDateCommand` instance is returned
+4. the model is updated such that the *filtered* list only displays patients who have the same query appointment date
+
+To ease the parsing of date inputs, we have standardized the input query to be in the format of `dd-MM-yyyy`.
 
 #### Patient type (`/inp` & `/outp`)
 
@@ -436,18 +449,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …                 | I want to …                                        | So that I can …                                                                             |
 |----------|------------------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
 | `* * *`  | doctor                 | search for patients by name                        | view medication patient is currently taking and prescribe new medication based on that info |
-| `* * *`  | doctor                 | retrieve patient contact info and next-of-kin data | quickly and efficiently contact the patient or someone near them                            |
+| `* * *`  | hospital staff         | retrieve patient contact info and next-of-kin data | quickly and efficiently contact the patient or someone near them                            |
 | `* * *`  | hospital administrator | check the total number of patients in my hospital  | know when my hospital is oversubscribed                                                     |
 | `* * *`  | hospital staff         | retrieve patients by ward number                   | attend to them quickly                                                                      |
 | `* * *`  | hospital staff         | retrieve patients by floor number                  | attend to them quickly                                                                      |
 | `* * *`  | hospital staff         | retrieve patients by hospital wings                | attend to them quickly                                                                      |
 | `* * *`  | hospital staff         | have a list of inpatients and outpatients          | easily see which patients are staying in the hospital                                       |
-| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup | knows where to direct them                                                                  |
+| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup | know where to direct them                                                                   |
 | `* * *`  | hospital staff         | create patient profiles                            | store new patients into the system                                                          |
 | `* * *`  | nurse                  | retrieve patients by medication                    | find out a list of patients under each medication                                           |
 | `* * *`  | hospital staff         | remove patients from the database                  | remove redundant entries that are no longer necessary                                       |
 | `* *`    | hospital staff         | view the previous appointments of a patient        | see patients' medical history                                                               |
-*{More to be added}*
+| `* * *`  | hospital staff         | retrieve patients by their appointment date        | know which patients have scheduled an appointment on a particular day                       |
 
 ### Use cases
 
