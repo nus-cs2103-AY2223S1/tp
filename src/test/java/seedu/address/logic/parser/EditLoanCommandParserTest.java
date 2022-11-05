@@ -60,7 +60,7 @@ public class EditLoanCommandParserTest {
 
         // invalid preamble
         assertParseFailure(parser, "313-" + AMOUNT_DESC + REASON_DESC,
-                String.format(MESSAGE_INVALID_NAME, "\"313-\""));
+                MESSAGE_INVALID_FORMAT);
     }
 
     @Test
