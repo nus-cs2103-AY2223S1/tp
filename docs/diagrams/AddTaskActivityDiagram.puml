@@ -6,12 +6,9 @@ start
 
 if() then ([command is valid])
     :Executes TaskCommand;
-    if() then ([title and description are valid])
-        :Creates a new task;
-    else([invalid title or description])
-        :Show parse exception error;
-    endif
-else([Command is missing arguments])
+    :Creates a new task;
+
+else([command has missing arguments])
     :Show parse error message;
 endif
 stop

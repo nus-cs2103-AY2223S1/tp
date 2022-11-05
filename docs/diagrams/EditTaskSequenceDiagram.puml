@@ -1,0 +1,129 @@
+@startuml
+/'https://plantuml.com/sequence-diagram'/
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditTaskCommandParser" as EditTaskCommandParser LOGIC_COLOR
+participant ":EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ToDo" as ToDo MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":TaskBook" as TaskBook MODEL_COLOR
+participant ":TaskList" as TaskList MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR_T3
+end box
+
+[-> LogicManager : execute("edit-task 1 t/Mark assignments d/By tonight")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit-task 1 t/Mark assignments d/By tonight")
+activate AddressBookParser
+
+create EditTaskCommandParser
+AddressBookParser -> EditTaskCommandParser
+activate EditTaskCommandParser
+EditTaskCommandParser --> AddressBookParser
+deactivate EditTaskCommandParser
+
+AddressBookParser -> EditTaskCommandParser : parse("1 t/Mark assignments d/By tonight"))
+activate EditTaskCommandParser
+
+create EditTaskCommand
+EditTaskCommandParser -> EditTaskCommand
+activate EditTaskCommand
+
+EditTaskCommand --> EditTaskCommandParser
+deactivate EditTaskCommand
+
+EditTaskCommandParser --> AddressBookParser
+deactivate EditTaskCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> EditTaskCommand : execute()
+activate EditTaskCommand
+
+EditTaskCommand -> Model : getTaskList()
+activate Model
+
+Model -> TaskBook : getTaskList()
+activate TaskBook
+
+TaskBook -> TaskList : asUnmodifiableObservableList()
+activate TaskList
+
+TaskList -> TaskBook
+deactivate TaskList
+
+TaskBook -> Model
+deactivate TaskBook
+
+Model -> EditTaskCommand
+deactivate Model
+
+EditTaskCommand -> EditTaskCommand : createEditedTask()
+activate EditTaskCommand
+
+create ToDo
+EditTaskCommand -> ToDo
+
+activate ToDo
+ToDo -> EditTaskCommand
+deactivate ToDo
+
+EditTaskCommand -> EditTaskCommand
+deactivate EditTaskCommand
+
+EditTaskCommand -> Model : setTask(taskToEdit, editedTask)
+activate Model
+
+Model -> TaskBook : setTask(taskToEdit, editedTask)
+activate TaskBook
+
+TaskBook -> TaskList : setTask(taskToEdit, editedTask)
+activate TaskList
+
+TaskList -> TaskBook
+deactivate TaskList
+
+TaskBook -> Model
+deactivate TaskBook
+
+Model -> EditTaskCommand
+deactivate Model
+
+create CommandResult
+EditTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult -> EditTaskCommand
+deactivate CommandResult
+
+EditTaskCommand -> LogicManager
+deactivate EditTaskCommand
+
+LogicManager -> Model : getTaskBook()
+activate Model
+Model -> LogicManager
+deactivate Model
+
+LogicManager -> Storage : saveTaskBook(taskBook)
+activate Storage
+
+Storage -> LogicManager
+deactivate Storage
+
+[<-- LogicManager
+deactivate LogicManager
+
+
+@enduml

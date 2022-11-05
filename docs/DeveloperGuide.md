@@ -290,7 +290,7 @@ Sequence diagram for PictureUploadCommand
 - Pros: Users only needs to type.
 - Cons: File paths can be very lengthy and if their file names are similar it is very easy to make a mistake when typing it out.
 
-**Aspect: Proccessing of Images**
+**Aspect: Processing of Images**
 - Current Implementation: Handled by functions in the ImageStorage Class.
 - Pros: All operations regarding choosing, uploading and validating the picture is done in the same class.
 - Cons: The ImageStorage Class becomes just a class of static functions which cannot be tested.
@@ -303,24 +303,33 @@ Sequence diagram for PictureUploadCommand
 - Pros: Clearer instruction and prevents error from user.
 - Cons: User will have to be more familiar with more commands.
 
-### Add/delete Task feature
-The add/delete `Task` feature allows users to create and remove tasks. This feature uses the following commands:
-* `task` t/TITLE d/DESCRIPTION
-* `remove-task` INDEX
+### Task feature
+The Task feature allows users to create, edit and remove tasks. Each `Task` has non-optional title and description fields.
+Currently, there are 3 types of `Tasks` - `ToDo`, `Deadline` and `Assignment`, which differ based on their input fields.
+Task information is stored in a different file from student information as they are two separate (and unrelated) data types.
+This feature uses the following commands:
+* `TaskCommand` - Adds a task to the task list.
+* `EditTaskCommand` - Edits an existing task in the task list.
+* `RemoveTaskCommand` - Removes the task from the task list.
 
-which invokes the `TaskCommand` and the `RemoveTaskCommand` respectively.
 These commands when executed will use methods exposed by the `Model` and `TaskBookStorage` interface and perform the related operations.
 
-#### About Task
-Each `Task` has non-optional title and description fields. Future iterations may introduce new types of `Task`, including `Deadline` and `Assignment`.
-Currently, task information is stored in a different file from student information as they are two separate (and unrelated) data types.
+**Add Task command**
+
+Implementation:
 
 The following is a more detailed explanation on how the `TaskCommand` works.
-1. If the title or description fields are missing or invalid, a 'ParserException' will be thrown and the new `Task` will not be added.
-2. After the successful parsing of user input into `TaskCommandParser`, the `TaskCommand` object is created.
-3. Following which, `TaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#add(Task toAdd)` method, adding the new `Task` object to the internal list.
-4. Next, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
-5. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
+1. If the title or description fields are missing or invalid, a `ParserException` will be thrown and the new `Task` will not be added.
+2. If the deadline or student list fields are present and invalid, a `ParserException` will be thrown and the new `Task` will not be added.
+3. After the successful parsing of user input into `TaskCommandParser`, the `TaskCommand` object is created with a `Task` object. 
+
+   - If only title and description fields are present, `ToDo` Task object is created.
+   - If deadline field is also present, `Deadline` Task object is created.
+   - If student list field is also present, `Assignment` Task object is created.
+ 
+4. Following which, `TaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#add(Task toAdd)` method, adding the new `Task` object to the internal list.
+5. Next, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
+6. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
 
 ![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
@@ -329,6 +338,30 @@ Sequence diagram for TaskCommand
 ![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
 
 Activity diagram for TaskCommand
+
+**Edit Task command**
+
+Implementation:
+
+The following is a more detailed explanation on how the `EditTaskCommand` works.
+1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
+2. If the title, description, deadline or student list fields are missing (at least one must be present) or invalid,a `ParserException` will be thrown and the `Task` will not be edited.
+3. After the successful parsing of user input into `EditTaskCommandParser`, the `EditTaskCommand` object is created with a new updated `Task` object.
+4. Following which, `EditTaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#setTask(Task target, Task editedTask)` method, replacing the old `Task` object to the internal list with the new updated one.
+5. Next, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
+6. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
+
+![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)
+
+Sequence diagram for EditTaskCommand
+
+![EditTaskActivityDiagram](images/EditTaskActivityDiagram.png)
+
+Activity diagram for EditTaskCommand
+
+**Remove Task command**
+
+Implementation:
 
 The following is a more detailed explanation on how the `RemoveTaskCommand` works.
 1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
@@ -346,6 +379,22 @@ The following is a more detailed explanation on how the `RemoveTaskCommand` work
 - Alternatives considered: We considered integrating `TaskBook` into the given `AddressBook` infrastructure, meaning that we will be storing `Task` data together with `Student` data into `addressbook.json`
 - Pros: Easier to implement, less code to write
 - Cons: Higher coupling, since any change in `TaskBook` could potentially affect `AddressBookStorage`
+
+**Aspect: Command Syntax**
+- Current implementation: Using a common single command word syntax ```task```
+- Pros: Easier to type since the same command can be used to create all 3 types of tasks. Increases flexibility when more types of tasks are added in future iterations.
+- Cons: Users may be unsure of the type of task they create.
+- Alternatives considered: We considered using three different commands - `todo`, `deadline` and `assignments` to separately create the different types of tasks.
+- Pros: Clearer for users.
+- Cons: Users will have to remember more command words.
+
+**Aspect: Changing type of task**
+- Current implementation: Task type is fixed when created and cannot be changed using the `edit-task` command.
+- Pros: Easier the implement since the type of task is fixed during the execution of `TaskCommand`.
+- Cons: Users may be unsure of the type of task they need at point of creation and may want to change it later.
+- Alternatives considered: `edit-task` can be modified to accommodate changing the task type while changing the field.
+- Pros: More flexibility for users making the user experience smoother.
+- Cons: Implementation will be more complicated since many combinations of user inputs will need to be handled.
 
 ### \[Proposed\] Undo/redo feature
 

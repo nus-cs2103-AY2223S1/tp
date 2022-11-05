@@ -1,0 +1,22 @@
+@startuml
+start
+:User inputs Edit Task command;
+
+:Parses the command;
+
+if() then ([command is valid])
+    :Executes EditTaskCommand;
+    if() then ([task index is valid])
+        if() then ([arguments match task type])
+            :Updates existing task;
+        else([invalid argument for task type])
+            :Show command error message;
+        endif
+    else([task index is invalid])
+        :Show command error message;
+    endif
+else([command has missing/invalid arguments])
+    :Show parse error message;
+endif
+stop
+@enduml
