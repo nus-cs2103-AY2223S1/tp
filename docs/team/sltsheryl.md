@@ -67,7 +67,7 @@ Given below are my contributions to the project.
 * **User Guide**:
   * Worked on project description.
   * Writeup of FAQ. (Pull request [#211](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/211))
-  * Proofread user guide for bugs and enhance writing quality. (Pull request #[#176](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/176), [#239](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/239), [#219](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/219), [#210](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/210))
+  * Proofread user guide for bugs and enhance writing quality. (Pull request [#176](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/176), [#239](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/239), [#219](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/219), [#210](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/210))
 * **Developer Guide**:
   * Worked on Overview.
   * Writeup of use cases 1 - 4. (Pull request [#63](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/63), [#24](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/24))
