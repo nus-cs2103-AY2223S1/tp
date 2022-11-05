@@ -2,9 +2,44 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
+## Table of Contents
+- [**Acknowledgements**](#acknowledgements)
+- [**Setting up, getting started**](#setting-up-getting-started)
+- [**Design**](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [**Implementation**](#implementation)
+  - [Implemented features:](#implemented-features)
+    - [Record features:](#record-features)
+      - [Add record feature](#implemented-add-record-feature)
+      - [List records feature](#implemented-list-records-feature)
+      - [Delete record feature](#implemented-delete-record-feature)
+      - [Edit record feature](#implemented-edit-record-feature)
+      - [Find records feature](#implemented-find-records-feature)
+      - [Clear all records feature](#implemented-clear-all-records-feature)
+    - [Appointment features:](#appointment-features)
+      - [Add appointment feature](#implemented-add-appointment-feature)
+      - [Clear appointment feature](#implemented-clear-appointment-feature)
+  - [Proposed features:](#proposed-features)
+    - [Appointment features:](#appointment-features-proposed)
+      - [Upcoming appointment tracker feature](#proposed-upcoming-appointment-tracker-feature)
+- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+- [**Appendix: Requirements**](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting a person](#deleting-a-person)
+  - [Saving data](#saving-data)
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -67,6 +102,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[*<Back to ToC*](#table-of-contents)
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -83,6 +120,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data and display the correct panel.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` and `Record` object residing in the `Model`.
+
+[*<Back to ToC*](#table-of-contents)
 
 ### Logic component
 
@@ -113,6 +152,8 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[*<Back to ToC*](#table-of-contents)
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -135,6 +176,7 @@ The `Model` component,
 
 </div>
 
+[*<Back to ToC*](#table-of-contents)
 
 ### Storage component
 
@@ -147,6 +189,8 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+[*<Back to ToC*](#table-of-contents)
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -157,6 +201,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+>### Implemented features:
+
+### Record features:
 ### \[Implemented\] Add record feature
 
 #### Patient Records
@@ -205,29 +252,13 @@ displayed
   * Pros: Easy to implement, simpler command execution pathway.
   * Cons: Potentially violates OOP.
   
-### \[Implemented\] Find Records
+[*<Back to ToC*](#table-of-contents)
 
-#### Implementation: 
-The find record command mechanism is facilitated by `RecordContainsKeywordPredicate` and `FindRecordCommandParser`
-which extends `Predicate` and `AddressbookParser` respectively. 
-
-`FindRecordCommandParser` implements the following operations:
-* `FindRecordCommandParser#parse()` - Parses the input arguments by storing each prefix and its respective
-values as an `ArgumentMultimap`.
-
-`RecordContainsKeywordPredicate` implements the following operations:
-* `RecordContainsKeywordPredicate#test()` - Tests whether the record under testing contains any of the keywords
-in the correct fields.
-
-Only `FindRecordCommandParser#parse` is exposed in the Parser interface as Parser#parse().
-
-Given below is an example usage and how the find record mechanism works at each step.
-
-### \[Implemented\] List Records feature
+### \[Implemented\] List records feature
 
 #### Implementation:
 
-The implemented list record mechanism is facilitated by `ListRecordCommandParser`, which extends `AddressBookParser`. `ListRecordCommandParser` implements the following operations:
+The implemented list records mechanism is facilitated by `ListRecordCommandParser`, which extends `AddressBookParser`. `ListRecordCommandParser` implements the following operations:
 - `ListRecordCommandParser#parse()` - Parses the input argument into an `Index` and creates a new `ListRecordCommand` object with the parsed `Index`.
 
 The `ListRecordCommand` object then communicates with the `Model` API when it is executed, more specifically, by calling the following methods that are implemented in `ModelManager`:
@@ -246,79 +277,9 @@ Example usage scenario:
 - Precondition: The user should be viewing the patient list by using the `list` command.
 - Execution: The user executes `rlist 1` to list the records of the 1st patient in the displayed patient list.
 
-### \[Implemented\] Clear Records
+[*<Back to ToC*](#table-of-contents)
 
-The clear record command `rclear` allows the application to clear all the existing records in the current active record
-list.
-
-#### Implementation:
-
-Given below is an example usage scenario for the command.
-
-**Step 1:** The user launches the application.
-
-**Step 2:** The user executes the `rlist INDEX` command to show the record list of a specified patient. 
-
-**Step 3:** The user executes the `rclear` command to clear all existing records in the record list.
-
-### \[Implemented\] Add appointment
-
-The add appointment feature allows Omnihealth to manage future appointments for patients. Each `Patient` holds an appointment
-reference for record keeping that the user is able to edit and clear.
-
-The feature currently does not support automatic removal of appointments which dates have passed, and require a new appointment
-to override the old appointment or for the existing appointment to be cleared with the `apptcl` command.
-
-#### Implementation:
-The add appointment command mechanism is facilitated by the `AddAppointmentCommandParser` class which extends the `AddressbookParser`.
-
-`AddAppointmentParser` implements the following operations:
-* `AddAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as 
-an `ArgumentMultimap.`
-
-`AddAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
-
-Given below is an example usage scenario for the command.
-
-**Step 1:** The user launches the application.
-
-**Step 2:** The user executes the `appt INDEX d/ dd-MM-yyyy` command in the CLI.
-
-**Step 3:** An appointment will be assigned to the patient specified with the index input.
-
-### \[Implemented\] Clear appointment
-
-#### Implementation:
-The add appointment mechanism is facilitated by `ClearAppointmentCommandParser`  which extends `AddressbookParser`.
-
-`ClearAppointmentParser` implements the following operations:
-* `ClearAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as
-  an `ArgumentMultimap.`
-
-`ClearAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
-
-Given below is an example usage scenario for the command.
-
-**Step 1:** The user launches the application.
-
-**Step 2:** The user executes the `apptcl INDEX ` command in the CLI.
-
-**Step 3:** The patient's appointment(if any) will be cleared. 
-
-### \[Proposed\] Upcoming appointment tracker
-
-The proposed upcoming appointment feature will be a display to show upcoming appointments for the user upon application start.
-
-#### Proposed Implementation
-The proposed implementation is facilitated by `AppointmentWindow`. It extends `UiPart<Stage>` with a new window.
-
-Given below is an example usage scenario for the command.
-
-**Step 1:** The user launches the application.
-
-**Step 2:** A additional window appears, showing the current upcoming appointments.
-
-### \[Implemented\] Delete Records feature
+### \[Implemented\] Delete record feature
 
 #### Implementation:
 The delete record mechanism is facilitated by `DeleteRecordCommandParser`  which extends `AddressbookParser`.
@@ -341,7 +302,9 @@ Given below is an example usage scenario for the command.
 * Execution: 
   * User executes `rdelete 1` to delete the 1st record in the displayed record list. The `rdelete` command calls `Model#deleteRecord(Record)` which performs the deletion of records from the `DisplayedPerson` held by the `Model`.
 
-### \[Implemented\] Edit Records feature
+[*<Back to ToC*](#table-of-contents)
+
+### \[Implemented\] Edit record feature
 
 #### Implementation:
 The edit record mechanism is facilitated by `EditRecordCommandParser`  which extends `AddressbookParser`.
@@ -368,6 +331,113 @@ Given below is an example usage scenario for the command.
     * User executes `redit 1 r/Fever d/12-12-2012 1200 m/` to set the 1st record in the displayed record list to a new
   record containing the date/time of `12-12-2012 1200`, record data of `Fever` and sets the medications to empty.
 
+[*<Back to ToC*](#table-of-contents)
+
+### \[Implemented\] Find records feature
+
+#### Implementation: 
+The find record command mechanism is facilitated by `RecordContainsKeywordPredicate` and `FindRecordCommandParser`
+which extends `Predicate` and `AddressbookParser` respectively. 
+
+`FindRecordCommandParser` implements the following operations:
+* `FindRecordCommandParser#parse()` - Parses the input arguments by storing each prefix and its respective
+values as an `ArgumentMultimap`.
+
+`RecordContainsKeywordPredicate` implements the following operations:
+* `RecordContainsKeywordPredicate#test()` - Tests whether the record under testing contains any of the keywords
+in the correct fields.
+
+Only `FindRecordCommandParser#parse` is exposed in the Parser interface as Parser#parse().
+
+Given below is an example usage and how the find record mechanism works at each step.
+
+[*<Back to ToC*](#table-of-contents)
+
+### \[Implemented\] Clear all records feature
+
+The clear record command `rclear` allows the application to clear all the existing records in the current active record
+list.
+
+#### Implementation:
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `rlist INDEX` command to show the record list of a specified patient. 
+
+**Step 3:** The user executes the `rclear` command to clear all existing records in the record list.
+
+[*<Back to ToC*](#table-of-contents)
+
+### Appointment features:
+
+### \[Implemented\] Add appointment feature
+
+The add appointment feature allows Omnihealth to manage future appointments for patients. Each `Patient` holds an appointment
+reference for record keeping that the user is able to edit and clear.
+
+The feature currently does not support automatic removal of appointments which dates have passed, and require a new appointment
+to override the old appointment or for the existing appointment to be cleared with the `apptcl` command.
+
+#### Implementation:
+The add appointment command mechanism is facilitated by the `AddAppointmentCommandParser` class which extends the `AddressbookParser`.
+
+`AddAppointmentParser` implements the following operations:
+* `AddAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as 
+an `ArgumentMultimap.`
+
+`AddAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `appt INDEX d/ dd-MM-yyyy` command in the CLI.
+
+**Step 3:** An appointment will be assigned to the patient specified with the index input.
+
+[*<Back to ToC*](#table-of-contents)
+
+### \[Implemented\] Clear appointment feature
+
+#### Implementation:
+The add appointment mechanism is facilitated by `ClearAppointmentCommandParser`  which extends `AddressbookParser`.
+
+`ClearAppointmentParser` implements the following operations:
+* `ClearAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as
+  an `ArgumentMultimap.`
+
+`ClearAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `apptcl INDEX ` command in the CLI.
+
+**Step 3:** The patient's appointment(if any) will be cleared. 
+
+[*<Back to ToC*](#table-of-contents)
+
+>### Proposed features:
+
+### Appointment features (proposed):
+### \[Proposed\] Upcoming appointment tracker feature
+
+The proposed upcoming appointment feature will be a display to show upcoming appointments for the user upon application start.
+
+#### Proposed Implementation
+The proposed implementation is facilitated by `AppointmentWindow`. It extends `UiPart<Stage>` with a new window.
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** A additional window appears, showing the current upcoming appointments.
+
+[*<Back to ToC*](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -377,6 +447,8 @@ Given below is an example usage scenario for the command.
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+[*<Back to ToC*](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -395,6 +467,7 @@ Given below is an example usage scenario for the command.
 * allow doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment
   information) to patients using their stored contact information.
 
+[*<Back to ToC*](#table-of-contents)
 
 ### User stories
 
@@ -414,9 +487,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                   | edit a patient's record                  | change details of a record in the future                                                  |
 
 
-
-
 *{More to be added}*
+
+[*<Back to ToC*](#table-of-contents)
 
 ### Use cases
 
@@ -751,6 +824,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+[*<Back to ToC*](#table-of-contents)
+
 ### Non-Functional Requirements
 
 1. Should work as long as Java `11` or above is installed.
@@ -759,10 +834,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+[*<Back to ToC*](#table-of-contents)
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
+[*<Back to ToC*](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -792,6 +871,8 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+[*<Back to ToC*](#table-of-contents)
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -809,6 +890,8 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+[*<Back to ToC*](#table-of-contents)
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -816,3 +899,5 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+[*<Back to ToC*](#table-of-contents)
