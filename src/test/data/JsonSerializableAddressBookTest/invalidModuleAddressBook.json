@@ -1,0 +1,9 @@
+{
+  "tasks" : [ ],
+  "modules" : [ {
+    "moduleCode" : "2030",
+    "moduleName" : "Programming Methodology",
+    "moduleCredit" : "4"
+  } ],
+  "exams" : [ ]
+}
