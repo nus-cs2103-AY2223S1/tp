@@ -9,7 +9,6 @@ title: Tan Jia Rong's Project Portfolio Page
 deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
 **module-mates** (i.e., students in the same module) to increase their productivity.
 
-### Summary of contributions
 Given below are my contributions to the project.
 
 #### Navigation ([#64](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/64))
@@ -43,13 +42,6 @@ Given below are my contributions to the project.
   * Implemented `find-module`, `find-person`, `list-module` and `list-person` commands.
   * Modified existing AB3's predicate to allow users to search by module and person name prefixes to better suit our project needs.
   * Added constraints that users can only use `find` and `list` at the home page for better user experience.
-
-* **New Feature:** Added `list-person` command.
-  * What it does: <br>
-    Allows users to list every person's details on the home page.
-  * Justification: <br>
-    A consequence of `find-person` so that users can reset the list of persons back to its
-    original state.
 
 **Highlights** <br>
 * Much thought have to be put into considering whether to implement search functionalities, as navigation
