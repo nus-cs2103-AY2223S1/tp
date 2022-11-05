@@ -47,4 +47,5 @@ The link to my contributions in the code dashboard is [here](https://nus-cs2103-
 - Shared with teammates any difficulty that I encountered during this project so that they do not make the same mistake
 
 ### Contributions beyond the project team
+
 - I contribute to the CS2103T forum by answering questions that I have the answers to.
