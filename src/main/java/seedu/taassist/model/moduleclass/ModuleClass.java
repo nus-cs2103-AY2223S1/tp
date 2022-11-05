@@ -7,6 +7,7 @@ import static seedu.taassist.commons.util.StringUtil.caseInsensitiveEquals;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.exceptions.SessionNotFoundException;
@@ -53,20 +54,6 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
     }
 
     /**
-     * Constructs a {@code ModuleClass} with the provided unique list of {@code Session}-s.
-     *
-     * @param className A valid class name.
-     * @param sessions A unique list of sessions.
-     */
-    public ModuleClass(String className, UniqueList<Session> sessions) {
-        requireAllNonNull(className, sessions);
-        checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
-        this.className = className;
-        this.sessions.setElements(sessions);
-    }
-
-
-    /**
      * Returns true if a given string is a valid class name.
      */
     public static boolean isValidModuleClassName(String className) {
@@ -100,10 +87,9 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         if (hasSession(session)) {
             return this;
         }
-        UniqueList<Session> newSessions = new UniqueList<>();
-        newSessions.setElements(sessions);
-        newSessions.add(session);
-        return new ModuleClass(className, newSessions);
+        ModuleClass newModuleClass = new ModuleClass(className, sessions.asUnmodifiableObservableList());
+        newModuleClass.sessions.add(session);
+        return newModuleClass;
     }
 
     /**
@@ -111,12 +97,8 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      */
     public ModuleClass removeSession(Session toRemove) {
         requireNonNull(toRemove);
-        UniqueList<Session> newSessions = new UniqueList<>();
-        for (Session session : sessions) {
-            if (!session.isSame(toRemove)) {
-                newSessions.add(session);
-            }
-        }
+        List<Session> newSessions = sessions.asUnmodifiableObservableList().stream().filter(s -> !s.isSame(toRemove))
+                .collect(Collectors.toList());
         return new ModuleClass(className, newSessions);
     }
 
