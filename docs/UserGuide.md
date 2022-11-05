@@ -15,8 +15,8 @@ _[More to be added]_
 
 ## About REal-Time
 
-It is optimized for use via a Command Line Interface ([CLI](#Glossary)) while still having the 
-benefits of a Graphical User Interface ([GUI](#Glossary)). 
+It is optimized for use via a Command Line Interface ([CLI](#Glossary)) while still having the
+benefits of a Graphical User Interface ([GUI](#Glossary)).
 If you can type fast, REal-Time can get your contact management tasks done faster than traditional GUI apps.
 
 ## Fun fact
@@ -43,23 +43,23 @@ better.
 
 # Quick start
 
-1. Ensure you have `Java 11` or above installed in your Computer. To install `Java 11`, 
-click [here](https://www.oracle.com/sg/java/technologies/downloads/#java11) and download the appropriate file depending 
+1. Ensure you have `Java 11` or above installed in your Computer. To install `Java 11`,
+click [here](https://www.oracle.com/sg/java/technologies/downloads/#java11) and download the appropriate file depending
 on your Operating System ([OS](#Glossary)) (_e.g, Linux, Windows, macOS_).
 
 2. Download the latest `REal-Time.jar` file from [here](https://github.com/AY2223S1-CS2103T-W15-2/tp/releases). The
 `REal-Time.jar` file is located in the "Assets" section as shown below.
 ![downloadRelease](./images/downloadRelease.png)
 
-4. Copy the file to the folder you want to use as the _home folder_ for REal-Time.
+3. Copy the file to the folder you want to use as the _home folder_ for REal-Time.
 
-5. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. 
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
 Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-6. Refer to the [Layout](#layout) if you are still unsure in navigating REal-Time's interface.
+5. Refer to the [Layout](#layout) if you are still unsure in navigating REal-Time's interface.
 
-7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and 
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
 pressing Enter will open the help window.<br>
    Some example commands you can try:
 
@@ -163,11 +163,11 @@ ___
 
 ### Editing the data file
 
-REal-Time data are saved as a JSON file `[JAR file location]/data/addressbook.json`. 
+REal-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, 
+If your changes to the data file makes its format invalid,
 REal-Time will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -228,7 +228,7 @@ Edits an existing client in REal-Time
 Format - `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 Note:
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. 
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
 The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -280,10 +280,10 @@ ___
 
 ## Managing Offers
 
-In this section, we provide you the basic steps needed to [add](#adding-an-offer-addo), [delete](#deleting-an-offer--delo), 
-and [edit](#editing-an-offer--edito) offers. 
+In this section, we provide you the basic steps needed to [add](#adding-an-offer-addo), [delete](#deleting-an-offer--delo),
+and [edit](#editing-an-offer--edito) offers.
 
-We are also planning to introduce 2 new features in the future, namely [finding](#finding-an-offer--coming-soon) and 
+We are also planning to introduce 2 new features in the future, namely [finding](#finding-an-offer--coming-soon) and
 [listing](#listing-offers-coming-soon), so stay tuned!
 
 **If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
@@ -312,7 +312,7 @@ ___
 
 ### Deleting an offer : `delO`
 
-Deletes the specified offer in REal-Time. 
+Deletes the specified offer in REal-Time.
 
 <div markdown="block" class="alert alert-info">
 
@@ -436,7 +436,7 @@ Edits an existing listing in the address book.
 Format - `editL INDEX [l/LISTING_ID] [a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​`
 
     `INDEX` refers to the index of the Listing you wish to edit
-    Any number (more than 1) of fields may be edited. 
+    Any number (more than 1) of fields may be edited.
 
 Examples:
 
