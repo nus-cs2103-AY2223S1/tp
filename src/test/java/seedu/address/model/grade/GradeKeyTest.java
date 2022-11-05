@@ -27,6 +27,10 @@ class GradeKeyTest {
     }
 
     @Test
+    void differentObject_testEquals() {
+        assertNotEquals(testKey, new Object());
+    }
+    @Test
     void sameKey_testEquals() {
         GradeKey sameKey = new GradeKey(student, task);
         assertEquals(testKey, sameKey);

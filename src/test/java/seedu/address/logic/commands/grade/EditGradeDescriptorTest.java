@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.grade;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_GRADE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_GRADE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_STATE_BOB;
@@ -17,24 +17,24 @@ public class EditGradeDescriptorTest {
     public void equals() {
         // same values -> returns true
         EditGradeDescriptor descriptorWithSameValues = new EditGradeDescriptor(DESC_GRADE_AMY);
-        assertTrue(DESC_GRADE_AMY.equals(descriptorWithSameValues));
+        assertEquals(DESC_GRADE_AMY, descriptorWithSameValues);
 
         // same object -> returns true
-        assertTrue(DESC_GRADE_AMY.equals(DESC_GRADE_AMY));
+        assertEquals(DESC_GRADE_AMY, DESC_GRADE_AMY);
 
         // null -> returns false
-        assertFalse(DESC_GRADE_AMY.equals(null));
+        assertNotEquals(null, DESC_GRADE_AMY);
 
         // different types -> returns false
-        assertFalse(DESC_GRADE_AMY.equals(5));
+        assertNotEquals(5, DESC_GRADE_AMY);
 
         // different values -> returns false
-        assertFalse(DESC_GRADE_AMY.equals(DESC_GRADE_BOB));
+        assertNotEquals(DESC_GRADE_AMY, DESC_GRADE_BOB);
 
         // different grade -> returns false
         EditGradeDescriptor editedAmy = new EditGradeDescriptorBuilder(DESC_GRADE_AMY)
                 .withGradeState(VALID_GRADE_STATE_BOB).build();
-        assertFalse(DESC_GRADE_AMY.equals(editedAmy));
+        assertNotEquals(DESC_GRADE_AMY, editedAmy);
 
     }
 }
