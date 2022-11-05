@@ -405,6 +405,9 @@ The following activity diagram summarizes what happens when a user enters a `fin
 **Aspect: Only matching full keywords**
 * The `find` command only matches full keywords. For example, typing in 'ali' would not match a Guest named 'Alice'. As we do not want to display possible redundant data to the hotel manager, we decided to limit the `find` command to only full keywords, so that the results displayed are more targeted.
 
+**Aspect: Implementing `find` command without prefixes**
+* In order to increase the productivity of the user, we do not wish for the user to have to type in the prefix, as there is a very low probability that the values for the prefixes overlap in a small hotel.
+
 
 ### \[Proposed\] Undo/Redo Feature
 
