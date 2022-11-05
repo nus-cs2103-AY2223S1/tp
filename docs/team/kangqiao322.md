@@ -5,11 +5,12 @@ title: Kang Qiao's Project Portfolio Page
 
 ### Project: Intrack
 
-InTrack helps Computer Science students who are applying for multiple internships to keep track of their progress and deadlines across their applications.
-Intrack optimised for use via Command Line Interface(CLI) and is written in Java, with about 10k lines of code.
+InTrack is a desktop application that helps Computer Science students who are applying for multiple internships to keep
+track of their progress and deadlines across these applications. It is optimised for use via a Command Line Interface
+(CLI) while still having the benefits of a Graphical User Interface (GUI) created with JavaFX. It is written in Java,
+and has about 10 kLoC.
 
 Given below are my contributions to the project.
-
 * ***Code contributed:*** My contributions can be accessed via [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kangqiao322&breakdown=true)
 
 
