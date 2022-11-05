@@ -89,9 +89,9 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code credit} is invalid.
      */
-    public static ModCredit parseCredit(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedCredit = address.trim();
+    public static ModCredit parseCredit(String credit) throws ParseException {
+        requireNonNull(credit);
+        String trimmedCredit = credit.trim();
         if (!ModCredit.isValidCredit(trimmedCredit)) {
             throw new ParseException(ModCredit.MESSAGE_CONSTRAINTS);
         }
