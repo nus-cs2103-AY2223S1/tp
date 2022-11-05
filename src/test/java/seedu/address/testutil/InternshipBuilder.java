@@ -30,7 +30,7 @@ public class InternshipBuilder {
     private PersonId contactPersonId;
 
     /**
-     * Creates a {@code InternshipBuilder} with the default details.
+     * Creates an {@code InternshipBuilder} with the default details.
      */
     public InternshipBuilder() {
         internshipId = new InternshipId(DEFAULT_INTERNSHIP_ID);
@@ -63,7 +63,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Company Name} of the {@code Internship} that we are building.
+     * Sets the {@code CompanyName} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withCompanyName(String name) {
         this.name = new CompanyName(name);
@@ -71,7 +71,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Role} of the {@code Internship} that we are building.
+     * Sets the {@code InternshipRole} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withRole(String role) {
         this.role = new InternshipRole(role);
@@ -88,7 +88,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Status} of the {@code Internship} that we are building.
+     * Sets the {@code InternshipStatus} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withStatus(String status) {
         try {
@@ -100,7 +100,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Interview Date} of the {@code Internship} that we are building.
+     * Sets the {@code InterviewDate} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withInterviewDate(String date) {
         if (date == null || date.isBlank()) {
