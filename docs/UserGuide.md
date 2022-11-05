@@ -6,9 +6,9 @@ title: User Guide
 <img src="../docs/images/Logo.png" width="360">
 </div>
 
-## **1. About Mass Linkers**
-
 Welcome to Mass Linkers &mdash; a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates.
+
+## **1. About Mass Linkers**
 
 Mass Linkers helps you find batchmates to form study groups and seek study advice through the following way.
 
