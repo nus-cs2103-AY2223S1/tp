@@ -401,9 +401,9 @@ Exits the program.
 
 Format: `exit`
 
-### Advanced Features
+### Advanced features
 
-#### Session-Based Command History
+#### Session-based command history
 
 Access the previous commands you've made within each session.
 
@@ -420,7 +420,7 @@ Access the previous commands you've made within each session.
 
 </div>
 
-#### Tag Shortcuts
+#### Tag shortcuts
 
 Use shortcuts to quickly enter tags.
 
@@ -439,7 +439,7 @@ Example:
 | ta       | tutor        |
 | tut      | tutorial     |
 
-#### Quick Links
+#### Quick links
 
 Get easy access to some of your favourite NUS websites, right from the menu.
 
@@ -462,7 +462,7 @@ Get easy access to some of your favourite NUS websites, right from the menu.
 
 ## FAQ
 
-### Accepted Date Time Formats
+### Accepted date time formats
 
 NUScheduler accepts date-time formats both with and without a time specified. For example, date-only formats can be used to specify all day events.
 
