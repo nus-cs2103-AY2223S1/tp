@@ -208,7 +208,7 @@ conventions as naming a `Person`, and the command itself `AddGroupCommand` check
 not already exist in the app.
 
 **Step 3.**
-Suppose now the user adds `Alice` and `Bob` as members of the CS2103T, and assigns `Alice` a task under the group.
+Suppose now the user adds `Alice` and `Bob` as members of the CS2103T, and assigns `Alice` a task named Task1 under the group CS2103T.
 The `AddressBook` model now looks like this:
 
 <img src="images/AddDeleteGroupState2.png" width="300" />
@@ -432,7 +432,7 @@ For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both co
     - Deleting tasks from a `Person` does not require modification of the `Person` object.
   - Cons:
     - If the `Person` is part of multiple groups, retrieving all tasks to display on their card requires referencing multiple `Group` objects.
-- Alternative 2 (Current Option): `Person` object stores a HashMap mapping `GroupName` to task
+- Alternative 2 (Current Option): `Person` object stores `Assignments` as a HashMap of `<key:String, value:Assignment>` where the String is the group name.
   - Pros:
     - Since a `Person` object can be in multiple `Groups`, storing all tasks in `Person` incurs less overhead when all those tasks are displayed in the assignments view.
   - Cons:
@@ -505,7 +505,7 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
 **Design Considerations:**
 
 **Aspect: How to handle `Person`s with duplicate task when assigning/no task when deleting:**
-- Alternative 1 (Current Option): Skip over
+- Alternative 1 (Current Option): Person who already has the same task name is skipped over
   - Pros:
     - More user-friendly; if the user does not know that a `Person` already has/does not have the assignment to be added/deleted respectively, the end result is close to the desired outcome.
   - Cons:
