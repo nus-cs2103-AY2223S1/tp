@@ -12,33 +12,33 @@ patient bills for the family clinic.
 ---
 
 ## Features
-* [Add a patient (addpatient)](#111-adding-a-patient-addpatient-ap)
-* [Add an appointment of a patient (addappointment)](#112-adding-an-appointment-of-a-patient-addappointment-aa)
-* [Add a bill of an appointment (addbill)](#113-adding-a-bill-of-an-appointment-addbill-ab)
-* [Edit a patient (editpatient)](#121-editing-a-patient-editpatient-ep)
-* [Edit an appointment of a patient (editappointment)](#122-editing-an-appointment-of-a-patient-editappointment-ea)
-* [Edit a bill of an appointment (editbill)](#123-editing-a-bill-of-an-appointment-editbill-eb)
-* [Find patient(s) (findpatient)](#131-finding-patients-findpatient-fp)
-* [Find appointment(s) (findappointment)](#132-finding-appointments-findappointment-fa)
-* [Find bill(s) (findbill)](#133-finding-bills-findbill-fb)
-* [Sort patients (sortpatient)](#141-sorting-patients-sortpatient-sop)
-* [Sort appointments (sortappointment)](#142-sorting-appointments-sortappointment-soa)
-* [Sort bills (sortbill)](#143-sorting-bills-sortbill-sob)
-* [Select a patient (selectpatient)](#151-selecting-a-patient-selectpatient-slp)
-* [Select an appointment (selectappointment)](#152-selecting-an-appointment-selectappointment-sla)
-* [Set a bill to be paid (setpaid)](#161-setting-bill-as-paid-setpaid-sp)
-* [Set a bill to be unpaid (setunpaid)](#162-setting-bill-as-unpaid-setunpaid-sup)
+* [Add a patient (addpatient)](#111-add-a-patient-addpatient-ap)
+* [Add an appointment of a patient (addappointment)](#112-add-an-appointment-of-a-patient-addappointment-aa)
+* [Add a bill of an appointment (addbill)](#113-add-a-bill-of-an-appointment-addbill-ab)
+* [Edit a patient (editpatient)](#121-edit-a-patient-editpatient-ep)
+* [Edit an appointment of a patient (editappointment)](#122-edit-an-appointment-of-a-patient-editappointment-ea)
+* [Edit a bill of an appointment (editbill)](#123-edit-a-bill-of-an-appointment-editbill-eb)
+* [Find patient(s) (findpatient)](#131-find-patients-findpatient-fp)
+* [Find appointment(s) (findappointment)](#132-find-appointments-findappointment-fa)
+* [Find bill(s) (findbill)](#133-find-bills-findbill-fb)
+* [Sort patients (sortpatient)](#141-sort-patients-sortpatient-sop)
+* [Sort appointments (sortappointment)](#142-sort-appointments-sortappointment-soa)
+* [Sort bills (sortbill)](#143-sort-bills-sortbill-sob)
+* [Select a patient (selectpatient)](#151-select-a-patient-selectpatient-slp)
+* [Select an appointment (selectappointment)](#152-select-an-appointment-selectappointment-sla)
+* [Set a bill to be paid (setpaid)](#161-set-bill-as-paid-setpaid-sp)
+* [Set a bill to be unpaid (setunpaid)](#162-set-bill-as-unpaid-setunpaid-sup)
 * [List all patients, bills and appointments (list)](#17-list-list-ls)
-* [Delete a patient (deletepatient)](#181-deleting-a-patient-deletepatient-dp)
-* [Delete an appointment (deleteappointment)](#182-deleting-an-appointment-of-a-patient-deleteappointment-da)
-* [Delete a bill (deletebill)](#183-deleting-a-bill-of-an-appointment-deletebill-db)
+* [Delete a patient (deletepatient)](#181-delete-a-patient-deletepatient-dp)
+* [Delete an appointment (deleteappointment)](#182-delete-an-appointment-of-a-patient-deleteappointment-da)
+* [Delete a bill (deletebill)](#183-delete-a-bill-of-an-appointment-deletebill-db)
 * [Undo previous command (undo)](#19-undo-undo)
 * [Redo previous command (redo)](#110-redo-redo)
 * [Clear all data (clear)](#111-clear-clear)
 * [Exit the program (exit)](#112-exit-exit)
 * [Help (help)](#113-help-help)
-* [Saving the data](#114-saving-the-data)
-* [Editing the data file](#115-editing-the-data-file)
+* [Save the data](#114-save-the-data)
+* [Edit the data file](#115-edit-the-data-file)
 
 ---
 # Quick Start
@@ -61,7 +61,7 @@ patient bills for the family clinic.
 
 ## 1.1 Add
 
-### 1.1.1 Adding a patient `addpatient`, `ap`
+### 1.1.1 Add a patient `addpatient`, `ap`
 
 Adds a patient to HealthContact with input information including name, phone number,
 email address, home address, remarks and tags.
@@ -99,20 +99,13 @@ Notes on symbols in first column:
 
 `+`  Can have multiple
 
-#### Examples:
+#### Example:
 
 * `ap n/Bernice Yu a/#11-330, blk 775, Bishan e/b.yu@nus.edu.sg p/80880011 t/NUS t/staff` adds such patient.
 
 <img src="images/ug/addcommand/ap1.png" width="800px" height ="500px">
 
-
-* `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable
-to add such a patient because Bernice Yu already exists in HealthContact.
-
-<img src="images/ug/addcommand/ap2.png" width="800px" height ="500px">
-
-
-### 1.1.2 Adding an appointment of a patient `addappointment`, `aa`
+### 1.1.2 Add an appointment of a patient `addappointment`, `aa`
 
 Adds an appointment to HealthContact with input information including patient name, medical test,
 slot, and doctor.
@@ -163,17 +156,11 @@ Notes on symbols in first column:
 
 <img src="images/ug/addcommand/aa1.png" width="800px" height ="500px">
 
-* Executing `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` again is unable
-to add such an appointment because the appointment with the combination of the four inputs
-parameters already exists in HealthContact.
-
-<img src="images/ug/addcommand/aa2.png" width="800px" height ="500px">
-
 * `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for Bernice Yu.
 
 <img src="images/ug/addcommand/aa3.png" width="800px" height ="500px">
 
-### 1.1.3 Adding a bill of an appointment `addbill`, `ab`
+### 1.1.3 Add a bill of an appointment `addbill`, `ab`
 
 Adds a bill attached to an appointment with input information including amount and bill date.
 
@@ -207,20 +194,15 @@ Notes on symbols in first column:
 
 `*`  Must have (If they are duplicate prefixes, only the last one will be taken into account)
 
-#### Examples:
+#### Example:
 
-* `ab 1 a/1200.00 d/2021-11-11` adds such bill to the first appointment in the displayed list.
+* `ab 1 a/1200.00 d/2021-11-11` adds a bill to the first appointment in the displayed list.
 
 <img src="images/ug/addcommand/ab1.png" width="800px" height ="500px">
 
-* Executing `ab 1 a/1500.00 d/2021-11-13` is unable to add such bill because the first appointment
-in the displayed list already has an attached bill.
-
-<img src="images/ug/addcommand/ab2.png" width="800px" height ="500px">
-
 ## 1.2 Edit
 
-### 1.2.1 Editing a patient `editpatient`, `ep`
+### 1.2.1 Edit a patient `editpatient`, `ep`
 
 Edits a patient's information, such as name, phone number, address, email, remarks, and tags.
 
@@ -236,15 +218,22 @@ Edits a patient's information, such as name, phone number, address, email, remar
 * You can remove all the patient’s tags by typing `t/` without
   specifying any tags after it.
 
+<<<<<<< HEAD
 ####Examples:
 * `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be
+=======
+Examples:
+* `editpatient 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
    `91234567` and `johndoe@example.com` respectively.
+
 <img src = "images/ug/editcommand/editpatient.png" width="800px" height ="400px">
 
-* `editpatient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+* `editpatient 2 n/Betsy Crower t/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+
 <img src = "images/ug/editcommand/editpatient2.png" width="800px" height ="400px">
 
-### 1.2.2 Editing an appointment of a patient `editappointment`, `ea`
+### 1.2.2 Edit an appointment of a patient `editappointment`, `ea`
 
 Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 
@@ -258,12 +247,18 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
+<<<<<<< HEAD
 ####Examples:
 * `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
+=======
+Example:
+* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` edits the name, medical test, slot,
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
    and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
+
 <img src = "images/ug/editcommand/editappointment.png" width="800px" height ="400px">
 
-### 1.2.3 Editing a bill of an appointment `editbill`, `eb`
+### 1.2.3 Edit a bill of an appointment `editbill`, `eb`
 
 Edits a bill of an appointment.
 
@@ -275,16 +270,23 @@ Edits a bill of an appointment.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
+<<<<<<< HEAD
 ####Examples:
 * `editbill 1 a/100` Edits the amount of the 1st bill to be `100`.
+=======
+Examples:
+* `editbill 1 a/100` edits the amount of the 1st bill to be `100`.
+
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 <img src="images/ug/editcommand/editbill.png" width="800px" height ="400px">
 
-* `editbill 1 d/2020-10-10` Edits the bill date of the 1st bill to be `2020-10-10`.
+
+* `editbill 1 d/2020-10-10` edits the bill date of the 1st bill to be `2020-10-10`.
 <img src="images/ug/editcommand/editbill2.png" width="800px" height ="400px">
 
 ## 1.3 Find
 
-### 1.3.1 Finding patients `findpatient`, `fp`
+### 1.3.1 Find patient(s) `findpatient`, `fp`
 
 Filters patients by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -311,7 +313,7 @@ special characters).
 
 <img src="images/ug/findcommand/findpatientBernice.png" width="800px" height ="500px">
 
-### 1.3.2 Finding appointments `findappointment`, `fa`
+### 1.3.2 Find appointment(s) `findappointment`, `fa`
 
 Filters appointments by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -339,7 +341,7 @@ special characters).
 <img src="images/ug/findcommand/findappointmentAlex.png" width="800px" height ="500px">
 
 
-### 1.3.3 Finding bills `findbill`, `fb`
+### 1.3.3 Find bill(s) `findbill`, `fb`
 
 Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -357,14 +359,19 @@ special characters).
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
+<<<<<<< HEAD
 ####Examples:
 `findbill n/Ber p/unpaid` returns Bernice's unpaid bill
+=======
+Example:
+`findbill n/Ber p/unpaid` returns `Bernice Yu`'s unpaid bill.
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 <img src="images/ug/findcommand/fb.png" width="800px" height ="400px">
 
 ## 1.4 Sort
 
-### 1.4.1 Sorting patients `sortpatient`, `sop`
+### 1.4.1 Sort patients `sortpatient`, `sop`
 
 Sorts patients by a single field
 
@@ -388,7 +395,7 @@ Sorts patients by a single field
 
 <img src="images/ug/sortcommand/sop2.png">
 
-### 1.4.2 Sorting appointments `sortappointment`, `soa`
+### 1.4.2 Sort appointments `sortappointment`, `soa`
 
 Sorts appointments by a single field
 
@@ -412,7 +419,7 @@ Sorts appointments by a single field
 
 <img src="images/ug/sortcommand/soa2.png">
 
-### 1.4.3 Sorting bills `sortbill`, `sob`
+### 1.4.3 Sort bills `sortbill`, `sob`
 
 Sorts bills by a single field
 
@@ -442,7 +449,7 @@ Sorts bills by a single field
 
 Select commands are the fast way to show the relative information to the selected item.
 
-### 1.5.1 Selecting a patient `selectpatient`, `slp`
+### 1.5.1 Select a patient `selectpatient`, `slp`
 
 Selects a patient by index in the patient list. Filter the appointment list and bill list
 so that these two lists shows the appointments and bills for the selected patient only.
@@ -465,13 +472,13 @@ Notes on symbols in first column:
 
 `**` Must be directly after command word
 
-#### Examples:
+#### Example:
 
 * `slp 1` shows the appointments and bills for the first patient in the patient list.
 
 <img src="images/ug/selectcommand/slp1.png">
 
-### 1.5.2 Selecting an appointment `selectappointment`, `sla`
+### 1.5.2 Select an appointment `selectappointment`, `sla`
 
 Selects an appointment by index in the appointment list. Filter the bill list
 so that bill list shows the bill for the selected appointment only.
@@ -494,15 +501,15 @@ Notes on symbols in first column:
 
 `**` Must be directly after command word
 
-#### Examples:
+#### Example:
 
 * `sla 1` shows the bill for the first appointment in the appointment list.
 
 <img src="images/ug/selectcommand/sla1.png">
 
-## 1.6 Setting Bill Payment Status
+## 1.6 Set Bill Payment Status
 
-### 1.6.1 Setting Bill As Paid `setpaid`, `sp`
+### 1.6.1 Set Bill As Paid `setpaid`, `sp`
 
 Sets the payment status of a bill to "paid".
 
@@ -518,13 +525,21 @@ Example:
 
 Before:
 
+<<<<<<< HEAD
 <img src="images/ug/setpaidunpaidcommand/spbefore.png">
 
 After:
 
 <img src="images/ug/setpaidunpaidcommand/spafter.png">
+=======
+<img src="images/ug/setpaidunpaidcommand/setpaidcommand.png" width="800px" height ="500px">
 
-### 1.6.2 Setting Bill As Unpaid `setunpaid`, `sup`
+After:
+
+<img src="images/ug/setpaidunpaidcommand/setpaidcommandafter.png" width="800px" height ="500px">
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
+
+### 1.6.2 Set Bill As Unpaid `setunpaid`, `sup`
 
 Sets the payment status of a bill to "unpaid".
 
@@ -541,11 +556,19 @@ Sets the payment status of a bill to "unpaid".
 
 Before:
 
+<<<<<<< HEAD
 <img src="images/ug/setpaidunpaidcommand/supbefore.png">
 
 After:
 
 <img src="images/ug/setpaidunpaidcommand/supafter.png">
+=======
+<img src="images/ug/setpaidunpaidcommand/setunpaidcommand.png" width="800px" height ="500px">
+
+After:
+
+<img src="images/ug/setpaidunpaidcommand/setunpaidcommandafter.png" width="800px" height ="500px">
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 ## 1.7 List `list`, `ls`
 
@@ -555,15 +578,19 @@ Removes all conditions previously applied to the list and shows all patients, ap
 
 `list` or `ls`
 
+<<<<<<< HEAD
 #### Example
+=======
+### Example:
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
-* Executing `list`, the program shows all patients, appointments and bills.
+* `list` shows all patients, appointments and bills.
 
 <img src="images/ug/othercommands/ls1.png">
 
 ## 1.8 Delete
 
-### 1.8.1 Deleting a patient `deletepatient`, `dp`
+### 1.8.1 Delete a patient `deletepatient`, `dp`
 
 Deletes a patient by the index number of the patient in the list.
 
@@ -590,7 +617,7 @@ After:
 
 <img src="images/ug/deletecommand/dp2.png">
 
-### 1.8.2 Deleting an appointment of a patient `deleteappointment`, `da`
+### 1.8.2 Delete an appointment of a patient `deleteappointment`, `da`
 
 Deletes an appointment by the index number of the appointment in the list.
 
@@ -605,6 +632,7 @@ Deletes an appointment by the index number of the appointment in the list.
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
 
+<<<<<<< HEAD
 #### Examples:
 
 * `deleteappointment 3` deletes Charlotte Oliveiro's appointment and its bill.
@@ -616,8 +644,15 @@ Before:
 After:
 
 <img src="images/ug/deletecommand/da2.png">
+=======
+Example:
+* `deleteappointment 2` deletes `Charlotte Oliveiro`'s appointment with Dr. Prabhu on 2022-10-21 08:30 for
+  knee exam.
 
-### 1.8.3 Deleting a bill of an appointment `deletebill`, `db`
+  <img src="images/ug/deletecommand/da.png">
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
+
+### 1.8.3 Delete a bill of an appointment `deletebill`, `db`
 
 Deletes a bill by the index number of the bill in the list.
 
@@ -631,6 +666,7 @@ Deletes a bill by the index number of the bill in the list.
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
 
+<<<<<<< HEAD
 #### Examples:
 
 * `deletebill 3` deletes Bernice's bill for her X-Ray appointment
@@ -642,6 +678,12 @@ Before:
 After:
 
 <img src="images/ug/deletecommand/db2.png">
+=======
+Example:
+`deletebill 1` deletes `Bernice Yu`'s bill for her X-Ray appointment.
+
+<img src="images/ug/deletecommand/db.png" width="800px" height ="400px">
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 ## 1.9 Undo `undo`
 
@@ -655,8 +697,12 @@ Reverses the most recent command.
 * If there are no commands to undo, an error message will be shown.
 * Only commands that change the state of HealthContact can be undone. (Commands such as list, find, select cannot be undone)
 
+<<<<<<< HEAD
 #### Examples:
 
+=======
+Example:
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 * ```undo``` undoes the most recent command.
 
 1. Original Data
@@ -682,8 +728,12 @@ Reverses the most recent undo command.
 * The command can be used multiple times to redo multiple commands.
 * If there are no commands to redo, an error message will be shown.
 
+<<<<<<< HEAD
 #### Examples:
 
+=======
+Example:
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 * ```redo``` redoes the most recent undo command.
 
 1. Original Data
@@ -717,7 +767,7 @@ Deletes all patients, appointments and bills from HealthContact.
 
 #### Example
 
-* Executing `clear`, all data is deleted.
+* `clear` deletes all the data in HealthContact.
 
 <img src="images/ug/othercommands/clear.png">
 
@@ -743,15 +793,15 @@ Opens the Help Window.
 
 #### Example
 
-* Executing `help`, the help window pops.
+* `help` opens the help window.
 
 <img src="images/ug/othercommands/help.png">
 
-## 1.14 Saving the data
+## 1.14 Save the data
 
 HealthContact data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-## 1.15 Editing the data file
+## 1.15 Edit the data file
 
 HealthContact data are saved as a JSON file `[JAR file location]/data/healthcontact.json`. Advanced users are welcome to update data directly by editing that data file.
 * If the changes to the data file makes its format invalid, HealthContact will discard all data and start with an empty data file at the next run.
