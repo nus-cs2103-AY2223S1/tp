@@ -154,7 +154,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        summaryWindow.init(logic.getFilteredTripList(), logic.getSummaryVariables(), completed);
+        summaryWindow.init(logic.getFilteredTripList(), logic.getTravelrSummary(), completed);
     }
 
     /**
@@ -198,7 +198,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleAndRefreshSummary() {
-        logic.refreshSummaryVariables();
+        logic.refreshTravelrSummary();
         handleSummary();
     }
 
@@ -236,8 +236,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
-            } else {
-                exitSummary();
             }
 
             if (commandResult.isExit()) {
@@ -246,6 +244,8 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowSummary()) {
                 handleSummary();
+            } else {
+                exitSummary();
             }
 
             return commandResult;
