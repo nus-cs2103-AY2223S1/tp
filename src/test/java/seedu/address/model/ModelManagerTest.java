@@ -168,7 +168,7 @@ public class ModelManagerTest {
     @Test
     public void deleteTask_nullTask_throwsNullPointerException() {
         modelManager.addTeam(FRONTEND);
-        assertThrows(NullPointerException.class, () -> modelManager.teamHasTask(INDEX_FIRST_TEAM, null));
+        assertThrows(NullPointerException.class, () -> modelManager.deleteTask(INDEX_FIRST_TEAM, null));
     }
 
 
