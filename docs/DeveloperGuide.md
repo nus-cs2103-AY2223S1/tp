@@ -1242,7 +1242,8 @@ testers are expected to do more *exploratory* testing.
 
     5. Test inputs where command format is invalid (e.g., `add-person-to-module`, `add-person-to-module m/CS2103T`)
        Expected:
-        * No person is added to module. Result display shows that the command format is invalid.
+        * No person is added to module. 
+        * Result display shows that the command format is invalid.
 
 
 ### Deleting a contact
@@ -1275,15 +1276,18 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `delete-person-from-module m/CS2103T n/David Li`<br>
        Expected:
-        * Contact with name David Li is deleted from the CS2103T module. A successful message stating that a person got deleted from CS2103T is displayed to the user.
+        * Contact with name David Li is deleted from the CS2103T module. 
+        * A successful message stating that a person got deleted from CS2103T is displayed to the user.
 
     1. Test case: `delete-person-from-module m/CS2103T n/Bob`, assuming Bob is not added to the module CS2103T<br>
        Expected:
-        * No person is deleted from CS2103T. Error message detailing the fact that Bob is currently not displayed in list is displayed.
+        * No person is deleted from CS2103T. 
+        * Error message detailing the fact that Bob is currently not displayed in list is displayed.
 
     1. Other incorrect delete person from module commands to try: `delete-person-from-module`, `delete-person-from-module a/CS2103T n/Bob`<br>
        Expected:
-        * No person is deleted from any module. An error message with relevant details is displayed to the user.
+        * No person is deleted from any module. 
+        * An error message with relevant details is displayed to the user.
 
     
 ### Editing a contact
@@ -1294,15 +1298,18 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `edit-person 1 n/Armin`<br>
        Expected:
-        * First contact on the list is edited to have the name Armin. Details of the edited contact displayed to the user.
+        * First contact on the list is edited to have the name Armin. 
+        * Details of the edited contact displayed to the user.
 
     1. Test case: `edit-person x n/Bob` (where x is larger than index of the last person)<br>
        Expected:
-        * No person is edited. Error message detailing the fact an invalid index is provided is displayed to the user.
+        * No person is edited. 
+        * Error message detailing the fact an invalid index is provided is displayed to the user.
 
     1. Other incorrect edit person commands to try: `edit-person`, `edit-person n/Bob`, `edit-person 1 m/Bob`<br>
        Expected:
-        * No person is edited. An error message with relevant details is displayed to the user.
+        * No person is edited. 
+        * An error message with relevant details is displayed to the user.
     
 
 ### Saving data
