@@ -387,7 +387,7 @@ Example after entering `suggest`:
 
 **:information_source: Note:**<br>
 
-The suggested amount of calorie is based on the example user profile created [here](#setup-eg).
+The suggested amount of calorie shown above is based on the example user profile created [here](#setup-eg).
 
 </div>
 
