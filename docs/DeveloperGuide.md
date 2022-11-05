@@ -193,13 +193,13 @@ The following activity diagram shows how the assigning filepath to a client feat
 ![SetPersonFileActivityDiagram](images/DeveloperGuide/FilePath/FilePathActivityDiagram.png)
 
 #### Design Considerations:
-**Choice 1 (Current Choice)** Store PDF's absolute path.
+**Choice 1 (Current Choice) : Store PDF's absolute path.**
   * Pros:
     * Absolute path of the PDF would mean that changes to the file location of User's FABook will not affect the ability to open PDF.
   * Cons:
     * Changing file location of PDF will render stored filepath useless.
 
-**Choice 2** Store PDF files of clients in a folder.
+**Choice 2 : Store PDF files of clients in a folder.**
   * Pros:
     * Users do not need to input absolute path as it is more technical than relative paths.
   * Cons:
@@ -207,27 +207,24 @@ The following activity diagram shows how the assigning filepath to a client feat
 
 ### Person Enhancement
 
-#### Enhancement 1
+#### Enhancement
 The person model now contains a `Net Worth` field.
 `Net Worth` is implemented as a class where it contains a `final string value`, `final static string`
 `MESSAGE_CONSTRAINTS` and `final static string` `VALIDATION_REGEX`.
 
-#### Design Considerations
 - Net Worth accepts a Net Worth object that has an immutable value.
 - Net Worth is a compulsory field. A user will only engage with a client if they know their net worth.
 - Net Worth `VALIDATION_REGEX` ensures that clients of more than 1000 dollars is engaged and the currency is
   standardise to be in dollars
 
-#### Alternatives
+#### Design Considerations
 
-* **Alternative 1 (current choice):** Compulsory Net Worth field in person and `VALIDATION_REGEX` calculated in
-  dollars and must be more than 4 digits.
+* **Choice 1 (current choice) : Compulsory Net Worth field in person and `VALIDATION_REGEX` calculated in dollars and must be more than 4 digits.**
     * Pros: Standardisation of currency and minimum net worth.
     * Cons: Unable to create a contact without knowing the client's net worth and net worth must be more than a
       minimum amount.
 
-* **Alternative 2:** Non-compulsory Net Worth field and `VALIDATION_REGEX` has no currency constraints nor minimum
-  amount.
+* **Choice 2 : Non-compulsory Net Worth field and `VALIDATION_REGEX` has no currency constraints nor minimum amount.**
     * Pros: Flexibility in creating a contact.
     * Cons: No means of comparison between a contact of different currency.
 
@@ -238,19 +235,19 @@ Implementation of the upcoming meeting feature is built on top of [Meeting Featu
 
 #### Design Considerations
 **Aspect: MeetingTime Object**
-* **Alternative 1 (current choice): Person object contains its own set of MeetingTime**
+* **Choice 1 (current choice): Person object contains its own set of MeetingTime**
   * Pros: Easier to implement given the short amount of time
   * Cons: Harder to sort/filter/manipulate
-* **Alternative 2 (ideal choice): Bidirectional navigation between MeetingTime and Person**
+* **Choice 2 (ideal choice): Bidirectional navigation between MeetingTime and Person**
   * Pros: Better abstraction therefore easier to perform MeetingTime specific tasks(e.g. sort, filter)
   * Cons: More complicated to implement
 
 #### Related Features                                  
-* [Sync Meetings feature](#SyncMeetingsFeature)        
-* [Upcoming Meetings feature](#UpcomingMeetingsFeature)
+* [Sync Meetings feature](#sync-meetings-feature)        
+* [Upcoming Meetings feature](#upcoming-meetings-feature)
 
-<a id="SyncMeetingsFeature"></a>
 ### Sync Meetings feature
+
 #### Implementation
 The Sync Meetings feature is facilitated by the following operation:
 
@@ -272,15 +269,15 @@ Step 4. In `Person#syncMeetingTimes()`, the predicate `MeetingTimePastPredicate(
 
 #### Design Considerations
 **Aspect: Sync Meeting**
-* **Alternative 1 (current choice): In place filter of uniquePersonList**
+* **Choice 1 (current choice): In place filter of uniquePersonList**
   * Pros: Simple to implement
   * Cons: Hard to introduce undo logic
-* **Alternative 2: New instance of uniquePersonList when syncing**                       
+* **Choice 2: New instance of uniquePersonList when syncing**                       
   * Pros: Easy to introduce undo logic                                                   
   * Cons: Breaks singularity of address book in model or uniquePersonList in address book
 
-<a id="UpcomingMeetingsFeature"></a>
 ### Upcoming Meetings feature
+
 #### Implementation
 
 The mechanism is facilitated by `MeetingsWindow`, `MeetingListPanel` and `MeetingCard`.
@@ -313,27 +310,27 @@ The following activity diagram shows how upcoming meetings feature works.
 
 #### Design Considerations:
 **Display**
-**Choice 1 (Current Choice)** Pop up Meetings window.
+**Choice 1 (Current Choice) : Pop up Meetings window.**
   * Pros:
     * Clear segregation from Main UI.
     * Does not take up real estate on the Main UI.
   * Cons:
     * Extra window to be created and managed.
 
-**Choice 2** Displayed on a section of Main Window.
+**Choice 2 : Displayed on a section of Main Window.**
   * Pros:
     * No extra window to be managed.
   * Cons:
     * Cluttered UI.
 
 **Meeting Card Display**
-**Choice 1 (Current Choice)** Display Meetings Card by Person.
+**Choice 1 (Current Choice) : Display Meetings Card by Person.**
   * Pros:
     * Clear distinction by client of the meetings that user will have with.
   * Cons:
     * Not intuitive for consolidated meetings in a day.
 
-**Choice 2** Display Meetings Card by date.
+**Choice 2 : Display Meetings Card by date.**
   * Pros:
     * Intuitive consolidated meetings per day.
   * Cons:
@@ -396,12 +393,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
-* **Alternative 1 (current choice):** Individual command knows how to undo/redo by
+* **Choice 1 (current choice) : Individual command knows how to undo/redo by**
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-* **Alternative 2:** Saves the entire address book.
+* **Choice 2 : Saves the entire address book.**
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 --------------------------------------------------------------------------------------------------------------------
