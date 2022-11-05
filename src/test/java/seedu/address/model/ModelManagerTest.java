@@ -133,12 +133,6 @@ public class ModelManagerTest {
         assertFalse(modelManager.hasTeam(teamToDelete));
     }
 
-    @Test
-    public void addPersonToTeam_validTeam_teamIsAdded() {
-        modelManager.addTeam(FRONTEND);
-        modelManager.addPersonToTeam(DANIEL, FRONTEND);
-        assertTrue(FRONTEND.containMember(DANIEL));
-    }
 
     @Test
     public void teamHasTask_nullIndex_throwsNullPointerException() {
@@ -164,50 +158,19 @@ public class ModelManagerTest {
         assertFalse(modelManager.teamHasTask(INDEX_FIRST_TEAM, COOK));
     }
 
+
     @Test
-    public void addTask_nullIndex_throwsNullPointerException() {
+    public void deleteTask_nullTeamIndex_throwsNullPointerException() {
         modelManager.addTeam(FRONTEND);
-        assertThrows(NullPointerException.class, () -> modelManager.addTask(null, COOK));
+        assertThrows(NullPointerException.class, () -> modelManager.deleteTask(null,INDEX_FIRST_TASK));
     }
 
     @Test
-    public void addTask_nullTask_throwsNullPointerException() {
+    public void deleteTask_nullTask_throwsNullPointerException() {
         modelManager.addTeam(FRONTEND);
-        assertThrows(NullPointerException.class, () -> modelManager.addTask(INDEX_FIRST_TEAM, null));
+        assertThrows(NullPointerException.class, () -> modelManager.teamHasTask(INDEX_FIRST_TEAM, null));
     }
 
-    @Test
-    public void addTask_validTaskAndIndex_taskIsAdded() {
-        modelManager.addTeam(FRONTEND);
-        Team teamToAddTask = modelManager.getTeam(FRONTEND.getName());
-        modelManager.addTask(INDEX_FIRST_TEAM, COOK);
-        assertTrue(teamToAddTask.containTask(COOK));
-    }
-
-    @Test
-    public void editTask_nullTeamIndex_throwsNullPointerException() {
-        Name newName = new Name("Database");
-        LocalDate newDeadline = LocalDate.parse("12-12-2022", DATE_TIME_FORMAT);
-        assertThrows(NullPointerException.class, () -> modelManager.editTask(null, INDEX_FIRST_TASK,
-                newName, newDeadline));
-    }
-
-    @Test
-    public void editTask_nullTaskIndex_throwsNullPointerException() {
-        modelManager.addTeam(FRONTEND);
-        Name newName = new Name("Database");
-        LocalDate newDeadline = LocalDate.parse("12-12-2022", DATE_TIME_FORMAT);
-        assertThrows(NullPointerException.class, () -> modelManager.editTask(INDEX_FIRST_TEAM, null,
-                newName, newDeadline));
-    }
-
-    @Test
-    public void editTask_validParameters_editTask() {
-        modelManager.addTeam(FRONTEND);
-        Name newName = new Name("Database");
-        LocalDate newDeadline = LocalDate.parse("12-12-2022", DATE_TIME_FORMAT);
-        modelManager.editTask(INDEX_FIRST_TEAM, INDEX_FIRST_TASK, newName, newDeadline);
-    }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
