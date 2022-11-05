@@ -26,7 +26,7 @@ public class MarkOrderCommand extends Command {
             + FLAG_DELIVERED + " (optional) \n"
             + "Example: " + COMMAND_WORD + " 1 " + FLAG_PAID + " " + FLAG_DELIVERED;
 
-    public static final String MESSAGE_MARK_ORDER_SUCCESS = "Marked Order:\n%1$s";
+    public static final String MESSAGE_MARK_ORDER_SUCCESS = "Order Marked:\n%1$s";
 
     private final Index targetIndex;
     private final boolean isPaid;
