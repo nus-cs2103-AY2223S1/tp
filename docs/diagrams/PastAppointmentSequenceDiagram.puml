@@ -6,7 +6,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":CreatePastAppointmentCommandParser" as CreatePastAppointmentCommandParser LOGIC_COLOR
-participant "appt:CreatePastAppointmentCommand" as CreatePastAppointmentCommand LOGIC_COLOR
+participant "cmd:CreatePastAppointmentCommand" as CreatePastAppointmentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
