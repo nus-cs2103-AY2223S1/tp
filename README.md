@@ -9,5 +9,5 @@ FoodRem is an Inventory Management System that empowers small food and beverage 
 
 ## Acknowledgements
 
-<!-- markdownlint-disable-next-line proper-names -->
-{{ site.data.foodrem.acknowledgements }}
+<!-- Check that this matches {{ site.data.foodrem.acknowledgements }} -->
+FoodRem is a brownfield software project based off [AddressBook3](https://se-education.org/addressbook-level3/), taken under the [CS2103T Software Engineering module](https://nus-cs2103-ay2223s1.github.io/website/index.html) held by the School of Computing at the National University of Singapore.
