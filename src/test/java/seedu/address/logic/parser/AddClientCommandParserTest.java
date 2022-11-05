@@ -55,29 +55,40 @@ public class AddClientCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClient));
+                + ADDRESS_DESC_BOB + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClient));
+                + ADDRESS_DESC_BOB + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClient));
+                + ADDRESS_DESC_BOB + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClient));
+                + ADDRESS_DESC_BOB + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClient));
+                + ADDRESS_DESC_BOB + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
+
+        // multiple birthday - last address accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + BIRTHDAY_DESC_AMY + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
 
         // multiple Products - all accepted
         Client expectedClientMultipleProducts = new ClientBuilder(BOB).withProducts(VALID_PRODUCT_1, VALID_PRODUCT_2)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + PRODUCT_DESC_PRODUCT2 + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClientMultipleProducts));
+                + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT2 + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClientMultipleProducts));
     }
 
     @Test

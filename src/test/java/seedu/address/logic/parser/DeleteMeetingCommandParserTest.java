@@ -26,7 +26,6 @@ public class DeleteMeetingCommandParserTest {
         assertParseSuccess(parser, " i/1", new DeleteMeetingCommand(INDEX_FIRST_ELEMENT));
     }
 
-
     @Test
     public void parse_negativeIndex_throwsParseException() {
         assertParseFailure(
@@ -40,6 +39,14 @@ public class DeleteMeetingCommandParserTest {
         assertParseFailure(
                 parser,
                 " i/0",
+                ParserUtil.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void parse_noIndex_throwsParseException() {
+        assertParseFailure(
+                parser,
+                " i/",
                 ParserUtil.MESSAGE_INVALID_INDEX);
     }
 }

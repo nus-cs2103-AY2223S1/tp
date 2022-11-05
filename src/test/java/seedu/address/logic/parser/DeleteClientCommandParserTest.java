@@ -31,7 +31,6 @@ public class DeleteClientCommandParserTest {
         assertParseSuccess(parser, " i/1", new DeleteClientCommand(INDEX_FIRST_ELEMENT));
     }
 
-
     @Test
     public void parse_negativeIndex_throwsParseException() {
         assertParseFailure(parser, " i/-1",
@@ -41,6 +40,12 @@ public class DeleteClientCommandParserTest {
     @Test
     public void parse_zeroIndex_throwsParseException() {
         assertParseFailure(parser, " i/0",
+                ParserUtil.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void parse_noIndex_throwsParseException() {
+        assertParseFailure(parser, " i/",
                 ParserUtil.MESSAGE_INVALID_INDEX);
     }
 }
