@@ -213,9 +213,10 @@ We ultimately went with Alternative 1 since we do not expect `list` to take in m
 
 #### Implementation
 The implemented cancel feature allows users to cancel a patient's appointment based on its index in the appointment list. <br>
-It is implemented similar to other idENTify commands and it extends `SelectAppointmentCommand`, an abstract class which encapsulates <br>
-operations which require selecting appointments from an appointment list. The logical flow of using this command is shown in the
-activity diagram given below.
+It is implemented similar to other idENTify commands and it extends `SelectAppointmentCommand`, an abstract class which encapsulates
+operations which require selecting appointments from an appointment list.
+
+The logical flow of using this command is shown in the activity diagram given below.
 
 ![Activity Diagram](images/CancelActivityDiagram.png)
 
