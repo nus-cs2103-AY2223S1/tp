@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MyInsuRecParser" as MyInsuRecParser LOGIC_COLOR
+participant ":EditClientCommand" as EditClientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("editClient i/1 a/123 Street")
+activate LogicManager
+
+LogicManager -> MyInsuRecParser : parseCommand("editClient i/1 a/123 Street")
+activate MyInsuRecParser
+
+
+MyInsuRecParser --> LogicManager : Command e
+deactivate MyInsuRecParser
+
+LogicManager -> EditClientCommand : execute(model)
+activate EditClientCommand
+
+
+EditClientCommand -[LOGIC_COLOR]> EditClientCommand: create edited Client
+activate EditClientCommand #D3D3EC
+            EditClientCommand --[LOGIC_COLOR]> EditClientCommand : editedClient
+            deactivate EditClientCommand
+
+EditClientCommand -> Model : setClient(editedClient)
+activate Model
+Model --> EditClientCommand
+deactivate Model
+
+create CommandResult
+EditClientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditClientCommand : CommandResult r
+deactivate CommandResult
+
+EditClientCommand -> LogicManager : CommandResult r
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
