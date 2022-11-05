@@ -95,7 +95,6 @@ The features of TABS are as such:
 </div>
 
 ## 2.3 GUI Interface
-<div markdown="block" class="alert alert-info">
 The images below show the sections of the TABS user interface.
 
 ![TABS example](images/user-guide/Ui2.png)
@@ -125,7 +124,7 @@ Overview of the sections in the contacts pane:
 
 * Use arrow keys to switch between *Contact details* and *Assignments*.
 
-</div>
+
 
 ## 2.4 Command Format
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -149,6 +148,7 @@ Overview of the sections in the contacts pane:
 * Commands involving the parameter `NAME` is case-sensitive, the `NAME` specified must be exactly the same as the one stored in TABS.
 
 ## 2.5 Prefixes
+
 | Prefix | Field    |
 |--------|----------|
 | n/     | NAME     |
@@ -369,19 +369,19 @@ Examples:
 
 This section covers other miscellaneous commands.
 
-### 3.4.1 Viewing help: help
+### 3.4.1 Viewing help: `help`
 
 Shows a list of commands explaining how to use TABS and a message to the TABS' user guide.
 
 ![Help Example](images/user-guide/Help.png)
 
-Format: help
+Format: `help`
 
 ### 3.4.2 Clearing all entries: `clear`
 
 Clears all entries from TABS.
 
-Format: clear
+Format: `clear`
 
 ### 3.4.3 Exiting the program: `exit`
 
@@ -414,7 +414,7 @@ Format: `exit`
 |---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Person**            | `addperson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`<br> e.g. `addperson n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567` |
 | **Delete Person**         | `deleteperson NAME`<br> e.g. `deleteperson Betsy`                                                                                                           |
-| **Edit Person**           | `editperson NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g. `edituser 2 n/James Lee e/jameslee@example.com`                          |
+| **Edit Person**           | `editperson NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g. `editperson Alex Yeoh n/James Lee e/jameslee@example.com`                |
 | **Find Person**           | `findperson KEYWORD [MORE_KEYWORDS]`<br> e.g. `findperson James Jake`                                                                                       |
 | **List Persons**          | `listpersons`                                                                                                                                               |
 
