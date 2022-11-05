@@ -158,79 +158,72 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedHealthContact`. It extends `HealthContact` with an undo/redo history, stored internally as an `healthContactStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `History`. It tracks the states of `HealthContact` with an undo/redo history, stored internally as an `healthContactHistory` and `redoHealthContactHistory`. Additionally, it implements the following operations:
 
-* `VersionedHealthContact#commit()` — Saves the current HealthContact state in its history.
-* `VersionedHealthContact#undo()` — Restores the previous HealthContact state from its history.
-* `VersionedHealthContact#redo()` — Restores a previously undone HealthContact state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitHealthContact()`, `Model#undoHealthContact()` and `Model#redoHealthContact()` respectively.
+* `History#updateHealthContactHistory()` — Saves the current HealthContact state, the FilteredPatients state, the FilteredAppointment state and FilteredBills state in `undoFilteredPatientsHistory`, `undoFilteredAppointmentHistory` and `undoFilteredBillsHistory` respectively.
+* `History#getHealthContactHistory(int index)` — Get the saved state of HealthContact given an index. This method is used for restoring the previous HealthContact state from its history.
+* `History#updateRedoContactHistory()` — Saves the current HealthContact state, the FilteredPatients state, the FilteredAppointment state and FilteredBills state before an Undo command in `redoFilteredPatientsHistory`, `redoFilteredAppointmentHistory` and `redoFilteredBillsHistory` respectively.
+* `History#getRedoHealthContactHistory(int index)` — Get the saved state of HealthContact given an index. This method is used for restoring the previous HealthContact state from its history after an Undo Command.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedHealthContact` will be initialized with the initial HealthContact state, and the `currentStatePointer` pointing to that single HealthContact state.
+Step 1. The user launches the application for the first time. The `undoHealthContactHistory`, `redoHealthContactHistory`, `undoFilteredPatientsHistory`, `redoFilteredPatientsHistory`, `undoFilteredAppointmentHistory`, `redoFilteredAppointmentHistory`, `undoFilteredBillsHistory` and `redoFilteredBillsHistory` will be initialized empty.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoRedoState0](images/dg/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th patient in the HealthContact. The `delete` command calls `Model#commitHealthContact()`, causing the modified state of the HealthContact after the `delete 5` command executes to be saved in the `healthContactStateList`, and the `currentStatePointer` is shifted to the newly inserted HealthContact state.
+Step 2. The user executes `delete 5` command to delete the 5th patient in the HealthContact. The `delete` command calls `History#updateHealthContactHistory()`, causing the original state of the HealthContact before the `delete 5` command executes to be saved in the `healthContactHistory`.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![UndoRedoState1](images/dg/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new patient. The `add` command also calls `Model#commitHealthContact()`, causing another modified HealthContact state to be saved into the `healthContactStateList`.
+Step 3. The user executes `addpatient n/David … ` to add a new patient. The `addpatient` command also calls `History#updateHealthContactHistory()`, causing another HealthContact state before the command is executed to be saved into the `healthContactHistory`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![UndoRedoState2](images/dg/UndoRedoState2.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitHealthContact()`, so the HealthContact state will not be saved into the `healthContactStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoHealthContact()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous HealthContact state, and restores the HealthContact to that state.
+Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which will get the latest HealthContact state from `healthContactHistory` using `History#getHealthContactHistory(int index)` and restores it to that version.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![UndoRedoState3](images/dg/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial HealthContact state, then there are no previous HealthContact states to restore. The `undo` command uses `Model#canUndoHealthContact()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![UndoSequenceDiagram](images/dg/UndoSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoHealthContact()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the HealthContact to that state.
+The `redo` command does the opposite — it calls `Model#redo()`, which will get the latest HealthContact state from `redoHealthContactHistory` using `History#getRedoHealthContactHistory(int index)` and restores it to that version.
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `healthContactStateList.size() - 1`, pointing to the latest HealthContact state, then there are no undone HealthContact states to restore. The `redo` command uses `Model#canRedoHealthContact()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the HealthContact, such as `list`, will usually not call `Model#commitHealthContact()`, `Model#undoHealthContact()` or `Model#redoHealthContact()`. Thus, the `healthContactStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the HealthContact, such as `list`, will still call `Model#undo()` but it will compare the HealthContact state to the latest HealthContact state in `healthContactHistory`. Therefore, if the states are the same, the Undo command will not be performed.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+![UndoRedoState4](images/dg/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitHealthContact()`. Since the `currentStatePointer` is not pointing at the end of the `healthContactStateList`, all HealthContact states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img src="images/dg/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire HealthContact.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -341,11 +334,27 @@ Alternatives:
 
 #### Current Implementation
 
-The sort feature allows the user to sort the list of patients, appointments and bills in the application. 
+The sort feature allows the user to sort the list of patients, appointments and bills in the application.
 
-The sort feature is now separated for the patients, appointments and bills sections.
+It does this by creating comparators and sorting `UniqueBillList`, `UniqueAppointmentList` and `UniquePatientList` according to the user inputted criteria and order.
+
+The sort feature is now separated for the patients, appointments and bills sections with command word `sortpatient`, `sortappointment` and `sortbill`.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
+of the application as indexed lists.
+
+Step 2. The user executes `sortpatient c/name o/asc` command to sort all patients by name in ascending order.
+The command calls `Model#sortPatients(Comparator<Patient> comparator, boolean isAscending)` to sort `UniquePatientList` according to the comparator and the order.
+
+Step 3. The application displays the list of patients sorted according to the patients' name and in ascending order.
 
 #### Design considerations:
+
+1. Length of command word
+2. Criteria which the lists can be sorted by
+3. Order which the lists can be sorted by
 
 **Aspect: How sort executes:**
 
@@ -355,8 +364,7 @@ The sort feature is now separated for the patients, appointments and bills secti
 * **Alternative 2:** Individual command knows how to sort by itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
+  
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -394,17 +402,25 @@ like health problems
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …​                                    | I want to …​                  | So that I can…​                                                          |
-|----------|--------------------------------------------|-------------------------------|--------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions        | refer to instructions when I forget how to use the App                   |
-| `* * *`  | user                                       | add a new patient             | I can keep track of patient details                                      |
-| `* * *`  | user                                       | export to excel file          | share the information with others when necessary                         |
-| `* * *`  | user                                       | delete a patient              | remove patient entries that I no longer need                             |
-| `* * *`  | user                                       | find a patient by name        | look up a patient's details without having to go through the entire list |
-| `*`      | user                                       | hide private contact details  | minimize chance of someone else seeing them by accident                  |
-| `* *`    | user with many patients | sort patients by medical test | find out which patients are doing a particular medical test              |
+| Priority | As a …​                     | I want to …​                               | So that I can…​                                                                         |
+|----------|-----------------------------|--------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *`  | user                        | add a patient                              | keep track of the patient in a database                                                 |
+| `* * *`  | user                        | edit a patient                             | make changes to patients' details in the database                                       |
+| `* * *`  | user                        | delete a patient                           | remove a patient and his or her details if they are no longer needed                    |
+| `* * *`  | user                        | add an appointment                         | keep track of the patient's appointments in the database                                |
+| `* * *`  | user                        | edit an appointment                        | make changes to appointments' details in the database                                   |
+| `* * *`  | user                        | delete an appointment                      | remove an appointment from the database once it is over                                 |
+| `* *`    | user with many patients     | sort patients by name/phone/email/address  | classify patients according to each criteria (e.g. name, phone, email, address) easily  |
+| `* *`    | user with many appointments | sort appointments by name/test/slot/doctor | classify appointments according to each criteria (e.g. name, test, slot, doctor) easily |
+| `* *`    | user with many bills        | sort bills by name/amount/date/status      | classify bills according to each criteria (e.g. name, amount, date, status) easily      |
+| `* *`    | user                        | find a patient                             | locate details of patients without having to go through the entire list                 |
+| `* *`    | user                        | find an appointment                        | locate details of appointments without having to go through the entire list             |
+| `* *`    | user                        | find a bill                                | locate details of bills without having to go through the entire list                    |
+| `* *`    | user                        | select a patient                           | view all appointments and bills tagged to that patient                                  |
+| `* *`    | user                        | select an appointment                      | view all bills tagged to that appointment                                               |
+| `* *`    | careless user               | undo an action                             | revert a command once I have realised the command is a mistake                          |
+| `* *`    | indecisive user             | redo an action                             | revert an undo command once I have changed my mind and I to execute the command again   |
 
-*{More to be added}*
 
 ### Use cases
 
