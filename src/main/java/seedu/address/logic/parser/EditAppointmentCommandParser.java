@@ -34,7 +34,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         String personAppointmentIndex = argMultimap.getPreamble().trim();
         String[] splitStr = personAppointmentIndex.split("\\.");
         if (splitStr.length != 2) {
-             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAppointmentCommand.MESSAGE_USAGE));
         }
 

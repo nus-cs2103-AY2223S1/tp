@@ -13,11 +13,9 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_WRONGLENGTH_D
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_FIELD_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.person.DateTime.DEFAULT_MONTH_OUT_OF_BOUNDS_ERROR_MESSAGE;

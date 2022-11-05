@@ -17,8 +17,6 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.RISKTAG_DESC_HIGH;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_FIELD_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
