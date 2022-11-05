@@ -212,7 +212,7 @@ Syntax: `addprop [-n NAME] [-p PRICE] [-a ADDRESS] [-d DESCRIPTION] {-c CHARACTE
 The `-n` flag indicates the name of the property.<br>
 The `-p` flag indicates the property’s price.<br>
 The `-a` flag indicates the property’s address.<br>
-The `-d` flag indicates the property’s description (characteristics).<br>
+The `-d` flag indicates the property’s description.<br>
 The `-c` flag indicates the characteristics associated with the property.<br>
 The `-o` flag indicates the name of the owner of the property.<br>
 The `-ph` flag indicates the phone number of the owner of the property.<br>

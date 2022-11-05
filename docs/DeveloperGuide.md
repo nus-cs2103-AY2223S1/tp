@@ -200,11 +200,16 @@ This is the class diagram of a `Property`.
 
 ![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
 
-The object diagram below shows the new objects in the internal state when a valid `addprop` command `addprop -n Jane -ph 89991237 -e jane@gmail.com -a Bishan Street 12 -r 2000-5000` is input by the user.
-Note that a new `LocalDateTime` object is created by default and a new `Priority` object is also created albeit the user did not specify the priority parameter in the command.
-In addition, a new `Optional<PriceRange>` object containing a new `PriceRange` object is created since the user specified a price range parameter while a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
-The latter is omitted from the diagram for simplicity purposes.
+The object diagram below shows the new objects in the internal state when a valid `addprop` command `addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -owner Bob -ph 91234567` is input by the user.
+Note that a new `LocalDateTime` object is created by default.
+In addition, a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
+It is omitted from the diagram for simplicity purposes.
 
+![PropertyObjectDiagram](images/AddPropertyObjectDiagram-Final_state.png)
+
+The activity diagram that denotes the behavior of Cobb when the user inputs an `addprop` command with valid syntax.
+
+(Insert activity diagram)
 
 #### Design considerations:
 No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.

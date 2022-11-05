@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Final state
+
+class AddPropertyCommand as "__:AddPropertyCommand__"
+
+package Property {
+    class Property as "__:Property__"
+    class PropertyName as "__propertyName:PropertyName__"
+    class Address as "__address:Address__"
+    class LocalDateTime as "__propertyEntryTime:LocalDateTime__"
+    class Price as "__price:Price__"
+    package Owner {
+        class Owner as "__owner:Owner__"
+        class Phone as "__phone:Phone__"
+    }
+
+}
+
+
+AddPropertyCommand --> Property
+
+Property --> PropertyName
+Property --> Address
+Property --> LocalDateTime
+Property --> Price
+Property --> Owner
+Owner --> Phone
+PropertyName -[hidden]> Address
+Address -[hidden]> LocalDateTime
+Phone -[hidden]> LocalDateTime
+@end
