@@ -314,6 +314,7 @@ public class Student extends Position {
 
     public ArrayList<Assignment> setAssignments(String assignments) {
         requireNonNull(assignments);
+        this.overallGrade = "0/0";
         String[] splitStr = assignments.split(", ");
         int len = splitStr.length;
         if (assignmentsList.size() > 0) {
