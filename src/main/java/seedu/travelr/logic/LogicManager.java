@@ -93,12 +93,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public SummaryVariables getSummaryVariables() {
+    public SummaryVariables getTravelrSummary() {
         return model.getSummaryVariables();
     };
 
     @Override
-    public void refreshSummaryVariables() {
+    public void refreshTravelrSummary() {
         model.refreshSummaryVariables();
     };
 }

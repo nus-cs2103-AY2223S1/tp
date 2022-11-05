@@ -57,7 +57,7 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    SummaryVariables getSummaryVariables();
+    SummaryVariables getTravelrSummary();
 
-    void refreshSummaryVariables();
+    void refreshTravelrSummary();
 }
