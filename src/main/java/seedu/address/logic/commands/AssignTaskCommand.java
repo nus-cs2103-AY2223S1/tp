@@ -82,13 +82,6 @@ public class AssignTaskCommand extends Command {
             }
         }
 
-        // if there are no assignees, remove all assignees from the task
-        if (assignees.size() == 0) {
-            team.setTask(task, task.clearAssignees());
-            return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
-                    taskList.get(taskIndex.getZeroBased())));
-        }
-
         // convert list of assignee index to list of persons
         List<Person> assigneePersonList = assignees.stream()
                 .map(index -> memberList.get(index.getZeroBased()))
