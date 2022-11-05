@@ -12,9 +12,12 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add a student.
     * What it does: Allows the user to add in the name, email and telegram handle of a student.
-    * Justification: This feature improves the product significantly because a user can keep track of his or her
-      students under him.
-    * Highlights: This enhancement requires me to make changes to existing classes.
+    * Justification: This feature improves the product significantly because a user can add students into SETA in order
+      to keep track of his or her students under him.
+    * Highlights: This enhancement requires me to create new classes. 
+      It was also tricky because I added some additional checks within this feature, such as including an internal 
+      check to ensure that adding a student name will be case-insensitive. 
+      (E.g. if a student with the name "Alice Tan" is already in the addressbook, "alice   Tan" cannot be added).
 
 
 * **New Feature**: Added the ability to edit a student's details.
@@ -36,8 +39,10 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to list all students.
     * What it does: Allows the user to view the details of all his or her students at once.
     * Justification: This feature improves the product significantly because a user can easily have a overview of all
-      the students he or she has.
+      the students he or she has. This feature allows the user to go back to view all his students after executing a 
+      `findstu` command.
     * Highlights: This enhancement requires me to create new classes and make changes to existing classes.
+
 
 * **New Feature**: Added test cases for all the above features.
     * What it does: Increase code coverage.
@@ -53,6 +58,9 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Updated the GUI
         * Changed the layout of the application
+          * Added a close button
+          * Added header
+          * Fixed window size of application
         * Changed the GUI colour scheme
 
 * **Documentation**:
@@ -60,12 +68,16 @@ Given below are my contributions to the project.
         * Added documentation for the features `addstu`, `editstu` `findstu` and `liststu`
         * Did cosmetic tweaks to existing documentation of features `exit`
     * Developer Guide:
-        * Added implementation details of the `addstu`, `editstu` and `liststu` features.
+        * Added implementation details of the `addstu` feature.
         * Added use cases for `addstu`, `editstu`, `findstu` and `liststu` features.
+        * Edited numerous activity, sequence and class diagrams, such as `AddQActivityDiagram`, `ModelClassDiagram`,
+          and `StorageClassDiagram`.
 
 
 * **Community**:
     * PRs reviewed: [\#108](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/108)
       , [\#179](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/179)
+      , [\#200](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/200)
+      , [\#207](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/207)
 
 
