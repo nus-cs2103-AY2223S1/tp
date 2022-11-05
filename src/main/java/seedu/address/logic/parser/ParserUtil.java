@@ -48,7 +48,7 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INDEX_GREATER_THAN_MAX);
         }
 
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        return Index.fromOneBased(index);
     }
 
     /**
