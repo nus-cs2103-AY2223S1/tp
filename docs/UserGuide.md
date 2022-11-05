@@ -489,6 +489,8 @@ Format: `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT]`
 Lists all the projects present in the task panel.<br>
 Projects of hidden tasks will also be shown.
 
+>:information_source: The task panel will not be changed to show only tasks with project.
+
 Format: `task project`
 
 ### Saving the data
