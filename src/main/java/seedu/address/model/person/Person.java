@@ -79,7 +79,6 @@ public class Person {
      * @param appt the {@code PastAppointment} to be added
      */
     public void addPastAppointment(PastAppointment appt) {
-        // TODO optimise
         int length = pastAppointments.size();
         LocalDate apptDate = appt.getDate();
 

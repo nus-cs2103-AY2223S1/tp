@@ -170,8 +170,13 @@ How the parsing works:
   placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse 
   the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as 
   a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` 
-  interface so that they can be treated similarly where possible e.g, during testing.
+* When parsing a `get` command, the `AddressBookParser` class creates a `GetCommandParser` to parse the prefix of the 
+  `get` command (e.g., `/hw`). If the `get` command only requires a prefix (e.g., `get /inp` & `get /outp`), the 
+  respective `GetXYZCommand` object is created. If the `get` command requires parameters (e.g., `get /hw North`), the 
+  prefix is parsed accordingly within the `GetCommandParser` before the respective `GetXYZCommandParser` is created to
+  parse the parameters and create the appropriate `GetXYZCommand` to be returned.
+* All `XYZCommandParser` and `GetXYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) 
+  inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -249,7 +254,7 @@ constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also
     input separately with a `m/` prefix.
   * Exposed using the `PastApointment#getMedication()` method for use in `JsonAdaptedPastAppointment`.
 
-The following sequence diagram represents the creation of a `PastAppointment` using a `PastAppointmentCommand`:
+The following Sequence Diagram represents the creation of a `PastAppointment` using a `PastAppointmentCommand`:
 [![PastAppointmentCommandSequenceDiagram](images/PastAppointmentSequenceDiagram.png)](images/PastAppointmentSequenceDiagram.png)
 
 #### `UpcomingAppointment`
@@ -316,9 +321,18 @@ By having a parent `GetCommand` class, we can have a series of sub-commands that
 This way, new implementations of other items to be filtered when using the get command can be easily
 added in the future.
 
-This Sequence Diagram below illustrates the implementation of the `GetCommand` component using `GetWardNumberCommand`
-as an example of the sequence of events of a typical get command call.  
-![GetCommandSequence](images/tracing/GetCommandSequenceDiagram.png)
+There are 2 types of inputs for get commands, specifically those that only require a prefix (`/inp` & `/outp`) and 
+those that require a prefix and parameters.
+
+Below is a Sequence Diagram illustrating the implementation of `GetCommand` for get commands that only require a prefix.
+The command `get /inp` will be used for this example.
+
+![GetInpatientSequenceDiagram](images/GetInpatientSequenceDiagram.png)
+
+This Sequence Diagram below illustrates the implementation of the `GetCommand` for get commands that require parameters
+in addition to the prefix. The command `get /hw North` will be used for this example.
+
+![GetHospitalWingDiagram](images/GetHospitalWingSequenceDiagram.png)
 
 All get commands are implemented in the following steps:
 1. User input prefix is matched in `GetCommandParser` class
@@ -391,19 +405,28 @@ Getting the list of inpatients and outpatients involves the following steps:
 If additional parameters are inputted (e.g. `get /inp hello world`), the extra parameters will be ignored, similar to 
 how `help`, `list`, `exit` and `clear` are executed.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("get /inp")` API call.
-
-![GetInpatientSequenceDiagram](images/GetInpatientSequenceDiagram.png)
-
 #### Getting the past appointments of a patient (`/appt`)
 
 Getting the past appointments of a patient involves the following steps:
 1. prefix `/appt` is matched using an instance of `GetCommandParser`
-2. a new `GetPastAppointmentCommandParser` instance is created and parses the user input (specificallly the index inputted)
+2. a new `GetPastAppointmentCommandParser` instance is created and parses the user input (specifically the index inputted)
 3. a `GetPastAppointmentCommand` instance containing the index of the patient to be updated is created and returned
-4. the `GetPastAppointmentCommand` command is executed, accessing the list of `PastAppointment` of the specified patient
+4. the `GetPastAppointmentCommand` is executed, accessing the list of `PastAppointment` of the specified patient
    to be returned in a `CommandResult`
 5. The list of `PastAppointment` will then be displayed in the `ResultDisplay`
+
+#### Getting patients with an appointment on a specified date (`get /appton`)
+
+Getting patients with an appointment on a specified date involves the following steps:
+1. prefix `/appton` is matched using an instance of `GetCommandParser`
+2. a new `GetAppointmentByDateCommandParser` instance is created and parses the user input (specifically the date inputted)
+3. a `GetAppointmentByDateCommand` instance containing the date of the appointment is created and returned
+4. the `GetAppointmentByDateCommand` is executed, accessing the list of `PastAppointment` of the specified patient
+   to be returned in a `CommandResult`
+5. the model is updated such that the *filtered* list only displays patients who have an appointment on the specified 
+   date.
+
+The date inputted is parsed using `LocalDate`
 
 ### New Add Command
 The new `Add` Command incorporates support for the necessary fields for a patient, namely they are the: `NextOfKin`,
@@ -419,8 +442,6 @@ fields, as shown in the class diagram below.
 ![ModelPersonCompositionClassDiagram](images/ModelPersonCompositionClassDiagram.png)
 
 The usage of the Add Command remains the same as before.
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -468,6 +489,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | hospital staff         | create patient profiles                            | store new patients into the system                                                          |
 | `* * *`  | nurse                  | retrieve patients by medication                    | find out a list of patients under each medication                                           |
 | `* * *`  | hospital staff         | remove patients from the database                  | remove redundant entries that are no longer necessary                                       |
+| `* *`    | hospital staff         | view the previous appointments of a patient        | see patients' medical history                                                               |
 | `* * *`  | hospital staff         | retrieve patients by their appointment date        | know which patients have scheduled an appointment on a particular day                       |
 
 ### Use cases
@@ -693,3 +715,65 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
+### Sorting patients by patient type
+
+1. Displaying all inpatients registered in checkUp 
+   1. Prerequisites: List all patients using the `list` command. At least one inpatient in the list of people.
+   2. Test case: `get /inp`<br>
+      Expected: All inpatients are listed. The number of inpatients listed is displayed in the result box.
+   3. Test case: `get /inp hello world`<br>
+      Expected: All inpatients are listed. The number of inpatients listed is displayed in the result box.
+   4. Test case: `get /inp /outp`<br>
+      Expected: All inpatients are listed. The number of inpatients listed is displayed in the result box.
+   5. Test case: `get inp`<br>
+      Expected: The current list remains unchanged. Error message is displayed in the result box.
+   6. Test case: `get inp/`<br>
+      Expected: The current list remains unchanged. Error message is displayed in the result box.
+
+2. Displaying all outpatients registered in checkUp
+   1. Prerequisites: List all patients using the `list` command. At least one outpatient in the list of people.
+   2. Test case: `get /outp`<br>
+      Expected: All outpatients are listed. The number of outpatients listed is displayed in the result box.
+   3. Test case: `get /outp hello world`<br>
+      Expected: All outpatients are listed. The number of outpatients listed is displayed in the result box.
+   4. Test case: `get /outp /inp`<br>
+      Expected: All outpatients are listed. The number of outpatients listed is displayed in the result box.
+   5. Test case: `get outp`<br>
+      Expected: The current list remains unchanged. Error message is displayed in the result box.
+   6. Test case: `get outp/`<br>
+      Expected: The current list remains unchanged. Error message is displayed in the result box.
+
+### Displaying all past appointments of a patient
+
+1. Displaying the past appointment of a patient when all patients have past appointments.
+   1. Prerequisite: List all patients using the `list` command. All patients have at least one past appointment.
+   2. Test case: `get /appt 1`<br>
+      Expected: Displays all the past appointments of the first patient in the list. The list of past appointments will 
+                be arranged from most recent to oldest in the result box.
+   3. Test case: `get /appt 0`<br>
+      Expected: No past appointment is displayed. Error message is displayed in the result box.
+   4. Test case: `get /appt INVALID_INDEX` where `INVALID_INDEX` is an index outside the displayed list (e.g. `7` in a
+                 list of size 6)<br>
+      Expected: No past appointment is displayed. Error message is displayed in the result box.
+
+2. Displaying the past appointment of a patient that does not have any past appointments.
+   1. Prerequisite: At least one patient in the list of displayed patients must have no past appointments.
+   2. Test case: `get /appt INDEX_OF_PATIENT` where `INDEX_OF_PATIENT` is the index of the patient with no past 
+                 appointments.<br>
+      Expected: Result box will display `Obtained Past Appointments of Patient:` only, indicating there are no past
+                appointments.
+
+### Sorting of the past appointments
+
+1. Testing if past appointments are arranged from most recent to oldest
+   1. Prerequisite: At least one patient in the list of displayed patients must have no past appointments.
+   2. Test case: `appt INDEX_OF_PATIENT on/01-01-2022 diag/fever`, 
+                 `appt INDEX_OF_PATIENT on/04-01-2022 diag/fever follow up`, `get /appt INDEX_OF_PATIENT` where 
+                 `INDEX_OF_PATIENT` is the index of the patient with no past appointments.<br>
+      Expected: The list of past appointments will display the appointment on 04-01-2022 first followed by the 
+                appointment on 01-01-2022 in the result box.
+   3. Test case: `appt INDEX_OF_PATIENT on/04-01-2022 diag/fever follow up`,
+                 `appt INDEX_OF_PATIENT on/01-01-2022 diag/fever`, `get /appt INDEX_OF_PATIENT` where `INDEX_OF_PATIENT`
+                 is the index of the patient with no past appointments.<br>
+      Expected: The list of past appointments will display the appointment on 04-01-2022 first followed by the
+                appointment on 01-01-2022 in the result box. 
