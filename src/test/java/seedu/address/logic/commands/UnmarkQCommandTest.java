@@ -1,82 +1,95 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.UnmarkQCommand.MESSAGE_UNMARK_QUESTION_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_QUESTION;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_QUESTION;
+import static seedu.address.testutil.TypicalQuestions.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.QuestionBuilder;
 
-public class AddStuCommandTest {
+
+
+public class UnmarkQCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddStuCommand(null));
+    public void constructor_nullQuestion_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new UnmarkQCommand(null));
     }
 
     @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
-        Student validStudent = new StudentBuilder().build();
+    public void execute_questionUnmarkedByModel_markSuccessful() {
 
-        CommandResult commandResult = new AddStuCommand(validStudent).execute(modelStub);
+        Question questionToBeUnmarked = model.getFilteredQuestionList().get(INDEX_SECOND_QUESTION.getZeroBased());
+        Question editedQuestion = new QuestionBuilder(questionToBeUnmarked)
+                .withImportantTag(false)
+                .build();
+        UnmarkQCommand unmarkQCommand = new UnmarkQCommand(INDEX_SECOND_QUESTION);
 
-        assertEquals(String.format(AddStuCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
+        String expectedMessage = String.format(MESSAGE_UNMARK_QUESTION_SUCCESS, editedQuestion);
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setQuestion(model.getFilteredQuestionList().get(1), editedQuestion);
+
+        assertCommandSuccess(unmarkQCommand, model, expectedMessage, expectedModel);
     }
+
 
     @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
-        AddStuCommand addStuCommand = new AddStuCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
+    public void execute_questionUnmarkedByModel_markFailure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredQuestionList().size() + 1);
+        UnmarkQCommand markQCommand = new UnmarkQCommand(outOfBoundIndex);
 
-        assertThrows(CommandException.class,
-                AddStuCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStuCommand.execute(modelStub));
+        assertCommandFailure(markQCommand, model, Messages.MESSAGE_INVALID_QUESTION_DISPLAYED_INDEX);
     }
+
 
     @Test
     public void equals() {
-        Student alice = new StudentBuilder().withName("Alice").build();
-        Student bob = new StudentBuilder().withName("Bob").build();
-        AddStuCommand addAliceCommand = new AddStuCommand(alice);
-        AddStuCommand addBobCommand = new AddStuCommand(bob);
+        Question q1 = new QuestionBuilder().withDescription("Q1").build();
+        ModelStubAcceptingQuestionsAdded modelStub = new ModelStubAcceptingQuestionsAdded();
+        modelStub.addQuestion(q1);
+        UnmarkQCommand markFirstQuestionCommand = new UnmarkQCommand(INDEX_FIRST_QUESTION);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(markFirstQuestionCommand.equals(markFirstQuestionCommand));
 
         // same values -> returns true
-        AddStuCommand addAliceCommandCopy = new AddStuCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        UnmarkQCommand unmarkFirstQuestionCommandCopy = new UnmarkQCommand(INDEX_FIRST_QUESTION);
+        assertTrue(markFirstQuestionCommand.equals(unmarkFirstQuestionCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(markFirstQuestionCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        // different student -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(markFirstQuestionCommand.equals(null));
     }
+
 
     /**
      * A default model stub that have all of the methods failing.
@@ -112,16 +125,16 @@ public class AddStuCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
+        public void setAddressBook(ReadOnlyAddressBook addressBook) {
+
         }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
+            return null;
         }
+
 
         @Override
         public boolean hasStudent(Student student) {
@@ -226,39 +239,34 @@ public class AddStuCommandTest {
     }
 
     /**
-     * A Model stub that contains a single student.
+     * A Model stub that contains 1 question.
      */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    private class ModelStubWithQuestion extends ModelStub {
+        private final Question q1;
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+        ModelStubWithQuestion(Question q1) {
+            requireNonNull(q1);
+            this.q1 = q1;
         }
 
-        @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return this.student.isSameStudent(student);
-        }
     }
 
     /**
-     * A Model stub that always accept the student being added.
+     * A Model stub that always accept the questions being added.
      */
-    private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> studentsAdded = new ArrayList<>();
+    private class ModelStubAcceptingQuestionsAdded extends ModelStub {
+        final ArrayList<Question> questionsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
+        public boolean hasQuestion(Question question) {
+            requireNonNull(question);
+            return questionsAdded.stream().anyMatch(question::isSameQuestion);
         }
 
         @Override
-        public void addStudent(Student student) {
-            requireNonNull(student);
-            studentsAdded.add(student);
+        public void addQuestion(Question question) {
+            requireNonNull(question);
+            questionsAdded.add(question);
         }
 
         @Override
@@ -266,5 +274,6 @@ public class AddStuCommandTest {
             return new AddressBook();
         }
     }
+
 
 }

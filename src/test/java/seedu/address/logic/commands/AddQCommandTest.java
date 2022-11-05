@@ -24,58 +24,58 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.QuestionBuilder;
 
-public class AddStuCommandTest {
+public class AddQCommandTest {
 
     @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddStuCommand(null));
+    public void constructor_nullQuestion_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddQCommand(null));
     }
 
     @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
-        Student validStudent = new StudentBuilder().build();
+    public void execute_questionAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingQuestionAdded modelStub = new ModelStubAcceptingQuestionAdded();
+        Question validQuestion = new QuestionBuilder().build();
 
-        CommandResult commandResult = new AddStuCommand(validStudent).execute(modelStub);
+        CommandResult commandResult = new AddQCommand(validQuestion).execute(modelStub);
 
-        assertEquals(String.format(AddStuCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
+        assertEquals(String.format(AddQCommand.MESSAGE_SUCCESS, validQuestion), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validQuestion), modelStub.questionsAdded);
     }
 
     @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
-        AddStuCommand addStuCommand = new AddStuCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
+    public void execute_duplicateQuestion_throwsCommandException() {
+        Question validQuestion = new QuestionBuilder().build();
+        AddQCommand addQCommand = new AddQCommand(validQuestion);
+        ModelStub modelStub = new ModelStubWithQuestion(validQuestion);
 
         assertThrows(CommandException.class,
-                AddStuCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStuCommand.execute(modelStub));
+                AddQCommand.MESSAGE_DUPLICATE_QUESTION, () -> addQCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Student alice = new StudentBuilder().withName("Alice").build();
-        Student bob = new StudentBuilder().withName("Bob").build();
-        AddStuCommand addAliceCommand = new AddStuCommand(alice);
-        AddStuCommand addBobCommand = new AddStuCommand(bob);
+        Question q1 = new QuestionBuilder().withDescription("Q1").build();
+        Question q2 = new QuestionBuilder().withDescription("Q2").build();
+        AddQCommand addFirstQuestionCommand = new AddQCommand(q1);
+        AddQCommand addSecondQuestionCommand = new AddQCommand(q2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addFirstQuestionCommand.equals(addFirstQuestionCommand));
 
         // same values -> returns true
-        AddStuCommand addAliceCommandCopy = new AddStuCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddQCommand addFirstQuestionCommandCopy = new AddQCommand(q1);
+        assertTrue(addFirstQuestionCommand.equals(addFirstQuestionCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addFirstQuestionCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addFirstQuestionCommand.equals(null));
 
-        // different student -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different question -> returns false
+        assertFalse(addFirstQuestionCommand.equals(addSecondQuestionCommand));
     }
 
     /**
@@ -122,6 +122,7 @@ public class AddStuCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
+
 
         @Override
         public boolean hasStudent(Student student) {
@@ -172,6 +173,7 @@ public class AddStuCommandTest {
         public void setQuestion(Question target, Question editedQuestion) {
 
         }
+
 
         @Override
         public void markQuestion(Index index) {
@@ -226,39 +228,39 @@ public class AddStuCommandTest {
     }
 
     /**
-     * A Model stub that contains a single student.
+     * A Model stub that contains a single question.
      */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    private class ModelStubWithQuestion extends ModelStub {
+        private final Question question;
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+        ModelStubWithQuestion(Question question) {
+            requireNonNull(question);
+            this.question = question;
         }
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return this.student.isSameStudent(student);
+        public boolean hasQuestion(Question question) {
+            requireNonNull(question);
+            return this.question.isSameQuestion(question);
         }
     }
 
     /**
-     * A Model stub that always accept the student being added.
+     * A Model stub that always accept the question being added.
      */
-    private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> studentsAdded = new ArrayList<>();
+    private class ModelStubAcceptingQuestionAdded extends ModelStub {
+        final ArrayList<Question> questionsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
+        public boolean hasQuestion(Question question) {
+            requireNonNull(question);
+            return questionsAdded.stream().anyMatch(question::isSameQuestion);
         }
 
         @Override
-        public void addStudent(Student student) {
-            requireNonNull(student);
-            studentsAdded.add(student);
+        public void addQuestion(Question question) {
+            requireNonNull(question);
+            questionsAdded.add(question);
         }
 
         @Override

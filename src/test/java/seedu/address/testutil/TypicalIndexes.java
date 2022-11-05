@@ -11,6 +11,10 @@ public class TypicalIndexes {
     public static final Index INDEX_SECOND_STUDENT = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_STUDENT = Index.fromOneBased(3);
 
+    public static final Index INDEX_FIRST_QUESTION = Index.fromOneBased(1);
+    public static final Index INDEX_SECOND_QUESTION = Index.fromOneBased(2);
+    public static final Index INDEX_THIRD_QUESTION = Index.fromOneBased(3);
+
     public static final Index INDEX_FIRST_TUTORIAL = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_TUTORIAL = Index.fromOneBased(2);
 }

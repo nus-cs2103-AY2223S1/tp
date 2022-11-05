@@ -16,6 +16,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.question.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.question.Question;
 import seedu.address.model.student.StuNameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
@@ -35,6 +37,9 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DESCRIPTION_Q1 = "What's the difference between composition and aggregation?";
+    public static final String VALID_DESCRIPTION_Q2 = "Why are association roles used?";
+
 
     public static final String VALID_GROUP_TUTORIAL1 = "T08";
     public static final String VALID_GROUP_TUTURIAL2 = "T09";
@@ -44,6 +49,7 @@ public class CommandTestUtil {
     public static final String VALID_TIME_TUTORIAL2 = "2022-10-01 1600";
     public static final String VALID_TELEGRAM_AMY = "@amy";
     public static final String VALID_TELEGRAM_BOB = "@bob_choo";
+
     public static final String VALID_RESPONSE_AMY = "2";
     public static final String VALID_RESPONSE_BOB = "0";
     public static final String VALID_ATTENDANCE_AMY = "1";
@@ -60,6 +66,9 @@ public class CommandTestUtil {
     public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+
+    public static final String DESCRIPTION_Q1 = " " + VALID_DESCRIPTION_Q1;
+    public static final String DESCRIPTION_Q2 = " " + VALID_DESCRIPTION_Q2;
     public static final String ATTENDANCE_DESC_AMY = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_AMY;
     public static final String ATTENDANCE_DESC_BOB = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_BOB;
 
@@ -140,5 +149,18 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredStudentList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the question at the given {@code targetIndex} in the
+     * {@code model}'s question list.
+     */
+    public static void showQuestionAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredQuestionList().size());
+
+        Question question = model.getFilteredQuestionList().get(targetIndex.getZeroBased());
+        final String[] splitName = question.getDescription().descriptionString.split("\\s+");
+        model.updateFilteredQuestionList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitName)));
+
+        assertEquals(1, model.getFilteredQuestionList().size());
+    }
 
 }
