@@ -2,12 +2,49 @@
 layout: page
 title: Developer Guide
 ---
+## **Table of Contents**
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+#### What is TrackAScholar?
+
+TrackAScholar (TAS) is a one of a kind desktop app. It is the **only** application that any university administrative staff needs.
+TAS helps university administrative staff manage scholarship applications.
+It can store all the applicant's details such as contact info and scholarship applied etc. in one place.
+
+TAS has many features that university administrative staff can use to help speed up the application process immensely.
+TAS presents the administrative staff with various options such as the ability to pin important applicants,
+edit their details easily and find or filter for applicants with ease.
+
+TAS is optimised for use via a ***Command Line Interface (CLI)*** while simultaneously having the benefits of a ***Graphical User Interface
+(GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
+
+#### Who is this Developer Guide for?
+
+This developer guide is designed for individuals who want to understand TrackAScholar's architecture and design concerns.
+
+Italics are used to indicate specific technical terms. If you'd want to know what they mean, you may look them up in our [Glossary](#glossary).
+
+For additional details on our target audience and how our application solves their problems, check out the [Requirements](#appendix-requirements).
+
+For new users who are discovering the features of our application, please refer to our [User Guide](https://ay2223s1-cs2103t-w10-3.github.io/tp/UserGuide.html).
+
+#### Current version
+
+This developer guide is optimized for TrackAScholar's most recent version, v1.4.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Legend**
+
+Here are certain indicators explained so that the user may better comprehend the documentation.
 
 :information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
 
@@ -383,7 +420,7 @@ The following activity diagram summarizes what happens when a user executes a ed
 ### Product scope
 
 **Target Users**: <br>
-* NUS administrative staff in the Office of Admissions
+NUS administrative staff in the Office of Admissions.
 
 **Value Proposition**: <br>
 Streamline the scholarship application process by organizing the scholarship applications into their corresponding types and status, thus supporting faster and easier identification of a student’s scholarship application progress with a GUI.

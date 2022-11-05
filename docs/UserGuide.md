@@ -9,9 +9,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction  
-
-This is an overview of the application.
+## Introduction
 
 #### What is TrackAScholar?
 
@@ -27,6 +25,8 @@ TAS is optimised for use via a ***Command Line Interface (CLI)*** while simultan
 (GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
 
 #### Who is this User Guide for?
+
+This user guide is designed for individuals who wish to discover how to utilize our application.
 
 Based on our research, many universities often take an extended period of several months to process scholarship applications.
 Administrative staff at the university frequently works overtime to process this enormous volume of applications.
