@@ -805,7 +805,7 @@ testers are expected to do more *exploratory* testing.
     5. Test case: `edit 4`<br />
        Expected: No food is edited. Error details are shown on the result display.
 
-    6. Other invalid edit command formats to try: `edit 1 n/Pancake t/snack`, `edit 1 c/150.2`, `...` (where any fields specified does not conform to the expected format).<br />
+    6. Other invalid edit command formats to try: `edit 1 n/Pancake t/snack`, `edit 1 c/150.2`, `...` (where any field specified does not conform to the expected format).<br />
        Expected: Similar to previous.
 
 ### Setting a target calorie
