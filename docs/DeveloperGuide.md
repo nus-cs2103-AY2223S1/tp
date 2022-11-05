@@ -2,14 +2,19 @@
 layout: page title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents 
+  * **[Acknowledgements](#acknowledgements)**
+  * **[Setting up, getting started](#setting-up-getting-started)**
+  * **[Design](#design)** 
+  * **[Implementation](#implementation)**
+  * **[Appendix: Requirements](#appendix-requirements)**
+  * **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)**
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+*  [AddressBook-3](https://github.com/nus-cs2103-AY2223S1/tp)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -118,8 +123,8 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddStuCommand`) which
    is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletestu 1")`
 API call.
@@ -127,7 +132,7 @@ API call.
 
 ![Interactions Inside the Logic Component for the `deletestu 1` Command](images/DeleteStuSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStuCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -146,10 +151,9 @@ How the parsing works:
 
 ### Model component
 
-**
-API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+![Model class Diagram](images/ModelClassDiagram.png)
 
 
 The `Model` component,
@@ -236,10 +240,12 @@ that the student has been successfully added.
 
 The following sequence diagram shows how the add student operation works:
 ![AddStuSequenceDiagram](images/AddStuSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddStuCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 The following activity diagram summarizes what happens when a user executes a new `addstu` command.
 
-<img src="images/AddStuActivityDiagram.png" width="250" />
+![AddStuActivityDiagram](images/AddStuActivityDiagram.png)
 
 #### Design Considerations
 
@@ -288,9 +294,11 @@ Step 5. After successfully editing the response attribute, `AddResponseCommand` 
 `Ui`.
 
 The following sequence diagram shows how the add response feature is executed:
-<img src="images/AddResponseSequenceDiagram.png" width="574" />
+![AddResponseSequenceDiagram](images/AddResponseSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddResponseCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a new command:  
 ![AddResponseActivityDiagram](images/AddResponseActivityDiagram.png)
 
 #### Design Considerations
@@ -346,7 +354,7 @@ The following sequence diagram shows how the add question operation works:
 
 The following activity diagram summarizes what happens when a user executes a new `addq` command.
 
-<img src="images/AddQActivityDiagram.png" width="250" />
+![AddQActivityDiagram](images/AddQActivityDiagram.png)
 
 #### Design considerations:
 
@@ -393,6 +401,9 @@ Step 5. After successfully editing the attendance attribute, `AttendanceCommand`
 
 The following sequence diagram shows how the attendance feature is executed.
 ![AttendanceSequenceDiagram](images/AttendanceSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddStuCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 ![AttendanceSequenceDiagramReferenceFrame](images/AttendanceSequenceDiagramReferenceFrame.png)
 
 The following activity diagram summarizes what happens when a user executes a new `attendance` command.
@@ -432,10 +443,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 * has a need to manage a significant amount of tasks in a week other than their tutorials
 * prefer desktop apps over other types
 * can type fast and is reasonably comfortable using CLI apps
-* has no access to other time management systems
 
-**Value proposition**: They have difficulties keeping track of students' participation in zoom, telegram handles and
-schedule. The UI of the current application is not aesthetically pleasing and not intuitive enough.
+**Value proposition**: They have difficulties keeping track of their student's and tutorial's details as well as collating questions asked by their students. The UI of the current application(s) that they are using is not aesthetically pleasing and intuitive enough.
 
 ### User stories
 
@@ -444,7 +453,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​    | I want to …​                                        | So that I can…​                                                     |
 |----------|------------|-----------------------------------------------------|---------------------------------------------------------------------|
 | `* * *`  | CS2103T TA | add a new student                                   | keep track of my student's name, email and telegram handle          |
-| `* * *`  | CS2103T TA | edit a student                                      | correct any errors or make any changes if needed                    |
+| `* * `   | CS2103T TA | edit a student                                      | correct any errors or make any changes if needed                    |
 | `* * *`  | CS2103T TA | delete a student                                    | remove entries I no longer need                                     |
 | `* * *`  | CS2103T TA | add student's attendance                            | track student's attendance for grading purposes                     |
 | `* * *`  | CS2103T TA | add students' response count                        | keep track of student's participation                               |
@@ -464,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `SETA` and the **Actor** is the `CS2103T TA`, unless specified
+(For all use cases below, the **System** is `SETA` and the **Actor** is the `CS2103T TA`, unless specified
 otherwise)
 
 ****
@@ -801,13 +810,10 @@ otherwise)
    using commands than using the mouse.
 4. The system should respond within two seconds.
 5. The system must perform without failure in 95 percent of use cases.
-6. The date time format must be as follows:
-   YYYY-MM-DDTHH:mm:SS where T is the separator between date and time.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -822,9 +828,9 @@ exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file, `SETA.jar` and copy into an empty folder
 
-    2. Double-click the jar file Expected: Shows the GUI. The window size will take up the full screen.
+    2. Double-click the jar file. Expected: Shows the GUI.
 
 
 2. Saving window preferences
@@ -832,8 +838,36 @@ exploratory* testing.
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+        Expected: The most recent window size and location is retained.
 
+
+## Student class tests
+
+### Adding a student
+1. Adding a student while all students are being shown
+
+   1. Prerequisites: List all students using the `liststu` command. Multiple students in the
+      list.
+   2. Test case: `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com` <br>
+      Expected: Student with the relevant details added into the list. Details of the added student shown in the status
+      message.
+   3. Test case: `addstu` <br>
+      Expected: No student added. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect addstu commands to try: `addstu n/John Lim Jun Jie`, 
+      `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlimexample.com`
+
+### Editing a student
+1. Editing a student while all students are being shown
+
+   1. Prerequisites: List all students using the `liststu` command. Multiple students in the
+      list.
+   2. Test case: `editstu 1 n/Mary Doe` <br>
+      Expected: First student's name is edited to Mary Doe, rest of the details remain unedited. Details of edited student shown in the status message. 
+   3. Test case: `editstu 1` <br>
+      Expected: No student is edited. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect editstu commands to try: `editstu`, `editstu -1` <br>
+      Expected: Similar to previous
+   
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -849,9 +883,22 @@ exploratory* testing.
     4. Other incorrect deletestu commands to try: `deletestu`, `deletestu x` (where x is larger than the list size) <br>
        Expected: Similar to previous.
 
-### Add response count to a student
 
-1. Add a response count to a student while all students are being shown
+### Add attendance for a student
+
+1. Add on the attendance count for a student while all students are being shown
+
+   1. Prerequisites: List all students using the `liststu` command. Multiple students in the list.
+   2. Test case: `attendance 1` <br>
+      Expected: First student's attendance count increases by 1. Details of the first student shown in the status message.
+   3. Test case: `attendance 0` <br>
+      Expected: No student's attendance increased. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect attendance commands to try: `attendance`, `attendance x` (where x is larger than list size) <br>
+      Expected: Similar to previous.
+
+### Edit response count for a student 
+
+1. Edit a response count for a student while all students are being shown
 
     1. Prerequisites: List all students using the `liststu` command. Multiple students in the list.
 
@@ -881,19 +928,133 @@ exploratory* testing.
        , `helpstu -1` <br>
        Expected: Similar to previous
 
+
+### Find a student
+1. Find a student while all students are being shown.
+
+   1. Prerequisites: List all students using the `liststu` command. Multiple students in list.
+
+   2. Test case: `findstu Bob` <br>
+      Expected: Students with names containing `Bob` will be listed. `findstu` is case-insensitive, so
+      students with the name `bob` or `bOB` will also be listed.
+
+   3. Test case: `findstu` <br>
+      Expected: No students shown on the list. Error details shown in status message. Status bar remains the same.
+
+### Listing all students
+1. List all students in SETA.
+
+   1. Prerequisites: At least one or more students added into SETA.
+
+   2. Test case: `liststu` <br>
+      Expected: All students in SETA listed.
+
+
+## Question class tests
+
+### Adding a question
+1. Adding a Question while all questions are being shown
+
+   1. Test case: `addq What are UML Diagrams?` <br>
+       Expected: Question with the relevant details added into the list. Details of the added question shown in the status
+       message.
+   2. Test case: `addq` <br>
+      Expected: No question added. Error details shown in the status message. Status bar remains the same.
+
+### Deleting a question
+1. Deleting a question while all question are being shown
+
+   1. Test case: `deleteq 1`<br>
+       Expected: First question is deleted from the list. Details of the deleted question shown in the status message.
+
+   2. Test case: `deleteq 0`<br>
+      Expected: No question is deleted. Error details shown in the status message. Status bar remains the same.
+
+   3. Other incorrect deleteq commands to try: `deleteq`, `deleteq x` (where x is larger than the list size) <br>
+      Expected: Similar to previous.
+
+### Marking a question as important
+1. Marking a question as important while all questions are being shown
+
+    1. Prerequisites: At least one question in the question list.
+
+    2. Test case: `markq 1`<br>
+       Expected: First question is marked on the list. Details of marked question shown in the status message.
+
+    3. Test case: `markq 0`<br>
+       Expected: No question marked. Error details shown in status message. Status bar remains the same.
+
+    4. Other incorrect markq commands to try: `markq`, `markq x` (where x is larger than list size), `markq -1` <br>
+       Expected: Similar to previous
+
+### Unmarking a question as important
+1. Unmarking a question as important while all questions are being shown
+
+    1. Prerequisites: At least one question in the tutorial list.
+
+    2. Test case: `unmarkq 1`<br>
+       Expected: First question is unmarked on the list. Details of unmarked question shown in the status message.
+
+    3. Test case: `unmarkq 0`<br>
+       Expected: No question unmarked. Error details shown in status message. Status bar remains the same.
+
+    4. Other incorrect unmarkq commands to try: `unmarkq`, `unmarkq x` (where x is larger than list size), `unmarkq -1` <br>
+       Expected: Similar to previous
+      
+
+## Tutorial class tests
+
+### Adding a tutorial
+
+1. Test case: `addtut g/T08 c/UML Diagram t/2022-10-01 0800` <br>
+   Expected: Tutorial with the relevant details added into the list. Details of the added tutorial shown in the status
+   message.
+2. Test case: `addtut` <br>
+   Expected: No tutorial added. Error details shown in the status message. Status bar remains the same.
+3. Other incorrect addtut commands to try: `addtut g/T08`,
+   `addtut g/T08 c/ t/2022-10-01 0800`
+
+### Deleting a tutorial
+1. Deleting a tutorial while all tutorials are shown.
+
+    1. Test case: `deletetut 1`<br>
+       Expected: First tutorial is deleted from the list. Details of the deleted tutorial shown in the status message.
+
+    2. Test case: `deletetut 0`<br>
+       Expected: No tutorial is deleted. Error details shown in the status message. Status bar remains the same.
+
+    3. Other incorrect deletetut commands to try: `deletetut`, `deletetut x` (where x is larger than the list size) <br>
+       Expected: Similar to previous.
+
 ### Marking a tutorial as complete
 
 1. Marking a tutorial as complete while all tutorials are being shown
 
+   1. Prerequisites: At least one tutorial in the tutorial list.
+   
+   2. Test case: `marktut 1`<br>
+      Expected: First tutorial is marked on the list. Details of marked tutorial shown in the status message.
+   
+   3. Test case: `marktut 0`<br>
+      Expected: No tutorial marked. Error details shown in status message. Status bar remains the same.
+   
+   4. Other incorrect marktut commands to try: `marktut`, `marktut x` (where x is larger than list size), `marktut -1` <br>
+      Expected: Similar to previous 
+
+
+### Unmarking a tutorial as complete
+
+1. Unmarking a tutorial as complete while all tutorials are being shown
+
     1. Prerequisites: At least one tutorial in the tutorial list.
 
-    2. Test case: `marktut 1`<br>
-       Expected: First tutorial is deleted from the list. Details of deleted tutorial shown in the status message.
+    2. Test case: `unmarktut 1`<br>
+       Expected: First tutorial is unmarked on the list. Details of unmarked tutorial shown in the status message.
 
-    3. Test case: `marktut 0`<br>
-       Expected: No tutorial marked. Error details shown in status message. Status bar remains the same.
+    3. Test case: `unmarktut 0`<br>
+       Expected: No tutorial unmarked. Error details shown in status message. Status bar remains the same.
 
-    4. Other incorrect marktut commands to try: `marktut`, `marktut x` (where x is larger than list size)
-       , `marktut -1` <br>
-       Expected: Similar to previous
+    4. Other incorrect unmarktut commands to try: `unmarktut`, `unmarktut x` (where x is larger than list size), `unmarktut -1` <br>
+       Expected: Similar to previous 
+
 

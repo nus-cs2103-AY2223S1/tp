@@ -31,7 +31,6 @@ Class Tutorial
 Class Group
 Class Content
 Class Time
-Class Status
 
 }
 
@@ -69,7 +68,6 @@ UniqueTutorialList --> "~* all" Tutorial
 Tutorial *--> Group
 Tutorial *--> Content
 Tutorial *--> Time
-Tutorial *--> Status
 
 Name -[hidden]right-> Telegram
 Telegram -[hidden]right-> Email

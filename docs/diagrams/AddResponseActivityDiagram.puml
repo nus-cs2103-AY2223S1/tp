@@ -10,7 +10,7 @@ note left
     by a integer
 end note
 
-if (command is valid) then (yes)
+if () then ([command is valid])
 
     :Parse arguments into an ""AddResponseCommand"" object;
 
@@ -19,7 +19,7 @@ if (command is valid) then (yes)
     :Edit ""Response"" in Student;
 
     :show success message to  the user;
-else (no)
+else ([else])
     :Throw ""ParseException"";
 
     :show error message to user;
