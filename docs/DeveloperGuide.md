@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide for bobaBot
 ---
 
-1.Table of Contents
+1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -170,7 +170,7 @@ Classes used by multiple components are in the `seedu.boba.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-### 1. Add feature
+### \[Insert Numbering\] Add feature
 The Add feature is facilitated by `LogicManager`. The `AddCommandParser` parses the command arguments, and returns
 an `AddCommand` that is executed by the `LogicManager`.
 
