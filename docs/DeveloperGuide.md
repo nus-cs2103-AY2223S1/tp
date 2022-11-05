@@ -217,11 +217,13 @@ the abstraction of commands.
 
 The `Model` component,
 
-* stores the resident book data i.e., all `Resident` objects (which are contained in a `UniqueResidentList` object), and the venue book data, i.e. all `Venue` objects (which are contained in a `UniqueVenueList` object)
-* stores the currently 'selected' `Resident` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Resident>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
-* stores an `ObservableList<Venue>` and an `ObservableList<Booking>` of venues and bookings to display in the UI. 
-* stores two `ObservableList<String>` objects of columns to show and hide in the UI.
+* stores the `ResidentBook` and `VenueBook` data, i.e. all `Resident` and `Venue` objects (which are further 
+  contained in a `UniqueResidentList` object and `UniqueVenueList` object respectively)
+* stores the currently selected venues and bookings, and the current set of visible and hidden table columns in 
+  separate `ObservableList` objects
+    * The `Resident` objects are contained in a `FilteredList<Resident>` which are exposed to the outside as an `ObservableList`.
+    * The UI can 'observe' these lists so that the UI automatically changes when the data in these lists change.
+* stores a `UserPref` object that represents the user's preferences.
 * does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <!-- The references to Resident fields have been removed to reduce clutter -->
