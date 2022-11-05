@@ -17,13 +17,15 @@ My contributions to the project are documented below.
 
 ### Enhancements implemented
 
-- Refactor AB3 `DeleteCommand` for deleting student records by student name or ID in [\#91](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/91), [\#179](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/179)
+- Refactor AB3 `DeleteCommand` to delete student records by the student's name or student ID in [\#91](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/91), [\#179](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/179)
+  - AB3's  `DeleteCommand` deletes each item in the list by its index. By changing the command to delete each item in the list by a more unique detail such as a student's name or student ID, it reduces errors in deletion.
 - Updated test cases for `DeleteCommand` in [\#91](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/91)
 - Refactor AB3 `HelpCommand` to show command summary table in [\#150](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/150)
+  - AB3's `HelpCommand` only shows a link to its user guide. By adding a reference to a command summary table in the help window, it becomes more useful for the user.
 
 ### Contributions to the User Guide
 
-- Update documentation for `DeleteCommand` in [\#30](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/30), [\#97](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/97), [\#241](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/241)
+- Update documentation for `DeleteCommand` in [\#30](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/30), [\#97](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/97), [\#241](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/241), [\#256](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/256)
 - Update command summary table in [\#97](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/97), [\#120](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/120), [\#148](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/148), [\#181](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/181)
 - Add introduction and glossary section in [\#141](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/141)
 - Update documentation for `HelpCommand` in [\#241](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/241)
@@ -32,15 +34,15 @@ My contributions to the project are documented below.
 ### Contributions to the Developer Guide
 
 - Add introduction section in [\#126](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/126), [\#247](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/247)
-- Add implementation details for `DeleteCommand` [\#157](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/157)
-- Update architecture section in [\#160](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/160), [\#178](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/178)
+- Add implementation details and design considerations for `DeleteCommand` [\#157](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/157), [\#252](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/252)
+- Update UML diagrams in architecture section in [\#160](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/160), [\#178](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/178)
 - Update instructions for manual testing in [\#163](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/163)
 - Add use cases in [\#252](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/252)
 
 ### Review/mentoring contributions
 
 - Reviewed my team members' pull requests and provided suggestions to improve code quality
-- Total pull requests reviewed: 26
+- Total pull requests reviewed: 27
 
 ### Contributions beyond the project team
 
