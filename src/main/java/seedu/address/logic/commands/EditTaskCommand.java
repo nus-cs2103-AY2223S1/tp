@@ -29,6 +29,7 @@ import seedu.address.logic.parser.LocalDateTimeConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.TaskName;
 
 /**
  * Edits the details of an existing task in TruthTable.
@@ -86,7 +87,7 @@ public class EditTaskCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
         assert editTaskDescriptor != null;
 
-        String updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        TaskName updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         LocalDateTime updatedDeadline;
         if (editTaskDescriptor.getDeadline().isEmpty()) {
             updatedDeadline = taskToEdit.getDeadline().orElse(null);
@@ -171,7 +172,7 @@ public class EditTaskCommand extends Command {
 
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TASK_NAME_DESCRIPTION)
-        private String name;
+        private TaskName name;
 
         @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
                 parameterConsumer = LocalDateTimeConverter.class, description = FLAG_TASK_DEADLINE_DESCRIPTION)
@@ -201,7 +202,7 @@ public class EditTaskCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
-        private String name;
+        private TaskName name;
 
         private LocalDateTime deadline;
 
@@ -226,11 +227,11 @@ public class EditTaskCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, deadline);
         }
 
-        public Optional<String> getName() {
+        public Optional<TaskName> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setName(String name) {
+        public void setName(TaskName name) {
             this.name = name;
         }
 

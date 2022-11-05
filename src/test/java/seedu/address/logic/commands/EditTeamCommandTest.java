@@ -5,6 +5,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import org.junit.jupiter.api.Test;
+
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DescriptionConverter;
@@ -31,7 +32,8 @@ class EditTeamCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Team validTeam = TypicalTeams.FIRST;
         commandLine.parseArgs(TeamUtil.convertEditTeamToArgs(validTeam));
-        CommandResult expectedResult = new CommandResult(String.format(EditTeamCommand.MESSAGE_EDIT_TEAM_SUCCESS, validTeam));
+        CommandResult expectedResult = new CommandResult(String.format(EditTeamCommand.MESSAGE_EDIT_TEAM_SUCCESS,
+                validTeam));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
@@ -39,7 +41,8 @@ class EditTeamCommandTest {
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Team validTeam = TypicalTeams.DEFAULT_EDITED;
         commandLine.parseArgs(TeamUtil.convertEditPartialTeamToArgs(validTeam));
-        CommandResult expectedResult = new CommandResult(String.format(EditTeamCommand.MESSAGE_EDIT_TEAM_SUCCESS, validTeam));
+        CommandResult expectedResult = new CommandResult(String.format(EditTeamCommand.MESSAGE_EDIT_TEAM_SUCCESS,
+                validTeam));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
@@ -48,7 +51,7 @@ class EditTeamCommandTest {
         model.addTeam(TypicalTeams.FIRST);
         Team validTeam = TypicalTeams.FIRST;
         commandLine.parseArgs(TeamUtil.convertEditTeamToArgs(validTeam));
-        assertThrows(CommandException.class, EditTeamCommand.MESSAGE_DUPLICATE_TEAM,
-                () -> commandToBeTested.execute(model));
+        assertThrows(CommandException.class, EditTeamCommand.MESSAGE_DUPLICATE_TEAM, ()
+                -> commandToBeTested.execute(model));
     }
 }

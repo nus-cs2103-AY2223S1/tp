@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.AddPersonCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -17,7 +17,6 @@ import javafx.collections.ObservableList;
 import picocli.CommandLine;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressConverter;
 import seedu.address.logic.parser.EmailConverter;
 import seedu.address.logic.parser.NameConverter;
 import seedu.address.logic.parser.PhoneConverter;
@@ -25,15 +24,14 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTruthTable;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Address;
+import seedu.address.model.TruthTable;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.TruthTable;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.team.Link;
-import seedu.address.model.team.Team;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.Team;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -46,8 +44,7 @@ public class AddPersonCommandTest {
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Name.class, new NameConverter())
             .registerConverter(Email.class, new EmailConverter())
-            .registerConverter(Phone.class, new PhoneConverter())
-            .registerConverter(Address.class, new AddressConverter());
+            .registerConverter(Phone.class, new PhoneConverter());
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() {
@@ -62,8 +59,8 @@ public class AddPersonCommandTest {
         Person validPerson = new PersonBuilder().build();
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
         commandLine.parseArgs(PersonUtil.convertPersonToArgs(validPerson));
-        assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON,
-                () -> commandToBeTested.execute(modelStub));
+        assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON, ()
+                -> commandToBeTested.execute(modelStub));
     }
 
     @Test

@@ -42,7 +42,7 @@ class AddTeamCommandTest {
     void execute_teamAlreadyExist_throwsCommandException() {
         Team defaultTeam = TypicalTeams.DEFAULT;
         commandLine.parseArgs(TeamUtil.convertTeamToArgs(defaultTeam));
-        assertThrows(CommandException.class, AddTeamCommand.MESSAGE_TEAM_EXISTS,
-                () -> commandToBeTested.execute(model));
+        assertThrows(CommandException.class, AddTeamCommand.MESSAGE_TEAM_EXISTS, ()
+                -> commandToBeTested.execute(model));
     }
 }

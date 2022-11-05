@@ -13,10 +13,12 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.IndexConverter;
+import seedu.address.logic.parser.TaskNameConverter;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.TaskName;
 import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
 import seedu.address.testutil.TaskUtil;
 import seedu.address.testutil.TypicalPersons;
@@ -28,7 +30,8 @@ class EditTaskCommandTest {
     private Model expectedModel = model;
     private final Command commandToBeTested = new EditTaskCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
-            .registerConverter(Index.class, new IndexConverter());
+            .registerConverter(Index.class, new IndexConverter())
+            .registerConverter(TaskName.class, new TaskNameConverter());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -38,7 +41,6 @@ class EditTaskCommandTest {
         commandLine.parseArgs(TaskUtil.convertEditTaskToArgs(validTask, 1, 1));
         CommandResult expectedResult = new CommandResult(String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
                 validTask));
-        System.out.println(expectedResult.getFeedbackToUser());
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
@@ -64,7 +66,6 @@ class EditTaskCommandTest {
         commandLine.parseArgs(TaskUtil.convertEditPartialNoNameTaskToArgs(validTask, 1, 1));
         CommandResult expectedResult = new CommandResult(String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
                 TypicalTasks.TASK_2_EDITED));
-        System.out.println(expectedResult.getFeedbackToUser());
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 

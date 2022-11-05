@@ -10,12 +10,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.RootCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.team.Description;
+import seedu.address.model.team.LinkName;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.TaskName;
 import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Url;
 
@@ -27,10 +28,11 @@ public class TruthTableParser {
             .registerConverter(Name.class, new NameConverter())
             .registerConverter(Email.class, new EmailConverter())
             .registerConverter(Phone.class, new PhoneConverter())
-            .registerConverter(Address.class, new AddressConverter())
             .registerConverter(Index.class, new IndexConverter())
+            .registerConverter(LinkName.class, new LinkNameConverter())
             .registerConverter(Url.class, new UrlConverter())
             .registerConverter(Task.class, new TaskConverter())
+            .registerConverter(TaskName.class, new TaskNameConverter())
             .registerConverter(TeamName.class, new TeamNameConverter())
             .registerConverter(Description.class, new DescriptionConverter())
             .registerConverter(Order.class, new OrderConverter());

@@ -22,7 +22,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressConverter;
 import seedu.address.logic.parser.EmailConverter;
 import seedu.address.logic.parser.IndexConverter;
 import seedu.address.logic.parser.NameConverter;
@@ -33,7 +32,6 @@ import seedu.address.model.ReadOnlyTruthTable;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TruthTable;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -59,8 +57,7 @@ public class EditPersonCommandTest {
             .registerConverter(Index.class, new IndexConverter())
             .registerConverter(Name.class, new NameConverter())
             .registerConverter(Email.class, new EmailConverter())
-            .registerConverter(Phone.class, new PhoneConverter())
-            .registerConverter(Address.class, new AddressConverter());
+            .registerConverter(Phone.class, new PhoneConverter());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.FLAG_ADDRESS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
@@ -28,8 +27,6 @@ public class PersonUtil {
         argList.add(person.getPhone().value);
         argList.add(FLAG_EMAIL_STR);
         argList.add(person.getEmail().value);
-        argList.add(FLAG_ADDRESS_STR);
-        argList.add(person.getAddress().value);
         if (!person.getTags().isEmpty()) {
             argList.add(FLAG_TAG_STR);
             for (Tag t : person.getTags()) {
@@ -51,8 +48,6 @@ public class PersonUtil {
         argList.add(person.getPhone().value);
         argList.add(FLAG_EMAIL_STR);
         argList.add(person.getEmail().value);
-        argList.add(FLAG_ADDRESS_STR);
-        argList.add(person.getAddress().value);
         if (!person.getTags().isEmpty()) {
             argList.add(FLAG_TAG_STR);
             for (Tag t : person.getTags()) {
