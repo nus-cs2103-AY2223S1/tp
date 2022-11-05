@@ -234,15 +234,20 @@ For the command, the feature extends `command`, and is implemented as such:
 * `sfind n/[NAME_KEYWORDS]… t/[TAG_KEYWORDS]…`
 * `rfind n/[NAME_KEYWORDS]… t/[TAG_KEYWORDS]…`
 
-#### Implementation Flow of finding stalls and reviews feature
+#### Implementation Flow of finding Stalls and Reviews feature
 
 Given below is an example usage scenario and how the finding stalls and reviews mechanism behaves at each step.
 
 Step 1. The user executes `sfind n/eatery` command to find all stalls where stall name contains the word 'eatery'.
+
 Step 2. The user input will be sent to `SFindCommandParser`.
+
 Step 3. The keyword `eatery` will be parsed as a Name.
+
 Step 4. The parser creates a `StallContainsKeywordsPredicate` using the Name created, while setting the tag attribute to null.
+
 Step 5. The predicate is used to create a new `SFindCommand`.
+
 Step 6. When the SFindCommand executes, the predicate will be sent to ModelManager to filter out stalls that satisfy the predicate.
 
 
@@ -358,8 +363,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design considerations:
 - Multiple fields of a Review can be edited in one go to increase the efficiency of the user of our application.
 
-
-### Review Sorting feature
 =======
 ### Sorting Stalls and Reviews feature
 
@@ -397,7 +400,8 @@ Step 6. `model.sortReviews()` will interact with the model to sort reviews using
 
 The following activity diagram summarizes what happens when a user executes a new `ssort` or `rsort` command:
 
-<img src="images/SortReviewActivityDiagram.png" width="250" />
+<img src="images/SortActivityDiagram.png" width="250" />
+
 =======
 
 ### File format for FoodWhere
