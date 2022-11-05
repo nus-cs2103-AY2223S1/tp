@@ -668,19 +668,98 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 
-**Use case: Find tasks in the tasks list**
+
+**Use case: List modules in module list**
+
+**MSS**
+1. User requests to view modules in the module list
+2. MODPRO displays the list of modules. 
+   Use case ends.
+
+**Use case: Find tasks in the task list**
 
 **MSS** 
-1. User requests to find tasks whose description contains the keyword inputted partially or fully.  
-2. ModPro show the list of tasks that contains the word. 
+1. User requests to find tasks whose description matches the keyword inputted partially or fully.  
+2. MODPRO show the list of tasks whose description matches the keyword. 
 
    Use case ends. 
 
 **Extensions**
 * 1a. The keyword inputted is empty
-    * 1a1ModPro shows an error message </br> 
-     
- 
+    * 1a1. MODPRO shows an error message </br> 
+      Use case ends. 
+
+**Use case: Find modules in the module list**
+
+**MSS**
+1. User requests to find modules whose module code matches the keyword inputted partially or fully.
+2. MODPRO show the list of modules whose module code matches the keyword 
+
+   Use case ends.
+
+**Extensions**
+* 1a. The keyword inputted is empty
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+
+**Use case: Add an exam into the exam list** 
+
+**MSS** 
+1. User requests to add an exam. 
+2. MODPRO adds the exam into the exam list.
+
+**Extensions**
+* 1a. The description of the exam is empty
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends. 
+* 1b. Exam date is not in the correct format. 
+    * 1b1. MODPRO shows an error message. </br> 
+      Use case ends. 
+* 1c. Module field of exam does not exist in MODPRO.  
+    * 1b1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1d. Exam description is empty. 
+    * 1d1. MODPRO shows an error message. </br> 
+      Use case ends. 
+* 1e. The exam to be added already exists in the exam list. 
+    * 1e1. MODPRO shows an error message. </br> 
+      Use case ends. 
+
+
+**Use case: Edit an exam into the exam list**
+
+**MSS**
+1. User requests to edit a specific exam in the exam list by specifying the index number of the exam to be edited.  
+2. MODPRO edits the exam. 
+
+**Extensions**
+* 1a. The new exam description provided is empty. 
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1b. The new exam date provided is not in DD-MM-YYYY format.
+    * 1b1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1c. The new exam date provided is not a valid date. 
+    * 1c1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1d. The new exam date provided is earlier than today's date.
+    * 1d1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1d. The index is non-positive or larger than 2147483647. 
+    * 1d1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1d. The index is larger than the number of exams in the exam list. 
+    * 1d1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1e. The new exam already exists in the exam list.
+    * 1e1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1f. The exam is not edited.
+    * 1f1. MODPRO shows an error message </br> 
+
+
+
+
 
 ### Non-Functional Requirements
 
