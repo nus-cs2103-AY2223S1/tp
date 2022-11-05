@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExerciseTrackerParser" as ExerciseTrackerParser LOGIC_COLOR
+participant ":RangeCommandParser" as RangeCommandParser LOGIC_COLOR
+participant "r:RangeCommand" as RangeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("range start/10/10/2022 end/15/10/2022")
+activate LogicManager
+
+LogicManager -> ExerciseTrackerParser : parseCommand("range start/10/10/2022 end/15/10/2022")
+activate ExerciseTrackerParser
+
+create RangeCommandParser
+ExerciseTrackerParser -> RangeCommandParser
+activate RangeCommandParser
+
+RangeCommandParser --> ExerciseTrackerParser
+deactivate RangeCommandParser
+
+ExerciseTrackerParser -> RangeCommandParser : parse("start/10/10/2022 end/15/10/2022")
+activate RangeCommandParser
+
+create RangeCommand
+RangeCommandParser -> RangeCommand
+activate RangeCommand
+
+RangeCommand --> RangeCommandParser : r
+deactivate RangeCommand
+
+RangeCommandParser --> ExerciseTrackerParser : r
+deactivate RangeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RangeCommandParser -[hidden]-> ExerciseTrackerParser
+destroy RangeCommandParser
+
+ExerciseTrackerParser --> LogicManager : r
+deactivate ExerciseTrackerParser
+
+LogicManager -> RangeCommand : execute()
+activate RangeCommand
+
+RangeCommand -> Model : sortFilteredExerciseList(DateWithinRangePredicate)
+activate Model
+
+Model --> RangeCommand
+deactivate Model
+
+create CommandResult
+RangeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RangeCommand
+deactivate CommandResult
+
+RangeCommand --> LogicManager : result
+deactivate RangeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

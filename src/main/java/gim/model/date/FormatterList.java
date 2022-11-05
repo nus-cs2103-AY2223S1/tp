@@ -69,6 +69,12 @@ public class FormatterList {
      * If there is a valid match between the date and the formatter, a LocalDate object created from
      * the date string parsed using the formatter will be returned.
      *
+     * Justification for usage of try-catch block:
+     *
+     * The try-catch block in this method is necessary as the Java API for LocalDate does not provide
+     * a method that returns a boolean to check for the validity of the date, but the method parse
+     * instead returns an exception which makes if-else statements to work for this case.
+     *
      * @param date string representation of the date
      * @param formatter DateTimeFormatter object
      * @return null if date does not conform to formatter and LocalDate if it does

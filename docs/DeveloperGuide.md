@@ -161,6 +161,29 @@ An `Exercise` contains the following attributes:
 4. a `Sets`, which represents the number of cycles of reps that was completed
 5. a `Date`, which represent the date an exercise was performed
 
+#### **Date Implementation**
+<img src="images/DateClassDiagram.png" width="450" />
+
+The default format for date follows `dd/MM/uuuu`. `uuuu` is chosen over `yyyy` because this avoids unexpected exceptions
+under strict parsing by the Java API `DateTimeFormatter`, such as those exceptions related to year-of-era.
+
+The validity of a given date string depends on two factors: (1) Regex formatting and (2) Non-existent date checking.
+
+1. For the regex formatting, the Singleton class `RegexList` contains a `List<String>` called `regexList` that contains the
+accepted regex strings. The method `isValidDateByRegex` iterates through `regexList` to check whether a given date string
+follows any of the accepted regex strings.
+
+2. For the non-existent date checking, the Singleton class `FormatterList` contains a `List<String>` called `formatterList`
+that contains the accepted date patterns. The private constructor of this class uses stream mapping to obtain a `List<DateTimeFormatter>`
+called `formatterList` containing `DateTimeFormatter` objects that follows strict date validity check using
+`ResolverStyle.STRICT`.
+
+The Singleton pattern is used here to prevent multiple instantiation of this class.
+1. The drawbacks of using this pattern is not really pronounced as there are not many classes having them as dependencies (only the `Date` class).
+Therefore, coupling within the code base will not increase much.
+2. Testing will not be affected by the fact that singleton objects carry data from one test to another because there is no mutation
+of data inside the singleton objects `RegexList` and `FormatterList`. All tests will have the same singleton objects used.
+
 #### **Design Considerations**
 
 **Aspect: Fields of Exercise are Final:**
@@ -229,70 +252,61 @@ The following sequence diagram shows how the sort command is executed.
 
 #### **Implementation**
 
-The range view is driven by `ModelManager` implements the interface `Model`. `ModelManager` contains a
-`filteredExercises` list which is the list of exercises in a `FilteredList` 'wrapper' from
-`javafc.collections.transformation`. `filteredExercises` gets the list of exercises to be displayed from method
-`getExerciseList()` in `ExerciseTracker`.
-
-`ExerciseTracker` has the method `filterListByDateRange()` which calls `filterListByDateRange()` in `ExerciseList`.
-
-Inside `ExerciseList`, we have a list `internalUnmodifiableList` which contains the list of `Exercise` objects. Although
-it is declared as `final`, the elements within the list can potentially be modified. In order to preserve the order that
-is currently true in the aforementioned list, a copy called `rangeFilteredList` is created within the method
-`filterListByDateRange()`.
-
-The user interface `Ui` will display this `rangeFilteredList` of type `ObservableList<Exercise>` in `ExerciseList`. 
-
-Within the `filterListByDateRange()` method, the `rangeFilteredList` list is iterated through. For each `Exercise`,
-the `Date` is considered and compared with both the `startDate` and `endDate` arguments provided to the
-`filterListByDateRange()` method. If the `Exercise` has a `Date` value that falls between `startDate` (inclusive)
-and `endDate` (inclusive), then it will be retained in the list. Otherwise, it will be removed from the list.
-
-Then, `rangeFilteredList` will be sorted in ascending order of `Date` using the method `sortDisplayedList()`
-in `ExerciseList`.
+* `ExerciseTrackerParser` calls `RangeCommandParser#parse`.
+* `RangeCommandParser#parseArguments` will return an enum type `Variation` according to the arguments in the
+`ArgumentMultimap` created.
+* When we obtain `Variation.ONE`, `RangeCommandParser#getVariationOne` will be called. 
+  * In this case, the arguments expected to be inside the `ArgumentMultimap` will be the start date and
+    end date.
+* When we obtain `Variation.TWO`, `RangeCommandParser#getVariationTwo` will be called.
+    * In this case, we expect the number of days to be the only argument inside `ArgumentMultimap`.
+* `ParserUtil#parseDate` will be called to obtain the `Date` object(s).
+* `RangeCommand` is returned.
+* Then, the `execute()` method of the resulting `RangeCommand` object will be called, returning a
+`CommandResult` object with the appropriate message.
 
 #### Execution
 
-When the command `:sort DD/MM/YYYY DD/MM/YYYY` is entered, the `Ui` sends the command to `Logic`.
-Here, `DD/MM/YYYY` is the supported format for entering the start date and end date.
-`Logic` parses and identifies the `:sort` command that was entered, and creates an instance of it.
-`Logic` then executes the command.
-`Model` will have the displayed list sorted and the sorted list will be displayed by `Ui`.
+When the command `:range start/START_DATE end/END_DATE` or `:range last/NUMBER_OF_DAYS` is entered, the `Ui` sends 
+the command to `Logic`. `LogicManager` parses and identifies the `:range` command that was entered, and creates an instance of it.
+
+`LogicManager` then executes the command by calling `execute()` in `RangeCommand`.
+
+`RangeCommand` will call the method `sortFilteredExerciseList(predicate)` defined in `Model`. This will cause
+`filteredExercises` in `ModelManager` to be filtered according to the predicate `DateWithinRangePredicate`.
+The resulting list will only include exercise entries that have dates between the start date (inclusive) and
+end date (inclusive), arranged from the most recent first. If two exercise entries have the same date,
+they will be sorted in alphabetical order.
+
+`Model` will have the list sorted and the sorted list will be displayed by `Ui`.
 
 #### Example Usage
 
 Given below is an example usage scenario and how the date range view mechanism behaves at each step.
 
-Step 1: The user launches the application which loads the set of exercises previously keyed. `rangeFilteredList` will be
-initialised to be the same as the `internalUnmodifiableList` in `ExerciseList` where the exercises are sorted by the
-date of input.
+Step 1: The user launches the application which loads the set of exercises previously keyed.
 
-Step 2: The user executes `:sort 11/10/2022 18/10/2022` command to view all the exercises done between 11 October 2022
-and 18 October 2022. The `ExerciseTrackerParser` identifies that the command is a `SortCommand`.
-The command calls `Model` to `filterListByDateRange()` and the `Ui` displays the `rangeFilteredList` which has all the
-exercises between the specified dates.
+Step 2: The user executes `:range start/10/10/2022 end/15/10/2022` command to view all the exercises done between
+10 October 2022 and 15 October 2022. The `ExerciseTrackerParser` identifies that the command is a `RangeCommand`.
+The command calls `Model` to `sortFilteredExerciseList(predicate)` and the `Ui` displays the `filteredExercises` list which has all the exercises between the specified dates.
 
-The following sequence diagram shows how the date range process (variant of sort command) is executed.
+The following sequence diagram shows how the date range process is executed.
 
-<img src="images/DateRangeSequenceDiagram.png" width="1000" />
+<img src="images/RangeSequenceDiagram.png" width="1000" />
 
 #### Design considerations:
 
-**Aspect: Algorithm design**
-* **Current choice**: The `rangeFilteredList` is obtained by filtering by the date range first, before the sorting is
-    done by calling the `sortDisplayedList()` method
-    * Rationale: After filtering by the date range, there will be fewer number of `Exercise` objects to sort,
-    as compared to doing the reverse process of sorting then filtering. Practical time performance improves, even though
-    the time complexity remains at O(nlogn).
+**Aspect: Simplicity of command design**
+* **Current choice**: The two variations of the `:range` command uses the same keyword but with different expected arguments.
+This reduces the number of command keywords the user needs to remember when using the app.
+* **Alternative choice**: Instead of using `:range` for both variations, another keyword such as
+`:rangeLast` could be used in addition to `:range`. The drawback for this design choice is that
+it goes against the simplicity of command design where the set of command keywords should be minimised where possible.
 
-**Aspect: Preserving ordering state**
-* **Current choice**: `rangeFilteredList` is a copy of `internalUnmodifiableList` in `ExerciseList` class
-    * Rationale: Inside `ExerciseList`, we have a list `internalUnmodifiableList` which contains the list of `Exercise`
-      objects. Although it is declared as `final`, the elements within the list can potentially be modified. In order
-      to preserve the order that is currently true in the aforementioned list, a copy called `rangeFilteredList` is
-      created within the method `filterListByDateRange()`. This practice of defensive programming is to prevent the
-      potential bug that may arise in the future, caused by the assumption that `internalUnmodifiableList` preserves
-      the original ordered state.
+**Aspect: Enum types are used to indicate the variations**
+* **Current choice**: Within `RangeCommandParser`, the enum `Variation` has only two values: `ONE` and `TWO` to represent
+`:range` command variation one and two respectively. This ensures that the value representing the command variation cannot be anything not defined in the enum type.
+Adding new variations is also easily done by adding another value inside the enum type.
 
 ### **Listing of Personal Records**
 
