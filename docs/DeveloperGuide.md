@@ -976,38 +976,253 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file<br>
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Exiting the program
+
+    1. Enter `exit` command in command input box or click on the X button.<br>
+       Expected: The application closes.
+
+### Adding a stall
+
+1. Adding a stall
+
+    1. Prerequisites: None
+
+    2. Test case: `sadd n/Ah Kim Chicken Rice a/311, Clementi Ave 2, #02-25 t/chickenRice t/opensDaily`<br>
+       Expected: A new stall is added to the list with tags `chickenrice` and `opensdaily` as tags are saved in lowercase. Details of the newly added stall shown in the status message. GUI updates to show the newly added stall and its details.
+
+    3. Test case: `sadd n/Ah Kim Chicken Rice`<br>
+       Expected: No stall is added. Error details shown in the status message. GUI does not update.
+
+    4. Other incorrect stall add commands to try: `sadd`, `sadd a/311, Clementi Ave 2, #02-25`, `sadd n/Kim's Chicken a/311, Clementi Ave 2, #02-25` <br>
+        Expected: Similar to previous.
+
+### Adding a review
+
+1. Adding a review to a stall
+
+    1. Prerequisites: At least one stall entry exists
+
+    2. Test case: `radd s/1 d/20/09/2022 c/The food was good, the chicken rice was fresh. r/4 t/opensDaily t/worthyTrip`<br>
+       Expected: A new review is added to the list as a review of the first stall with tags `opensdaily` and `worthytrip` as tags are saved in lowercase. Details of the newly added review shown in the status message. GUI updates to show the newly added review and its details.
+
+    3. Test case: `radd s/1 d/20/09/2022`<br>
+       Expected: No review is added. Error details shown in the status message. GUI does not update.
+
+    4. Other incorrect review add commands to try: `radd`, `radd s/1`, `radd s/1 c/The food was good`, `radd d/20/09/2022 c/The food was good, the chicken rice was fresh.` <br>
+        Expected: Similar to previous.
+
+### Listing all stalls
+
+1. Lists all stalls on GUI
+
+    1. Prerequisites: None
+   
+    2. Test case: `slist`<br>
+       Expected: GUI updates and all stalls are listed.
+
+### Listing all reviews
+
+1. Lists all reviews on GUI
+
+    1. Prerequisites: None
+
+    2. Test case: `rlist`<br>
+       Expected: GUI updates and all reviews are listed.
 
 ### Deleting a stall
 
 1. Deleting a stall while all stalls are being shown
 
-   1. Prerequisites: List all stalls using the `list` command. Multiple stalls in the list.
+   1. Prerequisites: List all stalls using the `slist` command. Multiple stalls in the list.
 
-   1. Test case: `sdel 1`<br>
-      Expected: First stall is deleted from the list. Details of the deleted stall shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `sdel 1`<br>
+      Expected: First stall is deleted from the list. Details of the deleted stall shown in the status message. GUI updates to remove the deleted stall and its associated reviews.
 
-   1. Test case: `sdel 0`<br>
-      Expected: No stall is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `sdel`, `sdel x`, `...` (where x is larger than the list size)<br>
+   3. Test case: `sdel 0`<br>
+      Expected: No stall is deleted. Error details shown in the status message. GUI does not update.
+   
+   4. Other incorrect stall delete commands to try: `sdel`, `sdel a`, `sdel -1`, `sdel x`(where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Deleting a review
+
+1. Deleting a review while all reviews are being shown
+
+    1. Prerequisites: List all reviews using the `rlist` command. Multiple reviews in the list.
+
+    2. Test case: `rdel 1`<br>
+       Expected: First review is deleted from the list. Details of the deleted review shown in the status message. GUI updates to remove the deleted review.
+
+    3. Test case: `rdel 0`<br>
+       Expected: No review is deleted. Error details shown in the status message. GUI does not update.
+
+    4. Other incorrect stall delete commands to try: `rdel`, `rdel a`, `rdel -1`, `rdel x`(where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Editing a stall
+
+1. Editing a stall while all stalls are being shown
+
+    1. Prerequisites: List all stalls using the `slist` command. Multiple stalls in the list.
+
+    2. Test case: `sedit 1 n/Alice Chicken Rice`<br>
+       Condition: There must not exist a stall with the same name and address as the edited stall's name and address<br>
+       Expected: The name of the first stall and its associated reviews edited. Details of the edited stall shown in the status message. GUI updates to show the edited details.
+
+    3. Test case: `sedit 1 a/Chicken Street 123`<br>
+       Condition: Another stall must not have the same name and address as the edited stall's name and address<br>
+       Expected: The address of the first stall and its associated reviews edited. Details of the edited stall shown in the status message. GUI updates to show the edited details.
+   
+    4. Test case: `sedit 1 n/Alice's Chicken Rice`<br>
+       Expected: No stall is edited. Error details shown in the status message. GUI does not update.
+
+    5. Other incorrect stall edit commands to try: `sedit`, `sedit 1`, `sedit x n/Alice Chicken Rice`, `sedit x a/Chicken Street 123`(where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Editing a review
+
+1. Editing a review while all reviews are being shown
+
+    1. Prerequisites: List all reviews using the `rlist` command. Multiple reviews in the list.
+
+    2. Test case: `redit 1 d/20/09/2022`<br>
+       Condition: There must not exist a review on the same stall with the same details (date, content and tags) as the edited review's details<br>
+       Expected: The date of the first review edited. Details of the edited review shown in the status message. GUI updates, the edited review is moved to the back of the list with the edited details shown.
+
+    3. Test case: `redit 1 c/The chicken was dry`<br>
+       Condition: There must not exist a review on the same stall with the same details (date, content and tags) as the edited review's details<br>
+       Expected: The content of the first review edited. Details of the edited review shown in the status message. GUI updates, the edited review is moved to the back of the list with the edited details shown.
+   
+    4. Test case: `redit 1 d/2022/09/20`<br>
+       Expected: No review is edited. Error details shown in the status message. GUI does not update.
+
+    5. Other incorrect review edit commands to try: `redit`, `redit 1`, `redit x d/20/09/2022`, `redit x c/The chicken was dry`(where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Find stalls
+
+1. Finding stalls by name and/or tags
+
+    1. Prerequisites: At least one stall entry exists that we are finding with name and/or tag exists.
+   
+    2. Test case: `sfind n/chicken`<br>
+       Condition: There is a stall with the word `chicken` in its name<br>
+       Expected: Status message responds with the number of stalls with `chicken` as a word in the name. GUI updates to show these stalls. 
+   
+    3. Test case: `sfind t/opendaily`<br>
+       Condition: There is a stall with the tag `opendaily`<br>
+       Expected: Status message responds with the number of stalls that has `opendaily` as a tag. GUI updates to show these stalls.
+   
+    4. Test case: `sfind n/chicken t/opendaily`<br>
+       Condition: There is a stall with the word `chicken` in its name and/or with the tag `opendaily`<br>
+       Expected: Status message responds with the number of stalls with `chicken` as a word in the name and/or has `opendaily` as a tag. GUI updates to show these stalls.
+   
+    5. Test case: `sfind n/`<br>
+       Expected: No stalls are found. GUI updates to show no stalls.
+    
+    6. Test case: `sfind n/Alice's`<br>
+       Expected: No stalls are found. Error details shown in the status message. GUI does not update.
+
+    7. Other incorrect stall find commands to try: `sfind`, `sfind n/`, `sfind a/Ang Mo Kio`<br>
+       Expected: Similar to previous.
+
+### Find reviews
+
+1. Finding reviews by stall name and/or tags
+
+    1. Prerequisites: At least one review entry exists that we are finding with stall name and/or tag exists.
+
+    2. Test case: `rfind n/chicken`<br>
+       Condition: There is a review with the word `chicken` in its stall name<br>
+       Expected: Status message responds with the number of reviews with `chicken` as a word in the stall name. GUI updates to show these reviews.
+
+    3. Test case: `rfind t/delicious`<br>
+       Condition: There is a review with the tag `delicious`<br>
+       Expected: Status message responds with the number of reviews that has `delicious` as a tag. GUI updates to show these reviews.
+
+    4. Test case: `rfind n/chicken t/delicious`<br>
+       Condition: There is a review with the word `chicken` in its stall name or with the tag `delicious`<br>
+       Expected: Status message responds with the number of reviews with `chicken` as a word in the stall name and/or has `delicious` as a tag. GUI updates to show these reviews.
+   
+    5. Test case: `rfind n/`<br>
+       Expected: No reviews are found. GUI updates to show no reviews.
+
+    6. Test case: `rfind n/Alice's`<br>
+       Expected: No reviews are found. Error details shown in the status message. GUI does not update.
+
+    7. Other incorrect review find commands to try: `rfind`, `rfind a/Ang Mo Kio`<br>
+       Expected: Similar to previous.
+
+### Sort stalls
+
+1. Sorting stalls by name
+
+    1. Prerequisites: Multiple stalls in the list.
+
+    2. Test case: `ssort name`<br>
+       Expected: Status message responds that stalls has been sorted by name (A-Z). GUI updates to show sorted stalls.
+
+    3. Test case: `ssort reversedname`<br>
+       Expected: Status message responds that stalls has been sorted by name (Z-A). GUI updates to show sorted stalls.
+   
+    4. Test case: `ssort address`<br>
+       Expected: Stalls are not sorted. Error details shown in the status message. GUI does not update.
+
+    5. Other incorrect stall sort commands to try: `ssort`, `ssort abc`<br>
+       Expected: Similar to previous.
+
+### Sort reviews
+
+1. Sorting reviews by stall name, date or rating
+
+    1. Prerequisites: Multiple reviews in the list.
+
+    2. Test case: `rsort name`<br>
+       Expected: Status message responds that reviews has been sorted by name (A-Z). GUI updates to show sorted reviews.
+
+    3. Test case: `rsort reversedname`<br>
+       Expected: Status message responds that reviews has been sorted by name (Z-A). GUI updates to show sorted reviews.
+   
+    4. Test case: `rsort date`<br>
+       Expected: Status message responds that reviews has been sorted by date (Oldest to Newest). GUI updates to show sorted reviews.
+
+    5. Test case: `rsort reverseddate`<br>
+       Expected: Status message responds that reviews has been sorted by date (Newest to Oldest). GUI updates to show sorted reviews.
+   
+    6. Test case: `rsort rating`<br>
+       Expected: Status message responds that reviews has been sorted by rate (Lowest to Highest). GUI updates to show sorted reviews.
+
+    7. Test case: `rsort reversedrating`<br>
+       Expected: Status message responds that reviews has been sorted by date (Highest to Lowest). GUI updates to show sorted reviews.
+
+    8. Test case: `rsort content`<br>
+       Expected: Reviews are not sorted. Error details shown in the status message. GUI does not update.
+
+    9. Other incorrect review sort commands to try: `rsort`, `rsort abc`<br>
+       Expected: Similar to previous.
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Test case: Simulate data file is missing by deleting `foodwhere.json` in data folder<br>
+      Expected: Upon launching FoodWhere, the GUI displays the default stalls and reviews list.
+   
+   2. Test case: Simulate data file goes corrupt by editing a data field to an invalid value while FoodWhere is running<br>
+      Condition: No command that edits data is executed after editing the data file with invalid value<br>
+      Expected: FoodWhere runs normally and does not crash. However, upon closing and re-launching the program, the GUI displays an empty stalls and reviews list.
+   
+2. Commands that change data will modify data file 
+   1. Test case: Run any command that affects the data. E.g. `sadd`, `radd`, `sdel`, `rdel` and exit the program with the `exit` command<br>
+      Expected: Upon re-launching FoodWhere, the edits made to the data are preserved.

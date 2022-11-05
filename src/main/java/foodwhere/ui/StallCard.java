@@ -59,6 +59,7 @@ public class StallCard extends UiPart<Region> {
         }
     }
 
+    //@@author hikoya-reused
     /**
      * Adapted from https://stackoverflow.com/a/70961583.
      * Gets row index constrain for given node, forcefully as integer: 0 as null.
@@ -72,7 +73,9 @@ public class StallCard extends UiPart<Region> {
         }
         return a;
     }
+    //@@author hikoya
 
+    //@@author hikoya-reused
     /**
      * Adapted from https://stackoverflow.com/a/70961583.
      * Removes row from grid pane by index.
@@ -100,6 +103,7 @@ public class StallCard extends UiPart<Region> {
         // Remove row constraints
         grid.getRowConstraints().remove(targetRowIndex);
     }
+    //@@author
 
 
     @Override

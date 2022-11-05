@@ -28,6 +28,7 @@ Given below are my contributions to the project.
     * Refactoring these fields into their own common packages helped to reduce confusion as all these fields are shared by both `Stall` and `Review`, and hence, they should be in a common package rather than situated in either `model.stall` or `model.review`.
 * **Enhancements to new features**
   * Added error messages for any missing mandatory fields in RAddCommand and SAddCommand. ([#216](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/216))
+<div style="page-break-after: always;"></div>
 * **Enhancements to validation checks and error messages**
   * Ensured that all validation checks and exceptions are handled properly.
   * Ensured that all error messages shown to the user upon execution of an incorrect command or missing fields are correct and easy to understand, so that the user can recover from any errors and continue using the application.
