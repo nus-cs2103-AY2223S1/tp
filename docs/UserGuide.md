@@ -65,7 +65,7 @@ However, you may also choose to head over to the relevant sections as described 
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `{curly_braces}` are the parameters to be supplied by the user.<br>
+* Words in `{curly_braces}` are the parameters to be supplied by the user (you).<br>
   e.g. In `addc n/{name}`, `{name}` is a parameter which can be used as `addc n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -89,7 +89,7 @@ However, you may also choose to head over to the relevant sections as described 
 
 :bulb: A Note on Indexes
 
-Several commands below require an `index` to be specified, as they operate on a task/contact specified by the user. For example, the deletion of a particular task.
+Several commands below require an `index` to be specified, as they operate on a task/contact which is to be specified by you. For example, the deletion of a particular task.
 * Indexes are either `task_index` or `contact_index`
 * The index always refers to the index number of the task/contact in the **currently displayed list**
 * This value ranges from 1, 2, 3...
@@ -207,9 +207,10 @@ Format:
 Example:
 `unmark 3`
 
-#### Searching for tasks: `find`
+#### Finding tasks: `find`
 
-Searches for tasks by their name or module. The search is done by **matching keywords** in a **case-insensitive** manner.
+Find tasks by their name or module. The finding is done by **matching keywords** in a **case-insensitive** manner. <br>
+Finding tasks by module makes it convenient for you to see what tasks you have for a particular module at one look, while finding them by name helps you to look for a specific task quickly rather than scrolling through the entire task list.  
 
 Format:
 `find n/{keyword}` `find m/{module}`
@@ -234,6 +235,7 @@ Format: `list`  `list time`
 * `list` - displays a list of all tasks in the order of most recent task added
 * `list time` - displays a list of all tasks in the order of the earliest deadline
 
+<br>
 Click [here](#) to return to the top of the page.
 
 ### Managing contacts
@@ -260,9 +262,9 @@ Modules, however, may be entered as **space separated**. For example, `m/MOD1 MO
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
-Due to the limitations of the code, the adding of same names is currently not supported. To distinguish between two contacts with the same name, you may add a descriptor after the name to differentiate the contacts. 
+Due to the limitations of the code, the adding of same names is currently not supported. To distinguish between two contacts with the same name, you may add a descriptor after the name to differentiate the contacts.<br> 
 
-E.g. `addc n/John Lim p/80009123` will not work if there is already a contact with name `John Lim`. To add this contact, you can try adding a descriptor such as `addc n/John Lim (school) p/80009123`, or simply make the name of the contact to be added different from `John Lim`.
+E.g. `addc n/John Lim p/80009123` will not work if there is already a contact with name `John Lim`. To add this contact, you can try adding a descriptor such as (school) by doing `addc n/John Lim (school) p/80009123`, or simply make the name of the contact to be added different from `John Lim`.
 
 </div>
 
@@ -300,9 +302,10 @@ Examples:
 
 </div>
 
-#### Searching for contacts: `findc`
+#### Finding contacts: `findc`
 
-Finds contacts whose names contain any of the given keywords, or contacts who take a particular module.
+Find contacts whose names contain any of the given keywords, or contacts who take a particular module. <br>
+Contacts can be found by their names, or by the modules that they take. Finding contacts via module makes it very convenient to see who are your options if you need help for a that module. 
 
 Format:
 `findc n/{name}` `findc m/{module}` `findc ts/{task_index}`
@@ -344,6 +347,7 @@ Deleted contacts are **unrecoverable**!
 
 </div>
 
+<br>
 Click [here](#) to return to the top of the page.
 
 ### Finishing up
@@ -414,4 +418,5 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 | Task     | `ts/`   |
 | Deadline | `by/`   |
 
+<br>
 Click [here](#) to return to the top of the page.
