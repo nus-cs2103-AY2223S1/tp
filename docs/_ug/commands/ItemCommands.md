@@ -53,7 +53,7 @@ Tags: {}
 > List all items in FoodRem
 
 ```info
-* This command is useful to view all items again after using the [Find Command](#Find)
+* This command is useful to view all items again after using the [Find Command](#search-for-an-item-find)
 ```
 
 **Example Input:**
