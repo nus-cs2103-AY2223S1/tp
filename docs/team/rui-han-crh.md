@@ -112,20 +112,39 @@ Given below are my contributions to the project.
 
 2. Added the User Interface section of the UG with pointers to which part corresponds to what function and usage. [Link to UI section](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#user-interface)
 
-Text Extract (images removed):
+Text Extract:
 <blockquote>
 
-### User Interface
+## User Interface
 
 Here is an overview of the User Interface (UI) components.
 
 The UI comprises four sections:
 
+![UILabeled](../images/UiLabeled.png)
+
 ### Command Box
 
 The Command Box is where you type in your command inputs. For more information on command inputs, refer to Features below.
 
-Once the command box is selected, a results display will appear to report the status of the program to you. Error messages and success messages will be shown in this box. Click anywhere else on the screen, or press the ESC key to exit the command box and hide the results display.
+Once the command box is selected, a results display will appear to report the status of the program to you. Error messages and success messages will be shown in this box. Click anywhere else on the screen, or press the `ESC` key to exit the command box and hide the results display.
+
+<p align="center">
+  <img src="../images/ResultsDisplay.png" width="400">
+</p>
+<center style="font-size:3mm;">Results Display.</center>
+
+<br/>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may activate the command box by simply pressing the spacebar on your keyboard. There is no need to use your mouse to click on the bar.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Similarly, you may press the `ESC` key on your keyboard to exit out of the command box and hide the results display.
+</div>
+
+[Back to Table of Contents](#table-of-contents)
 
 ### People Panel
 
@@ -133,9 +152,20 @@ The People Panel contains all the club and organisation members you have registe
 
 Each card represents a person and displays their name, phone number and total present loan amount. The loan amount may be positive to indicate an amount owed by the person, or negative to indicate an amount due to be paid to the person.
 
+<p align="center">
+  <img src="../images/TypicalPersonCard.png" width="125">
+</p>
+<center style="font-size:3mm;">A person card.</center>
+
+The index of the person only applies to the currently displayed list, it is **not** tied to the person itself.
+
+Check [Person Features](#person-features) to learn more about the commands you can execute related to people.
+
+[Back to Table of Contents](#table-of-contents)
+
 ### Inspect Panel
 
-The Inspect Panel is related to the People Panel and shows the basic information of the currently inspected person. A person can be inspected by either clicking on his or her card, or by using the inspect command. More details on the inspect command can be found here.
+The Inspect Panel is related to the People Panel and shows the basic information of the currently inspected person. A person can be inspected by either clicking on his or her card, or by using the `inspect` command. More details on the `inspect` command can be found [here](#inspecting-a-person--inspect).
 
 The left side of the Inspect Panel shows the basic information, while the right side shows the history of loan transactions.
 
@@ -143,13 +173,20 @@ Note that the transaction record next to the icon of the hand holding coins is t
 
 The total amount of the loans is also stated in the right of this panel, describing in fuller detail if the sum is owed by or to be paid to the person.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Notes Panel
 
 This Notes Panel stores all the information related to notes and tasks that the user may want to keep track of.
 
 Each note contains an index, a title, contents and tags.
 
-The index of the notes only applies to the currently displayed list, it is not tied to the note itself.
+<p align="center">
+  <img src="../images/TypicalNoteCard.png" width="500">
+</p>
+<center style="font-size:3mm;">A note card.</center>
+
+The index of the notes only applies to the currently displayed list, it **is not** tied to the note itself.
 
 Both the People Panel and Notes Panel share a pool of tags to more easily relate a group of people to a specific note.
 
@@ -161,7 +198,7 @@ Check Notes Features to learn more about the commands you can execute related to
 
 3. Added description of properties for both people and notes in the UG.
 
-This section is too long to be reproduced in entirety. Here is an example of the person property `email` extracted with images removed. The entire section can be found [here](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#properties)
+This section is too long to be reproduced in entirety. Here is an example of the person property `email` extracted. The entire section can be found [here](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#properties)
 
 <blockquote>
 
@@ -170,6 +207,9 @@ This section is too long to be reproduced in entirety. Here is an example of the
 This pertains to the email address of the person to be recorded in the SectresBook. It serves mainly as a point of information regarding the person, but has no additional features tied to it.
 
 This property can be identified from the GUI by the icon of an envelope.
+
+<img src="../images/icons/mail.png" width="50" height="50">
+
 
 - Identified by the prefix `email`.
 - Emails should be of the format `local-part@domain` and adhere to the following constraints:
