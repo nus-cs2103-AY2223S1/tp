@@ -10,8 +10,8 @@ title: TrackAScholar (v1.2)
 
 **TrackAScholar is a desktop application for managing scholarship applications.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using TrackAScholar, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using TrackAScholar, head over to the [_Quick Start_ section of the **User Guide**](https://ay2223s1-cs2103t-w10-3.github.io/tp/UserGuide.html#quick-start---how-to-get-started).
+* If you are interested about developing TrackAScholar, the [**Developer Guide**](https://ay2223s1-cs2103t-w10-3.github.io/tp/DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
