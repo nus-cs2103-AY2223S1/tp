@@ -3,13 +3,7 @@ package seedu.address.model.student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INTERMEDIATE;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.AVA;
@@ -131,72 +125,27 @@ public class StudentTest {
     }
 
     @Test
-    public void execute_setDisplayClassSuccess() throws ParseException {
-        Class validClass = new Class(LocalDate.of(2022, 10, 21),
-                LocalTime.of(13, 0), LocalTime.of(14, 0));
-
-        Student unattendedStudent = new StudentBuilder(ALICE).withMark(Boolean.FALSE)
-                .withDisplayDate("2022-10-21 1300-1400").build();
-        unattendedStudent.setClass(new Class());
-        unattendedStudent.setDisplayClass(validClass);
-        assertEquals("", unattendedStudent.getDisplayedClass().classDateTime);
-
-        Student attendedStudent = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
-        attendedStudent.setDisplayClass(validClass);
-        assertEquals("2022-10-21 1300-1400", attendedStudent.getDisplayedClass().classDateTime);
-    }
-
-    @Test
-    public void studentDisplayDateComparisonTest() {
-        Student alice = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
-        Student bob = new StudentBuilder(BOB).withMark(Boolean.TRUE).build();
-
-        Class aliceClass = VALID_MORNING_CLASS;
-        Class bobClass = VALID_AFTERNOON_CLASS;
-
-        alice.setDisplayClass(aliceClass);
-        bob.setDisplayClass(bobClass);
-
-        // Should return -1 since Alice's class is before Bob's
-        assertEquals(-1, alice.compareToByDisplayClass(bob));
-
-        //Should return 1 since Bob's class is after Alice's
-        assertEquals(1, bob.compareToByDisplayClass(alice));
-    }
-
-    @Test
-    public void execute_updateDisplayClassSuccess() {
-        Student alice = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
-
-        // Simulate that this particular date is the schedule list date
-        LocalDate particularDate = LocalDate.of(2022, 10, 21);
-        Class aliceClass = new Class(particularDate, LocalTime.of(11, 0),
-                LocalTime.of(12, 0));
-        alice.setClass(aliceClass);
-
-        alice.updateDisplayClass(particularDate);
-
-        // Alice's display class should be the current class
-        assertEquals(aliceClass, alice.getDisplayedClass());
-
-        // Alice's attendance should reset
-        assertTrue(!alice.getMarkStatus().isMarked());
-    }
-
-    @Test
     public void execute_multipleClassesPerDayCheck() {
         Student alice = new StudentBuilder(ALICE).withMark(Boolean.FALSE).build();
         alice.setClass(VALID_MORNING_CLASS);
 
+        Student aliceDuplicate = new StudentBuilder(ALICE).withMark(Boolean.FALSE).build();
+        aliceDuplicate.setClass(VALID_AFTERNOON_CLASS);
+
         // Alice does not have multiple classes on the same day since she is not marked
-        assertFalse(alice.hasMultipleClasses());
+        assertFalse(alice.hasSameDateAs(aliceDuplicate));
 
-        Student bob = new StudentBuilder(BOB).withMark(Boolean.TRUE).build();
-        bob.setClass(VALID_AFTERNOON_CLASS);
-        bob.setDisplayClass(VALID_MORNING_CLASS);
+        alice = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
+        alice.setClass(VALID_MORNING_CLASS);
 
-        // Bob has a displayed class and next class on the same day
-        assertTrue(bob.hasMultipleClasses());
+        aliceDuplicate = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
+        aliceDuplicate.setClass(VALID_AFTERNOON_CLASS);
+
+        assertTrue(alice.hasSameDateAs(aliceDuplicate));
+
+        alice = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
+        alice.setClass(VALID_MORNING_CLASS);
+
     }
 
     @Test

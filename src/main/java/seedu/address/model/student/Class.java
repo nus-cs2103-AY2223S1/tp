@@ -278,19 +278,6 @@ public class Class {
     }
 
     /**
-     * Returns a Class that has a predefined number of days ahead of the current class date, with the same starting and
-     * ending timing.
-     *
-     * @param numberOfDays to be added to the current class date.
-     * @return a class with numberOfDays ahead.
-     */
-    public Class addDays(int numberOfDays) {
-        assert(numberOfDays >= 0);
-        LocalDate updatedDate = this.date.plusDays(numberOfDays);
-        return new Class(updatedDate, this.startTime, this.endTime);
-    }
-
-    /**
      * Checks if both dates are the same.
      *
      * @param date to be checked against.

@@ -52,12 +52,11 @@ public class MarkCommandTest {
         // initialize Amy to be not marked yet
         Student studentToMark = new StudentBuilder(AMY).withMark(Boolean.FALSE).build();
         Student expectedMarkedStudent = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
-                AMY.getAddress(), VALID_CLASS.addDays(7), AMY.getMoneyOwed().addTo(AMY.getRatesPerClass()),
+                AMY.getAddress(), VALID_CLASS, AMY.getMoneyOwed().addTo(AMY.getRatesPerClass()),
                 AMY.getMoneyPaid(), AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
-                new Mark(Boolean.TRUE), VALID_CLASS);
+                new Mark(Boolean.TRUE));
 
         studentToMark.setClass(VALID_CLASS);
-        studentToMark.setDisplayClass(VALID_CLASS);
 
         Student markedStudent = MarkCommand.createMarkedStudent(studentToMark);
         assertEquals(expectedMarkedStudent, markedStudent);
@@ -76,7 +75,7 @@ public class MarkCommandTest {
         Student heavyDebtor = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), VALID_CLASS, new Money(Integer.MAX_VALUE),
                 AMY.getMoneyPaid(), AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
-                new Mark(Boolean.FALSE), VALID_CLASS);
+                new Mark(Boolean.FALSE));
 
         assertThrows(CommandException.class, () -> MarkCommand.createMarkedStudent(heavyDebtor));
 

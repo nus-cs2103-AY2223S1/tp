@@ -336,13 +336,22 @@ public class Student {
         return phone.equals(nokPhone);
     }
 
-    public boolean hasSameDateAs(Student studentToEdit) {
+    /**
+     * Validates whether a student has 2 classes on the same date.
+     *
+     * @param student the student to check against.
+     * @return true if the student is not marked and have the same date.
+     */
+    public boolean hasSameDateAs(Student student) {
         if (!mark.isMarked()) {
             return false;
         }
-        return aClass.isSameDateAs(studentToEdit.aClass.date);
+        return aClass.isSameDateAs(student.aClass.date);
     }
 
+    /**
+     * Resets the mark status to not present.
+     */
     public void resetMarkStatus() {
         this.mark = new Mark();
     }

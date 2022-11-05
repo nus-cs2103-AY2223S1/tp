@@ -44,7 +44,6 @@ public class StudentBuilder {
     private AdditionalNotes additionalNotes;
     private Class aClass;
     private Set<Tag> tags;
-    private Class displayedClass;
     private Mark mark;
 
     /**
@@ -62,7 +61,6 @@ public class StudentBuilder {
         ratesPerClass = new Money(DEFAULT_RATES_PER_CLASS);
         additionalNotes = new AdditionalNotes(DEFAULT_ADDITIONAL_NOTES);
         tags = new HashSet<>();
-        displayedClass = aClass;
         mark = new Mark(DEFAULT_ATTENDANCE_STATUS);
     }
 
@@ -81,7 +79,6 @@ public class StudentBuilder {
         ratesPerClass = studentToCopy.getRatesPerClass();
         additionalNotes = studentToCopy.getAdditionalNotes();
         tags = new HashSet<>(studentToCopy.getTags());
-        displayedClass = studentToCopy.getDisplayedClass();
         mark = studentToCopy.getMarkStatus();
     }
 
@@ -174,14 +171,6 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code displayedClass} of the {@code Student} that we are building.
-     */
-    public StudentBuilder withDisplayDate(String displayClass) throws ParseException {
-        this.displayedClass = displayedClass;
-        return this;
-    }
-
-    /**
      * Sets the {@code mark} of the {@code Student} that we are building.
      */
     public StudentBuilder withMark(Boolean attended) {
@@ -196,6 +185,6 @@ public class StudentBuilder {
     public Student build() {
         return new
                 Student(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
-                additionalNotes, tags, mark, displayedClass);
+                additionalNotes, tags, mark);
     }
 }
