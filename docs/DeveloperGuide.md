@@ -11,7 +11,13 @@ title: Developer guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level 3 project created by the [`SE-EDU initiative`](https://se-education.org/).
+
+* The idea for [`UniqueGroupList`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/group/UniqueGroupList.java) is replicated from that of [`UniquePersonList`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/person/UniquePersonList.java).
+
+* The formula used to determine the colour gradient for the [`workload`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/assignment/Workload.java) used in [`PersonCard`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/ui/PersonCard.java) is adapted from [`here`](https://stackoverflow.com/questions/340209/generate-colors-between-red-and-green-for-a-power-meter)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -38,7 +44,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -77,7 +83,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of the following parts e.g. `CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `Help Window`, `AssignmentListPanel`, `GroupListPanel`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -141,7 +147,7 @@ The `Person` component,
 
 * is composed of `Name`, `Phone`, `Email`, `Address` mandatory attributes
 * references any number of `Tags` from the `UniqueTagList` in `Addressbook`. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.
-* references any number of `Assignments` stored in a `Hashmap<GroupName, Assignment>`. This enables keeping track of a `Person`'s assignments under a specific `Group`.
+* references any number of `Assignments` stored in a `Hashmap<String, ArrayList<Assignment>>`. This enables keeping track of a `Person`'s assignments under a specific `Group`.
 
 **Group** : [`Group.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/group/Group.java)
 
@@ -235,14 +241,14 @@ For simplicity, only the `DeleteGroupCommand`'s execution is shown below. Both c
 
 **Aspect: Data Structure used to store Groups:**
 - Alternative 1 (current choice): Reference the `UniquePersonList` in `AddressBook` class
-  - Pros: 
+  - Pros:
     - Design is consistent with existing system architecture.
   - Cons:
-    - `UniquePersonList` implementation may be unfamiliar. 
+    - `UniquePersonList` implementation may be unfamiliar.
 - Alternative 2: Use simpler data structure e.g. Sets/ArrayList
-  - Pros: 
+  - Pros:
     - Can leverage Java libraries, simple to implement.
-  - Cons: 
+  - Cons:
     - Design may not be consistent with existing system architecture.
     - Run risk of not accounting for future features, have to design workarounds that weaken the data structure.
     - May violate immutability principle employed in the existing system architecture.
@@ -307,14 +313,14 @@ For simplicity, only the `DeleteGroupMemberCommand`'s execution is shown below. 
 
 **Aspect: How a group maintains references to its members:**
 - Alternative 1 (current choice): Maintains a reference to a `Person` object.
-  - Pros: 
+  - Pros:
     - When deleting group/performing groupwide assignment or deletion of task, easier to retrieve each member to be edited.
-  - Cons: 
+  - Cons:
     - Duplication of `Person` in memory, may have performance issues.
 - Alternative 2: Maintain a String/`Name` object `Person` only.
-  - Pros: 
+  - Pros:
     - No duplication of `Person` in memory, though `Name` object may be duplicated.
-  - Cons: 
+  - Cons:
     - When deleting group/performing groupwide assignment or deletion of task, have to lookup the actual `Person` object in AB3 model;
       incur overhead.
 - Alternative 3: References to `Group` maintained in a member i.e. the other way around.
@@ -427,7 +433,7 @@ For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both co
 
 **Aspect: Where task list should be maintained**
 - Alternative 1: `Group` object stores a HashMap mapping `Person` to task
-  - Pros: 
+  - Pros:
     - Easy to implement
     - Deleting tasks from a `Person` does not require modification of the `Person` object.
   - Cons:
