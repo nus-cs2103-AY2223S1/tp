@@ -17,15 +17,6 @@ public class ClearScheduleCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        CommandResult expectedCommandResult = new CommandResult(
-
-        )
-
-        assertCommandSuccess(new ClearScheduleCommand(), model,
-                ClearScheduleCommand.MESSAGE_CLEAR_ALL_SCHEDULES_SUCCESS, expectedModel);
-
-
-
 
     }
 

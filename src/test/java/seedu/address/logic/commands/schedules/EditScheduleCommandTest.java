@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.schedules;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
