@@ -20,6 +20,7 @@ If this is the first time you are using this user guide, it is highly recommende
 * If you are setting up, please take a look at our [Quick Start guide](#quick-start).
 * If you are unsure of how to use PetCode, the [Command Summary](#command-summary) table is a good starting point.
 * If you are a developer and want to help out, please take a look at the [Developer Guide](DeveloperGuide.md).
+* For quick navigation in this guide, click the hyperlink at the end of each command to go back to the table of contents, and navigate to other sections of this guide from there.
 
 ## Table of Contents
 - **[Introducing PetCode](#introducing-petcode)**
@@ -30,10 +31,10 @@ If this is the first time you are using this user guide, it is highly recommende
 - **[Commands](#commands)**
     * [Viewing help](#viewing-help--help)
     * [Adding a contact or item](#adding-a-contact-or-item-add)
-        + [Adding a buyer](#adding-a-buyer-add-b)
-        + [Adding a deliverer](#adding-a-deliverer-add-d)
-        + [Adding a supplier](#adding-a-supplier-add-s)
-        + [Adding an order to a buyer](#adding-an-order-to-a-buyer-add-o)
+        + [Adding a buyer](#adding-a-buyer--add-b)
+        + [Adding a deliverer](#adding-a-deliverer--add-d)
+        + [Adding a supplier](#adding-a-supplier--add-s)
+        + [Adding an order to a buyer](#adding-an-order-to-a-buyer--add-o)
         + [Adding a pet to a supplier](#adding-a-pet-to-a-supplier--add-p)
         + [Adding a person with a popup window](#adding-a-contact-with-a-popup-window--add) 
     * [Matching pets to an order](#matching-pets-to-an-order--match)
@@ -81,26 +82,26 @@ your customers' requests to their dream pet.
 
 ### Glossary
 
-In the user guide, you may come across some terms you do not understand. The following table hopes to provide clarification
+In the user guide, you may come across some terms you do not understand. The following table provides clarification
 of the terms commonly used in PetCode.
 
-| Term             | Description                                                                                                                                                                                                                                                                                                                            |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Contact**      | A contact is an information entry in PetCode. There are three types of contacts you can add - Buyer, Supplier and Deliverer. You can add a contact with the [`add` command](#adding-a-contact-or-item-add).                                                                                                                            |
-| **Command**      | A command is a specific instruction you can give to Petcode to perform an action. You can view the list of commands available [here](#command-summary).                                                                                                                                                                                |
-| **GUI**          | GUI stands for Graphical User Interface. It refers to the display window of the PetCode application.                                                                                                                                                                                                                                   |
-| **CLI**          | Command-Line Interface (CLI) receives commands from a user in the form of lines of text. It refers to the input textbox in this context.                                                                                                                                                                                               |
-| **Parameter**    | A parameter refers to the information you need to give to your command such that it can execute an action based on that information. <br/> <br/> For example, in the [`list` command](#listing-contacts-or-items--list) requires a KEY parameter to know what kind of list to display, i.e, `list buyer` displays your list of buyers. |
-| **Prefix**       | A prefix indicates the kind of information you are keying in. You can view the list of prefixes available [here](#list-of-prefixes).                                                                                                                                                                                                   |
-| **Item**         | An item refers to an `Order` or a `Pet`. An Order refers to the order placed by a buyer. A Pet refers to the pet available for sale.                                                                                                                                                                                                   |
-| **Integer**      | Whole number                                                                                                                                                                                                                                                                                                                           |
-| **Alphanumeric** | Digits and letters only. For example, `AB3`, `PetCode`, `coco123`, and `2103` are alphanumeric. `#01-04`, `email@domain.com`, and `white    spaces` are not.                                                                                                                                                                           |
-| **Whitespace**   | An empty character, or a placeholder character ` `.                                                                                                                                                                                                                                                                                    |
-| **Attribute**    | Words that follow prefixes to describe properties, states, characteristics, and traits. For example, price, weight, name, and order status.                                                                                                                                                                                            |
+| Term             | Description                                                                                                                                                                                                                                                                                                                                                                     |
+|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Contact**      | A contact is an information entry in PetCode. There are three types of contacts you can add - Buyer, Supplier and Deliverer. You can add a contact with the [`add` command](#adding-a-contact-or-item-add).                                                                                                                                                                     |
+| **Command**      | A command is a specific instruction you can give to Petcode to perform an action. You can view the list of commands available [here](#command-summary).                                                                                                                                                                                                                         |
+| **GUI**          | GUI stands for Graphical User Interface. It refers to the display window of the PetCode application.                                                                                                                                                                                                                                                                            |
+| **CLI**          | Command-Line Interface (CLI) receives commands from a user in the form of lines of text. It refers to the input textbox in this context.                                                                                                                                                                                                                                        |
+| **Parameter**    | A parameter refers to the information you need to give to your command such that it can execute an action based on that information. <br/> <br/> For example, in the [`list` command](#listing-contacts-or-items--list) requires a KEY parameter to know what kind of list to display, i.e, `list buyer` displays your list of buyers, where the KEY parameter here is `buyer`. |
+| **Prefix**       | A prefix indicates the kind of information you are keying in. You can view the list of prefixes available [here](#list-of-prefixes).                                                                                                                                                                                                                                            |
+| **Item**         | An item refers to an `Order` or a `Pet`. An Order refers to the order placed by a buyer. A Pet refers to the pet available for sale.                                                                                                                                                                                                                                            |
+| **Integer**      | Whole number                                                                                                                                                                                                                                                                                                                                                                    |
+| **Alphanumeric** | Digits and letters only. For example, `AB3`, `PetCode`, `coco123`, and `2103` are alphanumeric. `#01-04`, `email@domain.com`, and `white    spaces` are not.                                                                                                                                                                                                                    |
+| **Whitespace**   | An empty character, or a placeholder character ` `.                                                                                                                                                                                                                                                                                                                             |
+| **Attribute**    | Words that follow prefixes to describe properties, states, characteristics, and traits. For example, price, weight, name, and order status.                                                                                                                                                                                                                                     |
 
 ### How to interpret the display window
 
-When you first run the app, you may see a display window pop up similar to the following one below:
+When you first run the app, you may see a display window pop up similar to the one below. We call this window the **Main Window**.
 ![Starting Display Window](images/StartUIPage.png)
 
 The following diagram below shows how you should interpret this display window.
@@ -119,24 +120,24 @@ The following diagram below shows how you should interpret this display window.
 
 2. Download the latest `petcode.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your PetCode.
+3. Copy the file to the folder you want to use as the _home folder_ for your PetCode app.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press ENTER to execute it. e.g. typing **`help`** and pressing ENTER will
    open the help window.<br>
    Some example commands you can try:
 
-    * **`list buyer/supplier/deliverer`** : Lists buyer/supplier/delivery.
+    * **`list buyer`** : Lists all buyers.
 
     * **`add-b n/Hongyi ph/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore`** : Adds
-      a buyer named `Hongyi` who is looking for a pet to the PetCode.
+      a pet buyer named `Hongyi` to the PetCode.
 
     * **`delete-b 1`** : Deletes the first contact from the buyer contacts list.
 
-    * **`clear`** : Deletes all contacts. You can use this command to clear all the sample data provided.
+    * **`clear`** : Deletes all contacts. You can use this command to clear all the sample data provided. Be extra careful when using this command since **there is no `undo`**.
 
     * **`exit`** : Exits the app.
 
@@ -161,9 +162,6 @@ The following diagram below shows how you should interpret this display window.
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[p_cert/CERTIFICATE]…​` can be used as ` ` (i.e. 0 times), `p_cert/noble blood`, `p_cert/noble blood p_cert/house-trained` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME ph/PHONE_NUMBER`, `ph/PHONE_NUMBER n/NAME` is also acceptable.
-
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
   the parameter will be taken.<br>
   e.g. if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
@@ -172,11 +170,15 @@ The following diagram below shows how you should interpret this display window.
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* If the command format contains round brackets `()`, it means the command format inside `()` is omitted and can be found in another command.<br>
+  e.g. in `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION o/add-o(order1 prefixes and fields)…​`, the detailed command format inside `()` are omitted and can be found in [Adding an order to a buyer](#adding-an-order-to-a-buyer--add-o).
+
 </div>
 
 **Additional Information:**
 
-* Unless otherwise specified, the order of prefixes does not matter.
+* Unless otherwise specified, the order of prefixes does not matter.<br>
+  e.g. if the command specifies `n/NAME ph/PHONE_NUMBER`, `ph/PHONE_NUMBER n/NAME` is also acceptable, unless stated otherwise in a particular command.
 * When you input a price range for your orders, the order of the lower bound of the price range and the upper bound does 
 not matter because our app will configure the lower bound of the price range to be the smaller input and the upper
 bound to be the larger input.
@@ -194,7 +196,7 @@ Format: `help`
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-### Adding a contact or item: `add`
+### Adding a contact or item : `add`
 
 Adds a contact or item to the address book.
 
