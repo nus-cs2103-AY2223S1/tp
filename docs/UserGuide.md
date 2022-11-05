@@ -56,7 +56,7 @@ can also serve as a reference for experienced users, with a convenient [Command 
 
 8. Refer to the [Features](#features) below for details of each command.
 
-[back to top](#back-to-topt)
+<sup><sub>[back to top](#back-to-topt)</sub></sup>
 
 ---
 ## Installation Guide
@@ -109,7 +109,7 @@ For example, the Java version installed on the example system is Java 11.0.16, w
 If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, 
 head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
 
-[back to top](#back-to-topt)
+<sub><sup>[back to top](#back-to-topt)</sub></sup>
 
 ---
 
@@ -138,7 +138,7 @@ head over to [Oracle's Java download page](https://www.oracle.com/java/technolog
 | `-`           | Optional field.                         |
 | `*`           | Multiple inputs are allowed.            |
 
-[back to top](#back-to-topt)
+<sub><sup>[back to top](#back-to-topt)</sub></sup>
 
 ---
 
@@ -172,7 +172,7 @@ head over to [Oracle's Java download page](https://www.oracle.com/java/technolog
 * [Retrieving Patient Info](#retrieving-patient-info)
 * [General Commands](#general-commands)
 
-[back to top](#back-to-topt)
+<sub><sup>[back to top](#back-to-topt)</sub></sup>
 
 ## Creating Patient Info
 The commands in this segment are focused on creating, editing and removing data to and from the application. 
@@ -243,7 +243,7 @@ If patient type is outpatient: <br>
 `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/outpatient m/panadol m/ibuprofen`
 ![Add John Doe Outpatient Result](images/ug-images/addCommand/addJohnDoeOutpatientResult.png)
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#creating-patient-info)
+</sub></sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sub></sup>
 
 ### Editing a patient: `edit`
 
@@ -297,7 +297,7 @@ If not, please follow the error message given and format above to enter the corr
 * `edit 2 n/Betsy Crower m/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medication.
   ![edit Betsy Crower Result](images/ug-images/editCommand/editBetsyCrowerResult.png)
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#creating-patient-info)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sub></sup>
 
 ### Deleting a patient: `delete`
 
@@ -330,7 +330,7 @@ If not, please follow the error message given and format above to enter the corr
   command.
 ![Delete Betsy Crower](images/ug-images/deleteCommand/deleteBetsyCrowerCommandResult.png)
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#creating-patient-info)
+</sub></sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)<sub><sup>
 
 ### Creating past appointment for patient: `appt`
 
@@ -361,7 +361,7 @@ If not, please follow the error message given and format above to enter the corr
   for `John Doe`.
 ![Create Appointment for John Doe](images/ug-images/apptCommand/apptJohnDoeCommandResult.png)
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#creating-patient-info)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sub></sup>
 
 ### Deleting past appointment for patient: `delappt`
 
@@ -390,7 +390,7 @@ If not, please follow the error message given and format above to enter the corr
 * Following this, `delappt 1` will remove `John Doe`'s most recent past appointment.
 ![Delete Appointment for John Doe](images/ug-images/delapptCommand/delapptJohnDoeCommandResult.png)
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#creating-patient-info)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sub></sup>
 
 ### Consulting a patient: `consult`
 Creates a past appointment for the patient on the current date. If the patient has an upcoming appointment for the current 
@@ -420,7 +420,7 @@ If not, please follow the error message given and format above to enter the corr
 clear his upcoming appointment which was scheduled for the current date.
   ![Consult Alex Yeoh](images/ug-images/consultCommand/consultAlexYeohCommandResult.png)
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#creating-patient-info)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sub></sup>
 
 ---
 ## Retrieving Patient Info
@@ -438,7 +438,7 @@ Format: `list`
 
 * This command resets any filters applied via the `get` command below.
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#retrieving-patient-info)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
 
 ### Locating patients: `get`
 Finds patients based on the predicates and parameters you input.
@@ -478,7 +478,7 @@ Format: `get /n NAME`
 * `get /n alex david` displays `Alex Yeoh`, `David Li`.<br>
   ![result for 'find alex david'](images/ug-images/getCommand/getByNameAlexDavidResult.png)
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#retrieving-patient-info)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
 
 #### by next-of-kin data: `/nok`
 
@@ -515,7 +515,7 @@ Format: `get /fn FLOOR_NUMBER`
 * Multiple `FLOOR_NUMBER` can be inputted. e.g. `get /fn 1 3` will display all patients staying in the 1st and 3rd floor.
 * `get /fn 1 /fn 3` matches `get /fn 1 3`.
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#retrieving-patient-info)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
 
 #### by ward number: `/wn`
 
@@ -555,7 +555,7 @@ Format: `get /outp`
 Example:
 * `get /outp` displays `Bernice`, `David` and `Irfan`.
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#retrieving-patient-info)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
 
 #### by appointments: `/appt`
 
@@ -587,7 +587,7 @@ If the command was successfully executed, you should see something similar to th
 
 If not, please follow the error message given and format above to enter the correct command.
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#retrieving-patient-info)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
 
 ### Obtaining total patient count: `count`
 
@@ -601,7 +601,7 @@ Format: `count`
 * If 32 of those patients are on long-term antidepressants, the count will also display
   `antidepressants: 32`.
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#retrieving-patient-info)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
 
 ---
 ## General Commands
@@ -640,7 +640,7 @@ If the command was successfully executed, you should see something similar to th
 
 If not, please follow the error message given and format above to enter the correct command.
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#general-commands)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sub></sup>
 
 ### Clearing all data : `clear`
 
@@ -672,7 +672,7 @@ Format: `exit`
 
 * GUI settings (window height and width) are preserved during this process.
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#general-commands)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sub></sup>
 
 ### Saving the data
 
@@ -716,7 +716,7 @@ Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
   * Navigate past commands with the `UP` and `DOWN` arrow keys.
   * Clear the text currently in the command box with `Ctrl + Shift + C`.
 
-[back to top](#back-to-topt) | [back to features](#features) | [back to segment top](#general-commands)
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sub></sup>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -754,4 +754,4 @@ the data of your previous checkUp home folder.
 | [**help**](#open-the-help-page--help)                         | `help`                                                                                                                                                                                                                                                                                                                                             |
 | [**exit**](#exiting-the-program--exit)                        | `exit`                                                                                                                                                                                                                                                                                                                                             |
 
-[back to top](#back-to-topt)
+<sub><sup>[back to top](#back-to-topt)</sub></sup>
