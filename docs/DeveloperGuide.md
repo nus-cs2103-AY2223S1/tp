@@ -117,8 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagramV2. png" width="450" />
-
+<img src="images/ModelClassDiagramV2.png" width="450" />
 
 The `Model` component,
 
@@ -127,12 +126,42 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+#### Person Enhancements
 
-<img src="images/BetterModelClassDiagramV2.png" width="450" />
+##### Enhancement 1 : Net Worth
+The person model now contains a `Net Worth` field.
+`Net Worth` is implemented as a class where it contains a `final string value`, `final static string`
+`MESSAGE_CONSTRAINTS` and `final static string` `VALIDATION_REGEX`.
 
-</div>
+- Net Worth accepts a string that has an immutable value.
+- Net Worth is a non-compulsory field. A user will only engage with a client if they know their net worth.
+- Net Worth `VALIDATION_REGEX` ensures that only Net Worth inputs that begins with a $ sign and has more than 4 digits are accepted.
 
+**Design Considerations**
+* **Choice 1 (current choice) : Compulsory Net Worth field in person and `VALIDATION_REGEX` calculated in dollars and must be more than 4 digits.**
+    * Pros: Standardisation of currency and minimum net worth.
+    * Cons: Unable to create a contact without knowing the client's net worth and net worth must be more than a
+      minimum amount.
+
+* **Choice 2 : Non-compulsory Net Worth field and `VALIDATION_REGEX` has no currency constraints nor minimum amount.**
+    * Pros: Flexibility in creating a contact.
+    * Cons: No means of comparison between a contact of different currency.
+
+##### Enhancement 2 : Tag
+The person model now contains a `Tag` field.
+`Tag` is implemented as a class where it contains a `final string value`, `final static string`
+`MESSAGE_CONSTRAINTS` and `final static string` `VALIDATION_REGEX`.
+- Tag field's `VALIDATION_REGEX` ensures that only `Tag` values of `SECURED` or `POTENTIAL` are accepted.
+- Tag is implemented as a Set which means a Person object can have more than one tag. However, due to limitations we were not able to change set a 1 tag constraint to the tag field since the logic behind the 2 tags are mutually exclusive.
+
+**Improvements**
+- A check should be made to ensure that a person only has one tag to prevent one client from having both mutually exclusive tags.
+
+##### Enhancement 3 : FilePath
+Find out more information at [FilePath](#opening-of-person-specific-pdf-files).
+
+##### Enhancement 4 : MeetingTimes
+Find more information at [MeetingTimes](#meeting-feature).
 
 ### Storage component
 
@@ -205,30 +234,6 @@ The following activity diagram shows how the assigning filepath to a client feat
   * Cons:
     * Changes to the file location of User's FABook will mean that the PDF cannot be opened anymore since it is relative to the filepath of FABook.
 
-### Person Enhancement
-
-#### Enhancement
-The person model now contains a `Net Worth` field.
-`Net Worth` is implemented as a class where it contains a `final string value`, `final static string`
-`MESSAGE_CONSTRAINTS` and `final static string` `VALIDATION_REGEX`.
-
-- Net Worth accepts a Net Worth object that has an immutable value.
-- Net Worth is a compulsory field. A user will only engage with a client if they know their net worth.
-- Net Worth `VALIDATION_REGEX` ensures that clients of more than 1000 dollars is engaged and the currency is
-  standardise to be in dollars
-
-#### Design Considerations
-
-* **Choice 1 (current choice) : Compulsory Net Worth field in person and `VALIDATION_REGEX` calculated in dollars and must be more than 4 digits.**
-    * Pros: Standardisation of currency and minimum net worth.
-    * Cons: Unable to create a contact without knowing the client's net worth and net worth must be more than a
-      minimum amount.
-
-* **Choice 2 : Non-compulsory Net Worth field and `VALIDATION_REGEX` has no currency constraints nor minimum amount.**
-    * Pros: Flexibility in creating a contact.
-    * Cons: No means of comparison between a contact of different currency.
-
-
 ### Meeting Feature
 `MeetingTime` is used to model a meeting with a client.
 
@@ -241,10 +246,10 @@ The person model now contains a `Net Worth` field.
 
 #### Design Considerations
 **Aspect: MeetingTime Object**
-* **Alternative 1 (current choice): Person object contains its own set of MeetingTime**
+* **Choice 1 (current choice): Person object contains its own set of MeetingTime**
   * Pros: Easier to implement given the short amount of time
   * Cons: Harder to sort/filter/manipulate
-* **Alternative 2 (ideal choice): Bidirectional navigation between MeetingTime and Person**
+* **Choice 2 (ideal choice): Bidirectional navigation between MeetingTime and Person**
   * Pros: Better abstraction therefore easier to perform MeetingTime specific tasks(e.g. sort, filter)
   * Cons: More complicated to implement
 
