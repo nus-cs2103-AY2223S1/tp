@@ -14,6 +14,7 @@ import java.util.List;
 import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.predicates.HideAppointmentPredicate;
+import seedu.address.model.person.predicates.HideAppointmentPredicate.HideBy;
 
 
 
@@ -22,7 +23,7 @@ import seedu.address.model.person.predicates.HideAppointmentPredicate;
  */
 public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCommand> {
 
-    private HideAppointmentPredicate.HideBy cond;
+    private HideBy cond;
     private List<String> val;
     /**
      * Parses the given {@code String} of arguments in the context of the FilterPatientCommand
@@ -49,20 +50,20 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
     private void processArgMultiMap(ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
             val = argMultimap.getAllValues(PREFIX_REASON);
-            cond = HideAppointmentPredicate.HideBy.KEYWORD;
+            cond = HideBy.KEYWORD;
             if (val.stream().anyMatch(x -> x.equals(""))) {
                 throw new ParseException(MESSAGE_EMPTY_REASON);
             }
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             val = argMultimap.getAllValues(PREFIX_TAG);
-            cond = HideAppointmentPredicate.HideBy.TAG;
+            cond = HideBy.TAG;
             if (!areValidTags(val)) {
                 throw new ParseException(MESSAGE_INVALID_TAGS);
             }
         } else if (argMultimap.getValue(PREFIX_STATUS).isPresent()
                 && isValidStatusInput(argMultimap.getValue(PREFIX_STATUS).orElse(""))) {
             val = argMultimap.getAllValues(PREFIX_STATUS);
-            cond = HideAppointmentPredicate.HideBy.IS_MARKED;
+            cond = HideBy.IS_MARKED;
             if (val.size() > 1) {
                 throw new ParseException(MESSAGE_INVALID_STATUS);
             }
