@@ -942,6 +942,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 3a-3b are repeated until the data entered are correct.
     Use case resumes at step 4.
 
+**System: ConnectNUS**
+
 **Use case: UC6 - Edit a contact**
 
 **Actor: CS Students**
@@ -1226,6 +1228,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. ConnectNUS informs user of missing data.
     * Use case ends.
 
+
 **System: ConnectNUS**
 
 **Use case: UC18 - Show contact's Timetable**
@@ -1250,6 +1253,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. ConnectNUS informs user of missing data.
     * Use case ends.
 
+
 **System: ConnectNUS**
 
 **Use case: UC19 - Check core modules left that user must take**
@@ -1273,6 +1277,123 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. No user, or no current and previous modules for user.
     * 1b1. ConnectNUS informs user of missing data.
     * Use case ends.
+
+
+**System: ConnectNUS**
+
+**Use case: UC20 - Refreshing to next semester**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to refresh user and all persons in contact list data during the start of a new semester.
+2. ConnectNUS updates the previous module list and clears the current module list of both the user and all persons in the contact list.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. No user and no persons in the contact list.
+  * Use case ends.
+
+* 2a. No current modules for user and all persons in the contact list.
+  * Use case ends.
+
+
+**System: ConnectNUS**
+
+**Use case: UC21 - Filtering contacts tags**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to list all contacts with the tag(s).
+2. ConnectNUS shows a lists of persons from the contact list that have the tag(s).
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+  * 1a1. ConnectNUS requests for the correct format.
+  * User enters a new command in the correct format.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+    Use case resumes at step 2.
+
+* 2a. The list is empty.
+  Use case ends.
+
+
+**System: ConnectNUS**
+
+**Use case: UC22 - Filtering contacts current modules**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to list all contacts taking the current module(s).
+2. ConnectNUS shows a lists of persons from the contact list that have the current module(s).
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+  * 1a1. ConnectNUS requests for the correct format.
+  * User enters a new command in the correct format.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+    Use case resumes at step 2.
+
+* 2a. The list is empty.
+  Use case ends.
+
+
+**System: ConnectNUS**
+
+**Use case: UC23 - Filtering contacts previous modules**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to list all contacts that have taken the previous module(s).
+2. ConnectNUS shows a lists of persons from the contact list that have taken the previous module(s).
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+  * 1a1. ConnectNUS requests for the correct format.
+  * User enters a new command in the correct format.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+    Use case resumes at step 2.
+
+* 2a. The list is empty.
+  Use case ends.
+
+
+**System: ConnectNUS**
+
+**Use case: UC24 - Filtering contacts planned modules**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to list all contacts that are planning to take the planned module(s).
+2. ConnectNUS shows a lists of persons from the contact list that are planning to take the planned module(s).
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+  * 1a1. ConnectNUS requests for the correct format.
+  * User enters a new command in the correct format.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+    Use case resumes at step 2.
+
+* 2a. The list is empty.
+  Use case ends.
 
 
 ### Non-Functional Requirements
@@ -1501,6 +1622,19 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+
+### Refreshing to a new semester
+
+1. Updating user and contacts previous modules list and clearing their current modules list when a new semester begins
+
+  1. Prerequisites: There is a user.
+
+  2. Test case: `nextsem` <br>
+     Expected: All current modules in both user and all persons in the contact list will be shifted into their previous modules list.
+
+  3. Test case: `delete user` then run `nextsem` <br>
+     Expected: Status message shows that the user is deleted. Status message shows "No user created!"
 
 
 ### Saving data
