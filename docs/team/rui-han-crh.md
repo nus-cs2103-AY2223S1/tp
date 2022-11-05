@@ -201,18 +201,16 @@ Text extract:
 
 <div style="background-color:LightCyan; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: Khaki;">
 
-### Email
-
-This pertains to the email address of the person to be recorded in the SectresBook. It serves mainly as a point of information regarding the person, but has no additional features tied to it.
-
-This property can be identified from the GUI by the icon of an envelope.
+<h3 id="email">Email</h3>
+<p>This pertains to the email address of the person to be recorded in the SectresBook. It serves mainly as a point of information regarding the person, but has no additional features tied to it.</p>
+<p>This property can be identified from the GUI by the icon of an envelope.</p>
 
 <img src="../images/icons/mail.png" width="50" height="50">
 
-
-- Identified by the prefix <code>email</code>.
-- Emails should be of the format <code>local-part@domain</code> and adhere to the following constraints:
-
+<ul>
+<li>Identified by the prefix <code>email</code>.</li>
+<li>Emails should be of the format <code>local-part@domain</code> and adhere to the following constraints:</li>
+</ul>
 
 <table>
     <tr>
@@ -255,11 +253,13 @@ If there are multiple people in the list satisfying the keywords given, it will,
 You may wish to use more unique keywords to reduce ambiguity, or inspect by an index.
 </div>
 
-Format: <code>inspect INDEX <OR> NAME</code>
+<p>Format: <code>inspect INDEX &lt;OR&gt; NAME</code></p>
+<p>Examples:</p>
+<ul>
+<li><code>inspect 2</code> inspects the second person in the list of people</li>
+<li><code>inspect Lynette</code> will attempt to find the first person called <code>Lynette</code> in the currently <b>filtered</b> persons&#39; list and update the Inspect Panel with her information.</li>
+</ul>
 
-Examples:
-* <code>inspect 2</code> inspects the second person in the list of people
-* <code>inspect Lynette</code> will attempt to find the first person called <code>Lynette</code> in the currently <b>filtered</b> persons' list and update the Inspect Panel with her information.
 
 </div>
 
