@@ -202,7 +202,7 @@ Check Notes Features to learn more about the commands you can execute related to
 
 <br>
 
-3\.Added description of properties for both people and notes in the UG.
+3\. Added description of properties for both people and notes in the UG.
 
 This section is too long to be reproduced in entirety. Here is an example of the person property `email` extracted. The entire section can be found [here](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#properties)
 
