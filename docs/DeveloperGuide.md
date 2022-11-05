@@ -121,17 +121,10 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the exercise tracker data i.e., all `Exercise` objects (which are contained in a `UniqueExerciseList` object).
+* stores the exercise tracker data i.e., all `Exercise` objects (which are contained in a `ExerciseList` and `ExerciseHashMap` object).
 * stores the currently 'selected' `Exercise` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Exercise>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExerciseTracker`, which `Exercise` references. This allows `ExerciseTracker` to only require one `Tag` object per unique tag, instead of each `Exercise` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -146,7 +139,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `gimbook.commons` package.
+Classes used by multiple components are in the `gim.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,21 +147,36 @@ Classes used by multiple components are in the `gimbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### **Exercise Components**
-* Added Classes into the model Component to encapsulate an Exercise
+### **Exercise**
 
 #### **Implementation**
 <img src="images/ModelClassDiagram.png" width="450" />
 
-An `Exercise`,
-- is stored in `ExerciseList` and `ExerciseHashmap` of the Model
+An `Exercise` is stored in `ExerciseList` and `ExerciseHashmap` of Model
 
-An `Exercise` contains the following attributes,
+An `Exercise` contains the following attributes:
 1. a `Name`, which represents the name of the Exercise
 2. a `Weight`, which represents the total weight used for a certain Exercise
 3. a `Reps`, which represents the number of times a specific exercise was performed
 4. a `Sets`, which represents the number of cycles of reps that was completed
-5. a `Date`, which represent the date an exercise was performed as specified in `DD/MM/YYYY` format
+5. a `Date`, which represent the date an exercise was performed
+
+#### **Design Considerations**
+
+**Aspect: Fields of Exercise are Final:**
+* **Current choice**: The aforementioned fields in `Exercise` are final, effectively making our Exercise class immutable.
+  * Rationale: Code written with immutable objects is easier to reason with and easier to understand, facilitating a smoother process when it comes to debugging and testing any code related to `Exercise`.
+
+### **Exercise Hashmap**
+
+#### **Implementation**
+The Exercise Hashmap stores data in the form of a hashmap, where the key of the hashmap is the `Name` of an `Exercise` and its associated value is an `Exercise` ArrayList, containing a list of exercises (with the same name).
+
+#### **Design Considerations**
+
+**Aspect: Choosing the Data Structure**
+* **Current choice**: We decided to use a hashmap data structure.
+  * Rationale: We wanted to create associations between exercises with the same name. Utilising a hashmap structure, we can easily identify and retrieve exercises with the same exercise name (by their unique key identifier). Hence, this facilitates commands that rely on this retrieval to be implemented, such as [Listing of Personal Records](#listing-of-personal-records) and [Generating a suggested workout routine](#generating-a-suggested-workout-routine).
 
 ### **Sorting Exercise List**
 
@@ -309,7 +317,9 @@ Step 1. The user launches the application and already has 4 Exercise instances, 
 
 Step 2: The user enters the command `:pr n/Squat` to view their personal record for the exercise 'Squat'.
 
-![ListPersonalRecord](images/ListPersonalRecord.png)
+The following sequence diagram shows how the `PrCommand` works.
+
+![ListPersonalRecordSequenceDiagram](images/ListPersonalRecordSequenceDiagram.png)
 
 #### Design considerations:
 
