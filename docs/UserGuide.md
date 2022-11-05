@@ -419,7 +419,7 @@ Example Result: Shows all policies stored in the address book, on the screen.
 
 Examples:
 * `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in the address book.
-* `findPolicy PruShield` followed by `delete 1` deletes the 1st policy in the results of the `findPolicy` command.
+* `findPolicy ti/PruShield` followed by `deletePolicy 1` deletes the 1st policy in the results of the `findPolicy` command.
 
 
 ### Searching for a Policy : `findPolicy`
