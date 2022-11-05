@@ -31,7 +31,7 @@ public class ParsePropertyInterestedClients {
 
         for (String clientName : interestedClientNames) {
             if (model.hasClientName(clientName)) {
-                if (model.hasUniqueClientName(clientName)) {
+                if (model.hasUniqueClientName(clientName) || model.getClientByExactName(clientName) != null) {
                     filteredInterestedClients.add(model.getUniqueClientByName(clientName));
                 } else {
                     duplicateClients.add(clientName);

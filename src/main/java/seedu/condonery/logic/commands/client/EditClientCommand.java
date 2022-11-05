@@ -94,6 +94,8 @@ public class EditClientCommand extends Command {
         Path imageDirectoryPath = model.getUserPrefs().getUserImageDirectoryPath();
         Client editedClient = createEditedClient(clientToEdit, editClientDescriptor, imageDirectoryPath);
 
+        Property property;
+
         for (Property interestedProperty : editClientDescriptor.getInterestedProperties().orElse(new HashSet<>())) {
             String interestedPropertyName = interestedProperty.getName().toString();
             if (!model.hasPropertyName(interestedPropertyName)) {
@@ -102,11 +104,14 @@ public class EditClientCommand extends Command {
                     + ". You might want to refine your search.");
             }
             if (!model.hasUniquePropertyName(interestedPropertyName)) {
-                throw new CommandException("More than 1 property matches substring "
-                    + interestedPropertyName
-                    + ". You might want to make your search more specific.");
+                if ((property = model.getPropertyByExactName(interestedPropertyName)) == null) {
+                    throw new CommandException("More than 1 property matches substring "
+                        + interestedPropertyName
+                        + ". You might want to make your search more specific, or use the exact name of the property");
+                }
+            } else {
+                property = model.getUniquePropertyByName(interestedPropertyName);
             }
-            Property property = model.getUniquePropertyByName(interestedPropertyName);
             property.getInterestedClients().add(editedClient);
         }
 

@@ -108,6 +108,11 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public Property getPropertyByExactName(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPropertyDirectory(ReadOnlyPropertyDirectory newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -164,6 +169,11 @@ public class AddClientCommandTest {
 
         @Override
         public void setClientDirectory(ReadOnlyClientDirectory newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Client getClientByExactName(String name) {
             throw new AssertionError("This method should not be called.");
         }
 

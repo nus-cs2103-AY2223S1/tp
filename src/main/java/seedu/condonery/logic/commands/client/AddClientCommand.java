@@ -76,6 +76,7 @@ public class AddClientCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        Property property;
 
         if (model.hasClient(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
@@ -89,11 +90,14 @@ public class AddClientCommand extends Command {
                     + ". You might want to refine your search.");
             }
             if (!model.hasUniquePropertyName(interestedPropertyName)) {
-                throw new CommandException("More than 1 property matches substring "
-                    + interestedPropertyName
-                    + ". You might want to make your search more specific.");
+                if ((property = model.getPropertyByExactName(interestedPropertyName)) == null) {
+                    throw new CommandException("More than 1 property matches substring "
+                        + interestedPropertyName
+                        + ". You might want to make your search more specific, or use the exact name of the property");
+                }
+            } else {
+                property = model.getUniquePropertyByName(interestedPropertyName);
             }
-            Property property = model.getUniquePropertyByName(interestedPropertyName);
             property.getInterestedClients().add(toAdd);
         }
 
