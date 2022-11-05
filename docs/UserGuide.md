@@ -48,15 +48,15 @@ The image below shows a Tuthub Application Window (with a tutor profile selected
 
 The following table describes the sections in detail:
 
-| **No.**  | **Section**           | **Description**                                                                     |
-|----------|-----------------------|-------------------------------------------------------------------------------------|
-| 1        | Toolbars              | Click on the respective buttons to exit the app/view help.                          |
-| 2        | Command Box           | Type in your commands here.                                                         |
-| 3        | Result Display Box    | Displays various messages (e.g. success/error messages) after commands are entered. |
-| 4        | Tutor List Card       | Displays condensed information of a tutor saved in Tuthub.                          |
-| 5        | Tutor List Panel      | Displays the entire/filtered list of tutors saved in Tuthub.                        |
-| 6        | Tutor Details Pane    | Displays full details of a tutor saved in Tuthub.                                   |
-| 7        | Storage File Location | Displays the location of your Tuthub data file.                                     |
+| **No.**  | **Section**             | **Description**                                                                     |
+|----------|-------------------------|-------------------------------------------------------------------------------------|
+| 1        | `Toolbars`              | Click on the respective buttons to exit the app/view help.                          |
+| 2        | `Command Box`           | Type in your commands here.                                                         |
+| 3        | `Result Display Box`    | Displays various messages (e.g. success/error messages) after commands are entered. |
+| 4        | `Tutor List Card`       | Displays condensed information of a tutor saved in Tuthub.                          |
+| 5        | `Tutor List Panel`      | Displays the entire/filtered list of tutors saved in Tuthub.                        |
+| 6        | `Tutor Details Pane`    | Displays full details of a tutor saved in Tuthub.                                   |
+| 7        | `Storage File Location` | Displays the location of your Tuthub data file.                                     |
 
 ### Notes About Command Format
 <div markdown="block" class="alert alert-info">
@@ -91,7 +91,7 @@ The following table describes the sections in detail:
 ### Notes About Frequently Used Command Parameters
 | Parameter             | Note                                                                                                                                                                                                                                                        |
 |-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`               | - Index refers to a **valid** index number shown in displayed tutor list and  **must be a positive integer**, i.e. 1, 2, 3.                                                                                                                                 |
+| `INDEX`               | - Index refers to a **valid** index number shown in displayed tutor list and  **must be a positive integer**, i.e. 1, 2, 3, …​.                                                                                                                             |
 | `NAME`                | - Names must contain at least 1 word, and at most 1 space is allowed between words. <br/>- Only English alphabets and the symbols `/`,`'`,`-` are accepted and cannot be surrounded by spaces. e.g. `Smith - Jones` is invalid, but `Smith-Jones` is valid. |
 | `PHONE`               | - Phone numbers can only contain digits, i.e.`0-9` and must be at least 3 digits long.                                                                                                                                                                      |
 | `EMAIL`               | - Emails must be the tutor's NUSNet ID, e.g. `E1234567` or `E1234567@u.nus.edu`, where the `E` is case-insensitive. <br/>- If `@u.nus.edu` is not provided, Tuthub will automatically append it for you.                                                    |
@@ -201,8 +201,6 @@ If you would like to find out more about a particular tutor, view a tutor to see
 Format: `view INDEX`
 
 * Displays the person at the specified `INDEX`.
-* The index refers to a **valid** index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `view 2` causes the corresponding `Tutor Details Pane` of the 2nd tutor to appear on the right, as shown below:
@@ -222,10 +220,12 @@ Adds a comment on the specified tutor.
 
 Format: `comment INDEX c/COMMENT`
 
-* Comments on the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Comments on the person at the specified `INDEX`.
 
 Examples:
-* `comment 1 c/Tasks not Finished` adds a comment of "Tasks not Finished" on the 1st tutor.
+* `comment 1 c/Tasks not Finished` adds a comment of "Tasks not Finished" on the 1st tutor, reflected on their `Tutor Details Pane` as shown below:
+
+![added comment](images/user-guide/comment.png)
 
 ### Deleting comments on a tutor: `deletecomment` or `dc`
 
@@ -243,6 +243,8 @@ Examples:
 Edits an existing tutor in Tuthub.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHINGNOMINATIONS] [r/RATING] [t/TAG]…​`
+
+* Edits the tutor at the specified `INDEX`.
 
 <div markdown="block" class="alert alert-info">
 
@@ -316,7 +318,9 @@ Format: `mail INDEX` or `mail all`
 
 Examples:
 * `mail 3` opens the user's default mail client with the "to" specified as the third tutor's email.
-* `mail all` opens the user's default mail client with the "to" specified as all the currently displayed tutors' emails.
+* `mail all` opens the user's default mail client with the "to" specified as all the currently displayed tutors' emails, as shown below.
+
+![mail](images/user-guide/mail.png)
 
 ### Sorting tutors by quantitative measures: `sort`
 
@@ -347,8 +351,12 @@ Deletes the specified tutors from Tuthub.
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Caution:** Deleting a tutor is **irreversible**! Only enter this command when you are very sure that the tutor profile is not needed anymore!
+
+</div>
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in Tuthub.
@@ -366,10 +374,6 @@ Format: `clear`
 
 </div>
 
-### Saving the data
-
-Tuthub data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
 ### Exiting the program: `exit`
 
 Exits Tuthub app.
@@ -380,6 +384,9 @@ Format: `exit`
 <div style="page-break-after: always;"></div>
 
 ## FAQ
+
+**Q**: How do I save my data in Tuthub?<br>
+**A**: Tuthub data are saved in the hard disk automatically after any command that changes the data is executed. There is no need to save manually.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tuthub home folder.
