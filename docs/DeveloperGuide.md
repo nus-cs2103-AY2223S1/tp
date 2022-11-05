@@ -7,13 +7,13 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **1. Acknowledgements**
 
 * Adapted `Theme` class to switch between dark and light mode from [here](https://github.com/junlong4321/tp/blob/master/src/main/java/tutorspet/ui/stylesheet/Stylesheet.java).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Introduction**
+## **2. Introduction**
 
 Made for SOC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** 
 It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands while providing users with a simple and clean Graphical User Interface (GUI). 
@@ -29,20 +29,20 @@ The purpose of this Developer Guide is to help you to understand the design and 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **3. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **4. Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### 4.1. Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -68,7 +68,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletestu 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -83,7 +83,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 4.2. UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -100,7 +100,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+### 4.3. Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -129,7 +129,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 4.4. Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -147,7 +147,7 @@ The `Model` component,
 
 </div>
 
-#### Schedule
+#### 4.4.1. Schedule
 
 **API** : [Schedule.java](https://github.com/AY2223S1-CS2103T-W11-2/tp/tree/master/src/main/java/seedu/address/model/module/schedule)
 
@@ -158,14 +158,13 @@ The `Schedule` component
 - represents a schedule of its corresponding module
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to make `Schedule` abstract class, and create `LectureSchedule`, `TutorialSchedule`, `LabSchedule`, `RefelectionSchedule` that extend the `Schedule` class. The diagram is as follows: <br>
-<div align=center>
-    <img src="images/ScheduleAlt.png" alt="NewScheduleUML" width=450; />
+    <div align=center>
+        <img src="images/ScheduleAlt.png" alt="NewScheduleUML" width=450; />
+    </div>
 </div>
 
-</div>
 
-
-### Storage component
+### 4.5. Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -180,18 +179,16 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
-
-</div>
+Classes used by multiple components are in the `seedu.profnus.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 
-## **Implementation**
+## **5. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Person Model, Student Class and Student ID
+### 5.1. Person Model, Student Class and Student ID
 
 #### Implementation
 
@@ -243,7 +240,7 @@ Additionally, it will also contain these fields:
   * Cons:
     * NUS has many students, and it is inevitable that some of them will share the exact same name
 
-### The edit student feature
+### 5.2. The edit student feature
 
 #### Implementation
 
@@ -255,13 +252,7 @@ at the index provided by the user.
 The following sequence diagram shows how the `editstu` command works:
 ![EditStuCommandSequenceDisgram](./images/EditStuCommandSequenceDiagram.png)
 
-
-
-
-
-
-
-### Find module details by module code feature
+### 5.3. View module details feature
 
 #### Implementation
 
@@ -291,8 +282,9 @@ Reason for choosing option 1:
 Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Engineering". If we allow searching by module name, the program would not know which "Software Engineering" module to display.
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
 
-### [Proposed] Edit a module feature
-### Proposed Implementation
+### 5.4. Edit a module feature
+
+#### Implementation
 
 The proposed edit module functionality is facilitated by `EditModuleCommand`. It extends `Command` and overrides the method `Command#execute(Model model)`.
 
@@ -319,8 +311,9 @@ Reason for choosing option 1:
 A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence,
 an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
 
-### [Proposed] AddSchedule feature
-#### Proposed Implementation
+###  5.5. AddSchedule feature
+
+#### Implementation
 
 The proposed add schedule functionality is accomplished by `AddScheduleCommand` which extends the `Command` class. The `AddScheduleCommand` overrides the following method:
 
@@ -340,9 +333,9 @@ During the execution, the following validity checks will be conducted:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.</div>
 
 
-### [Proposed] EditSchedule feature
+### 5.6. EditSchedule feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed edit schedule functionality is accomplished by `EditScheduleCommand` which extends the `Command` class. The `EditScheduleCommand` overrides the following method:
 
@@ -365,9 +358,9 @@ During the execution, the following validity checks will be conducted:
 
 
 
-### [Proposed] ViewSchedule feature
+### 5.7. ViewSchedule feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed view schedule functionality is accomplished by `ViewScheduleCommand` which extends the `Command` class. The `ViewScheduleCommand` overrides the following method:
 
@@ -380,7 +373,7 @@ The following sequence diagram shows how view schedule operation works :
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **6. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -390,9 +383,9 @@ The following sequence diagram shows how view schedule operation works :
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **7. Appendix: Requirements**
 
-### Product scope
+### 7.1. Product scope
 
 **Target user profile**:
 
@@ -407,7 +400,7 @@ The following sequence diagram shows how view schedule operation works :
 **Value proposition**: The application helps NUS SOC Professors manage their students and TA in the various modules, by providing a quick and easy way to find and contact them.
 
 
-### User stories
+### 7.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -427,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 7.3. Use cases
 
 (For all use cases below, the **System** is the `ProfNUS` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -571,7 +564,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Non-Functional Requirements
+### 7.4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -582,7 +575,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
+### 7.5. Glossary
 
 1. **Mainstream OS**: Windows, Linux, Unix, OS-X
 2. **Private contact detail**: A contact detail that is not meant to be shared with others
@@ -593,7 +586,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **8. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
