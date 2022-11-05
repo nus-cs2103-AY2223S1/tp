@@ -15,7 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.property.FilterPropertiesCommand;
 import seedu.address.model.Model;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.property.FilterPropsByPricePredicate;
+import seedu.address.model.property.FilterPropsByPriceRangePredicate;
 import seedu.address.model.property.FilterPropsContainingAllCharacteristicsPredicate;
 import seedu.address.model.property.FilterPropsContainingAnyCharacteristicPredicate;
 import seedu.address.model.property.Property;
@@ -29,11 +29,11 @@ public class MatchBuyerCommand extends Command {
     public static final String COMMAND_WORD = "matchbuyer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Matches a buyer with all properties that satisfy the buyer's budget"
-            + " and at least one of the buyer's desired characteristics.\n"
+            + ": Matches a buyer to all properties that are within the buyer's budget"
+            + " and has at least one of the buyer's desired characteristics.\n"
             + "Pass in " + PREFIX_STRICT + " to reduce the matches to only properties that satisfy all of the"
             + " buyer's desired characteristics.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_STRICT;
 
     public static final String MESSAGE_MATCHED_BUYER_SUCCESS = "%s matched properties for the buyer:\n%s";
@@ -70,7 +70,7 @@ public class MatchBuyerCommand extends Command {
                     CommandException(Messages.MESSAGE_INVALID_PROPERTY_BUYER_MATCH);
         } else {
             if (buyerToMatch.getPriceRange().isPresent()) {
-                predicatesList.add(new FilterPropsByPricePredicate(buyerToMatch.getPriceRange().get()));
+                predicatesList.add(new FilterPropsByPriceRangePredicate(buyerToMatch.getPriceRange().get()));
             }
 
             if (buyerToMatch.getDesiredCharacteristics().isPresent()) {

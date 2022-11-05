@@ -31,7 +31,7 @@ public class MatchBuyerCommandParser extends Parser<MatchBuyerCommand> {
             return new MatchBuyerCommand(index, isMatchingAll);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MatchPropertyCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MatchBuyerCommand.MESSAGE_USAGE), pe);
         }
 
     }

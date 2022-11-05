@@ -21,7 +21,7 @@ import seedu.address.model.buyer.Name;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.property.FilterPropsByOwnerNamePredicate;
-import seedu.address.model.property.FilterPropsByPricePredicate;
+import seedu.address.model.property.FilterPropsByPriceRangePredicate;
 import seedu.address.model.property.FilterPropsContainingAllCharacteristicsPredicate;
 import seedu.address.model.property.FilterPropsContainingAnyCharacteristicPredicate;
 import seedu.address.model.property.Property;
@@ -53,7 +53,7 @@ public class FilterPropertiesCommandParser extends Parser<FilterPropertiesComman
 
         if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
             PriceRange priceRange = ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
-            predicatesList.add(new FilterPropsByPricePredicate(priceRange));
+            predicatesList.add(new FilterPropsByPriceRangePredicate(priceRange));
         }
 
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {

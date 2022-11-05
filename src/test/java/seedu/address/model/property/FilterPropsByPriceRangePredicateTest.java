@@ -9,24 +9,24 @@ import seedu.address.model.pricerange.PriceRange;
 import seedu.address.testutil.PropertyBuilder;
 
 
-public class FilterPropsByPricePredicateTest {
+public class FilterPropsByPriceRangePredicateTest {
 
     @Test
     public void equals() {
         PriceRange priceRange1 = new PriceRange("200 - 500");
         PriceRange priceRange2 = new PriceRange("100 - 70000");
 
-        FilterPropsByPricePredicate firstPredicate =
-                new FilterPropsByPricePredicate(priceRange1);
-        FilterPropsByPricePredicate secondPredicate =
-                new FilterPropsByPricePredicate((priceRange2));
+        FilterPropsByPriceRangePredicate firstPredicate =
+                new FilterPropsByPriceRangePredicate(priceRange1);
+        FilterPropsByPriceRangePredicate secondPredicate =
+                new FilterPropsByPriceRangePredicate((priceRange2));
 
         //same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         //same value -> returns true
-        FilterPropsByPricePredicate firstPredicateCopy =
-                new FilterPropsByPricePredicate(priceRange1);
+        FilterPropsByPriceRangePredicate firstPredicateCopy =
+                new FilterPropsByPriceRangePredicate(priceRange1);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         //different types -> returns false
@@ -44,24 +44,24 @@ public class FilterPropsByPricePredicateTest {
 
         PriceRange targetPriceRange = new PriceRange("1000 - 2000");
         //Within price range
-        FilterPropsByPricePredicate predicate =
-                new FilterPropsByPricePredicate(targetPriceRange);
+        FilterPropsByPriceRangePredicate predicate =
+                new FilterPropsByPriceRangePredicate(targetPriceRange);
         assertTrue(predicate.test(new PropertyBuilder().withPrice("1500").build()));
 
         //On price range upperbound
-        predicate = new FilterPropsByPricePredicate(targetPriceRange);
+        predicate = new FilterPropsByPriceRangePredicate(targetPriceRange);
         assertTrue(predicate.test(new PropertyBuilder().withPrice("2000").build()));
 
         //On price range lowerbound
-        predicate = new FilterPropsByPricePredicate(targetPriceRange);
+        predicate = new FilterPropsByPriceRangePredicate(targetPriceRange);
         assertTrue(predicate.test(new PropertyBuilder().withPrice("1000").build()));
     }
 
     @Test
     public void test_propertyPriceNotInPriceRange_returnFalse() {
         //No matching characteristics
-        FilterPropsByPricePredicate predicate =
-                new FilterPropsByPricePredicate(new PriceRange("0 - 2000"));
+        FilterPropsByPriceRangePredicate predicate =
+                new FilterPropsByPriceRangePredicate(new PriceRange("0 - 2000"));
         assertFalse(predicate.test(new PropertyBuilder().withPrice("99999").build()));
 
     }

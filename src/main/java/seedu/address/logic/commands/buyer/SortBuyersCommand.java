@@ -23,13 +23,13 @@ public class SortBuyersCommand extends Command {
     public static final String COMMAND_WORD = "sortbuyers";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts buyers by name, budget, priority, or entry time in ascending or descending order."
+            + ": Sorts buyers by name, price range, priority, or entry time in ascending or descending order."
             + " You can only sort by one criteria at a time.\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + " NAME <ASC/DESC>] "
-            + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE <ASC/DESC>]"
-            + "[" + PREFIX_PRIORITY + " PRIORITY <ASC/DESC>]"
-            + "[" + PREFIX_TIME + " TIME <ASC/DESC>]\n"
+            + "[" + PREFIX_NAME + " NAME<ASC/DESC>] "
+            + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE<ASC/DESC>] "
+            + "[" + PREFIX_PRIORITY + " PRIORITY<ASC/DESC>] "
+            + "[" + PREFIX_TIME + " ENTRY TIME<ASC/DESC>]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " " + DESC;
 
     public static final String MESSAGE_SUCCESS = "Sorted buyers by: %s";

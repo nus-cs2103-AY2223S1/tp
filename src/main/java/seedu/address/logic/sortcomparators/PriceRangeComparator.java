@@ -33,8 +33,8 @@ public class PriceRangeComparator implements Comparator<PriceRange> {
 
     @Override
     public String toString() {
-        return "Budget, " + order
-                + String.format(" (based on %s of price range)",
-                    order.equals(new Order("asc")) ? "start" : "end");
+        return "Price Range, " + order
+                + String.format(" (based on %s bound of price range)",
+                    order.equals(new Order("asc")) ? "lower" : "upper");
     }
 }
