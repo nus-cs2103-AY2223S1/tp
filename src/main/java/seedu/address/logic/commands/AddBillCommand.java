@@ -111,8 +111,7 @@ public class AddBillCommand extends Command {
                     && indexOfAppointment.equals(((AddBillCommand) other).indexOfAppointment)
                     && billDate.equals(((AddBillCommand) other).billDate)
                     && amount.equals(((AddBillCommand) other).amount)
-                    && defaultPaymentStatus.equals(((AddBillCommand) other).defaultPaymentStatus))
-                    && bill.equals(((AddBillCommand) other).bill);
+                    && defaultPaymentStatus.equals(((AddBillCommand) other).defaultPaymentStatus));
         } else {
             return other == this || (other instanceof AddBillCommand && bill.equals(((AddBillCommand) other).bill));
         }
