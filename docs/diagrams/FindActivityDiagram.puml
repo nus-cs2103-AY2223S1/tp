@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes find command;
+:FindCommandParser creates CombinedPersonPredicate and
+ CombinedAppointmentPredicate based on user search terms;
+:FindCommand#execute() is called;
+:Filter the current person list according to the CombinedPersonPredicate;
+if () then ([if contains appointment search terms])
+    : Filter the patient list to also require patients to have at least 1 appointment
+                                   satisfying CombinedAppointmentPredicate;
+else ([else])
+endif
+:Filter the current appointment list according to CombinedAppointmentPredicate.
+         Appointments must also belong to a patient in the filtered patient list.;
+:Result is displayed to user;
+stop
+@enduml
