@@ -13,4 +13,6 @@ public class TypicalLinks {
     public static final Link LINK_GOOGLE_DUPLICATED = new Link(new LinkName("google"), new Url("https://google.com"));
 
     public static final Link LINK_FACEBOOK = new Link(new LinkName("facebook"), new Url("https://facebook.com"));
+
+    public static final Link LINK_YOUTUBE = new Link(new LinkName("youtube"), new Url("https://youtube.com"));
 }

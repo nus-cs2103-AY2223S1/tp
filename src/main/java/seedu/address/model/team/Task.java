@@ -136,6 +136,7 @@ public class Task {
                 || (other instanceof Task // instanceof handles nulls
                 && name.equals(((Task) other).name))
                 && assignees.equals(((Task) other).assignees)
+                && completionStatus == (((Task) other).completionStatus)
                 && this.getDeadlineAsString().equals(((Task) other).getDeadlineAsString()); // state check
     }
 
