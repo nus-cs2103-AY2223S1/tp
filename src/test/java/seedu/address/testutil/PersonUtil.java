@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.FLAG_ADDRESS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
@@ -33,7 +32,6 @@ public class PersonUtil {
         sb.append("-" + FLAG_NAME_STR + "\"").append(person.getName().fullName).append("\" ");
         sb.append("-" + FLAG_PHONE_STR + "\"").append(person.getPhone().value).append("\" ");
         sb.append("-" + FLAG_EMAIL_STR + "\"").append(person.getEmail().value).append("\" ");
-        sb.append("-" + FLAG_ADDRESS_STR + "\"").append(person.getAddress().value).append("\" ");
         person.getTags().stream().forEach(
                 s -> sb.append("-" + FLAG_TAG_STR + "\"").append(s.tagName).append("\" ")
         );
@@ -51,8 +49,6 @@ public class PersonUtil {
                 "-" + FLAG_PHONE_STR).append(" \"").append(phone.value).append("\"").append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(
                 "-" + FLAG_EMAIL_STR).append(" \"").append(email.value).append("\"").append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(
-                "-" + FLAG_ADDRESS_STR).append(" \"").append(address.value).append("\"").append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

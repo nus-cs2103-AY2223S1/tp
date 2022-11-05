@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.FLAG_ADDRESS_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_ADDRESS_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
@@ -10,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_ADDRESS_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_EMAIL_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_INDEX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_NAME_DESCRIPTION;
@@ -34,7 +31,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -44,8 +40,8 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the TruthTable.
  */
-@CommandLine.Command(name = EditPersonCommand.COMMAND_WORD,
-        aliases = {EditPersonCommand.ALIAS}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditPersonCommand.COMMAND_WORD, aliases = {EditPersonCommand.ALIAS},
+        mixinStandardHelpOptions = true)
 public class EditPersonCommand extends Command {
     public static final String COMMAND_WORD = "person";
     public static final String ALIAS = "p";
@@ -58,7 +54,6 @@ public class EditPersonCommand extends Command {
             + "[" + FLAG_NAME_STR + " NAME] "
             + "[" + FLAG_PHONE_STR + " PHONE] "
             + "[" + FLAG_EMAIL_STR + " EMAIL] "
-            + "[" + FLAG_ADDRESS_STR + " ADDRESS] "
             + "[" + FLAG_TAG_STR + " TAG]...\n"
             + "Example: " + FULL_COMMAND + " 1 "
             + FLAG_PHONE_STR + " 91234567 "
@@ -97,10 +92,9 @@ public class EditPersonCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags);
     }
 
     @Override
@@ -119,9 +113,6 @@ public class EditPersonCommand extends Command {
 
         if (arguments.name != null) {
             editPersonDescriptor.name = arguments.name;
-        }
-        if (arguments.address != null) {
-            editPersonDescriptor.address = arguments.address;
         }
         if (arguments.email != null) {
             editPersonDescriptor.email = arguments.email;
@@ -163,15 +154,13 @@ public class EditPersonCommand extends Command {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_PERSON_NAME_DESCRIPTION)
         private Name name;
 
-        @CommandLine.Option(names = {FLAG_PHONE_STR, FLAG_PHONE_STR_LONG}, description = FLAG_PERSON_PHONE_DESCRIPTION)
+        @CommandLine.Option(names = {FLAG_PHONE_STR, FLAG_PHONE_STR_LONG}, description =
+                FLAG_PERSON_PHONE_DESCRIPTION)
         private Phone phone;
 
-        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, description = FLAG_PERSON_EMAIL_DESCRIPTION)
+        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, description =
+                FLAG_PERSON_EMAIL_DESCRIPTION)
         private Email email;
-
-        @CommandLine.Option(names = {FLAG_ADDRESS_STR, FLAG_ADDRESS_STR_LONG},
-                description = FLAG_PERSON_ADDRESS_DESCRIPTION)
-        private Address address;
 
         @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = FLAG_PERSON_TAGS_DESCRIPTION,
                 arity = "*")
@@ -186,7 +175,6 @@ public class EditPersonCommand extends Command {
                 return this.name != null && this.name.equals(target.name)
                         && this.phone != null && this.phone.equals(target.phone)
                         && this.email != null && this.email.equals(target.email)
-                        && this.address != null && this.address.equals(target.address)
                         && this.tags != null && this.tags.equals(target.tags);
             } else {
                 return false;
@@ -202,7 +190,6 @@ public class EditPersonCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -216,7 +203,6 @@ public class EditPersonCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -224,7 +210,7 @@ public class EditPersonCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
         }
 
         public Optional<Name> getName() {
@@ -249,14 +235,6 @@ public class EditPersonCommand extends Command {
 
         public void setEmail(Email email) {
             this.email = email;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
         }
 
         /**
@@ -294,7 +272,6 @@ public class EditPersonCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }

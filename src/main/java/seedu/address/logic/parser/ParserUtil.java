@@ -12,12 +12,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.team.Description;
+import seedu.address.model.team.LinkName;
+import seedu.address.model.team.TaskName;
 import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Url;
 
@@ -75,21 +76,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -132,6 +118,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} into a {@code LinkName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static LinkName parseLinkName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!LinkName.isValidLinkName(trimmedName)) {
+            throw new ParseException(LinkName.MESSAGE_CONSTRAINTS);
+        }
+        return new LinkName(trimmedName);
+    }
+
+    /**
      * Parses {@code String url} into a {@code Url}
      */
     public static Url parseUrl(String url) throws ParseException {
@@ -148,6 +149,21 @@ public class ParserUtil {
             throw new ParseException(Url.MESSAGE_CONSTRAINTS);
         }
         return new Url(trimmedUrlWithHttps);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code TaskName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static TaskName parseTaskName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!TaskName.isValidTaskName(trimmedName)) {
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskName(trimmedName);
     }
 
     /**

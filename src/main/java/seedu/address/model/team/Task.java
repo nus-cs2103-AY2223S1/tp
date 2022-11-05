@@ -1,7 +1,6 @@
 package seedu.address.model.team;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,19 +15,10 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class Task {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Task names should not be blank and cannot begin with a whitespace";
-
-    /*
-     * The first character of the task name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
     /**
      * Name of the task.
      */
-    private final String name;
+    private final TaskName name;
 
     /**
      * Team member(s) assigned to be in charge of this task.
@@ -53,9 +43,8 @@ public class Task {
      * @param completionStatus Boolean representing whether the task is completed
      * @param deadline         Datetime representing deadline of the task
      */
-    public Task(String name, List<Person> assignees, boolean completionStatus, LocalDateTime deadline) {
+    public Task(TaskName name, List<Person> assignees, boolean completionStatus, LocalDateTime deadline) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.assignees = new UniquePersonList();
         this.assignees.setPersons(assignees);
@@ -72,20 +61,12 @@ public class Task {
      * @param completionStatus Boolean representing whether the task is completed
      * @param deadline         Datetime representing deadline of the task
      */
-    private Task(String name, UniquePersonList assignees, boolean completionStatus, LocalDateTime deadline) {
+    private Task(TaskName name, UniquePersonList assignees, boolean completionStatus, LocalDateTime deadline) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.assignees = assignees;
         this.completionStatus = completionStatus;
         this.deadline = deadline;
-    }
-
-    /**
-     * Returns true if a given string is a valid name for a task.
-     */
-    public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -93,7 +74,7 @@ public class Task {
         return getCompletionStatus() + name + " " + getAssigneesAsString() + " " + getDeadlineAsString();
     }
 
-    public String getName() {
+    public TaskName getName() {
         return name;
     }
 
