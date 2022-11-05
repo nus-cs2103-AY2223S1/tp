@@ -21,15 +21,11 @@ import seedu.address.model.project.Project;
  */
 class JsonAdaptedClient {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
-
     private final String name;
     private final String mobile;
     private final String email;
     private final String clientId;
     private final String pin;
-
-    private final List<JsonAdaptedProject> projects = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -38,16 +34,12 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("mobile") String mobile,
                              @JsonProperty("email") String email,
                              @JsonProperty("clientId") String clientId,
-                             @JsonProperty("projects") List<JsonAdaptedProject> projects,
                              @JsonProperty("pin") String pin) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;
         this.clientId = clientId;
         this.pin = pin;
-        if (projects != null) {
-            this.projects.addAll(projects);
-        }
     }
 
     /**
@@ -68,75 +60,11 @@ class JsonAdaptedClient {
      */
     public Client toModelType() throws IllegalValueException {
         final List<Project> clientProjects = new ArrayList<>();
-
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-
-        if (name.isEmpty()) {
-            return Client.EmptyClient.EMPTY_CLIENT;
-        }
-
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        ClientMobile modelMobile;
-
-        if (mobile == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ClientMobile.class.getSimpleName()));
-        }
-
-        if (mobile.isEmpty()) {
-            modelMobile = ClientMobile.EmptyClientMobile.EMPTY_MOBILE;
-        } else {
-            if (!ClientMobile.isValidClientMobile(mobile)) {
-                throw new IllegalValueException(ClientMobile.MESSAGE_CONSTRAINTS);
-            }
-            modelMobile = new ClientMobile(mobile);
-        }
-
-        ClientEmail modelEmail;
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ClientEmail.class.getSimpleName()));
-        }
-
-        if (email.isEmpty()) {
-            modelEmail = ClientEmail.EmptyEmail.EMPTY_EMAIL;
-        } else {
-            if (!ClientEmail.isValidEmail(email)) {
-                throw new IllegalValueException(ClientEmail.MESSAGE_CONSTRAINTS);
-            }
-            modelEmail = new ClientEmail(email);
-        }
-
-        Pin modelPin;
-        if (pin == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Pin.class.getSimpleName()));
-        }
-        if (!Pin.isValidPin(pin)) {
-            throw new IllegalValueException(Pin.MESSAGE_CONSTRAINTS);
-        }
-        modelPin = new Pin(Boolean.parseBoolean(pin));
-
-        if (clientId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ClientId.class.getSimpleName()));
-        }
-
-        if (!ClientId.isValidClientId(clientId)) {
-            throw new IllegalValueException(ClientId.MESSAGE_CONSTRAINTS);
-        }
-
-        final ClientId modelClientId = new ClientId(Integer.parseInt(clientId));
-
-        assert modelClientId.getIdInt() >= 0 : "Client ID should be positive";
-
+        final Name modelName = StorageUtil.readNameFromStorage(name, Client.class.getSimpleName());
+        final ClientMobile modelMobile = StorageUtil.readMobileFromStorage(mobile);
+        final ClientEmail modelEmail = StorageUtil.readEmailFromStorage(email);
+        final Pin modelPin = StorageUtil.readPinFromStorage(pin, Client.class.getSimpleName());
+        final ClientId modelClientId = StorageUtil.readClientIdFromStorage(clientId);
         return new Client(modelName, modelMobile, modelEmail, clientProjects, modelClientId, modelPin);
     }
 

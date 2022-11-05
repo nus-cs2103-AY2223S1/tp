@@ -19,18 +19,22 @@ public enum Urgency {
      * @return Boolean denoting whether the urgency integer string is valid.
      */
     public static boolean isValidUrgency(String urgencyValue) {
-
-        ArrayList<Integer> priorities = new ArrayList<Integer>();
-        priorities.add(0);
-        priorities.add(1);
-        priorities.add(2);
-        priorities.add(3);
-        for (Integer i: priorities) {
-            if (Integer.valueOf(i).equals(Integer.valueOf(urgencyValue))) {
-                return true;
+        try {
+            ArrayList<Integer> priorities = new ArrayList<Integer>();
+            priorities.add(0);
+            priorities.add(1);
+            priorities.add(2);
+            priorities.add(3);
+            for (Integer i: priorities) {
+                if (Integer.valueOf(i).equals(Integer.valueOf(urgencyValue))) {
+                    return true;
+                }
             }
+            return false;
+        } catch (NumberFormatException e) {
+            return false;
         }
-        return false;
+
     }
 
     /**

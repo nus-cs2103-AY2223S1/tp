@@ -12,6 +12,7 @@ import seedu.address.model.client.ClientId;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.list.NotFoundException;
 
+// @@author Dernbu
 /**
  * This class represents a partial initialisation of project (without access to model).
  * The reason why this exists is to separate Parser classes, and to ensure they are not dependent on

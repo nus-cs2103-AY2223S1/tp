@@ -29,8 +29,8 @@ public class AddIssueCommand extends IssueCommand {
             + "Parameters: "
             + PREFIX_PROJECT_ID + "PROJECT_ID "
             + PREFIX_TITLE + "TITLE "
-            + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_URGENCY + "URGENCY(0, 1, 2, 3) \n"
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_URGENCY + "URGENCY(0, 1, 2, 3)] \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_PROJECT_ID + "1 "
@@ -69,6 +69,10 @@ public class AddIssueCommand extends IssueCommand {
         }
 
         Issue toAdd = toAddWithoutModel.apply(model);
+
+        if (!toAdd.hasValidId()) {
+            throw new CommandException(ID_OVERFLOW);
+        }
 
         if (model.hasIssue(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ISSUE);

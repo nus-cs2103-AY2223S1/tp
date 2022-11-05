@@ -42,12 +42,11 @@ public class ClientCard extends UiPart<Region> {
     /**
      * Creates a {@code ClientCard} with the given {@code Client} and index to display.
      */
-    public ClientCard(Client client, int displayedIndex) {
+    public ClientCard(Client client) {
         super(FXML);
         this.client = client;
-        name.setText(client.getClientName().toString()
-                + " " + client.getClientId().uiRepresentation()
-                + (client.isPinned() ? " \uD83D\uDCCC" : ""));
+        String clientIdString = client.getClientId().uiRepresentation();
+        name.setText(client.getClientName().uiRepresentation(client.isPinned(), clientIdString));
         mobile.setText(client.getClientMobile().uiRepresentation());
         email.setText(client.getClientEmail().uiRepresentation());
         client.getProjects().stream()
