@@ -572,24 +572,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HealthContact` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Adding a patient**
+**Use case: UC-01 - Adding a patient**
 
 **MSS**
-
-1. User enters add command with the detailed information of patient to be added.
-2. HealthContact adds the patient
-
-    Use case ends.
-
+1. User enters the add command with the patient's details to be added.
+2. HealthContact adds the patient and displays the new patient added with his/her details.
+Use case ends.
 
 **Extensions**
 
-
-* 1a. The format for add command is not followed.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 1a. HealthContact detects an error in the format of the command entered.
+    * 1a1. User reenters the command again with the correct format.
+    * Step 1a1 is repeated until the command entered is valid. 
+    * Use case resumes from Step 2.
+* 1b. HealthContact detects that the patient already exists in the application.
+    * 1b1. User reenters the command again with a different patient.
+    * Step 1b1 is repeated until the patient entered is valid. 
+    * Use case resumes from Step 2.
 
 
 **Use case: Adding an appointment**
