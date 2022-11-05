@@ -34,7 +34,6 @@ public class TaskName {
      * Returns true if a given string is a valid link name.
      */
     public static boolean isValidTaskName(String test) {
-        System.out.println(test + " " + test.matches(VALIDATION_REGEX));
         return test.matches(VALIDATION_REGEX);
     }
 
