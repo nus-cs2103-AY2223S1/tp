@@ -21,7 +21,7 @@ you can jump right into our [Features](#features) section to learn more about th
 --------------------------------------------------------------------------------------------------------------------
 # Table of Contents
 
-1. Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -135,7 +135,7 @@ waiting for? Let's go, go, go!
 [ArtBuddy's CLI](#artbuddys-command-line-interface-cli)  
 [Quick tutorial](#quick-tutorial)
 
-### Installation instructions
+## Installation instructions
 
 Don't have ArtBuddy installed on your computer yet? Check out our step-by-step installation instructions to
 download ArtBuddy.
@@ -158,7 +158,7 @@ to run ArtBuddy.
 
 6. And...that's it! You now have ArtBuddy installed on your laptop!
 
-### Starting up ArtBuddy
+## Starting up ArtBuddy
 
 Nice! Now that you've downloaded ArtBuddy (if not, our [installation instructions](#installation-instructions)
 might be useful), let's ArtBuddy up and running.
@@ -173,7 +173,7 @@ may not work as expectedly. To avoid this, please refer to the section
 1. To start ArtBuddy, simply open up the folder where your downloaded `artbuddy.jar` file is and double-click the file to start the app.
 2. And...ta-da! You should now see ArtBuddy running on your computer!
 
-### Starting up ArtBuddy (macOS)
+## Starting up ArtBuddy (macOS)
 
 Due to the default privacy settings on macOS computers, ArtBuddy might not be able to read from or write to
 files on your macOS computer. Because of this, some features like uploading images to ArtBuddy might not
@@ -195,14 +195,14 @@ the Terminal window and hit **return** on your keyboard.
 
 5. And...ta-da! You should now see ArtBuddy running on your computer!
 
-### Getting familiar with ArtBuddy's interface
+## Getting familiar with ArtBuddy's interface
 
 Cool! You now have gotten ArtBuddy up and running. Let's get you familiar with ArtBuddy's user interface.
 
 ArtBuddy has two tabs: a **Customers Tab**, and a **Commissions Tab**. Let's take a closer look at each tab individually.
 
 {: .no_toc}
-#### Customers Tab
+### Customers Tab
 
 When you first open ArtBuddy, ArtBuddy will have the **Customers Tab** open by default. As its name implies,
 the **Customers Tab** shows all your customer related information. Let's learn what each of these ArtBuddy components
@@ -220,7 +220,7 @@ in your **Customers Tab** does!
 | 6   | Saved Data File  | For advanced users, the [file path]() displayed here is where ArtBuddy stores your saved data (which you can [edit](#editing-the-data-file)).                                                               |
 
 {: .no_toc}
-#### Commissions Tab
+### Commissions Tab
 
 Notice that ArtBuddy also has a **Commissions Tab**? When you navigate to the **Commissions Tab**, this is what you'll see.
 As you might've already guessed it, ArtBuddy's **Commissions Tab** shows all commission-related information!
@@ -233,7 +233,7 @@ As you might've already guessed it, ArtBuddy's **Commissions Tab** shows all com
 | 2   | Commission Details | When you select a commission from your **Commission List**, ArtBuddy will show you the details of your selected commission in this pane. |
 | 3   | Iteration List     | Within the **Commission Details** pane, ArtBuddy will also display all your commission's iterations here.                                |
 
-### ArtBuddy's Command Line Interface (CLI)
+## ArtBuddy's Command Line Interface (CLI)
 
 ArtBuddy also has a Command Line Interface (CLI). This just means that besides interacting with ArtBuddy by
 clicking on buttons, you can also tell ArtBuddy what you want to get done just by using text input (known as commands). Cool right?
@@ -242,7 +242,8 @@ Right now, ArtBuddy only understands certain commands (the complete list of comm
 [Features](#features)). These commands must be formatted in a specific way. It's just the way ArtBuddy
 is wired to think and listen to words. So let's learn how to talk to ArtBuddy!
 
-**Command Input**  
+{: .no_toc}
+### Command Input  
 
 The **Command Input** is where ArtBuddy's 'ears' are. This is the rectangular text input box outlined in red below.
 To type in commands into the **Command Input**, just click on the **Command Input** and start typing away! Once you've
@@ -251,7 +252,8 @@ ArtBuddy has just executed your command. It's that easy!
 
 ![ArtBuddy's UI](images/ab-cli-command-input.png)
 
-**ArtBuddy Commands**
+{: .no_toc}
+### ArtBuddy Commands
 
 An ArtBuddy command is typically made up of the following parts:
 
@@ -279,26 +281,12 @@ to each command parameter, ArtBuddy now understands whether a command parameter 
 customer's phone number. Neat right?
 
 <div markdown="block" class="alert alert-info">
-:information_source: **Notes about command parameters in ArtBuddy:**<br>
 
-* When passing in dates in ArtBuddy as command parameters, they should be formatted in YYYY-MM-DD format.
-  * This means that if you want to specify '4th October 2022' as a date command parameter, it should be
-  formatted and passed into ArtBuddy as '2022-10-04'. 
-
-* Something cool about ArtBuddy is that command parameters can be specified in any order! 
-  * This means that if the command specifies `n/NAME p/PHONE_NUMBER`, ArtBuddy will also understand the
-  input `p/PHONE_NUMBER n/NAME`.
-
-* Also, if a parameter is expected only once in the command, but you specified it multiple times, ArtBuddy
-will only listen to the last occurrence of the parameter.
-  * So, if you specify <code>p/<em>12341234</em> p/<em>56785678</em></code>, only <code>p/<em>56785678</em></code> will be taken.
-
-* In addition, if you specify command parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`),
-ArtBuddy simply ignore these extra parameters.
-  * Meaning that the command <code>help <em>123</em></code>, will be interpreted as `help`.
+:information_source: Advanced details on ArtBuddy command parameters can be found in
+[Appendix: Further notes on command parameters](#further-notes-on-command-parameters).
 </div>
 
-### Quick tutorial
+## Quick tutorial
 Itching to get started with ArtBuddy? Let's run you through some simple commands to get you warmed up
 before you dive right into ArtBuddy's full feature list!
 
@@ -359,6 +347,7 @@ For ease of reference, similar features are grouped into the individual subsecti
 * [Iteration related commands](#iteration-related-commands)
 * [Statistical commands](#statistical-commands)
 * [Miscellaneous](#miscellaneous)
+
 
 ## Customer related commands
 
@@ -429,6 +418,7 @@ Format: `delcus INDEX`
 Examples:
 * <code>delcus <em>2</em></code> Deletes the 2nd customer in the ArtBuddy and all commissions made by the customer.
 
+
 ## Commission related commands
 
 A customer may ask for multiple commissions with different needs.
@@ -496,6 +486,7 @@ Format: `delcom INDEX`
 Example:
 * <code>delcom <em>14</em></code>
 
+
 ## Iteration related commands
 
 Each piece of art represents a journey of growth. From ideation, sketches, drafts, to constant refinements.
@@ -522,6 +513,7 @@ ArtBuddy offers the following commands to help you manage your iterations:
 Adds an iteration to the currently selected commission. This can be done either by the
 [CLI](#adding-by-the-command-line-interface) or [GUI](#adding-by-graphical-interface).
 
+{: .no_toc}
 ##### Adding by the Command-Line Interface
 
 Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
@@ -546,6 +538,7 @@ to [Appendix: Limitations with file paths in CLI](#limitations-with-file-paths-i
 </div>
 <br>
 
+{: .no_toc}
 ##### Adding by Graphical Interface
 
 1. Click on the **Add Iteration** button inside the Commission you wish to add the iteration to.
@@ -584,6 +577,7 @@ Deletes an iteration at `INDEX` from a commission.
 Format: `deliter INDEX`
 * The command requires a commission to be selected.
 * You may want to note that your local copy of the image will not be deleted.
+
 
 ## Statistical commands
 
@@ -656,6 +650,7 @@ Examples:
 * <code>find -all t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions which are tagged both `oil painting` and `canvas`.
 * <code>find -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions who are either tagged `oil painting` or `canvas`.
 
+
 ## Miscellaneous
 
 ### Viewing help: `help`
@@ -694,6 +689,23 @@ ArtBuddy data are saved as a JSON file `[JAR file location]/data/artbuddy.json`.
 If your changes to the data file makes its format invalid, ArtBuddy will discard all data and start with an empty data file at the next run.
 </div>
 
+### Further notes on command parameters
+* When passing in dates in ArtBuddy as command parameters, they should be formatted in YYYY-MM-DD format.
+    * This means that if you want to specify '4th October 2022' as a date command parameter, it should be
+      formatted and passed into ArtBuddy as '2022-10-04'.
+
+* Something cool about ArtBuddy is that command parameters can be specified in any order!
+    * This means that if the command specifies `n/NAME p/PHONE_NUMBER`, ArtBuddy will also understand the
+      input `p/PHONE_NUMBER n/NAME`.
+
+* Also, if a parameter is expected only once in the command, but you specified it multiple times, ArtBuddy
+  will only listen to the last occurrence of the parameter.
+    * So, if you specify <code>p/<em>12341234</em> p/<em>56785678</em></code>, only <code>p/<em>56785678</em></code> will be taken.
+
+* In addition, if you specify command parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`),
+  ArtBuddy simply ignore these extra parameters.
+    * Meaning that the command <code>help <em>123</em></code>, will be interpreted as `help`.
+
 ### Limitations with file paths in CLI
 Due to file path naming and the command format, specifying a folder with a folder name that ends with a
 **'n', 'd', 'f', or 'p'** would lead to an ambiguous command.
@@ -701,7 +713,7 @@ Due to file path naming and the command format, specifying a folder with a folde
 For instance, the command `additer d/2022-10-10 n/description f/actual feedback p//test f/image.png` is ambiguous
 because ArtBuddy does not know whether <code>f/<em>image.png</em></code> is the feedback parameter specified by the user.
 
-If you wish to upload the image, either rename the folder name, or [upload the image by the GUI]().
+If you wish to upload the image, either rename the folder name, or [upload the image by the GUI](#adding-by-graphical-interface).
 
 ### What are file paths and root directories?
 Just like how we use addresses to tell specify locations when talking to people, computers
