@@ -432,7 +432,7 @@ For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both co
     - Deleting tasks from a `Person` does not require modification of the `Person` object.
   - Cons:
     - If the `Person` is part of multiple groups, retrieving all tasks to display on their card requires referencing multiple `Group` objects.
-- Alternative 2 (Current Option): `Person` object stores `Assignments` as a HashMap of `<key : String, value : Assignment>` where the String is the group name.
+- Alternative 2 (Current Option): `Person` object stores `Assignments` as a HashMap of `<key:String, value:Assignment>` where the String is the group name.
   - Pros:
     - Since a `Person` object can be in multiple `Groups`, storing all tasks in `Person` incurs less overhead when all those tasks are displayed in the assignments view.
   - Cons:
