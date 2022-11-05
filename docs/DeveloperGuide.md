@@ -101,7 +101,7 @@ How the `Logic` component works:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("rdel 1")` API call.
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions inside the Logic Component for the `rdel 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -193,7 +193,7 @@ The Add Review mechanism is facilitated by `AddressBook`. This feature enhances 
 
 * `AddressBook#addReview(Review)` —  Adds the `Review` to `UniqueReviewList`
 
-For the command, the feature extends `command`, and is implemented as such:
+For the command, the feature extends `Command`, and is implemented as such:
 * `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`
 
 #### Implementation flow of Review Adding feature
@@ -226,11 +226,11 @@ This feature is used to find stalls and reviews in FoodWhere by name and/or by t
 * `sfind`: Finds stalls
 * `rfind`: Finds reviews
 
-`sfind` allows users to find stalls in `AddressBook` by `name`, through matching of input keyword(s) with stall names. Additionally, users can find stalls by `tags`, through matching of input keyword(s) with stall tags.
+`sfind` allows users to find stalls in `AddressBook` by **name**, through matching of input keyword(s) with stall names. Additionally, users can find stalls by **tags**, through matching of input keyword(s) with stall tags.
 
-`rfind` allows users to find reviews in `AddressBook` by `name`, through matching of input keyword(s) with review names. Additionally, users can find reviews by `tags`, through matching of input keyword(s) with review tags.
+`rfind` allows users to find reviews in `AddressBook` by **name**, through matching of input keyword(s) with review names. Additionally, users can find reviews by **tags**, through matching of input keyword(s) with review tags.
 
-For the command, the feature extends `command`, and is implemented as such:
+For the command, the feature extends `Command`, and is implemented as such:
 * `sfind n/[NAME_KEYWORDS]… t/[TAG_KEYWORDS]…`
 * `rfind n/[NAME_KEYWORDS]… t/[TAG_KEYWORDS]…`
 
@@ -269,7 +269,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 The listing of all reviews mechanism is facilitated by `Model`. This feature allows the user to list all reviews.
 
-For the command, the feature extends `command`, and is implemented as such:
+For the command, the feature extends `Command`, and is implemented as such:
 * `rlist`
 
 #### Implementation flow of listing all Reviews feature
@@ -327,7 +327,7 @@ The Edit Review mechanism is facilitated by `REditCommandParser` and `REditComma
 
 `REditCommandParser.parse()` - parses the user input and returns a `REditCommand` object. `REditCommand.execute()` - creates a new `Review` object based on the parsed user input and calls `Model.setReview()` to replace the old `Review` object with the new `Review` object.
 
-For the command, the feature extends `command`, and is implemented as such:
+For the command, the feature extends `Command`, and is implemented as such:
 * `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…`
 
 #### Implementation flow of Review Editing feature
@@ -371,7 +371,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 `rsort`: The Sort Reviews mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion. The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
 
-For the command, the feature extends `command`, and is implemented as such:
+For the command, the feature extends `Command`, and is implemented as such:
 * `ssort CRITERION`
 * `rsort CRITERION`
 
