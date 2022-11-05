@@ -1,11 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.SortCommand;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -23,17 +17,24 @@ import static seedu.address.model.person.PersonComparators.ADDRESS_COMPARATOR;
 import static seedu.address.model.person.PersonComparators.NAME_COMPARATOR;
 import static seedu.address.model.person.PersonComparators.ROLE_COMPARATOR;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.SortCommand;
+
 public class SortCommandParserTest {
 
     private final SortCommandParser parser = new SortCommandParser();
 
     private final List<Prefix> invalidPrefixes = Arrays.asList(new Prefix[]{
-            PREFIX_TAG, PREFIX_TIMEZONE, PREFIX_GITHUB,
-            PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM
+        PREFIX_TAG, PREFIX_TIMEZONE, PREFIX_GITHUB,
+        PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM
     });
 
     private final List<Prefix> validPrefixes = Arrays.asList(new Prefix[]{
-            PREFIX_NAME, PREFIX_ADDRESS, PREFIX_ROLE
+        PREFIX_NAME, PREFIX_ADDRESS, PREFIX_ROLE
     });
 
     @Test
