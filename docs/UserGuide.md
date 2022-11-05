@@ -7,7 +7,6 @@ title: User Guide
 
 {:toc}
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
@@ -136,7 +135,6 @@ Shows a list of all members and their details.
 
 Format: `userlist`
 
-
 ### Adding a team: `create`
 
 Adds a team with the given name to EZLead.
@@ -167,7 +165,6 @@ Format: `editteam t/TEAM-INDEX n/TEAM-NAME`
 
 Examples:
 * `editteam t/1 n/TEAMNEW` Changes the first team's name to 'TEAMNEW'.
-
 
 ### Assigning a member to a team: `assign`
 
