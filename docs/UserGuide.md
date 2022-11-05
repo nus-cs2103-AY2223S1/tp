@@ -178,7 +178,7 @@ Here are some general guidelines for you to better understand the command format
 [Back to TOC](#table-of-contents)
 
 ## Features
-> This section covers each of the features in detail. Before continuing, please ensure you have read the section on [Command Formats](#Command Format)!
+> This section covers each of the features in detail. Before continuing, please ensure you have read the section on [Command Formats](#command-format)!
 
 What you should expect to find:
 * A description of the feature
