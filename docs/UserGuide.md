@@ -14,7 +14,7 @@ You can add modules to the app, allowing you to store important information like
 
 You can also add people to the app, such as your professors, teaching assistants or just friends, allowing you store their email addresses, phone numbers, telegram handles and which modules they are from.
 
-If you are an SOC student, this app is perfect for you! SOCompiler can get your contact and module management tasks done faster than traditional GUI apps.
+If you are an [SOC](#SOC) student, this app is perfect for you! SoCompiler can get your contact and module management tasks done faster than traditional GUI apps.
 
 Even if you are not, fret not! Just have a quick look at the [command summary](#command-summary) (they are rather intuitive) and start typing to give it a try!
 
@@ -177,7 +177,7 @@ Adds a contact to the contact list.
 
 Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM] [m/MODULE_CODE] [t/TAG]…​`
 
-* The `NAME` field is mandatory while all other fields are optional ([you can click here for more details on the individual fields](#person-fields)). If you attempt to add a person without a name, it will result in an error!
+* The `NAME` field is mandatory while all other fields are optional ([you can click here for more details on each individual field](#person-fields)). If you attempt to add a person without a name, it will result in an error!
 * A contact can have any number of tags (including 0)
 
 <div markdown="span" class="alert alert-primary"> **Tip:**
@@ -271,7 +271,7 @@ Adds a module to the module list.
 
 Format: `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`
 
-* The `MODULE_CODE` field is mandatory while all other fields are optional ([you can click here for more details on the individual fields](#module-fields)). If you attempt to add a module without a module code, it will result in an error!
+* The `MODULE_CODE` field is mandatory while all other fields are optional ([you can click here for more details on each individual field](#module-fields)). If you attempt to add a module without a module code, it will result in an error!
 * The `AssignmentDetails` can take in alphanumerical characters **along with spaces**.
 * A module can have any number of `AssignmentDetails` (including 0)
 
@@ -439,6 +439,10 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 
 * It refers to the address of a web page.
 * Example: https://google.com
+
+#### SOC
+
+* It refers to the School of Computing from the National University of Singapore.
 
 --------------------------------------------------------------------------------------------------------------------
 [Back to top](#welcome-to-socompilers-user-guide)
