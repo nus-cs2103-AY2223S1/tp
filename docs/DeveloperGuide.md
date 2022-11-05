@@ -238,6 +238,11 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Add Offer feature
+
+#### Implementation
+
+#### Design considerations
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -281,6 +286,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add my client's offer        | track all my clients' current offers                                   |
 | `* * *`  | user                                       | delete a client              | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a client by name        | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | edit an offer                | update any changes to a client's offer                                 |
 | `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort client by name          | locate a person easily                                                 |
 | `*`      | user with many offers in the address book  | sort offers by listings      | locate offers easily                                                   |
@@ -294,16 +300,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `REal-Time` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - Reorder the list**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  REal-Time shows a list of persons
 3.  User requests to switch a specific person in the list with another
-4.  AddressBook swaps their index
+4.  REal-Time swaps their index
 
     Use case ends.
 
@@ -315,7 +321,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. REal-Time shows an error message.
 
       Use case resumes at step 2.
 
@@ -325,9 +331,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  REal-Time shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  REal-Time deletes the person
 
     Use case ends.
 
@@ -339,7 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. REal-Time shows an error message.
 
       Use case resumes at step 2.
 
@@ -347,15 +353,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to add an offer.
-2. AddressBook adds the offer.
+2. REal-Time adds the offer.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. User enters invalid input
-  * 1a1. AddressBook shows an error message.
+  * 1a1. REal-Time shows an error message.
+    
     Use case resumes at Step 1.
+
+**Use case: UC04 - Edit an offer**
+
+**MSS**
+1. User requests to edit an offer.
+2. REal-Time edits the offer.
+
+    Use case ends.
+
+**Extensions**
+* 1a. User enters invalid input
+  * 1a1. REal-Time shows an error message.
+     
+    Use case resumes at Step 1.
+
+**Use case: UC05 - Delete an offer**
+
+**MSS**
+1. User requests to delete an offer.
+2. REal-Time deletes the offer.
+
+    Use case ends.
+
+**Extensions**
+* 1a. User enters invalid input
+  * 1a1. REal-Time shows an error message.
+
+    Use case resumes at Step 1
 
 *{More to be added}*
 
