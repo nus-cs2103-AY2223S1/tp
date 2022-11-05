@@ -332,10 +332,29 @@ The following activity diagram shows the workflow for the autocomplete feature.
 
 <img src="images/AutoCompleteActivityDiagram.png" width="750" />
 
-### Display Servers, GameType and Socials as Tags in Friend's profile
+### Available timings 
 
+The user can save the available timings of a friend to their profile, as a time interval throughout the week. 
+
+#### Implementation
+
+The available timings of a friend is stored as a `TimeInterval` attribute in the `Person` class. 
+Each `TimeInterval` object will have two `DayTimeInWeek` fields, representing its start time and its end time.
+
+The time stamp that is parsed into the `DayTimeInWeek` class is then saved as the number of elapsed minutes since Monday 12am.
+
+#### Additional details
+
+To support our `Suggest` command in finding friends who are available at a certain time, the `TimeInterval` class implements the `isAvailable()` method in the `ITimesAvailable` interface. 
+The `isAvailable()` method takes in a time stamp as a `DayTimeInWeek` object, and calculates if it lies within the available time interval of the friend.
+
+The following class diagram shows the relationship between the classes:
+
+<img src="images/TimeIntervalClassDiagram.png" width="550" />
+
+### Servers, GameType and Socials as Coloured Tags in Friend's profile
 Whenever the user updates the in-game preferences or social handles of a friend, it is displayed as 
-various coloured tags under the friend's profile.
+distinct coloured tags under the friend's profile.
 
 #### Implementation
 
@@ -347,7 +366,7 @@ Inside the `PersonCard` class, there are multiple `FlowPane` fields, each repres
 Each `FlowPane` field is tagged with the **@FXML** notation, for use by **FXML** markup.
 
 Everytime the user updates a friend's information, a new `PersonCard` object is created. The object 
-will retrieve the corresponding user information using the `toDisplayString()` method in the `Person` class, and add
+will retrieve the corresponding friend's information using the `toDisplayString()` method in the `Person` class, and add
 their in-game preferences and social handles as labelled tags under the friend's profile.
 
 Each type of user preference is then tagged with a different colour, specified in the `DarkTheme.css` file, for 
@@ -355,7 +374,7 @@ easy differentiation of information.
 
 The following class diagram shows the relationship between the classes in the UI system:
 
-<img src="images/TagClassDiagram-0.png" width="550" />
+<img src="images/PersonTagClassDiagram.png" width="550" />
 
 #### Design Considerations:
 
@@ -367,11 +386,11 @@ The following class diagram shows the relationship between the classes in the UI
     * Less cluttered, cleaner user interface.
   * Cons: 
     * We have to decide which user details are of higher priority to Minecraft users, which may differ from user to user.
-* Alternative 2: Show all user information as tags.
+* Alternative 2: Show all information as tags.
   * Pros:
     * Easy to implement as the format is consistent for all information.
   * Cons:
-    * Too many tags displayed can make it harder to users to find the information they need at one glance.
+    * Too many tags displayed can make it harder to users to find the information they need in one glance.
 
 ### \[Proposed\] Undo/redo feature
 
