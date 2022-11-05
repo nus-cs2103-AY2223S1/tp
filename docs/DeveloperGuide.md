@@ -90,6 +90,8 @@ The `UI` component,
 
 This component may be controlled by commands through the `CommandResult` class, which specifies an optional `UiState` that the program should be in at the end of the command execution. This is parsed finally in the `MainWindow::executeCommand` which invokes necessary changes to the UI.
 
+For more information related to the implementation of the UI, please review the section [UI Features](#ui-features).
+
 #### UI Elements
 ![](images/UiLabeled.png)
 1. **Command Box**: A text box that allows users to enter in commands for later execution.
@@ -581,11 +583,13 @@ The following sequence diagram shows how the find command works:
 
 #### Design considerations:
 
-**Aspect: How find to design a UI command**
+**Aspect: How to design a UI command**
 
 Unlike other command, this command does not mutate any underlying data. One challenge is that the execution flow is different from other commands which mutate data, making the implementation less direct.
 
 We had to find a good insertion point where the information carried from the user input could be used in the program without the need for major refactoring. We realised that the user's input is first taken in through the `MainWindow` class, and through following the function calls, would be used in `MainWindow::executeCommand`. So the inspection operation is effectively added at the end of the executeCommand just before it terminates.
+
+Inspiration was taken from the execution flow of `handleExit` and `handleHelp` prior to the construction of the new UI.
 
 The procedures for `handleExit` and `handleHelp` were changed by refactoring `CommandResult` to carry an ideal state that the UI is expected to be in by the end of the execution. A switch statement was added to the bottom of the `executeCommand` function, much like how the normal commands are parsed, to deal with UI-Centric commands like `help`, `exit` and `inspect`.
 
