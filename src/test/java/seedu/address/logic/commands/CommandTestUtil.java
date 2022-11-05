@@ -17,14 +17,16 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.HealthContact;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.NameContainsKeywordsPredicateAppointment;
-import seedu.address.model.patient.NameContainsKeywordsPredicatePatient;
+import seedu.address.model.bill.Bill;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
@@ -152,6 +154,19 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
+     *
+     * @param expectedMessage The message that is expected to be thrown.
+     * @param command        The command that is expected to throw the exception.
+     * @param actualModel   The model that the command is executed on.
+     */
+    public static void assertCommandFailure(String expectedMessage, Command command, Model actualModel) {
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
      * - the HealthContact, filtered patient list and selected patient in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
@@ -173,8 +188,12 @@ public class CommandTestUtil {
 
         Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
         final String[] splitName = patient.getName().fullName.split("\\s+");
-        model.updateFilteredPatientList(new NameContainsKeywordsPredicatePatient(splitName[0]));
-
+        Optional<Predicate<Name>> namePredicate = Optional.of(name -> name.fullName.toLowerCase()
+                .contains(splitName[0].toLowerCase()));
+        FindPatientCommand command = new FindPatientCommand(namePredicate, Optional.empty(),
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
+        model.updateFilteredPatientList(command.getPredicate());
         assertEquals(1, model.getFilteredPatientList().size());
     }
 
@@ -191,9 +210,35 @@ public class CommandTestUtil {
         for (int i = 1; i < splitName.length; i++) {
             predicateName += " " + splitName[i];
         }
-        model.updateFilteredAppointmentList(new NameContainsKeywordsPredicateAppointment(predicateName));
-
+        String finalPredicateName = predicateName;
+        Optional<Predicate<Name>> namePredicate = Optional.of(name -> name.fullName.toLowerCase()
+                .contains(finalPredicateName.toLowerCase()));
+        FindAppointmentCommand command = new FindAppointmentCommand(namePredicate, Optional.empty(),
+                Optional.empty(), Optional.empty());
+        model.updateFilteredAppointmentList(command.getPredicate());
         assertEquals(1, model.getFilteredAppointmentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the bill at the given {@code targetIndex} in the
+     * {@code model}'s HealthContact.
+     */
+    public static void showBillAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBillList().size());
+
+        Bill bill = model.getFilteredBillList().get(targetIndex.getZeroBased());
+        final String[] splitName = bill.getAppointment().getName().fullName.split("\\s+");
+        String predicateName = splitName[0];
+        for (int i = 1; i < splitName.length; i++) {
+            predicateName += " " + splitName[i];
+        }
+        String finalPredicateName = predicateName;
+        Optional<Predicate<Name>> namePredicate = Optional.of(name -> name.fullName.toLowerCase()
+                .contains(finalPredicateName.toLowerCase()));
+        FindBillCommand command = new FindBillCommand(namePredicate, Optional.empty(),
+                Optional.empty(), Optional.empty());
+        model.updateFilteredBillList(command.getPredicate());
+        assertEquals(1, model.getFilteredBillList().size());
     }
 
 }

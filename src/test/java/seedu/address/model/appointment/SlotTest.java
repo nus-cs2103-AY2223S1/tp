@@ -49,11 +49,23 @@ public class SlotTest {
     }
 
     @Test
+    public void constructor_invalidSlot6_throwsIllegalArgumentException() {
+        String invalidSlot = "2022-02-29 10:00";
+        assertThrows(IllegalArgumentException.class, () -> new Slot(invalidSlot));
+    }
+
+    @Test
+    public void constructor_invalidSlot7_throwsIllegalArgumentException() {
+        String invalidSlot = "2022-02-28 24:00";
+        assertThrows(IllegalArgumentException.class, () -> new Slot(invalidSlot));
+    }
+
+    @Test
     public void equals() {
         Slot slot1 = new Slot("2022-11-13 00:00");
         Slot slot2 = new Slot("2022-11-13 00:00");
         Slot slot3 = new Slot("2022-11-13 00:01");
-        Slot slot4 = new Slot("2022-11-12 24:00");
+        Slot slot4 = new Slot("2022-11-13 00:00");
         assertTrue(slot1.equals(slot1));
         assertTrue(slot1.equals(slot2));
         assertTrue(slot1.equals(slot4));
@@ -64,17 +76,17 @@ public class SlotTest {
 
     @Test
     public void isValidDateTime() {
-        assertThrows(NullPointerException.class, () -> Slot.isValidDateTime(null));
-        assertFalse(Slot.isValidDateTime(""));
-        assertTrue(Slot.isValidDateTime("2012-12-31 01:02"));
-        assertTrue(Slot.isValidDateTime("2012-12-31 24:00"));
-        assertTrue(Slot.isValidDateTime("2023-06-30 23:59"));
-        assertFalse(Slot.isValidDateTime("2021-12-40 11:22"));
-        assertFalse(Slot.isValidDateTime("2021-13-01 11:22"));
-        assertFalse(Slot.isValidDateTime("9999-12-31 1:22"));
-        assertFalse(Slot.isValidDateTime("2021-12-10 01:0"));
-        assertFalse(Slot.isValidDateTime("2021-1-10 01:00"));
-        assertFalse(Slot.isValidDateTime("0000-12-10 00:00"));
+        assertThrows(NullPointerException.class, () -> Slot.isValidSlot(null));
+        assertFalse(Slot.isValidSlot(""));
+        assertTrue(Slot.isValidSlot("2012-12-31 01:02"));
+        assertTrue(Slot.isValidSlot("2012-12-31 23:59"));
+        assertTrue(Slot.isValidSlot("2023-06-30 23:59"));
+        assertFalse(Slot.isValidSlot("2021-12-40 11:22"));
+        assertFalse(Slot.isValidSlot("2021-13-01 11:22"));
+        assertFalse(Slot.isValidSlot("9999-12-31 1:22"));
+        assertFalse(Slot.isValidSlot("2021-12-10 01:0"));
+        assertFalse(Slot.isValidSlot("2021-1-10 01:00"));
+        assertFalse(Slot.isValidSlot("0000-12-10 00:00"));
     }
 
     @Test
@@ -82,9 +94,9 @@ public class SlotTest {
         Slot slot1 = new Slot("2022-11-13 00:00");
         Slot slot2 = new Slot("2022-11-13 00:00");
         Slot slot3 = new Slot("2022-11-13 00:01");
-        Slot slot4 = new Slot("2022-11-12 24:00");
+        Slot slot4 = new Slot("2022-11-12 23:59");
         assertTrue(slot1.hashCode() == slot1.hashCode());
         assertFalse(slot1.hashCode() == slot3.hashCode());
-        assertTrue(slot1.hashCode() == slot4.hashCode());
+        assertFalse(slot1.hashCode() == slot4.hashCode());
     }
 }

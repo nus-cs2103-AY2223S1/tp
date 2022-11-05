@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TEST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLOT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,6 +45,8 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the HealthContact.";
     public static final String MESSAGE_PATIENT_NOT_EXIST = "This patient does not exist in the HealthContact";
+    public static final String MESSAGE_PATIENT_NAME_CASE_UNMATCHED =
+            "The case of the patient's name is wrong, a strict match is required.";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -78,12 +79,15 @@ public class EditAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_PATIENT_NOT_EXIST);
         }
 
+        if (!model.hasPatientWithExactlySameName(editedAppointment.getName())) {
+            throw new CommandException(MESSAGE_PATIENT_NAME_CASE_UNMATCHED);
+        }
+
         if (!appointmentToEdit.equals(editedAppointment) && model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
         model.setAppointment(appointmentToEdit, editedAppointment);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
     }
 

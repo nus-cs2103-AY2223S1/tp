@@ -29,14 +29,13 @@ public class AddBillCommand extends Command {
             + ": Adds a bill that corresponds to an appointment to HealthContact.\n"
             + "Parameters: INDEX_OF_APPOINTMENT (must be a positive integer) "
             + PREFIX_BILL_DATE + " DATE<yyyy-MM-dd> "
-            + PREFIX_AMOUNT + " AMOUNT\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_BILL_DATE + "2022-11-12 "
-            + PREFIX_AMOUNT + "100";
+            + PREFIX_AMOUNT + " AMOUNT";
     public static final String MESSAGE_SUCCESS = "New bill added: %1$s";
     public static final String MESSAGE_DUPLICATE_BILL = "This bill already exists in HealthContact";
     public static final String MESSAGE_APPOINTMENT_NOT_EXIST =
             "This appointment does not exist in HealthContact";
+    public static final String MESSAGE_BILL_DATE_EARLIER_THAN_SLOT =
+            "The bill date must not be earlier than appointment slot";
 
     private final Index indexOfAppointment;
     private final BillDate billDate;
@@ -101,6 +100,25 @@ public class AddBillCommand extends Command {
             model.addBill(this.bill);
             return new CommandResult(String.format(MESSAGE_SUCCESS, this.bill));
         }
+        try {
+            appointment = model.getFilteredAppointmentList()
+                    .get(indexOfAppointment.getZeroBased());
+        } catch (AppointmentNotFoundException e) {
+            throw new CommandException(MESSAGE_APPOINTMENT_NOT_EXIST);
+        }
+
+        Bill toAdd = new Bill(appointment, amount, billDate, defaultPaymentStatus);
+
+        if (model.hasBill(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_BILL);
+        }
+
+        if (toAdd.getBillDate().localDate.isBefore(toAdd.getAppointment().getSlot().localDateTime.toLocalDate())) {
+            throw new CommandException(MESSAGE_BILL_DATE_EARLIER_THAN_SLOT);
+        }
+
+        model.addBill(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

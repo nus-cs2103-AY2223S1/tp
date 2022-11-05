@@ -71,9 +71,9 @@ public class UniquePatientList implements Iterable<Patient> {
             throw new PatientNotFoundException();
         }
 
-        boolean notSamePatient = !target.isSamePatient(editedPatient);
-        boolean hasNewPatient = contains(editedPatient);
-        if (notSamePatient && hasNewPatient) {
+        boolean hasNewPatient = internalList.stream().filter(p -> !p.equals(target))
+                .anyMatch(p -> p.equals(editedPatient));
+        if (hasNewPatient) {
             throw new DuplicatePatientException();
         }
 

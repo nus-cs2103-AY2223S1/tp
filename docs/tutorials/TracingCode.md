@@ -16,11 +16,11 @@ When trying to understand an unfamiliar code base, one common strategy used is t
 
 Before we jump into the code, it is useful to get an idea of the overall structure and the high-level behavior of the application. This is provided in the 'Architecture' section of the developer guide. In particular, the architecture diagram (reproduced below), tells us that the App consists of several components.
 
-![ArchitectureDiagram](../images/ArchitectureDiagram.png)
+![ArchitectureDiagram](../images/dg/ArchitectureDiagram.png)
 
 It also has a sequence diagram (reproduced below) that tells us how a command propagates through the App.
 
-<img src="../images/ArchitectureSequenceDiagram.png" width="550" />
+<img src="../images/dg/ArchitectureSequenceDiagram.png" width="550" />
 
 Note how the diagram shows only the execution flows _between_ the main components. That is, it does not show details of the execution path *inside* each component. By hiding those details, the diagram aims to inform the reader about the overall execution path of a command without overwhelming the reader with too much details. In this tutorial, you aim to find those omitted details so that you get a more in-depth understanding of how the code works.
 
@@ -37,7 +37,7 @@ As you know, the first step of debugging is to put in a breakpoint where you wan
 
 In our case, we would want to begin the tracing at the very point where the App start processing user input (i.e., somewhere in the UI component), and then trace through how the execution proceeds through the UI component. However, the execution path through a GUI is often somewhat obscure due to various *event-driven mechanisms* used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the `UI` transfers control to the `Logic` component.
 
-<img src="../images/ArchitectureSequenceDiagram.png" width="550" />
+<img src="../images/dg/ArchitectureSequenceDiagram.png" width="550" />
 
 According to the sequence diagram you saw earlier (and repeated above for reference), the `UI` component yields control to the `Logic` component through a method named `execute`. Searching through the code base for an `execute()` method that belongs to the `Logic` component yields a promising candidate in `seedu.address.logic.Logic`.
 
@@ -67,7 +67,7 @@ public interface Logic {
 But apparently, this is an interface, not a concrete implementation.
 That should be fine because the [Architecture section of the Developer Guide](../DeveloperGuide.html#architecture) tells us that components interact through interfaces. Here's the relevant diagram:
 
-<img src="../images/ComponentManagers.png" width="300" />
+<img src="../images/dg/ComponentManagers.png" width="300" />
 
 Next, let's find out which statement(s) in the `UI` code is calling this method, thus transferring control from the `UI` to the `Logic`.
 

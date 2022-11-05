@@ -97,4 +97,19 @@ public class SortBillCommand extends Command {
             return first.getPaymentStatus().toString().compareToIgnoreCase(second.getPaymentStatus().toString());
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof SortBillCommand)) {
+            return false;
+        }
+
+        SortBillCommand e = (SortBillCommand) other;
+        return criteria.equals(e.criteria)
+                && isAscending == e.isAscending;
+    }
 }

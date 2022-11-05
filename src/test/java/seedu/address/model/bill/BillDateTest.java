@@ -64,16 +64,16 @@ public class BillDateTest {
 
     @Test
     public void isValidDate() {
-        assertThrows(NullPointerException.class, () -> BillDate.isValidDate(null));
-        assertFalse(BillDate.isValidDate(""));
-        assertTrue(BillDate.isValidDate("2012-12-31"));
-        assertTrue(BillDate.isValidDate("2012-12-31"));
-        assertTrue(BillDate.isValidDate("2023-06-30"));
-        assertFalse(BillDate.isValidDate("2021/12/25"));
-        assertFalse(BillDate.isValidDate("2021-13-01"));
-        assertFalse(BillDate.isValidDate("12-25-2022"));
-        assertFalse(BillDate.isValidDate("2021-1-10 01:00"));
-        assertFalse(BillDate.isValidDate("0000-12-10 00:00"));
+        assertThrows(NullPointerException.class, () -> BillDate.isValidBillDate(null));
+        assertFalse(BillDate.isValidBillDate(""));
+        assertTrue(BillDate.isValidBillDate("2012-12-31"));
+        assertTrue(BillDate.isValidBillDate("2012-12-31"));
+        assertTrue(BillDate.isValidBillDate("2023-06-30"));
+        assertFalse(BillDate.isValidBillDate("2021/12/25"));
+        assertFalse(BillDate.isValidBillDate("2021-13-01"));
+        assertFalse(BillDate.isValidBillDate("12-25-2022"));
+        assertFalse(BillDate.isValidBillDate("2021-1-10 01:00"));
+        assertFalse(BillDate.isValidBillDate("0000-12-10 00:00"));
     }
 
     @Test

@@ -16,6 +16,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditPatientCommand;
+import seedu.address.logic.commands.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -44,7 +45,27 @@ public class EditPatientCommandParser implements Parser<EditPatientCommand> {
                     MESSAGE_INVALID_COMMAND_FORMAT, EditPatientCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPatientCommand.EditPatientDescriptor editPatientDescriptor = new EditPatientCommand.EditPatientDescriptor();
+        EditPatientDescriptor editPatientDescriptor = createEditPatientDescriptor(argMultimap);
+        return new EditPatientCommand(index, editPatientDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    private EditPatientDescriptor createEditPatientDescriptor(ArgumentMultimap argMultimap) throws ParseException {
+        EditPatientDescriptor editPatientDescriptor = new EditPatientDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -65,23 +86,7 @@ public class EditPatientCommandParser implements Parser<EditPatientCommand> {
         if (!editPatientDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditPatientCommand.MESSAGE_NOT_EDITED);
         }
-
-        return new EditPatientCommand(index, editPatientDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        return editPatientDescriptor;
     }
 
 }

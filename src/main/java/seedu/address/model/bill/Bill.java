@@ -48,7 +48,7 @@ public class Bill {
     }
 
     public boolean isSameBill(Bill bill) {
-        return !(bill == null) && this.appointment.equals(bill.getAppointment());
+        return !(bill == null) && this.appointment.isSameAppointment(bill.getAppointment());
     }
 
     @Override

@@ -183,7 +183,7 @@ public class ParserUtil {
     public static Slot parseSlot(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
-        if (!Slot.isValidDateTime(trimmedDateTime)) {
+        if (!Slot.isValidSlot(trimmedDateTime)) {
             throw new ParseException(Slot.MESSAGE_CONSTRAINTS);
         }
         return new Slot(dateTime);
@@ -199,7 +199,7 @@ public class ParserUtil {
     public static BillDate parseBillDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!BillDate.isValidDate(trimmedDate)) {
+        if (!BillDate.isValidBillDate(trimmedDate)) {
             throw new ParseException(BillDate.MESSAGE_CONSTRAINTS);
         }
         return new BillDate(date);

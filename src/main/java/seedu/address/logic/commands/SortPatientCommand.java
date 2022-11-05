@@ -96,4 +96,19 @@ public class SortPatientCommand extends Command {
             return first.getAddress().toString().compareToIgnoreCase(second.getAddress().toString());
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof SortPatientCommand)) {
+            return false;
+        }
+
+        SortPatientCommand e = (SortPatientCommand) other;
+        return criteria.equals(e.criteria)
+                && isAscending == e.isAscending;
+    }
 }
