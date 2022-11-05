@@ -49,7 +49,7 @@ public class EditOrderCommand extends Command {
             + CliSyntax.PREFIX_PHONE + "91234567 "
             + CliSyntax.PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: \n%1$s";
+    public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_NONEXISTENT_ITEM = "The item that is being added does "
             + "not exist in the inventory list.";
