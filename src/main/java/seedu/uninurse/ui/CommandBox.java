@@ -18,24 +18,24 @@ import seedu.uninurse.logic.parser.exceptions.ParseException;
  * The UI component that is responsible for receiving user command inputs.
  */
 public class CommandBox extends UiPart<Region> {
-
-    public static final String ERROR_STYLE_CLASS = "error";
+    private static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
     private final CommandHistoryList history;
+
     @FXML
     private TextField commandTextField;
 
     /**
-     * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
+     * Creates a CommandBox with the given CommandExecutor.
      */
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         this.history = new CommandHistoryList();
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        this.commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
 
     /**
@@ -121,10 +121,10 @@ public class CommandBox extends UiPart<Region> {
         private int currentPointer;
 
         /**
-         * Creates a {@code CommandHistoryList}.
+         * Creates a CommandHistoryList.
          */
-        public CommandHistoryList() {
-            this.history = new ArrayList<String>();
+        private CommandHistoryList() {
+            this.history = new ArrayList<>();
             this.history.add("");
             this.currentPointer = 0;
         }
@@ -132,7 +132,7 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Adds a successful command to the history list, if the last command is a different one.
          */
-        public void add(String command) {
+        private void add(String command) {
             if (history.size() < 2 || !history.get(history.size() - 2).equals(command)) {
                 // Update history only if the new command is different from the last one
                 history.set(history.size() - 1, command);
@@ -148,25 +148,25 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Handles the Up Key Button Pressed event.
          */
-        public Optional<String> handleUpKey() {
+        private Optional<String> handleUpKey() {
             assert 0 <= currentPointer && currentPointer <= history.size() - 1;
             if (currentPointer == 0) {
                 return Optional.empty();
             }
-            currentPointer -= 1;
-            return Optional.of(this.get());
+            currentPointer--;
+            return Optional.of(get());
         }
 
         /**
          * Handles the Down Key Button Pressed event.
          */
-        public Optional<String> handleDownKey() {
+        private Optional<String> handleDownKey() {
             assert 0 <= currentPointer && currentPointer <= history.size() - 1;
             if (currentPointer + 1 == history.size()) {
                 return Optional.empty();
             }
-            currentPointer += 1;
-            return Optional.of(this.get());
+            currentPointer++;
+            return Optional.of(get());
         }
 
         /**
@@ -177,5 +177,4 @@ public class CommandBox extends UiPart<Region> {
             return history.get(currentPointer);
         }
     }
-
 }
