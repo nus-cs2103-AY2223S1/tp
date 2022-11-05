@@ -25,6 +25,9 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
+    public static final Person ALLIE = new PersonBuilder().withName("Allie Pauline")
+            .withEmail("johnd@example.com").withPhone("90009000")
+            .withTags("owesMoney", "friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
