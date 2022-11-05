@@ -956,7 +956,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one stall entry exists
 
     2. Test case: `radd s/1 d/20/09/2022 c/The food was good, the chicken rice was fresh. r/4 t/opensDaily t/worthyTrip`<br>
-       Expected: A new review is added to the list as a review of the first stall with tags `opensdaily` and `worthtrip` as tags are saved in lowercase. Details of the newly added review shown in the status message. GUI updates to show the newly added review and its details.
+       Expected: A new review is added to the list as a review of the first stall with tags `opensdaily` and `worthytrip` as tags are saved in lowercase. Details of the newly added review shown in the status message. GUI updates to show the newly added review and its details.
 
     3. Test case: `radd s/1 d/20/09/2022`<br>
        Expected: No review is added. Error details shown in the status message. GUI does not update.
@@ -1039,11 +1039,11 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all reviews using the `rlist` command. Multiple reviews in the list.
 
     2. Test case: `redit 1 d/20/09/2022`<br>
-       Condition: There must not exist a review with the same details (date, content and tags) as the edited review's details<br>
+       Condition: There must not exist a review on the same stall with the same details (date, content and tags) as the edited review's details<br>
        Expected: The date of the first review edited. Details of the edited review shown in the status message. GUI updates, the edited review is moved to the back of the list with the edited details shown.
 
     3. Test case: `redit 1 c/The chicken was dry`<br>
-       Condition: There must not exist a review with the same details (date, content and tags) as the edited review's details<br>
+       Condition: There must not exist a review on the same stall with the same details (date, content and tags) as the edited review's details<br>
        Expected: The content of the first review edited. Details of the edited review shown in the status message. GUI updates, the edited review is moved to the back of the list with the edited details shown.
    
     4. Test case: `redit 1 d/2022/09/20`<br>
@@ -1067,7 +1067,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Status message responds with the number of stalls that matches the tag in command. GUI updates to show stalls that matches the tag in command.
    
     4. Test case: `sfind n/chicken t/opendaily`<br>
-       Condition: There is a stall with the word `chicken` in its name and with the tag `opendaily`<br>
+       Condition: There is a stall with the word `chicken` in its name or with the tag `opendaily`<br>
        Expected: Status message responds with the number of stalls that matches the name and tag in command. GUI updates to show stalls that matches the name and tag in command.
    
     5. Test case: `sfind n/`<br>
@@ -1094,7 +1094,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Status message responds with the number of reviews that matches the tag in command. GUI updates to show reviews that matches the tag in command.
 
     4. Test case: `rfind n/chicken t/delicious`<br>
-       Condition: There is a review with the word `chicken` in its stall name and with the tag `delicious`<br>
+       Condition: There is a review with the word `chicken` in its stall name or with the tag `delicious`<br>
        Expected: Status message responds with the number of reviews that matches the stall name and tag in command. GUI updates to show reviews that matches the stall name and tag in command.
    
     5. Test case: `rfind n/`<br>
@@ -1161,7 +1161,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: Simulate data file is missing by deleting `foodwhere.json` in data folder<br>
       Expected: Upon launching FoodWhere, the GUI display a default stalls and reviews list.
+   
    2. Test case: Simulate data file goes corrupt by editing a data field to an invalid value while FoodWhere is running<br>
+      Condition: No command that edits data is executed after editing the data file with invalid value.
       Expected: FoodWhere runs normally and does not crash. However, upon closing and re-launching the program, the GUI displays an empty stalls and reviews list.
    
 2. Commands that change data will modify data file 
