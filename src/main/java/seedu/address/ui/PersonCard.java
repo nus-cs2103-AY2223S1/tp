@@ -45,7 +45,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         setCardFields();
-        cardPane.setOnMouseClicked(event -> updateMainDisplay());
+        cardPane.setOnMousePressed(event -> updateMainDisplay());
     }
 
     /**

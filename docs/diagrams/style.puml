@@ -59,6 +59,18 @@ skinparam Sequence {
     FontName Arial
 }
 
+skinparam Activity {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    BorderColor #C30010
+    BorderThickness 2
+    BackgroundColor #FFFFBF
+    ArrowColor #C30010
+    FontName Arial
+}
+
 skinparam Participant {
     FontColor #FFFFFFF
     Padding 20

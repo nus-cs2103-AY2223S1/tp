@@ -155,80 +155,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Undo/redo feature
-
-#### Implementation
-
-The undo/redo mechanism is facilitated by `UndoableCommands` and `CommandManager`.
-
-`UndoableCommand` extends from `Command` and implements its own undo and redo methods. `Command`s that implement `UndoableCommand` include:
-* `CreateCommand` — Deletes and adds saved person object for undo and redo methods respectively.
-* `DeleteCommand` — Adds and deletes saved person object for undo and redo methods respectively.
-* `UpdateCommand` — Saves the original and edited person objects and sets them accordingly for undo and redo methods.
-* `ClearCommand` — Restores the saved original address book and sets address book to new address book for undo and redo methods respectively.
-
-`CommandManager` stores `UndoableCommand`s that have been executed and that have been undone in an `undoStack` and `redoStack` respectively. Additionally, `CommandManager` implements the following operations:
-
-* `CommandManager#pushNewCommand(Command)` — Saves the latest undoable command that was executed by user in its history.
-* `CommandManager#undo(UndoableCommand)` — Undoes the last undoable command from the top of the undo-stack.
-* `CommandManager#redo(UndoableCommand)` — Redoes the last undoable command from the top of the redo-stack.
-
-These operations are exposed in the `Logic` interface as `Logic#execute()`, `Logic#undo()` and `Logic#redo()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `CommandManger` will be initialized with an empty `undoStack` and `redoStack`.
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. `CommandManager#pushNewCommand()` is called by `Logic#execute()`, saving the `DeleteCommand` in the `undoStack`.
-
-Step 3. The user executes `add n/David …​` to add a new person. `CommandManager#pushNewCommand()` is called by `Logic#execute()`, saving the `AddCommand` in the `undoStack`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Logic#undo()` which calls `CommandManager#undo()` , which will pop the latest `UndoableCommand` from the `undoStack` and calls the `#UndoableCommand#undo()` method of that command which reverts the addressbook back to its previous state. The command popped is pushed to the `redoStack`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Logic#redo()` which calls `CommandManager#redo()`, which pops the latest `UndoableCommand` from the `redostack` and calls the `UndoableCommand#redo()` of that command which reverts the addressbook to the state after the command execution. The command is added back to the `undoStack`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not be be added to the undoStack by `CommandManger#pushNewCommand()`. Thus, the `undoStack` remains unchanged.
-
-Step 6. The user executes `clear`, which calls `CommandManager#pushNewCommand()`. Since there redoStack is not empty, `CommandManager#pushNewCommand` then calls `CommandManger#clearRedoStack`. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-* **Alternative 1 (current choice):** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-* **Alternative 2:** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-### Assigning PDF files feature
-
-The assigning pdf file to a client feature allows the user to store the file path of a pdf stored on the user's device. The filePath in FABook is represented with a `FilePath` class. A `FilePath` class requires a `String` filePath. A `Person` object Has-A `FilePath` object.
+### Opening of Person specific PDF files
 
 Implementation of the opening PDF file of client feature is built on top of the way that the PDF filepath is stored.
 
@@ -309,6 +236,51 @@ The upcoming meetings feature allows the users to pull up a list of clients who 
 
 Implementation of the upcoming meeting feature is built on top of [Meeting Feature]().
 
+#### Design Considerations
+**Aspect: MeetingTime Object**
+* **Alternative 1 (current choice): Person object contains its own set of MeetingTime**
+  * Pros: Easier to implement given the short amount of time
+  * Cons: Harder to sort/filter/manipulate
+* **Alternative 2 (ideal choice): Bidirectional navigation between MeetingTime and Person**
+  * Pros: Better abstraction therefore easier to perform MeetingTime specific tasks(e.g. sort, filter)
+  * Cons: More complicated to implement
+
+#### Related Features                                  
+* [Sync Meetings feature](#SyncMeetingsFeature)        
+* [Upcoming Meetings feature](#UpcomingMeetingsFeature)
+
+<a id="SyncMeetingsFeature"></a>
+### Sync Meetings feature
+#### Implementation
+The Sync Meetings feature is facilitated by the following operation:
+
+* `Person#syncMeetingTimes()` — Iterates through all `MeetingTime`s a `Person` has and removes those that have passed.
+
+This operation is exposed in the Model interface as `Model#syncMeetingTimes()`
+
+#### Example Usage:
+Step 1. User executes `sync`. `Model#syncMeetingTimes()` is called by `SyncCommand#execute(Model)`.
+
+Step 2. `Model#syncMeetingTimes()` calls `AddressBook` which calls `UniquePersonList#syncMeetingTimes()`.
+
+Step 3.  `UniquePersonList#syncMeetingTimes()` calls `Person#syncMeetingTimes()` for each person in `UniquePersonList#internalList`
+
+Step 4. In `Person#syncMeetingTimes()`, the predicate `MeetingTimePastPredicate()` is passed into `MeetingTimes#removeIf(Predicate)` which removes meetings that are before the time of execution.
+
+#### Design
+<img src="images/MeetingDiagrams/SyncMeetingSequenceDiagram.png" width="900" />
+
+#### Design Considerations
+**Aspect: Sync Meeting**
+* **Alternative 1 (current choice): In place filter of uniquePersonList**
+  * Pros: Simple to implement
+  * Cons: Hard to introduce undo logic
+* **Alternative 2: New instance of uniquePersonList when syncing**                       
+  * Pros: Easy to introduce undo logic                                                   
+  * Cons: Breaks singularity of address book in model or uniquePersonList in address book
+
+<a id="UpcomingMeetingsFeature"></a>
+### Upcoming Meetings feature
 #### Implementation
 
 The mechanism is facilitated by `MeetingsWindow`, `MeetingListPanel` and `MeetingCard`.
@@ -367,27 +339,71 @@ The following activity diagram shows how upcoming meetings feature works.
   * Cons:
     * Overhaul of new classes and object where a `MeetingTime` has-a `Person` rather than the current implementation of a `Person` has-a `MeetingTime`.
 
-#### Enhancement 2
+### Undo/redo feature
 
-The person model now contains a `Meeting Time` field.
-`Meeting Time` is implemented as a class with five attributes:
-- `final String value`
-- `final String displayValue`
-- `final LocalDateTime date`
-- `final static String MESSAGE_CONSTRAINTS`
-- `final static String VALIDATION_REGEX`
+#### Implementation
 
-#### Design Considerations
-- Use of Java API `java.time.LocalDateTime` to parse and format any valid given `String meetingTime` into the following
-  format of 'dd-MM-yyyy-HH:mm'
-- `displayValue`, `value` and `date` serve different usages.
-  - `displayValue` serves to return a nicer string representation of the meeting time, where the full name of the
-  month is displayed instead of its numeric form e.g. `12-OCTOBER-2022-12:00` instead of `12-10-2022-12:00`
-  - `value` is used for parsing and passed around the program as a string.
-  - `date` is stored as a LocalDateTime to allow comparisons between LocalDateTime objects.
-- Meeting Time `VALIDATION_REGEX` ensures that a valid date is given.
-- Under `VALIDATION_REGEX`, if a valid date is given that is out of the calendar dates, it will be parsed to the nearest valid
-  date within the month e.g. Using the input `31-02-2022-15:00` will be parsed into `28-02-2022-15:00`
+The undo/redo mechanism is facilitated by `UndoableCommands` and `CommandManager`.
+
+`UndoableCommand` extends from `Command` and implements its own undo and redo methods. `Command`s that implement `UndoableCommand` include:
+* `CreateCommand` — Deletes and adds saved person object for undo and redo methods respectively.
+* `DeleteCommand` — Adds and deletes saved person object for undo and redo methods respectively.
+* `UpdateCommand` — Saves the original and edited person objects and sets them accordingly for undo and redo methods.
+* `ClearCommand` — Restores the saved original address book and sets address book to new address book for undo and redo methods respectively.
+
+`CommandManager` stores `UndoableCommand`s that have been executed and that have been undone in an `undoStack` and `redoStack` respectively. Additionally, `CommandManager` implements the following operations:
+
+* `CommandManager#pushNewCommand(Command)` — Saves the latest undoable command that was executed by user in its history.
+* `CommandManager#undo(UndoableCommand)` — Undoes the last undoable command from the top of the undo-stack.
+* `CommandManager#redo(UndoableCommand)` — Redoes the last undoable command from the top of the redo-stack.
+
+These operations are exposed in the `Logic` interface as `Logic#execute()`, `Logic#undo()` and `Logic#redo()` respectively.
+
+#### Example Usage
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `CommandManger` will be initialized with an empty `undoStack` and `redoStack`.
+
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. `CommandManager#pushNewCommand()` is called by `Logic#execute()`, saving the `DeleteCommand` in the `undoStack`.
+
+Step 3. The user executes `add n/David …​` to add a new person. `CommandManager#pushNewCommand()` is called by `Logic#execute()`, saving the `AddCommand` in the `undoStack`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `CommandManager#pushNewCommand()`, so the invalid command will not be saved into the `undoStack`.
+
+</div>
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Logic#undo()` which calls `CommandManager#undo()` , which will pop the latest `UndoableCommand` from the `undoStack` and calls the `#UndoableCommand#undo()` method of that command which reverts the addressbook back to its previous state. The command popped is pushed to the `redoStack`.
+
+The following sequence diagram shows how the undo command works up till CommandManager:
+
+<img src="images/UndoImplementationImages/UndoSequenceDiagram.png" width="800" />
+
+The next sequence diagram shows how CommandManager executes undo:
+<img src="images/UndoImplementationImages/CommandManagerUndoSequenceDiagram.png" width="800" />
+
+<br>
+
+The `redo` command does the opposite — it calls `Logic#redo()` which calls `CommandManager#redo()`, which pops the latest `UndoableCommand` from the `redostack` and calls the `UndoableCommand#redo()` of that command which reverts the addressbook to the state after the command execution. The command is added back to the `undoStack`.
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not be added to the undoStack by `CommandManger#pushNewCommand()`. Thus, the `undoStack` remains unchanged.
+
+Step 6. The user executes `clear`, which calls `CommandManager#pushNewCommand()`. Since there redoStack is not empty, `CommandManager#pushNewCommand` then calls `CommandManger#clearRedoStack`. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/UndoImplementationImages/PushCommandActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+* **Alternative 1 (current choice):** Individual command knows how to undo/redo by
+  itself.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
+
+* **Alternative 2:** Saves the entire address book.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

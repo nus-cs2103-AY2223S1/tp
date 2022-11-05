@@ -395,8 +395,8 @@ You can use this command when:
 * Edits the client with the provided index.
 * `INDEX` is the index of the client in the currently displayed list.<br>
 * You must provide **at least one** of the optional fields .
-* You can also update the description of a client through the [`description` command](#updating-clients-description-description).
-* You must update the meeting time of a client through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
+* You can also update the description of a client through the [`description` command](#updating-your-clients-description--description).
+* You must update the meeting time of a client through the [`meeting` command](#updating-meetings--meeting), [`deletemeeting` command](#delete-meetings--deletemeeting) and [`sync` commands](#remove-past-meetings--sync).
 * Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
 * Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 * Person profiles and do not refresh when person is updated, they are only updated when we re-click the person card
@@ -412,14 +412,6 @@ Example given: `update 1 p/12345678`
 Only parameters you provide will be changed.
 
 </div>
-
-* Edits the person with the provided index.
-* `INDEX` is the index of the person in the currently displayed list.<br>
-* You must provide **at least one** of the optional fields .
-* You can also update the description of a contact through the [`description` command](#giving-a-description-to-a-person-description).
-* You must update the meeting time of a contact through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
-* Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
-* Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 
 Other example:
 * `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed client's
@@ -443,7 +435,7 @@ You can use this command when:
 
 **Constraints**
 * `INDEX` is the index of the client in the currently displayed list.
-* Updating description of your client can also be done through the 'update' command. See [Update command](#updating-clients-description-description)
+* Updating description of your client can also be done through the 'update' command. See [Update command](#updating-your-clients-information--update)
 
 Format: `description INDEX ds/DESCRIPTION`
 
@@ -647,9 +639,6 @@ If your changes to the data file makes its format invalid, FABook will discard a
 **Q**: Why can I not undo the `sync` command?<br>
 **A**: Meetings that have passed should not need to be undone and be shown again.
 
-**Q**: Person profile does not show when I click person card once.<br>
-**A**: You need to click the person card twice for the person profile to load.
-
 **Q**: Why does the person profile GUI not refresh after an edit or clear command?<br>
 **A**: In order to refresh the person profile, you will have the re-click on the person card again.
 
@@ -680,25 +669,24 @@ If your changes to the data file makes its format invalid, FABook will discard a
 
 ## Command summary
 
-| Action                    | Format, Examples                                                                                                                                                   | Shortcut |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| **Help**                  | `help`                                                                                                                                                             | f1       |
-| **List**                  | `list`                                                                                                                                                             | l        |
-| **Create**                | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567` | c        |
-| **Add a File**            | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                    |          |
-| **Add Meeting**           | `meeting INDEX mt/TIME` <br/> e.g. `meeting 5 mt/19-11-2022-19:00`                                                                                                 |          |
-| **Find**                  | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`                                       | f        |
-| **Find**                  | `find t/TAG` <br> e.g., `find t/POTENTIAL`                                                                                                                         | f        |
-| **Open File**             | `file INDEX`<br/> e.g. `file 2`                                                                                                                                    |          |
-| **Get Upcoming Meetings** |                                                                                                                                                                    | f2       |
-| **Update**                | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`      | u        |
-| **Description**           | `description INDEX ds/DESCRIPTION` <br> e.g., `description 3 ds/Accident prone`                                                                                    | desc     |
-| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                | d        |
-| **Delete Meeting**        | `deletemeeting INDEX mt/TIME` <br/> e.g. `deletemeeting 4 mt/15-12-2022-13:00`                                                                                     |          |
-| **Remove past meetings**  | `sync`                                                                                                                                                             |          |
-| **Clear**                 | `clear`                                                                                                                                                            | cl       |
-| **Undo**                  | `undo`                                                                                                                                                             |          |
-| **Redo**                  | `redo`                                                                                                                                                             |          |
-| **Exit**                  | `exit`                                                                                                                                                             | e        |
+| Action                    | Format, Examples                                                                                                                                                            | Shortcut       |
+|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
+| **Help**                  | `help`                                                                                                                                                                      | **PRESS** `F1` |
+| **List**                  | `list`                                                                                                                                                                      | l              |
+| **Create**                | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567`          | c              |
+| **Add a File**            | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                             |                |
+| **Add Meeting**           | `meeting INDEX mt/TIME` <br/> e.g. `meeting 5 mt/19-11-2022-19:00`                                                                                                          |                |
+| **Find**                  | `find n/NAME…` e.g. `find n/James Jake` <br/> `find p/NUMBER` e.g. `find p/09122222` <br/> `find a/ADDRESS` e.g. `find a/Jurong` <br/> `find t/TAG` e.g. `find t/POTENTIAL` | f              |
+| **Open File**             | `file INDEX`<br/> e.g. `file 2`                                                                                                                                             |                |
+| **Get Upcoming Meetings** |                                                                                                                                                                             | **PRESS** `F2` |
+| **Update**                | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`               | u              |
+| **Description**           | `description INDEX ds/DESCRIPTION` <br> e.g., `description 3 ds/Accident prone`                                                                                             | desc           |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                         | d              |
+| **Delete Meeting**        | `deletemeeting INDEX mt/TIME` <br/> e.g. `deletemeeting 4 mt/15-12-2022-13:00`                                                                                              |                |
+| **Remove past meetings**  | `sync`                                                                                                                                                                      |                |
+| **Clear**                 | `clear`                                                                                                                                                                     | cl             |
+| **Undo**                  | `undo`                                                                                                                                                                      |                |
+| **Redo**                  | `redo`                                                                                                                                                                      |                |
+| **Exit**                  | `exit`                                                                                                                                                                      | e              |
 
 [Return to Table of Contents](#table-of-contents)
