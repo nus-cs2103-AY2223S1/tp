@@ -21,8 +21,9 @@ Given below are my contributions to the project.
     * Justification: This allows the user to delete orders that have been completed and pets that are no longer available for sale.
     * Credits: The code was inspired by the original code given in AB3.
 
-* **Functionality**: Added more test utility classes.
-  * What it does: these test utility classes - ``
+* **Functionality**: Added the classes `UniqueOrderIdPredicate` and `UniquePetIdPredicate`.
+  * What it does: these classes increases testability when testing for unique Orders and unique Pets.
+  * Justification: Orders and Pets can easily be distinguished by their UniqueId. Hence, when testing for a unique Order or Pet, their UniqueId can be used.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=elizabethhky&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -35,18 +36,16 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Add an introduction section to provide an overview of our application to new users.
-        * Deleting a contact or item. 
+        * Added an introduction section to provide an overview of our application to new users: [#282](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/282/files), [#315](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/315)
+        * Added documentation for the feature `delete`: [#191](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/191/files)
+        * Added a table of contents for easier navigability: [#191](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/191/files)
+        * Did cosmetic tweaks and proofread the entire user guide to check for typos and consistent tone: [#191](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/191/files), [#285](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/285/files)
     * Developer Guide:
-        * Updated the `Model` Component.
+        * Updated the `Model` Component: [#215](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/215/files)
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): *to be added*.
-    * Contributed to forum discussions (examples: *to be added*.
-    * Reported bugs and suggestions for other teams in the class (examples: *to be added*.)
-    * Some parts of the history feature I added was adopted by several other class mates (*to be added*)
+    * PRs reviewed (with non-trivial review comments): [#137](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/137)
+    * Contributed to forum discussions (examples: [#157](https://github.com/nus-cs2103-AY2223S1/forum/issues/157).
 
 * **Tools**:
-    * (*to be added*)
-
-* _{you can add/remove categories in the list above}_
+    * Used PlantUML to add more UML diagrams in the developer guide.
