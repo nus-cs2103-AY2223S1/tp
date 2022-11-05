@@ -73,6 +73,9 @@ Given below are my contributions to the project.
           features. [\#89](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/89)
         * Added use cases for the `Add Appointment` and `Clear Appointment`
           features. [\#67](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/67)
+        * Added sequence and activity diagrams for the `Appointment`
+          features.[\#162](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/162)
+        * General formatting improvements.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments):(Pull
@@ -86,5 +89,6 @@ Given below are my contributions to the project.
       , [\#77](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/77)
       , [\#79](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/79)
       , [\#85](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/85)
-      , [\#95](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/95))
+      , [\#95](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/95)
+      , [\#156](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/156))
     * Reported a total of [11](https://github.com/marclzh/ped/issues) bugs and suggestions for other teams in the class.

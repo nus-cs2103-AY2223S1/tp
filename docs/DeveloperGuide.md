@@ -39,7 +39,6 @@ title: Developer Guide
   - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a person](#deleting-a-person)
   - [Saving data](#saving-data)
-    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -102,7 +101,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### UI component
 
@@ -121,7 +120,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` and `Record` object residing in the `Model`.
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### Logic component
 
@@ -152,7 +151,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -176,7 +175,7 @@ The `Model` component,
 
 </div>
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### Storage component
 
@@ -189,7 +188,7 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### Common classes
 
@@ -201,9 +200,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
->### Implemented features:
+## Implemented features
 
-### Record features:
+### Patient Record features:
+> Features relating to the patient's records
 ### \[Implemented\] Add record feature
 
 #### Patient Records
@@ -252,7 +252,7 @@ displayed
   * Pros: Easy to implement, simpler command execution pathway.
   * Cons: Potentially violates OOP.
   
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### \[Implemented\] List records feature
 
@@ -277,7 +277,7 @@ Example usage scenario:
 - Precondition: The user should be viewing the patient list by using the `list` command.
 - Execution: The user executes `rlist 1` to list the records of the 1st patient in the displayed patient list.
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### \[Implemented\] Delete record feature
 
@@ -302,7 +302,7 @@ Given below is an example usage scenario for the command.
 * Execution: 
   * User executes `rdelete 1` to delete the 1st record in the displayed record list. The `rdelete` command calls `Model#deleteRecord(Record)` which performs the deletion of records from the `DisplayedPerson` held by the `Model`.
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### \[Implemented\] Edit record feature
 
@@ -331,7 +331,7 @@ Given below is an example usage scenario for the command.
     * User executes `redit 1 r/Fever d/12-12-2012 1200 m/` to set the 1st record in the displayed record list to a new
   record containing the date/time of `12-12-2012 1200`, record data of `Fever` and sets the medications to empty.
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### \[Implemented\] Find records feature
 
@@ -351,7 +351,7 @@ Only `FindRecordCommandParser#parse` is exposed in the Parser interface as Parse
 
 Given below is an example usage and how the find record mechanism works at each step.
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### \[Implemented\] Clear all records feature
 
@@ -368,13 +368,13 @@ Given below is an example usage scenario for the command.
 
 **Step 3:** The user executes the `rclear` command to clear all existing records in the record list.
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### Appointment features:
-
+> Features relating to the patient's appointments
 ### \[Implemented\] Add appointment feature
 
-The add appointment feature allows Omnihealth to manage future appointments for patients. Each `Patient` holds an appointment
+The add appointment feature allows OmniHealth to manage future appointments for patients. Each `Patient` holds an appointment
 reference for record keeping that the user is able to edit and clear.
 
 The feature currently does not support automatic removal of appointments which dates have passed, and require a new appointment
@@ -383,11 +383,23 @@ to override the old appointment or for the existing appointment to be cleared wi
 #### Implementation:
 The add appointment command mechanism is facilitated by the `AddAppointmentCommandParser` class which extends the `AddressbookParser`.
 
+`AddAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+
 `AddAppointmentParser` implements the following operations:
 * `AddAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as 
-an `ArgumentMultimap.`
+an `ArgumentMultimap`, and creates a new `AddAppointmentCommand` object with the parsed time and index. 
 
-`AddAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+The `AddAppoinmentCommand` object then communicates with the `Model` API by calling the following methods:
+* `Model#setPerson(Person, Person)` - Sets the person in the existing patient list to the new `Person` object which has
+been edited by `AddAppointmentCommand#execute()`.
+* `Model#updateFilteredPersonList(Predicate)` - Updates the view of the application to show all patients.
+
+The method `AddAppointmentCommand#execute()` returns a `CommandResult` object, which stores information about the completion 
+of the command.
+
+The diagram below details how the operation of adding an appointment works.
+
+![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
 
 Given below is an example usage scenario for the command.
 
@@ -397,7 +409,7 @@ Given below is an example usage scenario for the command.
 
 **Step 3:** An appointment will be assigned to the patient specified with the index input.
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### \[Implemented\] Clear appointment feature
 
@@ -418,7 +430,10 @@ Given below is an example usage scenario for the command.
 
 **Step 3:** The patient's appointment(if any) will be cleared. 
 
-[*<Back to ToC*](#table-of-contents)
+Below is an activity diagram illustrating an example process of how the `Appointment` commands can be utilised.
+![AppointmentActivityDiagram](images/AppointmentActivityDiagram.png)
+
+[*<Back to ToC>*](#table-of-contents)
 
 >### Proposed features:
 
@@ -436,7 +451,7 @@ Given below is an example usage scenario for the command.
 
 **Step 2:** A additional window appears, showing the current upcoming appointments.
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -448,7 +463,7 @@ Given below is an example usage scenario for the command.
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -467,7 +482,7 @@ Given below is an example usage scenario for the command.
 * allow doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment
   information) to patients using their stored contact information.
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### User stories
 
@@ -489,7 +504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### Use cases
 
@@ -824,7 +839,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### Non-Functional Requirements
 
@@ -834,14 +849,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -871,7 +886,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### Deleting a person
 
@@ -890,7 +905,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
 
 ### Saving data
 
@@ -900,4 +915,4 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-[*<Back to ToC*](#table-of-contents)
+[*<Back to ToC>*](#table-of-contents)
