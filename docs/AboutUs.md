@@ -44,7 +44,7 @@ uNivUSal
 <img src="images/jsincorporated.png" width="200px">
 
 [[github](http://github.com/jsincorporated)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jsincorporated.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
