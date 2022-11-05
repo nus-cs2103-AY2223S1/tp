@@ -611,6 +611,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 * **Product**: A financial product such as life insurance that a financial advisor is selling
 * **Timing conflict**: Time periods that overlap. e.g., a time period spanning from 1400 to 1500 and another time period spanning from 1430 to 1500 are considered to overlap. Time period that start and end at the same time however are considered to not overlap, e.g., a time period spanning from 0900 to 0900 and another time period spanning from 0900 to 0900 are considered to not overlap.
 * **View panel**: The main and largest component of the user interface the user will be interacting with. e.g., the view panel is the component that is used to display the list of clients, show detailed information about a meeting, etc.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Appendix: Instructions for manual testing
