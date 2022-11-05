@@ -154,8 +154,8 @@ public class User {
         return username.equals(other.getUsername())
             && url.equals(other.getUrl())
             && name.equals(other.getName())
-            && email.equals(other.getEmail().orElse(null))
-            && address.equals(other.getAddress().orElse(null))
+            && Optional.ofNullable(email).equals(other.getEmail())
+            && Optional.ofNullable(address).equals(other.getAddress())
             && repoList.equals(other.getRepoList());
     }
 
