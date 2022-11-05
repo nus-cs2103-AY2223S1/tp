@@ -47,7 +47,7 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleNavigationKeysPressed);
-        // prevents the suggestions popup from disappearing when user presses tab
+        // prevents the tab button from navigating the application when there is text in the command box
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.TAB) {
                 if (!isCommandTextFieldEmpty()) {
@@ -112,25 +112,12 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.positionCaret(commandTextField.getText().length());
     }
 
-    // Detects text changes in commandTextField to update suggestions popup
-    @FXML
-    private void handleTextChanged() {
-        // Guard: Stop if no text in command text field
-        if (isCommandTextFieldEmpty()) {
-            return;
-        }
-
-        // "/" requests focus on the CommandTextField. Since it is an invalid starting command text, we can clear it.
-        if (getCommandText().length() == 1 && getCommandText().equals("/")) {
-            commandTextField.clear();
-        }
-    }
-
     /**
      * Sets focus on the CommandTextField.
      */
     public void focus() {
         commandTextField.requestFocus();
+        commandTextField.selectEnd();
     }
 
     /**
