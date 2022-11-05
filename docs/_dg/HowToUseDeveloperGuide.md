@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-Thank you for your interest in how FoodRem works! We are delighted you are reading this guide and we aim to provide you will all the necessary information to understand, maintain, upgrade, and evolve FoodRem.
+Thank you for your interest in how FoodRem works! We are delighted you are reading this guide and we aim to provide you with all the necessary information to understand, maintain, upgrade, and evolve FoodRem.
 
 ```tip
 You do not need to read the Developer Guide in a sequential order. However, we recommend going through the section on [Design](#design) to have a high-level overview of this application before searching for information that concerns you. Most portions of the developer guide can be understood if you have a good overview of FoodRem's design. 
