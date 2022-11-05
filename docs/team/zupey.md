@@ -13,7 +13,14 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to view the user guide via the `help` command.
     * What it does: Show our website in a window via the `help` command.
-    * Justification: This feature improves the product by allowing the user to easily access the documentation.
+    * Justification: This feature improves the product by allowing the user to easily access the documentation
+        on our website.  This is better than reading a text file because the documentation is well-formatted and
+        includes pictures.
+    * Highlights: The documentation accessed through the application prevents the user from accessing websites from
+        other domains.  This is because we want the user to use it for reading the user guide or other pages on our
+        website, rather than as an internet browser.
+
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=zupey&breakdown=true)
 
 * **Project management**:
     * To be added
@@ -23,9 +30,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Changed user guide in response to comments given during PE dry run.
+        * Changed user guide in response to suggestions given during PE dry run.
     * Developer Guide:
-        * To be added
+        * Added UML diagrams for Delete Sequence Diagram, as well as the storage component.
 
 * **Community**:
-    * To be added
+    - Reviewed PRs and gave review comments: [\#65](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/65)
