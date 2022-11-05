@@ -99,8 +99,7 @@ delete the user that is currently displayed.
 Adds a book to the library.
 
 Format: `add book t/TITLE a/AUTHOR`
-* The title **must only contain alphanumerical characters and spaces**
-* The author **must only contain alphabetical characters and spaces**
+* The title and author **must only contain alphanumerical characters and spaces**
 
 Examples:
 * `add book t/The Life of John a/Emily Dunce`
@@ -294,7 +293,7 @@ If your changes to the data file makes its format invalid, BookFace will discard
 **A**: Simply use the `clear all` command.
 
 **Q**: Is it normal for the order of the books to change upon restarting the application?<br>
-**A**: Yes; it is a perfectly normal behaviour for the application **if there are loaned books in the book list**, as the intention is to show books that have been loaned as a priority in the list upon starting the app.
+**A**: Yes; it is a perfectly normal behaviour for the application **if there are loaned books in the book list**, as the intention is to show books that have been loaned as a priority in the list upon starting the app. Following this answer, the order of the book list does not immediately change after a `loan` or `return` command in order to prevent confusion in the sudden reordering of books while the app is in use.
 
 --------------------------------------------------------------------------------------------------------------------
 
