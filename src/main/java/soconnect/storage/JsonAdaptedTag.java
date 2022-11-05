@@ -41,6 +41,8 @@ class JsonAdaptedTag {
     public Tag toModelType() throws IllegalValueException {
         if (!Tag.isValidTagName(tagName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        } else if (!Tag.isValidLength(tagName)) {
+            throw new IllegalValueException(Tag.MESSAGE_TOO_LONG);
         }
         return new Tag(tagName);
     }

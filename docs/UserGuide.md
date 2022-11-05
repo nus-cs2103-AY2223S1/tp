@@ -14,14 +14,14 @@ SoConnect is a **desktop app for managing contacts and tasks**. It aims to help 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `SoConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases).
+2. Download the latest `SoConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your SoConnect.
+3. Copy the file to the folder you want to use as the _home folder_ for your SoConnect.
 
-1. Double-click the file to start the app. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -34,7 +34,7 @@ SoConnect is a **desktop app for managing contacts and tasks**. It aims to help 
 
    * **`exit`** : Exits SoConnect.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ SoConnect is a **desktop app for managing contacts and tasks**. It aims to help 
 
 * Tasks will be referred to as Todos
 
-* `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed contact list and todo list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​
+* `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed contact list and todo list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
 
 </div>
 
@@ -71,7 +71,13 @@ SoConnect is a **desktop app for managing contacts and tasks**. It aims to help 
 
 Adds a contact to your SoConnect.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The tag has to be created first before you can add it into a contact. 
+
+Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
+</div>
 
 * Duplicate name is not allowed. A name is considered duplicate if it has the exact same characters (case-sensitive) with an existing contact's name. For example, `Alex Yeoh` and `Alex yeoh` is considered different. This is to increase users' easiness in differentiating between contacts in the future. It is also to prevent users from creating new contacts when their actual intention is to edit a field from existing contacts.
 * `NAME` currently only accepts alphanumeric values. This is to prevent users from supplying mistyped names into their contacts. However, numbers are still accepted to provide users a mean to differentiate between similar names and to account for special names that originally have numbers in it. 
@@ -196,40 +202,21 @@ Format: `clear`
 
 ### Creating a Tag: `tag create`
 
-Creates a new tag
+You can create a new `TAG` and add it into the tag list.
 
 Format: `tag create t/TAG`
 
-Example:
-* `tag create t/family` creates a `family` tag.
+Steps to take:
+1. Input `tag create t/Test` into the Command box and press `Enter` on your keyboard. 
+2. You should now see `New Tag added: [Test]` in the Command result box just like the image below.
 
-### Deleting a Tag: `tag delete`
+(insert image of a successful creation of the `Test` tag)
 
-Deletes a tag.
-
-Format: `tag delete t/TAG`
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
-</div>
-
-Example:
-* `tag delete t/family` deletes the `family` tag.
-
-### Editing a Tag: `tag edit`
-
-Renames an existing tag.
-
-Format: `tag edit t/TAG1 t/ TAG2`
-
-* `TAG1` is the current name of the tag and `TAG2` is the new name of the tag.
-
-Example:
-* `tag edit t/friend t/bestFriend` changes the friend tag to a bestFriend tag.
+3. Great! You have successfully added the first `TAG` you have made. Now, you can start utilising the other tag features.
 
 ### Adding a Tag to a Contact: `tag add`
 
-Adds an existing tag to an existing contact.
+You can now add a `TAG` from the tag list to a contact.
 * `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
 
 Format: `tag add INDEX t/TAG`
@@ -239,25 +226,109 @@ A contact can have any number of tags. Add as many as you want.
 </div>
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** The tag has to be made first before you can add it into a contact.
+**:information_source: Note:** The tag has to be created first before you can add it into a contact.
+
+Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
 </div>
 
-* Adds a `TAG` to the contact at the specified `INDEX`.
+Steps to take:
+1. Input `tag add 1 t/Test` into the Command box and press `Enter` on your keyboard.
 
-Example:
-* `tag add 1 t/friend` adds the friend tag to the first contact shown in the list.
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** 
+
+This example is a follow-up of [`Creating a Tag`](#creating-a-tag-tag-create). Feel free to replace `1` and Test` with the contact index and tag of your choice.
+</div>
+
+2. You should now see `Tag added: [Test]` in the Command result box just like the image below.
+
+(insert image of a successful addition of the `Test` tag to contact `1`)
+
+3. Awesome! You have successfully added the `Test` tag to the first contact in your contact list.
+
+### Editing a Tag: `tag edit`
+
+If you make a mistake or want to update your tags, you can simply update them accordingly.
+
+Format: `tag edit t/TAG1 t/TAG2`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** 
+
+* The new Tag must not have the same name as any other existing tags.
+* `TAG1` is the current name of the tag and `TAG2` is the new name of the tag.
+
+</div>
+
+Steps to take:
+1. Input `tag edit t/Test t/Test2` into the Command box and press `Enter` on your keyboard.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** 
+
+This example is a follow-up of [`Adding a tag`](#adding-a-tag-to-a-contact-tag-add). Feel free to replace `Test` with any existing tag and `Test2` with a new name for the tag.
+</div>
+
+2. You should now see `Tag has changed from [Test] to [Test2]` in the Command result box. You can also refer to the Before and After comparison below. Within each contact, those with the `Test` tag, will now display `Test2` instead.
+
+Before:
+(insert image a contact with `Test` tag)
+
+After:
+(insert image of the same contact with `Test2` tag instead of `Test`)
+
+3. Fantastic! You have successfully changed the `Test` tag to the `Test2` tag.
 
 ### Removing a Tag from a Contact: `tag remove`
 
-Removes an existing tag from an existing contact.
+You can remove a tag from a contact.
 * `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
 
 Format: `tag remove INDEX t/TAG`
 
-* Removes a `TAG` from the contact at the specified `INDEX`.
+Steps to take:
+1. Input `tag remove 1 t/Test2` into the Command box and press `Enter` on your keyboard.
 
-Example:
-* `tag remove 1 t/friend` removes the friend tag from the first contact shown in the list.
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** 
+
+This example is a follow-up of [`Editing a Tag`](#editing-a-tag-tag-edit). Feel free to replace `1` and `Test2` with the index of any contact and a tag of that contact.
+</div>
+
+2. You should now see `Tag removed: [Test2]` in the Command result box just like the image below.
+
+(insert image of contact `1` without the `Test2` tag)
+
+3. Nice! You have successfully removed a tag from a contact.
+
+### Deleting a Tag: `tag delete`
+
+You can delete a tag from the tag list.
+
+Format: `tag delete t/TAG`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
+</div>
+
+Steps to take:
+1. Input `tag delete t/Test2` in the Command box and press `Enter` on your keyboard.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** 
+
+This example is a follow-up of [`removing a Tag`](#removing-a-tag-from-a-contact-tag-remove). Feel free to replace `Test2` with any existing tag.
+</div>
+
+2. You should now see `Tag deleted: [Test2]` in the Command result box just like the image below.
+
+(insert successful deletion og `Test2` tag)
+
+3. Wonderful! You have successfully deleted a tag.
+
+### Viewing tags `[Coming soon in v1.5]`
+
+Congratulations on completing this section on Tag Management Features, you have successfully mastered the tag features! Refer to the [Command summary](#command-summary) for a quick reference to all tag commands. Let us move on to the [Customisation Features](#customisation-features).
 
 ## Customisation Features
 
@@ -307,7 +378,7 @@ Example:
 
 ## Todo Management Features
 
-A todo is a task that needs completing. A todo consists of 
+A [todo](#glossary-todo) is a task that needs completing. A todo consists of 
 1. a description
 2. a date for the deadline of the task
 3. the priority of the task 
@@ -340,7 +411,7 @@ Edits an existing todo in your SoConnect.
 
 Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​`
 
-* Edits the todo at the specified `INDEX`.
+* Edits the todo at the specified [`INDEX`](#command-format-index).
 * At least one of the optional fields must be provided.
 * Parameters given will overwrite the existing values completely.
   * For example, giving 1 or more tag(s) in the edit command will replace all existing tags with the ones given in the edit command.
@@ -390,7 +461,7 @@ Examples:
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -426,6 +497,19 @@ If your changes to the data file makes its format invalid, SoConnect will discar
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SoConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
+# Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **CLI**: A text-based user interface used to run programs.
+* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
+* **JavaFX**: A Java library used to develop client applications.
+* **kLoC**: Stands for thousands of lines of code.
+* **NUS**: National University of Singapore.
+* **SoC**: School of Computing, a computing school in NUS.
+* **Private Contact Detail**: A contact detail that is not meant to be shared with others.
+* **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full.
+* **Todo**: A task that the user needs to complete. <a id="glossary-todo"></a>
 
 # Command summary
 
