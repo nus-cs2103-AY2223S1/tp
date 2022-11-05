@@ -104,12 +104,12 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
 
     private static List<String> getAlreadyVisibleFields(Model model) {
         requireNonNull(model);
-        return model.getVisibleFields();
+        return model.getUnmodifiableVisibleFields();
     }
 
     private static List<String> getAlreadyHiddenFields(Model model) {
         requireNonNull(model);
-        return model.getHiddenFields();
+        return model.getUnmodifiableHiddenFields();
     }
 
     private static boolean isValidSubsetOfAlreadyVisibleFields(Model model, List<String> inputList) {

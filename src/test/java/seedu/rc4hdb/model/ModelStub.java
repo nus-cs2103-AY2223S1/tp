@@ -127,7 +127,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<String> getVisibleFields() {
+    public ObservableList<String> getUnmodifiableVisibleFields() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -137,7 +137,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<String> getHiddenFields() {
+    public ObservableList<String> getUnmodifiableHiddenFields() {
         throw new AssertionError("This method should not be called.");
     }
 

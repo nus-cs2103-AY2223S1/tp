@@ -163,7 +163,7 @@ public interface Model {
     /**
      * Returns an observable list of the fields to be shown when invoking {@code show}.
      */
-    ObservableList<String> getVisibleFields();
+    ObservableList<String> getUnmodifiableVisibleFields();
 
     /**
      * Updates the list of fields to be shown when invoking {@code show}.
@@ -174,7 +174,7 @@ public interface Model {
     /**
      * Returns an observable list of the fields to be hidden when invoking {@code hide}.
      */
-    ObservableList<String> getHiddenFields();
+    ObservableList<String> getUnmodifiableHiddenFields();
 
     /**
      * Updates the list of fields to be hidden when invoking {@code hide}.
