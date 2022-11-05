@@ -10,7 +10,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.commons.Criteria;
+import seedu.address.model.Criteria;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
@@ -95,6 +95,7 @@ public class DistinctTaskList implements Iterable<Task> {
      * @param exam the exam for the tasks to be unlinked from
      */
     public List<Task> unlinkTasksFromExam(Exam exam) {
+        requireNonNull(exam);
         List<Task> matchedTasks = new ArrayList<Task>();
         taskList.forEach(task-> {
             if (task.isLinked() && task.getExam().equals(exam)) {
@@ -243,22 +244,6 @@ public class DistinctTaskList implements Iterable<Task> {
         }
         //@@author
     }
-
-    /*
-    /**
-     * Checks whether the criteria given by the user is valid.
-     *
-     * @param criteria The criteria that is being checked for validity.
-     * @return true if the criteria is valid; else return false.
-     */
-    /*
-    public static boolean isValidCriteria(String criteria) {
-        return criteria.equalsIgnoreCase("priority")
-                || criteria.equalsIgnoreCase("deadline")
-                || criteria.equalsIgnoreCase("module")
-                || criteria.equalsIgnoreCase("description");
-    }
-     */
 
     @Override
     public Iterator<Task> iterator() {
