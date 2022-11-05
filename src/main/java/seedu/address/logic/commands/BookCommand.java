@@ -23,8 +23,8 @@ public class BookCommand extends Command {
 
     public static final String COMMAND_WORD = "book";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Books an appointment for the patient. "
-            + "Parameters: INDEX (must be a positive integer)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Books an appointment for the patient.\n"
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REASON + "REASON "
             + PREFIX_DATE + "DATE "
             + "[" + PREFIX_RECURRING_PERIOD + "TIME PERIOD] "
