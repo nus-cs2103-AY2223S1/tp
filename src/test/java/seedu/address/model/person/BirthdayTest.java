@@ -23,10 +23,10 @@ public class BirthdayTest {
 
     @Test
     public void isValidBirthday() {
-        // null address
+        // null birthday
         assertThrows(NullPointerException.class, () -> Birthday.isValidBirthday(null));
 
-        // invalid addresses
+        // invalid birthdays
         assertFalse(Birthday.isValidBirthday("")); // empty string
         assertFalse(Birthday.isValidBirthday(" ")); // spaces only
         assertFalse(Birthday.isValidBirthday("00/01/2000")); // Boundary case for start of month
@@ -40,7 +40,7 @@ public class BirthdayTest {
         assertFalse(Birthday.isValidBirthday("31/06/2000")); // day that does not exist
 
 
-        // valid addresses
+        // valid birthdays
         assertTrue(Birthday.isValidBirthday("15/06/2000")); // Normal date
         assertTrue(Birthday.isValidBirthday("01/01/2000")); // Boundary case for start of month
         assertTrue(Birthday.isValidBirthday("30/06/2000")); // Boundary case for end of month
