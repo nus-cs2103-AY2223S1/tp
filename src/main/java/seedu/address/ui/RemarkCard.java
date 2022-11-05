@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.remark.Remark;
@@ -32,8 +29,6 @@ public class RemarkCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label text;
-    @FXML
-    private FlowPane tags;
 
     /**
      * Creates a {@code RemarkCode} with the given {@code Remark} and index to display
@@ -43,9 +38,6 @@ public class RemarkCard extends UiPart<Region> {
         this.remark = remark;
         id.setText(displayedIndex + ". ");
         text.setText(remark.getText().getValue());
-        remark.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
