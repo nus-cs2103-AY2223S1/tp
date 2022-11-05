@@ -27,6 +27,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new ArchivedTaskBook(), new ArchivedTaskBook(modelManager.getArchivedAddressBook()));
     }
 
     @Test
@@ -38,6 +39,7 @@ public class ModelManagerTest {
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setArchivedTaskBookFilePath(Paths.get("archivedTask/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
@@ -45,6 +47,7 @@ public class ModelManagerTest {
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
         userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setArchivedTaskBookFilePath(Paths.get("archivedTask/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -66,10 +69,22 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setArchivedTaskBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setArchivedTaskBook(null));
+    }
+
+    @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setAddressBookFilePath(path);
         assertEquals(path, modelManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void setArchivedTaskBookFilePath_validPath_setsArchivedTaskBookFilePath() {
+        Path path = Paths.get("data/archivedTaskBook.json");
+        modelManager.setArchivedTaskBookFilePath(path);
+        assertEquals(path, modelManager.getArchivedTaskBookFilePath());
     }
 
     @Test
@@ -78,8 +93,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTask_nullArchivedTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTaskInArchives(null));
+    }
+
+    @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasTask_taskNotInArchivedTaskBook_returnsFalse() {
+        assertFalse(modelManager.hasTaskInArchives(ALICE));
     }
 
     @Test
@@ -89,8 +114,20 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTask_taskInArchivedTaskBook_returnsTrue() {
+        modelManager.addPerson(ALICE);
+        modelManager.archivedTask(ALICE);
+        assertTrue(modelManager.hasTaskInArchives(ALICE));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredArchivedTaskList().remove(0));
     }
 
     @Test
@@ -141,6 +178,7 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredArchivedTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, archivedTaskBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
@@ -149,6 +187,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setArchivedTaskBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, archivedTaskBook, differentUserPrefs)));
     }
 }
