@@ -19,7 +19,7 @@ public class LocationContainsKeywordsPredicate<T extends Person> implements Pred
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getLocation().location, keyword));
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getLocation().location, keyword));
     }
 
     @Override
