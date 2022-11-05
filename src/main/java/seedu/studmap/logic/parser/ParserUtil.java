@@ -125,9 +125,6 @@ public class ParserUtil {
     public static StudentID parseId(String id) throws ParseException {
         requireNonNull(id);
         String trimmedId = id.trim();
-        if (!StudentID.isValidStudentID(trimmedId)) {
-            throw new ParseException(getInvalidMessage(StudentID.MESSAGE_CONSTRAINTS, id));
-        }
         return new StudentID(trimmedId);
     }
 
