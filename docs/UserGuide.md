@@ -364,128 +364,27 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 
 ## Person Fields
 
-| Field Type      | Field Description                         | Identifier | Restrictions (if any)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|-----------------|-------------------------------------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name            | A person's name                           | n/         | Should only contain [alphanumeric](#alphanumeric) characters                                                                                                                                                                                                                                                                                                                                                                                                                                                        |           
-| Phone Number    | A person's phone number                   | p/         | Should only contain numbers and be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                   |           
-| Module Code     | The module code a person is associated to | m/         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |           
-| Email Address   | A person's email address                  | e/         | Should follow the format `local-part@domain`, where:<ol><li>`local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .<li>`domain` consists of two `domain labels` seperated by a `.`<ul><li> The second `domain label` should be at least 2 characters long.<li>`domain label` should start and end with alphanumeric characters.<li>Each `domain label` should only consist of alphanumeric characters, separated by hyphens if necessary. |
-| Telegram Handle | A person's telegram                       | tg/        | <ol><li>Should begin with `@` and contain only alphanumeric characters<li>Should be at least 5 characters long, excluding the `@`                                                                                                                                                                                                                                                                                                                                                                           |           
-| Tags            | A person's tag                            | t/         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |           
-
-### Name
-
-* The name of the person you want to add.
-* Identified by prefix `n/`.
-* Valid field to be searched using `Find` command.
-* No restriction but you are recommended to add a person's full name to be it less ambigious during search.
-* Mandatory field.
-
-### Phone number
-
-* The phone number of the person.
-* Identified by prefix `p/`.
-* Valid field to be searched using `Find` command.
-* A Phone number should only contain numbers and be at least 3 digits long.
-* Optional field.
-
-### Module code
-
-* The module this person is associated to, i.e. if he/she is a Professor or Teaching Assistant, it means the Module he/she is teaching.
-* Identified by prefix `m/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add as module code.
-* Optional field.
-
-### Email address
-
-* The email address of the person.
-* Identified by prefix `e/`.
-* Valid field to be searched using `Find` command.
-* It should follow the following format: `local-part@domain`
-    1. The `local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .
-    2. This is followed by a `domain name` which is made of `domain labels` separated by periods. The `domain name` must:
-    1. end with a `domain label` at least 2 characters long.
-    2. have each `domain label` start and end with alphanumeric characters.
-    3. have each `domain label` consist of alphanumeric characters only, separated by hyphens, if any.
-* Optional field.
-
-### Telegram handle
-
-* The telegram handle of the person.
-* Identified by prefix `tg/`.
-* Valid field to be searched using `Find` command.
-* Handle should start with a `@` symbol and only contain [alphanumeric](#alphanumeric) characters after `@`. It should be at least 5 characters long, not including `@`.
-* Optional field.
-
-### Tags
-
-* Tags you want to attach to the person, i.e. Friend, Professor, Family
-* You can include as many tags as you want.
-* Identified by prefix `t/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
+| Field Type      | Field Description                         | Identifier | Optional | Restrictions (if any)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|-----------------|-------------------------------------------|------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name            | A person's name                           | n/         |          | Should only contain [alphanumeric](#alphanumeric) characters                                                                                                                                                                                                                                                                                                                                                                                                                                                |           
+| Phone Number    | A person's phone number                   | p/         | ✓        | Should only contain numbers and be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                   |           
+| Module Code     | The module code a person is associated to | m/         | ✓        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |           
+| Email Address   | A person's email address                  | e/         | ✓        | Should follow the format `local-part@domain`, where:<ol><li>`local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .<li>`domain` consists of two `domain labels` seperated by a `.`<ul><li> The second `domain label` should be at least 2 characters long.<li>`domain label` should start and end with alphanumeric characters.<li>Each `domain label` should only consist of alphanumeric characters, separated by hyphens if necessary. |
+| Telegram Handle | A person's telegram                       | tg/        | ✓        | <ol><li>Should begin with `@` and contain only alphanumeric characters<li>Should be at least 5 characters long, excluding the `@`                                                                                                                                                                                                                                                                                                                                                                           |           
+| Tags            | A person's tag                            | t/         | ✓        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Module Fields
 
-| Field Type                    | Field Description                                 | Identifier | Restrictions (if any)                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-|-------------------------------|---------------------------------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Module Code                   | Module code of a module                           | m/         | Must be a valid NUS module                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |           
-| Lecture Details               | Details of a lecture, e.g. location and time      | l/         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |           
-| Lecture Zoom Link             | Zoom link of a lecture                            | lz/        | Must be a valid [URL](#url) which begins with https://                                                                                                                                                                                                                                                                                                                                                                                                                                             |           
-| Tutorial Details              | Details of a tutorial, e.g. location and time     | t/         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |          
-| Tutorial Zoom Link            | Zoom link of a tutorial                           | tz/        | Must be a valid [URL](#url) which begins with https://                                                                                                                                                                                                                                                                                                                                                                                                                                             |           
-| Assignment Details            | Details of an assignment, e.g. title and due date | a/         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |     
-
-### Module Code
-
-* The module code of the module you want to add.
-* Identified by prefix `m/`.
-* Valid field to be searched using `Find` command.
-* Only valid NUS module codes can be added.
-* Mandatory field.
-
-### Lecture Details
-
-* The lecture details of the module you want to add, such as the location and time.
-* Identified by prefix `l/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
-
-### Lecture Zoom Link
-
-* The zoom link of the lecture.
-* Identified by prefix `lz/`.
-* Zoom link should be a valid [URL](#url).
-* Optional field.
-
-### Tutorial Details
-
-* The tutorial details of the module you want to add, such as the location and time.
-* Identified by prefix `t/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
-
-### Tutorial Zoom Link
-
-* The zoom link of the lecture.
-* Identified by prefix `tz/`.
-* Zoom link should be a valid [URL](#url).
-* Optional field.
-
-### Assignment Details
-
-* Details you want to add for your assignments for the module, ie. `Assignment 1 due 20/08`.
-* You can include as assignment details as you want.
-* Identified by prefix `a/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
+| Field Type         | Field Description                                 | Identifier | Optional | Restrictions (if any)                                  |
+|--------------------|---------------------------------------------------|------------|----------|--------------------------------------------------------|
+| Module Code        | Module code of a module                           | m/         |          | Must be a valid NUS module                             |           
+| Lecture Details    | Details of a lecture, e.g. location and time      | l/         | ✓        |                                                        |           
+| Lecture Zoom Link  | Zoom link of a lecture                            | lz/        | ✓        | Must be a valid [URL](#url) which begins with https:// |           
+| Tutorial Details   | Details of a tutorial, e.g. location and time     | t/         | ✓        |                                                        |          
+| Tutorial Zoom Link | Zoom link of a tutorial                           | tz/        | ✓        | Must be a valid [URL](#url) which begins with https:// |           
+| Assignment Details | Details of an assignment, e.g. title and due date | a/         | ✓        |                                                        |     
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -529,16 +428,20 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 ## GLOSSARY
 
 #### Command Line Interface
+
 * It is a text-based interface where users input commands (in the form of text) to interact with the computer/program.
 
 #### Graphical User Interface
+
 * It is a form of interface where users can interact with apps/electrical devices through graphical icons and audio indicators.
 
 #### Jar file
-* It is a way to package multiple Java class files and associated resources(text, images etc.) into one file. 
+
+* It is a way to package multiple Java class files and associated resources(text, images etc.) into one file.
 * It is also typically used to deploy(run) an entire application.
 
 #### Parameters
+
 * It is a special kind of variable used in a function to refer to data provided.
 * In this case, it refers to the different fields you are providing to each person or module you want to add to the app, for example, name, phone number and module code for a person.
 
