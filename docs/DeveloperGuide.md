@@ -403,6 +403,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Choice 2 : Saves the entire address book.**
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
