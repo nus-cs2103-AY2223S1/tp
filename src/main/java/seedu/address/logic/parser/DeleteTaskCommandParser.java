@@ -7,10 +7,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import java.util.regex.Pattern;
+
 /**
  * Parses input arguments and creates a new DeleteTaskCommand object
  */
 public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
+
+    private final Pattern pattern = Pattern.compile("(-|\\+)?\\d+(\\.\\d+)?");
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTaskCommand
@@ -19,11 +23,9 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
      */
     public DeleteTaskCommand parse(String args) throws ParseException {
 
-        try {
-            Integer.parseInt(args.strip());
-        } catch (NumberFormatException ne) {
+        if (!pattern.matcher(args.strip()).matches()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE), ne);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
         }
 
         try {

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 
@@ -38,12 +39,14 @@ public class DeleteTaskCommandParserTest {
         // negative index
         assertParseFailure(parser, "-2",  MESSAGE_INVALID_TASK_INDEX);
 
+        // positive signed index
+        assertParseFailure(parser, "+3",  MESSAGE_INVALID_TASK_INDEX);
+
         // valid index followed by string
         assertParseFailure(parser, "1 i/ string", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
 
-//        assertParseFailure(parser, "9999999999999999999999", String.format(
-//                MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
-//
+        // number bigger than max integer
+        assertParseFailure(parser, "9999999999999999999999", MESSAGE_INVALID_TASK_INDEX);
     }
 }

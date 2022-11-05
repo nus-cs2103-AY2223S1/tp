@@ -48,6 +48,9 @@ public class TypicalIndexes {
     public static final Index INDEX_SIXTH_MODULE = Index.fromOneBased(6);
     public static final Index INDEX_SEVENTH_MODULE = Index.fromOneBased(7);
     public static final Index INDEX_MODULE_UNRELATED_TO_ANY_TASK_OR_EXAM = Index.fromOneBased(8);
+    public static final Index INDEX_MODULE_RELATED_TO_TASKS_NOT_EXAMS = Index.fromOneBased(4);
+    public static final Index INDEX_MODULE_RELATED_TO_EXAMS_NOT_TASKS = Index.fromOneBased(5);
+    public static final Index INDEX_MODULE_RELATED_TO_EXAMS_AND_TASKS = Index.fromOneBased(7);
 
 }
 

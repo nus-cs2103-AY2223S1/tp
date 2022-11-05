@@ -69,6 +69,7 @@ public class TypicalTasks {
     public static final Task TASK_I = new TaskBuilder().withModule("cs2103t")
             .withTaskDescription("Task I")
             .build();
+
     public static final Task TASK_J = new TaskBuilder().withTaskDescription("Task one").withModule("CS2030S").build();
     public static final Task TASK_K = new TaskBuilder().withTaskDescription("Task two").withModule("CS2030S").build();
     public static final Task TASK_L = new TaskBuilder().withTaskDescription("HW1").withModule("CS2030S").build();

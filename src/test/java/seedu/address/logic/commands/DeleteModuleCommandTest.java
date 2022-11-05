@@ -7,14 +7,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
-import seedu.address.model.task.Task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.commands.DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS;
-import static seedu.address.logic.commands.DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS;
-import static seedu.address.logic.commands.DeleteTaskCommand.MESSAGE_EXAM_LINK_DROPPED;
+import static seedu.address.logic.commands.DeleteModuleCommand.MESSAGE_DELETE_TASKS_AND_EXAMS_RELATED_TO_MODULE;
 import static seedu.address.testutil.TypicalIndexes.*;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
@@ -85,44 +83,80 @@ public class DeleteModuleCommandTest {
         assertCommandFailure(deleteModuleCommand, model, expectedMessage);
     }
 
-//    @Test
-//    public void execute_linkedTaskUnfilteredList_success() {
-//        Task taskToDelete = model.getFilteredTaskList().get(INDEX_LINKED_TASK.getZeroBased());
-//        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_LINKED_TASK);
-//
-//        String expectedMessage = String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete)
-//                + MESSAGE_EXAM_LINK_DROPPED;
-//
-//        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-//        expectedModel.deleteTask(taskToDelete);
-//
-//        assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
-//    }
-//
-//    @Test
-//    public void equals() {
-//        DeleteModuleCommand deleteModuleFirstCommand = new DeleteModuleCommand(INDEX_FIRST_MODULE);
-//        DeleteModuleCommand deleteModuleSecondCommand = new DeleteModuleCommand(INDEX_SECOND_MODULE);
-//
-//        // same object -> returns true
-//        assertTrue(deleteModuleFirstCommand.equals(deleteModuleFirstCommand));
-//
-//        // same values -> returns true
-//        DeleteModuleCommand deleteModuleFirstCommandCopy = new DeleteModuleCommand(INDEX_FIRST_MODULE);
-//        assertTrue(deleteModuleFirstCommand.equals(deleteModuleFirstCommandCopy));
-//
-//        // different types -> returns false
-//        assertFalse(deleteModuleFirstCommand.equals(1));
-//
-//        // null -> returns false
-//        assertFalse(deleteModuleFirstCommand.equals(null));
-//
-//        // different module index -> returns false
-//        assertFalse(deleteModuleFirstCommand.equals(deleteModuleSecondCommand));
-//    }
-//
-//
-//
+    @Test
+    public void execute_validIndexUnfilteredListWithModuleRelatedToTasksNotExams_success() {
+        Module moduleToDelete = model.getFilteredModuleList()
+                .get(INDEX_MODULE_RELATED_TO_TASKS_NOT_EXAMS.getZeroBased());
+        DeleteModuleCommand deleteModuleCommand =
+                new DeleteModuleCommand(INDEX_MODULE_RELATED_TO_TASKS_NOT_EXAMS);
+
+        String expectedMessage = String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete)
+                + MESSAGE_DELETE_TASKS_AND_EXAMS_RELATED_TO_MODULE;
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deleteTasksWithModule(moduleToDelete);
+        expectedModel.deleteModule(moduleToDelete);
+
+        assertCommandSuccess(deleteModuleCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndexUnfilteredListWithModuleRelatedToExamsNotTasks_success() {
+        Module moduleToDelete = model.getFilteredModuleList()
+                .get(INDEX_MODULE_RELATED_TO_EXAMS_NOT_TASKS.getZeroBased());
+        DeleteModuleCommand deleteModuleCommand =
+                new DeleteModuleCommand(INDEX_MODULE_RELATED_TO_EXAMS_NOT_TASKS);
+
+        String expectedMessage = String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete)
+                + MESSAGE_DELETE_TASKS_AND_EXAMS_RELATED_TO_MODULE;
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deleteExamsWithModule(moduleToDelete);
+        expectedModel.deleteModule(moduleToDelete);
+
+        assertCommandSuccess(deleteModuleCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndexUnfilteredListWithModuleRelatedToExamsAndTasks_success() {
+        Module moduleToDelete = model.getFilteredModuleList()
+                .get(INDEX_MODULE_RELATED_TO_EXAMS_AND_TASKS.getZeroBased());
+        DeleteModuleCommand deleteModuleCommand =
+                new DeleteModuleCommand(INDEX_MODULE_RELATED_TO_EXAMS_AND_TASKS);
+
+        String expectedMessage = String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete)
+                + MESSAGE_DELETE_TASKS_AND_EXAMS_RELATED_TO_MODULE;
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deleteTasksWithModule(moduleToDelete);
+        expectedModel.deleteExamsWithModule(moduleToDelete);
+        expectedModel.deleteModule(moduleToDelete);
+
+        assertCommandSuccess(deleteModuleCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        DeleteModuleCommand deleteModuleFirstCommand = new DeleteModuleCommand(INDEX_FIRST_MODULE);
+        DeleteModuleCommand deleteModuleSecondCommand = new DeleteModuleCommand(INDEX_SECOND_MODULE);
+
+        // same object -> returns true
+        assertTrue(deleteModuleFirstCommand.equals(deleteModuleFirstCommand));
+
+        // same values -> returns true
+        DeleteModuleCommand deleteModuleFirstCommandCopy = new DeleteModuleCommand(INDEX_FIRST_MODULE);
+        assertTrue(deleteModuleFirstCommand.equals(deleteModuleFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(deleteModuleFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteModuleFirstCommand.equals(null));
+
+        // different module index -> returns false
+        assertFalse(deleteModuleFirstCommand.equals(deleteModuleSecondCommand));
+    }
+
     private void showNoModule(Model model) {
         model.updateFilteredModuleList(m -> false);
 

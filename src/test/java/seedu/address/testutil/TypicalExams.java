@@ -25,12 +25,15 @@ public class TypicalExams {
     public static final Exam EXAMTWO = new ExamBuilder()
             .withDescription("Exam two")
             .withModule("CS2040S").withDate("20-10-2023").build();
+    public static final Exam EXAMTHREE = new ExamBuilder()
+            .withDescription("Exam three")
+            .withModule("MA1521").withDate("20-11-2023").build();
 
     private TypicalExams() {} // prevents instantiation
 
 
     public static List<Exam> getTypicalExams() {
-        return new ArrayList<>(Arrays.asList(MIDTERM_EXAM, FINAL_EXAM, EXAMONE, EXAMTWO));
+        return new ArrayList<>(Arrays.asList(MIDTERM_EXAM, FINAL_EXAM, EXAMONE, EXAMTWO, EXAMTHREE));
     }
 
 }
