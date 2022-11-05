@@ -19,8 +19,10 @@ public class AmountTest {
 
     @Test
     public void constructor_invalidAmount_throwsIllegalArgumentException() {
-        String invalidAmount = "";
-        assertThrows(IllegalArgumentException.class, () -> new Amount(invalidAmount));
+        assertThrows(IllegalArgumentException.class, () -> new Amount(" "));
+        assertThrows(IllegalArgumentException.class, () -> new Amount("123.1212"));
+        assertThrows(IllegalArgumentException.class, () -> new Amount("abc"));
+        assertThrows(IllegalArgumentException.class, () -> new Amount("99999999999999999999999999999999999999999999999999999999999999"));
     }
 
     @Test
@@ -44,6 +46,24 @@ public class AmountTest {
         String validAmount = "3.22";
         assertTrue(Amount.isValidAmount(validAmount));
 
+    }
+
+    @Test
+    public void isAmountWithinLimits() {
+        // null amount
+        assertThrows(NullPointerException.class, () -> Amount.isAmountWithinLimits(null));
+
+        // invalid amount
+        assertFalse(Amount.isAmountWithinLimits("abc"));
+        assertFalse(Amount.isAmountWithinLimits("  "));
+
+        // valid amount
+        assertTrue(Amount.isAmountWithinLimits("1000000.00")); // boundary value
+        assertTrue(Amount.isAmountWithinLimits("999999.99")); // boundary value
+        assertFalse(Amount.isAmountWithinLimits("1000000.01")); // boundary value
+        assertFalse(Amount.isAmountWithinLimits("99999999999999999999999999999999999999999999999999999999999999"));
+        assertTrue(Amount.isAmountWithinLimits("333333.22"));
+        assertTrue(Amount.isAmountWithinLimits("0"));
     }
 
     @Test
