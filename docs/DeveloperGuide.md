@@ -510,13 +510,21 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
     - More user-friendly; if the user does not know that a `Person` already has/does not have the assignment to be added/deleted respectively, the end result is close to the desired outcome.
   - Cons:
     - Have to maintain a list of updated `Person`s to feedback to user; more difficult to implement.
+    - The task assigned previously is a different object to the one currently being assigned; can cause memory issues.
 - Alternative 2: Return CommandException
   - Pros:
     - Easier to implement.
   - Cons:
     - Less user-friendly; if the user does not keep track of tasks already assigned, cannot take advantage of
       the feature easily.
---------------------------------------------------------------------------------------------------------------------
+- Alternative 3: Replace tasks of the same name
+  - Pros:
+    - More user-friendly; if the user intends to replace the tasks previously assigned, the end result is close to the desired outcome.
+    - Since task objects are replaced, no duplication of tasks exists.
+  - Cons:
+    - In addition to the difficulties mentioned in Alternative 1, must also replace tasks inside a `Person` object; most difficult option to implement.
+
+----
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
