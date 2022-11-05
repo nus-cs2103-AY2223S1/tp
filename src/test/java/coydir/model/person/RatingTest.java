@@ -17,7 +17,7 @@ public class RatingTest {
     private Rating rating5;
     private Rating rating6;
     private Rating rating7;
-    
+
     public RatingTest() {
         try {
             rating1 = new Rating("1", "05-01-2022");
@@ -49,7 +49,7 @@ public class RatingTest {
         // blank rating
         assertFalse(Rating.isValidRating("")); // empty string
         assertFalse(Rating.isValidRating(" ")); // spaces only
-        
+
         // invalid rating
         assertFalse(Rating.isValidRating("0")); // rating smaller than minimum integer
         assertFalse(Rating.isValidRating("02")); // rating not an integer format
