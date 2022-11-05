@@ -11,6 +11,22 @@ import org.junit.jupiter.api.Test;
 public class HospitalWingTest {
 
     @Test
+    public void isValidEnum() {
+        assertAll(() -> assertEquals("EAST", HospitalWing.HospitalWingTypes.EAST.name()), () ->
+                assertEquals("WEST", HospitalWing.HospitalWingTypes.WEST.name()), () ->
+                        assertEquals("NORTH", HospitalWing.HospitalWingTypes.NORTH.name()), () ->
+                                assertEquals("SOUTH", HospitalWing.HospitalWingTypes.SOUTH.name()));
+    }
+
+    @Test
+    public void enum_toStringTest() {
+        assertAll(() -> assertEquals("East", HospitalWing.HospitalWingTypes.EAST.toString()), () ->
+                assertEquals("West", HospitalWing.HospitalWingTypes.WEST.toString()), () ->
+                        assertEquals("North", HospitalWing.HospitalWingTypes.NORTH.toString()), () ->
+                                assertEquals("South", HospitalWing.HospitalWingTypes.SOUTH.toString()));
+    }
+
+    @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new HospitalWing(null));
     }
@@ -89,19 +105,6 @@ public class HospitalWingTest {
         // different hospital wing
         assertNotEquals(expectedMessageForSouth, hospitalWingNorth.toString());
         assertNotEquals(expectedMessageNorth, hospitalWingSouth.toString());
-    }
-
-    @Test
-    public void enumToStringTest() {
-        String south = "South";
-        String north = "North";
-        String east = "East";
-        String west = "West";
-
-        assertEquals(south, HospitalWing.HospitalWingTypes.SOUTH.toString());
-        assertEquals(north, HospitalWing.HospitalWingTypes.NORTH.toString());
-        assertEquals(east, HospitalWing.HospitalWingTypes.EAST.toString());
-        assertEquals(west, HospitalWing.HospitalWingTypes.WEST.toString());
     }
 
     @Test
