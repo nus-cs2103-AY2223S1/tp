@@ -171,10 +171,9 @@ add-module m/CS2104 t/Programming Language Concepts
 In the above example, we are adding a module `CS2104` which has the title `Programming Language Concepts`.
 Here's a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                               | After executing the command                                                                                                                                                                                           |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/add-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-module-after.png"/></p><p>A message will appear indicating that a module has been added. Observe that the new module has been added to the modules list.</p>{:/} |
-
+| Before executing the command                                                                                                                               | After executing the command                                                                                                                                                                                     |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-module-after.png"/></p><p>A message will appear indicating that `CS2104` has been added. Observe that `CS2104` has been added to the modules list.</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Adding a module will bring you back to the home page.
@@ -197,9 +196,14 @@ Format: `delete-module m/MODULE_CODE`
 Example:
 
 ```
-delete-module m/CS2103T
+delete-module m/CS2104
 ```
-In the above example, we are deleting module `CS2103T` from Plannit.
+In the above example, we are deleting module `CS2104` from Plannit.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                                  | After executing the command                                                                                                                                                                                              |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-module-after.png"/></p><p>A message will appear indicating that `CS2104` has been deleted. Observe that `CS2104` has been removed from the modules list.</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Deleting a module will bring you back to the home page.
@@ -226,27 +230,32 @@ Format: `edit-module INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`
 Examples:
 
 ```
-edit-module 3 m/CS2103T
+edit-module 3 m/CS2104
 ```
-In the above example, we are changing the module code of the third module on Plannit to `CS2103T`.
+In the above example, we are changing the module code of the third module on Plannit to `CS2104`.
 
 ```
-edit-module 3 m/CS2103T t/
+edit-module 3 m/CS2104 t/
 ```
-In the above example, we are changing the module code of the third module on Plannit to `CS2103T`, 
+In the above example, we are changing the module code of the third module on Plannit to `CS2104`, 
 and at the same time, removing the module title.
 
 ```
-edit-module 3 m/CS2103T t/Software Engineering
-```
-In the above example, we are changing the module code of the third module on Plannit to `CS2103T`,
-and at the same time, changing the module title to `Software Engineering`.
-
-```
-edit-module 3 t/Software Engineering
+edit-module 3 t/Programming Language Concepts
 ```
 In the above example, we are changing the module title of the third module on Plannit to 
-`Software Engineering`.
+`Programming Language Concepts`.
+
+```
+edit-module 3 m/CS2104 t/Programming Language Concepts
+```
+In the above example, we are changing the module code of the third module on Plannit to `CS2104`,
+and at the same time, changing the module title to `Programming Language Concepts`.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                                                                                                                                                                                                                                                                                            |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/edit-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/edit-module-after.png"/></p><p>A message will appear indicating that a module has been edited. Observe that the third module in the modules list has its module code changed to `CS2104` and its module title changed to `Programming Language Concepts`. Note that the module index has changed since Plannit automatically sorts modules in ascending order of module code.</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Editing a module will bring you back to the home page.
@@ -603,12 +612,17 @@ Format: `add-person-to-module m/MODULE_CODE n/NAME`
 Example:
 
 ```
-add-person-to-module m/CS2103T n/Dinosaur Lim
+add-person-to-module m/CS2106 n/Charlotte Oliveiro
 ```
-In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
+In the above example, we are adding the person `Charlotte Oliveiro` to module `CS2106`.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                                         | After executing the command                                                                                                                                                              |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-person-to-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-person-to-module-after.png"/></p><p>A message will appear indicating that `Charlotte Oliveiro` has been added to `CS2103T`.</p>{:/} |
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**
-If you wish to view a person added to a particular module, you may do so by navigating to that
+If you wish to view the list of people added to a particular module, you may do so by navigating to that
 module using the [`goto`](#252-navigate-between-modules) command.
 </div>
 
