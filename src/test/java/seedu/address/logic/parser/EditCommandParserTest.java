@@ -223,6 +223,7 @@ public class EditCommandParserTest {
 
         // time interval 1
         userInput = targetIndex.getOneBased() + TI_DESC_SUN_TO_MON;
+        assert userInput.equals("3 ti/sun@2300-mon@0100") : "userInput should be 3 ti/sun@2300-mon@0100";
         descriptor = new EditPersonDescriptorBuilder()
                 .withTimeInterval(VALID_TIME_INTERVAL_SUNDAY_NIGHT_TO_MONDAY_MORNING).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -230,6 +231,7 @@ public class EditCommandParserTest {
 
         // time interval 2
         userInput = targetIndex.getOneBased() + TI_DESC_TUES;
+        assert userInput.equals("3 ti/tue@1400-tue@1600") : "userInput should be 3 ti/tue@1400-tue@1600";
         descriptor = new EditPersonDescriptorBuilder().withTimeInterval(VALID_TIME_INTERVAL_TUES_AFTERNOON).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
