@@ -48,6 +48,11 @@ public class RemoveCommandParserTest {
 
     @Test
     public void parse_multipleArgs_throwsParseException() {
+        assertParseFailure(parser, "rejected pending accepted rejected", ERROR_MESSAGE);
+    }
+
+    @Test
+    public void parse_pendingArg_throwsParseException() {
         assertParseFailure(parser, "rejected pending", ERROR_MESSAGE);
     }
 }
