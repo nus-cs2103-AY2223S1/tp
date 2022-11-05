@@ -281,12 +281,16 @@ Step 5. storage#saveDatabase is then called on the current `database`, updates t
 
 This section explains the implementation of the `find` feature.
 The command takes in a number of parameters, which serve as the "filters" for the finding/searching function.
+
 At present, we have implemented finding by name, department, position, and any combination of these three mandatory fields for an employee.
 Thus it is possible to use these altogether to search for a person with high specificity.
 
+#### Implementation
+
 The `find` command updates the model's filtered persons list based on the search filters.
-On the UI, the side panel will, by default, display the employee profile of the first person in the filtered list.
-If there is none, then it will show the home panel.
+
+- On the UI, the side panel will, by default, display the employee profile of the first person in the filtered list.
+- If there is none, then it will show the home panel.
 
 Below is a sequence diagram and explanation of how `find` is executed. In this simple example, we will look at the command `find n/Alex`.
 
