@@ -206,7 +206,7 @@ Notes on symbols in first column:
 
 Edits a patient's information, such as name, phone number, address, email, remarks, and tags.
 
-Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
+####Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
          `ep INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list.
@@ -218,8 +218,13 @@ Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [
 * You can remove all the patient’s tags by typing `t/` without
   specifying any tags after it.
 
+<<<<<<< HEAD
+####Examples:
+* `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be
+=======
 Examples:
 * `editpatient 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
    `91234567` and `johndoe@example.com` respectively.
 
 <img src = "images/ug/editcommand/editpatient.png" width="800px" height ="400px">
@@ -232,7 +237,7 @@ Examples:
 
 Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 
-Format: `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
+####Format: `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
          `ea INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
 
 * Edits the appointment at the specified `INDEX`.
@@ -242,8 +247,13 @@ Format: `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:m
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
+<<<<<<< HEAD
+####Examples:
+* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
+=======
 Example:
 * `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` edits the name, medical test, slot,
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
    and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
 
 <img src = "images/ug/editcommand/editappointment.png" width="800px" height ="400px">
@@ -252,7 +262,7 @@ Example:
 
 Edits a bill of an appointment.
 
-Format: `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill date]`
+####Format: `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill date]`
 
 * Edits the bill at the specified `INDEX`. The index refers to the index number shown in the displayed bill list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -260,9 +270,14 @@ Format: `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill d
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
+<<<<<<< HEAD
+####Examples:
+* `editbill 1 a/100` Edits the amount of the 1st bill to be `100`.
+=======
 Examples:
 * `editbill 1 a/100` edits the amount of the 1st bill to be `100`.
 
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 <img src="images/ug/editcommand/editbill.png" width="800px" height ="400px">
 
 
@@ -276,7 +291,7 @@ Examples:
 Filters patients by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
 
-Format:
+####Format:
 ```findpatient <prefix><input> ...``` or ```fp <prefix><input>...```
 
 * The command words are ``findpatient`` or ``fp``.
@@ -289,7 +304,7 @@ Format:
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
-Examples:
+####Examples:
 * ```findpatient n/ale``` returns ``Alex Yeoh`` and ``alex tan``.
 
 <img src="images/ug/findcommand/findpatientAlex.png" width="800px" height ="500px">
@@ -303,7 +318,7 @@ Examples:
 Filters appointments by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
 
-Format:
+####Format:
 ```findappointment <prefix><input> ...``` or ```fa <prefix><input>...```
 
 * The command words are `findappointment` or `fa`.
@@ -316,7 +331,7 @@ Format:
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
-Examples:
+####Examples:
 * ```findappointment t/x-ray``` returns ``Bernice Yu`` with "X-ray" appointment.
 
 <img src="images/ug/findcommand/findappointmentXray.png" width="800px" height ="500px">
@@ -331,7 +346,7 @@ Examples:
 Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
 
-Format:
+####Format:
 ```findbill <prefix><input> ...``` or ```fb <prefix><input>...```
 
 * The command words are `findbill` or `fb`.
@@ -344,8 +359,13 @@ Format:
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
+<<<<<<< HEAD
+####Examples:
+`findbill n/Ber p/unpaid` returns Bernice's unpaid bill
+=======
 Example:
 `findbill n/Ber p/unpaid` returns `Bernice Yu`'s unpaid bill.
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 <img src="images/ug/findcommand/fb.png" width="800px" height ="400px">
 
@@ -355,7 +375,7 @@ Example:
 
 Sorts patients by a single field
 
-Format:
+####Format:
 ```sortpatient <prefix><input> ...```
 
 * The command word is `sortpatient`.
@@ -365,20 +385,21 @@ Format:
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
-Examples:
+####Examples:
+
 * ```sortpatient c/name o/asc``` returns patients sorted by name in ascending order.
 
-<img src="images/ug/sortcommand/sortpatient1.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/sop1.png">
 
 * ```sortpatient c/phone o/desc``` returns patients sorted by phone number in descending order.
 
-<img src="images/ug/sortcommand/sortpatient2.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/sop2.png">
 
 ### 1.4.2 Sort appointments `sortappointment`, `soa`
 
 Sorts appointments by a single field
 
-Format:
+####Format:
 ```sortappointment <prefix><input> ...```
 
 * The command word is `sortappointment`.
@@ -388,20 +409,21 @@ Format:
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
-Examples:
+####Examples:
+
 * ```sortappointment c/test o/asc``` returns appointments sorted by medical test in ascending order.
 
-<img src="images/ug/sortcommand/sortappointment1.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/soa1.png">
 
 * ```sortappointment c/doctor o/desc``` returns appointments sorted by doctor in descending order.
 
-<img src="images/ug/sortcommand/sortappointment2.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/soa2.png">
 
 ### 1.4.3 Sort bills `sortbill`, `sob`
 
 Sorts bills by a single field
 
-Format:
+####Format:
 ```sortbill <prefix><input> ...```
 
 * The command word is `sortbill`.
@@ -413,14 +435,15 @@ Format:
 * If the criteria is Payment status, Ascending will show bills which are paid first and Descending will show bills which are unpaid first.
 
 
-Examples:
+####Examples:
+
 * ```sortbill c/amount o/asc``` returns bills sorted by amount in ascending order.
 
-<img src="images/ug/sortcommand/sortbill1.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/sob1.png">
 
 * ```sortbill c/status o/desc``` returns bills sorted by payment status in descending order.
 
-<img src="images/ug/sortcommand/sortbill2.PNG" width="800px" height ="400px">
+<img src="images/ug/sortcommand/sob2.png">
 
 ## 1.5 Select
 
@@ -453,7 +476,7 @@ Notes on symbols in first column:
 
 * `slp 1` shows the appointments and bills for the first patient in the patient list.
 
-<img src="images/ug/selectcommand/slp1.png" width="800px" height ="500px">
+<img src="images/ug/selectcommand/slp1.png">
 
 ### 1.5.2 Select an appointment `selectappointment`, `sla`
 
@@ -482,7 +505,7 @@ Notes on symbols in first column:
 
 * `sla 1` shows the bill for the first appointment in the appointment list.
 
-<img src="images/ug/selectcommand/sla1.png" width="800px" height ="500px">
+<img src="images/ug/selectcommand/sla1.png">
 
 ## 1.6 Set Bill Payment Status
 
@@ -502,47 +525,68 @@ Example:
 
 Before:
 
+<<<<<<< HEAD
+<img src="images/ug/setpaidunpaidcommand/spbefore.png">
+
+After:
+
+<img src="images/ug/setpaidunpaidcommand/spafter.png">
+=======
 <img src="images/ug/setpaidunpaidcommand/setpaidcommand.png" width="800px" height ="500px">
 
 After:
 
 <img src="images/ug/setpaidunpaidcommand/setpaidcommandafter.png" width="800px" height ="500px">
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 ### 1.6.2 Set Bill As Unpaid `setunpaid`, `sup`
 
 Sets the payment status of a bill to "unpaid".
 
-Format:
+#### Format:
 ```setunpaid <index>``` or ```sup <index>```
 
 * The command words are `setunpaid` or `sup`.
 * The index refers to the index number of the bill shown in the displayed bill list.
 * The index must be a valid positive integer 1, 2, 3, …​
 
-Example:
+#### Example:
+
 * ```setunpaid 1``` sets the first bill in the displayed bill list as unpaid, in this case, `Bernice Yu`'s bill.
 
 Before:
 
+<<<<<<< HEAD
+<img src="images/ug/setpaidunpaidcommand/supbefore.png">
+
+After:
+
+<img src="images/ug/setpaidunpaidcommand/supafter.png">
+=======
 <img src="images/ug/setpaidunpaidcommand/setunpaidcommand.png" width="800px" height ="500px">
 
 After:
 
 <img src="images/ug/setpaidunpaidcommand/setunpaidcommandafter.png" width="800px" height ="500px">
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 ## 1.7 List `list`, `ls`
 
 Removes all conditions previously applied to the list and shows all patients, appointments and bills.
 
-### Format
+#### Format
 
 `list` or `ls`
 
+<<<<<<< HEAD
+#### Example
+=======
 ### Example:
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 * `list` shows all patients, appointments and bills.
 
-<img src="images/ug/othercommands/ls1.png" width="800px" height ="500px">
+<img src="images/ug/othercommands/ls1.png">
 
 ## 1.8 Delete
 
@@ -550,7 +594,7 @@ Removes all conditions previously applied to the list and shows all patients, ap
 
 Deletes a patient by the index number of the patient in the list.
 
-Format:
+#### Format:
 ```deletepatient <targetindex>``` or ```dp <targetindex>```
 
 * The command words are `deletepatient` or `dp`.
@@ -561,15 +605,23 @@ Format:
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
 
-Examples:
-`deletepatient 2` deletes patient Bernice Yu and all their related appointments and bills.
-<img src="images/ug/deletecommand/dp.png">
+#### Examples:
+
+* `deletepatient 1` deletes patient Bernice Yu and all their related appointments and bills.
+
+Before:
+
+<img src="images/ug/deletecommand/dp1.png">
+
+After:
+
+<img src="images/ug/deletecommand/dp2.png">
 
 ### 1.8.2 Delete an appointment of a patient `deleteappointment`, `da`
 
 Deletes an appointment by the index number of the appointment in the list.
 
-Format:
+#### Format:
 ```deleteappointment <targetindex>``` or ```da <targetindex>```
 
 * The command words are `deleteappointment` or `da`.
@@ -580,17 +632,31 @@ Format:
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
 
+<<<<<<< HEAD
+#### Examples:
+
+* `deleteappointment 3` deletes Charlotte Oliveiro's appointment and its bill.
+
+Before: 
+
+<img src="images/ug/deletecommand/da1.png">
+
+After:
+
+<img src="images/ug/deletecommand/da2.png">
+=======
 Example:
 * `deleteappointment 2` deletes `Charlotte Oliveiro`'s appointment with Dr. Prabhu on 2022-10-21 08:30 for
   knee exam.
 
   <img src="images/ug/deletecommand/da.png">
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 ### 1.8.3 Delete a bill of an appointment `deletebill`, `db`
 
 Deletes a bill by the index number of the bill in the list.
 
-Format:
+#### Format:
 ```deletebill <targetindex>``` or ```db <targetindex>```
 
 * The command words are `deletebill` or `db`.
@@ -600,16 +666,30 @@ Format:
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
 
+<<<<<<< HEAD
+#### Examples:
+
+* `deletebill 3` deletes Bernice's bill for her X-Ray appointment
+
+Before:
+
+<img src="images/ug/deletecommand/db1.png">
+
+After:
+
+<img src="images/ug/deletecommand/db2.png">
+=======
 Example:
 `deletebill 1` deletes `Bernice Yu`'s bill for her X-Ray appointment.
 
 <img src="images/ug/deletecommand/db.png" width="800px" height ="400px">
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 ## 1.9 Undo `undo`
 
 Reverses the most recent command.
 
-Format:
+#### Format:
 ```undo```
 
 * The command word is `undo`.
@@ -617,26 +697,60 @@ Format:
 * If there are no commands to undo, an error message will be shown.
 * Only commands that change the state of HealthContact can be undone. (Commands such as list, find, select cannot be undone)
 
+<<<<<<< HEAD
+#### Examples:
+
+=======
 Example:
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 * ```undo``` undoes the most recent command.
 
-<img src="images/ug/undoredocommand/undo1.PNG" width="800px" height ="400px">
+1. Original Data
+
+<img src="images/ug/undoredocommand/undo1.png">
+
+2. Execute `deletepatient 1` to delete all information of Bernice Yu.
+
+<img src="images/ug/undoredocommand/undo2.png">
+
+3. Execute `undo`, infomation of Bernice Yu comes back.
+
+<img src="images/ug/undoredocommand/undo3.png">
 
 ## 1.10 Redo `redo`
 
 Reverses the most recent undo command.
 
-Format:
+#### Format:
 ```redo```
 
 * The command word is `redo`.
 * The command can be used multiple times to redo multiple commands.
 * If there are no commands to redo, an error message will be shown.
 
+<<<<<<< HEAD
+#### Examples:
+
+=======
 Example:
+>>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 * ```redo``` redoes the most recent undo command.
 
-<img src="images/ug/undoredocommand/redo1.PNG" width="800px" height ="400px">
+1. Original Data
+
+<img src="images/ug/undoredocommand/redo1.png">
+
+2. Execute `deletepatient 1` to delete all information of Bernice Yu.
+
+<img src="images/ug/undoredocommand/redo2.png">
+
+3. Execute `undo`, infomation of Bernice Yu comes back.
+
+<img src="images/ug/undoredocommand/redo3.png">
+
+4. Execute `redo`, infomation of Bernice Yu is deleted again.
+
+<img src="images/ug/undoredocommand/redo4.png">
 
 
 
@@ -646,26 +760,26 @@ Deletes all patients, appointments and bills from HealthContact.
 
 * If the user accidentally clears all data, the user can restore the data by using the `undo` command. If the user closes the application before undoing `clear`, the data will be gone permanently.
 
-### Format
+#### Format
 
 
 `clear`
 
-### Example
+#### Example
 
 * `clear` deletes all the data in HealthContact.
 
-<img src="images/ug/othercommands/clear.png" width="800px" height ="500px">
+<img src="images/ug/othercommands/clear.png">
 
 ## 1.12 Exit `exit`
 
 Quits HealthContact.
 
-### Format
+#### Format
 
 `exit`
 
-### Example
+#### Example
 
 * Executing `exit`, the program closes.
 
@@ -673,15 +787,15 @@ Quits HealthContact.
 
 Opens the Help Window.
 
-### Format
+#### Format
 
 `help`
 
-### Example
+#### Example
 
 * `help` opens the help window.
 
-<img src="images/ug/othercommands/help.png" width="800px" height ="180px">
+<img src="images/ug/othercommands/help.png">
 
 ## 1.14 Save the data
 
