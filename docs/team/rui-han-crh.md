@@ -114,7 +114,7 @@ Given below are my contributions to the project.
 
 Text Extract:
 
-<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: Khaki;">
 
 <h2>User Interface</h2>
 
@@ -135,7 +135,7 @@ Once the command box is selected, a results display will appear to report the st
 </p>
 <center style="font-size:3mm;">Results Display.</center>
 
-<br/>
+<br>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You may activate the command box by simply pressing the spacebar on your keyboard. There is no need to use your mouse to click on the bar.
@@ -152,10 +152,14 @@ The People Panel contains all the club and organisation members you have registe
 
 Each card represents a person and displays their name, phone number and total present loan amount. The loan amount may be positive to indicate an amount owed by the person, or negative to indicate an amount due to be paid to the person.
 
+<br>
+
 <p align="center">
   <img src="../images/TypicalPersonCard.png" width="125">
 </p>
 <center style="font-size:3mm;">A person card.</center>
+
+<br>
 
 The index of the person only applies to the currently displayed list, it is <b>not</b> tied to the person itself.
 
@@ -178,10 +182,14 @@ This Notes Panel stores all the information related to notes and tasks that the 
 
 Each note contains an index, a title, contents and tags.
 
+<br>
+
 <p align="center">
   <img src="../images/TypicalNoteCard.png" width="500">
 </p>
 <center style="font-size:3mm;">A note card.</center>
+
+<br>
 
 The index of the notes only applies to the currently displayed list, it <b>is not</b> tied to the note itself.
 
@@ -199,7 +207,7 @@ This section is too long to be reproduced in entirety. Here is an example of the
 
 Text extract:
 
-<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: Khaki;">
 
 <h3 id="email">Email</h3>
 <p>This pertains to the email address of the person to be recorded in the SectresBook. It serves mainly as a point of information regarding the person, but has no additional features tied to it.</p>
@@ -237,7 +245,7 @@ The local part and domain part <b>must</b> be connected by a <code>@</code> symb
 
 `inspect` text extracted (images removed):
 
-<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: Khaki;">
 
 <h4>Inspecting a person: <code>inspect</code></h4>
 
@@ -271,7 +279,7 @@ The text for `showNotes` and `hideNotes` are not remarkable enough to be extract
 
 Glossary text extracted:
 
-<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: Khaki;">
 
 <table>
     <tr>
@@ -334,7 +342,7 @@ Glossary text extracted:
 
 3. Wrote the section involving UI design
 
-<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: Khaki;">
 
 <h3>General UI Design and Mechanism</h3>
 
@@ -342,7 +350,11 @@ Glossary text extracted:
 
 During the creation of the new UI, a lot of the FXML structure and the relationships between containers of the UI had to be refactored.
 
+<br>
+
 <img src="../images/UIComponentsLabeled.png"/>
+
+<br>
 
 <p>The UI is divided into 2 major sections - one occupied by the <code>CommandBox</code> and another occupied by the <code>WindowAnchorPane</code>.</p>
 <p>The <code>WindowAnchorPane</code> consists of an StackPane.</p>
@@ -395,7 +407,7 @@ During the creation of the new UI, a lot of the FXML structure and the relations
 
 7. Wrote the section involving `inspect`, `showNotes` and `hideNotes`
 
-<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: AliceBlue;">
+<div style="background-color:AliceBlue; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: Khaki;">
 
 <h3 id="inspect-feature">Inspect Feature</h3>
 <h4 id="implementation">Implementation</h4>
