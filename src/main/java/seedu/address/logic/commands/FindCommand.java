@@ -96,9 +96,8 @@ public class FindCommand extends Command {
         Finds all appointments that satisfy the given appointmentPredicate whose patient matches the personPredicate,
         and updates the model accordingly.
          */
-        Predicate<Appointment> appointmentFulfillingBothPredicates = !isUsingAppointmentPredicate
-                ? appointmentOfFilteredPersonsPredicate
-                : appointmentOfFilteredPersonsPredicate.and(appointmentPredicate);
+        Predicate<Appointment> appointmentFulfillingBothPredicates =
+                appointmentOfFilteredPersonsPredicate.and(appointmentPredicate);
 
         Predicate<Person> combinedPersonPredicate =
                 HiddenPredicateSingleton.combineWithRegularPredicate(personFulfillingBothPredicates);
