@@ -9,11 +9,11 @@ import static seedu.address.testutil.TypicalTasks.COOK;
 import static seedu.address.testutil.TypicalTasks.REVIEW;
 import static seedu.address.testutil.TypicalTasks.STUDY;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TaskBuilder;
-
-import java.time.LocalDate;
 
 public class TaskTest {
 
