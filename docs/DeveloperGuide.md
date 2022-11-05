@@ -250,7 +250,7 @@ The following activity diagram summarizes the flow of when a user enters an edit
 
 * **Future Extension:** bobaBot can support multiple editing so user do not have to edit customers one by one.
 
-### \[Insert Numbering\] Increase/ Decrease feature
+### Increase/ Decrease feature
 The Increase/ Decrease feature is facilitated by `LogicManager`. The `IncreaseCommandParser` or `DecreaseCommandParser` parses the command arguments, and returns
 an `IncreaseCommand` or `DecreaseCommand` that is executed by the `LogicManager`.
 
@@ -266,7 +266,7 @@ This feature is an extension to the above Edit feature to ease the process of ed
 
 **Pros and Cons are the same as the above Edit Feature.**
 
-### \[Insert Numbering\] Delete feature
+### Delete feature
 The Delete feature is facilitated by `LogicManager`. The `DeleteCommandParser` parses the command arguments, and returns
 a `DeleteCommand` that is executed by the `LogicManager` and returns a `CommandResult` as feedback to the user.
 
@@ -289,7 +289,7 @@ The activity diagram below illustrates how the `delete` operation works.
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
-#### \[Insert Numbering\] Design Considerations
+#### Design Considerations
 
 **Aspect: How `delete` is executed**
 * **Alternative 1 (current choice):** User can delete a customer via either `PHONE_NUMBER` or `EMAIL`.
@@ -310,7 +310,7 @@ The activity diagram below illustrates how the `delete` operation works.
 * **Future Extension:** bobaBot can support multiple deletions so user do not have to delete customers one by one.
 
 
-### \[Insert Numbering\] Find feature
+### Find feature
 The Find feature is facilitated by `LogicManager`. The `FindCommandParser` parses the command arguments, and returns
 an `FindCommand` that is executed by the `LogicManager`.
 
@@ -348,7 +348,7 @@ or just search for occurrence of keywords (including name) vaguely.
 * **Future Extension:** bobaBot can support priority in listing of search results.
 
 
-### \[Insert Numbering\] Undo/Redo feature
+### Undo/Redo feature
 
 #### Implementation
 
@@ -656,15 +656,15 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### \[Insert Numbering\] Adding a customer
+### Adding a customer
 
-### \[Insert Numbering\] Editing a customer
+### Editing a customer
 
-### \[Insert Numbering\] Increasing a customer's reward
+### Increasing a customer's reward
 
-### \[Insert Numbering\] Decreasing a customer's reward
+### Decreasing a customer's reward
 
-### \[Insert Numbering\] Listing all customers
+### Listing all customers
 
 1. Viewing all customers within bobaBot
 
@@ -673,9 +673,9 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `list`<br>
        Expected: All customers' data should be listed (listing order follows the order of addition).
 
-### \[Insert Numbering\] Finding a customer
+### Finding a customer
 
-### \[Insert Numbering\] Deleting a customer
+### Deleting a customer
 
 1. Deleting a customer via `PHONE_NUMBER`
 
@@ -703,7 +703,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delete`, `delete e/`, `delete hello`, `...`<br>
        Expected: Similar to previous.
 
-### \[Insert Numbering\] Undoing an unintended command
+### Undoing an unintended command
 
 1. Undo an unintended command that has been executed.
 
@@ -718,7 +718,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect undo commands to try: `undo anya`, `undo 123`, `...`<br>
       Expected: Similar to previous
 
-### \[Insert Numbering\] Redoing an UndoCommand
+### Redoing an UndoCommand
 
 1. Redo an UndoCommand that has been executed.
 
@@ -733,7 +733,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect undo commands to try: `redo anya`, `redo 123`, `...`<br>
        Expected: Similar to previous
 
-### \[Insert Numbering\] Clearing all customers in bobaBot
+### Clearing all customers in bobaBot
 
 1. Clearing all customers within bobaBot
 
@@ -742,7 +742,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `clear`<br>
       Expected: All customers' data cleared.
 
-### \[Insert Numbering\] Calculating simple arithmetic
+### Calculating simple arithmetic
 
 1. Performs simple arithmetic calculation
 
@@ -757,14 +757,14 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `calc`, `calc hello`, `...`<br>
       Expected: Similar to previous.
 
-### \[Insert Numbering\] Viewing Help
+### Viewing Help
 
 1. View Help
 
    1. Test case: `help`<br>
       Expected: Help window appears.
 
-### \[Insert Numbering\] Saving data
+### Saving data
 
 1. Dealing with missing/corrupted data files
 
