@@ -49,7 +49,7 @@ public class EditOrderCommand extends Command {
             + CliSyntax.PREFIX_PHONE + "91234567 "
             + CliSyntax.PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: \n%1$s";
+    public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_NONEXISTENT_ITEM = "The item that is being added does "
             + "not exist in the inventory list.";
@@ -58,6 +58,9 @@ public class EditOrderCommand extends Command {
 
     public static final String MESSAGE_ORDER_ALREADY_MARKED =
             "An order marked as paid and/or delivered cannot be edited!";
+
+    public static final String MESSAGE_NO_CHANGE_IN_QUANTITY =
+            "New item quantity is the same as the old item quantity. No edits required.";
 
     public static final String MESSAGE_QUANTITY_INVALID = "Quantity should be an integer less than 2,147,483,648.";
 
@@ -266,6 +269,10 @@ public class EditOrderCommand extends Command {
                     orderedItems.set(i, updatedItem);
                     hasItemBeenUpdated = true;
                     break;
+                } else {
+                    // else case where edited quantity = original quantity, throw new exception to warn of
+                    // no quantity change
+                    throw new CommandException(MESSAGE_NO_CHANGE_IN_QUANTITY);
                 }
             }
 

@@ -148,13 +148,7 @@ public class ParserUtil {
      * @throws ParseException if the specified quantity is invalid (not non-zero unsigned integer).
      */
     public static Quantity parseQuantity(String quantity) throws ParseException {
-        String trimmedQuantity = quantity.trim();
-        if (!StringUtil.isNonNegativeUnsignedInteger(trimmedQuantity)) {
-            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
-        }
-
-        int integerQuantity = Integer.parseInt(trimmedQuantity);
-
+        Integer integerQuantity = parseNonNegativeUnsignedInteger(quantity);
         return new Quantity(integerQuantity);
     }
 
@@ -195,5 +189,18 @@ public class ParserUtil {
         }
 
         return new Price(doublePrice);
+    }
+
+    /**
+     * Parses {@code String integer} into an {@code Integer} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified integer is invalid (not non-zero unsigned integer).
+     */
+    public static Integer parseNonNegativeUnsignedInteger(String integer) throws ParseException {
+        String trimmedInteger = integer.trim();
+        if (!StringUtil.isNonNegativeUnsignedInteger(trimmedInteger)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return Integer.parseInt(trimmedInteger);
     }
 }

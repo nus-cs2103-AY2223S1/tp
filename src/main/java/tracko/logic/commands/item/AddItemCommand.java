@@ -16,7 +16,7 @@ import tracko.model.item.InventoryItem;
 public class AddItemCommand extends Command {
     public static final String COMMAND_WORD = "addi";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Initiates an item to add to TrackO. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an inventory item to TrackO. \n"
             + "Parameters: "
             + CliSyntax.PREFIX_ITEM + "ITEM NAME "
             + CliSyntax.PREFIX_QUANTITY + "QUANTITY "
@@ -33,8 +33,9 @@ public class AddItemCommand extends Command {
             + CliSyntax.PREFIX_TAG + "Limited "
             + CliSyntax.PREFIX_TAG + "New ";
 
-    public static final String MESSAGE_SUCCESS = "New item and quantity added:\n%1$s";
-    public static final String MESSAGE_ITEM_EXISTS = "This item already exists in the inventory list.";
+    public static final String MESSAGE_SUCCESS = "Inventory Item Added:\n%1$s";
+    public static final String MESSAGE_ITEM_EXISTS = "The item you are trying to add already exists in "
+        + "the inventory list.";
 
     private final InventoryItem toAdd;
 

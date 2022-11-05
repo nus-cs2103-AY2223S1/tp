@@ -35,12 +35,12 @@ public class EditItemCommand extends Command {
             + "by the index number used in the displayed inventory list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + CliSyntax.PREFIX_ITEM + "ITEM NAME "
-            + CliSyntax.PREFIX_QUANTITY + "QUANTITY "
-            + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION "
-            + CliSyntax.PREFIX_SELL_PRICE + "SELL PRICE "
-            + CliSyntax.PREFIX_COST_PRICE + "COST PRICE \n"
-            + CliSyntax.PREFIX_TAG + "TAG... "
+            + "[" + CliSyntax.PREFIX_ITEM + "ITEM NAME] "
+            + "[" + CliSyntax.PREFIX_QUANTITY + "QUANTITY] "
+            + "[" + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + CliSyntax.PREFIX_SELL_PRICE + "SELL PRICE] "
+            + "[" + CliSyntax.PREFIX_COST_PRICE + "COST PRICE] "
+            + "[" + CliSyntax.PREFIX_TAG + "TAG]... \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + CliSyntax.PREFIX_ITEM + "Paper "
             + CliSyntax.PREFIX_QUANTITY + "1000 "
@@ -54,8 +54,9 @@ public class EditItemCommand extends Command {
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the inventory list.";
-    public static final String MESSAGE_UNCOMPLETED_ORDER_ITEM = "Item cannot be edited, there exists uncompleted "
-            + "orders for item:\n%1$s";
+    public static final String MESSAGE_UNCOMPLETED_ORDER_ITEM = "You cannot edit the name and cost/sell prices for an "
+            + "item involved in uncompleted(unpaid/undelivered) orders.\n"
+            + "There are uncompleted orders for the item:\n%1$s";
 
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
@@ -94,7 +95,7 @@ public class EditItemCommand extends Command {
             model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
             return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedInventoryItem));
         } catch (ItemUnmodifiableException e) {
-            return new CommandResult(String.format(MESSAGE_UNCOMPLETED_ORDER_ITEM, editedInventoryItem));
+            return new CommandResult(String.format(MESSAGE_UNCOMPLETED_ORDER_ITEM, inventoryItemToEdit));
         }
     }
 
