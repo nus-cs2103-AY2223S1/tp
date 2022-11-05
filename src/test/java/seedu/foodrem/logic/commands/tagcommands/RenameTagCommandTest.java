@@ -20,8 +20,8 @@ import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.viewmodels.TagToRename;
 
 public class RenameTagCommandTest {
-    private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in the FoodRem.";
-    private static final String EXPECTED_ERROR_DUPLICATE = "This tag name already exists in the FoodRem.";
+    private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in FoodRem.";
+    private static final String EXPECTED_ERROR_DUPLICATE = "This tag name already exists in FoodRem.";
     private static final String EXPECTED_SUCCESS_MESSAGE = "Tag renamed:";
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 

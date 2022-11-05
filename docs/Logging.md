@@ -2,7 +2,9 @@
 layout: page
 title: Logging Guide
 ---
+{% include toc.md header=true ordered=true %}
 
+## Logging
 * We are using `java.util.logging` package for logging.
 * The `LogsCenter` class is used to manage the logging levels and logging destinations.
 * The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level.

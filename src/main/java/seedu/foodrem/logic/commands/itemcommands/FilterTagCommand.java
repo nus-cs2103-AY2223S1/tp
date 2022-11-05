@@ -33,7 +33,7 @@ public class FilterTagCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasTag(tag)) {
-            throw new CommandException("This tag does not exist in the FoodRem");
+            throw new CommandException("This tag does not exist in FoodRem");
         }
 
         model.updateFilteredItemList(pred);

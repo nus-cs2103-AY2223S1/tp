@@ -1,4 +1,6 @@
 <!-- markdownlint-disable-file first-line-h1 -->
+The Model component holds the data of the App in memory.
+
 **API** : [`Model.java`]({{ page.master_branch }}/{{ page.main_src }}/model/Model.java)
 
 ![](images/ModelClassDiagram.png)
