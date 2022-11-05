@@ -264,7 +264,7 @@ MineFriends will then call the "createEditedPerson" method which will create a n
 with new details. This will then invoke a call to the `ModelManager` class to set the new person
 in the addressBook.
 
-The following class diagram shows the organization of the classes for "edit".
+The following class diagram shows the organization of the classes for `edit`.
 
 <img src="images/EditCommand.png" width="250" />
 
