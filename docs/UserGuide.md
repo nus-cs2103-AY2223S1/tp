@@ -367,7 +367,7 @@ Example: `listdebtors m/10` displays the list of persons that owe more than $10.
 
 ### Sorting list of persons: `sort`
 
-Sorts and displays the list of persons using the given criteria and order. The criteria that you can sort by are name, amount owed, and time since oldest debt. Use the `+` symbol to indicate ascending order, and the `-` symbol for descending order.
+Sorts and displays the list of persons using the given criterion and order. The criteria that you can sort by are name, amount owed, and time since oldest debt. Use the `+` symbol to indicate ascending order, and the `-` symbol for descending order. Do note that you can only sort by exactly one criterion at a time.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 When you sort by time since oldest debt, all persons who do not owe any debt will be placed at the end of the list, regardless of whether ascending or descending order is specified.
@@ -464,7 +464,7 @@ This is the command to use when you want to start using PayMeLah for real and de
 
 ### Undoing a command: `undo`
 
-This is the command to use when you made a mistake, and want to undo previous command(s) that modified PayMeLah's data.<br>
+This is the command to use when you make a mistake, and want to undo previous command(s) that modified PayMeLah's data. After you undo a command, PayMeLah will automatically show the full list of persons for you to check whether the correct changes have been reverted.
 Be careful though, your undo history will be gone when you close the app!
 
 Format: `undo`
