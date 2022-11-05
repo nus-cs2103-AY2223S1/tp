@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalModules.getTypicalProfNusWithModules
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -35,27 +36,27 @@ public class ViewTargetModuleCommandTest {
 
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(ViewTargetModuleCommand.MESSAGE_VIEW_TARGET_MODULE_SUCCESS, moduleTargetToView),
-                false, false, false,
-                false, true, false, false, false);
+                false, false, true,
+                false, false, false, false, false);
 
         ModelManager expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
 
-        assertCommandSuccess(viewModuleCommand, model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(viewTargetModuleCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
-    public void execute_invalidModuleCodeUnfilteredList_throwsCommandException() {
-        ModuleCode moduleCode = new ModuleCode("null");
-        ViewModuleCommand viewModuleCommand = new ViewModuleCommand(moduleCode);
+    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getAllModuleList().size() + 1);
+        ViewTargetModuleCommand viewTargetModuleCommand = new ViewTargetModuleCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewModuleCommand, model, Messages.MESSAGE_MODULE_DOES_NOT_EXIST);
+        assertCommandFailure(viewTargetModuleCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validModuleCodeFilteredList_success() {
-        showModuleWithModuleCode(model, INDEX_FIRST_MODULE);
+        ViewTargetModuleCommand viewTargetModuleCommand = new ViewTargetModuleCommand(INDEX_FIRST_MODULE);
 
-        Module moduleToView = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        Module moduleTargetToView = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         ModuleCode moduleCode = moduleToView.getCode();
         ViewModuleCommand viewModuleCommand = new ViewModuleCommand(moduleCode);
 
