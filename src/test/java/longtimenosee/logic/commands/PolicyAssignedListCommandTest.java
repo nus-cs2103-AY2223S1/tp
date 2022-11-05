@@ -13,7 +13,7 @@ import longtimenosee.model.UserPrefs;
 import longtimenosee.model.person.Person;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for PolicyListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for PolicyAssignedListCommand.
  */
 public class PolicyAssignedListCommandTest {
 

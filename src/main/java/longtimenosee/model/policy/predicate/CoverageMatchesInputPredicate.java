@@ -1,6 +1,7 @@
 package longtimenosee.model.policy.predicate;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import longtimenosee.commons.util.StringUtil;
@@ -25,19 +26,25 @@ public class CoverageMatchesInputPredicate implements Predicate<Policy> {
 
     @Override
     public boolean test(Policy policy) {
-        boolean[] isMatch = new boolean[keywords.size()];
+        boolean[] areMatch = new boolean[keywords.size()];
+        Set<Coverage> coverages = policy.getCoverages();
         for (int i = 0; i < keywords.size(); i++) {
-            for (Coverage coverage : policy.getCoverages()) {
-                if (StringUtil.containsWordIgnoreCase(coverage.coverageType, keywords.get(i))) {
-                    isMatch[i] = true;
-                    break;
-                }
-            }
+            checkKeywordAgainstCoverages(coverages, keywords.get(i), areMatch, i);
         }
-        return isAllTrue(isMatch);
+        return areAllTrue(areMatch);
     }
 
-    private boolean isAllTrue(boolean[] arr) {
+    private static void checkKeywordAgainstCoverages(Set<Coverage> coverages, String keyword, boolean[] areMatch,
+                                                     int index) {
+        for (Coverage coverage : coverages) {
+            if (StringUtil.containsWordIgnoreCase(coverage.coverageType, keyword)) {
+                areMatch[index] = true;
+                return;
+            }
+        }
+    }
+
+    private static boolean areAllTrue(boolean[] arr) {
         for (boolean bool : arr) {
             if (!bool) {
                 return false;

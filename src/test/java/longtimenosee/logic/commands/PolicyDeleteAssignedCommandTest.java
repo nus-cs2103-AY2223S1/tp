@@ -66,6 +66,8 @@ public class PolicyDeleteAssignedCommandTest {
                 INDEX_FIRST_POLICY);
         PolicyDeleteAssignedCommand deleteSecondCommand = new PolicyDeleteAssignedCommand(INDEX_SECOND_PERSON,
                 INDEX_SECOND_POLICY);
+        PolicyDeleteAssignedCommand deleteThirdCommand = new PolicyDeleteAssignedCommand(INDEX_SECOND_PERSON,
+                INDEX_FIRST_POLICY);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
@@ -82,7 +84,10 @@ public class PolicyDeleteAssignedCommandTest {
         assertFalse(deleteFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(deleteFirstCommand.equals(deleteThirdCommand));
+
+        // different policy -> returns false
+        assertFalse(deleteSecondCommand.equals(deleteThirdCommand));
     }
 
     /**

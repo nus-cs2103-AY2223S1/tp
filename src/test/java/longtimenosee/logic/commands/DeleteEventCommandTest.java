@@ -3,6 +3,7 @@ package longtimenosee.logic.commands;
 import static longtimenosee.logic.commands.CommandTestUtil.assertCommandFailure;
 import static longtimenosee.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static longtimenosee.logic.commands.CommandTestUtil.showEventAtIndex;
+import static longtimenosee.testutil.Assert.assertThrows;
 import static longtimenosee.testutil.TypicalEvents.getTypicalAddressBook;
 import static longtimenosee.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static longtimenosee.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -17,6 +18,8 @@ import longtimenosee.model.Model;
 import longtimenosee.model.ModelManager;
 import longtimenosee.model.UserPrefs;
 import longtimenosee.model.event.Event;
+import longtimenosee.model.event.exceptions.EventNotFoundException;
+import longtimenosee.testutil.EventBuilder;
 
 
 /**
@@ -77,6 +80,17 @@ public class DeleteEventCommandTest {
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_nonExistentEvent_throwsEventNotFoundException() {
+        Event eventToDelete = new EventBuilder().withName("Alice Pauline")
+                .withDate("2020-10-10")
+                .withDescription("Non Existent Event")
+                .withDuration("10:00__12:00")
+                .build();
+        assertThrows(EventNotFoundException.class, () -> model.deleteEvent(eventToDelete));
+
     }
 
     @Test

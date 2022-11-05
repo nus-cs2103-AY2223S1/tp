@@ -25,5 +25,4 @@ public class PolicyAssignedListCommandParser implements Parser<PolicyAssignedLis
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, PolicyAssignedListCommand.MESSAGE_USAGE), pe);
         }
     }
-
 }

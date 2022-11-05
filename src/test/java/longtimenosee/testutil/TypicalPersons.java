@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import longtimenosee.model.AddressBook;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 
 /**
@@ -101,6 +102,11 @@ public class TypicalPersons {
             .withRiskAppetite(VALID_RISK_APPETITE_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    //Since the deleteCommand now depends on events containing Bob, we must ensure a deletion of Bob purges this
+    public static final Event EVENT_BENSON = new EventBuilder().withName("Benson Meier")
+            .withDate("2011-01-01")
+            .withDescription("Meet Benson")
+            .withDuration("12:00__13:00").build();
 
     private TypicalPersons() {} // prevents instantiation
 
@@ -112,6 +118,7 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        ab.addEvent(EVENT_BENSON);
         return ab;
     }
 

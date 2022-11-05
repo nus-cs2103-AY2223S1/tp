@@ -60,7 +60,7 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Long Time No See application.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
 ![GUI.png](./images/GUI.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -310,6 +310,10 @@ Sorting **KEYWORDS** are shown in the table below:
 | `risk appetite`  | From highest to lowest ie. "H" to "M" to "L"                                                                         |
 
 
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+If your client's name contains non-alphanumeric characters, sorting by name might not function properly!
+</div>
+
 Examples:
 * `sort name` will display your address book in alphabetical order based on their name
 * `sort phone` will display your addresss book in numerical order based on their phone numbers
@@ -371,14 +375,14 @@ These are the valid companies and their corresponding codes.
 | TML          | Tokio Marine Life Insurance        |
 | AIA          | AIA Singapore Private Limited      |
 | AVI          | Aviva Limited                      |
-| FWD          | Singapore Private Limited          |
+| FWD          | FWD Singapore Private Limited      |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Commissions must take positive percentages within 0% to 100%! (e.g. 10%, 3.5%, 1.0%)
 </div>  
 
 Examples:
-* `addPolicy ti/PruShield cmp/AIA cms/10% 5% 1% cov/LIFE`
+* `addPolicy ti/PruShield cmp/PRU cms/10% 5% 1% cov/LIFE`
 * `addPolicy ti/ManuInvest Duo cmp/MNF cms/6% 3% 1.5% cov/INVESTMENT cov/LIFE`
 
 
@@ -404,20 +408,20 @@ Example Result: Shows the currently listed policies on the screen.
 ### Viewing all policies in the address book : `allPolicies`
 Switches the display to show **all** the policies stored in the address book.
 
-Format: `allPolicies`
-Example Usage: `allPolicies`
+Format: `allPolicies` <br />
+Example Usage: `allPolicies` <br />
 Example Result: Shows all policies stored in the address book, on the screen.
 
 ### Deleting a policy : `deletePolicy`
-* Format: `deletePolicy POLICY_INDEX`
+Deletes the policy at the specified `INDEX`.
+The index refers to the index number shown in the displayed list of policies.
+The index **must be a positive integer** 1, 2, 3, …​
 
-* Deletes the policy at the specified `INDEX`.
-* The index refers to the index number shown in the displayed list of policies.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `deletePolicy POLICY_INDEX`
 
 Examples:
 * `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in the address book.
-* `findPolicy PruShield` followed by `delete 1` deletes the 1st policy in the results of the `findPolicy` command.
+* `findPolicy ti/PruShield` followed by `deletePolicy 1` deletes the 1st policy in the results of the `findPolicy` command.
 
 
 ### Searching for a Policy : `findPolicy`
@@ -435,8 +439,7 @@ The following table illustrates the details of each metric and their search rang
 | Company  | cmp/   | - Policies which belong to the specified company will be listed                                                                                                                                                                                                                             |
 
 Examples:
-
-* `findPolicy ti/Health plan` returns `health plan` and `life plan`
+* `findPolicy ti/Health plan` returns policies with the title `health plan` and `life plan`
 * `findPolicy cov/LIFE cov/HEALTH` returns policies that cover both LIFE and HEALTH
 * `findPolicy cmp/PRU` returns policies that belong to Prudential Assurance Company
 * `findPolicy ti/Shield cov/LIFE` returns polices with Shield in its title and covers the LIFE coverage type
@@ -477,7 +480,7 @@ Format: `listAssigned CLIENT_INDEX`
 Example Usage:
 
 1. `findClient n/John Doe` to filter the list of clients to find `John Doe`.
-2. `listAssigned CLIENT_INDEX` to list out the policies assigned to the first client in the list from Step 1.
+2. `listAssigned 1` to list out the policies assigned to the first client in the list from Step 1.
 
 ### Deleting assigned policies from a client : `deleteAssigned`
 
@@ -487,10 +490,8 @@ in the address book using this command.
 Format: `deleteAssigned CLIENT_INDEX ASSIGNED_POLICY_INDEX`
 
 Example Usage:
-1. Similar to [listAssigned](#listing-out-policies-assigned-to-a-clientlistassigned), filter the list for the desired client and find out which policies they have been assigned to.
+1. Similar to [listAssigned](#listing-out-policies-assigned-to-a-client--listassigned), filter the list for the desired client and find out which policies they have been assigned to.
 2. `deleteAssigned 1 1` to delete the first assigned policy in the assigned policy list from Step 1, of the first client obtained from filtering the client list.
-
-This allows you to sort your clients in the address book based on a specified metric.
 
 ### Tracking your Income  : `viewIncome`
 
@@ -569,19 +570,25 @@ Format: `calendar`
 
 ## FAQ
 
-Q: How do I transfer my data to another Computer? <br>
+Q: How do I transfer my data to another Computer? <br/>
 A : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LTNS home folder.
 
-Q: Why am I seeing `(insert error)` when trying to add an event?<br>
+Q: Why am I seeing `The person you specified doesn't exist` when trying to add an event?<br/>
 A : When adding an Event involving a client, this client must exist in your client book first.
 
-Q: Why am I seeing a `Sorting metric does not exist` error when trying to sort my client list? <br>
+Q: Why am I seeing a `Sorting metric does not exist` when trying to sort my client list? <br/>
 A : You may be typing a wrong <b>keyword</b> or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
 
-Q: Why is a blank screen shown when I use the `calendar` feature? <br>
+Q: Why is a blank screen shown when I use the `calendar` feature? <br/>
 A: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event--addevent) first. Alternatively, you can choose to [view all Events](#viewing-all-events--allevents) instead.
 
-Q: What do I do if the user guide does not address my concern? <br>
+Q: What if a company whose policy I want to add is not available in the given list of company codes? <br/>
+A: Let us know which company you require at e0725346@u.nus.edu and if we get enough requests, we might add yours in the next version!
+
+Q: What if a coverage I want to add is not available in the list of coverages? <br/>
+A: Similarly, let us know which coverage you require at e0725346@u.nus.edu and if we get enough requests, we might add yours in the next version!
+
+Q: What do I do if the user guide does not address my concern? <br/>
 A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply within three working days!
 
 
@@ -605,9 +612,9 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 | Coverage                                                     | cov/   | - Only inputs of the valid coverage type options are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Company                                                      | cmp/   | - Only one of the valid company abbreviations is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Commission                                                   | cms/   | - Has to be in the format of (1st year percentage)% (2nd year percentage)% (3rd year and beyond percentage)%, where the percentages are decimal values between 0 and 100 inclusive                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Premium                                                      | pr/    | - Only positive decimal numbers are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Premium                                                      | pr/    | - Only positive numbers, with up to 2 decimals are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Start date                                                   | sd/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| End date<br/><br/> Note: End date has to be after Start date | ed/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| End date<br/><br/> Note: End date has to be after Start date | ed/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100) <br/> - Should be later than the associated start date                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Event Description                                            | desc/  | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 175 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Event Date                                                   | date/  | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Start time                                                   | st/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -637,17 +644,17 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 
 ### Commands For Policy
 
-| Action                     | Format, Examples                                                                                                                                           |
-|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE] [cmp/POLICY_COMPANY]` <br/><br>  e.g: `findPolicy cov/LIFE`                                            |        
-| **Add Policy**             | `addPolicy ti/POLICY_TITLE cmp/POLICY_COMPANY cms/POLICY_COMMISSION cov/POLICY_COVERAGE` <br><br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE` |                                                                                                                         
-| **Delete Policy**          | `deletePolicy (INDEX of POLICY)` <br> <br> e.g: `deletePolicy 1`                                                                                           |                                                                                                                                                                                             
-| **View All Policies**      | `allPolicies`                                                                                                                                              |
-| **View Filtered Policies** | `policies`                                                                                                                                                 |
-| **View Assigned Policies** | `assign (INDEX of CLIENT) (INDEX of POLICY) pr/PREMIUM_PAID sd/START_DATE ed/END_DATE` <br> <br> e.g: `assign 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`    |
-| **Delete Assigned**        | `deleteAssigned (INDEX of CLIENT) (INDEX of POLICY)` <br><br> e.g: `deleteAssigned 1 1`                                                                    |                                                                                                                                                                                                               
-| **List Assigned**          | `listAssigned (INDEX of CLIENT) ` <br> <br> e.g: `listAssigned 1`                                                                                          |
-| **View Income**            | `viewIncome YEAR` <br><br> e.g: `viewIncome 2000`                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                           
+| Action                     | Format, Examples                                                                                                                                              |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE] [cmp/POLICY_COMPANY]` <br/><br>  e.g: `findPolicy cov/LIFE`                                               |        
+| **Add Policy**             | `addPolicy ti/POLICY_TITLE cmp/POLICY_COMPANY cms/POLICY_COMMISSION cov/POLICY_COVERAGE...` <br><br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE` |                                                                                                                         
+| **Delete Policy**          | `deletePolicy (INDEX of POLICY)` <br> <br> e.g: `deletePolicy 1`                                                                                              |                                                                                                                                                                                             
+| **View All Policies**      | `allPolicies`                                                                                                                                                 |
+| **View Filtered Policies** | `policies`                                                                                                                                                    |
+| **View Assigned Policies** | `assign (INDEX of CLIENT) (INDEX of POLICY) pr/PREMIUM_PAID sd/START_DATE ed/END_DATE` <br> <br> e.g: `assign 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`       |
+| **Delete Assigned**        | `deleteAssigned (INDEX of CLIENT) (INDEX of POLICY)` <br><br> e.g: `deleteAssigned 1 1`                                                                       |                                                                                                                                                                                                               
+| **List Assigned**          | `listAssigned (INDEX of CLIENT) ` <br> <br> e.g: `listAssigned 1`                                                                                             |
+| **View Income**            | `viewIncome YEAR` <br><br> e.g: `viewIncome 2000`                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           
 
 Note: `allPolicies` shows all existing policies inside LTNS, while `policies` show all policies based on filter matrices placed previously.
 
