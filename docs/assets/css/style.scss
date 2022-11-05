@@ -47,7 +47,6 @@ body {
 }
 
 /* Adapted from: https://dev.to/adamlombard/css-automatically-number-nested-lists-59ei */
-=======
 h5:before {
   content: counter(h2, decimal) "." counter(h3, decimal) "." counter(h4, decimal) "." counter(h5, decimal) ". ";
   counter-increment: h5;
