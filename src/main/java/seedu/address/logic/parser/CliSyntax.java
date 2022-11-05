@@ -30,6 +30,7 @@ public class CliSyntax {
     public static final String FLAG_TAG_STR_LONG = "--tag";
 
     /** Flag and parameter labels */
+    public static final String LABEL_TEAM_NAME = "<team_name>";
     public static final String LABEL_PERSON_INDEX = "<person_index>";
     public static final String LABEL_MEMBER_INDEX = "<member_index>";
     public static final String LABEL_KEYWORDS = "<keywords>";

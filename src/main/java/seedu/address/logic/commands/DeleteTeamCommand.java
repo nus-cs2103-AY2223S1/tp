@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_NAME;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,7 +35,7 @@ public class DeleteTeamCommand extends Command {
     public static final String MESSAGE_AT_LEAST_ONE_TEAM = "You must have at least one team!";
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to delete does not exist!";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TEAM_NAME, description = FLAG_TEAM_NAME_DESCRIPTION)
     private TeamName targetTeamName;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,

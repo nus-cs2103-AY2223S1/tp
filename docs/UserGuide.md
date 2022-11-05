@@ -495,10 +495,11 @@ Finds person whose names contain any of the given keywords.
 | `-h`, `--help`    |          | Shows help message                                     |
 
 * Only the name is searched.
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
+* The search is case-insensitive, e.g. `hans` will match `Hans`.
+* The order of the keywords does not matter, e.g. `Hans Bo` will match `Bo Hans`.
+* Persons with names partially matching the keywords will be returned, e.g. `han` will match `Hans`.
+* Persons with names matching at least one keyword will be returned, e.g. `hans bo` will return `Hans Gruber`, `Bo 
+  Yang`.
 
 **Command Aliases:**
 - `find p`
@@ -572,6 +573,11 @@ Delete a team member from the user’s team.
 
 * `MEMBER_INDEX` **must be a positive integer**: 1, 2, 3,...
 
+**Command Aliases:**
+- `delete m`
+- `d member`
+- `d m`
+
 **Examples:** 
 
 - `delete member 2` will delete the second member of the current team.
@@ -585,7 +591,7 @@ Finds all members in the current team whose names or emails contain any of the g
 should not use both `-n` and `-e` in the `find member` command. 
 </div>
 
-Format: `find member [-h] (-n=<NAME_KEYWORDS> | -e=<EMAIL_KEYWORDS>)`
+**Format:** `find member [-h] (-n=<NAME_KEYWORDS> | -e=<EMAIL_KEYWORDS>)`
 
 | Flags           | Required | Remarks                     |
 |-----------------|:---------|-----------------------------|
@@ -596,17 +602,20 @@ Format: `find member [-h] (-n=<NAME_KEYWORDS> | -e=<EMAIL_KEYWORDS>)`
 :hash: - exactly one flag must be specified
 
 * Only the name or email is searched.
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched for names e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
+* The search is case-insensitive, e.g. `hans` will match `Hans`.
+* The order of the keywords does not matter, e.g. `Hans Bo` will match `Bo Hans`.
+* Persons with names/emails partially matching the keywords will be returned, e.g. `han` will match `Hans`.
+* Persons matching at least one keyword will be returned, e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
+**Command Aliases:**
+- `find m`
+- `f member`
+- `f m`
 
-Examples
+**Examples:**
 * `find member -n Alex` finds team members with **names** containing the word "Alex".
 * `find member -n Alex Beatrice` finds team members with **names** containing **either** "Alex" or "Beatrice".
 * `find member -e alex@gmail.com`  finds team members with **emails** containing "alex@gmail.com".
-
 
 #### Listing all members of the team : `list members`
 
@@ -618,19 +627,33 @@ View all the members currently in the team, in the form of a list.
 |-------------------|:---------|--------------------------------------------------------|
 | `-h`, `--help`    |          | Shows help message                                     |
 
+**Command Aliases:**
+- `list m`
+- `l member`
+- `l m`
+
 #### Sort members : `sort members`
 Sorts all members in the current team by name and displays them in the member list.
 
-**Format:** `sort members ORDER`
+**Format:** `sort members <ORDER>`
 
 | Flags             | Required | Remarks                                                |
 |-------------------|:---------|--------------------------------------------------------|
 | `-h`, `--help`    |          | Shows help message                                     |
 
-Examples
-* `sort members asc` sorts your team members in **alphabetical** order (as per their names).
-* `sort members dsc` sorts the team members in **reverse alphabetical** order (as per their names).
-* `sort members res` **resets** the order of the team members shown.
+| Order Value | Description                                                                       |
+|-------------|-----------------------------------------------------------------------------------|
+| `asc`       | Sorts your team members in **alphabetical** order (based on their names).         |
+| `dsc`       | Sorts your team members in **reverse alphabetical** order (based on their names). |
+| `res`       | **Resets** the order of the team members shown                                    |
+
+**Command Aliases:**
+- `sort m`
+- `so member`
+- `so m`
+
+**Examples:**
+* `sort members asc`
 
 ### Commands to Manage Teams
 
@@ -638,67 +661,92 @@ Summary of commands can be found [here](#summary-of-team-commands)
 
 #### Creating a new team `add team`
 
-Add a new team to your list of teams. Will show an error there is already an existing team with the same name. 
+Add a new team to your list of teams, an error will be displayed if the team name is already in use.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
-Team name must consist only of alphanumeric characters (i.e., **Spaces are NOT allowed**).
+Team name must consist only of alphanumeric characters (i.e., **spaces are NOT allowed**).
 </div>
 
-**Format:** `add team TEAM_NAME [-d TEAM_DESCRIPTION]`
+**Format:** `add team [-d=TEAM_DESCRIPTION] <TEAM_NAME>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags                 | Required | Remarks                                               |
+|-----------------------|:---------|-------------------------------------------------------|
+| `-h`, `--help`        |          | Shows help message                                    |
+| `-d`, `--description` |          | Description of team (e.g. "A team to manage CS2103T") | 
+
+**Command Aliases:**
+- `add te`
+- `a team`
+- `a te`
 
 **Examples:** 
 
-- `add team CS2103` will create a new team by the name of "CS2103"
+- `add team CS2103T` will create a new team by the name of "CS2103T"
 - `add team CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
   as description
 
 #### Set a new team `set team`
 
-Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error 
-if the team does not exist
+Updates the [selected team](#current-team-section) and changes the current "working" team to another. An error is 
+displayed if team does not exist.
 
-**Format:** `set team TEAM_NAME`
+**Format:** `set team <TEAM_NAME>`
 
 | Flags             | Required | Remarks                                                |
 |-------------------|:---------|--------------------------------------------------------|
 | `-h`, `--help`    |          | Shows help message                                     |
 
+**Command Aliases:**
+- `set te`
+- `s team`
+- `s te`
+
 **Examples:** 
 
-- `set team CS2103` will change the current working team to be the "CS2103" team.
+- `set team CS2103T` will change the currently selected team to be the "CS2103T" team.
 
 #### Edit current team `edit team`
 
-**Format:** `edit team [-n TEAM_NAME] [-d TEAM_DESCRIPTION]`
+**Format:** `edit team ([-n=<TEAM_NAME>] [-d=<DESCRIPTION>])`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags                 | Required   | Remarks                                               |
+|-----------------------|:-----------|-------------------------------------------------------|
+| `-h`, `--help`        |            | Shows help message                                    |
+| `-n`, `--name`        | :asterisk: | Name of team (e.g. "CS2103T")                         |
+| `-d`, `--description` | :asterisk: | Description of team (e.g. "A team to manage CS2103T") | 
+
+:asterisk: - at least one of the flags must be specified
+
+**Command Aliases:**
+- `edit te`
+- `e team`
+- `e te`
 
 **Examples:** 
-- `edit team -n CS2103 -d "Software Engineering"` will edit the name of the current team to CS2103 and description
-  to "Software Engineering"
+- `edit team -n CS2103T -d "Software Engineering"` will edit the name of the 
+[currently selected team](#current-team-section) to CS2103T and description to "Software Engineering"
 
 #### Delete an existing team `delete team`
 
-Delete an existing team from the user's list of teams. Throws an error under these conditions.
+Delete an existing team, and an error is displayed if
 
-- The target team does not exist.
+- The target team does not exist, or
 - The target team is the only existing team.
 
-**Format:** `delete team TEAM_NAME`
+**Format:** `delete team <TEAM_NAME>`
 
 | Flags             | Required | Remarks                                                |
 |-------------------|:---------|--------------------------------------------------------|
 | `-h`, `--help`    |          | Shows help message                                     |
 
+**Command Aliases:**
+- `delete te`
+- `d team`
+- `d te`
+
 **Examples:** 
 
-- `delete team CS2103` will delete the team with the name "CS2103"
+- `delete team CS2103T` will delete the team with the name "CS2103T"
 
 ### Commands to Manage Tasks
 
@@ -860,7 +908,7 @@ To reset the task list, see `list tasks` command below.
 * Only full words will be matched e.g. `user` will not match `userguide`
 * Persons matching at least one keyword will be returned (e.g. `user` will return `user guide`, `user stories`)
 
-Examples
+**Examples:**
 * `find task -n User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
 
 #### List tasks in team: `list tasks`
