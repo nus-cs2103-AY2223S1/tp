@@ -51,7 +51,13 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         return new EditAppointmentCommand(personIndex, appointmentIndex, editAppointmentDescriptor);
     }
 
-    public EditAppointmentDescriptor createEditAppointmentDescriptor(ArgumentMultimap argMultimap) throws ParseException {
+    /**
+     * Parses the given {@code argMultimap} and returns an
+     * EditAppointmentDescriptor object for execution.
+     * @throws ParseException if the arguments does not conform the expected format
+     */
+    public EditAppointmentDescriptor createEditAppointmentDescriptor(ArgumentMultimap argMultimap)
+            throws ParseException {
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
 
 
