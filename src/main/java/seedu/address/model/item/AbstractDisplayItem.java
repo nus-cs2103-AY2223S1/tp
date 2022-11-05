@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.attribute.AbstractAttribute;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;
@@ -170,6 +169,13 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         return stronglyEqual((AbstractDisplayItem) obj);
     }
 
+    /**
+     * Checks if an AbstractDisplayItem has the same email attribute
+     * as the current AbstractDisplayItem instance.
+     *
+     * @param displayItem An other AbstractDisplayItem instance.
+     * @return true if both DisplayItem instances have the same Email instance, false otherwise.
+     */
     public boolean isSameEmail(AbstractDisplayItem displayItem) {
         Attribute<?> currentEmail = attributes.findAttribute("Email");
         Attribute<?> otherEmail = displayItem.attributes.findAttribute("Email");
@@ -181,12 +187,26 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         return currentEmail.equals(otherEmail);
     }
 
+    /**
+     * Checks if this AbstractDisplayItem instance and another AbstractDisplayItem instance
+     * do not have an Email attribute.
+     *
+     * @param displayItem Another AbstractDisplayItem instance.
+     * @return true if both AbstractDisplayItem instances have no Email attribute, false otherwise.
+     */
     public boolean isBothEmailNull(AbstractDisplayItem displayItem) {
         Attribute<?> currentEmail = attributes.findAttribute("Email");
         Attribute<?> otherEmail = displayItem.attributes.findAttribute("Email");
         return currentEmail == null && otherEmail == null;
     }
 
+    /**
+     * Checks if an AbstractDisplayItem has the same phone attribute
+     * as the current AbstractDisplayItem instance.
+     *
+     * @param displayItem An other AbstractDisplayItem instance.
+     * @return true if both DisplayItem instances have the same Phone instance, false otherwise.
+     */
     public boolean isSamePhone(AbstractDisplayItem displayItem) {
         Attribute<?> currentPhone = attributes.findAttribute("Phone");
         Attribute<?> otherPhone = displayItem.attributes.findAttribute("Phone");
@@ -198,6 +218,13 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         return currentPhone.equals(otherPhone);
     }
 
+    /**
+     * Checks if this AbstractDisplayItem instance and another AbstractDisplayItem instance
+     * do not have a Phone attribute.
+     *
+     * @param displayItem Another AbstractDisplayItem instance.
+     * @return true if both AbstractDisplayItem instances have no Phone attribute, false otherwise.
+     */
     public boolean isBothPhoneNull(AbstractDisplayItem displayItem) {
         Attribute<?> currentPhone = attributes.findAttribute("Phone");
         Attribute<?> otherPhone = displayItem.attributes.findAttribute("Phone");
