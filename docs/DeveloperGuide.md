@@ -415,6 +415,18 @@ Given below is an example usage scenario for the command.
 
 **Step 3:** An appointment will be assigned to the patient specified with the index input.
 
+#### Design considerations:
+
+**Aspect: Model-Person Interaction:**
+
+* **Alternative 1 (current choice):** Utilise `model#setPerson` to add the edited person into the model, doing the direct editing in `AddAppointmentCommand#execute()`.
+  * Pros: Maintain immutability within Person and Model classes.
+  * Cons: Potentially violates the Single Responsibility Principle.
+
+* **Alternative 2:** Create methods in model specifically to edit the appointment fields of the patients.
+  * Pros: More OOP, follows the Single Responsibility Principle by not having `AddAppointmentCommand#execute()` perform the editing directly.
+  * Cons: Longer command execution, requiring more parts to work together.
+
 [<*Back to ToC*>](#table-of-contents)
 
 ### \[Implemented\] Clear appointment feature
