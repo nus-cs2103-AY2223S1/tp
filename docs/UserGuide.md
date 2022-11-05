@@ -239,8 +239,8 @@ Adds an attendance list to a student in contacts.
 Format: `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`
 
 Examples:
-* `attendance add 1 c/CS2030 s/10` creates an attendance list of size 10 and class CS2030 for the 1st student in the shown student list.
-* `attendance add 1 c/CS2040 s/1` creates an attendance list of size 1  and class CS2040 for the 1st student in the shown student list.
+* `attendance add 1 c/CS2030 s/10` creates an attendance list of size 10 with a class name `CS2030` for the 1st student in the shown student list.
+* `attendance add 1 c/CS2040 s/1` creates an attendance list of size 1  with a class name `CS2040` for the 1st student in the shown student list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
 Currently, we support a maximum of 12 lessons. If the size of the attendance list keyed in is 0, the attendance list will be listed as N.A. 
@@ -267,8 +267,8 @@ We adopted such an approach as it is faster for you to type numerical values ove
 </div>
 
 Examples:
-* `attendance mark 1 l/1 m/1` marks the attendance of the 1st lesson with a 1 for the 1st student in the shown student list.
-* `attendance mark 1 l/2 m/0` marks the attendance of the 2nd lesson with a 0 for the 1st student in the shown student list.
+* `attendance mark 1 l/1 m/1` marks the attendance of the 1st lesson for the 1st student in the shown student list with a 1.
+* `attendance mark 1 l/2 m/0` marks the attendance of the 2nd lesson for the 1st student in the shown student list with a 0.
 
 Expected outcome:
 ![AttendanceMark](images/AttendanceMark.png)
