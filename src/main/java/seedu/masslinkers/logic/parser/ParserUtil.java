@@ -107,13 +107,6 @@ public class ParserUtil {
         String trimmedHandle = handle.trim();
         checkForPrefix(trimmedHandle);
 
-        // checks if there is a space in the input
-        try {
-            checkForMoreThanOneWord(trimmedHandle);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(pe.getMessage(), "Telegram handle"));
-        }
-
         if (!Telegram.isValidTelegram(trimmedHandle)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
@@ -129,13 +122,6 @@ public class ParserUtil {
     public static GitHub parseGitHub(String username) throws ParseException {
         String trimmedUsername = username.trim();
         checkForPrefix(trimmedUsername);
-
-        // checks if there is a space in the input
-        try {
-            checkForMoreThanOneWord(trimmedUsername);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(pe.getMessage(), "GitHub username"));
-        }
 
         if (!GitHub.isValidGitHub(trimmedUsername)) {
             throw new ParseException(GitHub.MESSAGE_CONSTRAINTS);
@@ -153,13 +139,6 @@ public class ParserUtil {
         String trimmedEmail = email.trim();
         checkForPrefix(trimmedEmail);
 
-        // checks if there is a space in the input
-        try {
-            checkForMoreThanOneWord(trimmedEmail);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(pe.getMessage(), "Email address"));
-        }
-
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -175,13 +154,6 @@ public class ParserUtil {
     public static Interest parseInterest(String interest) throws ParseException {
         String trimmedInterest = interest.trim();
         checkForPrefix(trimmedInterest);
-
-        // checks if there is a space in the input
-        try {
-            checkForMoreThanOneWord(trimmedInterest);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(pe.getMessage(), "Interests"));
-        }
 
         if (!Interest.isValidInterest(trimmedInterest)) {
             throw new ParseException(Interest.MESSAGE_CONSTRAINTS);
@@ -210,13 +182,6 @@ public class ParserUtil {
         String trimmedMod = mod.trim();
         checkForPrefix(trimmedMod);
         String trimmedUpperCasedMod = trimmedMod.toUpperCase();
-
-        // checks if there is a space in the input
-        try {
-            checkForMoreThanOneWord(trimmedUpperCasedMod);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(pe.getMessage(), "Module names"));
-        }
 
         if (!Mod.isValidModName(trimmedUpperCasedMod)) {
             throw new ParseException(Mod.MESSAGE_CONSTRAINTS);
@@ -286,18 +251,6 @@ public class ParserUtil {
                 throw new ParseException(String.format(MESSAGE_UNEXPECTED_PREFIX,
                         stringsWithInvalidPrefix.iterator().next().substring(0, 2)));
             }
-        }
-    }
-
-    /**
-     * Checks if the given string is seperated by space(s).
-     * @param args The string to check.
-     * @throws ParseException When there are spaces in between the string.
-     */
-    private static void checkForMoreThanOneWord(String args) throws ParseException {
-        String[] splittedArgs = args.split("\\s+");
-        if (splittedArgs.length > 1) {
-            throw new ParseException(MESSAGE_INVALID_INPUT);
         }
     }
 
