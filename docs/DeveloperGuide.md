@@ -822,7 +822,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2. User requests to delete a task from the selected internship application.
 
-3. InTrack deletes the task to the selected internship application.
+3. InTrack deletes the task from the selected internship application.
 
    Use case ends.
 
