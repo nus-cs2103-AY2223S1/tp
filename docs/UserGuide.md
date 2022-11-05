@@ -140,9 +140,10 @@ This section gives a breakdown of each attribute and its parameter counterpart.
 * Example: `s/AVAILABLE`, `s/PENDING`
 
 #### Interested clients
+
 * Refers to the clients that are interested in a property.
 * Each property can have multiple clients interested in it.
-* This parameter takes in **case-insensitive** arguments and attempts to link it to the name of a client.
+* This parameter takes in **case-sensitive** arguments and attempts to link it to the name of a client.
 * Can take in multiple space-delimited arguments.
 * An argument will not be accepted if it links to no clients, or if it links to more than one client.
   * An input containing both accepted and unaccepted arguments will not throw an error. The accepted arguments will still be used to link interested clients to the property.
