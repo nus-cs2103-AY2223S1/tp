@@ -40,7 +40,7 @@ public class FindMemberCommandTest {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of("Alice", "Carl"));
         model.updateFilteredMembersList(predicate);
         CommandResult expectedResult = new CommandResult(
-                String.format(MESSAGE_SUCCESS, model.getFilteredMemberList().size(), " Alice Carl"));
+                String.format(MESSAGE_SUCCESS, model.getFilteredMemberList().size(), "[Alice, Carl]"));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
@@ -53,8 +53,10 @@ public class FindMemberCommandTest {
         commandLine.parseArgs(keywords);
         EmailContainsKeywordsPredicate predicate = new EmailContainsKeywordsPredicate(List.of("Alice", "Heinz"));
         model.updateFilteredMembersList(predicate);
+        System.out.println();
         CommandResult expectedResult = new CommandResult(
-                String.format(MESSAGE_SUCCESS, model.getFilteredMemberList().size(), " Alice Heinz"));
+                String.format(MESSAGE_SUCCESS, model.getFilteredMemberList().size(), "[Alice, Heinz]"));
+        System.out.println(expectedResult.getFeedbackToUser());
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 }

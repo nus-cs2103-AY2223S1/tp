@@ -52,6 +52,7 @@ public class CliSyntax {
     public static final String FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION = "Keywords to search for (e.g. Alice Bob)";
     public static final String FLAG_EMAIL_SEARCH_KEYWORDS_DESCRIPTION = "Keywords to search for (e.g. johnd@example"
             + ".com alexy@example.com)";
+    public static final String FLAG_TASK_SEARCH_KEYWORDS_DESCRIPTION = "Keywords to search for (e.g. Meetings Bugs)";
     public static final String FLAG_COMPLETE_TASK_DESCRIPTION = "Filter for completed tasks";
     public static final String FLAG_INCOMPLETE_TASK_DESCRIPTION = "Filter for incomplete tasks";
     public static final String FLAG_SORT_ORDER_DESCRIPTION = "Sort by order specified (e.g. asc, dsc, res)";
