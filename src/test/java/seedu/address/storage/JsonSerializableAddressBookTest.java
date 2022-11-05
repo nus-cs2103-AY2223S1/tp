@@ -24,10 +24,6 @@ public class JsonSerializableAddressBookTest {
     private static final Path DUPLICATE_PROJECT_FILE = TEST_DATA_FOLDER.resolve("duplicateProjectAddressBook.json");
     private static final Path DUPLICATE_ISSUE_FILE = TEST_DATA_FOLDER.resolve("duplicateIssueAddressBook.json");
 
-    private static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
-    private static final String MESSAGE_DUPLICATE_ISSUE = "Issues list contains duplicate issue(s).";
-    private static final String MESSAGE_INVALID_CLIENT = "Clients list contains invalid client(s).";
-
     @Test
     public void toModelType_typicalFile_success() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_FILE,

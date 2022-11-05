@@ -44,25 +44,18 @@ public class ProjectCard extends UiPart<Region> {
     /**
      * Creates a {@code ProjectCard} with the given {@code Project} and index to display.
      */
-    public ProjectCard(Project project, int displayedIndex) {
+    public ProjectCard(Project project) {
         super(FXML);
         this.project = project;
-        name.setText(project.getProjectName().toString()
-                + " " + project.getProjectId().uiRepresentation()
-                + (project.isPinned() ? " \uD83D\uDCCC" : ""));
-        repository.setText(project.getRepository().isEmpty() ? "No Repository Set"
-                : project.getRepository().getUiRepresentation());
+        String projectIdString = project.getProjectId().uiRepresentation();
+        name.setText(project.getProjectName().uiRepresentation(project.isPinned(), projectIdString));
+        repository.setText(project.getRepository().uiRepresentation());
+        deadline.setText(project.getDeadline().uiRepresentation());
+        client.setText(project.getClient().uiRepresentation());
+        issueCount.setText(project.listUiRepresentation());
+
         repository.setOnMouseClicked(e -> copyRepoUrl(project.getRepository().isEmpty() ? ""
-                : project.getRepository().getUiRepresentation()));
-        deadline.setText(project.getDeadline().isEmpty() ? "No Deadline Set"
-                : project.getDeadline().uiRepresentation());
-        client.setText(project.getClient().isEmpty()
-                ? "No Client Set"
-                : "Client: " + project.getClient().uiRepresentation());
-        issueCount.setText(project.getIssueList().size()
-                + (project.getIssueList().size() == 1 ? " issue (" : " issues (")
-                + project.getCompletedIssueCount() + " complete, "
-                + project.getIncompleteIssueCount() + " incomplete)");
+                : project.getRepository().uiRepresentation()));
 
     }
 

@@ -62,8 +62,9 @@ public class Title {
         return false;
     }
 
-    public String uiRepresentation() {
-        return this.title;
+    public String uiRepresentation(boolean isPinned, String issueId) {
+        return this.title + " " + issueId
+                + (isPinned ? " \uD83D\uDCCC" : "");
     }
 
     @Override

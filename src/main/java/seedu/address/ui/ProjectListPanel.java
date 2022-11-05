@@ -46,7 +46,7 @@ public class ProjectListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ProjectCard(project, getIndex() + 1).getRoot());
+                setGraphic(new ProjectCard(project).getRoot());
             }
         }
     }
