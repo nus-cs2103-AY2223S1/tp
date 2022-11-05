@@ -24,6 +24,11 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD n/[NAME_KEYWORDS] or KEYWORD i/[ITEM_KEYWORDS]\n"
             + "Example: " + COMMAND_WORD + " n/Pte Ltd, " + COMMAND_WORD + " i/Chicken";
 
+    public static final String MESSAGE_NAME_EMPTY_COMMAND = "Name field must be provided, cannot be empty !"
+            + "Example: " + COMMAND_WORD + " n/Pte Ltd, ";
+    public static final String MESSAGE_ITEM_EMPTY_COMMAND = "Item field must be provided, cannot be empty !"
+            + "Example: " + COMMAND_WORD + " i/Chicken";
+
     private final Predicate<Person> predicate;
 
     public FindCommand(NameContainsKeywordsPredicate namePredicate) {

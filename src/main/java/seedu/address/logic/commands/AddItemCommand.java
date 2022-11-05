@@ -44,13 +44,6 @@ public class AddItemCommand extends Command {
     public static final String MESSAGE_INVALID_STOCK = "Stock fields provided must be positive";
 
 
-
-
-
-
-
-
-
     private final Index targetIndex;
     private final int currentStock;
     private final int minimumStock;
