@@ -299,7 +299,7 @@ The Delete Review mechanism is facilitated by `AddressBook`. This feature allows
 For the command, the feature extends `Command`, and is implemented as such:
 * `rdel REVIEW_INDEX`
 
-#### Implementation Flow of Review Deleting feature
+#### Implementation flow of Review Deleting feature
 
 Given below is an example usage scenario and how the listing of all reviews mechanism behaves at each step.
 
