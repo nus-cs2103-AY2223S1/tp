@@ -176,7 +176,7 @@ public class ParserUtil {
         if (index > MAX_DAYS) {
             throw new ParseException(MESSAGE_DAYS_GREATER_THAN_MAX);
         }
-        return Integer.parseInt(trimmedDays);
+        return index;
     }
 
     /**
