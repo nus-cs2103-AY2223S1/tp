@@ -150,22 +150,15 @@ public interface Model {
     ObservableList<Venue> getObservableVenues();
 
     /**
-     * Sets the list of venues to be displayed.
-     */
-    void setObservableVenues(List<Venue> modifiableVenues);
-
-    ObservableItem<VenueName> getCurrentlyDisplayedVenueName();
-
-    /**
-     * Gets the list of bookings to be displayed on {@link seedu.rc4hdb.ui.BookingTableView}.
+     * Gets the venue that is currently being displayed.
      * Use only for setting up listeners.
      */
-    ObservableList<Booking> getObservableBookings();
+    ObservableItem<Venue> getCurrentlyDisplayedVenue();
 
     /**
-     * Sets the venue corresponding to {@code venueName} to be displayed on {@link seedu.rc4hdb.ui.BookingTableView}.
+     * Sets the currently displayed venue to the venue with the corresponding {@code venueName}.
      */
-    void setObservableBookings(VenueName venueName) throws VenueNotFoundException;
+    void setCurrentlyDisplayedVenue(VenueName venueName);
 
     /**
      * Returns an observable list of the fields to be shown when invoking {@code show}.
