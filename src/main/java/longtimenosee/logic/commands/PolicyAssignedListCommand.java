@@ -52,4 +52,11 @@ public class PolicyAssignedListCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToList.getName()) + "\n" + display,
                 false, true, false);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PolicyAssignedListCommand // instanceof handles nulls
+                && personIndex.equals(((PolicyAssignedListCommand) other).personIndex));
+    }
 }

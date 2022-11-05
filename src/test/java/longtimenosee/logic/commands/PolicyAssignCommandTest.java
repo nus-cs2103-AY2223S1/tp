@@ -81,7 +81,6 @@ public class PolicyAssignCommandTest {
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
@@ -95,30 +94,36 @@ public class PolicyAssignCommandTest {
 
     @Test
     public void equals() {
-        PolicyAssignCommand deleteFirstCommand = new PolicyAssignCommand(INDEX_FIRST_PERSON, INDEX_FIRST_POLICY,
+        PolicyAssignCommand assignFirstCommand = new PolicyAssignCommand(INDEX_FIRST_PERSON, INDEX_FIRST_POLICY,
                 new Premium(VALID_PREMIUM_PRUSHIELD),
                 new PolicyDate(VALID_START_DATE_PRUSHIELD), new PolicyDate(VALID_END_DATE_PRUSHIELD));
-        PolicyAssignCommand deleteSecondCommand = new PolicyAssignCommand(INDEX_SECOND_PERSON, INDEX_SECOND_POLICY,
+        PolicyAssignCommand assignSecondCommand = new PolicyAssignCommand(INDEX_SECOND_PERSON, INDEX_SECOND_POLICY,
+                new Premium(VALID_PREMIUM_FLEXI),
+                new PolicyDate(VALID_START_DATE_FLEXI), new PolicyDate(VALID_END_DATE_FLEXI));
+        PolicyAssignCommand assignThirdCommand = new PolicyAssignCommand(INDEX_SECOND_PERSON, INDEX_FIRST_POLICY,
                 new Premium(VALID_PREMIUM_FLEXI),
                 new PolicyDate(VALID_START_DATE_FLEXI), new PolicyDate(VALID_END_DATE_FLEXI));
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(assignFirstCommand.equals(assignFirstCommand));
 
         // same values -> returns true
-        PolicyAssignCommand deleteFirstCommandCopy = new PolicyAssignCommand(INDEX_FIRST_PERSON, INDEX_FIRST_POLICY,
+        PolicyAssignCommand assignFirstCommandCopy = new PolicyAssignCommand(INDEX_FIRST_PERSON, INDEX_FIRST_POLICY,
                 new Premium(VALID_PREMIUM_PRUSHIELD),
                 new PolicyDate(VALID_START_DATE_PRUSHIELD), new PolicyDate(VALID_END_DATE_PRUSHIELD));
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        assertTrue(assignFirstCommand.equals(assignFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(assignFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(assignFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(assignFirstCommand.equals(assignSecondCommand));
+
+        // different policy -> returns false
+        assertFalse(assignThirdCommand.equals(assignSecondCommand));
     }
 
     /**
