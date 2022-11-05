@@ -27,8 +27,8 @@ title: Developer Guide
 GuestBook is a **desktop app for managing guests in a hotel,
 optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
-The primary target audience of GuestBook is hotel managers of small hotels
-and backpacker's inn who can type fast.
+The primary target audiences of GuestBook are hotel mangers of small hotels, 
+such as budget hotels and backpacker's inns, who can type fast
 In summary, GuestBook can accomplish
 guest management tasks faster than traditional GUI apps with our efficient
 management workflow.
@@ -364,10 +364,12 @@ The following activity diagram summarizes what happens when a user enters a `mar
   * Pros: This might be more intuitive for users, as `edit` and `delete` commands work only on the last shown lists.
   * Cons: User is unable to change all the guests' `isRoomClean` statuses in a single command.
 * **Alternative 2 (current choice):** Allow `markroomsunclean` command to change all guests' `isRoomClean` statuses in GuestBook instead of the last shown list.
-  * Pros: User is able to change all the guests' `isRoomClean` statuses in a single command. This improves efficiently for users.
+  * Pros: User is able to change all the guests' `isRoomClean` statuses in a single command. This improves efficiency for users.
   * Cons: There is less flexibility in marking groups of guests' rooms as unclean.
 
-Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' `isRoomClean` statuses differently as the types of rooms as mostly homogenous. Hence, we decided to proceed with Alternative 2.
+Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely 
+to have a case in which the user has to mark different groups of guests' `isRoomClean` statuses 
+differently as the rooms are mostly of the same type. Hence, we decided to proceed with Alternative 2.
 
 **Aspect: Naming of the `markroomsunclean` command**
 
@@ -387,7 +389,7 @@ rather insignificant as once the user gets acquainted with the command, reading 
 In GuestBook, the user can find guests using the `find` command. The extensibility of this `find` feature makes it easy for the user to locate guests in GuestBook.
 
 <span style="font-size: large; color: #e46c0a">Implementation:</span>
-* The `find` command takes in multiple keywords separated by spaces, and find all guests whose fields contain any of the keywords. The keywords are case-insensitive as well. For example, finding 'Alice' is the same as finding 'aLiCE'.
+* The `find` command takes in multiple search terms separated by spaces, and find all guests whose fields contain any of the search terms. The search terms are case-insensitive as well. For example, finding 'Alice' is the same as finding 'aLiCE'.
 
 The following activity diagram summarizes what happens when a user enters a `find` command.
 
@@ -398,7 +400,7 @@ The following activity diagram summarizes what happens when a user enters a `fin
 <span style="font-size: large; color: #e46c0a">Design Considerations:</span>
 
 **Aspect: Allowing searching only through all fields**
-* As the hotel manager would usually appreciate the ability to search by other fields such as by `room`, it is appropriate to make the `find` command to scan through all the fields of the guests.
+* As the user would usually appreciate the ability to search by other fields such as by `room`, it is appropriate to make the `find` command to scan through all the fields of the guests.
 
 **Aspect: Only matching full keywords**
 * The `find` command only matches full keywords. For example, typing in 'ali' would not match a Guest named 'Alice'. As we do not want to display possible redundant data to the hotel manager, we decided to limit the `find` command to only full keywords, so that the results displayed are more targeted.
@@ -531,7 +533,7 @@ This is a quick overview of all the commands and their functionalities.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* To keep track of the essential information of a guest like name, phone number, email address.
+* To keep track of the essential information of a guest such as name, phone number and email address.
 * To keep track of the room which the guest stays in.
 * To know when the guests check in and check out.
 * To keep track of the guests' bills.
