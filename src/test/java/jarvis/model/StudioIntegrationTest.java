@@ -1,17 +1,17 @@
 package jarvis.model;
 
 import static jarvis.testutil.Assert.assertThrows;
+import static jarvis.testutil.TypicalLessons.CONSULT_1;
 import static jarvis.testutil.TypicalLessons.DT1;
 import static jarvis.testutil.TypicalLessons.DT2;
 import static jarvis.testutil.TypicalLessons.DT3;
 import static jarvis.testutil.TypicalLessons.DT4;
 import static jarvis.testutil.TypicalLessons.MC_1;
+import static jarvis.testutil.TypicalLessons.STUDIO_1;
+import static jarvis.testutil.TypicalLessons.STUDIO_2;
 import static jarvis.testutil.TypicalLessons.STUDIO_DESCRIPTION_1;
 import static jarvis.testutil.TypicalLessons.STUDIO_DESCRIPTION_2;
 import static jarvis.testutil.TypicalLessons.STUDIO_STUDENTS;
-import static jarvis.testutil.TypicalLessons.STUDIO_1;
-import static jarvis.testutil.TypicalLessons.STUDIO_2;
-import static jarvis.testutil.TypicalLessons.CONSULT_1;
 import static jarvis.testutil.TypicalStudents.ALICE;
 import static jarvis.testutil.TypicalStudents.HOON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,35 +26,35 @@ import jarvis.model.exceptions.InvalidParticipationException;
 import jarvis.model.exceptions.StudentNotFoundException;
 
 class StudioIntegrationTest {
-    private final Studio STUDIO_3 = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
+    private final Studio studio = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
 
     @Test
     void startDateTime() {
-        assertEquals(DT1, STUDIO_3.startDateTime());
+        assertEquals(DT1, studio.startDateTime());
     }
 
     @Test
     void endDateTime() {
-        assertEquals(DT3, STUDIO_3.endDateTime());
+        assertEquals(DT3, studio.endDateTime());
     }
 
     @Test
     void hasTimingConflict() {
         // Studios
-        assertFalse(STUDIO_3.hasTimingConflict(STUDIO_2));
-        assertFalse(STUDIO_2.hasTimingConflict(STUDIO_3));
-        assertTrue(STUDIO_1.hasTimingConflict(STUDIO_3));
-        assertTrue(STUDIO_3.hasTimingConflict(STUDIO_1));
+        assertFalse(studio.hasTimingConflict(STUDIO_2));
+        assertFalse(STUDIO_2.hasTimingConflict(studio));
+        assertTrue(STUDIO_1.hasTimingConflict(studio));
+        assertTrue(studio.hasTimingConflict(STUDIO_1));
 
         // Other lessons
-        assertTrue(STUDIO_3.hasTimingConflict(MC_1));
-        assertFalse(STUDIO_3.hasTimingConflict(CONSULT_1));
+        assertTrue(studio.hasTimingConflict(MC_1));
+        assertFalse(studio.hasTimingConflict(CONSULT_1));
     }
 
     @Test
     void hasStudent() {
-        assertTrue(STUDIO_3.hasStudent(ALICE));
-        assertFalse(STUDIO_3.hasStudent(HOON));
+        assertTrue(studio.hasStudent(ALICE));
+        assertFalse(studio.hasStudent(HOON));
     }
 
     @Test
@@ -65,74 +65,74 @@ class StudioIntegrationTest {
 
     @Test
     void markAsPresent() {
-        STUDIO_3.markAsPresent(ALICE);
-        assertEquals("Present", STUDIO_3.isPresent(ALICE));
+        studio.markAsPresent(ALICE);
+        assertEquals("Present", studio.isPresent(ALICE));
     }
 
     @Test
     void markAsAbsent() {
-        STUDIO_3.markAsPresent(ALICE);
-        STUDIO_3.markAsAbsent(ALICE);
-        assertEquals("Absent", STUDIO_3.isPresent(ALICE));
+        studio.markAsPresent(ALICE);
+        studio.markAsAbsent(ALICE);
+        assertEquals("Absent", studio.isPresent(ALICE));
     }
 
     @Test
     void markAsCompleted() {
-        assertFalse(STUDIO_3.isCompleted()); // Not completed by default
-        STUDIO_3.markAsCompleted();
-        assertTrue(STUDIO_3.isCompleted());
-        STUDIO_3.markAsCompleted();
-        assertTrue(STUDIO_3.isCompleted());
+        assertFalse(studio.isCompleted()); // Not completed by default
+        studio.markAsCompleted();
+        assertTrue(studio.isCompleted());
+        studio.markAsCompleted();
+        assertTrue(studio.isCompleted());
     }
 
     @Test
     void markAsNotCompleted() {
-        STUDIO_3.markAsCompleted();
-        assertTrue(STUDIO_3.isCompleted());
-        STUDIO_3.markAsNotCompleted();
-        assertFalse(STUDIO_3.isCompleted());
-        STUDIO_3.markAsNotCompleted();
-        assertFalse(STUDIO_3.isCompleted());
+        studio.markAsCompleted();
+        assertTrue(studio.isCompleted());
+        studio.markAsNotCompleted();
+        assertFalse(studio.isCompleted());
+        studio.markAsNotCompleted();
+        assertFalse(studio.isCompleted());
     }
 
     @Test
     void hasDesc() {
         Studio noDesc = new Studio(null, new TimePeriod(DT1, DT2), STUDIO_STUDENTS);
-        assertTrue(STUDIO_3.hasDesc());
+        assertTrue(studio.hasDesc());
         assertFalse(noDesc.hasDesc());
     }
 
     @Test
     void setParticipationForStudent_invalidStudent_exceptionThrown() {
-        assertThrows(NullPointerException.class,
-                () -> STUDIO_3.setParticipationForStudent(null, 100)); // null student
-        assertThrows(StudentNotFoundException.class,
-                () -> STUDIO_3.setParticipationForStudent(HOON, 100)); // Student not in lesson
+        assertThrows(NullPointerException.class, () ->
+                studio.setParticipationForStudent(null, 100)); // null student
+        assertThrows(StudentNotFoundException.class, () ->
+                studio.setParticipationForStudent(HOON, 100)); // Student not in lesson
     }
 
     @Test
     void setParticipationForStudent_invalidParticipation_exceptionThrown() {
-        assertThrows(InvalidParticipationException.class,
-                () -> STUDIO_3.setParticipationForStudent(ALICE, -1));
-        assertThrows(InvalidParticipationException.class,
-                () -> STUDIO_3.setParticipationForStudent(ALICE, 501));
-        assertThrows(InvalidParticipationException.class,
-                () -> STUDIO_3.setParticipationForStudent(ALICE, 700));
+        assertThrows(InvalidParticipationException.class, () ->
+                studio.setParticipationForStudent(ALICE, -1));
+        assertThrows(InvalidParticipationException.class, () ->
+                studio.setParticipationForStudent(ALICE, 501));
+        assertThrows(InvalidParticipationException.class, () ->
+                studio.setParticipationForStudent(ALICE, 700));
     }
 
     @Test
     void testParticipation_validArguments() {
-        assertEquals(0, STUDIO_3.getParticipationForStudent(ALICE)); // default participation is 0
-        STUDIO_3.setParticipationForStudent(ALICE, 100);
-        assertEquals(100, STUDIO_3.getParticipationForStudent(ALICE));
-        STUDIO_3.setParticipationForStudent(ALICE, 200);
-        assertEquals(200, STUDIO_3.getParticipationForStudent(ALICE));
+        assertEquals(0, studio.getParticipationForStudent(ALICE)); // default participation is 0
+        studio.setParticipationForStudent(ALICE, 100);
+        assertEquals(100, studio.getParticipationForStudent(ALICE));
+        studio.setParticipationForStudent(ALICE, 200);
+        assertEquals(200, studio.getParticipationForStudent(ALICE));
 
         // Boundary values
-        STUDIO_3.setParticipationForStudent(ALICE, 500);
-        assertEquals(500, STUDIO_3.getParticipationForStudent(ALICE));
-        STUDIO_3.setParticipationForStudent(ALICE, 0);
-        assertEquals(0, STUDIO_3.getParticipationForStudent(ALICE));
+        studio.setParticipationForStudent(ALICE, 500);
+        assertEquals(500, studio.getParticipationForStudent(ALICE));
+        studio.setParticipationForStudent(ALICE, 0);
+        assertEquals(0, studio.getParticipationForStudent(ALICE));
     }
 
     @Test
@@ -152,34 +152,34 @@ class StudioIntegrationTest {
         differentNotes.addOverallNote("Note 1");
 
         // same values -> returns true
-        assertTrue(STUDIO_3.equals(sameValues));
+        assertTrue(studio.equals(sameValues));
 
         // same object -> returns true
-        assertTrue(STUDIO_3.equals(STUDIO_3));
+        assertTrue(studio.equals(studio));
 
         // null -> returns false
-        assertFalse(STUDIO_3.equals(null));
+        assertFalse(studio.equals(null));
 
         // different type -> returns false
-        assertFalse(STUDIO_3.equals(5));
+        assertFalse(studio.equals(5));
 
         // same students but different attendance values -> returns false
-        assertFalse(STUDIO_3.equals(differentAttendance));
+        assertFalse(studio.equals(differentAttendance));
 
         // different students -> returns false
-        assertFalse(STUDIO_3.equals(differentStudents));
+        assertFalse(studio.equals(differentStudents));
 
         // different participation -> returns false
-        assertFalse(STUDIO_3.equals(differentParticipation));
+        assertFalse(studio.equals(differentParticipation));
 
         // different time period -> returns false
-        assertFalse(STUDIO_3.equals(differentTime));
+        assertFalse(studio.equals(differentTime));
 
         // different description -> returns false
-        assertFalse(STUDIO_3.equals(differentDesc));
+        assertFalse(studio.equals(differentDesc));
 
         // different notes -> returns true
-        assertTrue(STUDIO_3.equals(differentNotes));
+        assertTrue(studio.equals(differentNotes));
     }
 
     @Test

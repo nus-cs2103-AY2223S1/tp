@@ -42,7 +42,7 @@ class LessonNotesTest {
 
     @Test
     public void addStudentNote_invalidNote_exceptionThrown() {
-        assertThrows(NullPointerException.class, () -> lessonNotes.addNote(ALICE,null));
+        assertThrows(NullPointerException.class, () -> lessonNotes.addNote(ALICE, null));
 
         String empty = "";
         assertThrows(InvalidNoteException.class, () -> lessonNotes.addNote(ALICE, empty));

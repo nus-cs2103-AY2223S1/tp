@@ -1,20 +1,18 @@
 package jarvis.testutil;
 
+import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE;
-import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static jarvis.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static jarvis.logic.parser.ParserUtil.DATE_FORMATTER;
 import static jarvis.logic.parser.ParserUtil.TIME_FORMATTER;
 
 import java.time.LocalDateTime;
 
-import jarvis.logic.commands.AddConsultCommand;
-import jarvis.logic.commands.AddMasteryCheckCommand;
 import jarvis.logic.commands.AddStudioCommand;
 import jarvis.model.Lesson;
-import jarvis.model.LessonType;
+import jarvis.model.Studio;
 
 /**
  * A utility class for Lesson.
@@ -24,17 +22,15 @@ public class LessonUtil {
     /**
      * Returns an add command string for adding the {@code lesson}.
      */
-    public static String getAddCommand(Lesson lesson) {
-        switch (lesson.getLessonType()) {
-        case STUDIO:
-            return AddStudioCommand.COMMAND_WORD + " " + getLessonDetails(lesson);
-//        case CONSULT:
-//            return AddConsultCommand.COMMAND_WORD + " " + getLessonDetails(lesson);
-//        case MASTERY_CHECK:
-//            return AddMasteryCheckCommand.COMMAND_WORD + " " + getLessonDetails(lesson);
-        default:
-            return "Unknown Lesson type";
-        }
+    public static String getAddStudioCommand(Studio studio) {
+        return AddStudioCommand.COMMAND_WORD + " " + getStudioDetails(studio);
+    }
+
+    /**
+     * Returns the part of command string for the given {@code studio}'s details.
+     */
+    public static String getStudioDetails(Studio studio) {
+        return getLessonDetails(studio);
     }
 
     /**
@@ -53,11 +49,6 @@ public class LessonUtil {
         sb.append(PREFIX_START_TIME).append(start.format(TIME_FORMATTER)).append(" ");
         sb.append(PREFIX_END_DATE).append(end.format(DATE_FORMATTER)).append(" ");
         sb.append(PREFIX_END_TIME).append(end.format(TIME_FORMATTER)).append(" ");
-
-        if (lesson.getLessonType().equals(LessonType.CONSULT)
-                || lesson.getLessonType().equals(LessonType.MASTERY_CHECK)) {
-            // how to get student index from student
-        }
 
         return sb.toString();
     }

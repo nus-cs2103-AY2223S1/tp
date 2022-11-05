@@ -22,30 +22,30 @@ class StudioParticipationTest {
 
     @Test
     void setParticipationForStudent_invalidStudent_exceptionThrown() {
-        assertThrows(NullPointerException.class,
-                () -> studioParticipation.setParticipationForStudent(null, 100)); // null student
+        assertThrows(NullPointerException.class, () ->
+                studioParticipation.setParticipationForStudent(null, 100)); // null student
 
-        assertThrows(StudentNotFoundException.class,
-                        () -> studioParticipation.setParticipationForStudent(HOON, 100));
+        assertThrows(StudentNotFoundException.class, () ->
+                studioParticipation.setParticipationForStudent(HOON, 100));
     }
 
     @Test
     void setParticipationForStudent_invalidParticipation_exceptionThrown() {
-        assertThrows(InvalidParticipationException.class,
-                () -> studioParticipation.setParticipationForStudent(ALICE, -1));
-        assertThrows(InvalidParticipationException.class,
-                () -> studioParticipation.setParticipationForStudent(ALICE, 501));
-        assertThrows(InvalidParticipationException.class,
-                () -> studioParticipation.setParticipationForStudent(ALICE, 700));
+        assertThrows(InvalidParticipationException.class, () ->
+                studioParticipation.setParticipationForStudent(ALICE, -1));
+        assertThrows(InvalidParticipationException.class, () ->
+                studioParticipation.setParticipationForStudent(ALICE, 501));
+        assertThrows(InvalidParticipationException.class, () ->
+                studioParticipation.setParticipationForStudent(ALICE, 700));
     }
 
     @Test
     void getParticipationForStudent_invalidStudent_exceptionThrown() {
-        assertThrows(NullPointerException.class,
-                () -> studioParticipation.getParticipationForStudent(null)); // null student
+        assertThrows(NullPointerException.class, () ->
+                studioParticipation.getParticipationForStudent(null)); // null student
 
-        assertThrows(StudentNotFoundException.class,
-                () -> studioParticipation.getParticipationForStudent(HOON));
+        assertThrows(StudentNotFoundException.class, () ->
+                studioParticipation.getParticipationForStudent(HOON));
     }
 
     @Test
