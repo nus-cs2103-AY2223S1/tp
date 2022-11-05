@@ -2,13 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -46,9 +40,9 @@ public class CommandTestUtil {
 
     public static final String VALID_GROUP_TUTORIAL1 = "T08";
     public static final String VALID_GROUP_TUTURIAL2 = "T09";
-    public static final String VALID_CONTENT_TUTORIAL1 = "UML";
+    public static final String VALID_CONTENT_TUTORIAL1 = "UML Diagrams";
     public static final String VALID_CONTENT_TUTORIAL2 = "Developer Guide";
-    public static final String VALID_TIME_TUTORIAL1 = "2022-10-01 1400";
+    public static final String VALID_TIME_TUTORIAL1 = "2022-10-01 0800";
     public static final String VALID_TIME_TUTORIAL2 = "2022-10-01 1600";
     public static final String VALID_TELEGRAM_AMY = "@amy";
     public static final String VALID_TELEGRAM_BOB = "@bob_choo";
@@ -71,6 +65,13 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String GROUP_DESC_TUTORIAL1 = " " + PREFIX_GROUP + VALID_GROUP_TUTORIAL1;
+    public static final String GROUP_DESC_TUTORIAL2 = " " + PREFIX_GROUP + VALID_GROUP_TUTURIAL2;
+    public static final String CONTENT_DESC_TUTORIAL1 = " " + PREFIX_CONTENT + VALID_CONTENT_TUTORIAL1;
+    public static final String CONTENT_DESC_TUTORIAL2 = " " + PREFIX_CONTENT + VALID_CONTENT_TUTORIAL2;
+    public static final String TIME_DESC_TUTORIAL1 = " " + PREFIX_TIME + VALID_TIME_TUTORIAL1;
+    public static final String TIME_DESC_TUTORIAL2 = " " + PREFIX_TIME + VALID_TIME_TUTORIAL2;
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "James&"; // Missing '@' before handle
@@ -79,6 +80,9 @@ public class CommandTestUtil {
     public static final String INVALID_ATTENDANCE_DESC = " " + PREFIX_ATTENDANCE + "a"; // 'a' not allowed in attendance
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "2022"; // the time format is not correct
+    public static final String INVALID_GROUP_DESC = " " + PREFIX_GROUP + "T08*"; // contains non-alphanumeric characters
+    public static final String INVALID_CONTENT_DESC = " " + PREFIX_CONTENT + "uml*";// contains non-alphanumeric characters
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -113,7 +117,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -128,7 +132,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -149,6 +153,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
