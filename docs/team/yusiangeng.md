@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=yusiangeng&breakdown=true)
 
 * **Enhancements to existing features**:
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Wrote additional tests for existing features to increase coverage (Pull requests [\#192](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/193))
 
 * **Documentation**:
   * User Guide:
