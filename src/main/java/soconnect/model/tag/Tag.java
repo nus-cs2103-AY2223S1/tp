@@ -13,7 +13,7 @@ public class Tag {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     private static final String MESSAGE_TAG_TOO_LONG =
             "The Tag is too long. Keep it within %1$s characters, including whitespaces.";
-    private static final int CHARACTER_LIMIT = 20;
+    private static final int CHARACTER_LIMIT = 10;
     public static final String MESSAGE_TOO_LONG = String.format(MESSAGE_TAG_TOO_LONG, CHARACTER_LIMIT);
 
     public final String tagName;
