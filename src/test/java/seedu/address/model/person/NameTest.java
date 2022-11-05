@@ -36,6 +36,8 @@ public class NameTest {
         assertFalse(Name.isValidName("Captain Jack Sparrow 2")); // standalone number
         assertFalse(Name.isValidName("313%$#")); // inclusion of invalid characters
         assertFalse(Name.isValidName("314a!")); // inclusion of invalid characters
+        assertFalse(Name.isValidName("313-")); // inclusion of invalid characters
+        assertFalse(Name.isValidName("alpha 313-")); // first word valid, second invalid
 
         // valid name
         assertTrue(Name.isValidName("peter jack")); // alphabets only
