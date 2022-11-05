@@ -15,9 +15,9 @@ cat data_simple.json | jq "select(.merged)" | jq ".resourcePath" > .urls.txt
 cp .numbers.txt numbers-expected.txt
 
 # Format to markdown
-sed -i '' 's/^"\(.*\)"$/* \1 /g' .titles.txt
-sed -i '' 's/\(.*\)/([PR#\1]/g' .numbers.txt
-sed -i '' 's?^"\(.*\)"$?(https://github.com\1))?g' .urls.txt
+sed -i 's/^"\(.*\)"$/* \1 /g' .titles.txt
+sed -i 's/\(.*\)/([PR#\1]/g' .numbers.txt
+sed -i 's?^"\(.*\)"$?(https://github.com\1))?g' .urls.txt
 paste -d "\0" .titles.txt .numbers.txt .urls.txt > expected-message.md
 
 # Get matching lines across all PPPs
