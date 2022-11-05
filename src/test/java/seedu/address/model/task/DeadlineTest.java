@@ -15,6 +15,7 @@ public class DeadlineTest {
         assertThrows(IllegalArgumentException.class, () -> Deadline.of("2022-10-10"));
         assertThrows(IllegalArgumentException.class, () -> Deadline.of("10/10/2022"));
     }
+
     @Test
     public void formatForUi_withinCurrentYear_shouldNotDisplayYear() {
         LocalDate withinYear = LocalDate.now();

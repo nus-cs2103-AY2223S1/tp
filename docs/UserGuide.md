@@ -300,7 +300,9 @@ Adds a new task to the task panel.
 Format: `task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...`
 
 * `TITLE` refers to the task and **cannot be empty**.
-* You can use English to describe the deadline (e.g. `today`, `tomorrow`, `next thursday`, `14 november`)
+* You can only use plain English to describe the intended deadline, such as `today`, `tomorrow`, `next Thursday`, `14 November`, and so on.
+* Dates containing non-alphanumeric characters such as `11-11-2022` will not be accepted and an error message will be thrown.
+* If the application is unable to determine a date from your input, an error message will be displayed, and you will be prompted to try a different input.
 * If task does not have a deadline, you can put `by/?` and there will be no deadline.
 * `PERSON_INDEX` refers to the index number shown in the displayed person list.
 
@@ -385,7 +387,8 @@ You can use the `task do ... by/` command to set (or remove) a deadline for some
 
 Format: `task do TASK_INDEX [by/DATE]...`
 - The `task do` command sets the deadline specified by `DATE` to the task at the specified `TASK_INDEX` from the task list.
-- You can use plain English to describe the intended deadline, such as `today`, `tomorrow`, `next Thursday`, `14 November`, and so on.
+- You can only use plain English to describe the intended deadline, such as `today`, `tomorrow`, `next Thursday`, `14 November`, and so on.
+- Dates containing non-alphanumeric characters such as `11-11-2022` will not be accepted and an error message will be thrown.
 - If the application is unable to determine a date from your input, an error message will be displayed, and you will be prompted to try a different input.
 - To **remove** the deadline from a task, you can use the special character `?`.
 
