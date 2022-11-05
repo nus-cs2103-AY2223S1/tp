@@ -13,7 +13,7 @@ public class TeleHandle {
 
     public static final String TELEHANDLE_DISPLAY_PREFIX = "Telegram: ";
 
-    public static final String MESSAGE_CONSTRAINTS = "Telegram handle should be in the format @handle";
+    public static final String MESSAGE_CONSTRAINTS = "Telegram handle should be in the format @handle.";
 
     public static final String VALIDATION_REGEX = "^[@][\\p{all}]*";
 
