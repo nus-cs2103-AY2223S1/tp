@@ -20,7 +20,7 @@ import seedu.address.testutil.TaskBuilder;
 
 public class TaskTest {
 
-    Task taskUnderTest = TASK_1_DETAILS;
+    private Task taskUnderTest = TASK_1_DETAILS;
 
     @Test
     public void null_constructor_throwsNullPointerException() {

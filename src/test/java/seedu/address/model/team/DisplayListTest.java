@@ -22,7 +22,7 @@ public class DisplayListTest {
         taskList = new TaskList();
         taskList.add(TASK_CODE);
         taskList.add(TASK_REVIEW);
-        displayList =  new DisplayList(taskList.asUnmodifiableObservableList());
+        displayList = new DisplayList(taskList.asUnmodifiableObservableList());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class DisplayListTest {
         TaskList reverseSortedTaskList = new TaskList();
         reverseSortedTaskList.add(TASK_REVIEW);
         reverseSortedTaskList.add(TASK_CODE);
-        Comparator<Task> comparator =  (t1, t2) -> t2.getName().toString().compareTo(t1.getName().toString());
+        Comparator<Task> comparator = (t1, t2) -> t2.getName().toString().compareTo(t1.getName().toString());
         displayList.setComparator(comparator);
         FilteredList<Task> filtered = new FilteredList<>(reverseSortedTaskList.asUnmodifiableObservableList());
         assertEquals(filtered, displayList.getFilteredDisplayList());

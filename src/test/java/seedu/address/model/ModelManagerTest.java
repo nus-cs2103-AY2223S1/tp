@@ -17,9 +17,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.UniqueTeamList;

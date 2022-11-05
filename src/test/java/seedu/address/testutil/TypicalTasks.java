@@ -5,11 +5,8 @@ import static seedu.address.testutil.TypicalTeams.TYPICAL_MEMBERS_CARL;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.TaskName;
 
@@ -28,9 +25,9 @@ public class TypicalTasks {
     public static final Task TASK_REVIEW = new Task(new TaskName("review"), List.of(), false, null);
     public static final Task TASK_1_DETAILS = new Task(new TaskName("task"),
             TYPICAL_MEMBERS, false,
-            LocalDateTime.parse("2023-12-25 23:59",  DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            LocalDateTime.parse("2023-12-25 23:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 
     public static final Task TASK_2_DETAILS = new Task(new TaskName("task 123"),
             TYPICAL_MEMBERS_CARL, false,
-            LocalDateTime.parse("2023-12-25 23:59",  DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            LocalDateTime.parse("2023-12-25 23:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 }

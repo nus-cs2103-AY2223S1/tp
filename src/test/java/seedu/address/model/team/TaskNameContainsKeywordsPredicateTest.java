@@ -18,14 +18,17 @@ class TaskNameContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TaskNameContainsKeywordsPredicate firstPredicate = new TaskNameContainsKeywordsPredicate(firstPredicateKeywordList);
-        TaskNameContainsKeywordsPredicate secondPredicate = new TaskNameContainsKeywordsPredicate(secondPredicateKeywordList);
+        TaskNameContainsKeywordsPredicate firstPredicate =
+                new TaskNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        TaskNameContainsKeywordsPredicate secondPredicate =
+                new TaskNameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TaskNameContainsKeywordsPredicate firstPredicateCopy = new TaskNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        TaskNameContainsKeywordsPredicate firstPredicateCopy =
+                new TaskNameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +44,8 @@ class TaskNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        TaskNameContainsKeywordsPredicate predicate = new TaskNameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        TaskNameContainsKeywordsPredicate predicate =
+                new TaskNameContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new TaskBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -60,7 +64,8 @@ class TaskNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        TaskNameContainsKeywordsPredicate predicate = new TaskNameContainsKeywordsPredicate(Collections.emptyList());
+        TaskNameContainsKeywordsPredicate predicate =
+                new TaskNameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new TaskBuilder().withName("Alice").build()));
 
         // Non-matching keyword

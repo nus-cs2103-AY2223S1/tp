@@ -29,13 +29,13 @@ class UrlTest {
         assertTrue(Url.isValidUrl("https://www.google.com"));
         assertTrue(Url.isValidUrl("http://google.com"));
         //google docs
-        assertTrue(Url.isValidUrl("https://docs.google.com/" +
-                "document/d/1FExr2vMQSwLWZfnikJHDgmnmTRnBAVHyC5K-7XzOOjY/edit"));
+        assertTrue(Url.isValidUrl("https://docs.google.com/"
+                + "document/d/1FExr2vMQSwLWZfnikJHDgmnmTRnBAVHyC5K-7XzOOjY/edit"));
         //git hub link
         assertTrue(Url.isValidUrl("https://github.com/AY2223S1-CS2103T-W13-4/tp"));
         //zoom link
-        assertTrue(Url.isValidUrl("https://nus-sg.zoom.us/" +
-                "j/86758308632?pwd=V2pxTUtHeEpiZC9ZeC83YSsvMWxGZz09"));
+        assertTrue(Url.isValidUrl("https://nus-sg.zoom.us/"
+                + "j/86758308632?pwd=V2pxTUtHeEpiZC9ZeC83YSsvMWxGZz09"));
         //very long url sharepoint
         assertTrue(Url.isValidUrl(
                 "https://nusu-my.sharepoint.com/personal/elcypss_nus_edu_sg"

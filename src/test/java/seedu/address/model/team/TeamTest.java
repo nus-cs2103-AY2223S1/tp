@@ -2,8 +2,6 @@ package seedu.address.model.team;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalLinks.LINK_GOOGLE;
 import static seedu.address.testutil.TypicalLinks.LINK_YOUTUBE;
@@ -11,9 +9,9 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalTasks.TASK_1;
 import static seedu.address.testutil.TypicalTasks.TASK_3;
-import static seedu.address.testutil.TypicalTeams.FIRST_TEAM_DETAILS;
 import static seedu.address.testutil.TypicalTeams.FIRST;
 import static seedu.address.testutil.TypicalTeams.FIRST_DUPLICATE;
+import static seedu.address.testutil.TypicalTeams.FIRST_TEAM_DETAILS;
 import static seedu.address.testutil.TypicalTeams.SECOND;
 import static seedu.address.testutil.TypicalTeams.TYPICAL_LINKS;
 import static seedu.address.testutil.TypicalTeams.TYPICAL_MEMBERS;
@@ -21,17 +19,15 @@ import static seedu.address.testutil.TypicalTeams.TYPICAL_TASKS;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
 import seedu.address.testutil.TeamBuilder;
-import seedu.address.testutil.TypicalTasks;
 
 class TeamTest {
 
-    Team teamUnderTest = new Team(new TeamName("teamUnderTest"));
+    private Team teamUnderTest = new Team(new TeamName("teamUnderTest"));
     @Test
     public void null_constructor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Team(null, null));
@@ -118,7 +114,7 @@ class TeamTest {
         assertFalse(FIRST.isSameTeam(SECOND));
 
         //Teams are equal to other teams with different descriptions
-        Team editedFirst =  new Team(FIRST.getTeamName(), new Description("other description"));
+        Team editedFirst = new Team(FIRST.getTeamName(), new Description("other description"));
         assertTrue(FIRST.isSameTeam(editedFirst));
 
         //Teams are not equal to null

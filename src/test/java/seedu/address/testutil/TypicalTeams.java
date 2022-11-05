@@ -32,6 +32,6 @@ public class TypicalTeams {
             Description.NO_DESCRIPTION.DEFAULT_DESCRIPTION);
     public static final Team FIRST_TEAM_DETAILS = new Team(new TeamName("first"),
             Description.DEFAULT_DESCRIPTION, TYPICAL_MEMBERS, TYPICAL_TASKS, TYPICAL_LINKS);
-    public static final Team SECOND = new Team( new TeamName("third"),
+    public static final Team SECOND = new Team(new TeamName("third"),
             Description.DEFAULT_DESCRIPTION);
 }

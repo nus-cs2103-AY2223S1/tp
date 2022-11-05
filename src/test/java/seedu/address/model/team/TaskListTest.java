@@ -11,10 +11,8 @@ import static seedu.address.testutil.TypicalTasks.TASK_1;
 import static seedu.address.testutil.TypicalTasks.TASK_1_DETAILS;
 import static seedu.address.testutil.TypicalTasks.TASK_2;
 import static seedu.address.testutil.TypicalTasks.TASK_2_DETAILS;
-import static seedu.address.testutil.TypicalTasks.TASK_3;
 import static seedu.address.testutil.TypicalTeams.TYPICAL_MEMBERS_CARL;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;

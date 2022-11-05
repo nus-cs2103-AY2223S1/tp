@@ -37,5 +37,4 @@ class TaskNameTest {
         assertTrue(TaskName.isValidTaskName("peter*")); // contains non-alphanumeric characters
         assertTrue(TaskName.isValidTaskName("^")); // only non-alphanumeric characters
     }
-
 }
