@@ -69,7 +69,7 @@ public class EditAppointmentDescriptorBuilder {
         return this;
     }
 
-    public EditAppointmentCommand.EditAppointmentDescriptor build() {
+    public EditAppointmentDescriptor build() {
         return descriptor;
     }
 }

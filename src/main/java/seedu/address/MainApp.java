@@ -112,7 +112,7 @@ public class MainApp extends Application {
             if (!commandHistoryOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a empty commandHistory");
             }
-            commandHistoryOptional.map(CommandHistory::getResetCommandHistory);
+            commandHistoryOptional.map(CommandHistory::getCommandHistory);
             initialData = commandHistoryOptional.orElseGet(CommandHistory::new);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty commandHistory");
