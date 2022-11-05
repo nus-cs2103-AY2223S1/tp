@@ -44,7 +44,7 @@ public class Tag {
      * @return True if it does not exceed the character limit. False if otherwise.
      */
     public static boolean isValidLength(String text) {
-        return text.length() > CHARACTER_LIMIT ? false : true;
+        return !(text.length() > CHARACTER_LIMIT);
     }
 
     @Override
