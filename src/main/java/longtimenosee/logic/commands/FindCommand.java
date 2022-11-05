@@ -21,7 +21,7 @@ import longtimenosee.model.Model;
 import longtimenosee.model.person.Person;
 
 /**
- * Finds and lists all persons in address book who matches the given metrics.
+ * Finds and lists all Clients in address book who matches the given metrics.
  */
 public class FindCommand extends Command {
 

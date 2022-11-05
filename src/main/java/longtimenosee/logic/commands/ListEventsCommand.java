@@ -6,7 +6,7 @@ import static longtimenosee.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import longtimenosee.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all Events in the LTNS to the user.
  */
 public class ListEventsCommand extends Command {
 

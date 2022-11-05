@@ -25,7 +25,7 @@ public class PolicyAssignCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": assigns a policy to a client.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": assigns a policy to a Client.\n"
             + "Parameters: "
             + "CLIENT_INDEX "
             + "POLICY_INDEX "

@@ -15,7 +15,7 @@ import longtimenosee.model.policy.Policy;
 
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a Client identified using it's displayed index from the LTNS.
  */
 public class PolicyDeleteCommand extends Command {
 

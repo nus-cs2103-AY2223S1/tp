@@ -3,7 +3,7 @@ package longtimenosee.logic.commands;
 import longtimenosee.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all Clients in the address book to the user.
  */
 public class PersonCommand extends Command {
 

@@ -15,7 +15,7 @@ import longtimenosee.model.Model;
 import longtimenosee.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a Client into the LTNS.
  */
 public class AddCommand extends Command {
 
