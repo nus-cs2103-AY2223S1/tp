@@ -17,11 +17,11 @@ import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
  */
 public class ViewScheduleCommand extends Command {
 
-    public static final String COMMAND_WORD = "view";
+    public static final String COMMAND_WORD = "sview";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views all schedules which satisfy all selection "
             + "requirements.\n"
-            + "Format: view [ " + PREFIX_WEEKDAY + "WEEKDAY] [ " + PREFIX_WEEKDAY + "MORE_WEEKDAYS] ["
+            + "Format: " + COMMAND_WORD + " [ " + PREFIX_WEEKDAY + "WEEKDAY] [ " + PREFIX_WEEKDAY + "MORE_WEEKDAYS] ["
             + PREFIX_MODULE_OF_SCHEDULE + "MODULE_CODE] [" + PREFIX_MODULE_OF_SCHEDULE + " MORE_MODULE_CODES]" + "\n"
             + "Example: " + COMMAND_WORD + " \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_WEEKDAY + " Friday " + PREFIX_MODULE_OF_SCHEDULE + " cs2103t\n";
