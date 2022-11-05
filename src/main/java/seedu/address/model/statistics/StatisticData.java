@@ -18,7 +18,7 @@ public class StatisticData {
      * Constructs a {@code StatisticData} with the given {@code name} and {@code value}.
      * {@code name} and {@code value} must not be null.
      */
-    public StatisticData(String name, double value) {
+    public StatisticData(String name, Double value) {
         requireAllNonNull(name, value);
         this.chartData = new Data(name, value);
     }

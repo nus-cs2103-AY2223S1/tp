@@ -42,7 +42,7 @@ public class StatisticDataList {
                 return;
             }
         }
-        this.addStatistic(new StatisticData(name, 1));
+        this.addStatistic(new StatisticData(name, 1.0));
     }
 
     /**
