@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalTasks.TASK_1_DETAILS;
 import static seedu.address.testutil.TypicalTasks.TASK_2;
 import static seedu.address.testutil.TypicalTeams.TYPICAL_MEMBERS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -85,7 +86,10 @@ public class TaskTest {
         assertFalse(TASK_1_DETAILS.equals(firstDifferent));
 
         // different assignees -> returns false
-        List<Person> members = TYPICAL_MEMBERS;
+        List<Person> members = new ArrayList<>();
+        for (Person p : TYPICAL_MEMBERS) {
+            members.add(p);
+        }
         members.add(CARL);
         firstDifferent = new TaskBuilder(TASK_1_DETAILS).withAssignees(members).build();
         assertFalse(TASK_1_DETAILS.equals(firstDifferent));

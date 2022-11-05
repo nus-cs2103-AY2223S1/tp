@@ -19,12 +19,15 @@ import static seedu.address.testutil.TypicalTeams.TYPICAL_LINKS;
 import static seedu.address.testutil.TypicalTeams.TYPICAL_MEMBERS;
 import static seedu.address.testutil.TypicalTeams.TYPICAL_TASKS;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
 import seedu.address.testutil.TeamBuilder;
+import seedu.address.testutil.TypicalTasks;
 
 class TeamTest {
 
@@ -149,19 +152,28 @@ class TeamTest {
         assertFalse(FIRST_TEAM_DETAILS.equals(firstDifferent));
 
         // different members -> returns false
-        List<Person> members = TYPICAL_MEMBERS;
+        List<Person> members = new ArrayList<>();
+        for (Person p : TYPICAL_MEMBERS) {
+            members.add(p);
+        }
         members.add(CARL);
         firstDifferent = new TeamBuilder(FIRST_TEAM_DETAILS).withMembers(members).build();
         assertFalse(FIRST_TEAM_DETAILS.equals(firstDifferent));
 
         // different tasks -> returns false
-        List<Task> tasks = TYPICAL_TASKS;
+        List<Task> tasks = new ArrayList<>();
+        for (Task t : TYPICAL_TASKS) {
+            tasks.add(t);
+        }
         tasks.add(TASK_3);
         firstDifferent = new TeamBuilder(FIRST_TEAM_DETAILS).withTasks(tasks).build();
         assertFalse(FIRST_TEAM_DETAILS.equals(firstDifferent));
 
         // different links -> returns false
-        List<Link> links = TYPICAL_LINKS;
+        List<Link> links = new ArrayList<>();
+        for (Link l : TYPICAL_LINKS) {
+            links.add(l);
+        }
         links.add(LINK_YOUTUBE);
         firstDifferent = new TeamBuilder(FIRST_TEAM_DETAILS).withLinks(links).build();
         assertFalse(FIRST_TEAM_DETAILS.equals(firstDifferent));

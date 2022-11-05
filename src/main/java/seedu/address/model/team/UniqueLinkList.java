@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.exceptions.DuplicateLinkException;
 import seedu.address.model.team.exceptions.LinkNotFoundException;
 
@@ -114,6 +115,13 @@ public class UniqueLinkList implements Iterable<Link> {
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UniqueLinkList // instanceof handles nulls
+                && internalLinks.equals(((UniqueLinkList) other).internalLinks));
     }
 
 
