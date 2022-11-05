@@ -919,18 +919,19 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file<br>
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 3. Exiting the program
 
-    1. Enter `exit` command in command input box or click on X button.<br>
+    1. Enter `exit` command in command input box or click on the X button.<br>
        Expected: The application closes
 
 ### Adding a stall
@@ -940,7 +941,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: None
 
     2. Test case: `sadd n/Ah Kim Chicken Rice a/311, Clementi Ave 2, #02-25 t/chickenRice t/opensDaily`<br>
-       Expected: A new stall is added to the list. Details of the newly added stall shown in the status message. GUI updates to show the newly added stall and its details.
+       Expected: A new stall is added to the list with tags `chickenrice` and `opensdaily` as tags are saved in lowercase. Details of the newly added stall shown in the status message. GUI updates to show the newly added stall and its details.
 
     3. Test case: `sadd n/Ah Kim Chicken Rice`<br>
        Expected: No stall is added. Error details shown in the status message. GUI does not update.
@@ -955,7 +956,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one stall entry exists
 
     2. Test case: `radd s/1 d/20/09/2022 c/The food was good, the chicken rice was fresh. r/4 t/opensDaily t/worthyTrip`<br>
-       Expected: A new review is added to the list as the review of the first stall. Details of the newly added review shown in the status message. GUI updates to show the newly added review and its details.
+       Expected: A new review is added to the list as a review of the first stall with tags `opensdaily` and `worthtrip` as tags are saved in lowercase. Details of the newly added review shown in the status message. GUI updates to show the newly added review and its details.
 
     3. Test case: `radd s/1 d/20/09/2022`<br>
        Expected: No review is added. Error details shown in the status message. GUI does not update.
@@ -970,7 +971,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: None
    
     2. Test case: `slist`<br>
-           Expected: GUI updates and all stalls are listed.
+       Expected: GUI updates and all stalls are listed.
 
 ### Listing all reviews
 
@@ -1039,11 +1040,11 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `redit 1 d/20/09/2022`<br>
        Condition: There must not exist a review with the same details (date, content and tags) as the edited review's details<br>
-       Expected: The date of the first review edited. Details of the edited review shown in the status message. GUI updates to show the edited details.
+       Expected: The date of the first review edited. Details of the edited review shown in the status message. GUI updates, the edited review is moved to the back of the list with the edited details shown.
 
     3. Test case: `redit 1 c/The chicken was dry`<br>
        Condition: There must not exist a review with the same details (date, content and tags) as the edited review's details<br>
-       Expected: The content of the first review edited. Details of the edited review shown in the status message. GUI updates to show the edited details.
+       Expected: The content of the first review edited. Details of the edited review shown in the status message. GUI updates, the edited review is moved to the back of the list with the edited details shown.
    
     4. Test case: `redit 1 d/2022/09/20`<br>
        Expected: No review is edited. Error details shown in the status message. GUI does not update.
@@ -1069,10 +1070,13 @@ testers are expected to do more *exploratory* testing.
        Condition: There is a stall with the word `chicken` in its name and with the tag `opendaily`<br>
        Expected: Status message responds with the number of stalls that matches the name and tag in command. GUI updates to show stalls that matches the name and tag in command.
    
-    5. Test case: `sfind n/Alice's`<br>
+    5. Test case: `sfind n/`<br>
+       Expected: No stalls are found. GUI updates to show no stalls.
+    
+    6. Test case: `sfind n/Alice's`<br>
        Expected: No stalls are found. Error details shown in the status message. GUI does not update.
 
-    6. Other incorrect stall find commands to try: `sfind`, `sfind n/`, `sfind a/Ang Mo Kio`<br>
+    7. Other incorrect stall find commands to try: `sfind`, `sfind n/`, `sfind a/Ang Mo Kio`<br>
        Expected: Similar to previous.
 
 ### Find reviews
@@ -1092,11 +1096,14 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `rfind n/chicken t/delicious`<br>
        Condition: There is a review with the word `chicken` in its stall name and with the tag `delicious`<br>
        Expected: Status message responds with the number of reviews that matches the stall name and tag in command. GUI updates to show reviews that matches the stall name and tag in command.
+   
+    5. Test case: `rfind n/`<br>
+       Expected: No reviews are found. GUI updates to show no reviews.
 
-    5. Test case: `rfind n/Alice's`<br>
+    6. Test case: `rfind n/Alice's`<br>
        Expected: No reviews are found. Error details shown in the status message. GUI does not update.
 
-    6. Other incorrect stall find commands to try: `rfind`, `rfind n/`, `rfind a/Ang Mo Kio`<br>
+    7. Other incorrect review find commands to try: `rfind`, `rfind a/Ang Mo Kio`<br>
        Expected: Similar to previous.
 
 ### Sort stalls
@@ -1144,7 +1151,7 @@ testers are expected to do more *exploratory* testing.
     8. Test case: `rsort content`<br>
        Expected: Reviews are not sorted. Error details shown in the status message. GUI does not update.
 
-    9. Other incorrect stall sort commands to try: `rsort`, `rsort abc`<br>
+    9. Other incorrect review sort commands to try: `rsort`, `rsort abc`<br>
        Expected: Similar to previous.
 
 
@@ -1152,11 +1159,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. Test case: Simulate data file is missing by deleting `foodwhere.json` in data folder
+   1. Test case: Simulate data file is missing by deleting `foodwhere.json` in data folder<br>
       Expected: Upon launching FoodWhere, the GUI display a default stalls and reviews list.
-   2. Test case: Simulate data file goes corrupt by editing a data field to an invalid value while FoodWhere is running
-      Expected: FoodWhere runs normally and do not crash. However, upon closing and re-launching the program, the GUI display an empty stalls and reviews list.
+   2. Test case: Simulate data file goes corrupt by editing a data field to an invalid value while FoodWhere is running<br>
+      Expected: FoodWhere runs normally and does not crash. However, upon closing and re-launching the program, the GUI displays an empty stalls and reviews list.
    
 2. Commands that change data will modify data file 
-   1. Test case: Run any command that affects the data. E.g. `sadd`, `radd`, `sdel`, `rdel` and exit the program with the `exit` command 
-      Expected: Upon launching FoodWhere, the GUI display a stalls and reviews left off before the `exit` command.
+   1. Test case: Run any command that affects the data. E.g. `sadd`, `radd`, `sdel`, `rdel` and exit the program with the `exit` command<br>
+      Expected: Upon re-launching FoodWhere, the edits made to the data are preserved.
