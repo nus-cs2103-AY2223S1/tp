@@ -251,7 +251,8 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 <img src="images/DeleteCommandSequenceDiagram.png" />
 
-<div class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 **Step 1: Parsing the command**
@@ -352,7 +353,9 @@ Step 1. The user launches the application and sees a list of students.
 Step 2. The user executes `find nm/Alex` to locate students with "Alex" in their name.
 This command performs a search using the names of the students. Since the prefix `nm/` was used, a `NameContainsKeywordsPredicate` object, which extends `Predicate<Student>` will be created.
 
-:information_source: **Note:** Find command is case-insensitive, and the command `find nm/alex` will return the same results.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** Find command is case-insensitive, and the command `find nm/alex` will return the same results.
+</div>
 
 Step 3. Classify returns a filtered list of students whose names contain `Alex`. All the details recorded will also be shown.
 
@@ -396,7 +399,7 @@ The `ViewClassCommand` displays the list of students in a particular class. This
 
 This command can be divided into 2 main steps: 
 1. Parsing the command
-3. Executing the command
+2. Executing the command
 
 The following Sequence diagram shows how the `ViewClassCommand` works:
 
@@ -417,10 +420,11 @@ The user's input command is first parsed.
 The `ViewClassCommand` instance now interacts with the `ModelManager` to execute the command.
 
 1. The `updateFilteredStudentList` method is called with the `ClassPredicate` to filter the list to only contain students whose `Class` matches the user input.
+2. A new `CommandResult` instance is created and returned to `LogicManager`.
 
-:information_source: **Note:** A case-insensitive match is done, hence `viewClass 1a` and `viewClass 1A` will return the same results.
-
-4. A new `CommandResult` instance is created and returned to `LogicManager`.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** A case-insensitive match is done, hence `viewClass 1a` and `viewClass 1A` will return the same results.
+</div>
 
 **Design Considerations**
 
@@ -508,7 +512,9 @@ The following sequence diagram depicts how different components such as `Logic` 
 
 <img src="images/ViewStatsCommandSequenceDiagram.png" />
 
-:information_source: **Note:** The lifeline for `ViewStatsCommandParser` and `ViewClassCommand` should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** The lifeline for `ViewStatsCommandParser` and `ViewClassCommand` should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 **Design Considerations**
 
@@ -585,7 +591,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | 12  | Teacher using Class-ify regularly               | Undo previous commands                                       | Revert any accidental changes I made                             | **       |
 | 13  | Teacher with many classes                       | Organise my students into their classes                      | Keep my records organised and tidy                               | ***      |
 | 14  | Teacher with many classes                       | View a list of all my students in a class                    | Have an overview of all my students in the class                 | ***      |
-| 15  | Teacher with many classes                       | Hide parentâ€™s information from view                        | Have an uncluttered view of my students                          | ***      |
+| 15  | Teacher with many classes                       | Hide parental information from view                          | Have an uncluttered view of my students                          | ***      |
 | 16  | Teacher using Class-ify for the first time      | Have some sample records of students                         | See how Class-ify will look like when it is in use               | **       |
 | 17  | Teacher using Class-ify for the first time      | Delete all sample records of students                        | Start adding in my own students                                  | ***      |
 | 18  | Teacher using Class-ify for the first time      | See a summary of operations I can perform on Class-ify       | Have an idea of what I can do                                    | **       |
@@ -785,8 +791,8 @@ Click <a href="#top">here</a> to return to the top.
 
 Given below are instructions to test the app manually.
 
-<div class="alert alert-info">
-:information_source: **Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
 
 ### 7.1 Launch and shutdown
