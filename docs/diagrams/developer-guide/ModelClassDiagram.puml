@@ -13,13 +13,12 @@ Class ModelManager
 Class UserPrefs
 
 Class InventoryList
-Class Item
+Class InventoryItem
 Class ItemName
 Class Description
-Class Quantity
-Class SellPrice
-Class CostPrice
+Class Price
 Class Tag
+Class Quantity
 
 Class OrderList
 Class Order {
@@ -27,10 +26,14 @@ Class Order {
     - isPaid: boolean
     - isDelivered: boolean
 }
-class Name
-class Phone
-class Email
-class Address
+Class ItemQuantityPair
+Class Name
+Class Phone
+Class Email
+Class Address
+Class RecordedItem
+
+Class "<<interface>>\nItem" as Item
 
 }
 
@@ -47,25 +50,32 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 TrackO *--> "1" InventoryList
-InventoryList --> "~* all" Item
-Item *--> ItemName
-Item *--> Description
-Item *--> SellPrice
-Item *--> CostPrice
-Item *--> Quantity
-Item *--> "*" Tag
+InventoryList --> "~* all" InventoryItem
+InventoryItem *--> "1" ItemName
+InventoryItem *--> "1" Description
+InventoryItem *--> "2" Price
+InventoryItem *--> "1" Quantity
+InventoryItem *--> "*" Tag
 
 TrackO *--> "1" OrderList
 OrderList --> "~* all" Order
-Order *--> Name
-Order *--> Phone
-Order *--> Email
-Order *--> Address
+Order *--> "1" Name
+Order *--> "1" Phone
+Order *--> "1" Email
+Order *--> "1" Address
+Order *--> "*" ItemQuantityPair
 
-ItemName -[hidden]right-> Description
-Description -[hidden]right-> Quantity
-Quantity -[hidden]right-> SellPrice
+InventoryItem ....|> Item
+ItemQuantityPair *--> "1" Item
+RecordedItem ..|> Item
 
-ModelManager -->"~* filtered" Item
+ItemQuantityPair *--> "1" Quantity
+
+ItemName -[hidden]left-> Quantity
+Item -[hidden]down-> ItemQuantityPair
+Item -[hidden]down-> RecordedItem
+Quantity -[hidden]down-> ItemQuantityPair
+
+ModelManager -->"~* filtered" InventoryItem
 ModelManager -->"~* filtered" Order
 @enduml
