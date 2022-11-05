@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
@@ -20,7 +20,7 @@ import seedu.address.testutil.TypicalTeams;
 
 // TODO: Add implementation for tests
 class EditTeamCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private Model expectedModel = model;
     private final Command commandToBeTested = new EditTeamCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)

@@ -19,14 +19,16 @@ import seedu.address.model.team.Task;
 /**
  * Displays a summary of how tasks have been assigned in the current team.
  */
-@CommandLine.Command(name = TasksOfCommand.COMMAND_WORD)
+@CommandLine.Command(name = TasksOfCommand.COMMAND_WORD, aliases = {TasksOfCommand.ALIAS})
 public class TasksOfCommand extends Command {
     public static final String COMMAND_WORD = "tasksof";
+    public static final String ALIAS = "to";
+    public static final String FULL_COMMAND = COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Displays all tasks of a particular team member.\n"
             + "Parameters: MEMBER_INDEX (must be a valid positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + FULL_COMMAND + " 1";
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) assigned to %2$s. \n"
             + "Type `list tasks` to show all tasks again.";
@@ -71,6 +73,7 @@ public class TasksOfCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other instanceof TasksOfCommand;
+        return other instanceof TasksOfCommand
+                && memberIndex.equals(((TasksOfCommand) other).memberIndex);
     }
 }

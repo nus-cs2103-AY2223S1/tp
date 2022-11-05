@@ -58,13 +58,13 @@ public class JsonAdaptedTeam {
         teamName = source.getTeamName().teamName;
         description = source.getDescription().description;
         members.addAll(source.getTeamMembers().stream()
-            .map(JsonAdaptedPerson::new)
-            .collect(Collectors.toList()));
+                .map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()));
         taskList.addAll(source.getTaskList().stream()
-            .map(JsonAdaptedTask::new)
-            .collect(Collectors.toList()));
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
         links.addAll(source.getLinkList().stream()
-            .map(JsonAdaptedLink::new).collect(Collectors.toList()));
+                .map(JsonAdaptedLink::new).collect(Collectors.toList()));
     }
 
     /**

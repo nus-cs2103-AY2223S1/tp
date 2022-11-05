@@ -6,13 +6,14 @@ import static seedu.address.logic.commands.EditPersonCommand.MESSAGE_EDIT_PERSON
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -26,15 +27,11 @@ import seedu.address.logic.parser.EmailConverter;
 import seedu.address.logic.parser.IndexConverter;
 import seedu.address.logic.parser.NameConverter;
 import seedu.address.logic.parser.PhoneConverter;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.person.*;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.Task;
-import seedu.address.model.UserPrefs;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalPersons;
@@ -45,7 +42,7 @@ import seedu.address.testutil.TypicalPersons;
 // TODO: Add implementation for tests
 public class EditPersonCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private Model expectedModel = model;
     private final Command commandToBeTested = new EditPersonCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
@@ -54,7 +51,6 @@ public class EditPersonCommandTest {
             .registerConverter(Email.class, new EmailConverter())
             .registerConverter(Phone.class, new PhoneConverter())
             .registerConverter(Address.class, new AddressConverter());
-
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -101,7 +97,7 @@ public class EditPersonCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of TruthTable
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
@@ -140,12 +136,12 @@ public class EditPersonCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTruthTableFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTruthTableFilePath(Path truthTableFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -155,12 +151,12 @@ public class EditPersonCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setTruthTable(ReadOnlyTruthTable newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTruthTable getTruthTable() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -297,4 +293,29 @@ public class EditPersonCommandTest {
             return this.person.isSamePerson(person);
         }
     }
+
+    /**
+     * A Model stub that always accept the person being added.
+     */
+    private class ModelStubAcceptingPersonAdded extends EditPersonCommandTest.ModelStub {
+        final ArrayList<Person> personsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::isSamePerson);
+        }
+
+        @Override
+        public void addPerson(Person person) {
+            requireNonNull(person);
+            personsAdded.add(person);
+        }
+
+        @Override
+        public ReadOnlyTruthTable getTruthTable() {
+            return TruthTable.createNewTruthTable();
+        }
+    }
+
 }

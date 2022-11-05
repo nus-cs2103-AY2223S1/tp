@@ -18,15 +18,17 @@ import seedu.address.model.team.Team;
 /**
  * Adds the person with the specified name to the current team.
  */
-@CommandLine.Command(name = "member", aliases = {"m"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = AddMemberCommand.COMMAND_WORD,
+        aliases = {AddMemberCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class AddMemberCommand extends Command {
+    public static final String COMMAND_WORD = "member";
+    public static final String ALIAS = "m";
+    public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String COMMAND_WORD = "add member";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Adds the person with the specified name into the current team.\n"
             + "Parameters: MEMBER_INDEX\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + FULL_COMMAND + " 1";
 
     public static final String MESSAGE_ADD_MEMBER_SUCCESS = "Added Member: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person is already in the team";

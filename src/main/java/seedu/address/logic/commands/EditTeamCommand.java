@@ -29,27 +29,30 @@ import seedu.address.model.team.TeamName;
 /**
  * Edits the currently set team.
  */
-@CommandLine.Command(name = "team", aliases = {"te"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditTeamCommand.COMMAND_WORD,
+        aliases = {EditTeamCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class EditTeamCommand extends Command {
-    public static final String COMMAND_WORD = "edit team";
+    public static final String COMMAND_WORD = "team";
+    public static final String ALIAS = "te";
+    public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Edits the current team \n"
             + "Parameters: "
             + "[" + FLAG_NAME_STR + " TEAM_NAME] "
             + "[" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
             + "Example:\n"
-            + "1. " + COMMAND_WORD + " "
+            + "1. " + FULL_COMMAND + " "
             + FLAG_NAME_STR + " CS2103T "
             + FLAG_DESCRIPTION_STR + " \"A team to manage CS2103T\"\n"
-            + "2. " + COMMAND_WORD + " "
+            + "2. " + FULL_COMMAND + " "
             + FLAG_NAME_STR + " CS2102 ";
 
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited team: %1$s";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    public static final String MESSAGE_DUPLICATE_TEAM = "This team name already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TEAM = "This team name already exists in the TruthTable.";
 
     private final EditTeamDescriptor editTeamDescriptor;
 
@@ -128,7 +131,7 @@ public class EditTeamCommand extends Command {
 
         // state check
         EditTeamCommand e = (EditTeamCommand) other;
-        return editTeamDescriptor.equals(e.editTeamDescriptor);
+        return arguments.equals(e.arguments);
     }
 
     private static class Arguments {
@@ -138,6 +141,19 @@ public class EditTeamCommand extends Command {
         @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG},
                 description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
         private Description description;
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            } else if (other instanceof Arguments) {
+                Arguments target = (Arguments) other;
+                return this.name == null ? false : this.name.equals(target.name)
+                        && this.description == null ? false : this.description.equals(target.description);
+            } else {
+                return false;
+            }
+        }
     }
 
     /**

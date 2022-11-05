@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEM
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.TruthTableParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -20,7 +20,7 @@ public class ExitCommandTest {
     public void execute_exit_success() {
         Command testCommandResult;
         try {
-            testCommandResult = new AddressBookParser().parseCommand("exit");
+            testCommandResult = new TruthTableParser().parseCommand("exit");
         } catch (ParseException e) {
             testCommandResult = null;
         }

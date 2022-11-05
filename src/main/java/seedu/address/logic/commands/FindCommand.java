@@ -12,12 +12,17 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code find}.
  */
-@CommandLine.Command(name = "find", aliases = {"f"}, mixinStandardHelpOptions = true, subcommands = {
-    FindPersonCommand.class,
-    FindMemberCommand.class,
-    FindTaskCommand.class
-})
+@CommandLine.Command(name = FindCommand.COMMAND_WORD, aliases = {FindCommand.ALIAS},
+        mixinStandardHelpOptions = true, subcommands = {
+            FindPersonCommand.class,
+            FindMemberCommand.class,
+            FindTaskCommand.class
+        })
 public class FindCommand extends Command {
+    public static final String COMMAND_WORD = "find";
+    public static final String ALIAS = "f";
+    public static final String FULL_COMMAND = COMMAND_WORD;
+
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
     private boolean help;
@@ -32,6 +37,12 @@ public class FindCommand extends Command {
         }
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT,
                 commandSpec.qualifiedName().trim()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindCommand); // instanceof handles nulls
     }
 
 }

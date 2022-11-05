@@ -126,7 +126,7 @@ Format: `delete person PERSON_INDEX`
 * The index **must be a positive integer** 1, 2, 3,...
 
 Examples:
-* `list persons` followed by `delete person 2` deletes the 2nd person in the address book.
+* `list persons` followed by `delete person 2` deletes the 2nd person in the TruthTable.
 * `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find person` command.
 
 ## Commands to Manage Teams
@@ -469,7 +469,7 @@ save manually.
 
 ### Editing the data file
 
-TruthTable data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
+TruthTable data is saved as a JSON file `[JAR file location]/data/truthtable.json`. Advanced users are welcome to
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**

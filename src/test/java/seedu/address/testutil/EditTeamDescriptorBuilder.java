@@ -21,6 +21,7 @@ public class EditTeamDescriptorBuilder {
 
     /**
      * Returns an {@code EditTeamDescriptor} with fields containing {@code team}'s details
+     *
      * @param team
      */
     public EditTeamDescriptorBuilder(Team team) {
