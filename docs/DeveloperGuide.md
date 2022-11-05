@@ -1615,7 +1615,7 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect modules left commands to try: `modsleft hi`, `module x`, `...` (where x is larger than 11)<br>
       Expected: Similar to previous.
-   
+
 [Scroll back to top](#table-of-contents)
 
 ### Adding a lesson, Showing the timetable
@@ -1650,7 +1650,7 @@ testers are expected to do more *exploratory* testing.
 
    6. Other incorrect delete commands to try: `timetable 0`, `timetable x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   
+
 [Scroll back to top](#table-of-contents)
 
 ### Removing a lesson, Showing the timetable
@@ -1678,7 +1678,7 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   
+
 [Scroll back to top](#table-of-contents)
 
 ### Refreshing to a new semester
@@ -1700,14 +1700,14 @@ testers are expected to do more *exploratory* testing.
 1. Listing out all persons in contact list with the tag(s)
 
    1. Test case: `filtertag friends` <br>
-   Expected: All persons in the contact list with the friends tag will be listed. 
-   
+   Expected: All persons in the contact list with the friends tag will be listed.
+
    2. Test case: `clear` then run `filtertag friends` <br>
    Expected: Status message shows that the contact list has been cleared. Status message shows "0 persons listed!"
-   
+
    3. Test case: `filtercurrmod CS` <br>
    Expected: Error details shown in message.
-   4. Other incorrect filter module commands to try: `filtercurrmod`, `filtercurrmod 1`, `filtercurrmod C1000`, 
+   4. Other incorrect filter module commands to try: `filtercurrmod`, `filtercurrmod 1`, `filtercurrmod C1000`,
    `filtercurrmod xxyyyy`, `...` (where any x is not an alphabet and any y is not a number).
 
 [Scroll back to top](#table-of-contents)

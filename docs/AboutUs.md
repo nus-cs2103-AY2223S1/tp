@@ -25,7 +25,7 @@ ConnectNUS
 [[portfolio](team/rjkoh.md)]
 
 * Role: Developer
-* Responsibilities: Add modules to contacts, add lesson to user/contact (`lesson` command),  add lesson to user/contact (`remove` command), view user/contact timetable (`timetable` command) 
+* Responsibilities: Add modules to contacts, add lesson to user/contact (`lesson` command),  add lesson to user/contact (`remove` command), view user/contact timetable (`timetable` command)
 
 ### Laura Lee
 
