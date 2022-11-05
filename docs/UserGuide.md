@@ -216,14 +216,7 @@ Example: `p/91234567`
 
 ### `e/EMAIL`
 
-`EMAIL` should be in the form of `local-part@domain`, where:
-1. `local-part` contains only alphanumeric characters and the special characters `+`, `_`, `.`, `-`, and may not start or end with any special characters.
-2. `domain` is made up domain labels separated by periods, where `domain` must:
-    * end with a domain label at least 2 characters long.
-    * have each domain label start and end with alphanumeric characters.
-    * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-
-Example: `johndoe@gmail.com`
+_Use the one from MESSAGE_CONSTRAINTS_
 
 ### `a/ADDRESS`
 
@@ -239,13 +232,7 @@ Example:`t/12-A nursing home`
 
 ### `d/TASK_DESCRIPTION | DATE TIME | INTERVAL TIME_PERIOD`
 
-The task parameter has the following constraints:
-
-1. `TASK_DESCRIPTION` accepts any values.
-2. `DATE TIME` should be in the format of `DD-MM-YY` or `DD-MM-YY HHMM`.
-3. `INTERVAL TIME_PERIOD` should be in the format of `X day(s)/ week(s)/ month(s)/year(s)` where `X` is a positive integer.
-
-Example: `d/Change dressing | 18-06-22 0900 | 2 days`
+_To be added_
 
 ### `c/CONDITION`
 
