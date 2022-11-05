@@ -2,11 +2,15 @@ package paymelah.ui;
 
 import java.util.Comparator;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import paymelah.model.debt.Debt;
 import paymelah.model.person.Person;
 
 /**
@@ -27,11 +31,7 @@ public class PersonCard extends UiPart<Region> {
     public final Person person;
 
     @FXML
-    private HBox cardPane;
-    @FXML
-    private Label name;
-    @FXML
-    private Label id;
+    protected HBox personCardPane;
     @FXML
     private Label phone;
     @FXML
@@ -41,23 +41,39 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label debts;
+    private ListView<Debt> debts;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCard} with the given {@code Person}.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         telegram.setText(person.getTelegram().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        debts.setText(person.getDebts().toString());
+        debts.setItems(FXCollections.observableArrayList(person.getDebts().asList()));
+        debts.setCellFactory(listView -> new DebtListViewCell());
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Debt} using a {@code DebtCard}.
+     */
+    class DebtListViewCell extends ListCell<Debt> {
+        @Override
+        protected void updateItem(Debt debt, boolean empty) {
+            super.updateItem(debt, empty);
+
+            if (empty || debt == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new DebtCard(debt, getIndex() + 1).getRoot());
+            }
+        }
     }
 
     @Override
@@ -74,7 +90,6 @@ public class PersonCard extends UiPart<Region> {
 
         // state check
         PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+        return person.equals(card.person);
     }
 }

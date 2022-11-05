@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam linetype ortho
+hide empty methods
+hide empty members
+
+
+title Final state
+
+class DeleteDebtCommand as "__:DeleteDebtCommand__"
+together {
+class PersonIndex1 as "__1:Index__"
+class DebtIndex2 as "__2:Index__"
+class DebtIndex3 as "__3:Index__"
+}
+
+
+package Person {
+
+class NewPerson as "__updatedPerson1:Person__"
+    package Debt {
+
+    class Debt1Copy as "__copyOf1:Debt__"
+    }
+}
+
+
+DeleteDebtCommand -l-> "person index" PersonIndex1
+DeleteDebtCommand ----> "debt index" DebtIndex2
+DeleteDebtCommand ----> "debt index" DebtIndex3
+PersonIndex1 -[hidden]-> DebtIndex2
+DebtIndex2 -[hidden]-> DebtIndex3
+
+
+
+DeleteDebtCommand ---right[hidden]-> "updated debtor" NewPerson
+
+
+
+NewPerson ---> Debt1Copy
+
+
+
+@end

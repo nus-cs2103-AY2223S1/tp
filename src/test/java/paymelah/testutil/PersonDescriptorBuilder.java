@@ -5,10 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import paymelah.logic.parser.ParserUtil.PersonDescriptor;
-import paymelah.model.debt.DebtDate;
-import paymelah.model.debt.DebtTime;
-import paymelah.model.debt.Description;
-import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
 import paymelah.model.person.Name;
 import paymelah.model.person.Person;
@@ -82,46 +78,6 @@ public class PersonDescriptorBuilder {
     public PersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
-        return this;
-    }
-
-    /**
-     * Parses the {@code descriptions} into a {@code Set<Description>} and set it to the {@code PersonDescriptor}
-     * that we are building.
-     */
-    public PersonDescriptorBuilder withDescriptions(String... descriptions) {
-        Set<Description> descriptionSet = Stream.of(descriptions).map(Description::new).collect(Collectors.toSet());
-        descriptor.setDescriptions(descriptionSet);
-        return this;
-    }
-
-    /**
-     * Parses the {@code monies} into a {@code Set<Money>} and set it to the {@code PersonDescriptor}
-     * that we are building.
-     */
-    public PersonDescriptorBuilder withMonies(String... monies) {
-        Set<Money> moneySet = Stream.of(monies).map(Money::new).collect(Collectors.toSet());
-        descriptor.setMonies(moneySet);
-        return this;
-    }
-
-    /**
-     * Parses the {@code dates} into a {@code Set<DebtDate>} and set it to the {@code PersonDescriptor}
-     * that we are building.
-     */
-    public PersonDescriptorBuilder withDates(String... dates) {
-        Set<DebtDate> dateSet = Stream.of(dates).map(DebtDate::new).collect(Collectors.toSet());
-        descriptor.setDates(dateSet);
-        return this;
-    }
-
-    /**
-     * Parses the {@code times} into a {@code Set<DebtTime>} and set it to the {@code PersonDescriptor}
-     * that we are building.
-     */
-    public PersonDescriptorBuilder withTimes(String... times) {
-        Set<DebtTime> timeSet = Stream.of(times).map(DebtTime::new).collect(Collectors.toSet());
-        descriptor.setTimes(timeSet);
         return this;
     }
 

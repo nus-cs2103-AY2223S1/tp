@@ -16,5 +16,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_DEBT = new Prefix("debt/");
     public static final Prefix PREFIX_DATE = new Prefix("date/");
     public static final Prefix PREFIX_TIME = new Prefix("time/");
+    public static final Prefix PREFIX_ABOVE = new Prefix("above/");
+    public static final Prefix PREFIX_BELOW = new Prefix("below/");
+    public static final Prefix PREFIX_BEFORE = new Prefix("before/");
+    public static final Prefix PREFIX_AFTER = new Prefix("after/");
 
 }
