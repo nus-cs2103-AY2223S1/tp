@@ -548,8 +548,8 @@ unless specified otherwise)
 
 **MSS**
 
-1. User requests to find patients whose name, phone number, email, address, tag, task, condition, medication, or remark contains specified keywords.
-2. UniNurse shows a list of patients whose details contain the specified keywords.
+1. User requests to find patients whose names have specified keywords.
+2. UniNurse shows a list of patients whose names have specified keywords.
    
     Use case ends.
 
