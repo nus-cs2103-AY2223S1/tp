@@ -50,10 +50,10 @@ CreateMeetingCommand --> LogicManager : cm
 
 CreateMeetingCommand -> MeetingStatic : convertNameToPerson(model, peopleToMeet)
 CreateMeetingCommand <-- MeetingStatic :
-CreateMeetingCommand -> Model : createNewMeeting(\n arrayOfPeopleToMeet,\n meetingTitle, \n meetingDateAndTime, \n meetingLocation)
+CreateMeetingCommand -> Model : createNewMeeting(\n peopleToMeet,\n meetingTitle, \n processedMeetingDateAndTime, \n meetingLocation)
 activate Model
 CreateMeetingCommand -> Model : addMeeting(newMeeting)
-Model -> Meeting : Meeting(\n arrayOfPeopleToMeet,\n meetingTitle, \n meetingDateAndTime, \n meetingLocation)
+Model -> Meeting : Meeting(\n peopleToMeetArray,\n meetingTitle, \n processedMeetingDateAndTime, \n meetingLocation)
 Model <-- Meeting
 
 deactivate Model
