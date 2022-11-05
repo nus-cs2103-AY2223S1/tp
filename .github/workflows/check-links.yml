@@ -8,8 +8,12 @@ jobs:
     steps:
       - name: Set up repository
         uses: actions/checkout@main
-      - name: Install Jekyll
-        run: sudo apt-get update && sudo apt-get install -y jekyll
+      - name: Set up server dependencies
+        working-directory: ${{ github.workspace }}/docs
+        run: bundle install
+      - name: Set up checker dependencies
+        working-directory: ${{ github.workspace }}/cli-test/linkchecker
+        run: npm install
       - name: Set up server and check all links are valid
         working-directory: ${{ github.workspace }}/cli-test/linkchecker
         run: python serve-and-check.py

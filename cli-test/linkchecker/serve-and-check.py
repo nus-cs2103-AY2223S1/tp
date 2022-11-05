@@ -10,10 +10,10 @@ exitstatus = 0
 
 async def main():
     global exitstatus
-    exitstatus = os.WEXITSTATUS(os.system("npm install && node check-links.js"))
+    exitstatus = os.WEXITSTATUS(os.system("node check-links.js"))
 
 if __name__ == '__main__':
-    with subprocess.Popen(['jekyll', 'serve'], cwd='../../docs') as p:
+    with subprocess.Popen(['bundle', 'exec', 'jekyll serve'], cwd='../../docs') as p:
         time.sleep(3.0)
         asyncio.get_event_loop().run_until_complete(main())
         p.kill()
