@@ -111,7 +111,7 @@ using a computer. For users who type fast, RC4HDB will be highly efficient and q
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-:bulb: **Tip:** For the rest of the Developer Guide, `Model`, `Logic`, `Storage`, and `UI` will be standardised with 
+For the rest of the Developer Guide, `Model`, `Logic`, `Storage`, and `UI` will be standardised with 
 the following colours.
 
 ![Colors for UML diagrams](./images/ColorCoding.png)
@@ -773,11 +773,6 @@ MSS:
 
 Extensions:
 
-[comment]: <> (&ensp; 1a. The user wants to view only certain fields in the list. <br>)
-
-[comment]: <> (&ensp; &emsp; &nbsp; 1a1. The user specifies which fields he wants to see or hide. <br>)
-
-[comment]: <> (&ensp; &emsp; &nbsp; Use case resumes at step 2.)
 
 &ensp; 2a. The list is empty. <br>
 &ensp; &emsp; &nbsp; Use case ends.
@@ -1405,33 +1400,6 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-### Viewing residents
-
-#### Listing residents
-
-[Comment]: <> (To be added)
-
-#### Showing resident fields
-
-[Comment]: <> (To be added)
-
-#### Hiding resident fields
-
-[Comment]: <> (To be added)
-
-#### Resetting hidden resident fields
-
-[Comment]: <> (To be added)
-
-#### Finding residents
-
-[Comment]: <> (To be added)
-
-#### Filtering residents
-
-[Comment]: <> (To be added)
-
-<br>
 
 ### File management
 
