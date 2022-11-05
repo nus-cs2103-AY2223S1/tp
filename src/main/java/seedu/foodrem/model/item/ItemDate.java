@@ -37,6 +37,15 @@ public abstract class ItemDate {
     }
 
     /**
+     * Returns true if the given datetime object is after a certain date.
+     *
+     * @param datetime The datetime object to compare against
+     */
+    public boolean isAfterDate(LocalDate datetime) {
+        return date.isAfter(datetime);
+    }
+
+    /**
      * Returns true if the given ItemDate object is after the date.
      *
      * @param itemDate The ItemDate object to compare against

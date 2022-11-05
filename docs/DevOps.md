@@ -2,10 +2,7 @@
 layout: page
 title: DevOps guide
 ---
-
-{% include toc.md %}
-
----
+{% include toc.md header=true ordered=true %}
 
 ## Build automation
 

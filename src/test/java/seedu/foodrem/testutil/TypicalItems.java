@@ -15,7 +15,7 @@ public class TypicalItems {
             .withItemName("Potatoes")
             .withItemQuantity("10")
             .withItemUnit("kg")
-            .withItemBoughtDate("11-11-2022")
+            .withItemBoughtDate("11-10-2022")
             .withItemExpiryDate("11-11-2022")
             .withItemPrice("10.30")
             .withItemRemarks("For Mashed Potatoes")
@@ -25,7 +25,7 @@ public class TypicalItems {
             .withItemName("Cucumbers")
             .withItemQuantity("2000")
             .withItemUnit("grams")
-            .withItemBoughtDate("12-12-2022")
+            .withItemBoughtDate("12-10-2022")
             .withItemExpiryDate("12-12-2022")
             .withItemPrice("8")
             .withItemRemarks("For Salad")
@@ -39,7 +39,7 @@ public class TypicalItems {
             .withItemName("Potatoes")
             .withItemQuantity("10")
             .withItemUnit("kg")
-            .withItemBoughtDate("11-11-2022")
+            .withItemBoughtDate("11-10-2022")
             .withItemExpiryDate("11-11-2022")
             .withItemPrice("10.30")
             .withItemRemarks("For Mashed Potatoes")
@@ -49,13 +49,9 @@ public class TypicalItems {
             .withItemName("Cucumbers")
             .withItemQuantity("2000")
             .withItemUnit("grams")
-            .withItemBoughtDate("12-12-2022")
+            .withItemBoughtDate("12-10-2022")
             .withItemExpiryDate("12-12-2022")
             .withItemPrice("8")
-            .build();
-
-    public static final Item CARROTS_WITHOUT_TAG = new ItemBuilder()
-            .withItemName("Carrots")
             .build();
 
     private TypicalItems() {
