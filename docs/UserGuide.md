@@ -250,7 +250,7 @@ This example is based on [`Creating a Tag`](#creating-a-tag-tag-create). Feel fr
 
 ### Editing a Tag: `tag edit`
 
-If you make a mistake or  want to update your tags, you can simply update them accordingly.
+If you make a mistake or want to update your tags, you can simply update them accordingly.
 
 Format: `tag edit t/TAG1 t/TAG2`
 
