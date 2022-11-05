@@ -1,11 +1,9 @@
-package foodwhere.model.common;
+package foodwhere.model.commons;
 
 import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import foodwhere.model.commons.Tag;
 
 public class TagTest {
 
