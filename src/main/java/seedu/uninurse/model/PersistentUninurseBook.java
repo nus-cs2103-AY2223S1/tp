@@ -93,8 +93,8 @@ public class PersistentUninurseBook {
         handleChange();
     }
 
-    public PatientListTracker getCurrentPair() {
-        Optional<PatientListTracker> ret = uninurseBookVersions.get(currentVersion).getPatientListTracker();
+    public PersonListTracker getCurrentPair() {
+        Optional<PersonListTracker> ret = uninurseBookVersions.get(currentVersion).getPatientListTracker();
         assert ret.isPresent();
         return ret.get();
     }

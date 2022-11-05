@@ -38,7 +38,7 @@ public class UninurseBookSnapshot {
         return uninurseBook.getPersonList();
     }
 
-    public Optional<PatientListTracker> getPatientListTracker() {
+    public Optional<PersonListTracker> getPatientListTracker() {
         return commandResult.getPatientListTracker();
     }
 

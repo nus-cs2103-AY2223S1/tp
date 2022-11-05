@@ -10,7 +10,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
@@ -61,7 +61,7 @@ public class AddConditionCommand extends AddGenericCommand {
 
             Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
 
-            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            PersonListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, editedPatient.getName(), condition),

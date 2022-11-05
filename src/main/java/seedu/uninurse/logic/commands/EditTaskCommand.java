@@ -13,7 +13,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.NonRecurringTask;
@@ -109,7 +109,7 @@ public class EditTaskCommand extends EditGenericCommand {
 
             Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
 
-            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            PersonListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
             return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,

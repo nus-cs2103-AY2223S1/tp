@@ -13,7 +13,7 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.parser.UninurseBookParser;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.person.Patient;
@@ -96,7 +96,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public PatientListTracker getSavedPatientListTracker() {
+    public PersonListTracker getSavedPatientListTracker() {
         return model.getSavedPatientListTracker();
     }
 }

@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.uninurse.model.ListModificationPair;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.medication.Medication;
@@ -87,7 +87,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
     /**
      * Creates a {@code UpdatedPatientCard} with the given {@code Patient}.
      */
-    public ModifiedPatientCard(PatientListTracker patientListTracker, boolean isUndo, boolean isRedo) {
+    public ModifiedPatientCard(PersonListTracker patientListTracker, boolean isUndo, boolean isRedo) {
         super(FXML);
 
         cardPane.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
@@ -99,10 +99,10 @@ public class ModifiedPatientCard extends UiPart<Region> {
             this.headerPane.setStyle(RED_STYLE);
             this.header.setText("Removed previously added Patient:");
             if (isUndo) {
-                this.patient = patientListTracker.getAddedPatients().get().get(0);
+                this.patient = patientListTracker.getAddedPersons().get().get(0);
             }
             if (isRedo) {
-                this.patient = patientListTracker.getDeletedPatients().get().get(0);
+                this.patient = patientListTracker.getDeletedPersons().get().get(0);
             }
         }
 
@@ -111,10 +111,10 @@ public class ModifiedPatientCard extends UiPart<Region> {
             this.headerPane.setStyle(GREEN_STYLE);
             this.header.setText("Added previously removed Patient:");
             if (isUndo) {
-                this.patient = patientListTracker.getDeletedPatients().get().get(0);
+                this.patient = patientListTracker.getDeletedPersons().get().get(0);
             }
             if (isRedo) {
-                this.patient = patientListTracker.getAddedPatients().get().get(0);
+                this.patient = patientListTracker.getAddedPersons().get().get(0);
             }
         }
 
@@ -122,15 +122,15 @@ public class ModifiedPatientCard extends UiPart<Region> {
         if (patientListTracker.isEdit() && isUndo) {
             this.header.setStyle("");
             this.header.setText("Modified Patient:");
-            this.patient = patientListTracker.getDeletedPatients().get().get(0);
-            editedPatient = patientListTracker.getAddedPatients().get().get(0);
+            this.patient = patientListTracker.getDeletedPersons().get().get(0);
+            editedPatient = patientListTracker.getAddedPersons().get().get(0);
         }
 
         if (patientListTracker.isEdit() && isRedo) {
             this.header.setStyle("");
             this.header.setText("Modified Patient:");
-            this.patient = patientListTracker.getAddedPatients().get().get(0);
-            editedPatient = patientListTracker.getDeletedPatients().get().get(0);
+            this.patient = patientListTracker.getAddedPersons().get().get(0);
+            editedPatient = patientListTracker.getDeletedPersons().get().get(0);
         }
 
         name.setText(patient.getName().getValue());

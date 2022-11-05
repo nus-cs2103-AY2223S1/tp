@@ -9,7 +9,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -39,7 +39,7 @@ public class DeletePatientCommand extends DeleteGenericCommand {
         }
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
-        PatientListTracker patientListTracker = model.deletePerson(patientToDelete);
+        PersonListTracker patientListTracker = model.deletePerson(patientToDelete);
         model.setPatientOfInterest(patientToDelete);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, patientToDelete),

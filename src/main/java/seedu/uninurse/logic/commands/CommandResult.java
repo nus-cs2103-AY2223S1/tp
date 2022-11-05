@@ -5,7 +5,7 @@ import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 import java.util.Optional;
 
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 
 /**
  * Represents the result of a command execution.
@@ -13,7 +13,7 @@ import seedu.uninurse.model.PatientListTracker;
 public class CommandResult {
     private final String feedbackToUser;
     private final CommandType commandType;
-    private final Optional<PatientListTracker> patientListTracker;
+    private final Optional<PersonListTracker> patientListTracker;
 
     /**
      * Constructs a CommandResult with the specified fields.
@@ -28,14 +28,14 @@ public class CommandResult {
     /**
      * Constructs a CommandResult with the specified fields with a provided patientListTracker.
      */
-    public CommandResult(String feedbackToUser, CommandType commandType, PatientListTracker patientListTracker) {
+    public CommandResult(String feedbackToUser, CommandType commandType, PersonListTracker patientListTracker) {
         requireAllNonNull(feedbackToUser, commandType, patientListTracker);
         this.feedbackToUser = feedbackToUser;
         this.commandType = commandType;
         this.patientListTracker = Optional.of(patientListTracker);
     }
 
-    public Optional<PatientListTracker> getPatientListTracker() {
+    public Optional<PersonListTracker> getPatientListTracker() {
         return patientListTracker;
     }
 

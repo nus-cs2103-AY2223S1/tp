@@ -10,7 +10,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
@@ -63,7 +63,7 @@ public class AddTaskCommand extends AddGenericCommand {
         try {
             TaskList updatedTaskList = personToEdit.getTasks().add(task);
             Patient editedPerson = new Patient(personToEdit, updatedTaskList);
-            PatientListTracker patientListTracker = model.setPerson(personToEdit, editedPerson);
+            PersonListTracker patientListTracker = model.setPerson(personToEdit, editedPerson);
             model.setPatientOfInterest(editedPerson);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, editedPerson.getName().toString(), task),

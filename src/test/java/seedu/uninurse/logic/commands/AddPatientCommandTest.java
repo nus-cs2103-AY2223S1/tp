@@ -18,7 +18,7 @@ import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.ReadOnlyUserPrefs;
 import seedu.uninurse.model.Schedule;
@@ -112,7 +112,7 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public PatientListTracker addPerson(Patient person) {
+        public PersonListTracker addPerson(Patient person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -132,17 +132,17 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public PatientListTracker deletePerson(Patient target) {
+        public PersonListTracker deletePerson(Patient target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public PatientListTracker clearPersons(List<Patient> targets) {
+        public PersonListTracker clearPersons(List<Patient> targets) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public PatientListTracker setPerson(Patient target, Patient editedPerson) {
+        public PersonListTracker setPerson(Patient target, Patient editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -207,7 +207,7 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public PatientListTracker getSavedPatientListTracker() {
+        public PersonListTracker getSavedPatientListTracker() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -253,10 +253,10 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public PatientListTracker addPerson(Patient person) {
+        public PersonListTracker addPerson(Patient person) {
             requireNonNull(person);
             personsAdded.add(person);
-            return new PatientListTracker();
+            return new PersonListTracker();
         }
 
         @Override

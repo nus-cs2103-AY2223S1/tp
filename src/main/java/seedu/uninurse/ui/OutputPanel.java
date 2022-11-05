@@ -6,7 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.person.Patient;
 
@@ -111,7 +111,7 @@ public class OutputPanel extends UiPart<Region> {
     /**
      * Updates the outputView panel accordingly with {@code patientListTracker} if executed command is Undo.
      */
-    public void handleUndo(PatientListTracker patientListTracker) {
+    public void handleUndo(PersonListTracker patientListTracker) {
         outputView.getChildren().clear();
         if (patientListTracker.isSinglePatient()) {
             outputView.getChildren().add(new ModifiedPatientCard(patientListTracker, true, false).getRoot());
@@ -125,7 +125,7 @@ public class OutputPanel extends UiPart<Region> {
     /**
      * Updates the outputView panel accordingly with {@code patientListTracker} if executed command is Redo.
      */
-    public void handleRedo(PatientListTracker patientListTracker) {
+    public void handleRedo(PersonListTracker patientListTracker) {
         outputView.getChildren().clear();
         if (patientListTracker.isSinglePatient()) {
             outputView.getChildren().add(new ModifiedPatientCard(patientListTracker, false, true).getRoot());

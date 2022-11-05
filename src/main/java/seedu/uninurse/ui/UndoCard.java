@@ -10,7 +10,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -54,10 +54,10 @@ public class UndoCard extends UiPart<Region> {
     /**
      * Creates a UndoCard with {@code patientListTracker}.
      */
-    public UndoCard(PatientListTracker patientListTracker) {
+    public UndoCard(PersonListTracker patientListTracker) {
         super(FXML);
-        originalPatients = patientListTracker.getAddedPatients();
-        updatedPatients = patientListTracker.getDeletedPatients();
+        originalPatients = patientListTracker.getAddedPersons();
+        updatedPatients = patientListTracker.getDeletedPersons();
 
         oldlabel.setText("Original Patients:");
         newlabel.setText("Updated Patients:");

@@ -69,26 +69,26 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the uninurse book.
      */
-    PatientListTracker deletePerson(Patient target);
+    PersonListTracker deletePerson(Patient target);
 
     /**
      * Deletes the given persons.
      * The persons must exist in the uninurse book.
      */
-    PatientListTracker clearPersons(List<Patient> targets);
+    PersonListTracker clearPersons(List<Patient> targets);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the uninurse book.
      */
-    PatientListTracker addPerson(Patient person);
+    PersonListTracker addPerson(Patient person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the uninurse book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the uninurse book.
      */
-    PatientListTracker setPerson(Patient target, Patient editedPerson);
+    PersonListTracker setPerson(Patient target, Patient editedPerson);
 
     /**
      * Returns an unmodifiable view of the filtered person list
@@ -128,7 +128,7 @@ public interface Model {
      * Gets the saved PatientListTracker.
      * @return saved patient pair.
      */
-    PatientListTracker getSavedPatientListTracker();
+    PersonListTracker getSavedPatientListTracker();
 
     /**
      * Saves the PatientListTracker in the current snapshot.

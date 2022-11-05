@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -49,10 +49,10 @@ public class RedoCard extends UiPart<Region> {
     /**
      * Creates a RedoCard with {@code patientListTracker}.
      */
-    public RedoCard(PatientListTracker patientListTracker) {
+    public RedoCard(PersonListTracker patientListTracker) {
         super(FXML);
-        updatedPatients = patientListTracker.getAddedPatients();
-        originalPatients = patientListTracker.getDeletedPatients();
+        updatedPatients = patientListTracker.getAddedPersons();
+        originalPatients = patientListTracker.getDeletedPersons();
         oldlabel.setText("Original Patients:");
         newlabel.setText("Updated Patients:");
 
