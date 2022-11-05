@@ -50,10 +50,8 @@ activate MeetingList
 MeetingList -> UniqueMeetingList : sortByDate\n(isInAscending)
 activate UniqueMeetingList
 
-UniqueMeetingList -> ObservableList : sortByDate\n(isInAscending)
+UniqueMeetingList -> ObservableList : sort(comparator)
 activate ObservableList
-ObservableList -> ObservableList : sort(comparator)
-
 
 create CommandResult
 SortMeetingCommand -> CommandResult
