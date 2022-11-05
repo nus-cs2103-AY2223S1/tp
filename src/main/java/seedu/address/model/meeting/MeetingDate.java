@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import seedu.address.logic.parser.DateKeyword;
+
 /**
  * Represents a Meeting's date in MyInsuRec.
  */
@@ -31,6 +33,47 @@ public class MeetingDate implements Comparable<MeetingDate> {
      */
     public static boolean isValidMeetingDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if the meeting falls within the given period.
+     */
+    public boolean isInPeriod(DateKeyword keyword) {
+        LocalDate today = LocalDate.now();
+        LocalDate startDate;
+        LocalDate endDate;
+
+        switch (keyword) {
+        case ALL_TIME:
+            return true;
+        case TOMORROW:
+            startDate = today.plusDays(1);
+            endDate = today.plusDays(1);
+            break;
+        case THIS_MONTH:
+            startDate = today.withDayOfMonth(1);
+            endDate = today.withDayOfMonth(today.getMonth().length(today.isLeapYear()));
+            break;
+        case THIS_WEEK:
+            startDate = today;
+            endDate = today.plusDays(7);
+            break;
+        default:
+            startDate = null;
+            endDate = null;
+        }
+        requireNonNull(startDate);
+        requireNonNull(endDate);
+
+        return isAfterDate(startDate) && isBeforeDate(endDate);
+    }
+
+    private boolean isAfterDate(LocalDate other) {
+        return date.compareTo(other) >= 0;
+    }
+
+    private boolean isBeforeDate(LocalDate other) {
+        return date.compareTo(other) <= 0;
     }
 
     public String toString() {
