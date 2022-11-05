@@ -44,7 +44,8 @@ public class SuggestCommandParser implements Parser<SuggestCommand> {
                 argMultimap.getAllValues(PREFIX_DAY_TIME_OF_WEEK));
         Set<Keyword> keywords = ParserUtil.parseKeywords(argMultimap.getAllValues(PREFIX_KEYWORD));
 
-        if (dayTimesInWeek.isEmpty() && keywords.isEmpty()) {
+        if ((dayTimesInWeek.isEmpty() && keywords.isEmpty())
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SuggestCommand.MESSAGE_USAGE));
         }

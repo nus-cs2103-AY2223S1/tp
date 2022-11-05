@@ -158,4 +158,39 @@ public class SuggestCommandTest {
                 model.getFilteredPersonList());
     }
 
+    @Test
+    public void execute_dayTimeInWeekAndKeyword_onePersonFound() {
+
+        Set<Keyword> keywordSet = new HashSet<>();
+        Set<DayTimeInWeek> dayTimeInWeekSet = new HashSet<>();
+        keywordSet.add(new Keyword("Singapore"));
+        dayTimeInWeekSet.add(new DayTimeInWeek("mon@2330"));
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        PersonSuggestionPredicate predicate =
+                new PersonSuggestionPredicate(dayTimeInWeekSet, keywordSet);
+        SuggestCommand command = new SuggestCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE),
+                model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_dayTimeInWeekForEarlyMondayMorning_onePersonFound() {
+
+        Set<Keyword> keywordSet = new HashSet<>();
+        Set<DayTimeInWeek> dayTimeInWeekSet = new HashSet<>();
+        dayTimeInWeekSet.add(new DayTimeInWeek("mon@0030"));
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        PersonSuggestionPredicate predicate =
+                new PersonSuggestionPredicate(dayTimeInWeekSet, keywordSet);
+        SuggestCommand command = new SuggestCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(JUSTIN),
+                model.getFilteredPersonList());
+    }
+
 }
