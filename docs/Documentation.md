@@ -16,7 +16,7 @@ title: Documentation guide
 
 ## Style guidance
 
-* Follow the [**_Google developer documentation style guide_**](https://developers.google.com/style).
+* Follow the [**_Google developer documentation style guide_**](https://developers.google.com/style)
 
 * Also relevant is the [_[se-edu/guides] **Markdown coding standard**_](https://se-education.org/guides/conventions/markdown.html)
 
@@ -24,6 +24,8 @@ title: Documentation guide
 
 * See the [_[se-edu/guides] **Using PlantUML**_](https://se-education.org/guides/tutorials/plantUml.html)
 
-## Converting a document to the PDF format
+## Generating PDFs from web pages
 
-* See the guide [_[se-edu/guides] **Saving web documents as PDF files**_](https://se-education.org/guides/tutorials/savingPdf.html)
+In order to support the additional styling made possible by some experimental/non-universal CSS features (such as the `@page` rule), we use [PrinceXML](https://www.princexml.com/) to generate our documentation.
+
+Simply run [`make-pdf.sh`]({{ page.master_branch }}/docs/make-pdf.sh) from the `docs` folder in order to build the PDFs. There is also a GitHub workflow to automatically generate the PDFs for the User Guide and Developer Guide on every release.
