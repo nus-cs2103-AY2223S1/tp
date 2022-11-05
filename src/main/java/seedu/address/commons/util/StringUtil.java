@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Helper functions for handling strings.
  */
@@ -74,7 +77,6 @@ public class StringUtil {
      */
     public static boolean isInteger(String s) {
         requireNonNull(s);
-
         try {
             int value = Integer.parseInt(s);
             return !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
@@ -82,4 +84,5 @@ public class StringUtil {
             return false;
         }
     }
+
 }

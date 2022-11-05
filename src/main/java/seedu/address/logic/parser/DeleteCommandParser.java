@@ -20,18 +20,12 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
 
-        // Throw invalid index error only if index is an integer and is lower than or equals to 0
-        if (isInteger(args) && Integer.parseInt(args) <= 0) {
-            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        // Throw invalid format error only if index is not an integer
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = ParserUtil.parsePersonIndex(args);
             return new DeleteCommand(index);
-        } catch (ParseException pe) {
+        } catch (NumberFormatException nfe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
     }
 

@@ -45,16 +45,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         Index index;
         String oneBasedIndexStr = argMultimap.getPreamble();
 
-        // Throw invalid index error only if index is an integer and is lower than or equals to 0
-        if (isInteger(oneBasedIndexStr) && Integer.parseInt(oneBasedIndexStr) <= 0) {
-            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        // Throw invalid format error only if index is not an integer
         try {
-            index = ParserUtil.parseIndex(oneBasedIndexStr);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            index = ParserUtil.parsePersonIndex(oneBasedIndexStr);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
@@ -90,7 +84,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-        //editPersonDescriptor.setAppointments(EMPTY_APPOINTMENTS);
 
         return new EditCommand(index, editPersonDescriptor);
     }

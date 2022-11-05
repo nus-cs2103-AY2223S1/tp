@@ -1,11 +1,17 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.util.StringUtil.isInteger;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
 import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -42,13 +48,41 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws ParseException, NumberFormatException {
         requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static Index parsePersonIndex(String oneBasedIndex) throws ParseException, NumberFormatException {
+        requireNonNull(oneBasedIndex);
+        Index index;
+        if (!isInteger(oneBasedIndex.trim())) {
+            throw new NumberFormatException();
+        }
+        try {
+            index = parseIndex(oneBasedIndex);
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+        return parseIndex(oneBasedIndex);
+    }
+
+    public static Index parseAppointmentIndex(String oneBasedIndex) throws ParseException, NumberFormatException {
+        requireNonNull(oneBasedIndex);
+        Index index;
+        if (!isInteger(oneBasedIndex.trim())) {
+            throw new NumberFormatException();
+        }
+        try {
+            index = parseIndex(oneBasedIndex);
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        }
+        return parseIndex(oneBasedIndex);
     }
 
     /**
@@ -120,6 +154,24 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
+    public static Appointment parseAppointment(ArgumentMultimap argMultimap) throws ParseException {
+        Appointment appointment;
+        DateTime appointmentDateTime;
+        Location appointmentLocation;
+
+        try {
+            appointmentDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_DATE).get());
+            appointmentLocation = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).get());
+            appointment = ParserUtil.parseAppointment(appointmentDateTime.toString(), appointmentLocation.toString());
+        } catch (DateTimeParseException e) {
+            if (e.getCause() == null) {
+                throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+            }
+            String str = e.getCause().getMessage();
+            throw new ParseException(str);
+        }
+        return appointment;
+    }
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
