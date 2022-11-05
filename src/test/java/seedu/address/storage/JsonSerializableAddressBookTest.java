@@ -31,7 +31,7 @@ public class JsonSerializableAddressBookTest {
 
 
     @Test
-    public void toModelType_typicalSETAFile_success() throws Exception {
+    public void toModelType_typicalSetaFile_success() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_SETA_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
