@@ -18,6 +18,7 @@ import org.junit.jupiter.api.io.TempDir;
 import coydir.commons.exceptions.DataConversionException;
 import coydir.model.Database;
 import coydir.model.ReadOnlyDatabase;
+import coydir.testutil.TestUtil;
 
 public class JsonDatabaseStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonDatabaseStorageTest");
@@ -64,26 +65,34 @@ public class JsonDatabaseStorageTest {
     public void readAndSaveDatabase_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempDatabase.json");
         Database original = getTypicalDatabase();
+        int numOfTypicalPersons = original.getPersonList().size();
         JsonDatabaseStorage jsonDatabaseStorage = new JsonDatabaseStorage(filePath);
 
         // Save in new file and read back
+        TestUtil.setMaxEmployeeId(numOfTypicalPersons + 1);
         jsonDatabaseStorage.saveDatabase(original, filePath);
+        TestUtil.restartEmployeeId(1);
         ReadOnlyDatabase readBack = jsonDatabaseStorage.readDatabase(filePath).get();
         assertEquals(original, new Database(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
+        original.addPerson(HOON); // Employee ID: 8
         original.removePerson(ALICE);
+        int hoonId = Integer.parseInt(HOON.getEmployeeId().value);
+        TestUtil.setMaxEmployeeId(hoonId + 1);
         jsonDatabaseStorage.saveDatabase(original, filePath);
+        TestUtil.restartEmployeeId(1);
         readBack = jsonDatabaseStorage.readDatabase(filePath).get();
         assertEquals(original, new Database(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addPerson(IDA); // Employee ID = 9
+        int idaId = Integer.parseInt(IDA.getEmployeeId().value);
+        TestUtil.setMaxEmployeeId(idaId + 1);
         jsonDatabaseStorage.saveDatabase(original); // file path not specified
+        TestUtil.restartEmployeeId(1);
         readBack = jsonDatabaseStorage.readDatabase().get(); // file path not specified
         assertEquals(original, new Database(readBack));
-
     }
 
     @Test

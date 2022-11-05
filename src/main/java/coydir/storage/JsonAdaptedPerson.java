@@ -140,7 +140,7 @@ class JsonAdaptedPerson {
         if (!EmployeeId.isValidEmployeeId(employeeId)) {
             throw new IllegalValueException(EmployeeId.MESSAGE_CONSTRAINTS);
         }
-        final EmployeeId modelEmployeeId = new EmployeeId(employeeId);
+        final EmployeeId modelEmployeeId = EmployeeId.addEmployeeId(employeeId);
 
         final Phone modelPhone;
         if (phone == null) {
