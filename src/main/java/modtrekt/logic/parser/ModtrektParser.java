@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -53,12 +54,22 @@ public class ModtrektParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        if (userInput.isBlank()) {
-            throw new ParseException(Messages.MESSAGE_MISSING_COMMAND);
+        JCommander jcommander = getConfiguredJCommander();
+        List<String> tokens = tokenizeCommand(userInput);
+        try {
+            return parseJCommand(tokens, jcommander);
+        } catch (ParameterException ex) { // fallback to the AB3 parser and try again for the old commands
+            return parseLegacyCommand(userInput).orElseThrow(() -> getParseException(ex, jcommander));
         }
+    }
+
+    /**
+     * Returns the JCommander instance configured with all the commands.
+     */
+    private static JCommander getConfiguredJCommander() {
         // devs: Instantiate your commands here by passing it to addCommand() -
         //       you don't need any CommandParser classes anymore.
-        JCommander jcommander = JCommander.newBuilder().acceptUnknownOptions(false).programName("")
+        return JCommander.newBuilder().programName("")
                 // tasks
                 .addCommand(ListTasksCommand.COMMAND_PHRASE, new ListTasksCommand(),
                         ListTasksCommand.COMMAND_ALIAS
@@ -84,62 +95,33 @@ public class ModtrektParser {
                 .addCommand(RemoveModuleCommand.COMMAND_WORD, new RemoveModuleCommand(),
                         RemoveModuleCommand.COMMAND_ALIASES)
                 .build();
-        try {
-            // Get the tokens from the user input.
-            // ARGUMENTS WITH SPACES MUST BE SURROUNDED BY DOUBLE-QUOTES.
-            List<String> tokens = StringUtil.shellSplit(userInput.strip());
+    }
 
-            // Since we're treating e.g. "add task" and "add module" as separate commands,
-            // we'll consider "task" or "module" the scope of the command, and add it to the command word.
-            String scope = tokens.size() >= 2 ? tokens.get(1) : null;
-            // support shorthand for module, no extra -m or module flag needed, hence we remove
-            // it from the token list.
-            if ("module".equals(scope) || "mod".equals(scope) || "task".equals(scope)) {
-                tokens.remove(1);
-                tokens.set(0, tokens.get(0) + " " + scope);
-            }
-
-            // Parse the command tokens with JCommander.
-            // Invalid commands as well as missing, duplicate, or invalid options will throw a ParameterException.
-            validateCommandArity(tokens);
-            jcommander.parse(tokens.toArray(new String[0]));
-
-            // This cast is safe since we only pass Command objects to jcommander::addCommand.
-            return (Command) jcommander.getCommands().get(jcommander.getParsedCommand()).getObjects().get(0);
-        } catch (ParameterException ex) {
-            // Fallback to the legacy AB3 parser if the command is not recognized by JCommander.
-            Command command = parseLegacyCommand(userInput);
-            if (command != null) {
-                return command;
-            }
-            // Discard the main parameter error message if present as it's not relevant to users.
-            String parsedCommand = jcommander.getParsedCommand();
-            if (parsedCommand == null) { // unknown command
-                throw new ParseException(ex.getMessage()); // JCommander has its own unknown command message
-            }
-            JCommander filteredJCommander = jcommander.getCommands().get(parsedCommand);
-            if (filteredJCommander == null) { // guarding against NPE in case JCommander internals change
-                throw new ParseException(ex.getMessage());
-            }
-
-            // Add the formatted usage message to the error message.
-            String message = ex.getMessage().endsWith("no main parameter was defined in your arg class")
-                    ? "Syntax error. If your command arguments contain spaces, surround them with quotes."
-                    // JCommander parses multiple module codes from the input arguments, so we regard the error as
-                    // invalid syntax provided by the user.
-                    // Handle main parameter error message for module commands.
-                    : ex.getMessage().endsWith("Code should only contain alphanumeric characters, "
-                    + "should not contain white space and should be between 6 and 9 characters long")
-                    ? "Syntax error. Please ensure your command follows the correct syntax."
-                    : ex.getMessage();
-            IUsageFormatter usageFormatter = new UnixStyleUsageFormatter(filteredJCommander);
-            StringBuilder usageBuilder = new StringBuilder(message).append("\n\n");
-            usageFormatter.usage(usageBuilder);
-
-            // Rethrow the JCommander unknown command ParameterException using ModtRekt's ParseException as
-            // it displays the error message in the UI.
-            throw new ParseException(usageBuilder.toString());
+    /**
+     * Returns the list of tokens in the user input.
+     *
+     * @param userInput full user input string
+     * @return the list of tokens in the user input
+     * @throws ParseException if the input is blank
+     */
+    private static List<String> tokenizeCommand(String userInput) throws ParseException {
+        if (userInput.isBlank()) {
+            throw new ParseException(Messages.MESSAGE_MISSING_COMMAND);
         }
+        // Get the tokens from the user input.
+        // ARGUMENTS WITH SPACES MUST BE SURROUNDED BY DOUBLE-QUOTES.
+        List<String> tokens = StringUtil.shellSplit(userInput.strip());
+
+        // Since we're treating e.g. "add task" and "add module" as separate commands,
+        // we'll consider "task" or "module" the scope of the command, and add it to the command word.
+        String scope = tokens.size() >= 2 ? tokens.get(1) : null;
+        // support shorthand for module, no extra -m or module flag needed, hence we remove
+        // it from the token list.
+        if ("module".equals(scope) || "mod".equals(scope) || "task".equals(scope)) {
+            tokens.remove(1);
+            tokens.set(0, tokens.get(0) + " " + scope);
+        }
+        return tokens;
     }
 
     /**
@@ -149,7 +131,7 @@ public class ModtrektParser {
      * Currently only validates the few commands which throw the wrong error message when the exception
      * is thrown due to the feature freeze.
      */
-    private void validateCommandArity(List<String> tokens) {
+    private static void validateCommandArity(List<String> tokens) {
         requireNonNull(tokens);
         if (tokens.isEmpty()) {
             return; // missing command phrase, can't do anything
@@ -187,20 +169,59 @@ public class ModtrektParser {
         // else: correct number of values, nothing to do
     }
 
-    private Command parseLegacyCommand(String userInput) throws ParseException {
+    private static Command parseJCommand(List<String> tokens, JCommander jcommander) {
+        // Parse the command tokens with JCommander.
+        // Invalid commands as well as missing, duplicate, or invalid options will throw a ParameterException.
+        validateCommandArity(tokens);
+        jcommander.parse(tokens.toArray(new String[0]));
+
+        // This cast is safe since we only pass Command objects to jcommander::addCommand.
+        return (Command) jcommander.getCommands().get(jcommander.getParsedCommand()).getObjects().get(0);
+    }
+
+    private static ParseException getParseException(ParameterException ex, JCommander jcommander) {
+        // Discard the main parameter error message if present as it's not relevant to users.
+        String parsedCommand = jcommander.getParsedCommand();
+        if (parsedCommand == null) { // unknown command
+            return new ParseException(ex.getMessage()); // JCommander has its own unknown command message
+        }
+        JCommander filteredJCommander = jcommander.getCommands().get(parsedCommand);
+        if (filteredJCommander == null) { // guarding against NPE in case JCommander internals change
+            return new ParseException(ex.getMessage());
+        }
+
+        // Add the formatted usage message to the error message.
+        String message = ex.getMessage().endsWith("no main parameter was defined in your arg class")
+                ? "Syntax error. If your command arguments contain spaces, surround them with quotes."
+                // JCommander parses multiple module codes from the input arguments, so we regard the error as
+                // invalid syntax provided by the user.
+                // Handle main parameter error message for module commands.
+                : ex.getMessage().endsWith("Code should only contain alphanumeric characters, "
+                + "should not contain white space and should be between 6 and 9 characters long")
+                ? "Syntax error. Please ensure your command follows the correct syntax."
+                : ex.getMessage();
+        IUsageFormatter usageFormatter = new UnixStyleUsageFormatter(filteredJCommander);
+        StringBuilder usageBuilder = new StringBuilder(message).append("\n\n");
+        usageFormatter.usage(usageBuilder);
+
+        // Rethrow the JCommander unknown command ParameterException using ModtRekt's ParseException as
+        // it displays the error message in the UI.
+        return new ParseException(usageBuilder.toString());
+    }
+
+    private static Optional<Command> parseLegacyCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
         switch (commandWord) {
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            return Optional.of(new ExitCommand());
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return Optional.of(new HelpCommand());
         default:
-            return null;
+            return Optional.empty();
         }
     }
 }
