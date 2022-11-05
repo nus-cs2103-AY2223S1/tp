@@ -452,10 +452,10 @@ the sequences occurring in the following diagrams are meant to occur in one full
 ![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram1.png)
 
 * Adding item details (Step 2a, 2b, 3)
-* ![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram2.png)
+![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram2.png)
 
 * Adding item details (Step 4)
-* ![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram3.png)
+![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram3.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for the objects with the
 <i>destroy marker</i> (X) should end at the <i>destroy marker</i> itself but due to a limitation of PlantUML, the lifeline
