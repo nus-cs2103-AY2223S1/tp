@@ -125,7 +125,7 @@ No time to waste, let's start _Working_! :muscle:
 
 |       Narrow Layout       |  
 |:-------------------------:|
-|![narrow layout](images/AnnotatedUiNarrow.png) |
+|![narrow layout](images/AnnotatedUiNarrowBulbOnly.png) |
 
 
 |     Resizing Example      |
