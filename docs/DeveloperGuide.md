@@ -765,9 +765,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Client**: A contact detail that is attached to a project.
 * **Project**: A project that has many clients, which typically has deliverables with deadlines.
+* **Entity**: A Client, Project or Issue.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -827,7 +828,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `project l`<br>
        Expected: Displayed list does not change. Error details shown in the status message. Status bar remains the same.
 
-    4. Other incorrect pin commands to try: `project list`, `project -list`, `...` <br>
+    4. Other incorrect list commands to try: `project list`, `project -list`, `...` <br>
        Expected: Similar to previous.
 
 ### Setting default view
@@ -845,7 +846,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `client v`<br>
        Expected: List displayed by default does not change. Error details shown in the status message. Status bar remains the same.
 
-    5. Other incorrect pin commands to try: `client view`, `client -dv`, `...` <br>
+    5. Other incorrect default view commands to try: `client view`, `client -dv`, `...` <br>
        Expected: Similar to previous.
 
 ### Pinning an entity
