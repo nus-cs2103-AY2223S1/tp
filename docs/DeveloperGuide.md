@@ -707,14 +707,6 @@ testers are expected to do more *exploratory* testing.
     5. Test case: `edit 0 ua/10-10-2035`<br>
          Expected: No appointment is edited, as the index is invalid. Error details shown in the status message.
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
-
 ### Sorting patients by patient type
 
 1. Displaying all inpatients registered in checkUp 
@@ -742,6 +734,43 @@ testers are expected to do more *exploratory* testing.
       Expected: The current list remains unchanged. Error message is displayed in the result box.
    6. Test case: `get outp/`<br>
       Expected: The current list remains unchanged. Error message is displayed in the result box.
+
+### Sorting patients by hospital wing
+
+1. Displaying all inpatients in a particular hospital wing
+    1. Prerequisites: List all patients using the `list` command. At least one inpatient in the list of people.
+    2. Test case: `get /hw south`<br>
+       Expected: All inpatients in the south wing are listed. 
+       The number of inpatients listed is displayed in the result box.
+    3. Test case: `get /hw NORTH`<br>
+       Expected: All inpatients in the north wing are listed. 
+       The number of inpatients listed is displayed in the result box.
+    4. Test case: `get /hw east /fn 9`<br>
+       Expected: All inpatients in the east wing are listed. 
+       The number of inpatients listed is displayed in the result box.
+    5. Test case: `get /hw east south`<br>
+       Expected: All inpatients in the east wing and south wing are listed.
+       The number of inpatients listed is displayed in the result box.
+    6. Test case: `get hw`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    7. Test case: `get hw/`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+
+### Sorting patients by appointment date
+
+1. Displaying all patients that has an appointment on the query appointment date
+    1. Prerequisites: List all patients using the `list` command. At least one inpatient in the list of people.
+    2. Test case: `get /appton 14-12-1212`<br>
+       Expected: All patients having appointments on 14th December are listed.
+       The number of patients listed is displayed in the result box.
+    3. Test case: `get /appton 2020-08-08`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    4. Test case: `get /appton 14-12-1212 /hw south`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    5. Test case: `get appton`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    6. Test case: `get appton/`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
 
 ### Displaying all past appointments of a patient
 
