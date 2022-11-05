@@ -293,7 +293,6 @@ Examples:
 * `find -p Pinnacle@Duxton Sesame Street` returns `Pinnacle@Duxton`, `Sesame Street`<br>
 
 [//]: # (Image to be added later)
-[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
 ### Deleting a property : `delete -p`
 
