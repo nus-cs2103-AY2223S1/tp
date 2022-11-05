@@ -53,6 +53,9 @@ public class ViewTimetableCommandTest {
         // different types -> returns false
         assertFalse(viewFirstTimeTableCommand.equals(1));
 
+        // null -> returns false
+        assertFalse(viewFirstTimeTableCommand.equals(null));
+
         // different values -> returns false
         assertFalse(viewFirstTimeTableCommand.equals(viewSecondTimeTableCommand));
 

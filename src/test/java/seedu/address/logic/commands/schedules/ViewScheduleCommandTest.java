@@ -3,8 +3,10 @@ package seedu.address.logic.commands.schedules;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalSchedules.getTypicalModuleSet;
 import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -84,9 +86,29 @@ public class ViewScheduleCommandTest {
     }
 
     @Test
+    public void execute_emptyProfNUS_success() {
+        Model curModel = new ModelManager();
+        Model curExpectedModel = new ModelManager();
+        CommandResult expectedCommandResult = new CommandResult(String.format(
+                String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, curModel.getFilteredScheduleList().size())),
+                false, false, false, false,
+                false, true, false, false);
+        assertCommandSuccess(new ViewScheduleCommand(), curModel, expectedCommandResult, curExpectedModel);
+    }
+
+    @Test
+    public void execute_emptyInput_showAllSchedules() {
+        assertCommandSuccess(new ViewScheduleCommand(), model,
+                new CommandResult(String.format(String.format(
+                        Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
+                        false, false, false, false,
+                        false, true, false, false), expectedModel);
+        System.out.println(model.getFilteredScheduleList());
+    }
+
+    @Test
     public void execute_nonExistModule_throwCommandException() {
-
-
+        Set<String> modules = getTypicalModuleSet();
         List<Schedule> schedules = model.getFilteredScheduleList();
 
 

@@ -23,10 +23,9 @@ public class ClearScheduleCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_OF_SCHEDULE + " cs2103t\n";
     public static final String MESSAGE_CLEAR_ALL_SCHEDULES_SUCCESS = "Clear those schedules successfully!";
     public static final String MESSAGE_MODULE_NOT_EXIST = "The module you are looking for doesn't exist.";
-    private final ArrayList<ModuleCode> modulesToClear;
+    private final ArrayList<ModuleCode> modulesToClear = new ArrayList<>();
 
     public ClearScheduleCommand() {
-        modulesToClear = null;
     }
 
     /**
@@ -34,7 +33,6 @@ public class ClearScheduleCommand extends Command {
      * @param modulesToClear List of ModuleCode to clear.
      */
     public ClearScheduleCommand(ArrayList<ModuleCode> modulesToClear) {
-        this.modulesToClear = new ArrayList<>();
         this.modulesToClear.addAll(modulesToClear);
     }
     @Override

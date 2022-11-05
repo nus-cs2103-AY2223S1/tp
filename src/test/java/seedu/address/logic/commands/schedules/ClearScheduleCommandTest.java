@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.schedules;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -25,6 +26,36 @@ public class ClearScheduleCommandTest {
 
 
     @Test
+    public void equals() {
+
+        ArrayList<ModuleCode> allModuleCodes = getTypicalModuleCodeFromTypicalSchedules();
+
+        ClearScheduleCommand clearScheduleFirstCommand = new ClearScheduleCommand(allModuleCodes);
+        ClearScheduleCommand clearScheduleEmptyCommand = new ClearScheduleCommand();
+
+        // same object -> returns true
+        assertTrue(clearScheduleFirstCommand.equals(clearScheduleFirstCommand));
+        assertTrue(clearScheduleEmptyCommand.equals(clearScheduleEmptyCommand));
+
+        // same values -> returns true
+        assertTrue(clearScheduleFirstCommand.equals(new ClearScheduleCommand(allModuleCodes)));
+//        assertTrue(clearScheduleEmptyCommand.equals(new ClearScheduleCommand()));
+
+        // different types -> returns false
+        assertFalse(clearScheduleFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(clearScheduleFirstCommand.equals(null));
+
+        // different predicate -> returns false
+        assertFalse(clearScheduleFirstCommand.equals(clearScheduleEmptyCommand));
+
+
+
+
+    }
+
+    @Test
     public void execute_emptyProfNUS_success() {
         Model curModel = new ModelManager();
         Model expectedModel = new ModelManager();
@@ -34,20 +65,6 @@ public class ClearScheduleCommandTest {
                 false, true, false, false);
 
         assertCommandSuccess(new ClearScheduleCommand(),  curModel, expectedCommandResult, expectedModel);
-    }
-
-
-    @Test
-    public void equals() {
-
-        ArrayList<ModuleCode> allModuleCodes = getTypicalModuleCodeFromTypicalSchedules();
-
-        ClearScheduleCommand clearScheduleFirstCommand = new ClearScheduleCommand(allModuleCodes);
-        ClearScheduleCommand clearScheduleEmptyCommand = new ClearScheduleCommand();
-
-        assertTrue(clearScheduleFirstCommand.equals(clearScheduleFirstCommand));
-        assertTrue(clearScheduleEmptyCommand.equals(clearScheduleEmptyCommand));
-        assertTrue(clearScheduleFirstCommand.equals(new ClearScheduleCommand(allModuleCodes)));
     }
 
     @Test

@@ -4,7 +4,9 @@ import static seedu.address.testutil.TypicalModules.getTypicalModules;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.model.ProfNus;
 import seedu.address.model.module.Module;
@@ -65,6 +67,16 @@ public class TypicalSchedules {
             }
         }
         return typicalModuleCodeList;
+    }
+
+    public static Set<String> getTypicalModuleSet() {
+        Set<String> typicalModuleSet = new HashSet<>();
+        if (!getTypicalSchedules().isEmpty()) {
+            for(Schedule schedule : getTypicalSchedules()) {
+                typicalModuleSet.add(schedule.getModule());
+            }
+        }
+        return typicalModuleSet;
     }
 
 }
