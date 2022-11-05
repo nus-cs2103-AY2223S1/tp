@@ -806,6 +806,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                             | delete a person                                  | remove entries that I no longer need                                                    |
 | `* * *`  | user                             | tag my contacts                                  | keep track of groups we have in common                                                  |
 | `* * *`  | user                             | list out all my friend's information             | look through all my contacts at once                                                    |
+| `* * *`  | user with many friends           | find a specific friend's information             | save time from searching that friend's information                                      |
 | `* * *`  | user currently studying          | keep track of my modules                         | keep track and plan my academic progress                                                |                                           |
 | `* * *`  | user with group projects         | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                            |
 | `* * *`  | user with academic queries       | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                      |
@@ -1010,91 +1011,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC9 - Keep track of modules taken by user**
+**Use case: UC9 - Find a contact**
 
 **Actor: CS Students**
 
 **MSS**
 
-1. CS Student requests to list all modules.
-2. ConnectNUS shows a list of modules the CS Student has taken.
-3. Use case ends.
+1. CS Student chooses to find a contact.
+2. ConnectNUS requests for the keyword to find the contact with.
+3. CS Student enters the requested keyword.
+4. ConnectNUS filters the current list of contacts to only those that contain the keyword.
+5. ConnectNUS displays the filtered list.
+6. Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-  Use case ends.
+* 3a. ConnectNUS detects an error in the command format
+
+  * 3a1. ConnectNUS requests for the correct format.
+  * User enters a new command in the correct format.
+    Step 3a1 is repeated until the data entered are correct.
+    Use case resumes at step 4.
 
 **System: ConnectNUS**
 
-**Use case: UC10 - Keep track of friend’s current modules**
+**Use case: UC10 - Clear all contacts**
 
 **Actor: CS Students**
 
 **MSS**
 
-1. CS Student requests to list all modules of a specific index of contact.
-2. ConnectNUS shows a list of modules the specified friend has taken.
+1. CS Student chooses to clear all contacts.
+2. ConnectNUS deletes all contacts from the contact list.
 3. Use case ends.
-
 
 **Extensions**
 
-* 1a. ConnectNUS detects an error in the command format.
-    * 1a1. ConnectNUS requests for the correct format.
-    * User enters a new command in the correct format.
-      Steps 1a1-1a2 are repeated until the data entered are correct.
-      Use case resumes at step 2.
+* 1a. ConnectNUS detects an error in the command format
 
-* 2a. The list is empty.
-      Use case ends.
+  * 1a1. ConnectNUS requests for the correct format.
+  * User enters a new command in the correct format.
+    Step 1a1 is repeated until the data entered are correct.
+    Use case resumes at step 2.
 
 **System: ConnectNUS**
 
-**Use case: UC11 - Keep track of friend’s previous modules**
+**Use case: UC11 - Edit user's module list**
 
 **Actor: CS Students**
 
 **MSS**
 
-1. User requests to list all previous modules of a specific index of contact.
-2. ConnectNUS shows a list of modules the specified friend has taken previously.
-3. Use case ends.
+1. CS Student chooses to edit their own module list.
+2. ConnectNUS requests for the list of modules to be added and removed.
+3. CS Student enters the requested lists.
+4. ConnectNUS saves the edited user profile and updates the data file.
+5. Use case ends.
 
 **Extensions**
 
-* 1a. ConnectNUS detects an error in the command format.
-    * 1a1. ConnectNUS requests for the correct format.
-    * User enters a new command in the correct format.
-      Steps 1a1-1a2 are repeated until the data entered are correct.
-      Use case resumes at step 2.
+* 1a. ConnectNUS does not detect any user profile to edit
 
-* 2a. The list is empty.
-  Use case ends.
+  * 1a1. ConnectNUS informs user that there is no user profile to edit.
+  * Use case ends.
+
+* 3a. ConnectNUS detects an error in the entered data
+
+  * 3a1. ConnectNUS requests for the correct data.
+  * 3a2. CS Student enters new data.
+  * Steps 3a-3b are repeated until the data entered are correct.
+    Use case resumes at step 4.
 
 **System: ConnectNUS**
 
-**Use case: UC12 - Keep track of friend’s module plan**
+**Use case: UC12 - Edit person's module list**
 
 **Actor: CS Students**
 
 **MSS**
 
-1. CS Student requests to list a friend’s module plan of a specific index of contact.
-2. ConnectNUS shows a list of modules the specified friend has taken previously.
-3. Use case ends.
+1. CS Student chooses to edit a specific index of contact's module list.
+2. ConnectNUS requests for the list of modules to be added and removed.
+3. CS Student enters the requested lists.
+4. ConnectNUS saves the edited contact and updates the data file.
+5. Use case ends.
+
 
 **Extensions**
 
-* 1a. ConnectNUS detects an error in the command format.
-    * 1a1. ConnectNUS requests for the correct format.
-    * User enters a new command in the correct format.
-      Steps 1a1-1a2 are repeated until the data entered are correct.
-      Use case resumes at step 2.
+* 1a. ConnectNUS detects an error in the command format or invalid index.
+  * 1a1. ConnectNUS requests for the correct format or index.
+  * User enters a new command in the correct format or index.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+    Use case resumes at step 2.
 
-* 2a. The list is empty.
-  Use case ends.
+* 3a. ConnectNUS detects an error in the entered data
 
+  * 3a1. ConnectNUS requests for the correct data.
+  * 3a2. CS Student enters new data.
+  * Steps 3a-3b are repeated until the data entered are correct.
+    Use case resumes at step 4.
 
 **System: ConnectNUS**
 
