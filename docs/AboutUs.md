@@ -25,8 +25,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities:
-  * Implement contacts management
-  * Team pull request reviewer
+  * Modify adding, editing, and deleting of persons
+  * Implement delete person from module 
+  * Pull request reviewer
 
 ### Neo Shi Wen
 
