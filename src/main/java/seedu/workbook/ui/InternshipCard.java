@@ -109,19 +109,19 @@ public class InternshipCard extends UiPart<Region> {
      */
     @FXML
     private void showTips() {
-        //Do not populate tips window for stages that have no stage-specific tips.
-        if (this.internshipStage.hasNoTips()) {
-            return;
-        }
-
-        //Set header of tips to be name of stage.
-        tipsWindow.setTipsHeader(this.internshipStage.value);
-
-        List<String> tips = StageUtil.getStageSpecificTips(this.internshipStage);
-
-        tipsWindow.populateTips(tips);
-
+        //Check if tips window is showing.
         if (!tipsWindow.isShowing()) {
+            //Do not populate tips window for stages that have no stage-specific tips.
+            if (this.internshipStage.hasNoTips()) {
+                return;
+            }
+
+            //Set header of tips to be name of stage.
+            tipsWindow.setTipsHeader(this.internshipStage.value);
+
+            List<String> tips = StageUtil.getStageSpecificTips(this.internshipStage);
+
+            tipsWindow.populateTips(tips);
             tipsWindow.show();
         } else {
             tipsWindow.focus();
