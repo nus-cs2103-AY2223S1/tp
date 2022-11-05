@@ -444,7 +444,7 @@ The summary statistic is shown on the UI using the `ResultDisplay` section. The 
 
 
 #### Constraints of Statistic Feature
-The statistic of the applications will only show when user enter `stats` command. Possible future improvement is to reorganise the UI section to display real-time statistics in one section and the list view of applications and interviews are in another section.
+The statistic of the applications will only show when user enter `stats` command. A possible future improvement is to reorganise the UI section to display real-time statistics in one section and the list view of applications and interviews are in another section.
 
 #### Design Considerations
 
@@ -465,12 +465,17 @@ Aspect: How should the statistic feature be presented?
 #### Implementation
 The `Status` feature allows users to add a status to a new application and edit the status of their existing application as they progress through the application process.
 
+![StatusClassDiagram](images/StatusClassDiagram.png)
+
+#### Constraints of the Status Feature
+In order to provide better visualisation of `Status` with added colours and easy integration with the Statistic feature, only some fixed values of `Status` can be allowed. As such, users are not able to add any other statuses.
+
 #### Design Considerations
 
 Aspect: How should the `Status` feature be implemented? 
 
 * Alternative 1 (current choice): `Status` is implemented as an enum.
-    * Pros: Allows the `stats` command to easily provide a summary of current applications with application progress already added as status. Can be displayed easily with different colors based on the statuses as the status values are fixed.
+    * Pros: Allows the Statistic feature to easily provide a summary of current applications with application progress already added as status. Can be displayed easily with different colors based on the statuses as the status values are fixed.
     * Cons: More restrictive for the users as only a few statuses are allowed (i.e. no custom statuses).
 
 * Alternative 2: `Status` is implemented as a normal class.

@@ -1,0 +1,8 @@
+@startuml
+enum Status {
+    INTERVIEW
+    OFFERED
+    PENDING
+    REJECTED
+}
+@enduml
