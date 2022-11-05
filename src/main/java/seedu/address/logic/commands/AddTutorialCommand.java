@@ -73,6 +73,6 @@ public class AddTutorialCommand extends Command {
 
         // state check
         AddTutorialCommand e = (AddTutorialCommand) other;
-        return tutorial.equals(e);
+        return tutorial.equals(e.tutorial);
     }
 }
