@@ -99,7 +99,7 @@ How the `Logic` component works:
    1. `UndoableCommand` is another interface that extends from the `Command` interface which represents commands that have undo/redo logic.
    2. Commands that implements `UndoableCommand` are managed in the `CommandManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
