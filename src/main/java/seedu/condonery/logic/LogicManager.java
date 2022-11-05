@@ -53,11 +53,12 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = condoneryParser.parseCommand(commandText);
+
+        commandResult = command.execute(model);
+
         if (!commandsToIgnore.contains(command.getClass())) {
             model.addCommand(command);
         }
-
-        commandResult = command.execute(model);
 
         try {
             storage.savePropertyDirectory(model.getPropertyDirectory());

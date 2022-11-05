@@ -10,6 +10,7 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.condonery.logic.commands.Command;
@@ -100,10 +101,32 @@ public class AddPropertyCommand extends Command {
         if (model.hasProperty(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
+
         toAdd.setImageDirectoryPath(model.getUserPrefs().getUserImageDirectoryPath());
 
         ParsePropertyInterestedClients parser = new ParsePropertyInterestedClients(
                 toAdd, model);
+
+        // Throws CommandException if the user inputs clients that are missing
+        List<String> missingClients = parser.getMissingClients();
+        if (missingClients.size() > 0) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("Could not find the interested clients: ");
+            missingClients.forEach(client -> builder.append(client + ", "));
+            String result = builder.toString();
+            throw new CommandException(result.substring(0, result.length() - 2));
+        }
+
+        // Throws CommandException if the user inputs clients that have multiple results
+        List<String> duplicateClients = parser.getDuplicateClients();
+        if (duplicateClients.size() > 0) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("More than 1 client matches the search result for: ");
+            duplicateClients.forEach(client -> builder.append(client + ", "));
+            String result = builder.toString();
+            String errorMessage = result.substring(0, result.length() - 2) + ". You may like to refine your search.";
+            throw new CommandException(errorMessage);
+        }
 
         Property newPropertyToAdd = parser.getNewProperty();
 
