@@ -1,0 +1,99 @@
+]]@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditExamCommandParser" as EditExamCommandParser LOGIC_COLOR
+participant ":EditExamDescriptor" as EditExamDescriptor LOGIC_COLOR
+participant "ex:EditExamCommand" as EditExamCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("e edit m/cs2030s ex/midterm ed/20-12-2022")
+activate LogicManager
+
+LogicManager -> AddressBookParser: parseCommand("e edit...")
+activate AddressBookParser
+
+create EditExamCommandParser
+AddressBookParser -> EditExamCommandParser
+activate EditExamCommandParser
+
+EditExamCommandParser --> AddressBookParser
+deactivate EditExamCommandParser
+
+AddressBookParser -> EditExamCommandParser: parse()
+activate EditExamCommandParser
+
+create EditExamDescriptor
+EditExamCommandParser -> EditExamDescriptor
+activate EditExamDescriptor
+
+EditExamDescriptor --> EditExamCommandParser :
+deactivate EditExamDescriptor
+
+create EditExamCommand
+EditExamCommandParser -> EditExamCommand
+activate EditExamCommand
+
+EditExamCommand --> EditExamCommandParser : ex
+deactivate EditExamCommand
+
+
+EditExamCommandParser --> AddressBookParser : ex
+deactivate EditExamCommandParser
+AddExamCommandParser [hidden]--> AddressBookParser
+destroy EditExamCommandParser
+
+AddressBookParser --> LogicManager : ex
+deactivate AddressBookParser
+
+LogicManager -> EditExamCommand : execute(model)
+activate EditExamCommand
+
+EditExamCommand -> Model: replaceExam(exam)
+activate Model
+Model --> EditExamCommand
+deactivate Model
+
+EditExamCommand -> Model: isExamLinkedToExam(exam)
+activate Model
+Model --> EditExamCommand
+deactivate Model
+
+alt exam to edit is linked to tasks and the module is edited.
+    EditExamCommand -> Model : unlinkTasksFromExams()
+    activate Model
+    Model --> EditExamCommand
+    deactivate Model
+else else
+    EditExamCommand -> Model : updateExamFieldForTask()
+    activate Model
+    Model --> EditExamCommand
+    deactivate Model
+end
+
+
+
+
+create CommandResult
+EditExamCommand -> CommandResult:
+
+activate CommandResult
+CommandResult --> EditExamCommand
+deactivate CommandResult
+
+EditExamCommand --> LogicManager: result
+deactivate EditExamCommand
+
+
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

@@ -392,10 +392,8 @@ Step 4. `AddressBookParser#parseCommand()` matches the command to be
 a `addExam` command through the command word, which then calls `AddExamCommandParser#parse()`.
 
 Step 5. `AddExamCommandParser#parse()` then parses the command to get `Module`, `ExamDescription` 
-and the `ExamDate` objects of the exam by calling their respective `ParserUtil` parse methods. These 
-methods will check if the inputted exam description, exam date and module are valid. If it is valid,
-the object will be created. Otherwise, exception will be thrown. Then, an `Exam` object is created 
-with the three objects as arguments. 
+and the `ExamDate` objects of the exam by calling their respective `ParserUtil` parse methods.
+Then, an `Exam` object is created with the three objects as arguments. 
 
 Step 6. `AddExamCommandParser#parse()` returns a new `AddExamCommand` object created with the `Exam`
 object created previously as the argument in the constructor. `LogicManager` class will call 
@@ -413,6 +411,106 @@ which stores all the exams.`AddExamCommand#execute()` method returns a `CommandR
 object to display that the exam was successfully added.
 
 
+Note: For step 5, the `Exam` object will not be created if the exam description, exam date, and module 
+are not valid. Exam description is not valid if it is an empty string, exam date is not valid 
+if it is not in DD-MM-YYYY or an actual valid date, Module is not valid if it is not at least 6 characters long
+with the first 2 being alphabetical characters. Hence, if `Exam` object is not created, then the exam will not be added. 
+
+### \[Proposed\] Edit Exam Command
+
+### Edit Exam Command
+
+#### How the feature works
+The `e edit` is an edit exam command that allows users to edit an exam in the `DistinctExamList`
+in `AddressBook`, by changing at least one of the following optional fields of exam module, exam description,
+and exam date.
+
+It is in the format of `e edit INDEX m/[MODULE]* ex/[EXAMDESCRIPTION]* ed/[EXAMDATE]*` 
+where `MODULE` is module of exam, `EXAMDESCRIPTION` is description of the exam and `EXAMDATE` is date of the exam. 
+
+#### Sequence of the EditExamCommand
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+
+
+Step 1. The user launches the application.
+
+Step 2. The user types an `e edit` command.
+
+Step 3. The command calls `LogicManager#execute()` with
+the command input as the argument, which then calls `AddressBookParser#parseCommand() `
+with command input as the argument.
+
+Step 4. `AddressBookParser#parseCommand()` matches the command to be
+a `e edit` command through the command word, which then calls `EditExamCommandParser#parse()`.
+
+Step 5. `EditExamCommandParser#parse()` will create an `EditExamDescriptor` object and 
+an Exam object with the edited fields 
+returns a new `EditExamCommand` object created with the `Exam` and `EditExamDescriptor`
+objects created as the arguments in the constructor. `LogicManager` class will call
+`EditExamCommand#execute()` with a `Model` object as the argument.
+
+Step 7. `EditExamCommand#execute()` will call `Model#replaceExam` to replace the exam to edit 
+with the edited exam. Then `Model#isExamLinkedToTask` is called to check if the exam to edit is 
+linked to any task. Then later, if the exam is linked to the task and the module field is edited, 
+`Model#unlinkTaskFromExam` will be called to unlink the tasks which are previously linked to the exam. 
+Otherwise, `Model#updateExamFieldForTask` will be called to update the exam with the edited fields stored in the tasks  
+for tasks are linked to that exam. 
+
+Step 8: `EditExamCommand#execute()` method returns a `CommandResult`
+object to display that the exam was edited. 
+
+Note: 
+For Step 4, `EditExamCommandParser#parse` will not return a new `EditExamCommand` object if the fields of the edited exam
+is not a valid module(6 characters long, with first two as alphabets) or a valid date(in DD-MM-YYYY format and a valid date) or a valid description(not empty).
+`EditExamCommandParser#parse` will not return a new `EditExamCommand` object if the `INDEX` is negative.
+Hence, it will not be edited. 
+
+For Step 7, `Model#replaceExam` will not be called if the `INDEX` used is greater than the list size 
+or if the `MODULE` does not exist. So, the exam will not be edited in this case. 
+
+
+
+
+### \[Proposed\] Find Tasks Command
+
+### Find Tasks Command
+
+#### How the feature works
+The `t find` is a find tasks command that allows users to find tasks whose task description contains the keyword inputted by them.
+To be able to find the tasks containing the keyword partially is very helpful especially if they cannot remember the full name of the task's
+description and can only know the partial name, or if they want quick access to the task, they can just type the name partially 
+instead of writing the whole description.
+
+It is in the format of `t find KEYWORD` where `KEYWORD` is the keyword inputted by user.
+
+#### Sequence of the FindTasksCommand
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+
+
+Step 1. The user launches the application.
+
+Step 2. The user types an `t find` command.
+
+Step 3. The command calls `LogicManager#execute()` with
+the command input as the argument, which then calls `AddressBookParser#parseCommand() `
+with command input as the argument.
+
+Step 4. `AddressBookParser#parseCommand()` matches the command to be
+a `t find` command through the command word, which then calls `FindTasksCommandParser#parse()`.
+
+Step 5. `FindTasksCommandParser#parse()` will return an `FindTaskCommand` object that takes in a single argument
+a `DescriptionContainsKeywordsPredicate` object which takes in the keyword inputted by user and 
+tests if the task description match any of the keyword partially or fully.
+
+Step 7.  `LogicManager` class will call `FindTasksCommand#execute()` with a `Model` object as the argument.
+`FindTasksCommand#execute()` will call `Model#updateFilteredTaskList` to update the filtered task list
+by the predicate(which is the `DescriptionContainsKeywordsPredicate` object created previously) to only 
+show the tasks which contains the keyword. Then, a `CommandResult` object will be return to display the message to user on how many tasks that contains the keyword is listed.
+
+Note:
+For Step 4, `FindTasksCommandParser#parse` will not return a new `FindExamCommand` object if the keyword is zero. 
+
+The keyword is case-insensitive. For example, "TASK" will match "task"
 
 
 
@@ -568,6 +666,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 *{More to be added}*
+
+
+**Use case: Find tasks in the tasks list**
+
+**MSS** 
+1. User requests to find tasks whose description contains the keyword inputted partially or fully.  
+2. ModPro show the list of tasks that contains the word. 
+
+   Use case ends. 
+
+**Extensions**
+* 1a. The keyword inputted is empty
+    * 1a1ModPro shows an error message </br> 
+     
+ 
 
 ### Non-Functional Requirements
 

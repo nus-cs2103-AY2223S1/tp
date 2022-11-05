@@ -1,0 +1,70 @@
+]]@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindTasksCommandParser" as FindTasksCommandParser LOGIC_COLOR
+participant "ex:FindTasksCommand" as FindTasksCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("t find task one")
+activate LogicManager
+
+LogicManager -> AddressBookParser: parseCommand("t find...")
+activate AddressBookParser
+
+create FindTasksCommandParser
+AddressBookParser -> FindTasksCommandParser
+activate FindTasksCommandParser
+
+FindTasksCommandParser --> AddressBookParser
+deactivate FindTasksCommandParser
+
+AddressBookParser -> FindTasksCommandParser: parse()
+activate FindTasksCommandParser
+
+create FindTasksCommand
+FindTasksCommandParser -> FindTasksCommand
+activate FindTasksCommand
+
+FindTasksCommand --> FindTasksCommandParser : ex
+deactivate FindTasksCommand
+
+
+FindTasksCommandParser --> AddressBookParser : ex
+deactivate FindTasksCommandParser
+FindTasksCommandParser [hidden]--> AddressBookParser
+destroy FindTasksCommandParser
+
+AddressBookParser --> LogicManager : ex
+deactivate AddressBookParser
+
+LogicManager -> FindTasksCommand : execute(model)
+activate FindTasksCommand
+
+FindTasksCommand -> Model: updateFilteredTaskList(predicate)
+activate Model
+Model --> FindTasksCommand
+deactivate Model
+
+create CommandResult
+FindTasksCommand -> CommandResult:
+
+activate CommandResult
+CommandResult --> FindTasksCommand
+deactivate CommandResult
+
+FindTasksCommand --> LogicManager: result
+deactivate FindTasksCommand
+
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+start
+:User executes command;
+:Parse Command;
+if () then ([Fields to be edited are valid and command is valid])
+  if () then([The exam module exists in MODPRO])
+      if () then([Module field is edited
+and exam is linked to task])
+          if() then([The exam already exists in MODPRO])
+          :Display error message
+          saying that exam already exists.;
+      else([else])
+          :Add Exam to exam list;
+          :Display message that shows that
+          the exam is added successfully to the exam list.;
+      endif
+  else([else])
+     :Display error message;
+  endif
+else ([else])
+  :Display error message regarding
+   invalid fields or invalid command;
+
+endif
+
+stop
+
+@enduml

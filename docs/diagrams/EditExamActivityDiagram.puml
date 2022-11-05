@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes command;
+:Parse Command;
+if () then ([Fields to be edited are valid and command is valid])
+  if () then([Index < 0 and module exist if module is to be edited])
+      if () then([module field is edited and exam is linked to task])
+          :Unlink tasks from exam
+           and replace exam with edited exam.;
+      else([else])
+          :Replace exam with edited exam.
+           The exam field in the task will also be updated
+           for tasks that are linked to the exam.;
+      endif
+  else([else])
+     :Display error message;
+  endif
+else ([else])
+  :Display error message regarding invalid fields;
+
+endif
+
+stop
+
+@enduml
