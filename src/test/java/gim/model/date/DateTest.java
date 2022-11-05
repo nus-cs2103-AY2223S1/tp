@@ -131,6 +131,12 @@ public class DateTest {
     }
 
     @Test
+    public void hashcode() {
+        int dateHash = LocalDate.of(2022, 10, 10).hashCode();
+        assertEquals(dateHash, new Date("10/10/2022").hashCode());
+    }
+
+    @Test
     public void equals() {
         assertEquals(new Date("5/11/2022"), new Date("5/11/2022"));
     }
