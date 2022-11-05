@@ -26,6 +26,7 @@ In this user guide, you may encounter the following icons:
 
 * :information_source: **Additional Information:** Provides general information that you might find helpful.
 * :bulb: **Tips:** Provides good to know information on how to more effectively utilise NUScheduler.
+* :exclamation: **Caution:** Provides important information to prevent undesired behaviour. 
 
 </div>
 
@@ -404,6 +405,10 @@ Exits the program.
 
 Format: `exit`
 
+#### Saving the data
+
+All data in NUScheduler is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
+
 ### Advanced features
 
 #### Session-based command history
@@ -460,6 +465,13 @@ Get easy access to some of your favourite NUS websites, right from the menu.
 
 </div>
 
+#### Editing the data
+
+NUScheduler data are saved as a JSON file `[JAR file location]/data/nuscheduler.json`. You can update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, NUScheduler will discard all data and start with an empty data file at the next run.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
