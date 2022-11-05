@@ -13,6 +13,8 @@ and generation of statistics, ArtBuddy is also here to help you grow as an artis
 
 So, focus on your art and leave the rest to ArtBuddy.
 
+Just getting started with ArtBuddy? We recommend you check out the [Using this guide](#using-this-guide) section
+to.
 Eager to get started? You can refer to our [Quick Start](#quick-start) section to set ArtBuddy up, or
 you can jump right into our [Features](#features) section to learn more about the features ArtBuddy offers.
 
@@ -27,11 +29,11 @@ you can jump right into our [Features](#features) section to learn more about th
 
 This guide walks you through all the features of ArtBuddy and can be used as a quick reference whenever you need any help.
 
-If you are a new user, we welcome you to start from our [Introduction](#introduction) section to learn more about ArtBuddy.
-To hop right into setting up ArtBuddy, you might find the [Quick Start](#quick-start) section helpful.  
+If you're just getting started with ArtBuddy, we welcome you to start from our [Introduction](#introduction) section to
+learn more about ArtBuddy. Or, if you're eager to hop right into setting up ArtBuddy, you might find the [Quick Start](#quick-start) section helpful.
 
-If you just want to learn more about our features, you can check out our [Features](#features) section.
-For ease of reference, the [Features](#features) section is divided into subsections corresponding to each main feature:
+Already set up ArtBuddy? You can check out our [Features](#features) section. For ease of reference, the
+[Features](#features) section is divided into subsections corresponding to each main feature:
 Customers, Commissions, Iterations and Statistics. Feel free to jump around as you explore ArtBuddy's amazing features!
 
 You can also refer to our [Table of Contents](#table-of-contents) to navigate between the different sections of this guide.
@@ -44,11 +46,24 @@ text hold meaning, as described below.
 
 |                                    | Description                                                                                                                                                                                             |
 |------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`                             | ArtBuddy commands appear in a monospaced font, with a grey background, as shown on the left. To learn more about ArtBuddy commands, refer to the [CLI section]().                                       |
+| `code`                             | ArtBuddy commands appear in a monospaced font, with a grey background, as shown on the left. To learn more about ArtBuddy commands, refer to the [CLI section](#artbuddys-command-line-interface-cli).  |
 | `CODE_UPPER_CASE`                  | Certain ArtBuddy commands contain words appear in upper case. These refer to [parameters]() (user input) to be supplied to ArtBuddy.                                                                    |
 | <code><em>code_italics</em></code> | ArtBuddy commands may also contain words that appear in italics. These refer to example command [parameters](), which you can replace with your own inputs.                                             |
 | [blue hyperlink]()                 | Hyperlinks appear in a blue font that is underlined when hovered over by your mouse. These hyperlinks bring you to another section of the user guide containing more relevant information to the topic. |
 | **Bold Title Case**                | References to elements in ArtBuddy's [GUI]() (like buttons and text field labels) are formatted in **bold**, in Title Case.                                                                             |
+
+
+**Conventions used in command formats**
+When talking about ArtBuddy command formats, we've adopted the following conventions to make explanations
+more succinct. If you're not familiar with ArtBuddy's CLI, you might want to look at our
+[ArtBuddy's CLI](#artbuddys-command-line-interface-cli) section to learn more.
+
+|                                                         | Description                                                                                                                                                                                                                                                    | Example                                                                                                                                                                                                                                                                                           |
+|---------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Optional command parameters                             | Certain ArtBuddy commands have optional command parameters. These command parameters may be specified, or be left out. You'll be able to identify optional command parameters as they will appear around square brackets when specified in the command format. | For instance, the command format of the Add Customer command is `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...`. Notice that the address and tag command parameters appear around square brackets? That just means that you can choose whether to specify these command parameters! |
+| Command parameters that can be specified more than once | You may also notice that certain command have `...` after certain command parameters. This simply means indicates that the input parameter be used multiple times (including zero times).                                                                      | Following the example of the Add Customer example above, where you'll notice the tag command parameter `[t/TAG]...` is followed by `...`, this just means that the tag command input can be specified any number of times!                                                                        |
+| <code><em>code_italics</em></code>                      | ArtBuddy commands may also contain words that appear in italics. These refer to example command [parameters](), which you can replace with your own inputs.                                                                                                    |                                                                                                                                                                                                                                                                                                   |
+
 
 **Call-out text box conventions**  
 You might also notice call-out text boxes in this guide. These contain additional information tidbits that might be useful
@@ -75,7 +90,7 @@ any unexpected behaviour of ArtBuddy.
 
 Made for commission-based artists, ArtBuddy is the easiest way to organise your customers and commissions.
 Powerful features and intuitive design, all packaged into one neat desktop app. ArtBuddy is supported on all
-major operating systems (Windows, MacOS, Linux).
+major operating systems (Windows, macOS, Linux).
 
 #### Let ArtBuddy help you...
 
@@ -100,7 +115,7 @@ rest. With optimised support for use via a Command Line Interface (CLI), ArtBudd
 small business at the speed of your fingertips.
 
 Not sure what a CLI is? Don't worry! It's easy to pick up, you can even refer to our short introduction to
-[ArtBuddy's CLI]() to learn more.
+[ArtBuddy's CLI](#artbuddys-command-line-interface-cli) to learn more.
 
 More of a visual person? Don't sweat it! Unlike many CLI applications, ArtBuddy still has a sleek, intuitive
 [Graphical User Interface (GUI)](). This means that you can also interact with ArtBuddy using visual controls
@@ -109,64 +124,232 @@ like buttons and pop-ups. There's something for everyone!
 --------------------------------------------------------------------------------------------------------------------
 # Quick start
 
-1. Ensure you have Java 11 or above installed in your Computer.
+Let's get you started with ArtBuddy! This section will help you get oriented with ArtBuddy, from installation
+to a quick tutorial. Users already experienced with CLI might want to skip over the CLI section. So, what are you
+waiting for? Let's go, go, go!
 
-2. Download the latest `artbuddy.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-3/tp/releases).
+[Installation instructions](#installation-instructions)  
+[Starting up ArtBuddy](#starting-up-artbuddy)  
+[Starting up ArtBuddy (on macOS)](#starting-up-artbuddy-macos)  
+[Getting familiar with ArtBuddy's interface](#getting-familiar-with-artbuddys-interface)  
+[ArtBuddy's CLI](#artbuddys-command-line-interface-cli)  
+[Quick tutorial](#quick-tutorial)
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ArtBuddy.
+### Installation instructions
 
-4. Double-click the file to start the app. You can start typing to input your commands. If you click away, you can click on the top box to start typing again.
-5. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/UiCustomerList.png)
-Note that the images are to help with interface only. The actual details of the data may differ in your application.
-6. You can use the following commands in the Customer View:
+Don't have ArtBuddy installed on your computer yet? Check out our step-by-step installation instructions to
+download ArtBuddy.
 
-   * <code>addcus n/<em>Betsy Crowe</em> e/<em>betsycrowe@example.com</em> p/<em>1234586</em></code> :  Creates a new customer named Betsy Crowe.
-   * <code>delcus <em>2</em></code> :  Deletes the 2nd customer displayed on the list.
-   * <code>opencus <em>2</em></code> : Selects the 2nd customer (Bernice Yu) on the list.
+1. ArtBuddy is written in the programming language Java, so you'll need **Java 11 or above** installed in your computer
+to run ArtBuddy.
+   1. Not sure if you have a compatible Java version installed on your computer?
+   Windows or macOS users might find [this guide](https://blog.hubspot.com/website/check-java-verison) useful.
+   While Linux users can refer to [this guide](https://phoenixnap.com/kb/check-java-version-linux).
+   2. Don't have a compatible Java version installed? Fret not, Java is free to install! Complete installation
+   instructions can be found [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html).
 
-7. In the Commission View, the list of all commissions from the opened customer (Alex Yeoh) is displayed. <br> ![Ui](images/UiCommissionList.png)
-8. You can use the following commands in the Commission View:
-    * <code>addcom n/<em>Fate Archer</em> f/<em>60</em> d/<em>2022-10-15</em> s/<em>true</em> p/<em>Archery</em> t/<em>night</em> t/<em>city</em></code> : Creates a new commission titled "Fate Archer" under Meg.
-    * <code>delcom <em>2</em></code> : Deletes the 2nd commission from Alex Yeoh on the list.
-    * <code>opencom <em>1</em></code> : Opens the 1st commission titled "Alex Yeoh Commission 1" and updates the Commission Details View.
-9. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Alex Yeoh Commission 1) is displayed.
-10. You can use the following commands in the Commission Details View:
-   * <code>additer d/<em>2022-10-11</em> n/<em>Add lighting</em> p/<em>/Users/Joseph/CSP/sunshine_highlight.png</em> f/<em>Warmer tone might be better</em></code> : Adds an iteration to the selected commission and attaches the image at the specified file path to the iteration.
-11. Refer to the [Features](#features) below for details of each command.
+2. Download the latest version of ArtBuddy by downloading the `artbuddy.jar` file found [here](https://github.com/AY2223S1-CS2103T-W11-3/tp/releases).
+
+![Download JAR](images/ab-quick-start-download.png)
+
+4. Create a new empty folder (with any name you like) in your computer where you'd like to store ArtBuddy.
+
+5. Copy the downloaded ArtBuddy file (`artbuddy.jar`) into the new folder.
+
+6. And...that's it! You now have ArtBuddy installed on your laptop!
+
+### Starting up ArtBuddy
+
+Nice! Now that you've downloaded ArtBuddy (if not, our [installation instructions](#installation-instructions)
+might be useful), let's ArtBuddy up and running.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** Due to the default privacy settings on macOS, certain features of ArtBuddy
+may not work as expectedly. To avoid this, please refer to the section
+[Starting up ArtBuddy (macOS)](#starting-up-artbuddy-macos) instead if you are a macOS user.
+</div>
+
+1. To start ArtBuddy, simply open up the folder where your downloaded `artbuddy.jar` file is and double-click the file to start the app.
+2. And...ta-da! You should now see ArtBuddy running on your computer!
+
+### Starting up ArtBuddy (macOS)
+
+Due to the default privacy settings on macOS computers, ArtBuddy might not be able to read from or write to
+files on your macOS computer. Because of this, some features like uploading images to ArtBuddy might not
+work properly. To get ArtBuddy working properly on your macOS computer, follow these instructions instead
+to get ArtBuddy up and running!
+
+1. Locate the folder where your downloaded `artbuddy.jar` file is stored, and right click (or do a 2-finger press on
+your Apple trackpad) on your folder. Click on the **Services** option in the menu that pops up.
+2. This should reveal a **New Terminal at Folder** option, as shown below.
+
+![Starting up ArtBuddy (macOS) Step 1](images/start-ab-mac-step1.png)
+
+3. Click on the **New Terminal at Folder** option. You should see a Terminal window open. The Terminal is
+just macOS's own CLI that will allow you to communicate with your macOS computer.
+4. To let your computer know you want to run ArtBuddy, simply paste this command: `java -jar artbuddy.jar` into
+the Terminal window and hit **return** on your keyboard.
+
+![Starting up ArtBuddy (macOS) Step 1](images/start-ab-mac-step2.png)
+
+5. And...ta-da! You should now see ArtBuddy running on your computer!
+
+### Getting familiar with ArtBuddy's interface
+
+Cool! You now have gotten ArtBuddy up and running. Let's get you familiar with ArtBuddy's user interface.
+
+ArtBuddy has two tabs: a **Customers Tab**, and a **Commissions Tab**. Let's take a closer look at each tab individually.
+
+#### Customers Tab
+
+When you first open ArtBuddy, ArtBuddy will have the **Customers Tab** open by default. As its name implies,
+the **Customers Tab** shows all your customer related information. Let's learn what each of these ArtBuddy components
+in your **Customers Tab** does!
+
+![ArtBuddy's UI](images/ab-user-interface.png)
+
+|     | Component        | Description                                                                                                                                                                                                 |
+|-----|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Menu Bar         | The menu bar contains menu options to [exit](#exiting-the-program-exit) from ArtBuddy and to get [help](#viewing-help-help).                                                                                |
+| 2   | Command Input    | The command input is where you can key in your commands to tell ArtBuddy what you want to get done. To learn more about ArtBuddy's CLI, refer to the [next section](#artbuddys-command-line-interface-cli). |
+| 3   | Result Display   | The result display is where you'll see ArtBuddy's replies to your commands.                                                                                                                                 |
+| 4   | Customer List    | The default tab opened when you first start ArtBuddy is the customer tab. Notice how the **Customer** tab is highlighted? That indicates that ArtBuddy is currently showing you your list of Customers.     |
+| 5   | Customer Details | When you select a customer from your **Customer List**, ArtBuddy will show you the details and statistics of your selected customer in this pane.                                                           |
+| 6   | Saved Data File  | For advanced users, the [file path]() displayed here is where ArtBuddy stores your saved data (which you can [edit](#editing-the-data-file)).                                                               |
+
+
+#### Commissions Tab
+
+Notice that ArtBuddy also has a **Commissions Tab**? When you navigate to the **Commissions Tab**, this is what you'll see.
+As you might've already guessed it, ArtBuddy's **Commissions Tab** shows all commission-related information!
+
+![ArtBuddy's UI](images/ab-user-interface-commission-tab.png)
+
+|     | Component          | Description                                                                                                                              |
+|-----|--------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Commission List    | By default, all the commissions of your currently selected customer will be displayed in the Commission List here.                       |
+| 2   | Commission Details | When you select a commission from your **Commission List**, ArtBuddy will show you the details of your selected commission in this pane. |
+| 3   | Iteration List     | Within the **Commission Details** pane, ArtBuddy will also display all your commission's iterations here.                                |
+
+### ArtBuddy's Command Line Interface (CLI)
+
+ArtBuddy also has a Command Line Interface (CLI). This just means that besides interacting with ArtBuddy by
+clicking on buttons, you can also tell ArtBuddy what you want to get done just by using text input (known as commands). Cool right?
+
+Right now, ArtBuddy only understands certain commands (the complete list of commands can be found in
+[Features](#features)). These commands must be formatted in a specific way. It's just the way ArtBuddy
+is wired to think and listen to words. So let's learn how to talk to ArtBuddy!
+
+**Command Input**  
+
+The **Command Input** is where ArtBuddy's 'ears' are. This is the rectangular text input box outlined in red below.
+To type in commands into the **Command Input**, just click on the **Command Input** and start typing away! Once you've
+typed in your command, just press 'Enter' (or 'return' for Mac users) on your keyboard and... voilà!
+ArtBuddy has just executed your command. It's that easy!
+
+![ArtBuddy's UI](images/ab-cli-command-input.png)
+
+**ArtBuddy Commands**
+
+An ArtBuddy command is typically made up of the following parts:
+
+* **Command keyword**: This is the keyword that tells ArtBuddy exactly what command you wish to execute. All
+ArtBuddy commands have a unique command keyword so ArtBuddy knows what you want to do.
+
+* **Index**: Some ArtBuddy commands have an index, this simply a number that uniquely identifies the
+Customer or Commission that you wish to execute your command on. A customer's or commission's index is
+simply the number that appears beside your customer's name, or commission's title.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** For ArtBuddy to understand what you mean, all ArtBuddy commands must begin
+with their command keyword. Also, if an ArtBuddy command accepts an index, **the index must appear immediately**
+after the command keyword.
+</div>
+
+* **Command parameters**: Some ArtBuddy commands also accept command parameters. These are just additional
+inputs that ArtBuddy requires to execute some commands properly. For instance, to add a customer, ArtBuddy
+needs to know the name of the customer which you'll need to pass into ArtBuddy as a command parameter.
+<br><br>For ArtBuddy to understand these command parameters, you need to attach a 'prefix' in front of
+each of these parameters. A 'prefix' is simply a single character with a forward slash (eg: "n/", "p/", "d/")
+that lets ArtBuddy know what the piece of data you've passed into ArtBuddy is. With a prefix attached
+to each command parameter, ArtBuddy now understands whether a command parameter is a customer's name, or a
+customer's phone number. Neat right?
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Notes about command parameters in ArtBuddy:**<br>
+
+* When passing in dates in ArtBuddy as command parameters, they should be formatted in YYYY-MM-DD format.
+  * This means that if you want to specify '4th October 2022' as a date command parameter, it should be
+  formatted and passed into ArtBuddy as '2022-10-04'. 
+
+* Something cool about ArtBuddy is that command parameters can be specified in any order! 
+  * This means that if the command specifies `n/NAME p/PHONE_NUMBER`, ArtBuddy will also understand the
+  input `p/PHONE_NUMBER n/NAME`.
+
+* Also, if a parameter is expected only once in the command, but you specified it multiple times, ArtBuddy
+will only listen to the last occurrence of the parameter.
+  * So, if you specify <code>p/<em>12341234</em> p/<em>56785678</em></code>, only <code>p/<em>56785678</em></code> will be taken.
+
+* In addition, if you specify command parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`),
+ArtBuddy simply ignore these extra parameters.
+  * Meaning that the command <code>help <em>123</em></code>, will be interpreted as `help`.
+</div>
+
+### Quick tutorial
+Itching to get started with ArtBuddy? Let's run you through some simple commands to get you warmed up
+before you dive right into ArtBuddy's full feature list!
+
+<div markdown="block" class="alert alert-info">
+:information_source: Note that the images used in this section are only meant to be used as references.
+ArtBuddy might appear differently on your computer because as the data shown in this sample reference may differ from
+the data stored in your application.
+</div>
+
+Let's start by getting our hands cracking with some simple customer-related commands! Make sure the
+[**Customer Tab**](#customers-tab) is open before trying out the following steps so you can observe what happens!
+
+![ArtBuddy's UI](images/ab-quick-start-customer-tab.png)
+
+1. Suppose you've just received a new customer, Betsy, and you want to add her into ArtBuddy. Easy! Try
+running the command <code>addcus n/Betsy Crowe e/betsycrowe@example.com p/1234586</code>.
+   1. You'll notice that ArtBuddy has just created a new customer, Betsy Crowe!
+
+![ArtBuddy's UI](images/ab-quick-start-addcus.png) 
+
+2. Now suppose you want to delete a customer, Bernice, because she has decided to cancel her commission. This time, try
+running <code>delcus 2</code>. 
+   1. Ta-da! After executing the command, Bernice is now deleted from ArtBuddy.
+
+![ArtBuddy's UI](images/ab-quick-start-delcus.png)
+
+Now that you've been introduced to some customer-related commands, let's change things up by checking out some
+commission commands.
+
+![ArtBuddy's UI](images/ab-quick-start-commission-tab.png)
+
+3. Suppose you want to manage Betsy's commissions. Let ArtBuddy know this by first 'opening' up Betsy's details in the
+**Customers Tab**. You can do this by clicking on Betsy's entry in the **Customer List**, or by executing the command `opencus 2`.
+   1. You should notice that Betsy's details appear in the **Customer Details** pane as shown below.
+
+![ArtBuddy's UI](images/ab-quick-start-opencus.png)
+
+4. Now, switch to the **Commissions Tab** where all of Betsy's commissions are displayed. This tab should be empty
+right now because Betsy has no commissions yet. Let's change that!
+
+5. Try running the command <code>addcom n/Fate Archer f/60 d/2022-10-15 s/true p/Archery t/night t/city</code>.
+   1. Nice! Betsy should now have a new commission titled "Fate Archer". You should also see the details of the newly
+   created commission appear in the **Commission Details** pane.
+
+![ArtBuddy's UI](images/ab-quick-start-addcom.png)
+
+Good job! Now that you're getting the hang of things, check out our [Features](#features) section to explore the full
+capabilities of ArtBuddy.
 
 --------------------------------------------------------------------------------------------------------------------
 
 # Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as <code>add n/<em>John Doe</em></code>.
-
-* `INDEX` refers to the numbering shown on the list. <br>
-  e.g. in `opencus INDEX`, `INDEX` refers to the numbering shown on the customers list.
-
-* Anything with prefix `d/` such as `d/DATE` should be formatted in YYYY-MM-DD. <br>
-  e.g. <code>d/<em>2022-10-04</em></code> is a valid input.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as <code>n/<em>John Doe</em> t/<em>friend</em></code> or as <code>n/<em>John Doe</em></code>.
-
-* Items with `...` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), <code>t/<em>friend</em></code>, <code>t/<em>friend</em> t/<em>family</em></code> etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify <code>p/<em>12341234</em> p/<em>56785678</em></code>, only <code>p/<em>56785678</em></code> will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies <code>help <em>123</em></code>, it will be interpreted as `help`.
-
-</div>
 
 ### Viewing help: `help`
 
