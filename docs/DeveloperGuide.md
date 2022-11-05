@@ -121,7 +121,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object), 
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object),
 all `Task` objects (which are contained in a `TaskList` object), and all `Tag` objects (which are contained in a `UniqueTagList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 The same goes for `Task` and `Tag`.
@@ -133,7 +133,7 @@ The same goes for `Task` and `Tag`.
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="700" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -154,7 +154,7 @@ These are the specifications for the fields of 'Person' and 'Task'.
 
 Each field is implemented by a class with the same name, except for `Id` which is implemented using Java UUID class.
 
-Id is unique and automatically generated when person is added. 
+Id is unique and automatically generated when person is added.
 
 Persons with the same fields for email, phone or ID are not allowed.
 This is because these field would always be unique for each individual, so there should not be a situation where two individuals have the same data in any of these fields.
@@ -173,7 +173,7 @@ This is because these field would always be unique for each individual, so there
 
 Each Task is implemented by a class with the same name, except for `Status` which is implemented using a boolean.
 
-Id is unique and automatically generated when task is added. 
+Id is unique and automatically generated when task is added.
 Tasks with the same fields in all of description, deadline and tag are not allowed.
 This is because two tasks would be considered the same if they were the same task with the same deadline and labels.
 As we are maintaining a unique task list in our app, this is disallowed.
@@ -421,6 +421,10 @@ Step 3. The user has seen the most urgent tasks to be completed but realises tha
 
 Step 4. The user now decides that the initial order of the task list looks much better after finding out the tasks to do. The user executes `sortI` to sort the task list by id. The `sortI` command calls `Model#sortById()` to sort the task list based on id.
 
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/SortActivityDiagram.png" width="250" />
+
 #### Design considerations:
 
 **Aspect: How the sort methods executes:**
@@ -557,26 +561,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student who often has to email others | store people’s emails    | remember their emails |
 | `* * *`  | student who prefers calling                | see the person’s phone number  | call them |
 | `* * *`  | student who prefers visiting someone in person |  see the person’s address  | visit them |
-| `* * *`  | SWE student                                | save the github usernames of my contacts | view their repo |
 | `* * *`  | student                                    | edit the information on people’s profiles | update the information when necessary |
 | `* * *`  | student who pefers a compact social circle | delete contacts                | stop keeping old contacts |
 | `* * *`  | team leader                                | add and remove people from a project when forming the project group | know who is part of the project group |
 | `* * *`  | team leader                                | remove a project and the people associated with it once the project is done | avoid cluttering my workspace |
 | `* * *`  | team member                                | group contacts                 | know which people are involved in which projects |
-| `* * *`  | team member                                | give status updates on individual tasks | inform the group on my progress |
-| `* * *`  | forgetful student                          | keep track of my tasks         | know which tasks need to be completed |
 | `* * *`  | forgetful student                          | mark tasks as complete         | know if I have completed the task already |
 | `* * *`  | forgetful student                          | note the deadline of my tasks  | complete my tasks on time |
-| `* * *`  | forgetful person                           | save people’s profiles with photos | remember their names |
 | `* * *`  | forgetful person                           | keep notes on the people I’ve met | remember important things about them |
 | `* *`    | team leader                                | see my team’s progress towards completing their assigned tasks | know if my team is on track |
 | `* *`    | team leader                                | assign tasks to my team members | divide the work efficiently |
 | `* *`    | team leader                                | archive a project and the people associated with it once the project is done | avoid cluttering my workspace|
 | `* *`    | team member                                | send reminders to other team members | remind them to do their work |
+| `* *`    | team member                                | give status updates on individual tasks | inform the group on my progress |
 | `* *`    | team member                                | use an idea board | generate inspiration with my teammates |
+| `* * `   | SWE student                                | save the github usernames of my contacts | view their repo |
 | `* *`    | anxious student                            | see the percentage completion of the tasks | feel at ease |
 | `* *`    | anxious student                            | see if I am on track with my deadlines | be assured that my tasks are not behind schedule |
 | `* *`    | forgetful student                          | be reminded of upcoming deadlines | ensure that I won't miss them |
+| `* *`    | forgetful student                          | keep track of my tasks         | know which tasks need to be completed |
+| `* *`    | forgetful person                           | save people’s profiles with photos | remember their names |
 | `* *`    | artistic student                           | change the colour palette of my UI to my preference | enjoy looking at the UI |
 | `* *`    | student with color blindness               | have my software be composed of minimal colors | distinguish all elements |
 | `* *`    | student who does work late at night        | use dark mode                  | choose not to strain my eyes |

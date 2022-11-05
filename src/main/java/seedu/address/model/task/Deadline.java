@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents the deadline of a task in the TaskList.
@@ -12,12 +13,13 @@ import java.time.format.DateTimeParseException;
  */
 public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format DD-MM-YYYY";
+    public static final String INVALID_DATE = "Deadlines should be a valid date";
 
     /*
      * Date should be in the format DD-MM-YYYY.
      * Validation will be handled by DateTimeFormatter util class.
      */
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
 
     public final String value;
     public final LocalDate date;
@@ -29,23 +31,35 @@ public class Deadline implements Comparable<Deadline> {
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
-        //TODO Fix isValidDeadline
-        //checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
+
         this.value = deadline;
-        date = LocalDate.parse(deadline, DATE_TIME_FORMATTER);
+        date = parseDate(deadline);
     }
 
     /**
      * Returns if a given string is a valid deadline.
      */
-    public static boolean isValidDeadline(String test) {
-        // TODO: Try-catch used as control flow, refactor
+    public static boolean isValidDeadline(String deadline) {
         try {
-            LocalDate.parse(test, DATE_TIME_FORMATTER);
+            LocalDate.parse(deadline, DATE_TIME_FORMATTER.withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeParseException e) {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Parses the deadline string and returns a LocalDate instance if the deadline is a valid date.
+     *
+     * @param deadline A deadline.
+     * @return An instance of LocalDate.
+     * @throws DateTimeParseException Thrown if the deadline provided is not a valid date.
+     */
+    private static LocalDate parseDate(String deadline) throws DateTimeParseException {
+        LocalDate parsedDate = LocalDate.parse(deadline,
+                DATE_TIME_FORMATTER.withResolverStyle(ResolverStyle.STRICT));
+
+        return parsedDate;
     }
 
     @Override

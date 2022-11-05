@@ -22,6 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -102,6 +103,9 @@ public class CommandTestUtil {
     public static final String DEADLINE_DESC_QUIZ = " " + PREFIX_TASK_DEADLINE + VALID_DEADLINE_QUIZ;
     public static final String DESCRIPTION_DESC_REPORT = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_REPORT;
     public static final String DEADLINE_DESC_REPORT = " " + PREFIX_TASK_DEADLINE + VALID_DEADLINE_REPORT;
+
+    public static final Deadline FIRST_VALID_DEADLINE = new Deadline(VALID_DEADLINE_QUIZ);
+    public static final Deadline SECOND_VALID_DEADLINE = new Deadline(VALID_DEADLINE_REPORT);
 
     public static final String INVALID_DESCRIPTION_DESC = "This&THAT!";
     public static final String INVALID_DEADLINE_DESC = "234-12-344";

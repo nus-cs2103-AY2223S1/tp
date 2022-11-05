@@ -5,6 +5,7 @@ import static seedu.address.model.task.Task.COMPLETION_STATUS_MESSAGE_CONSTRAINT
 import static seedu.address.model.task.Task.INPUT_TASK_COMPLETED;
 import static seedu.address.model.task.Task.INPUT_TASK_NOT_COMPLETED;
 
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -303,11 +304,17 @@ public class ParserUtil {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
 
-        if (!Deadline.isValidDeadline(trimmedDeadline)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        Deadline parsedDeadline;
+
+        try {
+            parsedDeadline = new Deadline(trimmedDeadline);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Deadline.INVALID_DATE);
         }
 
-        return new Deadline(trimmedDeadline);
+        requireNonNull(parsedDeadline);
+
+        return parsedDeadline;
     }
 
     /**
@@ -323,11 +330,16 @@ public class ParserUtil {
         String trimmedDeadlines = deadlines.trim();
         String[] deadlineArr = trimmedDeadlines.split(" ");
         ArrayList<Deadline> descriptionList = new ArrayList<>();
+
         for (String deadline : deadlineArr) {
-            if (!Deadline.isValidDeadline(deadline)) {
-                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+            Deadline parsedDeadline;
+
+            try {
+                parsedDeadline = new Deadline(deadline);
+            } catch (DateTimeParseException e) {
+                throw new ParseException(Deadline.INVALID_DATE);
             }
-            descriptionList.add(new Deadline(deadline));
+            descriptionList.add(parsedDeadline);
         }
         return descriptionList;
     }

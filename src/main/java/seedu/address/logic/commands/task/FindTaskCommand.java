@@ -26,12 +26,12 @@ public class FindTaskCommand extends Command {
             + "Parameters: "
             + "[" + PREFIX_TASK_DESCRIPTION + "DESCRIPTION "
             + "[" + PREFIX_TASK_DEADLINE + "DEADLINE "
-            + PREFIX_TASK_COMPLETION_STATUS + "COMPLETION STATUS (completed / incomplete) \n"
+            + PREFIX_TASK_COMPLETION_STATUS + "COMPLETION STATUS (complete / incomplete) \n"
             + "Example: "
             + COMMAND_WORD + " "
             + PREFIX_TASK_DESCRIPTION + "party "
             + PREFIX_TASK_DEADLINE + "25-12-2022 "
-            + PREFIX_TASK_COMPLETION_STATUS + "completed";
+            + PREFIX_TASK_COMPLETION_STATUS + "complete";
 
     private final TaskContainsKeywordsPredicate predicate;
 

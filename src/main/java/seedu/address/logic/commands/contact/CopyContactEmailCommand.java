@@ -19,7 +19,8 @@ import seedu.address.model.person.PersonContainsKeywordsPredicate;
 public class CopyContactEmailCommand extends Command {
     public static final String COMMAND_WORD = "copyC";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays emails of all persons who have "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Displays emails of all persons whose label list contains "
             + "the specified label (case-sensitive) for easy copy-pasting.\n"
             + "Parameters: LABEL.\n"
             + "Example: " + COMMAND_WORD + " CS2103T";

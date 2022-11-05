@@ -40,7 +40,7 @@ public class TagCard extends UiPart<Region> {
         this.tag = tag;
         id.setText(displayedIndex + ". ");
         tagName.setText(tag.tagName);
-        count.setText(tag.getCount() + " contacts/tasks associated with this tag.");
+        count.setText(tag.getCount() + " contacts/tasks associated with this label.");
     }
 
     @Override
