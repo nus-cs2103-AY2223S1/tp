@@ -3,7 +3,7 @@ layout: page
 title: Jicson Toh's Project Portfolio Page
  ---
 
-### Project: JeeqTracQer
+### Project: JeeqTracker
 
 JeeqTracker is a desktop application created for **home-based business owners / resellers** that helps them manage the clients
 that they interact with by keeping track of their **`BUY / SELL`** transactions, and **`REMARKS`** of clients.

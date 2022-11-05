@@ -2,7 +2,6 @@ package seedu.address.model.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -133,7 +132,7 @@ public class SampleDataUtil {
     public static UniqueRemarkList getSampleUniqueRemarkList(String... remarksText) {
         UniqueRemarkList list = new UniqueRemarkList();
         for (String text : remarksText) {
-            list.add(new Remark(new Text(text), new HashSet<>()));
+            list.add(new Remark(new Text(text)));
         }
 
         return list;
