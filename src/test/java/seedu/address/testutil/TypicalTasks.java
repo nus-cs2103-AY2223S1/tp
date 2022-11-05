@@ -16,6 +16,7 @@ public class TypicalTasks {
             .withDescription("read book")
             .withDeadline("12-11-2022")
             .withCompletionStatus(false)
+            .withArchivalStatus(false)
             .withId(1)
             .build();
     public static final Task WRITE_TEST_CASES = new TaskBuilder()
@@ -23,12 +24,14 @@ public class TypicalTasks {
             .withDeadline("21-09-2022")
             .withId(2)
             .withCompletionStatus(true)
+            .withArchivalStatus(false)
             .withTags("CS2103T")
             .build();
     public static final Task TAKE_A_BREAK = new TaskBuilder()
             .withDescription("take a break")
             .withDeadline("25-12-2029")
             .withId(3)
+            .withCompletionStatus(false)
             .withArchivalStatus(true)
             .withTags("CS2103T")
             .build();

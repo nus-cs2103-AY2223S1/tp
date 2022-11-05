@@ -1,0 +1,44 @@
+{
+  "persons" : [ ],
+  "tasks" : [ {
+    "description" : "read book",
+    "deadline" : "12-11-2022",
+    "isDone" : false,
+    "isArchived" : false,
+    "id" : "1"
+  }, {
+    "description" : "write test cases",
+    "deadline" : "21-09-2022",
+    "isDone" : true,
+    "isArchived" : false,
+    "tagged" : [ {
+      "tagName" : "CS2103T",
+      "tagCount" : 1
+    } ],
+    "id" : "2"
+  }, {
+    "description" : "take a break",
+    "deadline" : "25-12-2029",
+    "isDone" : false,
+    "isArchived" : true,
+    "tagged" : [ {
+      "tagName" : "CS2103T",
+      "tagCount" : 1
+    } ],
+    "id" : "3"
+  }, {
+    "description" : "prepare slides",
+    "deadline" : "28-10-2022",
+    "isDone" : true,
+    "isArchived" : true,
+    "tagged" : [ {
+      "tagName" : "CS2101",
+      "tagCount" : 1
+    } ],
+    "id" : "4"
+  } ],
+  "taskList" : {
+    "isSortByDeadline" : false
+  },
+  "tags": [ ]
+}
