@@ -806,7 +806,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1.  User gets the <ins>list of appointments(UC02)<ins>.
-2.  User requests to mark a specified appointment for a specified patient.
+2.  User requests to unmark a specified appointment for a specified patient.
 3.  idENTify unmarks the selected appointment.
 
 
