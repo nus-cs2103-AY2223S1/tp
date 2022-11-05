@@ -169,7 +169,7 @@ A `Review`,
 A `Review` contains the following attributes,
 1. a `Name`, which represent the name of the Stall associated with the Review
 1. an `Address`, which represent the address of the Stall associated with the Review
-2. a `Date`, which represent the day, month and year as specified in `DD/MM/YYYY` , or any of the specified formats in [here](https://ay2223s1-cs2103-w14-2.github.io/tp/DeveloperGuide.html#file-format-for-foodwhere)
+2. a `Date`, which represent the day, month and year as specified in `DD/MM/YYYY`, or any of the specified formats in [here](#file-format-for-foodwhere)
 3. a `Content`, which represent the review of the Stall by the user
 4. a `Rating`, which represent the rating of the Stall from 0 to 5 inclusive
 5. can be assigned to a single `Stall`
