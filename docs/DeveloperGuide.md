@@ -1195,21 +1195,114 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
     
 
+### Adding a contact
+
+1. Adding a person to Plannit
+
+    1. Prerequisites:  Person to be added does not have the same name (case-sensitive) as anyone else that is already in Plannit.
+
+    1. Test case: `add-person n/Amy e/amy@gmail.com p/91234567`<br>
+       Expected:
+        * A person with name Amy is added to Plannit.
+        * A success message is displayed to the user.
+
+    1. Test case: `add-person n/Amy e/amy@gmail.com`<br>
+       Expected:
+        * No person is added to Plannit because there is a missing field (phone number).
+        * Error details indicating invalid command format displayed to the user.
+
+    1. Other incorrect add person commands to try: `add-person`, `add-person x`, `add-person p/81234567 e/amy@gmail.com` <br>
+       Expected:
+        * No person is added to Plannit.
+        * An error message with relevant details is displayed to the user.
+
+
+### Adding a contact to module
+
+1. Adding a person to a module
+
+    1. Prerequisite: Both the person to be added to the module and the module itself are currently displayed on Plannit. Also, the person to be added to the module has not yet been added to the module.
+
+    2. Test case: `add-person-to-module m/MA2001 n/Alex Yeoh`, assuming both `MA2001` and `Alex Yeoh` are currently displayed on Plannit.
+       Expected:
+        * `Alex Yeoh` is added to `MA2001`.
+        * Result display shows successful addition of `Alex Yeoh` to `MA2001`.
+        * Subsequently, if `goto MA2001` is executed next, `Alex Yeoh` should be one of the persons listed.
+
+    3. Test case: `add-person-to-module m/MA2001 n/David Li`
+       Expected:
+        * No person is added to module.
+        * Result display shows an error message stating that `David Li` has already been added to `MA2001`.
+
+    4. Test case:
+       `add-person-to-module m/GE3238 n/David Li`, assuming `David Li` is not currently displayed on Plannit but `GE3238` is currently displayed on Plannit.
+       Expected:
+        * No person is added to module.
+        * Result display shows an error message stating that the input person is not in the currently displayed list.
+
+    5. Test inputs where command format is invalid (e.g., `add-person-to-module`, `add-person-to-module m/CS2103T`)
+       Expected:
+        * No person is added to module. Result display shows that the command format is invalid.
+
+
 ### Deleting a contact
 
-1. Deleting a contact with the contact being displayed currently.
+1. Deleting a person from Plannit while the contact to be deleted is shown.
 
-    1. Prerequisites: The contact to be deleted is currently listed. If not, use the `home` command to do so 
-     automatically.
-   
-    2. Test case: `delete-person n/Amy` assuming contact with name Amy exists in Plannit.<br>
-       Expected: Contact with name Amy is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Prerequisites: Person to be deleted is currently displayed on screen.
 
-    3. Test case: `delete-person n/Bob` assuming contact with name Bob does not exist in Plannit.<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete-person n/Alex Yeoh`<br>
+       Expected:
+        * Contact with name Alex Yeoh is deleted from the displayed list and Plannit.
+        * Details of the deleted contact displayed to the user.
 
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Test case: `delete-person n/Bob`, assuming Bob is currently not displayed on screen<br>
+       Expected:
+        * No person is deleted.
+        * Error message detailing the fact that no Bob is currently displayed on screen.
+
+    1. Other incorrect delete person commands to try: `delete-person`, `delete-person 123`, `delete-person m/Bob`<br>
+       Expected:
+        * No person is deleted.
+        * An error message with relevant details is displayed to the user.
+
+
+### Deleting a contact from module
+
+1. Deleting a person from module while both the specified module and person are displayed on screen.
+
+    1. Prerequisites: Both the person to be deleted from the module and the module itself are currently displayed on screen. Also, the person to be deleted from the module must have already been added to the module.
+
+    1. Test case: `delete-person-from-module m/CS2103T n/David Li`<br>
+       Expected:
+        * Contact with name David Li is deleted from the CS2103T module. A successful message stating that a person got deleted from CS2103T is displayed to the user.
+
+    1. Test case: `delete-person-from-module m/CS2103T n/Bob`, assuming Bob is not added to the module CS2103T<br>
+       Expected:
+        * No person is deleted from CS2103T. Error message detailing the fact that Bob is currently not displayed in list is displayed.
+
+    1. Other incorrect delete person from module commands to try: `delete-person-from-module`, `delete-person-from-module a/CS2103T n/Bob`<br>
+       Expected:
+        * No person is deleted from any module. An error message with relevant details is displayed to the user.
+
+    
+### Editing a contact
+
+1. Editing a person in Plannit while the contact to be edited is shown.
+
+    1. Prerequisites: Person to be edited is currently displayed on screen.
+
+    1. Test case: `edit-person 1 n/Armin`<br>
+       Expected:
+        * First contact on the list is edited to have the name Armin. Details of the edited contact displayed to the user.
+
+    1. Test case: `edit-person x n/Bob` (where x is larger than index of the last person)<br>
+       Expected:
+        * No person is edited. Error message detailing the fact an invalid index is provided is displayed to the user.
+
+    1. Other incorrect edit person commands to try: `edit-person`, `edit-person n/Bob`, `edit-person 1 m/Bob`<br>
+       Expected:
+        * No person is edited. An error message with relevant details is displayed to the user.
     
 
 ### Saving data
