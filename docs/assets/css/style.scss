@@ -47,7 +47,6 @@ body {
 }
 
 /* Adapted from: https://dev.to/adamlombard/css-automatically-number-nested-lists-59ei */
-=======
 h5:before {
   content: counter(h2, decimal) "." counter(h3, decimal) "." counter(h4, decimal) "." counter(h5, decimal) ". ";
   counter-increment: h5;
@@ -63,12 +62,6 @@ h5:before {
     display: block
 }
 
-
-<<<<<<< HEAD
-li:before {
-    counter-increment: item;
-    content: counters(item, ".", decimal) ". ";
-=======
 // Third Level
 #markdown-toc > li > ul > li > ul > li {
   margin-left: 28px;
@@ -82,5 +75,4 @@ li:before {
 #markdown-toc li:before {
   content: counters(item, ".") ". ";
   counter-increment: item;
->>>>>>> 5f2b43ba802f9bbbf05bfaf3b09116cab90acf5a
 }
