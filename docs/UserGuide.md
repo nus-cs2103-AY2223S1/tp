@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-IdENTify is a **desktop app made for ENT administrative staff to manage patients' contact details and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, idENTify can get your patients/appointments' management tasks done faster than traditional GUI apps.
+IdENTify is a **desktop app made for Ear, Nose and Throat (ENT) administrative staff to manage patients' contact details and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, idENTify can get your patients/appointments' management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -31,7 +31,7 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 ![SampleUiImage](images/SampleUI.png)
 * The UI is available in light mode (by default, shown above) or dark mode.
 
-### **General UI information**
+### General UI information
 
 Component | Purpose
 --------|------------------
@@ -564,7 +564,7 @@ Action | Format, Examples
 **Mark** | `mark APPOINTMENT_INDEX` <br> e.g. `mark 3`
 **Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`
 **Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g. `cancel 2`
-**History** | Arrow keys <br> e.g. `Up Arrow` key on keyboard
+**History** | Control key <br> Arrow keys <br> e.g. `Up Arrow` key on keyboard
 **Hide Patients** | `hide patients CONDITION` <br> e.g. `hide patients t/nose`
 **Hide Appointments** | `hide appts CONDITION` <br> e.g. `hide appts s/marked`
 **Unhide Patients** | `unhide patients CONDITION` <br> e.g. `unhide patients t/nose`
