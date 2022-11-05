@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.trackascholar.model.Model;
 import seedu.trackascholar.model.ModelManager;
 import seedu.trackascholar.model.UserPrefs;
+import seedu.trackascholar.model.applicant.ApplicationStatus;
 import seedu.trackascholar.model.applicant.ApplicationStatusPredicate;
 
 
@@ -33,9 +34,9 @@ public class FilterCommandTest {
     public void equals() {
 
         ApplicationStatusPredicate firstPredicate =
-                new ApplicationStatusPredicate("pending");
+                new ApplicationStatusPredicate(ApplicationStatus.PENDING);
         ApplicationStatusPredicate secondPredicate =
-                new ApplicationStatusPredicate("accepted");
+                new ApplicationStatusPredicate(ApplicationStatus.ACCEPTED);
 
         FilterCommand filterFirstCommand = new FilterCommand(firstPredicate);
         FilterCommand filterSecondCommand = new FilterCommand(secondPredicate);
@@ -60,7 +61,7 @@ public class FilterCommandTest {
     @Test
     public void execute_pending_multipleApplicantsFiltered() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 4);
-        ApplicationStatusPredicate predicate = preparePredicate("pending");
+        ApplicationStatusPredicate predicate = preparePredicate(ApplicationStatus.PENDING);
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredApplicantList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -70,7 +71,7 @@ public class FilterCommandTest {
     @Test
     public void execute_accepted_twoApplicantsFiltered() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 2);
-        ApplicationStatusPredicate predicate = preparePredicate("accepted");
+        ApplicationStatusPredicate predicate = preparePredicate(ApplicationStatus.ACCEPTED);
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredApplicantList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -80,7 +81,7 @@ public class FilterCommandTest {
     @Test
     public void execute_rejected_oneApplicantFiltered() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 1);
-        ApplicationStatusPredicate predicate = preparePredicate("rejected");
+        ApplicationStatusPredicate predicate = preparePredicate(ApplicationStatus.REJECTED);
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredApplicantList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

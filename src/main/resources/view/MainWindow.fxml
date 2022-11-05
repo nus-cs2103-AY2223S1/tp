@@ -44,8 +44,8 @@
 
         <VBox fx:id="applicantList"  minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <HBox VBox.vgrow="ALWAYS">
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="400"  />
-          <StackPane fx:id="pinnedPersonListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="400" />
+          <StackPane fx:id="applicantListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="400"  />
+          <StackPane fx:id="pinnedApplicantListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="400" />
           </HBox>
         </VBox>
 

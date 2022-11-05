@@ -207,7 +207,7 @@ public class Applicant {
                 && otherApplicant.getPhone().equals(getPhone())
                 && otherApplicant.getEmail().equals(getEmail())
                 && otherApplicant.getScholarship().equals(getScholarship())
-                && otherApplicant.getStatusOfApplication().equals(getStatusOfApplication())
+                && otherApplicant.getApplicationStatus().equals(getApplicationStatus())
                 && otherApplicant.getPin().equals(getPin())
                 && otherApplicant.getMajors().equals(getMajors());
     }
@@ -223,13 +223,13 @@ public class Applicant {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("\n Phone: ")
-                .append(getPhoneNumber())
+                .append(getPhone())
                 .append("\n Email: ")
-                .append(getEmailAddress())
+                .append(getEmail())
                 .append("\n Scholarship: ")
-                .append(getScholarshipName())
+                .append(getScholarship())
                 .append("\n Application Status: ")
-                .append(getStatusOfApplication());
+                .append(getApplicationStatus());
 
         Set<Major> majors = getMajors();
         if (!majors.isEmpty()) {

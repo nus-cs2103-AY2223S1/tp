@@ -21,6 +21,7 @@ public interface TrackAScholarStorage {
     /**
      * Returns TrackAScholar data as a {@link ReadOnlyTrackAScholar}.
      *   Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -33,6 +34,7 @@ public interface TrackAScholarStorage {
 
     /**
      * Saves the given {@link ReadOnlyTrackAScholar} to the storage.
+     *
      * @param trackAScholar cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

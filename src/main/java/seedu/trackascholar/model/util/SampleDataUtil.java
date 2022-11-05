@@ -18,7 +18,7 @@ import seedu.trackascholar.model.major.Major;
  * Contains utility methods for populating {@code TrackAScholar} with sample data.
  */
 public class SampleDataUtil {
-    public static Applicant[] getSamplePersons() {
+    public static Applicant[] getSampleApplicants() {
         return new Applicant[] {
             new Applicant(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Scholarship("NUS Global Merit Scholarship"), new ApplicationStatus("pending"),
@@ -43,7 +43,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyTrackAScholar getSampleTrackAScholar() {
         TrackAScholar sampleTrackAScholar = new TrackAScholar();
-        for (Applicant sampleApplicant : getSamplePersons()) {
+        for (Applicant sampleApplicant : getSampleApplicants()) {
             sampleTrackAScholar.addApplicant(sampleApplicant);
         }
         return sampleTrackAScholar;

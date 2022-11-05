@@ -1,6 +1,6 @@
 {
   "applicants": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
+    "name": "Applicant with invalid name field: Ha!ns Mu@ster",
     "phone": "94824245",
     "email": "hans@example.com",
     "scholarship": "Sports",

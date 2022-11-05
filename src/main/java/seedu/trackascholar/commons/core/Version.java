@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Represents a version with major, minor and patch number
+ * Represents a version with major, minor and patch number.
  */
 public class Version implements Comparable<Version> {
 
@@ -50,8 +50,8 @@ public class Version implements Comparable<Version> {
 
     /**
      * Parses a version number string in the format V1.2.3.
-     * @param versionString version number string
-     * @return a Version object
+     * @param versionString version number string.
+     * @return a Version object.
      */
     @JsonCreator
     public static Version fromString(String versionString) throws IllegalArgumentException {

@@ -38,7 +38,8 @@ public class TypicalApplicants {
             .withScholarship("Sports").withApplicationStatus("pending").build();
     public static final Applicant DANIEL = new ApplicantBuilder().withName("Daniel Meier")
             .withPhone("87652533").withEmail("cornelia@example.com")
-            .withScholarship("Arts").withApplicationStatus("rejected").withMajors("friends").build();
+            .withScholarship("Arts").withApplicationStatus("rejected")
+            .withMajors("Software Engineering").build();
     public static final Applicant ELLE = new ApplicantBuilder().withName("Elle Meyer")
             .withPhone("94821224").withEmail("werner@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending").build();

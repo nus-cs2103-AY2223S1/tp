@@ -9,7 +9,7 @@ import seedu.trackascholar.model.Model;
 import seedu.trackascholar.model.applicant.Applicant;
 
 /**
- * Sorts all applicants in TrackAScholar whose status matches the keyword.
+ * Sorts all applicants in TrackAScholar by the specified argument keyword.
  * Keyword matching is case-insensitive.
  */
 public class SortCommand extends Command {

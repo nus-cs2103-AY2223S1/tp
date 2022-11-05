@@ -15,45 +15,34 @@ This is an overview of the application.
 
 #### What is TrackAScholar?
 
-TrackAScholar (TAS) helps university administrative staff manage scholarship applications.
-It stores all applicant's details such as contact info and scholarship applied etc. all in one place.
-TrackAScholar (TAS) is a one of a kind desktop app.It is the **only** application that any university administrative staff needs.
+TrackAScholar (TAS) is a one of a kind desktop app. It is the **only** application that any university administrative staff needs.
+TAS helps university administrative staff manage scholarship applications.
+It can store all the applicant's details such as contact info and scholarship applied etc. in one place.
 
-TAS have many functions that university administrative staff can use to help speed up the application process immensly.
+TAS has many features that university administrative staff can use to help speed up the application process immensely.
+TAS presents the administrative staff with various options such as the ability to pin important applicants,
+edit their details easily and find or filter for applicants with ease. 
 
-These functions include:
-1. Pinning of important applicants. 
-2. Easy edit of applicant's detail.
-For example, you typed in the wrong name.You can easily edit the wrong name to the correct one.
-3. Finding a particular applicant by a certain trait.
-For example, you can find a particular applicant in a large list of over 100 applicants just by keying in the applicant's name.
-4. Filtering of applicants by application status. 
-Filtering by application status divides the list to 3 portions according to the 3 different types of application status. 
-
-TAS is **optimised for use via a Command Line Interface (CLI)** while simultaneously having the benefits of a **Graphical User Interface
-(GUI)**. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
+TAS is optimised for use via a ***Command Line Interface (CLI)*** while simultaneously having the benefits of a ***Graphical User Interface
+(GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
 
 #### Who is this User Guide for?
 
-It is stated that on average 1.7 million university scholarships are given out each year in the United States alone.Furthermore, 
-it is found that only 1 in 8 student actually wins a scholarship.This brings us to about more than 10 million applications a year.
+Based on our research, many universities often take an extended period of several months to process scholarship applications.
+Administrative staff at the university frequently works overtime to process this enormous volume of applications.
+The process is made much more difficult by the subpar scholarship management practices employed in many of these universities.
 
-As such, many universities often take an extended period of many months to process these applications.
-University administrative staff often have to work overtime to process these large number of applications.
-Poor scholarship management procedures employed in many of these universities further complicates the process. 
-
-TrackAScholar (TAS) is an app designed for university administrative staff members to streamline the scholarship management procedure. 
-
-TrackAScholar (TAS) seeks to 
-1. Reduce the time taken for university to process the scholarships
-2. Improve the current scholarship management process
-3. Decrease the number of times staff members work overtime 
+Hence, TAS is an app designed for university administrative staff members to streamline the scholarship management procedure.
+TAS aims to shorten the time it takes for universities to handle scholarships, improve the current scholarship management process,
+and reduce the amount of overtime required of staff members.
 
 For technical upkeep, please refer to our [Developer Guide](https://ay2223s1-cs2103t-w10-3.github.io/tp/DeveloperGuide.html)
 
+Italics are used to indicate specific technical terms. If you'd want to know what they mean, you may look them up in our [Glossary](#glossary).
+
 #### Current version
-This is the third iteration of the user guide.
-The current version is version 1.3.
+
+This user guide is optimized for TrackAScholar's most recent version, v1.4.
 
 [Return to top](#table-of-contents)
 
@@ -61,7 +50,7 @@ The current version is version 1.3.
 
 ## Legend 
 
-Explanation of signs which may help the user better understand the documentation
+Here are certain indicators explained so that the user may better comprehend the documentation.
 
 :information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
 
@@ -73,16 +62,10 @@ Explanation of signs which may help the user better understand the documentation
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary - helps user better understand and navigate certain technical terms
+## Glossary
 
-| Technical terms       | Explanation of technical terms                                                                                |
-|-----------------------|---------------------------------------------------------------------------------------------------------------|
-| **Applicant list**    | A list containing all the applicants.                                                                         |
-| **command box**       | The place where you key in your commands.                                                                     |
-| **command**           | The order you are giving to TrackAScholar.                                                                    |
-| **TrackAScholar.jar** | The file that contains TrackAScholar.By downloading and running it you can run TrackAScholar.                 |
-| **case-insensitive**  | Upper case is considered to be the same as lower case.For instance 'a' and 'A' are considered to be the same. |
-| **case-sensitive**    | Upper case is not the same as lower case.For instance 'a' and 'A' are considered to be not the same.          |
+* GUI: Graphical User Interface: Refers to the user interface that the user interacts with.
+* CLI: Command Line Interface: Refers to a computer program that accepts text inputs.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -101,7 +84,7 @@ Explanation of signs which may help the user better understand the documentation
   Note how the app contains some sample data for you to explore the features with.
    ![Ui](images/Ui.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.
+6. Type the command in the command prompt and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.
 
 7. Refer to the [Features](#features) below for details of each command.
 
@@ -131,7 +114,7 @@ This is how the application will look like when opened.
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [m/MAJOR]` can be used as `n/John Doe m/Business` or as `n/John Doe`.
+  e.g. `n/NAME [m/MAJOR]` can be used as `n/John Doe m/Business` or as `n/John Doe`.
 
 * Items in angle brackets are fixed, precise and **case-insensitive** values.<br>
   e.g. `<ACCEPTED>` means the parameter must be an input of a **case-insensitive** value `ACCEPTED`. This means `AccEpTEd` or `accepted` are valid inputs.
@@ -238,7 +221,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR] [as/APPLICATION_STATUS]…​
 * Index specified must not exceed the total number of applicants stored in TrackAScholar. e.g. using index `7` on a list of `6` applicants will cause the edit command to be rejected as `INDEX` specified is invalid.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing majors, the existing majors of the applicant will be removed i.e adding of majors is not cumulative. 
+* When editing majors, the existing majors of the applicant will be removed i.e. adding of majors is not cumulative. 
 e.g. `edit INDEX m/Business` on an applicant with Majors `Business` and `Mathematics` will remove the `Mathematics` Major.
 * You can remove all the applicant's majors by typing `m/` without specifying any majors after it.
 
@@ -349,18 +332,19 @@ Format:
 find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...
 ```
 
-* The search is **case-insensitive**. e.g `find n/hans` will match an applicant with `NAME` `Hans`.
+* The search is **case-insensitive**. e.g. `find n/hans` will match an applicant with `NAME` `Hans`.
 * The order of the keywords does not matter. e.g. `find n/Hans Bo` will match applicant with Name `Bo Hans`.
-* Only full words will be matched e.g. `find m/Engineer` will not match the Major `Software Engineering`.
-* Applicant whose credentials matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `find s/Global Merit` will match applicants with scholarship of `NUS Merit Scholarship` or `NUS Global Merit Scholarship`.
+* Only full words will be matched. e.g. `find m/Engineer` will not match the Major `Software Engineering`.
+* Applicant whose credentials matching at least one keyword per parameter type will be returned (i.e. `AND` search). <br>
+  e.g. `find n/Sam n/Bob s/Merit` will match the applicant `Sam`, who has applied for the `NUS Global Merit Scholarship` but will
+  not match the applicant `Bob` who has applied for the `NUS Sports Scholarship`.
 * At least one of the optional fields must be provided.
 
 Examples:
-* `find n/John n/Sam` returns applicant with Name `john`, applicant with Name `John Doe` and applicant with Name `Sam Ong`
-* `find n/alex m/Business` returns any applicants with Name containing `Alex` and Major containing `Business`
+* `find n/John n/Sam` returns applicant with Name `john`, applicant with Name `John Doe` and applicant with Name `Sam Ong`.
+* `find n/Alex n/Irfan m/Medicine` returns only applicant with Name `Alex` and taken Major of `Medicine`.
 
-Sample output for `find n/alex m/Business`:
+Sample output for `find n/Alex n/Irfan m/Medicine`:
 
 ![find message](images/UserGuideCommands/find.png)
 
@@ -442,10 +426,10 @@ Otherwise, file cannot be read.
 When the trackAScholar program is being run, it will create a new ./data/ folder with the trackAScholar.json data
 file in the same folder. Please insert the trackAScholarImport.json file there.
 
-For testers, please refer to the Developer Guide for the testing files.
+For testers, please refer to the Developer Guide for manual testing.
 </div>
 
-[Testing Import function](https://github.com/samuelcheongws/tp/blob/master/docs/DeveloperGuide.md#import-trackascholarimport-file)
+[Testing Import function](https://ay2223s1-cs2103t-w10-3.github.io/tp/DeveloperGuide.html#import-trackascholarimport-file)
 
 
 Examples:

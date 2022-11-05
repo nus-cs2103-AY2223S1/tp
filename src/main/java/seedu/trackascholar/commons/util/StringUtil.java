@@ -20,8 +20,9 @@ public class StringUtil {
      *       containsWordIgnoreCase("ABc def", "DEF") == true
      *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
      *       </pre>
-     * @param sentence cannot be null
-     * @param word cannot be null, cannot be empty, must be a single word
+     *
+     * @param sentence cannot be null.
+     * @param word cannot be null, cannot be empty, must be a single word.
      */
     public static boolean containsWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);

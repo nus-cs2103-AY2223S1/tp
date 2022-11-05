@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
+participant ":PinCommandParser" as PinCommandParser LOGIC_COLOR
+participant "p:PinCommand" as PinCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "newApplicant:Applicant" as Applicant MODEL_COLOR
+end box
+
+[-> LogicManager : execute("pin 1")
+activate LogicManager
+
+LogicManager -> TrackAScholarParser : parseCommand("pin 1")
+activate TrackAScholarParser
+
+create PinCommandParser
+TrackAScholarParser -> PinCommandParser: PinCommandParser()
+activate PinCommandParser
+
+PinCommandParser --> TrackAScholarParser
+deactivate PinCommandParser
+
+TrackAScholarParser -> PinCommandParser : parse("1")
+activate PinCommandParser
+
+create PinCommand
+PinCommandParser -> PinCommand : PinCommand()
+activate PinCommand
+
+PinCommand --> PinCommandParser : p
+deactivate PinCommand
+
+PinCommandParser --> TrackAScholarParser : p
+deactivate PinCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PinCommandParser -[hidden]-> TrackAScholarParser
+destroy PinCommandParser
+
+TrackAScholarParser --> LogicManager : p
+deactivate TrackAScholarParser
+
+LogicManager -> PinCommand : execute()
+activate PinCommand
+
+PinCommand -> Model : getFilteredApplicantList()
+activate Model
+Model --> Model : get()
+Model --> PinCommand : oldApplicant
+deactivate Model
+
+PinCommand -> PinCommand : createPinnedApplicant(oldApplicant)
+activate PinCommand
+
+create Applicant
+PinCommand -> Applicant : Applicant()
+activate Applicant
+
+Applicant --> PinCommand : newApplicant
+deactivate Applicant
+
+PinCommand --> PinCommand : newApplicant
+deactivate PinCommand
+
+PinCommand -> Model : setApplicant(1,newApplicant)
+activate Model
+
+Model --> PinCommand
+deactivate Model
+
+create CommandResult
+PinCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> PinCommand
+deactivate CommandResult
+
+PinCommand --> LogicManager : result
+deactivate PinCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

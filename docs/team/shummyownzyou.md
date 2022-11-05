@@ -28,6 +28,7 @@ It is written in Java, and has about 14 kLoC.
       * The pinned applicant list does not display applicant index number to avoid inconsistencies and confusion between the 2 applicant lists for commands requiring indexes. 
       * This change allows a more straightforward way to unpin applicants as applicant names are guaranteed to be unique.
 
+
 * **Documentation**:
     * User Guide:
       * Updated user guide to include pin command: [#121](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/121)
