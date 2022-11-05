@@ -193,9 +193,12 @@ public class PersonBuilder {
         return this;
     }
 
-
+    /**
+     * Sets the {@code Leave} of the {@code Person} that we are building.
+     */
     public Person build() {
-        Person person = new Person(name, employeeId, phone, email, position, department, address, tags, totalLeave, rating);
+        Person person = new Person(name, employeeId, phone, email, position,
+            department, address, tags, totalLeave, rating);
         for (Leave leave: leavePeriod) {
             person.addLeave(leave);
         }

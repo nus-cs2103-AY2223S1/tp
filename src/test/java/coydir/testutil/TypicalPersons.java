@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import coydir.model.Database;
-import coydir.model.person.Leave;
 import coydir.model.person.Person;
 
 /**

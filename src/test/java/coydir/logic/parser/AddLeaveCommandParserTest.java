@@ -13,7 +13,8 @@ import coydir.model.person.Leave;
 public class AddLeaveCommandParserTest {
 
     private AddLeaveCommandParser parser = new AddLeaveCommandParser();
-    String invalidFormat = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE);
+    private String invalidFormat = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+        AddLeaveCommand.MESSAGE_USAGE);
 
     @Test
     public void parse_emptyArg_throwsParseException() {

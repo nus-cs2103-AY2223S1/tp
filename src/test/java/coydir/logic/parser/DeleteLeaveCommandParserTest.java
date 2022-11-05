@@ -12,7 +12,8 @@ import coydir.model.person.EmployeeId;
 public class DeleteLeaveCommandParserTest {
 
     private DeleteLeaveCommandParser parser = new DeleteLeaveCommandParser();
-    String invalidFormat = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteLeaveCommand.MESSAGE_USAGE);
+    private String invalidFormat = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+        DeleteLeaveCommand.MESSAGE_USAGE);
 
     @Test
     public void parse_emptyArg_throwsParseException() {
