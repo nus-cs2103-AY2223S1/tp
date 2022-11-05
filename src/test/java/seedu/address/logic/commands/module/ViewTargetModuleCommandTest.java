@@ -4,10 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showModuleWithModuleCode;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
-import static seedu.address.testutil.TypicalModuleCodes.CODE_FIRST_MODULE;
-import static seedu.address.testutil.TypicalModuleCodes.CODE_SECOND_MODULE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
 import static seedu.address.testutil.TypicalModules.getTypicalProfNusWithModules;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +17,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCode;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -36,8 +33,8 @@ public class ViewTargetModuleCommandTest {
 
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(ViewTargetModuleCommand.MESSAGE_VIEW_TARGET_MODULE_SUCCESS, moduleTargetToView),
-                false, false, true,
-                false, false, false, false, false);
+                false, false, false,
+                false, true, false, false, false, false);
 
         ModelManager expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
 
@@ -53,34 +50,31 @@ public class ViewTargetModuleCommandTest {
     }
 
     @Test
-    public void execute_validModuleCodeFilteredList_success() {
-        ViewTargetModuleCommand viewTargetModuleCommand = new ViewTargetModuleCommand(INDEX_FIRST_MODULE);
+    public void execute_validIndexFilteredList_success() {
 
         Module moduleTargetToView = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
-        ModuleCode moduleCode = moduleToView.getCode();
-        ViewModuleCommand viewModuleCommand = new ViewModuleCommand(moduleCode);
+        ViewTargetModuleCommand viewTargetModuleCommand = new ViewTargetModuleCommand(INDEX_FIRST_MODULE);
 
         CommandResult expectedCommandResult = new CommandResult(
-                String.format(ViewModuleCommand.MESSAGE_SUCCESS, moduleToView),
+                String.format(ViewTargetModuleCommand.MESSAGE_VIEW_TARGET_MODULE_SUCCESS, moduleTargetToView),
                 false, false, false,
-                false, true, false, false, false);
+                false, true, false, false, false, false);
 
         Model expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
-        showNoModule(expectedModel);
 
-        assertCommandSuccess(viewModuleCommand, model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(viewTargetModuleCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void equals() {
-        ViewModuleCommand viewFirstCommand = new ViewModuleCommand(CODE_FIRST_MODULE);
-        ViewModuleCommand viewSecondCommand = new ViewModuleCommand(CODE_SECOND_MODULE);
+        ViewTargetModuleCommand viewFirstCommand = new ViewTargetModuleCommand(INDEX_FIRST_MODULE);
+        ViewTargetModuleCommand viewSecondCommand = new ViewTargetModuleCommand(INDEX_SECOND_MODULE);
 
         // same object -> returns true
         assertTrue(viewFirstCommand.equals(viewFirstCommand));
 
         // same values -> returns true
-        ViewModuleCommand viewFirstCommandCopy = new ViewModuleCommand(CODE_FIRST_MODULE);
+        ViewTargetModuleCommand viewFirstCommandCopy = new ViewTargetModuleCommand(INDEX_FIRST_MODULE);
         assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
 
         // different types -> returns false
@@ -91,14 +85,5 @@ public class ViewTargetModuleCommandTest {
 
         // different module -> returns false
         assertFalse(viewFirstCommand.equals(viewSecondCommand));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no module.
-     */
-    private void showNoModule(Model model) {
-        model.updateFilteredModuleList(p -> false);
-
-        assertTrue(model.getFilteredModuleList().isEmpty());
     }
 }
