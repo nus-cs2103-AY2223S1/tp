@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CondoneryParser" as CondoneryParser LOGIC_COLOR
+participant ":RangePropertyCommandParser" as RangePropertyCommandParser LOGIC_COLOR
+participant ":PropertyPriceWithinRangePredicate" as PropertyPriceWithinRangePredicate LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "r:RangePropertyCommand" as RangePropertyCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("range -p l/<LOWER> u/<UPPER>")
+note left: Full command is truncated for brevity
+activate LogicManager
+
+LogicManager -> CondoneryParser : parseCommand("range -p l/<LOWER> u/<UPPER>")
+activate CondoneryParser
+
+'create TagCommandsParser
+'CondoneryParser -> TagCommandsParser
+'activate TagCommandsParser
+
+'TagCommandsParser --> CondoneryParser
+'deactivate TagCommandsParser
+
+create RangePropertyCommandParser
+CondoneryParser -> RangePropertyCommandParser : parse("l/<LOWER> u/<UPPER>")
+activate RangePropertyCommandParser
+
+RangePropertyCommandParser --> CondoneryParser
+deactivate RangePropertyCommandParser
+
+CondoneryParser -> RangePropertyCommandParser : parse("l/<LOWER> u/<UPPER>")
+activate RangePropertyCommandParser
+
+RangePropertyCommandParser -> ParserUtil : parseNumber(int)
+activate ParserUtil
+
+ParserUtil --> RangePropertyCommandParser
+deactivate ParserUtil
+
+RangePropertyCommandParser -> PropertyPriceWithinRangePredicate
+activate PropertyPriceWithinRangePredicate
+
+PropertyPriceWithinRangePredicate --> RangePropertyCommandParser
+deactivate PropertyPriceWithinRangePredicate
+
+create RangePropertyCommand
+RangePropertyCommandParser -> RangePropertyCommand
+activate RangePropertyCommand
+
+RangePropertyCommand --> RangePropertyCommandParser : r
+deactivate RangePropertyCommand
+
+RangePropertyCommandParser --> CondoneryParser : r
+deactivate RangePropertyCommandParser
+
+RangePropertyCommandParser -[hidden]-> CondoneryParser : r
+destroy RangePropertyCommandParser
+
+CondoneryParser --> LogicManager : a
+deactivate CondoneryParser
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
