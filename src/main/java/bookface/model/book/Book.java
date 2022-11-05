@@ -1,6 +1,5 @@
 package bookface.model.book;
 
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -56,12 +55,9 @@ public class Book {
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
-    public String getReturnDateString() {
-        if (isLoaned()) {
-            Format formatter = new SimpleDateFormat("yyyy-MM-dd");
-            return "Return by: " + formatter.format(returnDate);
-        }
-        return "";
+    public Optional<String> getReturnDateString() {
+        return Optional.ofNullable(returnDate)
+                .map(x -> "Return by: " + (new SimpleDateFormat("yyyy-MM-dd")).format(returnDate));
     }
 
     public Optional<Person> getLoanee() {
@@ -141,7 +137,6 @@ public class Book {
         return getTitle()
                 + " | Author: "
                 + getAuthor()
-                + " | "
-                + getReturnDateString();
+                + getReturnDateString().map(string -> " | " + string).orElse("");
     }
 }

@@ -46,7 +46,7 @@ public class BookCard extends UiPart<Region> {
         title.setText(book.getTitle().bookTitle);
         author.setText(book.getAuthor().bookAuthor);
         loanStatus.setText(book.getLoanStatus());
-        returnBy.setText(book.getReturnDateString());
+        returnBy.setText(book.getReturnDateString().orElse(""));
     }
 
     @Override
