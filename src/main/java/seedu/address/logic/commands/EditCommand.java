@@ -101,20 +101,17 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-
         if (!editStudentDescriptor.hasEmptyClass()) {
-            if (editedStudent.hasMultipleClasses()) {
+            if (studentToEdit.hasSameDateAs(editedStudent)) {
                 throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
             }
-            editedStudent.setDisplayClass(editedStudent.getAClass());
+
+            editedStudent.resetMarkStatus();
+
             ClassStorage.saveClass(editedStudent, index.getOneBased());
             ClassStorage.removeExistingClass(studentToEdit);
         } else if (!studentToEdit.hasEmptyClass()) {
             editedStudent.setClass(studentToEdit.getAClass());
-            editedStudent.setDisplayClass(studentToEdit.getDisplayedClass());
-            if (editedStudent.hasMultipleClasses()) {
-                throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
-            }
             ClassStorage.updateStudent(studentToEdit, editedStudent);
         }
 
@@ -154,11 +151,10 @@ public class EditCommand extends Command {
 
         // Unmodifiable states by the user
         Mark markStatus = studentToEdit.getMarkStatus();
-        Class displayedClass = studentToEdit.getDisplayedClass();;
 
         return new Student(updatedName, updatedPhone, updatedNokPhone, updatedEmail, updatedAddress,
                 updatedClassDateTime, updatedMoneyOwed, updatedMoneyPaid, updatedRatesPerClass, updatedNotes,
-                updatedTags, markStatus, displayedClass);
+                updatedTags, markStatus);
     }
 
     @Override

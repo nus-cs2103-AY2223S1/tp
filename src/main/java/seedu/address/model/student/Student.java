@@ -31,7 +31,7 @@ public class Student {
     private final AdditionalNotes additionalNotes;
     private Class aClass;
     private final Set<Tag> tags = new HashSet<>();
-    private final Mark mark;
+    private Mark mark;
 
     /**
      * Constructs a {@code Student} class when first initialized with add command.
@@ -334,5 +334,16 @@ public class Student {
      */
     public boolean hasSharedPhone() {
         return phone.equals(nokPhone);
+    }
+
+    public boolean hasSameDateAs(Student studentToEdit) {
+        if (!mark.isMarked()) {
+            return false;
+        }
+        return aClass.isSameDateAs(studentToEdit.aClass.date);
+    }
+
+    public void resetMarkStatus() {
+        this.mark = new Mark();
     }
 }

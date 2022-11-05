@@ -107,11 +107,10 @@ public class UniqueScheduleList implements Iterable<Student> {
      *  and returns a {@code List<Student>} which contains the filtered student list.
      */
     private List<Student> getScheduleList() {
-        internalList.stream()
-                .forEach(student -> student.updateDisplayClass(LocalDate.now()));
+
         return internalList
                 .stream()
-                .filter(student -> LocalDate.now().equals(student.getDisplayedClass().date))
+                .filter(student -> LocalDate.now().equals(student.getAClass().date))
                 .sorted(Student::compareToByClassAsc)
                 .collect(Collectors.toList());
     }
