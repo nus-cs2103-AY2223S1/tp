@@ -3,8 +3,13 @@ layout: page
 title: Yang Jiacheng's Project Portfolio Page
 ---
 
-- ### Overview
-- ### Summary of Contributions
+### Project: TrackO 
+
+**TrackO** is a desktop application that helps small home-based business owners manage their orders and inventory efficiently
+in the form of an integrated solution built using Java with around 15 kLOC. The user interacts with the application via a
+CLI, and the application responds with its GUI, created with JavaFX.
+
+### Summary of Contributions
   - **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jiacheng-y&breakdown=true)
 
   - **Enhancements implemented**: to be added soon
