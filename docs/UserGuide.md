@@ -61,7 +61,7 @@ SoConnect is a **desktop app for managing contacts and tasks**. It aims to help 
 
 * Tasks will be referred to as Todos
 
-* `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed contact list and todo list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​
+* `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed contact list and todo list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
 
 </div>
 
@@ -307,7 +307,7 @@ Example:
 
 ## Todo Management Features
 
-A todo is a task that needs completing. A todo consists of 
+A [todo](#glossary-todo) is a task that needs completing. A todo consists of 
 1. a description
 2. a date for the deadline of the task
 3. the priority of the task 
@@ -340,7 +340,7 @@ Edits an existing todo in your SoConnect.
 
 Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​`
 
-* Edits the todo at the specified `INDEX`.
+* Edits the todo at the specified [`INDEX`](#command-format-index).
 * At least one of the optional fields must be provided.
 * Parameters given will overwrite the existing values completely.
   * For example, giving 1 or more tag(s) in the edit command will replace all existing tags with the ones given in the edit command.
@@ -438,7 +438,7 @@ If your changes to the data file makes its format invalid, SoConnect will discar
 * **SoC**: School of Computing, a computing school in NUS.
 * **Private Contact Detail**: A contact detail that is not meant to be shared with others.
 * **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full.
-* **Todo**: A task that the user needs to complete.
+* **Todo**: A task that the user needs to complete. <a id="glossary-todo"></a>
 
 # Command summary
 
