@@ -128,6 +128,27 @@ public class Tutor extends Person {
                 && otherTutor.getTuitionClasses().equals(getTuitionClasses());
     }
 
+    /**
+     * Returns true if this tutor and {@code otherPerson} are same except tags and classes.
+     * This defines a weaker notion of equality between two persons.
+     */
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson != null
+                && otherPerson instanceof Tutor
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && ((Tutor) otherPerson).getQualification().equals(getQualification())
+                && ((Tutor) otherPerson).getInstitution().equals(getInstitution());
+
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
