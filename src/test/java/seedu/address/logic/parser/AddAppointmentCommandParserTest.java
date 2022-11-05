@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FIRST_APPOINTMENT_DESC;
@@ -16,7 +17,6 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.RISKTAG_DESC_HIGH;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -54,16 +54,16 @@ public class AddAppointmentCommandParserTest {
         String expectedFailureMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddAppointmentCommand.MESSAGE_USAGE);
         // negative index
-        assertParseFailure(parser, "-5" + VALID_DATETIME_21_JAN_2023, expectedFailureMessage);
+        assertParseFailure(parser, "-5" + FIRST_APPOINTMENT_DESC, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + VALID_DATETIME_22_JAN_2023, expectedFailureMessage);
+        assertParseFailure(parser, "0" + FIRST_APPOINTMENT_DESC, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", expectedFailureMessage);
+        assertParseFailure(parser, "1 some random string" + FIRST_APPOINTMENT_DESC, expectedFailureMessage);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", expectedFailureMessage);
+        assertParseFailure(parser, "1 i/ string" + FIRST_APPOINTMENT_DESC, expectedFailureMessage);
     }
     @Test
     public void parse_invalidAppointmentField_failure() {
