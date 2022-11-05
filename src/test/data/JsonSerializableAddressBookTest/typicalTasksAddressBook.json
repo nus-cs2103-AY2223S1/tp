@@ -10,7 +10,7 @@
   }, {
     "taskDescription" : "Task B",
     "status" : "incomplete",
-    "priority" : null,
+    "priority" : "low",
     "deadline" : null,
     "examDate" : null,
     "examDescription" : null,
