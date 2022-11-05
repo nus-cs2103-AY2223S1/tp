@@ -7,6 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 Package ReviewModel <<Rectangle>>{
 Class Review
 Class Name
+Class Address
 Class Content
 Class Date
 Class Rating
@@ -14,14 +15,17 @@ Class Tag
 Class UniqueReviewList
 }
 
-UniqueReviewList --> "~* all" Review
+UniqueReviewList -down-> "~* all" Review
 AddressBook *--> "1" UniqueReviewList
 Review *--> "1" Name
+Review *--> "1" Address
 Review *--> "1" Content
 Review *--> "1" Date
 Review *--> "1" Rating
 Review *--> "*" Tag
 
 ModelManager -->"~* filtered" Review
-Stall "1" --> "~*assigned" Review
+Stall -[hidden]down- ModelManager
+UniqueReviewList -[hidden]right- Stall
+Stall "1" --> "~* assigned" Review
 @enduml

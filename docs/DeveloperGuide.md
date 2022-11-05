@@ -52,7 +52,6 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `sdel 1`.
@@ -116,6 +115,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `RAddCommandParser`, `RDeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/java/foodwhere/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -126,14 +126,13 @@ The `Model` component,
 * stores the address book data i.e., all `Stall` objects (which are contained in a `UniqueStallList` object) and all `Review` objects (which are contained in a `UniqueReviewList` object).
 * stores the currently 'selected' `Stall` and `Review` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Stall>` and `ObservableList<Review>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* maintains its list of `Review` objects to reflect the reviews stored in the `Stall` objects it stores after each operation.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Stall` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Stall` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
 
 ### Storage component
 
@@ -142,8 +141,9 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* stores `Review` objects within `Stall` objects for address book data.
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -156,17 +156,19 @@ Classes used by multiple components are in the `foodwhere.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### **Review Components**
+### **Review components**
 * Added Classes into the model Component to encapsulate a Review
 
 #### **Implementation**
 <img src="images/ModelReviewClassDiagram.png" width="450" />
 
 A `Review`,
-- is stored in `uniqueReviewList` of the Model
+- is primarily stored in the Stall associated with it
+- is also stored in the `uniqueReviewList` of the Model (reflecting the reviews as stored in the Stall objects after each operation)
 
 A `Review` contains the following attributes,
 1. a `Name`, which represent the name of the Stall associated with the Review
+1. an `Address`, which represent the address of the Stall associated with the Review
 2. a `Date`, which represent the day, month and year as specified in `DD/MM/YYYY` format
 3. a `Content`, which represent the review of the Stall by the user
 4. a `Rating`, which represent the rating of the Stall from 0 to 5 inclusive
@@ -229,8 +231,8 @@ This feature is used to find stalls and reviews in FoodWhere by name and/or by t
 `rfind` allows users to find reviews in `AddressBook` by names, through matching of input keyword(s) with review names. Additionally, users can find reviews by tags, through matching of input keyword(s) with review tags.
 
 For the command, the feature extends `command`, and is implemented as such:
-* `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`
-* `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`
+* `sfind n/[NAME_KEYWORDS]… t/[TAG_KEYWORDS]…`
+* `rfind n/[NAME_KEYWORDS]… t/[TAG_KEYWORDS]…`
 
 #### Implementation Flow of finding stalls and reviews feature
 
@@ -356,6 +358,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design considerations:
 - Multiple fields of a Review can be edited in one go to increase the efficiency of the user of our application.
 
+
+### Review Sorting feature
+=======
 ### Sorting Stalls and Reviews feature
 
 #### What is sorting stalls and reviews feature about?
@@ -392,7 +397,46 @@ Step 6. `model.sortReviews()` will interact with the model to sort reviews using
 
 The following activity diagram summarizes what happens when a user executes a new `ssort` or `rsort` command:
 
-<img src="images/SortActivityDiagram.png" width="250" />
+<img src="images/SortReviewActivityDiagram.png" width="250" />
+=======
+
+### File format for FoodWhere
+
+The Foodwhere data is stored as a JSON file.
+* The file stores the stalls in the `"stalls"` property of the object
+* Each of the stalls is represented by an object with the properties `"name"`, `"address"`, `"tags"`, `"reviews"`.
+* The reviews for a stall is stored in the `"reviews"` property of the object representing the stall.
+* Each review is represented by an object with the properties `"date"`, `"content"`, `"rating"`, `"tags"`.
+
+Aside from rating, the other fields are stored as strings. The accepted format includes the following:
+
+| Data field     | Format                                                                                                                                                          |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Address        | Any ASCII text                                                                                                                                                  |
+| Content        | Any ASCII text                                                                                                                                                  |
+| Date           | A date in the format DD/MM/YYYY, D/MM/YYYY, DD/M/YYYY, D/M/YYYY, or with dashes instead of slashes                                                              |
+| Name           | Nonempty alphanumeric string with spaces, capitalisation preserved, duplicate spaces removed for the actual name                                                |
+| Rating         | An integer or floating point number from 0 (inclusive) to 6 (exclusive), rounded down (after interpreted as a floating point number) for the actual rating      |
+| Tag            | Alphanumeric token without spaces, interpreted as lowercase for the actual tag                                                                                  |
+
+Below is an example of one stall with one review.
+```
+{
+  "stalls" : [ {
+    "name" : "Alex Chicken Rice",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "tags" : [ "chickenrice" ],
+    "reviews" : [ {
+      "date" : "20/09/2022",
+      "content" : "Very tasty. Worth the trip",
+      "rating" : 5,
+      "tags" : [ "travelworthy" ]
+    } ]
+  } ]
+}
+```
+
+=======
 
 ### \[Proposed\] Undo/redo feature
 
@@ -412,11 +456,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th stall in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `sdel 5` command to delete the 5th stall in the address book. The `sdel` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `sdel 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new stall. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `sadd n/Davids Delights …` to add a new stall. The `sadd` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -447,11 +491,11 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `slist`. Commands that do not modify the address book, such as `slist`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `sadd n/Davids Delights …` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -474,14 +518,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 3 (current choice):** Saves the entire address book, but ensuring that Stall and Review are both immutable.
   * Pros: Easy to implement, performance issues for memory are not too bad.
-  * Cons: This needs Stall and Review to be guaranteed immutable, alongside all their parts. Good test cases are a must.
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
+  * Cons: This needs Stall and Review to be guaranteed immutable, alongside all their parts. Good test cases are a must to avoid regressions making them mutable.
+  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -520,7 +558,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                             | I want to …​                                                                                                                 | So that I can…​                                                                                                                                        |
+| Priority | As a …​                              | I want to …​                                                                                                                  | So that I can…​                                                                                                                                         |
 |----------|-------------------------------------|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `* * *`  | user                                | create reviews for a food stall                                                                                              | record which food stall that I have visited have nice food                                                                                             |
 | `* * *`  | user                                | view reviews for a food stall                                                                                                | easily find out the best food I have eaten                                                                                                             |
@@ -528,10 +566,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                | modify details of review for food stall                                                                                      | rectify any erroneous details in the entry                                                                                                             |
 | `* * *`  | user                                | list out food stall                                                                                                          | have a overview of the food stalls I have been to                                                                                                      |
 | `* *`    | user                                | list out food stall according from high to low reviews                                                                       | see the top few food stall                                                                                                                             |
-| `* * *`  | user                                | find food stall by substring match name                                                                                      | find the exact food stall I am interested in                                                                                                           |
+| `* * *`  | user                                | find food stall by matching a word in the name                                                                               | find the exact food stall I am interested in                                                                                                           |
 | `*`      | user                                | find food stall by approximate name                                                                                          | find the exact food stall I am interested in even when I’m not very sure about the stall name                                                          |
 | `*`      | user                                | tag a food stall with a tag                                                                                                  | categorize food stalls effectively                                                                                                                     |
-| `*`      | user                                | list out food place according to given tag                                                                                   | get an overview of the food place with the tag i am interested in                                                                                      |
+| `*`      | user                                | list out food place according to given tag                                                                                   | get an overview of the food place with the tag I am interested in                                                                                      |
 | `*`      | user                                | include photo along with the review                                                                                          | easily identify which photo belongs to which stall and upload them to social media                                                                     |
 | `* * *`  | user                                | purge existing data                                                                                                          | get rid of any sample data                                                                                                                             |
 | `* * *`  | user                                | add food stall addresses                                                                                                     | add a new location I can review                                                                                                                        |
@@ -546,13 +584,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                | see review that are most recent (sorting)                                                                                    | get the most updated review                                                                                                                            |
 | `*`      | user                                | archive existing stalls / review                                                                                             | not be distracted by previous reviews made                                                                                                             |
 | `* * *`  | new user                            | check out what tools are available in this application                                                                       | learn how to use the application                                                                                                                       |
-| `* * *`  | user helping another stall, eg. Bob | import data                                                                                                                  | get existing lists from Bob to work on                                                                                                                 |
+| `* * *`  | user helping another user           | import data                                                                                                                  | get existing lists from friends/coworkers to work on                                                                                                   |
 | `* * *`  | user                                | export data                                                                                                                  | archive my data entries somewhere else                                                                                                                 |
 | `*`      | user                                | set a deadline to review a particular stall                                                                                  | remind myself to complete the task                                                                                                                     |
 | `*`      | experienced user                    | see statistics of total number of reviews or stalls created                                                                  | keep track of my performance and targets for the year                                                                                                  |
 | `*`      | user                                | include custom rating metrics on my review (star system? Health benefits?)                                                   | be more nuanced on my review                                                                                                                           |
 | `* * *`  | user                                | include stall opening and closing times                                                                                      | plan my schedule on when to visit the stall accordingly                                                                                                |
-| `*`      | impatient user                      | manage over 1000 stalls and reviews in reasonable time                                                                       | minimize my waiting time                                                                                                                               |
+| `*`      | impatient user                      | manage up to 1000 stalls and reviews in reasonable time                                                                      | minimize my waiting time                                                                                                                               |
 | `*`      | impatient user                      | open the app quickly                                                                                                         | not wait so long                                                                                                                                       |
 | `*`      | impatient user                      | get a visualisation for any loading times                                                                                    | know how long I need to wait                                                                                                                           |
 | `* *`    | user                                | search for past reviews by substring                                                                                         | see places I’ve been to before                                                                                                                         |
@@ -584,7 +622,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. User issues the correct command with the wrong syntax.
-
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect,
       and attaches the correct syntax format in the message.
 
@@ -825,9 +862,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Use case 14: Editing the data file**
+
+**MSS**
+
+1. User modifies the data file.
+2. User starts FoodWhere.
+3. FoodWhere displays the data from the data file.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User makes an error in the data file.
+    * 1a1. User starts FoodWhere.
+    * 1a2. FoodWhere starts without data.
+      
+      Use case ends.
+
 ****
 
-**Use case 14: Exiting the program**
+**Use case 15: Exiting the program**
 
 **Preconditions**
 - User is currently using FoodWhere.
@@ -841,9 +896,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ****
 
-### Non-Functional Requirements
+### Non-functional requirements
 
-#### Data Requirements
+#### Data requirements
 
 1.  FoodWhere should be released in a single JAR file which can run independently without installation.
 1.  FoodWhere's JAR file should be at most 100MB.
@@ -853,13 +908,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  FoodWhere's application data should be stored locally in human editable text files.
 1.  FoodWhere's application data should be stored in the directory containing the FoodWhere JAR file, or a subdirectory of the directory containing the FoodWhere JAR file.
 
-#### Environment Requirements
+#### Environment requirements
 
 1.  FoodWhere should work on any _mainstream OS_ with Java `11` installed.
 1.  FoodWhere should work on both 32-bit and 64-bit environments.
 1.  FoodWhere should assume one local user.
 
-#### Accessibility Requirements
+#### Accessibility requirements
 
 1.  FoodWhere's UI should not play audio.
 1.  FoodWhere should be usable without initializing a user account.
@@ -872,23 +927,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  All UI components in FoodWhere need to be recognisable by a user who has used GUIs before.
 1.  FoodWhere should not access other devices present on the system, such as a printer or a scanner.
 
-#### Business/Domain Rules
+#### Business/domain rules
 
-1.  FoodWhere stalls need to allow for the user to write multiple reviews on the stalls.
+1.  FoodWhere needs to support multiple reviews on the same stall.
+1.  FoodWhere needs to support stalls with generic names.
+1.  FoodWhere needs to support stalls of different names at the same address.
 
-#### Performance Requirements
+#### Performance requirements
 
-1.  FoodWhere should hold up to 1000 stalls and 1000 reviews while handling each command in under 1 second.
+1.  FoodWhere should hold up to 1000 stalls and 1000 reviews while handling each command in under 1 second, on reasonable device specifications.
 1.  FoodWhere's GUI should be functional within 5 seconds of starting, on reasonable device specifications.
 1.  FoodWhere should be closed within 5 seconds of termination, on reasonable device specifications.
-1.  FoodWhere's GUI should alert the user for any command that exceeds 5 seconds.
 
-#### Fault Tolerance Requirements
+#### Fault tolerance requirements
 
 1.  No ASCII text input for FoodWhere should terminate FoodWhere unexpectedly. An exception to this would be the `exit` command.
-1.  FoodWhere's application data should be saved after each successfully completed command.
+1.  FoodWhere's application data should be saved after each successfully completed command which modifies the data.
 
-#### Other Requirements
+#### Other requirements
 
 1.  Images used in FoodWhere's UI need to adhere to copyright.
 1.  FoodWhere's codebase should be following the Object-oriented paradigm primarily.
@@ -901,7 +957,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **User**: Refers to the food critic
 * **Command**: Input by users that is within the Command List
-* * **Review**: Refers to an entry for a particular food stall
+* **Review**: Refers to an entry for a particular food stall
 
 --------------------------------------------------------------------------------------------------------------------
 
