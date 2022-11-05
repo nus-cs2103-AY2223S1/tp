@@ -346,12 +346,13 @@ Alternatives:
 
 #### Current Implementation
 
+The find feature is now separated for the patients, appointments and bills sections.
+
 The `FindPatientCommand`, `FindAppointmentCommand` and `FindBillCommand` make use of predicates to filter the list of patients, appointments and bills respectively.
 Each command's parser parses the field prefixes and filter inputs keyed in by the user to create the command with Optional predicates for each field passed in as parameters.
 The command then creates a combined predicate and upon execution, updates the filtered list of patients, appointments or bills in the model by setting the new predicate.
 
 Given below is an example usage scenario for __FindPatientCommand__ and how the find mechanism behaves at each step.
-
 
 Step 1. The user launches the application. The `filteredPatients` list is initialized with an "always true" predicate for all the patient fields and all patients are shown to the user as an indexed list on the patient list panel.
 
@@ -363,7 +364,25 @@ The following sequence diagram shows how the `FindPatientCommand` works:
 
 ![FindPatientCommandSequenceDiagram](images/dg/FindPatientCommandSequenceDiagram.png)
 
-The find feature is now separated for the patients, appointments and bills sections.
+The FindAppointmentCommand works similarly to the FindPatientCommand as described in the example usage scenario, with differences in Step 2: <br>
+
+The user executes the `findappointment n/John` or `fa n/John` command to find all appointments with the name field containing "John".
+The `FindAppointmentCommand` calls `Model#updateFilteredAppointmentList(predicate)` to set the predicate of the `filteredAppointments` list (originally "always true" for all fields) to the new predicate created by the command.
+The application displays the list of all appointments for patients with names containing "John" on the appointment list panel.
+
+The following sequence diagram shows how the `FindAppointmentCommand` works:
+
+![FindAppointmentCommandSequenceDiagram](images/dg/FindAppointmentCommandSequenceDiagram.png)
+
+The FindBillCommand works similarly to the FindPatientCommand as described in the example usage scenario, with differences in Step 2: <br>
+
+The user executes the `findbill n/John` or `fb n/John` command to find all bills for appointments of patients with name field containing "John".
+The `FindBillCommand` calls `Model#updateFilteredBillList(predicate)` to set the predicate of the `filteredBills` list (originally "always true" for all fields) to the new predicate created by the command.
+The application displays the list of all bills for appointments of patients with names containing "John" on the bills list panel.
+
+The following sequence diagram shows how the `FindBillCommand` works:
+
+![FindBillCommandSequenceDiagram](images/dg/FindBillCommandSequenceDiagram.png)
 
 Design considerations:
 1. Usage of command word
@@ -464,7 +483,13 @@ The following sequence diagram shows how the `SetPaidCommand` works:
 
 ![SetPaidCommandSequenceDiagram](images/dg/SetPaidCommandSequenceDiagram.png)
 
-The `SetUnpaidCommand` works similarly to the `SetPaidCommand`, just that it marks the payment status of a bill as unpaid.
+The `SetUnpaidCommand` works similarly to the `SetPaidCommand` as in the above example usage scenario, with differences in Step 2: <br>
+
+The user executes the `setunpaid 1` command to mark the first bill on the bill panel as unpaid. The `SetUnpaidCommand` calls `Model#setBillAsUnpaid`, which marks the bill in the `HealthContact` object as unpaid. The application displays the bill panel with the first bill's payment status checkbox not ticked.
+
+The following sequence diagram shows how the `SetUnpaidCommand` works:
+
+![SetUnpaidCommandSequenceDiagram](images/dg/SetUnpaidCommandSequenceDiagram.png)
 
 Design considerations:
 1. Whether to combine `SetPaidCommand` and `SetUnpaidCommand` into one command or split them
