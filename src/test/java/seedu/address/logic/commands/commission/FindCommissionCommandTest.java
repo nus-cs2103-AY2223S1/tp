@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,5 +50,13 @@ public class FindCommissionCommandTest {
 
         // different  -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
+    }
+
+    /**
+     * Combines keywords, must-have tags and optional tags into a {@code CompositeCustomerPredicate}.
+     */
+    public static CompositeCommissionPredicate preparePredicate(String[] keywords, Tag[] mustTags, Tag[] optionalTags) {
+        return new CompositeCommissionPredicate(new HashSet<>(Arrays.asList(keywords)),
+                new HashSet<>(Arrays.asList(mustTags)), new HashSet<>(Arrays.asList(optionalTags)));
     }
 }

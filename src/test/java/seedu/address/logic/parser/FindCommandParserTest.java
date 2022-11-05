@@ -1,10 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.commands.FindCommandTest.preparePredicate;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.commission.CompositeCustomerPredicate;
 import seedu.address.model.tag.Tag;
@@ -14,17 +16,24 @@ public class FindCommandParserTest {
 
     @Test
     public void execute_throwsNoEmptyKeyword() {
-
+        String expectedMessage = Messages.MESSAGE_KEYWORD_EMPTY;
+        assertParseFailure(parser, "k/   ", expectedMessage);
+        assertParseFailure(parser, "k/animal k/   -all t/toy t/cheap -any t/gift", expectedMessage);
     }
 
     @Test
     public void execute_throwsInvalidTag() {
-
+        String expectedMessage = Tag.MESSAGE_CONSTRAINTS;
+        assertParseFailure(parser, "-all t/   ", expectedMessage);
+        assertParseFailure(parser, "-any t/   ", expectedMessage);
+        assertParseFailure(parser, "k/animal k/mammal -all t/toy t/   -any t/gift", expectedMessage);
     }
 
     @Test
     public void execute_throwsInvalidCommandFormat() {
-
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "\t", expectedMessage);
+        assertParseFailure(parser, "abdvwj sdwsgbklfm", expectedMessage);
     }
 
     @Test

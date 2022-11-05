@@ -13,6 +13,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommissionCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.StorageStub;
 import seedu.address.model.commission.Commission;
 
 public class AddCommissionCommandTest {
@@ -25,7 +26,7 @@ public class AddCommissionCommandTest {
     public void execute_modelNoSelectedCustomer_throwsCommandException() {
         AddCommissionCommand addCommissionCommand = new AddCommissionCommand(CAT_BUILDER);
         assertThrows(CommandException.class, Messages.MESSAGE_NO_ACTIVE_CUSTOMER, () ->
-                addCommissionCommand.execute(new ModelStubWithoutCustomer()));
+                addCommissionCommand.execute(new ModelStubWithoutCustomer(), new StorageStub()));
     }
 
     @Test
@@ -33,20 +34,22 @@ public class AddCommissionCommandTest {
         CustomerStubWithCommission selectedCustomer = new CustomerStubWithCommission();
         selectedCustomer.addCommission(DOG_BUILDER.build(selectedCustomer));
         ModelStubWithCustomer modelStub = new ModelStubWithCustomer(selectedCustomer);
+        StorageStub storageStub = new StorageStub();
 
         AddCommissionCommand addCommissionCommand = new AddCommissionCommand(DOG_BUILDER);
         assertThrows(CommandException.class, String.format(AddCommissionCommand.MESSAGE_DUPLICATE_COMMISSION,
-                selectedCustomer.getName()), () -> addCommissionCommand.execute(modelStub));
+                selectedCustomer.getName()), () -> addCommissionCommand.execute(modelStub, storageStub));
     }
 
     @Test
     public void execute_commissionAcceptedByModel_addSuccessful() throws Exception {
         CustomerStubWithCommission selectedCustomer = new CustomerStubWithCommission();
         ModelStubWithCustomer modelStub = new ModelStubWithCustomer(selectedCustomer);
+        StorageStub storageStub = new StorageStub();
 
         Commission expectedCommission = ELEPHANT_BUILDER.build(selectedCustomer);
 
-        CommandResult commandResult = new AddCommissionCommand(ELEPHANT_BUILDER).execute(modelStub);
+        CommandResult commandResult = new AddCommissionCommand(ELEPHANT_BUILDER).execute(modelStub, storageStub);
         assertEquals(String.format(AddCommissionCommand.MESSAGE_SUCCESS, expectedCommission),
                 commandResult.getFeedbackToUser());
         assertEquals(expectedCommission, selectedCustomer.getCommissionList().get(0));
