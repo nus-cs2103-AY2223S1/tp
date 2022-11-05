@@ -377,8 +377,10 @@ Examples:
 
 ##### 5.3.2.1 Jump Box
 Typing in the desired date in the provided text field followed by pressing the "ENTER" key will show the given calendar of the month and year.
-Format: DATE
-Examples: `1-Oct-2022`
+
+Format: DATE in `dd-MM-yyyy`
+
+Examples: `24-04-2023`
 
 ![jump box](images/JumpBox.png)
 
