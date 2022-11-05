@@ -25,7 +25,9 @@ Class Tag
 Class TaskName
 Class TaskDeadline
 Class TaskDescription
-
+Class GradeMap
+Class GradeKey
+Class Grade
 }
 
 Class HiddenOutside #FFFFFF
@@ -43,6 +45,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 TaskManager *--> "1" UniqueStudentList
 TaskManager *--> "1" UniqueTaskList
 TaskManager *--> "1" UniqueTutorialGroupList
+TaskManager *--> "1" GradeMap
 UniqueStudentList --> "~* all" Student
 UniqueTaskList --> "~* all" Task
 UniqueTutorialGroupList --> "~* all" TutorialGroup

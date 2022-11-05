@@ -24,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T13-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -38,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -71,7 +71,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](hhttps://github.com/AY2223S1-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -88,7 +88,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -121,20 +121,22 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="700" />
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+- stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+   - The same configuration applies to `Task` and `TutorialGroup` objects.
+- stores the `GradeMap` which maps a unique `GradeKey` (composed of a `Student` and `Task` object) to a `Grade` object
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -291,24 +293,105 @@ If a `Task` has no `Student`s,
     * In the current design, the user only needs to click once on Task 2 to collapse Task 1 and expand Task 2.
     * This alternative design requires the user to click on the **Close** button on Task 1's dialog box, and then click again on Task 2.
 
-### \[In progress\] Grade feature
+### Grade feature
 
 #### Description
 
-In TAA, the user can specify whether they have graded a `Student`s `Task` or not.
+In TAA, the user can specify whether they have graded a `Student`'s `Task` or not.
 
 #### Implementation
 
-Every `Grade` contains:
-* the `Student` it is associated with
-* the `Task` it is associated with, and
-* the `GradeState`, the state of the graded (graded or not).
+##### Model
+
+The model component contains a `GradeMap`, which maps a `GradeKey` object to a `Grade` enum.
+
+<img src="images/GradeMapClassDiagram.png" width="150" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The association between `GradeKey` and `Key` is a *qualified association*: any given `GradeKey` object will be associated with at least and at most one `Grade`, but due to a limitation of PlantUML, the correct UML notation for a qualified association has not been displayed.
+</div> 
+
+<img src="images/GradeKeyClassDiagram.png" width="150" />
+
+Since a `Grade` object is associated with a `Student` and `Task` pair, `GradeKey` consists of a `Student` field and a `Task` field.
+
+##### Commands
+
+###### Viewing the grade with `grade view`
+
+The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("grade view 1 2")` API call, where `1` is the student index and `2` is the task index.
+
+<img src="images/GradeViewSequenceDiagram.png" width="650" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GradeViewCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
+the end of diagram.</div>
+
+###### Editing the grade with `grade edit`
+
+The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("grade view 1 2 gr/T")` API call, where `1` is the student index and `2` is the task index.
+
+<img src="images/GradeEditSequenceDiagram.png" width="650" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GradeEditCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
+the end of diagram.</div>
 
 #### Design Considerations
 
-* In the interest of future extensibility, the `Grade` was made modular through the `GradeState` class.
-    * While for now only two grade states are supported ("graded" or "not graded"), in the future, more states can easily be added.
-    * This wouldn't have been possible if `GradeState` was simply a `boolean` value.
+**Aspect: Representation of a grade**
+
+- **Alternative 1 (current choice):** `Grade` is an enum.
+
+  - Pros: 
+      - Easier and faster to implement than making `Grade` a full-fledged class.
+      - `Grade`s are a group of constants, so making `Grade` an enum is natural.
+      - While for now only two grades are supported ("graded" and "ungraded"), in the future, more grades can easily be added in the enum.
+  - Cons: 
+      - In the future, if operations are to be done on `Grade`, then it is better to switch to implement as a class rather than an enum.
+     
+
+- **Alternative 2:** `Grade` is a boolean.
+
+  - Pros: 
+      - Easier and faster to implement than making `Grade` an enum.
+      - Uses less memory since a boolean is a primitive type which can be either `true` or `false`.
+  - Cons: 
+      - More grades cannot be added easily in the future. A switch to an enum or a class must be made in that case.
+
+- **Alternative 3:** `Grade` is a class
+
+   - Pros:
+      - Extremely customisable. Any `String` can be encapsulated inside a `Grade` class.
+      - Instance methods can prove to be useful and make codebase more cohesive by grouping `Grade` related methods into the `Grade` class.
+   - Cons:
+      - Harder to test 
+      - Most memory-intensive
+      - Slowest to implement
+
+In the interest of future extensibility and fast implementation, `Grade` was made an enum.
+
+**Aspect: Choice of collection for `GradeMap`**
+
+- **Alternative 1 (current choice):** Use a `HashMap`.
+
+  - Pros: O(1) lookups in `HashMap`
+  - Cons: 
+      - Provides only methods for lookup and removal of entries.
+      - A `HashMap` does not maintain order of the entries.
+
+- **Alternative 2:** Use a `TreeMap`.
+  
+  - Pros: `TreeMap` provides methods like `lowerKey()` and `higherKey()` that can be used to answer queries that are more complicated than lookups. 
+  - Cons: Slower, `O(log n)` lookups
+
+- **Alternative 3:** Use an `ArrayList`.
+
+   - Pros: 
+      - Can support a wider variety of queries than a `TreeMap`
+      - Has a corresponding `FilteredList` that can be used to highlight results of a query in a way that is faster to implement.
+   - Cons: 
+      - Very slow, `O(n)` lookup. This can be especially problematic when there are a large number of `Student`s and `Task`s.
+      - Cumbersome implementation.
+
+The `HashMap` Java Collection was chosen because of faster lookups, since in the current iteration of TAA, the `GradeMap` is only used to add and retrieve grades. However, in the future, `GradeMap` can be changed easily to use a `TreeMap` instead. A `TreeMap` implementation would prove useful if more than 2 grades are added and a filter feature is desired, for example, get a list of `Student`s who scored more than a `B` in a particular `Task`. `ArrayList` was rejected because it is cumbersome to implement and is not as performant.
 
 ### \[Proposed\] Undo/redo feature
 

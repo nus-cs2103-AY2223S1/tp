@@ -44,7 +44,7 @@ import seedu.address.logic.parser.tutorialgroup.TutorialGroupDeleteCommandParser
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TaaParser {
 
     /**
      * Used for initial separation of command word and args.
