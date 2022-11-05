@@ -54,7 +54,7 @@ public class EditStaffCommand extends Command {
             + "STAFF_INDEX (must be a number from 1 to 2147483647) "
             + PREFIX_PROJECT_NAME + "PROJECT_NAME "
             + "[" + PREFIX_STAFF_NAME + "STAFF_NAME] "
-            + "[" + PREFIX_STAFF_CONTACT + "STAFF_CONTACT] "
+            + "[" + PREFIX_STAFF_CONTACT + "STAFF_PHONE] "
             + "[" + PREFIX_STAFF_DEPARTMENT + "STAFF_DEPARTMENT] "
             + "[" + PREFIX_STAFF_LEAVE + "STAFF_LEAVE] "
             + "[" + PREFIX_STAFF_TITLE + "STAFF_TITLE] "
