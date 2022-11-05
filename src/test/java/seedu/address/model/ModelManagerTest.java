@@ -5,8 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalLinks.LINK_GOOGLE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalTeams.FIRST;
+import static seedu.address.testutil.TypicalTeams.SECOND;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,8 +17,12 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.team.Team;
+import seedu.address.model.team.UniqueTeamList;
 import seedu.address.testutil.TruthTableBuilder;
 
 public class ModelManagerTest {
@@ -89,8 +96,62 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void teamList_addTeam_returnTrue() {
+        modelManager.addTeam(FIRST);
+        UniqueTeamList expectedTeamList = new UniqueTeamList();
+        expectedTeamList.add(Team.createDefaultTeam());
+        expectedTeamList.add(FIRST);
+        assertEquals(expectedTeamList.asUnmodifiableObservableList(), modelManager.getTeamList());
+    }
+
+    @Test
+    public void teamList_addTeamDeleteDefaultTeam_returnTrue() {
+        modelManager.addTeam(FIRST);
+        modelManager.deleteTeam(Team.createDefaultTeam());
+        UniqueTeamList expectedTeamList = new UniqueTeamList();
+        expectedTeamList.add(FIRST);
+        assertEquals(expectedTeamList.asUnmodifiableObservableList(), modelManager.getTeamList());
+    }
+
+    @Test
+    public void setTeam_teamSetToDefault_returnTrue() {
+        modelManager.addTeam(FIRST);
+        modelManager.setTeam(FIRST);
+        assertEquals(FIRST, modelManager.getTeam());
+    }
+
+    @Test
+    public void setTeams_defaultTruthTable_returnTrue() {
+        UniqueTeamList expectedTeamList = new UniqueTeamList();
+        expectedTeamList.add(FIRST);
+        expectedTeamList.add(SECOND);
+        modelManager.setTeams(expectedTeamList.asUnmodifiableObservableList());
+        assertEquals(expectedTeamList.asUnmodifiableObservableList(), modelManager.getTeamList());
+    }
+
+    @Test
+    public void hasLink_nullLink_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasLink(null));
+    }
+
+    @Test
+    public void hasLink_linkNotInTruthTable_returnsFalse() {
+        assertFalse(modelManager.hasLink(LINK_GOOGLE));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredMemberList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredMemberList().remove(0));
+    }
+
+    @Test
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
     }
 
     @Test

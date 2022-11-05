@@ -6,8 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalLinks.LINK_GOOGLE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
+import static seedu.address.testutil.TypicalTeams.FIRST;
+import static seedu.address.testutil.TypicalTeams.SECOND;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,6 +24,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.UniqueTeamList;
 import seedu.address.testutil.PersonBuilder;
 
 public class TruthTableTest {
@@ -78,11 +82,62 @@ public class TruthTableTest {
                 .build();
         assertTrue(truthTable.hasPerson(editedAlice));
     }
+    @Test
+    public void teamList_addTeam_returnTrue() {
+        truthTable.addTeam(FIRST);
+        UniqueTeamList expectedTeamList = new UniqueTeamList();
+        expectedTeamList.add(Team.createDefaultTeam());
+        expectedTeamList.add(FIRST);
+        assertEquals(expectedTeamList.asUnmodifiableObservableList(), truthTable.getTeamList());
+    }
+
+    @Test
+    public void teamList_addTeamDeleteDefaultTeam_returnTrue() {
+        truthTable.addTeam(FIRST);
+        truthTable.deleteTeam(Team.createDefaultTeam());
+        UniqueTeamList expectedTeamList = new UniqueTeamList();
+        expectedTeamList.add(FIRST);
+        assertEquals(expectedTeamList.asUnmodifiableObservableList(), truthTable.getTeamList());
+    }
+
+    @Test
+    public void setTeam_teamSetToDefault_returnTrue() {
+        truthTable.addTeam(FIRST);
+        truthTable.setTeam(FIRST);
+        assertEquals(FIRST, truthTable.getTeam());
+    }
+
+    @Test
+    public void setTeams_defaultTruthTable_returnTrue() {
+        UniqueTeamList expectedTeamList = new UniqueTeamList();
+        expectedTeamList.add(FIRST);
+        expectedTeamList.add(SECOND);
+        truthTable.setTeams(expectedTeamList.asUnmodifiableObservableList());
+        assertEquals(expectedTeamList.asUnmodifiableObservableList(), truthTable.getTeamList());
+    }
+
+    @Test
+    public void hasLink_nullLink_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> truthTable.hasLink(null));
+    }
+
+    @Test
+    public void hasLink_linkNotInTruthTable_returnsFalse() {
+        assertFalse(truthTable.hasLink(LINK_GOOGLE));
+    }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> truthTable.getPersonList().remove(0));
     }
+
+
+    @Test
+    public void getTeamList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> truthTable.getTeamList().remove(0));
+    }
+
+
 
     /**
      * A stub ReadOnlyTruthTable whose persons list can violate interface constraints.
