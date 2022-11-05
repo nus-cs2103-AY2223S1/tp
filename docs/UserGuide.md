@@ -22,13 +22,11 @@ This user guide provides you with the information necessary to start using NUSch
 
 In this user guide, you may encounter the following icons:
 
-<div markdown="block" class="meaning-icons-container">
-
-* :information_source: **Additional Information:** Provides general information that you might find helpful.
-* :bulb: **Tips:** Provides good to know information on how to more effectively utilise NUScheduler.
-* :exclamation: **Caution:** Provides important information to prevent undesired behaviour. 
-
-</div>
+|         Icon         | Definition                                                                       |
+|:--------------------:|----------------------------------------------------------------------------------|
+| :information_source: | Provides general information that you might find helpful                         |
+|        :bulb:        | Provides good to know information on how to more effectively utilise NUScheduler |
+|   :exclamation:      | Provides important information to prevent undesired behaviour                    |
 
 If you are a new user, check out the [Quick Start](#quick-start) to get started with NUScheduler.
 
