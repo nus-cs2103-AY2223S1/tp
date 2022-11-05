@@ -21,7 +21,7 @@ public class ExtractEmailsCommand extends Command {
     public static final String COMMAND_WORD = "extract emails";
 
     public static final String MESSAGE_SUCCESS =
-            "Copied link to clipboard! Open it by pasting link in the modquik bar of a browser.";
+            "Copied link to clipboard! Open it by pasting link in the address bar of a browser.";
 
     private static String generateUrl(Collection<Student> students) {
         return students.stream()
