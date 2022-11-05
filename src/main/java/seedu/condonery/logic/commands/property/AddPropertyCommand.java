@@ -10,7 +10,7 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.List;
 
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
@@ -31,7 +31,9 @@ public class AddPropertyCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_PROPERTY_TYPE + "PROPERTY_TYPE "
+            + PREFIX_PRICE + "PRICE "
             + "[" + PREFIX_IMAGE_UPLOAD + "] "
+            + "[" + PREFIX_PROPERTY_STATUS + "PROPERTY_STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "PINNACLE@DUXTON "
@@ -68,31 +70,6 @@ public class AddPropertyCommand extends Command {
         this.hasImage = hasImage;
     }
 
-    /**
-     * Gets an updated sucess message based on the presence of missing clients or duplicate clients.
-     */
-    private String getUpdatedSuccessMessage(ArrayList<String> missingClients, ArrayList<String> duplicateClients) {
-        String newSuccessMessage = MESSAGE_SUCCESS + ". ";
-
-        if (missingClients.isEmpty() && duplicateClients.isEmpty()) {
-            newSuccessMessage = newSuccessMessage + "No rejected client names.";
-        } else {
-            if (!missingClients.isEmpty()) {
-                newSuccessMessage = newSuccessMessage + "Missing clients: " + missingClients
-                        .stream()
-                        .collect(Collectors.joining(" "))
-                        + ". ";
-            }
-            if (!duplicateClients.isEmpty()) {
-                newSuccessMessage = newSuccessMessage + "Duplicate clients: " + duplicateClients
-                        .stream()
-                        .collect(Collectors.joining(" "))
-                        + ". ";
-            }
-        }
-        return newSuccessMessage;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -100,24 +77,45 @@ public class AddPropertyCommand extends Command {
         if (model.hasProperty(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
+
         toAdd.setImageDirectoryPath(model.getUserPrefs().getUserImageDirectoryPath());
 
         ParsePropertyInterestedClients parser = new ParsePropertyInterestedClients(
                 toAdd, model);
 
-        Property newPropertyToAdd = parser.getNewProperty();
+        // Throws CommandException if the user inputs clients that are missing
+        List<String> missingClients = parser.getMissingClients();
+        if (missingClients.size() > 0) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("Could not find the interested clients: ");
+            missingClients.forEach(client -> builder.append(client + ", "));
+            String result = builder.toString();
+            throw new CommandException(result.substring(0, result.length() - 2));
+        }
 
-        String newMessageSuccess = getUpdatedSuccessMessage(parser.getMissingClients(), parser.getDuplicateClients());
+        // Throws CommandException if the user inputs clients that have multiple results
+        List<String> duplicateClients = parser.getDuplicateClients();
+        if (duplicateClients.size() > 0) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("More than 1 client matches the search result for: ");
+            duplicateClients.forEach(client -> builder.append(client + ", "));
+            String result = builder.toString();
+            String errorMessage = result.substring(0, result.length() - 2)
+                + ". You might want to make your search more specific, or use the exact name of the client";
+            throw new CommandException(errorMessage);
+        }
+
+        Property newPropertyToAdd = parser.getNewProperty();
 
         model.addProperty(newPropertyToAdd);
         if (this.hasImage) {
             return new CommandResult(
-                    String.format(newMessageSuccess, newPropertyToAdd),
+                    String.format(MESSAGE_SUCCESS, newPropertyToAdd),
                     false,
                     false,
                     "property-" + newPropertyToAdd.getCamelCaseName());
         }
-        return new CommandResult(String.format(newMessageSuccess, newPropertyToAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newPropertyToAdd));
     }
 
     @Override
