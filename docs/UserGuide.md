@@ -51,11 +51,12 @@ If this is your first time using our User Guide, you might want to read this sec
 
 ## About JeeqTracker
 
-This product is for home-based business owners who need help in keeping track of clients’ 
-contacts, transaction records, and remarks about the client. JeeqTracker is an extremely simple and easy-to-use 
-application that helps you to keep track of clients’ contact details, transaction records, and remarks 
-about the client. With JeeqTracker, you can analyze and understand the demands of each client and 
-provide a more personalized service that would meet the needs of your client, increasing customer engagement.
+JeeqTracker is an extremely simple and easy-to-use application that will help you to keep track of clients’ 
+contact details, transaction records, and remarks about the client. 
+
+Due to the nature of a home-based business, you will probably be thinking of how you can keep your clients engaged
+and increase customers satisfaction. With JeeqTracker, you can analyze and understand the demands of each client and provide a more personalized 
+service that would meet the needs of your client, increasing customer engagement.
 
 [Back to Table of Contents](#table-of-contents)
 
