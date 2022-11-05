@@ -30,7 +30,7 @@ public class REditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Review firstReview = model.getFilteredReviewList().get(0);
 
-        // set name and address og new review to match
+        // set name and address of new review to match
         Review editedReview = new ReviewBuilder()
                 .withName(firstReview.getName().toString())
                 .withAddress(firstReview.getAddress().toString()).build();
