@@ -4,7 +4,7 @@
 actor  user     as user
 
 box Ui UI_COLOR_T1
-participant ":CommandBox"  as commandBox UI_COLOR
+participant ":MainWindow"  as mainWindow UI_COLOR
 participant ":ResultDisplay" as resultDisplay UI_COLOR
 end box
 
@@ -21,12 +21,11 @@ participant ":modelManager" as modelManager MODEL_COLOR
 participant ":hrPro" as hrPro MODEL_COLOR
 end box
 
-user -> commandBox : input sorttask
-activate commandBox
+user -> mainWindow : input sorttask
+activate mainWindow
 
-commandBox -> logicManager : execute "sorttask"
+mainWindow -> logicManager : execute "sorttask"
 activate logicManager
-deactivate commandBox
 
 logicManager -> hrProParser : parseCommand("sorttask")
 activate hrProParser
@@ -43,7 +42,6 @@ deactivate hrProParser
 
 logicManager -> sortTaskCommand : execute()
 activate sortTaskCommand
-deactivate logicManager
 
 sortTaskCommand -> modelManager : sortTasks()
 activate modelManager
@@ -66,9 +64,14 @@ activate commandResult
 commandResult --> sortTaskCommand
 deactivate commandResult
 
-sortTaskCommand --> resultDisplay
-activate resultDisplay
+sortTaskCommand --> logicManager
 
-resultDisplay --> user : Tasks sorted by deadline
+logicManager --> mainWindow
+
+mainWindow -> resultDisplay : setFeedbackToUser(Tasks are now sorted by deadline!)
+
+resultDisplay --> mainWindow
+
+mainWindow --> user : Tasks are now sorted by deadline!
 
 @enduml
