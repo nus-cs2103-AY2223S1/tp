@@ -488,8 +488,8 @@ You can add a schedule by using this command.
 
 :exclamation: **Caution:**
 
-- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.
-- If the schedule to be added conflicts with any existing schedule, ProfNUS will not perform any operation.
+- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid and report an error.
+- If the schedule to be added conflicts with any existing schedule, ProfNUS will report an error and **will not** perform any operation.
 
 </div>
 
@@ -528,7 +528,7 @@ Edits a schedule in ProfNUS.
 
 :exclamation: **Caution:**
 
-- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, **no** schedule will be edited by ProfNUS.
+- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, there will be an error message and **no** schedule will be edited by ProfNUS.
 
 </div>
 
@@ -565,7 +565,7 @@ Deletes a schedule from ProfNUS.
 
 :exclamation: **Caution:**
 
-- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, **no** schedule will be deleted by ProfNUS.
+- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, there will be an error message and **no** schedule will be deleted by ProfNUS.
 
 </div>
 
@@ -600,7 +600,7 @@ This command helps you clear all schedules/all schedules of selected modules.
 
 :exclamation: **Caution:**
 
-- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will **not** clear any schedule you have
+- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and  **will not** clear any schedule you have.
 
 </div>
 
@@ -621,13 +621,22 @@ You can use this command to view the list of selected/all schedules.
 
 </div>
 
+<div markdown="span" class="alert alert-warning">
+
+
+:exclamation: **Caution:**
+
+- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and **will not** show any schedule.
+
+</div>
+
 **Example:** `view c/CS2030S w/Monday`
 
 Now, let's view your schedules of CS2030S and schedules on Monday.
 
 **Step 1:** Type the command `view c/CS2030S w/Monday` in the command box.
 
-![view_step1](images/userguide/view_step1.png)
+![ ](images/userguide/view_step1.png)
 
 **Step 2:** Press enter, you will see all schedules related to CS2030S and Monday.
 
