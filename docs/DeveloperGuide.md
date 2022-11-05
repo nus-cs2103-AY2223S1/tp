@@ -252,7 +252,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Edit a Friend
 
-The "edit" feature allows users to edit details of their friends.
+The `edit` feature allows users to edit details of their friends.
 
 #### Implementation
 
@@ -266,7 +266,7 @@ in the addressBook.
 
 The following class diagram shows the organization of the classes for "edit".
 
-<img src="images/editCommand.png" width="550" />
+<img src="images/EditCommand.png" width="250" />
 
 ### Suggest a Friend
 
@@ -374,7 +374,7 @@ easy differentiation of information.
 
 The following class diagram shows the relationship between the classes in the UI system:
 
-<img src="images/PersonTagClassDiagram.png" width="550" />
+<img src="images/TagClassDiagram.png" width="250" />
 
 #### Design Considerations:
 

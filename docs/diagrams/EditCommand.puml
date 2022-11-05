@@ -1,6 +1,14 @@
 @startuml
-abstract class Command
-abstract class Model
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+class "{abstract}\nCommand" as Command
+class "<<interface>>\nModel" as Model
+class EditCommand
+class ModelManager
+class EditPersonDescriptor
 
 Command <|- EditCommand
 Model <|- ModelManager
