@@ -170,7 +170,7 @@ An `Exercise` contains the following attributes:
 ### **Exercise Hashmap**
 
 #### **Implementation**
-The Exercise Hashmap stores data in the form of a hashmap, where the key of the hashmap is the `Name` of an `Exercise` and its associated value is an `Exercise` ArrayList, containing a list of exercises(with the same name).
+The Exercise Hashmap stores data in the form of a hashmap, where the key of the hashmap is the `Name` of an `Exercise` and its associated value is an `Exercise` ArrayList, containing a list of exercises (with the same name).
 
 #### **Design Considerations**
 
