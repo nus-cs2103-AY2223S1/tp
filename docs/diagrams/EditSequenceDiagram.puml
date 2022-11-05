@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":BobaBotParser" as BobaBotParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "command:EditCommand" as EditCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,15 +16,15 @@ end box
 [-> LogicManager : execute("edit e/test@gmail.com n/Bob")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("edit e/test@gmail.com n/Bob")
-activate AddressBookParser
+LogicManager -> BobaBotParser : parseCommand("edit e/test@gmail.com n/Bob")
+activate BobaBotParser
 
 create EditCommandParser
-AddressBookParser -> EditCommandParser
+BobaBotParser -> EditCommandParser
 activate EditCommandParser
 return
 
-AddressBookParser -> EditCommandParser : parse(" e/test@gmail.com n/Bob")
+BobaBotParser -> EditCommandParser : parse(" e/test@gmail.com n/Bob")
 activate EditCommandParser
 
 create EditCommand
@@ -35,14 +35,14 @@ return command
 
 deactivate EditCommand
 
-EditCommandParser --> AddressBookParser : command
+EditCommandParser --> BobaBotParser : command
 deactivate EditCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-EditCommandParser -[hidden]-> AddressBookParser
+EditCommandParser -[hidden]-> BobaBotParser
 destroy EditCommandParser
 
-AddressBookParser --> LogicManager : command
-deactivate AddressBookParser
+BobaBotParser --> LogicManager : command
+deactivate BobaBotParser
 
 LogicManager -> EditCommand : execute()
 activate EditCommand

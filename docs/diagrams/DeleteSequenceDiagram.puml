@@ -12,7 +12,7 @@ skinparam sequence {
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":BobaBotParser" as BobaBotParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "command:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -25,17 +25,17 @@ end box
 [-> LogicManager : execute("delete p/12345678")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete p/12345678")
-activate AddressBookParser
+LogicManager -> BobaBotParser : parseCommand("delete p/12345678")
+activate BobaBotParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+BobaBotParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> BobaBotParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("p/12345678")
+BobaBotParser -> DeleteCommandParser : parse("p/12345678")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -45,14 +45,14 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : command
 deactivate DeleteCommand
 
-DeleteCommandParser --> AddressBookParser : command
+DeleteCommandParser --> BobaBotParser : command
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
+DeleteCommandParser -[hidden]-> BobaBotParser
 destroy DeleteCommandParser
 
-AddressBookParser --> LogicManager : command
-deactivate AddressBookParser
+BobaBotParser --> LogicManager : command
+deactivate BobaBotParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand

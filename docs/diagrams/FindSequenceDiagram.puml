@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":BobaBotParser" as BobaBotParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
 participant "command:FindCommand" as FindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,15 +16,15 @@ end box
 [-> LogicManager : execute("find Aschcroft")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("find Aschcroft")
-activate AddressBookParser
+LogicManager -> BobaBotParser : parseCommand("find Aschcroft")
+activate BobaBotParser
 
 create FindCommandParser
-AddressBookParser -> FindCommandParser
+BobaBotParser -> FindCommandParser
 activate FindCommandParser
 return
 
-AddressBookParser -> FindCommandParser : parse("Aschcroft")
+BobaBotParser -> FindCommandParser : parse("Aschcroft")
 activate FindCommandParser
 
 create FindCommand
@@ -35,14 +35,14 @@ return command
 
 deactivate FindCommand
 
-FindCommandParser --> AddressBookParser : command
+FindCommandParser --> BobaBotParser : command
 deactivate FindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindCommandParser -[hidden]-> AddressBookParser
+FindCommandParser -[hidden]-> BobaBotParser
 destroy FindCommandParser
 
-AddressBookParser --> LogicManager : command
-deactivate AddressBookParser
+BobaBotParser --> LogicManager : command
+deactivate BobaBotParser
 
 LogicManager -> FindCommand : execute()
 activate FindCommand
