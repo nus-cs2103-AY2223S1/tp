@@ -99,18 +99,11 @@ Notes on symbols in first column:
 
 `+`  Can have multiple
 
-#### Examples:
+#### Example:
 
 * `ap n/Bernice Yu a/#11-330, blk 775, Bishan e/b.yu@nus.edu.sg p/80880011 t/NUS t/staff` adds such patient.
 
 <img src="images/ug/addcommand/ap1.png" width="800px" height ="500px">
-
-
-* `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable
-to add such a patient because Bernice Yu already exists in HealthContact.
-
-<img src="images/ug/addcommand/ap2.png" width="800px" height ="500px">
-
 
 ### 1.1.2 Adding an appointment of a patient `addappointment`, `aa`
 
@@ -163,12 +156,6 @@ Notes on symbols in first column:
 
 <img src="images/ug/addcommand/aa1.png" width="800px" height ="500px">
 
-* Executing `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` again is unable
-to add such an appointment because the appointment with the combination of the four inputs
-parameters already exists in HealthContact.
-
-<img src="images/ug/addcommand/aa2.png" width="800px" height ="500px">
-
 * `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for Bernice Yu.
 
 <img src="images/ug/addcommand/aa3.png" width="800px" height ="500px">
@@ -207,16 +194,11 @@ Notes on symbols in first column:
 
 `*`  Must have (If they are duplicate prefixes, only the last one will be taken into account)
 
-#### Examples:
+#### Example:
 
-* `ab 1 a/1200.00 d/2021-11-11` adds such bill to the first appointment in the displayed list.
+* `ab 1 a/1200.00 d/2021-11-11` adds a bill to the first appointment in the displayed list.
 
 <img src="images/ug/addcommand/ab1.png" width="800px" height ="500px">
-
-* Executing `ab 1 a/1500.00 d/2021-11-13` is unable to add such bill because the first appointment
-in the displayed list already has an attached bill.
-
-<img src="images/ug/addcommand/ab2.png" width="800px" height ="500px">
 
 ## 1.2 Edit
 
@@ -237,11 +219,13 @@ Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [
   specifying any tags after it.
 
 Examples:
-* `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be
+* `editpatient 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be
    `91234567` and `johndoe@example.com` respectively.
+
 <img src = "images/ug/editcommand/editpatient.png" width="800px" height ="400px">
 
-* `editpatient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+* `editpatient 2 n/Betsy Crower t/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+
 <img src = "images/ug/editcommand/editpatient2.png" width="800px" height ="400px">
 
 ### 1.2.2 Editing an appointment of a patient `editappointment`, `ea`
@@ -258,9 +242,10 @@ Format: `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:m
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-Examples:
-* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
+Example:
+* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` edits the name, medical test, slot,
    and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
+
 <img src = "images/ug/editcommand/editappointment.png" width="800px" height ="400px">
 
 ### 1.2.3 Editing a bill of an appointment `editbill`, `eb`
@@ -276,10 +261,12 @@ Format: `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill d
 * Existing values will be updated to the input values.
 
 Examples:
-* `editbill 1 a/100` Edits the amount of the 1st bill to be `100`.
+* `editbill 1 a/100` edits the amount of the 1st bill to be `100`.
+
 <img src="images/ug/editcommand/editbill.png" width="800px" height ="400px">
 
-* `editbill 1 d/2020-10-10` Edits the bill date of the 1st bill to be `2020-10-10`.
+
+* `editbill 1 d/2020-10-10` edits the bill date of the 1st bill to be `2020-10-10`.
 <img src="images/ug/editcommand/editbill2.png" width="800px" height ="400px">
 
 ## 1.3 Find
@@ -357,8 +344,8 @@ Format:
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
-Examples:
-`findbill n/Ber p/unpaid` returns Bernice's unpaid bill
+Example:
+`findbill n/Ber p/unpaid` returns `Bernice Yu`'s unpaid bill.
 
 <img src="images/ug/findcommand/fb.png" width="800px" height ="400px">
 
@@ -462,7 +449,7 @@ Notes on symbols in first column:
 
 `**` Must be directly after command word
 
-#### Examples:
+#### Example:
 
 * `slp 1` shows the appointments and bills for the first patient in the patient list.
 
@@ -491,7 +478,7 @@ Notes on symbols in first column:
 
 `**` Must be directly after command word
 
-#### Examples:
+#### Example:
 
 * `sla 1` shows the bill for the first appointment in the appointment list.
 
@@ -514,9 +501,11 @@ Example:
 * ```setpaid 1``` sets the first bill in the displayed bill list as paid, in this case, `Bernice Yu`'s bill.
 
 Before:
+
 <img src="images/ug/setpaidunpaidcommand/setpaidcommand.png" width="800px" height ="500px">
 
 After:
+
 <img src="images/ug/setpaidunpaidcommand/setpaidcommandafter.png" width="800px" height ="500px">
 
 ### 1.6.2 Setting Bill As Unpaid `setunpaid`, `sup`
@@ -534,9 +523,11 @@ Example:
 * ```setunpaid 1``` sets the first bill in the displayed bill list as unpaid, in this case, `Bernice Yu`'s bill.
 
 Before:
+
 <img src="images/ug/setpaidunpaidcommand/setunpaidcommand.png" width="800px" height ="500px">
 
 After:
+
 <img src="images/ug/setpaidunpaidcommand/setunpaidcommandafter.png" width="800px" height ="500px">
 
 ## 1.7 List `list`, `ls`
@@ -547,9 +538,9 @@ Removes all conditions previously applied to the list and shows all patients, ap
 
 `list` or `ls`
 
-### Example
+### Example:
 
-* Executing `list`, the program shows all patients, appointments and bills.
+* `list` shows all patients, appointments and bills.
 
 <img src="images/ug/othercommands/ls1.png" width="800px" height ="500px">
 
@@ -589,9 +580,10 @@ Format:
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
 
-Examples:
-* `deleteappointment 2` deletes Charlotte Oliveiro's appointment with Dr. Prabhu on 2022-10-21 08:30 for
+Example:
+* `deleteappointment 2` deletes `Charlotte Oliveiro`'s appointment with Dr. Prabhu on 2022-10-21 08:30 for
   knee exam.
+
   <img src="images/ug/deletecommand/da.png">
 
 ### 1.8.3 Deleting a bill of an appointment `deletebill`, `db`
@@ -608,8 +600,9 @@ Format:
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
 
-Examples:
-`deletebill 1` deletes Bernice's bill for her X-Ray appointment
+Example:
+`deletebill 1` deletes `Bernice Yu`'s bill for her X-Ray appointment.
+
 <img src="images/ug/deletecommand/db.png" width="800px" height ="400px">
 
 ## 1.9 Undo `undo`
@@ -624,7 +617,7 @@ Format:
 * If there are no commands to undo, an error message will be shown.
 * Only commands that change the state of HealthContact can be undone. (Commands such as list, find, select cannot be undone)
 
-Examples:
+Example:
 * ```undo``` undoes the most recent command.
 
 <img src="images/ug/undoredocommand/undo1.PNG" width="800px" height ="400px">
@@ -640,7 +633,7 @@ Format:
 * The command can be used multiple times to redo multiple commands.
 * If there are no commands to redo, an error message will be shown.
 
-Examples:
+Example:
 * ```redo``` redoes the most recent undo command.
 
 <img src="images/ug/undoredocommand/redo1.PNG" width="800px" height ="400px">
@@ -660,7 +653,7 @@ Deletes all patients, appointments and bills from HealthContact.
 
 ### Example
 
-* Executing `clear`, all data is deleted.
+* `clear` deletes all the data in HealthContact.
 
 <img src="images/ug/othercommands/clear.png" width="800px" height ="500px">
 
@@ -686,7 +679,7 @@ Opens the Help Window.
 
 ### Example
 
-* Executing `help`, the help window pops.
+* `help` opens the help window.
 
 <img src="images/ug/othercommands/help.png" width="800px" height ="180px">
 
