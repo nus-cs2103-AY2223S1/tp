@@ -25,15 +25,25 @@ public class TypicalActivities {
             .withDescription("First person shooter by EA")
             .withTags("video_game").withReview("decent game").build();
     public static final Activity ACTIVITY_C = new ActivityBuilder().withName("Charlotte")
-            .withDescription("Comedy drama anime").withReview("decent anime with weird ending").build();
+            .withDescription("Comedy drama anime")
+            .withDate("2022-03-01")
+            .withReview("decent anime with weird ending").build();
     public static final Activity ACTIVITY_D = new ActivityBuilder().withName("Despicable Me 3")
-        .withDescription("Comedy film directed by Pierre Coffin and Kyle Balda").withTags("movie").build();
+        .withDescription("Comedy film directed by Pierre Coffin and Kyle Balda")
+            .withTags("movie")
+            .withDate("2022-10-10").build();
     public static final Activity ACTIVITY_E = new ActivityBuilder().withName("Exercise")
-            .withDescription("100 push-ups, 100 sit-ups, 100 squats and 10km run").build();
+            .withDescription("100 push-ups, 100 sit-ups, 100 squats and 10km run")
+            .withDate("2021-09-03")
+            .build();
     public static final Activity ACTIVITY_F = new ActivityBuilder().withName("Fried Chicken")
             .withDescription("At some place").build();
-    public static final Activity ACTIVITY_G = new ActivityBuilder().withName("Golf").withRating(2)
-            .withDescription("At Marina Bay Golf Course").withStatus("COMPLETED").build();
+    public static final Activity ACTIVITY_G = new ActivityBuilder().withName("Golf")
+            .withDescription("At Marina Bay Golf Course")
+            .withDate("2021-09-29")
+            .withStatus("COMPLETED")
+            .withRating(2)
+            .build();
 
     // Manually added
     public static final Activity ACTIVITY_H = new ActivityBuilder().withName("House of Cards")

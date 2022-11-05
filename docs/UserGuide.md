@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+![HobbyList](images/hobbylist_logo.jpg)
+
 <div class="toc-no-bullet-points">
 <a name="toc"></a>
   * Table of Contents
