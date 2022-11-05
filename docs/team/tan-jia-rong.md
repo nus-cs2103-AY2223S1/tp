@@ -29,7 +29,7 @@ Given below are my contributions to the project.
     and that `isHome` status is set to the correct state as an incorrect state would jeopardize a user's experience.
 
 ##### Search ([#81](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/81))
-**Enhancements to existing features:** `find` and `list` commands
+**Enhancements to existing features:** `find` and `list` commands <br>
 Much thought have to be put into designing the implementation of search functionalities
 to complement well with the navigation functionalities.
   * Implemented `find-module`, `find-person`, `list-module` and `list-person` commands.
