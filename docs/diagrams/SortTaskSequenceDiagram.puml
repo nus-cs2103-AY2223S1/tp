@@ -19,6 +19,7 @@ end box
 box Model MODEL_COLOR_T1
 participant ":modelManager" as modelManager MODEL_COLOR
 participant ":hrPro" as hrPro MODEL_COLOR
+participant ":uniqueTaskList" as uniqueTaskList MODEL_COLOR
 end box
 
 user -> mainWindow : input sorttask
@@ -49,12 +50,14 @@ activate modelManager
 modelManager -> hrPro : sortTasks()
 activate hrPro
 
+hrPro -> uniqueTaskList : sort()
+activate uniqueTaskList
+
+uniqueTaskList --> hrPro
+deactivate uniqueTaskList
+
 hrPro --> modelManager
 deactivate hrPro
-
-autoActivate on
-modelManager -> modelManager :updateFilteredTaskList(Predicate)
-return
 
 modelManager --> sortTaskCommand
 
@@ -70,8 +73,10 @@ sortTaskCommand --> logicManager
 logicManager --> mainWindow
 
 mainWindow -> resultDisplay : setFeedbackToUser(Tasks are now sorted by deadline!)
+activate resultDisplay
 
 resultDisplay --> mainWindow
+deactivate resultDisplay
 
 mainWindow --> user : Tasks are now sorted by deadline!
 
