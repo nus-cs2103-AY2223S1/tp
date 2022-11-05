@@ -10,7 +10,7 @@ class FormatterListTest {
     private final FormatterList formatterList = FormatterList.getFormatterList();
 
     @Test
-    public void constructor_returnsSingletonInstance() {
+    public void factoryMethod_returnsSingletonInstance() {
         assertEquals(formatterList, FormatterList.getFormatterList());
     }
 
