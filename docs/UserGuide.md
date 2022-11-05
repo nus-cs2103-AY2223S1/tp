@@ -7,7 +7,6 @@ title: User Guide
   <img src="./images/user-guide/tuthub.png" />
 </p>
 
-
 * Table of Contents
 {:toc}
 
@@ -79,7 +78,7 @@ The following table describes the sections in detail:
 :information_source: **Some notes about parameters:**
 
 * Parameters with a prefix can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -93,7 +92,7 @@ The following table describes the sections in detail:
 |------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `INDEX`                | - Index refers to a **valid** index number shown in displayed tutor list and  **must be a positive integer**, i.e. 1, 2, 3, …​.                                                                                                                             |
 | `NAME`                 | - Names must contain at least 1 word, and at most 1 space is allowed between words. <br/>- Only English alphabets and the symbols `/`,`'`,`-` are accepted and cannot be surrounded by spaces. e.g. `Smith - Jones` is invalid, but `Smith-Jones` is valid. |
-| `PHONE`                | - Phone numbers can only contain digits, i.e.`0-9` and must be at least 3 digits long.                                                                                                                                                                      |
+| `PHONE_NUMBER`         | - Phone numbers can only contain digits, i.e.`0-9` and must be at least 3 digits long.                                                                                                                                                                      |
 | `EMAIL`                | - Emails must be the tutor's NUSNet ID, e.g. `E1234567` or `E1234567@u.nus.edu`, where the `E` is case-insensitive. <br/>- If `@u.nus.edu` is not provided, Tuthub will automatically append it for you.                                                    |
 | `MODULE`               | - Modules consist of the following (in order): 2 compulsory letters, 2 optional letters, 4 compulsory digits, 2 optional letters.                                                                                                                           |
 | `YEAR`                 | - Year takes in an integer from 1 to 6.                                                                                                                                                                                                                     |
@@ -153,7 +152,7 @@ Format: `help`
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**
-Empty commands such as ` ` (whitespace) will display the usage of the `help` command to redirect new users to the list of commands.
+Empty commands (e.g. whitespace) will display the usage of the `help` command to redirect new users to the list of commands.
 
 </div>
 
@@ -163,30 +162,6 @@ Empty commands such as ` ` (whitespace) will display the usage of the `help` com
 You may also click on the `Help Toolbar` to access the command summary table.
 
 </div>
-
-### Adding a tutor: `add`
-
-Adds a tutor to the Tuthub.
-
-Format: `add n/NAME p/PHONE e/EMAIL m/MODULE y/YEAR s/STUDENT_ID tn/TEACHING_NOMINATIONS r/RATING [t/TAG]…​`
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **Note:**
-Tutors are regarded as the same if they have the **same email or student ID**!
-
-</div>
-
-<div markdown="block" class="alert alert-primary">
-
-:bulb: **About parameters:**
-Refer to [this section](#notes-about-frequently-used-command-parameters) for more information about various parameters!
-
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0`
-* `add n/Betsy Crowe t/seniorTa e/e1234567 m/CS1101S y/3 p/1234567 s/A0123456X tn/2 r/4.5`
 
 ### Listing all tutors: `list`
 
@@ -200,8 +175,6 @@ If you would like to find out more about a particular tutor, view a tutor to see
 
 Format: `view INDEX`
 
-* Displays the tutor at the specified `INDEX`.
-
 Examples:
 * `view 2` causes the corresponding `Tutor Details Pane` of the 2nd tutor to appear on the right, as shown below:
   ![view](images/user-guide/view.png)
@@ -214,35 +187,36 @@ You may also click on a `Tutor List Card` to execute a `view` command instead
 
 </div>
 
-### Commenting on a tutor: `comment`
+### Adding a tutor: `add`
 
-Tracking a tutor? Use the comment command to add comments to a tutor.
+Adds a tutor to the Tuthub.
 
-Format: `comment INDEX c/COMMENT`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENT_ID tn/TEACHING_NOMINATIONS r/RATING [t/TAG]…​`
 
-* Comments on the tutor at the specified `INDEX`.
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
+Tutors are regarded as the same if they have the **same email or student ID**!
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+Refer to [this section](#notes-about-frequently-used-command-parameters) for more information about various parameters!
+
+</div>
 
 Examples:
-* `comment 1 c/Tasks not Finished` adds a comment of "Tasks not Finished" on the 1st tutor, reflected on their `Tutor Details Pane` as shown below:
+* `add n/Betsy Crowe t/seniorTa e/e1134567 m/CS1101S y/3 p/1234567 s/A1123456X tn/2 r/4.5` adds a new tutor, Betsy Crowe, as shown in the screenshot (after viewing):
 
-![added comment](images/user-guide/comment.png)
-
-### Deleting comments on a tutor: `deletecomment` or `dc`
-
-Deletes a comment from the specified tutor.
-
-Format: `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`
-
-* Deletes the comment at the specified index of the specified tutor. The tutor index refers to the index number shown in the displayed tutor list. The comment index refers to the index number of the comment shown in the comment section. Both indices **must be positive integers** 1, 2, 3, …​
-
-Examples:
-* `deletecomment 1 1` and `dc 1 1` deletes the 1st comment from the 1st tutor.
+![add](images/user-guide/add.png)
 
 ### Editing a tutor: `edit`
 
 Edits an existing tutor in Tuthub. This is useful for updating information of tutors that has changed or has been wrongly input.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENT_ID] [tn/TEACHING_NOMINATIONS] [r/RATING] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENT_ID] [tn/TEACHING_NOMINATIONS] [r/RATING] [t/TAG]…​`
 
 * Edits the tutor at the specified `INDEX`.
 
@@ -268,6 +242,35 @@ Examples:
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd tutor to be Betsy Crower and clears all existing tags.
 * `edit 3 m/CS2100 y/3 s/A0654729L` Edits the module code, year, and student id of the 3rd tutor to be CS2100, 3, and A0654729L respectively.
 * `edit 3 tn/2 r/4.58` Edits the number of teaching nominations and rating of the 3rd tutor to be 2 and 4.58 respectively.
+
+### Commenting on a tutor: `comment`
+
+Tracking a tutor? Use the comment command to add comments to a tutor.
+
+Format: `comment INDEX c/COMMENT`
+
+Examples:
+* `comment 1 c/Tasks not Finished` adds a comment of "Tasks not Finished" on the 1st tutor, reflected on their `Tutor Details Pane` as shown below:
+
+![added comment](images/user-guide/comment.png)
+
+### Deleting comments on a tutor: `deletecomment` or `dc`
+
+Deletes a specific comment from the specified tutor.
+
+Format: `deletecomment TUTOR_INDEX COMMENT_INDEX` or `dc TUTOR_INDEX COMMENT_INDEX`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
+* `TUTOR_INDEX` refers to the index number shown in the displayed tutor list.
+* `COMMENT_INDEX` refers to the index number of the comment shown in the comment section. 
+* Both indices **must be positive integers** 1, 2, 3, …​
+
+</div>
+
+Examples:
+* `deletecomment 1 1` and `dc 1 1` deletes the 1st comment from the 1st tutor.
 
 ### Search for tutor by attribute: `find`
 
@@ -298,7 +301,10 @@ Refer to [this section](#notes-about-frequently-used-command-parameters) for mor
 
 Examples:
 * `find n/John` returns all tutors with names that contains `John`.
-* `find n/alex david` returns all tutors with names that contain `Alex` or `David`.
+* `find n/alex david` returns all tutors with names that contain `Alex` or `David`, as shown below:
+
+![find](images/user-guide/find.png)
+
 * `find p/98765432 99999999` returns the tutors with phone number `98765432` or `99999999`.
 * `find e/e1234567 e7654321` returns the tutors with email `e1234567@u.nus.edu` or `e7654321@u.nus.edu`.
 * `find m/cs2100 cs2105` returns the tutors teaching module `cs2100` or `cs2105`.
@@ -306,15 +312,23 @@ Examples:
 * `find s/A0123456X A0123456Y` returns the tutors with student id `A0123456X` or `A0123456Y`.
 * `find tn/3` returns all tutors that have `3` teaching nominations.
 * `find r/4.0` returns all tutors that have rating of `4.0`.
-* `find t/senior` returns all tutors that have tag of `senior`.
+* `find t/senior` returns all tutors that have a tag containing `senior`, as shown below:
+
+![findTag](images/user-guide/find-tag.png)
 
 ### Contacting tutors via email: `mail`
 
 Contacting targeted tutors is made easy with the mail command. The command opens the user's default mail client and specifies the "to" section in emails with the targeted tutors.
 
 Format: `mail INDEX` or `mail all`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
 * `INDEX` refers to any index in range of the tutor list.
 * `all` allows you to email all the current tutors displayed in the tutor list.
+
+</div>
 
 Examples:
 * `mail 3` opens the user's default mail client with the "to" specified as the third tutor's email.
@@ -329,28 +343,26 @@ list of tutors in ascending or descending order based on different quantitative
 measures, such as rating and teaching nomination. More specifications on the sort command is visible below.
 
 Format: `sort ORDER PREFIX`
-* `ORDER` can be one of the two values: a (ascending) or d (descending).
-* `PREFIX` refers to one of the prefixes of quantitative measures (e.g. `r/`).
-* Currently, sort is implemented for the prefixes `r/` (`RATING`) and `tn/` (`TEACHING_NOMINATIONS`).
-
-Examples:
-* `sort a r/` sorts the tutors in ascending order (low to high) based on tutor ratings.
-* `sort d tn/` sorts the tutors in descending order (high to low) based on tutor teaching nominations.
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**
-Sort only accepts **one prefix**, hence `sort a tn/ r/` will return an error.
+* `ORDER` can be one of the two values: `a` (ascending) or `d` (descending).
+* `PREFIX` refers to one of the prefixes of quantitative measures (e.g. `r/`).
+* Currently, sort is implemented for the prefixes `r/` (`RATING`) and `tn/` (`TEACHING_NOMINATIONS`).
+* Sort only accepts **one prefix**, hence `sort a tn/ r/` will return an error.
 
 </div>
+
+Examples:
+* `sort a r/` sorts the tutors in ascending order (low to high) based on tutor ratings.
+* `sort d tn/` sorts the tutors in descending order (high to low) based on tutor teaching nominations.
 
 ### Deleting a tutor: `delete`
 
 Deletes the specified tutors from Tuthub. This could be useful if you are removing tutors that have already graduated or if you are trying to better organise Tuthub to only contain tutors that you have hired.
 
 Format: `delete INDEX`
-
-* Deletes the tutor at the specified `INDEX`.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -364,7 +376,7 @@ Examples:
 
 ### Clearing all entries: `clear`
 
-Clears all entries from Tuthub. This could be particularly useful if you would like to clear all the sample data when using Tuthub for the first time.
+Clears all entries from Tuthub. You may find this particularly useful if you would like to clear all the sample data when using Tuthub for the first time.
 
 Format: `clear`
 
@@ -398,21 +410,21 @@ Format: `exit`
 
 ## Command Summary
 
-| Action                     | Format                                                                                                                      | Examples (if any)                                                                                      |
-|----------------------------|-----------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| See **Help**               | `help`                                                                                                                      |                                                                                                        |
-| **List** All Tutors        | `list`                                                                                                                      |                                                                                                        |
-| **View** a Tutor           | `view`                                                                                                                      | `view 1`                                                                                               |
-| **Add** Tutor              | `add n/NAME p/PHONE e/EMAIL y/YEAR m/MODULE s/STUDENT_ID tn/TEACHING_NOMINATIONS r/RATING [t/TAG]…​`                        | `add n/Betsy Crowe t/  e/E1234567@u.nus.edu  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
-| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                   | `comment 1 c/Tasks not Finished`                                                                       |
-| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`                                                     | `deletecomment 1 1`, `dc 1 1`                                                                          |
-| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENT_ID] [tn/TEACHING_NOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                      |
-| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                           | `find n/Alex`                                                                                          |
-| **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                       | `mail 3`                                                                                               |
-| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                         | `sort a r/`                                                                                            |
-| **Delete** a _Tutor_       | `delete INDEX`                                                                                                              | `delete 3`                                                                                             |
-| **Clear** Tutor List       | `clear`                                                                                                                     |                                                                                                        |
-| **Exit** Tuthub            | `exit`                                                                                                                      |                                                                                                        |
+| Action                     | Format                                                                                                                             | Examples (if any)                                                                                      |
+|----------------------------|------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| See **Help**               | `help`                                                                                                                             |                                                                                                        |
+| **List** All Tutors        | `list`                                                                                                                             |                                                                                                        |
+| **View** a Tutor           | `view`                                                                                                                             | `view 1`                                                                                               |
+| **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENT_ID tn/TEACHING_NOMINATIONS r/RATING [t/TAG]…​`                        | `add n/Betsy Crowe t/  e/E1234567@u.nus.edu  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
+| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                          | `comment 1 c/Tasks not Finished`                                                                       |
+| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`                                                            | `deletecomment 1 1`, `dc 1 1`                                                                          |
+| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENT_ID] [tn/TEACHING_NOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                      |
+| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                                  | `find n/Alex`                                                                                          |
+| **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                              | `mail 3`                                                                                               |
+| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                                | `sort a r/`                                                                                            |
+| **Delete** a _Tutor_       | `delete INDEX`                                                                                                                     | `delete 3`                                                                                             |
+| **Clear** Tutor List       | `clear`                                                                                                                            |                                                                                                        |
+| **Exit** Tuthub            | `exit`                                                                                                                             |                                                                                                        |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
