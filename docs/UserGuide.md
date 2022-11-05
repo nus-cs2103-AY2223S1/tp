@@ -279,7 +279,7 @@ In either of the above examples, we find every module whose module code starts w
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>You will
 remain on the home page after executing the `find-module` command. This is different
-from the behavior of [`goto`](#252-navigate-between-modules-goto) command.
+from the behavior of [`goto`](#252-navigate-between-modules) command.
 </div>
 
 #### 2.1.5. List module
@@ -296,7 +296,7 @@ In the above example, we list every module that exist in Plannit.
 <br>
 
 ### 2.2. Tasks
-#### 2.2.1. Add task: `add-task`
+#### 2.2.1. Add task
 Suppose a particular module has assigned you a task to be completed. You can 
 keep track of it by adding it to Plannit using the `add-task` command.
 
@@ -331,12 +331,12 @@ command:
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
 You may view the tasks added to a module by navigating to a module's page 
-using the [`goto`](##252-navigate-between-modules-goto) command. Alternatively, 
+using the [`goto`](##252-navigate-between-modules) command. Alternatively, 
 you may double-click on a module to ["peek"](#224-peeking-at-modules) at a 
 module's tasks while on the home page.
 </div>
 
-#### 2.2.2. Delete task: `delete-task`
+#### 2.2.2. Delete task
 Suppose you have completed a task and would now like to remove it from 
 Plannit. You may delete the task using the `delete-task` command.
 
@@ -364,7 +364,7 @@ command:
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/delete-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-task-after.png"/></p><p>A message will appear indicating that a task has been deleted.</p>{:/} |
 
-#### 2.2.3. Reorder tasks (swap): `swap-task`
+#### 2.2.3. Reorder tasks (swap)
 Suppose you have an urgent task which you like to place at the very top of 
 your list. You may change the order of tasks in your module's task list  using
 the `swap-task` command.
@@ -427,7 +427,7 @@ the tasks.
 **Note:**<br/> 
 You remain on the home page even when you "peek" at a module. To leave the 
 home page and view more details of a specific module, you may use the 
-[`goto`](#252-navigate-between-modules-goto) command.
+[`goto`](#252-navigate-between-modules) command.
 </div>
 
 <br>
