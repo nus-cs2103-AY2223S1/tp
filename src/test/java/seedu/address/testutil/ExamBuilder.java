@@ -19,6 +19,8 @@ public class ExamBuilder {
     private Module module;
     private ExamDescription examDescription;
     private ExamDate examDate;
+    private int numOfCompletedTasks;
+    private int totalNumOfTasks;
 
     /**
      * Creates a {@code ExamBuilder} with the default details.
@@ -30,8 +32,9 @@ public class ExamBuilder {
         examDescription = new ExamDescription(DEFAULT_DESCRIPTION);
         examDate = new ExamDate(DEFAULT_DATE);
         module = new Module(new ModuleCode(DEFAULT_MODULE));
+        numOfCompletedTasks = 0;
+        totalNumOfTasks = 0;
     }
-
 
     /**
      * Initializes the ExamBuilder with the data of {@code examToCopy}.
@@ -40,6 +43,8 @@ public class ExamBuilder {
         module = examToCopy.getModule();
         examDescription = examToCopy.getDescription();
         examDate = examToCopy.getExamDate();
+        numOfCompletedTasks = examToCopy.getNumOfCompletedTasks();
+        totalNumOfTasks = examToCopy.getTotalNumOfTasks();
     }
 
     /**
@@ -66,8 +71,24 @@ public class ExamBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code numOfCompletedTasks} of the {@code Exam} that we are building.
+     */
+    public ExamBuilder withNumOfCompletedTasks(int numOfCompletedTasks) {
+        this.numOfCompletedTasks = numOfCompletedTasks;
+        return this;
+    }
+
+    /**
+     * Sets the {@code totalNumOfTasks} of the {@code Exam} that we are building.
+     */
+    public ExamBuilder withTotalNumOfTasks(int totalNumOfTasks) {
+        this.totalNumOfTasks = totalNumOfTasks;
+        return this;
+    }
+
     public Exam build() {
-        return new Exam(module, examDescription, examDate);
+        return new Exam(module, examDescription, examDate, totalNumOfTasks, numOfCompletedTasks);
     }
 
 }
