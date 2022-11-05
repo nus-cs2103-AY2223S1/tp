@@ -263,11 +263,22 @@ Examples:
 * `editTask 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task in the displayed task list to be `frontend` and assigns the task to  the member with email `charlotte@example.com`.
 * `editTask 4 do/true` marks the 4th task in the displayed task list as `completed`.
 
-#### Viewing all tasks: `listTasks`
+### Finding a Task using keywords : `findTask`
 
-Displays all existing tasks in the task list. Use this after using the [`filter`](#filtering-tasks-filter) command to remove the filter.
+Finds tasks with names or descriptions that contain any of the given keywords.
 
-Format: `listTasks`
+Format: `findTask KEYWORD [MORE_KEYWORDS]...`
+
+* The search is case-insensitive. e.g fix will match Fix
+* The order of the keywords does not matter. e.g. Toggle fix will match Fix toggle
+* The name and description are both searched.
+* Only full words will be matched e.g. Dark will not match Darkmode
+* Task with names or descriptions matching at least one keyword will be returned (i.e. OR search).
+  e.g. Fix will return Fix toggle, Fix routing
+
+Examples:
+* `findTask fix` returns Fix toggle and Fix routing
+* `findTask dark` returns Fix routing (description: Fix **dark** mode button)
 
 #### Filtering tasks: `filter`
 
@@ -286,6 +297,12 @@ Examples:
 *  `filter c/backend` displays only tasks that have `backend` as CATEGORY
 *  `filter c/backend dl/2022-12-12` displays only tasks that have `backend` as CATEGORY and DEADLINE on `2022-12-12` or before
 
+#### Viewing all tasks: `listTasks`
+
+Displays all existing tasks in the task list. Use this after using the [`filter`](#filtering-tasks-filter) command to remove the filter.
+
+Format: `listTasks`
+
 #### Sorting tasks: `sort`
 
 Sorts the task list by the specified field in the specified order. For instance, you can sort tasks in descending order of PRIORITY to help you decide which tasks should be done first. 
@@ -299,7 +316,6 @@ Format: `sort [pr/ORDER] [dl/ORDER]`
 
 Examples:
 * `sort pr/asc` sorts tasks by PRIORITY in ascending order
-
 
 --------------------------------------------------------------------------------------------------------------------
 
