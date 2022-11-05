@@ -584,7 +584,7 @@ and store the relevant search terms into each predicate. Combine those search te
 
 **Target User Profile:**
 * Tech savvy admin staff in Ear, Nose, Throat (ENT) department
-* Has a need to manage a significant number of contacts
+* Has a need to manage a significant number of patients/appointments
 * Prefer desktop apps over other types
 * Can type fast
 * Prefer typing to mouse interactions
@@ -629,7 +629,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `idENTify` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use Case: UC01 - Show a list of all patients**
 
