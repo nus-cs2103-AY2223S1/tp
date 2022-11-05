@@ -25,6 +25,10 @@ public class TypicalExams {
     public static final Exam EXAMTWO = new ExamBuilder()
             .withDescription("Exam two")
             .withModule("CS2040S").withDate("20-10-2023").build();
+    public static final Exam EXAMTHREE = new ExamBuilder()
+            .withDescription("Exam three")
+            .withDate("27-11-2022")
+            .build();
 
     private TypicalExams() {} // prevents instantiation
 

@@ -213,6 +213,7 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override

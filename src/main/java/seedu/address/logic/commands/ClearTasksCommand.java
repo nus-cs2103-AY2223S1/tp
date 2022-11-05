@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
 public class ClearTasksCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESSS = "Task list has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Task list has been cleared!";
     public static final String MESSAGE_TASK_LIST_ALREADY_EMPTY = "The task list is already empty!";
 
     @Override
@@ -38,6 +38,6 @@ public class ClearTasksCommand extends Command {
 
         model.setAddressBook(newAddressBook);
 
-        return new CommandResult(MESSAGE_SUCCESSS);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

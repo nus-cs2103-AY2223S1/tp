@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
 public class ClearAllCommand extends Command {
 
     public static final String COMMAND_WORD = "clearall";
-    public static final String MESSAGE_SUCCESSS = "Task, exam and module lists have been cleared!";
+    public static final String MESSAGE_SUCCESS = "Task, exam and module lists have been cleared!";
     public static final String MESSAGE_ALL_LISTS_ALREADY_EMPTY = "Task, exam and module lists are already empty!";
 
     @Override
@@ -31,6 +31,6 @@ public class ClearAllCommand extends Command {
         }
 
         model.setAddressBook(new AddressBook());
-        return new CommandResult(MESSAGE_SUCCESSS);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
