@@ -3,6 +3,9 @@
 {% endcomment %}
 {% capture newline %}
 {% endcapture %}
+{% comment %} MOVE COMMENTS TO NEW LINES {% endcomment %}
+{% assign replacement = '>' | append: newline | append: '<!-- ' %}
+{% assign content = content | replace: '><!-- ', replacement %}
 {% comment %} STRIP ALL LINES {% endcomment %}
 {% assign lines = content | split: newline %}
 {% assign trimmed = '' | split: '' %}
