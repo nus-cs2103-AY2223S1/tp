@@ -127,5 +127,5 @@ public class AddMeetingCommandParserTest {
         String expectedMessage2 = ParserUtil.MESSAGE_INVALID_INDEX;
         assertParseFailure(parser, testArgs2, expectedMessage2);
     }
-    
+
 }
