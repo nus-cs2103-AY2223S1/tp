@@ -61,7 +61,7 @@ public class TypicalSchedules {
     public static ArrayList<ModuleCode> getTypicalModuleCodeFromTypicalSchedules() {
         ArrayList<ModuleCode> typicalModuleCodeList = new ArrayList<>();
         if (!getTypicalSchedules().isEmpty()) {
-            for(Schedule schedule : getTypicalSchedules()) {
+            for (Schedule schedule : getTypicalSchedules()) {
                 ModuleCode curModuleCode = new ModuleCode(schedule.getModule());
                 typicalModuleCodeList.add(curModuleCode);
             }
@@ -72,7 +72,7 @@ public class TypicalSchedules {
     public static Set<String> getTypicalModuleSet() {
         Set<String> typicalModuleSet = new HashSet<>();
         if (!getTypicalSchedules().isEmpty()) {
-            for(Schedule schedule : getTypicalSchedules()) {
+            for (Schedule schedule : getTypicalSchedules()) {
                 typicalModuleSet.add(schedule.getModule());
             }
         }

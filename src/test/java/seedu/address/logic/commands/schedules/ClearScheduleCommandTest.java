@@ -17,7 +17,6 @@ import seedu.address.logic.commands.schedule.ClearScheduleCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 
 public class ClearScheduleCommandTest {
@@ -53,7 +52,7 @@ public class ClearScheduleCommandTest {
     }
 
     @Test
-    public void execute_emptyProfNUS_success() {
+    public void execute_emptyProfNus_success() {
         Model curModel = new ModelManager();
         Model expectedModel = new ModelManager();
         CommandResult expectedCommandResult = new CommandResult(
@@ -61,7 +60,7 @@ public class ClearScheduleCommandTest {
                 false, false, false, false,
                 false, true, false, false);
 
-        assertCommandSuccess(new ClearScheduleCommand(),  curModel, expectedCommandResult, expectedModel);
+        assertCommandSuccess(new ClearScheduleCommand(), curModel, expectedCommandResult, expectedModel);
     }
 
     @Test

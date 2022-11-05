@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalSchedules.getTypicalModuleSet;
 import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -65,7 +64,7 @@ public class ViewScheduleCommandTest {
 
         // same values -> returns true
         assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
-//        assertTrue(viewEmptyCommand.equals(viewEmptyCommandCopy));
+        //  assertTrue(viewEmptyCommand.equals(viewEmptyCommandCopy));
 
         // different types -> returns false
         assertFalse(viewFirstCommand.equals(1));
@@ -89,7 +88,7 @@ public class ViewScheduleCommandTest {
     }
 
     @Test
-    public void execute_emptyProfNUS_success() {
+    public void execute_emptyProfNus_success() {
         Model curModel = new ModelManager();
         Model curExpectedModel = new ModelManager();
         CommandResult expectedCommandResult = new CommandResult(String.format(
@@ -106,7 +105,6 @@ public class ViewScheduleCommandTest {
                         Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
                         false, false, false, false,
                         false, true, false, false), expectedModel);
-        System.out.println(model.getFilteredScheduleList());
     }
 
     @Test

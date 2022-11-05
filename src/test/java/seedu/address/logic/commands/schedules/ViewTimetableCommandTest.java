@@ -1,27 +1,20 @@
 package seedu.address.logic.commands.schedules;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
-
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.schedule.ViewScheduleCommand;
 import seedu.address.logic.commands.schedule.ViewTimeTableCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
-import seedu.address.testutil.Assert;
 
 
 public class ViewTimetableCommandTest {
@@ -69,8 +62,8 @@ public class ViewTimetableCommandTest {
                 false, false, false, false, false,
                 false, true, false,
                 false, false);
-        CommandTestUtil.assertCommandSuccess(new ViewTimeTableCommand(0), model, expectedCommandResult
-                , expectedModel);
+        CommandTestUtil.assertCommandSuccess(new ViewTimeTableCommand(0), model, expectedCommandResult,
+                expectedModel);
     }
 
     @Test
@@ -81,8 +74,8 @@ public class ViewTimetableCommandTest {
                 false, false, false, false, false,
                 false, false, true,
                 false, false);
-        CommandTestUtil.assertCommandSuccess(new ViewTimeTableCommand(1), model, expectedCommandResult
-                , expectedModel);
+        CommandTestUtil.assertCommandSuccess(new ViewTimeTableCommand(1), model, expectedCommandResult,
+                expectedModel);
     }
 
 
@@ -99,8 +92,8 @@ public class ViewTimetableCommandTest {
                     false, false, false, false, false,
                     false, true, false,
                     false, false);
-        CommandTestUtil.assertCommandSuccess(new ViewTimeTableCommand(0), model, expectedCommandResult
-                    , expectedModel);
+        CommandTestUtil.assertCommandSuccess(new ViewTimeTableCommand(0), model, expectedCommandResult,
+                    expectedModel);
     }
 
 }
