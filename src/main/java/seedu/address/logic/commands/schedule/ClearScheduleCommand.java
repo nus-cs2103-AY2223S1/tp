@@ -20,7 +20,7 @@ public class ClearScheduleCommand extends Command {
             + "requirements.\n"
             + "Format: sclear [ " + PREFIX_MODULE_OF_SCHEDULE + "MODULE_CODE] [" + PREFIX_MODULE_OF_SCHEDULE
             + " MORE_MODULE_CODES]" + "\n"
-            + "Example: " + COMMAND_WORD + PREFIX_MODULE_OF_SCHEDULE + " cs2103t\n";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_OF_SCHEDULE + " cs2103t\n";
     public static final String MESSAGE_CLEAR_ALL_SCHEDULES_SUCCESS = "Clear those schedules successfully!";
 
     private final ArrayList<ModuleCode> modulesToClear;

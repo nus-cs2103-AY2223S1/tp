@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.schedules;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.schedule.ViewScheduleCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -64,10 +66,13 @@ public class ViewScheduleCommandTest {
 
     @Test
     public void execute_scheduleListIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ViewScheduleCommand(), model,
+        CommandTestUtil.assertCommandSuccess(new ViewScheduleCommand(), model,
                 new CommandResult(String.format(String.format(
                         Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
                 false, false, false, false,
                 false, true, false, false), expectedModel);
     }
+
+
+
 }
