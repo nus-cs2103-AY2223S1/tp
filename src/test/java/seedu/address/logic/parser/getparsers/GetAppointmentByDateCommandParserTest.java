@@ -39,7 +39,7 @@ public class GetAppointmentByDateCommandParserTest {
     }
 
     @Test
-    public void parse_invalidDate_returnsGetAppointmentByDateCommand() {
+    public void parse_invalidDate_exceptionThrown() {
         // invalid date
         String invalidDateValue = "40-20-2010";
         assertThrows(DateTimeParseException.class, () -> prepareCommand(invalidDateValue));
