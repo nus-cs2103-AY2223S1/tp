@@ -278,7 +278,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_findSupplier() throws Exception {
-        String input = " n/foo";
+        String input = " n/foo foo";
         Predicate<Supplier> supplierPredicate = PredicateParser.parseSupplier(input);
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindSupplierCommandParser.PARSE_WORD + input);

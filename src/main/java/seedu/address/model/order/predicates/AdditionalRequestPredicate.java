@@ -13,13 +13,18 @@ import seedu.address.model.order.Order;
 public class AdditionalRequestPredicate<T extends Order> implements Predicate<T> {
     private final List<String> keywords;
 
+    /**
+     * Creates a {@code AdditionalRequestPredicate} to matche any of the keywords given.
+     */
     public AdditionalRequestPredicate(List<String> keywords) {
+        keywords = keywords.stream().map(String::toLowerCase).collect(Collectors.toList());
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(T order) {
-        List<String> additionalRequests = order.getAdditionalRequests().getAdditionalRequestsToString();
+        List<String> additionalRequests = order.getAdditionalRequests().getAdditionalRequestsToString().stream()
+                .map(String::toLowerCase).collect(Collectors.toList());
         Set<String> result = additionalRequests.stream()
                 .distinct()
                 .filter(keywords::contains)
