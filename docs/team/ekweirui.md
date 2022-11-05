@@ -24,7 +24,7 @@ Given below are my contributions to the project.
   different kinds of `Model` objects, namely `Person` and `Module`, which required intensive
   considerations on the design to ensure there were as little dependencies as there could be. Due to that and the
   bug-prone nature of the feature, it required an in-depth analysis of design alternatives. The implementation was
-  also challenging because existing commands had to be modified
+  also challenging because existing commands had to be modified. This was previously not in the design of AB3.
   (see [#98](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/98)).
 
 
@@ -37,10 +37,7 @@ Given below are my contributions to the project.
   example, users can delete a person from a module if the person dropped out halfway, or when a new semester
   arrives ([user story](https://github.com/AY2223S1-CS2103T-T10-1/tp/issues/99)).
   * Highlights: <br>
-  This enhancement was not easy because it involved interactions between two
-  different kinds of `Model` objects, namely `Person` and `Module`, which required intensive
-  considerations on the design to ensure there were as little dependencies as there could be.
-  This was previously not in the design of AB3.
+  Same as the new feature before.
 
 
 * **New Feature:** Added the ability to display the modules and persons list in sorted order
@@ -87,12 +84,10 @@ Given below are my contributions to the project.
         * `edit-person` ([#62](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/62))
         * `delete-person-from-module` ([#111](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/111))
     * Developer Guide:
-        * Added documentation for the entire contacts-related section and the `delete-person` command
+        * Added documentation for the contacts-related section and the `delete-person` command
           ([#88](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/88)).
-          * Includes drawing of class, object, and sequence diagrams.
-        * Added documentation for the features implementation and design alternatives for the `add-person-to-module` 
-          command.
-          * Includes drawing of object diagrams.
+        * Added documentation for the person-module association and the `add-person-to-module` command
+          ([#190](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/190))
         * Added user stories and use cases related to contacts.
 
 
