@@ -885,22 +885,23 @@ Please close any .csv files that are currently open before clicking on the "*Exp
 ---
 
 ### FAQs
-**Q:** Does myStudent need an Internet connection?
-
+**Q:** Does myStudent need an Internet connection?  
 **A:** No, myStudent is an offline software that does not need Internet connection to use.
 
-**Q:** Can I move myStudent from one computer to another without loss of data?
-
+**Q:** Can I move myStudent from one computer to another without loss of data?  
 **A:** Yes, by copying the home folder containing myStudent.jar to another computer, you could resume your work on another computer without loss of data.
 
-<div markdown="block" class="alert alert-info">
+**Q:** I can export my data to .csv files, but can I import .csv files into myStudent?  
+**A:** No, currently the import feature is still a work in progress. Stay tuned for it!
 
-:information_source: **Home Folder**
-Home folder refers to the particular folder that will be containing the `myStudent.jar` file and its relevant files.
-Since myStudent will need to read and write files, it is recommended to put `myStudent.jar` in a new folder
-to ensure a smooth experience for using myStudent.
+**Q:** I can't seem to open myStudent when I tried to double-click it like a normal application. What do I do?
+**A:** You can refer to our troubleshooting guide [here](#troubleshooting).
 
-</div>
+**Q:** What if I'm still having trouble using myStudent?  
+**A:** You can tell us about the problem you're having and give more details [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/issues/new). We'll be glad to help!
+
+**Q:** Can I request for new features or themes?  
+**A:** Of course you can! We're open to new suggestions. You can leave your suggestions [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/issues/new). (Do note that implementation of any suggestion will be at our own discretion) 
 
 ---
 
@@ -919,4 +920,4 @@ Open your terminal and type `java -version` and press <kbd>enter</kbd>. Informat
 For Windows Users:
 Open the command prompt and type `java -version` and press <kbd>enter</kbd>. Information returned should show the current version of Java installed on your computer.
 
-If you do not have `Java 11` or above installed, please install from [here](https://www.oracle.com/sg/java/technologies/downloads/).
+If you do not have `Java 11` or above installed, please it install from [here](https://www.oracle.com/sg/java/technologies/downloads/).
