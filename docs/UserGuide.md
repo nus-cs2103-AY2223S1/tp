@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Friendnancial's User Guide
+title: User Guide
 ---
-Friendnancial is a tool to help financial advisors manage their clients and friends. It provides an address book with features implemented specifically for financial advisors such as storing insurance information and reminders. Thus Friendnancial is an integrated one-stop solution for financial advisors to manage their contacts!
+Friendnancial is a tool to help **financial advisors** manage their clients and friends. It provides an **address book** with features implemented specifically for financial advisors such as storing **insurance information** and **reminders**. Thus Friendnancial is an integrated one-stop solution for financial advisors to manage their contacts!
 
 Friendnancial is a **desktop application, optimized for use by financial advisors via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Friendnancial can get your contact management tasks done faster than traditional GUI apps, saving your precious time.
 
@@ -11,10 +11,13 @@ Friendnancial is a **desktop application, optimized for use by financial advisor
 
 --------------------------------------------------------------------------------------------------------------------
 ## Short Glossary for non-technical Users.
-* **GUI**: Graphical User Interface - A system of interactive visual components for computer software
-* **CLI**: Command Line Interface - A text based user interface to run programs
-* **Index**: A number indicating the order of a person within the contact list, used in conjunction with commands
-* **Parameter**: Refers to the information typed along with the commands. For example the command `add n/John Doe` means that the parameter is `n/John Doe`
+
+| Technical Terms | Meaning                                                                                   | 
+|-----------------|-------------------------------------------------------------------------------------------|
+| **GUI**         | Graphical User Interface - A system of interactive visual components for computer software| 
+| **CLI**         | Command Line Interface - A text based user interface to run programs                      | 
+| **Index**       | A number indicating the order of a person within the contact list, used in conjunction with commands|
+| **Parameter**   | Refers to the information typed along with the commands. For example the command <br/>`add n/John Doe` means that the parameter is `n/John Doe` |
 
 ## Quick start
 
