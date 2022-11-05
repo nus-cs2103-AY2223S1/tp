@@ -521,6 +521,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
+#### 5.3.4 Use case: UC4 - Add a meeting
+
+**MSS**
+
+1. User requests to add a meeting.
+2. System adds the meeting.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs incomplete or invalid meeting data.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
 #### 5.3.4 Use case: UC4 - List all meetings
 
 **MSS**
@@ -534,8 +550,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 * 1a. User requests for a list of all meetings tomorrow.
     * 1a1. System shows a list of all meetings tomorrow.
+  
 * 1b. User requests for a list of all meetings in the next 7 days.
     * 1b1. System shows a list of all meetings in the next 7 days.
+
 * 1c. User requests for a list of all meetings in this month.
     * 1c1. System shows a list of all meetings in this month.
 
