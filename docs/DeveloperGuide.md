@@ -283,6 +283,13 @@ both the status and tag conditions.
 * We decided to go with any match so that it is easier for users if they want to hide many types of entries at one go,
 as opposed to all match since the user will have to key in hide many times successively.
 
+**Aspect: How hide patients should affect appointment list**
+* **Current choice:** Hiding patients will also hide their appointments, and unhiding patients will also unhide their appointments <br>
+**Explanation:** We decided on this implementation because hiding a patient would imply that the user has no interest in this patient, and thus the appointments of the patient are also hidden so that the user can focus on other patients that he did not hide. Similarly, unhiding a patient implies that the user has interest in the particular patient, and thus the patient's appointments will also be shown.
+On the other hand, hiding and unhiding appointments does not affect the patient list as the user may only be interested in going through the appointments.
+* **Alternative:** Hiding/Unhiding patients do not affect appointment list at all <br>
+This approach is easier to implement, as we do not have to worry about the appointment list and we only need to update the patient list. However, we wanted to make it more convenient for the user, as there is no good way to hide appointments of a particular patient if we have no interest in the patient. 
+
 ### Group Patient Feature
 
 The group mechanism implements the following operations:

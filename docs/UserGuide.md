@@ -188,19 +188,19 @@ Examples:
 * `book 2 r/Ear Infection d/2022-12-31 13:00 pe/1Y` Books an appointment that is recurring every year.
 
 #### Cancel an appointment: `cancel`
-Cancels a specified appointment in the appointment list. <br>
+Cancels (removes) a specified appointment in the appointment list. <br>
 
 Format: ```cancel APPOINTMENT_INDEX```
 - Deletes the appointment with `APPOINTMENT_INDEX` in the appointment list.
 - The index refers to the index number shown in the displayed appointment list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 * `cancel 1`
 
 #### Clearing all entries : `clear`
 
-Clears all entries from idENTify.
+Clears all entries (patients and appointments) from idENTify.
 
 Format: `clear`
 
@@ -249,7 +249,7 @@ respectively. Existing time period and tags will not be edited.
 
 #### Mark an appointment as completed:  `mark`
 
-Marks a specified appointment in the appointment list as complete.
+Marks a specified appointment in the appointment list as completed.
 
 If the specified appointment was set to be recurring, automatically books a new appointment in the future as given by the recurring time period of the appointment.
 
@@ -258,7 +258,7 @@ Format: `mark APPOINTMENT_INDEX`
 * `APPOINTMENT_INDEX` refers to the index number of the appointment to be marked, as shown in the appointment list.
 * `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 * `mark 3`
 
 #### Unmark an appointment as incomplete:  `unmark`
@@ -270,7 +270,7 @@ Format: `unmark APPOINTMENT_INDEX`
 * `APPOINTMENT_INDEX` refers to the index number of the appointment to be unmarked, as shown in the appointment list.
 * `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 * `unmark 1`
 
 ### Organisation
@@ -338,7 +338,7 @@ Format:
 #### Hiding patients by name or tag: `hide patients`
 
 **By name:**
-Filters out (hides) patients whose names contain any of the given keywords.
+Filters out (hides) patients whose name contain any of the given keywords.
 
 Format: `hide patients n/NAME [n/MORE_NAMES]...`
 
@@ -347,7 +347,7 @@ Examples:
 * `hide patients n/alex n/david` hides `Alex Yeoh`, `David Li`<br>
 
 **By tag:**
-Hides patients whose names contain any of the given tags.
+Hides patients that contain any of the given tags.
 
 Format: `hide patients t/TAG [t/MORE_TAGS]...`
 
@@ -360,7 +360,7 @@ Examples:
 #### Unhiding patients by name or tag: `unhide patients`
 
 **By name:**
-Shows (unhides) patients that were previously hidden whose names contain any of the given keywords.
+Shows (unhides) patients that were previously hidden whose name contain any of the given keywords.
 
 Format: `unhide patients n/NAME [n/MORE_NAMES]...`
 
@@ -369,12 +369,12 @@ Examples:
 * `unhide patients n/alex n/david` unhides `Alex Yeoh`, `David Li`<br>
 
 **By tag:**
-Unhides patients that were previously hidden who contain any of the given tags.
+Unhides patients that were previously hidden that contain any of the given tags.
 
 Format: `unhide patients t/TAG [t/MORE_TAGS]...`
 
 
-* The search is **NOT** case-sensitive. e.g `t/EAR` has same effect as `t/ear`
+* The search is **NOT** case-sensitive. e.g `t/EAR` has the same effect as `t/ear`
 
 * All tags of a patient are searched.
 
@@ -413,10 +413,10 @@ Format: `hide appts s/STATUS` <br>
 Shortform: `marked` status can be shortened to `m`, `unmarked` can be shortened to `um`.
 
 Examples:
-* `hide appts s/marked` hides all appointments that has been marked.
-* `hide appts s/um` hides all appointments that has been ummarked.
+* `hide appts s/marked` hides all marked appointments.
+* `hide appts s/um` hides all unmarked appointments.
 
-Visual example of hiding appointments by marked status:
+Visual example of hiding appointments by marked (completed) status:
 
 Before hide: (Initially with marked appointments)
 ![before_Hide](images/beforeHide.png)
@@ -431,33 +431,34 @@ Unhides hidden appointments that contains `REASON` (OR `MORE_REASONS`).
 
 Format: `unhide appts r/REASON [r/MORE_REASONS]...`
 
-* The reasons are **NOT** case-sensitive. e.g. `r/PAIN` has same effect as `r/pain`
+* The reasons are **NOT** case-sensitive. e.g. `r/PAIN` has the same effect as `r/pain`
 
 Examples:
 * `unhide appts r/pain` unhides all hidden appointments with "pain" as part of the reason.
-* `unhide appts r/pain` r/problem' unhides all hidden appointments with "pain" or "problem" as part of the reason.
+* `unhide appts r/pain r/problem` unhides all hidden appointments with "pain" or "problem" as part of the reason.
 
 **By tag:**
 Unhides hidden appointments that contains `TAG` (OR `MORE_TAGS`).
 
 Format: `unhide appts t/TAG [t/MORE_TAGS]...`
 
-* The search is **NOT** case-sensitive. e.g `t/EAR` has same effect as `t/ear`
+* The search is **NOT** case-sensitive. e.g `t/EAR` has the same effect as `t/ear`
 * All tags of an appointment are searched.
 
 Examples:
 * `unhide appts t/nose t/ear` unhides all appointments with a nose OR ear tag.
 
 **By marked/unmarked status:**
-Unhides hidden appointments which were marked or unmarked.
+Unhides hidden appointments which are marked or unmarked.
 
-Format: `unhide appts s/marked` or `unhide appts s/m` <br>
-Alternative: `unhide appts s/unmarked` or `unhide appts s/um`
-* The condition is **NOT** case-sensitive. e.g. `MARKed` will work in the same way as `marked`.
+Format: `unhide appts s/STATUS` <br>
+Shortform: `marked` status can be shortened to `m`, `unmarked` can be shortened to `um`.
+
+* The status is **NOT** case-sensitive. e.g. `MARKed` will work in the same way as `marked`.
 
 Examples:
-* `unhide appts s/marked` unhides all appointments that has been marked.
-* `unhide appts s/UNMARKED` unhides all appointments that has been unmarked.
+* `unhide appts s/marked` unhides all marked appointments.
+* `unhide appts s/um` unhides all unmarked appointments.
 
 #### Find results that satisfy a certain criteria: `find`
 Finds patients and appointments that matches all the given parameters specified.
@@ -531,7 +532,7 @@ Controls:
 
 #### Exiting the program : `exit`
 
-Exits the program.
+Exits and closes idENTify.
 
 Format: `exit`
 
@@ -541,7 +542,7 @@ idENTify data are saved in the hard disk automatically after any command that ch
 
 #### Editing the data file
 
-idENTify data are saved as a JSON file `[JAR file location]/data/idENTify.json`. Advanced users are welcome to update data directly by editing that data file.
+idENTify data are saved as a JSON file in `[JAR file location]/data/idENTify.json`. Advanced users are welcome to update the data directly by editing the data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, idENTify will discard all data and start with an empty data file at the next run.
@@ -556,7 +557,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`
 **Clear** | `clear`
 **Delete** | `delete INDEX [END_INDEX]`<br> e.g. `delete 3`
-**Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
+**Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g. `find n/Joshua e/Josh@example.com r/Tinnitus`
 **Book** | `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
 **Group Patients** | `group patients`
 **Group Appointments** | `group appts k/KEY` <br> e.g. `group appts k/mark`
