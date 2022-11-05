@@ -57,4 +57,4 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[portfolio](team/elizabethhky.md)]
 
 * Role: Developer
-* Responsibilites: Delete Feature, Documentation
+* Responsibilities: Delete Feature, Documentation
