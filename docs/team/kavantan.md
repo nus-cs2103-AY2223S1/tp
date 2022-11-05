@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * **New Feature**: Personal Record Listing ([PR #114](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/114) and [PR #117](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/117))
   * What it does: Finds the personal record of certain exercises
   * Justification: With this command, users will be able to keep track of their progression of certain exercises in the gym.
-  * Highlights: This command was tricky to implement, because of the nature of how the command is parsed, hence there were many considerations to be made (E.g. Name not in system, multiple similar entries etc.)
+  * Highlights: This command was tricky to implement because of the nature of how the command is parsed, hence there were many considerations to be made (E.g. Name not in system, multiple similar entries etc.)
 
 * **New Feature**: Confirm flag for 'clear' function ([PR #138](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/138))
   * What it does: Mandates that a user types in a 'confirm' parameter before clearing his exercise tracker.
