@@ -64,7 +64,6 @@ public class EditBillCommand extends Command {
         Bill editedBill = createEditedBill(billToEdit, editBillDescriptor);
 
         model.setBill(billToEdit, editedBill);
-        model.updateFilteredBillList(PREDICATE_SHOW_ALL_BILLS);
         return new CommandResult(String.format(MESSAGE_EDIT_BILL_SUCCESS, editedBill));
     }
 
