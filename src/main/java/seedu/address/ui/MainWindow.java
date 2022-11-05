@@ -385,25 +385,25 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleList() {
         ListType type = logic.getCurrentListType();
-        int listSize;
+        int index;
         switch (type) {
         case STUDENT_LIST:
+            index = studentListPanel.getStudentListView().getSelectionModel().getSelectedIndex();
+            studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+            setUpClickableCards();
             tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-            listSize = logic.getFilteredStudentList().size();
-            for (int i = listSize - 1; i >= 0; i--) {
-                studentListPanel.getStudentListView().getSelectionModel().select(i);
-            }
+            studentListPanel.getStudentListView().getSelectionModel().select(index);
             break;
         case TUTOR_LIST:
+            index = tutorListPanel.getTutorListView().getSelectionModel().getSelectedIndex();
+            tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
+            setUpClickableCards();
             studentListPanel.getStudentListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
-            listSize = logic.getFilteredTutorList().size();
-            for (int i = listSize - 1; i >= 0; i--) {
-                tutorListPanel.getTutorListView().getSelectionModel().select(i);
-            }
+            tutorListPanel.getTutorListView().getSelectionModel().select(index);
             break;
         case TUITIONCLASS_LIST:
             tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
