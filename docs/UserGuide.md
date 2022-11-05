@@ -30,6 +30,7 @@ If this is the first time you are using this user guide, it is highly recommende
 - **[Quick Start](#quick-start)**
 - **[Commands](#commands)**
     * [Viewing help](#viewing-help--help)
+    * [Listing contacts or items](#listing-contacts-or-items--list)
     * [Adding a contact or item](#adding-a-contact-or-item-add)
         + [Adding a buyer](#adding-a-buyer--add-b)
         + [Adding a deliverer](#adding-a-deliverer--add-d)
@@ -38,7 +39,6 @@ If this is the first time you are using this user guide, it is highly recommende
         + [Adding a pet to a supplier](#adding-a-pet-to-a-supplier--add-p)
         + [Adding a person with a popup window](#adding-a-contact-with-a-popup-window--add) 
     * [Matching pets to an order](#matching-pets-to-an-order--match)
-    * [Listing contacts or items](#listing-contacts-or-items--list)
     * [Deleting a contact or item](#deleting-a-contact-or-item--delete)
     * [Editing attributes of a contact](#editing-attributes-of-a-contact--edit)
     * [Finding contact(s) using keywords](#finding-contacts-using-keywords--find)
@@ -189,6 +189,36 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpWindow.png)
 
 Format: `help`
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
+### Listing contacts or items : `list`
+
+Displays the specified type of contacts or items. This command is especially useful when you want to view all contacts or items of the same type,
+or when you want to set the display list to the correct list as required by other commands.
+
+Format: `list KEY`
+
+#### KEY Table
+
+| Contact / Item to List |     KEY      |
+|:----------------------:|:------------:|
+|         Buyer          |   buyer, b   |
+|        Supplier        | supplier, s  |
+|       Deliverer        | deliverer, d |
+|         Order          |   order, o   |
+|          Pet           |    pet, p    |
+|       All Person       |    all, a    |
+
+
+Examples:
+* `list buyer` or `list b` lists all Buyer contacts with their orders.
+* `list deliverer` or `list d`, lists all Deliverer contacts.
+* `list supplier` or `list s`, lists all Supplier contacts with their pets.
+* `list all` or `list a`, lists all Buyer, Deliverer, Supplier contacts and their respective pets and orders details.
+* `list order` or `list o`, lists all Orders.
+* `list pet` or `list p`, lists all Pets.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -431,9 +461,9 @@ The followings are two ways to use this command:
 
   Format: `add supplier`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-primary">
 
-:information_source: **Useful keyboard shortcuts for the pop-up window:**
+**:bulb: Tip:** **Useful keyboard shortcuts for the pop-up window:**
 
 | Keyboard shortcut | Associated action                                                                      |
 |:-----------------:|:---------------------------------------------------------------------------------------|
@@ -449,16 +479,16 @@ This ensures that you can use all the available shortcuts.
 
 </div>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-**:bulb: Tip:** If a compulsory text field is ***empty*** or a text field ***starts with whitespace*** during saving, the cursor will be brought to that text field,
+:information_source:  If a compulsory text field is ***empty*** or a text field ***starts with whitespace*** during saving, the cursor will be brought to that text field,
 which will be highlighted in red.
 
 </div>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-**:bulb: Tip:** If the input of a text field is in the ***wrong format*** during saving, the person will not be added to
+:information_source:  If the input of a text field is in the ***wrong format*** during saving, the person will not be added to
 the contacts and the pop-up window will not close.
 The error message and the correct format of the input will be shown in the **main window**.
 
@@ -517,43 +547,13 @@ The following picture shows the display list after `match 1` is executed.
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-### Listing contacts or items : `list`
-
-Displays the specified type of contacts or items. This command is especially useful when you want to find the index of a
-contact / item.
-
-Format: `list KEY`
-
-#### List KEY Types Table
-
-| Contact / Item to List |         KEY          |
-|:----------------------:|:--------------------:|
-|         Buyer          |   buyer, b, -b, /b   |
-|        Supplier        | supplier, s, -s, /s  |
-|       Deliverer        | deliverer, d, -d, /d |
-|         Order          |   order, o, -o, /p   |
-|          Pet           |    pet, p, -p, /p    |
-|       All Person       |    all, a, -a, /a    |
-
-
-Examples:
-* `list buyer`, lists all Buyer contacts with their orders.
-* `list deliverer`, lists all Deliverer contacts.
-* `list supplier`, lists all Supplier contacts with their pets.
-* `list all`, lists all Buyer, Deliverer, Supplier contacts and their respective pets and orders details.
-* `list order`, lists all Orders.
-* `list pet`, lists all Pets.
-
-[Go back to [Table of Contents](#table-of-contents)]
-[Go back to [Commands](#commands)]
-
 ### Deleting a contact or item : `delete`
 
 Deletes a contact / item at the specified index of the respective contact / item list.
 
 Format: `delete-KEY INDEX`
 
-#### KEY Types Table
+#### KEY Table
 
 | Contact / Item to Delete | KEY |
 |:------------------------:|:---:|
@@ -564,11 +564,30 @@ Format: `delete-KEY INDEX`
 |           Pet            |  p  |
 
 Examples:
-* `delete-b 1`, deletes `Buyer` contact at index 1 of Buyer List, if index is found.
-* `delete-s 1`, deletes `Supplier` contact at index 1 of Supplier List, if index is found.
-* `delete-d 1`, deletes `Deliverer` contact at index 1 of Deliverer List, if index is found.
-* `delete-o 1`, deletes `Order` at index 1 of Orders List, if index is found.
-* `delete-p 1`, deletes `Pet` at index 1 of Pets List, if index is found.
+* `delete-b 1`, deletes `Buyer` contact at index 1 of the display list, if index is found.
+* `delete-s 2`, deletes `Supplier` contact at index 2 of the display list, if index is found.
+* `delete-d 1`, deletes `Deliverer` contact at index 1 of the display list, if index is found.
+* `delete-o 1`, deletes `Order` at index 1 of the display list, if index is found.
+* `delete-p 1`, deletes `Pet` at index 1 of the display list, if index is found.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution**: Please ensure that you have the corresponding display list before you execute the delete command.
+For example, if you want to delete a buyer by `delete-b 1`, do ensure at index 1 is a buyer.
+This is to make sure you know what you are deleting and do not delete a contact or item by accident, since there is no `undo` command yet.
+
+* To ensure at the index is a contact, use [List command](#listing-contacts-or-items--list) or [Find command](#finding-contacts-using-keywords--find).
+* To ensure at the index is an item, use [List command](#listing-contacts-or-items--list) or [Filter command](#filtering-items-by-attributes--filter).
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+**:bulb: Tip:** Want to delete an order or a pet when browsing through the list of buyer / supplier?
+You **don't need to** list all orders / pets, find that particular order / pet and its index, and delete from there.
+Instead, you can just use the [Check command](#checking-which-item-belongs-to-which-contact--check), `check buyer 1` for example, and delete from the order list of that buyer.
+
+</div>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -577,26 +596,34 @@ Examples:
 
 Edits one or more attributes of a contact by the index number used in the displayed contacts list.
 Existing values of that attribute will be overwritten by the input values.
+Please provide **at least one** attribute.
 
-<div markdown="span" class="alert alert-warning">
+Format: `edit-KEY INDEX [n/NAME] [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/LOCATION]`
 
-:exclamation: This command is only available for **editing the basic contact information** of the `Person` for the current version. In other words, **information regarding `Order`/`Pet`** that the `Buyer`/`Supplier` possess **cannot be modified**.
-
-</div>
-
-Format: `edit-ROLE INDEX [n/NAME] [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/LOCATION]`
-
-#### ROLE Types Table
+#### KEY Table
 
 | Contact to Edit | Role |
 |:---------------:|:----:|
 |      Buyer      |  b   |
-|    Supplier     |  s   |
 |    Deliverer    |  d   |
+|    Supplier     |  s   |
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution**: Please ensure that you have the corresponding display list before you execute the edit command.
+For example, if you want to edit a buyer by `edit-b 1`, do ensure at index 1 is a buyer.
+
+</div>
 
 Examples: 
 * `edit-b 1 n/Alex`, modifies the name of the `Buyer` contact at index 1 of Buyer List to Alex, if index is found.
 * `edit-s 3 n/Bobby ph/884321` modifies the name to Bobby and phone to 884321, of the `Supplier` contact at index 3 of Supplier List to Alex, if index is found.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: This command is only available for **editing the basic information** of a contact for the current version. In other words, **information regarding `Order`/`Pet`** that the `Buyer`/`Supplier` possess **cannot be modified**.
+
+</div>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
