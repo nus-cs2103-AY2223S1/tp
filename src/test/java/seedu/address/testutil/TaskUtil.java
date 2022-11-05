@@ -1,10 +1,13 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.model.task.Task;
 
-import static seedu.address.logic.parser.CliSyntax.*;
+
 
 /**
  * A utility class for Task.
@@ -33,8 +36,10 @@ public class TaskUtil {
      */
     public static String getEditTaskDescriptorDetails(EditTaskCommand.EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getDescription().ifPresent(description-> sb.append(PREFIX_DESCRIPTION).append(description).append(" "));
-        descriptor.getModule().ifPresent(module -> sb.append(PREFIX_MODULE).append(module).append(" "));
+        descriptor.getDescription().ifPresent(description->
+                sb.append(PREFIX_DESCRIPTION).append(description).append(" "));
+        descriptor.getModule().ifPresent(module ->
+                sb.append(PREFIX_MODULE).append(module).append(" "));
         return sb.toString();
     }
 }

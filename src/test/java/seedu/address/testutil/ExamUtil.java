@@ -1,9 +1,15 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+
+import seedu.address.logic.commands.AddExamCommand;
+import seedu.address.logic.commands.EditExamCommand;
 import seedu.address.model.exam.Exam;
 
-import static seedu.address.logic.parser.CliSyntax.*;
+
+
 
 /**
  * A utility class for Exam.
@@ -33,9 +39,12 @@ public class ExamUtil {
      */
     public static String getEditExamDescriptorDetails(EditExamCommand.EditExamDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getDescription().ifPresent(description-> sb.append(PREFIX_EXAM_DESCRIPTION).append(description).append(" "));
-        descriptor.getModule().ifPresent(module -> sb.append(PREFIX_MODULE).append(module).append(" "));
-        descriptor.getExamDate().ifPresent(examDate -> sb.append(PREFIX_EXAM_DATE).append(examDate).append(" "));
+        descriptor.getDescription().ifPresent(description
+                -> sb.append(PREFIX_EXAM_DESCRIPTION).append(description).append(" "));
+        descriptor.getModule().ifPresent(module
+                -> sb.append(PREFIX_MODULE).append(module).append(" "));
+        descriptor.getExamDate().ifPresent(examDate
+                -> sb.append(PREFIX_EXAM_DATE).append(examDate).append(" "));
         return sb.toString();
     }
 }

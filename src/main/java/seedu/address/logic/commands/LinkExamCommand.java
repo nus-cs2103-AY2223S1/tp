@@ -73,6 +73,6 @@ public class LinkExamCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof LinkExamCommand // instanceof handles nulls
                 && taskIndex.equals(((LinkExamCommand) other).taskIndex))
-                && examIndex.equals(((LinkExamCommand)other).examIndex); // state check
+                && examIndex.equals(((LinkExamCommand) other).examIndex); // state check
     }
 }

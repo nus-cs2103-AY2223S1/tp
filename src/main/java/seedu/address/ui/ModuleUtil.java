@@ -1,8 +1,13 @@
 package seedu.address.ui;
 
-import seedu.address.logic.commands.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NAME;
+
+import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.model.module.Module;
-import static seedu.address.logic.parser.CliSyntax.*;
+
 
 /**
  * A utility class for Module.
@@ -13,8 +18,7 @@ public class ModuleUtil {
      * Returns an add module command string for adding the {@code module}.
      */
     public static String getAddModuleCommand(Module module) {
-       return "m " + AddModuleCommand.COMMAND_WORD + " " + getModuleDetails(module);
-       // return "m add c/cs2030s m/n mc/4";
+        return "m " + AddModuleCommand.COMMAND_WORD + " " + getModuleDetails(module);
     }
 
     /**
@@ -34,9 +38,12 @@ public class ModuleUtil {
      */
     public static String getEditModuleDescriptorDetails(EditModuleCommand.EditModuleDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getModuleCode().ifPresent(moduleCode-> sb.append(PREFIX_MOD_CODE).append(moduleCode).append(" "));
-        descriptor.getModuleName().ifPresent(moduleName -> sb.append(PREFIX_MOD_NAME).append(moduleName).append(" "));
-        descriptor.getModuleCredit().ifPresent(moduleCredit -> sb.append(PREFIX_MOD_CREDIT).append(moduleCredit).append(" "));
+        descriptor.getModuleCode().ifPresent(moduleCode
+                -> sb.append(PREFIX_MOD_CODE).append(moduleCode).append(" "));
+        descriptor.getModuleName().ifPresent(moduleName
+                -> sb.append(PREFIX_MOD_NAME).append(moduleName).append(" "));
+        descriptor.getModuleCredit().ifPresent(moduleCredit
+                -> sb.append(PREFIX_MOD_CREDIT).append(moduleCredit).append(" "));
         return sb.toString();
     }
 }

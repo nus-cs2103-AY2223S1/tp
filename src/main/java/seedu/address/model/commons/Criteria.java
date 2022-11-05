@@ -1,7 +1,5 @@
 package seedu.address.model.commons;
 
-import seedu.address.logic.commands.SortTaskCommand;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 

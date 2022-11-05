@@ -35,4 +35,5 @@ public class Messages {
             "Please provide an exam index greater than 0 and less than %d";
     public static final String MESSAGE_INVALID_EXAM_INDEX =
             "Please provide a positive integer for the index of an exam.";
+
 }
