@@ -88,7 +88,8 @@ Given below are my contributions to the project.
     * Updated the implementation details for the `nextsem` and `filter` features [#203](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/203)
     * Added an activity and sequence diagram to illustrate the execution of the `filter` features [#203](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/203)
     * Added a sequence diagram to illustrate the implementation of the `nextsem` feature [#203](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/203)
-    * Use cases 1, 5, 20, 21, 22, 23 and 24 [#57](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/57),
+    * Use cases 1, 5, 20, 21, 22, 23 and 24 [#57](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/57), [#214](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/214)
+    * Add manual testing for refreshing to next semester [#214](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/214)
 
 
 * **Contributions to Team-based tasks**:
