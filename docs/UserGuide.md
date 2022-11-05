@@ -201,11 +201,12 @@ Examples:
 grades 80 for CA1 and 60 for SA1. Notice the first score for CA1 is overridden by the second score for CA1.
 </div>
 
-![InvalidCommandError](images/InvalidCommandError.png){:width="400px"}
-
 <div markdown="span" class="alert alert-warning">:exclamation:
 **Caution:** If you are receiving an invalid command message, do check to ensure that you are using the correct prefix 
 for the intended parameter.
+
+Invalid command message:
+![InvalidCommandError](images/InvalidCommandError.png){:width="400px"}
 </div>
 
 #### 4.2.2 Editing a student record : `edit`
@@ -221,7 +222,7 @@ The index **must be a positive integer**. E.g. 1 or 2.
 
 **Usage**
 
-There are two scenarios when you may need to use this command:
+There are three scenarios when you may need to use this command:
 * When you wish to add the parent's information for a student.
 * When you have completed marking the exam papers and want to add in your students' grades.
 * When there is a mistake in a student record, and you wish to update it.
@@ -229,8 +230,8 @@ There are two scenarios when you may need to use this command:
 Format: `edit INDEX [nm/STUDENT-NAME] [id/ID] [exam/EXAM-NAME SCORE] [pn/PARENT-NAME] ...`
 
 Examples:
-* `edit 1 exam/CA2 70 exam/SA1 60` Adds or updates the _CA2_ and _SA1_ exam grades of the 1st student to be _70_ and _60_ respectively.
-* `edit 2 nm/Jacob Teo` Edits the name of the 2nd student to _Jacob Teo_.
+* `edit 1 exam/CA2 70 exam/SA1 60` adds or updates the _CA2_ and _SA1_ exam grades of the 1st student to be _70_ and _60_ respectively.
+* `edit 2 nm/Jacob Teo` edits the name of the 2nd student to _Jacob Teo_.
 
 #### 4.2.3 Deleting a student record : `delete`
 
@@ -325,11 +326,6 @@ Example:
 
 ![viewClass](images/viewClass.png)
 
-<div markdown="span" class="alert alert-info">:information_source:
-**Note:** The default display, when starting the application, shows all student records in Classify.
-Commands related to managing display are not saved upon exiting the application.
-</div>
-
 #### 4.3.3 Finding a student record : `find`
 
 **Description**
@@ -355,23 +351,23 @@ Format: `find nm/STUDENT-NAME` or `find id/ID`
 * The search only recognises whole words, and searching for substrings is not valid. E.g. _Han_ will not match _Hans_.
 
 Examples:
-* `find nm/lee` returns the list of students with _lee_ in their names.
+* `find nm/lee` displays the list of students with _lee_ in their name.
 ![FindByName](images/FindByName.png)
-* `find nm/John` returns the records for any student named _john_ or any student with _john_ in their name. 
-* `find nm/john alice` returns the records for the students whose names contain either _john_ or _alice_ or both.
-* `find id/123A` returns the student record for the student with _123A_ as their student ID.
+* `find nm/John` displays the list of students with _john_ in their name. 
+* `find nm/john alice` displays the list of students whose name contain _john_, _alice_ or both.
+* `find id/123A` displays the student with _123A_ as their student ID.
 
 #### 4.3.4 Toggling view : `toggleView`
 
 **Description**
 
-Toggles the display between showing and hiding the students' parent details. 
+Toggles the display between showing and hiding the students' parent details. If the current view displays the parent details, 'toggleView' will hide the parent details and vice versa.
 
 **Usage**
 
 There are a few scenarios when you may want to use this command:
-* When you have many student and want to uncluttered view of your students without their parental details.
-* When you want to contact the parent of the student.
+* Toggle to hide when you have many student and want to uncluttered view of your students without their parental details.
+* Toggle to show when you want to contact the parent of the student.
 
 Format: `toggleView`
 
@@ -384,7 +380,7 @@ Format: `toggleView`
 ![Detailed](images/ToggleViewDetailed.png)
 
 <div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** The default display [renders](https://en.wikipedia.org/wiki/Rendering_(computer_graphics)) the students'
+**Tip:** The default view on every start of the application displays the students'
 parent details as a reminder that these optional fields exists.   
 </div>
 
@@ -403,9 +399,8 @@ The list of students displayed will be arranged in order of ascending grades, us
 
 **Usage**
 
-Once you have updated the scores for an exam for all students in a particular class, you may use this command to 
-calculate the mean score of the class and see a list of students who have scored below it, depending on whether the 
-filter is set to _ON_ or _OFF_.
+Once you have updated the scores for a recent exam for all students in a particular class, you may use this command to
+identify students who require additional academic support based on the exam results.
 
 Format: `viewStats class/CLASS exam/EXAM-NAME filter/FILTER`
 
@@ -416,9 +411,9 @@ Format: `viewStats class/CLASS exam/EXAM-NAME filter/FILTER`
 * Filter is either _ON_ or _OFF_, and is case-insensitive.
 
 Examples:
-* `viewStats class/4A exam/SA1 filter/off` Displays the mean obtained by _Class 4A_ for _SA1_, as well as the list of 
+* `viewStats class/4A exam/SA1 filter/off` displays the mean obtained by _Class 4A_ for _SA1_, as well as the list of 
 all the students in the _Class 4A_, arranged in ascending grades for _SA1_.
-* `viewStats class/4A exam/CA1 filter/on` Displays the mean obtained by _Class 4A_ for _CA1_, as well as the list of 
+* `viewStats class/4A exam/CA1 filter/on` displays the mean obtained by _Class 4A_ for _CA1_, as well as the list of 
 students in _Class 4A_ whose grade for _CA1_ falls below the mean, arranged in ascending grades for _CA1_.
 
 ![ViewStats](images/ViewStats.png)
@@ -431,7 +426,7 @@ students in _Class 4A_ whose grade for _CA1_ falls below the mean, arranged in a
 
 **Description**
 
-Shows a summary of all commands available.
+Shows a summary of all the available commands.
 
 **Usage**
 
@@ -442,8 +437,9 @@ displays a command summary table.
 
 Format: `help`
 
-<div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** Copy and paste the URL into your browser to view this user guide again.  
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Copy and paste the [URL](#7-glossary) into your browser to open this user guide. This user guide provides a more extensive explanation of each command.
 </div>
 
 #### 4.5.2 Exiting the application : `exit`
@@ -516,5 +512,6 @@ graphics.
 * **Alphanumeric characters**: Refers to characters made up of a combination of letters and/ or numbers.
 * **Local storage**: Local storage refers to the data that is stored on your physical device.
 * **Write-protected**: Refers to a system policy that prevents you from writing data to that location.
+* **URL**: Uniform Resource Locators is a web address that opens up a web page when keyed into the browser.
 
 Click <a href="#top">here</a> to return to the top.
