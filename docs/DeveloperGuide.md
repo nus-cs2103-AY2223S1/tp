@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide for bobaBot
 ---
 
-* Table of Contents
+1.Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
