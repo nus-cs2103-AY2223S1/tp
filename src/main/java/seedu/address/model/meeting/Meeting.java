@@ -46,7 +46,6 @@ public class Meeting implements Comparable<Meeting> {
         this.peopleToMeetList.setPersons(peopleToMeetArray);
         this.meetingDescription = meetingTitle;
         this.processedMeetingDateAndTime = processedMeetingDateAndTime;
-
         this.meetingLocation = meetingLocation;
     }
 
