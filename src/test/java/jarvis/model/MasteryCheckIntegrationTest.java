@@ -1,8 +1,8 @@
 package jarvis.model;
 
 import static jarvis.testutil.TypicalLessons.CONSULT_1;
-import static jarvis.testutil.TypicalLessons.DT3;
 import static jarvis.testutil.TypicalLessons.DT2;
+import static jarvis.testutil.TypicalLessons.DT3;
 import static jarvis.testutil.TypicalLessons.DT4;
 import static jarvis.testutil.TypicalLessons.MASTERY_CHECK_DESCRIPTION_1;
 import static jarvis.testutil.TypicalLessons.MASTERY_CHECK_DESCRIPTION_2;
