@@ -343,16 +343,19 @@ Format: `status -p STATUS`
 Examples:
 * `status -p AVAILABLE` returns all the properties with status of `AVAILABLE`
 * `status -p PENDING` returns all the properties with status of `PENDING`
-* `status -p SOLD` returns all the properties with status of `SOLD`
+* `status -p sold` returns all the properties with status of `SOLD`
 
 ### Filtering properties by type: `type -p`
 
 Returns a filtered list of clients that fulfil the filter conditions.
 
-Format: `type -p TYPE`
- 
+
+Format: `type -p PROPERTY_TYPE`
+
 Examples:
-* `type -p HDB condo` returns all properties that are HDBs or Condos.
+* `type -p HDB condo` returns all properties that are HDBs or Condos
+* `type -p hdb` returns all properties that are HDBs
+* `type -p LANdEd` returns all properties that are LANDED
 
 ### Selecting a property: `select -p INDEX`
 
@@ -460,6 +463,12 @@ Format: `find -c KEYWORD [MORE_KEYWORDS]`
 * Client profiles matching at least one keyword will be returned (i.e. `OR` search). e.g. `Sean Lee` will return `Sean Tan`, `Bob Lee`
 </div>
 
+Returns a filtered list of clients according to specified tags.
+
+TAG have to be fully specified (i.e. no partial tags like 'high' instead of 'high-end')
+
+Format: `filter -c TAG...`
+
 Examples:
 * `find -c Janice` returns `Janice Tan` and `Janice Ong`
 * `find -c Dustin Chan` returns `Dustin Ong`, `Jane Chan`<br>
@@ -543,8 +552,8 @@ the data of your previous Property directory and Client directory home folder.
 | **Range -p**  | `range -p l/LOWER_BOUND u/UPPER_BOUND`<br> e.g., `range -p l/1,000,000 u/3,000,000`                                                              |
 | **List -p**   | `list -p`                                                                                                                                        |
 | **Select -p** | `select -p INDEX` <br> e.g., `select -p 2`                                                                                                       |
-| **Status -p** | `status -p PROPERTY_STATUS`                                                                                                                      |
-| **Type -p**   | `type -p PROPERTY_TYPE`                                                                                                                          |
+| **Status -p** | `status -p` <br> e.g., `status -p AVAILABLE`                                                                                                     |
+| **Type -p**   | `type -p PROPERTY_TYPE` <br> e.g., `type -p HDB`                                                                                                 |
 
 **Client Directory**
 
