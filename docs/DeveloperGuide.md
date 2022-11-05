@@ -410,14 +410,14 @@ The Foodwhere data is stored as a JSON file.
 
 Aside from rating, the other fields are stored as strings. The accepted format includes the following:
 
-| Data field     | Format                                                                                                           |
-|----------------|------------------------------------------------------------------------------------------------------------------|
-| Address        | Any ASCII text                                                                                                   |
-| Content        | Any ASCII text                                                                                                   |
-| Date           | A date in the format DD/MM/YYYY, D/MM/YYYY, DD/M/YYYY, D/M/YYYY, or with dashes instead of slashes               |
-| Name           | Nonempty alphanumeric string with spaces, capitalisation preserved, duplicate spaces removed for the actual name |
-| Rating         | An integer or floating point number from 0 (inclusive) to 6 (exclusive), rounded down for the actual rating      |
-| Tag            | Alphanumeric token without spaces, interpreted as lowercase for the actual tag                                   |
+| Data field     | Format                                                                                                                                                          |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Address        | Any ASCII text                                                                                                                                                  |
+| Content        | Any ASCII text                                                                                                                                                  |
+| Date           | A date in the format DD/MM/YYYY, D/MM/YYYY, DD/M/YYYY, D/M/YYYY, or with dashes instead of slashes                                                              |
+| Name           | Nonempty alphanumeric string with spaces, capitalisation preserved, duplicate spaces removed for the actual name                                                |
+| Rating         | An integer or floating point number from 0 (inclusive) to 6 (exclusive), rounded down (after interpreted as a floating point number) for the actual rating      |
+| Tag            | Alphanumeric token without spaces, interpreted as lowercase for the actual tag                                                                                  |
 
 Below is an example of one stall with one review.
 ```
