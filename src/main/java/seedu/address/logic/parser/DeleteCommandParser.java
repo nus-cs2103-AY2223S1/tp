@@ -21,9 +21,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
 
         // Throw invalid index error only if index is an integer and is lower than or equals to 0
-        if (isInteger(args)
-        && Integer.parseInt(args) <= 0) {
-           throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (isInteger(args) && Integer.parseInt(args) <= 0) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         // Throw invalid format error only if index is not an integer
