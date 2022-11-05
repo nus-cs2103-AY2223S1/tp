@@ -481,20 +481,11 @@ Matches the "best fit" pet to an order. This is especially useful when you recei
 and want to find out **which pet(s)** on sales is the **best fit** (i.e. description of the pet matches as many requirements specified in the order as possible).
 With this information, you may contact the suppliers who own these pets for further negotiation.
 
-Format: `match INDEX`
-
-<div markdown="span" class="alert alert-warning">
-
-Please ensure that at the index is an order, which can be achieved by executing the [List command](#listing-contacts-or-items--list) or [Filter order command](#filtering-orders--filter-o) beforehand.
-
-</div>
-
 <div markdown="span" class="alert alert-info">
 
 :information_source: **How does the match command work?**
 
 This command sorts all pets currently being displayed on your screen, i.e filtered out pets will not be sorted.
-
 
 We have designed an algorithm to give each pet in the storage a score. Pets with descriptions that are closer to the requirements specified in the order will be given a higher score.
 Pets with higher scores (i.e. more fitting to the order) are displayed on top. If you want to know how we design the algorithm, check out our [Developer Guide](DeveloperGuide.md).
@@ -503,6 +494,25 @@ In the current version of PetCode, the score calculation in the algorithm uses a
 weightages for different fields, such as price, age, species and so on.
 
 </div>
+
+Format: `match INDEX`
+
+Example: 
+* To match the first order in the display list to pets in the storage: `match 1`
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution**: Please ensure that at the index is an order, which can be achieved by executing the [List command](#listing-contacts-or-items--list) or [Filter order command](#filtering-orders--filter-o) beforehand.
+
+</div>
+
+The following picture shows the display list before the match command is executed.
+
+![before match command](images/BeforeMatch.png)
+
+The following picture shows the display list after `match 1` is executed.
+
+![after match command](images/AfterMatch.png)
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
