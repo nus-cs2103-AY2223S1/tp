@@ -59,14 +59,6 @@ public class FindBillCommandTest {
         // same object -> returns true
         assertTrue(firstCommand.equals(firstCommand));
 
-        /*
-        // same values -> returns true
-        FindBillCommand firstCommandCopy = new FindBillCommand(firstNamePredicate, firstPaymentStatusPredicate,
-                firstBillDatePredicate, firstAmountPredicate);
-        assertTrue(firstCommand.equals(firstCommandCopy));
-        */
-
-
         // different types -> returns false
         assertFalse(firstCommand.equals(1));
 
@@ -101,20 +93,6 @@ public class FindBillCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BILL_1), model.getFilteredBillList());
     }
-
-    /*
-    @Test
-    public void execute_findByPaymentStatus_found() {
-        String expectedMessage = String.format(MESSAGE_BILL_LISTED_OVERVIEW, 3);
-        Optional<Predicate<PaymentStatus>> paymentStatusPredicate = Optional.of(paymentStatus -> paymentStatus.toString().toLowerCase()
-                .contains("PAID".toLowerCase()));
-        FindBillCommand command = new FindBillCommand(Optional.empty(), paymentStatusPredicate, Optional.empty(),
-                Optional.empty());
-        expectedModel.updateFilteredBillList(command.getPredicate());
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        //ObservableList<Bill> test =  model.getFilteredBillList();
-        assertEquals(Arrays.asList(BILL_1, BILL_3, BILL_5), model.getFilteredBillList());
-    }*/
 
     @Test
     public void execute_findByBillDate_found() {
