@@ -115,7 +115,7 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
      * @throws ParseException If the parsing of the user input into a command causes exception.
      */
     @FXML
-    void exitWithSave(ActionEvent event) throws CommandException, ParseException {
+    void exitWithSave(ActionEvent event) {
         try {
             if (!popUpPanel.checkAllPartsFilled()) {
                 return;
@@ -134,7 +134,6 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command!");
             resultDisplay.setFeedbackToUser(e.getMessage());
-            throw e;
         }
     }
 

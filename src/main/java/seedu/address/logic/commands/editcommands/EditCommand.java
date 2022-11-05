@@ -30,7 +30,6 @@ public abstract class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": edit-KEY. Edits the details of the person identified "
             + "by the index number used in the displayed person list.\n"
-            + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
