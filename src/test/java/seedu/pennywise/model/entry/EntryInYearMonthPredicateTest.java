@@ -59,7 +59,7 @@ public class EntryInYearMonthPredicateTest {
                 validYearMonthInvestment
         );
 
-         // same object -> returns true
+        // same object -> returns true
         assertEquals(entryInValidYearMonthInvestment, entryInValidYearMonthInvestment);
 
         // same values -> returns true
@@ -70,7 +70,7 @@ public class EntryInYearMonthPredicateTest {
 
         // different types -> returns false
         assertNotEquals(entryInValidYearMonthInvestment, validYearMonthInvestment);
-        
+
         // null -> returns false
         assertNotEquals(entryInValidYearMonthInvestment, null);
 

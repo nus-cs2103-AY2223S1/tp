@@ -2,10 +2,8 @@ package seedu.pennywise.model.entry;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 import seedu.pennywise.commons.util.StringUtil;
 
@@ -15,6 +13,10 @@ import seedu.pennywise.commons.util.StringUtil;
 public class DescriptionContainsKeywordsPredicate implements Predicate<Entry> {
     private final List<String> keywords;
 
+    /**
+     * Constructs a new predicate to test if an entry's description contains one of the keywords
+     * in the given non-null {@code keywords}.
+     */
     public DescriptionContainsKeywordsPredicate(List<String> keywords) {
         requireNonNull(keywords);
         this.keywords = keywords;
