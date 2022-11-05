@@ -574,7 +574,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user          | track my calories burnt during the gym session                       | attain my fitness goals                                                    |
 | `*`      | user          | have a tailored workout program                                      | target my specific strengths and weaknesses for outstanding results        |
 | `*`      | user          | have motivation to go to the gym                                     | stay motivated to attain my fitness goals                                  |
-| `*`      | user          | track my RPE (rate of perceived exertion) of previous workout        | better plan for my next workout                                            |
+| `*`      | user          | track my Rate of Perceived Exertion (RPE) of previous workout        | better plan for my next workout                                            |
 | `*`      | user          | view my run timings                                                  | track my running progression                                               |
 | `*`      | user          | share my workout plan with my friends                                | progress together with them                                                |
 | `*`      | user          | access a workout plan done by my friends                             | learn from them                                                            |
@@ -592,7 +592,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 System: Gim <br>
 Use case: UC01 - Request for help <br>
 Actor: User <br>
-Guarantees: Help message displayed.
 
 **MSS**
 
@@ -605,7 +604,6 @@ Guarantees: Help message displayed.
 System: Gim <br>
 Use case: UC02 - Add an exercise <br>
 Actor: User <br>
-Guarantees: Input exercise will be added to storage.
 
 **MSS**
 
@@ -617,14 +615,13 @@ Guarantees: Input exercise will be added to storage.
 
 * 1a. User enters the command wrongly.
     * 1a1. Gim shows an error message.
-<br>Use case ends.
+<br>Use case resumes at step 1.
 
 #### Use case 3: Delete an exercise
 
 System: Gim <br>
 Use case: UC03 - Delete an exercise <br>
 Actor: User <br>
-Guarantees: Selected exercise will be deleted from storage.
 
 **MSS**
 
@@ -636,7 +633,7 @@ Guarantees: Selected exercise will be deleted from storage.
 
 * 1a. User enters the command wrongly.
     * 1a1. Gim displays the error message.
-<br>Use case ends.
+<br>Use case resumes at step 1.
 
 * 1b. User enters an exercise that does not exist in the app.
     * 1b1. Gim displays that the exercise does not exist.
@@ -647,7 +644,6 @@ Guarantees: Selected exercise will be deleted from storage.
 System: Gim <br>
 Use case: UC04 - Clear all exercise entries in the system <br>
 Actor: User <br>
-Guarantees: All exercise entries in the system will be cleared.
 
 **MSS**
 
@@ -659,14 +655,13 @@ Guarantees: All exercise entries in the system will be cleared.
 
 * 1a. User enters the command wrongly.
     * 1a1. Gim shows an error message.
-      <br>Use case ends.
+      <br>Use case resumes at step 1.
 
 #### Use case 5: List exercises
 
 System: Gim <br>
 Use case: UC05 - List exercises <br>
 Actor: User <br>
-Guarantees: All stored exercises will be displayed.
 
 **MSS**
 
@@ -674,18 +669,11 @@ Guarantees: All stored exercises will be displayed.
 2. Gim lists the stored exercises.
 <br>Use case ends.
 
-**Extensions**
-
-* 2a. Gim has no stored exercises.
-    * 2a1. Gim displays the error message.
-<br>Use case ends.
-
 #### Use case 6: Sort exercises
 
 System: Gim <br>
 Use case: UC06 - Sort exercises <br>
 Actor: User <br>
-Guarantees: Displayed list of exercises will be sorted by date.
 
 **MSS**
 
@@ -698,7 +686,6 @@ Guarantees: Displayed list of exercises will be sorted by date.
 System: Gim <br>
 Use case: UC07- View exercises within a time period <br>
 Actor: User <br>
-Guarantees: Exercises within the specified time period will be displayed in an order sorted by date.
 
 **MSS**
 
@@ -710,17 +697,16 @@ Guarantees: Exercises within the specified time period will be displayed in an o
 
 * 1a. User enters the command wrongly.
     * 1a1. Gim displays the error message.
-      <br>Use case ends.
+      <br>Use case resumes at step 1.
 * 1b. User enters an invalid date.
     * 1b1. Gim displays the invalid date error message.
-      <br>Use case ends.
+      <br>Use case resumes at step 1.
 
 #### Use case 8: Filter exercises by name(s)
 
 System: Gim <br>
 Use case: UC08 - Filter exercises by name(s) <br>
 Actor: User <br>
-Guarantees: Exercises filtered by name(s) will be displayed.
 
 **MSS**
 
@@ -732,7 +718,7 @@ Guarantees: Exercises filtered by name(s) will be displayed.
 
 * 1a. User enters the command wrongly.
     * 1a1. Gim displays the error message.
-      <br>Use case ends.
+      <br>Use case resumes at step 1.
 * 2a. Filtered list of exercises is empty.
     * 2a1. Gim displays a reminder message.
       <br>Use case ends.
@@ -742,7 +728,6 @@ Guarantees: Exercises filtered by name(s) will be displayed.
 System: Gim <br>
 Use case: UC09 - View Personal Record (PR) for exercise(s) <br>
 Actor: User <br>
-Guarantees: Personal Record (PR) for exercise(s) will be calculated and displayed.
 
 **MSS**
 
@@ -754,32 +739,40 @@ Guarantees: Personal Record (PR) for exercise(s) will be calculated and displaye
 
 * 1a. User enters the command wrongly.
     * 1a1. Gim displays the error message.
-      <br>Use case ends.
+      <br>Use case resumes at step 1.
 * 1b. User enters the name of exercise(s) wrongly.
     * 1b1. Gim displays exercise(s) not registered in system message.
-      <br>Use case ends.
+      <br>Use case resumes at step 1.
 
-#### Use case 10: Generate
+#### Use case 10: Generate workout suggestion for exercise(s)
 
 System: Gim <br>
 Use case: UC10 - Generate workout suggestion for exercise(s) <br>
 Actor: User <br>
-Guarantees: Sample workout suggestion will be displayed.
 
 **MSS**
 
-1. User wishes to generate a workout suggestion.
-2. User enters the exercise and difficulty level desired.
-3. Gim computes a sample workout for the user.
+1. User requests to generate a workout suggestion.
+2. Gim computes a sample workout for the user.
    <br>Use case ends.
 
 **Extensions**
 
-* 2a. Gim detects an error in the command format.
-    * 2a1. Gim requests user to enter a valid command format.
-    * 2a2. User enters new command.
-      <br>Steps 2a1-2a2 are repeated until the command entered is of valid format.
-      Use case resumes from step 3.
+* 1a. User enters the command wrongly.
+    * 1a1. Gim displays the error message.
+      <br>Use case resumes at step 1.
+* 1b. User enters an invalid index.
+    * 1b1. Gim displays the invalid index error message.
+      <br>Use case resumes at step 1.
+* 1c. User enters an incorrect format for index(es).
+    * 1c1. Gim displays the incorrect index format message.
+      <br>Use case resumes at step 1.
+* 1d. User enters the name of exercise(s) wrongly.
+    * 1d1. Gim displays exercise(s) not registered in system message.
+      <br>Use case resumes at step 1.
+* 1e. User enters an invalid difficulty level.
+    * 1e1. Gim displays the invalid difficulty level message.
+      <br>Use case resumes at step 1.
 
   
 #### Use case 11: Exit Gim
@@ -787,7 +780,6 @@ Guarantees: Sample workout suggestion will be displayed.
 System: Gim <br>
 Use case: UC11 - Exit Gim <br>
 Actor: User <br>
-Guarantees: Gim will exit.
 
 **MSS**
 
@@ -814,6 +806,7 @@ Guarantees: Gim will exit.
 * **Sets**: Number of cycles of reps that you complete
 * **Weight**: Total weight (include barbell if applicable, exclude body weight)
 * **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
+* **Rate of Perceived Exertion (RPE)**: A measure of a physical activity intensity level.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -832,33 +825,143 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample exercises. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding an exercise
+
+1. Adding an exercise to the system.
+
+    1. Test case: `:add n/Squat w/60 s/1 r/5 d/25/01/2022`.<br>
+       Expected: A new exercise with the name `Squat`, with weight `60kg`, with set `1`, with reps `5` and with date `25/01/2022` is added at the bottom of the Exercise List in Gim.
+       The Result Display Window indicates that an exercise named `Squat` has been successfully added.
+    
+    2. Test case: `:add n/Squat w/60 s/1 r/5`.<br>
+       Expected: A new exercise with the name `Squat`, with weight `60kg`, with set `1`, with reps `5` and with today's date is added at the bottom of the Exercise List in Gim.
+       The Result Display Window indicates that an exercise named `Squat` has been successfully added.
+
+    3. Test case: `:add n/Squat`.<br>
+       Expected: No exercise is added. The Result Display Window indicates that the command is of an invalid format.
+
+    4. Other incorrect `:add` commands to try: `:add`, `:add x/invalid`, `...` (where x is any invalid prefix).<br>
+       Expected: Similar to previous.
 
 ### Deleting an exercise
 
 1. Deleting an exercise while all exercises are being shown
 
-   1. Prerequisites: List all exercises using the `list` command. Multiple exercises in the list.
+   1. Prerequisite: List all exercises using the `:list` command. Multiple exercises in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `:del 1`<br>
+      Expected: First exercise is deleted from the list. Details of the deleted exercise shown in the Result Display Window. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No exercise is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `:del 0`<br>
+      Expected: No exercise is deleted. Error details shown in the Result Display Window. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `:del`, `:del x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Filtering exercises
+
+1. Filtering displayed list of exercises using keyword(s).
+
+    1. Prerequisite: There are multiple exercises in the Exercise List.
+
+    2. Prerequisite: There exists an exercise with exercise name `Deadlift`.<br>
+       Test case: `:filter Deadlift`.<br>
+       Expected: The exercise with exercise name `Deadlift` appears in the Exercise List after executing the command.
+
+    3. Prerequisite: There exists an exercise with exercise name `Deadlift` and an exercise with exercise name `Squat`.<br>
+       Test case: `:filter Deadlift Squat`.<br>
+       Expected: The exercise with exercise name `Deadlift` and exercise with exercise named `Squat` appear in the Exercise List after executing the command.
+
+    4. Other incorrect `:filter` commands to try: `:filter` (no keywords provided).<br>
+       Expected: The Result Display Window will indicate that the command is invalid.
+
+### Sorting exercises
+
+1. Sorting displayed list of exercises using keyword(s).
+
+    1. Prerequisite: There are multiple exercises in the Exercise List.
+
+    2. Test case: `:sort`.<br>
+       Expected: The exercises displayed in the Exercise List will be sorted by date after executing the command.
+
+### Viewing exercises within a time period
+
+1. Viewing exercises within a time period.
+
+    1. Prerequisite: There is at least one exercise in the Exercise List.
+
+    2. Test case: `:range last/5`.<br>
+       Expected: List exercises completed in the last 5 days.
+
+    3. Test case: `:range start/01/01/2022 end 31/01/2022`.<br>
+       Expected: List exercises completed between 01/01/2022 and 31/01/2022.
+
+    4. Test case: `:range start/01/01/202222 end 31/01/202222`.<br>
+       Expected: The Result Display Window will indicate that the date input format is invalid.
+
+    5. Other incorrect `:range` commands to try: `:range`, `range last/abc`, `range start/01/01/2022`, ...<br>
+       Expected: The Result Display Window will indicate that the command is invalid.
+
+### Generating workout suggestion for exercise(s)
+
+1. Generating workout suggestion using index(es).
+
+    1. Prerequisite: There is at least one exercise in the Exercise List.
+
+    2. Test case: `:gen 1 level/easy`.<br>
+       Expected: Generate a workout with difficulty level easy for the exercise at index 1 of the Exercise List.
+
+    3. Prerequisite: There is only one exercise in the Exercise List.<br>
+       Test case: `:gen 2 level/easy`.<br>
+       Expected: The Result Display Window will indicate that the index is invalid.
+
+2. Generating workout suggestion using exercise name(s).
+
+    1. Prerequisite: There is at least one exercise in the Exercise List.
+
+    2. Prerequisite: There exists an exercise with exercise name `Deadlift`.<br>
+      Test case: `:gen n/Deadlift level/easy`.<br>
+      Expected: Generate a workout with difficulty level easy for exercise with exercise name `Deadlift`.
+
+    3. Prerequisite: There does not exist an exercise with exercise name `Squat`.<br>
+        Test case: `:gen n/Squat level/easy`.<br>
+        Expected: The Result Display Window will indicate that the exercise is not registered in the system.
+   
+    4. Test case: `:gen n/Deadlift level/easyyyyyy`.<br>
+       Expected: The Result Display Window will indicate that the level is not supported.
+
+    5. Other incorrect `:gen` commands to try: `:gen` (no keywords provided).<br>
+       Expected: The Result Display Window will indicate that the command is invalid.
+
+### Listing Personal Records (PR)
+
+1. Listing Personal Record(s) of exercise(s).
+
+    1. Prerequisite: There is at least one exercise in the Exercise List.
+
+    2. Prerequisite: There exists at least one exercise with exercise name `Deadlift`.<br>
+       Test case: `:pr n/Deadlift`.<br>
+       Expected: List the Personal Record for exercise with exercise name `Deadlift`.
+
+    3. Prerequisite: There exists only exercises with exercise name `Deadlift` and exercise name `Squat`.<br>
+       Test case: `:pr all/`.<br>
+       Expected: List the Personal Records for exercises with exercise name `Deadlift` and exercise name `Squat`.
+
+    4. Prerequisite: There does not exist an exercise with exercise name `Bench press`.<br>
+      Test case: `:pr n/Bench press`.<br>
+      Expected: The Result Display Window will indicate that the exercise is not registered in the system.
+
+    5. Other incorrect `:pr` commands to try: `:pr` (no keywords provided).<br>
+       Expected: The Result Display Window will indicate that the command is invalid.
 
 ### Saving data
 
