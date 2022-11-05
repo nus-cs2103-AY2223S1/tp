@@ -5,6 +5,7 @@ package seedu.address.logic.parser;
  */
 public class CliSyntax {
 
+    /* Flag definitions for commands */
     public static final String FLAG_ASSIGNEE_STR = "-a";
     public static final String FLAG_ASSIGNEE_STR_LONG = "--assignee";
     public static final String FLAG_COMPLETE_TASKS_STR = "-c";
