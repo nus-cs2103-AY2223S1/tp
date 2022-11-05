@@ -51,7 +51,8 @@ public class HideAppointmentPredicate implements Predicate<Appointment> {
             break;
         case IS_MARKED:
             String kw = keywords.get(0);
-            passed = kw.equals("marked") || kw.equals("m") ? appt.isMarked() : !appt.isMarked();
+            passed = kw.equalsIgnoreCase("marked") || kw.equalsIgnoreCase("m")
+                    ? appt.isMarked() : !appt.isMarked();
             break;
         default:
             assert false : condition; //should not reach here
