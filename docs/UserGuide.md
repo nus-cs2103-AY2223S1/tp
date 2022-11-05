@@ -52,7 +52,7 @@ Symbol/Syntax        | Meaning
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/LOW m/1000 c/POTENTIAL` : Adds a contact named `John Doe` to the list of clients.
 
-   * **`aa`** `1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks` : Adds an appointment to the client in index 1 of the contact book with the date, time and location of the appointment.
+   * **`aa`** `1 d/21-01-2023 12:30 l/Jurong Point, Starbucks` : Adds an appointment to the client in index 1 of the contact book with the date, time and location of the appointment.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -101,7 +101,7 @@ Format: `Prefix/Parameter`
 12. d/DATE_AND_TIME
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Prefix l/Location is a lower case L, and not an I. </div>
+Prefix l/Location is a lower case L, and not an uppercase i. </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -158,9 +158,10 @@ Format: `help`
 
 Adds a client to the list of clients. 
 
-This command is case-sensitive for the parameter NAME.
-
 Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE ip/INVESTMENT_PLAN c/CLIENT_TYPE [t/TAG]…​`
+
+* This command is case-sensitive for the parameter NAME.
+* After each execution of add command, the displayed contact list resets to the original contact list.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
 <br>
@@ -193,6 +194,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3,…​
 * At least one of the fields must be provided.
+* * After each execution of edit command, the displayed contact list resets to the original contact list.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the client’s tags by typing `t/` without
@@ -202,15 +204,23 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-#### 5.1.5 Filtering persons by keyword: `find`
+#### 5.1.5 Filtering clients by keyword: `find`
 
 Finds clients whose names contain any of the given keywords.
 
-Format: `find [PREFIX] KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]
+[n/ NAME [MORE_NAMES]]
+[r/ RISK_APPETITE [MORE_RISK_APPETITE]]
+[c/ CLIENT_TYPE [MORE_CLIENT_TYPE]]
+[t/ TAG [MORE_TAGS]]
+[p/ PHONE [MORE_PHONE]]
+[i/ >/</= INCOME]…​`
 
 Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 
 * The search is case-insensitive. e.g hans will match Hans
+* At least one of the parameter fields must be provided.
+* The find command finds on the currently displayed contact list.
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only full words will be matched e.g. Han will not match Hans
 * Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
@@ -276,7 +286,7 @@ Adds an appointment with inputs DATE_AND_TIME and LOCATION for an existing clien
 
 Format: `aa INDEX d/DATE_AND_TIME l/LOCATION`
 
-Example: `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+Example: `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`
 
 The appointment details will be added to the specified client's information.
 
@@ -287,8 +297,10 @@ Also, the appointment details will be added to the calendar.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 <br>
-* DATE_AND_TIME has the format `d-MMM-yyyy hh:mm a` 
-* The PM/AM in TIME is case-sensitive, and whitespace sensitive as well.
+
+* DATE_AND_TIME has the format `dd-MM-yyyy HH:mm` (e.g "01-03-2022 18:00" represents 1st March 2022, 6:00 PM)
+* Month, Day, Hour, Minutes can only take in a 2 digit number
+* Year can only take in a 4 digit number
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed.
@@ -299,7 +311,7 @@ Also, the appointment details will be added to the calendar.
 
 Examples:
 
-* `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+* `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`
 
 #### 5.2.2 Editing an appointment : `ea`
 Edits an appointment for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
@@ -313,7 +325,7 @@ Format: `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]`
 
 Examples:
 
-* `ea 1.1 d/21-Jan-2023 12:30 PM l/West Mall, Starbucks` Edits both the date and location of the 1st client's 1st appointment to be `21-Jan-2023 12:30 PM` and `West Mall, Starbucks` respectively.
+* `ea 1.1 d/21-01-2023 12:30 l/West Mall, Starbucks` Edits both the date and location of the 1st client's 1st appointment to be `21-01-2023 12:30` and `West Mall, Starbucks` respectively.
 * `ea 2.3 l/NUS, TechnoEdge` Edits the location of the 2nd client's 3rd appointment to be `NUS, TechnoEdge`
 
 #### 5.2.3 Deleting an appointment : `da`
@@ -367,8 +379,10 @@ Examples:
 
 ##### 5.3.2.1 Jump Box
 Typing in the desired date in the provided text field followed by pressing the "ENTER" key will show the given calendar of the month and year.
-Format: DATE
-Examples: `1-Oct-2022`
+
+Format: DATE in `dd-MM-yyyy`
+
+Examples: `24-04-2023`
 
 ![jump box](images/JumpBox.png)
 
@@ -432,8 +446,8 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE m/MONTHLY_CONTRIBUTIONS c/CLIENT_TYPE [t/TAG]…​ ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
-**Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
-**Edit Appointment** | `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]` <br> e.g., `ea 1.2 d/21-Jan-2023 12:30 PM l/NUS, TechnoEdge`
+**Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`
+**Edit Appointment** | `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]` <br> e.g., `ea 1.2 d/21-01-2023 12:30 l/NUS, TechnoEdge`
 **Delete Appointment** | `da PERSON_INDEX.APPOINTMENT_INDEX` <br> e.g, `da 1.2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`

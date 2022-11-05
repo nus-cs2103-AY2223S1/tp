@@ -200,7 +200,18 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Yearly Income: ")
+                .append(getIncome())
+                .append("; Monthly Contribution: ")
+                .append(getMonthly())
+                .append("; Risk Appetite : ")
+                .append(getRiskTag())
+                .append("; Current Plan : ")
+                .append(getPlanTag())
+                .append("; Client Type: ")
+                .append(getClientTag());
+
 
         MaximumSortedList<Appointment> appointments = getAppointments();
         if (!Objects.isNull(appointments) && !appointments.isEmpty()) {
@@ -215,6 +226,7 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
         return builder.toString();
     }
 

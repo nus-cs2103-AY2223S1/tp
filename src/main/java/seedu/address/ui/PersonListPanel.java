@@ -32,7 +32,7 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    public class PersonListViewCell extends ListCell<Person> {
         private PersonListViewCell() {
             personListView.getSelectionModel().selectFirst();
         }
@@ -47,8 +47,12 @@ public class PersonListPanel extends UiPart<Region> {
                 setStyle("-fx-focus-color: transparent; ");
             } else {
                 setStyle("-fx-focus-color: transparent; ");
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1, this).getRoot());
             }
+        }
+
+        public void select(int index) {
+            personListView.getSelectionModel().select(index);
         }
     }
 

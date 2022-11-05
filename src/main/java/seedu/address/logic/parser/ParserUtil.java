@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
 import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
 import java.time.LocalDateTime;
@@ -47,38 +49,6 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses {@code personAppointmentIndex} into an {@code Index} and returns the appointment index.
-     * Leading and trailing whitespaces will be trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Index parseAppointmentIndex(String personAppointmentIndex) throws ParseException {
-        requireNonNull(personAppointmentIndex);
-        String trimmedAppointmentIndex = personAppointmentIndex.trim();
-        String[] splitStr = trimmedAppointmentIndex.split("\\.");
-
-        if (splitStr.length != 2 || !StringUtil.isNonZeroUnsignedInteger(splitStr[1])) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Index.fromOneBased(Integer.parseInt(splitStr[1]));
-    }
-
-    /**
-     * Parses {@code personAppointmentIndex} into an {@code Index} and returns the person index.
-     * Leading and trailing whitespaces will be trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Index parsePersonIndex(String personAppointmentIndex) throws ParseException {
-        requireNonNull(personAppointmentIndex);
-        String trimmedAppointmentIndex = personAppointmentIndex.trim();
-        String[] splitStr = trimmedAppointmentIndex.split("\\.");
-
-        if (splitStr.length != 2 || !StringUtil.isNonZeroUnsignedInteger(splitStr[0])) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Index.fromOneBased(Integer.parseInt(splitStr[0]));
     }
 
     /**
@@ -250,7 +220,7 @@ public class ParserUtil {
      */
     public static RiskTag parseRiskTag(String riskTag) throws ParseException {
         requireNonNull(riskTag);
-        String trimmedRiskTag = riskTag.trim();
+        String trimmedRiskTag = riskTag.trim().toUpperCase();
         if (!RiskTag.isValidRiskTagName(trimmedRiskTag)) {
             throw new ParseException(RiskTag.MESSAGE_CONSTRAINTS);
         }
@@ -263,7 +233,7 @@ public class ParserUtil {
      */
     public static ClientTag parseClientTag(String clientTag) throws ParseException {
         requireNonNull(clientTag);
-        String trimmedClientTag = clientTag.trim();
+        String trimmedClientTag = clientTag.trim().toUpperCase();
         if (!ClientTag.isValidClientTagName(trimmedClientTag)) {
             throw new ParseException(ClientTag.MESSAGE_CONSTRAINTS);
         }
@@ -328,7 +298,7 @@ public class ParserUtil {
     public static NormalTag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!NormalTag.isValidTagName(trimmedTag)) {
+        if (!NormalTag.isValidNormalTagName(trimmedTag)) {
             throw new ParseException(NormalTag.MESSAGE_CONSTRAINTS);
         }
         return new NormalTag(trimmedTag);
@@ -362,17 +332,27 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> monetaryValues} into a {@code List<String>}.
      */
-    public static List<String> parseMonetaryValues(Collection<String> monetaryValues)
+    public static List<String> parseMonetaryValues(Collection<String> monetaryValues, Prefix prefix)
             throws ParseException {
         requireNonNull(monetaryValues);
-        final List<String> incomeLevelList = new ArrayList<>(monetaryValues);
-        for (int i = 0; i < incomeLevelList.size(); i++) {
+        final List<String> moneyList = new ArrayList<>(monetaryValues);
+        for (int i = 0; i < moneyList.size(); i++) {
             if (i == 0) {
-                parseIncomeLevel("$" + incomeLevelList.get(i).substring(1));
+                if (prefix == PREFIX_INCOME) {
+                    parseIncomeLevel(moneyList.get(i).substring(1));
+                } else if (prefix == PREFIX_MONTHLY) {
+                    parseMonthly(moneyList.get(i).substring(1));
+                }
+
             } else {
-                parseIncomeLevel("$" + incomeLevelList.get(i));
+                if (prefix == PREFIX_INCOME) {
+                    parseIncomeLevel(moneyList.get(i));
+                } else if (prefix == PREFIX_MONTHLY) {
+                    parseMonthly(moneyList.get(i));
+                }
+
             }
         }
-        return incomeLevelList;
+        return moneyList;
     }
 }

@@ -56,4 +56,8 @@ public class JumpText extends UiPart<Region> {
     public void clear() {
         jumpText.clear();
     }
+
+    public boolean isJumpTextFocused() {
+        return jumpText.isFocused();
+    }
 }

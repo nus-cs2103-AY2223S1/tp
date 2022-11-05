@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.util.StringUtil.isInteger;
 import static seedu.address.logic.parser.ArgumentMultimap.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
@@ -35,9 +37,13 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         }
 
         Index personIndex;
+        String oneBasedPersonIndexStr = argMultimap.getPreamble();
+        if (isInteger(oneBasedPersonIndexStr) && Integer.parseInt(oneBasedPersonIndexStr) <= 0) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
 
         try {
-            personIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+            personIndex = ParserUtil.parseIndex(oneBasedPersonIndexStr);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddAppointmentCommand.MESSAGE_USAGE), pe);
@@ -52,8 +58,11 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
             appointmentLocation = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).get());
             appointment = ParserUtil.parseAppointment(appointmentDateTime.toString(), appointmentLocation.toString());
         } catch (DateTimeParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAppointmentCommand.MESSAGE_USAGE));
+            if (e.getCause() == null) {
+                throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+            }
+            String str = e.getCause().getMessage();
+            throw new ParseException(str);
         }
 
         return new AddAppointmentCommand(personIndex, appointment);

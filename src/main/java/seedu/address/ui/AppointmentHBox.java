@@ -33,4 +33,6 @@ public class AppointmentHBox extends UiPart<Region> {
         timeLabel.setText(appointment.getTimeFormat());
         locationLabel.setText(appointment.getLocation().toString());
     }
+
+
 }

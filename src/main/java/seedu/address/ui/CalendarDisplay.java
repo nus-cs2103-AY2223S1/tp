@@ -4,8 +4,8 @@ package seedu.address.ui;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.logic.CalendarLogic;
@@ -22,7 +22,8 @@ public class CalendarDisplay extends UiPart<Region> {
     @FXML
     private GridPane calendarDisplay;
     @FXML
-    private HBox topCalendar;
+    private FlowPane topCalendar;
+    private JumpText jumpText;
 
     /**
      * Creates a Calendar with the given list of CalendarEvents.
@@ -32,12 +33,18 @@ public class CalendarDisplay extends UiPart<Region> {
         this.calendarLogic = new CalendarLogic(logic, primaryStage, calendarDisplay, topCalendar);
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.jumpText = calendarLogic.getJumpText();
         calendarLogic.initialiseLogic();
         calendarLogic.drawCalendar();
     }
 
+    /**
+     * Handles the {@code KeyEvent} and toggles either the next or previous Calendar month.
+     *
+     * @param event the KeyEvent to be handled.
+     */
     @FXML
-    private void handleKeyPressed(KeyEvent event) {
+    public void handleKeyPressed(KeyEvent event) {
         if (event.getCode().equals(KeyCode.B)) {
             calendarLogic.previous();
             calendarDisplay.requestFocus();
@@ -45,5 +52,9 @@ public class CalendarDisplay extends UiPart<Region> {
             calendarLogic.next();
             calendarDisplay.requestFocus();
         }
+    }
+
+    public boolean isJumpTextFocused() {
+        return jumpText.isJumpTextFocused();
     }
 }

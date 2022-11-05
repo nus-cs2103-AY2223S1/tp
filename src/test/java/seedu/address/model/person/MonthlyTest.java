@@ -34,8 +34,8 @@ public class MonthlyTest {
         assertFalse(Monthly.isValidMonthly("$00001")); // trailing zeroes
 
         // valid name
-        assertTrue(Monthly.isValidMonthly("$231231")); // $ + numbers
-        assertTrue(Monthly.isValidMonthly("$0")); // $ + numbers
-        assertTrue(Monthly.isValidMonthly("$999")); // $ + numbers
+        assertTrue(Monthly.isValidMonthly("231231")); // $ + numbers
+        assertTrue(Monthly.isValidMonthly("0")); // $ + numbers
+        assertTrue(Monthly.isValidMonthly("999")); // $ + numbers
     }
 }

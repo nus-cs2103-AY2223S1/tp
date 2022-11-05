@@ -86,8 +86,8 @@ class JsonAdaptedPerson {
         riskTag = source.getRiskTag().tagName;
         planTag = source.getPlanTag().tagName;
         clientTag = source.getClientTag().tagName;
-        income = source.getIncome().value;
-        monthly = source.getMonthly().value;
+        income = source.getIncome().value.substring(1);
+        monthly = source.getMonthly().value.substring(1);
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -178,6 +178,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(PlanTag.MESSAGE_CONSTRAINTS);
         }
         final PlanTag modelPlanTag = new PlanTag(planTag);
+
         if (clientTag == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ClientTag.class.getSimpleName()));

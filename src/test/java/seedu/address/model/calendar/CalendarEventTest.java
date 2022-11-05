@@ -18,7 +18,7 @@ public class CalendarEventTest {
     private static final Name AMY = new Name("AMY");
     private static final Name BOB = new Name("BOB");
     private static final Appointment firstAppointment = new Appointment(new DateTime(
-            DateTimeParser.parseLocalDateTimeFromString("1-Apr-2023 01:00 PM")),
+            DateTimeParser.parseLocalDateTimeFromString("01-04-2023 01:00")),
             new Location("NUS TechnoEdge"));
     private static final CalendarEvent firstEvent = new CalendarEvent(AMY, firstAppointment);
 
@@ -48,11 +48,11 @@ public class CalendarEventTest {
 
     @Test
     public void method_getTimeFormat_success() {
-        Assertions.assertEquals("01:00 PM", firstEvent.getTimeFormat());
-        Assertions.assertNotEquals("01:00 AM", firstEvent.getTimeFormat());
-        Assertions.assertNotEquals("1-Apr-2023 01:00 PM", firstEvent.getTimeFormat());
-        Assertions.assertNotEquals("1/Apr/2023 01:00 PM", firstEvent.getTimeFormat());
-        Assertions.assertNotEquals("13:00 PM", firstEvent.getTimeFormat());
+        Assertions.assertEquals("01:00 AM", firstEvent.getTimeFormat());
+        Assertions.assertNotEquals("01:00", firstEvent.getTimeFormat());
+        Assertions.assertNotEquals("1-Apr-2023 01:00", firstEvent.getTimeFormat());
+        Assertions.assertNotEquals("1/Apr/2023 01:00", firstEvent.getTimeFormat());
+        Assertions.assertNotEquals("13:00 AM", firstEvent.getTimeFormat());
     }
 
 
@@ -96,13 +96,13 @@ public class CalendarEventTest {
      */
     private static class AppointmentStub extends Appointment {
         AppointmentStub() {
-            super(new DateTime(DateTimeParser.parseLocalDateTimeFromString("1-Apr-2023 12:30 PM")),
+            super(new DateTime(DateTimeParser.parseLocalDateTimeFromString("01-04-2023 12:30")),
                     new Location("NUS TechnoEdge"));
         }
 
         @Override
         public String toString() {
-            return "1-Apr-2023 12:30 PM, NUS TechnoEdge";
+            return "01-04-2023 12:30, NUS TechnoEdge";
         }
     }
 

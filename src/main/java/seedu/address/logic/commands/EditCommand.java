@@ -38,11 +38,11 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_INCOME + "INCOME] "
-            + "[" + PREFIX_MONTHLY + "MONTHLY} "
-            + "[" + PREFIX_RISKTAG + "RISKTAG] "
-            + "[" + PREFIX_PLANTAG + "PLANTAG] "
-            + "[" + PREFIX_CLIENTTAG + "CLIENTTAG] "
+            + "[" + PREFIX_INCOME + "YEARLY_INCOME] "
+            + "[" + PREFIX_MONTHLY + "MONTHLY_CONTRIBUTION] "
+            + "[" + PREFIX_RISKTAG + "RISK_APPETITE] "
+            + "[" + PREFIX_PLANTAG + "INVESTMENT_PLAN] "
+            + "[" + PREFIX_CLIENTTAG + "CLIENT_TYPE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -51,6 +51,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_NO_CHANGE = "Fields provided to edit did not change any of the current"
+            + " fields of this person.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -79,6 +81,9 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
+        if (personToEdit.equals(editedPerson)) {
+            throw new CommandException(MESSAGE_NO_CHANGE);
+        }
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }

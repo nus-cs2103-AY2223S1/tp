@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICA
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
 import static seedu.address.logic.parser.EditAppointmentDescriptor.createEditedAppointment;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -15,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EditAppointmentDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.util.MaximumSortedList;
 import seedu.address.model.util.exceptions.SortedListException;
@@ -32,12 +32,13 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_APPOINTMENT_DATE + "DATE] "
             + "[" + PREFIX_APPOINTMENT_LOCATION + "LOCATION]\n"
             + "Example: " + COMMAND_WORD + " 3.1 "
-            + PREFIX_APPOINTMENT_DATE + "21-Jan-2023 12:30 PM "
+            + PREFIX_APPOINTMENT_DATE + "09-01-2023 12:30 "
             + PREFIX_APPOINTMENT_LOCATION + "Jurong Point, Starbucks";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Appointment was edited \nFrom: %1$s\nTo: %2$s";
     public static final String MESSAGE_NO_APPOINTMENT_TO_EDIT = "This client does not have an appointment to edit\n"
             + "Use command \"aa\" to add appointment instead";
+    public static final String MESSAGE_UNCHANGED_LOCATION = "The edited location is unchanged\n";
     private final Index personIndex;
     private final Index appointmentIndex;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -95,6 +96,13 @@ public class EditAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME);
         }
 
+        if (editAppointmentDescriptor.getLocation().isPresent()) {
+            Location location = editAppointmentDescriptor.getLocation().get();
+            if (location.equals(appointmentToEdit.getLocation())) {
+                throw new CommandException(MESSAGE_UNCHANGED_LOCATION);
+            }
+        }
+
         try {
             appointmentSet.remove(appointmentIndex.getZeroBased());
         } catch (SortedListException e) {
@@ -103,7 +111,6 @@ public class EditAppointmentCommand extends Command {
 
         appointmentSet.add(editedAppointment);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateCalendarEventList();
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, appointmentToEdit, editedAppointment));
     }

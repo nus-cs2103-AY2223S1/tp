@@ -16,7 +16,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.MUSAB_WITH_NO_APPT;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +33,6 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new CommandHistory());
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -76,12 +74,13 @@ public class AddAppointmentCommandTest {
 
         // Create expectedModel
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
-        expectedModel.addPerson(new PersonBuilder().build());
-        expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
-        Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
+        Person expectedPerson = new PersonBuilder().build();
         expectedPerson.getAppointments().add(new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build());
+        expectedModel.addPerson(expectedPerson);
+        expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
+        expectedModel.updateFilteredPersonList(person -> person.isSamePerson(expectedPerson));
 
         // Create addAppointmentCommand
         Appointment appointmentToAdd = new AppointmentBuilder()

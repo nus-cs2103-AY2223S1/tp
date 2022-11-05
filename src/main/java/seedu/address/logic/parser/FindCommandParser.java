@@ -103,14 +103,14 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_INCOME).isPresent()) {
             List<String> incomeLevels = ParserUtil.parseMonetaryValues(argMultimap
-                    .getAllValuesSeparatedByRegex(PREFIX_INCOME, SPACE_REGEX));
+                    .getAllValuesSeparatedByRegex(PREFIX_INCOME, SPACE_REGEX), PREFIX_INCOME);
             String equalityPredicate = incomeLevels.get(0).substring(0, 1);
             incomeLevels.set(0, incomeLevels.get(0).substring(1));
             predicates.add(new IncomeContainsKeywordsPredicate(incomeLevels, equalityPredicate));
         }
         if (argMultimap.getValue(PREFIX_MONTHLY).isPresent()) {
             List<String> monthlySavings = ParserUtil.parseMonetaryValues(argMultimap
-                    .getAllValuesSeparatedByRegex(PREFIX_MONTHLY, SPACE_REGEX));
+                    .getAllValuesSeparatedByRegex(PREFIX_MONTHLY, SPACE_REGEX), PREFIX_MONTHLY);
             String equalityPredicate = monthlySavings.get(0).substring(0, 1);
             monthlySavings.set(0, monthlySavings.get(0).substring(1));
             predicates.add(new MonthlyContainsKeywordsPredicate(monthlySavings, equalityPredicate));

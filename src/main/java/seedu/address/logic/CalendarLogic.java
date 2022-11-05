@@ -15,8 +15,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,7 +34,7 @@ import seedu.address.ui.TextValidation;
  */
 public class CalendarLogic {
     private static final String SUCCESS_MESSAGE = "success";
-    private static final String FAILURE_MESSAGE = "failure";
+    private static final String WRONG_FORMAT_MESSAGE = "failure";
     private static final String EMPTY_MESSAGE = "";
 
 
@@ -55,7 +55,7 @@ public class CalendarLogic {
     @FXML
     private GridPane calendarDisplay;
     @FXML
-    private HBox topCalendar;
+    private FlowPane topCalendar;
     private Stage primaryStage;
     private Logic logic;
     private Calendar currentMonth;
@@ -66,7 +66,7 @@ public class CalendarLogic {
      * Constructs a {@code CalendarLogic} with the given {@code Logic}, {@code Stage}
      * {@code GridPane} and {@code HBox}.
      */
-    public CalendarLogic(Logic logic, Stage primaryStage, GridPane calendarDisplay, HBox topCalendar) {
+    public CalendarLogic(Logic logic, Stage primaryStage, GridPane calendarDisplay, FlowPane topCalendar) {
         requireAllNonNull(logic, primaryStage, calendarDisplay, topCalendar);
         this.calendarDisplay = calendarDisplay;
         this.topCalendar = topCalendar;
@@ -95,6 +95,10 @@ public class CalendarLogic {
     public void drawCalendar() {
         drawHeader();
         drawBody();
+    }
+
+    public JumpText getJumpText() {
+        return jumpText;
     }
 
     private void drawHeader() {
@@ -178,7 +182,7 @@ public class CalendarLogic {
     public void next() {
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getNextMonth(currentMonth);
-        textValidation.setTextValidation("");
+        textValidation.setTextValidation(EMPTY_MESSAGE);
         updateCalendarMonth();
     }
     /**
@@ -190,23 +194,28 @@ public class CalendarLogic {
         updateCalendarMonth();
     }
 
-    private GregorianCalendar getJumpMonth(Calendar cal) {
+    private GregorianCalendar getJumpMonth(Calendar cal) throws DateTimeParseException {
 
-        String date = jumpText.getText();
+        String inputDate = jumpText.getText();
         jumpText.clear();
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMM-uuuu");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-uuuu");
             formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
-            Date jumpDate = new Date(LocalDate.parse(date, formatter));
+            LocalDate ld = LocalDate.parse(inputDate, formatter);
+            Date jumpDate = new Date(ld);
             int newMonth = jumpDate.getMonth() - 1;
             int newYear = jumpDate.getYear();
             textValidation.setTextValidation(SUCCESS_MESSAGE);
             return new GregorianCalendar(newYear, newMonth, 1);
         } catch (DateTimeParseException e) {
-            textValidation.setTextValidation(FAILURE_MESSAGE);
+            if (e.getCause() == null) {
+                textValidation.setTextValidation(WRONG_FORMAT_MESSAGE);
+            } else {
+                String str = e.getCause().getMessage();
+                textValidation.setTextValidation(str);
+            }
         }
         return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
-
     }
 
     private void updateCalendarMonth() {

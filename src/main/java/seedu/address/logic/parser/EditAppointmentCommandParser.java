@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.util.StringUtil.isInteger;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
 
@@ -28,10 +31,26 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         Index personIndex;
         Index appointmentIndex;
 
+        String personAppointmentIndex = argMultimap.getPreamble().trim();
+        String[] splitStr = personAppointmentIndex.split("\\.");
+        if (splitStr.length != 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditAppointmentCommand.MESSAGE_USAGE));
+        }
+
+        String oneBasedPersonIndexStr = splitStr[0];
+        if (isInteger(oneBasedPersonIndexStr) && Integer.parseInt(oneBasedPersonIndexStr) <= 0) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        String oneBasedAppointmentIndexStr = splitStr[1];
+        if (isInteger(oneBasedAppointmentIndexStr) && Integer.parseInt(oneBasedAppointmentIndexStr) <= 0) {
+            throw new ParseException(MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        }
+
         try {
-            String personAppointmentIndex = argMultimap.getPreamble();
-            personIndex = ParserUtil.parsePersonIndex(personAppointmentIndex);
-            appointmentIndex = ParserUtil.parseAppointmentIndex(personAppointmentIndex);
+            personIndex = ParserUtil.parseIndex(oneBasedPersonIndexStr);
+            appointmentIndex = ParserUtil.parseIndex(oneBasedAppointmentIndexStr);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAppointmentCommand.MESSAGE_USAGE), pe);
@@ -44,7 +63,11 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                 editAppointmentDescriptor.setDateTime(
                     ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_DATE).get()));
             } catch (DateTimeParseException e) {
-                throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+                if (e.getCause() == null) {
+                    throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+                }
+                String str = e.getCause().getMessage();
+                throw new ParseException(str);
             }
         }
 
