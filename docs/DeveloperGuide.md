@@ -179,7 +179,11 @@ the displayed list of appointments in any way.
    this command only interacts with the `UniqueAppointmentList` and not the `UniquePersonList`, thus it will not modify
    the displayed list of patients in any way.
 
-<img src="images/ListActivityDiagram.png" width="500" />
+4. When user wants to view the full lists of both patients and appointments again, he/she can enter the command `list all`. 
+
+The activity diagram below summarises the above points.
+
+<img src="images/ListActivityDiagram.png" width="300" />
 
 To help you understand what is going on behind the scenes, here is a sequence diagram that demonstrates how
 `list patients` work:
@@ -187,14 +191,19 @@ To help you understand what is going on behind the scenes, here is a sequence di
 <img src="images/ListPatientsSequenceDiagram.png" width="500" />
 
 From the diagram, the `ListCommand` object passes the predicate to show all entries to the `ModelManager`, which
-will call onto a JavaFX function to modify the displayed list. For `list appts`, it follows a similar
-process as well.
+will call onto a JavaFX function to modify the displayed list. 
+
+For `list appts`, it follows a similar
+process as well, but with `updateFilteredAppointmentList()` instead. For `list all`, you can think of the
+behaviour as executing both `list patients` and `list appts`.
+
 
 **Aspect: How the command is implemented:**
-* **Alternative 1 (current choice):** `list patients` and `list appts` as a command words.
+* **Alternative 1 (current choice):** `list patients`, `list appts` and `list all` as a command word `list` with
+3 different descriptors which are not considered as arguments.
   * Pros: No additional parser class required
   * Cons: `ListCommand#execute()` will have more lines of code.
-* **Alternative 2:** `list` as a command word with arguments `patients` or `appts` following it.
+* **Alternative 2:** `list` as a command word with arguments `patients`/`appts`/`all` following it.
   * Pros: Seems more aligned with other commands that require more than 1 word of input
   * Cons: Require an additional `ListCommandParser` to work; more lines of code required.
 
@@ -385,15 +394,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The `AddressBookParser` class checks for the `book` command word to begin. The book mechanism is facilitated by the `BookCommandParser` and `BookCommand` classes. The `BookCommandParser` implements the `Parser` interface and takes in the user input and parses it into an index and 3 string values. The 3 string values are obtained from the `ArgumentMultimap` that checks whether the user has inputted the 3 prefixes supported by this feature.
+The `AddressBookParser` class checks for the `book` command word. The book mechanism is facilitated by the `BookCommandParser` and `BookCommand` classes. The `BookCommandParser` implements the `Parser` interface and takes in the user input and parses it into an index and 4 string values. The 4 string values are obtained from the `ArgumentMultimap` that checks whether the user has inputted the 4 prefixes supported by this feature.
 
-The 3 prefixes are:
+The prefixes are:
 * `r/` for reason
 * `d/` for dateTime
 * `pe/` for recurring time period (optional)
+* `t/` for tags (optional)
 
-
-After retrieving the string values, the `BookCommandParser` executes the `ParserUtil#ParseAppointment()` to convert these values and create an `Appointment` object. A `BookCommand` object will then be created with the given index and `Appointment` object. The `BookCommand` object will retrieve the specified person in the `UniquePersonList` and adds the `Appointment` object to the person's list of appointments.
+After retrieving the string values, the `BookCommandParser` executes the `ParserUtil#ParseAppointment()` to use these values to create an `Appointment` object. A `BookCommand` object will then be created with the given index and `Appointment` object. The `BookCommand` object will retrieve the specified person in the `UniquePersonList` and adds the `Appointment` object to the person's list of appointments.
 
 The newly added `Appointment` object will also be saved in the JSON file through the usage of a Jackson-friendly class `JsonAdaptedAppointment`.
 
@@ -401,22 +410,25 @@ Given below are some example usage scenarios and how the book feature behaves in
 
 Scenario 1: User inputs `book 1 r/Sore Throat d/2022-12-10 12:00`.
 
-The `ParserUtil` class will detect that both the given reason and date are valid, and creates an appointment object to be stored in the specified `Person`,
-only if the `Person` does not have an existing appointment at that date.
+The `ParserUtil#ParseAppointment()` will detect that both the given reason and date are valid, and creates an appointment object to be stored in the specified `Person`, only if the `Person` does not have an existing appointment at that date(Scenario 6).
 
 Scenario 2: User inputs an empty reason in the `r/` prefix.
 
-The `ParserUtil` class will detect that the given reason is empty and throws a `CommandException`, which will feedback to the user that he has given an invalid reason.
+The `ParserUtil#ParseAppointment()` will detect that the given reason is empty and throws a `ParseException`, which will feedback to the user that he has given an invalid reason.
 
 Scenario 3: User inputs an invalid dateTime in the `d/` prefix, such as `2022-15-10 14:00`.
 
-The `ParserUtil` class will detect that the given dateTime is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid dateTime.
+The `ParserUtil#ParseAppointment()` will detect that the given dateTime is invalid and throws a `ParseException`, which will feedback to the user that he has given an invalid dateTime.
 
 Scenario 4: User inputs an invalid recurring time period in the `pe/` prefix, such as `1S`.
 
-The `ParserUtil` class will detect that the given time period is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid time period.
+The `ParserUtil#ParseAppointment()` will detect that the given time period is invalid and throws a `ParseException`, which will feedback to the user that he has given an invalid time period.
 
-Scenario 5: User tries to book an appointment with the same time as other appointments of the same person.
+Scenario 5: User inputs an invalid tag in the `t/` prefix, such as `Sick`.
+
+The `ParserUtil#ParseAppointment()` will detect that the given tag is invalid and throws a `ParseException`, which will feedback to the user that he has given an invalid tag.
+
+Scenario 6: User tries to book an appointment with the same time as other appointments of the same person.
 
 <img src="images/BookCommandObjectDiagram.png" width="450" />
 
@@ -445,18 +457,55 @@ These objects are stored in a list field of the `JsonAdaptedPerson` and are stor
   * Pros: Easier to maintain as there's only one appointment object.
   * Cons: Harder and more costly to track of each person's appointments, especially if the person himself is edited or deleted in the process.
 
+### Edit Appointment Feature
+
+#### Implementation
+The `AddressBookParser` class checks for the `edit` command word and the `appts` descriptor word to begin. The edit appointment mechanism is facilitated by the `EditAppointmentCommandParser`, `EditAppointmentCommand` classes and `EditAppointmentDescriptor` inner class. The `EditAppointmentCommandParser` implements the `Parser` interface and takes in the user input and parses it into an index and up to 4 string values. The string values are obtained from the `ArgumentMultimap` that checks whether the user has inputted any of the 4 prefixes supported by this feature.
+
+The prefixes are:
+* `r/` for reason
+* `d/` for dateTime
+* `pe/` for recurring time period
+* `t/` for tags
+
+The logical flow of using this command is shown in the activity diagram given below.
+
+![EditApptActivityDiagram](images/EditApptActivityDiagram.png)
+
+If any of the prefixes contain invalid values or no prefix values were provided, a `ParseException` will be thrown. Else, a new `Appointment` will be created with the changes and replaces the specified `Appointment` object to be edited in both the `Person` list of appointments and the `UniqueAppointmentList`. 
+
+#### Design Considerations
+
+**Aspect: How to edit the appointment objects:**
+
+* **Alternative 1 (current implementation):** Follow the `EditPersonDescriptor` inner class and implement a `EditAppointmentDescriptor` inner class.
+  * Pros: Easier to follow existing systems and edit the appointment the same way as the `edit patients` command.
+  * Cons: Existing `Appointment` object is no longer used, using memory until garbage collected.
+
+* **Alternative 2:** Edit the existing `Appointment` object itself.
+  * Pros: Only have to edit the required fields.
+  * Cons: Editing the existing object may not reflect the changes in the Appointment listview as compared to setting a new object, hence requiring more Observable fields.
+
 ### Mark/Unmark Feature
 
-The execution of the `mark`/`unmark` is quite similar to each other, with some minor differences.
+The parameters involved in the `mark`/`unmark` commands is the same as that of the `cancel` command. 
+All 3 commands take in a single parameter denoting the desired appointment number to modify. 
+
+As such, the `mark`/`unmark` commands also extend the `SelectAppointmentCommand` class, and are parsed similarly as well -
+firstly through the `AddressBookParser` to identify the inputted command as a `mark`/`unmark` command, 
+then followed by a second parse in `MarkCommandParser`/`UnmarkCommandParser` to create a `MarkCommand`/`UnmarkCommand` object,
+which is then executed to mark/unmark the target appointment.
+
+However, the `mark` command comes with an additional step during the `execute` method. 
+It checks if an appointment is recurring, and adds a future unmarked appointment at the designated date if needed.
 
 Given below is an example usage scenario, where the user enters `mark 1` as the input,
-and how the mark mechanism behaves at each step.
+and how the `mark` mechanism behaves at each step.
 
 ![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
 
-The `unmark` command functions similiarly to `mark`, but with the use of `UnmarkCommandParser` and `UnmarkCommand`
-classes in place of `MarkCommandParser` and `MarkCommand` respectively.
-It also lacks the logic to add recurring appointments.
+The `unmark` sequence diagram is identical to the `mark` sequence diagram but lacks the `opt` frame.
+It also contains the `UnmarkCommandParser` and `UnmarkCommand` classes in place of `MarkCommandParser` and `MarkCommand` respectively.
 
 #### Design considerations:
 
@@ -491,21 +540,27 @@ satisfies all the search terms.
 * **Alternative 1:** Store all search terms in `FindCommand` and use `Predicate#and` to combine the
 the search predicates.
     * Pros: Easy and quick to implement. No extra classes needed.
-    * Cons: There is no way to override the `Predicate#equals()`. Testability of `FindCommand` would be low.
+    * Cons: Low testability of `FindCommand`. There is no way to override the `Predicate#equals()`, so we will be unable to check if two `Predicate`s have the same search parameters.
 
 * **Alternative 2:** Create 1 class for each search term
 (E.g `NameContainsSequencePredicate`, `AppointmentContainsReasonPredicate` etc.). Create a `CombinedPersonPredicate`
 and a `CombinedAppointmentPredicate` that takes in all these 'lesser' predicates and combine them to form the actual
-predicate to filter the list with.
-    * Pros: Testability of `FindCommand` would be very high.
-    * Cons: Large amount of classes needed. There would also be the issue of excessive duplication of code.
-It would also be time-consuming to add in potential new predicates in the future as much more test cases would be needed
+predicate to filter the list with. All these classes will be subclasses of `Predicate`.
+    * Pros: 
+      * Very high testability of `FindCommand`, as we can now override `equals()`.
+      * Having separate `CombinedPersonPredicate` and `CombinedAppointmentPredicate` classes would also allow patients and appointments to be tested separately,
+enhancing cohesion and decreasing coupling through the Separation of Concerns principle.
+    * Cons: 
+      * Large amount of classes needed. There would also be the issue of excessive duplication of code. 
+      * Time-consuming to add in potential new predicates in the future as much more test cases would be needed
 to test each individual class.
 
 * **Alternative 3 (current choice):** Keep the `CombinedPersonPredicate` and `CombinedAppointmentPredicate`,
 and store the relevant search terms into each predicate. Combine those search terms in the predicate class itself.
-    * Pros: Testability of `FindCommand` would be high. Extending the method features in the future would also be
-more efficient than alternative 2.
+    * Pros: 
+      * High testability of `FindCommand`.
+      * Extending the method features in the future would be more convenient than alternative 2. 
+      * The benefit of being able to separately test patients and appointments as mentioned in alternative 2 is preserved.
     * Cons: Slightly less testable than alternative 2. However, the increased efficiency is worth the tradeoff.
 
 --------------------------------------------------------------------------------------------------------------------
