@@ -237,7 +237,7 @@ Steps to take:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** 
 
-This example a follow-up of [`Creating a Tag`](#creating-a-tag-tag-create). Feel free to replace `1` and Test` with the contact index and tag of your choice.
+This example is a follow-up of [`Creating a Tag`](#creating-a-tag-tag-create). Feel free to replace `1` and Test` with the contact index and tag of your choice.
 </div>
 
 2. You should now see `Tag added: [Test]` in the Command result box just like the image below.
