@@ -200,9 +200,7 @@ Purpose: Adds a meeting with the given information to the internal model and sto
 
 ##### Implementation
 
-In keeping with the command execution structure of the overall program, the command
-specific classes `AddMeetingCommand` and `AddMeetingCommandParser` were added to the commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
-to accept the new command word, `addMeeting`.
+In keeping with the command execution structure of the overall program, the command specific classes `AddMeetingCommand` and `AddMeetingCommandParser` were added to the commands and parser packages respectively. The main parser `MyInsuRecParser` was also modified to accept the new command word, `addMeeting`.
 
 The following sequence diagram offers a high-level overview of how
 the command is executed.
@@ -255,12 +253,12 @@ Below is an activity diagram that summarises the execution of `delMeeting`.
 
 ##### Design Considerations
 
-Aspect: How many meetings to delete in one command
+**Aspect: How many meetings to delete in one command**
 
-- Alternative Solution 1 (Current Choice): Allows only one deletion
+- **Alternative Solution 1 (Current Choice):** Allows only one deletion
     - Pros: Easy to implement
     - Cons: Troublesome in the event where multiple meetings
-- Alternative Solution 2: Allows multiple deletion
+- **Alternative Solution 2:** Allows multiple deletion
     - Pros: Convenient to delete multiple meetings when needed.
     - Cons: Complex to implement
 - Considering that the approach taken to develop MyInsuRec is a breath first approach,
@@ -525,6 +523,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
+#### 5.3.4 Use case: UC4 - Add a meeting
+
+**MSS**
+
+1. User requests to add a meeting.
+2. System adds the meeting.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs incomplete or invalid meeting data.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
 #### 5.3.4 Use case: UC4 - List all meetings
 
 **MSS**
@@ -533,6 +547,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 2. System shows a list of all meetings.
 
    Use case ends.
+
+**Extensions**
+
+* 1a. User requests for a list of all meetings tomorrow.
+    * 1a1. System shows a list of all meetings tomorrow.
+  
+* 1b. User requests for a list of all meetings in the next 7 days.
+    * 1b1. System shows a list of all meetings in the next 7 days.
+
+* 1c. User requests for a list of all meetings in this month.
+    * 1c1. System shows a list of all meetings in this month.
 
 #### 5.3.5 Use case: UC5 - Delete a meeting
 
