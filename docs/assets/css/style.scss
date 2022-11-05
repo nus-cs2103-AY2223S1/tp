@@ -73,5 +73,12 @@ body {
 #markdown-toc li:before {
     counter-increment: item;
     content: counters(item, ".") ". ";
-    color: #2a7ae2;
+    color: #2a7ae2;;
+    font-weight: bold;
+}
+
+// hide the first h2 from toc
+
+#markdown-toc > li:first-child {
+    display: none;
 }

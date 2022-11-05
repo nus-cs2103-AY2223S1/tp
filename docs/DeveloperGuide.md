@@ -3,6 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
+## Table of contents
+
 * Table of Contents
 {:toc}
 
@@ -90,8 +92,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified
-in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/nutrigoals/ui/Ui.java)
+**API**: [`Ui.java`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/nutrigoals/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -244,7 +245,13 @@ Step 4. `EditCommand#execute()` calls the following methods from `Model`:
 
 Step 5. `EditCommand#execute()` returns a `CommandResult` with the following result displayed:
 
-Edited Food: honey milk tea; Calories: 310 calories; Tag[lunch]
+```
+Food item edited!
+
+Food name: honey milk tea
+Calorie content: 310 calories
+Meal type: lunch
+```
 
 The following diagram illustrates how the edit operation works:
 
@@ -463,7 +470,9 @@ Step 4. `LocateGymCommand#execute()` calls the following methods from `Model`:
 * `Model#getNusGymLocations()`
 
 The following activity diagram outlines what happens when a user executes the `locate` command:
+
 ![LocateCommandActivityDiagram](images/LocateCommandActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -483,14 +492,13 @@ The following activity diagram outlines what happens when a user executes the `l
 **Target user profile**:
 
 * NUS students
-* wishes to get healthier or fitter
-* wishes to track their daily calorie intake
-* wants to know how many calories they should consume daily
-* wants to know how many calories are in their food
-* is reasonably comfortable using CLI apps
+* Wishes to get healthier or fitter
+* Wishes to track their daily calorie intake
+* Wants to know how many calories they should consume daily
+* Wants to know how many calories are in their food
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: help users manage and calculate their calorie intake quickly, get recommendations on their daily calorie intake, 
-learn about the calorie content of food items and find the nearest gyms in NUS in order to meet their health and fitness goals
+**Value proposition**: Help users manage and calculate their calorie intake quickly, get recommendations on their daily calorie intake, learn about the calorie content of food items and find the nearest gyms in NUS in order to meet their health and fitness goals
 
 ### User stories
 
@@ -516,8 +524,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `NutriGoals` application and the **Actor** is the `user`, unless
-specified otherwise)
+For all use cases below, the **System** is the `NutriGoals` application and the **Actor** is the `user`, unless specified otherwise.
 
 **Use case: UC-1 List food items**
 
@@ -707,17 +714,17 @@ specified otherwise)
 
 * **Calorie(s)**: Unit of measurement for amount of food consumed.
 
-* **Meals**: Breakfast, Lunch, Dinner e.t.c., categories for users to input their daily meals under.
-
-* **Macros**: Proteins, Carbohydrates, Fats e.t.c., macronutrient groups that provide people with energy.
-
-* **Daily Recommended Calorie Intake**: the amount of calories recommended by experts for an individual to consume daily
+* **Daily Recommended Calorie Intake**: The amount of calories recommended by experts for an individual to consume daily
   (According to Health Promotion Board Singapore, adult males should consume 2200 calories, adult females
   should consume 1800 calories).
 
-* **Deficit**: the amount of calories _not_ consumed in order to facilitate fat burning and weight loss.
+* **Deficit**: The amount of calories <ins>not</ins> consumed in order to facilitate fat burning and weight loss.
 
-* **Surplus**: the amount of calories consumed in excess of the recommended daily intake to facilitate mass gain.
+* **Macros**: Proteins, Carbohydrates, Fats e.t.c., macronutrient groups that provide people with energy.
+
+* **Meals**: Breakfast, Lunch, Dinner e.t.c., categories for users to input their daily meals under.
+
+* **Surplus**: The amount of calories consumed in excess of the recommended daily intake to facilitate mass gain.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -736,17 +743,33 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder.
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample food items. The window size may not be
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample food items. The window size may not be
        optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a food
+
+1. Adding a food item into the list
+
+    1. Test case: `add n/Sushi c/400 t/lunch`<br />
+       Expected: Sushi is added into the food list, and it is tagged as a lunch item with 400 calories.
+
+    2. Test case: `add n/Sushi c/400`<br />
+       Expected: Sushi is not added into the food list as there are missing fields. Error details are shown on the result display.
+
+    3. Test case: `add n/Sushi t/lunch`<br />
+       Expected: Similar to #2.
+
+    4. Test case: `add n/Sush! t/breakfast c/300`<br />
+       Expected: Sush! is not added into the food list as the food name (Sush!) is invalid. Error details are shown on the result display.
+
+    5. Other invalid add commands to try: `add n/Sushi c/300.5 t/lunch`, `add n/Sushi c/300 t/supper`, `...` (where any field specified does not conform to the expected format).
 
 ### Deleting a food
 
@@ -764,14 +787,80 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+### Editing a food
+
+1. Editing a food while all foods on a particular day are being shown
+
+    1. Prerequisites: List all foods on a particular day using the `list` command. Multiple foods in the list.
+
+    2. Test case: `edit 1 n/Pancake c/250`<br />
+       Expected: The name and calorie of the first food item is changed to Pancake and 250 respectively.
+
+    3. Test case: `edit 0 n/Pancake c/250`<br />
+       Expected: No food is edited. Error details are shown on the result display.
+
+    4. Test case: `edit 1 n/P@ncake`<br />
+       Expected: No food is edited. Error details are shown on the result display.
+
+    5. Test case: `edit 4`<br />
+       Expected: No food is edited. Error details are shown on the result display.
+
+    6. Other invalid edit command formats to try: `edit 1 n/Pancake t/snack`, `edit 1 c/150.2`, `...` (where any field specified does not conform to the expected format).<br />
+       Expected: Similar to previous.
+
+### Setting a target calorie
+
+1. Setting a target calorie to consume
+
+    1. Test case: `target 2500`<br />
+       Expected: The target calorie is set to 2500 calories. Success message is displayed on the result display.
+
+    2. Test case: `target 2500.5`<br />
+       Expected: Target calorie is not set. Error details are shown on the result display.
+
+    3. Other invalid target command formats to try: `target x` (where x is not an integer value).
+
+### Setting up a user profile
+
+1. Setting up a user profile
+
+    1. Test case: `setup g/m a/20 w/70 i/70 h/175`<br />
+       Expected: The user profile is created successfully.
+
+    2. Test case: `setup g/m a/20 w/70.5 i/70 h/175`<br />
+       Expected: The user profile is not created. Error details are shown on the result display.
+
+    3. Other invalid setup command formats to try: `setup g/s a/20 w/70 i/70 h/175`, `setup g/f a/20 w/70 i/70 h/175.5`, `...` (where any field specified does not conform to the expected format.)
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. To simulate a corrupted file,
+   
+      1. Launch and close the application.
+      
+      2. Ensure the `./data/nutrigoals.json` is created.
+      
+      3. Corrupt the file by adding a '@' character in any of the food's name.
+      
+   2. Relaunch the application.<br />
+      Expected behaviour: The GUI is launched without any data.
+   
+   3. Delete the `nutrigoals.json`.
+   
+   4. Relaunch the application.<br />
+      Expected behaviour: The GUI is launched with the sample data.
 
-2. _{ more test cases …​ }_
+2. Dealing with missing data files
+
+    1. To simulate a missing file
+        
+        1. Ensure that `./data/nutrigoals.json` exists.
+
+        2. Delete `./data/nutrigoals.json`.
+    
+    2. Relaunch the GUI. <br />
+       Expected behaviour: The GUI is launched with the sample data.
 
 </div>
