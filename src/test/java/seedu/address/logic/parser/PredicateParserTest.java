@@ -45,7 +45,7 @@ public class PredicateParserTest {
     @Test
     public void parseBuyer_address_addressContainsKeywordsPredicate() {
         AddressContainsKeywordsPredicate<Buyer> expected = new AddressContainsKeywordsPredicate<>(
-                Arrays.asList("Wall Street"));
+                Arrays.asList("Wall", "Street"));
         try {
             Predicate<Buyer> result1 = PredicateParser.parseBuyer("a/ Wall Street");
             Predicate<Buyer> result2 = PredicateParser.parseBuyer("a/Wall Street \n");
@@ -137,9 +137,21 @@ public class PredicateParserTest {
     }
 
     @Test
+    public void parseBuyer_moreThanOneEmail_throwParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseBuyer("e/ggg@gmail.com fff@mail.com"));
+    }
+
+    @Test
+    public void parseBuyer_moreThanOnePhone_throwParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseBuyer("e/666 9999"));
+    }
+
+    @Test
     public void parseDeliverer_addresss_addressContainsKeywordsPredicate() {
         AddressContainsKeywordsPredicate<Deliverer> expected = new AddressContainsKeywordsPredicate<>(
-                Arrays.asList("Wall Street"));
+                Arrays.asList("Wall", "Street"));
         try {
             Predicate<Deliverer> result1 = PredicateParser.parseDeliverer("a/ Wall Street");
             Predicate<Deliverer> result2 = PredicateParser.parseDeliverer("a/Wall Street \n");
@@ -231,9 +243,22 @@ public class PredicateParserTest {
     }
 
     @Test
+    public void parseDeliverer_moreThanOneEmail_throwParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser
+                .parseDeliverer("e/ggg@gmail.com fff@mail.com"));
+    }
+
+    @Test
+    public void parseDeliverer_moreThanOnePhone_throwParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseDeliverer("e/666 9999"));
+    }
+
+    @Test
     public void parseSupplier_address_addressContainsKeywordsPredicate() {
         AddressContainsKeywordsPredicate<Supplier> expected = new AddressContainsKeywordsPredicate<>(
-                Arrays.asList("Wall Street"));
+                Arrays.asList("Wall", "Street"));
         try {
             Predicate<Supplier> result1 = PredicateParser.parseSupplier("a/ Wall Street");
             Predicate<Supplier> result2 = PredicateParser.parseSupplier("a/Wall Street \n");
@@ -322,6 +347,18 @@ public class PredicateParserTest {
     public void parseSupplier_emptyArguments_throwParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseSupplier("s/"));
+    }
+
+    @Test
+    public void parseSupplier_moreThanOneEmail_throwParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseSupplier("e/ggg@gmail.com fff@mail.com"));
+    }
+
+    @Test
+    public void parseParseSupplier_moreThanOnePhone_throwParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseSupplier("e/666 9999"));
     }
 
     //Pet tests

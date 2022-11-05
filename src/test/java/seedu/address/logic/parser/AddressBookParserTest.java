@@ -60,6 +60,7 @@ import seedu.address.model.order.predicates.OrderStatusPredicate;
 import seedu.address.model.order.predicates.PriceRangePredicate;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
+import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Supplier;
 //import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.Pet;
@@ -240,9 +241,12 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         String input = " n/foo";
         Predicate<Buyer> buyerPredicate = PredicateParser.parseBuyer(input);
-        FindCommand command = (FindBuyerCommand) parser.parseCommand(
-                FindBuyerCommandParser.PARSE_WORD + input);
-        FindCommand otherCommand = new FindBuyerCommand(buyerPredicate);
+        Predicate<Deliverer> delivererPredicate = PredicateParser.parseDeliverer(input);
+        Predicate<Supplier> supplierPredicate = PredicateParser.parseSupplier(input);
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + input);
+        FindCommand otherCommand = new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
+                PersonCategory.BUYER);
         assertEquals(otherCommand, command);
     }
 

@@ -38,16 +38,4 @@ public class SortPetCommand extends SortCommand {
         model.switchToPetList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
-
-    /*@Override
-    public boolean equals(Object object) {
-        if (object == this) {
-            return true;
-        }
-        if (!(object instanceof SortPetCommand)) {
-            return false;
-        }
-
-        return comparator.equals(((SortPetCommand) object).comparator);
-    }*/
 }

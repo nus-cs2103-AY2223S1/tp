@@ -67,14 +67,22 @@ public class PredicateParser {
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
         case ADDRESS_PREFIX:
-            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case EMAIL_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
             return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
             return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
             throw new ParseException(
@@ -88,7 +96,7 @@ public class PredicateParser {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public static Predicate<Deliverer> parseDeliverer(String input) throws ParseException {
-        String[] nameKeywords = input.trim().split("/", 2);
+        String[] nameKeywords = input.trim().split("/");
         if (nameKeywords.length < 2 || nameKeywords[1].isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -96,14 +104,22 @@ public class PredicateParser {
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
         case ADDRESS_PREFIX:
-            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case EMAIL_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
             return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
             return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
             throw new ParseException(
@@ -117,7 +133,7 @@ public class PredicateParser {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public static Predicate<Supplier> parseSupplier(String input) throws ParseException {
-        String[] nameKeywords = input.trim().split("/", 2);
+        String[] nameKeywords = input.trim().split("/");
         if (nameKeywords.length < 2 || nameKeywords[1].isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -125,14 +141,22 @@ public class PredicateParser {
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
         case ADDRESS_PREFIX:
-            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case EMAIL_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
             return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
             return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
+            if (query.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
             throw new ParseException(

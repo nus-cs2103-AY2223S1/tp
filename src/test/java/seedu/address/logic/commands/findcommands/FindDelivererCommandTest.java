@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,23 +49,23 @@ public class FindDelivererCommandTest {
 
     @Test
     public void execute_zeroKeywords_noBuyerFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW,
+                TypicalDeliverers.getTypicalDeliverers().size());
         NameContainsKeywordsPredicate<Deliverer> predicate = preparePredicateDeliverer("    ");
         FindDelivererCommand command = new FindDelivererCommand(predicate);
         dExpectedModel.updateFilteredDelivererList(predicate);
         assertCommandSuccess(command, dModel, expectedMessage, dExpectedModel);
-        assertEquals(Collections.emptyList(), dModel.getFilteredDelivererList());
+        assertEquals(dExpectedModel.getFilteredDelivererList(), dModel.getFilteredDelivererList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleDeliverersFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate<Deliverer> predicate = preparePredicateDeliverer("Kurz Elle Kunz");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate<Deliverer> predicate = preparePredicateDeliverer("Elle Meyer");
         FindDelivererCommand command = new FindDelivererCommand(predicate);
         dExpectedModel.updateFilteredDelivererList(predicate);
         assertCommandSuccess(command, dModel, expectedMessage, dExpectedModel);
-        assertEquals(Arrays.asList(TypicalDeliverers.CARL, TypicalDeliverers.ELLE, TypicalDeliverers.FIONA),
-                dModel.getFilteredDelivererList());
+        assertEquals(Arrays.asList(TypicalDeliverers.ELLE), dModel.getFilteredDelivererList());
     }
 
     /**

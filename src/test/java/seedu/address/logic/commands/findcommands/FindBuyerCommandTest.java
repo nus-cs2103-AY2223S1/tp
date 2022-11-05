@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,23 +48,23 @@ public class FindBuyerCommandTest {
 
     @Test
     public void execute_zeroKeywords_noBuyerFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW,
+                TypicalBuyers.getTypicalBuyers().size());
         NameContainsKeywordsPredicate<Buyer> predicate = preparePredicateBuyer("    ");
         FindBuyerCommand command = new FindBuyerCommand(predicate);
         bExpectedModel.updateFilteredBuyerList(predicate);
         assertCommandSuccess(command, bModel, expectedMessage, bExpectedModel);
-        assertEquals(Collections.emptyList(), bModel.getFilteredBuyerList());
+        assertEquals(bExpectedModel.getFilteredBuyerList(), bModel.getFilteredBuyerList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleBuyersFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate<Buyer> predicate = preparePredicateBuyer("Kurz Elle Kunz");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate<Buyer> predicate = preparePredicateBuyer("Carl Kurz");
         FindBuyerCommand command = new FindBuyerCommand(predicate);
         bExpectedModel.updateFilteredBuyerList(predicate);
         assertCommandSuccess(command, bModel, expectedMessage, bExpectedModel);
-        assertEquals(Arrays.asList(TypicalBuyers.CARL, TypicalBuyers.ELLE, TypicalBuyers.FIONA),
-                bModel.getFilteredBuyerList());
+        assertEquals(Arrays.asList(TypicalBuyers.CARL), bModel.getFilteredBuyerList());
     }
 
     /**
