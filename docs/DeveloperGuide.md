@@ -177,7 +177,7 @@ The `Storage` component,
 
 
 
-### Common classes
+### 4.6. Common classes
 
 Classes used by multiple components are in the `seedu.profnus.commons` package.
 
@@ -383,7 +383,7 @@ The following sequence diagram shows how view schedule operation works :
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **7. Appendix: Requirements**
+## **7. Appendix A: Requirements**
 
 ### 7.1. Product scope
 
@@ -586,7 +586,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **8. Appendix: Instructions for manual testing**
+## **8. Appendix B: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -595,44 +595,81 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 8.1. Launch and shutdown
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   2. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The most recent window size and location is retained.
+   
+### 8.2. Add/Delete a module
 
-1. _{ more test cases …​ }_
+1. Adding a module to ProfNUS.
 
-### Deleting a person
+    1. Prerequisites: Arguments are valid and all compulsory parameters are provided. No duplicate module is allowed in ProfNUS.
 
-1. Deleting a person while all persons are being shown
+    2. Test case: `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/ModuleCoordinator`<br>
+       Expected: Adds a new module with the module name `Introduction to SWE`, unique module code `CS2103T`, module description `Teach students SWE principles and practices` and tag `ModuleCoordinator`.
+
+    3. Test case: `madd n/Programming Methodology I`<br>
+       Expected: No module is added. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect delete commands to try: `madd`, `madd x` and `madd n/Programming Methodology I t/ModuleCooridnator`<br>
+       Expected: Similar to previous.
+
+2. Deleting a module 
+
+    1. Prerequisites: Arguments are valid and all compulsory parameters are provided. Module code provided exists.
+
+    2. Test case: `mdel c/CS2103T`<br>
+       Expected: Module with module code CS2103T is deleted from the list. Details of the deleted module shown in the status message. Timestamp in the status bar is updated.
+
+    3. Test case: `mdel 0`<br>
+       Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect delete commands to try: `mdel`, `mdel c/x`, `...` (where x module code does not exist)<br>
+       Expected: Similar to previous.
+
+### 8.3. Add/Delete a student
+
+1. Adding a student to ProfNUS. 
+
+    1. Prerequisites: Arguments are valid and all compulsory parameters are provided. No duplicate student is allowed in ProfNUS.
+   
+    2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/A0123456G h/@good_student c/CS2030S`<br>
+       Expected: Adds a new student with the name `John Doe`, phone number `98765432`, email address `johnd@example.com`, address `311, Clementi Ave 2, #02-25`, student id `A0123456G`, telegram handle `@good_student`and module code `CS2030S`.
+
+   3. Test case: `add n/John Doe`<br>
+      Expected: No student is added. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect delete commands to try: `add`, `add x` and `add n/John Doe p/98765432`<br>
+      Expected: Similar to previous.
+
+2. Deleting a student while all students are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `deletestu 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `deletestu 0`<br>
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+## **9. Appendix C: Effort**
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+Creating **ProfNUS** was a challenging but yet fulfilling journey for all of us. This project required much effort from
+all team members equally. This can be substantiated by our **15,000** lines of code combined which was written in a span of
+less than 10 weeks, placing us within the top 10 in the cohort for total code contribution. Despite our busy schedules,
+we managed to maintain a healthy and consistent communication with at least one online Zoom meeting per week. The hard work
+and dedication from our team was what made this project a successful and memorable learning experience. 
