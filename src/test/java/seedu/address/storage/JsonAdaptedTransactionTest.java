@@ -97,6 +97,7 @@ public class JsonAdaptedTransactionTest {
                 new JsonAdaptedTransaction(VALID_GOODS, VALID_PRICE, VALID_QUANTITY, TransactionType.BUY,
                         INVALID_DATE_WRONG_DATE);
         String expectedMessage2 = Date.MESSAGE_CONSTRAINTS_WRONG_DATE;
+        assertThrows(IllegalValueException.class, expectedMessage1, transaction1::toModelType);
         assertThrows(IllegalValueException.class, expectedMessage2, transaction2::toModelType);
     }
 
