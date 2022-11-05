@@ -279,6 +279,9 @@ patient to the `UniquePatientList` in `ModelManager`.
 
 Step 5. The application will then save the patient into the `UniquePatientList` and display the patient added.
 
+The sequence diagram below shows how the `AddXXXXCommand` is parsed:
+![AddParserSequenceDiagram](images/dg/AddParserSequenceDiagram.png)
+
 The sequence diagram below shows how the add patient operation works:
 ![AddPatientSequenceDiagram](images/dg/AddPatientCommandSequenceDiagram.png)
 
@@ -334,8 +337,10 @@ edited `Patient` will cause duplicate `Patient`s.
 Step 5. The `EditPatientCommand` calls `Model#setPatient`, which replaces
 the patient in the `UniquePatientList` in `ModelManager`.
 
-The sequence diagram below shows how the edit patient operation works:
+The sequence diagram below shows how the `EditXXXXCommand` is parsed:
+![EditParserSequenceDiagram](images/dg/EditParserSequenceDiagram.png)
 
+The sequence diagram below shows how the edit operation works:
 ![EditPatientSequenceDiagram](images/dg/EditCommandSequenceDiagram.png)
 
 The edit feature is now separated for the patients, appointments and bills sections. The steps for editing appointments and bills are similar.
@@ -611,11 +616,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 
-* 1a. The format for add command is not followed.
-
+* 1a. HealthContact detects an error in the format of the command entered.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the patient already exists in the database.
+    * 1b1. HealthContact shows an error message.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the patient does not exist in the database.
+    * Use case resumes from step 2.
+    
 
 
 **Use case: Adding an appointment**
@@ -629,17 +640,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format for add command is not followed.
-
+* 1a. HealthContact detects an error in the format of the command entered.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
-
-* 1b. The patient does not exist.
-
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the appointment already exists in the database.
     * 1b1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the appointment does not exist in the database.
+    * Use case resumes from step 2.
     
 **Use case: Adding a bill to an appointment**
 
@@ -652,17 +662,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format for AddBillCommand is not followed.
-
-    * 1a.1 HealthContact shows an error message.
-
-      Use case ends.
-
-* 1b. The bill for an appointment already exists.
-
-    * 1b.1 HealthContact shows an error message.
-
-      Use case ends.
+* 1a. HealthContact detects an error in the format of the command entered.
+    * 1a1. HealthContact shows an error message.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the bill already exists in the database.
+    * 1b1. HealthContact shows an error message.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the bill does not exist in the database.
+    * Use case resumes from step 2.
     
 **Use case: Editing a patient**
 
@@ -675,11 +684,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The input format is invalid.
-
-    * 3a1. HealthContact shows an error message.
-
-      Use case ends.
+* 1a. HealthContact detects an error in the format of the command entered.
+    * 1a1. HealthContact shows an error message.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the patient already exists in the database.
+    * 1b1. HealthContact shows an error message.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the patient exists in the database.
+    * Use case resumes from step 2.
 
 **Use case: Editing an appointment**
 
@@ -692,11 +706,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The input format is invalid.
-
+* 1a. HealthContact detects an error in the format of the command entered.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the appointment index is invalid.
+    * 1b1. HealthContact shows an error message.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the appointment index is valid.
+    * Use case resumes from step 2.
     
 **Use case: Editing a bill of an appointment**
 
@@ -709,17 +728,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format for EditBillCommand is not followed.
-
-    * 1a.1 HealthContact shows an error message.
-
-      Use case ends.
-
-* 1b. Index of the edited bill is not allowed.
-
-    * 1b.1 HealthContact shows an error message.
-
-      Use case ends.
+* 1a. HealthContact detects an error in the format of the command entered.
+    * 1a1. HealthContact shows an error message.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the bill index is invalid.
+    * 1b1. HealthContact shows an error message.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the bill index is valid.
+    * Use case resumes from step 2.
 
 
 **Use case: Deleting a patient**
@@ -733,11 +751,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given index is invalid.
-
+* 1a. HealthContact detects that the patient index is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the patient index entered is valid.
+    * Use case resumes from step 2.
 
 
 **Use case: Deleting an appointment**
@@ -751,11 +769,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given index is invalid.
-
+* 1a. HealthContact detects that the appointment index is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the appointment index entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Deleting a bill of an appointment**
 
@@ -768,11 +786,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given index is invalid.
-
-    * 1a.1 HealthContact shows an error message.
-
-      Use case ends.
+* 1a. HealthContact detects that the bill index is invalid.
+    * 1a1. HealthContact shows an error message.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the bill index entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Sorting patients**
 
@@ -785,11 +803,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given type of sorting is invalid.
-
+* 1a. HealthContact detects that the field is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the field entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Sorting appointments**
 
@@ -802,11 +820,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given type of sorting is invalid.
-
+* 1a. HealthContact detects that the field is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the field entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Sorting bills**
 
@@ -819,11 +837,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given type of sorting is invalid.
-
+* 1a. HealthContact detects that the field is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the field entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Finding a patient**
 
@@ -836,11 +854,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format of the find patient command is invalid.
-
+* 1a. HealthContact detects that the keyword is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the keyword entered is valid.
+    * Use case resumes from step 2.
 
 
 **Use case: Finding an appointment**
@@ -854,11 +872,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format of the find appointment command is invalid.
-
+* 1a. HealthContact detects that the keyword is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the keyword entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Finding a bill**
 
@@ -871,11 +889,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format of the find bill command is invalid.
-
+* 1a. HealthContact detects that the keyword is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the keyword entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Undoing a command**
 
@@ -888,11 +906,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. There is no command to undo.
-
+* 1a. HealthContact detects that there is no command to undo.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * Use case ends.
 
 **Use case: Redoing a command**
 
@@ -905,11 +921,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. There is no command to redo.
-
+* 1a. HealthContact detects that there is no command to redo.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * Use case ends.
 
 **Use case: Listing**
 
