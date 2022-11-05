@@ -1,6 +1,8 @@
 package seedu.studmap.model.student;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.studmap.testutil.Assert.assertThrows;
 
@@ -36,5 +38,24 @@ public class NameTest {
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
         assertTrue(Name.isValidName("Po, the Tato")); // with comma
         assertTrue(Name.isValidName("To-To the Mato")); // with hyphen
+    }
+
+    @Test
+    public void isSameName() {
+        String testFullName = "Test Full Name";
+        Name testName = new Name(testFullName);
+
+        // null name
+        assertNotEquals(testName, null);
+
+        // spaces skipped
+        assertNotEquals(testName, new Name("TestFullName"));
+
+        // trailing space
+        assertNotEquals(testName, new Name(testFullName + " "));
+
+        // different case
+        assertEquals(testName, new Name(testFullName.toLowerCase()));
+        assertEquals(testName, new Name(testFullName.toUpperCase()));
     }
 }

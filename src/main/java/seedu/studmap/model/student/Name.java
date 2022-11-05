@@ -53,11 +53,16 @@ public class Name {
                : fullName;
     }
 
+    /**
+     * Compares equality to another {@code Name}.
+     * @param other Other {@code Name} to compare.
+     * @return True if full names are equal, ignoring case.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+                && fullName.equalsIgnoreCase(((Name) other).fullName)); // state check
     }
 
     @Override
