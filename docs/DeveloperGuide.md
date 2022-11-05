@@ -154,6 +154,20 @@ Classes used by multiple components are in the `hobbylist.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Select an activity
+
+#### Implementation
+
+The following sequence diagram shows what happens when the user selects an activity by its `Index` from the activity list.
+
+![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+
+The activity with the given `Index` is selected and kept tracked by a listener of so that `SelectedActivityPanel` can be updated whenever there are changes to the currently selected activity.
+
+The following sequence diagram shows what happens in the `UI` when the selected activity gets deleted.
+
+![SelectedActivityChangesSequenceDiagram](images/SelectedActivityChangesSequenceDiagram.png)
+
 ### Renaming commands
 
 #### Implementation

@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HobbyListParser" as HobbyListParser LOGIC_COLOR
+participant ":SelectCommandParser" as SelectCommandParser LOGIC_COLOR
+participant "s:SelectCommand" as SelectCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":HobbyList" as HobbyList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("select 1")
+activate LogicManager
+
+LogicManager -> HobbyListParser : parseCommand("select 1")
+activate HobbyListParser
+
+create SelectCommandParser
+HobbyListParser -> SelectCommandParser
+activate SelectCommandParser
+
+SelectCommandParser --> HobbyListParser
+deactivate SelectCommandParser
+
+HobbyListParser -> SelectCommandParser : parse("1")
+activate SelectCommandParser
+
+create SelectCommand
+SelectCommandParser -> "SelectCommand"
+activate SelectCommand
+
+SelectCommand --> SelectCommandParser : s
+deactivate SelectCommand
+
+SelectCommandParser --> HobbyListParser : s
+deactivate SelectCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SelectCommandParser -[hidden]-> HobbyListParser
+destroy SelectCommandParser
+
+HobbyListParser --> LogicManager : s
+deactivate HobbyListParser
+
+LogicManager -> SelectCommand : execute()
+activate SelectCommand
+
+SelectCommand -> Model : selectActivity(1)
+activate Model
+
+Model -> HobbyList: selectActivity(activity)
+activate HobbyList
+
+HobbyList ---> Model
+deactivate HobbyList
+
+Model --> SelectCommand
+deactivate Model
+
+create CommandResult
+SelectCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SelectCommand
+deactivate CommandResult
+
+SelectCommand --> LogicManager : result
+deactivate SelectCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
