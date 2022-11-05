@@ -486,7 +486,8 @@ Format: `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT]`
 ---
 ### Listing all projects: `task project`
 
-Lists all the projects present in the task list.
+Lists all the projects present in the task panel.<br>
+Projects of hidden tasks will also be shown.
 
 Format: `task project`
 
