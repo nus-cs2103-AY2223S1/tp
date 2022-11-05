@@ -280,38 +280,39 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: NUS teaching assistants.
+**Target user profile**: NUS teaching assistants (TAs).
 
-**Value proposition**: we want to evolve AB3 such that the fast-typist teaching assistants are able to search up the students and tutors in their courses, as well as the tasks assigned to each of them more efficiently.
-
-
+**Value proposition**: we want to evolve AB3 such that the fast-typist TAs are able to manage all the information of their teaching modules in one place including students' information, grade summary, tutorials, consultations and reminders. This allows TAs to keep track of their responsibilities, students’ progress and schedules for the ongoing semester.
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                      | So that I can…​                                        |
-|----------|--------------------------------------------|---------------------------------------------------|--------------------------------------------------------|
-| `* * *`  | teaching assistant                                  | add student into my classes                       | track the list of students in my classes               |
-| `* * `   | teaching assistant                                  | edit a student's information                      | update any changes to a student's information          |
-| `* * *`  | teaching assistant                                  | find a student by their name                      | get a student information quickly                      |
-| `* * *`  | teaching assistant                                  | find a student by their student ID                | get their name quickly while grading their assignments |
-| `* * *`  | teaching assistant                                  | remove a student from my classes                  | remove students who decide to drop the module          |
-| `* * *`  | teaching assistant                                  | clear all students in my classes                  | clear all students at once after a semester            |
-| `* * *`  | teaching assistant                                  | add a new reminder                                | keep track of any tasks I have                         |
-| `* * *`  | teaching assistant                                  | edit a reminder                                   | change the description of my task                      |
-| `* * *`  | teaching assistant                                  | delete a reminder                                 | delete any reminders that are not needed anymore       |
-| `* * *`  | teaching assistant                                  | clear all reminders                               | clear all reminder slots at once after a semester      |
-| `* * *`  | teaching assistant                                  | mark a reminder as done                           | keep track which tasks are done                        |
-| `* * *`  | teaching assistant                                  | unmark a reminder as not done                     | reverse any task I accidentally marked as done         |
-| `* * *`  | teaching assistant                                  | add a new consult slot                            | keep track of all my consults                          |
-| `* * *`  | teaching assistant                                  | edit a consult slot                               | change an added consults quickly                       |
-| `* * *`  | teaching assistant                                  | delete a consult slot                             | remove consults that are cancelled                     |
-| `* * *`  | teaching assistant                                  | clear all consult slots                           | clear all consultation slot at once after a semester   |
-| `* * *`  | teaching assistant                                  | add a new tutorial slot                           | keep track of all my tutorials                         |
-| `* * `   | teaching assistant                                  | edit a tutorial slot                              | change the details of my tutorial                      |
-| `* * *`  | teaching assistant                                  | delete a tutorial slot                            | remove unwanted tutorials                              |
-| `* * *`  | teaching assistant                                  | clear all tutorial slots                          | clear all tutorial at once after a semester            |
-| `* * *`  | teaching assistant                                  | see a pie chart summarizing my students' grades   | keep track of my students' performances                |
+| Priority | As a …​             | I want to …​                                    | So that I can…​                                                                                     |
+|---------|---------------------|-------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `* * *` | teaching assistant  | add student into my classes                     | track the list of students in my classes                                                            |
+| `* * *` | teaching assistant  | remove a student from my classes                | remove students who decide to drop the module                                                       |
+| `* * `  | teaching assistant  | clear all students in my classes                | clear all students at once after a semester                                                         |
+| `* * `  | teaching assistant  | edit a student's information                    | update any changes to a student's information                                                       |
+| `* * *` | teaching assistant  | list                                            | get all the information of students in the same tutorial                                            |
+| `* * *` | teaching assistant  | find a student by their name                    | get a student information quickly without having to go through the entire list                      |
+| `* * *` | teaching assistant  | find a student by their student ID              | get their name quickly while grading their assignments without having to go through the entire list |
+| `* * *` | teaching assistant  | find a student by their tutorial                | locate details of all students in the same tutorial without having to go through the entire list    |
+| `* * *` | teaching assistant  | find a student by their module                  | locate details of of all students in the same module without having to go through the entire list                |
+| `* * *` | teaching assistant  | add a new reminder                              | keep track of any tasks I have                                                                      |
+| `* * *` | teaching assistant  | edit a reminder                                 | change the description of my task                                                                   |
+| `* * *` | teaching assistant  | delete a reminder                               | delete any reminders that are not needed anymore                                                    |
+| `* * *` | teaching assistant  | clear all reminders                             | clear all reminder slots at once after a semester                                                   |
+| `* * *` | teaching assistant  | mark a reminder as done                         | keep track which tasks are done                                                                     |
+| `* * *` | teaching assistant  | unmark a reminder as not done                   | reverse any task I accidentally marked as done                                                      |
+| `* * *` | teaching assistant  | add a new consult slot                          | keep track of all my consults                                                                       |
+| `* * *` | teaching assistant  | edit a consult slot                             | change an added consults quickly                                                                    |
+| `* * *` | teaching assistant  | delete a consult slot                           | remove consults that are cancelled                                                                  |
+| `* * *` | teaching assistant  | clear all consult slots                         | clear all consultation slot at once after a semester                                                |
+| `* * *` | teaching assistant  | add a new tutorial slot                         | keep track of all my tutorials                                                                      |
+| `* * `  | teaching assistant  | edit a tutorial slot                            | change the details of my tutorial                                                                   |
+| `* * *` | teaching assistant  | delete a tutorial slot                          | remove unwanted tutorials                                                                           |
+| `* * *` | teaching assistant  | clear all tutorial slots                        | clear all tutorial at once after a semester                                                         |
+| `* * *` | teaching assistant  | see a pie chart summarizing my students' grades | keep track of my students' performances                                                             |
 
 *{More to be added}*
 
