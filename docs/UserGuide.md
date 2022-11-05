@@ -227,7 +227,7 @@ A contact can have any number of tags. Add as many as you want.
 </div>
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** The tag has to be made first before you can add it into a contact.
+**:information_source: Note:** The tag has to be created first before you can add it into a contact.
 
 Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
 </div>
