@@ -130,7 +130,7 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 5. Head over to the [tutorial](#tutorial) section for a small walkthrough of some of TrackO's commands and use cases.
 
 6. If you'd like to skip the tutorial, head over to the [features](#features) section for some of the more technical
-   in-depth explanation of each command's format a use case.
+   and in-depth explanation of each command's format a use case.
 
 
 <div markdown="span" class="alert alert-primary">
