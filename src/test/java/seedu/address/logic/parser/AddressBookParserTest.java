@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser.ADDITIONAL_REQUEST_PREFIX;
-import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser.ORDER_STATUS_PREFIX;
-import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser.PRICE_RANGE_PREFIX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.COLOR_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PET_NAME_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PRICE_PREFIX;
@@ -29,7 +29,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MatchCommand;
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
 import seedu.address.logic.commands.addcommands.AddDelivererCommand;
-//import seedu.address.logic.commands.addcommands.AddPetCommand;
 import seedu.address.logic.commands.addcommands.AddPetCommand;
 import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.commands.deletecommands.DeleteBuyerCommand;
@@ -228,9 +227,9 @@ public class AddressBookParserTest {
                 orderStatusPredicate,
                 priceRangePredicate);
         String input = FilterOrderCommand.COMMAND_WORD + " "
-                + ADDITIONAL_REQUEST_PREFIX + "/fat "
-                + ORDER_STATUS_PREFIX + "/Delivering "
-                + PRICE_RANGE_PREFIX + "/34.5-79.9";
+                + PREFIX_ORDER_ADDITIONAL_REQUESTS + "fat "
+                + PREFIX_ORDER_STATUS + "Delivering "
+                + PREFIX_ORDER_PRICE_RANGE + "34.5-79.9";
         assertEquals(parser.parseCommand(input), command);
     }
 

@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser.ORDER_STATUS_PREFIX;
-import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser.PRICE_RANGE_PREFIX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.COLOR_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PET_NAME_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PRICE_PREFIX;
@@ -435,20 +435,22 @@ public class PredicateParserTest {
 
         try {
             //negotiating -> success
-            Predicate<Order> result1 = PredicateParser.parseOrder(ORDER_STATUS_PREFIX + "/Negotiating");
-            Predicate<Order> result2 = PredicateParser.parseOrder(ORDER_STATUS_PREFIX + "/ \tNegotiating \n");
+            Predicate<Order> result1 = PredicateParser.parseOrder("Negotiating",
+                    PREFIX_ORDER_STATUS.getPrefix());
+            Predicate<Order> result2 = PredicateParser.parseOrder(" \tNegotiating \n",
+                    PREFIX_ORDER_STATUS.getPrefix());
             assertEquals(result1, negotiating);
             assertEquals(result2, negotiating);
 
             //delivering -> success
-            result1 = PredicateParser.parseOrder(ORDER_STATUS_PREFIX + "/Delivering");
-            result2 = PredicateParser.parseOrder(ORDER_STATUS_PREFIX + "/ \tDelivering \n");
+            result1 = PredicateParser.parseOrder("Delivering", PREFIX_ORDER_STATUS.getPrefix());
+            result2 = PredicateParser.parseOrder(" \tDelivering \n", PREFIX_ORDER_STATUS.getPrefix());
             assertEquals(result1, delivering);
             assertEquals(result2, delivering);
 
             //delivering -> success
-            result1 = PredicateParser.parseOrder(ORDER_STATUS_PREFIX + "/Pending");
-            result2 = PredicateParser.parseOrder(ORDER_STATUS_PREFIX + "/ \tPending \n");
+            result1 = PredicateParser.parseOrder("Pending", PREFIX_ORDER_STATUS.getPrefix());
+            result2 = PredicateParser.parseOrder(" \tPending \n", PREFIX_ORDER_STATUS.getPrefix());
             assertEquals(result1, pending);
             assertEquals(result2, pending);
         } catch (IllegalValueException e) {
@@ -458,30 +460,34 @@ public class PredicateParserTest {
 
     @Test
     public void parseOrder_invalidOrderStatus_throwsParseException() {
-        String input = ORDER_STATUS_PREFIX + "/bhnkbjn";
+        String input = "bhnkbjn";
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input));
+        assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input,
+                PREFIX_ORDER_STATUS.getPrefix()));
     }
 
     @Test
     public void parseOrder_wrongCasingDelivering_throwsParseException() {
-        String input = ORDER_STATUS_PREFIX + "/delivering";
+        String input = "delivering";
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input));
+        assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input,
+                PREFIX_ORDER_STATUS.getPrefix()));
     }
 
     @Test
     public void parseOrder_wrongCasingNegotiating_throwsParseException() {
-        String input = ORDER_STATUS_PREFIX + "/negotiating";
+        String input = "negotiating";
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input));
+        assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input,
+                PREFIX_ORDER_STATUS.getPrefix()));
     }
 
     @Test
     public void parseOrder_wrongCasingPending_throwsParseException() {
-        String input = ORDER_STATUS_PREFIX + "/pending";
+        String input = "pending";
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input));
+        assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input,
+                PREFIX_ORDER_STATUS.getPrefix()));
     }
 
     @Test
@@ -492,7 +498,7 @@ public class PredicateParserTest {
 
         try {
             String input = lowerBound.getPrice() + "-" + upperBound.getPrice();
-            Predicate<Order> result = PredicateParser.parseOrder(PRICE_RANGE_PREFIX + "/" + input);
+            Predicate<Order> result = PredicateParser.parseOrder(input, PREFIX_ORDER_PRICE_RANGE.getPrefix());
             assertEquals(result, priceRangePredicate);
         } catch (IllegalValueException e) {
             assert false;
@@ -506,30 +512,33 @@ public class PredicateParserTest {
         PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(lowerBound, upperBound);
 
         String input = upperBound.getPrice() + "-" + lowerBound.getPrice();
-        assertThrows(ParseException.class, () -> PredicateParser.parseOrder(PRICE_RANGE_PREFIX + "/" + input));
+        assertThrows(ParseException.class, () -> PredicateParser.parseOrder(input,
+                PREFIX_ORDER_PRICE_RANGE.getPrefix()));
     }
 
     @Test
     public void parseOrder_emptyString_throwsParseException() {
         String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, expected, () -> PredicateParser.parseOrder(""));
+        assertThrows(ParseException.class, expected, () -> PredicateParser.parseOrder("",
+                PREFIX_ORDER_PRICE_RANGE.getPrefix()));
     }
 
     @Test
     public void parseOrder_invalidPrefix_throwParseException() {
         String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, expected, () -> PredicateParser.parseOrder("y"));
+        assertThrows(ParseException.class, expected, () -> PredicateParser.parseOrder("y",
+                "YYYYY/"));
     }
 
     @Test
     public void parseOrder_invalidPrefixInvalidInput_throwParseException() {
         String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, expected, () -> PredicateParser.parseOrder("y/heyworld"));
+        assertThrows(ParseException.class, expected, () -> PredicateParser.parseOrder("heyworld", "h"));
     }
 
     @Test
     public void parseOrder_emptyArguments_throwParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet(ORDER_STATUS_PREFIX));
+                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet(PREFIX_ORDER_STATUS.getPrefix()));
     }
 }
