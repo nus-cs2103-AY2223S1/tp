@@ -3,4 +3,4 @@
 <?import javafx.scene.control.TextField?>
 
 
-<TextField fx:id="jumpText" onAction="#handleOnAction" promptText="Enter... (e.g. 22-Oct-2022)" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />
+<TextField fx:id="jumpText" onAction="#handleOnAction" prefHeight="25.0" prefWidth="100.0" promptText="Enter Date..." xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />
