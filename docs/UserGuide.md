@@ -2,9 +2,10 @@
 layout: page
 title: User Guide
 ---
-## **Using Mass Linkers: your quick start guide**
-
-Welcome to Mass Linkers -- a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates.
+<div align="center">
+<img src="../docs/images/Logo.png" width="360">
+</div>
+Welcome to Mass Linkers &mdash; a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates.
 
 Mass Linkers helps you find batchmates to form study groups and seek study advice through the following way.
 
@@ -25,15 +26,15 @@ If you are more familiar with CLI or Mass Linkers, head over to the [Command sum
 The following icons are used in the _User Guide_ to denote special information to look out for.
 #### Meaning of icons
 <div markdown="block" class="alert alert-info">
-**:information_source:**: __additional information__ such as specific requirements of parameters and the nature of command
+**:information_source:**: __Additional information__ such as specific requirements of parameters and the nature of command
 </div>
 
 <div markdown="span" class="alert alert-primary">
-**:bulb:**: __tip__ on how to carry out certain functionalities
+**:bulb:**: __Tip__ on how to carry out certain functionalities
 </div>
 
 <div markdown="span" class="alert alert-warning">
-**:warning:**: __warning__ as the command can create drastic changes to the existing App data
+**:warning:**: __Warning__ as the command can create drastic changes to the existing App data
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
