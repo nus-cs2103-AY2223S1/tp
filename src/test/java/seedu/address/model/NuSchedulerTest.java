@@ -9,12 +9,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CCA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.PRACTICE;
 import static seedu.address.testutil.TypicalEvents.PRESENTATION;
 import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.AMY;
 import static seedu.address.testutil.TypicalProfiles.BENSON;
 import static seedu.address.testutil.TypicalProfiles.BOB;
+import static seedu.address.testutil.TypicalProfiles.FIONA;
+import static seedu.address.testutil.TypicalProfiles.GEORGE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -205,6 +208,32 @@ public class NuSchedulerTest {
     @Test
     public void getEventList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> nuScheduler.getEventList().remove(0));
+    }
+
+    @Test
+    public void addEventAttendees_addNewProfiles_profilesAdded() {
+        nuScheduler.addEvent(PRESENTATION);
+        nuScheduler.addProfile(FIONA);
+        nuScheduler.addProfile(GEORGE);
+        assertFalse(PRESENTATION.hasAttendee(FIONA));
+        assertFalse(PRESENTATION.hasAttendee(GEORGE));
+
+        nuScheduler.addEventAttendees(PRESENTATION, List.of(FIONA, GEORGE));
+        assertTrue(PRESENTATION.hasAttendee(FIONA));
+        assertTrue(PRESENTATION.hasAttendee(GEORGE));
+    }
+
+    @Test
+    public void addEventToAttendees_addNewEvent_eventAdded() {
+        nuScheduler.addProfile(FIONA);
+        nuScheduler.addProfile(GEORGE);
+        nuScheduler.addEvent(PRACTICE);
+        assertFalse(FIONA.isAttendingEvent(PRACTICE));
+        assertFalse(GEORGE.isAttendingEvent(PRACTICE));
+
+        nuScheduler.addEventToAttendees(PRACTICE, List.of(FIONA, GEORGE));
+        assertTrue(FIONA.isAttendingEvent(PRACTICE));
+        assertTrue(GEORGE.isAttendingEvent(PRACTICE));
     }
 
     /**

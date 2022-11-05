@@ -5,7 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CCA;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.PRESENTATION;
+import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.FIONA;
+import static seedu.address.testutil.TypicalProfiles.GEORGE;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +24,16 @@ public class AttendeesTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Attendees(null));
+    }
+
+    @Test
+    public void constructor_emptyList_returnsEmptyAttendees() {
+        assertEquals(attendees, new Attendees(List.of()));
+    }
+
+    @Test
+    public void getAttendeesList_emptyAttendees_returnsEmptyList() {
+        assertEquals(List.of(), attendees.getAttendeesList());
     }
 
     @Test
@@ -68,6 +83,15 @@ public class AttendeesTest {
     }
 
     @Test
+    public void removeAttendees_existingProfiles_removesProfiles() {
+        attendees.addProfile(FIONA);
+        attendees.addProfile(ALICE);
+        attendees.removeAttendees(List.of(FIONA, ALICE));
+        Attendees expectedAttendees = new Attendees();
+        assertEquals(expectedAttendees, attendees);
+    }
+
+    @Test
     public void getAttendee_existingAttendee_success() {
         attendees.addProfile(FIONA);
         assertEquals(attendees.getAttendee(0), FIONA);
@@ -91,8 +115,33 @@ public class AttendeesTest {
     }
 
     @Test
-    public void asUnmodifiableList_modifyList_throwsUnsupportedOperationException() {
+    public void getAttendeesList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
                 -> attendees.getAttendeesList().remove(0));
     }
+
+    @Test
+    public void addEventToAttendees_addNewEvent_eventAdded() {
+        attendees.addProfile(FIONA);
+        attendees.addProfile(GEORGE);
+        assertFalse(FIONA.isAttendingEvent(PRESENTATION));
+        assertFalse(GEORGE.isAttendingEvent(PRESENTATION));
+
+        attendees.addEventToAttendees(PRESENTATION);
+        assertTrue(FIONA.isAttendingEvent(PRESENTATION));
+        assertTrue(GEORGE.isAttendingEvent(PRESENTATION));
+    }
+
+    @Test
+    public void removeEventFromAttendees_removeExistingEvent_eventRemoved() {
+        attendees.addProfile(FIONA);
+        attendees.addProfile(GEORGE);
+        attendees.addEventToAttendees(PRESENTATION);
+        attendees.removeEventFromAttendees(PRESENTATION);
+
+        assertFalse(FIONA.isAttendingEvent(PRESENTATION));
+        assertFalse(GEORGE.isAttendingEvent(PRESENTATION));
+    }
+
+
 }

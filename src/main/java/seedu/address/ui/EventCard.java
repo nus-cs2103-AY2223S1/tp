@@ -75,7 +75,9 @@ public class EventCard extends UiPart<Region> {
         attendeesList.stream()
                 .forEach(attendee -> {
                     int index = attendeesList.indexOf(attendee) + 1;
-                    attendees.getChildren().add(new Label(index + " " + attendee.getName().toString()));
+                    attendees.getChildren().add(new Label(
+                            index + ". " + attendee.getName() + " ("
+                            + attendee.getPhone() + ")"));
                 });
     }
 

@@ -1,6 +1,8 @@
 package seedu.address.model.profile;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -11,6 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.AMY;
+import static seedu.address.testutil.TypicalProfiles.AMY_DIFFERENT_PHONE;
+import static seedu.address.testutil.TypicalProfiles.AMY_LOWER_CAPS;
 import static seedu.address.testutil.TypicalProfiles.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -117,5 +121,26 @@ public class ProfileTest {
         // different tags -> returns false
         editedAlice = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void compareTo_sameNameSamePhone_isEqual() {
+        assertEquals(0, AMY.compareTo(AMY));
+        assertEquals(0, AMY_DIFFERENT_PHONE.compareTo(AMY_DIFFERENT_PHONE));
+    }
+
+    @Test
+    public void compareTo_sameNameDifferentPhone_isNotEqual() {
+        assertEquals(-1, AMY.compareTo(AMY_DIFFERENT_PHONE));
+    }
+
+    @Test
+    public void compareTo_differentNameSamePhone_isNotEqual() {
+        assertNotEquals(0, AMY.compareTo(AMY_LOWER_CAPS));
+    }
+
+    @Test
+    public void compareTo_differentNamedifferentPhone_isNotEqual() {
+        assertNotEquals(0, AMY.compareTo(ALICE));
     }
 }

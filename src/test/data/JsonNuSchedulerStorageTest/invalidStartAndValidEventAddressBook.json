@@ -1,0 +1,14 @@
+{
+  "profiles": [
+
+  ],
+  "events": [ {
+    "title" : "Valid event",
+    "start" : "11/10/2022 09:00",
+    "end" : "11/10/2022 10:00"
+  }, {
+    "title" : "Event with invalid start",
+    "start" : "33/10/20222 09:00",
+    "end" : "11/10/2022 10:00"
+  } ]
+}

@@ -3,6 +3,8 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.PRACTICE;
+import static seedu.address.testutil.TypicalEvents.TUTORIAL;
 import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.HOON;
@@ -62,6 +64,17 @@ public class JsonNuSchedulerStorageTest {
     }
 
     @Test
+    public void readAddressBook_invalidEventAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readNuScheduler("invalidTitleAddressBook.json"));
+    }
+
+    @Test
+    public void readAddressBook_invalidAndValidEventAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () ->
+                readNuScheduler("invalidStartAndValidEventAddressBook.json"));
+    }
+
+    @Test
     public void readAndSaveNuScheduler_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempNuScheduler.json");
         NuScheduler original = getTypicalNuScheduler();
@@ -74,7 +87,9 @@ public class JsonNuSchedulerStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addProfile(HOON);
+        original.addEvent(TUTORIAL);
         original.removeProfile(ALICE);
+        original.removeEvent(PRACTICE);
         jsonNuSchedulerStorage.saveNuScheduler(original, filePath);
         readBack = jsonNuSchedulerStorage.readNuScheduler(filePath).get();
         assertEquals(original, new NuScheduler(readBack));
