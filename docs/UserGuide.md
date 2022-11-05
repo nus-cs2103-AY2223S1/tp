@@ -37,11 +37,11 @@ use its text-based commands. Get started now by heading over to [How to use this
 Throughout this website, you may find colored boxes that contain useful information. The icon at the top of the box represents
 the type of information contained.
 
-| Icon                                                      | Meaning                              |
-|-----------------------------------------------------------|--------------------------------------|
-| ![Tip](images/user-guide/tip.png){:height="32px"}         | Something you may find useful.       |
-| ![Note](images/user-guide/note.png){:height="32px"}       | Something you should keep in mind.   |
-| ![Caution](images/user-guide/caution.png){:height="32px"} | Something you should be cautious of. |
+| Icon                                                      | Meaning                                                      |
+|-----------------------------------------------------------|--------------------------------------------------------------|
+| ![Tip](images/user-guide/tip.png){:height="32px"}         | Tips to help you make the most out of Swift+.                |
+| ![Note](images/user-guide/note.png){:height="32px"}       | Information you should take note of while using Swift+.      |
+| ![Caution](images/user-guide/caution.png){:height="32px"} | Warnings that may corrupt your app and data if not followed. |
 
 ### Sections
 
