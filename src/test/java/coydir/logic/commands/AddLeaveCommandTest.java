@@ -3,11 +3,13 @@ package coydir.logic.commands;
 import static coydir.logic.commands.CommandTestUtil.assertCommandFailure;
 import static coydir.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static coydir.testutil.TypicalIndexes.ID_FIRST_EMPLOYEE;
+import static coydir.testutil.TypicalIndexes.ID_SECOND_EMPLOYEE;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import coydir.commons.core.Messages;
 import coydir.model.Database;
 import coydir.model.Model;
 import coydir.model.ModelManager;
@@ -25,16 +27,16 @@ public class AddLeaveCommandTest {
         Leave leave = new Leave("02-01-2022", "02-01-2022");
         Leave leave2 = new Leave("01-01-2022", "01-01-2022");
         Person personToAddLeave = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPosition("Software Engineer").withDepartment("Information Technology")
-            .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(15)
-            .withLeavePeriod(leave2).withEmployeeId("1").build();
+                .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+                .withPosition("Software Engineer").withDepartment("Information Technology")
+                .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(15)
+                .withLeavePeriod(leave2).withEmployeeId("1").build();
 
         Person personToAddLeaveCopy = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPosition("Software Engineer").withDepartment("Information Technology")
-            .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(15)
-            .withLeavePeriod(leave2).withEmployeeId("1").build();
+                .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+                .withPosition("Software Engineer").withDepartment("Information Technology")
+                .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(15)
+                .withLeavePeriod(leave2).withEmployeeId("1").build();
 
         model.addPerson(personToAddLeaveCopy);
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(ID_FIRST_EMPLOYEE, leave);
@@ -52,10 +54,10 @@ public class AddLeaveCommandTest {
         Leave leave = new Leave("02-01-2022", "02-01-2022");
         Model model = new ModelManager(new Database(), new UserPrefs());
         Person personWithNoLeave = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPosition("Software Engineer").withDepartment("Information Technology")
-            .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(0)
-            .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
+                .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+                .withPosition("Software Engineer").withDepartment("Information Technology")
+                .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(0)
+                .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
         model.addPerson(personWithNoLeave);
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(ID_FIRST_EMPLOYEE, leave);
 
@@ -67,10 +69,10 @@ public class AddLeaveCommandTest {
         Leave leave = new Leave("01-01-2022", "02-01-2022");
         Model model = new ModelManager(new Database(), new UserPrefs());
         Person personWithOverlappingLeave = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPosition("Software Engineer").withDepartment("Information Technology")
-            .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(10)
-            .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
+                .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+                .withPosition("Software Engineer").withDepartment("Information Technology")
+                .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(10)
+                .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
         model.addPerson(personWithOverlappingLeave);
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(ID_FIRST_EMPLOYEE, leave);
 
@@ -82,13 +84,27 @@ public class AddLeaveCommandTest {
         Leave leave = new Leave("01-01-2022", "01-01-2022");
         Model model = new ModelManager(new Database(), new UserPrefs());
         Person personWithDuplicateLeave = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPosition("Software Engineer").withDepartment("Information Technology")
-            .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(10)
-            .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
+                .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+                .withPosition("Software Engineer").withDepartment("Information Technology")
+                .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(10)
+                .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
         model.addPerson(personWithDuplicateLeave);
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(ID_FIRST_EMPLOYEE, leave);
         assertCommandFailure(addLeaveCommand, model, AddLeaveCommand.MESSAGE_DUPLICATE_LEAVE);
+    }
+
+    @Test
+    public void execute_invalidID_throwsCommandException() {
+        Leave leave = new Leave("01-01-2022", "01-01-2022");
+        Model model = new ModelManager(new Database(), new UserPrefs());
+        Person personWithDuplicateLeave = new PersonBuilder().withName("Alice Pauline")
+                .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+                .withPosition("Software Engineer").withDepartment("Information Technology")
+                .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(10)
+                .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
+        model.addPerson(personWithDuplicateLeave);
+        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(ID_SECOND_EMPLOYEE, leave);
+        assertCommandFailure(addLeaveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
