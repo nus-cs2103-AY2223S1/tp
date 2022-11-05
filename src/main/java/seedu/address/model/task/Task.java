@@ -122,7 +122,11 @@ public class Task {
      * Returns true if both tasks have the same data fields.
      */
     public boolean isSameTask(Task otherTask) {
-        return this.equals(otherTask);
+        if (otherTask == null) {
+            return false;
+        }
+        return otherTask == this || (this.getModule().equals(otherTask.getModule())
+                && this.getDescription().equals(otherTask.getDescription()));
     }
 
     /**
@@ -269,9 +273,10 @@ public class Task {
 
     /**
      * Creates and returns a {@code Task} with the details of {@code this}
-     * edited with {@code newModule} and {@code newTaskDescription}.
+     * edited with {@code newModule} and {@code newTaskDescription}. Preserves the link between the task
+     * and its corresponding exam even if the module is changed.
      */
-    public Task edit(Module newModule, TaskDescription newTaskDescription) {
+    public Task editWithoutUnlinkingExam(Module newModule, TaskDescription newTaskDescription) {
         requireAnyNonNull(newModule, newTaskDescription);
         Module updatedModule = module;
         TaskDescription updatedDescription = description;
@@ -281,7 +286,7 @@ public class Task {
         if (newTaskDescription != null) {
             updatedDescription = newTaskDescription;
         }
-        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag, linkedExam);
     }
 
     /**
@@ -330,7 +335,10 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getDescription().equals(getDescription())
-                && otherTask.getModule().equals(getModule());
+                && otherTask.getModule().equals(getModule())
+                && otherTask.getStatus().equals(getStatus())
+                && Objects.equals(otherTask.getDeadlineTag(), getDeadlineTag())
+                && Objects.equals(otherTask.getPriorityTag(), getPriorityTag());
     }
 
     @Override

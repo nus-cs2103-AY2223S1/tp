@@ -1,4 +1,4 @@
-package seedu.address.model.commons;
+package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -39,5 +39,11 @@ public class Criteria {
 
     public String getCriteria() {
         return criteria;
+    }
+
+    @Override
+    public boolean equals(Object otherCriteria) {
+        return otherCriteria instanceof Criteria
+                && criteria.equalsIgnoreCase(((Criteria) otherCriteria).criteria);
     }
 }

@@ -64,20 +64,22 @@ public class TaskTest {
     }
 
     @Test
-    public void edit_withModuleAndTaskDescription() {
+    public void edit_withModuleAndTaskDescriptionWithoutUnlinkingExam() {
         // null module and description
-        assertThrows(NullPointerException.class, () -> TASK_A.edit(null, null));
+        assertThrows(NullPointerException.class, () -> TASK_A
+                .editWithoutUnlinkingExam(null, null));
 
         // module edited
         Module module = new Module(new ModuleCode(VALID_MODULE_CS2030));
-        Task taskDModuleEdited = new TaskBuilder(TASK_D).withModule(VALID_MODULE_CS2030).withExam(null).build();
-        assertTrue(TASK_D.edit(module, null).hasAllSameFields(taskDModuleEdited));
+        Task taskDModuleEdited = new TaskBuilder(TASK_D).withModule(VALID_MODULE_CS2030).build();
+        assertTrue(TASK_D.editWithoutUnlinkingExam(module, null).hasAllSameFields(taskDModuleEdited));
 
         // description edited
         TaskDescription description = new TaskDescription(VALID_DESCRIPTION_DO_TUTORIAL);
         Task taskADescriptionEdited = new TaskBuilder(TASK_A)
             .withTaskDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
-        assertTrue(TASK_A.edit(null, description).hasAllSameFields(taskADescriptionEdited));
+        assertTrue(TASK_A.editWithoutUnlinkingExam(null, description)
+                .hasAllSameFields(taskADescriptionEdited));
     }
 
     @Test
@@ -93,9 +95,9 @@ public class TaskTest {
         Task taskACopy = new TaskBuilder(TASK_A).build();
         assertTrue(taskA.equals(taskACopy));
 
-        // same module and description but with other different fields -> return true
+        // same module and description but with other different fields -> return false
         Task taskDCopy = new TaskBuilder(TASK_D).withStatus("incomplete").withExam(null).build();
-        assertTrue(taskD.equals(taskDCopy));
+        assertFalse(taskD.equals(taskDCopy));
 
         // different types -> returns false
         assertFalse(taskA.equals(5));

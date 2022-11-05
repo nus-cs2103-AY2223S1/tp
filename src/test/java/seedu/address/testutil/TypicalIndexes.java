@@ -18,6 +18,7 @@ public class TypicalIndexes {
     public static final Index INDEX_UNMARKED_TASK = Index.fromOneBased(1);
     public static final Index INDEX_MARKED_TASK = Index.fromOneBased(6);
     public static final Index INDEX_LINKED_TASK = Index.fromOneBased(4);
+    public static final Index INDEX_UNLINKED_TASK = Index.fromOneBased(1);
     public static final Index INDEX_THIRD_TASK = Index.fromOneBased(3);
     public static final Index INDEX_FORTH_TASK = Index.fromOneBased(4);
     public static final Index INDEX_FIFTH_TASK = Index.fromOneBased(5);
@@ -39,6 +40,7 @@ public class TypicalIndexes {
     public static final Index INDEX_SECOND_EXAM = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_EXAM = Index.fromOneBased(3);
     public static final Index INDEX_FORTH_EXAM = Index.fromOneBased(4);
+    public static final Index INDEX_CS2040_FINAL = Index.fromOneBased(5);
 
     public static final Index INDEX_FIRST_MODULE = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_MODULE = Index.fromOneBased(2);
