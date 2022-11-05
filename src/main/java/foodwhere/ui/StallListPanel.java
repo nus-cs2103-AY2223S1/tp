@@ -33,6 +33,7 @@ public class StallListPanel extends UiPart<Region> {
         stallListView.setCellFactory(listView -> new StallListViewCell());
     }
 
+    //@@author hikoya-reused
     /**
      * Handles the activity when the user clicks on the stall in the list.
      *
@@ -64,6 +65,7 @@ public class StallListPanel extends UiPart<Region> {
             stallListView.setContextMenu(contextMenu);
         }
     }
+    //@@author hikoya
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Stall} using a {@code StallCard}.
