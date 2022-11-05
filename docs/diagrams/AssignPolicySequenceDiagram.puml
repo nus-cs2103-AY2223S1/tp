@@ -3,6 +3,7 @@
 
 skinparam defaultFontSize 23
 skinparam maxMessageSize 200
+skinparam noteFontSize 18
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -16,9 +17,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager: execute(command details)
+[-> LogicManager: execute(command_details)
 activate LogicManager
 
+note right : command_details = "assign 1 1 \npr/200 sd/2020-10-12 \ned/2022-10-12"`
 LogicManager -> AddressBookParser: parseCommand(command_details)
 activate AddressBookParser
 
