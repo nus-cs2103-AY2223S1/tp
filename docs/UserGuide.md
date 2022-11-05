@@ -153,27 +153,27 @@ It appears when you execute the `help` command.
 
 **:information_source: Notes about the command format:**<br>
 
-* The first word in the command string actually specifies which command you are invoking. For example, `help` specifies that you are invoking the `help` command, while `adduser -n John Doe` specifies that you are using the `adduser` command.
+* The first word in the command string specifies which command you are invoking. For example, `help` specifies that you are invoking the `help` command, while `addbuyer -n John Doe` specifies that you are using the `addbuyer` command.
 
 
-* Items in square brackets are parameters that must be passed into the command.<br>
-  e.g. `[-n NAME]` indicates that the command requires a `NAME` parameter to be passed in.
+* To specify additional inputs to the command, type the input's flag followed by a space, and then its value.<br>
+  e.g `-n John Doe` will define the input `NAME` to store the value `John Doe`.
 
 
-* Parameters that contain angled braces `<>` means that the valid values that a parameter can take must be one of the values within the braces.<br>
-  e.g. `-pr [PRIORITY <HIGH, LOW>]` means that the `priority` parameter can take values `HIGH` or `LOW`.
+* Inputs not contained in any brackets must be passed into the command.<br>
+  e.g. `-n NAME` means that a `-n NAME` input must be specified.
 
 
-* Parameters that contain curly braces `{}` means that the parameters are optional, and can be excluded from the command if not required.<br>
-  For an example, `{-c CHARACTERISTICS}` means that the `CHARACTERISTICS` parameter is optional.
+* Inputs contained in square brackets `[]` are optional.<br>
+  e.g. `[-c CHARACTERISTICS]` means that the `-c CHARACTERISTICS` input is optional.
 
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `[-n NAME] [-p PHONE_NUMBER]`, `[-p PHONE_NUMBER] [-n NAME]` is also acceptable.
+* Inputs that contain angled braces `<>` can only take one of the values within the braces.<br>
+  e.g. `-pr PRIORITY<HIGH, NORMAL, LOW>` means that the `PRIORITY` input can only take values `HIGH`, `NORMAL` or `LOW`.
 
 
-* To specify a parameter and the value that it will take, type the parameter's flag followed by a space, and then its value.<br>
-  e.g `-n John Doe` will define the parameter `name` to store the value `John Doe`.
+* Inputs can be in any order.<br>
+  e.g. if the command specifies `[-n NAME] [-ph PHONE NUMBER]`, `[-ph PHONE NUMBER] [-n NAME]` is also acceptable.
 
 
 * If commands are missing specific parameters required for it to execute, an error message will be displayed that contains 
@@ -184,42 +184,57 @@ It appears when you execute the `help` command.
 #### Adding a buyer to the database: `addbuyer`
 
 Adds a buyer to the database with relevant buyer information<br>
-Syntax: `addbuyer [-n NAME] [-ph PHONE] [-e EMAIL] [-a address] {-r PRICE RANGE} {-c CHARACTERISTICS} {-pr <HIGH, NORMAL, LOW>}`
+Syntax: `addbuyer -n NAME -ph PHONE -e EMAIL -a address [-r PRICE RANGE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>]`
 
-The `-n` flag indicates the name of the buyer.<br>
+The `-n` flag indicates the buyer's name.<br>
 The `-ph` flag indicates the buyer’s phone number.<br>
 The `-e` flag indicates the buyer’s email.<br>
-The `-a` flag indicates the buyer’s house address.<br>
-The `-r` flag indicates the price range of properties that the buyer can accept.<br>
-The `-c` flag indicates the characteristics that the buyer is looking for in a property.<br>
+The `-a` flag indicates the buyer’s home address.<br>
+The `-r` flag indicates the price range of properties that the buyer can accept, denoted using `-`.<br>
+The `-c` flag indicates the characteristics that the buyer is looking for in a property, separated by `;`.<br>
 The `-pr` flag indicates the priority of the buyer.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The range field and the characteristics field are optional.
-That is, it is perfectly okay to try and add a buyer that does not have these fields.
+The price range, characteristics and priority fields are optional.<br>
+Only the price range and characteristics fields can be reset to "Not Specified" by entering an empty flag.
+The priority field will default to "Normal" if the flag is not used.
+e.g. `-c  `.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+You cannot add duplicate buyers that have the same phone number or email.
 </div>
 
 Examples:<br>
-`addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234 -pr HIGH` : Adds a buyer named Tim to the database. Tim has high priority.<br>
-`addbuyer -n Jane -ph 89991237 -e jane@gmail.com -a S123456 -r 2000-5000 -c bright; sunny` : Adds a buyer named Jane to the database.
-Ideally, Jane would like a property that costs between $2000 - $5000, and has characteristics "bright" and "sunny".
+`addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234 -pr HIGH` : Adds a buyer named Tim who has high priority.<br>
+`addbuyer -n Jane -ph 89991237 -e jane@gmail.com -a S123456 -r 200000-500000 -c bright; 5-room` : Adds a buyer named Jane who is looking for a "5-room" property that is "bright" and costs between $200000 - $500000.
 
 #### Adding a property to the database: `addprop`
 
 Adds a property to the database along with relevant information.<br>
-Syntax: `addprop [-n NAME] [-p PRICE] [-a ADDRESS] [-d DESCRIPTION] {-c CHARACTERISTICS} [-o OWNER NAME] [-ph PHONE]`
+Syntax: `addprop -n NAME -p PRICE -a ADDRESS -d DESCRIPTION -o OWNER NAME -ph PHONE [-c CHARACTERISTICS]`
 
-The `-n` flag indicates the name of the property.<br>
+The `-n` flag indicates the property's name.<br>
 The `-p` flag indicates the property’s price.<br>
 The `-a` flag indicates the property’s address.<br>
-The `-d` flag indicates the property’s description (characteristics).<br>
+The `-d` flag indicates the property’s description (notes).<br>
+The `-o` flag indicates the name of the property owner.<br>
+The `-ph` flag indicates the phone number of the property owner.<br>
 The `-c` flag indicates the characteristics associated with the property.<br>
-The `-o` flag indicates the name of the owner of the property.<br>
-The `-ph` flag indicates the phone number of the owner of the property.<br>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The characteristics field is optional and can be reset to "Not Specified" by entering an empty flag.
+e.g. `-c  `.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+You cannot add duplicate properties that have the same address.
+</div>
 
 Examples: <br>
-`addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -owner Bob -ph 91234567`: Adds a property called "Peak Residences" to the database along with its relevant description.
-The property is owned by Bob with a phone number of 91234567.
+`addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -o Bob -ph 91234567 -c Toa Payoh; Bright`: Adds a property called "Peak Residences" owned by Bob with a phone number of 91234567.
+It is in "Toa Payoh" and "Bright".
+
 
 ### Delete Commands
 #### Deleting buyers from the database: `deletebuyer`
@@ -227,12 +242,12 @@ The property is owned by Bob with a phone number of 91234567.
 Syntax: `deletebuyer INDEX`
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-Note that this command has a slightly different syntax from the usual commands, as it takes a number representing the index of the object that you would like to delete
-instead of flags like other commands. This index is the number that you see next to the name of the object in the list.
+Note that this command has a slightly different syntax from the usual commands, as a number representing the index of the item that you would like to delete
+has to be specified immediately after the command word, instead of using flags.
 </div>
 
 The `INDEX` specified in this command refers to the index of the entry that is currently visible on the list.
-Note that if an entry has been filtered out / is not currently on the list, then a `deletebuyer` command cannot be executed on it.
+Note that if an entry is not currently displayed on the list, then a `deletebuyer` command cannot be executed on it.
 
 Examples:<br>
 `deletebuyer 5`: Deletes the fifth buyer currently visible on the buyer list.
