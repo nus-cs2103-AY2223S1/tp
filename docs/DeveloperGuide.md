@@ -1095,6 +1095,62 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases … }_
 
+### Adding a link
+
+1. Adding a link to a module in Plannit
+
+    1. Prerequisites: Use the `list` command to display all existing modules (from the sample data) in Plannit.
+
+    1. Test case: `add-link m/CS2103T la/Google l/google.com`<br>
+       Expected:
+        * A new link with url `google.com` is added to the module with module code `CS2103T`.
+        * The new link is represented with a yellow-outlined box labelled with `Google` within the said module on Plannit.
+
+    1. Test case: `add-link m/CS2100 la/Google l/google.com`<br>
+       Expected:
+        * The link with url `google.com` is not added to the module with module code `CS2100`.
+        * Error details shown in the status message.
+
+    1. Other incorrect add commands to try: `add-link`, `add-link m/CS2103T `, `add-link m/CS2103T la/Google`<br>
+       Expected: Similar to previous.
+
+### Deleting a link
+
+1. Deleting a link from a module in Plannit
+
+    1. Prerequisites:  Use the `list` command to display all existing modules (from the sample data) in Plannit.
+
+    1. Test case: `delete-link m/CS2103T la/Team Repo`<br>
+       Expected:
+        * The link with the alias `Team Repo` is deleted from the module with module code `CS2103T`.
+        * The link which was represented with a yellow-outlined box labelled with `Team Repo` within the said module on Plannit disappears.
+
+    1. Test case: `delete-link m/CS2103T la/hahahaha`<br>
+       Expected:
+        * No links is deleted from the module with module code `CS2103T`.
+        * Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `delete-link`, `delete-link m/CS2103T `, `delete-link m/CS2103T m/CS2106`<br>
+       Expected: Similar to previous.
+
+### Opening a link
+
+1. Opening a link from a module in Plannit
+
+    1. Prerequisites:  Use the `list` command to display all existing modules (from the sample data) in Plannit.
+
+    1. Test case: `open-link m/CS2103T la/Team Repo`<br>
+       Expected:
+        * The link with the alias `Team Repo` is opened from the module with module code `CS2103T` into your default browser.
+
+    1. Test case: `open-link m/CS2103T la/hahahaha`<br>
+       Expected:
+        * No links is opened from the module with module code `CS2103T`.
+        * Error details shown in the status message.
+
+    1. Other incorrect open commands to try: `open-link`, `open-link m/CS2103T`, `open-link m/CS2103T m/CS2106`<br>
+       Expected: Similar to previous.
+
 ### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown
