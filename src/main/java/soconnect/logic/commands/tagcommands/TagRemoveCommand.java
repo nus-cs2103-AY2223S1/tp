@@ -40,7 +40,7 @@ public class TagRemoveCommand extends TagCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Tag removed: %1$s";
-    public static final String MESSAGE_NO_SUCH_TAG = "Tag not found";
+    public static final String MESSAGE_NO_SUCH_TAG = "Contact specified does not contain this tag";
     public static final String MESSAGE_NO_TAG = "Please specify a tag";
 
     private final Index index;
