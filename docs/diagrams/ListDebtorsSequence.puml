@@ -75,3 +75,4 @@ deactivate ListDebtorsCommand
 [<--LogicManager
 deactivate LogicManager
 @enduml
+
