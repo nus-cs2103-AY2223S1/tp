@@ -10,25 +10,18 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-// TODO: Add implementation for tests
-public class ClearCommandTest {
+public class ThemeCommandTest {
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private Model expectedModel = model;
-    private final Command commandToBeTested = new ClearCommand();
+    private final Command commandToBeTested = new ThemeCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested);
 
     @Test
-    public void execute_emptyTruthTable_success() {
+    public void execute_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
-        CommandResult expectedResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS);
+        CommandResult expectedResult = new CommandResult(ThemeCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT, false,
+                false, true);
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
-
-    @Test
-    public void execute_nonEmptyTruthTable_success() {
-        CommandResult expectedResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS);
-        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
-    }
-
 }

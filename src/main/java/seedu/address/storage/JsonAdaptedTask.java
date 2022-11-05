@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ class JsonAdaptedTask {
 
     private final String taskName;
     private final List<JsonAdaptedPerson> assignees = new ArrayList<>();
-    private String isComplete;
+    private final String isComplete;
     private final String deadline;
 
     /**
@@ -49,7 +50,7 @@ class JsonAdaptedTask {
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
         isComplete = String.valueOf(source.isComplete());
-        deadline = source.getDeadlineStorage();
+        deadline = source.getDeadlineInputAsString();
     }
 
     /**
@@ -68,13 +69,12 @@ class JsonAdaptedTask {
         TaskName newTaskName = new TaskName(taskName);
         LocalDateTime deadline = null;
         if (!this.deadline.equals("")) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter
+                    .ofPattern("uuuu-MM-dd HH:mm")
+                    .withResolverStyle(ResolverStyle.STRICT);
             deadline = LocalDateTime.parse(this.deadline, formatter);
         }
-        boolean isComplete = false;
-        if (this.isComplete.equals("true")) {
-            isComplete = true;
-        }
+        boolean isComplete = this.isComplete.equals("true");
         return new Task(newTaskName, assigneeList, isComplete, deadline);
     }
 

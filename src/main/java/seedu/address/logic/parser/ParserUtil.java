@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -171,9 +172,15 @@ public class ParserUtil {
      */
     public static LocalDateTime parseLocalDateTime(String datetime) throws ParseException {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter
+                    .ofPattern("uuuu-MM-dd HH:mm")
+                    .withResolverStyle(ResolverStyle.STRICT);
             return LocalDateTime.parse(datetime, formatter);
         } catch (DateTimeParseException | NumberFormatException e) {
+            String[] message = e.getMessage().split(": ", 2);
+            if (message.length == 2) {
+                throw new ParseException(MESSAGE_INVALID_DATETIME + "\n" + message[1]);
+            }
             throw new ParseException(MESSAGE_INVALID_DATETIME);
         }
     }
