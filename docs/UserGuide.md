@@ -174,7 +174,7 @@ A profile must contain the following information:
 
 * Name, limited to 24 alphanumeric characters including spaces
 * Phone number, limited to numeric characters with at least 3 characters and at most 15 characters
-* A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email formats
+* A valid NUS email, e.g. `john@u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email formats
 
 A profile may also contain:
 
