@@ -20,7 +20,7 @@ import seedu.taassist.model.student.StudentModuleData;
  */
 class JsonAdaptedStudent {
 
-    public static final String MESSAGE_MISSING_FIELD_FORMAT = "Some student's %s field is missing!";
+    public static final String MESSAGE_MISSING_FIELD_FORMAT = "Student's %s field is missing!";
 
     private final String name;
     private final String phone;
