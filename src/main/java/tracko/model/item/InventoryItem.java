@@ -120,6 +120,15 @@ public class InventoryItem implements Item {
     }
 
     /**
+     * Returns true if both items have the same name and cost prices.
+     */
+    public boolean areRecordedItemFieldsEqual(InventoryItem otherItem) {
+        return otherItem.getItemName().equals(getItemName())
+                && otherItem.getCostPrice().equals(getCostPrice())
+                && otherItem.getSellPrice().equals(getSellPrice());
+    }
+
+    /**
      * Returns a {@code RecordedItem} object that represents a copy of this {@code InventoryItem} at the point of
      * invocation.
      * @return A {@code RecordedItem} object that represents a copy of this {@code InventoryItem}.
