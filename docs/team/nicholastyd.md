@@ -22,10 +22,11 @@ Enhancements implemented:
 - Improved `list` command to list both patients and appointments simultaneously.
 - Improved `find` command:
     - Instead of being only able to search using the patient's name, the user is now able to find results using a patient's phones, email, address, tags and/or an appointment's reason, date or tags.
-    - It is possible to find results using several fields simultaneously. (E.g It is possible to find patients with a certain name and a certain tag with a single command input.)
-    - Only returns relevant search results. For example, if finding by patient name and appointment reason simultaneously:
+    - It is possible to find results using several fields simultaneously. (E.g Finding patients with a certain name and a certain tag with a single command input.)
+    - Only returns *relevant* search results. For example, if finding by patient name and appointment reason simultaneously:
         - Only patients that matches the inputted name and has at least 1 appointment that matches the inputted appointment reason will be displayed.
         - Only appointments that matches the inputted reason and belongs to a patient that satisfies the criteria above will be displayed.
+- Added unit tests for `mark`, `unmark`, `find` command related classes (E.g `MarkCommand`, `FindCommandParser`, `CombinedPersonPredicate` etc).
 
 
 Contributions to the UG:

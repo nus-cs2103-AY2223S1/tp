@@ -9,23 +9,28 @@ IdENTify is a **desktop app made for Ear, Nose and Throat (ENT) administrative s
 {:toc}
 
 ## **Glossary**
-- **ENT**: Stands for ear, nose and throat. ENT departments of a hospital therefore handle patients whom require medical attention for issues pertaining to ear, nose or throat.
-- **UI**: Stands for User Interface, it is the space where users interact with an application or website. In this case, the launching idENTify shows the UI to the user directly and the user can interact with the application by entering commands.
-- **GUI**: Stands for Graphical User Interface, it is a type of user interface through which users interact with electronic devices via visual indicator representations.
-- **Command Line Interface**: A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
-- **Parameters**: A parameter is a kind of variable that is used to pass information or data between functions or procedures in a computer. For example, adding a patient into idENTify requires the name of the patient, and the name is a parameter.
-- **Alphanumeric**: Text that consists only of letters and numbers. For example, abc12 is alphanumeric, but (O_O) is not.
-- **Recurring**: Something that occurs repeatedly or periodically. For example, an appointment that repeats every 7 days is considered recurring.
-- **Sort**: A process that involves arranging the data into some meaningful order to make it easier to understand, analyze or visualize. For example, sorting patients by name would arrange all patients alphabetically by name.
-- **Case-sensitive**: Difference between capital and lower-case letters matters. Therefore, not case-sensitive or case-insensitive means capital and lower-case letters are treated as the same.
+There are a few technical terms that will appear in this user guide. 
+This table might be useful for you to understand more about what those terms mean.
 
+| Term                       | Meaning                                                                                                                                                                                                                                                |
+|----------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **ENT**                    | Stands for **E**ar, **N**ose and **T**hroat. ENT departments of a hospital therefore handle patients whom require medical attention for issues pertaining to ear, nose or throat.                                                                      |
+| **UI**                     | Stands for **U**ser **I**nterface, it is the space where users interact with an application or website. In this case, the window that appears when idENTify is launched is the UI and the user can interact with the application by entering commands. |
+| **GUI**                    | Stands for **G**raphical **U**ser **I**nterface. It is a type of user interface through which users interact with electronic devices via visual indicator representations.                                                                             |
+| **Command Line Interface** | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                         |
+| **Parameters**             | A parameter is a kind of variable that is used to pass information or data between functions or procedures in a computer. For example, adding a patient into idENTify requires the name of the patient, and the name is a parameter.                   |
+| **Alphanumeric**           | Text that consists only of letters and numbers. For example, abc12 is alphanumeric, but (O_O) is not.                                                                                                                                                  |
+| **Recurring**              | Something that occurs repeatedly or periodically. For example, an appointment that repeats every 7 days is considered recurring.                                                                                                                       |
+| **Sort**                   | A process that involves arranging the data into some meaningful order to make it easier to understand, analyze or visualize. For example, sorting patients by name would arrange all patients alphabetically by name.                                  |
+| **Case-sensitive**         | Difference between upper-case and lower-case letters matters. Therefore, not case-sensitive or case-insensitive means capital and lower-case letters are treated as the same.                                                                          |
+| **Command**                | An instruction typed into a computer for it to carry out. (e.g, `add n/John p/12345678`)                                                                                                                                                               |
 
 ## **Quick Start**
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest [idENTify.jar](https://github.com/AY2223S1-CS2103T-T17-4/tp/releases/tag/v1.3) from here.
 3. Copy the file to your preferred folder.
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
-![start_up](images/IdENTifyStartUp.png)
+![start_up](images/StartingUI.png)
 
 ## **UI Components**
 ![SampleUiImage](images/SampleUI.png)
