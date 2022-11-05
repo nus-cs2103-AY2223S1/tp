@@ -36,7 +36,8 @@ public class EditListingDescriptorTest {
         assertFalse(DESC_LISTING_AMY.equals(DESC_LISTING_BOB));
 
         // different name -> returns false
-        EditListingDescriptor editedAmy = new EditListingDescriptorBuilder(DESC_LISTING_AMY).withName(VALID_NAME_BOB).build();
+        EditListingDescriptor editedAmy = new EditListingDescriptorBuilder(DESC_LISTING_AMY)
+                .withName(VALID_NAME_BOB).build();
         assertFalse(DESC_LISTING_AMY.equals(editedAmy));
 
         // different id -> returns false
