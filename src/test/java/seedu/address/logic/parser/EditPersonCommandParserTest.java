@@ -177,7 +177,8 @@ public class EditPersonCommandParserTest {
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + DOB_DESC_BOB + EMAIL_DESC_BOB + GENDER_DESC_BOB;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withGender(VALID_GENDER_BOB).withDob(VALID_DOB_BOB).build();
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withGender(VALID_GENDER_BOB)
+                .withDob(VALID_DOB_BOB).build();
         EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

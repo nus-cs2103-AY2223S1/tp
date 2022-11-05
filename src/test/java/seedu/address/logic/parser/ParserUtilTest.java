@@ -8,9 +8,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.date.Date;
 import seedu.address.model.event.EventSortField;
 import seedu.address.model.person.Address;
-import seedu.address.model.date.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
