@@ -31,6 +31,8 @@ note down questions more effectively than traditional GUI apps.
           * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
           * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
           * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
+          * Unmarking a tutorial: [`unmarktut`](#unmarking-a-tutorial-unmarktut)
+      * **Clear all lists** [`clear`](#clear-all-lists--clear)
       * **Exiting the program**: [`exit`](#exiting-the-program--exit)
     * **[FAQ](#faq)**
     * **[Command Summary](#command-summary)**
@@ -321,6 +323,13 @@ Example:
 * `unmarktut 1` marks the first tutorial from the tutorial list as undone.
 
 
+### Clear all lists : `clear`
+
+Clears all lists
+
+Format: `clear`
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -369,4 +378,5 @@ the data of your previous SETA home folder.
 | **List**       | `liststu`                                  |  
 | **Mark**       | `markq`, `unmarkq`, `marktut`, `unmarktut` |
 | **Tag**        | `helpstu`                                  |
+| **Clear**      | `clear`                                    |
 | **Exit**       | `exit`                                     |

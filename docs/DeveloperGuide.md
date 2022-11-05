@@ -3,12 +3,12 @@ layout: page title: Developer Guide
 ---
 
 * Table of Contents 
-  * Acknowledgements
-  * Setting up, getting started
-  * Design 
-  * Implementation
-  * Appendix: Requirements
-  * Appendix: Instructions for manual testing
+  * **[Acknowledgements](#acknowledgements)**
+  * **[Setting up, getting started](#setting-up-getting-started)**
+  * **[Design](#design)** 
+  * **[Implementation](#implementation)**
+  * **[Appendix: Requirements](#appendix-requirements)**
+  * **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)**
 
 --------------------------------------------------------------------------------------------------------------------
 
