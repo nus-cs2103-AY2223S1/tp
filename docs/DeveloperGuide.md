@@ -177,10 +177,10 @@ The following sequence diagram summarizes how pin works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 #### Pin activity diagram:
-<img src="images/PinActivityDiagram.png" width="250" />
+<img src="images/PinActivityDiagram.png" width="300" />
 
 #### View Pin Activity diagram:
-<img src="images/ViewPinActivityDiagram.png" width="250" />
+<img src="images/ViewPinActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
@@ -204,7 +204,14 @@ The main calculation done in class FinancialAdvisorIncome is a function called c
 
 * `viewIncome <Year>` — Invokes the calculation of user's three year income with `<Year>` as the first year via the function .
 
-Given below is an example usage scenario and how the pin mechanism behaves at each step. (To be continued)
+The following sequence diagram summarizes how viewIncome works:
+
+
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+#### View Income Activity diagram:
+<img src="images/ViewIncomeActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
@@ -544,7 +551,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name              | locate a person easily                                                 |
 | `**`     | new user                                   | see sample data                   | Have a better understanding of the app's default layout                |
-| `**`     | user                                       | filter my clients by keywords     | Locate my clients easily, based on a particular critera                |
+| `**`     | user                                       | filter my clients by keywords     | Locate my clients easily, based on a particular criteria               |
 | `**`     | user                                       | update my client list             | Edit their contact details                                             |
 | `*`      | user                                       | have a reliable method            | store contact information without losing data                          |
 | `*`      | user                                       | view individual client's profiles | keep track of multiple, unique clients                                 |
