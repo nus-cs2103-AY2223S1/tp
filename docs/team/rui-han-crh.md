@@ -113,7 +113,8 @@ Given below are my contributions to the project.
 2. Added the User Interface section of the UG with pointers to which part corresponds to what function and usage. [Link to UI section](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#user-interface)
 
 Text Extract:
-<blockquote>
+
+------
 
 ## User Interface
 
@@ -144,7 +145,6 @@ You may activate the command box by simply pressing the spacebar on your keyboar
 Similarly, you may press the `ESC` key on your keyboard to exit out of the command box and hide the results display.
 </div>
 
-[Back to Table of Contents](#table-of-contents)
 
 ### People Panel
 
@@ -159,13 +159,11 @@ Each card represents a person and displays their name, phone number and total pr
 
 The index of the person only applies to the currently displayed list, it is **not** tied to the person itself.
 
-Check [Person Features](#person-features) to learn more about the commands you can execute related to people.
-
-[Back to Table of Contents](#table-of-contents)
+Check Person Features to learn more about the commands you can execute related to people.
 
 ### Inspect Panel
 
-The Inspect Panel is related to the People Panel and shows the basic information of the currently inspected person. A person can be inspected by either clicking on his or her card, or by using the `inspect` command. More details on the `inspect` command can be found [here](#inspecting-a-person--inspect).
+The Inspect Panel is related to the People Panel and shows the basic information of the currently inspected person. A person can be inspected by either clicking on his or her card, or by using the `inspect` command.
 
 The left side of the Inspect Panel shows the basic information, while the right side shows the history of loan transactions.
 
@@ -173,7 +171,6 @@ Note that the transaction record next to the icon of the hand holding coins is t
 
 The total amount of the loans is also stated in the right of this panel, describing in fuller detail if the sum is owed by or to be paid to the person.
 
-[Back to Table of Contents](#table-of-contents)
 
 ### Notes Panel
 
@@ -192,7 +189,7 @@ Both the People Panel and Notes Panel share a pool of tags to more easily relate
 
 Check Notes Features to learn more about the commands you can execute related to notes.
 
-</blockquote>
+--------------
 
 <br>
 
@@ -200,7 +197,9 @@ Check Notes Features to learn more about the commands you can execute related to
 
 This section is too long to be reproduced in entirety. Here is an example of the person property `email` extracted. The entire section can be found [here](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#properties)
 
-<blockquote>
+Text extract:
+
+-------
 
 ### Email
 
@@ -220,14 +219,14 @@ Local part |                                                                    
 Domain name |The domain name is made up of domain labels separated by periods. The domain name must:<p> - end with a domain label at least 2 characters long <br>- have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 The local part and domain part **must** be connected by a `@` symbol.
-</blockquote>
 
 <br>
 
 4. Added description of command [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#inspecting-a-person--inspect), [`hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#hiding-notes-panel--hidenotes) and [`showNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#showing-notes-panel--shownotes) (links to document section included).
 
 `inspect` text extracted (images removed):
-<blockquote>
+
+-------
 
 #### Inspecting a person : `inspect`
 
@@ -249,7 +248,7 @@ Examples:
 * `inspect 2` inspects the second person in the list of people
 * `inspect Lynette` will attempt to find the first person called `Lynette` in the currently **filtered** persons' list and update the Inspect Panel with her information.
 
-</blockquote>
+------
 
 The text for `showNotes` and `hideNotes` are not remarkable enough to be extracted here.
 
@@ -259,7 +258,7 @@ The text for `showNotes` and `hideNotes` are not remarkable enough to be extract
 
 Glossary text extracted:
 
-<blockquote>
+------
 
 Word | Definition
 --------|------------------
@@ -292,7 +291,7 @@ Word | Definition
 
 3. Wrote the section involving UI design
 
-<blockquote>
+----------------------
 
 ### General UI Design and Mechanism
 
@@ -344,7 +343,7 @@ A padding of around 200px was used to help `WindowAnchorPane` displace it's top 
 
 A visual defect exists when the screen size exceeds 1080p, as the Inspection Panel is no longer able to stay attached to the anchor point at the bottom of the screen. This defect worsens as the window gets taller.
 
-</blockquote>
+---------------------
 
 <br>
 
@@ -361,7 +360,7 @@ A visual defect exists when the screen size exceeds 1080p, as the Inspection Pan
 
 7. Wrote the section involving `inspect`, `showNotes` and `hideNotes`
 
-<blockquote>
+-------------------------
 
 ### Inspect Feature
 
@@ -437,6 +436,7 @@ Because hiding the notes panel will also pull the inspection panel longer, and t
 This concept was only implemented after the implementation of hideNotes, where visual inconsistencoes will start appearing due to disobeying the original ratio.
 
 The padding of the `InspectionPanel` also causes an issue if the right anchor of the pane is not manipulated with the left anchor, as the padding will snap the left anchor to the right of the right anchor. This causes the `InspectionPanel` to be pulled through the entire width of the `NotesListPanel` cause the entire `WindowAnchorPane` to overflow its allocated width. The consideration to slide the right anchor at a constant difference with respect to the left anchor was introduced to combat this issue.
-</blockquote>
+
+---------------------
 
   <br>
