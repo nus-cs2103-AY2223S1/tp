@@ -22,11 +22,11 @@ If you are a cashier working at a bubble tea shop, bobaBot can help you easily f
       2.3. <a href="#23-increasing-a-customers-reward-points-incr">Increase</a><br>
       2.4. <a href="#24-decreasing-a-customers-reward-points-decr">Decrease</a><br>
       2.4. <a href="#25-listing-all-customers--list">List</a><br>
-      2.6. <a href="#26-locating-customers-by-name-find">Find</a><br>
+      2.6. <a href="#26-locating-customers-by-name--email--phone-number-find">Find</a><br>
       2.7. <a href="#27-deleting-a-customer--delete">Delete</a><br>
       2.8. <a href="#28-undo-a-command--undo">Undo</a><br>
       2.9. <a href="#29-redo-an-undocommand--redo">Redo</a><br>
-      2.10. <a href="#210--clearing-all-entries--clear">Clear</a><br>
+      2.10. <a href="#210-clearing-all-entries--clear">Clear</a><br>
       2.11. <a href="#211-calculate-calc">Calculate</a><br>
       2.12. <a href="#212-gui-calculator-calc-gui">Calculator</a><br>
       2.13. <a href="#213-viewing-help--help">Help</a><br>
