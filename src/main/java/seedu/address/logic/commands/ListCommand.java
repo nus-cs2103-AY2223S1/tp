@@ -12,12 +12,16 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code list}.
  */
-@CommandLine.Command(name = "list", aliases = {"l"}, mixinStandardHelpOptions = true, subcommands = {
-    ListPersonsCommand.class,
-    ListMembersCommand.class,
-    ListTasksCommand.class
-})
+@CommandLine.Command(name = ListCommand.COMMAND_WORD, aliases = {ListCommand.ALIAS},
+        mixinStandardHelpOptions = true, subcommands = {
+            ListPersonsCommand.class,
+            ListMembersCommand.class,
+            ListTasksCommand.class
+        })
 public class ListCommand extends Command {
+    public static final String COMMAND_WORD = "list";
+    public static final String ALIAS = "l";
+    public static final String FULL_COMMAND = COMMAND_WORD;
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 
@@ -32,5 +36,11 @@ public class ListCommand extends Command {
         }
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT,
                 commandSpec.qualifiedName().trim()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand); // instanceof handles nulls
     }
 }

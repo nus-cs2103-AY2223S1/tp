@@ -1,7 +1,6 @@
 package seedu.address.model.team;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,24 +15,15 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class Task {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Task names should not be blank and cannot begin with a whitespace";
-
-    /*
-     * The first character of the task name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
     /**
      * Name of the task.
      */
-    private final String name;
+    private final TaskName name;
 
     /**
      * Team member(s) assigned to be in charge of this task.
      */
-    private final UniquePersonList assignees = new UniquePersonList();
+    private final UniquePersonList assignees;
 
     /**
      * Deadline of the task.
@@ -48,22 +38,35 @@ public class Task {
     /**
      * Constructs a {@code Task}.
      *
-     * @param name A valid task name.
+     * @param name             A valid task name.
+     * @param assignees        A list of persons this task is assigned to
+     * @param completionStatus Boolean representing whether the task is completed
+     * @param deadline         Datetime representing deadline of the task
      */
-    public Task(String name, List<Person> assignees, boolean completionStatus, LocalDateTime deadline) {
+    public Task(TaskName name, List<Person> assignees, boolean completionStatus, LocalDateTime deadline) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
+        this.assignees = new UniquePersonList();
         this.assignees.setPersons(assignees);
         this.completionStatus = completionStatus;
         this.deadline = deadline;
     }
 
     /**
-     * Returns true if a given string is a valid name for a task.
+     * Constructs a {@code Task} without creating a copy of the UniquePersonList.
+     * Used in this file to create copies of an existing Task object with some fields changed .
+     *
+     * @param name             A valid task name.
+     * @param assignees        A UniquePersonList of persons this task is assigned to
+     * @param completionStatus Boolean representing whether the task is completed
+     * @param deadline         Datetime representing deadline of the task
      */
-    public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+    private Task(TaskName name, UniquePersonList assignees, boolean completionStatus, LocalDateTime deadline) {
+        requireNonNull(name);
+        this.name = name;
+        this.assignees = assignees;
+        this.completionStatus = completionStatus;
+        this.deadline = deadline;
     }
 
     public boolean isValidIndex(int test) {
@@ -75,7 +78,7 @@ public class Task {
         return getCompletionStatus() + name + " " + getAssigneesAsString() + " " + getDeadlineAsString();
     }
 
-    public String getName() {
+    public TaskName getName() {
         return name;
     }
 
@@ -145,12 +148,9 @@ public class Task {
      * Assigns a Task to a person and returns a new Task
      */
     public Task assignTo(Person assignee) {
-        String name = getName();
+        TaskName name = getName();
         assignees.add(assignee);
-        List<Person> newAssignees = getAssigneesList();
-        boolean completionStatus = isComplete();
-        LocalDateTime date = this.deadline;
-        return new Task(name, newAssignees, completionStatus, date);
+        return new Task(name, assignees, completionStatus, this.deadline);
     }
 
     /**
@@ -166,23 +166,15 @@ public class Task {
     /**
      * Set a new deadline and returns a new Task with that deadline
      */
-    public Task setDeadline(LocalDateTime date) {
-        String name = getName();
-        List<Person> assignees = getAssigneesList();
-        boolean completionStatus = isComplete();
-        LocalDateTime newDate = date;
-        return new Task(name, assignees, completionStatus, newDate);
+    public Task setDeadline(LocalDateTime newDeadline) {
+        return new Task(name, assignees, completionStatus, newDeadline);
     }
 
     /**
      * Marks a Task and returns a new Task
      */
-    public Task mark(boolean completionStatus) {
-        String name = getName();
-        List<Person> assignees = getAssigneesList();
-        boolean newCompletionStatus = completionStatus;
-        LocalDateTime date = this.deadline;
-        return new Task(name, assignees, newCompletionStatus, date);
+    public Task mark(boolean newCompletionStatus) {
+        return new Task(name, assignees, newCompletionStatus, deadline);
     }
 
     public boolean isComplete() {
@@ -202,9 +194,17 @@ public class Task {
      *
      * @param person assignee to be removed.
      */
-    public void removeAssigneeIfExists(Person person) {
-        if (this.assignees.contains(person)) {
-            this.assignees.remove(person);
-        }
+    public Task removeAssignee(Person person) {
+        assignees.remove(person);
+        return new Task(name, assignees, completionStatus, deadline);
+    }
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson} in the assignees list for all tasks.
+     * {@code target} must exist in assignee list.
+     */
+    public Task setAssignee(Person target, Person editedPerson) {
+        assignees.setPerson(target, editedPerson);
+        return new Task(name, assignees, completionStatus, deadline);
     }
 }

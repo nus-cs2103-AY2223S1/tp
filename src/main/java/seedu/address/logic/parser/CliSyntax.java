@@ -6,8 +6,6 @@ package seedu.address.logic.parser;
 public class CliSyntax {
 
     /* Flag definitions for commands */
-    public static final String FLAG_ADDRESS_STR = "-a";
-    public static final String FLAG_ADDRESS_STR_LONG = "--address";
     public static final String FLAG_ASSIGNEE_STR = "-a";
     public static final String FLAG_ASSIGNEE_STR_LONG = "--assignee";
     public static final String FLAG_COMPLETE_TASKS_STR = "-c";
@@ -18,12 +16,8 @@ public class CliSyntax {
     public static final String FLAG_DEADLINE_STR_LONG = "--deadline";
     public static final String FLAG_EMAIL_STR = "-e";
     public static final String FLAG_EMAIL_STR_LONG = "--email";
-    public static final String FLAG_FILTER_STR = "-f";
-    public static final String FLAG_FILTER_STR_LONG = "--filter";
     public static final String FLAG_HELP_STR = "-h";
     public static final String FLAG_HELP_STR_LONG = "--help";
-    public static final String FLAG_INDEX_STR = "-i";
-    public static final String FLAG_INDEX_STR_LONG = "--index";
     public static final String FLAG_INCOMPLETE_TASKS_STR = "-i";
     public static final String FLAG_INCOMPLETE_TASKS_STR_LONG = "--incomplete";
     public static final String FLAG_URL_STR = "-l";
@@ -40,8 +34,6 @@ public class CliSyntax {
     public static final String FLAG_PERSON_NAME_DESCRIPTION = "Name of person (e.g. \"John Doe\")";
     public static final String FLAG_PERSON_PHONE_DESCRIPTION = "Phone of person (e.g. 98765432)";
     public static final String FLAG_PERSON_EMAIL_DESCRIPTION = "Email of person (e.g. johnd@example.com)";
-    public static final String FLAG_PERSON_ADDRESS_DESCRIPTION = "Address of person (e.g. \"311, Clementi Ave 2, "
-            + "#02-25\")";
     public static final String FLAG_PERSON_INDEX_DESCRIPTION = "Index of person (must be a positive integer)";
     public static final String FLAG_PERSON_TAGS_DESCRIPTION = "Tags of person (e.g. \"Frontend\" \"Backend\")";
     public static final String FLAG_LINK_NAME_DESCRIPTION = "Name of link (e.g. \"Meeting #1\")";

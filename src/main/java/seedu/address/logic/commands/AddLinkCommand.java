@@ -14,23 +14,26 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR_LONG;
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.LinkName;
 import seedu.address.model.team.Url;
 
 /**
  * Adds a new link to TruthTable.
  */
-@CommandLine.Command(name = "link", aliases = {"l"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = AddLinkCommand.COMMAND_WORD,
+        aliases = {AddLinkCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class AddLinkCommand extends Command {
-    public static final String COMMAND_WORD = "add link";
+    public static final String COMMAND_WORD = "link";
+    public static final String ALIAS = "l";
+    public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Adds a new link \n"
             + "Parameters: "
             + FLAG_NAME_STR + " NAME "
             + FLAG_URL_STR + " PHONE \n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + FULL_COMMAND + " "
             + FLAG_NAME_STR + " Google "
             + FLAG_URL_STR + " https://google.com";
 
@@ -40,7 +43,7 @@ public class AddLinkCommand extends Command {
 
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,
             description = FLAG_LINK_NAME_DESCRIPTION)
-    private Name name;
+    private LinkName name;
 
     @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG}, required = true,
             description = FLAG_LINK_URL_DESCRIPTION)

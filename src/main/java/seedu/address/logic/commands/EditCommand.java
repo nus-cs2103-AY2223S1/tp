@@ -12,13 +12,17 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code edit}.
  */
-@CommandLine.Command(name = "edit", mixinStandardHelpOptions = true, aliases = {"e"}, subcommands = {
-    EditTeamCommand.class,
-    EditLinkCommand.class,
-    EditPersonCommand.class,
-    EditTaskCommand.class,
-})
+@CommandLine.Command(name = EditCommand.COMMAND_WORD, mixinStandardHelpOptions = true,
+        aliases = {EditCommand.ALIAS}, subcommands = {
+            EditTeamCommand.class,
+            EditLinkCommand.class,
+            EditPersonCommand.class,
+            EditTaskCommand.class,
+        })
 public class EditCommand extends Command {
+    public static final String COMMAND_WORD = "edit";
+    public static final String ALIAS = "e";
+    public static final String FULL_COMMAND = COMMAND_WORD;
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 
@@ -33,5 +37,11 @@ public class EditCommand extends Command {
         }
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT,
                 commandSpec.qualifiedName().trim()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditCommand); // instanceof handles nulls
     }
 }

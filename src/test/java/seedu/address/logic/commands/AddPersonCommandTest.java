@@ -12,10 +12,10 @@ import org.junit.jupiter.api.Test;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTruthTable;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TruthTable;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Task;
@@ -65,12 +65,12 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTruthTableFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTruthTableFilePath(Path truthTableFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -80,12 +80,12 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setTruthTable(ReadOnlyTruthTable newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTruthTable getTruthTable() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -195,12 +195,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public ObservableList<Link> getFilteredLinkList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredLinkList(Predicate<Link> predicate) {
+        public ObservableList<Link> getLinkList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -247,8 +242,8 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return AddressBook.createNewAddressBook();
+        public ReadOnlyTruthTable getTruthTable() {
+            return TruthTable.createNewTruthTable();
         }
     }
 

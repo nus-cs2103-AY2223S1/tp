@@ -18,14 +18,17 @@ import seedu.address.model.team.Link;
 /**
  * Deletes an existing link from TruthTable.
  */
-@CommandLine.Command(name = "link", aliases = {"l"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = DeleteLinkCommand.COMMAND_WORD,
+        aliases = {DeleteLinkCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class DeleteLinkCommand extends Command {
-    public static final String COMMAND_WORD = "delete link";
+    public static final String COMMAND_WORD = "link";
+    public static final String ALIAS = "l";
+    public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Deletes an existing link identified by the index number used in the displayed link list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + FULL_COMMAND + " 1";
     public static final String MESSAGE_DELETE_LINK_SUCCESS = "Deleted Link: %1$s";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_LINK_INDEX_DESCRIPTION)
@@ -47,9 +50,9 @@ public class DeleteLinkCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Link> lastShownList = model.getFilteredLinkList();
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        List<Link> lastShownList = model.getLinkList();
+        if (targetIndex.getOneBased() > lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LINK_DISPLAYED_INDEX);
         }
         Link linkToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteLink(linkToDelete);

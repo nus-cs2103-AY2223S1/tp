@@ -14,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_ASSIGNEES_DESCRIPTI
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_DEADLINE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -30,22 +29,26 @@ import seedu.address.logic.parser.LocalDateTimeConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.TaskName;
 
 /**
  * Edits the details of an existing task in TruthTable.
  */
-@CommandLine.Command(name = "task", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditTaskCommand.COMMAND_WORD,
+        aliases = {EditTaskCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class EditTaskCommand extends Command {
-    public static final String COMMAND_WORD = "edit task";
+    public static final String COMMAND_WORD = "task";
+    public static final String ALIAS = "ta";
+    public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Edits a current task identified by the index number used in the displayed task list. \n"
+            FULL_COMMAND + ": Edits a current task identified by the index number used in the displayed task list. \n"
                     + "Existing values will be overwritten by the input values. \n"
                     + "Parameters: INDEX (must be a positive integer) "
                     + FLAG_NAME_STR + " NAME "
                     + FLAG_DEADLINE_STR + " DEADLINE \n"
                     + FLAG_ASSIGNEE_STR + "MEMBER_INDEX \n"
-                    + "Example: " + COMMAND_WORD + " 1 "
+                    + "Example: " + FULL_COMMAND + " 1 "
                     + FLAG_NAME_STR + " \"Review PR\" "
                     + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
                     + FLAG_ASSIGNEE_STR + "1";
@@ -84,7 +87,7 @@ public class EditTaskCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
         assert editTaskDescriptor != null;
 
-        String updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        TaskName updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         LocalDateTime updatedDeadline;
         if (editTaskDescriptor.getDeadline().isEmpty()) {
             updatedDeadline = taskToEdit.getDeadline().orElse(null);
@@ -146,7 +149,6 @@ public class EditTaskCommand extends Command {
         }
 
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredLinkList(PREDICATE_SHOW_ALL_LINKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
 
     }
@@ -165,12 +167,12 @@ public class EditTaskCommand extends Command {
 
         // state check
         EditTaskCommand e = (EditTaskCommand) other;
-        return index.equals(e.index) && editTaskDescriptor.equals(e.editTaskDescriptor);
+        return index.equals(e.index) && arguments.equals(e.arguments);
     }
 
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TASK_NAME_DESCRIPTION)
-        private String name;
+        private TaskName name;
 
         @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
                 parameterConsumer = LocalDateTimeConverter.class, description = FLAG_TASK_DEADLINE_DESCRIPTION)
@@ -179,6 +181,20 @@ public class EditTaskCommand extends Command {
         @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "", description =
                 FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
         private String[] assignees;
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            } else if (other instanceof Arguments) {
+                Arguments target = (Arguments) other;
+                return this.name == null ? false : this.name.equals(target.name)
+                        && this.deadline == null ? false : this.deadline.equals(target.deadline)
+                        && Arrays.equals(assignees, target.assignees);
+            } else {
+                return false;
+            }
+        }
     }
 
     /**
@@ -186,7 +202,7 @@ public class EditTaskCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
-        private String name;
+        private TaskName name;
 
         private LocalDateTime deadline;
 
@@ -211,11 +227,11 @@ public class EditTaskCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, deadline);
         }
 
-        public Optional<String> getName() {
+        public Optional<TaskName> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setName(String name) {
+        public void setName(TaskName name) {
             this.name = name;
         }
 

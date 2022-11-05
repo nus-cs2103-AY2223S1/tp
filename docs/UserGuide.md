@@ -384,12 +384,11 @@ Summary of commands can be found [here](#summary-of-person-commands)
 
 Adds a person to TruthTable.
 
-**Format:** `add person [-h] -a <ADDRESS> -e <EMAIL> -n <NAME> -p <PHONE> [-t [<TAGS>...]]...`
+**Format:** `add person [-h] -e <EMAIL> -n <NAME> -p <PHONE> [-t [<TAGS>...]]...`
 
 | Flags             | Required | Remarks                                                |
 |-------------------|:---------|--------------------------------------------------------|
 | `-h`, `--help`    |          | Shows help message                                     |
-| `-a`, `--address` | ✔        | Address of person (e.g. "311, Clementi Ave 2, #02-25") |
 | `-e`, `--email`   | ✔        | Email of person (e.g. truth@table.com)                 |
 | `-n`, `--name`    | ✔        | Name of person (e.g. "Truth Table")                    |
 | `-p`,`--phone`    | ✔        | Phone of person (e.g. 98765432)                        |
@@ -405,8 +404,8 @@ A person can have any number of tags (including 0)
 - `a p`
 
 **Examples:**
-* `add person -n "John Doe" -p 98765432 -e johnd@example.com -a "John street, block 123, #01-01"`
-* `a p -n "Betsy Crowe" -e betsycrowe@example.com -a "Newgate Prison" -p 1234567 -t criminal friend`
+* `add person -n "John Doe" -p 98765432 -e johnd@example.com`
+* `a p -n "Betsy Crowe" -e betsycrowe@example.com -p 1234567 -t criminal friend`
 
 #### Listing all persons : `list persons`
 
@@ -427,8 +426,7 @@ Shows a list of all persons in TruthTable.
 
 Edits an existing person in TruthTable.
 
-**Format:** `edit person [-h] ([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-a <ADDRESS>]
-[-t [<TAGS>]]...) <PERSON_INDEX>`
+**Format:** `edit person [-h] ([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-t [<TAGS>]]...) <PERSON_INDEX>`
 
 * Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person
   list. 
@@ -473,7 +471,7 @@ Deletes the specified person from TruthTable.
 * The index **must be a positive integer** 1, 2, 3,...
 
 **Examples::** 
-* `list persons` followed by `delete person 2` deletes the 2nd person in the address book.
+* `list persons` followed by `delete person 2` deletes the 2nd person in the TruthTable.
 * `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find person` command.
 
 
@@ -833,7 +831,7 @@ save manually.
 
 #### Editing the data file
 
-TruthTable data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
+TruthTable data is saved as a JSON file `[JAR file location]/data/truthtable.json`. Advanced users are welcome to
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**

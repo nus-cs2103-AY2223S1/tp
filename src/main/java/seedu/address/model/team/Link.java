@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.person.Name;
-
 /**
  * Represents a link that is tracked in each team.
  */
@@ -20,23 +18,24 @@ public class Link {
     /**
      * Name of the link
      */
-    private Name displayedName;
+    private LinkName displayedName;
 
     private Url url;
 
     /**
      * Constructs a {@code Link}
+     *
      * @param displayedName A valid name to display.
-     * @param url A valid URL object.
+     * @param url           A valid URL object.
      */
-    public Link(Name displayedName, Url url) {
+    public Link(LinkName displayedName, Url url) {
         requireNonNull(displayedName);
         requireNonNull(url);
         this.displayedName = displayedName;
         this.url = url;
     }
 
-    public Name getDisplayedName() {
+    public LinkName getDisplayedName() {
         return this.displayedName;
     }
 
@@ -59,6 +58,7 @@ public class Link {
 
     /**
      * Returns true if the two links have the same name, and the same URL.
+     *
      * @param other the other link to be compared with.
      * @return true if the links are considered equal, and false otherwise.
      */

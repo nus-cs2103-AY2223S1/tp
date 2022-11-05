@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.FLAG_ADDRESS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
@@ -33,9 +32,8 @@ public class PersonUtil {
         sb.append("-" + FLAG_NAME_STR + "\"").append(person.getName().fullName).append("\" ");
         sb.append("-" + FLAG_PHONE_STR + "\"").append(person.getPhone().value).append("\" ");
         sb.append("-" + FLAG_EMAIL_STR + "\"").append(person.getEmail().value).append("\" ");
-        sb.append("-" + FLAG_ADDRESS_STR + "\"").append(person.getAddress().value).append("\" ");
         person.getTags().stream().forEach(
-            s -> sb.append("-" + FLAG_TAG_STR + "\"").append(s.tagName).append("\" ")
+                s -> sb.append("-" + FLAG_TAG_STR + "\"").append(s.tagName).append("\" ")
         );
         return sb.toString();
     }
@@ -46,13 +44,11 @@ public class PersonUtil {
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(
-            "-" + FLAG_NAME_STR).append(" \"").append(name.fullName).append("\"").append(" "));
+                "-" + FLAG_NAME_STR).append(" \"").append(name.fullName).append("\"").append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(
-            "-" + FLAG_PHONE_STR).append(" \"").append(phone.value).append("\"").append(" "));
+                "-" + FLAG_PHONE_STR).append(" \"").append(phone.value).append("\"").append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(
-            "-" + FLAG_EMAIL_STR).append(" \"").append(email.value).append("\"").append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(
-            "-" + FLAG_ADDRESS_STR).append(" \"").append(address.value).append("\"").append(" "));
+                "-" + FLAG_EMAIL_STR).append(" \"").append(email.value).append("\"").append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
