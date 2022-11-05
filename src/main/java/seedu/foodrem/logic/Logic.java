@@ -24,7 +24,7 @@ public interface Logic {
     CommandResult<?> execute(String commandText) throws CommandException, IllegalArgumentException;
 
     /**
-     * Returns the FoodRem.
+     * Returns FoodRem.
      *
      * @see seedu.foodrem.model.Model#getFoodRem()
      */
