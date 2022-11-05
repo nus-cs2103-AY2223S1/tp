@@ -35,6 +35,9 @@ public class DeleteMeetingCommandParserTest {
 
         //Empty index
         assertParseFailure(parser, " i/", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        //Floating Point Number
+        assertParseFailure(parser, " i/1.5", ParserUtil.MESSAGE_INVALID_INDEX);
     }
 
 }
