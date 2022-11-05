@@ -2,6 +2,8 @@ package seedu.realtime.testutil;
 
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_LISTING_ID_1;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_LISTING_ID_2;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_PRICE_1;
@@ -42,9 +44,9 @@ public class TypicalOffers {
 
     // Manually added - Offer's details found in {@code CommandTestUtil}
     public static final Offer AMY = new OfferBuilder().withBuyer(VALID_NAME_AMY)
-            .withListing(VALID_ID_AMY).withOfferPrice(VALID_PRICE_1).build();
+            .withListing(VALID_LISTING_ID_1).withOfferPrice(VALID_PRICE_1).build();
     public static final Offer BOB = new OfferBuilder().withBuyer(VALID_NAME_BOB)
-            .withListing(VALID_ID_BOB).withOfferPrice(VALID_PRICE_2).build();
+            .withListing(VALID_LISTING_ID_2).withOfferPrice(VALID_PRICE_2).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
