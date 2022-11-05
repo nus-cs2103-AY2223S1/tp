@@ -27,6 +27,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_2;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ELEMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ELEMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ELEMENT;
@@ -43,40 +44,35 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.product.Product;
 import seedu.address.testutil.EditClientDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class EditClientCommandParserTest {
 
     private static final String PRODUCT_EMPTY = " " + PREFIX_PRODUCT;
-
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditClientCommand.MESSAGE_USAGE);
 
     private EditClientCommandParser parser = new EditClientCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
-
-        // no field specified
-        assertParseFailure(parser, " i/1", EditClientCommand.MESSAGE_NOT_EDITED);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditClientCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, VALID_NAME_AMY, expectedMessage);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", expectedMessage);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, " i/-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " i/-5" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, " i/0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " i/0" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, " i/1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " i/1 some random string", MESSAGE_INVALID_INDEX);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, " i/1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " i/1 i/ string", MESSAGE_INVALID_INDEX);
     }
 
     @Test

@@ -92,11 +92,9 @@ public class EditClientCommandTest {
         EditClientCommand editCommand = new EditClientCommand(INDEX_FIRST_ELEMENT, new EditClientDescriptor());
         Client editedClient = model.getFilteredClientList().get(INDEX_FIRST_ELEMENT.getZeroBased());
 
-        String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
+        String expectedMessage = String.format(EditClientCommand.MESSAGE_NOT_EDITED, editedClient);
 
-        Model expectedModel = new ModelManager(new MyInsuRec(model.getMyInsuRec()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test
