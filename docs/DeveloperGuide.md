@@ -160,7 +160,7 @@ The add item feature allows users to add an `InventoryItem` to be tracked by the
 
 #### Implementation
 
-The add item command will be executed by `AddItemCommand`. Items added will be stored in `InventoryList`. 
+The add item command will be executed by `AddItemCommand`. Items added will be stored in `InventoryList`.
 
 Given below is an example usage scenario and how the add item mechanism behaves at each step.
 
@@ -175,10 +175,11 @@ The `addi` command creates an `AddItemCommandParser` which checks the necessary 
 * quantity (prefixed by `q/`) 
 * description (prefixed by `d/`)
 * sell price (prefixed by `sp/`)
-* cost price (prefied by `cp`) 
-* tags (optional, prefixed by `t/`)
+* cost price (prefied by `cp`)
 
 are present before parsing the arguments into an `AddItemCommand` object. 
+Tags (which are prefixed by `t/`) are optional inputs and will be parsed into the `AddItemCommand` 
+as well if they are present.
 
 The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
 
@@ -231,8 +232,8 @@ The sequence diagram below illustrates this process.
 
 ![ListItemsSequenceDiagram](images/ListItemsSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListItemsCommand` 
-should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListItemsCommand`
+should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline
 reaches the end of diagram.
 </div>
 
@@ -256,7 +257,7 @@ Given below is an example usage scenario and how the find order mechanism behave
 
 Step 1. The user executes `findi chair mattress` command to find the orders containing items with the keywords
 keychain or apple. The `findi` command calls `FindItemCommandParser` which checks for the correct command
-syntax and separates the keywords, utilising each space as a delimiter. 
+syntax and separates the keywords, utilising each space as a delimiter.
 
 Step 2. The keywords are then passed into a constructor for `ItemContainsKeywordsPredicate`,
 which extends `Predicate<Item>`, to construct a predicate that will filter the items according to the keywords.
@@ -268,7 +269,7 @@ The sequence diagram below illustrates this process.
 
 ![FindItemSequenceDiagram](images/FindItemSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser`
 and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
 reaches the end of diagram.
 </div>
