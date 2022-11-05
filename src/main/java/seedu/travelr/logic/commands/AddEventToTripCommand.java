@@ -53,45 +53,23 @@ public class AddEventToTripCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        Trip fakeTrip = new Trip(tripToAddInto,
-                new Description("random"),
-                new HashSet<>(),
-                new Location("random"),
-                new DateField("01-01-2000"));
+        Trip fakeTrip = new Trip(tripToAddInto, new Description("random"), new HashSet<>(),
+                new Location("random"), new DateField("01-01-2000"));
+        Event fakeEvent = new Event(eventToAdd);
 
         if (!model.hasTrip(fakeTrip)) {
             throw new CommandException("Please enter a valid Trip");
-        }
-
-        Event fakeEvent = new Event((eventToAdd));
-        if (!model.bucketlistHasEvent(fakeEvent)) {
-            if (!model.tripHasEvent(fakeTrip, fakeEvent)) {
+        } else if (!model.bucketlistHasEvent(fakeEvent)) {
+            if (model.tripHasEvent(fakeTrip, fakeEvent)) {
                 throw new CommandException("The specified event is already in the specified trip");
             }
             throw new CommandException("Please enter a valid event");
-        }
-
-        if (!model.hasTrip(
-                new Trip(tripToAddInto,
-                        new Description("random"),
-                        new HashSet<>(),
-                        new Location("random"),
-                        new DateField("01-01-2000")))) {
-            throw new CommandException("Please enter a valid Trip");
-        }
-
-        if (!model.hasEventInBucketList(new Event(eventToAdd))) {
+        } else if (!model.hasEventInBucketList(new Event(eventToAdd))) {
             throw new CommandException("This event is no longer in the bucket list!");
         }
 
         Event event = model.getEvent(new Event(eventToAdd));
-        Trip toAddInto = model.getTrip(
-                new Trip(tripToAddInto,
-                        new Description("random"),
-                        new HashSet<>(),
-                        new Location("random"),
-                        new DateField("01-01-2000")));
+        Trip toAddInto = model.getTrip(fakeTrip);
 
         if (toAddInto.containsEvent(event)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT_IN_TRIP);

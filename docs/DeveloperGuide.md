@@ -236,7 +236,7 @@ _{more aspects and alternatives to be added}_
 #### Implementation
 The proposed display trip's events mechanism is facilitated by the use of `EventInItineraryPredicate`.
 It extends `Predicate` with a test that checks if an event is part of the given Itinerary, which is stored
-interally as an `Itinerary`. This predicate is then set as the predicate of the `filteredEventList`, which
+internally as an `Itinerary`. This predicate is then set as the predicate of the `filteredEventList`, which
 contains all events added to Travelr.
 
 Given below is an example usage scenario of how the display trip's events mechanism behaves at each step.
@@ -271,7 +271,45 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 {more aspects and alternatives to be added}
 
+### \[IMPLEMENTED\] Add event to trip
+
+#### Implementation
+The proposed add event to trip mechanism is facilitated by the use of `AddEventToTripCommand`.
+It extends `Command` with some tests that checks the event and trip. 
+
+Given below is an example usage scenario of how the add event to trip's mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `TravelrBook` will be initialised with the
+initial Travelr book state.
+
+Step 2. The user executes `add n/Trip to Japan ...` to add a new trip, and also executes `add-e n/Try Takoyakis ...`
+to add a new event to Travelr.
+
+Step 3. The user executes `add-et n/Try Takoyakis t/Trip to Japan`, which adds the `Event` 'Try Takoyakis' to the `Trip` titled 'Trip to Japan', which results in 'Try Takoyakis'
+being in its `Itinerary`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For the command to work normally, the specified `Event` need to be in the bucket list and the `Trip` should exist in the trip list
+
+</div>
+
+The following sequence diagram shows how the Add Event To Trip command works:
+![AddEventToTripSequenceDiagram](images/AddEventToTripSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Format of add event to trip command:**
+* **Alternative 1 (current choice):** Uses event and trip title as arguments
+    * Pros: Given the previous code structure, easy and fast to implement. Less error prone in term of user mistakes.
+    * Cons: Creates many dummy Objects. In entering the command, using the exact titles' name can be harder and time-consuming for the user.
+
+* **Alternative 2:** Uses event and trip index as shown in the GUI.
+  itself.
+    * Pros: Will be easier for the user to look at/remember the index and use the command.
+    * Cons: Comparatively more error prone regarding the argument provided compared to the previous alternative. 
+
+
 ### \[Implemented\] Display completed trips and events
+
 
 #### Implementation
 The display completed trips and events mechanism is facilitated by the use of `EventCompletedPredicate`

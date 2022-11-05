@@ -123,7 +123,8 @@ public class ModelManager implements Model {
     public boolean tripHasEvent(Trip trip, Event event) {
         requireNonNull(event);
         requireNonNull(trip);
-        return trip.containsEvent(event);
+        Trip curr = filteredTrips.get(filteredTrips.indexOf(trip));
+        return curr.containsEvent(event);
     }
 
     @Override
