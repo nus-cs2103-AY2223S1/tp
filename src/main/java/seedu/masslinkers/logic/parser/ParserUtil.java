@@ -244,8 +244,12 @@ public class ParserUtil {
      */
     public static ModCategory parseModsToCategory(String modName) {
         assert modName != null;
+        String prefix = modName.split("[0-9]")[0];
 
-        String modPrefix = modName.split("[0-9]")[0].substring(0, 2);
+        // prefix should be at least of length 2 as checked by the VALIDATION_REGEX in Mod.
+        assert prefix.length() > 1;
+
+        String modPrefix = prefix.substring(0, 2);
         switch (modPrefix) {
         case "CS":
         case "IS":

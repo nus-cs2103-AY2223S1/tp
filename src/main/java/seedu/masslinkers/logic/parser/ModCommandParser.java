@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.masslinkers.commons.core.index.Index;
-import seedu.masslinkers.logic.commands.DeleteCommand;
 import seedu.masslinkers.logic.commands.ModAddCommand;
 import seedu.masslinkers.logic.commands.ModCommand;
 import seedu.masslinkers.logic.commands.ModDeleteCommand;
@@ -101,7 +100,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         try {
             checkForUserMistakes(trimmedArgs);
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + ModAddCommand.MESSAGE_USAGE);
+            throw new ParseException(pe.getMessage());
         }
 
         // attempts to parse the command
@@ -113,7 +112,7 @@ public class ModCommandParser implements Parser<ModCommand> {
                 throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
             }
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + ModAddCommand.MESSAGE_USAGE);
+            throw new ParseException(pe.getMessage());
         }
 
         // attempts to parse the index
@@ -144,7 +143,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         try {
             checkForUserMistakes(trimmedArgs);
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + DeleteCommand.MESSAGE_USAGE);
+            throw new ParseException(pe.getMessage());
         }
 
         // attempts to parse the command
@@ -156,7 +155,7 @@ public class ModCommandParser implements Parser<ModCommand> {
                 throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
             }
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + ModDeleteCommand.MESSAGE_USAGE);
+            throw new ParseException(pe.getMessage());
         }
 
         // attempts to parse the index
@@ -187,7 +186,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         try {
             checkForUserMistakes(trimmedArgs);
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + ModMarkCommand.MESSAGE_USAGE);
+            throw new ParseException(pe.getMessage());
         }
 
         // attempts to parse the command
@@ -203,7 +202,7 @@ public class ModCommandParser implements Parser<ModCommand> {
                 throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
             }
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + ModMarkCommand.MESSAGE_USAGE);
+            throw new ParseException(pe.getMessage());
         }
 
         // attempts to parse the index
@@ -235,7 +234,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         try {
             checkForUserMistakes(trimmedArgs);
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + ModUnmarkCommand.MESSAGE_USAGE);
+            throw new ParseException(pe.getMessage());
         }
 
         // attempts to parse the command
@@ -247,7 +246,7 @@ public class ModCommandParser implements Parser<ModCommand> {
                 throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
             }
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + ModUnmarkCommand.MESSAGE_USAGE);
+            throw new ParseException(pe.getMessage());
         }
 
         // attempts to parse the index
@@ -356,7 +355,7 @@ public class ModCommandParser implements Parser<ModCommand> {
     /**
      * Checks for common user mistakes.
      * 1. Adding words between command word and index.
-     * 2. Adding the mod prefix.
+     *
      * @param args The user input to check.
      * @throws ParseException When user input is found to have made one of the mistakes listed.
      */
@@ -372,11 +371,6 @@ public class ModCommandParser implements Parser<ModCommand> {
         // valid index is not after the command word
         if (!validIndexes.isEmpty() && !validIndexes.get(0).equals(splittedArgs[0])) {
             throw new ParseException(String.format(ModCommand.INVALID_ARGUMENTS, splittedArgs[0]));
-        }
-
-        // user added mod prefix m/
-        if (!argsWithModPrefix.isEmpty()) {
-            throw new ParseException(ModCommand.MOD_PREFIX_NOT_NEEDED);
         }
     }
 }

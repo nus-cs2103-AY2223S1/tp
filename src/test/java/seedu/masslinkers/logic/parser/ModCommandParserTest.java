@@ -64,7 +64,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_noIndex_throwParseException() {
         assertParseFailure(parser, ModAddCommand.COMMAND_WORD + WHITESPACE + VALID_MOD_STRING_CS2103T,
-                ModCommand.MESSAGE_INDEX_EMPTY + "\n" + ModAddCommand.MESSAGE_USAGE);
+                ModCommand.MESSAGE_INDEX_EMPTY);
     }
 
     /**
@@ -73,7 +73,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_noMods_throwParseException() {
         assertParseFailure(parser, ModAddCommand.COMMAND_WORD + WHITESPACE + INDEX_FIRST_STUDENT.getOneBased(),
-                ModCommand.MESSAGE_MODS_EMPTY + "\n" + ModAddCommand.MESSAGE_USAGE);
+                ModCommand.MESSAGE_MODS_EMPTY);
     }
 
     /**
@@ -85,7 +85,7 @@ public class ModCommandParserTest {
                 ModAddCommand.COMMAND_WORD
                         + WHITESPACE + INDEX_FIRST_STUDENT.getOneBased()
                         + WHITESPACE + INVALID_MOD_STRING,
-                Mod.MESSAGE_CONSTRAINTS + "\n" + ModAddCommand.MESSAGE_USAGE);
+                Mod.MESSAGE_CONSTRAINTS);
     }
 
     /**
@@ -180,7 +180,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_noIndexModDelete_throwParseException() {
         assertParseFailure(parser, ModDeleteCommand.COMMAND_WORD + WHITESPACE + VALID_MOD_STRING_CS2103T,
-                ModCommand.MESSAGE_INDEX_EMPTY + "\n" + ModDeleteCommand.MESSAGE_USAGE);
+                ModCommand.MESSAGE_INDEX_EMPTY);
     }
 
     //@@author carriezhengjr
@@ -190,7 +190,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_noModsModDelete_throwParseException() {
         assertParseFailure(parser, ModDeleteCommand.COMMAND_WORD + WHITESPACE + INDEX_FIRST_STUDENT.getOneBased(),
-                ModCommand.MESSAGE_MODS_EMPTY + "\n" + ModDeleteCommand.MESSAGE_USAGE);
+                ModCommand.MESSAGE_MODS_EMPTY);
     }
 
     //@@author carriezhengjr
@@ -203,7 +203,7 @@ public class ModCommandParserTest {
                 ModDeleteCommand.COMMAND_WORD
                         + WHITESPACE + INDEX_FIRST_STUDENT.getOneBased()
                         + WHITESPACE + INVALID_MOD_STRING,
-                Mod.MESSAGE_CONSTRAINTS + "\n" + ModDeleteCommand.MESSAGE_USAGE);
+                Mod.MESSAGE_CONSTRAINTS);
     }
 
     //@@author carriezhengjr
@@ -372,7 +372,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_noIndexModMark_throwParseException() {
         assertParseFailure(parser, ModMarkCommand.COMMAND_WORD + WHITESPACE + VALID_MOD_STRING_CS2103T,
-                ModCommand.MESSAGE_INDEX_EMPTY + "\n" + ModMarkCommand.MESSAGE_USAGE);
+                ModCommand.MESSAGE_INDEX_EMPTY);
     }
 
     //@@author carriezhengjr
@@ -382,7 +382,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_noModsModMark_throwParseException() {
         assertParseFailure(parser, ModMarkCommand.COMMAND_WORD + WHITESPACE + INDEX_FIRST_STUDENT.getOneBased(),
-                ModCommand.MESSAGE_MODS_EMPTY + "\n" + ModMarkCommand.MESSAGE_USAGE);
+                ModCommand.MESSAGE_MODS_EMPTY);
     }
 
     //@@author carriezhengjr
@@ -395,7 +395,7 @@ public class ModCommandParserTest {
                 ModMarkCommand.COMMAND_WORD
                         + WHITESPACE + INDEX_FIRST_STUDENT.getOneBased()
                         + WHITESPACE + INVALID_MOD_STRING,
-                Mod.MESSAGE_CONSTRAINTS + "\n" + ModMarkCommand.MESSAGE_USAGE);
+                Mod.MESSAGE_CONSTRAINTS);
     }
 
     //@@author carriezhengjr
@@ -491,7 +491,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_noIndexModUnmark_throwParseException() {
         assertParseFailure(parser, ModUnmarkCommand.COMMAND_WORD + WHITESPACE + VALID_MOD_STRING_CS2103T,
-                ModCommand.MESSAGE_INDEX_EMPTY + "\n" + ModUnmarkCommand.MESSAGE_USAGE);
+                ModCommand.MESSAGE_INDEX_EMPTY);
     }
 
     //@@author carriezhengjr
@@ -501,7 +501,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_noModsModUnmark_throwParseException() {
         assertParseFailure(parser, ModUnmarkCommand.COMMAND_WORD + WHITESPACE + INDEX_FIRST_STUDENT.getOneBased(),
-                ModCommand.MESSAGE_MODS_EMPTY + "\n" + ModUnmarkCommand.MESSAGE_USAGE);
+                ModCommand.MESSAGE_MODS_EMPTY);
     }
 
     //@@author carriezhengjr
@@ -514,7 +514,7 @@ public class ModCommandParserTest {
                 ModUnmarkCommand.COMMAND_WORD
                         + WHITESPACE + INDEX_FIRST_STUDENT.getOneBased()
                         + WHITESPACE + INVALID_MOD_STRING,
-                Mod.MESSAGE_CONSTRAINTS + "\n" + ModUnmarkCommand.MESSAGE_USAGE);
+                Mod.MESSAGE_CONSTRAINTS);
     }
 
     //@@author carriezhengjr

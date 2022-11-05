@@ -11,7 +11,7 @@ import seedu.masslinkers.logic.parser.ParserUtil;
  */
 public class Mod {
     public static final String MESSAGE_CONSTRAINTS =
-            "Mod names should be numbers prefixed with alphabet(s) and less than 10 characters.";
+            "Mod names should be numbers prefixed with alphabets and less than 10 characters.";
 
     //@@author jonasgwt
     /** Categories for mods */
@@ -34,7 +34,7 @@ public class Mod {
         }
     }
 
-    public static final String VALIDATION_REGEX = "[A-Z]+\\d+[A-Z]?";
+    public static final String VALIDATION_REGEX = "[A-Z]{2,}\\d+[A-Z]?";
     private final String modName;
     private boolean hasTaken;
     private final ModCategory modCategory;
