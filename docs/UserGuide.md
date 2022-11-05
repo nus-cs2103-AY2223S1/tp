@@ -78,6 +78,12 @@ Clears all entries from the list.
 
 Format: `clear`
 
+### Exiting the project book: `exit`
+
+Exits the project book.
+
+Format: `exit`
+
 ## Project Commands
 
 > NOTE: Clicking the Repository Link of a project will copy it to the clipboard
