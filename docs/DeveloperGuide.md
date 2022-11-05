@@ -1243,9 +1243,10 @@ testers are expected to do more *exploratory* testing.
 
 ## Appendix: Effort
 
-* Find feature 
+* Find feature
+  * FindCommand in AB3 versus FindPatientCommand, FindAppointmentCommand and FindBillCommand in HealthContact
 
-| AB3 (FindCommand)                                                          | HealthContact (FindPatientCommand, FindAppointmentCommand, FindBillCommand                                      |
+| AB3 (FindCommand)                                                          | HealthContact                                                                                                   |
 |----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | Finds persons only                                                         | Finds patients, appointments and bills separately                                                               |
 | Finds by name only                                                         | Finds by respective fields of patients, appointments and bills                                                  |
