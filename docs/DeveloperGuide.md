@@ -274,6 +274,10 @@ The activity diagram below will illustrate a hide patient process. A similar pro
 **Aspect: How hide patient/appointment executes:**
 
 * **Current choice:** Making use of a singleton class to capture the state of the patient/appointment list at all times.
+* A singleton pattern is used here, because we only should have a single instance of HiddenPredicate to act as a global
+variable that holds the state of the current list shown to the user. If more than one object is created by mistake,
+there is a risk that our organisational commands no longer work correctly, as the same global predicate must be shared
+among all organisational commands such as find/group/hide/unhide.
 
 **Aspect: Whether hide should hide by any match or all match**
 * **Current choice:** Making hide any match, meaning patients/appts that match any of the keywords will be hidden.

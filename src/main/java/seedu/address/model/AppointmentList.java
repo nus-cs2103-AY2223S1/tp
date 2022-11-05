@@ -35,8 +35,10 @@ public class AppointmentList {
         appointment.setPatient(patient);
 
         model.addAppointment(appointment);
-        model.updateFilteredPersonList(HiddenPredicateSingleton.getCurrPersonPredicate());
-        model.updateFilteredAppointmentList(HiddenPredicateSingleton.getCurrApptPredicate());
+        model.updateFilteredPersonList(HiddenPredicateSingleton
+                .getInstance().getCurrPersonPredicate());
+        model.updateFilteredAppointmentList(HiddenPredicateSingleton
+                .getInstance().getCurrApptPredicate());
     }
 
     /**
@@ -51,8 +53,10 @@ public class AppointmentList {
         appointmentList.remove(appointment);
         model.deleteAppointment(appointment);
 
-        model.updateFilteredPersonList(HiddenPredicateSingleton.getCurrPersonPredicate());
-        model.updateFilteredAppointmentList(HiddenPredicateSingleton.getCurrApptPredicate());
+        model.updateFilteredPersonList(HiddenPredicateSingleton
+                .getInstance().getCurrPersonPredicate());
+        model.updateFilteredAppointmentList(HiddenPredicateSingleton
+                .getInstance().getCurrApptPredicate());
     }
 
     /**

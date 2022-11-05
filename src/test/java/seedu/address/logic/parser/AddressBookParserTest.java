@@ -50,6 +50,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.model.person.predicates.HideAppointmentPredicate;
+import seedu.address.model.person.predicates.HideAppointmentPredicate.HideBy;
 import seedu.address.model.person.predicates.TagContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AppointmentUtil;
@@ -204,7 +205,7 @@ public class AddressBookParserTest {
         l.add("nose");
         assertEquals(new HideAppointmentsCommand(
                 new HideAppointmentPredicate(
-                        HideAppointmentPredicate.HideBy.KEYWORD, l)), command);
+                        HideBy.KEYWORD, l)), command);
     }
 
     @Test

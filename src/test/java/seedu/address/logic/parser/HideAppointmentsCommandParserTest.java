@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.model.person.predicates.HideAppointmentPredicate;
+import seedu.address.model.person.predicates.HideAppointmentPredicate.HideBy;
 
 public class HideAppointmentsCommandParserTest {
 
@@ -23,7 +24,7 @@ public class HideAppointmentsCommandParserTest {
         List<String> l = new ArrayList<>();
         l.add("ear");
         assertParseSuccess(parser, " r/ear", new HideAppointmentsCommand(
-                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.KEYWORD, l)));
+                new HideAppointmentPredicate(HideBy.KEYWORD, l)));
     }
 
     @Test
@@ -31,7 +32,7 @@ public class HideAppointmentsCommandParserTest {
         List<String> l = new ArrayList<>();
         l.add("marked");
         assertParseSuccess(parser, " s/marked", new HideAppointmentsCommand(
-                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.IS_MARKED, l)));
+                new HideAppointmentPredicate(HideBy.IS_MARKED, l)));
     }
 
     @Test

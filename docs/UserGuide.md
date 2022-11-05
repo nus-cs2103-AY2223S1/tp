@@ -336,6 +336,7 @@ Format:
 * `ungroup appts`
 
 #### Hiding patients by name or tag: `hide patients`
+Hiding a patient will also hide their appointments, thus the resulting appointment list contains only appointments of remaining patients after `hide patients`.
 
 **By name:**
 Filters out (hides) patients whose name contain any of the given keywords.
@@ -358,6 +359,7 @@ Examples:
 * `hide patients t/ear t/nose` hides all patients with an ear OR nose tag.
 
 #### Unhiding patients by name or tag: `unhide patients`
+Unhiding a patient will also unhide their appointments, thus the resulting appointment list will also contain appointments of unhidden patients after `unhide patients`.
 
 **By name:**
 Shows (unhides) patients that were previously hidden whose name contain any of the given keywords.
@@ -382,10 +384,9 @@ Examples:
 * `unhide patients t/nose t/ear` unhides all patients with a nose OR ear tag.
 
 #### Hiding appointments by reason, tag, or marked status: `hide appts`
-
 Hides appointments by the condition specified. <br>
-The search for reason, tag, and status is **NOT** case-sensitive. e.g `t/EAR` has same effect as `t/ear`
-
+The search for reason, tag, and status is **NOT** case-sensitive. e.g `t/EAR` has same effect as `t/ear` <br>
+Hiding appointments will not change the patient list.
 
 **By reason:**
 Hides appointments that contain at least 1 of the given keywords in the reason of appointment.
@@ -425,6 +426,7 @@ After hide: (Appointments that are marked are now hidden)
 ![after_Hide](images/afterHide.png)
 
 #### Unhiding appointments by reason, tag or status: `unhide appts`
+Unhiding appointments will not change the patient list.
 
 **By reason:**
 Unhides hidden appointments that contains `REASON` (OR `MORE_REASONS`).

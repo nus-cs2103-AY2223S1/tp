@@ -15,10 +15,10 @@ import seedu.address.model.person.Person;
  */
 public class HiddenPredicateSingleton implements Predicate<Person> {
     private static HiddenPredicateSingleton instance = new HiddenPredicateSingleton();
-    private static Predicate<Person> currPersonPredicate = Model.PREDICATE_SHOW_ALL_PERSONS;
-    private static Predicate<Appointment> currApptPredicate = Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-    private static List<Person> hiddenPersons = new ArrayList<>();
-    private static List<Appointment> hiddenAppts = new ArrayList<>();
+    private Predicate<Person> currPersonPredicate = Model.PREDICATE_SHOW_ALL_PERSONS;
+    private Predicate<Appointment> currApptPredicate = Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
+    private List<Person> hiddenPersons = new ArrayList<>();
+    private List<Appointment> hiddenAppts = new ArrayList<>();
     private HiddenPredicateSingleton() {}
 
     @Override
@@ -38,32 +38,8 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
      * Adds to the current list of hidden persons.
      * @param p Person to be hidden.
      */
-    public static void addToHiddenPersonList(Person p) {
+    public void addToHiddenPersonList(Person p) {
         hiddenPersons.add(p);
-    }
-
-    /**
-     * Removes the person from the current list of hidden persons.
-     * @param p Person to be unhidden.
-     */
-    public static void removeFromHiddenPersonList(Person p) {
-        hiddenPersons.remove(p);
-    }
-
-    /**
-     * Removes the appointment from the current list of hidden persons.
-     * @param a Appointment to be unhidden.
-     */
-    public static void removeFromHiddenAppointmentList(Appointment a) {
-        hiddenAppts.remove(a);
-    }
-
-    /**
-     * Adds to the current list of hidden appointments.
-     * @param p Appointment to be hidden.
-     */
-    public static void addToHiddenApptList(Appointment p) {
-        hiddenAppts.add(p);
     }
 
     public static HiddenPredicateSingleton getInstance() {
@@ -75,7 +51,7 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
      * @param p Predicate to exclude patients by.
      * @return The predicate result of combining the exclusion predicate with the current predicate.
      */
-    public static Predicate<Person> combineWithHiddenPredicate(Predicate<Person> p) {
+    public Predicate<Person> combineWithHiddenPredicate(Predicate<Person> p) {
         currPersonPredicate = currPersonPredicate.and(Predicate.not(p));
         return currPersonPredicate;
     }
@@ -85,7 +61,7 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
      * @param p Predicate for the current model.
      * @return The predicate result of combining the new predicate with the current predicate.
      */
-    public static Predicate<Person> combineWithRegularPredicate(Predicate<Person> p) {
+    public Predicate<Person> combineWithRegularPredicate(Predicate<Person> p) {
         currPersonPredicate = currPersonPredicate.and(p);
         return currPersonPredicate;
     }
@@ -95,7 +71,7 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
      * @param p Predicate for the current model.
      * @return The predicate result of combining the new predicate with the current predicate.
      */
-    public static Predicate<Appointment> combineWithRegularApptPredicate(Predicate<Appointment> p) {
+    public Predicate<Appointment> combineWithRegularApptPredicate(Predicate<Appointment> p) {
         currApptPredicate = currApptPredicate.and(p);
         return currApptPredicate;
     }
@@ -105,7 +81,7 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
      * @param p Predicate to show patients by.
      * @return The predicate result of combining the non-exclusion predicate with the current predicate.
      */
-    public static Predicate<Person> combineWithUnhiddenPredicate(Predicate<Person> p) {
+    public Predicate<Person> combineWithUnhiddenPredicate(Predicate<Person> p) {
         currPersonPredicate = currPersonPredicate.or(p);
         return currPersonPredicate;
     }
@@ -115,7 +91,7 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
      * @param a Predicate to exclude the appointment.
      * @return The predicate result of combining the appointment predicate with the current predicate.
      */
-    public static Predicate<Appointment> combineWithApptPredicate(Predicate<Appointment> a) {
+    public Predicate<Appointment> combineWithApptPredicate(Predicate<Appointment> a) {
         currApptPredicate = currApptPredicate.and(Predicate.not(a));
         return currApptPredicate;
     }
@@ -125,7 +101,7 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
      * @param a Predicate to include the appointment.
      * @return The predicate result of combining the appointment predicate with the current predicate.
      */
-    public static Predicate<Appointment> combineWithUnhiddenApptPredicate(Predicate<Appointment> a) {
+    public Predicate<Appointment> combineWithUnhiddenApptPredicate(Predicate<Appointment> a) {
         currApptPredicate = currApptPredicate.or(a);
         return currApptPredicate;
     }
@@ -133,7 +109,7 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
     /**
      * Resets the list of hidden patients to empty.
      */
-    public static void clearHiddenPatients() {
+    public void clearHiddenPatients() {
         currPersonPredicate = Model.PREDICATE_SHOW_ALL_PERSONS;
         hiddenPersons.clear();
     }
@@ -141,7 +117,7 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
     /**
      * Resets the list of hidden appointments to empty.
      */
-    public static void clearHiddenAppts() {
+    public void clearHiddenAppts() {
         currApptPredicate = Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
         hiddenAppts.clear();
     }
@@ -149,16 +125,16 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
     /**
      * Resets the list of hidden patients and appointments to empty.
      */
-    public static void clearHiddenAll() {
+    public void clearHiddenAll() {
         clearHiddenPatients();
         clearHiddenAppts();
     }
 
-    public static Predicate<Person> getCurrPersonPredicate() {
+    public Predicate<Person> getCurrPersonPredicate() {
         return currPersonPredicate;
     }
 
-    public static Predicate<Appointment> getCurrApptPredicate() {
+    public Predicate<Appointment> getCurrApptPredicate() {
         return currApptPredicate;
     }
 
