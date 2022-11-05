@@ -245,7 +245,13 @@ Step 4. `EditCommand#execute()` calls the following methods from `Model`:
 
 Step 5. `EditCommand#execute()` returns a `CommandResult` with the following result displayed:
 
-Edited Food: honey milk tea; Calories: 310 calories; Tag[lunch]
+```
+Food item edited!
+
+Food name: honey milk tea
+Calorie content: 310 calories
+Meal type: lunch
+```
 
 The following diagram illustrates how the edit operation works:
 
@@ -464,7 +470,9 @@ Step 4. `LocateGymCommand#execute()` calls the following methods from `Model`:
 * `Model#getNusGymLocations()`
 
 The following activity diagram outlines what happens when a user executes the `locate` command:
+
 ![LocateCommandActivityDiagram](images/LocateCommandActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

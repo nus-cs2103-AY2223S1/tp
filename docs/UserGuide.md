@@ -159,11 +159,13 @@ Example:
 * `setup g/f w/50 h/165 i/48 a/20` sets up a user profile for a 20-year-old female who is 50kg and 165cm, who has an ideal weight of 48kg.
 * `setup g/m w/70 h/175 i/70 a/20` sets up a user profile for a 20-year-old male who is 70kg and 175cm, who has an ideal weight of 70kg.
 
-<div id="setup-eg"></div>
+<div id="setup-eg">
 
-Example after entering `setup g/m w/70 h/175 i/70 a/20`:
+Example after entering <code class="language-plaintext highlighter-rouge">setup g/m w/70 h/175 i/70 a/20</code>:
 
-![setup](images/setup.png)
+<img src="images/setup.png" />
+
+</div>
 
 #### Viewing the user's profile: `profile`
 
@@ -451,9 +453,29 @@ Format: `exit`
 
 ## FAQ
 
-### I do not have Java `11` installed in my Computer. How do I install it?
+### How do I check if Java `11` is installed in my computer?
+
+Launch your terminal/command prompt and type the following: `java -version`, and hit **enter**. If a similar message to the one below is shown:
+
+```
+openjdk version "11.0.16.1" 2022-07-19 LTS
+OpenJDK Runtime Environment Zulu11.58+23-CA (build 11.0.16.1+1-LTS)
+OpenJDK 64-Bit Server VM Zulu11.58+23-CA (build 11.0.16.1+1-LTS, mixed mode)
+```
+
+it means Java `11` is installed.
+
+### I do not have Java `11` installed in my computer. How do I install it?
 
 To download Java `11`, visit this [website](https://www.oracle.com/java/technologies/downloads/#java11) and download the appropriate file for your computer's system (such as macOS and Windows).
+
+<div markdown="block" class="alert alert-warning">
+
+**:exclamation: Note**
+
+For Mac users, if you are unable to run `nutrigoals.jar`, please download and install the Azul build of OpenJDK 11 version found [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
+
+</div>
 
 ### How do I save my data in NutriGoals?
 
