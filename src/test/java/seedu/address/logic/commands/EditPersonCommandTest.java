@@ -1,22 +1,22 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.EditPersonCommand.MESSAGE_EDIT_PERSON_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
-
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.Test;
+
+import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import picocli.CommandLine;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
@@ -27,11 +27,21 @@ import seedu.address.logic.parser.EmailConverter;
 import seedu.address.logic.parser.IndexConverter;
 import seedu.address.logic.parser.NameConverter;
 import seedu.address.logic.parser.PhoneConverter;
-import seedu.address.model.*;
-import seedu.address.model.person.*;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyTruthTable;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TruthTable;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.team.Link;
-import seedu.address.model.team.Team;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.Team;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalPersons;
@@ -55,7 +65,7 @@ public class EditPersonCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person validPerson = new PersonBuilder(TypicalPersons.ALLIE).build();
-        commandLine.parseArgs(PersonUtil.convertEditPersonToArgs(validPerson));
+        commandLine.parseArgs(PersonUtil.convertEditPersonToArgs(validPerson, 2));
         CommandResult expectedResult = new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, validPerson));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
@@ -63,7 +73,7 @@ public class EditPersonCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Person validPerson = new PersonBuilder(TypicalPersons.ALLIE).build();
-        commandLine.parseArgs(PersonUtil.convertEditSecondPersonPartialToArgs(validPerson));
+        commandLine.parseArgs(PersonUtil.convertEditPersonPartialToArgs(validPerson, 2));
         CommandResult expectedResult = new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, validPerson));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
@@ -74,7 +84,7 @@ public class EditPersonCommandTest {
         model.updateFilteredPersonList(predicate);
         Person validPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(validPerson).withName(VALID_NAME_BOB).build();
-        commandLine.parseArgs(PersonUtil.convertEditFirstPersonPartialToArgs(editedPerson));
+        commandLine.parseArgs(PersonUtil.convertEditPersonPartialToArgs(editedPerson, 1));
         CommandResult expectedResult = new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
@@ -82,17 +92,17 @@ public class EditPersonCommandTest {
     @Test
     public void execute_duplicatePersonUnfilteredList_throwsCommandException() {
         Person validPerson = new PersonBuilder(TypicalPersons.ALICE).build();
-        commandLine.parseArgs(PersonUtil.convertEditSecondPersonPartialToArgs(validPerson));
-        assertThrows(CommandException.class, EditPersonCommand.MESSAGE_DUPLICATE_PERSON,
-                () -> commandToBeTested.execute(model));
+        commandLine.parseArgs(PersonUtil.convertEditPersonPartialToArgs(validPerson, 2));
+        assertThrows(CommandException.class, EditPersonCommand.MESSAGE_DUPLICATE_PERSON, ()
+                -> commandToBeTested.execute(model));
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Person validPerson = new PersonBuilder(TypicalPersons.ALLIE).build();
-        commandLine.parseArgs(PersonUtil.convertEditPersonOOBToArgs(validPerson));
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
-                () -> commandToBeTested.execute(model));
+        commandLine.parseArgs(PersonUtil.convertEditPersonPartialToArgs(validPerson, 20));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ()
+                -> commandToBeTested.execute(model));
     }
 
     /**
@@ -105,16 +115,16 @@ public class EditPersonCommandTest {
         model.updateFilteredPersonList(predicate);
         Person validPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(validPerson).withName(VALID_NAME_BOB).build();
-        commandLine.parseArgs(PersonUtil.convertEditSecondPersonPartialToArgs(editedPerson));
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
-                () -> commandToBeTested.execute(model));
+        commandLine.parseArgs(PersonUtil.convertEditPersonPartialToArgs(editedPerson, 2));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ()
+                -> commandToBeTested.execute(model));
     }
 
     @Test
     public void equals() {
     }
 
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
