@@ -35,6 +35,7 @@ public class SortSupplierCommand extends SortCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.sortSupplier(comparator);
+        model.switchToSupplierList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

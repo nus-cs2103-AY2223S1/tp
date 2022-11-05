@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -53,6 +54,7 @@ public class ModelManager implements Model {
     private final FilteredList<Pet> filteredPets;
     private final FilteredList<Order> filteredOrders;
     private final MasterList filteredAll;
+    private FilteredList<?> filteredCurrList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -71,6 +73,7 @@ public class ModelManager implements Model {
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
         filteredAll = new MasterList();
         collect();
+        switchToMainList();
     }
 
     public ModelManager() {
@@ -298,7 +301,7 @@ public class ModelManager implements Model {
         collect();
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Objects List Accessors =============================================================
     /**
      * Returns an ObservableList of buyers in the filteredPersons list.
      *
@@ -340,6 +343,15 @@ public class ModelManager implements Model {
     public ObservableList<Object> getFilteredMainList() {
         collect();
         return filteredAll.getMasterList();
+    }
+
+    @Override
+    public ObservableList<Object> getFilteredCurrList() {
+
+        @SuppressWarnings("unchecked")
+        ObservableList<Object> res = (ObservableList<Object>) filteredCurrList;
+
+        return res;
     }
 
     @Override
@@ -396,8 +408,69 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void clearMasterList() {
+    public void clearCurrList() {
         filteredAll.clear();
+        filteredCurrList.clear();
+    }
+
+    @Override
+    public void switchToBuyerList() {
+        filteredCurrList = filteredBuyers;
+    }
+
+    @Override
+    public void switchToSupplierList() {
+        filteredCurrList = filteredSuppliers;
+    }
+
+    @Override
+    public void switchToDelivererList() {
+        filteredCurrList = filteredDeliverers;
+    }
+
+    @Override
+    public void switchToOrderList() {
+        filteredCurrList = filteredOrders;
+    }
+
+    @Override
+    public void switchToPetList() {
+        filteredCurrList = filteredPets;
+    }
+
+    @Override
+    public void switchToMainList() {
+        filteredCurrList = new FilteredList<>(filteredAll.getMasterList());
+    }
+
+    @Override
+    public void checkBuyerOrder(Buyer buyer) {
+        ObservableList<Order> orders = FXCollections.observableArrayList(getOrdersFromBuyer(buyer));
+        filteredCurrList = new FilteredList<>(orders);
+    }
+
+    @Override
+    public void checkSupplierPet(Supplier supplier) {
+        ObservableList<Pet> pets = FXCollections.observableArrayList(getPetsFromSupplier(supplier));
+        filteredCurrList = new FilteredList<>(pets);
+    }
+
+    @Override
+    public void checkDelivererOrder(Deliverer deliverer) {
+        ObservableList<Order> orders = FXCollections.observableArrayList(getOrdersFromDeliverer(deliverer));
+        filteredCurrList = new FilteredList<>(orders);
+    }
+
+    @Override
+    public void checkBuyerOfOrder(Order order) {
+        ObservableList<Buyer> buyers = FXCollections.observableArrayList(order.getBuyer());
+        filteredCurrList = new FilteredList<>(buyers);
+    }
+
+    @Override
+    public void checkSupplierOfPet(Pet pet) {
+        ObservableList<Supplier> suppliers = FXCollections.observableArrayList(pet.getSupplier());
+        filteredCurrList = new FilteredList<>(suppliers);
     }
 
     private void collect() {

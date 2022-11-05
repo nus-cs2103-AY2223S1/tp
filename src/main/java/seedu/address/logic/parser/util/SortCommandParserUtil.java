@@ -58,10 +58,7 @@ public class SortCommandParserUtil {
     private static final Comparator<Pet> PET_SPECIES_COMPARATOR = Comparator.comparing(Pet::getSpecies);
     private static final Comparator<Pet> PET_HEIGHT_COMPARATOR = Comparator.comparing(Pet::getHeight);
     private static final Comparator<Pet> PET_WEIGHT_COMPARATOR = Comparator.comparing(Pet::getWeight);
-    private static final Comparator<Pet> PET_VACCINATION_STATUS_COMPARATOR = Comparator.comparing(
-            Pet::getVaccinationStatus);
     private static final Comparator<Pet> PET_PRICE_COMPARATOR = Comparator.comparing(Pet::getPrice);
-    private static final Comparator<Pet> PET_CERTIFICATE_COMPARATOR = Pet::compareCertificate;
 
     private static Comparator<? extends Person> parseToSelectedPersonComparator(String attribute) {
 
@@ -150,7 +147,11 @@ public class SortCommandParserUtil {
     public static Comparator<Deliverer> parseToSelectedDelivererComparator(String attribute) throws ParseException {
         if (attribute.isEmpty() || CommandUtil.isValidParameter(
                 CommandUtil.ACCEPTABLE_SORT_ORDER_SIZE_PARAMETER, attribute)) {
-            return DELIVERER_COMPARATOR;
+
+            @SuppressWarnings("unchecked")
+            Comparator<Deliverer> personNameComparator = (Comparator<Deliverer>) PERSON_NAME_COMPARATOR;
+
+            return personNameComparator;
         }
         if (parseToSelectedPersonComparator(attribute) == null) {
             throw new ParseException(String.format(SortDelivererCommand.MESSAGE_WRONG_ATTRIBUTE, attribute,

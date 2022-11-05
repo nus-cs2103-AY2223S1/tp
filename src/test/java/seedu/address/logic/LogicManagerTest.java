@@ -19,7 +19,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.index.UniqueId;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
 import seedu.address.logic.commands.addcommands.AddDelivererCommand;
 import seedu.address.logic.commands.addcommands.AddSupplierCommand;
@@ -74,12 +73,6 @@ public class LogicManagerTest {
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete-b 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS_EMPTY, model);
     }
 
     @Test
@@ -142,28 +135,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredBuyerList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredBuyerList().remove(0));
-    }
-
-    @Test
-    public void getFilteredSupplierList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredSupplierList().remove(0));
-    }
-
-    @Test
-    public void getFilteredDelivererList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredDelivererList().remove(0));
-    }
-
-    @Test
-    public void getFilteredOrdersList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
-    }
-
-    @Test
-    public void getFilteredPetList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPetList().remove(0));
+    public void getFilteredCurrList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCurrList().remove(0));
     }
 
     @Test

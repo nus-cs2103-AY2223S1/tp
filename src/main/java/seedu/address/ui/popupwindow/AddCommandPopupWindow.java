@@ -26,6 +26,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.ResultDisplay;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.listpanels.MainListPanel;
 
 /**
  * The pop-up window for adding a buyer with/without orders,
@@ -41,6 +42,8 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
     private final ResultDisplay resultDisplay;
     private final Image image = new Image(MainApp.class.getResourceAsStream(ICON_APPLICATION));
     private PopUpPanel popUpPanel;
+    private MainListPanel mainListPanel;
+    private StackPane placeHolder;
 
     @FXML
     private StackPane popupContentPlaceholder;
@@ -59,19 +62,23 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
      * @param typeToBeAdded Type of person to add.
      * @param resultDisplay Result display window of the main window.
      */
-    public AddCommandPopupWindow(Stage root, Logic logic, String typeToBeAdded, ResultDisplay resultDisplay) {
+    public AddCommandPopupWindow(Stage root, Logic logic, String typeToBeAdded, ResultDisplay resultDisplay,
+                                 MainListPanel mainListPanel, StackPane placeholder) {
         super(FXML, root);
         this.stage = root;
         this.logic = logic;
         this.typeToBeAdded.setText(typeToBeAdded);
         this.resultDisplay = resultDisplay;
         this.stage.getIcons().add(image);
+        this.mainListPanel = mainListPanel;
+        this.placeHolder = placeholder;
         setCloseWindowKey(KeyCode.ESCAPE);
         setSaveButtonShortcut(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
     }
 
-    public AddCommandPopupWindow(Logic logic, String typeToBeAdded, ResultDisplay resultDisplay) {
-        this(new Stage(), logic, typeToBeAdded, resultDisplay);
+    public AddCommandPopupWindow(Logic logic, String typeToBeAdded, ResultDisplay resultDisplay,
+                                 MainListPanel mainListPanel, StackPane placeHolder) {
+        this(new Stage(), logic, typeToBeAdded, resultDisplay, mainListPanel, placeHolder);
     }
 
 
@@ -115,6 +122,12 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
             }
             Command command = popUpPanel.generateCommand();
             CommandResult commandResult = logic.executeGivenCommand(command);
+            if (typeToBeAdded.equals(AddCommandWithPopup.ADD_BUYER)) {
+                logic.switchToBuyer();
+            } else if (typeToBeAdded.equals(AddCommandWithPopup.ADD_SUPPLIER)) {
+                logic.switchToSupplier();
+            }
+            refresh();
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             close();
@@ -137,6 +150,15 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
                 close();
             }
         });
+    }
+
+    /**
+     * Refreshes the current list.
+     */
+    private void refresh() {
+        mainListPanel = new MainListPanel(logic.getFilteredCurrList(), logic);
+        placeHolder.getChildren().clear();
+        placeHolder.getChildren().add(mainListPanel.getRoot());
     }
 
     /**

@@ -6,7 +6,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.CheckCommand;
+import seedu.address.logic.commands.checkcommands.CheckBuyerCommand;
+import seedu.address.logic.commands.checkcommands.CheckCommand;
+import seedu.address.logic.commands.checkcommands.CheckDelivererCommand;
+import seedu.address.logic.commands.checkcommands.CheckOrderCommand;
+import seedu.address.logic.commands.checkcommands.CheckPetCommand;
+import seedu.address.logic.commands.checkcommands.CheckSupplierCommand;
 import seedu.address.logic.commands.util.CommandUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -29,19 +34,23 @@ public class CheckCommandParser implements Parser<CheckCommand> {
         Index index = ParserUtil.parseIndex(indexStr);
 
         if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_BUYER_PARAMETER, checkType)) {
-            return new CheckCommand(CheckCommand.CHECK_BUYER, index);
+            return new CheckBuyerCommand(index);
         }
 
         if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SUPPLIER_PARAMETER, checkType)) {
-            return new CheckCommand(CheckCommand.CHECK_SUPPLIER, index);
+            return new CheckSupplierCommand(index);
+        }
+
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_DELIVERER_PARAMETER, checkType)) {
+            return new CheckDelivererCommand(index);
         }
 
         if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_ORDER_PARAMETER, checkType)) {
-            return new CheckCommand(CheckCommand.CHECK_ORDER, index);
+            return new CheckOrderCommand(index);
         }
 
         if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_PET_PARAMETER, checkType)) {
-            return new CheckCommand(CheckCommand.CHECK_PET, index);
+            return new CheckPetCommand(index);
         }
 
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckCommand.MESSAGE_USAGE));

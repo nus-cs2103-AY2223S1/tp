@@ -13,6 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -29,13 +30,18 @@ public class EditDelivererCommand extends EditCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Deliverer> lastShownList = model.getFilteredDelivererList();
+        List<Object> lastShownList = model.getFilteredCurrList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Deliverer delivererToEdit = lastShownList.get(index.getZeroBased());
+        Object o = lastShownList.get(index.getZeroBased());
+        if (!(o instanceof Deliverer)) {
+            throw new CommandException(String.format(Messages.INVALID_DELIVERER, index.getOneBased()));
+        }
+
+        Deliverer delivererToEdit = (Deliverer) o;
         Deliverer editedDeliverer = createEditedDeliverer(delivererToEdit, editPersonDescriptor);
 
         if (!delivererToEdit.isSamePerson(editedDeliverer) && model.hasDeliverer(editedDeliverer)) {
@@ -44,6 +50,7 @@ public class EditDelivererCommand extends EditCommand {
 
         model.setDeliverer(delivererToEdit, editedDeliverer);
         model.updateFilteredDelivererList(Model.PREDICATE_SHOW_ALL_DELIVERERS);
+        model.switchToDelivererList();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedDeliverer));
     }
 
@@ -59,9 +66,10 @@ public class EditDelivererCommand extends EditCommand {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(delivererToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(delivererToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(delivererToEdit.getAddress());
+        Location updatedLocation = editPersonDescriptor.getLocation().orElse(delivererToEdit.getLocation());
         List<UniqueId> orders = delivererToEdit.getOrders();
 
-        return new Deliverer(updatedName, updatedPhone, updatedEmail, updatedAddress, orders);
+        return new Deliverer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedLocation, orders);
     }
 
 }

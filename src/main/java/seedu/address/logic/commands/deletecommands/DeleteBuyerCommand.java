@@ -42,14 +42,17 @@ public class DeleteBuyerCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Buyer> lastShownList = model.getFilteredBuyerList();
-
+        ObservableList<Object> lastShownList = model.getFilteredCurrList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        Object o = lastShownList.get(targetIndex.getZeroBased());
+        if (!(o instanceof Buyer)) {
+            throw new CommandException(String.format(Messages.INVALID_BUYER, targetIndex.getOneBased()));
+        }
 
-        Buyer personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Buyer personToDelete = (Buyer) o;
 
         model.deleteBuyer(personToDelete);
 
@@ -58,7 +61,7 @@ public class DeleteBuyerCommand extends DeleteCommand {
         for (Order order: ordersFromBuyer) {
             model.deleteOrder(order);
         }
-
+        model.switchToBuyerList();
         return new CommandResult(String.format(MESSAGE_DELETE_BUYER_SUCCESS, personToDelete));
     }
 

@@ -140,6 +140,7 @@ public interface Model {
     ObservableList<Pet> getFilteredPetList();
     ObservableList<Order> getFilteredOrderList();
     ObservableList<Object> getFilteredMainList();
+    ObservableList<Object> getFilteredCurrList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -173,7 +174,63 @@ public interface Model {
     List<Pet> getPetsFromSupplier(Supplier supplier);
 
     /**
-     * Clears the main display list
+     * Clears the curr display list
      */
-    void clearMasterList();
+    void clearCurrList();
+
+    /**
+     * Switches the current displayed list to buyer list.
+     */
+    void switchToBuyerList();
+
+    /**
+     * Switches the current displayed list to supplier list.
+     */
+    void switchToSupplierList();
+
+    /**
+     * Switches the current displayed list to deliverer list.
+     */
+    void switchToDelivererList();
+
+    /**
+     * Switches the current displayed list to order list.
+     */
+    void switchToOrderList();
+
+    /**
+     * Switches the current displayed list to pet list.
+     */
+    void switchToPetList();
+
+    /**
+     * Switches the current displayed list to main list.
+     */
+    void switchToMainList();
+
+    /**
+     * Sets the current list to the list of orders of a buyer.
+     */
+    void checkBuyerOrder(Buyer buyer);
+
+    /**
+     * Sets the current list to the list of pets of a supplier.
+     */
+    void checkSupplierPet(Supplier supplier);
+
+    /**
+     * Sets the current list to the list of orders of a deliverer.
+     */
+    void checkDelivererOrder(Deliverer deliverer);
+
+    /**
+     * Sets the current list to the show the buyer of an order.
+     */
+    void checkBuyerOfOrder(Order order);
+
+    /**
+     * Sets the current list to show the supplier of a pet.
+     */
+    void checkSupplierOfPet(Pet pet);
+
 }

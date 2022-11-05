@@ -21,17 +21,18 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.CheckCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MatchCommand;
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
 import seedu.address.logic.commands.addcommands.AddDelivererCommand;
-//import seedu.address.logic.commands.addcommands.AddPetCommand;
 import seedu.address.logic.commands.addcommands.AddPetCommand;
 import seedu.address.logic.commands.addcommands.AddSupplierCommand;
+import seedu.address.logic.commands.checkcommands.CheckBuyerCommand;
+import seedu.address.logic.commands.checkcommands.CheckCommand;
+import seedu.address.logic.commands.checkcommands.CheckOrderCommand;
+import seedu.address.logic.commands.checkcommands.CheckSupplierCommand;
 import seedu.address.logic.commands.deletecommands.DeleteBuyerCommand;
 import seedu.address.logic.commands.deletecommands.DeleteDelivererCommand;
 import seedu.address.logic.commands.deletecommands.DeleteSupplierCommand;
@@ -45,6 +46,8 @@ import seedu.address.logic.commands.findcommands.FindBuyerCommand;
 import seedu.address.logic.commands.findcommands.FindCommand;
 import seedu.address.logic.commands.findcommands.FindDelivererCommand;
 import seedu.address.logic.commands.findcommands.FindSupplierCommand;
+import seedu.address.logic.commands.listcommands.ListAllCommand;
+import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.logic.commands.sortcommands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.findcommandparser.FindBuyerCommandParser;
@@ -70,7 +73,6 @@ import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.PetBuilder;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
-import seedu.address.testutil.TypicalPersonCategories;
 import seedu.address.testutil.TypicalSuppliers;
 
 
@@ -238,12 +240,9 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         String input = " n/foo";
         Predicate<Buyer> buyerPredicate = PredicateParser.parseBuyer(input);
-        Predicate<Deliverer> delivererPredicate = PredicateParser.parseDeliverer(input);
-        Predicate<Supplier> supplierPredicate = PredicateParser.parseSupplier(input);
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + input);
-        FindCommand otherCommand = new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
-                TypicalPersonCategories.PERSON_CATEGORY_BUYER);
+        FindCommand command = (FindBuyerCommand) parser.parseCommand(
+                FindBuyerCommandParser.PARSE_WORD + input);
+        FindCommand otherCommand = new FindBuyerCommand(buyerPredicate);
         assertEquals(otherCommand, command);
     }
 
@@ -294,8 +293,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " all") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " all") instanceof ListAllCommand);
     }
 
     @Test
@@ -309,17 +307,17 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_checkCommand() throws Exception {
-        CheckCommand expected = new CheckCommand("BUYER", INDEX_FIRST);
+        CheckCommand expected = new CheckBuyerCommand(INDEX_FIRST);
         String input = CheckCommand.COMMAND_WORD + " BUYER 1";
         CheckCommand result = (CheckCommand) parser.parseCommand(input);
         assertEquals(result, expected);
 
-        expected = new CheckCommand("SUPPLIER", INDEX_FIRST);
+        expected = new CheckSupplierCommand(INDEX_FIRST);
         input = CheckCommand.COMMAND_WORD + " SUPPLIER 1";
         result = (CheckCommand) parser.parseCommand(input);
         assertEquals(result, expected);
 
-        expected = new CheckCommand("ORDER", INDEX_FIRST);
+        expected = new CheckOrderCommand(INDEX_FIRST);
         input = CheckCommand.COMMAND_WORD + " ORDER 1";
         result = (CheckCommand) parser.parseCommand(input);
         assertEquals(result, expected);

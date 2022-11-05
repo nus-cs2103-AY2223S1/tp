@@ -3,6 +3,7 @@ package seedu.address.logic.commands.editcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -13,6 +14,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -27,7 +29,7 @@ public abstract class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+            + "by the index number used in the displayed person list.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + " LIST_TYPE "
@@ -35,6 +37,7 @@ public abstract class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_LOCATION + "LOCATION] "
             + "Example: " + COMMAND_WORD + " buyer" + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -81,6 +84,7 @@ public abstract class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Location location;
 
         public EditPersonDescriptor() {
         }
@@ -93,13 +97,14 @@ public abstract class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setLocation(toCopy.location);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, location);
         }
         public void setName(Name name) {
             this.name = name;
@@ -133,6 +138,14 @@ public abstract class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setLocation(Location location) {
+            this.location = location;
+        }
+
+        public Optional<Location> getLocation() {
+            return Optional.ofNullable(location);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -151,7 +164,8 @@ public abstract class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress());
+                    && getAddress().equals(e.getAddress())
+                    && getLocation().equals(e.getLocation());
         }
     }
 }

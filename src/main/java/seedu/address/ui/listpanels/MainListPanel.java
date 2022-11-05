@@ -9,12 +9,16 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
+import seedu.address.model.pet.Pet;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.displaycards.BuyerCard;
 import seedu.address.ui.displaycards.DelivererCard;
+import seedu.address.ui.displaycards.OrderCard;
+import seedu.address.ui.displaycards.PetCard;
 import seedu.address.ui.displaycards.SupplierCard;
 
 /**
@@ -23,7 +27,7 @@ import seedu.address.ui.displaycards.SupplierCard;
 public class MainListPanel extends UiPart<Region> {
     private static final String FXML = "MainListPanel.fxml";
 
-    private final Logger logger = LogsCenter.getLogger(DelivererListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(MainListPanel.class);
 
     @FXML
     private ListView<Object> mainListView;
@@ -68,14 +72,16 @@ public class MainListPanel extends UiPart<Region> {
                     Deliverer deliverer = (Deliverer) object;
                     setGraphic(new DelivererCard(deliverer, getIndex() + 1, logic).getRoot());
                 }
-                /* if (object instanceof Pet) {
-
+                if (object instanceof Pet) {
+                    Pet pet = (Pet) object;
+                    setGraphic(new PetCard(pet, getIndex() + 1, PetCard.SHOULD_DISPLAY_SUPPLIER_NAME)
+                            .getRoot());
                 }
                 if (object instanceof Order) {
                     Order order = (Order) object;
                     setGraphic(new OrderCard(order, getIndex() + 1, OrderCard.SHOULD_DISPLAY_BUYER_NAME)
                             .getRoot());
-                } */
+                }
 
             }
         }

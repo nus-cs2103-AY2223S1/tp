@@ -72,17 +72,9 @@ public class MatchCommand extends Command {
         };
 
         model.sortPet(comparator);
+        model.switchToPetList();
 
-        return new CommandResult(MESSAGE_SUCCESS,
-                false,
-                false,
-                true,
-                ListCommand.LIST_PET,
-                false,
-                null,
-                false,
-                null,
-                null);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override

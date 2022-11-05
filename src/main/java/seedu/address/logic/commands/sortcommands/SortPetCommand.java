@@ -35,6 +35,7 @@ public class SortPetCommand extends SortCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.sortPet(comparator);
+        model.switchToPetList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

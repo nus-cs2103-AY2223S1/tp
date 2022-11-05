@@ -79,33 +79,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Buyer> getFilteredBuyerList() {
-        return model.getFilteredBuyerList();
-    }
-
-    @Override
-    public ObservableList<Supplier> getFilteredSupplierList() {
-        return model.getFilteredSupplierList();
-    }
-
-    @Override
-    public ObservableList<Deliverer> getFilteredDelivererList() {
-        return model.getFilteredDelivererList();
-    }
-
-    @Override
-    public ObservableList<Pet> getFilteredPetList() {
-        return model.getFilteredPetList();
-    }
-
-    @Override
-    public ObservableList<Order> getFilteredOrderList() {
-        return model.getFilteredOrderList();
-    }
-
-    @Override
-    public ObservableList<Object> getFilteredMainList() {
-        return model.getFilteredMainList();
+    public ObservableList<Object> getFilteredCurrList() {
+        return model.getFilteredCurrList();
     }
 
     @Override
@@ -156,5 +131,15 @@ public class LogicManager implements Logic {
                         .anyMatch(pet::hasId))
                 .collect(Collectors.toList());
         return FXCollections.observableList(petsFromSupplier);
+    }
+
+    @Override
+    public void switchToBuyer() {
+        model.switchToBuyerList();
+    }
+
+    @Override
+    public void switchToSupplier() {
+        model.switchToSupplierList();
     }
 }

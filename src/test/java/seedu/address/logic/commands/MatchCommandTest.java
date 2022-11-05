@@ -62,16 +62,7 @@ public class MatchCommandTest {
     @Test
     public void execute() {
         MatchCommand command = new MatchCommand(INDEX_FIRST);
-        CommandResult commandResult = new CommandResult(MatchCommand.MESSAGE_SUCCESS,
-                false,
-                false,
-                true,
-                ListCommand.LIST_PET,
-                false,
-                null,
-                false,
-                null,
-                null);
+        CommandResult commandResult = new CommandResult(MatchCommand.MESSAGE_SUCCESS);
         assertCommandSuccess(command, model, commandResult, expectedModel);
     }
 

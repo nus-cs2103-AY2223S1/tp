@@ -78,7 +78,6 @@ public class FindCommand extends Command {
         model.updateFilteredBuyerList(buyerPredicate);
         model.updateFilteredDelivererList(delivererPredicate);
         model.updateFilteredSupplierList(supplierPredicate);
-
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredMainList().size()));
     }

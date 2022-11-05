@@ -83,6 +83,7 @@ public class AddBuyerCommand extends AddPersonCommand {
 
         toAdd.addOrders(orders.stream().map(Order::getId).collect(Collectors.toList()));
         model.addBuyer(toAdd);
+        model.switchToBuyerList();
 
         //TODO To keep a single MESSAGE_SUCCESS
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)

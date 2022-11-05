@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -153,9 +152,7 @@ public class FilterPetCommandTest {
 
     @Test
     public void generatePredicate_noMatchingKeywords_noPetsFound() {
-        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, 0),
-                false, false, true, ListCommand.LIST_PET, false,
-                null, false, null, null);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, 0));
 
         ColorContainsKeywordsPredicate<Pet> colorContainsKeywordsPredicate =
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("turquoise"));
@@ -197,9 +194,7 @@ public class FilterPetCommandTest {
 
     @Test
     public void generatePredicate_matchingPetName_onePetFound() {
-        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, 1),
-                false, false, true, ListCommand.LIST_PET, false,
-                null, false, null, null);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, 1));
 
         PetNameContainsKeywordsPredicate<Pet> petNameContainsKeywordsPredicate =
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("Doja"));
@@ -219,9 +214,7 @@ public class FilterPetCommandTest {
 
     @Test
     public void generatePredicate_matchingPrice_onePetFound() {
-        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, 1),
-                false, false, true, ListCommand.LIST_PET, false,
-                null, false, null, null);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, 1));
         PriceContainsKeywordsPredicate<Pet> priceContainsKeywordsPredicate =
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(600.00));
         Predicate<Pet> defaultPredicate = new Predicate<Pet>() {
@@ -240,9 +233,7 @@ public class FilterPetCommandTest {
 
     @Test
     public void generatePredicate_matchingSpecies_twoPetsFound() {
-        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, 2),
-                false, false, true, ListCommand.LIST_PET, false,
-                null, false, null, null);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, 2));
 
         SpeciesContainsKeywordsPredicate<Pet> speciesContainsKeywordsPredicate =
                 new SpeciesContainsKeywordsPredicate<>(Arrays.asList("cat"));
@@ -262,9 +253,7 @@ public class FilterPetCommandTest {
 
     @Test
     public void generatePredicate_matchingVaccinationStatus_onePetFound() {
-        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, 2),
-                false, false, true, ListCommand.LIST_PET, false,
-                null, false, null, null);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, 2));
 
         VaccinationStatusPredicate<Pet> vaccinationStatusPredicate = new VaccinationStatusPredicate<>(true);
         Predicate<Pet> defaultPredicate = new Predicate<Pet>() {

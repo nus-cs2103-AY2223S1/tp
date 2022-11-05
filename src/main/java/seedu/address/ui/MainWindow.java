@@ -2,8 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
@@ -17,23 +15,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CheckCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Order;
-import seedu.address.model.person.Buyer;
-import seedu.address.model.person.Supplier;
-import seedu.address.model.pet.Pet;
-import seedu.address.ui.listpanels.BuyerListPanel;
-import seedu.address.ui.listpanels.DelivererListPanel;
 import seedu.address.ui.listpanels.MainListPanel;
-import seedu.address.ui.listpanels.OrderListPanel;
-import seedu.address.ui.listpanels.PetListPanel;
-import seedu.address.ui.listpanels.SupplierListPanel;
 import seedu.address.ui.popupwindow.AddCommandPopupWindow;
 
 /**
@@ -50,13 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-
-    private MainListPanel mainListPanel;
-    private BuyerListPanel buyerListPanel;
-    private DelivererListPanel delivererListPanel;
-    private SupplierListPanel supplierListPanel;
-    private OrderListPanel orderListPanel;
-    private PetListPanel petListPanel;
+    private MainListPanel currListPanel;
 
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
@@ -141,16 +121,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // Initialise the list panels
-        buyerListPanel = new BuyerListPanel(logic.getFilteredBuyerList(), logic);
-        supplierListPanel = new SupplierListPanel(logic.getFilteredSupplierList(), logic);
-        delivererListPanel = new DelivererListPanel(logic.getFilteredDelivererList(), logic);
-        orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
-        petListPanel = new PetListPanel(logic.getFilteredPetList());
-        mainListPanel = new MainListPanel(logic.getFilteredMainList(), logic);
-
         // Set the display window
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
+        refresh();
 
         // Initialise the remaining components in the main window
         resultDisplay = new ResultDisplay();
@@ -216,83 +188,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Displays all contacts in the app.
+     * Refreshes the current list.
      */
-    public void showAll() {
+    public void refresh() {
+        currListPanel = new MainListPanel(logic.getFilteredCurrList(), logic);
         personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
-    }
-
-    /**
-     * Displays all buyers in the app.
-     */
-    public void showBuyer() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(buyerListPanel.getRoot());
-    }
-
-    /**
-     * Displays all suppliers in the app.
-     */
-    public void showSupplier() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(supplierListPanel.getRoot());
-    }
-
-    /**
-     * Displays all deliverers in the app.
-     */
-    public void showDeliverer() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(delivererListPanel.getRoot());
-    }
-
-    /**
-     * Displays all pets in the app.
-     */
-    public void showPet() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(petListPanel.getRoot());
-    }
-
-    /**
-     * Displays all orders in the app.
-     */
-    public void showOrder() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
-    }
-
-    /**
-     * Handles the window display behaviour for list command.
-     */
-    public void handleList(String listType) {
-        listType = listType.trim().toUpperCase();
-        switch (listType) {
-        case ListCommand.LIST_BUYER:
-            showBuyer();
-            break;
-        case ListCommand.LIST_SUPPLIER:
-            showSupplier();
-            break;
-        case ListCommand.LIST_DELIVERER:
-            showDeliverer();
-            break;
-        case ListCommand.LIST_ORDER:
-            showOrder();
-            break;
-        case ListCommand.LIST_PET:
-            showPet();
-            break;
-        case ListCommand.LIST_ALL:
-            showAll();
-            break;
-        case ListCommand.LIST_EMPTY:
-            show();
-            break;
-        default:
-            //Do nothing.
-        }
+        personListPanelPlaceholder.getChildren().add(currListPanel.getRoot());
     }
 
     /**
@@ -301,52 +202,10 @@ public class MainWindow extends UiPart<Stage> {
      * @param addType Typo of person to be added.
      */
     public void handleAddByPopup(String addType) {
-        addCommandPopupWindow = new AddCommandPopupWindow(logic, addType, resultDisplay);
+        addCommandPopupWindow = new AddCommandPopupWindow(logic, addType, resultDisplay, currListPanel,
+                personListPanelPlaceholder);
         addCommandPopupWindow.show();
         addCommandPopupWindow.fillContentPlaceholder(addType);
-    }
-
-    /**
-     * Handles the display for CheckCommand.
-     * @param index The index of the item needs to be checked.
-     */
-    public void handleCheck(String checkType, int index) {
-        checkType = checkType.trim().toUpperCase();
-        switch (checkType) {
-        case CheckCommand.CHECK_BUYER:
-            Buyer buyer = logic.getFilteredBuyerList().get(index);
-            ObservableList<Order> buyerOrderList = logic.getOrderAsObservableListFromBuyer(buyer);
-            OrderListPanel newOrderList = new OrderListPanel(buyerOrderList);
-            personListPanelPlaceholder.getChildren().clear();
-            personListPanelPlaceholder.getChildren().add(newOrderList.getRoot());
-            break;
-        case CheckCommand.CHECK_SUPPLIER:
-            Supplier supplier = logic.getFilteredSupplierList().get(index);
-            ObservableList<Pet> supplierPetList = logic.getPetAsObservableListFromSupplier(supplier);
-            PetListPanel newPetList = new PetListPanel(supplierPetList);
-            personListPanelPlaceholder.getChildren().clear();
-            personListPanelPlaceholder.getChildren().add(newPetList.getRoot());
-            break;
-        case CheckCommand.CHECK_ORDER:
-            Order order = logic.getFilteredOrderList().get(index);
-            Buyer buyerOfOrder = order.getBuyer();
-            ObservableList<Buyer> buyerAsList = FXCollections.singletonObservableList(buyerOfOrder);
-            BuyerListPanel tempBuyerPanel = new BuyerListPanel(buyerAsList, logic);
-            personListPanelPlaceholder.getChildren().clear();
-            personListPanelPlaceholder.getChildren().add(tempBuyerPanel.getRoot());
-            break;
-        case CheckCommand.CHECK_PET:
-            Pet pet = logic.getFilteredPetList().get(index);
-            Supplier supplierOfPet = pet.getSupplier();
-            ObservableList<Supplier> supplierAsList = FXCollections.singletonObservableList(supplierOfPet);
-            SupplierListPanel tempSupplierPanel = new SupplierListPanel(supplierAsList, logic);
-            personListPanelPlaceholder.getChildren().clear();
-            personListPanelPlaceholder.getChildren().add(tempSupplierPanel.getRoot());
-            break;
-        default:
-            //Do nothing
-        }
-
     }
 
     /**
@@ -357,6 +216,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            refresh();
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -368,16 +228,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isList()) {
-                handleList(commandResult.getListType());
-            }
-
             if (commandResult.isAddedByPopup()) {
                 handleAddByPopup(commandResult.getAddType());
-            }
-            if (commandResult.isCheck()) {
-                Index index = commandResult.getIndex();
-                handleCheck(commandResult.getCheckType(), index.getZeroBased());
             }
 
             return commandResult;

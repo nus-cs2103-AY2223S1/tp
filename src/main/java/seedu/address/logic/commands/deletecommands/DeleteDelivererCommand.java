@@ -43,14 +43,17 @@ public class DeleteDelivererCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Deliverer> lastShownList = model.getFilteredDelivererList();
-
+        ObservableList<Object> lastShownList = model.getFilteredCurrList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        Object o = lastShownList.get(targetIndex.getZeroBased());
+        if (!(o instanceof Deliverer)) {
+            throw new CommandException(String.format(Messages.INVALID_DELIVERER, targetIndex.getOneBased()));
+        }
 
-        Deliverer personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Deliverer personToDelete = (Deliverer) o;
 
         model.deleteDeliverer(personToDelete);
 
@@ -59,7 +62,7 @@ public class DeleteDelivererCommand extends DeleteCommand {
         for (Order order: ordersFromDeliverer) {
             model.deleteOrder(order);
         }
-
+        model.switchToDelivererList();
         return new CommandResult(String.format(MESSAGE_DELETE_DELIVERER_SUCCESS, personToDelete));
     }
 

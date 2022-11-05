@@ -43,14 +43,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Buyer> getFilteredBuyerList();
-    ObservableList<Supplier> getFilteredSupplierList();
-    ObservableList<Deliverer> getFilteredDelivererList();
-    ObservableList<Pet> getFilteredPetList();
-    ObservableList<Order> getFilteredOrderList();
-
-    ObservableList<Object> getFilteredMainList();
+    /** Returns an unmodifiable view of the filtered list of objects */
+    ObservableList<Object> getFilteredCurrList();
 
     /**
      * Returns the user prefs' address book file path.
@@ -82,4 +76,14 @@ public interface Logic {
      * @return An {@code ObservableList} instance containing all the supplier's pets.
      */
     ObservableList<Pet> getPetAsObservableListFromSupplier(Supplier supplier);
+
+    /**
+     * Switches to buyer list.
+     */
+    void switchToBuyer();
+
+    /**
+     * Switches to supplier list.
+     */
+    void switchToSupplier();
 }

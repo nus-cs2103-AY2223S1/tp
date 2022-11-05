@@ -60,6 +60,7 @@ public class AddDelivererCommand extends AddPersonCommand {
         }
 
         model.addDeliverer(toAdd);
+        model.switchToDelivererList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
