@@ -152,7 +152,35 @@ Classes used by multiple components are in the `tracko.commons` package.
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented. 
+
+### Inventory Management
+
+Inventory management is one of two core features of TrackO alongside order management. These two features work together
+to form the backbone of the application, allowing for efficient and reliable tracking of order and inventory data.
+
+#### Overview
+
+As per the Model diagram given [above](#model-component), the application keeps track of one `InventoryList`
+at any point in time. This `InventoryList` instance represents the container that keeps track of all inventory item 
+data in the system.
+
+Currently, the application features 5 main operations that interact directly with the `InventoryList`. They are 
+represented by the following commands:
+* [`AddItemCommand`](#add-item-feature) - creates a new item to be added to the `InventoryList`
+* [`FindItemCommand`](#find-item-feature) - filters and display matching items from the `InventoryList` based on 
+provided keywords
+* [`ListItemCommand`](#list-items-feature) - display all inventory data from the `InventoryList`
+* [`EditItemCommand`](#edit-item-feature) - edit the data of an item from the `InventoryList`
+* [`DeleteItemCommand`](#delete-item-feature) - deletes an existing item from the `InventoryList`
+
+The inventory management feature is supported by the `InventoryItem` class, represented by the class diagram below.
+![InventoryItemClassDiagram](images/developer-guide/InventoryItemClassDiagram.png)
+
+The `InventoryItem` class encapsulates item-related data packaged in the following classes/attributes:
+* `ItemName`, `Description`, `SellPrice`, `CostPrice` - inventory data related to the `InventoryItem`
+* `Quantity` - quantity of an item currently in the inventory
+* `Tag` - 30-character long tag to help classify items in the inventory
 
 ### Add Item feature
 
@@ -365,7 +393,7 @@ to form the backbone of the application, allowing for efficient and reliable tra
 
 #### Overview
 
-As per the Model diagram given [above]()(**_Ensure diagram consistency here_**), the application keeps track of one `OrderList`
+As per the Model diagram given [above](#model-component), the application keeps track of one `OrderList`
 at any point in time. This `OrderList` instance represents the container that keeps track of all order data in the system.
 
 Currently, the application features 5 main operations that interact directly with the `OrderList`. They are represented by

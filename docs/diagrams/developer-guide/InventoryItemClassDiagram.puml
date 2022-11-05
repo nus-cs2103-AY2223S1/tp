@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor ITEM_MODEL_COLOR_T4
+skinparam classBackgroundColor ITEM_MODEL_COLOR_T3
+
+Class InventoryItem {}
+
+Class ItemName
+Class Quantity
+Class "<<interface>>\nItem" as Item
+Class InventoryItem implements Item
+Class Quantity
+Class Description
+Class SellPrice
+Class CostPrice
+Class Tag
+
+InventoryItem *--left> "1" ItemName: identified by >
+InventoryItem *---> "1" Quantity: of amount >
+InventoryItem *---> "1" Description: described by >
+InventoryItem *--right> "1" SellPrice: sells for >
+InventoryItem *---> "1" CostPrice: costs >
+InventoryItem *---> "*" Tag : consists of >
+
+@enduml
