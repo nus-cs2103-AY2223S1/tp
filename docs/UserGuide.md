@@ -5,7 +5,7 @@ title: User Guide
 
 Teacher’s Address Book (TAB) is a **desktop app made for teachers for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAB can get your contact management tasks done faster than traditional GUI apps.
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,15 +23,15 @@ Teacher’s Address Book (TAB) is a **desktop app made for teachers for managing
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com pos/Student a/John street, block 123, #01-01 t/CS2103T-T17` : Adds a contact named `John Doe` to TAB.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com pos/Student a/John street, block 123, #01-01 t/CS2103T-T17` : Adds a contact named `John Doe` to TAB.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+    * **`clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -173,7 +173,7 @@ Format: `assignments assignments/ ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNM
 * The weightage of the assignments must add up to 100%. The command will fail otherwise.
 * At most 10 assignments can be added.
 
-Examples: 
+Examples:
 * `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/30, Finals w/40` adds Assignment 1: 15% weightage, Assignment 2: 15% weightage, Midterms: 30% weightage, and Finals: 40% weightage to all students in the TAB.
 * `assignments assignments/ Assignment 1 w/20 Finals w/15` will fail as the weightage does not add up to 100%.
 
@@ -265,18 +265,6 @@ Clears all entries from the TAB.
 
 Format: `clear`
 
-### Saving the data
-
-TAB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-TAB data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TAB will discard all data and start with an empty data file at the next run.
-</div>
-
 ### Creating new TAB : `new`
 
 Creates a new TAB and automatically swaps to the newly created data file.
@@ -309,6 +297,17 @@ Renames the current data file as the `NEW_NAME`
 Example:
 * `rename {CS2103T}` renames the current data file as `CS2103T.json`
 
+### Saving the data
+
+TAB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+TAB data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, TAB will discard all data and start with an empty data file at the next run.
+</div>
 
 ### Exiting the program : `exit`
 
@@ -331,6 +330,58 @@ This can also be done by clicking File - Exit.
 **A**: The new TAB's name appears at the bottom left corner.
 
 ![FAQ_Identify_New_Book](images/FAQ_Identify_New_Book.png)
+
+**Q**: How do I properly delete a TAB once I created it?<br>
+**A**: To delete a created TAB here are the steps to follow:<br>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If there is only one TAB, do not follow the steps below! Use the `clear` command instead!
+</div>
+
+- Step 1:
+    - From the `data` directory, delete the `.json` file you like to remove
+- Step 2:
+    - From the `preferences.json`, delete the **same** `.json` file from the `allAddressBookFilePath` parameter.
+
+**Case By Case Basis:**
+- Step 3: (**Only if** `"addressBookFilePath"` has the same name as the TAB you want to delete)
+    - If the `.json` file is also `addressBookFilePath`, swap it for the first TAB under `allAddressBookFilePath`
+      and set `addressBookIndex` to 0
+
+<div markdown="span" class="alert alert-success">:information_source: **Example:**<br>
+
+Here I would like to delete a TAB named `addressbook`<br>
+
+Step 1:<br>
+Go into `data` folder and delete `addressbook.json`<br>
+&emsp; Before:<br>
+&emsp;![delete_step_1a.png](images/delete_step_1a.png)<br><br>
+&emsp;After:<br>
+&emsp;![delete_step_1b.png](images/delete_step_1b.png)<br><br>
+
+Step 2:<br>
+- Open `preferences.json`<br>
+- Remove `, "data\\addressbook.json"` from `"allAddressBookFilePath"`<br>
+  &emsp;Before:
+  &emsp;![delete_step_2a.png](images/delete_step_2a.png)<br><br>
+  &emsp;After:
+  &emsp;![delete_step_2b.png](images/delete_step_2b.png)<br>
+  **Save the file and you are done!**<br><br>
+
+**Case By Case Basis:**<br>
+Step 3: (if `"addressBookFilePath"` has the same name as the TAB you want to delete):<br>
+- Remove both `addressbook.json`<br>
+  &emsp;Before:
+  &emsp;![delete_step_3a.png](images/delete_step_3a.png)<br><br>
+  &emsp;After:
+  &emsp;![delete_step_3b.png](images/delete_step_3b.png)<br><br>
+- Copy the first TAB name from `"allAddressBookFilePath"`, paste into `"addressBookFilePath"` and change `"addressBookIndex"` to 0.<br>
+  &emsp;It should look something like this. (Note the changes in green)
+  &emsp;![delete_step_3c.png](images/delete_step_3c.png)<br><br>
+  **Save the file and you are done!**<br>
+
+</div>
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
