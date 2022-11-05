@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.predicates.HiddenPredicateSingleton;
@@ -42,16 +41,14 @@ public class UnhidePatientsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Predicate<Person> combinedPredicate = HiddenPredicateSingleton.combineWithUnhiddenPredicate(predicate);
+        Predicate<Person> combinedPredicate = HiddenPredicateSingleton.getInstance()
+                .combineWithUnhiddenPredicate(predicate);
         model.updateFilteredPersonList(combinedPredicate);
         List<Person> validPersons = model.getFilteredPersonList();
         AppointmentOfFilteredPersonsPredicate appointmentPredicate =
                 new AppointmentOfFilteredPersonsPredicate(validPersons);
 
-        Predicate<Appointment> combinedApptPredicate =
-                HiddenPredicateSingleton.combineWithRegularApptPredicate(appointmentPredicate);
-
-        model.updateFilteredAppointmentList(combinedApptPredicate);
+        model.updateFilteredAppointmentList(appointmentPredicate);
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESULTS_LISTED_OVERVIEW,

@@ -21,7 +21,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
         if (keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsIgnoreCase(person.getName().fullName, keyword))) {
-            HiddenPredicateSingleton.addToHiddenPersonList(person);
+            HiddenPredicateSingleton.getInstance().addToHiddenPersonList(person);
             return true;
         }
         return false;

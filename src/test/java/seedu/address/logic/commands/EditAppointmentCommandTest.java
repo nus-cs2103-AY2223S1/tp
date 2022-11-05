@@ -68,7 +68,7 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        HiddenPredicateSingleton.clearHiddenAll();
+        HiddenPredicateSingleton.getInstance().clearHiddenAll();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT,
                 new EditAppointmentDescriptor());
         Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());

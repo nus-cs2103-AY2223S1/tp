@@ -213,9 +213,10 @@ We ultimately went with Alternative 1 since we do not expect `list` to take in m
 
 #### Implementation
 The implemented cancel feature allows users to cancel a patient's appointment based on its index in the appointment list. <br>
-It is implemented similar to other idENTify commands and it extends `SelectAppointmentCommand`, an abstract class which encapsulates <br>
-operations which require selecting appointments from an appointment list. The logical flow of using this command is shown in the
-activity diagram given below.
+It is implemented similar to other idENTify commands and it extends `SelectAppointmentCommand`, an abstract class which encapsulates
+operations which require selecting appointments from an appointment list.
+
+The logical flow of using this command is shown in the activity diagram given below.
 
 ![Activity Diagram](images/CancelActivityDiagram.png)
 
@@ -223,8 +224,10 @@ The `AddressBookParser` will first check for the `cancel` command word. The canc
 is facilitated by the `CancelCommandParser` and `CancelCommand` classes. The `CancelCommandParser`
 parses the user input and obtains the index inputted by the user, before creating the cancel command to
 execute the deletion of the appointment from the current appointment list.
+
 Given below is an overview of how the cancel command executes the deletion of an appointment to delete the
 first appointment (index 1) in the appointment list:
+
 ![Cancel Command](images/CancelSequenceDiagram.png)
 
 #### Design considerations:
@@ -274,6 +277,10 @@ The activity diagram below will illustrate a hide patient process. A similar pro
 **Aspect: How hide patient/appointment executes:**
 
 * **Current choice:** Making use of a singleton class to capture the state of the patient/appointment list at all times.
+* A singleton pattern is used here, because we only should have a single instance of HiddenPredicate to act as a global
+variable that holds the state of the current list shown to the user. If more than one object is created by mistake,
+there is a risk that our organisational commands no longer work correctly, as the same global predicate must be shared
+among all organisational commands such as find/group/hide/unhide.
 
 **Aspect: Whether hide should hide by any match or all match**
 * **Current choice:** Making hide any match, meaning patients/appts that match any of the keywords will be hidden.
@@ -439,7 +446,7 @@ Scenario 6: User tries to book an appointment with the same time as other appoin
 
 <img src="images/BookCommandObjectDiagram.png" width="450" />
 
-This object diagram illustrates the above scenario. As the specified person has already booked an appointmnet in `Dec 10 2022 12:00`, the newly created `Appointment` object will not be associated with the person. The `BookCommand` will throw a `CommandException`, which will feedback to the user that he tried to book an appointment at the same time as the other appointments.
+This object diagram illustrates the above scenario. As the specified person has already booked an appointment in `Dec 10 2022 12:00`, the newly created `Appointment` object will not be associated with the person. The `BookCommand` will throw a `CommandException`, which will feedback to the user that he tried to book an appointment at the same time as the other appointments.
 
 The following sequence diagram helps to provide a clearer picture to how the book operation works:
 
@@ -491,7 +498,7 @@ If any of the prefixes contain invalid values or no prefix values were provided,
 
 * **Alternative 2:** Edit the existing `Appointment` object itself.
   * Pros: Only have to edit the required fields.
-  * Cons: Editing the existing object may not reflect the changes in the Appointment listview as compared to setting a new object, hence requiring more Observable fields.
+  * Cons: Editing the existing object does not reflect the changes in the Appointment listview as compared to setting a new object, hence requiring more Observable fields.
 
 ### Mark/Unmark Feature
 
@@ -588,7 +595,7 @@ and store the relevant search terms into each predicate. Combine those search te
 
 **Target User Profile:**
 * Tech savvy admin staff in Ear, Nose, Throat (ENT) department
-* Has a need to manage a significant number of contacts
+* Has a need to manage a significant number of patients/appointments
 * Prefer desktop apps over other types
 * Can type fast
 * Prefer typing to mouse interactions
@@ -633,7 +640,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `idENTify` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use Case: UC01 - Show a list of all patients**
 
@@ -644,12 +651,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all patients.
 2. idENTify shows a list of all patients.
 
-
     Use case ends.
 
 **Extensions**
 - 2a. The list is empty.
-
 
      Use case ends.
 
@@ -661,14 +666,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all appointments.
 2. idENTify shows a list of all appointments.
 
-
      Use case ends.
-
-
 
 **Extensions**
 - 2a. The list is empty.
-
 
     Use case ends.
 
@@ -681,9 +682,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User adds the patient by entering the command and the patient details.
 2. idENTify adds the patient.
 
-
      Use case ends.
-
 
 **Extensions**
 
@@ -818,8 +817,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1.  User gets the <ins>list of appointments(UC02)<ins>.
-2.  User requests to mark a specified appointment for a specified patient.
-3.  idENTify marks the selected appointment.
+2.  User requests to unmark a specified appointment for a specified patient.
+3.  idENTify unmarks the selected appointment.
 
 
     Use case ends.
@@ -884,7 +883,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User gets the <ins>list of patients(UC01)<ins>.
 2.  idENTify displays the patient list sorted by their names.
 
-
     Use case ends.
 
 **Extensions**
@@ -893,9 +891,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. idENTify compares their other information.
     - 2a2. idENTify sort them by their other information.
     - 2a3. idENTify displays the sorted patient list.
-
-
-    Use case ends.
+   
+      Use case ends.
 
 **Use Case: UC14 - sort the appointment list**
 
@@ -904,7 +901,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1.  User gets the <ins>list of appointments(UC02)<ins>.
 2.  idENTify displays the appointment list sorted by their datetime.
-
 
     Use case ends.
 
@@ -915,8 +911,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a2. idENTify sort them by their patient information.
     - 2a3. idENTify displays the sorted appointment list.
 
-
-    Use case ends.
+      Use case ends.
 
 **Use Case: UC15 - group patients**
 
@@ -925,7 +920,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to group patients.
 2. idENTify displays the patient list grouped by their tags.
-
 
     Use case ends.
 
@@ -936,8 +930,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a2. idENTify sort them by their other information.
     - 2a3. idENTify displays the sorted patient list.
 
-
-    Use case ends.
+      Use case ends.
 
 **Use Case: UC16 - group appointments**
 
@@ -946,7 +939,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to group appointments with some criterion.
 2. idENTify displays the appointment list grouped according to the specified criterion.
-
 
     Use case ends.
 
@@ -965,8 +957,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a2. idENTify sort them by their other information.
     - 2a3. idENTify displays the sorted appointment list.
 
-
-    Use case ends.
+      Use case ends.
 
 **Use Case: UC17 - ungroup patients**
 
@@ -975,7 +966,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to ungroup patients.
 2. idENTify displays the patient list <ins>sorted by default(UC13)<ins>.
-
 
     Use case ends.
 
@@ -988,7 +978,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to ungroup appointments.
 2. idENTify displays the appointment list <ins>sorted by default(UC14)<ins>.
 
-
     Use case ends.
 
 
@@ -999,7 +988,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to hide patients with specified conditions.
 2. idENTify displays the patient list without hidden patients.
-
 
     Use case ends.
 
@@ -1020,8 +1008,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to hide appointments with specified conditions.
 2. idENTify displays the appointment list without hidden appointments.
 
-
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -1040,8 +1027,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to unhide patients.
 2. idENTify displays the <ins>whole patient list (UC01)<ins>.
 
-
-    Use case ends.
+   Use case ends.
 
 
 **Use Case: UC22 - unhide appointments**
@@ -1051,7 +1037,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to unhide appointments.
 2. idENTify displays the <ins>whole appointment list (UC02)<ins>.
-
 
     Use case ends.
 
@@ -1064,7 +1049,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to clear all entries of current patient and appointment lists.
 2. idENTify displays an empty patient list and an empty appointment list.
 
-
     Use case ends.
 
 **Use Case: UC24 - show help page**
@@ -1075,24 +1059,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to ask for help about how to use the app.
 2. idENTify shows a page including some information to help users.
 
-
     Use case ends.
 
-**Use Case: UC24 - show command history**
+**Use Case: UC25 - show command history**
 
 **MSS**
-1. User enters command to view previous commands.
+1. User enters key to view previous commands.
 2. idENTify shows previous commands to users.
-
 
     Use case ends.
 
-**Use Case: UC25 - exit the app**
+**Use Case: UC26 - exit the app**
 
 **MSS**
 1. User enters command to exit.
 2. idENTify saves current data and exits.
-
 
     Use case ends.
 
