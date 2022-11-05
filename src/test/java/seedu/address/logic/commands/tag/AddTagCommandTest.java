@@ -83,8 +83,6 @@ public class AddTagCommandTest {
         editPersonDescriptor.setTags(tagSet);
         editTaskDescriptor.setTags(tagSet);
         tagList.add(validTag.getName());
-        Model expected = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expected.addTag(validTag);
         AddTagCommand addTag = new AddTagCommand(contactIndex, taskIndex,
                 editPersonDescriptor, editTaskDescriptor, addTagToContact, addTagToTask, tagList);
 
@@ -101,8 +99,6 @@ public class AddTagCommandTest {
         editPersonDescriptor.setTags(tagSet);
         editTaskDescriptor.setTags(tagSet);
         tagList.add(validTag.getName());
-        Model expected = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expected.addTag(validTag);
         Index taskWithDuplicateTag = Index.fromZeroBased(1);
 
         assertThrows(CommandException.class,
