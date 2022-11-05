@@ -17,8 +17,8 @@ public class DateTime implements Comparable<DateTime> {
     public static final String DATE_PATTERN = "d-M-yy";
     public static final String TIME_PATTERN = "h:mm a";
     public static final String MESSAGE_CONSTRAINTS = "Date and time should be in the format of: "
-            + DATE_TIME_PATTERN + " i.e 16-10-22 1015\n" + "or just date should be in the format of: "
-            + DATE_PATTERN + " i.e 20-10-22";
+            + "dd-MM-yy HHmm" + " i.e 16-10-22 1015\n" + "or just date should be in the format of: "
+            + "dd-MM-yy" + " i.e 20-10-22";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(TIME_PATTERN);
