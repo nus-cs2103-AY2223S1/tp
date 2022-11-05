@@ -301,7 +301,10 @@ Refer to [this section](#notes-about-frequently-used-command-parameters) for mor
 
 Examples:
 * `find n/John` returns all tutors with names that contains `John`.
-* `find n/alex david` returns all tutors with names that contain `Alex` or `David`.
+* `find n/alex david` returns all tutors with names that contain `Alex` or `David`, as shown below:
+
+![find](images/user-guide/find.png)
+
 * `find p/98765432 99999999` returns the tutors with phone number `98765432` or `99999999`.
 * `find e/e1234567 e7654321` returns the tutors with email `e1234567@u.nus.edu` or `e7654321@u.nus.edu`.
 * `find m/cs2100 cs2105` returns the tutors teaching module `cs2100` or `cs2105`.
@@ -309,7 +312,9 @@ Examples:
 * `find s/A0123456X A0123456Y` returns the tutors with student id `A0123456X` or `A0123456Y`.
 * `find tn/3` returns all tutors that have `3` teaching nominations.
 * `find r/4.0` returns all tutors that have rating of `4.0`.
-* `find t/senior` returns all tutors that have tag of `senior`.
+* `find t/senior` returns all tutors that have a tag containing `senior`, as shown below:
+
+![findTag](images/user-guide/find-tag.png)
 
 ### Contacting tutors via email: `mail`
 
