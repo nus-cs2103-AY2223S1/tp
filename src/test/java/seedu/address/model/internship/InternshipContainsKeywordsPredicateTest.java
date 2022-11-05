@@ -58,7 +58,7 @@ public class InternshipContainsKeywordsPredicateTest {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new InternshipBuilder().withCompanyName("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new InternshipContainsKeywordsPredicate(
@@ -66,7 +66,7 @@ public class InternshipContainsKeywordsPredicateTest {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new InternshipBuilder().withCompanyName("Alice Bob").build()));
 
         // Only one matching keyword
         predicate = new InternshipContainsKeywordsPredicate(
@@ -74,7 +74,7 @@ public class InternshipContainsKeywordsPredicateTest {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Carol").build()));
+        assertTrue(predicate.test(new InternshipBuilder().withCompanyName("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new InternshipContainsKeywordsPredicate(
@@ -82,7 +82,7 @@ public class InternshipContainsKeywordsPredicateTest {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new InternshipBuilder().withCompanyName("Alice Bob").build()));
     }
 
     @Test
@@ -93,7 +93,7 @@ public class InternshipContainsKeywordsPredicateTest {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice").build()));
+        assertTrue(predicate.test(new InternshipBuilder().withCompanyName("Alice").build()));
 
         // Non-matching keyword
         predicate = new InternshipContainsKeywordsPredicate(
@@ -101,7 +101,7 @@ public class InternshipContainsKeywordsPredicateTest {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());
-        assertFalse(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new InternshipBuilder().withCompanyName("Alice Bob").build()));
 
         // Keywords match role and status, but does not match name
         predicate = new InternshipContainsKeywordsPredicate(
@@ -109,7 +109,7 @@ public class InternshipContainsKeywordsPredicateTest {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());
-        assertFalse(predicate.test(new InternshipBuilder().withName("Alice").withRole("Cleaner")
+        assertFalse(predicate.test(new InternshipBuilder().withCompanyName("Alice").withRole("Cleaner")
                 .withStatus("ACCEPTED").build()));
     }
 }

@@ -43,7 +43,7 @@ public class LinkCommandTest {
     @Test
     public void execute_linkLinkedPersonAndInternship_throwCommandException() {
         model.addPerson(new PersonBuilder().withPersonId(0).withInternshipId(1).build()); //amy linked to ABCltd
-        model.addInternship(new InternshipBuilder().withName("Google").withInternshipId(0).build()); //google
+        model.addInternship(new InternshipBuilder().withCompanyName("Google").withInternshipId(0).build()); //google
         model.addInternship(new InternshipBuilder().withInternshipId(1).withPersonId(0).build()); //ABCltd linked to amy
 
         //attempt to link amy with google

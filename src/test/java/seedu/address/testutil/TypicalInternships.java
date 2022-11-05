@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_ABC;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_INTERVIEW_ABC;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_INTERVIEW_BOBBY;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_NAME_ABC;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_NAME_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_ROLE_ABC;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_ROLE_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_STATUS_ABC;
@@ -23,63 +23,63 @@ public class TypicalInternships {
 
     public static final Internship ALICE = new InternshipBuilder()
             .withInternshipId(0)
-            .withName("Alice Pte Ltd")
+            .withCompanyName("Alice Pte Ltd")
             .withRole("Cleaner")
             .withStatus("PENDING")
             .withInterviewDate("2021-10-10 10:10")
             .build();
     public static final Internship BENSON = new InternshipBuilder()
             .withInternshipId(1)
-            .withName("Benson Electronics Pte Ltd")
+            .withCompanyName("Benson Electronics Pte Ltd")
             .withRole("Sales Admin Assistant")
             .withStatus("ACCEPTED")
             .withInterviewDate("2021-10-11 10:10")
             .build();
     public static final Internship CARL = new InternshipBuilder()
             .withInternshipId(2)
-            .withName("Carl Automobiles Pte Ltd")
+            .withCompanyName("Carl Automobiles Pte Ltd")
             .withRole("Cashier")
             .withStatus("PENDING")
             .withInterviewDate("2021-11-10 12:10")
             .build();
     public static final Internship DANIEL = new InternshipBuilder()
             .withInternshipId(3)
-            .withName("Daniel Consultancy Pte Ltd")
+            .withCompanyName("Daniel Consultancy Pte Ltd")
             .withRole("Receptionist")
             .withStatus("ACCEPTED")
             .withInterviewDate("2021-12-22 13:40")
             .build();
     public static final Internship ELLE = new InternshipBuilder()
             .withInternshipId(4)
-            .withName("Elle Massage Pte Ltd")
+            .withCompanyName("Elle Massage Pte Ltd")
             .withRole("Data Analyst")
             .withStatus("COMPLETED")
             .withInterviewDate("2021-02-08 15:30")
             .build();
     public static final Internship FIONA = new InternshipBuilder()
             .withInternshipId(5)
-            .withName("Fiona Constructions Pte Ltd")
+            .withCompanyName("Fiona Constructions Pte Ltd")
             .withRole("Architecture Designer")
-            .withStatus("PENDING")
+            .withStatus("BOOKMARKED")
             .withInterviewDate("2021-12-22 11:10")
             .build();
     public static final Internship GEORGE = new InternshipBuilder()
             .withInternshipId(6)
-            .withName("George Consultancy Pte Ltd")
+            .withCompanyName("George Consultancy Pte Ltd")
             .withRole("Cleaner")
             .withStatus("REJECTED")
             .withInterviewDate("2021-05-25 08:10")
             .build();
     public static final Internship HOON = new InternshipBuilder()
             .withInternshipId(7)
-            .withName("Hoon Logistics Pte Ltd")
+            .withCompanyName("Hoon Logistics Pte Ltd")
             .withRole("Deliveryman")
             .withStatus("REJECTED")
             .withInterviewDate("2021-12-04 14:22")
             .build();
     public static final Internship IDA = new InternshipBuilder()
             .withInternshipId(8)
-            .withName("Ida Ideas Pte Ltd")
+            .withCompanyName("Ida Ideas Pte Ltd")
             .withRole("Planning Assistant")
             .withStatus("ACCEPTED")
             .withInterviewDate("2022-03-05 14:48")
@@ -87,12 +87,14 @@ public class TypicalInternships {
 
     // Manually added - Internship's details found in {@code InternshipCommandTestUtil}
     public static final Internship ABC = new InternshipBuilder()
-            .withName(VALID_NAME_ABC).withRole(VALID_ROLE_ABC)
+            .withCompanyName(VALID_COMPANY_NAME_ABC)
+            .withRole(VALID_ROLE_ABC)
             .withStatus(VALID_STATUS_ABC)
             .withInterviewDate(VALID_INTERVIEW_ABC)
             .build();
     public static final Internship BOBBY = new InternshipBuilder()
-            .withName(VALID_NAME_BOBBY).withRole(VALID_ROLE_BOBBY)
+            .withCompanyName(VALID_COMPANY_NAME_BOBBY)
+            .withRole(VALID_ROLE_BOBBY)
             .withStatus(VALID_STATUS_BOBBY)
             .withInterviewDate(VALID_INTERVIEW_BOBBY)
             .build();
