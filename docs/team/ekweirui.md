@@ -55,7 +55,7 @@ Given below are my contributions to the project.
           ([#92](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/92)).
 
 
-* **Highlights and minor features**
+* **Highlights and minor features:**
     * Spearheaded discussions and laid foundation down for the module-person association and all of its related commands
       ([some discussions found here](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/79)).
     * Led discussions related to UI display issues after execution of commands and implemented the final behaviour
@@ -77,7 +77,7 @@ Given below are my contributions to the project.
         * Added documentation for the contacts-related section and the `delete-person` command
           ([#88](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/88)).
         * Added documentation for the person-module association and the `add-person-to-module` command
-          ([#190](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/190))
+          ([#190](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/190)).
         * Added user stories and use cases related to contacts.
 
 
@@ -93,11 +93,11 @@ Given below are my contributions to the project.
 
 * **Team based tasks**:
     * Necessary general code enhancements:
-        * Refactoring of `contact` related commands to `person` after feedback from teammates
+        * Refactored `contact` related commands to `person` after feedback from teammates
           ([#86](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/86))
     * Maintaining the issue tracker:
-        * Created and assigned the majority of labels and milestones
-        * Resolved issues after a relevant PR has been merged
+        * Created and assigned the majority of labels and milestones.
+        * Resolved issues after a relevant PR has been merged.
 
 
 * **Community**:
