@@ -38,7 +38,7 @@ If you are looking to help develop this project, take a look at our [Developer G
     * [Listing all orders: `listo`](#listing-all-orders-listo)
     * [Finding order(s): `findo`](#finding-orders-findo)
     * [Sorting orders by time created: `sorto`](#sorting-orders-by-time-created-sorto)
-    * [Deleting an order: `deleto`](#deleting-an-order-deleteo)
+    * [Deleting an order: `deleteo`](#deleting-an-order-deleteo)
     * [Editing an order: `edito`](#editing-an-order-edito)
     * [Marking an order as paid/delivered: `marko`](#marking-an-order-as-paiddelivered-marko)
   * [**General features**](#general-features)
