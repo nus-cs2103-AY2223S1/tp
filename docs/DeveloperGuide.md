@@ -386,8 +386,15 @@ The following activity diagram summarizes what happens when a user executes a ed
 --------------------------------------------------------------------------------------------------------------------
 ## **Future iterations**
 
+For future iterations we plan to implement 2 new features.
 
+1. Sending of email to the applicants.
+This will help applicant be notified of their result more quickly.
+In this current iteration we still have to message the client manually.
 
+2. Exporting of Json file into Excel.
+The university admin staff might want to process or analyse the result in a more sophisticated manner.
+Excel is needed to aid in more sophisticated analysis as it has more functions.
 
 --------------------------------------------------------------------------------------------------------------------
 
