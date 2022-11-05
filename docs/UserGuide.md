@@ -25,6 +25,8 @@ title: User Guide
     * [Showing the statistics of applications: `stats`](#showing-the-statistics-of-applications-stats)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
+    * _[[COMING SOON: `edit-i`]](#coming-soon-edit-i)_
+    * _[[COMING SOON: `find-i`]](#coming-soon-find-i)_
     * [Saving the data](#saving-the-data)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
@@ -343,6 +345,14 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+### COMING SOON: `edit-i`
+
+A separate command for editing an interview in CinternS.
+
+### COMING SOON: `find-i`
+
+Find interviews based on their fields.
 
 ### Saving the data
 
