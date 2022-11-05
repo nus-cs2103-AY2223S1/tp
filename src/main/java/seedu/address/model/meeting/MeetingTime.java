@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class MeetingTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting times should be in the format HHMM";
+            "Meeting times should be a valid 24-hour time in the format HHMM.";
     public static final String VALIDATION_REGEX = "\\d{4}";
     private final LocalTime time;
 
