@@ -36,6 +36,9 @@ public class NameTest {
         assertFalse(Name.isValidName(" henry")); // spaces in front
         assertFalse(Name.isValidName("henry ")); // spaces behind
         assertFalse(Name.isValidName("Smith - Jones")); // space between symbols and letters
+        assertFalse(Name.isValidName("Smith- Jones")); // space between symbols and letters
+        assertFalse(Name.isValidName("Smith -Jones")); // space between symbols and letters
+
 
 
         // valid name
