@@ -110,6 +110,13 @@ public class UniqueTaskListTest {
     }
 
     @Test
+    public void delete_containTask_deleteTask() {
+        uniqueTaskList.add(STUDY);
+        uniqueTaskList.delete(0);
+        assertFalse(uniqueTaskList.contains(STUDY));
+    }
+
+    @Test
     public void getNoOfCompletedTasks_filledWithTasks() {
         uniqueTaskList.add(STUDY);
         uniqueTaskList.add(COOK);
