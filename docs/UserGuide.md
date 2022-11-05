@@ -179,7 +179,7 @@ Example:
 
 ### Finding a contact: `findC`
 
-Finds a contact using one or more information fields (e.g. name, mobile number, email, and/or address)
+Finds a contact using one or more information fields (e.g. name, mobile number, email, address, and/or remark)
 
 Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 
@@ -191,7 +191,7 @@ Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 
 * Only full words will be matched. e.g. `John` will not match `Johnny`.
 
-* Contacts matching at least one keyword will be returned. e.g. `n/Perry Dr.`
+* Contacts matching at least one keyword will be returned. e.g. `n/Perry Dr`
   will match contacts with name `Perry the Platypus` and `Dr Doofenshmirtz`.
 
 Examples:
@@ -241,6 +241,7 @@ Example:
 ## Section 2: Tasks
 
 These commands allow you to maintain a handy to-do list so you can prioritise what needs to be done first.
+Tasks can be archived once they are completed, so you can keep track of your progress.
 Monitor your progress, track deadlines and archive tasks with a few simple commands.
 Leave your task management to YellowBook, so you can do your best work.
 
@@ -250,11 +251,21 @@ Shows all (non-archived) tasks stored in the task list.
 
 Format: `listT`
 
+* By default, tasks are marked as unarchived when they are first added.
+
+* Archived tasks can be viewed using the [`listAT`](#listing-all-archived-tasks-listat) command.
+
+* Task can be archived using the [`archiveT`](#archiving-a-task-archivet) command.
+
 ### Listing all archived tasks: `listAT`
 
-Shows all archived tasks stored in the task list.
+Shows all archived tasks stored in the task list. Tasks can be unarchived 
 
 Format: `listAT`
+
+* Unarchived tasks can be viewed using the [`listAT`](#listing-all-non-archived-tasks-listt) command.
+
+* Task can be unarchived using the [`unarchiveT`](#unarchiving-a-task-unarchivet) command.
 
 ### Adding a task: `addT`
 
@@ -352,25 +363,28 @@ Examples:
 
 ### Finding a task: `findT`
 
-Finds a task using one or more information fields (e.g. description, and/or deadline)
+Finds a task using one or more information fields (e.g. description, deadline, and/or completion status)
 
 Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)] [s/STATUS (complete / incomplete)]`
 
 * At least one information field has to be provided.
 
+* Task deadline must be in the format dd-mm-yyyy, e.g. `25-12-2022`.
+
+* Task status must be either `complete` or `incomplete`.
+
 * The search is case-insensitive, e.g. `homework` will match `HOMEWORK`.
 
-* The order of the keywords does not matter, e.g. `math homework` will match
-  `homework math`.
+* The order of the keywords does not matter, e.g. `findT d/homework D/25-12-2022 s/complete` will return the same result as `findT s/complete D/25-12-2022 d/homework`.
 
 * Only full words will be matched. e.g. `math` will not match `mathematics`.
 
-* Task fields matching at least one keyword will be returned. e.g. `d/cs2103t cs2101` will match
+* Task descriptions matching at least one keyword will be returned. e.g. `d/cs2103t cs2101` will match
   `cs2103t tutorial` and `cs2101 reflection`.
 
 Examples:
 
-* `findT d/cs2103t D/25-12-2022` will return tasks with descriptions containing `cs2103t` and deadline `25th December 2022`.
+* `findT d/cs2103t D/25-12-2022 s/complete` will return tasks with descriptions containing `cs2103t`, deadline `25th December 2022` and completion status `complete`.
 
 * `findT s/incomplete` will return task(s) that are not complete.
 
@@ -384,8 +398,6 @@ Format: `filterT KEYWORD [MORE_KEYWORDS]`
 
 * The order of the keywords does not matter, e.g. `cs2101 cs2103t` will match
   `cs2103t cs2101`.
-
-* Only the task's label is filtered.
 
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
@@ -578,7 +590,12 @@ YellowBook data are saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-YellowBook data are saved as a JSON file `[JAR file location]/data/yellowbook.json`. Advanced users are welcome to update data directly by editing that data file.
+YellowBook data are saved as a JSON file `[JAR file location]/data/yellowbook.json`. You are strongly encouraged to use the YellowBook application's commands rather than edit the data file directly as there may be invalid data entered.
+
+Advanced users who wish to edit the data file should note the following:
+
+- The id field of a contact is unique and should comply with the string representation of [Java UUID](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#toString--)
+- The id field of a task is unique and should be an number greater than zero
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, YellowBook will discard all data and start with an empty data file at the next run.
@@ -605,7 +622,7 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | **addC**       | **add** **C**ontact                             | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
 | **deleteC**    | **delete** **C**ontact                          | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 |
 | **editC**      | **edit** **C**ontact                            | `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `editC 1 n/John p/12345678`                                               |
-| **findC**      | **find** **C**ontact                            | `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `findC n/Ferb`                                                                  |
+| **findC**      | **find** **C**ontact                            | `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [<br/>`findC n/Ferb`                                                                  |
 | **filterC**    | **filter** **C**ontact                          | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterC cs2103t`                                                                                         |                                                                                                 |
 | **copyC**      | **copy** **C**ontact                            | `copyC KEYWORD` <br> e.g. `copyC CS2103T`                                                                                                              |
 | **listT**      | **list** **T**asks                              | `listT`                                                                                                                                                |
