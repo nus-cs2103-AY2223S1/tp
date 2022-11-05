@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class Person
+Class Email
+Class Name
+Class Phone
+Class NextOfKin
+Class PatientType
+Class HospitalWing
+Class FloorNumber
+Class WardNumber
+Class Medication
+Class UpcomingAppointment
+Class PastAppointment
+
+Person *--> "1" Name
+Person *--> "1" Phone
+Person *--> "1" Email
+Person *--> "*" Medication
+Person *-up--> "0..1" FloorNumber
+Person *--> "1" PatientType
+Person *-up--> "0..1" HospitalWing
+Person *-up--> "1" NextOfKin
+Person *-up--> "0..1" WardNumber
+Person *-right-> "0..1" UpcomingAppointment
+Person *-left-> "*" PastAppointment
+
+
+Name -[hidden]right-> Phone
+
+@enduml

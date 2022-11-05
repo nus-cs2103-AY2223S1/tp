@@ -13,8 +13,8 @@ Class ModelManager
 Class UserPrefs
 
 Class MedicationMap
-Package Person {}
-
+Class Person
+Class UniquePersonList
 }
 
 Class HiddenOutside #FFFFFF
@@ -29,8 +29,8 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> Person
-AddressBook *-down-> "1" MedicationMap
-
-ModelManager --> Person
+AddressBook *--> "1" UniquePersonList
+UniquePersonList -right--> "     ~* all" Person
+ModelManager ---> "      ~* filtered" Person
+AddressBook *--down-> "1" MedicationMap
 @enduml
