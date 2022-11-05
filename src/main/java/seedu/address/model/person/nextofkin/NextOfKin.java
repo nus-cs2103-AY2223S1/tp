@@ -10,6 +10,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -53,6 +54,29 @@ public class NextOfKin extends Person {
                 && otherNextOfKin.getAddress().equals(getAddress())
                 && otherNextOfKin.getTags().equals(getTags())
                 && otherNextOfKin.getRelationship().equals(getRelationship());
+    }
+
+    /**
+     * Returns true if this next of kin and {@code otherPerson} are same except tags.
+     * This defines a weaker notion of equality between two persons.
+     */
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (!(otherPerson instanceof NextOfKin)) {
+            return false;
+        }
+
+        return otherPerson != null
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && ((NextOfKin) otherPerson).getRelationship().equals(getRelationship());
+
     }
 
     @Override
