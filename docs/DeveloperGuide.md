@@ -803,14 +803,32 @@ point for testers to work on; testers are expected to do more exploratory testin
 
 ### 7.3 Viewing the detail of an applicant
 
-1. tc description
+1. Viewing an existing applicant in the currently displayed list
 
-   1. Prerequisites:
+   1. Prerequisites: The displayed list contains at least one applicant
 
-   2. Test case:
+   2. Test case: `view 1`
 
-2. more tc
+        Expected: Details of the first person in the list will be shown in the view panel. Success message shown in the status message.
 
+2. Viewing an empty displayed list
+
+    1. Prerequisites: The displayed list is empty
+
+    2. Test case: `view 1`
+
+        Expected: No applicant is viewed. Error details shown in the status message.
+
+3. Viewing a non-positive index
+
+    1. Prerequisites: List all applicants using the list command. Multiple applicants in the list.
+
+    2. Test case: `view 0`
+
+        Expected: No applicant is viewed. Error details shown in the status message.
+
+4. Other incorrect `view` commands to try: `view`, `view john`, `view x`(where `x` is larger than the list size)<br>
+   Expected: No applicant is viewed. Error details shown in the status message.
 
 ### 7.4 Editing an applicant
 
