@@ -41,7 +41,7 @@ public class Deadline implements Comparable<Deadline> {
 
     @Override
     public String toString() {
-        return deadline.toString();
+        return deadline;
     }
 
     @Override
