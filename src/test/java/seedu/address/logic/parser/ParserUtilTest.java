@@ -25,9 +25,12 @@ import seedu.address.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_COMPANY = "";
     private static final String INVALID_LINK = "www.exampl e.";
-    private static final String INVALID_APPLIED_DATE = "03 Oct 22";
+    private static final String INVALID_APPLIED_DATE_FORMAT = "03 Oct 22"; // wrong format
+    private static final String INVALID_APPLIED_DATE = "50 Oct 2022"; // correct format but date does not exist
     private static final String INVALID_DESCRIPTION = "";
-    private static final String INVALID_INTERVIEW_DATE_TIME = "03 Oct 22";
+    private static final String INVALID_INTERVIEW_DATE_TIME_FORMAT = "03 Oct 22"; // wrong format
+    private static final String INVALID_INTERVIEW_DATE = "50 Oct 2022 11:30"; // correct format but date does not exist
+    private static final String INVALID_INTERVIEW_TIME = "03 Oct 2022 50:00"; // correct format but time does not exist
     private static final String INVALID_TAG = "#Frontend";
     private static final String INVALID_APPLICATION_STATUS = "waiting";
     private static final String VALID_COMPANY = "Alibaba";
@@ -112,7 +115,12 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAppliedDate_invalidValue_throwsParseException() {
+    public void parseAppliedDate_invalidFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAppliedDate(INVALID_APPLIED_DATE_FORMAT));
+    }
+
+    @Test
+    public void parseAppliedDate_invalidDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAppliedDate(INVALID_APPLIED_DATE));
     }
 
@@ -135,8 +143,17 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseInterviewDateTime_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseInterviewDateTime(INVALID_INTERVIEW_DATE_TIME));
+    public void parseInterviewDateTime_invalidFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseInterviewDateTime(INVALID_INTERVIEW_DATE_TIME_FORMAT));
+    }
+
+    @Test
+    public void parseInterviewDateTime_invalidDateTime_throwsParseException() {
+        // Date does not exist but valid time
+        assertThrows(ParseException.class, () -> ParserUtil.parseInterviewDateTime(INVALID_INTERVIEW_DATE));
+
+        // Valid date but time does not exist
+        assertThrows(ParseException.class, () -> ParserUtil.parseInterviewDateTime(INVALID_INTERVIEW_TIME));
     }
 
     @Test

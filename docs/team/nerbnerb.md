@@ -5,7 +5,7 @@ title: Tan Wen Hao Brendan's Project Portfolio Page
 
 ### Project: FindMyIntern
 
-**Overview**: FindMyIntern is a desktop application for keeping track of internship applications. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+**Overview**: FindMyIntern is a desktop application that helps students keep track of internship applications. It allows students to consolidate all these applications into a single place, manage these applications, and visualise their application statuses. The user interacts with it using a CLI, and it has a GUI created with JavaFX. FindMyIntern is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -21,6 +21,9 @@ Given below are my contributions to the project.
   * Overhauled GUI
     * Updated FindMyIntern to a more modern user interface
     * Rearranged and resized elements to better suit users' needs
+  * Enhanced `add` feature to accept `InterviewDateTime`
+    * What it does: Allows the user to include an optional interview date/time while adding internship applications
+    * Automatically sets internship application status to "Shortlisted" instead of default "Applied"
 
 * **Contributions to the UG**:
   * Integrated Bootstrap 5 into user guide
@@ -31,11 +34,15 @@ Given below are my contributions to the project.
   * Added comparison between `filter` and `find` commands
     * Useful as both commands are similar
   * Added section for UI elements
+    * Explains purpose of certain elements which may be less obvious
   * Added appendix section
+    * Defines requirements about input fields for commands and explains certain fields
 
 * **Contributions to the DG**:
   * Added implementation details of `filter` feature
-    * Included sequence diagram and design considerations for feature
+    * Included activity diagram and design considerations for feature
+  * Updated diagrams to reflect changes to UI
+  * Added user stories
 
 * **Contributions to team-based tasks**:
   * Added GitHub issues and milestones
@@ -54,3 +61,6 @@ Given below are my contributions to the project.
     * [#81](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/81)
     * [#82](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/82)
     * [#154](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/154)
+
+* **Contributions beyond the project team**:
+  * Reported bugs and provided suggestions for other teams: [Bugs](https://github.com/nerbnerb/ped/issues)
