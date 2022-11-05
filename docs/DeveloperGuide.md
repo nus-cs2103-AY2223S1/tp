@@ -2,7 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+## Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -11,7 +11,7 @@ title: Developer Guide
 
 * `Task` and `Project` were inspired by AB3's `Person` object
 * Commands from AB3 were brought over to `Task` and `Project`
-* `ContainsNameIgnoreCase` method in `StringUtil` is inpsired by https://stackoverflow.com/questions/86780/
+* `ContainsNameIgnoreCase` method in `StringUtil` is inspired by https://stackoverflow.com/questions/86780/
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -365,7 +365,7 @@ The `delstaff` command could be implemented in the form `delstaff pn/PROJECT_NAM
 * The `PROJECT_NAME` would then refer to a Project specified by the PROJECT_NAME in the Project List to delete the Staff from.
 * The `STAFF_NAME` would then refer to the Staff specified by the STAFF_NAME to delete from the Project's Staff list.
 
-Pros: Easier to implement then the currrent implementation
+Pros: Easier to implement then the current implementation
 
 Cons: Does not require Staff to be displayed to be deleted, can randomly delete Staff and lose track of what is being deleted from where.
 
@@ -608,18 +608,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 ### Non-Functional Requirements
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to run without any additional installations beyond Java 11.
+3. Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
+5. User data should be stored locally in a text file and should be human editable.
+6. The application should be able to handle invalid inputs and recover from them.
+7. Commands should be able to be executed in a case-insensitive manner.
+8. The application should be able to run without an internet connection.
+9. Parameters for commands should be able to be in any order.
+10. The application should be delivered to the user as a single JAR file.
+11. The application should be optimised for a single user.
+12. The user should be able to use the application without any prior knowledge of the application with the help of the User Guide.
+13. The fields in the GUI should be able to be resized to fit the user's screen.
+14. The fields in the GUI should be clearly labelled such that the user can easily understand what they are for.
+15. The User Guide and Developer Guide should be clearly written and easy to understand.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **SME** Small and medium-sized enterprises, business whose personnel fall below certain limits
 * **Team lead/ Team leader** Someone leading a group of other staff members within the SME
-
+* **GUI** A Graphical User Interface (GUI) is a visual way of interacting with a computer using items such as windows, icons, and menus.
+* **CLI** A Command Line Interface (CLI) is a way of interacting with a computer by typing commands into a text interface.
+* **JAR** Stands for Java Archive, and is a file format used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution.
+* **Prefix** A prefix is a short string of characters that is used to identify a command parameter. It is always ended by a backslash (`\`).
+* **Parameter** A parameter is a value in a command that is used to specify the behaviour of the command. Parameters are information to be supplied by the user.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -645,33 +659,227 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+   
 
-1. _{ more test cases …​ }_
+### Deleting a Project
 
-### Deleting a project
+1. Deleting a Project while all Projects are being shown
 
-1. Deleting a project while all projects are being shown
+   1. Prerequisites: List all Projects using the `list` command. Multiple Projects in the list.
 
-   1. Prerequisites: List all projects using the `list` command. Multiple projects in the list.
+   2. Test case: `delproj 1`<br>
+      Expected: First Project is deleted from the list. Details of the deleted Project shown in the Result Display.
 
-   1. Test case: `delproj 1`<br>
-      Expected: First project is deleted from the list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
+   3. Test case: `delproj 0`<br>
+      Expected: No Project is deleted. Error details shown in the Result Display.
 
-   1. Test case: `delproj 0`<br>
-      Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delproj`, `delproj x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delproj`, `delproj x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+   5. Command should be case-insensitive. Other correct delete commands to try: `DELPROJ 1`, `delProj 1`, `dELproJ 1`<br>
+      Expected: Similar to first test case.
+
+### Sorting Projects by deadline
+
+1. Sorting Projects by deadline 
+
+    1. Prerequisites: Multiple projects in the list.
+
+    2. Test case: `sortproj`<br>
+       Expected: Projects are sorted by deadline with the earliest deadline at the top.
+
+    3. Test case: `sortproj 0`<br>
+       Expected: Projects are sorted by deadline with the latest deadline at the top.
+
+    5. Command should be case-insensitive and ignore extra input following the command word. Other correct sort commands to try: `SORTPROJ`, `sortProj xsf01`, `sortproj vfdwl`<br>
+       Expected: Similar to first test case.
+   
+    6. `sortproj` should work on all Projects even if the Project list has been filtered using `findproj` command.
+
+### Viewing the Staff list of a Project
+
+1. Viewing the Staff list while all projects are being shown
+
+    1. Prerequisites: List all projects using the `list` command. Multiple projects in the list.
+
+    2. Test case: `view 1`<br>
+       Expected: Staff list of the first Project in the list is displayed. Success message shown in the Result Display.
+
+    3. Test case: `view 0`<br>
+       Expected: No Staff list is shown. Error details shown in the Result Display. Status bar remains the same.
+
+    4. Other incorrect view commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Viewing the Staff list while only some projects are being shown
+
+   1. Prerequisites: Find projects using the `find` command such that only some projects are shown in the list. 
+
+   2. Test case: `view 1`<br>
+      Expected: Staff list of the first Project in the list is displayed. Success message shown in the Result Display.
+
+   3. Test case: `view 0`<br>
+      Expected: No Staff list is shown. Error details shown in the Result display. Status bar remains the same.
+   
+   4. Other incorrect view commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Marking a Task
+
+1. Marking a task in an unsorted Task list
+
+    1. Prerequisites: List all Tasks using the `list` command. Multiple Tasks in the list.
+
+    2. Test case: `marktask 1`<br>
+       Expected: First Task is marked as completed. Success message shown in the Result Display.
+   
+    3. Test case: `delproj 0`<br>
+       Expected: No Task is marked. Error details shown in the Result Display.
+   
+    4. Other incorrect mark commands to try: `marktask`, `marktask x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+   
+    5. Command should be case-insensitive. Other correct mark commands to try: `MARKTASK 1`, `markTask 1`, `MarkTask 1`<br>
+       Expected: Similar to first test case.
+
+2. Marking a task in a sorted Task list
+
+    1. Prerequisites: List all Tasks using the `list` command. Multiple Tasks in the list. Sort the Task list using the `sorttask` or `sortcomplete` command.
+
+    2. Test case: `marktask 1`<br>
+       Expected: First Task is marked as completed. Success message shown in the Result Display.
+
+    3. Test case: `delproj 0`<br>
+       Expected: No Task is marked. Error details shown in the Result Display.
+
+    4. Other incorrect delete commands to try: `marktask`, `marktask x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+    5. Command should be case-insensitive. Other correct mark commands to try: `MARKTASK 1`, `markTask 1`, `MarkTask 1`<br>
+       Expected: Similar to first test case.
+
+3. Marking a Task in a filtered Task list
+
+    1. Prerequisites: Filter the Task list using the `findtask` command such that at least 1 Task is left in the list.
+
+    2. Test case: `marktask 1`<br>
+       Expected: First Task in the filtered list is marked as completed. Success message shown in the Result Display.
+
+    3. Test case: `marktask 0`<br>
+       Expected: No Task is marked. Error details shown in the Result Display. 
+
+    4. Other incorrect mark commands to try: `marktask`, `marktask x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+    5. Command should be case-insensitive. Other correct mark commands to try: `MARKTASK 1`, `markTask 1`, `MarkTask 1`<br>
+       Expected: Similar to first test case.
+
+### Unmarking a Task
+
+1. Unmarking a task in an unsorted Task list
+
+    1. Prerequisites: List all Tasks using the `list` command. Multiple Tasks in the list. Tasks should be marked as completed.
+
+    2. Test case: `unmarktask 1`<br>
+       Expected: First Task is marked as not completed. Success message shown in the Result Display.
+
+    3. Test case: `unmarktask 0`<br>
+       Expected: No Task is unmarked. Error details shown in the status message.
+
+    4. Other incorrect unmark commands to try: `unmarktask`, `unmarktask x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+    5. Command should be case-insensitive. Other correct unmark commands to try: `unMARKTASK 1`, `unmarkTask 1`, `unMarkTask 1`<br>
+       Expected: Similar to first test case.
+
+2. Unmarking a task in a sorted Task list
+
+    1. Prerequisites: List all Tasks using the `list` command. Multiple Tasks in the list. Sort the Task list using the `sorttask` or `sortcomplete` command. Tasks should be marked as completed.
+
+    2. Test case: `marktask 1`<br>
+       Expected: First Task is marked as not completed. Success message shown in the Result Display.
+
+    3. Test case: `unmarktask 0`<br>
+       Expected: No Task is unmarked. Error details shown in the Result Display.
+
+    4. Other incorrect delete commands to try: `unmarktask`, `unmarktask x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+    5. Command should be case-insensitive. Other correct unmark commands to try: `unMARKTASK 1`, `unmarkTask 1`, `unMarkTask 1`<br>
+       Expected: Similar to first test case.
+
+3. Unmarking a Task in a filtered Task list
+
+    1. Prerequisites: Filter the Task list using the `findtask` command such that at least 1 Task is left in the list. Tasks should be marked as completed.
+
+    2. Test case: `unmarktask 1`<br>
+      Expected: First Task in the filtered list is marked as not completed. Success message shown in the Result Display.
+   
+    3. Test case: `unmarktask 0`<br>
+      Expected: No Task is unmarked. Error details shown in the status message.
+
+    4. Other incorrect unmark commands to try: `unmarktask`, `unmarktask x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+    5. Command should be case-insensitive. Other correct unmark commands to try: `UNMARKTASK 1`, `unmarkTask 1`, `unMarkTask 1`<br>
+      Expected: Similar to first test case.
+
+### Finding a Task
+
+1. Finding a Task while all Tasks are being shown
+
+   1. Prerequisites: List all Tasks using the `list` command. Multiple Tasks in the list. 
+   
+   2. Test case: `findtask download`<br>
+      Expected: Only Tasks with names containing `download` are shown. Number of Tasks being listed is displayed in the Result Display.
+
+   3. Test case: `findtask`<br>
+      Expected: No Tasks are shown. Error details shown in the Result Display.
+
+   4. Command should be case-insensitive and allow for partial matching. Other correct find commands to try: `FINDTASK download`, `findtask down`, `FindTask d`<br>
+      Expected: Similar to first test case.
+
+2. Finding a Task while only some Tasks are being shown
+
+   1. Prerequisites: Filter the Task list using the `findtask` command such that at least 1 Task is left in the list.
+   
+   2. Test case: `findtask download`<br>
+      Expected: Only Tasks with names containing `download` are shown. Tasks not initially displayed that exist in the app 
+      and contain `download` should be displayed as well. Number of Tasks being listed is displayed in the Result Display.
+   
+   3. Test case: `findtask`<br>
+      Expected: No Tasks are shown. Error details shown in the Result Display.
+   
+   4. Command should be case-insensitive and allow for partial matching. Other correct find commands to try: `FINDTASK download`, `findtask down`, `FindTask d`<br>
+      Expected: Similar to first test case.
+
+### Sorting Tasks by completion status
+
+1. Sorting Tasks by completion status
+
+    1. Prerequisites: Multiple Tasks in the list. Tasks should be marked as completed and not completed.
+
+    2. Test case: `sortcomplete`<br>
+       Expected: Tasks are sorted by completion status. Tasks that are not completed are shown first. Success message shown in the Result Display.
+
+    3. Test case: `sortcomplete 0`<br>
+       Expected: Tasks are sorted by completion status. Tasks that are not completed are shown first. Success message shown in the Result Display.
+
+    4. Command should be case-insensitive and ignore extra input following the command word. Other correct sort commands to try: `SORTCOMPLETE`, `sortComplete xs01`, `sortcomplete vfdwl`<br>
+       Expected: Similar to first test case.
+
+    5. `sortcomplete` should work on all Tasks even if the Task list has been filtered using `findproj` command.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Test case: Delete the data file directly (for example, by deleting the `hrpro.json` file)<br>
+      Expected: HR Pro Max++ launches with no data. Restarting the app should create a new data file with the sample data.
+   
+   2. Test case: Add invalid characters such as `^` to the data file directly (for example, by editing the `hrpro.json` file)<br>
+      Expected: HR Pro Max++ launches with no data. Restarting the app should create a new data file with the sample data.
+   
 
 ## **Appendix: Effort**
 
