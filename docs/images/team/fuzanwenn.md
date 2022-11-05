@@ -85,8 +85,8 @@ Given below are my contributions to the project.
   * DeleteAppointmentCommand
   * DeleteBillCommand
   * ListCommand
-* Added Add feature
-* Added Edit feature
+* Added Add feature implementation with sequence diagram.
+* Added Edit feature implementation with sequence diagram.
 
 ### Contributions to the team-based tasks:
 
