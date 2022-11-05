@@ -51,7 +51,7 @@ While reading this user guide, these symbols will inform you if there is some im
 </figcaption>
 </figure>
 
-These are the GUI components of TaskBook. Components are all described from left to right, top to bottom.
+These are the GUI components of TaskBook. Components are all described from top to bottom, left to right.
 <figure>
 <p align = "center">
 <img src="images/GuiTopHalf.png">
@@ -60,13 +60,13 @@ These are the GUI components of TaskBook. Components are all described from left
 </figcaption>
 </figure>
 
-1. **File** - A dropdown menu containing the exit button, which is an alternative to the [`bye`](#exiting-the-program--bye) [command](#using-the-examples-in-this-guide).
+1. **Navigation Bar**
+    * **File** - A dropdown menu containing the exit button, which is an alternative to the [`bye`](#exiting-the-program--bye) [command](#using-the-examples-in-this-guide).
+    * **Help** - A dropdown menu containing the help button, which creates a pop-up window with a link to this User Guide. Not to be confused with the [`help`](#viewing-help--help) [command](#using-the-examples-in-this-guide).
 
-2. **Help** - A dropdown menu containing the help button, which creates a pop-up window with a link to this User Guide. Not to be confused with the [`help`](#viewing-help--help) [command](#using-the-examples-in-this-guide).
+2. **Command Box** - A box where you can type in [commands](#using-the-examples-in-this-guide) to be executed. When empty and not in your focus, it will prompt you with `Enter command here...`.
 
-3. **Command Box** - A box where you can type in [commands](#using-the-examples-in-this-guide) to be executed. When empty and not in your focus, it will prompt you with `Enter command here...`.
-
-4. **Results Display** - A scrollable box that displays the result of executed [commands](#using-the-examples-in-this-guide) in the Command Box. If the commands fail to execute, this box will also inform you what caused the failure of the command.
+3. **Results Display** - A scrollable box that displays the result of executed [commands](#using-the-examples-in-this-guide) in the Command Box. If the commands fail to execute, this box will also inform you what caused the failure of the command.
 
 <figure>
 <p align = "center">
@@ -84,8 +84,8 @@ These are the GUI components of TaskBook. Components are all described from left
 </figcaption>
 </figure>
 
-{:start="5"}
-5. **Contact List** - A scrollable box that contains the list of contacts you have added to TaskBook. Odd numbered boxes are darker in colour than even numbered ones.<br>These are the fields of a contact.
+{:start="4"}
+4. **Contact List** - A scrollable box that contains the list of contacts you have added to TaskBook. Odd numbered boxes are darker in colour than even numbered ones.<br>These are the fields of a contact.
    * **Index** - The number TaskBook assigns to contacts you add. Can be reshuffled by the [`contact sort`](#sorting-contacts--contact-sort) [command](#using-the-examples-in-this-guide).
    * **Name** - The name of the contact, situated right of the index.
    * **Tags** - A series of light blue boxes. If a contact has no tags, this region will not display any boxes.
@@ -101,8 +101,8 @@ These are the GUI components of TaskBook. Components are all described from left
 </figcaption>
 </figure>
 
-{:start="6"}
-6. **Task List** - A scrollable box that displays the list of tasks you have added to TaskBook.<br>The layout of a task is as follows, from left to right, top to bottom:
+{:start="5"}
+5. **Task List** - A scrollable box that displays the list of tasks you have added to TaskBook.<br>The layout of a task is as follows, from top to bottom, left to right:
    * **Index** - The number TaskBook assigns to tasks you add. Can be reshuffled by the [`task sort`](#sorting-tasks--task-sort) [command](#using-the-examples-in-this-guide).
    * **Description** - The description of the tasks you add.
    * **Date** - If the task has a date assigned to it (i.e if the task is a deadline or event), the date will be at the end of the description in square brackets.
@@ -113,7 +113,7 @@ These are the GUI components of TaskBook. Components are all described from left
      * **Event** - A task that involves you attending some event at some date. In the Task List, these tasks are labelled as [E], and are bright purple.
    * **Assignment** - An indicator on whether the task is assigned by you to someone else, or vice versa. 
    * **Assignor/Assignee** - The contact that has been assigned a task by you, or vice versa. This can be yourself.
-7. **Status Bar** - Indicates the location in your computer where TaskBook is tracking your Contact List and Task List.
+6. **Status Bar** - Indicates the location in your computer where TaskBook is tracking your Contact List and Task List.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -309,7 +309,7 @@ Examples:
 <p align = "center">
 <img src="images/ExampleTodoAdd.png">
 </p>
-<figcaption align = "center"><b>Result of executng (1) to (4) sequentially. Indices may be different.</b>
+<figcaption align = "center"><b>Result of executing (1) to (4) sequentially. Indices may be different.</b>
 </figcaption>
 </figure>
 
@@ -354,7 +354,7 @@ Examples:
 <p align = "center">
 <img src="images/ExampleDeadlineAdd.png">
 </p>
-<figcaption align = "center"><b>Result of executng (1) to (4) sequentally. Indices may be different.</b>
+<figcaption align = "center"><b>Result of executing (1) to (4) sequentally. Indices may be different.</b>
 </figcaption>
 </figure>
 
@@ -398,7 +398,7 @@ Examples:
 <p align = "center">
 <img src="images/ExampleEventAdd.png">
 </p>
-<figcaption align = "center"><b>Result of executng (1) to (4) sequentially. Indices may be different.</b>
+<figcaption align = "center"><b>Result of executing (1) to (4) sequentially. Indices may be different.</b>
 </figcaption>
 </figure>
 
@@ -449,7 +449,7 @@ Examples:
 <p align = "center">
 <img src="images/ExampleContactEditAfter.png">
 </p>
-<figcaption align = "center"><b>Result of executng (1) and (2).</b>
+<figcaption align = "center"><b>Result of executing (1) and (2).</b>
 </figcaption>
 </figure>
 
@@ -508,7 +508,7 @@ Examples:
 <p align = "center">
 <img src="images/ExampleTaskEditAfter.png">
 </p>
-<figcaption align = "center"><b>Result of executng (1) to (3).</b>
+<figcaption align = "center"><b>Result of executing (1) to (3).</b>
 </figcaption>
 </figure>
 
@@ -568,7 +568,7 @@ Format: `contact find q/QUERY`
 * QUERY is not case-sensitive.
 
 Example:
-1. `contact find q/ea` will change your displayed contact list to show a contact list where all contacts will have "ea" in their name.
+1. `contact find q/ea` displays a contact list where all contacts will have "ea" in their name.
 
 #### Finding tasks : `task find`
 
@@ -588,11 +588,11 @@ Format: `task find <q/QUERY x/DONE a/ASSIGNMENT>`
 </div>
 
 Examples:
-1. `task find q/ea` will change the displayed task list to show a task list where all tasks will have "ea" in either their connected person, or their description.
+1. `task find q/ea` displays a task list where all tasks will have "ea" in either their connected person, or their description.
 
-2. `task find x/X` will change the displayed task list to show a task list where all tasks are marked done, with [X].
+2. `task find x/X` displays a task list where all tasks are marked done, with [X].
 
-3. `task find a/FROM` will change the displayed task list to show a task list where all tasks are assigned to you by someone else.
+3. `task find a/FROM` displays a task list where all tasks are assigned to you by someone else.
 
 4. `task find q/ea x/X` is equivalent to `task find x/X q/ea`.
 
@@ -623,7 +623,7 @@ Alphabetical sorting will prioritize valid letters by their ASCII values, meanin
 
 Example:
 
-1. `contact sort s/a` will change the displayed contact list to show a contact list where names are sorted by alphabetical order.
+1. `contact sort s/a` dislays a contact list where names are sorted by alphabetical order.
    1. Given 3 contacts: alfonzo, Alpha, and Betsy, the ordering of the list will be: Alpha, Betsy, alfonzo.
 
 #### Sorting tasks : `task sort`
@@ -653,7 +653,7 @@ Alphabetical sorting will prioritize valid letters by their ASCII values, meanin
 
 Example:
 
-1. `task sort s/a` will change the displayed task list to show a task list sorted by description alphabetical order.
+1. `task sort s/a` displays a task list sorted by description alphabetical order.
    1. Given 3 tasks with descriptions: Walk the dog, Do homework, do chores, the order of the list will be: Do homework, Walk the dog, do chores.
 
 ### Marking a task : `task mark`
