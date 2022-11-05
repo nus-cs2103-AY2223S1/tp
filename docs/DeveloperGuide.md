@@ -320,7 +320,6 @@ now has an `UpcomingAppointment` associated with him.
 
 ![AppointmentObjectDiagramWithBothAppt](images/AppointmentObjectDiagramWithBothAppt.png)
 
-
 #### DelAppt Command
 The purpose of the `delappt` command is to remove the first [`PastAppointment`](#pastappointment) from the selected
 patient. If there is no appointment to delete, the Command will display an error to the user.
@@ -361,7 +360,6 @@ the `ConsultCommand` creates an [`EditCommand`](#edit-command) and executes it t
 appointment field.
 
 ![ConsultCommandSequenceDiagram](images/dg-images/ConsultCommandSequenceDiagram.png)
-
 
 ### Get Features (By prefixes)
 
@@ -522,8 +520,6 @@ was pressed, `CommandHistory#nextCommand()` is called to set the command to the 
 
 ![Keyboard Shortcuts Sequence Diagram](images/dg-images/KeyboardShortcutsSequenceDiagram.png)
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -557,34 +553,86 @@ was pressed, `CommandHistory#nextCommand()` is called to set the command to the 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …                 | I want to …                                        | So that I can …                                                                             |
-|----------|------------------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
-| `* * *`  | doctor                 | search for patients by name                        | view medication patient is currently taking and prescribe new medication based on that info |
-| `* * *`  | hospital staff         | retrieve patient contact info and next-of-kin data | quickly and efficiently contact the patient or someone near them                            |
-| `* * *`  | hospital administrator | check the total number of patients in my hospital  | know when my hospital is oversubscribed                                                     |
-| `* * *`  | hospital staff         | retrieve patients by ward number                   | attend to them quickly                                                                      |
-| `* * *`  | hospital staff         | retrieve patients by floor number                  | attend to them quickly                                                                      |
-| `* * *`  | hospital staff         | retrieve patients by hospital wings                | attend to them quickly                                                                      |
-| `* * *`  | hospital staff         | have a list of inpatients and outpatients          | easily see which patients are staying in the hospital                                       |
-| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup | know where to direct them                                                                   |
-| `* * *`  | hospital staff         | create patient profiles                            | store new patients into the system                                                          |
-| `* * *`  | nurse                  | retrieve patients by medication                    | find out a list of patients under each medication                                           |
-| `* * *`  | hospital staff         | remove patients from the database                  | remove redundant entries that are no longer necessary                                       |
-| `* * *`  | hospital staff         | retrieve patients by their appointment date        | know which patients have scheduled an appointment on a particular day                       |
-
+| Priority | As a …                 | I want to …                                                      | So that I can …                                                                             |
+|----------|------------------------|------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | doctor                 | search for patients by name                                      | view medication patient is currently taking and prescribe new medication based on that info |
+| `* * *`  | hospital staff         | retrieve patient contact info and next-of-kin data               | quickly and efficiently contact the patient or someone near them                            |
+| `* * *`  | hospital administrator | check the total number of patients in my hospital                | know when my hospital is oversubscribed                                                     |
+| `* * *`  | hospital staff         | retrieve patients by ward number                                 | attend to them quickly                                                                      |
+| `* * *`  | hospital staff         | retrieve patients by floor number                                | attend to them quickly                                                                      |
+| `* * *`  | hospital staff         | retrieve patients by hospital wings                              | attend to them quickly                                                                      |
+| `* * *`  | hospital staff         | have a list of inpatients and outpatients                        | easily see which patients are staying in the hospital                                       |
+| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup               | know where to direct them                                                                   |
+| `* * *`  | hospital staff         | create patient profiles                                          | store new patients into the system                                                          |
+| `* * *`  | hospital staff         | edit patient profiles                                            | update existing patients info                                                               |
+| `* * *`  | nurse                  | retrieve patients by medication                                  | find out a list of patients under each medication                                           |
+| `* * *`  | hospital staff         | remove patients from the database                                | remove redundant entries that are no longer necessary                                       |
+| `* * *`  | hospital staff         | retrieve patients by their appointment date                      | know which patients have scheduled an appointment on a particular day                       |
+| `* *`    | hospital staff         | have easy access to my patients' info                            | attend to them quickly                                                                      |
+| `* *`    | hospital staff         | edit my patients' info without having to enter the whole command | attend to them quickly                                                                      |
+| `* * *`  | nurse                  | delete my patient's past appointments                            | correct any errors I make                                                                   |
+| `* *`    | doctor                 | document my consultation with a patient easily                   | attend to them quickly and ensure that the system is always updated                         |
+| `* * `   | hospital staff         | naviagate through commands I have previously entered             | avoid typing the same commands repeatedly                                                   |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `CheckUp` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a patient**
+
+**MSS**
+
+1. User requests to add a patient
+2. CheckUp adds patient to system
+3. CheckUp displays the patient added
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The information entered is invalid.
+
+    * 1a1. CheckUp shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: Edit a patient**
+
+**MSS**
+
+1. User requests to list persons
+2. CheckUp shows a list of persons
+3. User requests patient to edit
+4. CheckUp edits patient in system
+5. CheckUp displays the patient added
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The information entered is invalid.
+    * 3a1. CheckUp shows an error message.
+
+      Use case resumes at step 3.
+
+* 3b. No information is entered to edit
+    * 3a1. CheckUp shows an error message.
+
+      Use case resumes at step 3.
 
 **Use case: Delete a patient**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  CheckUp shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  CheckUp deletes the person
 
     Use case ends.
 
@@ -596,11 +644,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CheckUp shows an error message.
 
       Use case resumes at step 2.
 
+**Use case: Delete a patient's appointment**
 
+**MSS**
+
+1.  User requests to list persons
+2.  CheckUp shows a list of persons
+3.  User requests to delete appointment from a specific person in the list
+4.  CheckUp deletes the appointment
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CheckUp shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The selected patient has no past appointments.
+
+    * 3b1. CheckUp shows an error message.
+
+      Use case ends.
+
+**Use case: Consult a patient**
+
+**MSS**
+
+1. User requests to list persons
+2. CheckUp shows a list of persons
+3. User request to consult a patient 
+4. CheckUp creates a past appointment for the User
+5. CheckUp removes the upcoming appointment for the current date for the User
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CheckUp shows an error message.
+
+      Use case resumes at step 2.
+
+* 5a. The selected patient has no upcoming appointments or 
+the upcoming appointment is not on the current date.
+
+      Use case ends.
 
 *{More to be added}*
 
@@ -646,22 +750,103 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a patient
 
-1. Deleting a person while all persons are being shown
+1. Adding a patient 
+
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690 m/panadol m/ibuprofen`<br>
+       Expected: Patient is added as the last patient in the app. Details of the added patient shown in the status message. 
+   Patient is displayed in the Patient Details Panel.
+
+    2. Test case: `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/outpatient m/panadol m/ibuprofen`<br>
+       Expected: Similar to the above
+
+    3. Incorrect add commands to try: `add`, `add n/`, 
+   `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient m/panadol m/ibuprofen`, `...` <br>
+       Expected: No patient is added. Error details shown in the status message.
+
+### Editing a patient
+
+1. Editing a patient while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+   2. Test case: `edit 1 p/98765432`<br>
+      Expected: First patient's phone number is edited. Details of the edited patient shown in the status message.
+   Patient is displayed in the Patient Details Panel.
+
+   3. Test case: `edit 1 ua/`<br>
+      Expected: First patient's upcoming appointment is cleared. The rest is similar to the above.
+
+   4. Incorrect add commands to try: `edit`, `edit 1`, `edit 1 bananas/`, `...` <br>
+      Expected: No patient is edited. Error details shown in the status message.
+
+### Deleting a patient
+
+1. Deleting a patient while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First patient is deleted from the list. Details of the deleted patient shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No patient is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Deleting a patient's past appointment
+
+1. Deleting a patient's past appointment while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. The first patient has 
+   at least one past appointment and the rest have zero.
+
+    3. Test case: `delappt 1`<br>
+       Expected: First patient's past appointment is deleted. Name of the deleted patient shown in the status message.
+
+    4. Test case: `delappt 2`<br>
+       Expected: No patient's past appointment. Error details shown in the status message.
+
+    5. Other incorrect delappt commands to try: `delappt`, `delappt x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Consulting a patient
+
+1. Consulting a patient while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. The second patient has
+       an upcoming appointment on the current day and the rest have no upcoming appointments.
+
+    2. Test case: `consult 1 diag/headache`<br>
+       Expected: First patient's has a past appointment created for the current day with a headache diagnosis.<br> 
+       Name of the consulted patient shown in the status message.
+
+    3. Test case: `consult 2 diag/headache`<br>
+       Expected: Second patient's upcoming appointment is deleted. The rest is similar to the above.
+
+    4. Other incorrect consult commands to try: `consult`, `consult x`, `...` (where x is larger than the list size)<br>
+       Expected: No past appointment is created. No upcoming appointment is removed. Error details shown in the status message.
+
+### View a patient
+
+1. View a patient while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. The second patient has
+       an upcoming appointment on the current day and the rest have no upcoming appointments.
+
+    2. Test case: `view 1`<br>
+       Expected: First patient should be displayed on the Patient Details Panel. <br>
+       Name of the displayed patient shown in the status message.
+
+    3. Test case: `view 0`<br>
+       Expected: Patient Details Panel remains unchanged. Error details shown in the status message.
+
+    4. Other incorrect consult commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 ### Saving data
 
