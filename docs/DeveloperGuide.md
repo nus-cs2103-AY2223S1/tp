@@ -109,7 +109,7 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delproj 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delproj 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -194,7 +194,7 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th project in the address book. The `delproj` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delproj 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delproj 5` command to delete the 5th project in the address book. The `delproj` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delproj 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -251,7 +251,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delproj`, just save the proj being deleted).
+  * Pros: Will use less memory (e.g. for `delproj`, just save the project being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -271,7 +271,7 @@ regarding the description and deadline of a task.
 
 ![img.png](images/TaskListUML.png)
 
-#### Design considerations
+#### Design considerations:
 
 * A `UniqueTaskList` ensures that all tasks are different so that the tasks that are needed to be done
 are well-defined.
@@ -300,7 +300,7 @@ The following sequence diagram shows how the mark command will run throughout HR
 
 ![mark command](images/MarkCommandSequenceDiagram.png)
 
-#### Design Consideration:
+#### Design Considerations:
 
 * Users when done with a Task might just delete it and thus the need to mark
 Task as complete or not is redundant.
@@ -320,8 +320,8 @@ specifically for staff called `delstaff`. This `Staff` is then deleted.
 `delstaff Index pn/PROJECT_NAME ` : Get the Staff name of the Staff on the displayed Staff list identified
 by the INDEX. It then deletes the Staff from the Project identified by the PROJECT_NAME if the Staff exist.
 
-To align with the current implementation of deleting from only the displayed Project and Staff list, we 
-will only allow Staff that are displayed to be deleted. Since we do not save which Project is currently on 
+To align with the current implementation of deleting from only the displayed Project and Staff list, we
+will only allow Staff that are displayed to be deleted. Since we do not save which Project is currently on
 display, we pass in the PROJECT_NAME to delete the Staff from the Project identified by the PROJECT_NAME. However, if the Project
 with the PROJECT_NAME is not displayed, the Staff cannot be deleted also due to the above-mentioned reason.
 
@@ -359,7 +359,7 @@ The activity diagram below shows how the `delstaff` command propagates through H
 
 ![delstaff command](images/DeleteStaffCommandActivityDiagram.png)
 
-#### Design Consideration:
+#### Design Considerations:
 
 The `delstaff` command could be implemented in the form `delstaff pn/PROJECT_NAME sn/STAFF_NAME`.
 * The `PROJECT_NAME` would then refer to a Project specified by the PROJECT_NAME in the Project List to delete the Staff from.
@@ -405,7 +405,7 @@ Step 4. The `Staff` is added to the `Project`. The `execute()` method updates th
 Sequence diagram for the execution of `AddStaffCommand`
 ![AddStaffCommandExecution](images/AddStaffCommandExecution.png)
 
-#### Design Considerations
+#### Design Considerations:
 **Aspect: Finding project to add**
 
 Finding project to add is not straightforward since only `ProjectName` is passed as argument to the `AddStaffCommand`.
@@ -438,7 +438,7 @@ Finding project to add is not straightforward since only `ProjectName` is passed
 
 **Target user profile**:
 
-HR Pro Max++ aims to help team leads in SME to help track and manage their projects, staff member within each project and tasks related to the projects.
+HR Pro Max++ aims to help team leads in SMEs to help track and manage their projects, staff members within each project and tasks related to the projects.
 
 * prefer desktop apps over other types
 * can type fast and prefers it over mouse interactions
@@ -480,7 +480,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HR Pro Max++` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01- Add a project**
+###**Use case: UC01- Add a project**
 
 **MSS**
 
@@ -496,7 +496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resume at step 1.
 
-**Use case: UC02- Add staff member to project**
+###**Use case: UC02- Add staff member to project**
 
 **MSS**
 
@@ -518,7 +518,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC03- Delete a Project**
+###**Use case: UC03- Delete a Project**
 
 **MSS**
 
@@ -543,7 +543,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: UC04- Edit Project details**
+###**Use case: UC04- Edit Project details**
 
 **MSS**
 
@@ -553,7 +553,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC05- Edit Staff details**
+###**Use case: UC05- Edit Staff details**
 
 **MSS**
 
@@ -585,7 +585,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resume at step 5.
 
-**Use case: UC06- View Staff details**
+###**Use case: UC06- View Staff details**
 
 **MSS**
 
@@ -663,7 +663,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delproj`, `delproj x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -672,3 +672,38 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+For the effort placed into our group project, we felt that our group might have placed more than the average needed just in case.
+
+The initial AB3 had only `Person`, however our group refactored `Person` into `Project` and from there added `Staff` into each project,
+and a `Task`. While the `Task` is quite similar to the `Person` in terms of implementation for model and logic component, the difficult for both
+lied within making the regex for their fields. `TaskMark`, `Deadline` and `Tag`, required us to do some reading up on how the regex API works, and for `Deadline`,
+initally we have tried to do it using Java regex but decided to change implementation into `LocalDate`, which API we also had to read upon.
+
+The biggest challenge for the project was the `Staff` and everything related to it. `Staff` existed as a `UniqueStaffList` within `Project`, something not in `Person`. Hence
+there was nothing to reference too. We had many consideration on the implementation, perhaps wanting to save it independent from `Project` and to instead save a list of
+`Project` within each `Staff`. This caused many days of debate on the implementation. Such implementation also affected how it works when it came to UI and the logic for the commands.
+For `Staff` related commands, we had to switch between many implementation, whether we change the parameters passed or changed the way it is stored and reference to in modelManager. One other
+implementation was not to use a filterStaffList, but instead a targetProject field, which had us needing to change how storage and UI would work. Due to the difficulty of this, we could easily take a few days
+every week, contemplating on how `Staff` and its related commands should work, be implemented, and then implement them.
+
+For logic, we added many commands. Some of them like `taskMark`, `sortProj`, and `view` to name a few required us to understand how `modelManager`,
+the old `addressBook` worked before we could try to create these commands. We had to consider how to write the logic that follows OOP standards from scratch
+and had to read Java API such as for `Optional` and `Comparator` to reach a satisfactory implementation.
+
+For the UI, we wanted a design that made us different from AB3, even if just a little. Our group has never worked with CSS files before or JavaFx, so we
+had to experiment for ourselves, searching for help through API and suggestion offered online. We tried using VBox and HBox to fit our design but ultimately changed
+to splitpane when our dimensions were wrong. We had to learn how the different attributes in fxml and CSS worked, if we wanted to increase the number of fields displayed,
+change to different colours and also how to make a flowpane display different colours based on different conditions. All of these took lots of time
+and even back in V1.2, we nearly could not finish by the deadline since we could not figure out some bugs with the UI.
+
+With storage, we also did not have experience with JSON files, and had to learn how they were created and saved using the original for `Person`.
+We had much difficult as we wanted `Project` to store a list of `Staff` objects but were unsure how to do it. Unlike the `Tag`, each `Staff` also had its
+own fields to save and load, due to that we had to experiment for numerous days till we saved it.
+
+For the test cases, we started them since V1.2, and faced many challenges when having to due with the many Stubs used and also just the general
+difficulty of writing good test cases. We have been doing test cases for every command made, every addition to model and have been aiming to ensure that we
+keep our code coverage at 75% and above. The biggest challenge was writing test cases for `Staff` since the original stubs used were not applicable as `Staff` cannot
+exist without a `Project`, a dependency that `Person` did not have. Therefore, we could not refer to anything and had to create one for testing purposes.
