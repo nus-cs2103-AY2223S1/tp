@@ -33,5 +33,7 @@ public class PositionTest {
         assertTrue(Position.isValidPosition("General"));
         assertTrue(Position.isValidPosition("UI/UX Designer"));
         assertTrue(Position.isValidPosition("Team 3 Lead"));
+        assertTrue(Position.isValidPosition("!@#$%^&*()0987654321"));
     }
+
 }

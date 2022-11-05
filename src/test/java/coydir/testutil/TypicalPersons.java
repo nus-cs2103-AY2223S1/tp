@@ -88,6 +88,7 @@ public class TypicalPersons {
         return ab;
     }
     public static List<Person> getTypicalPersons() {
+        TestUtil.restartEmployeeId(1);
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
