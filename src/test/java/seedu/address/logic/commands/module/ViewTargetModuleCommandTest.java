@@ -20,7 +20,7 @@ import seedu.address.model.module.Module;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code ViewModuleCommand}.
+ * {@code ViewTargetModuleCommand}.
  */
 public class ViewTargetModuleCommandTest {
 
