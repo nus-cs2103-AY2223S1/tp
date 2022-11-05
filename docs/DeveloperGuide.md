@@ -1099,7 +1099,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a link to a module in Plannit
 
-    1. Prerequisites: Use the `list` command to display all existing modules (from the sample data) in Plannit.
+    1. Prerequisite: Use the `list` command to display all existing modules (from the sample data) in Plannit.
 
     1. Test case: `add-link m/CS2103T la/Google l/google.com`<br>
        Expected:
@@ -1118,7 +1118,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a link from a module in Plannit
 
-    1. Prerequisites:  Use the `list` command to display all existing modules (from the sample data) in Plannit.
+    1. Prerequisite:  Use the `list` command to display all existing modules (from the sample data) in Plannit.
 
     1. Test case: `delete-link m/CS2103T la/Team Repo`<br>
        Expected:
@@ -1127,7 +1127,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `delete-link m/CS2103T la/hahahaha`<br>
        Expected:
-        * No links is deleted from the module with module code `CS2103T`.
+        * No links are deleted from the module with module code `CS2103T`.
         * Error details shown in the status message.
 
     1. Other incorrect delete commands to try: `delete-link`, `delete-link m/CS2103T `, `delete-link m/CS2103T m/CS2106`<br>
@@ -1145,7 +1145,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `open-link m/CS2103T la/hahahaha`<br>
        Expected:
-        * No links is opened from the module with module code `CS2103T`.
+        * No links are opened from the module with module code `CS2103T`.
         * Error details shown in the status message.
 
     1. Other incorrect open commands to try: `open-link`, `open-link m/CS2103T`, `open-link m/CS2103T m/CS2106`<br>
