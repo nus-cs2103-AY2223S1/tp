@@ -3,8 +3,9 @@ layout: page
 title: FoodRem
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W16-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S1-CS2103T-W16-2/tp)
+[![CI Status](https://github.com/AY2223S1-CS2103T-W16-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W16-2/tp/actions)
+&nbsp;[![CI Status](https://github.com/AY2223S1-CS2103T-W16-2/tp/workflows/Build/badge.svg)](https://github.com/AY2223S1-CS2103T-W16-2/tp/actions)
+&nbsp;[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W16-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S1-CS2103T-W16-2/tp)
 
 ![Ui](images/Ui.png)
 
