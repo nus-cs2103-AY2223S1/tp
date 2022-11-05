@@ -33,7 +33,7 @@ by any of the terms used!
 2. Download the latest `cobb.jar` from our [release page](https://github.com/AY2223S1-CS2103T-F12-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Cobb. All data will be created and stored
-   within this directory.
+   within this folder.
 
 4. Double-click the file to start the app. A window similar to the below should appear in a few seconds. Note how the application contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -43,7 +43,7 @@ Congratulations! Cobb is now set up and ready to work on your system.
 If you encounter any bugs during the setup process, do check out the [FAQ](#faq) section of this guide, which hopefully
 contains some information that can help you diagnose your issue.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution (for advanced users):**
 On first launch, Cobb will create a few files that have the extension `.json` in its *home directory*. These files are used
 by Cobb to store its data. **Edit these at your own risk**, as Cobb will start with an empty database if it detects any
 error in the formatting of the data in these files.
@@ -55,12 +55,12 @@ This section aims to define some terms that pop up throughout the user guide. Th
 good to take note of them before continuing.
 
 ### Command-specific terms
-1. **Command**: A piece of instruction that a user types into the command input box to instruct Cobb's behaviour.
-   Commands have many variations, and can serve many purposes.
-2. **Syntax**: The manner in which is a command is to be typed. Can be thought of as the "format" of the command.
-3. **Parameter**: An input to a command. Can be thought of as a piece of information a user provides that determines the
+1. **Command String**: The text you input into the [command input box](#1-command-input-and-output-boxes), which is
+translated to a Command by Cobb
+2. **Command**: An instruction that is executed by Cobb and translated from your Command String 
+3. **Syntax**: The manner in which is a Command String is to be typed. Can be thought of as the "format" of the command string.
+4. **Parameter**: An input to a command. Can be thought of as a piece of information a user provides that determines the
    behaviour of a specific command.
-4. **Command string**: The text that forms the command.
 5. **Flag**: A marker that signifies the start of a parameter to a command. For Cobb, in the command `findbuyer -k Tim`, 
    `-k` is the flag, and `Tim` is the parameter.
 6. **Fuzzy**: A flag that signifies loose filtering, that is, given a set of filter requirements, any user that matches at least one
@@ -70,16 +70,16 @@ good to take note of them before continuing.
 8. **Ascending**: Related to order; from low to high or minimum to maximum.
 9. **Descending**: Related to order; from high to low or maximum to minimum. 
 
-### Person-specific terms
-1. **Name**: The name of the person.
-2. **Phone**: The phone number of the person.
-3. **Email**: The email of the person.
-4. **Address**: The address of the person.
-5. **Price Range**: The price range of properties that a person might consider buying. That is, any property whose price
+### Buyer-specific terms
+1. **Name**: The name of the buyer.
+2. **Phone**: The phone number of the buyer.
+3. **Email**: The email of the buyer.
+4. **Address**: The address of the buyer.
+5. **Price Range**: The price range of properties that a buyer might consider buying. That is, any property whose price
    falls within this range will be considered by the buyer.
-6. **Characteristics**: The characteristics of a property that a person desires. For example, a person that has characteristics
+6. **Characteristics**: The characteristics of a property that a buyer desires. For example, a buyer that has characteristics
    `bright; sunny` is ideally looking for a property that is also `bright` and `sunny`.
-7. **Priority**: The priority of the person. Can be `LOW`, `NORMAL` or `HIGH`.
+7. **Priority**: The priority of the buyer. Can be `LOW`, `NORMAL` or `HIGH`.
 
 ### Property-specific terms
 1. **Name**: The name of the property.
@@ -98,17 +98,27 @@ When you launch Cobb, Cobb will appear on your screen as a window containing our
 Let's take a look at the 4 different components that make up Cobb's GUI.
 
 ### 1. Command Input and Output Boxes
-You can find them located at the top section of Cobb's GUI.
-![CommandBox](images/CommandBox.png)<br>
+You can find them located at the top section of the window.<br>
+![CommandBox](images/CommandBox.png)<br><br>
 The __command input box__ is located where the placeholder text `Enter command here...` is.<br>
-Clicking on it will allow you to input commands for Cobb to execute. Here are some commands you can test to start with.
+Clicking on it will allow you to input commands for Cobb to execute. 
+
+You can also use the up and down arrow keys to navigate the commands you have entered.
+* The **up arrow** brings back a previously entered command into the command input box.
+* The **down arrow** does the reverse of the up arrow, bringing back a more recently entered command.
+
+Here are some commands you can test to start with.
 
 * **`listbuyers`** : Lists all buyers in the database, that is, clears any buyer filters currently in place.
 
-* **`addbuyer -n Tim Cook -ph 91234567 -r 1000000-2500000 -a 10 lorong street avenue -c bright; sunny`**: Adds a buyer named "Tim Cook" with phone number "91234567" to the database.
- This buyer has a specified price range, and desired characteristics for the property he wants to buy.
+* **`addbuyer -n Tim Cook -ph 91234567 -e cook@apple.com -r 1000000-2500000 -a 10 lorong street avenue -c bright; sunny`**: 
+Adds a buyer named "Tim Cook" with phone number "91234567" to the database.
+This buyer has a specified price range, and desired characteristics for the property he wants to buy.
 
 * **`deletebuyer 1`** : Deletes a buyer at index 1 of the current list from the database.
+
+* Press the **up arrow** key once. This brings back **`deletebuyer 1`** into the command input box. You can edit this to
+`deletebuyer 2` and press the enter key to test this as well.
 
 * **`help`** : Displays some help text.
 
@@ -125,16 +135,18 @@ If a command was not successfully executed, the text within the command input bo
 </div>
 
 ### 2. Buyer List
-You can find the buyer list located at the left section of Cobb's GUI.
-![Buyer List](images/BuyerList.png)<br>
-The __Buyer List__ displays information regarding buyers who are currently stored in Cobb's database.
+You can find the buyer list located at the left section of the window.<br>
+![Buyer List](images/BuyerList.png)<br><br>
+The __Buyer List__ displays information regarding buyers who are currently stored in Cobb's database. The buyer list
+might not be showing **all* the buyers in the database all the time (see [FAQ](#faq)).
 
 The buyer list can be filtered and modified using commands given in the [features](#features) section of the guide.
 
 ### 3. Property List
 You can find the property list located at the right section of Cobb's GUI.
 ![Property List](images/PropertyList.png)<br>
-The __Property List__ displays information regarding properties that are currently stored in Cobb's database.
+The __Property List__ displays information regarding properties that are currently stored in Cobb's database. The property list
+might not be showing **all* the properties in the database all the time (see [FAQ](#faq)).
 
 The property list can be filtered and modified using commands given in the [features](#features) section of the guide.
 
@@ -143,11 +155,13 @@ This will appear as a separate window, and is not part of the main GUI.
 ![Help Window](images/HelpWindow.png)
 The __help window__ displays a link to Cobb's User Guide, which is this document :)
 
-It appears when you execute the `help` command.
+It appears when you execute the [Help Command](#viewing-help-help).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+Take a look at the [command summary](#command-summary) for a quick summary of the features below!
 
 <div markdown="block" class="alert alert-info">
 
@@ -191,7 +205,7 @@ The `-ph` flag indicates the buyer’s phone number.<br>
 The `-e` flag indicates the buyer’s email.<br>
 The `-a` flag indicates the buyer’s house address.<br>
 The `-r` flag indicates the price range of properties that the buyer can accept.<br>
-The `-c` flag indicates the characteristics that the buyer is looking for in a property.<br>
+The `-c` flag indicates the characteristics that the buyer is looking for in a property, separated by semicolons.<br>
 The `-pr` flag indicates the priority of the buyer.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -213,7 +227,7 @@ The `-n` flag indicates the name of the property.<br>
 The `-p` flag indicates the property’s price.<br>
 The `-a` flag indicates the property’s address.<br>
 The `-d` flag indicates the property’s description (characteristics).<br>
-The `-c` flag indicates the characteristics associated with the property.<br>
+The `-c` flag indicates the characteristics associated with the property, separated by semicolons.<br>
 The `-o` flag indicates the name of the owner of the property.<br>
 The `-ph` flag indicates the phone number of the owner of the property.<br>
 
@@ -222,17 +236,17 @@ Examples: <br>
 The property is owned by Bob with a phone number of 91234567.
 
 ### Delete Commands
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
+Note that this command has a slightly different syntax from the usual commands, as it takes a number representing the index of the object that you would like to delete
+without any flags (e.g. `-i`). 
+</div>
+
 #### Deleting buyers from the database: `deletebuyer`
 
 Syntax: `deletebuyer INDEX`
 
-<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-Note that this command has a slightly different syntax from the usual commands, as it takes a number representing the index of the object that you would like to delete
-instead of flags like other commands. This index is the number that you see next to the name of the object in the list.
-</div>
-
-The `INDEX` specified in this command refers to the index of the entry that is currently visible on the list.
-Note that if an entry has been filtered out / is not currently on the list, then a `deletebuyer` command cannot be executed on it.
+The `INDEX` specified in this command refers to the index of Buyer that is currently visible on the [Buyer List](#2-buyer-list).
 
 Examples:<br>
 `deletebuyer 5`: Deletes the fifth buyer currently visible on the buyer list.
@@ -241,8 +255,7 @@ Examples:<br>
 
 Syntax: `deleteprop INDEX`
 
-The `INDEX` specified in this command refers to the index of the entry that is currently visible on the list.
-Note that if an entry has been filtered out / is not currently on the list, then a `deleteprop` command cannot be executed on it.
+The `INDEX` specified in this command refers to the index of the entry that is currently visible on the [Property List](#3-property-list).
 
 Examples:<br>
 `deleteprop 5`: Deletes the fifth property currently visible on the property list.
@@ -268,9 +281,6 @@ Note that we are updating existing entries in the database, hence all parameters
 as we can choose to update a parameter without changing the others.
 </div>
 
-The `INDEX` field specifies the index of the buyer that we want to edit
-on the current visible buyer list, so if the buyer is not on this list, then we cannot execute this command on the buyer.
-
 Examples:<br>
 `editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -pr HIGH`: Edits buyer at index 3 to have a new name "John Doe", new email "johndoe@yahoo.com", new acceptable price range of $40000 - $500000, and a high priority.<br>
 `editbuyer 1 -c bright; sunny`: Edits buyer at index 1 to have new desired characteristics of bright and sunny.
@@ -291,26 +301,27 @@ The `-o` flag indicates the property's owner's new name.<br>
 The `-ph` flag indicates the property's owner's new phone number.<br>
 
 Note that we are updating existing entries in the database, hence all parameters above are optional,
-as we can choose to update a parameter without changing the others. Also, the `INDEX` field specifies the index of the property that we want to update
-on the current visible property list, so if the property is not on this list, then we cannot execute this command on the property.
+as we can choose to update a parameter without changing the others. 
 
 Examples:<br>
 `editprop 3 -n Hill Residence -a Block 225 -ph 750000`: Edits property at index 3 of the list to have a new name Hill Residence, a new address Block 225 and price 750000.
 
 ### List Commands
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
+These commands can be used to view all buyers and properties again, after a [Filter Command](#filter-commands) is executed.
+See [FAQ](#faq) for more information.
+</div>
+
 #### List buyers in database: `listbuyers`
 
-Lists all buyers in the database in the visible list, that is, removes all filters.
-
-This command updates the buyers list to display all current entries.
+Lists all buyers in the database in the [Buyer List](#2-buyer-list) , that is, removes all filters.
 
 Syntax: `listbuyers`
 
 #### List properties in database: `listprops`
 
-Lists all buyers in the database in the visible list, that is, removes all filters.
-
-This command updates the properties list to display all current entries.
+Lists all properties in the database in the [Property List](#3-property-list), that is, removes all filters.
 
 Syntax: `listprops`
 
@@ -348,9 +359,15 @@ Examples:<br>
 `findprop -k Peak Residence Hut`: Looks for all properties that have "Peak", "Residence" or "Hut" in their name.
 
 ### Filter Commands
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
+These commands cause the [Buyer List](#2-buyer-list) and [Property List](#3-property-list) to only show a portion of 
+buyers and properties in the database! Use the [List Commands](#list-commands) to show all buyers and properties again.
+</div>
+
 #### Filter buyers in database (multiple conditions): `filterbuyers`
 
-Filters buyers in the database according to multiple given conditions, and updates the visible buyer list.
+Filters buyers in the database according to multiple given conditions, and updates the [BuyerList](#2-buyer-list).
 
 Syntax: `filterbuyers {-p PRICE} {-c CHARACTERISTICS} {-pr PRIORITY<HIGH, NORMAL, LOW>} {-fuzzy}`
 
@@ -373,7 +390,7 @@ Examples:<br>
 
 #### Filter property in database (multiple conditions): `filterprops`
 
-Filters properties in the database according to multiple given conditions, and updates the visible property list.
+Filters properties in the database according to multiple given conditions, and updates the [Property List](#3-property-list).
 
 Syntax: `filterprops {-r PRICE RANGE} {-c CHARACTERISTICS} {-owner OWNER NAME} {-fuzzy}`
 
@@ -393,7 +410,7 @@ Examples:<br>
 ### Sort Commands
 #### Sort buyers in database: `sortbuyers`
 
-Sorts buyers in the database according to a single given condition, and updates the visible buyer list.
+Sorts buyers in the database according to a single given condition, and updates the [Buyer List](#2-buyer-list).
 
 Syntax: `sortbuyers {-n NAME <ASC/DESC>} {-r PRICERANGE <ASC/DESC>} {-pr <ASC/DESC>} {-t ENTRYTIME <ASC/DSC>}`
 
@@ -409,7 +426,7 @@ Examples:<br>
 
 #### Sort properties in database: `sortprops`
 
-Sorts properties in the database according to a single given condition, and updates the visible property list.
+Sorts properties in the database according to a single given condition, and updates the [Property List](#3-property-list).
 
 Syntax: `sortprops {-n PROPERTYNAME <ASC/DESC>} {-p PRICE <ASC/DESC>} {-t ENTRYTIME <ASC/DSC>}`
 
@@ -469,7 +486,7 @@ Cobb's data is saved in the hard disk automatically after any command that chang
 
 ### Editing the data file
 
-Cobb's data is saved as 2 separate JSON files `[JAR file location]/data/personmodel.json` and `[JAR file location]/data/propertymodel.json`. Advanced users are welcome to update data directly by editing these data files.
+Cobb's data is saved as 2 separate JSON files `[JAR file location]/data/buyerbook.json` and `[JAR file location]/data/propertybook.json`. Advanced users are welcome to update data directly by editing these data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Cobb will discard all data and start with an empty data file at the next run.
@@ -478,6 +495,10 @@ If your changes to the data file makes its format invalid, Cobb will discard all
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+
+**Q**: Why am I not seeing some properties and buyers in my property and buyer lists?
+**A**: You might be looking at a filtered portion of the database. This is because you previously executed a [Filter Command](#filter-commands).
+To view all buyers and properties again, use the [List Commands](#list-commands)
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Cobb home folder.
@@ -503,23 +524,23 @@ If the problem persists, please report the bug to us.
 
 ## Command Summary
 
-| Action                | Format, Examples                                                                                                                                                                                                                         |
-|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add buyer**         | `addbuyer [-n NAME] [-ph PHONE] [-e EMAIL] [-a address] {-r PRICE RANGE} {-c CHARACTERISTICS} {-pr PRIORITY <HIGH, NORMAL, LOW>}` <br> e.g., `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234 -pr HIGH`                         |
-| **Add property**      | `addprop [-n NAME] [-p PRICE] [-a ADDRESS] [-d DESCRIPTION] {-c CHARACTERISTICS} [-o OWNER NAME] [-ph PHONE]` <br> e.g.`addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -owner Bob -ph 91234567` |
-| **Delete buyer**      | `deletebuyer INDEX` <br> e.g. `deletebuyer 5`                                                                                                                                                                                            |
-| **Delete property**   | `deleteprop INDEX` <br> e.g. `deleteprop 5`                                                                                                                                                                                              |
-| **Edit buyer**        | `editbuyer INDEX {-n NAME} {-ph PHONE} {-e EMAIL} {-a ADDRESS} {-r PRICERANGE} {-c CHARACTERISTICS} {-pr PRIORITY<HIGH, NORMAL, LOW>}`<br> e.g.,`editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -pr HIGH`                   |
-| **Edit property**     | `editprop INDEX {-n NAME} {-p PRICE} {-a ADDRESS} {-d DESCRIPTION} {-c CHARACTERISTICS} {-owner OWNERNAME} {-p PHONE}`<br> e.g., `editprop 3 -n Hill Residence -a Block 225 -p 750000`                                                   |
-| **List buyers**       | `listbuyers`                                                                                                                                                                                                                             |
-| **List properties**   | `listprops`                                                                                                                                                                                                                              |
-| **Find buyers**       | `findbuyer [-k KEYWORDS]` <br> e.g. `findbuyer John`                                                                                                                                                                                     |
-| **Find properties**   | `findprop [-k KEYWORDS]` <br> e.g. `findprop Heng Mui Keng`                                                                                                                                                                              |
-| **Filter buyers**     | `filterbuyers {-p PRICE} {-c CHARACTERISTICS} {-pr PRIORITY<HIGH, NORMAL, LOW>} {-fuzzy}` <br> e.g. `filterbuyers -p 500000 -c bright; sunny -pr HIGH`                                                                                   |
-| **Filter properties** | `filterprops {-r PRICE RANGE} {-c CHARACTERISTICS} {-owner OWNER NAME} {-fuzzy}` <br> e.g. `filterprops -r 500000-1000000 -c bright; sunny -fuzzy`                                                                                       |
-| **Sort buyers**       | `sortbuyers {-n NAME <ASC/DESC>} {-r PRICERANGE <ASC/DESC>} {-pr <ASC/DESC>} {-t ENTRYTIME <ASC/DSC>}` <br> e.g. `sortbuyers -pr DESC`                                                                                                   |
-| **Sort properties**   | `sortprops {-n PROPERTYNAME <ASC/DESC>} {-p PRICE <ASC/DESC>} {-t ENTRYTIME <ASC/DSC>}` <br> e.g. `sortprops -p DESC`                                                                                                                    |
-| **Match buyers**      | `matchbuyer INDEX -strict` <br> e.g. `matchbuyer 1 -strict`                                                                                                                                                                              |
-| **Match properties**  | `matchprop INDEX -strict` <br> e.g. `matchprop 1`                                                                                                                                                                                        |
-| **Exit Cobb**         | `exit`                                                                                                                                                                                                                                   |
-| **Get help**          | `help`                                                                                                                                                                                                                                   |
+| Action                                                                            | Format, Examples                                                                                                                                                                                                                               |
+|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Add buyer](#adding-a-buyer-to-the-database-addbuyer)                             | `addbuyer [-n NAME] [-ph PHONE] [-e EMAIL] [-a address] {-r PRICE RANGE} {-c CHARACTERISTICS} {-pr PRIORITY <HIGH, NORMAL, LOW>}` <br> e.g., `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234 -pr HIGH`                               |
+| [Add property](#adding-a-property-to-the-database-addprop)                        | `addprop [-n NAME] [-p PRICE] [-a ADDRESS] [-d DESCRIPTION] {-c CHARACTERISTICS} [-o OWNER NAME] [-ph PHONE]` <br> e.g.`addprop -n Trinity Residences -p 3000000 -a 22 Sixth Avenue -d Freehold condominium on prime land -o Bob -ph 91234567` |
+| [Delete buyer](#deleting-buyers-from-the-database-deletebuyer)                    | `deletebuyer INDEX` <br> e.g. `deletebuyer 5`                                                                                                                                                                                                  |
+| [Delete property](#deleting-properties-from-the-database-deleteprop)              | `deleteprop INDEX` <br> e.g. `deleteprop 5`                                                                                                                                                                                                    |
+| [Edit buyer](#edit-a-buyer-entry-in-the-database-editbuyer)                       | `editbuyer INDEX {-n NAME} {-ph PHONE} {-e EMAIL} {-a ADDRESS} {-r PRICERANGE} {-c CHARACTERISTICS} {-pr PRIORITY<HIGH, NORMAL, LOW>}`<br> e.g.,`editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -pr HIGH`                         |
+| [Edit property](#edit-a-property-entry-in-database-editprop)                      | `editprop INDEX {-n NAME} {-p PRICE} {-a ADDRESS} {-d DESCRIPTION} {-c CHARACTERISTICS} {-owner OWNERNAME} {-p PHONE}`<br> e.g., `editprop 3 -n Hill Residence -a Block 225 -p 750000`                                                         |
+| [List buyer](#list-buyers-in-database-listbuyers)                                 | `listbuyers`                                                                                                                                                                                                                                   |
+| [List properties](#list-properties-in-database-listprops)                         | `listprops`                                                                                                                                                                                                                                    |
+| [Find buyers](#find-buyer-entry-in-database-findbuyer)                            | `findbuyer [-k KEYWORDS]` <br> e.g. `findbuyer John`                                                                                                                                                                                           |
+| [Find properties](#find-property-entry-in-database-findprop)                      | `findprop [-k KEYWORDS]` <br> e.g. `findprop Heng Mui Keng`                                                                                                                                                                                    |
+| [Filter buyers](#filter-buyers-in-database-multiple-conditions-filterbuyers)      | `filterbuyers {-p PRICE} {-c CHARACTERISTICS} {-pr PRIORITY<HIGH, NORMAL, LOW>} {-fuzzy}` <br> e.g. `filterbuyers -p 500000 -c bright; sunny -pr HIGH`                                                                                         |
+| [Filter properties](#filter-property-in-database-multiple-conditions-filterprops) | `filterprops {-r PRICE RANGE} {-c CHARACTERISTICS} {-owner OWNER NAME} {-fuzzy}` <br> e.g. `filterprops -r 500000-1000000 -c bright; sunny -fuzzy`                                                                                             |
+| [Sort buyers](#sort-buyers-in-database-sortbuyers)                                | `sortbuyers {-n NAME <ASC/DESC>} {-r PRICERANGE <ASC/DESC>} {-pr <ASC/DESC>} {-t ENTRYTIME <ASC/DSC>}` <br> e.g. `sortbuyers -pr DESC`                                                                                                         |
+| [Sort properties](#sort-properties-in-database-sortprops)                         | `sortprops {-n PROPERTYNAME <ASC/DESC>} {-p PRICE <ASC/DESC>} {-t ENTRYTIME <ASC/DSC>}` <br> e.g. `sortprops -p DESC`                                                                                                                          |
+| [Match buyers](#match-specified-buyer-to-properties-matchbuyer)                   | `matchbuyer INDEX -strict` <br> e.g. `matchbuyer 1 -strict`                                                                                                                                                                                    |
+| [Match properties](#match-specified-property-to-buyers-matchprop)                 | `matchprop INDEX -strict` <br> e.g. `matchprop 1`                                                                                                                                                                                              |
+| [Exit Cobb](#exiting-the-program-exit)                                            | `exit`                                                                                                                                                                                                                                         |
+| [Get help](#viewing-help-help)                                                    | `help`                                                                                                                                                                                                                                         |
