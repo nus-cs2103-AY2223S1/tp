@@ -62,7 +62,7 @@ public class Meeting implements Comparable<Meeting> {
             throw new PersonNotFoundException(PersonNotFoundException.NO_PERSON_DETECTED);
         }
 
-        if (checkDuplicates(peopleToMeet)) {
+        if (hasDuplicates(peopleToMeet)) {
             throw new DuplicatePersonException();
         }
 
@@ -116,7 +116,7 @@ public class Meeting implements Comparable<Meeting> {
      *
      * @param names list of people
      */
-    public static boolean checkDuplicates(String[] names) {
+    public static boolean hasDuplicates(String[] names) {
         Set<String> set = new HashSet<String>();
         for (String i : names) {
             if (set.contains(i.strip())) {
