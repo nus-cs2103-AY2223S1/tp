@@ -3,10 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -17,11 +13,10 @@ import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.price.Price;
 import seedu.address.model.price.PriceRange;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Owner;
-import seedu.address.model.price.Price;
-import seedu.address.model.property.Properties;
 import seedu.address.model.property.PropertyName;
 
 
@@ -141,13 +136,11 @@ public class ParserUtil {
     public static PriceRange parsePriceRange(String range) throws ParseException {
         requireNonNull(range);
         String trimmedRange = range.trim();
-        /*TODO: Currently the price range accepted has to be in the exact format of LOW - HIGH
-        with no allowance for extra white spaces within e.g 200 -     500.
-        Accepted white spaces are only around e.g "    200 - 500     ".
-        Something to consider for further enhancement if we want to make it
-        more flexible, but not a priority!*/
         if (!PriceRange.isValidPriceRange(trimmedRange)) {
             throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedRange.isEmpty()) {
+            return PriceRange.RESET_PRICE_RANGE;
         }
         return new PriceRange(trimmedRange);
     }
@@ -161,25 +154,10 @@ public class ParserUtil {
         if (!Characteristics.isValidCharacteristics(trimmedCharacteristics)) {
             throw new ParseException(Characteristics.MESSAGE_CONSTRAINTS);
         }
-        return new Characteristics(trimmedCharacteristics);
-    }
-
-    /**
-     * Parses {@code String properties} into a {@code List<Integer>}.
-     */
-    // TODO: Actually parse properties here?
-    public static Properties parseProperties(String properties) throws ParseException {
-        if (properties.isEmpty()) {
-            return new Properties("");
+        if (trimmedCharacteristics.isEmpty()) {
+            return Characteristics.RESET_CHARACTERISTICS;
         }
-        String trimmedProperties = properties.trim();
-        List<Integer> propertyArray = Arrays.stream(trimmedProperties.split(";"))
-                .map(item -> Integer.parseInt(item.trim()))
-                .collect(Collectors.toList());
-
-        // TODO: should add a check that all values that are ; separated are integers
-
-        return new Properties("");
+        return new Characteristics(trimmedCharacteristics);
     }
 
     /**

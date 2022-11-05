@@ -21,8 +21,11 @@ public class PriceRange {
      */
     public static final String VALIDATION_REGEX = "[0-9]*\\.?[0-9]+\\s*-\\s*[0-9]*\\.?[0-9]+";
 
+    public static final PriceRange RESET_PRICE_RANGE = new PriceRange();
+
     public final Price low;
     public final Price high;
+    public final boolean isReset;
 
     /**
      * Constructs a {@code PriceRange}.
@@ -35,14 +38,30 @@ public class PriceRange {
         String[] rangeValues = priceRange.split("-");
         this.low = new Price(rangeValues[0].trim());
         this.high = new Price(rangeValues[1].trim());
+        this.isReset = false;
+    }
+
+    /**
+     * Constructs a {@code PriceRange} that is going to be reset.
+     */
+    private PriceRange() {
+        this.low = null;
+        this.high = null;
+        this.isReset = true;
     }
 
     /**
      * Returns true if a given string is a valid price range in format.
      * Left value of the price range must be smaller than the right value of the price range.
      * Both values must be non-negative and within the maximum range of a Double.
+     * Accepts an empty string.
      */
     public static boolean isValidPriceRange(String test) {
+        requireNonNull(test);
+
+        if (test.trim().isEmpty()) {
+            return true;
+        }
 
         boolean isValid = test.matches(VALIDATION_REGEX);
 
@@ -112,5 +131,9 @@ public class PriceRange {
         return other == this // short circuit if same object
                 || (other instanceof PriceRange // instanceof handles nulls
                 && this.toString().equals(((PriceRange) other).toString())); // state check
+    }
+
+    public boolean isReset() {
+        return isReset;
     }
 }
