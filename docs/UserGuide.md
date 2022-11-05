@@ -51,16 +51,18 @@ DevEnable is a **desktop app for developers to manager their projects, optimized
 * Parameters can be in any order.<br>
   e.g. if the command specifies `client -a p/PROJECT_ID n/CLIENT_NAME [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`, `client -a p/PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [m/CLIENT_MOBILE]` are both acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. (Does not apply for Sort Command) <br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
+  of the parameter will be taken. (Does not apply for Find and Sort Commands) <br>
   e.g. if you specify `m/12341234 m/56785678`, only `m/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Trailing extraneous input for commands that take in parameters will be considered a part of the last valid 
-  parameter, if any.
-  e.g. if the command specifies `project -e n/New Project p/2 x/this is extra`, `2 x/this is extra` will be taken as 
-  the argument for `p/`.
+  argument identifier unless the argument identifier takes in an index parameter .
+  e.g. if the command specifies `project -e n/New Project x/this is extra`, `New Project x/this is extra` will be 
+  taken as the argument for `n/` but if the command specifies `project -e n/New Project p/2 x/this is extra`, then 
+  only `2` will be taken as the argument for `p/`.
 
 </div>
 
@@ -168,7 +170,8 @@ Examples:
 * `project -f n/DevEnable` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable.
 * `project -f n/DevEnable AB3` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable or AB3.
 * `project -f r/tp/F13` Finds and lists all the projects with `REPOSITORY` tp/F13.
-* `project -f l/Amy` Finds and lists all the projects with the client whose `CLIENT_NAME` Amy labelled (tagged) to it.
+* `project -f l/Amy l/Ben` Finds and lists all the projects with the client with `CLIENT_NAME` Amy or 
+  `CLIENT_NAME` Ben labelled (tagged) to it.
 * `project -f c/3` Finds and lists all the projects with the client whose `CLIENT_ID` is 3.
 * `project -f p/1` Finds and lists the project with `PROJECT_ID` 1.
 * `project -f n/AB4 AB3 r/tp/F13` Finds and lists all the projects whose `PROJECT_NAME` contains the word AB4 or AB3 
@@ -306,8 +309,8 @@ Examples:
 * `client -f n/Amy` Finds and lists all the clients whose `CLIENT_NAME` contains the word Amy.
 * `client -f c/1` Finds and lists the client whose `CLIENT_ID` is 1.
 * `client -f n/Amy Bob` Finds and lists all the clients with the `CLIENT_NAME` contains the word Amy or Bob.
-* `client -f n/Amy e/amy@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains the word Amy and 
-  with `CLIENT_EMAIL` amy@gmail.com.
+* `client -f n/Amy e/amy@gmail.com e/amycarter@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains 
+  the word Amy and with `CLIENT_EMAIL` amy@gmail.com or `CLIENT_EMAIL` amycarter@gmail.com.
 * `client -f n/Amy e/amy@gmail.com m/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word 
   Amy and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_MOBILE` 12345678.
 * `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com m/12345678` Finds and lists all the clients whose 
@@ -443,7 +446,7 @@ Examples:
 * `issue -f n/DevEnable AB3` Finds and lists all the issues tied to the project with `PROJECT_NAME` containing 
   DevEnable or AB3.
 * `issue -f i/3` Finds and lists the issue with `ISSUE_ID` 3.
-* `issue -f p/3` Finds and lists the issue tied to project with `PROJECT_ID` 3.
+* `issue -f p/3 p/5` Finds and lists the issue tied to project with `PROJECT_ID` 3 or `PROJECT_ID` 5.
 * `issue -f n/DevEnable AB3 u/LOW` Finds and lists all the issues with `URGENCY` as LOW and tied to the project with 
   `PROJECT_NAME` containing DevEnable or AB3.
 * `issue -f t/enhancement p/DevEnable AB3 u/HIGH LOW` Finds and lists all the issues with `TITLE` enhancement and 
