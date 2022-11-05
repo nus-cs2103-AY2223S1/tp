@@ -18,6 +18,7 @@ import foodwhere.model.review.Review;
 import foodwhere.model.review.ReviewContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.StallContainsKeywordsPredicate;
+import foodwhere.testutil.EditReviewDescriptorBuilder;
 import foodwhere.testutil.EditStallDescriptorBuilder;
 
 /**
@@ -70,11 +71,17 @@ public class CommandTestUtil {
     public static final String INVALID_STALL_INDEX_D = " "
             + CliSyntax.PREFIX_STALL_INDEX + "";
 
+    // negative number not allowed in rating
+    public static final String INVALID_RATING_DESC = " " + CliSyntax.PREFIX_RATING + "-1";
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final SEditCommand.EditStallDescriptor DESC_AMY;
     public static final SEditCommand.EditStallDescriptor DESC_BOB;
+
+    public static final REditCommand.EditReviewDescriptor DESC_AMY_REVIEW;
+    public static final REditCommand.EditReviewDescriptor DESC_BOB_REVIEW;
 
     static {
         DESC_AMY = new EditStallDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -82,6 +89,14 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditStallDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY_REVIEW = new EditReviewDescriptorBuilder().withDate(VALID_DATE_AMY)
+                .withContent(VALID_CONTENT_AMY)
+                .withRating(VALID_RATING_AMY.toString())
+                .withTags(VALID_TAG_FRIEND).build();
+        DESC_BOB_REVIEW = new EditReviewDescriptorBuilder().withDate(VALID_DATE_BOB)
+                .withContent(VALID_CONTENT_BOB)
+                .withRating(VALID_RATING_BOB.toString())
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
