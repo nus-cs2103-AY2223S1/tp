@@ -640,12 +640,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all patients.
 2. idENTify shows a list of all patients.
 
-
     Use case ends.
 
 **Extensions**
 - 2a. The list is empty.
-
 
      Use case ends.
 
@@ -657,14 +655,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all appointments.
 2. idENTify shows a list of all appointments.
 
-
      Use case ends.
-
-
 
 **Extensions**
 - 2a. The list is empty.
-
 
     Use case ends.
 
@@ -677,9 +671,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User adds the patient by entering the command and the patient details.
 2. idENTify adds the patient.
 
-
      Use case ends.
-
 
 **Extensions**
 
@@ -815,7 +807,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1.  User gets the <ins>list of appointments(UC02)<ins>.
 2.  User requests to mark a specified appointment for a specified patient.
-3.  idENTify marks the selected appointment.
+3.  idENTify unmarks the selected appointment.
 
 
     Use case ends.
@@ -880,7 +872,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User gets the <ins>list of patients(UC01)<ins>.
 2.  idENTify displays the patient list sorted by their names.
 
-
     Use case ends.
 
 **Extensions**
@@ -889,9 +880,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. idENTify compares their other information.
     - 2a2. idENTify sort them by their other information.
     - 2a3. idENTify displays the sorted patient list.
-
-
-    Use case ends.
+   
+      Use case ends.
 
 **Use Case: UC14 - sort the appointment list**
 
@@ -900,7 +890,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1.  User gets the <ins>list of appointments(UC02)<ins>.
 2.  idENTify displays the appointment list sorted by their datetime.
-
 
     Use case ends.
 
@@ -911,8 +900,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a2. idENTify sort them by their patient information.
     - 2a3. idENTify displays the sorted appointment list.
 
-
-    Use case ends.
+      Use case ends.
 
 **Use Case: UC15 - group patients**
 
@@ -921,7 +909,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to group patients.
 2. idENTify displays the patient list grouped by their tags.
-
 
     Use case ends.
 
@@ -932,8 +919,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a2. idENTify sort them by their other information.
     - 2a3. idENTify displays the sorted patient list.
 
-
-    Use case ends.
+      Use case ends.
 
 **Use Case: UC16 - group appointments**
 
@@ -942,7 +928,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to group appointments with some criterion.
 2. idENTify displays the appointment list grouped according to the specified criterion.
-
 
     Use case ends.
 
@@ -961,8 +946,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a2. idENTify sort them by their other information.
     - 2a3. idENTify displays the sorted appointment list.
 
-
-    Use case ends.
+      Use case ends.
 
 **Use Case: UC17 - ungroup patients**
 
@@ -971,7 +955,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to ungroup patients.
 2. idENTify displays the patient list <ins>sorted by default(UC13)<ins>.
-
 
     Use case ends.
 
@@ -984,7 +967,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to ungroup appointments.
 2. idENTify displays the appointment list <ins>sorted by default(UC14)<ins>.
 
-
     Use case ends.
 
 
@@ -995,7 +977,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to hide patients with specified conditions.
 2. idENTify displays the patient list without hidden patients.
-
 
     Use case ends.
 
@@ -1016,8 +997,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to hide appointments with specified conditions.
 2. idENTify displays the appointment list without hidden appointments.
 
-
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -1036,8 +1016,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to unhide patients.
 2. idENTify displays the <ins>whole patient list (UC01)<ins>.
 
-
-    Use case ends.
+   Use case ends.
 
 
 **Use Case: UC22 - unhide appointments**
@@ -1047,7 +1026,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to unhide appointments.
 2. idENTify displays the <ins>whole appointment list (UC02)<ins>.
-
 
     Use case ends.
 
@@ -1060,7 +1038,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to clear all entries of current patient and appointment lists.
 2. idENTify displays an empty patient list and an empty appointment list.
 
-
     Use case ends.
 
 **Use Case: UC24 - show help page**
@@ -1071,24 +1048,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to ask for help about how to use the app.
 2. idENTify shows a page including some information to help users.
 
-
     Use case ends.
 
-**Use Case: UC24 - show command history**
+**Use Case: UC25 - show command history**
 
 **MSS**
-1. User enters command to view previous commands.
+1. User enters key to view previous commands.
 2. idENTify shows previous commands to users.
-
 
     Use case ends.
 
-**Use Case: UC25 - exit the app**
+**Use Case: UC26 - exit the app**
 
 **MSS**
 1. User enters command to exit.
 2. idENTify saves current data and exits.
-
 
     Use case ends.
 
