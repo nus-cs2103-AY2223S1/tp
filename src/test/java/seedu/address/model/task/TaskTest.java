@@ -32,7 +32,8 @@ public class TaskTest {
     private static final TaskCategory testCat2 = new TaskCategory(TaskCategoryType.BACKEND);
     private static final Description testDisc2 = new Description("Test1");
     private static final Priority testPriority2 = new Priority(PriorityEnum.LOW);
-    private static final TaskDeadline testDeadline2 = new TaskDeadline(LocalDate.of(2022,12,12));
+    private static final TaskDeadline testDeadline2 = new 
+            TaskDeadline(LocalDate.of(2022, 12, 12));
     private static final Person testPerson2 = new Person(new Name("test"), new Phone("99999998"),
             new Email("test@gmail.com"), new Address("test"), new HashSet(), new ArrayList<>());
 
