@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
- * Utility methods related to Collections
+ * Utility methods related to Collections.
  */
 public class CollectionUtil {
 

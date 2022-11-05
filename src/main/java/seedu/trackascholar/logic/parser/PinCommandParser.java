@@ -9,13 +9,14 @@ import seedu.trackascholar.logic.parser.exceptions.ParseException;
 
 
 /**
- * Parses input arguments and creates a new PinCommand object
+ * Parses input arguments and creates a new PinCommand object.
  */
 public class PinCommandParser implements Parser<PinCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the PinCommand
      * and returns a PinCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public PinCommand parse(String args) throws ParseException {
         try {

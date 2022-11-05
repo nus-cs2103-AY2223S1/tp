@@ -11,22 +11,22 @@ import seedu.trackascholar.commons.core.LogsCenter;
 import seedu.trackascholar.model.applicant.Applicant;
 
 /**
- * Panel containing the list of pinned applicants.
+ * Panel containing the list of applicants.
  */
-public class PinList extends UiPart<Region> {
-    private static final String FXML = "PinList.fxml";
+public class ApplicantListPanel extends UiPart<Region> {
+    private static final String FXML = "ApplicantListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ApplicantListPanel.class);
 
     @FXML
-    private ListView<Applicant> pinList;
+    private ListView<Applicant> applicantListView;
 
     /**
      * Creates a {@code ApplicantListPanel} with the given {@code ObservableList}.
      */
-    public PinList(ObservableList<Applicant> applicantList) {
+    public ApplicantListPanel(ObservableList<Applicant> applicantList) {
         super(FXML);
-        pinList.setItems(applicantList);
-        pinList.setCellFactory(listView -> new ApplicantListViewCell());
+        applicantListView.setItems(applicantList);
+        applicantListView.setCellFactory(listView -> new ApplicantListViewCell());
     }
 
     /**
@@ -41,7 +41,7 @@ public class PinList extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PinCard(applicant).getRoot());
+                setGraphic(new ApplicantCard(applicant, getIndex() + 1).getRoot());
             }
         }
     }
