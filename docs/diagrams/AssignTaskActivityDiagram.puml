@@ -8,21 +8,13 @@ start
 
 if () then ([parameters are parsed correctly])
     :Executes;
-    if () then ([group and person exist in TABS])
+    if () then ([the person is a member of
+    the group without the task])
     :Obtain group and person from Model;
-        if () then ([person is a member of group])
-        :Check person's assignment list;
-            if () then ([person does not have assignment])
-            :AssignTaskCommand performs assignment of task;
-            :Return CommandResult to LogicManager;
-            else ([else])
-            :Throw CommandException indicating person has duplicate task;
-            endif
-        else ([else])
-        :Throw CommandException indicating person not a member;
-        endif
+    :AssignTaskCommand performs assignment of task;
+    :Return CommandResult to LogicManager;
     else ([else])
-    :Throw CommandException for missing group/person;
+    :Throw CommandException;
     endif
 else ([else])
 : Throw ParseException;
