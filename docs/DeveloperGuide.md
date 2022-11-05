@@ -187,13 +187,50 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{insert activity diagram}_
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How add item executes:**
 
 _{add design considerations}_
 
 _{more aspects and alternatives to be added}_
+
+### Delete Item Feature
+
+The delete item feature allows the user to delete an `Item` currently being tracked by the system.
+
+#### Implementation
+
+The delete item command `deletei` is supported by the `DeleteItemCommand`. It extends `Command`.
+
+Given below is an example usage scenario and how the edit item mechanism behaves at each step.
+
+Step 1. The user inputs the command `deletei 1`. This calls:
+1. `LogicManager#execute()`
+2. `TrackOParser#parseCommand()`. This parses the command as an `DeleteItemCommand` and returns a `DeleteItemCommandParser` object.
+3. `DeleteItemCommandParser#parse()` parses the arguments and returns an `DeleteItemCommand` with the target `Index`.
+
+Step 2. `DeleteItemCommand#execute()` is called and the `DeleteItemCommand` calls `Model#deleteItem()` which deletes
+the `Item` at the target `Index` from the `Model`.
+
+The sequence diagram below illustrates this process.
+
+![EditItemSequenceDiagram](images/developer-guide/DeleteItemSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `DeleteItemCommandParser` and `DeleteItemCommand` should end at 
+the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the 
+end of diagram.
+</div>
+
+#### Design Considerations
+
+**Aspect: How deletei is implemented**
+- **Alternative 1 (current choice)**: The command deletes the target `Item` based on the target `Index`.
+  - Pros: Easier to implement, 
+  - Cons: The user must check for the `Item` for its `Index`.
+- **Alternative 2**: The command can delete `Item` objects based on their `ItemName`.
+  - Pros: User do not need to check for the `Item` object's `Index`.
+  - Cons: Harder to implement.
 
 ### List Items Feature
 
@@ -205,10 +242,10 @@ The list item feature is supported by the `ListItemsCommand`. It extends `Comman
 
 Given below is an example usage scenario and how the `ListItemsCommand` mechanism behaves at each step.
 
-Step 1. The user inputs `listi`. This calls `LogicManager#execute`, which then calls `TrackOParser#parseCommand`.
+Step 1. The user inputs `listi`. This calls `LogicManager#execute()`, which then calls `TrackOParser#parseCommand()`.
 This method will return a new instance of `ListItemsCommand`.
 
-Step 2. `ListItemsCommand#execute` is called, which then calls the method
+Step 2. `ListItemsCommand#execute()` is called, which then calls the method
 `Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS)`. This will show all the `Item`s in the existing
 inventory list.
 
@@ -276,10 +313,9 @@ The edit item feature allows the user to edit an `Item` currently being tracked 
 
 The edit item command `editi` is supported by the `EditItemCommand`. It extends `Command`.
 
-The command is implemented through the `Logic` and `Model` components. The `Logic`
-component parses the user input, the `Model` component then performs the edit on the target `Item`.
+Given below is an example usage scenario and how the edit item mechanism behaves at each step.
 
-Step 1: The user inputs the command `editi 1 i/Chair q/20`. This calls:
+Step 1. The user inputs the command `editi 1 i/Chair q/20`. This calls:
 1. `LogicManager#execute()`
 2. `TrackOParser#parseCommand()`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser` object.
 3. `EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target `Index` and the
@@ -290,8 +326,8 @@ should have and is used in the creation of the new `Item` object. In this case, 
 `ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing `Item` at the
 target `Index` 1.
 
-Step 2:. The `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`. It then
-checks if this `Item` already exists in the inventory list by using `Model#hasItem()`. If it already exists, a
+Step 2. `EditItemCommand#execute()` is called and the `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`.
+It then checks if this `Item` already exists in the inventory list by using `Model#hasItem()`. If it already exists, a
 `CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`.
 
 An item already exists if there is another item in the
@@ -300,7 +336,7 @@ because having 2 `Item` with the same `ItemName` can be confusing to the user an
 situation.
 
 Step 3. The `Item` at the target index is then replaced by the newly created `Item` using `Model#setItem()`,
-successfully executing the edit item command in the `Model`.
+successfully executing the edit item command in the `Model`. 
 
 The sequence diagram below illustrates this process.
 
@@ -310,6 +346,17 @@ The sequence diagram below illustrates this process.
 the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the 
 end of diagram.
 </div>
+
+#### Design Considerations
+
+**Aspect: Whether to implement the edit item feature**
+- **Alternative 1 (current choice)**: The command is implemented and edits the item based on the prefixes
+  inputted by the user.
+  - Pros: The user can edit only the fields that they want to edit.
+  - Cons: The user may have to input long commands.
+- **Alternative 2**: No edit command, users have to delete and re-add items should there be any change.
+  - Pros: Less bug-prone, more convenient for the developers to implement.
+  - Cons: Not user-friendly and makes things more difficult for the user.
 
 ### Order Management
 
@@ -423,7 +470,7 @@ The following activity diagram below illustrates the general flow of the user's 
 **Aspect: How the add order command receives input and executes**
 * **Alternative 1**: Single level command, user inputs all required information in one long command.
     * Pros: Easier to implement as the implementation will follow the already in-place command execution structure.
-    * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data (e.g, enter multiple instances of "i/ITEM_NAME q/QUANTITY" on the same line of input).
+    * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data (e.g, enter multiple instances of `i/ITEM_NAME q/QUANTITY` on the same line of input).
 * **Alternative 2 (current choice)**: Multi-level command. User enters inputs in levels (customer data -> multiple iterations of item/quantity information -> "done"/"cancel" ).
   * Pros: Better user experience. Users can be sure that any previously entered input is already validated by the application, making it less overwhelming to input large amounts of information.
   * Cons: Harder to implement as it deviates from the original command execution structure (where one instance of user input relates to one full command execution).
@@ -458,7 +505,7 @@ that will filter the items according to the keywords. The predicate is passed in
 The following sequence diagram shows how the find order operation works:
 ![FindOrderSequenceDiagram](images/FindOrderSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: What fields the find order command should search by:**
 - Alternative 1: The command finds orders based on the order's `ItemName`
@@ -540,6 +587,47 @@ inputted by the user.
 - **Alternative 2**: No edit command, users have to delete and re-add orders should there be any change.
   - Pros: Less bug-prone, more convenient for the developers to implement.
   - Cons: Not user-friendly and makes things more difficult for the user.
+
+### Sort Orders Feature
+
+The sort orders feature allows the user to sort all the displayed order list based on their time of creation.
+
+#### Implementation
+
+The sort orders feature is supported by the `SortOrdersCommand`. It extends `Command`. This command is implemented by
+wrapping a `SortedList` around the `FilteredList` in `ModelManager`. The command must be used with at least 1 of the
+2 different keywords: `new` or `old`.
+
+Given below is an example usage scenario and how the `SortOrdersCommand` mechanism behaves at each step.
+
+Step 1. The user inputs the command `sorto new`. This calls:
+1. `LogicManager#execute()`
+2. `TrackOParser#parseCommand()`. This parses the command as an `SortOrdersCommandParser` and returns a `SortOrdersCommandParser` object.
+3. `SortOrdersCommandParser#parse()` parses the arguments and creates an `OrderDateTimeComparator` based on the input keyword `new`. A `SortOrdersCommand` object with the `OrderDateTimeComparator` is returned.
+
+The `OrderDateTimeComparator` determines the order in which the `SortedList` should be sorted and is created based on the
+keywords `new` or `old`.
+
+Step 2. `SortOrdersCommand#execute()` is called and the `SortOrdersCommand` calls `Model#updateSortedOrderList` which
+updates the comparator used for the `sortedList` in `ModelManager`.
+
+The sequence diagram below illustrates this process.
+
+![SortOrdersSequenceDiagram](images/developer-guide/SortOrdersSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortOrdersCommandParser` and `SortOrdersCommand` 
+should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+reaches the end of diagram.
+</div>
+
+#### Design Considerations
+
+**Aspect: How the `listi` command executes**
+
+- **Alternative 1 (current choice)**: The command lists all the items in the inventory list.
+  - Pros: Easier to implement.
+  - Cons: Unable to filter specific items.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
