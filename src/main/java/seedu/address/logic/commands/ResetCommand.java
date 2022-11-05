@@ -20,8 +20,8 @@ public class ResetCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateSortedFilteredPersonList(DEFAULT_COMPARATOR);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.sortPersonList(DEFAULT_COMPARATOR);
+        model.filterPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

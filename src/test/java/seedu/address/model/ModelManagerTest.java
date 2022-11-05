@@ -93,12 +93,12 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedFilteredPersonList().remove(0));
     }
 
     @Test
     public void getSortedFilteredPersonList_listIsSorted() {
-        modelManager.updateSortedFilteredPersonList(Person::compareTo);
+        modelManager.sortPersonList(Person::compareTo);
         modelManager.addPerson(CARL);
         modelManager.addPerson(BENSON);
         modelManager.addPerson(ALICE);
@@ -145,11 +145,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new PersonMatchesKeywordsPredicate(keywords.toString()));
+        modelManager.filterPersonList(new PersonMatchesKeywordsPredicate(keywords.toString()));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.filterPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
