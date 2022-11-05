@@ -365,17 +365,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void updateModuleFieldForTask(Module previousModule, Module newModule) {
         requireAllNonNull(previousModule, newModule);
         tasks.updateModuleFieldForTask(previousModule, newModule);
+        modules.updateTotalNumOfTasks(newModule, tasks);
+        modules.updateNumOfCompletedTasks(newModule, tasks);
     }
 
     /**
      * Replaces exam by changing its given module field from {@code previousModule}
-     * to {@code newModule} for exams that have their module field as {@code previousModule}.
+     * to {@code newModule} for all exams that have their module field as {@code previousModule}. It also links
+     * the replaced exam to tasks previously linked to the exam with {code previousModule}.
+     *
      * @param previousModule The module in the exam's module field.
      * @param newModule The new module which will replace the previous module in the exam's module field.
      */
     public void updateModuleFieldForExam(Module previousModule, Module newModule) {
         requireAllNonNull(previousModule, newModule);
-        exams.updateModuleFieldForExam(previousModule, newModule);
+        exams.updateModuleFieldForExam(tasks, previousModule, newModule);
+        exams.updateTotalNumOfTasksForAllExams(tasks);
+        exams.updateNumOfCompletedTasksForAllExams(tasks);
     }
 
     /**
