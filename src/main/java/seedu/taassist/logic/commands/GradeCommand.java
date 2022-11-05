@@ -39,14 +39,14 @@ public class GradeCommand extends Command {
 
     private final List<Index> indices;
     private final Session session;
-    private final double grade;
+    private final Double grade;
 
     /**
      * Creates a GradeCommand to give the specified {@code grade} to the student at the specified {@code index}
      * for the specified {@code session}.
      */
-    public GradeCommand(List<Index> indices, Session session, double grade) {
-        requireAllNonNull(indices, session);
+    public GradeCommand(List<Index> indices, Session session, Double grade) {
+        requireAllNonNull(indices, session, grade);
         this.indices = indices;
         this.session = session;
         this.grade = grade;
@@ -93,7 +93,7 @@ public class GradeCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof GradeCommand // instanceof handles nulls
                 && indices.equals(((GradeCommand) other).indices)
-                && grade == ((GradeCommand) other).grade
-                && session.equals(((GradeCommand) other).session));
+                && session.equals(((GradeCommand) other).session))
+                && grade.equals(((GradeCommand) other).grade);
     }
 }

@@ -11,8 +11,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Date implements Comparable<Date> {
 
-    public static final String MESSAGE_CONSTRAINTS = "An invalid date is provided. "
-            + "Dates should be given in YYYY-MM-DD format and must be an actual date.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Dates should be given in YYYY-MM-DD format and must be an actual date.";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("EEE, dd MMMM yyyy");
 
     private final LocalDate value;

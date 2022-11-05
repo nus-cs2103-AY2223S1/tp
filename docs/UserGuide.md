@@ -385,7 +385,8 @@ Grades one or multiple students for the session.
 
 Format: `grade INDEX... s/SESSION_NAME g/GRADE_VALUE`
 * Grades the students specified by the given indices on the session `SESSION_NAME` with a grade of `GRADE_VALUE`.
-* `GRADE_VALUE` must be a number (decimal points are allowed).
+* `GRADE_VALUE` must be a number between 0 and 1000 (decimal points are allowed).
+* `GRADE_VALUE` will be rounded to 2 decimal places.
 * The session name is **case-insensitive**.
 
 Example:

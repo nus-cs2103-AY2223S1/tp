@@ -1,4 +1,4 @@
-package seedu.taassist.model.student;
+package seedu.taassist.model.student.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

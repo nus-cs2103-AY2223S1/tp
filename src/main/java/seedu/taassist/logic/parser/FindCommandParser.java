@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.taassist.logic.commands.FindCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
-import seedu.taassist.model.student.NameContainsKeywordsPredicate;
+import seedu.taassist.model.student.predicate.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object.
