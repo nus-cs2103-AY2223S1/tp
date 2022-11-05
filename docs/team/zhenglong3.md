@@ -25,4 +25,4 @@ Given below are my contributions to the project.
         * Added implementation details of renaming commands.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [#81](https://github.com/AY2223S1-CS2103T-T12-3/tp/pull/81), [#85](https://github.com/AY2223S1-CS2103T-T12-3/tp/pull/85)
+    * PRs reviewed (with non-trivial review comments): [#81](https://github.com/AY2223S1-CS2103T-T12-3/tp/pull/81), [#85](https://github.com/AY2223S1-CS2103T-T12-3/tp/pull/85), [#210](https://github.com/AY2223S1-CS2103T-T12-3/tp/pull/210), [#220](https://github.com/AY2223S1-CS2103T-T12-3/tp/pull/220)
