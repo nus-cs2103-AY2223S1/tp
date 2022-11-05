@@ -831,6 +831,20 @@ the item is currently in the second position on the list.
 
 Any item that the business needs to operate.
 
+### JAR file
+
+`JAR` stands for `Java Archive` and is a file format that is used to store the files to run TrackO. `JAR` files are 
+executables, which means that you can run it by double-clicking the file.
+
+### Java
+
+The programming language used to develop TrackO. `Java 11` is also required to run TrackO on your device.
+
+### JSON file
+
+`JSON` stands for JavaScript Object Notation, used for storing the user's data in TrackO. `JSON` files are lightweight, 
+text-based, human-readable, and can be edited using a text editor.
+
 ### Order
 
 Any sales promise that needs to be fulfilled.
