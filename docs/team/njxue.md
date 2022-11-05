@@ -18,15 +18,19 @@ Given below are my contributions to the project.
 * **Project management**:
   * Created organisation and set up project repository.
   * Managed and created labels to organise issues and pull requests.
-  * Authored 54 issues, including User Stories.
-  * Reviewed 36 pull requests to ensure quality and consistency across the code base.
-  * Handled miscellaneous admin tasks including:
+  * Authored 56 issues, including User Stories.
+  * Reviewed 37 pull requests to ensure quality and consistency across the code base.
+  * Handled miscellaneous administrative tasks including:
     * Setting up project website.
     * Enabling assertions in `build.gradle`.
     * Trial jar file release.
 
 * **Enhancements to existing features**:
   * Extended the grading feature to grade multiple students at once.
+  * Extended the `adds` command to add multiple sessions at once.
+  * Standardised command result messages.
+  * Reduced code duplication with utility methods in `CommandUtil`.
+  * Set module names to be upper-cased and session names to be capitalised.
 
 * **Documentation**:
   * Modified the pre-existing UML and sequence diagrams from AB3 to TA-Assist.
@@ -35,7 +39,4 @@ Given below are my contributions to the project.
   * Added sequence diagrams for `assign` and `focus` command.
   * Added UI snapshots to User Guide.
   * Created custom call-outs for User Guide.
-
-* **Community**: To be added soon.
-
-* **Tools**: To be added soon.
+  * Added description of the focus mode and sessions.
