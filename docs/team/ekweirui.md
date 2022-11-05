@@ -29,7 +29,6 @@ Given below are my contributions to the project.
   (see [#98](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/98)).
   
 
-
 * **New Feature:** Added `delete-person-from-module` command
   ([#100](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/100))
   * What it does: <br>
@@ -40,8 +39,7 @@ Given below are my contributions to the project.
   arrives ([user story](https://github.com/AY2223S1-CS2103T-T10-1/tp/issues/99)).
   * Highlights: <br>
   Same as the new feature before.
-
-    
+  
 
 * **Enhancements/modifications to existing features**:
     * Modified AB3's `add` command to better suit project needs
@@ -56,8 +54,7 @@ Given below are my contributions to the project.
           other commands and also to make it more intuitive to the user
           ([#92](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/92)).
 
-
-
+          
 * **Highlights and minor features**
     * Spearheaded discussions and laid foundation down for the module-person association and all of its related commands
       ([some discussions found here](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/79)).
@@ -66,8 +63,7 @@ Given below are my contributions to the project.
     * Added the ability to display the modules and persons list in sorted order
       ([#106](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/106)).
     
-
-
+      
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ekweirui&breakdown=true)
 
 
@@ -83,8 +79,7 @@ Given below are my contributions to the project.
         * Added documentation for the person-module association and the `add-person-to-module` command
           ([#190](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/190))
         * Added user stories and use cases related to contacts.
-
-
+        
 
 * **Review contributions**:
   * PRs reviewed (with non-trivial review comments):
@@ -94,8 +89,7 @@ Given below are my contributions to the project.
     [#63](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/63)
   * Full list of PRs reviewed 
     [here](https://github.com/AY2223S1-CS2103T-T10-1/tp/pulls?q=is%3Apr+reviewed-by%3Aekweirui)
-
-
+  
 
 * **Team based tasks**:
     * Necessary general code enhancements:
@@ -104,8 +98,7 @@ Given below are my contributions to the project.
     * Maintaining the issue tracker:
       * Created and assigned the majority of labels and milestones 
       * Resolved issues after a relevant PR has been merged
-
-
+      
 
 * **Community**:
     * Contributed to forum discussions: (examples: [1](https://github.com/nus-cs2103-AY2223S1/forum/issues/370),
