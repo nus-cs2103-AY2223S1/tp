@@ -98,7 +98,8 @@ Given below are my contributions to the project.
 
   <br>
 
-* **Contributions beyond the project team**:
+## Contributions beyond the project team:
+
 * Frequently posted in the forums during the month of September to help other on iP related issues, such as setting the background, smoke testing and basic feature development.
 * During the PE-D, authored issues based on the structure of `Description`, `Steps to reproduce` and `Suggestion`, making the issues clear and reproducible and providing a starting point for any potential fixes.
 
