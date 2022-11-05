@@ -56,7 +56,7 @@ import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.commands.UnlinkExamCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.commons.Criteria;
+import seedu.address.model.Criteria;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
