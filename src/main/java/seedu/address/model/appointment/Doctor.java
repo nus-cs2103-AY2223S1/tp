@@ -37,6 +37,13 @@ public class Doctor {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if two doctors has same names.
+     */
+    public boolean isSameDoctor(Doctor doctor) {
+        return this.doctorName.toLowerCase().equals(doctor.doctorName.toLowerCase());
+    }
+
     @Override
     public String toString() {
         return doctorName;

@@ -42,6 +42,12 @@ public class FindPatientCommand extends Command {
             + "Example: " + COMMAND_WORD + " n/alex p/91234567 e/example a/Blk 123 t/friends r/swim";
 
     private final Predicate<Patient> predicate;
+    private Optional<Predicate<Name>> namePredicate = null;
+    private Optional<Predicate<Phone>> phonePredicate = null;
+    private Optional<Predicate<Email>> emailPredicate = null;
+    private Optional<Predicate<Address>> addressPredicate = null;
+    private Optional<Predicate<Remark>> remarkPredicate = null;
+    private Optional<Predicate<Set<Tag>>> tagPredicate = null;
 
     /**
      * Creates a FindPatientCommand to find patients(s) according to the prefix input(s).
@@ -56,6 +62,12 @@ public class FindPatientCommand extends Command {
     public FindPatientCommand(Optional<Predicate<Name>> namePredicate, Optional<Predicate<Phone>> phonePredicate,
                               Optional<Predicate<Email>> emailPredicate, Optional<Predicate<Address>> addressPredicate,
                               Optional<Predicate<Set<Tag>>> tagPredicate, Optional<Predicate<Remark>> remarkPredicate) {
+        this.namePredicate = namePredicate;
+        this.phonePredicate = phonePredicate;
+        this.emailPredicate = emailPredicate;
+        this.addressPredicate = addressPredicate;
+        this.tagPredicate = tagPredicate;
+        this.remarkPredicate = remarkPredicate;
         this.predicate = patient -> namePredicate.orElse(x -> true).test(patient.getName())
                 && phonePredicate.orElse(x -> true).test(patient.getPhone())
                 && emailPredicate.orElse(x -> true).test(patient.getEmail())
@@ -76,6 +88,15 @@ public class FindPatientCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindPatientCommand // instanceof handles nulls
-                && predicate.equals(((FindPatientCommand) other).predicate)); // state check
+                && namePredicate.equals(((FindPatientCommand) other).namePredicate)
+                && phonePredicate.equals(((FindPatientCommand) other).phonePredicate)
+                && emailPredicate.equals(((FindPatientCommand) other).emailPredicate)
+                && addressPredicate.equals(((FindPatientCommand) other).addressPredicate)
+                && remarkPredicate.equals(((FindPatientCommand) other).remarkPredicate)
+                && tagPredicate.equals(((FindPatientCommand) other).tagPredicate)); // state check
+    }
+
+    public Predicate<Patient> getPredicate() {
+        return predicate;
     }
 }

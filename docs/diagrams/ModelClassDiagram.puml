@@ -11,28 +11,15 @@ Class "<<interface>>\nModel" as Model
 Class HealthContact
 Class ModelManager
 Class UserPrefs
+Class History
+
+Class Patient
+Class Appointment
+Class Bill
 
 Class UniquePatientList
-Class Patient
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
-
 Class UniqueAppointmentList
-Class Appointment
-Class Name
-Class Slot
-Class Doctor
-Class MedicalTest
-
 Class UniqueBillList
-Class Bill
-Class Appointment
-Class Amount
-Class BillDate
-Class PaymentStatus
 }
 
 Class HiddenOutside #FFFFFF
@@ -46,44 +33,21 @@ HealthContact .up.|> ReadOnlyHealthContact
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyHealthContact
 
-ModelManager -left-> "1" HealthContact
 ModelManager -right-> "1" UserPrefs
+ModelManager --> "1" History
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+HealthContact *-down-> "1" UniquePatientList
+HealthContact *-down-> "1" UniqueAppointmentList
+HealthContact *-down-> "1" UniqueBillList
 
-
-HealthContact *-----> "1" UniquePatientList
 UniquePatientList --> "~* all" Patient
-Patient *--> Name
-Patient *--> Phone
-Patient *--> Email
-Patient *--> Address
-Patient *--> "*" Tag
-
-
-HealthContact *---> "1" UniqueAppointmentList
 UniqueAppointmentList --> "~* all" Appointment
-Appointment *--> Name
-Appointment *--> Slot
-Appointment *--> Doctor
-Appointment *--> MedicalTest
-
-
-
-HealthContact *----> "1" UniqueBillList
 UniqueBillList --> "~* all" Bill
-Bill *--> Appointment
-Bill *--> Amount
-Bill *--> BillDate
-Bill *--> PaymentStatus
 
+ModelManager -up----> "1" HealthContact
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-
-ModelManager -->"~* filtered" Appointment
-ModelManager -->"~* filtered" Bill
-ModelManager -->"~* filtered" Patient
+ModelManager -up-->"~* filtered" Patient
+ModelManager -up-->"~* filtered" Appointment
+ModelManager -up-->"~* filtered" Bill
 @enduml

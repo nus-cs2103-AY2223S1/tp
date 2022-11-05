@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents Bill's date in the HealthContact.
- * Guarantees: immutable; is valid as declared in {@link #isValidDate  (String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidBillDate  (String)}
  */
 public class BillDate {
     public static final String MESSAGE_CONSTRAINTS =
@@ -24,14 +24,14 @@ public class BillDate {
      */
     public BillDate(String date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidBillDate(date), MESSAGE_CONSTRAINTS);
         this.localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     /**
      * Returns true if a given string is a valid date.
      */
-    public static boolean isValidDate(String test) {
+    public static boolean isValidBillDate(String test) {
         try {
             LocalDate.parse(test, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             return true;

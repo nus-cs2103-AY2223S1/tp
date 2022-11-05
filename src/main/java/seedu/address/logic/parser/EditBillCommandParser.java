@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BILL_DATE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditBillCommand;
+import seedu.address.logic.commands.EditBillCommand.EditBillDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -34,7 +35,13 @@ public class EditBillCommandParser implements Parser<EditBillCommand> {
                     EditBillCommand.MESSAGE_USAGE), pe);
         }
 
-        EditBillCommand.EditBillDescriptor editBillDescriptor = new EditBillCommand.EditBillDescriptor();
+        EditBillDescriptor editBillDescriptor = createEditBillDescriptor(argMultimap);
+
+        return new EditBillCommand(index, editBillDescriptor);
+    }
+
+    private EditBillDescriptor createEditBillDescriptor(ArgumentMultimap argMultimap) throws ParseException {
+        EditBillDescriptor editBillDescriptor = new EditBillCommand.EditBillDescriptor();
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             editBillDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
         }
@@ -44,7 +51,6 @@ public class EditBillCommandParser implements Parser<EditBillCommand> {
         if (!editBillDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditBillCommand.MESSAGE_NOT_EDITED);
         }
-
-        return new EditBillCommand(index, editBillDescriptor);
+        return editBillDescriptor;
     }
 }

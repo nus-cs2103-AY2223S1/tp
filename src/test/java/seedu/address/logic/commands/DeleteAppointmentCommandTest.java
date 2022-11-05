@@ -20,7 +20,7 @@ import seedu.address.model.appointment.Appointment;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeletePatientCommand}.
+ * {@code DeleteAppointmentCommand}.
  */
 public class DeleteAppointmentCommandTest {
 
