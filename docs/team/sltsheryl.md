@@ -15,7 +15,7 @@ Given below are my contributions to the project.
 * Highlights:
   * Implemented a UI overhaul, with its new design inspired by Outlook. (Pull request [#87](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/87), [#100](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/100))
   * Created module panel to display the modules taken by selected student. 
-  * Handled live updates to UI for commands such as ```mod add```, ```mod mark``` and ```addInt```. (Pull request [#105]([#105](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/105)))
+  * Handled live updates to UI for commands such as ```mod add```, ```mod mark``` and ```addInt```. (Pull request [#105](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/105))
   * Imported fonts to enhance style. (Pull request [#133](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/133))
   * Added color-coded tags to modules. 
   * Handled rescaling of window size. (Pull request [#131](https://github.com/AY2223S1-CS2103T-T11-4/tp/pull/131))
