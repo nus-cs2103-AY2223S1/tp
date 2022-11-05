@@ -932,7 +932,7 @@ testers are expected to do more *exploratory* testing.
 3. Exiting the program
 
     1. Enter `exit` command in command input box or click on the X button.<br>
-       Expected: The application closes
+       Expected: The application closes.
 
 ### Adding a stall
 
@@ -1068,7 +1068,7 @@ testers are expected to do more *exploratory* testing.
    
     4. Test case: `sfind n/chicken t/opendaily`<br>
        Condition: There is a stall with the word `chicken` in its name or with the tag `opendaily`<br>
-       Expected: Status message responds with the number of stalls that matches the name and tag in command. GUI updates to show stalls that matches the name and tag in command.
+       Expected: Status message responds with the number of stalls that matches the name and tag in command. GUI updates to show stalls that matches the name or tag in command.
    
     5. Test case: `sfind n/`<br>
        Expected: No stalls are found. GUI updates to show no stalls.
@@ -1095,7 +1095,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Test case: `rfind n/chicken t/delicious`<br>
        Condition: There is a review with the word `chicken` in its stall name or with the tag `delicious`<br>
-       Expected: Status message responds with the number of reviews that matches the stall name and tag in command. GUI updates to show reviews that matches the stall name and tag in command.
+       Expected: Status message responds with the number of reviews that matches the stall name and tag in command. GUI updates to show reviews that matches the stall name or tag in command.
    
     5. Test case: `rfind n/`<br>
        Expected: No reviews are found. GUI updates to show no reviews.
@@ -1160,10 +1160,10 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    1. Test case: Simulate data file is missing by deleting `foodwhere.json` in data folder<br>
-      Expected: Upon launching FoodWhere, the GUI display a default stalls and reviews list.
+      Expected: Upon launching FoodWhere, the GUI displays the default stalls and reviews list.
    
    2. Test case: Simulate data file goes corrupt by editing a data field to an invalid value while FoodWhere is running<br>
-      Condition: No command that edits data is executed after editing the data file with invalid value.
+      Condition: No command that edits data is executed after editing the data file with invalid value<br>
       Expected: FoodWhere runs normally and does not crash. However, upon closing and re-launching the program, the GUI displays an empty stalls and reviews list.
    
 2. Commands that change data will modify data file 
