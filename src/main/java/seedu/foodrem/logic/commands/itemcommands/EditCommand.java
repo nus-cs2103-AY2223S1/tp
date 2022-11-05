@@ -33,7 +33,7 @@ public class EditCommand extends Command {
     // TODO: FIX ME: Make this implementation detail private
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     // TODO: FIX ME: Make this implementation detail private
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the FoodRem.";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in FoodRem.";
 
     private final EditItemDescriptor editItemDescriptor;
     private final Index index;
