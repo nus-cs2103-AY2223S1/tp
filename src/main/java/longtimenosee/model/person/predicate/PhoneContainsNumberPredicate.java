@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import longtimenosee.model.person.Person;
 
 /**
- * Tests that a {@code Person}'s {@code Phone} number matches the given number.
+ * Tests that a {@code Person}'s {@code Phone} number contains the given number.
  */
 public class PhoneContainsNumberPredicate implements Predicate<Person> {
     private final String number;

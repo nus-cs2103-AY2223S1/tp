@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import longtimenosee.model.person.Person;
 
 /**
- * Tests that a {@code Person}'s {@code Address} matches the input given.
+ * Tests that a {@code Person}'s {@code Address} contains the input given.
  */
 public class AddressContainsInputPredicate implements Predicate<Person> {
     private final String address;

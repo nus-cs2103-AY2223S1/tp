@@ -2,6 +2,8 @@ package longtimenosee.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.testutil.Assert.assertThrows;
+import static longtimenosee.testutil.TypicalEvents.WITH_ALICE;
+import static longtimenosee.testutil.TypicalEvents.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,12 +18,17 @@ import javafx.collections.ObservableList;
 import longtimenosee.commons.core.GuiSettings;
 import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.model.Model;
+import longtimenosee.model.ModelManager;
 import longtimenosee.model.ReadOnlyAddressBook;
 import longtimenosee.model.ReadOnlyUserPrefs;
+import longtimenosee.model.UserPrefs;
 import longtimenosee.model.event.Date;
 import longtimenosee.model.event.Description;
 import longtimenosee.model.event.Duration;
 import longtimenosee.model.event.Event;
+import longtimenosee.model.event.exceptions.DuplicateEventException;
+import longtimenosee.model.event.exceptions.OverlapEventException;
+import longtimenosee.model.event.exceptions.PersonNotFoundException;
 import longtimenosee.model.person.Name;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.FinancialAdvisorIncome;
@@ -50,7 +57,6 @@ public class AddEventCommandTest {
         assertThrows(CommandException.class, AddEventCommand.MESSAGE_DUPLICATE_EVENT, () ->
                 addEventCommand.execute(modelStub));
     }
-
     @Test
     public void equals() {
         Event withAlice = new EventBuilder().build();
@@ -79,6 +85,40 @@ public class AddEventCommandTest {
         assertFalse(addAliceEventCommand.equals(addBensonEventCommand));
     }
 
+    @Test
+    public void execute_addDuplicateEvent_throwsDuplicateEventException() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Event duplicateEvent = WITH_ALICE;
+        assertThrows(DuplicateEventException.class, () -> model
+                .addEvent(duplicateEvent, "Alice Pauline"));
+    }
+
+    @Test
+    public void execute_addEventNoValidClient_throwsPersonNotFoundException() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Event nonExistentClient = new EventBuilder().withName("Reuben")
+                .withDate("2021-03-05")
+                .withDescription("Meet Reuben for lunch")
+                .withDuration("12:00__13:00")
+                .build();
+        assertThrows(PersonNotFoundException.class, () -> model
+                .addEvent(nonExistentClient, "Reuben"));
+    }
+
+    @Test
+    public void execute_addOverlapEvent_throwsOverlapEventException() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Event overlapEvent = new EventBuilder().withName("Alice Pauline")
+                .withDate("2023-12-05")
+                .withDescription("Dinner with Carl")
+                .withDuration("18:00__20:00")
+                .build();
+        assertThrows(OverlapEventException.class, () -> model
+                .addEvent(overlapEvent, "Alice Pauline"));
+    }
+
+
+
 
 
     /**
@@ -105,6 +145,11 @@ public class AddEventCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void pinPerson(Person p) {
             throw new AssertionError("This method should not be called.");
         }
 

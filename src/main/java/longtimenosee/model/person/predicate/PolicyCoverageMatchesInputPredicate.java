@@ -28,19 +28,25 @@ public class PolicyCoverageMatchesInputPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        boolean[] isMatch = new boolean[keywords.size()];
+        boolean[] areMatch = new boolean[keywords.size()];
+        List<Coverage> coverages = getCoverages(person);
         for (int i = 0; i < keywords.size(); i++) {
-            for (Coverage coverage : getCoverages(person)) {
-                if (StringUtil.containsWordIgnoreCase(coverage.coverageType, keywords.get(i))) {
-                    isMatch[i] = true;
-                    break;
-                }
-            }
+            checkKeywordAgainstCoverages(coverages, keywords.get(i), areMatch, i);
         }
-        return isAllTrue(isMatch);
+        return areAllTrue(areMatch);
     }
 
-    private boolean isAllTrue(boolean[] arr) {
+    private static void checkKeywordAgainstCoverages(List<Coverage> coverages, String keyword, boolean[] areMatch,
+                                                        int index) {
+        for (Coverage coverage : coverages) {
+            if (StringUtil.containsWordIgnoreCase(coverage.coverageType, keyword)) {
+                areMatch[index] = true;
+                return;
+            }
+        }
+    }
+
+    private static boolean areAllTrue(boolean[] arr) {
         for (boolean bool : arr) {
             if (!bool) {
                 return false;
@@ -48,6 +54,7 @@ public class PolicyCoverageMatchesInputPredicate implements Predicate<Person> {
         }
         return true;
     }
+
     private static List<Coverage> getCoverages(Person person) {
         List<Coverage> coverages = new ArrayList<Coverage>();
         for (AssignedPolicy assignedPolicy : person.getAssignedPolicies()) {

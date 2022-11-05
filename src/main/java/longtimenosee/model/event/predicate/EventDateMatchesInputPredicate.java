@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import longtimenosee.model.event.Event;
 
 /**
- * Tests that a {@code Event}'s {@code Date} matches the date given.
+ * Tests that an {@code Event}'s {@code Date} matches the date given.
  */
 public class EventDateMatchesInputPredicate implements Predicate<Event> {
     private final String date;

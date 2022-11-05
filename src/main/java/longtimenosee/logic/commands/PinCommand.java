@@ -39,9 +39,8 @@ public class PinCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToPin = lastShownList.get(targetIndex.getZeroBased()); //gets the person to be pinned
-        personToPin.setPin(!personToPin.getPin()); //set to pin or not
-        //model.deletePerson(personToPin); optional because we don't alter the list
+        Person personToPin = lastShownList.get(targetIndex.getZeroBased());
+        personToPin.setPin(!personToPin.getPin());
         return new CommandResult(String.format(personToPin.getPin()
                 ? MESSAGE_PIN_PERSON_SUCCESS : MESSAGE_UNPIN_PERSON_SUCCESS , personToPin), false, true, false);
     }

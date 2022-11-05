@@ -12,7 +12,7 @@ import longtimenosee.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new ViewIncomeCommand object
  */
-public class ViewIncomeCommandParser {
+public class ViewIncomeCommandParser implements Parser<ViewIncomeCommand> {
     /**
      * Parses the viewIncome in the context of the ViewPIncome Command
      * and returns a ViewIncomeCommand object for execution.
@@ -20,6 +20,7 @@ public class ViewIncomeCommandParser {
      */
     public ViewIncomeCommand parse(String args) throws ParseException {
         try {
+            args = args.replaceAll(" ", "");
             Index index = ParserUtil.parseIndex(args);
             if (index.getOneBased() < 1900 || index.getOneBased() > 2100) {
                 throw new InvalidYearException("Chosen year is invalid");

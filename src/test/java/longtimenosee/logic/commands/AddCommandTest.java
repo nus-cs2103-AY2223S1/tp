@@ -215,6 +215,10 @@ public class AddCommandTest {
         public List<Event> listEventsSameDay(Event toAdd) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void pinPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         /**
          * @return
