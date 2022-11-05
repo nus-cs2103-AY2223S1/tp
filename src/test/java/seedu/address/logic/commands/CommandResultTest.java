@@ -65,16 +65,6 @@ public class CommandResultTest {
                 false, false,
                 false, false, true, false, false)));
 
-        // different showLight value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
-                false, false,
-                false, false, false, true, false)));
-
-        // different showDark value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
-                false, false,
-                false, false, false, false, true)));
-
     }
 
     @Test
@@ -129,16 +119,5 @@ public class CommandResultTest {
                 false, false, false,
                 true, false, false).hashCode());
 
-        // different showLight value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
-                false, false,
-                false, false, false,
-                false, true, false).hashCode());
-
-        // different showDark value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
-                false, false,
-                false, false, false,
-                false, false, true).hashCode());
     }
 }
