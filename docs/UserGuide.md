@@ -128,6 +128,8 @@ Displays your list of reminders.
 
 ### 5.1 Student Features
 
+![Student](images/AnnotatedStudent.png)
+
 <a name="add-student"></a>
 #### 5.1.1 Adding a student: `add student`
 
@@ -138,15 +140,26 @@ Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m
 * `PHONE` should be 8 digits long as per standard telephone numbers in Singapore.
 * `STUDENT_ID` should follow the following format AXXXXXXXY, where X is a number, and Y is an alphabet.
 * `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
-* `GRADE` can take in ``A`, `B`, `C`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
+* `GRADE` can take in `A`, `B`, `C`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
 * `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
+* `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
+
+<table>
+  <tr>
+    <td>Before executing add student command</td>
+    <td>After executing example command to add John Doe</td>
+  </tr>
+  <tr>
+    <td><img src="images/Student.png" width=350></td>
+    <td><img src="images/AddStudent.png" width=350></td>
+  </tr>
+ </table>
 
 <a name="list"></a>
 #### 5.1.2 Listing all students: `list`
@@ -159,7 +172,6 @@ Shows a list of all students in ModQuik.
 To switch between tabs, you can click on `Tab` button to switch between the different tabs (`Student`, `Grade Chart`, `Consultation`, `Tutorial`) and the command box.
 Alternatively, you can use the [`switch`] command if you would like to only use the keyboard.
 </div>
-
 
 Format: `list`
 
@@ -180,10 +192,32 @@ Format: `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/T
 * If nothing is given to `ATTENDANCE` even though `att/` is typed into the command box, it will automatically be set to `0`.
 * If nothing is given to `PARTICIPATION` even though `part/` is typed into the command box, it will automatically be set to `0`.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command to:
+<ul>
+  <li>Update your student's grade after an assessment</li>
+  <li>Update your student's attendance and participation score after a lesson</li>
+  <li>Update your student's particulars</li>
+</ul>
+</div>
+
 Examples:
 * `edit student 1 ph/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
-* `edit student 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
-* [`find`] `m/CS2103T` followed by `edit student 2 n/Betsy Crower` Edits the name of the 2nd student to be `Betsy Crower` in the results of the [`find`] command.
+* `edit student 2 g/A t/` Edits the grade of the 2nd student to be `A` and clears all existing tags.
+
+<table>
+  <tr>
+    <td>Before executing edit student command</td>
+    <td>After executing example command to edit 2nd student</td>
+  </tr>
+  <tr>
+    <td><img src="images/AddStudent.png" width=350></td>
+    <td><img src="images/EditStudent.png" width=350></td>
+  </tr>
+ </table>
+
+* [`find`] `m/CS2103T` followed by `edit student 2 g/A` Edits the grade of the 2nd student to be `A` in the results of the [`find`] command.
+
 
 <a name="find"></a>
 #### 5.1.4 Locating students by their attributes: `find`
@@ -206,7 +240,9 @@ It will first display all students matching `John`, then display all students in
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
-* `find m/CS2103T` returns list of students in CS2103T<br>
+* `find m/CS2103T` returns list of students in CS2103T
+
+![Find Student](images/FindStudent.png)
 
 <a name="delete-student"></a>
 #### 5.1.5 Deleting a student: `delete student`
