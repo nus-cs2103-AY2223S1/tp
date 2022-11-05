@@ -62,6 +62,16 @@ public class AddTaskCommandTest {
     }
 
     @Test
+    public void execute_invalidContactIndex_throwsCommandException() {
+        Task validTask = new TaskBuilder().build();
+        AddTaskCommand addCommand = new AddTaskCommand(validTask, new HashSet<>(Arrays.asList(Index.fromOneBased(2))));
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+
+        assertThrows(CommandException.class,
+                AddTaskCommand.MESSAGE_INVALID_CONTACT_INDEX, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         Task buyMilk = new TaskBuilder().withTaskName("Buy Milk").build();
         Task cs2103t = new TaskBuilder().withTaskName("CS2103T").build();
@@ -133,7 +143,6 @@ public class AddTaskCommandTest {
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
-
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {

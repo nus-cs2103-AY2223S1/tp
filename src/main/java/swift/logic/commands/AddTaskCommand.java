@@ -41,6 +41,7 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
+    public static final String MESSAGE_INVALID_CONTACT_INDEX = "The contact index provided is invalid";
 
     private final Task toAdd;
     private final Collection<Index> contactIndices;
@@ -63,11 +64,16 @@ public class AddTaskCommand extends Command {
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        model.addTask(toAdd);
+        for (Index index : contactIndices) {
+            if (index.getZeroBased() >= model.getFilteredPersonList().size()) {
+                throw new CommandException(MESSAGE_INVALID_CONTACT_INDEX);
+            }
+        }
         for (Index index : contactIndices) {
             model.addBridge(model.getFilteredPersonList().get(index.getZeroBased()), toAdd);
         }
 
+        model.addTask(toAdd);
         model.hotUpdateAssociatedContacts();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandType.TASKS);
