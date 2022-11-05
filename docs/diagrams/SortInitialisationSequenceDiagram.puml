@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+
+box Main #darkgrey
+participant ":MainApp" as MainApp #grey
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":UserPrefs" as UserPrefs MODEL_COLOR
+end box
+
+[-> MainApp : init()
+activate MainApp
+
+MainApp -> MainApp: initModelManager()
+activate MainApp
+
+create ModelManager
+MainApp -> ModelManager : ModelManager(initialData, userPrefs)
+activate ModelManager
+
+create UserPrefs
+ModelManager -> UserPrefs : UserPrefs(userPrefs)
+activate UserPrefs
+UserPrefs --> ModelManager
+deactivate UserPrefs
+
+ModelManager -> ModelManager : initialiseSortOrder()
+activate ModelManager
+
+ModelManager -> UserPrefs : getSortSetting()
+activate UserPrefs
+UserPrefs --> ModelManager : sortSetting
+deactivate UserPrefs
+
+alt sortSetting == BY_COMPANY_REVERSE
+
+    ModelManager -> ModelManager : sortApplicationListByCompany(true)
+    activate ModelManager
+    ModelManager --> ModelManager
+    deactivate ModelManager
+
+else sortSetting == BY_DATE
+
+    ModelManager -> ModelManager : sortApplicationListByDate(false)
+    activate ModelManager
+    ModelManager --> ModelManager
+    deactivate ModelManager
+
+end
+
+ModelManager --> ModelManager
+deactivate ModelManager
+
+ModelManager --> MainApp
+deactivate ModelManager
+
+MainApp --> MainApp
+deactivate MainApp
+
+[<-- MainApp
+deactivate MainApp
+
+@enduml
