@@ -34,12 +34,11 @@ import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
-    private ModelManager modelManager = new ModelManager();
-
     private static final String DATE_FORMAT = "dd-MM-uuuu";
     private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern(DATE_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
 
+    private ModelManager modelManager = new ModelManager();
 
     @Test
     public void constructor() {
@@ -189,7 +188,8 @@ public class ModelManagerTest {
     public void editTask_nullTeamIndex_throwsNullPointerException() {
         Name newName = new Name("Database");
         LocalDate newDeadline = LocalDate.parse("12-12-2022", DATE_TIME_FORMAT);
-        assertThrows(NullPointerException.class, () -> modelManager.editTask(null, INDEX_FIRST_TASK, newName, newDeadline));
+        assertThrows(NullPointerException.class, () -> modelManager.editTask(null, INDEX_FIRST_TASK,
+                newName, newDeadline));
     }
 
     @Test
@@ -197,7 +197,8 @@ public class ModelManagerTest {
         modelManager.addTeam(FRONTEND);
         Name newName = new Name("Database");
         LocalDate newDeadline = LocalDate.parse("12-12-2022", DATE_TIME_FORMAT);
-        assertThrows(NullPointerException.class, () -> modelManager.editTask(INDEX_FIRST_TEAM, null, newName, newDeadline));
+        assertThrows(NullPointerException.class, () -> modelManager.editTask(INDEX_FIRST_TEAM, null,
+                newName, newDeadline));
     }
 
     @Test
