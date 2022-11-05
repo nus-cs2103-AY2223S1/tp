@@ -23,7 +23,7 @@ public interface ReadOnlyAddressBook {
     /**
      * Returns a string representation of the address book's census.
      */
-    String getCensus(Model model);
+    String getCensus();
 
     /**
      * Returns a string representation of the address book's medication map.
