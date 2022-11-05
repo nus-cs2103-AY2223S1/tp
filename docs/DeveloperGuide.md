@@ -510,6 +510,7 @@ Step 2. The user executes `sortpatient c/name o/asc` command to sort all patient
 The command calls `Model#sortPatients(Comparator<Patient> comparator, boolean isAscending)` to sort `UniquePatientList` according to the comparator and the order.
 
 The following sequence diagram shows how the `SortPatientCommand` is executed:
+
 ![SortPatientCommandSequenceDiagram](images/dg/SortPatientCommandSequenceDiagram.png)
 
 Step 3. The application displays the list of patients sorted according to the patients' name and in ascending order.
