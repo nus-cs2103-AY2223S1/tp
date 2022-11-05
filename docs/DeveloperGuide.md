@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103-F14-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F14-3/tp/tree/master/src/main/java/seedu/application/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F14-3/tp/blob/master/src/main/java/seedu/application/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -348,16 +348,31 @@ The class diagram below shows the classes in the Logic component relevant for so
 
 There is an abstract `SortCommand` class that inherits from the abstract `Command` class. Then, there is a concrete `SortCommand` subclass for each possible order of sort. Meanwhile, there is a single `SortCommandParser` class. When it parses the arguments supplied to a `sort` command, it decides which of the `SortCommand` subclasses to instantiate.
 
-The following sequence diagram shows the operation of a sort featuring just two of the possible orders - by company and by date:
-![Sort Sequence Diagram](images/SortSequenceDiagram.png)
+The following sequence diagram shows the parsing of a sort command from the user featuring just two of the possible orders - by company and by date:
+
+![Sort Parser Sequence Diagram](images/SortParserSequenceDiagram.png)
 
 When calling the `parse` method of the `SortCommandParser`, the argument provided for the `o/` prefix determines which subclass of `SortCommand` will get created. In the event that the prefix is not provided, a `SortByDateCommand` is returned by default.
 
-Later, when `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is set an appropriate comparator on the `SortedList` to attain the desired sort order.
+The next sequence diagram shows the execution of the created SortCommand, again featuring just two of the possible orders:
+
+![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
+
+When `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is set an appropriate comparator on the `SortedList` to attain the desired sort order.
+
+A user may have a sort order that works best for them that they would consistently want to use over the others. To make the experience more convenient for the user, CinternS stores the last used sort order on the hard disk so that it can sort the applications list in that order the next time the app is closed and reopened. This way the user does not need to re-enter the same sort command every session.
+
+The current sort order is represented using a `SortSetting` enum, which can be one of the 4x2 possible sort orders. This `SortSetting` is stored in the `UserPrefs` object together with the other user preferences like screen size. The sort order is then stored inside the `preferences.json` file to be read the next time the app is opened.
+
+The following sequence diagram shows the process of initialising the sort order of a `ModelManager` as it is being instantiated:
+
+![Sort Initialisation Sequence Diagram](images/SortInitialisationSequenceDiagram.png)
+
+The `MainApp` passes the application book data and the `userPrefs` retrieved from storage to the constructor for `ModelManager`. The `ModelManager` creates a copy of the `userPrefs` object. Then, the `sortSetting` is retrieved and used to decide how the ModelManager should sort the applications. The diagram above shows just two of the possible sort orders and the resulting method calls.
 
 #### Constraints of Sort Feature
 
-The user can only sort based on one field at a time. The sort also only persists for the current session, meaning the order of applications will be reset if the app is closed and reopened.
+The user can only sort based on one field at a time.
 
 #### Design Considerations
 

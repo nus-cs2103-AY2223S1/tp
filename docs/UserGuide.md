@@ -82,7 +82,7 @@ title: User Guide
   e.g `c/COMPANY [t/TAG]` can be used as `c/Google t/preferred` or as `c/Google`.
 
 * Items with `...` after them can be used multiple times including zero times.
-  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/preferred`, `t/preferred t/techCompany`, etc.
+  e.g. `c/COMPANY [t/TAG]...` can be used as `c/Google` (i.e. 0 tags), `c/Google t/preferred`, `c/Google t/preferred t/techCompany`, etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `d/DATE_APPLIED p/POSITION`, `p/POSITION d/DATE_APPLIED` is also acceptable.
@@ -114,12 +114,31 @@ Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 <br>
-1. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
-2. <code>CONTACT</code> must be 5-15 digits long.<br>
-3. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
-4. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list.<br>
-5. Tags must be alphanumeric and cannot contain spaces.
+1. <code>CONTACT</code> must be 5-15 digits long. <i>[COMING SOON: allowing spaces and country codes in contacts]</i><br>
+2. Emails should be of the format local-part@domain and adhere to the following constraints:
+<ol>
+    <li>
+    The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>
+    The local-part may not start or end with any special characters, nor can it contain consecutive special characters.
+    </li>
+    <li>
+    This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br>
+    The domain name must:
+    <ul>
+        <li>
+        have each domain label consist of alphanumeric characters, separated only by singular hyphens, if any</li>
+        <li>have each domain label start and end with alphanumeric characters</li>
+        <li>end with a domain label that contains at least 2 consecutive alphanumeric characters</li>
+    </ul>
+    </li>
+</ol>
+3. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
+4. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
+5. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list.<br>
+6. Tags must be alphanumeric and cannot contain spaces.
 </div>
+
+* Note that you currently cannot add two applications with the same company and position at the same time. This is to help prevent accidentally adding duplicate applications. If you do intend to add another similar application (e.g. if you are applying to the same company in a later year), you will need to delete the old application first. This validation check is planned to be improved in a future version.
 
 Examples:
 * `add c/Google ct/60221023 e/google@example.com p/Software Engineer d/2022-01-01 s/pending t/preferred`
@@ -224,6 +243,7 @@ Format: `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATIO
 * All fields must be provided.
 * Supports edit of the existing interview by overwriting the old interview.
 * Currently, we only support **ONE** interview in each of the application. _[COMING SOON: Multiple interviews in one application.]_
+* _[COMING SOON: Checks to prevent adding an interview to an application depending on the status. E.g. If you are adding an interview to an application that already has the `offered` status, CinternS will block it and notify you of the problem.]_
 
 Examples:
 * `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546` adds an interview to the application with displayed index `5`.
