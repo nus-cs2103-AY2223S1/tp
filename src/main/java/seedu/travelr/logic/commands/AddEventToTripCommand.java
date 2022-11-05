@@ -59,21 +59,18 @@ public class AddEventToTripCommand extends Command {
 
         if (!model.hasTrip(fakeTrip)) {
             throw new CommandException("Please enter a valid Trip");
-        } else if (!model.bucketlistHasEvent(fakeEvent)) {
-            if (model.tripHasEvent(fakeTrip, fakeEvent)) {
-                throw new CommandException("The specified event is already in the specified trip");
+        }
+
+        Trip toAddInto = model.getTrip(fakeTrip);
+
+        if (!model.bucketlistHasEvent(fakeEvent)) {
+            if (model.tripHasEvent(toAddInto, fakeEvent)) {
+                throw new CommandException(MESSAGE_DUPLICATE_EVENT_IN_TRIP);
             }
-            throw new CommandException("Please enter a valid event");
-        } else if (!model.hasEventInBucketList(new Event(eventToAdd))) {
-            throw new CommandException("This event is no longer in the bucket list!");
+            throw new CommandException("Event does not exist in bucket list");
         }
 
         Event event = model.getEvent(new Event(eventToAdd));
-        Trip toAddInto = model.getTrip(fakeTrip);
-
-        if (toAddInto.containsEvent(event)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EVENT_IN_TRIP);
-        }
 
         model.removeFromBucketList(event);
         toAddInto.addEvent(event);

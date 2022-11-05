@@ -246,11 +246,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasEventInBucketList(Event event) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public SummaryVariables getSummaryVariables() {
             throw new AssertionError("This method should not be called.");
         }

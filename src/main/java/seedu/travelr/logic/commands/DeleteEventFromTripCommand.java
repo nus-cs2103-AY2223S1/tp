@@ -56,18 +56,20 @@ public class DeleteEventFromTripCommand extends Command {
 
 
         if (!model.hasTrip(
-                new Trip(tripToDeleteFrom, new Description("random"), new HashSet<>(), new Location("random"),
+                new Trip(tripToDeleteFrom, new Description("random"),
+                        new HashSet<>(), new Location("random"),
                         new DateField("01-01-2000")))) {
             throw new CommandException("Please enter a valid Trip");
         }
 
         Trip toDeleteFrom = model.getTrip(
-                new Trip(tripToDeleteFrom, new Description("random"), new HashSet<>(), new Location("random"),
+                new Trip(tripToDeleteFrom, new Description("random"),
+                        new HashSet<>(), new Location("random"),
                         new DateField("01-01-2000")));
 
 
-        if (!toDeleteFrom.containsEvent(new Event((eventToDelete)))) {
-            throw new CommandException("Please enter a valid Event");
+        if (!toDeleteFrom.containsEvent(new Event(eventToDelete))) {
+            throw new CommandException("Event does not exist in trip");
         }
 
         Event event = toDeleteFrom.getEvent(new Event(eventToDelete));
@@ -77,7 +79,8 @@ public class DeleteEventFromTripCommand extends Command {
         model.resetView();
 
         return new CommandResult(String.format(
-                MESSAGE_SUCCESS + "\n" + MESSAGE_RESET_VIEW, event.getTitle(), toDeleteFrom.getTitle()));
+                MESSAGE_SUCCESS + "\n" + MESSAGE_RESET_VIEW,
+                event.getTitle(), toDeleteFrom.getTitle()));
     }
 
     @Override
