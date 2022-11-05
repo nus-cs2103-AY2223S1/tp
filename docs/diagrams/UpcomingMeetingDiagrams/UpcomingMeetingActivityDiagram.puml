@@ -1,5 +1,6 @@
 @startuml
 !pragma useVerticalIf on
+!include ../style.puml
 
 start
 :User presses f2;
