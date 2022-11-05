@@ -9,16 +9,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+
 ### John
 
 <img src="images/johnrhimawan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johnrhimawan)]
 [[portfolio](team/johnrhimawan.md)]
 
 * Role: Developer
-* Responsibilities: Something
+* Responsibilities: Features, Code Quality, Documentation, Testing
 
 ### Kang Qiao
 
