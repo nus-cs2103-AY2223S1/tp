@@ -114,6 +114,7 @@ public class ReviewCard extends UiPart<Region> {
         ratingIcon.setImage(ratingIconImage);
     }
 
+    //@@author hikoya-reused
     /**
      * Adapted from https://stackoverflow.com/a/70961583.
      * Gets row index constrain for given node, forcefully as integer: 0 as null.
@@ -127,7 +128,9 @@ public class ReviewCard extends UiPart<Region> {
         }
         return a;
     }
+    //@@author hikoya
 
+    //@@author hikoya-reused
     /**
      * Adapted from https://stackoverflow.com/a/70961583.
      * Removes row from grid pane by index.
@@ -155,6 +158,7 @@ public class ReviewCard extends UiPart<Region> {
         // Remove row constraints
         grid.getRowConstraints().remove(targetRowIndex);
     }
+    //@@author
 
     @Override
     public boolean equals(Object other) {

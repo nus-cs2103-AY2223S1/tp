@@ -34,6 +34,7 @@ public class ReviewListPanel extends UiPart<Region> {
         reviewListView.setCellFactory(listView -> new ReviewListViewCell());
     }
 
+    //@@author hikoya-reused
     /**
      * Handles the activity when the user clicks on the review in the list.
      *
@@ -71,6 +72,7 @@ public class ReviewListPanel extends UiPart<Region> {
             reviewListView.setContextMenu(contextMenu);
         }
     }
+    //@@author hikoya
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Review} using a {@code ReviewCard}.
