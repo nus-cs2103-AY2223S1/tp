@@ -1,6 +1,6 @@
 ---
 layout: page
-title: DevOps guide
+title: DevOps Guide
 ---
 
 {% include toc.md %}

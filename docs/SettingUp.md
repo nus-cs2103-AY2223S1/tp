@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Setting up and getting started
+title: Setting Up and Getting Started
 ---
 
 {% include toc.md header=true %}

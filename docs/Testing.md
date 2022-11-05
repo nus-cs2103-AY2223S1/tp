@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Testing guide
+title: Testing Guide
 ---
 
 * Table of Contents
