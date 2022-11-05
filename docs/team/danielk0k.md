@@ -14,6 +14,7 @@ It is written in Java and the GUI is built using JavaFX.
 
 #### Code Contributed
 - [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=danielk0k&breakdown=true)
+- Opened **32** PRs and reviewed **51** PRs.
 
 #### Enhancements Implemented
 - [AddStudentCommand](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/logic/commands/AddStudentCommand.java)
@@ -23,20 +24,24 @@ It is written in Java and the GUI is built using JavaFX.
   - See PR [#90](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/90) and [#99](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/99)
 - [EditCommand](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/logic/commands/EditCommand.java)
   - `EditCommand` is closely related to the `AddStudentCommand`.
+  - Update relevant fields with the given changes to the `Student` class.
   - Added new parser for exam such that instead of overriding the set, it updates the exam scores.
 - [Exam](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/model/exam/Exam.java)
   - Adapted `Tag` class to `Exam` class to fit into our user story.
   - Contains the name and score of the exam.
-  - See PR [#121](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/121)
+  - See PR [#121](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/121) and [#248](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/248)
 - User Interface (UI)
   - Updated student card to display exam grades.
   - Improved layout of components and scaling of application window.
-  - See PR [#146](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/146) and [#170](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/170)
+  - Set minimum window size for better viewing of content.
+  - See PR [#146](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/146), [#170](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/170) and [#253](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/253)
 
 #### Contributions to the UG
 - [Adding a new student record](https://ay2223s1-cs2103t-t15-2.github.io/tp/UserGuide.html#421-adding-a-new-student-record--addstudent)
   - Compiled a table of the fields and restrictions on the values.
   - See PR [#104](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/104) and [#239](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/239)
+- Clean up formatting
+  - See PR [#267](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/267)
 
 #### Contributions to the DG
 - [User Story](https://ay2223s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#62-user-stories)
@@ -49,13 +54,11 @@ It is written in Java and the GUI is built using JavaFX.
   - See PR [#162](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/162)
 
 #### Contributions to Team-based Tasks
-_To be updated_
+- Set up initial GitHub organisation and team repository.
 
 #### Review/mentoring contributions
+- [#265](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/265): Suggested changes to the phrasing to improve consistency.
 - [#243](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/243): Highlighted an inconsistent wording in the user guide.
 - [#170](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/170): Assisted teammate in resolving difficulties in UI layout and scaling.
 - [#156](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/156): Informed teammate of the incorrect use of HTML list tags for the user guide.
 - [#139](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/139): Brought up a suggestion on how to make the code more concise.
-
-#### Contributions Beyond the Project Team
-_To be updated_
