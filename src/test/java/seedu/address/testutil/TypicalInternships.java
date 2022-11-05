@@ -60,7 +60,7 @@ public class TypicalInternships {
             .withInternshipId(5)
             .withCompanyName("Fiona Constructions Pte Ltd")
             .withRole("Architecture Designer")
-            .withStatus("PENDING")
+            .withStatus("BOOKMARKED")
             .withInterviewDate("2021-12-22 11:10")
             .build();
     public static final Internship GEORGE = new InternshipBuilder()

@@ -33,7 +33,7 @@ public class SortInternshipCommand extends Command {
             this.name = name;
         }
 
-        private String getCriteriaName() {
+        String getCriteriaName() {
             return name;
         }
     }
