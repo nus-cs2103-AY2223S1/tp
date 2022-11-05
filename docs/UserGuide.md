@@ -84,33 +84,48 @@ The following is the main user interface of NUScheduler.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Command format
 
-<div markdown="block" class="alert alert-info">
+### Basic command format
 
-**:information_source: Notes about the command format:**<br>
+Most commands used in NUScheduler follow this command format:
+```
+<command word> <option flag> <parameters>
+```
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+#### Command Word
+
+* Command words are case-sensitive, e.g. `exit` will work, but not `EXIT`.
+
+#### Option Flag
+
+* Option flags are prefixed by `-`, and are case-sensitive, e.g. `-v` will work, but not `-V`.
+* Option flags must be specified right after the command word.
+* Optional flags are only applicable for the profile and event command words.
+
+#### Parameters
+
+* Words in `UPPER_CASE` are the parameters to you will specify.<br>
   e.g. in `profile -a n/NAME`, `NAME` is a parameter which can be used as `profile -a n/John Doe`.
-
-* Items in square brackets are optional.<br>
+* Parameters in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times, including zero times for optional items.<br>
+* Parameters with `…`​ after them can be used multiple times, including zero times for optional items.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
   e.g. `pr/PROFILE_INDEX…​` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
-
-* For Event and Profile commands, option flags (-x where x is a placeholder for valid flags e.g. a, d, v) must be used after the event and profile command word.
-
-* The other parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Command words and option flags are case-sensitive i.e. `profile -v` will work, but not `PROFILE -v` and `profile -V`.
-
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 </div>
+
+| Prefix | Parameter |
+|:------:|:---------:|
+| hello  |   world   |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features
 
 ### Profiles
 
