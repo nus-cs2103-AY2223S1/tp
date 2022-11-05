@@ -30,6 +30,7 @@ Already an expert? Jump right straight to the [features](#features) section to s
   * [Formatting](#formatting)
 * [Quick start](#quick-start)
 * [Before Using PennyWise](#before-using-pennywise)
+  * [What is an Entry](#what-is-an-entry)
   * [Familiarising yourself with the interface](#familiarising-yourself-with-the-interface)
 * [Understanding the command formats](#understanding-the-command-formats)
   * [Categorising your expenses and income](#categorising-your-expenses-and-income)
@@ -138,6 +139,23 @@ Curious about the various commands? Refer to the [Features](#features) below to 
 
 ## Before Using PennyWise
 
+### What is an Entry
+
+Think of PennyWise as a helpful personal budgeting assistant. Whenever you spend or earn money, all you need to do is 
+tell PennyWise and PennyWise will help you log and save it as a new Entry! An Entry is what PennyWise terms as a 
+particular expenditure or income logged into the application. PennyWise defines an expenditure and income as things that
+you spend money on, and things that make you money respectively! Not only that, PennyWise will help you 
+analyse your data, so you can easily get an overview of your overall expenditure or income.
+
+However, in order to do this, PennyWise will need some data from you! Whenever you log an entry, whether expenditures or
+incomes, you need to tell PennyWise the following:
+
+* Type: whether it is an expenditure or income
+* Description: what is this particular entry about
+* Amount: what was the amount associated with this particular entry
+* Date: when was this entry logged in PennyWise
+* Category: how this entry is classified
+
 ### Familiarising yourself with the interface
 
 To familiarise yourself with our user interface, please refer to the following diagram and table to get comfortable with the application.
@@ -146,12 +164,12 @@ When you first open up the application, this is the *default view*:
 
 ![UserInterfaceExplanation](images/ug/UserInterfaceExplanation.png)
 
-|      `Component`       |                                                       `Explanation`                                                        |
-|:----------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
-|    **List Display**    |            where you view your entry lists (Expenditure or Income) <br> - can be modified by the `view` command            |
-|   **Graph Display**    | where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> - can be modified by the `view` command |
-| **Command Input Box**  |                                       where you enter your commands to use PennyWise                                       |
-| **Command Output Box** |                                  where you see the output of your commands from PennyWise                                  |
+|                                       `Component`                                        |                                                       `Explanation`                                                        |
+|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
+|     ![](https://img.shields.io/static/v1?label=&message=List%20Display&color=862e9c)     |            where you view your entry lists (Expenditure or Income) <br> - can be modified by the `view` command            |
+|    ![](https://img.shields.io/static/v1?label=&message=Graph%20Display&color=5c940d)     | where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> - can be modified by the `view` command |
+| ![](https://img.shields.io/static/v1?label=&message=Command%20Input%20Box&color=e67700)  |                                       where you enter your commands to use PennyWise                                       |
+| ![](https://img.shields.io/static/v1?label=&message=Command%20Output%20Box&color=d9480f) |                                  where you see the output of your commands from PennyWise                                  |
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 If the application is resized to a smaller screen, certain graphical components will no longer be visible. This is to ensure that
@@ -492,7 +510,7 @@ without compromising on quality and user experience so do look out for our futur
 | Action              | Format, Examples                                                                                                                                        |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**             | `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br> e.g. `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`                                   |
-| **Delete**          | `del INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g. `del 2 t/e`                                                                                                 |
+| **Delete**          | `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g. `delete 2 t/e`                                                                                           |
 | **Edit**            | `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`<br> e.g. `edit 2 t/i a/150.00 da/22-10-2022` |
 | **Summary**         | `summary [mo/MONTH]`<br> e.g. `summary mo/2022-09`                                                                                                      |
 | **View (Category)** | `view t/ENTRY_TYPE` <br> e.g. `view t/e`                                                                                                                |
