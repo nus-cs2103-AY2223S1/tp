@@ -208,7 +208,7 @@ Step 2. The user executes `radd s/1 d/20-09-2022 c/The food was good, the chicke
 
 ![AddReview](images/AddReview.png)
 
-#### UML Diagram for adding Review
+#### UML diagram for adding Review
 
 The following activity diagram summarizes what happens when a user executes a new `radd` command:
 
@@ -253,7 +253,7 @@ Step 6. When the SFindCommand executes, the predicate will be sent to ModelManag
 
 ![AddTodo1](images/sfind.png)
 
-#### UML Diagram for finding Stalls/Reviews
+#### UML diagram for finding Stalls/Reviews
 
 The following activity diagram summarizes what happens when a user executes a new `sfind` or `rfind` command:
 
@@ -284,13 +284,13 @@ Step 2. The user executes `rlist` to list **all** reviews on the FoodWhere User 
 
 ![ListReview](images/ListReview.png)
 
-#### UML Diagram for listing of all Reviews
+#### UML diagram for listing of all Reviews
 
 The following activity diagram summarizes what happens when a user executes a new `rlist` command:
 
 <img src="images/ListReviewActivityDiagram.png" width="250" />
 
-### Review Deleting feature
+### Review deleting feature
 
 #### What is Review deleting feature about?
 
@@ -313,7 +313,7 @@ Step 3. The user executes `rdel 2` command to delete the last review with index 
 
 ![DeleteReview](images/DeleteReview.png)
 
-#### UML Diagram for deleting Review
+#### UML diagram for deleting Review
 
 The following activity diagram summarizes what happens when a user executes a new `rdel` command:
 
@@ -354,7 +354,7 @@ Step 7. `model.setReview()` will interact with the model to have it replace the 
 
 ![REditSequenceDiagram](images/REditSequenceDiagram.png)
 
-#### UML Diagram for editing Review
+#### UML diagram for editing Review
 
 The following activity diagram summarizes what happens when a user executes a new `redit` command:
 
@@ -395,7 +395,7 @@ Step 6. `model.sortReviews()` will interact with the model to sort reviews using
 
 ![SortReview](images/SortReview.png)
 
-#### UML Diagram for Sorting Stalls/Reviews
+#### UML diagram for sorting Stalls/Reviews
 
 The following activity diagram summarizes what happens when a user executes a new `ssort` or `rsort` command:
 
