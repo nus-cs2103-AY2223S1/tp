@@ -28,6 +28,7 @@ Given below are my contributions to the project.
   * It sets the payment status of a patient's bill to "PAID".
 * SetUnPaidCommand
   * It sets the payment status of a patient's bill to "UNPAID".
+* Fixed bug in Email class by modifying the regex for the constraints of the email field.
 
 ### Contributions to the User Guide:
 * Added documentation and screenshots for:

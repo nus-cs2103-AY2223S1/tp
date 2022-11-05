@@ -96,7 +96,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `HealthContactParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a patient).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -180,11 +180,11 @@ Classes used by multiple components are in the `seedu.healthcontact.commons` pac
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Current Implementation
 
-The proposed undo/redo mechanism is facilitated by `History`. It tracks the states of `HealthContact` with an undo/redo history, stored internally as an `healthContactHistory` and `redoHealthContactHistory`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `History`. It tracks the states of `HealthContact` with an undo/redo history, stored internally as an `healthContactHistory` and `redoHealthContactHistory`. Additionally, it implements the following operations:
 
 * `History#updateHealthContactHistory()` — Saves the current HealthContact state, the FilteredPatients state, the FilteredAppointment state and FilteredBills state in `undoFilteredPatientsHistory`, `undoFilteredAppointmentHistory` and `undoFilteredBillsHistory` respectively.
 * `History#getHealthContactHistory(int index)` — Get the saved state of HealthContact given an index. This method is used for restoring the previous HealthContact state from its history.
@@ -254,7 +254,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
 
 ### Add Feature
 
@@ -549,24 +548,24 @@ the command.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …​                     | I want to …​                               | So that I can…​                                                                         |
-|----------|-----------------------------|--------------------------------------------|-----------------------------------------------------------------------------------------|
-| `* * *`  | user                        | add a patient                              | keep track of the patient in a database                                                 |
-| `* * *`  | user                        | edit a patient                             | make changes to patients' details in the database                                       |
-| `* * *`  | user                        | delete a patient                           | remove a patient and his or her details if they are no longer needed                    |
-| `* * *`  | user                        | add an appointment                         | keep track of the patient's appointments in the database                                |
-| `* * *`  | user                        | edit an appointment                        | make changes to appointments' details in the database                                   |
-| `* * *`  | user                        | delete an appointment                      | remove an appointment from the database once it is over                                 |
-| `* *`    | user with many patients     | sort patients by name/phone/email/address  | classify patients according to each criteria (e.g. name, phone, email, address) easily  |
-| `* *`    | user with many appointments | sort appointments by name/test/slot/doctor | classify appointments according to each criteria (e.g. name, test, slot, doctor) easily |
-| `* *`    | user with many bills        | sort bills by name/amount/date/status      | classify bills according to each criteria (e.g. name, amount, date, status) easily      |
-| `* *`    | user                        | find a patient                             | locate details of patients without having to go through the entire list                 |
-| `* *`    | user                        | find an appointment                        | locate details of appointments without having to go through the entire list             |
-| `* *`    | user                        | find a bill                                | locate details of bills without having to go through the entire list                    |
-| `* *`    | user                        | select a patient                           | view all appointments and bills tagged to that patient                                  |
-| `* *`    | user                        | select an appointment                      | view all bills tagged to that appointment                                               |
-| `* *`    | careless user               | undo an action                             | revert a command once I have realised the command is a mistake                          |
-| `* *`    | indecisive user             | redo an action                             | revert an undo command once I have changed my mind and I to execute the command again   |
+| Priority | As a …​                              | I want to …​                       | So that I can…​                                                                                     |
+|----------|--------------------------------------|------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `* * *`  | user                                 | add a patient                      | keep track of the patient's details in the application                                              |
+| `* * *`  | user                                 | edit a patient                     | make changes to patients' details in the application                                                |
+| `* * *`  | user                                 | delete a patient                   | remove a patient's details, appointments and bills if they are no longer needed                     |
+| `* * *`  | user                                 | add an appointment of a patient    | keep track of the patient's appointment in the application                                          |
+| `* * *`  | user                                 | edit an appointment of a patient   | make changes to the appointment's details in the application                                        |
+| `* * *`  | user                                 | delete an appointment of a patient | remove an appointment from the application                                                          |
+| `* *`    | user with many patients              | sort patients                      | arrange patients according to each criteria (e.g. name, phone, email, address, remark, tags) easily |
+| `* *`    | user with many appointments          | sort appointments                  | arrange appointments according to each criteria (e.g. name, medical test, slot, doctor) easily      |
+| `* *`    | user with many bills                 | sort bills                         | arrange bills according to each criteria (e.g. name, amount, bill date, payment status) easily      |
+| `* *`    | user with a few or more patients     | find a patient                     | locate details of a patient easily without having to go through the entire list                     |
+| `* *`    | user with a few or more appointments | find an appointment                | locate details of an appointment easily without having to go through the entire list                |
+| `* *`    | user with a few or more bills        | find a bill                        | locate details of a bill easily without having to go through the entire list                        |
+| `* *`    | user                                 | select a patient                   | view patient details and all appointments and bills tagged to that patient, if any                  |
+| `* *`    | user                                 | select an appointment              | view the bill tagged to that appointment, if any                                                    |
+| `* *`    | careless user                        | undo an action                     | revert a command once I realise that the previous command is a mistake                              |
+| `* *`    | indecisive user                      | redo an action                     | revert an undo command if I change my mind and I want to execute the command again                  |
 
 
 ### Use cases
