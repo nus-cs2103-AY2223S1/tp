@@ -108,7 +108,6 @@ class EditInternshipCommandTest {
         assertCommandSuccess(editInternshipCommand, model, expectedMessage, expectedModel);
     }
 
-    @SuppressWarnings("checkstyle:LineLength")
     @Test
     public void execute_duplicateInternshipUnfilteredList_failure() {
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
