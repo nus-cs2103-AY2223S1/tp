@@ -119,7 +119,7 @@ For information on all commands that are related to Staff, refer to the [Staff C
   e.g. For the `addproj` command, it can be used with these command words: `Addproj`, `addProj`, `ADDPROJ`
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addproj pn/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used in `addproj pn/2103T TP pb/100000 pd/2022-01-01`.
+  e.g. in `addproj pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECT_DEADLINE`, `PROJECT_NAME` is a parameter which can be used in `addproj pn/2103T TP pb/100000 pd/2022-01-01`.
 
 * Items in square brackets are optional.<br>
   e.g. `pn/PROJECT_NAME [t/TAG]` can be used as `pn/2101 t/fun` or as `pn/2101`.
@@ -131,10 +131,10 @@ For information on all commands that are related to Staff, refer to the [Staff C
   e.g. if the command specifies `pn/PROJECT_NAME pb/PROJECT_BUDGET`, `pb/PROJECT_BUDGET pn/PROJECT_NAME` is also acceptable.
 
 * If a command requires both index and parameters, the index has to come before the parameters. The parameters behind the index can be arranged in any order.<br>
-  e.g. For the `delstaff` command, its format is `editstaff INDEX pn/PROJECT_NAME` and this must be strictly adhered to. Putting the index at the back will give an error.
+  e.g. For the `delstaff` command, its format is `delstaff INDEX pn/PROJECT_NAME` and this must be strictly adhered to. Putting the index at the back will give an error.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `sp/12341234 sp/56785678`, only `sp/56785678` will be taken.
+  e.g. if you specify `sp/92341234 sp/96785678`, only `sp/96785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -149,6 +149,7 @@ For information on all commands that are related to Staff, refer to the [Staff C
 This section contains information regarding all the commands that can be used to manage Projects.
 
 ### Project Glossary
+This is a description of the different parameters for Projects.
 
 | Parameter            | _Description_, Constraints                                                                                                                                                                                                                                                                                                                        |
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -169,7 +170,8 @@ Format: `addproj pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECT_DEADLINE [t/TAG]�
 ```yaml
 Note:
   * A Project can have any number of tags (including 0)
-  * PROJECT_BUDGET should be a whole number and entered as Singapore dollars. You do not need to enter any currency symbols.
+  * PROJECT_BUDGET should be a whole number and entered as Singapore dollars.
+    You do not need to enter any currency symbols.
   * PROJECT_DEADLINE should follow the YYYY-MM-DD format.
 ```
 
@@ -177,7 +179,7 @@ Examples:
 * `addproj pn/2103T TP pb/100000 pd/2022-01-01` creates a new Project with project name `2103T TP`, a budget of `$100000` and a deadline
 at `2022-01-01`
 * `addproj pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Funtime` creates a new Project with project name `CS2100` with a budget of
-`$1000` and a deadline at `2022-01-01`. This project is tagged as `Funtime`.
+`$1000` and a deadline at `2022-01-01`. This project is tagged as `Funtime` and `Tiring`.
 
 [Back to top](#table-of-contents)<br>
 [Back to Project Glossary](#project-glossary)
@@ -204,7 +206,7 @@ Format: `findproj KEYWORD [MORE_KEYWORDS]`
 
 ```yaml
 Note:
-  * `KEYWORDS` must not be an empty string.
+  * `KEYWORD` must not be an empty string.
   * The findproj command is case-insensitive such that 'merger' will match 'MERGER'
   * The findproj command will match Project name if there is a partial match, 'me' or 'mE'
     will both match 'MERGER'
@@ -222,15 +224,15 @@ For example, both projects `CS2103` and `CS2103 TP` will be listed.
 --------------------------------------------------------------------------------------------------------------------
 ### **Sorting the Project list :** `sortproj`
 
-Sorts the Project list according to deadline.
+Sorts the Project list according to ascending order of `PROJECT_DEADLINE`.
+
+Format: `sortproj`
 
 ```yaml
 Warning !!!:
   * This command is irreversible, you will not be able to get back the original ordering
     after this command.
 ```
-
-Format: `sortproj` sorts all projects in ascending order of deadline.
 
 [Back to top](#table-of-contents)<br>
 [Back to Project Glossary](#project-glossary)
@@ -246,7 +248,7 @@ Format: `editproj INDEX [pn/PROJECT_NAME] [pb/PROJECT_BUDGET] [pd/PROJECT_DEADLI
 Note:
   * INDEX must be a positive integer 1, 2, 3, …​
   * At least one of the optional fields must be provided.
-  * When editing tags, the existing tags of the person will be removed
+  * When editing tags, the existing tags of the project will be removed
     i.e adding of tags is not cumulative.
 ```
 
@@ -273,11 +275,14 @@ Format: `delproj INDEX`
 Note:
   * INDEX refers to numbering of the Projects shown in the displayed Project list.
   * INDEX must be a positive integer 1, 2, 3, …​
-  * Staff list will not display any Staff by default. You will have to use the [view command](#view-the-staff-list-within-a-project--view) to see the Staff of that Project.
+  * Staff list will not display any Staff by default if this command
+    is executed successfully.
 ```
 
 Examples:
-* `list` followed by `delproj 2` deletes the 2nd Project in the displayed list of Projects.
+* `list` followed by `delproj 2` deletes the 2nd Project in the displayed list of Projects. As the Staff list
+  will not show any Staff, you can use the [view command](#view-the-staff-list-within-a-project--view) to see
+  the staff of any displayed Project.
 * `findproj 2103T TP` followed by `delproj 1` deletes the 1st Project in the results of the `findproj` command.
 
 [Back to top](#table-of-contents)<br>
@@ -297,14 +302,14 @@ Warning !!!:
 
 ### Staff Glossary
 
-| Parameter            | _Description_, Constraints                                                                                                                                                                                                                                                                                                              |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **STAFF_NAME**       | _Name of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> - No character limit. <br> - Staff names must be unique. <br> - If you want to enter two Staff members of the same name, you can add a number behind to uniquely identify them e.g. John2. |
-| **STAFF_PHONE**      | _Staff phone number_ <br> - Only numbers are allowed. <br> - Phone number must be 8 digits, and must start with either 6, 8, or 9 to match Singaporean phone numbers.                                                                                                                                                                   |
-| **STAFF_TITLE**      | _Work title of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> If `-` should be used, replace it with a space instead.                                                                                                                              |
-| **STAFF_DEPARTMENT** | _Department of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> If `-` should be used, replace it with a space instead.                                                                                                                              |
-| **LEAVE_STATUS**     | _Staff member's leave status_ <br> - Should be specified as a boolean value. Input `true` for a staff member that is on leave, and `false` for one that is present.                                                                                                                                                                     |
-| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. Spaces are allowed but not an empty tag unless you are using the edit commands.                                                                                   |
+| Parameter            | _Description_, Constraints                                                                                                                                                                                                                            |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **STAFF_NAME**       | _Name of Staff_ <br> - Only alphabetic characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. Numbers are not allowed as well. <br> - No character limit. <br> - Staff names must be unique.                  |
+| **STAFF_PHONE**      | _Staff phone number_ <br> - Only numbers are allowed. <br> - Phone number must be 8 digits, and must start with either 6, 8, or 9 to match Singaporean phone numbers.                                                                                 |
+| **STAFF_TITLE**      | _Work title of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> If `-` should be used, replace it with a space instead.                                            |
+| **STAFF_DEPARTMENT** | _Department of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> If `-` should be used, replace it with a space instead.                                            |
+| **LEAVE_STATUS**     | _Staff member's leave status_ <br> - Should be specified as a boolean value. Input `true` for a staff member that is on leave, and `false` for one that is present.                                                                                   |
+| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. Spaces are allowed but not an empty tag unless you are using the edit commands. |
 
 [Back to top](#table-of-contents)
 
@@ -319,8 +324,8 @@ Format: `addstaff INDEX sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STA
 ```yaml
 Note:
  * Staff names must be unique.
- * INDEX refers to the numbering of the desired Project in the currently displayed Project
-   list.
+ * INDEX refers to the numbering of the Project in the currently displayed Project
+   list which the Staff will be added to.
  * All fields for Staff members are required, except `TAGS`
  * If no Projects are currently shown on the Project list, addstaff will give an error.
    Use list to display all Projects. If no Projects are present, add a Project first
@@ -331,7 +336,7 @@ Note:
 
 Examples:
 * `addstaff 1 sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds Staff member named `John Doe` to the first Project in the Project list.
-* `addstaff 3 sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false` Adds Staff member named `Betsy Crown` to the third Project in the Project list.
+* `addstaff 3 sn/Betsy Crowe sp/82345678 st/Admin Staff sd/Admin sl/false` Adds Staff member named `Betsy Crown` to the third Project in the Project list.
 
 [Back to top](#table-of-contents)<br>
 [Back to Staff Glossary](#staff-glossary)
@@ -352,7 +357,8 @@ Note:
   * Recommended to use the view command on a Project before deleting a Staff from it.
   * A possible interaction is if you view the Staff list of Project A then try
     to delete Staff at index 1 (call this Staff Tom) from Project B, it will delete
-    Staff Tom from Project B if Staff Tom is also part of Project B.
+    Staff Tom from Project B if Staff Tom is also part of Project B. Staff Tom in Project A
+    will not be deleted in this scenario.
   * The index must be a positive integer 1, 2, 3, …​
   * If Staff is deleted successfully, it will update the displayed Staff list to show the
     Staff list of the Project where the Staff was deleted from.
@@ -361,7 +367,7 @@ Note:
 Examples:
 
 * `delstaff 1 pn/2103` Delete the 1st Staff within the displayed Staff list from Project `2103`.
-* `delstaff 7 pn/Duke` Delete 7th Staff within the displayed Staff list from Project `Duke`.
+* `delstaff 7 pn/Duke` Delete the 7th Staff within the displayed Staff list from Project `Duke`.
 
 [Back to top](#table-of-contents)<br>
 [Back to Staff Glossary](#staff-glossary)
@@ -380,7 +386,7 @@ Note:
 ```
 Examples:
 * `list` followed by `view 2` displays the Staff list of the 2nd Project in Project list on the bottom right.
-* `find 2103T TP` followed by `view 1` display the Staff list of the 1st Project from the result of the `find` command.
+* `findproj 2103T TP` followed by `view 1` display the Staff list of the 1st Project from the result of the `findproj` command.
 
 [Back to top](#table-of-contents)
 
@@ -405,7 +411,8 @@ Note:
     where the Staff is to be edited.
   * A possible interaction is if you view the Staff list of Project A then try
     to edit Staff at index 1 (call this Staff Tom) from Project B, it will try to edit
-    Staff Tom from Project B if Staff Tom is also part of Project B.
+    Staff Tom from Project B if Staff Tom is also part of Project B. Staff Tom in Project A
+    will not be edited in this scenario.
   * Index must be a positive integer 1, 2, 3, ...
 ```
 

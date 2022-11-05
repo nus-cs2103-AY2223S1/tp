@@ -2,6 +2,7 @@ package seedu.hrpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_PROJECT;
+import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_STAFF;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_NO_STAFF_DISPLAYED;
 import static seedu.hrpro.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
@@ -102,8 +103,11 @@ public class EditStaffCommand extends Command {
         if (model.projectHasDuplicateStaff(projectName, toEdit, editedStaff)) {
             throw new CommandException(MESSAGE_DUPLICATE_STAFF);
         }
-
-        model.editStaffInProject(projectName, toEdit, editedStaff);
+        boolean isSuccessfulEdit = model.isSuccessStaffEdit(projectName, toEdit, editedStaff);
+        if (!isSuccessfulEdit) {
+            throw new CommandException(String.format(MESSAGE_INVALID_STAFF, toEdit.getStaffName()));
+        }
+        //model.editStaffInProject(projectName, toEdit, editedStaff);
         model.setFilteredStaffList(toFindIn.getStaffList());
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
         return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff, toFindIn.getProjectName()));

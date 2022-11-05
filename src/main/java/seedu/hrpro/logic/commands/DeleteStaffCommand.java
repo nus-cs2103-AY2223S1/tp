@@ -2,6 +2,7 @@ package seedu.hrpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_PROJECT;
+import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_STAFF;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_NO_STAFF_DISPLAYED;
 import static seedu.hrpro.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
@@ -67,7 +68,10 @@ public class DeleteStaffCommand extends Command {
         Staff toDelete = staffToDelete.orElseThrow(() ->
                 new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX));
 
-        model.removeStaffFromProject(new ProjectName(projectName), index);
+        boolean isSuccessfulDelete = model.isSuccessStaffDelete(new ProjectName(projectName), index);
+        if (!isSuccessfulDelete) {
+            throw new CommandException(String.format(MESSAGE_INVALID_STAFF, toDelete.getStaffName()));
+        }
         model.setFilteredStaffList(project.getStaffList());
         model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
         return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS,

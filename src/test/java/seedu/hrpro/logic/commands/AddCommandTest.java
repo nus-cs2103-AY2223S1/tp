@@ -160,7 +160,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void removeStaffFromProject(ProjectName projectName, Index index) {
+        public boolean isSuccessStaffDelete(ProjectName projectName, Index index) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -170,7 +170,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void editStaffInProject(ProjectName projectName, Staff toEdit, Staff editWith) {
+        public boolean isSuccessStaffEdit(ProjectName projectName, Staff toEdit, Staff editWith) {
             throw new AssertionError("This method should not be called.");
         }
 
