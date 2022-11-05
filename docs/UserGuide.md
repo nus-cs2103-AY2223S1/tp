@@ -100,7 +100,7 @@ The following table describes the sections in detail:
 | `STUDENT_ID`           | - Student IDs consists of an `A` followed by 7 digits and any single capital letter behind.                                                                                                                                                                 |
 | `TEACHING_NOMINATIONS` | - Teaching nominations take in positive integers including 0. Leading zeros in the teaching nominations will not be allowed. e.g. `00001` is invalid.                                                                                                       |
 | `RATING`               | - Ratings take in numbers **between 0 and 5 inclusive**. <br/>- Decimal values are optional but only a **maximum of 2 decimals** is allowed.                                                                                                                |
-| `TAG`                  | - A person can have any number of tags (including 0). <br/>- Tags should be alphanumeric and should not contain any spaces.                                                                                                                                 |
+| `TAG`                  | - A tutor can have any number of tags (including 0). <br/>- Tags should be alphanumeric and should not contain any spaces.                                                                                                                                 |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -200,7 +200,7 @@ If you would like to find out more about a particular tutor, view a tutor to see
 
 Format: `view INDEX`
 
-* Displays the person at the specified `INDEX`.
+* Displays the tutor at the specified `INDEX`.
 
 Examples:
 * `view 2` causes the corresponding `Tutor Details Pane` of the 2nd tutor to appear on the right, as shown below:
@@ -220,7 +220,7 @@ Adds a comment on the specified tutor.
 
 Format: `comment INDEX c/COMMENT`
 
-* Comments on the person at the specified `INDEX`.
+* Comments on the tutor at the specified `INDEX`.
 
 Examples:
 * `comment 1 c/Tasks not Finished` adds a comment of "Tasks not Finished" on the 1st tutor, reflected on their `Tutor Details Pane` as shown below:
@@ -233,7 +233,7 @@ Deletes a comment from the specified tutor.
 
 Format: `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`
 
-* Deletes the comment at the specified index of the specified tutor. The tutor index refers to the index number shown in the displayed person list. The comment index refers to the index number of the comment shown in the comment section. Both indices **must be positive integers** 1, 2, 3, …​
+* Deletes the comment at the specified index of the specified tutor. The tutor index refers to the index number shown in the displayed tutor list. The comment index refers to the index number of the comment shown in the comment section. Both indices **must be positive integers** 1, 2, 3, …​
 
 Examples:
 * `deletecomment 1 1` and `dc 1 1` deletes the 1st comment from the 1st tutor.
@@ -350,7 +350,7 @@ Deletes the specified tutors from Tuthub.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the tutor at the specified `INDEX`.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -359,7 +359,7 @@ Format: `delete INDEX`
 </div>
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in Tuthub.
+* `list` followed by `delete 2` deletes the 2nd tutor in Tuthub.
 * `find n/Betsy` followed by `delete 1` deletes the 1st tutor with name containing `Betsy` in the results of the `find` command (given that such tutor exists).
 
 ### Clearing all entries: `clear`
