@@ -1,5 +1,6 @@
 ---
-layout: page title: Ho Jun Hao's Project Portfolio Page
+layout: page 
+title: Ho Jun Hao's Project Portfolio Page
 ---
 
 ### Project: ModtRekt
