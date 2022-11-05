@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandResult.CommandType.ADD;
+import static seedu.address.logic.commands.CommandResult.CommandType.ADDSTUDENT;
+import static seedu.address.logic.commands.CommandResult.CommandType.ADDTUTOR;
 import static seedu.address.logic.commands.CommandResult.CommandType.ASSIGN;
 import static seedu.address.logic.commands.CommandResult.CommandType.CLEAR;
 import static seedu.address.logic.commands.CommandResult.CommandType.EDIT;
@@ -62,12 +63,6 @@ public class CommandResultTest {
     }
 
     @Test
-    public void isUpdateDescription_editCommandType_assertTrue() {
-        CommandResult commandResult = new CommandResult("feedback", EDIT, 0);
-        assertTrue(commandResult.isUpdateDescription());
-    }
-
-    @Test
     public void isUpdateDescription_showCommandType_assertTrue() {
         CommandResult commandResult = new CommandResult("feedback", SHOW, 0);
         assertTrue(commandResult.isUpdateDescription());
@@ -86,15 +81,27 @@ public class CommandResultTest {
     }
 
     @Test
-    public void isAdd_addCommandType_assertTrue() {
-        CommandResult commandResult = new CommandResult("feedback", ADD);
-        assertTrue(commandResult.isAdd());
+    public void isAddStudent_addStudentCommandType_assertTrue() {
+        CommandResult commandResult = new CommandResult("feedback", ADDSTUDENT);
+        assertTrue(commandResult.isAddStudent());
+    }
+
+    @Test
+    public void isAddTutor_addTutorCommandType_assertTrue() {
+        CommandResult commandResult = new CommandResult("feedback", ADDTUTOR);
+        assertTrue(commandResult.isAddTutor());
     }
 
     @Test
     public void isClear_clearCommandType_assertTrue() {
         CommandResult commandResult = new CommandResult("feedback", CLEAR);
         assertTrue(commandResult.isClear());
+    }
+
+    @Test
+    public void isEdit_editCommandType_assertTrue() {
+        CommandResult commandResult = new CommandResult("feedback", EDIT, 0);
+        assertTrue(commandResult.isEdit());
     }
 
     @Test
@@ -134,9 +141,15 @@ public class CommandResultTest {
     }
 
     @Test
-    public void isAdd_notAddCommandType_assertFalse() {
-        CommandResult commandResult = new CommandResult("feedback", LIST);
-        assertFalse(commandResult.isAdd());
+    public void isAddStudent_notAddStudentCommandType_assertFalse() {
+        CommandResult commandResult = new CommandResult("feedback", ADDTUTOR);
+        assertFalse(commandResult.isAddStudent());
+    }
+
+    @Test
+    public void isAddStudent_notAddTutorCommandType_assertFalse() {
+        CommandResult commandResult = new CommandResult("feedback", ADDSTUDENT);
+        assertFalse(commandResult.isAddTutor());
     }
 
     @Test
@@ -144,6 +157,14 @@ public class CommandResultTest {
         CommandResult commandResult = new CommandResult("feedback", LIST);
         assertFalse(commandResult.isClear());
     }
+
+
+    @Test
+    public void isEdit_notEditCommandType_assertFalse() {
+        CommandResult commandResult = new CommandResult("feedback", ASSIGN, 0);
+        assertFalse(commandResult.isEdit());
+    }
+
     @Test
     public void getFeedbackToUser_feedback_equalToFeedback() {
         String feedback = "feedback";

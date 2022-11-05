@@ -417,28 +417,34 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Displays the added entity in Description Panel.
+     * Displays the added student in Description Panel if the
+     * current list is the student list.
      */
-    private void handleAdd() {
+    private void handleAddStudent() {
         ListType type = logic.getCurrentListType();
         int listSize;
-        switch(type) {
-        case STUDENT_LIST:
+        if (type == ListType.STUDENT_LIST) {
             entityDescriptionPlaceholder.getChildren().clear();
             listSize = logic.getFilteredStudentList().size();
             studentListPanel.getStudentListView().getSelectionModel().clearSelection();
             studentListPanel.getStudentListView().getSelectionModel().select(listSize - 1);
             descriptionEntityType = ListType.STUDENT_LIST;
-            break;
-        case TUTOR_LIST:
+        }
+    }
+
+    /**
+     * Displays the added tutor in Description Panel if the
+     * current list is the tutor list.
+     */
+    private void handleAddTutor() {
+        ListType type = logic.getCurrentListType();
+        int listSize;
+        if (type == ListType.TUTOR_LIST) {
             entityDescriptionPlaceholder.getChildren().clear();
             listSize = logic.getFilteredTutorList().size();
             tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
             tutorListPanel.getTutorListView().getSelectionModel().select(listSize - 1);
             descriptionEntityType = ListType.TUTOR_LIST;
-            break;
-        default:
-            break;
         }
     }
 
@@ -654,8 +660,12 @@ public class MainWindow extends UiPart<Stage> {
                 handleClear();
             }
 
-            if (commandResult.isAdd()) {
-                handleAdd();
+            if (commandResult.isAddStudent()) {
+                handleAddStudent();
+            }
+
+            if (commandResult.isAddTutor()) {
+                handleAddTutor();
             }
 
             if (commandResult.isDelete()) {
