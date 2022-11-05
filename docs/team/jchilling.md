@@ -5,7 +5,7 @@ title: Chen Hung-Yu's Project Portfolio Page
 
 ### Project: Cobb
 
-Cobb is a desktop address book application for property agents. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+Cobb is a Contact and Property Management System that aims to help property agents and brokers manage their customer base and properties, as well as match and gain actionable insights from stored data.
 
 Given below are my contributions to the project.
 
@@ -21,9 +21,10 @@ Given below are my contributions to the project.
     * What it does:
     * Justification:
 - **New Features**:
-  * Implementation of `Property` package [#60](https://github.com/AY2223S1-CS2103T-F12-1/tp/pull/60), [#72](https://github.com/AY2223S1-CS2103T-F12-1/tp/pull/72)
-    * What it does: 
-    * Justification:
+  * Implementation of `seedu.address.model.property` package [#60](https://github.com/AY2223S1-CS2103T-F12-1/tp/pull/60), [#72](https://github.com/AY2223S1-CS2103T-F12-1/tp/pull/72)
+    * What it does: Represents a property and its associations as classes within the Cobb codebase.
+    * Justification: The package follows the Object-Oriented Programming paradigm that is used throughout Cobb.
+    * Highlights: This
   * Implementation of `listprops` command [#85](https://github.com/AY2223S1-CS2103T-F12-1/tp/pull/85)
     * What it does:
     * Justification:
@@ -44,7 +45,7 @@ Given below are my contributions to the project.
     * Updated previous outdated descriptions to reflect current state of Cobb
     * Updated all UML diagrams to use plantUML
     * Added "Create a property" section under "Implementation"
-- **Contributions to team-based tasks**: to be added
+- **Contributions to team-based tasks**:
 - **Review/mentoring contributions**:
   * PRs reviewed (with non-trivial comment):
     [#68](https://github.com/AY2223S1-CS2103T-F12-1/tp/pull/68),

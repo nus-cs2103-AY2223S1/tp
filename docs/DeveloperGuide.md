@@ -116,7 +116,8 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+
+<img src="images/ModelClassDiagram.png" width="1000" />
 
 
 The `Model` component,
@@ -124,13 +125,13 @@ The `Model` component,
 * stores the buyer book data i.e., all `Buyer` objects (which are contained in a `UniqueBuyerList` object).
 * stores the property book date i.e, all `Property` objects (which are contained in a `UniquePropertyList` object).
 * stores the currently 'selected' `Buyer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Buyer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* * stores the currently 'selected' `Property` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Property>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Property` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Property>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. A generic Cobb class is created as the parent for BuyerBook and PropertyBook since that the two children classes have a lot of methods with identical purposes.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="1000" />
 
 </div>
 
@@ -156,85 +157,95 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Creating a buyer: `addbuyer`
 
-#### Proposed Implementation
+The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
+denote his budget, requirements for the property, and buyer priority respectively.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
+When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
+When the user creates a buyer, the entry time is also automatically stored as an `LocalDateTime`.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+This is the class diagram of a `Buyer`.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+![BuyerClassDiagram](images/BuyerClassDiagram.png)
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+#### Design considerations:
+No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the name but different contact numbers can be added. However, we decided against it as there could be two people with the exact same name. Therefore, we decided to use phone or email since these should be unique to every person.
+The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortbuyers` command.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+### Creating a property: `addprop`
 
-Step 2. The user executes `delete 5` command to delete the 5th buyer in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
+When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
 
-Step 3. The user executes `add n/David …​` to add a new buyer. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+This is the class diagram of a `Property`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
-</div>
+#### Design considerations:
+No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
+The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
+### Owner specification within a property
 
-Step 4. The user now decides that adding the buyer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+To identify the owner of the property, we decided to include an `Owner` object within a `Property`. This `Owner` class contains two fields: `name` and `phone`.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+The `name` and `phone` fields in the `Owner` class are compulsory, to make sure that each property being sold has a relevant contact buyer.
+The fields are also validated the same way as when creating a new `Buyer` object.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+To support retrieving the `Owner` of a `Property`, we added the following methods:
+- `Property#getOwner()` - Returns the `Owner` object of the property.
+- `Property#getOwnerName()` - Retrieves the name of the owner of the property.
+- `Property#getOwnerPhone()` - Retrieves the phone number of the owner of the property.
 
-</div>
+This is the class diagram showing the full `Property` class diagram, with the `Owner` class included:
+![FullPropertyClassDiagram](images/OwnerClassDiagram.png)
 
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted.
+The tradeoffs for this approach is examined below:
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How the owner class associates with the property class:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Owner class is coupled together with the property class.
+    * Pros:
+        * The `Owner` class is only used in the `Property` class, so it makes sense to couple them together.
+        * You do not need to create an owner object separately using another command.
+        * This reduces complexity of the system, and unexpected behaviours.
+    * Cons:
+        * This creates a 1-to-1 relationship between the owner and the property.
+        * Each owner is coupled tightly with the property, and cannot be used for other properties.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the buyer being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Users will have to create an `Owner` object separately, and link it to the property manually.
+    * Pros:
+        * This allows for a many-to-many relationship between the owners and properties.
+        * This allows for better OOP design, as owners will be treated as a separate, first-class entity, similar to
+          `Buyer`.
+    * Cons:
+        * Increases complexity for a possibly limited use case of linking an owner to multiple properties.
+        * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when
+          the owner is deleted.
 
-_{more aspects and alternatives to be added}_
+### Filtering properties by price range
+
+The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the
+property's price falls within a specified price range.
+
+The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of
+this guide.
+
+Design considerations:
+As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is
+unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price
+falls within this range would be displayed.
+
 
 ### \[Proposed\] Data archiving
 
@@ -296,94 +307,6 @@ Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyRelea
 element in `commandHistory`, the text field is set to display the string `currentCommand`. This would be the user's
 unexecuted command from Step 3.
 
-### Creating a buyer
-
-The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
-denote his budget, requirements for the property, and buyer priority respectively.  
-
-These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
-When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
-When the user creates a buyer, the entry time is also automatically stored as an `LocalDateTime`. 
-
-This is the class diagram of a `Buyer`.
-
-![BuyerClassDiagram](images/BuyerClassDiagram.png)
-
-The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
-
-#### Design considerations:
-No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the name but different contact numbers can be added. However, we decided against it as there could be two people with the exact same name. Therefore, we decided to use phone or email since these should be unique to every person. 
-The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortbuyers` command.  
-
-### Creating a property
-
-The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
-
-The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
-When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
-
-This is the class diagram of a `Property`.
-
-![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
-
-The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
-
-#### Design considerations:
-No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
-The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
-### Owner specification within a property
-
-To identify the owner of the property, we decided to include an `Owner` object within a `Property`. This `Owner` class contains two fields: `name` and `phone`.
-
-The `name` and `phone` fields in the `Owner` class are compulsory, to make sure that each property being sold has a relevant contact buyer.
-The fields are also validated the same way as when creating a new `Buyer` object.
-
-To support retrieving the `Owner` of a `Property`, we added the following methods:
-- `Property#getOwner()` - Returns the `Owner` object of the property.
-- `Property#getOwnerName()` - Retrieves the name of the owner of the property.
-- `Property#getOwnerPhone()` - Retrieves the phone number of the owner of the property.
-
-This is the class diagram showing the full `Property` class diagram, with the `Owner` class included:
-![FullPropertyClassDiagram](images/OwnerClassDiagram.png)
-
-The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted.
-The tradeoffs for this approach is examined below:
-
-#### Design considerations:
-
-**Aspect: How the owner class associates with the property class:**
-
-* **Alternative 1 (current choice):** Owner class is coupled together with the property class.
-    * Pros:
-      * The `Owner` class is only used in the `Property` class, so it makes sense to couple them together.
-      * You do not need to create an owner object separately using another command.
-      * This reduces complexity of the system, and unexpected behaviours.
-    * Cons:
-      * This creates a 1-to-1 relationship between the owner and the property.
-      * Each owner is coupled tightly with the property, and cannot be used for other properties.
-
-* **Alternative 2:** Users will have to create an `Owner` object separately, and link it to the property manually.
-    * Pros:
-      * This allows for a many-to-many relationship between the owners and properties.
-      * This allows for better OOP design, as owners will be treated as a separate, first-class entity, similar to
-      `Buyer`.
-    * Cons:
-      * Increases complexity for a possibly limited use case of linking an owner to multiple properties.
-      * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when
-      the owner is deleted.
-
-### Filtering properties by price range
-
-The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the
-property's price falls within a specified price range.
-
-The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of
-this guide.
-
-Design considerations:
-As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is
-unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price
-falls within this range would be displayed.
 
 --------------------------------------------------------------------------------------------------------------------
 
