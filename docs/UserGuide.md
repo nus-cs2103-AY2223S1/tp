@@ -516,74 +516,29 @@ ArtBuddy offers the following commands to help you manage your iterations:
 * [Deleting an iteration from commission: `deliter`](#deleting-an-iteration-from-commission-deliter)
 
 ### Adding an iteration to a commission: `additer`
-Just like the other add commands, adding iterations can be done either via the command-line, or
-the graphical interface.
+Just like the other add commands, adding iterations can be done either via the command-line, or via the graphical interface.
 
 **Adding by the Command-Line Interface**
 
 Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
 
 * The file path specified should be an absolute path from your root directory. If you're not familiar with file paths
-and root directories, you might find the explanation [below](#filepath_explanation) helpful.
+and root directories, you might find the explanation in the [Appendix](#what-are-file-paths-and-root-directories) helpful.
 * The command requires a commission to be selected.
-* The image name will assume the filename specified in the command.
-* Currently, only image file types .png, .jpg, .bmp and .gif are supported
+* Currently, only image file types .png, .jpg, .bmp and .gif are supported.
 
 Example:
 * <code>additer n/<em>First Draft</em> d/<em>2022-10-28</em> p/<em>/Users/John/Downloads/Draft 1.png</em> f/<em>Looks great</em></code> creates an iteration 
 with the description "First Draft", date 28 October 2022, image at file path <code>p/<em>/Users/John/Downloads/Draft 1.png</em></code>, 
 and feedback "Looks great".
+  * Note that this example will probably not work for you because you'll need to replace the file path
+  with a valid file path for the example to work.
 
-<br>
-<details>
-<summary id="filepath_explanation">What is a filepath and my root directory?</summary>
-<div markdown="1" class="alert alert-info">
-**:information_source: What is a filepath and my root directory?**<br>
-Just like how we use addresses to tell specify locations when talking to people, computers
-do the same! Each file in your computer has a unique address that can be used to identify the
-exact location in your computer where the file is stored.
-<br><br>
-The address of each file in your computer can be viewed simply as "directions", guiding your
-computer to get to the file. Think about how you would tell someone how to open a specific file
-in your computer. You would probably say something along the lines of: "Go to the Downloads folder,
-where you'll find an  Image folder. Click into the Images folder and open the file Draft1.png".
-<br><br>
-Well to computers, filepaths are just like these guiding instructions that help them locate
-a specific file! And your 'root directory' is simply a 'base point' that stores all your files in
-your computer. For most users using a Windows or Mac computer, this root directory is simply
-a folder named `/`.
-<br><br>
-So what a file path `/Users/John/Downloads/Draft 1.png` really means is just a way of telling
-the computer, "Hey, from my root directory, you'll find a folder called Users, and in there a
-folder called John. Open that up and you'll find another folder called Downloads.
-Open the Downloads folder and you'll see the file I want called `Draft 1.png`".
-<br><br>
-To easily copy a filepath of a file:
 
-<ul>
-<li>
+<div markdown="span" class="alert alert-warning">
 
-On Windows, in your File Explorer, hold shift down while you right-click on the file you want. Select the option <code>Copy as Path</code> and the filepath of your file will be copied!
-
-</li>
-<li>
-
-On Mac, in your Finder, click on the file you want to select it and press the <code>Option</code>, <code>Command</code>, <code>C</code> keys simultaneously. The filepath of your file is now copied!
-
-</li>
-</ul>
-
-</div>
-</details>
-<br>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Due to file path naming and the command format, specifying a folder with a folder name that ends with
-a 'n', 'd', 'f', or 'p' would lead to an ambiguous command. For instance, the command
-<code>additer d/<i>2022-10-10</i> n/<i>description</i> f/<i>actual feedback</i> p/<i>/test f/image.png</i></code> is ambiguous
-because AB does know whether <code>f/<i>image.png</i></code> is the feedback parameter specified by the user.
-<br><br>
-If you wish to upload the image, either rename the folder name, or upload the image by the GUI.
+:exclamation: **Caution:** There are some known limitations with specifying using the CLI. Please refer
+to [Appendix: Limitations with file paths in CLI](#limitations-with-file-paths-in-cli) for more details.
 </div>
 <br>
 
@@ -592,16 +547,15 @@ If you wish to upload the image, either rename the folder name, or upload the im
 Adding an iteration can also be done via the graphical interface by clicking on
 the **Add Iteration** button inside the Commission you wish to add the iteration to.
 
-<img src="images/AddIterationButton.png" width="450" />
+![AddIterationButton](images/AddIterationButton.png)
 
 A new window will then pop up, where you will be prompted to fill in the details of
 the new iteration. An image can be added to the iteration by selecting a file in
 your file manager by clicking on the **Add Image** button, or by dragging and dropping
 an image to the grey image drop area.
 
-<img src="images/AddIterationWindow.png" width="450" />
+![AddIterationWindow](images/AddIterationWindow.png)
 
-<br><br>
 
 <div markdown="span" class="alert alert-info">
 **:information_source: Notes about images in ArtBuddy:**<br>
@@ -631,7 +585,15 @@ Format: `deliter INDEX`
 
 ## Statistical commands
 
-To make the best out of your business, we have integrated statistical commands for you to filter, sort and find out which customers are your favorite.
+Supercharge your business with ArtBuddy's integrated statistical commands. It's now possible to leverage on your business data at the snap of your fingers. 
+
+ArtBuddy offers the following commands to help you navigate through and make sense of all your data:
+* [List all the customers: `list`](#list-all-the-customers-list)
+* [Find a customer: `find`](#find-a-customer-find)
+* [Sorting the customer list: `sortcus`](#sorting-the-customer-list-sortcus)
+* [List the commissions: `listcom`](#list-the-commissions-listcom)
+* [Viewing all commissions: `allcom`](#viewing-all-commissions-allcom)
+* [Find a commission: `findcom`](#find-a-commission-findcom)
 
 ### List all the customers: `list`
 Lists all the customers
@@ -714,6 +676,10 @@ Exits the program.
 
 Format: `exit`
 
+--------------------------------------------------------------------------------------------------------------------
+
+# Appendix
+
 ### Saving the data
 
 ArtBuddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -725,6 +691,39 @@ ArtBuddy data are saved as a JSON file `[JAR file location]/data/artbuddy.json`.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ArtBuddy will discard all data and start with an empty data file at the next run.
 </div>
+
+### Limitations with file paths in CLI
+Due to file path naming and the command format, specifying a folder with a folder name that ends with a
+**'n', 'd', 'f', or 'p'** would lead to an ambiguous command.
+
+For instance, the command `additer d/2022-10-10 n/description f/actual feedback p//test f/image.png` is ambiguous
+because ArtBuddy does not know whether <code>f/<em>image.png</em></code> is the feedback parameter specified by the user.
+
+If you wish to upload the image, either rename the folder name, or [upload the image by the GUI]().
+
+### What are file paths and root directories?
+Just like how we use addresses to tell specify locations when talking to people, computers
+do the same! Each file in your computer has a unique address that can be used to identify the
+exact location in your computer where the file is stored.
+
+The address of each file in your computer can be viewed simply as "directions", guiding your
+computer to get to the file. Think about how you would tell someone how to open a specific file
+in your computer. You would probably say something along the lines of: "Go to the Downloads folder,
+where you'll find an  Image folder. Click into the Images folder and open the file Draft1.png".
+
+Well to computers, file paths are just like these guiding instructions that help them locate
+a specific file! And your 'root directory' is simply a 'base point' that stores all your files in
+your computer. For most users using a Windows or Mac computer, this root directory is simply
+a folder named `/`.
+
+So what a file path `/Users/John/Downloads/Draft 1.png` really means is just a way of telling
+the computer, "Hey, from my root directory, you'll find a folder called Users, and in there a
+folder called John. Open that up and you'll find another folder called Downloads.
+Open the Downloads folder and you'll see the file I want called `Draft 1.png`".
+
+To easily copy a filepath of a file:
+* On Windows, in your File Explorer, hold shift down while you right-click on the file you want. Select the option <code>Copy as Path</code> and the filepath of your file will be copied!
+* On Mac, in your Finder, click on the file you want to select it and press the <code>Option</code>, <code>Command</code>, <code>C</code> keys simultaneously. The filepath of your file is now copied!
 
 --------------------------------------------------------------------------------------------------------------------
 
