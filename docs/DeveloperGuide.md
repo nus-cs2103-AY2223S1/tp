@@ -16,20 +16,20 @@ title: Developer Guide
   - [Storage Component](#storage-component)
   - [Common Classes](#common-classes)
 - [Implementation](#implementation)
-  - [Edit modules](#edit-modules)
-  - [Check modules left](#checking-modules-left)
-  - [Refreshing to next semester](#refreshing-to-next-semester)
-  - [Add lessons](#adding-lessons)
-  - [View timetable](#viewing-timetable)
+  - [Edit Modules](#edit-modules)
+  - [Check Modules Left](#checking-modules-left)
+  - [Refreshing to Next Semester](#refreshing-to-next-semester)
+  - [Add Lessons](#adding-lessons)
+  - [View Timetable](#viewing-timetable)
   - [Undo / Redo](#undo--redo)
-  - [Filter contacts](#filter-feature)
+  - [Filter Contacts](#filter-feature)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-- [Appendix: requirements](#appendix-requirements)
-  - [Product scope](#product-scope)
-  - [User stories](#user-stories)
-  - [Use cases](#use-cases)
-  - [Non-functional requirements](#non-functional-requirements)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product Scope](#product-scope)
+  - [User Stories](#user-stories)
+  - [Use Cases](#use-cases)
+  - [Non-functional Requirements](#non-functional-requirements)
+- [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -59,8 +59,8 @@ The Developer Guide is divided into the following sections :
 - [Design](#design)
 - [Implementation](#implementation)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-- [Appendix: requirements](#appendix-requirements)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- [Appendix: Requirements](#appendix-requirements)
+- [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 The [Design](#design) section gives an overview of the architecture of ConnectNUS.
 In this section, you will be provided with:
@@ -90,7 +90,7 @@ provides the links to the aforementioned documents. In this section, you will be
 4. Configuration guide.
 5. DevOps guide.
 
-The [Appendix: requirements](#appendix-requirements) section provides details on the motivation behind creating ConnectNUS
+The [Appendix: Requirements](#appendix-requirements) section provides details on the motivation behind creating ConnectNUS
 and how we intend for users to use ConnectNUS.
 In this section, you will be provided with
 1. Product Scope.
@@ -98,7 +98,7 @@ In this section, you will be provided with
 3. Use Cases.
 4. Non-functional requirements.
 
-The [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing) section gives detailed instructions
+The [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing) section gives detailed instructions
 on how you can perform testing on the features in ConnectNUS. In this section, you will be provided with:
 1. An overview of the command to execute to test the feature.
 2. Sample test cases to be executed.
@@ -277,6 +277,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Scroll back to top](#table-of-contents)
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T14-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -293,6 +295,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+[Scroll back to top](#table-of-contents)
 
 ### Logic component
 
@@ -323,6 +327,8 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[Scroll back to top](#table-of-contents)
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -342,6 +348,7 @@ The `Model` component,
 
 </div>
 
+[Scroll back to top](#table-of-contents)
 
 ### Storage component
 
@@ -354,9 +361,13 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+[Scroll back to top](#table-of-contents)
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -381,7 +392,7 @@ All `Person` have a `Name`, `Email`, `Address` and `Phone` and a set of `Tag`, `
 `User` has a `Name`, `Email`, `Address` and `Phone` and a set of `CurrentModule`, `PreviousModule`, `PlannedModule`, and `Lesson`.
 `User` can have a `Github` URL to their profile added, and as many `Modules` and `Lessons` as desired.
 
-#### Design considerations
+#### Design Considerations
 
 The `User` class is implemented as an abstract class with 2 inheritors, `EmptyUser` and `ExistingUser`. This is so that `User`
 can never be null thus when the user profile is deleted or has yet to be added, `EmptyUser` will act as a placeholder to indicate
@@ -393,14 +404,16 @@ similar way to a `Person` thus many commands that affect each individual contact
 affect the user. Additionally, both `Person` and `User` use the same `Module` classes to store modules hence the similarity
 in design.
 
-### Module class
+[Scroll back to top](#table-of-contents)
+
+### Module Class
 `CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
 
 ![Module Class Diagram](images/ModuleClassDiagram.png)
 
 All implementations of `Module`s have a name.
 
-#### Design considerations
+#### Design Considerations
 
 We chose to split `Module` into `CurrentModule`, `PreviousModule` and `PlannedModule` so that users would be able to track what modules
 themselves and their friends have taken/are taking so that they can collaborate with them in projects and schoolwork.
@@ -410,7 +423,9 @@ of repeating the module. The application does not check the modules added agains
 because NUS has over 6000 registered modules and iterating through this list to check if the module is valid would
 make the program slow.
 
-### Edit modules
+[Scroll back to top](#table-of-contents)
+
+### Edit Modules
 
 Editing modules is implemented such that you can directly add modules into each list of current, previous or planned modules.
 Users can also use this command to remove all instances of the same module from each list.
@@ -418,7 +433,7 @@ Users can also use this command to remove all instances of the same module from 
 The command has the prefix `module` and has the parameters `user / INDEX (must be a positive integer) [curr/CURRENT_MODULE]
 [prev/PREVIOUS_MODULE] [plan/PLANNED_MODULE] [rm/MODULE_TO_REMOVE]`
 
-#### Implementation flow
+#### Implementation Flow
 
 Given below is a sequence diagram to illustrate how the module lists are updated after the user attempts to edit module list.
 
@@ -428,36 +443,40 @@ Given below is an activity diagram to illustrate the behaviour of editing Module
 
 ![Module Activity Diagram](images/ModuleActivityDiagram.png)
 
-#### Design considerations of editing module commands
+#### Design Considerations
 
 Removal of modules has been implemented such that modules are removed from all 3 lists at once as it is simpler to have to use only one
 prefix for both the user and the program, and the user does not need to worry about mistyping multiple prefixes when keying in the command.
 Removal of modules does not check the module lists to see if the module is present as iterating through all module lists it makes the program slow.
 
-### Checking modules left
+[Scroll back to top](#table-of-contents)
+
+### Checking Modules Left
 
 This feature compares the user's current and previous modules list with a fixed list of CS Core Requirements or focus area
 modules. The program then finds the difference between the user's lists and the fixed list and outputs it onto the ResultDisplay.
 
-#### Implementation flow
+#### Implementation Flow
 
 Given below is an activity diagram to illustrate the behaviour of checking Modules left within `Logic`.
 
 ![Modules Left Activity Diagram](images/ModulesLeftActivityDiagram.png)
 
-#### Design considerations
+#### Design Considerations
 
 Currently, we have tailored this feature towards AY21/22 enrolled Computer Science students as we have yet to implement
 features that accept and save a contact's or the user's majors and year of enrolment to check their modules left.
 Hence, we have decided that for this version we would limit the feature to only be of use to individuals from our own
 batch and major for now.
 
-### Refreshing to next semester
+[Scroll back to top](#table-of-contents)
+
+### Refreshing to Next Semester
 ConnectNUS has a feature that helps you to update the previous module lists and clear the current module list of your profile
 as well as any persons stored in the contact list at the start of each semester so that it is easy for you to update
 yours and your friend's profiles.
 
-#### Implementation flow
+#### Implementation Flow
 
 Given below is a sequence diagram to illustrate how the Next Semester feature, `nexsem`, behaves after the user gives the
 respective command:
@@ -468,7 +487,9 @@ respective command:
 to their respective `PreviousModule` sets. After which, the `CurrentModule` sets in both yours and all persons stored in the
 contact list will be cleared.
 
-### Adding lessons
+[Scroll back to top](#table-of-contents)
+
+### Adding Lessons
 ConnectNUS has a feature that allows you to add lessons to your profile as well as any persons stored in the contact list,
 so that it is easy to keep track of yours and your friend's schedules.
 
@@ -498,7 +519,7 @@ The following class diagram illustrates the class diagram of the `Lesson` class 
 Each `Lesson` has a `moduleName:String`, `day:int` (between 1-7 inclusive, where 1 is Monday and 7 is Sunday),
 `type:String` (where type is tut / rec / lab / lec), `start:LocalTime` and `end:LocalTime` to in HH:mm format.
 
-#### Implementation flow
+#### Implementation Flow
 
 Given below is a sequence diagram to illustrate how the timetable mechanism behaves after the user attempts to add a tutorial.
 
@@ -508,7 +529,7 @@ Given below is an activity diagram to illustrate the behaviour of adding a Lesso
 
 ![LessonActivityDiagram](images/LessonActivityDiagram-0.png)
 
-#### Design considerations
+#### Design Considerations
 **Aspect 1: How to implement the `Lesson` Class:**
 
 * **Alternative 1 (current choice):** No dependency on `CurrentModule` i.e. moduleName is a `String`.
@@ -567,7 +588,9 @@ that has to be multiplied by the number of contacts in ConnectNUS.
 during `timetable` commands which will be called significantly fewer times than `lesson` commands, speed of sorting is not
 as significant of an issue.
 
-### Viewing timetable
+[Scroll back to top](#table-of-contents)
+
+### Viewing Timetable
 ConnectNUS gives you the ability to view not only your own timetable, but that of your contacts as well, after `Lesson`s
 have been added to your profile and their contact. This makes deconflicting schedules significantly faster and meetings can
 be arranged easily.
@@ -605,7 +628,7 @@ that is being shown in the Timetable Window.
 Before `UI` shows the `TimetableWindow` to the user, the `timetable:HashSet` is obtained from `Logic` and `Model` and then
 sorted and converted to `String` which is displayed in the `TimetableWindow` which is now made visible.
 
-#### Design considerations
+#### Design Considerations
 
 **Aspect: How to implement the timetable feature:**
 
@@ -631,7 +654,9 @@ Possible Extensions:
 
 3. Improving the GUI of the `Timetable` pop-up window for more visually pleasing user experience.
 
-### Undo / redo
+[Scroll back to top](#table-of-contents)
+
+### Undo / Redo
 
 #### Proposed Implementation
 
@@ -721,7 +746,7 @@ Given below are the proposed Methods to implement:
   * `Model#redoAddressBook()` - Changes the current Model to read from the next `AddressBook` state
   * `Model#commitAddressBook()` - Saves current `AddressBook` state into `addressBookStateList`
 
-#### Design considerations:
+#### Design Considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -734,12 +759,14 @@ Given below are the proposed Methods to implement:
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### Filter feature
+[Scroll back to top](#table-of-contents)
+
+### Filter Feature
 ConnectNUS has a filter function that allows you to filter all persons in your contact list according to `Tag`, `CurrentModule`,
 `PreviousModule` or `PlannedModule`. This allows you to find people who are taking specific mods such that you
 are able to reach out to friends for collaboration more quickly.
 
-#### Implementation
+#### Implementation Flow
 
 The following sequence diagram summarizes what happens when a user executes a `filterTagCommand`:
 
@@ -753,7 +780,7 @@ that is shown in the `MainWindow` class as a `PersonListPanel`. When a `filterTa
 updates it's `filteredPersons` attribute to only contain `Person`s with any of the `Tag`s specified by the user.
 The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
 
-#### Design considerations:
+#### Design Considerations
 
 **Aspect: The implementation of the various filter features ie. filtering by Tag, filtering by Current Module, filtering by Previous Module and filtering by Planned Module:**
 
@@ -767,6 +794,8 @@ The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
 
 * **Decision:** We decided to use alternative 2 as we do not foresee new features being added to the programme which would require filtering functions in the new feature based on the current purpose of our app. Furthermore, it would not be difficult to implement a parent abstract filter class for the filter function in future iterations should we need to do so.
 
+[Scroll back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -777,21 +806,25 @@ The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+[Scroll back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
-### Product scope
+### Product Scope
 
-**Target user profile**:
+**Target User Profile**:
 
 NUS CS Students who wish to keep track of their friends to work with
 
-**Value proposition**:
+**Value Proposition**:
 
 We help NUS CS Students to have a collection of fellow NUS CS Students to find people to collaborate with for CS work and projects
 
-### User stories
+[Scroll back to top](#table-of-contents)
+
+### User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -822,9 +855,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                             | view my own exam schedule                        | be clear on which exams are coming up                                                   |
 | `*`      | user with projects involving Git | copy my contact's GitHub url                     | add them into organisation repos during projects                                        |
 
+[Scroll back to top](#table-of-contents)
 
-
-### Use cases
+### Use Cases
 
 **System: ConnectNUS**
 
@@ -1425,16 +1458,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. Should be able to package into a single JAR file.
 10. JAR file size should not exceed 100MB and Documents should not exceed 15 MB per file.
 
-
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **PlantUML**: A tool for specifying various diagrams in a textual form
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -1443,7 +1471,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launch and Shutdown
 
 1. Initial launch
 
@@ -1464,6 +1492,8 @@ testers are expected to do more *exploratory* testing.
 
    Expected: app closes and data is saved in `data/ConnectNUS.json`
 
+[Scroll back to top](#table-of-contents)
+
 ### Adding a user
 
 1. Adding a user when there is no existing user profile
@@ -1478,6 +1508,8 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect user commands to try: `user`, `user x/John Doe`, `...` <br>
       Expected: Similar to previous.
+
+[Scroll back to top](#table-of-contents)
 
 ### Editing a user or person
 
@@ -1507,6 +1539,8 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+[Scroll back to top](#table-of-contents)
+
 ### Deleting a user or person
 
 1. Deleting an existing user profile
@@ -1534,6 +1568,8 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+[Scroll back to top](#table-of-contents)
 
 ### Editing a user's or person's modules
 
@@ -1563,6 +1599,8 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect module commands to try: `module`, `module x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+[Scroll back to top](#table-of-contents)
+
 ### Checking modules left
 
 1. Checking modules left when there is an existing user profile
@@ -1578,6 +1616,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect modules left commands to try: `modsleft hi`, `module x`, `...` (where x is larger than 11)<br>
       Expected: Similar to previous.
 
+[Scroll back to top](#table-of-contents)
 
 ### Adding a lesson, Showing the timetable
 
@@ -1597,7 +1636,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `timetable 1` <br>
       Expected: Status message shows "No lessons added to contact!".
 
-   2. Test case: `lesson 1 l/lab m/cS2100 d/4 start/16:00 end/17:00` then run `timetable 1` <br>
+   2. Test case: `lesson 1 l/lab m/CS2100 d/4 start/16:00 end/17:00` then run `timetable 1` <br>
       Expected: Status message shows that lesson is added to contact. Timetable window opens and shows that contact has a lesson "CS2100 Lab 16:00 to 17:00" on Tuesday.
 
    3. Test case: `lesson 0`<br>
@@ -1612,6 +1651,7 @@ testers are expected to do more *exploratory* testing.
    6. Other incorrect delete commands to try: `timetable 0`, `timetable x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+[Scroll back to top](#table-of-contents)
 
 ### Removing a lesson, Showing the timetable
 
@@ -1630,7 +1670,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `timetable 1` <br>
       Expected: Timetable window opens and shows that contact has a lesson "CS2100 Lab 16:00 to 17:00" on Tuesday.
 
-   2. Test case: `remove 1 l/lab m/cS2100 d/4 start/16:00 end/17:00` then run `timetable 1` <br>
+   2. Test case: `remove 1 l/lab m/CS2100 d/4 start/16:00 end/17:00` then run `timetable 1` <br>
       Expected: Status message shows that lesson is removed from contact. Status message shows "No lessons added to contact!"
 
    3. Test case: `remove 0`<br>
@@ -1639,6 +1679,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+[Scroll back to top](#table-of-contents)
 
 ### Refreshing to a new semester
 
@@ -1652,20 +1693,24 @@ testers are expected to do more *exploratory* testing.
   3. Test case: `delete user` then run `nextsem` <br>
      Expected: Status message shows that the user is deleted. Status message shows "No user created!"
 
+[Scroll back to top](#table-of-contents)
+
 ### Filtering contacts tags
 
 1. Listing out all persons in contact list with the tag(s)
 
    1. Test case: `filtertag friends` <br>
-   Expected: All persons in the contact list with the friends tag will be listed. 
-   
+   Expected: All persons in the contact list with the friends tag will be listed.
+
    2. Test case: `clear` then run `filtertag friends` <br>
    Expected: Status message shows that the contact list has been cleared. Status message shows "0 persons listed!"
-   
+
    3. Test case: `filtercurrmod CS` <br>
    Expected: Error details shown in message.
-   4. Other incorrect filter module commands to try: `filtercurrmod`, `filtercurrmod 1`, `filtercurrmod C1000`, 
+   4. Other incorrect filter module commands to try: `filtercurrmod`, `filtercurrmod 1`, `filtercurrmod C1000`,
    `filtercurrmod xxyyyy`, `...` (where any x is not an alphabet and any y is not a number).
+
+[Scroll back to top](#table-of-contents)
 
 ### Filtering contacts modules
 
@@ -1679,6 +1724,9 @@ testers are expected to do more *exploratory* testing.
 
   3. Test case: `filtercurrmod CS` <br>
      Expected: Error details shown in message.
+     [Scroll back to top](#table-of-contents)
+
+[Scroll back to top](#table-of-contents)
 
 ### Saving data
 
@@ -1704,3 +1752,5 @@ testers are expected to do more *exploratory* testing.
    1. Run ConnectNUS normally and try `add`, `user`, `module`, `lesson` or `remove` command.
 
    Expected: `data/ConnectNUS.json` updates and contains correct data.
+
+[Scroll back to top](#table-of-contents)
