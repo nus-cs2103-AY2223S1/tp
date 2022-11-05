@@ -44,7 +44,8 @@ public class UnhideAppointmentsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Predicate<Appointment> combinedPredicate =
-                HiddenPredicateSingleton.combineWithUnhiddenApptPredicate(predicate);
+                HiddenPredicateSingleton.getInstance()
+                        .combineWithUnhiddenApptPredicate(predicate);
         model.updateFilteredAppointmentList(combinedPredicate);
 
         return new CommandResult(

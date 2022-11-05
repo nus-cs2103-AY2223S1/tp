@@ -27,8 +27,7 @@ public class HidePatientsCommandParser implements Parser<HidePatientsCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_NAME);
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
-            boolean areValidTags = areValidTags(tags);
-            if (!areValidTags) {
+            if (!areValidTags(tags)) {
                 throw new ParseException(MESSAGE_INVALID_TAGS);
             }
             return new HidePatientsCommand(

@@ -36,15 +36,15 @@ public class ListCommand extends Command {
         case "all":
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-            HiddenPredicateSingleton.clearHiddenAll();
+            HiddenPredicateSingleton.getInstance().clearHiddenAll();
             return new CommandResult(MESSAGE_SUCCESS_ALL);
         case "patients":
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            HiddenPredicateSingleton.clearHiddenPatients();
+            HiddenPredicateSingleton.getInstance().clearHiddenPatients();
             return new CommandResult(MESSAGE_SUCCESS_PATIENTS);
         case "appts":
             model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-            HiddenPredicateSingleton.clearHiddenAppts();
+            HiddenPredicateSingleton.getInstance().clearHiddenAppts();
             return new CommandResult(MESSAGE_SUCCESS_APPOINTMENTS);
         default:
             assert false : "Input should be either 'all', 'patients' or 'appt'; shouldn't reach here";

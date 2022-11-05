@@ -57,7 +57,7 @@ public class HidePatientsCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePersonsHidden() {
-        HiddenPredicateSingleton.clearHiddenAll();
+        HiddenPredicateSingleton.getInstance().clearHiddenAll();
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 6, 2);
         NameContainsKeywordsPredicate predicate = preparePredicate("Benson");
         HidePatientsCommand command = new HidePatientsCommand(predicate);

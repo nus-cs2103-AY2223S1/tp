@@ -42,14 +42,16 @@ public class UnhidePatientsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Predicate<Person> combinedPredicate = HiddenPredicateSingleton.combineWithUnhiddenPredicate(predicate);
+        Predicate<Person> combinedPredicate = HiddenPredicateSingleton.getInstance()
+                .combineWithUnhiddenPredicate(predicate);
         model.updateFilteredPersonList(combinedPredicate);
         List<Person> validPersons = model.getFilteredPersonList();
         AppointmentOfFilteredPersonsPredicate appointmentPredicate =
                 new AppointmentOfFilteredPersonsPredicate(validPersons);
 
         Predicate<Appointment> combinedApptPredicate =
-                HiddenPredicateSingleton.combineWithRegularApptPredicate(appointmentPredicate);
+                HiddenPredicateSingleton.getInstance()
+                        .combineWithRegularApptPredicate(appointmentPredicate);
 
         model.updateFilteredAppointmentList(combinedApptPredicate);
 
