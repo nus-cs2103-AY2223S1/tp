@@ -13,9 +13,9 @@ Class-ify is a **class management application** built specially for **Singapore 
 
 ## Site Map
 
-* [User Guide](UserGuide.html)
-* [Developer Guide](DeveloperGuide.html)
-* [About Us](AboutUs.html)
+* [User Guide](https://ay2223s1-cs2103t-t15-2.github.io/tp/UserGuide.html)
+* [Developer Guide](https://ay2223s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html)
+* [About Us](https://ay2223s1-cs2103t-t15-2.github.io/tp/AboutUs.html)
 
 ## Acknowledgements
 
