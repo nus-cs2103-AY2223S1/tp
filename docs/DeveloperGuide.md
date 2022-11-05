@@ -828,7 +828,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The user profile is created successfully.
 
     2. Test case: `setup g/m a/20 w/70.5 i/70 h/175`<br />
-       Expected: The user profile is not created. Error details is shown on the result display.
+       Expected: The user profile is not created. Error details are shown on the result display.
 
     3. Other invalid setup command formats to try: `setup g/s a/20 w/70 i/70 h/175`, `setup g/f a/20 w/70 i/70 h/175.5`, `...` (where each field specified does not conform to the expected format.)
 
