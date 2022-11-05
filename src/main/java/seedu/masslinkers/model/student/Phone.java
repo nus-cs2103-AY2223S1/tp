@@ -10,7 +10,6 @@ import static seedu.masslinkers.commons.util.AppUtil.checkArgument;
 public class Phone {
 
     //Phone numbers are usually between 7-16 digits long
-    //https://stackoverflow.com/questions/3350500/international-phone-number-max-and-min?noredirect=1&lq=1
     //Phone numbers cannot be empty after trimming
     //If phone numbers conform to the regex pattern, they are considered valid
     //If they do not, they are still valid but considered "incorrect" and a warning will be issued
@@ -19,7 +18,7 @@ public class Phone {
             + "(inclusive of country codes).\n"
             + "Phone numbers may start with \"+\" for the country code (optional).\n"
             + "Incorrect phone numbers are still accepted, though they are discouraged and a warning will be shown.";
-    public static final String VALIDATION_REGEX = "(\\+){0,1}[0-9]{7,15}";
+    public static final String VALIDATION_REGEX = "(\\+)?[0-9]{7,15}";
     public final String value;
     private final boolean isIncorrect;
 
