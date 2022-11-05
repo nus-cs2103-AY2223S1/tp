@@ -470,11 +470,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                      | So that I can…​                                                        |
 |----------|--------------------------------------------|-----------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions            | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                  |                                                                        |
-| `* * *`  | user                                       | delete a person                   | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name             | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
+| `***`    | new user                                   | see usage instructions            | refer to instructions when I forget how to use the App                 |
+| `***`    | user                                       | add a new person                  |                                                                        |
+| `***`    | user                                       | delete a person                   | remove entries that I no longer need                                   |
+| `***`    | user                                       | find a person by name             | locate details of persons without having to go through the entire list |
+| `**`     | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name              | locate a person easily                                                 |
 | `**`     | new user                                   | see sample data                   | Have a better understanding of the app's default layout                |
 | `**`     | user                                       | filter my clients by keywords     | Locate my clients easily, based on a particular critera                |
@@ -482,7 +482,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                       | have a reliable method            | store contact information without losing data                          |
 | `*`      | user                                       | view individual client's profiles | keep track of multiple, unique clients                                 |
 | `*`      | user                                       | pin important clients             | be reminded of users which are of higher priority                      |
-*{More to be added}* 
+
 
 ### Use cases
 
@@ -676,22 +676,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+## Testing client functions
 
 ## Testing policy functions
 
@@ -751,29 +736,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `listAssigned 0` <br>
       Expected: An error message for invalid client index should be displayed.
 
-### Deleting a person
-2. Deleting a person while all persons are being shown
-
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
-
-3. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+## Testing event functions
 
 
 ## Effort
