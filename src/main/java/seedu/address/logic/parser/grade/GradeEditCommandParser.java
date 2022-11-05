@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 
+import java.util.logging.Level;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.grade.GradeEditCommand;
 import seedu.address.logic.commands.grade.GradeEditCommand.EditGradeDescriptor;
@@ -12,6 +15,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 
 
 /**
@@ -50,7 +54,8 @@ public class GradeEditCommandParser implements Parser<GradeEditCommand> {
                     GradeEditCommand.MESSAGE_USAGE));
         }
 
-        System.out.println(argMultimap.getValue(PREFIX_GRADE));
+        LogsCenter.getLogger(GradeEditCommandParser.class).log(Level.INFO, "Prefix grade parsed as {0}",
+                argMultimap.getValue(PREFIX_GRADE));
 
         return new GradeEditCommand(studentIndex, taskIndex, editGradeDescriptor);
     }
