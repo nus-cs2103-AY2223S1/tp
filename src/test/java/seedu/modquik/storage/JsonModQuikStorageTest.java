@@ -20,7 +20,7 @@ import seedu.modquik.model.ModQuik;
 import seedu.modquik.model.ReadOnlyModQuik;
 
 public class JsonModQuikStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModQuikStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -64,24 +64,24 @@ public class JsonModQuikStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         ModQuik original = getTypicalModQuik();
-        JsonModQuikStorage jsonAddressBookStorage = new JsonModQuikStorage(filePath);
+        JsonModQuikStorage jsonModQuikStorage = new JsonModQuikStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveModQuik(original, filePath);
-        ReadOnlyModQuik readBack = jsonAddressBookStorage.readModQuik(filePath).get();
+        jsonModQuikStorage.saveModQuik(original, filePath);
+        ReadOnlyModQuik readBack = jsonModQuikStorage.readModQuik(filePath).get();
         assertEquals(original, new ModQuik(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveModQuik(original, filePath);
-        readBack = jsonAddressBookStorage.readModQuik(filePath).get();
+        jsonModQuikStorage.saveModQuik(original, filePath);
+        readBack = jsonModQuikStorage.readModQuik(filePath).get();
         assertEquals(original, new ModQuik(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonAddressBookStorage.saveModQuik(original); // file path not specified
-        readBack = jsonAddressBookStorage.readModQuik().get(); // file path not specified
+        jsonModQuikStorage.saveModQuik(original); // file path not specified
+        readBack = jsonModQuikStorage.readModQuik().get(); // file path not specified
         assertEquals(original, new ModQuik(readBack));
 
     }
@@ -92,12 +92,12 @@ public class JsonModQuikStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code modQuik} at the specified {@code filePath}.
      */
-    private void saveModQuik(ReadOnlyModQuik addressBook, String filePath) {
+    private void saveModQuik(ReadOnlyModQuik modQuik, String filePath) {
         try {
             new JsonModQuikStorage(Paths.get(filePath))
-                    .saveModQuik(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveModQuik(modQuik, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

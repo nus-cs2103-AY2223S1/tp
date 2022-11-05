@@ -40,7 +40,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBookStudent_success() {
+    public void execute_nonEmptyModQuikStudent_success() {
         Model model = new ModelManager(getTypicalModQuik(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalModQuik(), new UserPrefs());
         expectedModel.resetStudents();
@@ -50,7 +50,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_emptyAddressBookConsultation_success() {
+    public void execute_emptyModQuikConsultation_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -59,7 +59,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBookConsultation_success() {
+    public void execute_nonEmptyModQuikConsultation_success() {
         Model model = new ModelManager(getTypicalModQuik(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalModQuik(), new UserPrefs());
         expectedModel.resetConsultations();
@@ -69,7 +69,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_emptyAddressBookTutorial_success() {
+    public void execute_emptyModQuikTutorial_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -78,7 +78,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBookTutorial_success() {
+    public void execute_nonEmptyModQuikTutorial_success() {
         Model model = new ModelManager(getTypicalModQuik(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalModQuik(), new UserPrefs());
         expectedModel.resetTutorials();
@@ -88,7 +88,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_emptyAddressBookReminder_success() {
+    public void execute_emptyModQuikReminder_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -97,7 +97,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBookReminder_success() {
+    public void execute_nonEmptyModQuikReminder_success() {
         Model model = new ModelManager(getTypicalModQuik(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalModQuik(), new UserPrefs());
         expectedModel.resetReminders();

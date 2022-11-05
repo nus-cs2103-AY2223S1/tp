@@ -39,7 +39,7 @@ public class ModQuikTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyModQuik_replacesData() {
         ModQuik newData = getTypicalModQuik();
         modQuik.resetData(newData);
         assertEquals(newData, modQuik);
@@ -62,18 +62,18 @@ public class ModQuikTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInModQuik_returnsFalse() {
         assertFalse(modQuik.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInModQuik_returnsTrue() {
         modQuik.addPerson(ALICE);
         assertTrue(modQuik.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInModQuik_returnsTrue() {
         modQuik.addPerson(ALICE);
         Student editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
