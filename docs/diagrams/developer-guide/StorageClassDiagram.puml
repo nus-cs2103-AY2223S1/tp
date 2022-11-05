@@ -42,6 +42,6 @@ JsonTrackOStorage ..> JsonSerializableTrackO
 JsonSerializableTrackO --> "*" JsonAdaptedOrder
 JsonSerializableTrackO --> "*" JsonAdaptedItem
 JsonAdaptedItem --> "*" JsonAdaptedTag
-JsonAdaptedOrder --> JsonAdaptedItemQuantityPair
+JsonAdaptedOrder --> "*" JsonAdaptedItemQuantityPair
 
 @enduml
