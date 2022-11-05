@@ -854,7 +854,7 @@ a bug.
     1. Expected: No commission is selected. Error message displayed.
 
 #### Iteration-related commands
-> Note that you can run Iteration-related commands, even in the Customer view. That is a **feature**, not
+> Note that you can run iteration-related commands, even in the Customer view. That is a **feature**, not
 a bug.
 
 ##### 9. `additer` Command
@@ -878,7 +878,7 @@ Guide for more information.
 1. Test case: `edititer 1 f/feedback changed`
    1. Expected: Feedback of first iteration changed.
 1. Test case: `edititer 0`
-   2. Expected: No iteration edited. Error details displayed.
+   1. Expected: No iteration edited. Error details displayed.
 
 ##### 11. `deliter` Command
 1. Prerequisites:
@@ -886,22 +886,42 @@ Guide for more information.
     1. The selected commission has at least one iteration.
 1. Test case: `deliter 1`
     1. Expected: Iteration deleted.
-1. Test case: `edititer 0`
-    2. Expected: No iteration deleted. Error details displayed.
+1. Test case: `deliter 0`
+   1. Expected: No iteration deleted. Error details displayed.
 
 #### Filtering / Sorting commands
 
 ##### 12. `list` Command
+1. Prerequisites: None.
+1. Test case: `list`
+   1. Expected: Switched to the Customer view. Customer list shows all customers.
 
 ##### 13. `find` Command
+1. Prerequisites: Technically, none. However, it is better to have some customers, so you can see the results of this command.
+1. Test case: `find k/Alex`
+   1. Expected: Switched to customer view. Filtered customer list shows all customers with `Alex` in their name.
 
 ##### 14. `sortcus` Command
+1. Prerequisites: Technically, none. However, it is better to have some customers, so you can see the results of this command.
+1. Test case: `sortcus n/-`
+   1. Expected: Switched to Customer view. Customer list sorted in descending order of name.
+1. Test case: `sortcus n/+`
+   1. Expected: Switched to Customer view. Customer list sorted in ascending order of name.
 
 ##### 15. `listcom` Command
+1. Prerequisites: None.
+1. Test case: `listcom`
+   1. Expected: If a customer is selected, show all of customer's commissions. Otherwise, show all commissions.
 
 ##### 16. `allcom` Command
+1. Prerequisites: None.
+1. Test case: `allcom`
+   1. Expected: Switched to Commission view. Commission List shows all commissions.
 
 ##### 17. `findcom` Command
+1. Prerequisites: Similar to `find`, technically, none. However, having some commissions will make it easier to see the results of this command.
+1. Test case: `findcom k/1`
+   1. Expected: Switched to Commission view. All commissions with `1` in their name are displayed.
 
 
 ### Saving data
