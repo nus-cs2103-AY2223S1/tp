@@ -165,40 +165,68 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Social Media feature
+### Social feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed social media feature is facilitated by a new class `SocialMedia`, which will be a new field of the `Person` class. Additionally, it implements the following features:
+The social feature is facilitated by a new class `Social`, which will be a new field of the `Person` class. Additionally, it implements the following features:
 
-* `SocialMedia#addWhatsapp()` - Adds a link to the Person object's Whatsapp account.
-* `SocialMedia#addTelegram()` - Adds a link to the Person object's Telegram account.
-* `SocialMedia#addInstagram()` - Adds a link to the Person object's Instagram account.
-* `SocialMedia#addEmail()` - Adds a link to the Person object's Email account.
-* `SocialMedia#prefer()` - Sets one of the added social media account to be the preferred mode of communication.
-* `SocialMedia#delete()` - Deletes one of the added social media account.
+* `Social#addWhatsapp()` - Adds a link to the Person object's Whatsapp account.
+* `Social#addTelegram()` - Adds a link to the Person object's Telegram account.
+* `Social#addInstagram()` - Adds a link to the Person object's Instagram account.
+* `Social#addEmail()` - Adds a link to the Person object's Email account.
+* `Social#prefer()` - Sets one of the added social media account to be the preferred mode of communication.
+* `Social#deleteWhatsapp()` - Deletes the Whatsapp account of the Social class.
+* `Social#deleteTelegram()` - Deletes the Telegram account of the Social class.
+* `Social#deleteEmail()` - Deletes the Email account of the Social class.
+* `Social#deleteInstagram()` - Deletes the Instagram account of the Social class.
+* `Social#deletePreferred()` - Sets the preferred account of the Social class to null.
+* `Social#openWhatsapp()` - Converts the Whatsapp account of the Social class into a link and opens the link on the default browser.
+* `Social#openTelegram()` - Converts the Telegram account of the Social class into a link and opens the link on the default browser.
+* `Social#openEmail()` - Converts the Email of the Social class into a link and opens the link on the default browser.
+* `Social#openInstagram()` - Converts the Instagram account of the Social class into a link and opens the link on the default browser.
+* `Social#openPreferred()` - Converts the preferred social media account of the Social class into a link and opens the link on the default browser.
 
-Given below is an example usage scenario and how the Social Media feature behaves at each step.
+The social feature also makes use of the IncludeCommand, ExcludeCommand, OpenCommand and PreferCommand which gets the user input to change the Social class of a Person object.
+The following are features of the Command Classes that changes the Social class of a Person object by making use of the Social features above.
 
-Step 1. The user executes `include 1 \TELEGRAM #t.me/JohnDoe123` to add the Telegram link `t.me/JohnDoe123` to the Telegram social media of the first person in the list.
-        The `AddressBookParser` then calls `IncludeCommand.addTelegram(1, t.me/JohnDoe123)` to add the command to the queue.
+* `IncludeCommand#execute()` - Adds a link to the Person object's Social.
+* `ExcludeCommand#execute()` - Deletes a link in the Person object's Social.
+* `OpenCommand#execute()` - Opens a link in the Person object's Social.
+* `PreferCommand#execute()` - Sets a preferred social medial in the Person object's Social.
 
-Step 2. The user executes `include 1 \WHATSAPP #wa.me/12345678` to add the Whatsapp link `wa.me/12345678` to the Whatsapp social media of the first person in the list.
-        The `AddressBookParser` then calls `IncludeCommand.addWhatsapp(1, wa.me/12345678)` to add the command to the queue.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+The Social's open feature are also converted into Buttons under the PersonCard of the UI component.
+When users click on the certain social media boxes of the Person in their contact, it runs the respective openXXX() feature of the Social class, where XXX is the social media account.
+</div>
 
-Step 3. The user executes `prefer 1 \TELEGRAM` to set the preferred mode of communication of the first person in the list to the Telegram social media account.
+Given below is an example usage scenario and how the Social feature behaves at each step.
+
+Step 1. The user executes `include 1 s/TELEGRAM #/JohnDoe123` to add the Telegram account `JohnDoe123` to the Telegram social media of the person at index `1` in the list.
+        The `AddressBookParser` then calls `IncludeCommand(1, TELEGRAM, JohnDoe123)` to add the command to the queue.
+        The `IncludeCommand` then calls `Social.addTelegram(JohnDoe123)` of the first person in the list to add the Telegram username `JohnDoe123`. 
+
+Step 2. The user executes `include 1 s/WHATSAPP #/12345678` to add the Whatsapp account `12345678` to the Whatsapp social media of the  person at index `1` in the list.
+        The `AddressBookParser` then calls `IncludeCommand(1, WHATSAPP, 12345678)` to add the command to the queue.
+        The `IncludeCommand` then calls `Social.addWhatsapp(12345678)` of the first person in the list to add the Whatsapp account `12345678`.
+
+Step 3. The user executes `prefer 1 s/TELEGRAM` to set the preferred mode of communication of the person at index `1` in the list to the Telegram social media account.
         The `AddressBookParser` then calls `PreferCommand.prefer(1, TELEGRAM)` to add the command to the queue.
+        The `PreferCommand` then calls `Social.prefer(TELEGRAM)` of the first person in the list to set the Telegram account as the preferred social media.
 
-Step 4. The user realises that the added Telegram link was wrong. The user executes `include 1 \TELEGRAM #t.me/JohnDoe321` to set the Telegram link `t.me/JohnDoe321` to be the latest Telegram social media of the first person in the list.
-        The `AddressBookParser` then calls `IncludeCommand.addTelegram(1, t.me/JohnDoe321)` to add the command to the queue.
+Step 4. The user realises that the added Telegram account of the first person is wrong. The user executes `include 1 s/TELEGRAM #/TomDoe321` to set the Telegram account `TomDoe321` to be the latest Telegram social media account of the first person in the list.
+        The `AddressBookParser` then calls `IncludeCommand(1, TELEGRAM, TomDoe321)` to add the command to the queue.
+        The `IncludeCommand` then calls `Social.addTelegram(TomDoe321)` of the first person in the list to add the Telegram username `TomDoe321`.
 
-Step 5. The user realises that the preferred mode of communication of the first person in the list is actually Whatsapp. The user executes `prefer 1 \WHATSAPP` to set the preferred mode of communication of the first person in the list to the Whatsapp social media account.
+Step 5. The user realises that the preferred mode of communication of the first person in the list is actually Whatsapp. The user executes `prefer 1 s/WHATSAPP` to set the preferred mode of communication of the first person in the list to the Whatsapp social media account.
         The `AddressBookParser` then calls `PreferCommand.prefer(1, WHATSAPP)` to add the command to the queue.
+        The `PreferCommand` then calls `Social.prefer(WHATSAPP)` of the first person in the list to set the Whatsapp account as the preferred social media.
 
-Step 6. The user realises that the first person in the contact list does not have a Telegram account. THe user executes `exclude 1 \TELEGRAM` to delete the Telegram social media account of the first person in the contact list.
-        The `AddressBookParser` then calls `ExcludeCommand.exclude(1, TELEGRAM)` to add the command to the queue.
+Step 6. The user realises that the first person in the contact list does not have a Telegram account. THe user executes `exclude 1 s/TELEGRAM` to delete the Telegram social media account of the first person in the contact list.
+        The `AddressBookParser` then calls `ExcludeCommand(1, TELEGRAM)` to add the command to the queue.
+        The `ExcludeCommand` then calls `Social.deleteTelegram()` of the first person in the list to remove the Telegram account information.
 
-The following sequence diagram shows how the `addTelegram()` command works:
+The following sequence diagram shows how the `IncludeCommand(1, TELEGRAM, JohnDoe123)` command works:
 
 ![CreateGroupSequenceDiagram](images/SocialMediaAddSequenceDiagram.png)
 
@@ -389,7 +417,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * is a 2103t student, TA or professor
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts and their social media accounts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -403,17 +431,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | potential user exploring the app           | see usage instructions         |  refer to instructions when I forget how to use the App                |
-| `* * *`  | user ready to start using the app          | add a new person               |  access them later on                                                  |
-| `* * *`  | user who just started using the app        | edit a person’s name           |  correct any mistakes i might have made previously                     |
-| `* * *`  | user currently using the app               | delete a person                |  remove entries that I no longer need and clear space in my address book|
-| `* * *`  | currently using the app                    | list out all the information in my address book |  see all the data I currently have                    |
-| `* * *`  | user currently using the app               | preferred methods of communication of the people in my address book|  know what venue to contact them by|
+| Priority | As a …​                                    | I want to …​                                                                | So that I can…​                                           |
+| -------- | ------------------------------------------ |-----------------------------------------------------------------------------|-----------------------------------------------------------|
+| `* * *`  | potential user exploring the app           | see usage instructions                                                      | refer to instructions when I forget how to use the App    |
+| `* * *`  | user ready to start using the app          | add a new person                                                            | access them later on                                      |
+| `* * *`  | user who just started using the app        | edit a person’s name                                                        | correct any mistakes i might have made previously         |
+| `* * *`  | user currently using the app               | delete a person                                                             | remove entries that I no longer need and clear space in my address book |
+| `* * *`  | currently using the app                    | list out all the information in my address book                             | see all the data I currently have                         |
+| `* * *`  | user currently using the app               | see the preferred modes of communication of the contacts in my address book | know what venue to contact them by                        |
+| `* * *`  | user currently using the app               | set the preferred modes of communication of the contacts in my address book | know what venue to contact them by next time              |
+| `* * *`  | user currently using the app               | add the different social media accounts of the contacts in my address book  | contact them through these social media                   |
+| `* * *`  | user currently using the app               | delete the social media accounts of the contacts in my address book         | remove social media accounts I entered wrongly            |
+| `* * *`  | user currently using the app               | open the social media accounts of the contacts in my address book           | quickly contact them                                      |
 
-
-*{More to be added}*
 
 ### Use cases
 
@@ -500,7 +530,122 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a social media account to an existing person in the contacts**
+
+**MSS**
+
+1. User requests to list contacts.
+2. uNivUSal shows a list of contacts.
+3. User requests to add a social media account to a specific contact in the list.
+4. uNivUSal adds the social media account to the contact.
+
+    Use case ends.
+<br>
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3b. The given social media account is invalid.
+
+    * 3b1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a social media account of an existing person in the contacts**
+
+**MSS**
+
+1. User requests to list contacts.
+2. uNivUSal shows a list of contacts.
+3. User requests to delete a social media account of a specific contact in the list.
+4. uNivUSal deletes the specific social media account of the contact.
+
+   Use case ends.
+   <br>
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given social media to be deleted is invalid.
+
+    * 3b1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Setting a preferred social media account of an existing person in the contacts**
+
+**MSS**
+
+1. User requests to list contacts.
+2. uNivUSal shows a list of contacts.
+3. User requests to add a social media account to a specific contact in the list.
+4. uNivUSal adds the social media account to the contact.
+
+   Use case ends.
+   <br>
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given social media to be set is invalid.
+
+    * 3b1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Open a social media account of an existing person in the contacts**
+
+**MSS**
+
+1. User requests to list contacts.
+2. uNivUSal shows a list of contacts.
+3. User requests to open a social media account of a specific contact in the list.
+4. uNivUSal opens the social media account to the contact.
+
+   Use case ends.
+   <br>
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given social media to be opened is invalid.
+
+    * 3b1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+  
 
 ### Non-Functional Requirements
 
@@ -508,9 +653,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  The app should open within 5 seconds.
 3.  uNivUSal should be able to hold at least 100 contacts.
 4.  The app should be usable by a novice who has never used our app.
-5.  The app should work on **Mainstream OS**.
+5.  The app should work on **Mainstream OS** as long as it has Java 11 or above installed.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -533,16 +677,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2.Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+
 
 ### Deleting a person
 
@@ -550,16 +694,15 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+   
 
 ### Saving data
 
@@ -567,7 +710,6 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
 
 ### Quick edit
 
@@ -582,5 +724,51 @@ testers are expected to do more *exploratory* testing.
 
    4. Undo the last command: `undo` <br>
       Expected: the undo command fails to undo any action because the last action does not modify the person.
+   
+## Social class tests
 
-2. _{ more test cases …​ }_
+### Adding a social account
+1. Adding a social account to an existing contact.
+   1. Prerequisites: List all contacts using the list command. First contact has no social accounts filled out.
+   2. Test case: `include 1 s/WHATSAPP #/12345678` <br>
+      Expected: Whatsapp with number 12345678 added into the first contact of the list. Details of success command shown in status message.
+   3. Test case: `include 1 s/WHATELEMAILGRAM #/failtest` <br>
+      Expected: No Social details added. Error details shown in the status message. Contacts remain the same.
+   4. Other incorrect include commands to try: `include 0 s/TELEGRAM #/failtest`, `include 1 s/TELEGRAM`.
+
+### Deleting a social account
+1. Deleting a social account to an existing contact.
+   1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out.
+   2. Testcase: `exclude 1 s/WHATSAPP` <br>
+      Expected: Whatsapp of first contact of the list becomes `<none>`. Details of success command shown in status message.
+   3. Testcase: `exclude 1 s/WHATELEMAILGRAM`
+      Expected: No Social details change. Error details shown in the status message. Contacts remain the same.
+   4. Other incorrect exclude commands to try: `exclude 0 s/TELEGRAM`
+
+### Setting a social account as preferred
+1. Deleting a social account to an existing contact.
+    1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out.
+    2. Testcase: `prefer 1 s/WHATSAPP` <br>
+       Expected: PREFERRED social media box of the first contact set to WHATSAPP. Details of success command shown in status message.
+    3. Testcase:`prefer 1 s/WHATELEMAILGRAM`
+       Expected: No Social details change. Error details shown in the status message. Contacts remain the same.
+    4. Other incorrect prefer commands to try: `prefer 0 s/TELEGRAM`
+
+### Opening a social account using CLI
+1. Deleting a social account to an existing contact.
+    1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out. 
+    2. Testcase:`open 1 s/WHATSAPP` <br>
+      Expected: Default web browser opens link to the Whatsapp chat of the first contact. Details of success command shown in status message.
+    3. Testcase:`open 1 s/WHATELEMAILGRAM`
+       Expected: No Social details change. Error details shown in the status message. Contacts remain the same. No links opened on default browser.
+    4. Other incorrect open commands to try: `prefer 0 s/TELEGRAM`
+
+### Opening a social account by clicking GUI
+1. Deleting a social account to an existing contact.
+    1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out. Second contact has no social accounts filled out.
+    2. Testcase: Click on the Whatsapp social box of the first person in the contact list.
+       Expected: Default web browser opens link to the Whatsapp chat of the first contact. Details of success command shown in status message.
+    3. Testcase: Click on the Whatsapp social box of the second person in the contact list.
+       Expected: Popup window with error details shown. No Social details change. Contacts remain the same. No links opened on default browser.
+
+
