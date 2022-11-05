@@ -13,17 +13,16 @@ title: Developer Guide
   - [UI Component](#ui-component)
   - [Logic Component](#logic-component)
   - [Model Component](#model-component)
-  - [Storage Component](#Storage-Component)
+  - [Storage Component](#storage-component)
   - [Common Classes](#common-classes)
 - [Implementation](#implementation)
-  - [Edit contact modules](#edit-contact-modules)
-  - [Edit user modules](#edit-user-modules)
+  - [Edit modules](#edit-modules)
   - [Check modules left](#checking-modules-left)
   - [Refreshing to next semester](#refreshing-to-next-semester)
   - [Add lessons](#adding-lessons)
   - [View timetable](#viewing-timetable)
   - [Undo / Redo](#undo--redo)
-  - [Filter contacts](#filter-contacts)
+  - [Filter contacts](#filter-feature)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: requirements](#appendix-requirements)
   - [Product scope](#product-scope)
@@ -129,7 +128,7 @@ Developer Guide.
     <td><strong>Command Line Interface (CLI)</strong></td>
     <td>
       A text-based interface that is used to operate software (such as ConnectNUS) and operating systems. CLI
-      allows a user to perform tasks by entering commands. </br>
+      allows a user to perform tasks by entering commands. <br>
       Users enter the specific command, press “Enter”, and then wait for a response.
       After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
     </td>
