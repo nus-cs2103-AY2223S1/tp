@@ -40,6 +40,9 @@ public class StatusCommand extends Command {
      */
     public StatusCommand(Index index, Status status) {
         requireAllNonNull(index, status);
+        assert index.getOneBased() > 0 : "index should be a positive unsigned integer";
+        assert status.value.equals("Offered") || status.value.equals("Progress") || status.value.equals("Rejected")
+                : "status can only be \"Offered\", \"Progress\" or \"Rejected\"";
         this.index = index;
         this.status = status;
     }
