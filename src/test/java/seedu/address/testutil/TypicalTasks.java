@@ -23,6 +23,9 @@ public class TypicalTasks {
     public static final Task TASK_2 = new Task(new TaskName("task 123"), List.of(), false, null);
     public static final Task TASK_3 = new Task(new TaskName("task 321"), List.of(), false, null);
 
+    public static final Task TASK_CODE = new Task(new TaskName("code"), List.of(), false, null);
+
+    public static final Task TASK_REVIEW = new Task(new TaskName("review"), List.of(), false, null);
     public static final Task TASK_1_DETAILS = new Task(new TaskName("task"),
             TYPICAL_MEMBERS, false,
             LocalDateTime.parse("2023-12-25 23:59",  DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));

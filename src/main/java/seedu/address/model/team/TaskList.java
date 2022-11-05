@@ -11,10 +11,8 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.DuplicateTaskException;
 import seedu.address.model.person.exceptions.TaskNotFoundException;
-import seedu.address.model.team.exceptions.DuplicateTeamException;
 
 /**
  * A list of tasks to be completed by the team.
