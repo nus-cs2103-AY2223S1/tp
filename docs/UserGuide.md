@@ -3,11 +3,11 @@ layout: page
 title: User Guide
 ---
 
-HackAssist is a desktop application which aims to help manage tasks in software development hackathons. In hackathons, task managements are often hectic because we are required to complete a large number of tasks in a short amount of time. However, using HackAssist, we wish to make task managements easier, so you can focus on your hackathon project :)
+HackAssist is a desktop application which aims to help manage tasks in software development hackathons. In hackathon projects, task management is often hectic because we are required to complete a large number of tasks in a short amount of time. However, with HackAssist, we aim to make your task management workflow easier, so you can focus on building your hackathon project :)
 
-This guide provides an overview on how to perform the main functionalities of HackAssist: [members management](#members-management) and [tasks management](#tasks-management).
+This guide provides an overview on how to perform the main functionalities of HackAssist: [Members Management](#members-management) and [Tasks Management](#tasks-management).
 
-For advanced user, you can go straight to [command summary](#command-summary).
+For advanced users, you can go straight to the [Command Summary](#command-summary).
 
 * Table of Contents
 {:toc}
@@ -223,7 +223,7 @@ Adds a task to the task list. Note that you cannot add a task if another task wi
 
 Format: `addTask n/TASK_NAME d/DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
 
-* If the optional parameter `pe/EMAIL_OF_PERSON_ASSIGNED` is provided, the task will be assigned to that member. If not, it will remain unassigned. 
+* If the optional parameter `pe/EMAIL_OF_PERSON_ASSIGNED` is provided, the task will be assigned to that member. If not, it will remain unassigned. This might be useful at the beginning of your project when you are scoping out the tasks that need to be done. 
 
 Refer to the [Task Parameters](#task-parameters) section for details about the format of each parameter.
 
@@ -251,7 +251,7 @@ Edits the parameter(s) of an existing task in the task list. You can also use th
 
 Format: `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]`
 
-* Edits the task at the specified index. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​ and less than or equal to the number of tasks in the task list.
+* Edits the task at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed task list. It must be a positive integer 1, 2, 3, …​ and less than or equal to the number of tasks in the task list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * To un-assign a member from a task, write `none` in the EMAIL_OF_PERSON_ASSIGNED field, i.e. `pe/none`.
@@ -298,28 +298,28 @@ Format: `sort [pr/ORDER] [dl/ORDER]`
 * Order must be either `asc` for ascending or `desc` for descending.
 
 Examples:
-* `sort pr/asc` sorts tasks by priority in ascending order
+* `sort pr/asc` sorts tasks by PRIORITY in ascending order
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action               | Format, Examples                                                                                                                                                                                                                |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                        |
-| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                             |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                 |
-| **Find**             | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                                     |
-| **List People**      | `list`                                                                                                                                                                                                                          |
-| **Clear**            | `clear`                                                                                                                                                                                                                         |
-| **Help**             | `help`                                                                                                                                                                                                                          |
-| **Add Task**         | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com`  |
-| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/ISDONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                         |
-| **Delete Task**      | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`                                                                                                                                                                              |
-| **List Tasks**       | `listTasks`                                                                                                                                                                                                                     |
-| **Filter Tasks**      | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                            |
-| **Sort Tasks** | `sort [pr/ORDER] [dl/ORDER]` <br> e.g., `sort pr/asc`                                                                                                                                                                    |
+| Action           | Format, Examples                                                                                                                                                                                                       |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                  |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                    |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                           |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                            |
+| **List People**  | `list`                                                                                                                                                                                                                 |
+| **Clear**        | `clear`                                                                                                                                                                                                                |
+| **Help**         | `help`                                                                                                                                                                                                                 |
+| **Add Task**     | `addTask n/TASK_NAME d/DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` |
+| **Edit Task**    | `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                         |
+| **Delete Task**  | `deleteTask INDEX` <br> e.g., `deleteTask 1`                                                                                                                                                                           |
+| **List Tasks**   | `listTasks`                                                                                                                                                                                                            |
+| **Filter Tasks** | `filter [c/CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                        |
+| **Sort Tasks**   | `sort [pr/ORDER] [dl/ORDER]` <br> e.g., `sort pr/asc`                                                                                                                                                                  |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -332,35 +332,38 @@ Examples:
 **A**: Internet is not needed to run the application.<br>
 **Q**: Will my data be lost after closing the application?<br>
 **A**: No, your data will be stored in the `HackAssist.json` file. Data will only be lost if `HackAssist.json` file is deleted.<br>
-**Q**: How do i backup my data?<br>
+**Q**: How do I backup my data?<br>
 **A**: Create a copy of the `HackAssist.json` file in another directory.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Member Parameters
 
-| Parameter               | Format                                                                                                                                                 |
-|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/NAME                  | Should contain only alphanumeric characters and spaces                                                                                                 |
-| d/PHONE_NUMBER          | Should contain only numbers                                                                                                                |
-| e/EMAIL                 | Has 2 parts seperated by a '@' character.<br /> <br /> The first should only contain alphanumeric characters and these special characters, +_.- <br /> <br />The second part should consists of one or more labels. These lables should :<br /> - have start and end with alphanumeric characters, <br /> - have be at least 2 characters long <br /> - have be separated only by hyphens, if any.                                                                                                                             |
-| c/ADDRESS                | No restriction on what characters can be entered in this field                                                                                                                                                                                  |
+| Parameter      | Format                                                                                                                                                                                                                                                                                                                                                                                             |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/NAME         | Should contain only alphanumeric characters and spaces                                                                                                                                                                                                                                                                                                                                             |
+| d/PHONE_NUMBER | Should contain only numbers                                                                                                                                                                                                                                                                                                                                                                        |
+| e/EMAIL        | Has 2 parts separated by a '@' character.<br /> <br /> The first should only contain alphanumeric characters and these special characters, +_.- <br /> <br />The second part should consists of one or more labels. These labels should :<br /> - have start and end with alphanumeric characters, <br /> - have be at least 2 characters long <br /> - have be separated only by hyphens, if any. |
+| c/ADDRESS      | No restriction on what characters can be entered in this field                                                                                                                                                                                                                                                                                                                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Task Parameters
 
-| Parameter               | Format                                                                                                                                                 |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/NAME                  | Should contain only alphanumeric characters and spaces                                                                                                 |
-| d/DESCRIPTION           | Should contain only alphanumeric characters and spaces                                                                                                 |
-| pr/PRIORITY             | Should be either  `high`, `medium`, or `low` (case-insensitive)                                                                                        |
-| c/CATEGORY              | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others` |
-| dl/DEADLINE             | Should be in the format `YYYY-MM-DD` and after the current date                                                                                        |
-| pe/EMAIL_OF_PERSON_ASSIGNED | Should be the email address of an existing member (case-insensitive). For the [`editTask`](#editing-a-task-edittask) command, it can also be `none`, i.e. `pe/none`.                    |
-| do/IS_DONE               | *For [`editTask`](#editing-a-task-edittask) command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
+| Parameter                   | Format                                                                                                                                                               |
+|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/NAME                      | Should contain only alphanumeric characters and spaces                                                                                                               |
+| d/DESCRIPTION               | Should contain only alphanumeric characters and spaces                                                                                                               |
+| pr/PRIORITY                 | Should be either  `high`, `medium`, or `low` (case-insensitive)                                                                                                      |
+| c/CATEGORY                  | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others`               |
+| dl/DEADLINE                 | Should be in the format `YYYY-MM-DD` and after the current date                                                                                                      |
+| pe/EMAIL_OF_PERSON_ASSIGNED | Should be the email address of an existing member (case-insensitive). For the [`editTask`](#editing-a-task-edittask) command, it can also be `none`, i.e. `pe/none`. |
+| do/IS_DONE                  | *For [`editTask`](#editing-a-task-edittask) command only.* Should be either `true` or `false` (case-insensitive)                                                     |
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Glossary
 
-| Word               | Definition                                                                                                                                                 |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| GUI                 | Graphical User Interface - The visual representation of the application                                                                                            |
-| Parameter           | Input to the command called                                                                                  |
+| Word      | Definition                                                              |
+|-----------|-------------------------------------------------------------------------|
+| GUI       | Graphical User Interface - The visual representation of the application |
+| Parameter | Input to the command called                                             |
