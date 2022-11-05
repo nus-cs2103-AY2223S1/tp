@@ -35,10 +35,10 @@
         </HBox>
         <VBox>
           <Label fx:id="name" styleClass="cell_big_label_person" text="\$first" />
-          <FlowPane fx:id="attributeA" />
-          <FlowPane fx:id="attributeB" />
-          <FlowPane fx:id="attributeC" />
-          <FlowPane fx:id="attributeD" />
+          <FlowPane fx:id="attributeA" styleClass="personAttribute" />
+          <FlowPane fx:id="attributeB" styleClass="personAttribute" />
+          <FlowPane fx:id="attributeC" styleClass="personAttribute" />
+          <FlowPane fx:id="attributeD" styleClass="personAttribute" />
         </VBox>
       </HBox>
     </VBox>
