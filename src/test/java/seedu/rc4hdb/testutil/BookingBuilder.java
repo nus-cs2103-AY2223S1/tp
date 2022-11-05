@@ -1,7 +1,6 @@
 package seedu.rc4hdb.testutil;
 
 import seedu.rc4hdb.model.resident.Resident;
-
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.RecurrentBooking;
