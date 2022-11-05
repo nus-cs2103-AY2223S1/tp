@@ -78,6 +78,7 @@ class JsonSerializableAddressBook {
                 if (!existingClient.hasSameDetails(projectClient)) {
                     throw new IllegalValueException(MESSAGE_INVALID_CLIENT);
                 }
+                project.setClient(existingClient);
                 existingClient.addProjects(project);
             } else {
                 throw new IllegalValueException(MESSAGE_INVALID_CLIENT);
