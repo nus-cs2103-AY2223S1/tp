@@ -46,13 +46,21 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        gender.setText(person.getGender().value.toString());
-        dob.setText(person.getDob().toString());
+        setField(id, displayedIndex + ".");
+        setField(name, person.getName().fullName);
+        setField(phone, person.getPhone().value);
+        setField(address, person.getAddress().value);
+        setField(email, person.getEmail().value);
+        setField(gender, person.getGender().value.toString());
+        setField(dob, person.getDob().toString());
+    }
+
+    /**
+     * Sets a field in the PersonCard with the specified {@code Label} with the specified {@code String}.
+     */
+    private void setField(Label label, String input) {
+        label.setText(input);
+        label.setWrapText(true);
     }
 
     @Override

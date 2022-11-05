@@ -45,12 +45,20 @@ public class EventCard extends UiPart<Region> {
     public EventCard(Event event, int displayedIndex) {
         super(FXML);
         this.event = event;
-        id.setText(displayedIndex + ". ");
-        eventTitle.setText(event.getEventTitle().toString());
-        date.setText(event.getStartDate().toString());
-        time.setText(event.getStartTime().toString());
-        purpose.setText(event.getPurpose().toString());
-        personNames.setText(event.getUids().getPersonNames());
+        setField(id, displayedIndex + ".");
+        setField(eventTitle, event.getEventTitle().toString());
+        setField(date, event.getStartDate().toString());
+        setField(time, event.getStartTime().toString());
+        setField(purpose, event.getPurpose().toString());
+        setField(personNames, event.getUids().getPersonNames());
+    }
+
+    /**
+     * Sets a field in the EventCard with the specified {@code Label} with the specified {@code String}.
+     */
+    private void setField(Label label, String input) {
+        label.setText(input);
+        label.setWrapText(true);
     }
 
     @Override

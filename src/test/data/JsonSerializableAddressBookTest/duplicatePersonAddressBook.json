@@ -5,7 +5,7 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "gender" : "Female",
-    "dob" : "1/1/2000",
+    "dob" : "01/01/2000",
     "uid" : "0ae8093a-6367-4060-bf1d-437646cb26c6"
   }, {
     "name": "Alice Pauline",
@@ -13,7 +13,7 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "gender" : "Female",
-    "dob" : "1/1/2000",
+    "dob" : "01/01/2000",
     "uid" : "afe9246b-891e-4268-a5c0-c7cbebf1a790"
   } ],
   "events" : [ {

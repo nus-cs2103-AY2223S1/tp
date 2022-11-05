@@ -27,13 +27,13 @@ public class AddEventCommand extends Command {
             + PREFIX_PURPOSE + "PURPOSE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EVENT_TITLE + "Shoe Sale "
-            + PREFIX_START_DATE + "20-09-2022 "
+            + PREFIX_START_DATE + "20/09/2022 "
             + PREFIX_START_TIME + "11:00 "
-            + PREFIX_PURPOSE + "50% discount on all shoes store-wide! ";
+            + PREFIX_PURPOSE + "50 dollar discount on all shoes store";
 
     public static final String MESSAGE_SUCCESS = "New Event added: %1$s";
 
-    public static final String MESSAGE_DUPLICATE_EVENT = "This Event already exists in the application";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the application";
 
     private final Event toAdd;
 
@@ -49,7 +49,11 @@ public class AddEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        //TODO: Add logical checks for duplicates of Event before adding
+
+        if (model.hasEvent(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        }
+
         model.addEvent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

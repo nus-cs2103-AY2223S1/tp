@@ -173,6 +173,7 @@ public class ModelManager implements Model {
         return filteredEvents;
     }
 
+    // @@author lfrostbytee
     /**
      * Updates an unmodifiable view of the list of {@code Event} backed by the internal list of
      * {@code versionedAddressBook}
@@ -183,6 +184,7 @@ public class ModelManager implements Model {
         filteredEvents.setPredicate(predicate);
     }
 
+    // @@author Qiaoran-M
     /**
      * Updates the reference between an {@code Event} and the persons it is tagged with.
      * This method is used after editPerson, deletePerson and tagEvent commands to provide timely GUI update.
@@ -193,6 +195,7 @@ public class ModelManager implements Model {
         // All events in the event list are displayed since the predicate returns true for all events
         this.updateFilteredEventList(x -> x.getUids().setPersonNames(this));
     }
+    // @@author
 
 
     //=========== Filtered Person List Accessors ==============================================================

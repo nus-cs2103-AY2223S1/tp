@@ -32,13 +32,13 @@ public class EditEventCommand extends Command {
             + "by the index number used in the displayed event list. "
             + "Existing values will be overwritten by the input values. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_EVENT_TITLE + "EVENT_TITLE]"
-            + "[" + PREFIX_START_DATE + "DATE]"
-            + "[" + PREFIX_START_TIME + "TIME]"
+            + "[" + PREFIX_EVENT_TITLE + "EVENT_TITLE] "
+            + "[" + PREFIX_START_DATE + "DATE] "
+            + "[" + PREFIX_START_TIME + "TIME] "
             + "[" + PREFIX_PURPOSE + "PURPOSE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EVENT_TITLE + "Banana Sale "
-            + PREFIX_PURPOSE + "20% discount on all bananas store-wide";
+            + PREFIX_PURPOSE + "20 cent discount on all bananas";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
 
