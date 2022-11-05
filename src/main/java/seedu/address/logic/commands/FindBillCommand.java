@@ -31,6 +31,10 @@ public class FindBillCommand extends Command {
             + "Example: " + COMMAND_WORD + " n/Bob p/unpaid \n";
 
     private final Predicate<Bill> predicate;
+    private Optional<Predicate<Name>> namePredicate = null;
+    private Optional<Predicate<PaymentStatus>> paymentStatusPredicate = null;
+    private Optional<Predicate<BillDate>> billDatePredicate = null;
+    private Optional<Predicate<Amount>> amountPredicate = null;
 
     /**
      * Creates a FindBillCommand to find bill(s) according to the prefix input(s).
@@ -44,6 +48,10 @@ public class FindBillCommand extends Command {
                            Optional<Predicate<PaymentStatus>> paymentStatusPredicate,
                            Optional<Predicate<BillDate>> billDatePredicate,
                            Optional<Predicate<Amount>> amountPredicate) {
+        this.namePredicate = namePredicate;
+        this.paymentStatusPredicate = paymentStatusPredicate;
+        this.billDatePredicate = billDatePredicate;
+        this.amountPredicate = amountPredicate;
         this.predicate = bill -> namePredicate.orElse(x -> true).test(bill.getAppointment().getName())
                 && paymentStatusPredicate.orElse(x -> true).test(bill.getPaymentStatus())
                 && billDatePredicate.orElse(x -> true).test(bill.getBillDate())
@@ -61,7 +69,14 @@ public class FindBillCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindBillCommand // instanceof handles nulls
-                && predicate.equals(((FindBillCommand) other).predicate)); // state check
+                || (other instanceof FindAppointmentCommand // instanceof handles nulls
+                && namePredicate.equals(((FindBillCommand) other).namePredicate)
+                && paymentStatusPredicate.equals(((FindBillCommand) other).paymentStatusPredicate)
+                && billDatePredicate.equals(((FindBillCommand) other).billDatePredicate)
+                && amountPredicate.equals(((FindBillCommand) other).amountPredicate)); // state check
+    }
+
+    public Predicate<Bill> getPredicate() {
+        return predicate;
     }
 }
