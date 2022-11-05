@@ -564,7 +564,6 @@ Find person feature is similar and will be omitted.
 
 ##### Implementation
 
-<<<<<<< HEAD
 Find module mechanism is facilitated by the `FindModuleCommand` and `FindModuleCommandParser`.
 
 It allows users to obtain a list of modules starting with the keyword provided.<br>
