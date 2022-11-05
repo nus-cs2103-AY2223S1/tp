@@ -19,7 +19,7 @@
       "email": "johnd@example.com",
       "address": "311, Clementi Ave 2, #02-25",
       "studentClass": "1A",
-      "attendance": "date/12-02-2022 attendance/1 %% date/13-02-2022 attendance/0",
+      "attendance": "date/12-02-2024 attendance/1",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "tagged": [
         "owesMoney",
