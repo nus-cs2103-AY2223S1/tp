@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import coydir.commons.exceptions.IllegalValueException;
 import coydir.commons.util.JsonUtil;
 import coydir.model.Database;
+import coydir.testutil.TestUtil;
 import coydir.testutil.TypicalPersons;
 
 public class JsonSerializableDatabaseTest {
@@ -22,6 +23,8 @@ public class JsonSerializableDatabaseTest {
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
+        int numOfTypicalPersons = TypicalPersons.getTypicalPersons().size();
+        TestUtil.restartEmployeeId(1);
         JsonSerializableDatabase dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableDatabase.class).get();
         Database databaseFromFile = dataFromFile.toModelType();
@@ -31,6 +34,7 @@ public class JsonSerializableDatabaseTest {
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
+        TestUtil.restartEmployeeId(1);
         JsonSerializableDatabase dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
                 JsonSerializableDatabase.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
@@ -38,6 +42,7 @@ public class JsonSerializableDatabaseTest {
 
     @Test
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+        TestUtil.restartEmployeeId(1);
         JsonSerializableDatabase dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
                 JsonSerializableDatabase.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableDatabase.MESSAGE_DUPLICATE_PERSON,
