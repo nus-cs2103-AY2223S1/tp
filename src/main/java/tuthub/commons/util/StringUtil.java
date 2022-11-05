@@ -72,6 +72,39 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} starts with the {@code word}.
+     * Ignores case and matches partially.
+     * <br>examples:<pre>
+     *     startsWithWordIgnoreCasePartialMatch("ABc", "abc") == true
+     *     startsWithWordIgnoreCase("ABc", "DEF") == false
+     *     startsWithWordIgnoreCase("ABc", "AB") == true //matches partially
+     * </pre>
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean startsWithWordIgnoreCasePartialMatch(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim().toLowerCase();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        String preppedSentence = sentence;
+        String[] lowercaseWordsInPreppedSentence = preppedSentence.toLowerCase().split("\\s+");
+
+        System.out.println(preppedWord);
+        System.out.println(Arrays.toString(lowercaseWordsInPreppedSentence));
+
+        for (String wordInSentence : lowercaseWordsInPreppedSentence) {
+            if (wordInSentence.startsWith(preppedWord)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
