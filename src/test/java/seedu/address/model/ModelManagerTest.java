@@ -11,7 +11,6 @@ import static seedu.address.testutil.TypicalExams.MIDTERM_EXAM;
 import static seedu.address.testutil.TypicalModules.CS2030;
 import static seedu.address.testutil.TypicalModules.CS2030S;
 import static seedu.address.testutil.TypicalModules.CS2040;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalTasks.TASK_A;
 import static seedu.address.testutil.TypicalTasks.TASK_B;
 import static seedu.address.testutil.TypicalTasks.TASK_C;
@@ -25,7 +24,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.commons.Criteria;
 import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
@@ -82,22 +80,6 @@ public class ModelManagerTest {
         Path path = Paths.get("address/book/file/path");
         modelManager.setAddressBookFilePath(path);
         assertEquals(path, modelManager.getAddressBookFilePath());
-    }
-
-    @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
-    }
-
-    @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
-    }
-
-    @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
     }
 
     @Test

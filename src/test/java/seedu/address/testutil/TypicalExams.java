@@ -30,11 +30,14 @@ public class TypicalExams {
             .withDate("27-11-2022")
             .build();
 
+    public static final Exam CS2040_FINAL = new ExamBuilder()
+            .withModule("cs2040").withDescription("CS2040 Finals")
+            .withDate("29-11-2022").build();
     private TypicalExams() {} // prevents instantiation
 
 
     public static List<Exam> getTypicalExams() {
-        return new ArrayList<>(Arrays.asList(MIDTERM_EXAM, FINAL_EXAM, EXAMONE, EXAMTWO));
+        return new ArrayList<>(Arrays.asList(MIDTERM_EXAM, FINAL_EXAM, EXAMONE, EXAMTWO, CS2040_FINAL));
     }
 
 }

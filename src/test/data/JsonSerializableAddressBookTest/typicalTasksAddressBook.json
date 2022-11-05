@@ -1,0 +1,181 @@
+{
+  "tasks" : [ {
+    "taskDescription" : "Task A",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "cs2030"
+  }, {
+    "taskDescription" : "Task B",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "cs2030"
+  }, {
+    "taskDescription" : "Task C",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "cs2040"
+  }, {
+    "taskDescription" : "Task D",
+    "status" : "complete",
+    "priority" : "high",
+    "deadline" : "29-12-2022",
+    "examDate" : "29-12-2022",
+    "examDescription" : "Midterm Exam",
+    "moduleCode" : "cs2040"
+  }, {
+    "taskDescription" : "Task E",
+    "status" : "complete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "cs2100"
+  }, {
+    "taskDescription" : "Task F",
+    "status" : "complete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "cs2100"
+  }, {
+    "taskDescription" : "Task G",
+    "status" : "incomplete",
+    "priority" : "high",
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "cs2100"
+  }, {
+    "taskDescription" : "Task H",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : "31-12-2022",
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "cs2103t"
+  }, {
+    "taskDescription" : "Task I",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "cs2103t"
+  }, {
+    "taskDescription" : "Task one",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "CS2030S"
+  }, {
+    "taskDescription" : "Task two",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "CS2030S"
+  }, {
+    "taskDescription" : "HW1",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "CS2030S"
+  }, {
+    "taskDescription" : "HW2",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "CS2040S"
+  }, {
+    "taskDescription" : "HW3",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "CS2030S"
+  }, {
+    "taskDescription" : "homework",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "CS2030s"
+  }, {
+    "taskDescription" : "PAST YEAR PAPER",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "CS2030s"
+  } ],
+  "modules" : [ {
+    "moduleCode" : "cs2030",
+    "moduleName" : "Programming Methodology",
+    "moduleCredit" : "4"
+  }, {
+    "moduleCode" : "cs2040",
+    "moduleName" : "Data and Algorithms",
+    "moduleCredit" : "4"
+  }, {
+    "moduleCode" : "cs2100",
+    "moduleName" : "Computer Organisation",
+    "moduleCredit" : "4"
+  }, {
+    "moduleCode" : "cs2103t",
+    "moduleName" : "Software Engineering",
+    "moduleCredit" : "4"
+  }, {
+    "moduleCode" : "MA1521",
+    "moduleName" : "Math",
+    "moduleCredit" : "4"
+  }, {
+    "moduleCode" : "CS2030S",
+    "moduleName" : "Programming Methodology for CS students",
+    "moduleCredit" : "4"
+  }, {
+    "moduleCode" : "CS2040S",
+    "moduleName" : "Data and Algorithms for CS Students",
+    "moduleCredit" : "4"
+  } ],
+  "exams" : [ {
+    "description" : "Midterm Exam",
+    "date" : "29-12-2022",
+    "moduleCode" : "cs2040"
+  }, {
+    "description" : "Final Exam",
+    "date" : "28-12-2022",
+    "moduleCode" : "cs2030"
+  }, {
+    "description" : "Exam one",
+    "date" : "20-08-2023",
+    "moduleCode" : "CS2030S"
+  }, {
+    "description" : "Exam two",
+    "date" : "20-10-2023",
+    "moduleCode" : "CS2040S"
+  }, {
+      "description": "CS2040 Finals",
+      "date": "29-11-2022",
+      "moduleCode": "cs2040"
+    }]
+}
