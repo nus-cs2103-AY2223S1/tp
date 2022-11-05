@@ -2,13 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
+
 import seedu.address.logic.commands.FilterPlanModCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.PlanModContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.stream.Collectors;
 
 /**
  * Parses input arguments and creates a new FilterPlanModCommand object
