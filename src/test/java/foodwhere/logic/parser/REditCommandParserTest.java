@@ -1,25 +1,36 @@
 package foodwhere.logic.parser;
 
+import static foodwhere.logic.commands.CommandTestUtil.CONTENT_DESC_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.DATE_DESC_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.DATE_DESC_BOB;
 import static foodwhere.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static foodwhere.logic.commands.CommandTestUtil.INVALID_RATING_DESC;
 import static foodwhere.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static foodwhere.logic.commands.CommandTestUtil.RATING_DESC_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.RATING_DESC_BOB;
 import static foodwhere.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static foodwhere.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_CONTENT_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_DATE_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_RATING_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_RATING_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static foodwhere.logic.commands.REditCommand.MESSAGE_INVALID_INDEX_ERROR;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
-//import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
-//import foodwhere.commons.core.index.Index;
+import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.REditCommand;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Rating;
-//import foodwhere.testutil.EditReviewDescriptorBuilder;
-//import foodwhere.testutil.TypicalIndexes;
+import foodwhere.testutil.EditReviewDescriptorBuilder;
+import foodwhere.testutil.TypicalIndexes;
 
 public class REditCommandParserTest {
     private static final String TAG_EMPTY = " " + CliSyntax.PREFIX_TAG;
@@ -72,7 +83,6 @@ public class REditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_DATE_DESC + INVALID_RATING_DESC, Date.MESSAGE_CONSTRAINTS);
     }
 
-    /*
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = TypicalIndexes.INDEX_SECOND_REVIEW;
@@ -88,9 +98,6 @@ public class REditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-     */
-
-    /*
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = TypicalIndexes.INDEX_FIRST_REVIEW;
@@ -103,9 +110,6 @@ public class REditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-     */
-
-    /*
     @Test
     public void parse_oneFieldSpecified_success() {
         // Content
@@ -135,9 +139,6 @@ public class REditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-     */
-
-    /*
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = TypicalIndexes.INDEX_FIRST_REVIEW;
@@ -154,12 +155,10 @@ public class REditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-     */
-
-    /*
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
+        // "1 d/ d/20/08/2022"
         Index targetIndex = TypicalIndexes.INDEX_FIRST_REVIEW;
         String userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_BOB;
         REditCommand.EditReviewDescriptor descriptor =
@@ -168,17 +167,15 @@ public class REditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
+        // "1 r/-1 d/20/08/2022 r/"
         userInput = targetIndex.getOneBased() + INVALID_RATING_DESC + DATE_DESC_BOB
                 + RATING_DESC_BOB;
-        descriptor = new EditReviewDescriptorBuilder().withRating(VALID_NAME_BOB)
+        descriptor = new EditReviewDescriptorBuilder().withRating(VALID_RATING_BOB.toString())
                 .withDate(VALID_DATE_BOB).build();
         expectedCommand = new REditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-     */
-
-    /*
     @Test
     public void parse_resetDetails_success() {
         Index targetIndex = TypicalIndexes.INDEX_THIRD_REVIEW;
@@ -187,7 +184,6 @@ public class REditCommandParserTest {
         REditCommand.EditReviewDescriptor descriptor = new EditReviewDescriptorBuilder().withTags().build();
         REditCommand expectedCommand = new REditCommand(targetIndex, descriptor);
 
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseSuccess(parser, userInput, expectedCommand); // look-equal commands don't compare equal
     }
-     */
 }

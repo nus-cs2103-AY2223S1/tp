@@ -114,7 +114,7 @@ public class REditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SEditCommand)) {
+        if (!(other instanceof REditCommand)) {
             return false;
         }
 

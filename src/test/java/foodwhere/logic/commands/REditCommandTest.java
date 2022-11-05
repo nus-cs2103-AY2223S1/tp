@@ -3,7 +3,7 @@ package foodwhere.logic.commands;
 import static foodwhere.logic.commands.CommandTestUtil.assertCommandFailure;
 import static foodwhere.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static foodwhere.logic.commands.REditCommand.MESSAGE_INVALID_INDEX_ERROR;
-//import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -26,10 +26,14 @@ public class REditCommandTest {
 
     private Model model = new ModelManager(TypicalStalls.getTypicalAddressBook(), new UserPrefs());
 
-    /*
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Review editedReview = new ReviewBuilder().build();
+        Review firstReview = model.getFilteredReviewList().get(0);
+
+        // set name and address og new review to match
+        Review editedReview = new ReviewBuilder()
+                .withName(firstReview.getName().toString())
+                .withAddress(firstReview.getAddress().toString()).build();
         REditCommand.EditReviewDescriptor descriptor = new EditReviewDescriptorBuilder(editedReview).build();
         REditCommand rEditCommand = new REditCommand(TypicalIndexes.INDEX_FIRST_REVIEW, descriptor);
 
@@ -37,12 +41,10 @@ public class REditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        expectedModel.setReview(model.getFilteredReviewList()
-                .get(model.getFilteredReviewList().size() - 1), editedReview);
+        expectedModel.setReview(model.getFilteredReviewList().get(0), editedReview);
 
         assertCommandSuccess(rEditCommand, model, expectedMessage, expectedModel);
     }
-   */
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
@@ -66,7 +68,6 @@ public class REditCommandTest {
 
         assertCommandSuccess(sEditCommand, model, expectedMessage, expectedModel);
     }
-
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_failure() {
@@ -95,33 +96,56 @@ public class REditCommandTest {
         assertCommandSuccess(sEditCommand, model, expectedMessage, expectedModel);
     }
 
-    /*
     @Test
     public void execute_duplicateReviewUnfilteredList_failure() {
         Review firstReview = model.getFilteredReviewList().get(TypicalIndexes.INDEX_FIRST_REVIEW.getZeroBased());
-        REditCommand.EditReviewDescriptor descriptor = new EditReviewDescriptorBuilder(firstReview).build();
-        REditCommand sEditCommand = new REditCommand(TypicalIndexes.INDEX_SECOND_REVIEW, descriptor);
 
-        assertCommandFailure(sEditCommand, model, REditCommand.MESSAGE_DUPLICATE_REVIEW);
+        Review newReview = new ReviewBuilder(firstReview)
+                .withContent("Food was just okay, nothing to write about.")
+                .withDate("12/09/2023").build();
+        model.addReview(newReview);
+
+        Index addedIndex = Index.fromOneBased(model.getFilteredReviewList().size());
+        // check: review on same stall added to end
+        assertTrue(model.getFilteredReviewList().get(addedIndex.getZeroBased()).equals(newReview));
+
+        REditCommand.EditReviewDescriptor descriptor = new EditReviewDescriptorBuilder(firstReview).build();
+        REditCommand rEditCommand = new REditCommand(addedIndex, descriptor);
+
+        assertCommandFailure(rEditCommand, model, REditCommand.MESSAGE_DUPLICATE_REVIEW);
     }
 
-     */
-
-    /*
     @Test
     public void execute_duplicateReviewFilteredList_failure() {
-        CommandTestUtil.showReviewAtIndex(model, TypicalIndexes.INDEX_FIRST_REVIEW);
+        Review firstReview = model.getFilteredReviewList().get(TypicalIndexes.INDEX_FIRST_REVIEW.getZeroBased());
+
+        Review newReview = new ReviewBuilder(firstReview)
+                .withContent("Food was just okay, nothing to write about.")
+                .withDate("12/09/2023")
+                .withTags("veryuniquetag1noduplicatesplease").build();
+        Review newReview2 = new ReviewBuilder(firstReview)
+                .withContent("Food was fine, nothing to write about.")
+                .withDate("12/09/2023")
+                .withTags("veryuniquetag2noduplicatesplease").build();
+        model.addReview(newReview);
+        model.addReview(newReview2);
+
+        Index addedIndex = Index.fromOneBased(model.getFilteredReviewList().size() - 1);
+        Index addedIndex2 = Index.fromOneBased(model.getFilteredReviewList().size());
+        // check: reviews added to end
+        assertTrue(model.getFilteredReviewList().get(addedIndex.getZeroBased()).equals(newReview));
+        assertTrue(model.getFilteredReviewList().get(addedIndex2.getZeroBased()).equals(newReview2));
+
+        REditCommand.EditReviewDescriptor descriptor = new EditReviewDescriptorBuilder(newReview).build();
+
+        CommandTestUtil.showReviewWithUniqueTag(model, "veryuniquetag2noduplicatesplease");
 
         // edit review in filtered list into a duplicate in address book
-        Review reviewInList =
-                model.getAddressBook().getReviewList().get(TypicalIndexes.INDEX_SECOND_REVIEW.getZeroBased());
-        REditCommand sEditCommand = new REditCommand(TypicalIndexes.INDEX_FIRST_REVIEW,
-                new EditReviewDescriptorBuilder(reviewInList).build());
+        REditCommand rEditCommand = new REditCommand(TypicalIndexes.INDEX_FIRST_REVIEW,
+                descriptor);
 
-        assertCommandFailure(sEditCommand, model, REditCommand.MESSAGE_DUPLICATE_REVIEW);
+        assertCommandFailure(rEditCommand, model, REditCommand.MESSAGE_DUPLICATE_REVIEW);
     }
-
-     */
 
     @Test
     public void execute_invalidReviewIndexUnfilteredList_failure() {
@@ -150,7 +174,6 @@ public class REditCommandTest {
         assertCommandFailure(sEditCommand, model, MESSAGE_INVALID_INDEX_ERROR);
     }
 
-    /*
     @Test
     public void equals() {
         final REditCommand standardCommand =
@@ -159,6 +182,7 @@ public class REditCommandTest {
         // same values -> returns true
         REditCommand.EditReviewDescriptor copyDescriptor =
                 new REditCommand.EditReviewDescriptor(CommandTestUtil.DESC_AMY_REVIEW);
+
         REditCommand commandWithSameValues = new REditCommand(TypicalIndexes.INDEX_FIRST_REVIEW, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -179,6 +203,4 @@ public class REditCommandTest {
         assertFalse(standardCommand.equals(
                 new REditCommand(TypicalIndexes.INDEX_FIRST_REVIEW, CommandTestUtil.DESC_BOB_REVIEW)));
     }
-     */
-
 }

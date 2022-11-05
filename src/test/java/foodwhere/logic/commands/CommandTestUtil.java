@@ -14,6 +14,7 @@ import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
 import foodwhere.model.review.ReviewContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
@@ -137,10 +138,14 @@ public class CommandTestUtil {
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Stall> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStallList());
+        List<Review> expectedReviewList = new ArrayList<>(actualModel.getAddressBook().getReviewList());
+        List<Review> expectedFilteredReviewList = new ArrayList<>(actualModel.getFilteredReviewList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedAddressBook.getStallList(), actualModel.getAddressBook().getStallList());
+        assertEquals(expectedReviewList, actualModel.getAddressBook().getReviewList());
         assertEquals(expectedFilteredList, actualModel.getFilteredStallList());
+        assertEquals(expectedFilteredReviewList, actualModel.getFilteredReviewList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the stall at the given {@code targetIndex} in the
@@ -173,4 +178,13 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredReviewList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show the review with the given {@code tag} in the
+     * {@code model}'s address book.
+     */
+    public static void showReviewWithUniqueTag(Model model, String tag) {
+        model.updateFilteredReviewList(new ReviewContainsKeywordsPredicate(Collections.emptyList(),
+                Collections.singletonList(new Tag(tag))));
+        assertEquals(1, model.getFilteredReviewList().size());
+    }
 }
