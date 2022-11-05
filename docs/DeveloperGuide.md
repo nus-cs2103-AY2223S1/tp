@@ -309,23 +309,23 @@ The following sequence diagram shows how the find command works:
     * Pros: Easier to find person.
     * Cons: Persons list may show other persons that are not desired by the user.
 
-### Find Person by Tag feature
+### Find Persons and Notes by Tag feature
 
 #### Implementation
 
-The find Person by Tag feature (called `findTag`) is facilitated by `FindTagCommand`. It allows users to find all Persons with the given Tags.
+The find Persons and Notes by Tag feature (called `findTag`) is facilitated by `FindTagCommand`. It allows users to find all Persons and Notes with the given Tags.
 
 Given below is an example usage scenario and how the findTag feature behaves at each step.
 
-Step 1. The user executes `findTag Finance` command to find all Persons in the address book with the tag `Finance`.
+Step 1. The user executes `findTag Finance` command to find all Persons and Notes in the SectresBook with the tag `Finance`.
 
-Step 2. A `FindTagCommand` is constructed with a `TagsContainsKeywordsPredicate` which will check through the list of persons in the address book and only show those with the tag `Finance`.
+Step 2. A `FindTagCommand` is constructed with a `PersonTagsContainsKeywordsPredicate` and `NoteTagsContainsKeywordsPredicate` which will check through the list of Persons and Notes in the SectresBook and only show those with the tag `Finance`.
 
-Step 3. The `FindTagCommand` is executed and the `TagsContainsKeywordsPredicate` is passed to model to update the Person List to only show Persons with the tag `Finance`.
+Step 3. The `FindTagCommand` is executed and the `PersonTagsContainsKeywordsPredicate` and `NoteTagsContainsKeywordsPredicate` is passed to model to update the Person List and Note List to only show Persons and Notes with the tag `Finance`.
 
 The following sequence diagram shows how the findTag command works:
 
-<img src="images/FindTagSequenceDiagram.png" width="740"/>
+<img src="images/FindTagSequenceDiagram.png">
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindTagCommandParser` and `FindTagCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -335,12 +335,12 @@ The following sequence diagram shows how the findTag command works:
 
 **Aspect: How findTag executes:**
 
-* **Alternative 1 (current choice):** Goes through all Persons to check for Tag.
+* **Alternative 1 (current choice):** Goes through all Persons and Notes to check for Tag.
     * Pros: Easy to implement (Similar to current find command).
     * Cons: May have performance issues in terms of having to do many more steps.
 
-* **Alternative 2:** Goto searched Tags and get the Persons that each Tag points to.
-    * Pros: Will use fewer steps (Go directly to the Tags rather than looking through all Persons).
+* **Alternative 2:** Goto searched Tags and get the Persons and Notes that each Tag points to.
+    * Pros: Will use fewer steps (Go directly to the Tags rather than looking through all Persons and Notes).
     * Cons: Implementation would be more complicated.
 
 
