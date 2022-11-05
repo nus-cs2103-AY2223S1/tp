@@ -72,6 +72,10 @@ public class CommandTestUtil {
     public static final String FIRST_PERSON_PHONE = "94351253";
     public static final String FIRST_PERSON_LESSON_PLAN = "Algorithms";
     public static final String FIRST_PERSON_TAGS = "friends";
+    public static final String FIRST_PERSON_ATTENDANCE = "2019-01-01";
+    public static final String FIRST_PERSON_GRADE_PROGRESS = "English: A+";
+    public static final String FIRST_PERSON_SESSIONS = "Tue 09:00";
+    public static final String FIRST_PERSON_HOMEWORK = "Science worksheet";
 
     // used in edit, hence index is included
     public static final String HOMEWORK_DESC_AMY = " " + PREFIX_HOMEWORK + "1 " + VALID_HOMEWORK_AMY;
