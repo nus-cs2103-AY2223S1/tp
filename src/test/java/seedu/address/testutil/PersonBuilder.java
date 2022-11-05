@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,7 +25,6 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_DESCRIPTION = "Has family health history of diabetes.";
-    public static final MeetingTime DEFAULT_MEETING_TIME = new MeetingTime("01-01-2000-12:00");
     public static final String DEFAULT_NETWORTH = "$2000";
     public static final String DEFAULT_FILEPATH = "src/test/data/TestPDFs/Test_PDF.pdf";
 
@@ -50,7 +48,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         description = new Description(DEFAULT_DESCRIPTION);
         netWorth = new NetWorth(DEFAULT_NETWORTH);
-        meetingTimes = new HashSet<>(Arrays.asList(DEFAULT_MEETING_TIME));
+        meetingTimes = new HashSet<>();
         filePath = new FilePath(DEFAULT_FILEPATH);
         tags = new HashSet<>();
     }
