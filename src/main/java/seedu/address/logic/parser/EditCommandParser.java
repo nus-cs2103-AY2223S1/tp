@@ -54,7 +54,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
-
+        assert index.getZeroBased() >= 0 : "index should be more than or equal to 0";
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -140,7 +140,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> gameTypesSet =
                 gameTypes.size() == 1 && gameTypes.contains("") ? Collections.emptySet() : gameTypes;
-        return Optional.of(ParserUtil.parseGameType(gameTypesSet));
+        return Optional.of(ParserUtil.parseGameTypes(gameTypesSet));
     }
 
     private Optional<Set<ITimesAvailable>> parseTimeIntervalsForEdit(Collection<String> timeIntervals)

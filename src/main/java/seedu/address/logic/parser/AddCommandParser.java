@@ -64,7 +64,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Social> socialList = ParserUtil.parseSocials(argMultimap.getAllValues(PREFIX_SOCIAL));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Server> serverList = ParserUtil.parseServers(argMultimap.getAllValues(PREFIX_MINECRAFT_SERVER));
-        Set<GameType> gameTypeList = ParserUtil.parseGameType(argMultimap.getAllValues(PREFIX_GAME_TYPE));
+        Set<GameType> gameTypeList = ParserUtil.parseGameTypes(argMultimap.getAllValues(PREFIX_GAME_TYPE));
         Set<ITimesAvailable> timesAvailable = ParserUtil.parseTimeIntervals(argMultimap
                 .getAllValues(PREFIX_TIME_INTERVAL));
 

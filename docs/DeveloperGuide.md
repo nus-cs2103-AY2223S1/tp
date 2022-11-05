@@ -739,11 +739,13 @@ For a complete glossary of Minecraft terms, please visit this page on the
 [Minecraft wiki](https://minecraft.fandom.com/wiki/Tutorials/Game_terms).
 
 ### Other terminologies
+
 | Terminology   | Definition                                                                  |
 |---------------|-----------------------------------------------------------------------------|
 | Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X         |
 | Socials       | A person's social media account information, such as their Telegram handle  |
 | CLI           | An acronym for "command line interface"                                     |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -800,3 +802,23 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix F: Effort**
 
+If the effort taken to implement AB3 was 100, then the effort we put into Minefriends would be 150.
+
+While we did not change the design and architecture that was laid out by AB3 drastically, we ended up modifying the 
+behaviour of most of its commands, as well as adding many new and unique features to our software.
+
+This includes, but is not limited to:
+
+* Redesigning the entire UI to fit the theme of Minecraft
+* Redesigning the `Person` model to include Minecraft-related fields
+* Redesigning the `Parser` to parse using regex
+* Redesigning the `add` command to include more fields
+* Redesigning the `edit` command to include more fields
+* Adding a new command to `suggest` friends
+* Adding and designing a help window to show the user a list of commands
+* Adding the auto-complete feature to the command box
+
+Amongst these changes, we had the hardest time redesigning the `Person` model, as we have encountered various bugs after
+we have modified it to include additional fields, in the end we took many hours to fix more than 200 test cases related to it. 
+Due to our iterative approach, we had to redesign other features to fit the needs of a redesigned `Person` model, which 
+took quite a few iterations before we got it to a point where we felt comfortable with it.
