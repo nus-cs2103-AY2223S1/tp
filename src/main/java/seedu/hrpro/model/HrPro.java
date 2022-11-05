@@ -13,7 +13,7 @@ import seedu.hrpro.model.task.Task;
 import seedu.hrpro.model.task.UniqueTaskList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the HrPro level
  * Duplicates are not allowed (by .isSameProject comparison)
  */
 public class HrPro implements ReadOnlyHrPro {
@@ -31,27 +31,7 @@ public class HrPro implements ReadOnlyHrPro {
      */
     {
         projects = new UniqueProjectList();
-    }
-
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    {
         staff = new UniqueStaffList();
-    }
-
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    {
         tasks = new UniqueTaskList();
     }
 
@@ -204,13 +184,16 @@ public class HrPro implements ReadOnlyHrPro {
     }
 
     /**
-     * Removes {@code key} from this {@code HrPro}.
-     * {@code key} must exist in hr pro.
+     * Removes {@code task} from this {@code HrPro}.
+     * {@code task} must exist in hr pro.
      */
-    public void removeTask(Task key) {
-        tasks.remove(key);
+    public void removeTask(Task task) {
+        tasks.remove(task);
     }
 
+    /**
+     * Sorts the projects according to completion status.
+     */
     public void sortComplete() {
         tasks.sortComplete();
     }
@@ -227,6 +210,7 @@ public class HrPro implements ReadOnlyHrPro {
     @Override
     public String toString() {
         return projects.asUnmodifiableObservableList().size() + " projects, "
+                + staff.asUnmodifiableObservableList().size() + "staff "
                 + tasks.asUnmodifiableObservableList().size() + " tasks";
         // TODO: refine later
     }

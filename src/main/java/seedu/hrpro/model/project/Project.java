@@ -18,6 +18,7 @@ import seedu.hrpro.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Project implements Comparable<Project> {
+
     //Identity fields
     private final ProjectName projectName;
 

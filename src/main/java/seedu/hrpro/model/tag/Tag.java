@@ -11,6 +11,10 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Tags names should be alphanumeric, with a limit of 50 characters ";
+    
+    /*
+     * Tags should only contain alphanumeric characters with a limit of 50.
+     */
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ]{1,50}";
 
     public final String tagName;

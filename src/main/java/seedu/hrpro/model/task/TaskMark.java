@@ -18,9 +18,9 @@ public class TaskMark {
     public final String taskMark;
 
     /**
-     * Constructs a {@code Mark}.
+     * Constructs a {@code TaskMark}.
      *
-     * @param taskMark A valid description.
+     * @param taskMark A valid completion status.
      */
     public TaskMark(String taskMark) {
         requireNonNull(taskMark);
@@ -31,7 +31,7 @@ public class TaskMark {
     /**
      * Checks if it is a valid TaskMark.
      * @param test String to check if its a valid TaskMark
-     * @return True if its either true or false.
+     * @return True if it is either true or false.
      */
     public static boolean isValidTaskMark(String test) {
         return test.matches(VALIDATION_REGEX);

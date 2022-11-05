@@ -18,7 +18,7 @@ public class StaffNameContainsKeywordsPredicate implements Predicate<Staff> {
     @Override
     public boolean test(Staff staff) {
         return keywords.stream()
-                .anyMatch(keyword ->StringUtil.containsNameIgnoreCase(staff.getStaffName().staffName, keyword));
+                .anyMatch(keyword -> StringUtil.containsNameIgnoreCase(staff.getStaffName().staffName, keyword));
     }
 
     @Override

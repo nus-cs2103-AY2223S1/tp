@@ -82,7 +82,7 @@ public class Staff {
 
     /**
      * Returns true if both staff members have the same identity and data fields.
-     * This defines a stronger notion of equality between two staff.
+     * This defines a stronger notion of equality between two staff members.
      */
     @Override
     public boolean equals(Object other) {
