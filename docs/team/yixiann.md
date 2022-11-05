@@ -17,14 +17,13 @@ The two main functionalities of FoodRem are the inventory management system and 
 The inventory management system uses an efficient tagging system where you can create, rename, and delete existing tags. We are also able to sort and filter items by different attributes.
 The Inventory Analysis System tracks data that helps restaurants streamline their business decisions through statistics.
 
-
 Given below are my contributions to the project.
 
-* **Major Refactoring**: Refactor AB3 into FoodRem 
+* **Major Refactoring**: Refactor AB3 into FoodRem
 
   * What it does: Removes all occurrences of AB3. Converts the `Person` class into an `Item` class.
-  * Justification: This was essential in creating the minimum viable product and laid the groundwork for further extensions. 
-  * Highlights: 
+  * Justification: This was essential in creating the minimum viable product and laid the groundwork for further extensions.
+  * Highlights:
     * The refactoring was a challenging process as the changes must be documented along with the test cases. It was critical to ensure the test cases were still relevant to the `Item` class rather than `Person` class.
     * The refactoring meant that all commands of AB3 were extensively modified to suit FoodRem:
       * Command to list all items
@@ -38,13 +37,11 @@ Given below are my contributions to the project.
     * Commands such as the help, exit and reset, commands required minimal changes.
   * Pull requests : [Refactoring Person to Item PR\#157](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/157))
 
-
 * **New Feature**: Added the ability to add a remark
 
   * What it does: Allows the user to add a remark to an item.
   * Justification: This feature improves the user's experience as they are now able to include notes specific to an item.
   * Pull requests : [Add remarks fields and remarks command PR#254](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/254))
-
 
 * **New Feature**: Add the user interface for tags
   * What it does: Allows the user to view results of tag commands in a beautiful format rather than plain text.
@@ -52,13 +49,11 @@ Given below are my contributions to the project.
   * The implementation was extended from the current UI of Items which was created by Richard Dominick.
   * Pull requests : [Add UI for tags PR#340](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/340)
 
-
 * **Enhancements to the `help` command**:
 
   * Enhanced `help` command to provide help for individual commands rather than a generic message.
   * Enumeration of CommandWords was done.
   * Pull requests : [Modify help command to provide help for each individual command PR#201](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/201))
-
 
 * **Enhancements to the `inc` and `dec` command**:
 
@@ -66,28 +61,23 @@ Given below are my contributions to the project.
   * This was done to make it easier to increment and decrement the quantity of an item.
   * Pull requests : [Modify increment and decrement command to have optional qty prefix PR#183](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/183))
 
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=yixiann&tabRepo=AY2223S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-
 
 * **Project management**:
 
   * Created the following milestones `V1.1, V1.2, V1.3, V1.4`
-  * These milestones were essential in ensuring the group on track in our tasking. 
-  
+  * These milestones were essential in ensuring the group on track in our tasking.
 
 * **Documentation**:
 
   * User Guide:
-    * Add skeleton for the user guide [PR#35](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/35)
-    * Add value preposition of FoodRem in the user guide [PR#147](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/147)
-    * Update Quick Start of user guide, and reorganise content page [PR#141](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/141)
+    * Add skeleton for the User Guide [PR#35](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/35)
+    * Add value preposition of FoodRem in the User Guide [PR#147](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/147)
+    * Update Quick Start of User Guide, and reorganise content page [PR#141](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/141)
     * Add documentation for the `help` feature [PR#90](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/90)
 
-    
   * Developer Guide:
-    * Added about us section for the developer guide.
-
+    * Added about us section for the Developer Guide.
 
 * **Community**:
 
@@ -97,10 +87,11 @@ Given below are my contributions to the project.
     * Stats command fail on FoodRem having less than 3 items [Issue#447](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/447)
     * Rename tag does not modify tags in items [Issue#293](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/293)
     * Rename tag to same name is possible [Issue#273](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/273)
-    
+
 Other PRs:
+
 * Update AboutUs page ([PR#14](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/14))
-* Add skeleton for user guide ([PR#35](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/35))
+* Add skeleton for User Guide ([PR#35](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/35))
 * Update aboutUs page to include information about Yi Xian ([PR#89](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/89))
 * Update userguide to include help command ([PR#90](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/90))
 * Add skeletal PPP ([PR#91](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/91))
@@ -109,7 +100,7 @@ Other PRs:
 * Remove boilerplate and update roles in About Us page ([PR#100](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/100))
 * Point CI banners to own project and remove traces of AB3 in README.md ([PR#102](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/102))
 * Add use case 7, use case 8 and user stories for inventory items ([PR#129](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/129))
-* Update Quick Start of user guide, reorganise content page ([PR#141](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/141))
+* Update Quick Start of User Guide, reorganise content page ([PR#141](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/141))
 * Change TYPE to UNIT in UserGuide.md ([PR#145](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/145))
 * Add value preposition ([PR#147](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/147))
 * Refactoring Person to Item 2 ([PR#157](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/157))
@@ -135,7 +126,7 @@ Other PRs:
 * Fix rename tag not changing tags within items ([PR#296](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/296))
 * Fix storage modification causing bugs ([PR#298](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/298))
 * Create welcome message for user that shows error if datafile has issue ([PR#299](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/299))
-* Show empty foodrem when data file is corrupted ([PR#303](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/303))
+* Show empty FoodRem when data file is corrupted ([PR#303](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/303))
 * Add tag related images ([PR#314](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/314))
 * Centralise logic for validate string regex ([PR#316](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/316))
 * Add remarks to help ([PR#317](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/317))
@@ -147,7 +138,7 @@ Other PRs:
 * Update UG ([PR#359](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/359))
 * Add storage restriction to items and tags ([PR#362](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/362))
 * Apply negative index validation to all commands ([PR#365](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/365))
-* Update user guide to match changes to codebase ([PR#368](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/368))
+* Update User Guide to match changes to codebase ([PR#368](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/368))
 * Fix date validation ([PR#370](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/370))
 * Update find to match new find ([PR#371](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/371))
 * Update help command to use ITEM_NAME and TAG_NAME instead of NAME ([PR#374](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/374))
