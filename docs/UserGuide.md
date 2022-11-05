@@ -516,9 +516,10 @@ ArtBuddy offers the following commands to help you manage your iterations:
 * [Deleting an iteration from commission: `deliter`](#deleting-an-iteration-from-commission-deliter)
 
 ### Adding an iteration to a commission: `additer`
-Just like the other add commands, adding iterations can be done either via the command-line, or via the graphical interface.
+Adds an iteration to the currently selected commission. This can be done either by the
+[CLI](#adding-by-the-command-line-interface) or [GUI](#adding-by-graphical-interface).
 
-**Adding by the Command-Line Interface**
+##### Adding by the Command-Line Interface
 
 Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
 
@@ -542,17 +543,15 @@ to [Appendix: Limitations with file paths in CLI](#limitations-with-file-paths-i
 </div>
 <br>
 
-**Adding by Graphical Interface**
+##### Adding by Graphical Interface
 
-Adding an iteration can also be done via the graphical interface by clicking on
-the **Add Iteration** button inside the Commission you wish to add the iteration to.
+1. Click on the **Add Iteration** button inside the Commission you wish to add the iteration to.
 
 ![AddIterationButton](images/AddIterationButton.png)
 
-A new window will then pop up, where you will be prompted to fill in the details of
-the new iteration. An image can be added to the iteration by selecting a file in
-your file manager by clicking on the **Add Image** button, or by dragging and dropping
-an image to the grey image drop area.
+2. Fill in the details of the new iteration in the window that pops up.
+   * An image can be added to the iteration by selecting a file in your file manager by clicking on the
+   **Add Image** button, or by dragging and dropping an image to the grey image drop area.
 
 ![AddIterationWindow](images/AddIterationWindow.png)
 

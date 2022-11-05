@@ -1,5 +1,5 @@
 title: "ArtBuddy"
-theme: minima
+remote_theme: just-the-docs/just-the-docs
 
 header_pages:
   - UserGuide.md
