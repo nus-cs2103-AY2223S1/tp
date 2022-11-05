@@ -74,6 +74,36 @@ Given below are my contributions to the project.
 
   <br>
 
+## Contributions to team-based tasks:
+
+* Setting up the GitHub team org/repo
+* Changed the product icon to the current version (ledger with pen) using GIMP
+* Managed the usage of fonts (Bender and MinionPro)
+* Maintaining the issue tracker, marked duplicate bugs after the PE-D, separated true bugs from feature flaws, and trimmed the bug count to related to unique issues only.
+* Released version v1.3.1 for PE-D
+* Fixed 16 bugs after PE-D
+
+  <br>
+
+## Review/mentoring contributions:
+
+* Reviewed contributions by other group members, giving suggestions for improvement
+    * Correcting regex expressions
+    * Suggesting a better way to provide the same functionality by refactoring code
+    * Suggesting the usage of streams over declarative loops to increase readability
+* Gave comments on suggestions for bug fixes in the issues tab
+    * Wrote the probable cause of bug issues
+    * Wrote the suggested fix for bug issues
+    * Tested for bugs myself, using the ideas for the same bugs found during the PE-D test for another group, and published issues based on bugs found in the issues sections (not opening on Ubuntu 22.04, double parsing issue for values greater than or equals to 1.0E^7)
+
+  <br>
+
+* **Contributions beyond the project team**:
+* Frequently posted in the forums during the month of September to help other on iP related issues, such as setting the background, smoke testing and basic feature development.
+* During the PE-D, authored issues based on the structure of `Description`, `Steps to reproduce` and `Suggestion`, making the issues clear and reproducible and providing a starting point for any potential fixes.
+
+-------------------
+
 <div style="break-after:page"></div>
 
 ## Contributions to the UG:
@@ -213,34 +243,160 @@ Word | Definition
 ### Contributions to the DG:
 
 1. Added Edit sequence diagram involving either searching by index or by name
-2. UI activity diagram that describes how a user would interact with the UI
-3. Updated the Person Class Diagram by adding the loans property to the Person Class Diagram
-4. Wrote the section involving `inspect`, `showNotes` and `hideNotes`
+
+![EditSequenceDiagram](../images/EditSequenceDiagram.png)
+
+2. Added Sequence diagram for the `inspect` command
+
+![InspectSequenceDiagram](../images/InspectSequenceDiagram.png)
+
+3. Wrote the section involving UI design
+
+<blockquote>
+
+### General UI Design and Mechanism
+
+#### Implementation
+
+During the creation of the new UI, a lot of the FXML structure and the relationships between containers of the UI had to be refactored.
+
+![](../images/UIComponentsLabeled.png)
+
+The UI is divided into 2 major sections - one occupied by the `CommandBox` and another occupied by the `WindowAnchorPane`.
+
+The `WindowAnchorPane` consists of an StackPane.
+- The `ResultDisplay` is in the first layer
+  - The `PersonListPanel`, `InspectionPanel` and the `NotesListPanel` are in the second layer below.
+
+The `ResultDisplay` is _click-through_ (does not capture any mouse clicks) and normally has an opacity of 0, so it is effectively hidden.
+
+The `InspectionPanel` is another anchor pane divided into two left and right elements:
+- A basic information `HBox` on the left
+  - A loan history list view display on the right
+
+These two elements in the `InspectionPanel` will always maintain the same ratio, basic information to loan history list view, of 2:3.
+
+When the user clicks the `CommandBox` or presses the `SPACE` key, this triggers an event on the `CommandBox` that invokes a transition to the `ResultDisplay` to show the display. As it is on the first layer, the `ResultDisplay` will partially cover the elements below it.
+
+Note that the `ResultsDisplay` never reach full opacity, instead an opacity of 0.8 allows the elements below to be partially visible.
+
+Here are the anchor points of the three major panes within the second layer of `WindowAnchorPane`:
+
+- The `PersonListPanel` has a left anchor of `0`, top anchor of `0`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0.45` with respect to window height (starting from top).
+  - The `InspectionPanel` has a left anchor of `0`, top anchor of `0.45`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+  - The `NotesListPanel` has a left anchor of `0.6`, top anchor of `0`, right anchor of `0` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+
+The arbitrary values above are actually boundaries shared by the three panels and may be manipulated to change the view of the three major elements together. We may imagine the `PersonListPanel` to be glued to the `NotesListPanel` on its right and the `InspectionPanel` below, likewise for the other two elements. This allows the ratios to be adjusted together by simply change the vertical anchor or horizontal anchors.
+
+The Observer Pattern is prevalent throughout the UI design in order to update other components in response to any change to the UI. One such example is the [`inspect` command](#inspect-feature).
+
+#### Design Considerations
+
+As the main window of the application is resizable, the ratio of the anchors maintains the aspect of each panel with respect to the window size (unlike constant values which will not change according to window size).
+
+The resizing is handled through the _Observer Pattern_, thankfully existing by default in JavaFX, which updates the proportions of the components upon any change to the height or width of the window.
+
+The main problem came from estimating the correct current space allocated by the window size.
+
+As the three main components are within the `WindowAnchorPane`, and the `WindowAnchorPane` shares its space with an unnamed `StackPane` described by the structure above, this meant that the `WindowAnchorPane` has less space than the actual window size. To make things worse, JavaFX overestimates the actual scene proportions in relation to the window size.
+
+A padding of around 200px was used to help `WindowAnchorPane` displace it's top height to the true position it is at and a bottom padding of 20px was added to give some room from the bottom of the window. The height and width passed into function resizing the anchor panes must always be adjusted according the scene size and the offsets.
+
+A visual defect exists when the screen size exceeds 1080p, as the Inspection Panel is no longer able to stay attached to the anchor point at the bottom of the screen. This defect worsens as the window gets taller.
+
+</blockquote>
+
+<br>
+
+4. UI activity diagram that describes how a user would interact with the UI
+
+![](../images/UIActivityDiagram.png)
+
+5. Updated the UI Class Diagram to reflect the current state of the UI organisation.
+![](../images/UiClassDiagram.png)
+
+7. Updated the Person Class Diagram by adding the loans property to the Person Class Diagram
+
+![Person Class Diagram](../images/PersonClassDiagram.png)
+
+7. Wrote the section involving `inspect`, `showNotes` and `hideNotes`
+
+<blockquote>
+
+### Inspect Feature
+
+#### Implementation
+
+The inspect command is a UI-Centric command that controls which person's details are currently shown in the inspection panel.
+
+This is functionally similar to clicking on a person's card, which also updates the information in the inspection panel.
+
+This features uses an Observer on the `SelectionModel` of the `ListView` of persons, updating the `InspectionPanel` whenever a new person is selected.
+
+Step 1. The user executes `'inspect David'` command to view the details of David.
+
+Step 2. An `InspectCommandParser` is parsed with `David`.
+
+Step 3. The `InspectCommand` is created containing a keyword `David`.
+
+Step 4. The `InspectCommand` is executed and a `CommandResult` is created with the `UiState` `inspect` and arguments `David`.
+
+Step 5. The `MainWindow` is receives the `CommandResult` and reads the `UiState` part of the result. This directs it to update the inspect panel.
+
+Step 6. The Person List is retrieved from the `MainWindow` and its selection model is accessed. From here, if the given argument is a number, we will index the person through the order in the list. Otherwise, we will search through the entire list until first person matching the keywords is returned.
+
+Step 7. The Inspection Panel is retrieved from the main window and has its properties updated from the person's information that was returned.
+
+The following sequence diagram shows how the find command works:
+
+![InspectSequenceDiagram](../images/InspectSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `InspectCommandSequence` and `InspectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design considerations:
+
+**Aspect: How find to design a UI command**
+
+Unlike other command, this command does not mutate any underlying data. One challenge is that the execution flow is different from other commands which mutate data, making the implementation less direct.
+
+We had to find a good insertion point where the information carried from the user input could be used in the program without the need for major refactoring. We realised that the user's input is first taken in through the `MainWindow` class, and through following the function calls, would be used in `MainWindow::executeCommand`. So the inspection operation is effectively added at the end of the executeCommand just before it terminates.
+
+The procedures for `handleExit` and `handleHelp` were changed by refactoring `CommandResult` to carry an ideal state that the UI is expected to be in by the end of the execution. A switch statement was added to the bottom of the `executeCommand` function, much like how the normal commands are parsed, to deal with UI-Centric commands like `help`, `exit` and `inspect`.
+
+### Showing and Hiding the Notes Panel Feature
+
+#### Implementation
+
+Here are the anchor points of the three major panes within the `WindowAnchorPane`:
+
+- The `PersonListPanel` has a left anchor of `0`, top anchor of `0`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0.45` with respect to window height (starting from top).
+- The `InspectionPanel` has a left anchor of `0`, top anchor of `0.45`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+- The `NotesListPanel` has a left anchor of `0.6`, top anchor of `0`, right anchor of `0` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+
+Notice that the `PersonListPanel` and `InspectionPanel` share a boundary of the ratio `0.45` with respect to the window height and the both of them share a boundary of `0.6` with respect to screen width with the `NotesListPanel`.
+
+The command `hideNotes` is effectively accomplished by interpolating the ratios smoothly over time to create a sliding effect. To maintain the aspect ratio of the notes panel and prevent deformities, the right anchor interpolates from 0 to `0.6 - 1 = -0.4`, as the left anchor interpolates from `0.6` to `1`.
+
+This maintains the constant size of `x0.4` with respect to window size during the transition.
+
+A fading transition is applied across the same time to smoothly reduce the opacity of the panel.
+
+The time interval set for this transition is `0.3` seconds.
+
+The `showNotes` implementation is exactly the inverse of the `hideNotes` implementation across time.
+
+
+#### Design considerations:
+
+**Aspect: Challenges related to resizing**
+
+Because hiding the notes panel will also pull the inspection panel longer, and that the inspection panel is divided into two parts itself, the `InspectionPanel` is also further another anchor pane that maintains the ratio of the width between the basic information display and the loans history property.
+
+This concept was only implemented after the implementation of hideNotes, where visual inconsistencoes will start appearing due to disobeying the original ratio.
+
+The padding of the `InspectionPanel` also causes an issue if the right anchor of the pane is not manipulated with the left anchor, as the padding will snap the left anchor to the right of the right anchor. This causes the `InspectionPanel` to be pulled through the entire width of the `NotesListPanel` cause the entire `WindowAnchorPane` to overflow its allocated width. The consideration to slide the right anchor at a constant difference with respect to the left anchor was introduced to combat this issue.
+</blockquote>
 
   <br>
-
-* **Contributions to team-based tasks**:
-  * Setting up the GitHub team org/repo
-  * Changed the product icon to the current version (ledger with pen) using GIMP
-  * Managed the usage of fonts (Bender and MinionPro)
-  * Maintaining the issue tracker, marked duplicate bugs after the PE-D, separated true bugs from feature flaws, and trimmed the bug count to related to unique issues only.
-  * Released version v1.3.1 for PE-D
-  * Fixed 16 bugs after PE-D
-
-  <br>
-
-* **Review/mentoring contributions**:
-  * Reviewed contributions by other group members, giving suggestions for improvement
-    * Correcting regex expressions
-    * Suggesting a better way to provide the same functionality by refactoring code
-    * Suggesting the usage of streams over declarative loops to increase readability
-  * Gave comments on suggestions for bug fixes in the issues tab
-    * Wrote the probable cause of bug issues
-    * Wrote the suggested fix for bug issues
-    * Tested for bugs myself, using the ideas for the same bugs found during the PE-D test for another group, and published issues based on bugs found in the issues sections (not opening on Ubuntu 22.04, double parsing issue for values greater than or equals to 1.0E^7)
-
-  <br>
-
-* **Contributions beyond the project team**:
-  * Frequently posted in the forums during the month of September to help other on iP related issues, such as setting the background, smoke testing and basic feature development.
-  * During the PE-D, authored issues based on the structure of `Description`, `Steps to reproduce` and `Suggestion`, making the issues clear and reproducible and providing a starting point for any potential fixes.

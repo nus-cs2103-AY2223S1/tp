@@ -1,0 +1,104 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":InspectCommandParser" as InspectCommandParser LOGIC_COLOR
+participant ":InspectCommand" as InspectCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box UI UI_COLOR_T1
+participant ":ResultDisplay" as ResultDisplay LOGIC_COLOR
+participant "personListView:ListView" as ListView LOGIC_COLOR
+participant ":InspectionPanel" as InspectionPanel LOGIC_COLOR
+end box
+
+
+[-> MainWindow : executeCommand("inspect David")
+activate MainWindow
+
+MainWindow -> LogicManager : execute"("inspect David")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("inspect David")
+activate AddressBookParser
+
+create InspectCommandParser
+AddressBookParser -> InspectCommandParser
+activate InspectCommandParser
+
+create InspectCommand
+InspectCommandParser -> InspectCommand : parse("David")
+activate InspectCommand
+
+create CommandResult
+InspectCommand -> CommandResult : CommandResult(inspectionMessage, UIState.Inspect, ["David"])
+activate CommandResult
+
+
+CommandResult --> InspectCommand
+deactivate CommandResult
+
+InspectCommand --> InspectCommandParser : commandResult
+deactivate InspectCommand
+InspectCommand -[hidden]-> InspectCommandParser
+destroy InspectCommand
+
+InspectCommandParser --> AddressBookParser : commandResult
+deactivate InspectCommandParser
+InspectCommandParser -[hidden]-> AddressBookParser
+destroy InspectCommandParser
+
+AddressBookParser --> LogicManager : commandResult
+deactivate AddressBookParser
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+MainWindow -> CommandResult : getFeedbackToUser()
+activate CommandResult
+
+CommandResult --> MainWindow : feedback
+deactivate CommandResult
+
+MainWindow -> ResultDisplay : setFeedbackToUser(feedback)
+activate ResultDisplay
+ResultDisplay -[hidden]-> MainWindow
+deactivate ResultDisplay
+
+MainWindow -> CommandResult : getUiState()
+activate CommandResult
+CommandResult --> MainWindow : UIState.Inspect
+deactivate CommandResult
+
+MainWindow -> CommandResult : getArgs()
+activate CommandResult
+CommandResult --> MainWindow : ["David"]
+deactivate CommandResult
+
+MainWindow -> MainWindow : handleInspect(["David"])
+
+MainWindow -> ListView : find 1st relevant person matching "David"
+activate ListView
+
+
+ListView -> InspectionPanel : setInspectParameters()
+activate InspectionPanel
+
+ListView -[hidden]-> InspectionPanel
+ListView -[hidden]-> InspectionPanel
+ListView -[hidden]-> InspectionPanel
+deactivate InspectionPanel
+
+ListView -> ResultDisplay
+activate ResultDisplay
+
+ResultDisplay --[hidden]> ListView
+deactivate ResultDisplay
+
+deactivate ListView
+
+@enduml

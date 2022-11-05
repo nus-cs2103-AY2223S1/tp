@@ -15,8 +15,10 @@ Class PersonListPanel
 Class NoteListPanel
 Class PersonCard
 Class NoteCard
-Class StatusBarFooter
 Class CommandBox
+Class InspectPanel
+Class LoanHistoryCard
+Class WindowAnchorPane
 }
 
 package Model <<Rectangle>> {
@@ -32,36 +34,29 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
+
 MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" NoteListPanel
-MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down->  "1" WindowAnchorPane
 MainWindow --> "0..1" HelpWindow
+
+WindowAnchorPane *-down-> "1" ResultDisplay
+WindowAnchorPane *-down-> "1" PersonListPanel
+WindowAnchorPane *-down-> "1" NoteListPanel
+WindowAnchorPane *-down-> "1" InspectPanel
 
 PersonListPanel -down-> "*" PersonCard
 NoteListPanel -down-> "*" NoteCard
-
-MainWindow -left-|> UiPart
-
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-NoteListPanel --|> UiPart
-PersonCard --up|> UiPart
-NoteCard --up|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
+InspectPanel -down-> "*" LoanHistoryCard
 
 PersonCard ..> Model
 NoteCard ..> Model
+LoanHistoryCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml
