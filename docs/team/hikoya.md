@@ -7,6 +7,8 @@ title: Chan Chung Loong's Project Portfolio Page
 
 **FoodWhere is a desktop application for managing your food stall addresses and reviews.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
+FoodWhere is written in Java, with about 10 kLoC.
+
 Given below are my contributions to the project.
 
 * **New Features**
@@ -21,7 +23,7 @@ Given below are my contributions to the project.
   * Justification:
     * This enhancement is important as all other features implemented must be reflected correctly in both the stall list and review list.
 * **Enhancements to existing features**
-  * Refactoring `Address`, `Name` and `Tag` into `model.commons` package ([#119](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/119), [#224](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/224))
+  * Refactoring `Address`, `Name` and `Tag` into `model.commons` package. ([#119](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/119), [#224](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/224))
   * Justification:
     * Refactoring these fields into their own common packages helped to reduce confusion as all these fields are shared by both `Stall` and `Review`, and hence, they should be in a common package rather than situated in either `model.stall` or `model.review`.
 * **Enhancements to new features**
@@ -39,16 +41,18 @@ Given below are my contributions to the project.
     * Added new commands into command summary table and updated screenshots of User Interface. ([#125](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/125), [#227](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/227))
   * Developer Guide
     * Added use cases 1 to 5, 8 and table of user stories. ([#38](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/38), [#259](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/259))
-    * Added implementation of Review class and updated User Interface UML diagrams ([#180](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/180))
-    * Added use case for clear command ([#259](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/259))
+    * Added implementation of Review class and updated User Interface UML diagrams. ([#180](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/180))
+    * Added use case for clear command. ([#259](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/259))
+    * Fixed numbering and formatting. ([#339](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/339))
 * **Community**
   * Updated the user guide URL in the HelpWindow. ([#44](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/44))
   * Modify the default package name to `foodwhere`. ([#71](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/71))
   * Enable assertions and modified build.gradle to create the correct JAR filename. ([#81](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/81), [#184](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/184)) 
-  * Reviewed PRs with non-trivial review comments. ([#95](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/95))
+  * Reviewed PRs with non-trivial review comments. ([#95](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/95) , [#346](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/346), [#351](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/351))
   * Reported bugs and suggestions for other team in the same CS2103/T class. ([PE-Dry Run](https://github.com/Hikoya/ped/issues))
   * Improve test coverage of project. ([#329](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/329))
   * Answered questions or helped out to solve tasks posted by others in forum. ([Forum](https://github.com/nus-cs2103-AY2223S1/forum/issues?q=is%3Aissue+commenter%3AHikoya)) 
+  * Set up GitHub Projects as an issue tracker to track project progress. ([GitHub Projects](https://github.com/orgs/AY2223S1-CS2103-W14-2/projects/1))
 * **Tools**
   * IntelliJ IDEA
   * JavaFX Scene Builder
