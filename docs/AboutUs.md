@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/gabyang.png" width="200px">
 
 [[github](https://github.com/gabyang)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/gabyang.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/paullee18.png" width="200px">
 
 [[github](http://github.com/paullee18)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/paullee18.md)]
 
 * Role: Team Lead
 * Responsibilities: Model
@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/daniellimweien.png" width="200px">
 
-[[github](https://github.com/DanielLimWeiEn)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/DanielLimWeiEn)] [[portfolio](team/daniellimweien.md)]
 
 * Role: Developer
 * Responsibilities: Testing, Logic
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/tyw2811.png" width="200px">
 
 [[github](http://github.com/tyw2811)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/tyw2811.md)]
 
 * Role: Developer
 * Responsibilities: Documentation, Code Quality, Logic
@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/edricyeo.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/edricyeo.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables and Deadlines, Tracking and Scheduling, Storage

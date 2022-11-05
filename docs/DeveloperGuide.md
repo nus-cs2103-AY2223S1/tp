@@ -148,6 +148,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+Changed features will also be described here.
 
 ### Add feature
 
@@ -174,7 +175,34 @@ Step 6: The `AddCommand` communicates with the `Model` to add the person by call
 Step 7: `AddCommand` then returns a new `CommandResult` with the result of the execution.
 
 ![Sequence diagram for the Add Command](images/AddSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
+### Edit feature
+
+#### Implementation
+
+The Edit mechanism is facilitated by `EditCommand` and `EditCommandParser`. It allows users to edit a contact from their contact list and specify which attribute of the contacts' `Name`, `Phone`, `Email`, `Birthday`, `Address`, and `Tags` to be changed with the `Person` contact created.
+
+#### Example Usage
+
+Step 1: The user inputs `edit 1 p/91234567 e/johndoe@example.com`. This the phone number and email address of the person with an index of 1 to be `91234567` and `johndoe@example.com` respectively.
+
+Step 2: `LogicManager` calls `AddressBookParser#parseCommand` with the user input.
+
+Step 3: `AddressBookParser` will parse the command word and create a new `EditCommandParser` and call its function `parse` with the index as the arguments.
+
+Step 4: The `EditCommandParser#parse` will then parse the arguments and create a new `EditCommand` object.
+
+Step 5: The `LogicManager` then calls `EditCommand#execute`.
+
+Step 6: The `EditCommand` communicates with the `Model` to add the person by calling `Model#editPerson`.
+
+Step 7: `EditCommand` then returns a new `CommandResult` with the result of the execution.
+
+![Sequence diagram for the Edit Command](images/EditSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Insurance feature
 
@@ -263,7 +291,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 #### Implementation
 
-The remind mechanism is facilitated by `RemindCommand` and `RemindCommandParser`. It allows users to set a reminder message and date, for a contact from the contact list.
+The Remind mechanism is facilitated by `RemindCommand` and `RemindCommandParser`. It allows users to set a reminder message and date, for a contact from the contact list.
 
 The `Reminder` objects for each `Person` is stored in the `Person` object as a `SortedList` where the predicate for sorting is based on the `date` attribute in `Reminder`.
 
@@ -555,13 +583,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. The system should save the data after each command has been processed.
 
 
-### Glossary
+### Full Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **GUI**: Graphical User Interface - A system of interactive visual components for computer software
 * **CLI**: Command Line Interface - A text based user interface to run programs
-
+* **Index**: A number indicating the order of a person within the contact list, used in conjunction with commands
+* **Parameter**: Refers to the information typed along with the commands. For example the command `add n/John Doe` means that the parameter is `n/John Doe`
+* **UML**: Unified Modelling Language - A Language based on drawing diagrams to describe models of the codebase
+* **UML Sequence Diagram**: Sequence diagrams model the interactions between various entities in a system, in a specific scenario.
+  Modelling such scenarios is useful, for example, to verify the design of the internal interactions is able to provide the expected outcomes.
+* **UML Activity Diagram**: activity diagrams (AD) can model workflows.  Flow charts are another type of diagram that can model workflows. 
+Activity diagrams are the UML equivalent of flow charts.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix B: Instructions for manual testing**
@@ -573,47 +607,275 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launching the application
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder and navigate to the folder.
 
-   1. Double-click the jar file Expected: Shows the _GUI_ with a set of sample contacts. The window size may not be optimum.
+   1. Ensure that you have the correct version of `java 11` installed by doing `java --version`.
+
+   1. Run the command `java -jar Friendnancial.jar` : Shows the _GUI_ with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to the desired size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Re-launch the app by rerunning the command `java -jar Friendnancial.jar`.<br>
+      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+
+### Adding a person
+
+1. Adding a person successfully
+
+   1. Prerequisites: The user has opened the `Friendnancial.jar` and the application is running.
+
+   1. Test Case: `add n/John Doe p/98765432 e/johndoe@successfultest.com a/John Street, Block 123, #01-01 b/18-08-2000 t/friend`<br>
+      Expected: A contact named John Doe has been added to Friendnancial with all optional and required fields present.
+
+   1. Test Case: `add n/Jane Doe p/92345678 e/janedoe@successfultest.com a/Jane Street, Block 321 #01-01 b/18-09-2000`<br>
+      Expected: A contact named Jane Doe has been added to Friendnancial with all required fields present.
+
+1. Adding a person unsuccessfully
+
+   1. Prerequisites: The user has opened the `Friendnancial.jar` and the application is running.
+
+   1. Test Case: `add n/Johnny Doe p/98761234 a/Johnny Street, Block 231, #04-21 b/18-07-2000`<br>
+      Expected: No contact named Johnny Doe is added to Friendnancial. Error details are shown in the status message in the application. The command fails with missing required fields.
+
+   1. Test Case: `add n/Daniel s/o Danny p/98765431 e/daniel@failingtest.come a/Daniel Street, Block 132, #04-23 b/18-01-2000`<br>
+      Expected: No contact named Daniel s/o Danny is added to Friendnancial. Error details are shown in the status message in the application. Only alphenumeric values are allowed for names.
+
+
+### Editing a person
+
+1. Editing a person while persons are being shown successfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `edit 1 p/12345678`<br>
+      Expected: First contact has their phone field updated and the display has been updated to reflect this change. Details of the edit are shown in the status message. Single edit changes are allowed.
+
+   1. Test Case: `edit 1 p/123456789 e/newemail@email.com`<br>
+      Expected: First contact has their phone and email field updated and the display has been updated to reflect change. Details of the edit are shown in the status message. Multiple fields can be updated at once.
+
+1. Editing a person while persons are being shown unsuccessfully
+
+    1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+    1. Test Case: `edit 1`<br>
+       Expected: First contact has no fields updated. Error details are shown in the status message. Must specify fields to edit.
+
+    1. Test Case: `edit 0`<br>
+       Expected: No fields are updated at all across all contacts. Error details are shown in the status message. Index must be positive integer.
+
+1. Editing a person while no persons are being shown.
+
+    1. Prerequisites: List of contacts contains no persons.
+
+    1. Test Case: `edit 1 p/98765432`<br>
+       Expected: No fields are updated. Error details are shown in the status message. There must be persons in the list of contacts to edit.
+
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person while persons are being shown successfully
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test Case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Deleting by index.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test Case: `delete n/[VALID NAME]`<br>
+      Expected: The contact with the matching `NAME` is deleted from the list. Details of the deleted contact shown in the status message. Deleting by valid name.
+
+1. Deleting a person while persons are being shown unsuccessfully.
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `delete 0`<br>
+      Expected: No person is deleted. Error details shown in the status message. Deleting by wrong index.
+
+   1. Test Case: `delete n/[INVALID NAME]`<br>
+      Expected: No person is deleted. Error details shown in the status message. Deleting by wrong name.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a person while no persons are being shown
+
+   1. Prerequisites: List of contacts contains no persons.
+
+   1. Test Case: `delete n/[VALID NAME]`<br>
+      Expected: No contacts are deleted. Error details are shown in the status message. Deleting when no contacts are shown.
+
+   1. Test Case: `delete 1`<br>
+      Expected: No contacts are deleted. Error details are shown in the status message. Deleting when no contacts are shown.
+
+
+### Updating insurance
+
+1. Updating a person's insurance while persons are being shown successfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `insurance 1 hi/`<br>
+      Expected: First contact is shown to have health insurance and no other insurance. Details of the updated insurance policy are shown in the status message. Updating single insurance.
+
+   1. Test Case: `insurance 1`<br>
+      Expected: First contact is shown to have no insurance. Details of the removed insurance policies are shown in the status message. Removing insurance.
+
+   1. Test Case: `insurance 1 hi/ di/ ci/ li/`<br>
+      Expected: First contact is shown to have all types of insurance. Details of the updated insurance policies are shown in the status message. Updating all insurance.
+
+1. Updating a person's insurance while persons are being shown unsuccessfully.
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `insurance 0 hi/`<br>
+      Expected: No insurance policies are updated. Error details shown in the status message. Updating insurance with wrong index.
+
+1. Updating a person's insurance while persons are being shown unsuccessfully.
+
+   1. Prerequisites: List of contacts contains no persons.
+
+   1. Test Case: `insurance 1`<br>
+      Expected: No insurance policies are updated. Error details are shown in the status message. Updating insurance when no contacts are shown.
+
+
+### Adding a reminder
+
+1. Adding a reminder to a person while persons are being shown successfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `remind 1 r/Test Task d/18-09-2025`<br>
+      Expected: Add a reminder tied to person at index 1 with specified details. Details of the reminder are shown in the status message.
+
+1. Adding a reminder to a person while persons are being shown unsuccessfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `remind 0 r/Test Task d/18-09-2026`<br>
+      Expected: No new reminder is added. Error details are shown in the status message. Incorrect index to add a reminder to.
+
+   1. Test Case: `remind 1 r/Testing Task d/1926-07-22`<br>
+      Expected: No new reminder is added. Error details are shown in the status message. Wrong date format.
+
+1. Add a reminder to a person while no persons are being shown.
+
+   1. Prerequisites: List of contacts contains no persons.
+
+   1. Test Case: `remind 1 r/Testing Testing 1, 2, 3 d/18-09-2024`<br>
+      Expected: No reminders are added. Error details are shown in the status message. There must be persons in the list of contacts to add reminder.
+
+
+### Deleting a reminder
+
+1. Deleting a reminder successfully
+
+   1. Prerequisites: At least one reminder in the list of reminders.
+
+   1. Test Case: `deleteR 1`<br>
+      Expected: Deletes the reminder at index 1. Details of the deleted reminder are shown in the status message.
+
+1. Deleting a reminder unsuccessfully
+
+   1. Prerequisites: At least one reminder in the list of reminders.
+
+   1. Test Case: `deleteR 0`<br>
+      Expected: No reminder is deleted from the list of remindres. Error details are shown in the status message. Incorrect reminder index.
+
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+
+### Listing all contacts
+
+1. Listing all contacts
+
+   1. Run the `list` command.
+      Expected: All the contacts in Friendnancial are displayed to the user.
+
+   1. Users can then view all contacts as desired.
+
+
+### Finding specific contacts
+
+1. Finding contacts while persons are being shown successfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `find n/[VALID NAME]`<br>
+      Expected: Finds contact that have matching valid names. Details of the find command are shown in the status message. Single field search.
+
+   1. Test Case: `find t/[VALID TAG]`<br>
+      Expected: Finds contact that have matching valid tags. Details of the find command are shown in the status message.
+
+   1. Test Case: `find b/[VALID BIRTHDAY]`<br>
+      Expected: Finds contact that have matching valid birthdays. Details of the find command are shown in the status message.
+
+   1. Test Case: `find`<br>
+      Expected: Finds all contacts. Details of the find command are shown in the status message.
+
+   1. Test Case: `find n/[VALID NAME] t/[VALID TAG]`<br>
+      Expected: Finds contacts that match all the details giving. Details of the find command are shown in the status message. Multiple field search.
+
+1. Find contacts while persons are being shown unsuccessfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `find x/`<br>
+      Expected: Find command fails. Error details are shown in the status message.
+
+1. Find contacts while no persons are being shown.
+
+   1. Prerequisites: List of contacts contains no persons.
+
+   1. Test Case: `find`<br>
+      Expected: Finds no contacts. Find details are shown in the status message. No persons are found.
+
+
+### Viewing help
+
+1. Viewing the help menu
+
+   1. Run the `help` command or click the help button on the display.
+      Expected: A popup appears displaying the link to the user guide.
+
+   1. Users can copy the link and visit the User Guide for more information.
+
+
+### Clearing all entries
+
+1. Clearing all entries
+
+   1. Run the `clear` command from the application.<br>
+      Expected: All contacts and reminders are cleared from the display of the application.
+
+   1. You may then add new contacts to the application as desired.
+
+
+### Exiting the Application
+
+1. Closing the application when finished
+
+   1. Exit the application using the `exit` command or by closing the window.<br>
+   Expected: The application will close and all the changes made will be saved.
+
+   1. You may then reopen the application and continue using it.
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Access to the `/data` folder that will be created in the same folder containing the `Friendnancial.jar` file.
 
-1. _{ more test cases …​ }_
+   1. Test Case: Navigate to the `/data` folder that is in the same folder containing the `Friendnancial.jar` file and delete the `addressbook.json` file. Then reopen the application. <br>
+      Expected: The application will be repopulated with the initial starting data and no changes saved.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
