@@ -8,11 +8,9 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.logic.parser.DateParser;
 import taskbook.logic.parser.exceptions.ParseException;
-import taskbook.model.person.Email;
 import taskbook.model.person.Name;
 import taskbook.model.tag.Tag;
 import taskbook.model.task.Description;
@@ -80,7 +78,7 @@ public class JsonAdaptedEvent extends JsonAdaptedTask {
         final Assignment modelAssignment = Assignment.valueOf(this.getAssignment());
 
         if (this.getDescription() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(this.getDescription())) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -95,7 +93,7 @@ public class JsonAdaptedEvent extends JsonAdaptedTask {
         try {
             modelEventDate = DateParser.parse(getEventDate());
         } catch (ParseException e) {
-            throw new IllegalValueException("Date of Event should be in supported date formats.");
+            throw new IllegalValueException("Event Date should be in supported date formats.");
         }
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
