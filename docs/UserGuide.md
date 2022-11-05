@@ -188,7 +188,7 @@ Examples:
 * `tag create potential` Creates a tag called `potential`
 * `tag create potential highPriority lowPriority` Creates 3 tags called `potential`, `highPriority` and `lowPriority`.
 
-![imageedit_2_2454502168.png](images/createTag.png)
+![imageedit_2_2454502168.png](images/tagCreate.png)
 
 ### Tagging clients : `tag`
 
@@ -217,7 +217,7 @@ View all available tags.
 
 Format: `tag list`
 
-![imageedit_4_6370390561.png](/Users/cyanaspect/Downloads/imageedit_4_6370390561.png)
+![imageedit_4_6370390561.png](images/tagList.png)
 
 ### Removing tags from a client : `tag remove`
 
