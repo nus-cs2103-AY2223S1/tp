@@ -42,7 +42,7 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
       - [Editing Notes : `editNote`](#editing-notes--editnote)
       - [Deleting Notes : `deleteNote`](#deleting-notes--deletenote)
       - [Locating a note by title : `findNote`](#locating-a-note-by-title--findnote)
-      - [Listing Notes : `listNotes`](#listing-notes--listnotes)
+      - [Listing Notes : `listNotes`](#listing-notes--listnote)
       - [Sorting Notes : `sortNotes` `[coming in v2.0]`](#sorting-notes--sortnotes-coming-in-v20)
       - [Hiding notes panel : `hideNotes`](#hiding-notes-panel--hidenotes)
       - [Showing notes panel : `showNotes`](#showing-notes-panel--shownotes)
@@ -100,6 +100,8 @@ pay attention to. </div>
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** used to highlight dangers and things to look out for. </div>
 
 In addition, for better readability, icons in this guide have been colored black. In the actual application, colors may be inverted, but their shape will remain the same.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** This User Guide contains many clickable links. Use the keyboard shortcuts <code>Alt + Left arrow</code> and <code>Alt + Right arrow</code> to navigate back and forth between links quickly. (<code>Command + Left arrow</code> and <code>Command + Right arrow</code> for Mac)</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -208,7 +210,7 @@ Each note contains an index, a title, contents and tags.
 </p>
 <center style="font-size:3mm;">A note card.</center>
 
-The index of the notes only applies to the currently displayed list, it **is not** tied to the note itself.
+The index of the notes only applies to the currently displayed list, it is **not** tied to the note itself.
 
 Both the People Panel and Notes Panel share a pool of tags to more easily relate a group of people to a specific note.
 
@@ -246,21 +248,21 @@ This property<sup>[12](#glossary)</sup> can be identified in the GUI<sup>[4](#gl
   <tr>
     <th>Valid Examples</th>
     <td>
-     <code>Samuel West</code><br/>
-     <code>Jonathan Lee Wen Xin</code></br>
-     <code>Jack Robert the 3rd</code></br>
-     <code>3Lite M1k0ch1</code></br>
+     <code>Samuel West</code><br>
+     <code>Jonathan Lee Wen Xin</code><br>
+     <code>Jack Robert the 3rd</code><br>
+     <code>3Lite M1k0ch1</code><br>
      <code>Elizabeth Wong n11</code>
     </td>
   </tr>
   <tr>
     <th>Invalid Examples</th>
     <td>
-     <code>@*)^%</code> (Non-alphanumeric characters are not accepted)</br>
-     <code>Jack Robert the 3</code> (Number may not exist as a standalone word)</br>
-     <code>Elizabeth Wong 11</code> (Number may not exist as a standalone word)</br>
-     <code>Jonathan 25 Chin</code> (Number may not exist as a standalone word)</br>
-     <code>(25) Jonathan Chin</code> (Non-alphanumeric characters cannot be used adjacent to numbers)</br>
+     <code>@*)^%</code> (Non-alphanumeric characters are not accepted)<br>
+     <code>Jack Robert the 3</code> (Number may not exist as a standalone word)<br>
+     <code>Elizabeth Wong 11</code> (Number may not exist as a standalone word)<br>
+     <code>Jonathan 25 Chin</code> (Number may not exist as a standalone word)<br>
+     <code>(25) Jonathan Chin</code> (Non-alphanumeric characters cannot be used adjacent to numbers)<br>
     </td>
   </tr>
 </table>
@@ -604,7 +606,7 @@ Format: `delete INDEX <OR> NAME`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the SectresBook.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `delete Betsy` deletes the entry belonging to Betsy in the SectresBook
+* `delete Betsy` deletes the entry belonging to Betsy in the SectresBook.
 * `delete Lynette` does not perform any operation, if Lynette does not exist in the SectresBook.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -614,8 +616,8 @@ To delete everyone at the same time, please refer to the <a href="#clearing-all-
 [Back to Table of Contents](#table-of-contents)
 
 #### Locating persons by name or contact number : `find`
-
-Finds persons whose names match any of the given keywords, or phone numbers contain any of the given keywords (in digits).
+Finds the names of persons that match the given keywords, or phone numbers of persons that start with any of the given keywords (in digits).
+Finds persons whose names match any of the given keywords, or persons whose phone numbers start with any of the given keywords (in digits).
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 The People Panel will show a `FILTERED` indicator to inform you that the list has been filtered.
@@ -726,6 +728,8 @@ Finds the notes whose titles match any of the given keywords.
 The Notes Panel will show a `FILTERED` indicator to inform you that the list has been filtered.
 </div>
 
+<img src="images/NotesFilteredIcon.png" width="256">
+
 The search is not case-sensitive. For example, `meeting` will match any notes containing the word `Meeting`. As in find for persons, the order of the keywords also does not matter, and `Meeting Club` will also match a note called `Club Meeting`.
 
 Please be informed that only the title will be search. Contents will not be searched through this command. 
@@ -735,8 +739,6 @@ Although the title may contain special characters such as `,`, `.`, `?` or `!`, 
   * `2` will match `shirt 2` but will not match `shirt2`, as `shirt2` is an entire word by itself.
   * To search for `Upcoming club meeting!`, `meeting!` is not allowed as a keyword as it contains a special character, but `meeting` is allowed.
   * `tshirt` will not match `t–shirt` as `t-shirt` is now treated as two words, `t` and `shirt` with the special character `-` being treated as a spacing.
-
-<img src="images/NotesFilteredIcon.png" width="256">
 
 Format: `findNote KEYWORD [MORE_KEYWORDS]`
 
@@ -810,10 +812,10 @@ After executing `showNotes`:
 [Back to Table of Contents](#table-of-contents)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
-**Q** Why are `hideNotes` and `showNotes` in plural, but the rest of the operations in singular nouns?<br>
-**A** `hideNotes` and `showNotes` are a separate class of commands that are _UI-Centric_, meaning that they only operate on the user interface, as they only shift a panel in the UI, and do not modify any underlying data of the application. The pluarity of the command disambiguities its usage from the other commands that mutates data. For more information, please read our developer guide.
+**Q** Why are `hideNotes` and `showNotes` in plural, but the rest of the operations in singular nouns?<br><br>
+**A** `hideNotes` and `showNotes` are a separate class of commands that are _UI-Centric_, meaning that they only operate on the user interface, as they only shift a panel in the UI, and do not modify any underlying data of the application. The pluarity of the command disambiguates its usage from the other commands that mutates data. For more information, please read our developer guide.
 
-To ease interpretation, you may read `showNotes` as _"show the **notes panel**"_ or `hideNotes` as _"hide the **notes panel**"_, while `listNote` may be read as _"list each individual **note**"_, `findNote` as _"find each **note** matching"_ and "editNote" as _"edit this **note**"_.
+To ease interpretation, you may read `showNotes` as _"show the **notes panel**"_ or `hideNotes` as _"hide the **notes panel**"_, while `listNote` may be read as _"list each individual **note**"_, `findNote` as _"find each **note** matching"_ and `editNote` as _"edit this **note**"_.
 </div>
 
 ### General Features
@@ -1023,7 +1025,7 @@ No. | Word                             | Definition
 14| **Tag**                          | A label that groups related people together, such that they can be referred to as a single encapsulated entity specified by the tag.
 15| **Terminal**                     |  A text-based interface to the computer
 16| **Treasurer**                    | A person that manages the finances and monetary transactions related to the operations of an organisation.
-17| **Whitespace**                   | A space character ` `
+17| **Whitespace**                   | A space character <code> </code>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -1084,10 +1086,10 @@ No. | Word                             | Definition
 Action | Format | Examples
 --------|----------------------|--------
 **Add a person** | `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS bday/BIRTHDAY [tag/TAG]…​`                | `add name/James Ho phone/22224444 email/jamesho@example.com home/123, Clementi Rd, 1234665 bday/01/01/2000 tag/friend tag/colleague`
-**Edit a person** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY][tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
-**Edit the loan of a person** | `editLoan INDEX amt/AMOUNT reason/REASON`                                                            | `editLoan 1 amt/-20 reason/Buy Logistics`
-**Delete a person** | `delete INDEX`<br>`delete NAME`                                                                      | `delete 3` <br> `delete Jane`
-**Find a person** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER`                                                    | `find James Jake` <br> `find 8651`
+**Edit a person** | `edit INDEX <OR> NAME [name/NAME] [phone/PHONE] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY] [tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
+**Edit the loan of a person** | `editLoan INDEX <OR> NAME amt/VALUE reason/REASON`                                                            | `editLoan 1 amt/-20 reason/Buy Logistics`
+**Delete a person** | `delete INDEX <OR> NAME`                                                                      | `delete 3` <br> `delete Jane`
+**Find a person** | `find KEYWORD [MORE_KEYWORDS]`                                                    | `find James Jake` <br> `find 8651`
 **List every person** | `list`                                                                                               | `list`
 
 [Back to Table of Contents](#table-of-contents)
@@ -1140,7 +1142,7 @@ Action | Format | Examples
 Action | Format                    | Examples
 -------|---------------------------|----------|
 **Find Tag** | `findTag TAG [MORE_TAGS]` | `findTag Operations Outreach`
-**Inspect** | `inspect NAME <OR> INDEX` | `inspect Alex` or `inspect 1`
+**Inspect** | `inspect INDEX <OR> NAME` | `inspect 1` or `inspect Alex`
 **Help** | `help`                    | `help`
 **Clear all data** | `clear`                   | `clear`
 **Exit** | `exit`                    | `exit`
