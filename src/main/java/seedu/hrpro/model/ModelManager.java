@@ -208,21 +208,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeStaffFromProject(ProjectName projectName, Index index) {
+    public boolean removeStaffFromProject(ProjectName projectName, Index index) {
         requireNonNull(projectName);
         requireNonNull(index);
 
         for (Project currentProject : this.filteredProjects) {
             if (currentProject.getProjectName().toString().equalsIgnoreCase(projectName.toString())) {
-                if (index.getZeroBased() >= currentProject.getStaffList().size()) {
-                    return;
-                } else {
-                    Staff toRemove = this.filteredStaff.get(index.getZeroBased());
-                    currentProject.getStaffList().remove(toRemove);
-                    break;
+                Project toDeleteFrom = currentProject;
+                Staff toRemove = this.filteredStaff.get(index.getZeroBased());
+                UniqueStaffList staffList = toDeleteFrom.getStaffList();
+                if (!staffList.contains(toRemove)) {
+                    return false;
                 }
+                staffList.remove(toRemove);
+                return true;
             }
         }
+        return false;
     }
 
     @Override

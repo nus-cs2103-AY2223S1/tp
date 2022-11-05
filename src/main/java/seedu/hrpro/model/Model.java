@@ -163,7 +163,7 @@ public interface Model {
     /**
      * Removes the staff at {@code index} from the staff list of the project with {@code projectName}.
      */
-    void removeStaffFromProject(ProjectName projectName, Index index);
+    boolean removeStaffFromProject(ProjectName projectName, Index index);
 
     /**
      * Adds the staff {@code toAdd} to the staff list of the project with {@code projectName}.
