@@ -25,15 +25,18 @@ public class TypicalExams {
     public static final Exam EXAMTWO = new ExamBuilder()
             .withDescription("Exam two")
             .withModule("CS2040S").withDate("20-10-2023").build();
-
     public static final Exam CS2040_FINAL = new ExamBuilder()
             .withModule("cs2040").withDescription("CS2040 Finals")
             .withDate("29-11-2022").build();
+    public static final Exam MA1521_MIDTERM = new ExamBuilder()
+            .withDescription("Midterm")
+            .withModule("MA1521").withDate("20-11-2023").build();
+
     private TypicalExams() {} // prevents instantiation
 
 
     public static List<Exam> getTypicalExams() {
-        return new ArrayList<>(Arrays.asList(MIDTERM_EXAM, FINAL_EXAM, EXAMONE, EXAMTWO, CS2040_FINAL));
+        return new ArrayList<>(Arrays.asList(MIDTERM_EXAM, FINAL_EXAM, EXAMONE, EXAMTWO, CS2040_FINAL, MA1521_MIDTERM));
     }
 
 }

@@ -5,16 +5,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EXAM;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_EXAMONE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_EXAMTWO;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_MODULEONE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_MODULETWO;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertTasksHaveSameExamSuccess;
 import static seedu.address.logic.commands.EditExamCommand.MESSAGE_EXAM_NOT_EDITED;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXAM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FORTH_EXAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTEENTH_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_MODULE_UNRELATED_TO_ANY_TASK_OR_EXAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EXAM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_EXAM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRTEENTH_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_TWELVE_TASK;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
@@ -32,10 +38,12 @@ import seedu.address.model.exam.ExamDate;
 import seedu.address.model.exam.ExamDescription;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleCredit;
+import seedu.address.model.module.ModuleName;
 import seedu.address.testutil.EditExamDescriptorBuilder;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.ExamBuilder;
-
-
+import seedu.address.testutil.ModuleBuilder;
 
 
 /**
@@ -45,20 +53,24 @@ public class EditModuleCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-//    @Test
-//    public void execute_allFieldsSpecifiedUnfilteredListWithoutAnyTaskLinked_success() {
-//        Exam editedExam = new ExamBuilder(new Exam(new Module(new ModuleCode("CS2030S")),
-//                new ExamDescription("Final Exam"), new ExamDate("01-11-2023"))).build();
-//        EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(editedExam).build();
-//        EditExamCommand editExamCommand = new EditExamCommand(INDEX_FORTH_EXAM, descriptor);
-//
-//        String expectedMessage = String.format(EditExamCommand.MESSAGE_EDIT_EXAM_SUCCESS, editedExam);
-//        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-//        expectedModel.replaceExam(model.getFilteredExamList().get(3), editedExam, false);
-//        assertCommandSuccess(editExamCommand, model, expectedMessage, expectedModel);
-//        assertTasksHaveSameExamSuccess(model, expectedModel);
-//    }
-//
+    @Test
+    public void execute_allFieldsSpecifiedUnfilteredListWithNoDuplicatesAndNoTaskOrExamsRelated_success() {
+        Module editedModule = new ModuleBuilder(new Module(new ModuleCode("CS3213"),
+                new ModuleName("Final Exam"), new ModuleCredit(4))).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
+        EditModuleCommand editModuleCommand =
+                new EditModuleCommand(INDEX_MODULE_UNRELATED_TO_ANY_TASK_OR_EXAM, descriptor);
+
+        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedModule.getModuleCode(), editedModule.getModuleName(), editedModule.getModuleCredit());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.replaceModule(model.getFilteredModuleList()
+                .get(INDEX_MODULE_UNRELATED_TO_ANY_TASK_OR_EXAM.getZeroBased()), editedModule);
+
+        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
+        assertTasksHaveSameExamSuccess(model, expectedModel);
+    }
+
 //    @Test
 //    public void execute_someFieldsSpecifiedUnfilteredListWithoutAnyTaskLinked_success() {
 //        Exam editedExam = new Exam(new Module(new ModuleCode("CS2030S")),
@@ -215,32 +227,32 @@ public class EditModuleCommandTest {
 //        assertCommandFailure(editExamCommand, model,
 //                String.format(Messages.MESSAGE_INVALID_EXAM_INDEX_TOO_LARGE, index));
 //    }
-//
-//    @Test
-//    public void equals() {
-//        final EditExamCommand standardCommand =
-//                new EditExamCommand(INDEX_FIRST_EXAM, DESC_EXAMONE);
-//
-//        // same values -> returns true
-//        EditExamCommand.EditExamDescriptor copyDescriptor =
-//                new EditExamCommand.EditExamDescriptor(DESC_EXAMONE);
-//        EditExamCommand commandWithSameValues =
-//                new EditExamCommand(INDEX_FIRST_EXAM, copyDescriptor);
-//        assertTrue(standardCommand.equals(commandWithSameValues));
-//
-//        // same object -> returns true
-//        assertTrue(standardCommand.equals(standardCommand));
-//
-//        // null -> returns false
-//        assertFalse(standardCommand.equals(null));
-//
-//        // different types -> returns false
-//        assertFalse(standardCommand.equals(new ClearAllCommand()));
-//
-//        // different index -> returns false
-//        assertFalse(standardCommand.equals(new EditExamCommand(INDEX_SECOND_EXAM, DESC_EXAMONE)));
-//
-//        // different descriptor -> returns false
-//        assertFalse(standardCommand.equals(new EditExamCommand(INDEX_FIRST_EXAM, DESC_EXAMTWO)));
-//    }
+
+    @Test
+    public void equals() {
+        final EditModuleCommand command =
+                new EditModuleCommand(INDEX_SECOND_MODULE, DESC_MODULEONE);
+
+        // same values -> returns true
+        EditModuleCommand.EditModuleDescriptor copyDescriptor =
+                new EditModuleCommand.EditModuleDescriptor(DESC_MODULEONE);
+        EditModuleCommand commandWithSameValues =
+                new EditModuleCommand(INDEX_SECOND_MODULE, copyDescriptor);
+        assertTrue(command.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(command.equals(command));
+
+        // null -> returns false
+        assertFalse(command.equals(null));
+
+        // different types -> returns false
+        assertFalse(command.equals(10));
+
+        // different index -> returns false
+        assertFalse(command.equals(new EditModuleCommand(INDEX_THIRD_MODULE, DESC_MODULEONE)));
+
+        // different descriptor -> returns false
+        assertFalse(command.equals(new EditModuleCommand(INDEX_SECOND_MODULE, DESC_MODULETWO)));
+    }
 }
