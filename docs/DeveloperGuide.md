@@ -102,15 +102,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `UninurseBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddPatientCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete -p 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete -p 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines for `DeleteGenericCommandParser` and `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -118,8 +118,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `UninurseBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `UninurseBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `UninurseBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPatientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPatientCommand`) which the `UninurseBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddPatientCommandParser`, `DeletePatientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -767,7 +767,7 @@ unless specified otherwise)
     * 1a1. UniNurse shows an error message.
 
       Use case ends.
-    
+
 
 ---
 
@@ -833,7 +833,7 @@ unless specified otherwise)
 
 **MSS**
 1. User requests to <u>view the list of patients (UC01)</u>.
-2. User requests to delete a medical condition by specifying the patient and medical condition .
+2. User requests to delete a medical condition by specifying the patient and medical condition.
 3. UniNurse deletes the medical condition of the specified patient.
 
    Use case ends.
@@ -935,6 +935,177 @@ unless specified otherwise)
     * 2b1. UniNurse shows an error message.
 
       Use case resumes at step 2.
+
+
+---
+
+**Use case: UC21 - Add a medication to a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to add a medication with its details to a specific patient.
+3. UniNurse adds the medication to a patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given medication details are invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC22 - Edit a medication associated with a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to edit a medication with the details they want to change, by specifying the patient and medication.
+3. UniNurse edits the details of the chosen medication of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given medication index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The given medication details are invalid.
+
+    * 2c1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+
+---
+
+**Use case: UC23 - Delete a medication associated with a specified patient**
+
+**MSS**
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to delete a medication by specifying the patient and medication.
+3. UniNurse deletes the medication of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given medication index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+
+---
+
+**Use case: UC24 - Add a remark to a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to add a remark with its details to a specific patient.
+3. UniNurse adds the remark to a patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given remark details are invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC25 - Edit a remark associated with a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to edit a remark with the details they want to change, by specifying the patient and remark.
+3. UniNurse edits the details of the chosen remark of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given remark index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The given remark details are invalid.
+
+    * 2c1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+
+---
+
+**Use case: UC26 - Delete a remark associated with a specified patient**
+
+**MSS**
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to delete a remark by specifying the patient and remark.
+3. UniNurse deletes the remark of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given remark index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
 
 *{More to be added}*
 
