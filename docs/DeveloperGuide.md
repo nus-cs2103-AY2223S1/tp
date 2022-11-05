@@ -145,7 +145,7 @@ The `Model` component,
 
 #### 2.4.2 UniqueProductList
 
-<img src="images/ProductClassDiagram.png" width="90" />
+<img src="images/ProductClassDiagram.png" width="150" />
 
 ### 2.5 Storage component
 
