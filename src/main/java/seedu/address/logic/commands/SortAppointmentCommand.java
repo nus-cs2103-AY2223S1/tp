@@ -63,7 +63,7 @@ public class SortAppointmentCommand extends Command {
     public class NameComparator implements Comparator<Appointment> {
         @Override
         public int compare(Appointment first, Appointment second) {
-            return first.getName().toString().compareTo(second.getName().toString());
+            return first.getName().toString().compareToIgnoreCase(second.getName().toString());
         }
     }
 
@@ -73,7 +73,7 @@ public class SortAppointmentCommand extends Command {
     public class TestComparator implements Comparator<Appointment> {
         @Override
         public int compare(Appointment first, Appointment second) {
-            return first.getMedicalTest().toString().compareTo(second.getMedicalTest().toString());
+            return first.getMedicalTest().toString().compareToIgnoreCase(second.getMedicalTest().toString());
         }
     }
 
@@ -83,7 +83,7 @@ public class SortAppointmentCommand extends Command {
     public class SlotComparator implements Comparator<Appointment> {
         @Override
         public int compare(Appointment first, Appointment second) {
-            return first.getSlot().toString().compareTo(second.getSlot().toString());
+            return first.getSlot().toString().compareToIgnoreCase(second.getSlot().toString());
         }
     }
 
@@ -93,7 +93,7 @@ public class SortAppointmentCommand extends Command {
     public class DoctorComparator implements Comparator<Appointment> {
         @Override
         public int compare(Appointment first, Appointment second) {
-            return first.getDoctor().toString().compareTo(second.getDoctor().toString());
+            return first.getDoctor().toString().compareToIgnoreCase(second.getDoctor().toString());
         }
     }
 

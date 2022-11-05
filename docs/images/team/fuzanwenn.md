@@ -67,9 +67,26 @@ Given below are my contributions to the project.
 ### Contributions to the Developer Guide:
 
 * Added Use Case for:
+  * AddPatientCommand
+  * AddBillCommand
+  * AddAppointmentCommand
   * EditPatientCommand
   * EditAppointmentCommand
   * EditBillCommand
+  * FindPatientCommand
+  * FindAppointmentCommand
+  * FindBillCommand
+  * UndoCommand
+  * RedoCommand
+  * SortPatientCommand
+  * SortAppointmentCommand
+  * SortBillCommand
+  * DeletePatientCommand
+  * DeleteAppointmentCommand
+  * DeleteBillCommand
+  * ListCommand
+* Added Add feature
+* Added Edit feature
 
 ### Contributions to the team-based tasks:
 
@@ -81,6 +98,7 @@ Given below are my contributions to the project.
 * Added test cases for JsonAdaptedBill class.
 * Added test cases for NameContainsKeywordsPredicateAppointment class.
 * Added test cases for DeleteAppointmentCommand class.
+* Added test cases for AddBillCommandParser class.
 
 ### Review/mentoring contributions:
 

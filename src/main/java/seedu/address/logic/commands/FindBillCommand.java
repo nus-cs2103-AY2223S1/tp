@@ -64,4 +64,8 @@ public class FindBillCommand extends Command {
                 || (other instanceof FindBillCommand // instanceof handles nulls
                 && predicate.equals(((FindBillCommand) other).predicate)); // state check
     }
+
+    public Predicate<Bill> getPredicate() {
+        return predicate;
+    }
 }

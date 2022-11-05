@@ -83,23 +83,6 @@ public class EditPatientCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
-        showPatientAtIndex(model, INDEX_FIRST_PATIENT);
-
-        Patient patientInFilteredList = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
-        Patient editedPatient = new PatientBuilder(patientInFilteredList).withName(VALID_NAME_BOB).build();
-        EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_PATIENT,
-                new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
-
-        Model expectedModel = new ModelManager(new HealthContact(model.getHealthContact()), new UserPrefs());
-        expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
-
-        assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_duplicatePatientUnfilteredList_failure() {
         Patient firstPatient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(firstPatient).build();
