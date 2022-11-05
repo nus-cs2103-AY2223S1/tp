@@ -201,6 +201,16 @@ public class Application {
     }
 
     /**
+     * Returns true if {@code otherApplication} has the same archive status as this application.
+     */
+    public boolean hasSameArchiveStatus(Application otherApplication) {
+        if (otherApplication == this) {
+            return true;
+        }
+        return otherApplication != null && this.isArchived() == otherApplication.isArchived();
+    }
+
+    /**
      * Returns true if both applications have the same identity and data fields.
      * This defines a stronger notion of equality between two applications.
      */

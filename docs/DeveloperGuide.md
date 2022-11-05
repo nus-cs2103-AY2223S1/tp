@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103-F14-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F14-3/tp/tree/master/src/main/java/seedu/application/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F14-3/tp/blob/master/src/main/java/seedu/application/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -239,10 +239,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Implementation
 
 The purpose of this enhancement is to allow user to archive applications that are not applicable in the current time (applications that are rejected/offered/no-response )
-* Data archiving of `Application` is done with adding a boolean attribute to the Application class as the record of its archive status.
+* Data archiving of `Application` is done by adding a boolean attribute to the Application class as a record of its archive status.
 * Two predicates in Model to adjust its FilterList shown to the user.
 * By applying predicates to the `FilterList` in `ModelManager`, the archived `Application` can be hidden from the user.
-* The list showing to user in the UI is either showing the unarchived applications or the archived application using `ListCommand` and `ListArchiveCommand` respectively.
+* The list showing to user in the UI is either showing the unarchived applications or the archived application using `ListCommand` and `ListArchiveCommand` respectively unless `FindCommand` is used.
 
 The features of the new and modified commands are summarized as follows:
 * `ArchiveCommand`: Set specified application archive status to `true` by utilising `ModelManager#archiveApplication`.
@@ -348,16 +348,31 @@ The class diagram below shows the classes in the Logic component relevant for so
 
 There is an abstract `SortCommand` class that inherits from the abstract `Command` class. Then, there is a concrete `SortCommand` subclass for each possible order of sort. Meanwhile, there is a single `SortCommandParser` class. When it parses the arguments supplied to a `sort` command, it decides which of the `SortCommand` subclasses to instantiate.
 
-The following sequence diagram shows the operation of a sort featuring just two of the possible orders - by company and by date:
-![Sort Sequence Diagram](images/SortSequenceDiagram.png)
+The following sequence diagram shows the parsing of a sort command from the user featuring just two of the possible orders - by company and by date:
+
+![Sort Parser Sequence Diagram](images/SortParserSequenceDiagram.png)
 
 When calling the `parse` method of the `SortCommandParser`, the argument provided for the `o/` prefix determines which subclass of `SortCommand` will get created. In the event that the prefix is not provided, a `SortByDateCommand` is returned by default.
 
-Later, when `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is set an appropriate comparator on the `SortedList` to attain the desired sort order.
+The next sequence diagram shows the execution of the created SortCommand, again featuring just two of the possible orders:
+
+![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
+
+When `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is set an appropriate comparator on the `SortedList` to attain the desired sort order.
+
+A user may have a sort order that works best for them that they would consistently want to use over the others. To make the experience more convenient for the user, CinternS stores the last used sort order on the hard disk so that it can sort the applications list in that order the next time the app is closed and reopened. This way the user does not need to re-enter the same sort command every session.
+
+The current sort order is represented using a `SortSetting` enum, which can be one of the 4x2 possible sort orders. This `SortSetting` is stored in the `UserPrefs` object together with the other user preferences like screen size. The sort order is then stored inside the `preferences.json` file to be read the next time the app is opened.
+
+The following sequence diagram shows the process of initialising the sort order of a `ModelManager` as it is being instantiated:
+
+![Sort Initialisation Sequence Diagram](images/SortInitialisationSequenceDiagram.png)
+
+The `MainApp` passes the application book data and the `userPrefs` retrieved from storage to the constructor for `ModelManager`. The `ModelManager` creates a copy of the `userPrefs` object. Then, the `sortSetting` is retrieved and used to decide how the ModelManager should sort the applications. The diagram above shows just two of the possible sort orders and the resulting method calls.
 
 #### Constraints of Sort Feature
 
-The user can only sort based on one field at a time. The sort also only persists for the current session, meaning the order of applications will be reset if the app is closed and reopened.
+The user can only sort based on one field at a time.
 
 #### Design Considerations
 
@@ -417,6 +432,33 @@ Aspect: How should the remind command filter out upcoming interviews?
 * Alternative 2: By maintaining a list of upcoming interviews in the ModelManager.
     * Pros: Reduced coupling between different classes.
     * Cons: Each time an action is performed on an application or interview (such as archiving, adding or editing), the list of upcoming interviews has to be informed and updated as well. 
+
+### Statistic Feature
+
+#### Implementation
+The statistic feature is a simple feature that allows users to obtain a summarized statistics of the whole application list.
+
+The summary statistic is shown on the UI using the `ResultDisplay` section. The sequence diagram below shows the workflow of the statistic feature. It gets the list of applications from the model and tabulates the respective information. The tabulation result is then output through `CommandResult`.
+
+![Statistic Sequence Diagram](images/StatisticSequenceDiagram.png)
+
+
+#### Constraints of Statistic Feature
+The statistic of the applications will only show when user enter `stats` command. Possible future improvement is to reorganise the UI section to display real-time statistics in one section and the list view of applications and interviews are in another section.
+
+#### Design Considerations
+
+Aspect: How should the statistic feature be presented?
+
+* Alternative 1 (current choice): Utilise `ResultDisplay` section in UI to show user the statistics.
+    * Pros: Does not need extra space in the UI to show the statistic, and simpler and more straightforward implementation.
+    * Cons: Increase coupling between `ModelManager` and `StatsCommand` as it requires the list of applications in `ModelManager`.
+
+* Alternative 2: Create a new section in UI to show user real-time statistics.
+    * Pros: Does not increase coupling between classes and align with the implementation of Applications and Interviews list views.
+    * Cons: Space usage for UI might be inefficient as user will not always want to review the statistic of the applications.
+
+- Alternative 1 is chosen as our team justified that the implementation is simpler, and is less likely to contain bugs despite the accessing application list from `ModelManager`. Furthermore, interview and application lists are more important to be shown on the GUI when compared to the statistics.
 
 ### Status Feature
 
@@ -625,7 +667,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First application is deleted from the list. Details of the deleted application shown in the status message.
 
    1. Test case: `delete 0`<br>
       Expected: No application is deleted. Error details shown in the status message. Status bar remains the same.

@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "c:SortByCompanyCommand" as SortByCompanyCommand LOGIC_COLOR
+participant "c:SortByDateCommand" as SortByDateCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+
+end box
+[-> LogicManager : execute()
+activate LogicManager
+
+alt sort by company
+
+    create SortByCompanyCommand
+    'Hidden arrow to so that next arrow points to lifeline rather than object creation.
+    LogicManager -[hidden]> SortByCompanyCommand
+    LogicManager -> SortByCompanyCommand : execute()
+    activate SortByCompanyCommand
+
+    SortByCompanyCommand -> Model : sortApplicationListByCompany()
+    activate Model
+
+    Model --> SortByCompanyCommand
+    deactivate Model
+
+    create CommandResult
+    SortByCompanyCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> SortByCompanyCommand
+    deactivate CommandResult
+
+    SortByCompanyCommand --> LogicManager : r
+    deactivate SortByCompanyCommand
+    'Hidden arrow to position the destroy marker below the end of the activation bar.
+    SortByCompanyCommand -[hidden]-> LogicManager : r
+    destroy SortByCompanyCommand
+
+else sort by date
+
+    create SortByDateCommand
+    'Hidden arrow to so that next arrow points to lifeline rather than object creation.
+    LogicManager -[hidden]> SortByDateCommand
+    LogicManager -> SortByDateCommand : execute()
+    activate SortByDateCommand
+
+    SortByDateCommand -> Model : sortApplicationListByDate()
+    activate Model
+
+    Model --> SortByDateCommand
+    deactivate Model
+
+    create CommandResult
+    SortByDateCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> SortByDateCommand
+    deactivate CommandResult
+
+    SortByDateCommand --> LogicManager : r
+    deactivate SortByDateCommand
+    'Hidden arrow to position the destroy marker below the end of the activation bar.
+    SortByDateCommand -[hidden]-> LogicManager : r
+    destroy SortByDateCommand
+
+end
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

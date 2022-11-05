@@ -65,7 +65,7 @@ public class ApplicationBuilder {
         status = applicationToCopy.getStatus();
         tags = new HashSet<>(applicationToCopy.getTags());
         isArchived = applicationToCopy.isArchived();
-        if (applicationToCopy.getInterview().isPresent()) {
+        if (applicationToCopy.hasInterview()) {
             interview = applicationToCopy.getInterview();
         } else {
             interview = Optional.empty();

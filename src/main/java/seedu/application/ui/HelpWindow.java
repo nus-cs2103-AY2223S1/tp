@@ -19,8 +19,8 @@ import seedu.application.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103-f14-3.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USER_GUIDE_URL = "https://ay2223s1-cs2103-f14-3.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = "Refer to the user guide: " + USER_GUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -100,7 +100,7 @@ public class HelpWindow extends UiPart<Stage> {
     private void copyUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
+        url.putString(USER_GUIDE_URL);
         clipboard.setContent(url);
     }
 
@@ -111,9 +111,11 @@ public class HelpWindow extends UiPart<Stage> {
     private void go() throws Exception {
         try {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-                Desktop.getDesktop().browse(new URI("https://ay2223s1-cs2103-f14-3.github.io/tp/UserGuide.html"));
+                Desktop.getDesktop().browse(new URI(USER_GUIDE_URL));
+                logger.fine("Opened User Guide in web browser.");
             }
         } catch (IOException | URISyntaxException e) {
+            logger.fine("Failed to open User Guide in web browser.");
             throw new Exception(new RuntimeException(e).getMessage());
         }
     }
