@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -223,6 +224,17 @@ public class AddressBookTest {
     @Test
     public void getGroupList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getGroupList().remove(0));
+    }
+
+    @Test
+    public void hashCodeTest_sameAddressBook_equal() {
+        AddressBook ab1 = new AddressBook();
+        assertEquals(ab1.hashCode(), addressBook.hashCode());
+    }
+
+    @Test
+    public void hashCodeTest_differentAddressBook_notEqual() {
+        assertNotEquals(TypicalPersons.getTypicalAddressBook().hashCode(), addressBook.hashCode());
     }
 
     /**

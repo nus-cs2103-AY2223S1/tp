@@ -10,10 +10,9 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-DeleteGroupCommand -[hidden]-> Model
+[-> DeleteGroupCommand: execute()
 activate DeleteGroupCommand
 
-group sd [DeleteGroupCommand executes]
 loop until all members in group is updated
     DeleteGroupCommand -> Model : setPerson(currentPerson, editedPerson)
 activate Model
@@ -35,6 +34,7 @@ activate CommandResult
 CommandResult --> DeleteGroupCommand
 deactivate CommandResult
 
-end
+[<-- DeleteGroupCommand : CommandResult
+deactivate DeleteGroupCommand
 
 @enduml
