@@ -12,6 +12,7 @@ title: Developer Guide
 We'd like to thank:
 
 * [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for being the foundation of this brownfield project.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**

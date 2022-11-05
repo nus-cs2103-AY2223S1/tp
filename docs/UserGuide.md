@@ -56,7 +56,7 @@ The following table describes the sections in detail:
 | 6        | `Tutor Details Pane`    | Displays full details of a tutor saved in Tuthub.                                   |
 | 7        | `Storage File Location` | Displays the location of your Tuthub data file.                                     |
 
-### Notes About Command Format
+### Command Format
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Some general rules that Tuthub commands follow:**
@@ -71,7 +71,7 @@ The following table describes the sections in detail:
 
 </div>
 
-### Notes About Frequently Used Command Parameters
+### Frequently Used Command Parameters
 
 <div markdown="block" class="alert alert-info">
 
