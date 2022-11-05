@@ -48,7 +48,7 @@ class JsonAdaptedTask {
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
         isComplete = String.valueOf(source.isComplete());
-        deadline = source.getDeadlineStorage();
+        deadline = source.getDeadlineInputAsString();
     }
 
     /**

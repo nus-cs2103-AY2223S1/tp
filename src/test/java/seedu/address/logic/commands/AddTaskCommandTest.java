@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.LocalDateTimeConverter;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -52,6 +51,14 @@ class AddTaskCommandTest {
 //        commandLine.parseArgs(TaskUtil.convertTaskToArgs(validTask));
 //        assertThrows(CommandException.class, AddTaskCommand.MESSAGE_DUPLICATE_TASK,
 //                () -> commandToBeTested.execute(model));
+    }
+
+    @Test
+    public void execute_invalidPersonIndexUnfilteredList_failure() {
+        Task validTask = TypicalTasks.TASK_3;
+        commandLine.parseArgs(TaskUtil.convertTaskToArgs(validTask));
+        assertThrows(CommandException.class, AddTaskCommand.MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS,
+                () -> commandToBeTested.execute(model));
     }
 
     @Test

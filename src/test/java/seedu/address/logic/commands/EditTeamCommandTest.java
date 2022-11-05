@@ -13,7 +13,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.team.Description;
-import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.TeamName;
 import seedu.address.testutil.TeamUtil;
