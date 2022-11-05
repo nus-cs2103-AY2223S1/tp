@@ -41,7 +41,7 @@ public class LinkBuilder {
     /**
      * Sets the {@code Url} of the {@code Link} that we are building.
      */
-    public LinkBuilder withEmail(String url) {
+    public LinkBuilder withLink(String url) {
         this.url = new Url(url);
         return this;
     }
