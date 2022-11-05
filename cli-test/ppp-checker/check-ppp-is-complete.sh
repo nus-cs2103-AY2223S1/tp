@@ -25,7 +25,7 @@ paste -d "\0" .titles.txt .numbers.txt .urls.txt > expected.md
 
 # Get matching lines across all PPPs
 # Don't fail entire script on no matches. See https://unix.stackexchange.com/a/581991
-cat ../docs/team/*.md | sed 's/^ *\(.*\) *$/\1/g' | { grep -Fx "$(cat expected.md)" || test $? = 1; } | sort --unique > actual.md
+cat ../../docs/team/*.md | sed 's/^ *\(.*\) *$/\1/g' | { grep -Fx "$(cat expected.md)" || test $? = 1; } | sort --unique > actual.md
 
 # Check all lines present
 if [ "$(cat expected.md | wc -l)" != "$(cat actual.md | wc -l)" ]; then
