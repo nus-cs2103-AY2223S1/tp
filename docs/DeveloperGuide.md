@@ -290,7 +290,7 @@ be to add a new field `TaskMark` into each `Task` object and `TaskMark` will onl
 The `true` value would mean that the task is marked as completed and the `false` value
 mean that the task is not yet done.
 
-The switching of `true` and `false` values for `TaskMark` will be facillitaed using `marktask INDEX` and
+The switching of `true` and `false` values for `TaskMark` will be facilitated using `marktask INDEX` and
 `unmarktask INDEX` commands.
 
 * `marktask INDEX` This will mark the `Task` at the specified `INDEX` in the `Task List` as completed.
@@ -308,6 +308,28 @@ Task as complete or not is redundant.
   * Cons: Some users might like to record what they have done, so they would not delete completed tasks.
   Having a way to mark task as completed or not will help them manage their task.
 
+### Sort task 
+
+#### Implementation
+Tasks can be sorted by their deadline. The implementation would be to add a field `TaskDeadline` into each `Task` object 
+and only allow the `TaskDeadline` field to accept a `LocalDate` value.
+
+The `LocalDate` is an immutable date-time object that represents a date, often viewed as year-month-day. 
+The `LocalDate` class has a `compareTo` method that can be used to compare the dates of two tasks. 
+This method will be used to sort the tasks by their deadline.
+
+* `sorttask` This will sort the `Task` objects in the `Task List` by their deadlines, with the earliest deadline at the top.
+
+The following sequence diagram shows how the `sorttask` command will run throughout HR Pro Max++.
+
+![sorttask command](images/SortTaskCommandSequenceDiagram.png)
+
+#### Design Considerations:
+
+* We chose to sort the tasks by their deadlines because it is more significant information compared to for example, the task description.
+* Sorting tasks is an irreversible process. The user will not be able to undo the sorting of tasks.
+    * Pros: Less memory and simpler implementation as there is no need to store the original order of the tasks.
+    * Cons: Some users might want to undo the sorting to view the tasks in the original order.
 
 ### Delete Staff from a project
 
