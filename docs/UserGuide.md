@@ -68,14 +68,15 @@ In order to help you pay attention, we have used some icons along with highlight
 
 | Icon                                                                         | Meaning                                       |
 |------------------------------------------------------------------------------|-----------------------------------------------|
-| <div markdown="span" class="alert alert-primary"> :note: **Note**            | You should pay attention to this.             |
+| <div markdown="span" class="alert alert-primary"> :memo: **Note**            | You should pay attention to this.             |
 | <div markdown="span" class="alert alert-success"> :bulb: **Tip**             | You might find this useful.                   |
 | <div markdown="span" class="alert alert-info"> :information_source: **Info** | You can get additional information from this. |
 | <div markdown="span" class="alert alert-warning"> :warning: **Warning**      | You should be cautious about this.            |
-| <div markdown="span" class="alert alert-danger"> :hazard: **Danger**         | You should pay **extra** attention to this.   |
+| <div markdown="span" class="alert alert-danger"> :rotating_light: **Danger** | You should pay **extra** attention to this.   |
 
-### 4.3. Formatting
+### 4.3. Formatting and Notation
 
+You might be wondering why certain texts 
 
 --------------------------------------------------------------------------------------------------------------------
 
