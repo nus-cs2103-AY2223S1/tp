@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CRITERIA;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Criteria;
 import seedu.address.model.Model;
-import seedu.address.model.commons.Criteria;
 
 /**
  * SortTaskCommand represents a command which sorts the tasks in the task list.
@@ -43,9 +43,9 @@ public class SortTaskCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof SortTaskCommand // instanceof handles nulls
-                && criteria.equals(((SortTaskCommand) other).criteria)); // state check
+    public boolean equals(Object otherSortTaskCommand) {
+        return otherSortTaskCommand == this
+                || (otherSortTaskCommand instanceof SortTaskCommand
+                && criteria.equals(((SortTaskCommand) otherSortTaskCommand).criteria));
     }
 }

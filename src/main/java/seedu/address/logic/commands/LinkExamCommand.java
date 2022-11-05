@@ -12,7 +12,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.exam.Exam;
-import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
 /**
@@ -60,7 +59,7 @@ public class LinkExamCommand extends Command {
             throw new CommandException(TASK_ALREADY_LINKED);
         }
         Exam exam = exams.get(examIndex.getZeroBased());
-        if (!Module.isSameModule(task.getModule(), exam.getModule())) {
+        if (!task.getModule().isSameModule(exam.getModule())) {
             throw new CommandException(DIFFERENT_MODULE_CODE);
         }
         Task linkedTask = task.linkTask(exam);
@@ -69,10 +68,11 @@ public class LinkExamCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof LinkExamCommand // instanceof handles nulls
-                && taskIndex.equals(((LinkExamCommand) other).taskIndex))
-                && examIndex.equals(((LinkExamCommand) other).examIndex); // state check
+
+    public boolean equals(Object otherLinkExamCommand) {
+        return otherLinkExamCommand == this
+                || (otherLinkExamCommand instanceof LinkExamCommand
+                && taskIndex.equals(((LinkExamCommand) otherLinkExamCommand).taskIndex))
+                && examIndex.equals(((LinkExamCommand) otherLinkExamCommand).examIndex);
     }
 }

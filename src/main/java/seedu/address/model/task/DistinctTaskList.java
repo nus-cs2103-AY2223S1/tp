@@ -3,13 +3,14 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.commons.Criteria;
+import seedu.address.model.Criteria;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
@@ -90,17 +91,20 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
-     * Unlinks all tasks that are currently linked to {@code exam}.
-     * @param exam
+     * Unlinks all tasks that are currently linked to {@code exam} and returns a list of these tasks.
+     * @param exam the exam for the tasks to be unlinked from
      */
-    public void unlinkTasksFromExam(Exam exam) {
+    public List<Task> unlinkTasksFromExam(Exam exam) {
         requireNonNull(exam);
-        taskList.forEach(task -> {
+        List<Task> matchedTasks = new ArrayList<Task>();
+        taskList.forEach(task-> {
             if (task.isLinked() && task.getExam().equals(exam)) {
                 Task unlinkedTask = task.unlinkTask();
+                matchedTasks.add(unlinkedTask);
                 replaceTask(task, unlinkedTask, true);
             }
         });
+        return matchedTasks;
     }
 
     /**
@@ -142,9 +146,21 @@ public class DistinctTaskList implements Iterable<Task> {
         requireAllNonNull(previousModule, newModule);
         taskList.forEach(task-> {
             if (task.getModule().equals(previousModule)) {
-                Task editedTask = task.edit(newModule, null);
+                Task editedTask = task.editWithoutUnlinkingExam(newModule, null);
                 replaceTask(task, editedTask, false);
             }
+        });
+    }
+
+    /**
+     * Links all tasks in {@code tasks} to {@code exam}.
+     * @param exam The exam to link to.
+     * @param tasks The list of tasks to link each task to {@code exam}.
+     */
+    public void linkTasksToExam(Exam exam, List<Task> tasks) {
+        tasks.forEach(task-> {
+            Task linkedTask = task.linkTask(exam);
+            replaceTask(task, linkedTask, true);
         });
     }
 
@@ -173,7 +189,6 @@ public class DistinctTaskList implements Iterable<Task> {
             }
         }
     }
-
 
     public int getNumOfCompletedModuleTasks(Module module) {
         requireNonNull(module);
@@ -228,19 +243,6 @@ public class DistinctTaskList implements Iterable<Task> {
             break;
         }
         //@@author
-    }
-
-    /**
-     * Checks whether the criteria given by the user is valid.
-     *
-     * @param criteria The criteria that is being checked for validity.
-     * @return true if the criteria is valid; else return false.
-     */
-    public static boolean isValidCriteria(String criteria) {
-        return criteria.equalsIgnoreCase("priority")
-                || criteria.equalsIgnoreCase("deadline")
-                || criteria.equalsIgnoreCase("module")
-                || criteria.equalsIgnoreCase("description");
     }
 
     @Override
