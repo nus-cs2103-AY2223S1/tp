@@ -17,19 +17,19 @@ If you are a cashier working at a bubble tea shop, bobaBot can help you easily f
 
 1. [Quick start](#1-quick-start) <br>
 2. <details><summary><a href="#4-features">Features</a></summary>
-      2.1. <a href="#21-viewing-help--help">Help</a><br>
-      2.2. <a href="#22-adding-a-customer-add">Add</a><br>
-      2.3. <a href="#23-editing-a-customers-details-edit">Edit</a><br>
-      2.4. <a href="#24-increasing-a-customers-reward-points-incr">Increase</a><br>
-      2.5. <a href="#25-decreasing-a-customers-reward-points-decr">Decrease</a><br>
-      2.6. <a href="#26-listing-all-customers--list">List</a><br>
-      2.7. <a href="#27-locating-customers-by-name-find">Find</a><br>
-      2.8. <a href="#28-deleting-a-customer--delete">Delete</a><br>
-      2.9. <a href="#29undo-a-command--undo">Undo</a><br>
-      2.10. <a href="#210-redo-an-undocommand--redo">Redo</a><br>
-      2.11. <a href="#211--clearing-all-entries--clear">Clear</a><br>
-      2.12. <a href="#212-calculate-calc">Calculate</a><br>
-      2.13. <a href="#213-gui-calculator-calc-gui">Calculator</a><br>
+      2.1. <a href="#21-adding-a-customer-add">Add</a><br>
+      2.2. <a href="#22-editing-a-customers-details-edit">Edit</a><br>
+      2.3. <a href="#23-increasing-a-customers-reward-points-incr">Increase</a><br>
+      2.4. <a href="#24-decreasing-a-customers-reward-points-decr">Decrease</a><br>
+      2.4. <a href="#25-listing-all-customers--list">List</a><br>
+      2.6. <a href="#26-locating-customers-by-name-find">Find</a><br>
+      2.7. <a href="#27-deleting-a-customer--delete">Delete</a><br>
+      2.8. <a href="#28-undo-a-command--undo">Undo</a><br>
+      2.9. <a href="#29-redo-an-undocommand--redo">Redo</a><br>
+      2.10. <a href="#210--clearing-all-entries--clear">Clear</a><br>
+      2.11. <a href="#211-calculate-calc">Calculate</a><br>
+      2.12. <a href="#212-gui-calculator-calc-gui">Calculator</a><br>
+      2.13. <a href="#213-viewing-help--help">Help</a><br>
       2.14. <a href="#214-exiting-the-program--exit">Exit</a><br>
    </details>
 3. [FAQ](#3-faq) <br>
