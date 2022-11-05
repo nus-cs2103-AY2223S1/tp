@@ -25,7 +25,7 @@ Given below are my contributions to the project.
   * Justification: With this command, users will be able to keep track of their progression of certain exercises in the gym.
   * Highlights: This command was tricky to implement, because of the nature of how the command is parsed, hence there were many considerations to be made (E.g. Name not in system, multiple similar entries etc.)
 
-* **New Feature**: Confirm flag for 'clear' function([PR #138](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/138))
+* **New Feature**: Confirm flag for 'clear' function ([PR #138](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/138))
   * What it does: Mandates that a user types in a 'confirm' parameter before clearing his exercise tracker.
   * Justification: For new users that may be unfamiliar with the 'clear' command, they might not understand what it does and may accidentally clear their database. The confirm flag at least gives the user some form of warning before he performing this clear.
   * Highlights: This command was not very difficult to implement. Having implemented the PR command prior, I already had a good understanding of how the parser works (with the prefixes).
