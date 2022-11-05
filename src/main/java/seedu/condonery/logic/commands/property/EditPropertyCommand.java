@@ -125,7 +125,8 @@ public class EditPropertyCommand extends Command {
             builder.append("More than 1 client matches the search result for: ");
             duplicateClients.forEach(client -> builder.append(client + ", "));
             String result = builder.toString();
-            String errorMessage = result.substring(0, result.length() - 2) + ". You may like to refine your search.";
+            String errorMessage = result.substring(0, result.length() - 2)
+                + ". You might want to make your search more specific, or use the exact name of the client";
             throw new CommandException(errorMessage);
         }
 
