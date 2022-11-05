@@ -25,7 +25,6 @@ import java.util.Set;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.TagsConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -78,7 +77,7 @@ public class AddPersonCommand extends Command {
     private Address address;
 
     @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = FLAG_PERSON_TAGS_DESCRIPTION,
-            parameterConsumer = TagsConverter.class, arity = "*")
+            arity = "*")
     private Set<Tag> tags = new HashSet<>();
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,

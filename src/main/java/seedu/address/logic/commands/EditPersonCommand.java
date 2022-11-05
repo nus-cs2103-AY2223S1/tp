@@ -33,7 +33,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.TagsConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -175,7 +174,7 @@ public class EditPersonCommand extends Command {
         private Address address;
 
         @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = FLAG_PERSON_TAGS_DESCRIPTION,
-                parameterConsumer = TagsConverter.class, arity = "*")
+                arity = "*")
         private Set<Tag> tags;
 
         @Override
