@@ -144,7 +144,8 @@ The `Model` component,
 The `Storage` component,
 * can save both project book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
+* handles all parsing of objects in `StorageUtil`.
 
 ### Common classes
 
@@ -815,8 +816,41 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Editing the data file
+   1. Prerequisites: Obtain sample data file from running the application for the first time.
+   2. Test case: Change the `pin` attribute for any `project` or `issue` object from `false` to `true` or vice-versa.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+      Expected: Application starts with the corresponding `project` or `issue` pinned to the top of their respective lists.
+   3. Test case: Change the `mobile` attribute for **all** instances of the `client` object with name `Alex Yeoh`.
 
-2. _{ more test cases …​ }_
+      Expected: Application starts with the respective change in the `mobile` attribute.
+2. Dealing with missing data file
+
+   1. Test case: Delete the `addressbook.json` data file and open up the application.
+
+      Expected: Application starts up with sample data. Details of the missing data file is logged in `addressbook.log.0`
+
+3. Dealing with corrupted data files
+
+   1. Prerequisites: Same as that for editing the data file.
+   2. Test case: Remove the `pin` attribute from any JSON object and open up the application.
+
+      Expected: Application starts with empty data. Error details logged in `addressbook.log.0`
+   3. Test case: Change the `deadline` attribute to an invalid deadline string e.g. `2022-50-04`.
+
+      Expected: Similar to previous.
+   4. Test case: Change the `projectId` attribute of the first project object (with `name` attribute `Individual Project`) to `2` such that there is a duplicate project ID.
+
+      Expected: Similar to previous.
+   5. Test case: Change the `mobile` attribute of the first client object (with `name` attribute `Alex Yeoh`) to `91111111` such that it does not tally with the second copy of `Alex Yeoh`.
+
+      Expected: Similar to previous.
+   6. Test case: Change the `name` attribute of the first project object (with `name` attribute `Individual Project`) to `Team Project` such that there is a duplicate project name.
+
+      Expected: Similar to previous.
+   7. Test case: Add an extra comma `,` after any other comma e.g. `"name" : "Individual Project",,` such that the data file is in the wrong format.
+
+      Expected: Similar to previous.
+   8. Test case: Add an extraneous attribute e.g. `"remark" : "likes to eat"` after any other attribute in the file.
+
+      Expected: The extraneous attribute is ignored and the application starts up as per normal with the correct data.
