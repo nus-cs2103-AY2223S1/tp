@@ -65,7 +65,7 @@ help page).
 * **Project management**:
   * Managed release `v1.2`, `v1.3trials` ([2 releases](https://github.com/AY2223S1-CS2103T-W08-2/tp/releases)) with 
     ChangeLog.
-  * Created and assigned GitHub issues to team members.
+  * Created and assigned 80% of GitHub issues to team members.
 
 * **Enhancements to existing features**:
   * Updated the GUI 
@@ -87,6 +87,8 @@ help page).
     * Added brief command usages and examples for every command in order to allow team to modify further.
   * Developer Guide
     * Added implementation detail (e.g. explanation and UML diagram) for switching page.
+    * Added implementation for `SortCommand`
+    * Updated Person's model UML Diagram (Added extra attributes such as `timezone`, `role`)
 
 * **Community**:
   * PRs reviewed with in-depth discussion (Ranked by priority):
