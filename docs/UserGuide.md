@@ -172,40 +172,40 @@ TrackO's functionalities!
    
          <img src="./images/user-guide/Tutorial1.png" alt="Tutorial1">
     
-   2. Next, we move on to managing your **orders**!
-       1. Adding an order: `addo`
-          * Suppose a customer by the name `Jonathan Chee` wants his order delivered to `43 Clementi Road, 639433`. He is 
-           contactable by the email `JonChee@gmail.com` and at the phone number`96785944`. He has also ordered 1 unit of `Teddy bear keychain`.
-          * Firstly, initiate the `addo` command with the customer details by entering the following command into the [command box](#layout): <br>
-            `addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com a/43 Clementi Road, 639433`
-          * Next, to add the items ordered by the customer, enter the following command into the [command box](#layout): <br>
-            `i/teddy bear keychains q/1`
-          * Finally, enter `done` to finish adding the order to TrackO!
+2. Next, we move on to managing your **orders**!
+    1. Adding an order: `addo`
+       * Suppose a customer by the name `Jonathan Chee` wants his order delivered to `43 Clementi Road, 639433`. He is 
+        contactable by the email `JonChee@gmail.com` and at the phone number`96785944`. He has also ordered 1 unit of `Teddy bear keychain`.
+       * Firstly, initiate the `addo` command with the customer details by entering the following command into the [command box](#layout): <br>
+         `addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com a/43 Clementi Road, 639433`
+       * Next, to add the items ordered by the customer, enter the following command into the [command box](#layout): <br>
+         `i/teddy bear keychains q/1`
+       * Finally, enter `done` to finish adding the order to TrackO!
       
-            You should see this order appear in TrackO at index 5 as shown below:
+         You should see this order appear in TrackO at index 5 as shown below:
 
-            <img src="./images/user-guide/Tutorial2.png" alt="Tutorial2">
+         <img src="./images/user-guide/Tutorial2.png" alt="Tutorial2">
     
-        <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-        If an item is not in your inventory, TrackO does not allow you to add that item to an order!
-        </div>
+     <div markdown="span" class="alert alert-primary">:bulb: **Note:**
+     If an item is not in your inventory, TrackO does not allow you to add that item to an order!
+     </div>
 
-      2. **Finding order(s): `findo`**
-         * Our application allows you to search for orders by different fields (e.g. payment status, delivery status, customer details).
-         * To find orders to be delivered to `Clementi` which have not been paid for, enter the following command to the [command box](#layout): <br>
+   2. **Finding order(s): `findo`**
+      * Our application allows you to search for orders by different fields (e.g. payment status, delivery status, customer details).
+      * To find orders to be delivered to `Clementi` which have not been paid for, enter the following command to the [command box](#layout): <br>
 
-           `findo -P a/Clementi`
+        `findo -P a/Clementi`
    
-           You should see these orders appear in the [order list](#layout), as shown below:
+        You should see these orders appear in the [order list](#layout), as shown below:
         
-           <img src="./images/user-guide/Tutorial3.png" alt="Tutorial3">
+        <img src="./images/user-guide/Tutorial3.png" alt="Tutorial3">
     
-      3. **Listing order(s): `listo`**
-          * To view all your orders again, enter `listo`.
+   3. **Listing order(s): `listo`**
+       * To view all your orders again, enter `listo`.
           
-            You should see these orders appear in the [order list](#layout), as shown below:
+         You should see these orders appear in the [order list](#layout), as shown below:
          
-            <img src="./images/user-guide/Tutorial4.png" alt="Tutorial4">
+         <img src="./images/user-guide/Tutorial4.png" alt="Tutorial4">
 
 Now that you're done trying out some commands, you can enter `exit` to leave the application. We hope that this short tutorial was helpful! 
 To check out more commands, you can head over to our [Features](#features) section.
