@@ -23,7 +23,7 @@ Given below are my contributions to the project.
     * Highlights: Was not too challenging other than the part about ensuring the format for values and timestamps, and writing into `JSON Adapted Person`.
 
   * Implemented `rate` feature
-    * Created a `RateCommand` class to handle the logic (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/commands/RateCommand.java)) 
+    * Created a `RateCommand` class to handle the logic (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/commands/RateCommand.java))
     and `RateCommandParser` class to handle the parsing of the user input (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/parser/RateCommandParser.java)).
     * Use Case: User can add ratings for employees.
     * Justification: With this command, users of Coydir will be able to rate the performance of an employee based on a 1-5 integer rating scale:

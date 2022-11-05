@@ -59,7 +59,7 @@ public class RatingTest {
         assertFalse(Rating.isValidRating("string")); // rating value is a string
 
         // valid rating
-        assertTrue(Rating.isValidRating("1")); 
+        assertTrue(Rating.isValidRating("1"));
         assertTrue(Rating.isValidRating("2"));
         assertTrue(Rating.isValidRating("3"));
         assertTrue(Rating.isValidRating("4"));
@@ -87,5 +87,4 @@ public class RatingTest {
         assertEquals(LocalDate.now().toString(), rating6.getTime().toString());
         assertEquals(LocalDate.now().toString(), rating7.getTime().toString());
     }
-    
 }
