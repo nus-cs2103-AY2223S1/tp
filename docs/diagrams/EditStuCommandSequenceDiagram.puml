@@ -7,6 +7,7 @@ participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":EditStuCommandParser" as EditStuCommandParser LOGIC_COLOR
 participant "d: EditStudentDescriptor" as EditStudentDescriptor LOGIC_COLOR
 participant "e:EditStuCommand" as EditStuCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -72,11 +73,18 @@ activate Model
 Model -> EditStuCommand
 deactivate Model
 
-EditStuCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_STUDENTS)
+EditStuCommand -> Model : updateFilteredPersonList(predicate)
 activate Model
 
 Model -> EditStuCommand
 deactivate Model
+
+create CommandResult
+EditStuCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditStuCommand
+deactivate CommandResult
 
 EditStuCommand -> LogicManager : CommandResult
 deactivate EditStuCommand

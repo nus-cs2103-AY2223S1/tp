@@ -12,7 +12,19 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
-Class PersonCard
+Class TutorListPanel
+Class ModuleListPanel
+Class ModuleInfoPanel
+Class ModulePanel
+Class ScheduleListPanel
+Class ScheduleGridPanel
+Class StudentCard
+Class TutorCard
+Class ModuleCard
+Class ModuleInfoCard
+Class ScheduleCard
+Class WeekdayCard
+Class WeekdayCardVertical
 Class StatusBarFooter
 Class CommandBox
 }
@@ -33,21 +45,46 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "2" TutorListPanel
+MainWindow *-down-> "1" ModuleListPanel
+MainWindow *-down-> "1" ModuleInfoPanel
+MainWindow *-down-> "1" ModulePanel
+MainWindow *-down-> "1" ScheduleListPanel
+MainWindow *-down-> "1" ScheduleGridPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+PersonListPanel -down-> "*" StudentCard
+TutorListPanel -down-> "*" TutorCard
+ModuleListPanel -down-> "*" ModuleCard
+ModuleInfoPanel -down-> "*" StudentCard
+ModulePanel -down-> "*" ModuleInfoCard
+ScheduleListPanel -down-> "*" ScheduleCard
+ScheduleGridPanel -down-> "*" WeekdayCard
+ScheduleGridPanel -down-> "*" WeekdayCardVertical
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+StudentCard --|> UiPart
+TutorCard --|> UiPart
+ModuleCard --|> UiPart
+ModuleInfoCard --|> UiPart
+ScheduleCard --|> UiPart
+WeekdayCard --|> UiPart
+WeekdayCardVertical --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-PersonCard ..> Model
+StudentCard ..> Model
+TutorCard ..> Model
+ModuleInfoCard ..> Model
+ModuleCard ..> Model
+ScheduleCard ..> Model
+WeekdayCard ..> Model
+WeekdayCardVertical ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
