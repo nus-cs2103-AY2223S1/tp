@@ -362,6 +362,8 @@ These operations are exposed in the `BobaBotModel` interface as `BobaBotModel#co
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The bobaBotStatelist only keeps track of 20 of the most recent state changes! This is by design to minimise the storage space required for bobaBot application. However, you may configure the limit depending on your needs.
 
+</div>
+
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedBobaBot` will be initialized with the initial bobaBot state, and the `currentStatePointer` pointing to that single bobaBot state.
@@ -656,20 +658,31 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a customer
 
-1. Deleting a customer while all customers are being shown
+1. Deleting a customer via `PHONE_NUMBER`
 
-   1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
+   1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delete p/87438807`<br>
+      Expected: The customer with`PHONE_NUMBER` corresponding to `87438807` (in this case `Alex Yeoh`) will be deleted from the list. Details of the deleted customer is shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete p/11111111`<br>
+      Expected: No customer is deleted since `11111111` does not correspond to any customer's `PHONE_NUMBER`. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete p/`, `delete hello`, `...`<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting a customer via `EMAIL`
+
+    1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file
+
+    2. Test case: `delete e/charlotte@example.com`<br>
+       Expected: The customer with`EMAIL` corresponding to `charlotte@example.com` (in this case `Charlotte Oliveiro`) will be deleted from the list. Details of the deleted customer is shown in the status message.
+
+    3. Test case: `delete e/bruno@mars.com`<br>
+       Expected: No customer is deleted since `bruno@mars.com` does not correspond to any customer's `EMAIL`. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete e/`, `delete hello`, `...`<br>
+       Expected: Similar to previous.
 
 ### Saving data
 
