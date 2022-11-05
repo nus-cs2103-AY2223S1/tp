@@ -51,7 +51,7 @@ Given below are my contributions to the project.
       [PR #208](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/208),
       [PR #209](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/209),
       [PR #214](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/214)
-* 
+
 * **Documentation**:
   * User Guide `find` section
     * Implemented in [PR #157](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/157)
@@ -61,6 +61,7 @@ Given below are my contributions to the project.
     * Implemented in [PR #221](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/221)
   * User Guide Improvements
     * Implemented in [PR #227](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/227)
+
 * **Community**:
   * Reported bugs for other teams ([#1 - #6](https://github.com/albertZhangTJ/ped/issues))
 
