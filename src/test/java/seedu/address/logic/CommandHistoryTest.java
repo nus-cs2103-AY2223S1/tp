@@ -15,7 +15,7 @@ public class CommandHistoryTest {
     public void execute_maxSizeTen_success() {
         String str = "list patients";
         for (int i = 0; i < 20; i++) {
-            history.add(str);
+            history.addCommand(str);
         }
         assertEquals(10, history.getHistory().size());
     }
@@ -24,7 +24,7 @@ public class CommandHistoryTest {
     public void execute_reverseString_success() {
         List<String> strings = Arrays.asList("list patients", "list appts", "mark 1");
         for (String str : strings) {
-            history.add(str);
+            history.addCommand(str);
         }
         Collections.reverse(strings);
         String expectedMessage = String.join("\n", strings);
