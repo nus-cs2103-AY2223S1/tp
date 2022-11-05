@@ -611,6 +611,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 * **Product**: A financial product such as life insurance that a financial advisor is selling
 * **Timing conflict**: Time periods that overlap. e.g., a time period spanning from 1400 to 1500 and another time period spanning from 1430 to 1500 are considered to overlap. Time period that start and end at the same time however are considered to not overlap, e.g., a time period spanning from 0900 to 0900 and another time period spanning from 0900 to 0900 are considered to not overlap.
 * **View panel**: The main and largest component of the user interface the user will be interacting with. e.g., the view panel is the component that is used to display the list of clients, show detailed information about a meeting, etc.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Appendix: Instructions for manual testing
@@ -683,7 +685,34 @@ Deleting a client while all clients are being shown
    1. Other incorrect delete commands to try: `delClient`, `delClient x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### 6.3 Adding a product
+### 6.3 Listing meetings
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
+
+</div>
+
+1. Prerequisites: One existing client, one meeting with date set to tomorrow (of system date), another set to within one week (but not tomorrow), another set to within one month (but not the next week).
+   2. To add the meetings, you can use the commands below (replace the dates with appropriate dates)
+      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date tomorrow>`
+      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current week (but not tomorrow)>`
+      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current month (but not tomorrow or the current week)>`
+
+1. Test case: `listMeeting`
+    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+
+1. Test case: `listMeeting d/tomorrow`
+    2. Expected: The view switches back to the list of meetings, and only the meeting tomorrow is displayed.
+
+1. Test case: `listMeeting d/week`
+    2. Expected: The view switches back to the list of meetings, and the meetings tomorrow and in the next week are displayed.
+
+1. Test case: `listMeeting d/month`
+    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+
+1. Test case: `listMeeting adsfadsf`
+    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
+
+### 6.4 Adding a product
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
 
@@ -697,7 +726,7 @@ Deleting a client while all clients are being shown
 1. Test case: `addProduct pd/`
     2. Expected: Empty fields are not allowed, so no product is added.
 
-### 6.3 List product
+### 6.5 Listing products
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
 
@@ -709,7 +738,7 @@ Deleting a client while all clients are being shown
 1. Test case: `listProduct adfafio3`
     2. Expected: The list of product view shows up. Any other parameter or input added after the command is ignored.
 
-### 6.4 Delete product
+### 6.6 Delete product
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of products using `listProduct` where the index number of the product can be found.
 
