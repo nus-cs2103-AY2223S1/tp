@@ -134,7 +134,7 @@ Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/
 </ol>
 3. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
 4. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
-5. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list.<br>
+5. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list. The purpose of the status is to help users in tracking the applications according to their own preferences (e.g. user can put the status as `pending` instead of `interview` for an application even if an interview is received).<br>
 6. Tags must be alphanumeric and cannot contain spaces.
 </div>
 
@@ -330,7 +330,12 @@ Format: `remind`
 
 ### Showing the statistics of applications: `stats`
 
-Shows the statistics of applications (e.g. number of each application status, interviews, archived applications etc.).
+* Shows the statistics of applications (e.g. number of each application status, interviews, archived applications etc.). 
+* All the statistics counts include the archived applications.
+* The interview count shows from the stats command does not related to the `interview` status tag. It shows the actual interviews associates with the applications in CinternS.
+* The `pending`, `offered` and `rejected` counts are related to the status tag of the applications.
+
+Format: `stats`
 
 ### Clearing all entries: `clear`
 
