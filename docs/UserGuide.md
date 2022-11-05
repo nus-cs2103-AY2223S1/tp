@@ -405,7 +405,12 @@ Format: `task do TASK_INDEX [by/DATE]...`
 
 ### Sorting tasks by deadline: `task sort`
 
-Sorts the task list by deadline.
+Sorts the task list by deadline
+<div markdown="block" class="alert alert-info">
+**:information_source: Additional Notes:**<br>
+* After this command is ran, the task panel will only show incomplete tasks. 
+<br>
+</div>
 
 Format: `task sort`
 
