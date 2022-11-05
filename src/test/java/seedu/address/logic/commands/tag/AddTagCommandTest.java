@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.tag;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
 
@@ -26,14 +28,14 @@ import seedu.address.testutil.TypicalTags;
 
 public class AddTagCommandTest {
 
-    public static boolean addTagToContact = true;
-    public static boolean addTagToTask = true;
-    public static Index contactIndex = Index.fromZeroBased(0);
-    public static Index taskIndex = Index.fromZeroBased(0);
-    List<String> tagList;
-    Model model;
-    EditPersonDescriptor editPersonDescriptor;
-    EditTaskDescriptor editTaskDescriptor;
+    private static boolean addTagToContact = true;
+    private static boolean addTagToTask = true;
+    private static Index contactIndex = Index.fromZeroBased(0);
+    private static Index taskIndex = Index.fromZeroBased(0);
+    private static List<String> tagList;
+    private static Model model;
+    private static EditPersonDescriptor editPersonDescriptor;
+    private static EditTaskDescriptor editTaskDescriptor;
 
     public void initialise() {
         tagList = new ArrayList<>();
@@ -47,7 +49,7 @@ public class AddTagCommandTest {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         assertThrows(NullPointerException.class, () -> new AddTagCommand(null, taskIndex,
-        editPersonDescriptor, editTaskDescriptor, addTagToContact, addTagToTask, tagList));
+            editPersonDescriptor, editTaskDescriptor, addTagToContact, addTagToTask, tagList));
     }
 
     @Test
@@ -104,8 +106,9 @@ public class AddTagCommandTest {
         Index taskWithDuplicateTag = Index.fromZeroBased(1);
 
         assertThrows(CommandException.class,
-                AddTagCommand.MESSAGE_DUPLICATE_TAG_ON_PERSON_OR_TASK, () -> new AddTagCommand(contactIndex, taskWithDuplicateTag, editPersonDescriptor,
-                        editTaskDescriptor, addTagToContact, addTagToTask, tagList).execute(model));
+                AddTagCommand.MESSAGE_DUPLICATE_TAG_ON_PERSON_OR_TASK, () -> new AddTagCommand(contactIndex,
+                    taskWithDuplicateTag, editPersonDescriptor, editTaskDescriptor, addTagToContact,
+                    addTagToTask, tagList).execute(model));
     }
 
     @Test

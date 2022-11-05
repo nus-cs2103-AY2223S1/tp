@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
+import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,9 +11,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
-
-import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
-import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
 
 /**
  * A utility class containing a list of {@code Tag} objects to be used in tests.

@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.tag;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
 
@@ -12,9 +14,9 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.EditPersonDescriptor;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EditPersonDescriptor;
 import seedu.address.logic.commands.EditTaskDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -25,14 +27,14 @@ import seedu.address.testutil.TypicalTags;
 
 public class DeleteTagCommandTest {
 
-    public static boolean deleteTagFromContact = true;
-    public static boolean deleteTagFromTask = true;
-    public static Index contactIndex = Index.fromZeroBased(1);
-    public static Index taskIndex = Index.fromZeroBased(1);
-    List<String> tagList;
-    Model model;
-    EditPersonDescriptor editPersonDescriptor;
-    EditTaskDescriptor editTaskDescriptor;
+    private static boolean deleteTagFromContact = true;
+    private static boolean deleteTagFromTask = true;
+    private static Index contactIndex = Index.fromZeroBased(1);
+    private static Index taskIndex = Index.fromZeroBased(1);
+    private static List<String> tagList;
+    private static Model model;
+    private static EditPersonDescriptor editPersonDescriptor;
+    private static EditTaskDescriptor editTaskDescriptor;
 
     public void initialise() {
         tagList = new ArrayList<>();
@@ -103,8 +105,8 @@ public class DeleteTagCommandTest {
         assertTrue(deleteFirstTagCommand.equals(deleteFirstTagCommand));
 
         // same values -> returns true
-        DeleteTagCommand deleteFirstTagCommandCopy = new DeleteTagCommand(contactIndex, taskIndex, editPersonDescriptor1,
-                editTaskDescriptor1, deleteTagFromContact, deleteTagFromTask, tagList1);
+        DeleteTagCommand deleteFirstTagCommandCopy = new DeleteTagCommand(contactIndex, taskIndex,
+            editPersonDescriptor1, editTaskDescriptor1, deleteTagFromContact, deleteTagFromTask, tagList1);
         assertTrue(deleteFirstTagCommand.equals(deleteFirstTagCommandCopy));
 
         // different types -> returns false
