@@ -112,10 +112,11 @@ public class FindCommandParser implements Parser<FindCommand> {
      * by whitespaces to allow for partial searching.
      *
      * @return List of partial keywords.
-     * @throws ParseException if the user input does not conform the expected format.
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     private static List<String> getKeywordsList(ArgumentMultimap argumentMultimap,
                                                 Prefix prefix) throws ParseException {
+        // Example of defensive programming here
         if (argumentMultimap.getValue(prefix).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }

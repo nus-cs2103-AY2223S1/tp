@@ -19,8 +19,8 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all applicants whose detail contain any of the "
-            + "specified attribute keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all applicants whose details contain any of the"
+            + " specified attribute keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: must contain at least one prefix with non empty input "
             + "[" + PREFIX_NAME + "NAME]... "
             + "[" + PREFIX_SCHOLARSHIP + "SCHOLARSHIP]... "
