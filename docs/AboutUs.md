@@ -17,7 +17,7 @@ ConnectNUS
 [[portfolio](team/silastsl.md)]
 
 * Role: Developer
-* Responsibilities: To be decided
+* Responsibilities: Add modules to contacts, `Undo`/`Redo`
 
 ### Koh Rui Jie
 
@@ -27,7 +27,7 @@ ConnectNUS
 [[portfolio](team/rjkoh.md)]
 
 * Role: Developer
-* Responsibilities: To be decided
+* Responsibilities: Add modules to contacts, add lesson to user/contact (`lesson` command),  add lesson to user/contact (`remove` command), view user/contact timetable (`timetable` command) 
 
 ### Laura Lee
 
@@ -37,7 +37,7 @@ ConnectNUS
 [[portfolio](team/leehuiyulaura.md)]
 
 * Role: Developer
-* Responsibilities: To be decided
+* Responsibilities: v1.2 UI, `filter` command, convert current mods to previous mod (`nextsem` command)
 
 ### Shamus Tan
 
@@ -47,7 +47,7 @@ ConnectNUS
 [[portfolio](team/shamooose.md)]
 
 * Role: Developer
-* Responsibilities: To be decided
+* Responsibilities: Add user (`user` command), edit user or contact modules (`module` command), add GitHub link, view modules left (`modulesleft` command)
 
 ### Linus Chui
 
@@ -57,4 +57,4 @@ ConnectNUS
 [[portfolio](team/linuschui.md)]
 
 * Role: Developer
-* Responsibilities: To be decided
+* Responsibilities: v1.2 testing, add lesson to user/contact (`lesson` command),  add lesson to user/contact (`remove` command), view user/contact timetable (`timetable` command)
