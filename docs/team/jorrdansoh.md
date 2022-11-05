@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**:
-  * Updated the `add` command to add students with optional details [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87)
+  * Updated the `add` command to add students with relevant details [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87)
   * Wrote additional tests for existing features [\#92](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/92)
   * Refactored code and documentation to fit project name and scope [\#179](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/179)
 
