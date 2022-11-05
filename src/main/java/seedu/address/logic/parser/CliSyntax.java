@@ -33,6 +33,8 @@ public class CliSyntax {
     public static final String LABEL_PERSON_INDEX = "<person_index>";
     public static final String LABEL_MEMBER_INDEX = "<member_index>";
     public static final String LABEL_KEYWORDS = "<keywords>";
+    public static final String LABEL_NAME_KEYWORDS = "<name_keywords>";
+    public static final String LABEL_EMAIL_KEYWORDS = "<email_keywords>";
 
     /* Descriptions for flags */
     public static final String FLAG_HELP_DESCRIPTION = "Shows this message";

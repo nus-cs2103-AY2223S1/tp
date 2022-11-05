@@ -370,13 +370,21 @@ Consequently, the commands are split into **5** main sections:
 - Flags in square brackets (`[]`) are optional
 - Flags can be specified in any order
   - For e.g. `-n name -p 98765432` is the same as `-p 98765432 -n name`
-- Flags wrapped with brackets (`()`) indicates that at least 1 flag/parameter inside the brackets
+- Flags wrapped with brackets (`()`) indicates that at least 1 flag inside the brackets
   must be specified
   - For `([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-t [<TAGS>]]...)`, the following are valid
     1. `-n name`
     2. `-p 98765432`
     3. `-e new@email.com`
     4. `-t developer`
+- Flags wrapped with brackets (`()`) and separated with `|` indicates that you must specify only 1 flag inside the 
+  brackets
+  - For `(-n=<NAME_KEYWORDS> | -e=<EMAIL_KEYWORDS>)`, the following are valid
+    1. `-n one two`
+    2. `-e three four`
+  - However, the following are invalid
+    1. `-n one two -e three four`
+    2. ` ` (when nothing is entered)
 - Flags/Parameters with ellipsis (`...`) behind them means that more than 1 parameter can be specified
   - For `[-t [TAGS...]]...`, the following are valid
     1. `-t`
@@ -577,17 +585,20 @@ Finds all members in the current team whose names or emails contain any of the g
 should not use both `-n` and `-e` in the `find member` command. 
 </div>
 
+Format: `find member [-h] (-n=<NAME_KEYWORDS> | -e=<EMAIL_KEYWORDS>)`
 
-Format:`find member [-n MEMBER_NAME] [-e MEMBER_EMAIL]`
+| Flags           | Required | Remarks                     |
+|-----------------|:---------|-----------------------------|
+| `-h`, `--help`  |          | Shows help message          |
+| `-n`, `--name`  | :hash:   | Keywords to filter by name  |
+| `-e`, `--email` | :hash:   | Keywords to filter by email |
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+:hash: - exactly one flag must be specified
 
+* Only the name or email is searched.
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name or email is searched.
-* Only full words will be matched e.g. `marcus` will not match `marcus@gmail.com`
+* Only full words will be matched for names e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
 
 
