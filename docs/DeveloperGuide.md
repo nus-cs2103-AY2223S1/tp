@@ -332,24 +332,23 @@ The following activity diagram shows the workflow for the autocomplete feature.
 
 <img src="images/AutoCompleteActivityDiagram.png" width="750" />
 
-### Display Friend Preferences and Socials as Tags
+### Display Servers, GameType and Socials as Tags in Friend's profile
 
-Whenever the user enters or modifies the in-game preferences or social handles of a friend, it is displayed as 
+Whenever the user updates the in-game preferences or social handles of a friend, it is displayed as 
 various coloured tags under the friend's profile.
 
 #### Implementation
 
-The display feature is facilitated through the `PersonCard`, `PersonListPanel`, `PersonListViewCell` and `UIPart` class, 
+The display feature is facilitated through the `PersonCard`, `PersonListPanel` and `UIPart` class, 
 and configured using the `DarkTheme.css` **FXML** file.
 
-The `PersonCard` class inherits from the `UIPart` class, representing the panel that displays each friend's profile.
-Its information is set by the `setGraphic()` method in the nested `PersonListViewCell` class in the `PersonListPanel` class. 
-
+The `PersonCard` class inherits from the `UIPart` class, representing the panel that displays each friend's profile. 
 Inside the `PersonCard` class, there are multiple `FlowPane` fields, each representing a type of user preference.
 Each `FlowPane` field is tagged with the **@FXML** notation, for use by **FXML** markup.
 
-Everytime the user updates a friend's in-game preferences or social handles, a new `PersonCard` object is created. The object 
-will retrieve the corresponding user information and add them as individual labelled tags under the friend's profile.
+Everytime the user updates a friend's information, a new `PersonCard` object is created. The object 
+will retrieve the corresponding user information using the `toDisplayString()` method in the `Person` class, and add
+their in-game preferences and social handles as labelled tags under the friend's profile.
 
 Each type of user preference is then tagged with a different colour, specified in the `DarkTheme.css` file, for 
 easy differentiation of information.
@@ -703,26 +702,28 @@ Priority legend
 ## **Appendix D: Glossary**
 
 ### Minecraft-related terminologies
-| Terminology    | Definition                                                                                       |
-|----------------|--------------------------------------------------------------------------------------------------|
-| Minecraft      | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
-| Minefriends    | The name of our app                                                                              |
-| Username       | The uniquely identifiable Minecraft username of each player                                      |
-| Server         | A multiplayer Minecraft server                                                                   |.                              |
-| Player         | A person who plays Minecraft                                                                     |
-| Mojang Studios | The company that created and owns Minecraft                                                      |
-| Microsoft      | The company that bought over Mojang Studios in 2014                                              |
-| Game mode      | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
-| Game type      | A synonym for game mode                                                                          |
+
+
+| Terminology        | Definition                                                                                       |
+|--------------------|--------------------------------------------------------------------------------------------------|
+| **Minecraft**      | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
+| **Minefriends**    | The name of our app                                                                              | 
+| **Username**       | The uniquely identifiable Minecraft username of each player                                      |                                                  
+| **Server**         | A multiplayer Minecraft server                                                                   |
+| **Player**         | A person who plays Minecraft                                                                     |
+| **Mojang Studios** | The company that created and owns Minecraft                                                      |
+| **Microsoft**      | The company that bought over Mojang Studios in 2014                                              |  
+| **Game mode**      | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
+| **Game type**      | A synonym for game mode                                                                          | 
 
 For a complete glossary of Minecraft terms, please visit this page on the
 [Minecraft wiki](https://minecraft.fandom.com/wiki/Tutorials/Game_terms).
 
 ### Other terminologies
-| Terminology   | Definition                                                                 |
-|---------------|----------------------------------------------------------------------------|
-| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X        |
-| Socials       | A person's social media account information, such as their Telegram handle |
+| Terminology   | Definition                                                                  |
+|---------------|-----------------------------------------------------------------------------|
+| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X         |
+| Socials       | A person's social media account information, such as their Telegram handle  |
 | CLI           | An acronym for "command line interface"                                     |
 
 --------------------------------------------------------------------------------------------------------------------
