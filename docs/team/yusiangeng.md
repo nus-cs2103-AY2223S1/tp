@@ -3,21 +3,24 @@ layout: page
 title: Joe's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: HackAssist
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+HackAssist is a desktop application for hackathon project leaders to manage tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added a UI for the task list.
+  * What it does: Allows the user to view and manage their hackathon tasks. 
+  * Highlights: Displays in the UI what kind of sorting and filtering is applied to the task list. 
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added a command to assign tasks to team members.
+  * What it does: Displays which team member each task is assigned to and which task(s) each team member is assigned to. 
 
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: Added a command to sort the task list.
+  * What it does: Allows the user to sort the task list by priority or deadline in either ascending or descending order.
+  * Justification: This feature helps the user, who is a hackathon team leader, to identify which tasks need to be completed first. 
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=yusiangeng&breakdown=true)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
@@ -35,12 +38,4 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
