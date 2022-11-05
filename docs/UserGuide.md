@@ -896,6 +896,13 @@ Please close any .csv files that are currently open before clicking on the "*Exp
 
 **Q:** I can't seem to open myStudent when I tried to double-click it like a normal application. What do I do?
 **A:** You can refer to our troubleshooting guide [here](#troubleshooting).
+
+**Q:** What if I'm still having trouble using myStudent?  
+**A:** You can tell us about the problem you're having and give more details [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/issues/new). We'll be glad to help!
+
+**Q:** Can I request for new features or themes?  
+**A:** Of course you can! We're open to new suggestions. You can leave your suggestions [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/issues/new). (Do note that implementation of any suggestion will be at our own discretion) 
+
 ---
 
 ### Troubleshooting
@@ -913,4 +920,4 @@ Open your terminal and type `java -version` and press <kbd>enter</kbd>. Informat
 For Windows Users:
 Open the command prompt and type `java -version` and press <kbd>enter</kbd>. Information returned should show the current version of Java installed on your computer.
 
-If you do not have `Java 11` or above installed, please install from [here](https://www.oracle.com/sg/java/technologies/downloads/).
+If you do not have `Java 11` or above installed, please it install from [here](https://www.oracle.com/sg/java/technologies/downloads/).
