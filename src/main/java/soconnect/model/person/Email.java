@@ -9,8 +9,6 @@ import static soconnect.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
-    public static final String MESSAGE_EMAIL_TOO_LONG =
-            "The Email is too long. Keep it within 45 characters, including whitespaces.";
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -46,7 +44,6 @@ public class Email {
     public Email(String email) {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidLength(email), MESSAGE_EMAIL_TOO_LONG);
         value = email;
     }
 
@@ -55,16 +52,6 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string does not exceed the character limit.
-     *
-     * @param text The given string.
-     * @return True if it does not exceed the character limit. False if otherwise.
-     */
-    public static boolean isValidLength(String text) {
-        return text.length() > CHARACTER_LIMIT ? false : true;
     }
 
     @Override

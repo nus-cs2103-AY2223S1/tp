@@ -15,8 +15,6 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
-    public static final String MESSAGE_ADDRESS_TOO_LONG =
-            "The Address is too long. Keep it within 45 characters, including whitespaces.";
     private static final int CHARACTER_LIMIT = 45;
     public final String value;
 
@@ -28,7 +26,6 @@ public class Address {
     public Address(String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidLength(address), MESSAGE_ADDRESS_TOO_LONG);
         value = address;
     }
 
@@ -37,16 +34,6 @@ public class Address {
      */
     public static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string does not exceed the character limit.
-     *
-     * @param text The given string.
-     * @return True if it does not exceed the character limit. False if otherwise.
-     */
-    public static boolean isValidLength(String text) {
-        return text.length() > CHARACTER_LIMIT ? false : true;
     }
 
     @Override

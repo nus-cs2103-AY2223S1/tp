@@ -53,8 +53,6 @@ public class ParserUtil {
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        } else if (!Name.isValidLength(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_NAME_TOO_LONG);
         }
 
         return new Name(trimmedName);
@@ -71,8 +69,6 @@ public class ParserUtil {
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        } else if (!Phone.isValidLength(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_PHONE_TOO_LONG);
         }
 
         return new Phone(trimmedPhone);
@@ -89,8 +85,6 @@ public class ParserUtil {
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        } else if (!Address.isValidLength(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_ADDRESS_TOO_LONG);
         }
 
         return new Address(trimmedAddress);
@@ -107,8 +101,6 @@ public class ParserUtil {
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        } else if (!Email.isValidLength(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_EMAIL_TOO_LONG);
         }
 
         return new Email(trimmedEmail);
@@ -126,7 +118,7 @@ public class ParserUtil {
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         } else if (!Tag.isValidLength(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_TAG_TOO_LONG);
+            throw new ParseException(Tag.MESSAGE_TOO_LONG);
         }
 
         return new Tag(trimmedTag);
