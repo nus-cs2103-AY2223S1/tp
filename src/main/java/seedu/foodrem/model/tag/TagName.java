@@ -6,7 +6,7 @@ import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 import seedu.foodrem.commons.util.StringUtil;
 
 /**
- * Represents a Tag's name in the FoodRem.
+ * Represents a Tag's name in FoodRem.
  * Guarantees: immutable; is valid as declared in {@link StringUtil#isValidString(String)}
  */
 public class TagName {

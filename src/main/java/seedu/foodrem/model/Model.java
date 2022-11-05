@@ -30,20 +30,20 @@ public interface Model {
 
     /**
      * Deletes the given tag.
-     * The tag must exist in the foodRem.
+     * The tag must exist in FoodRem.
      */
     void deleteTag(Tag target);
 
     /**
      * Adds the given tag.
-     * {@code tag} must not already exist in the foodRem.
+     * {@code tag} must not already exist in FoodRem.
      */
     void addTag(Tag tag);
 
     /**
      * Replaces the given tag {@code target} with {@code editedTag}.
-     * {@code target} must exist in the foodRem.
-     * The tag name of {@code editedTag} must not be the same as another existing tag in the foodRem.
+     * {@code target} must exist in FoodRem.
+     * The tag name of {@code editedTag} must not be the same as another existing tag in FoodRem.
      */
     void setTag(Tag target, Tag editedTag);
 
@@ -90,7 +90,7 @@ public interface Model {
     void setFoodRemFilePath(Path foodRemFilePath);
 
     /**
-     * Returns the FoodRem
+     * Returns FoodRem
      */
     ReadOnlyFoodRem getFoodRem();
 

@@ -1,11 +1,14 @@
 ---
-layout: page
+layout: ppp
 title: Tan Yi Xian's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+<!-- markdownlint-disable-next-line blanks-around-headers -->
+### Project: FoodRem
+{: .no_toc}
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+<!-- markdownlint-disable-next-line proper-names -->
+{{ site.data.foodrem.about.summary }}
 
 Given below are my contributions to the project.
 
