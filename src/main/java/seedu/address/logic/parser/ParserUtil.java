@@ -179,11 +179,11 @@ public class ParserUtil {
      */
     public static Social parseSocial(String socialStr) throws ParseException {
         requireNonNull(socialStr);
-
-        if (!Social.isValidSocial(socialStr)) {
+        String trimmedSocial = socialStr.trim();
+        if (!Social.isValidSocial(trimmedSocial)) {
             throw new ParseException(Social.MESSAGE_CONSTRAINTS);
         }
-        String[] strArray = socialStr.split("@");
+        String[] strArray = trimmedSocial.split("@");
         String platform = strArray[0];
         String handle = strArray[1];
         return new Social(handle, platform);
@@ -320,7 +320,7 @@ public class ParserUtil {
      * @throws ParseException if any of the game types are invalid.
      */
 
-    public static Set<GameType> parseGameType(Collection<String> gameTypes) throws ParseException {
+    public static Set<GameType> parseGameTypes(Collection<String> gameTypes) throws ParseException {
         requireNonNull(gameTypes);
         final Set<GameType> gameTypeSet = new HashSet<>();
         for (String gameType : gameTypes) {
@@ -341,11 +341,11 @@ public class ParserUtil {
         if (!TimeInterval.isValidTimeInterval(trimmedTimeInterval)) {
             throw new ParseException(TimeInterval.getTimeIntervalConstraints());
         }
-        String startTime = TimeInterval.getStartingDayTimeInWeek(timeInterval);
+        String startTime = TimeInterval.getStartingDayTimeInWeek(trimmedTimeInterval);
         if (!DayTimeInWeek.isValidDayTimeInWeekParsing(startTime)) {
             throw new ParseException(DayTimeInWeek.ILLEGAL_TIME_CONSTRAINTS);
         }
-        String endTime = TimeInterval.getEndingDayTimeInWeek(timeInterval);
+        String endTime = TimeInterval.getEndingDayTimeInWeek(trimmedTimeInterval);
         if (!DayTimeInWeek.isValidDayTimeInWeekParsing(endTime)) {
             throw new ParseException(DayTimeInWeek.ILLEGAL_TIME_CONSTRAINTS);
         }
