@@ -27,7 +27,7 @@ Given below are my contributions to the project.
 - **Contribution to team-based tasks**  
   - Updated issue tracker with deliverables and user stores 
   - Fixed bugs found in the PED [#152](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/152), [#153](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/153), [#154](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/154), [#155](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/155), [#156](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/156)
-  - Integrated messages with UI [#150](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/105)
+  - Integrated messages with UI [#105](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/105)
 - **Review/mentoring contributions**:  
   - Reviewed and provided nontrivial comments: [#27](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/27), [#52](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/52), [#62](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/62), [#68](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/68)
 - **Contributions to the DG**:  
