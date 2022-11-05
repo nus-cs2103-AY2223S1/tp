@@ -44,22 +44,22 @@ create GetHospitalWingCommand
 GetHospitalWingParser -> GetHospitalWingCommand
 activate GetHospitalWingCommand
 
-GetHospitalWingCommand --> GetHospitalWingParser
+GetHospitalWingCommand --> GetHospitalWingParser : instance of GetHospitalWingCommand
 deactivate GetHospitalWingCommand
 
-GetHospitalWingParser --> GetCommandParser
+GetHospitalWingParser --> GetCommandParser : instance of GetHospitalWingCommand
 deactivate GetHospitalWingParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 GetHospitalWingParser -[hidden]-> GetCommandParser
 destroy GetHospitalWingParser
 
-GetCommandParser --> AddressBookParser
+GetCommandParser --> AddressBookParser : instance of GetHospitalWingCommand
 deactivate GetCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 GetCommandParser -[hidden]-> AddressBookParser
 destroy GetCommandParser
 
-AddressBookParser --> LogicManager
+AddressBookParser --> LogicManager : instance of GetHospitalWingCommand
 deactivate AddressBookParser
 
 LogicManager -> GetHospitalWingCommand : execute()
