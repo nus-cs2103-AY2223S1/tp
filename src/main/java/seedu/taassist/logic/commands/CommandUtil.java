@@ -1,7 +1,5 @@
 package seedu.taassist.logic.commands;
 
-import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
-import static seedu.taassist.commons.core.Messages.MESSAGE_SESSION_DOES_NOT_EXIST;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
@@ -56,7 +54,7 @@ public class CommandUtil {
     public static void requireSessionExists(Session session, ModuleClass moduleClass) throws CommandException {
         requireAllNonNull(moduleClass, session);
         if (!moduleClass.hasSession(session)) {
-            throw new CommandException(String.format(MESSAGE_SESSION_DOES_NOT_EXIST, session.getSessionName(),
+            throw new CommandException(String.format(Messages.MESSAGE_SESSION_DOES_NOT_EXIST, session.getSessionName(),
                     moduleClass));
         }
     }
@@ -86,7 +84,7 @@ public class CommandUtil {
     public static void requireFocusMode(Model model, String commandWord) throws CommandException {
         requireAllNonNull(model, commandWord);
         if (!model.isInFocusMode()) {
-            throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, commandWord));
+            throw new CommandException(String.format(Messages.MESSAGE_NOT_IN_FOCUS_MODE, commandWord));
         }
     }
 }
