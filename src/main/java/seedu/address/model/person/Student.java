@@ -88,6 +88,33 @@ public class Student extends Person {
         return false;
     }
 
+    /**
+     * Returns true if both students have the same identity and data fields.
+     * This defines a stronger notion of equality between two students.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Student)) {
+            return false;
+        }
+
+        Student otherStudent = (Student) other;
+        return otherStudent.getName().equals(getName())
+                && otherStudent.getPhone().equals(getPhone())
+                && otherStudent.getEmail().equals(getEmail())
+                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getTags().equals(getTags())
+                && otherStudent.getStudentModuleInfo().equals(getStudentModuleInfo())
+                && otherStudent.getTeachingAssistantInfo().equals(getTeachingAssistantInfo())
+                && otherStudent.getTelegramHandle().equals(getTelegramHandle())
+                && otherStudent.getId().equals(getId())
+                && otherStudent.getClassGroups().equals(getClassGroups());
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

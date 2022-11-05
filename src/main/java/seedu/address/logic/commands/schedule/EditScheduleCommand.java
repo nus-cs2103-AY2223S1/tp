@@ -2,6 +2,7 @@ package seedu.address.logic.commands.schedule;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
@@ -37,6 +38,7 @@ public class EditScheduleCommand extends Command {
             + "[" + PREFIX_WEEKDAY + "WEEKDAY]"
             + "[" + PREFIX_CLASS_TIME + "TIME PERIOD]"
             + "[" + PREFIX_CLASS_CATEGORY + "CLASS TYPE]"
+            + "[" + PREFIX_CLASS_GROUP + "CLASS GROUP]"
             + "[" + PREFIX_CLASS_VENUE + "CLASS VENUE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_WEEKDAY + " Wednesday "
@@ -136,7 +138,7 @@ public class EditScheduleCommand extends Command {
         }
 
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(module, venue, classType, startTime, endTime, weekday);
+            return CollectionUtil.isAnyNonNull(module, venue, classType, startTime, endTime, weekday, classGroup);
         }
         public void setVenue(Venue venue) {
             this.venue = venue;

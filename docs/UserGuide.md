@@ -488,8 +488,8 @@ You can add a schedule by using this command.
 
 :exclamation: **Caution:**
 
-- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.
-- If the schedule to be added conflicts with any existing schedule, ProfNUS will not perform any operation.
+- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid and report an error.
+- If the schedule to be added conflicts with any existing schedule, ProfNUS will report an error and **will not** perform any operation.
 
 </div>
 
@@ -528,7 +528,7 @@ Edits a schedule in ProfNUS.
 
 :exclamation: **Caution:**
 
-- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, **no** schedule will be edited by ProfNUS.
+- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, there will be an error message and **no** schedule will be edited by ProfNUS.
 
 </div>
 
@@ -565,7 +565,7 @@ Deletes a schedule from ProfNUS.
 
 :exclamation: **Caution:**
 
-- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, **no** schedule will be deleted by ProfNUS.
+- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, there will be an error message and **no** schedule will be deleted by ProfNUS.
 
 </div>
 
@@ -600,7 +600,7 @@ This command helps you clear all schedules/all schedules of selected modules.
 
 :exclamation: **Caution:**
 
-- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will **not** clear any schedule you have
+- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and  **will not** clear any schedule you have.
 
 </div>
 
@@ -621,13 +621,22 @@ You can use this command to view the list of selected/all schedules.
 
 </div>
 
+<div markdown="span" class="alert alert-warning">
+
+
+:exclamation: **Caution:**
+
+- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and **will not** show any schedule.
+
+</div>
+
 **Example:** `view c/CS2030S w/Monday`
 
 Now, let's view your schedules of CS2030S and schedules on Monday.
 
 **Step 1:** Type the command `view c/CS2030S w/Monday` in the command box.
 
-![view_step1](images/userguide/view_step1.png)
+![ ](images/userguide/view_step1.png)
 
 **Step 2:** Press enter, you will see all schedules related to CS2030S and Monday.
 
@@ -705,11 +714,11 @@ _Details coming soon ..._
 |--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [list all students/teaching assistants](#438-listing-all-students-list)                          | `list`                                                                                                             | `list`                                                                                                                                                                      |
 | [add a student/teaching assistant](#432-adding-a-student-or-teaching-assistant-add)              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`            | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br> `add n/Adam Doink t/TA e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 c/CS1101S` |
-| [edit a student](#433-editing-a-student-edistu)                                                  | `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​` | `editstu 1 p/91234567 e/johndoe@example.com` <br> `editstu 2 n/Betsy Crower c/`                                                                                             |
-| [edit a teaching assistant](#434-editing-a-teaching-assistant-edita)                             | `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`  | `editta 1 p/97384723 e/davidlim@example.com` <br> `editta 2 n/Beth ta/CS2030S`                                                                                              |
+| [edit a student](#433-editing-a-student-editstu)                                                 | `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​` | `editstu 1 p/91234567 e/johndoe@example.com` <br> `editstu 2 n/Betsy Crower c/`                                                                                             |
+| [edit a teaching assistant](#434-editing-a-teaching-assistant-editta)                            | `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`  | `editta 1 p/97384723 e/davidlim@example.com` <br> `editta 2 n/Beth ta/CS2030S`                                                                                              |
 | [delete a student](#435-deleting-a-student-delstu)                                               | `delstu INDEX`                                                                                                     | `delstu 1`                                                                                                                                                                  |
 | [delete a teaching assistant](#436-deleting-a-teaching-assistant-delta)                          | `delta INDEX`                                                                                                      | `delta 1`                                                                                                                                                                   |
-| [find a student/teaching assistant]($437-locating-students-and-teaching-assistants-by-name-find) | `find KEYWORD [MORE_KEYWORD]`                                                                                      | `find Adam Do`                                                                                                                                                              |
+| [find a student/teaching assistant](#437-locating-students-and-teaching-assistants-by-name-find) | `find KEYWORD [MORE_KEYWORD]`                                                                                      | `find Adam Do`                                                                                                                                                              |
 
 ### 6.4 Schedule Manager Command Summary
 
