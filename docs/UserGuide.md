@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 # **Introduction**
-HR Pro Max++ is a **desktop app for team leads in SMEs to manage Projects, Staff members under them and their Project Tasks. 
+HR Pro Max++ is a **desktop app for team leads in SMEs to manage Projects, Staff members under them and their Project Tasks.
 It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 Our simple and intuitive commands will help you quickly learn how to use HR Pro Max++ to quickly finish all your Project Management Tasks.
@@ -17,7 +17,7 @@ Here are some shortcuts to get help:
 --------------------------------------------------------------------------------------------------------------------
 ## **Table of Contents**
 
-* Table of Contents 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ Our app's user interface is divided into 5 main parts:
 ![Ui](images/UiLabelled.png)
 
 ### **Command Box**
-The command box is where you can type in your commands. 
+The command box is where you can type in your commands.
 ![Command Box](images/CommandBox.png)
 
 Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -86,7 +86,7 @@ For example, entering an incorrect `addproj` command like shown below will cause
 ![Result Display](images/ResultDisplay.png)
 
 ### **Task Panel**
-This section in the user interface displays the list of Tasks that you have entered into the app. 
+This section in the user interface displays the list of Tasks that you have entered into the app.
 For information on all commands that are related to Tasks, refer to the [Task Commands](#task-commands) section.
 
 ![Task Panel](images/TaskPanel.png)
@@ -100,7 +100,7 @@ For information on all commands that are related to Projects, refer to the [Proj
 
 ### **Staff Panel**
 This section in the user interface displays the list of Staff that you have entered into the app.
-When first starting the program, the `Staff` list will be empty by default. 
+When first starting the program, the `Staff` list will be empty by default.
 To see how to view the `Staff` list attached to a Project, you can check [this](#view-the-staff-list-within-a-project--view) section of the user guide.
 For information on all commands that are related to Staff, refer to the [Staff Commands](#staff-commands) section.
 
@@ -167,17 +167,17 @@ Adds a Project to Project list.
 Format: `addproj pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECT_DEADLINE [t/TAG]…​`
 
 ```yaml
-Note: 
+Note:
   * A Project can have any number of tags (including 0)
   * PROJECT_BUDGET should be a whole number and entered as Singapore dollars. You do not need to enter any currency symbols.
   * PROJECT_DEADLINE should follow the YYYY-MM-DD format.
 ```
 
 Examples:
-* `addproj pn/2103T TP pb/100000 pd/2022-01-01` creates a new Project with project name `2103T TP`, a budget of `$100000` and a deadline 
+* `addproj pn/2103T TP pb/100000 pd/2022-01-01` creates a new Project with project name `2103T TP`, a budget of `$100000` and a deadline
 at `2022-01-01`
-* `addproj pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Funtime` creates a new Project with project name `CS2100` with a budget of 
-`$1000` and a deadline at `2022-01-01`. This project is tagged as `Funtime`. 
+* `addproj pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Funtime` creates a new Project with project name `CS2100` with a budget of
+`$1000` and a deadline at `2022-01-01`. This project is tagged as `Funtime`.
 
 [Back to top](#table-of-contents)<br>
 [Back to Project Glossary](#project-glossary)
@@ -187,7 +187,7 @@ at `2022-01-01`
 
 Show all the Projects and Tasks in the Project and Task list respectively.
 
-<div markdown="span" class="alert alert-primary"> 
+<div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** After using a find command, you can use `list` to return the display to its original state.
 </div>
 
@@ -203,16 +203,16 @@ Finds all Projects whose names match any of the specified keywords (case-insensi
 Format: `findproj KEYWORD [MORE_KEYWORDS]`
 
 ```yaml
-Note: 
+Note:
   * `KEYWORDS` must not be an empty string.
   * The findproj command is case-insensitive such that 'merger' will match 'MERGER'
-  * The findproj command will match Project name if there is a partial match, 'me' or 'mE' 
+  * The findproj command will match Project name if there is a partial match, 'me' or 'mE'
     will both match 'MERGER'
 ```
 
 Examples:
-* `findproj CS2103` returns all projects that contain the word `CS2103`. 
-For example, both projects `CS2103` and `CS2103 TP` will be listed. 
+* `findproj CS2103` returns all projects that contain the word `CS2103`.
+For example, both projects `CS2103` and `CS2103 TP` will be listed.
 * `findproj merge develop` returns all projects that either contain the word `merge` or the word `develop`. For example, both projects
 `Merger with ABC` and `Develop software` will be listed.
 
@@ -225,12 +225,12 @@ For example, both projects `CS2103` and `CS2103 TP` will be listed.
 Sorts the Project list according to deadline.
 
 ```yaml
-Warning !!!: 
-  * This command is irreversible, you will not be able to get back the original ordering 
+Warning !!!:
+  * This command is irreversible, you will not be able to get back the original ordering
     after this command.
 ```
 
-Format: `sortproj` sorts all projects in ascending order of deadline. 
+Format: `sortproj` sorts all projects in ascending order of deadline.
 
 [Back to top](#table-of-contents)<br>
 [Back to Project Glossary](#project-glossary)
@@ -246,11 +246,11 @@ Format: `editproj INDEX [pn/PROJECT_NAME] [pb/PROJECT_BUDGET] [pd/PROJECT_DEADLI
 Note:
   * INDEX must be a positive integer 1, 2, 3, …​
   * At least one of the optional fields must be provided.
-  * When editing tags, the existing tags of the person will be removed 
+  * When editing tags, the existing tags of the person will be removed
     i.e adding of tags is not cumulative.
 ```
 
-<div markdown="span" class="alert alert-primary"> 
+<div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** You can remove all tags in a Project by typing `t/` without
   specifying any tags after it.
 </div>
@@ -286,7 +286,7 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ## **Staff Commands**
 
-Since each Project contains a list of Staff, we recommend that before using Staff commands on any Project, 
+Since each Project contains a list of Staff, we recommend that before using Staff commands on any Project,
 you should first use the [view command](#view-the-staff-list-within-a-project--view) to display the Project's attached Staff list.
 
 ```yaml
@@ -311,7 +311,7 @@ Warning !!!:
 --------------------------------------------------------------------------------------------------------------------
 ### **Adding a Staff member to Project :** `addstaff`
 
-Adds a Staff member into the Project at the specified `INDEX`. 
+Adds a Staff member into the Project at the specified `INDEX`.
 
 
 Format: `addstaff INDEX sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sp/STAFF_PHONE [t/TAGS]`
@@ -322,10 +322,10 @@ Note:
  * INDEX refers to the numbering of the desired Project in the currently displayed Project
    list.
  * All fields for Staff members are required, except `TAGS`
- * If no Projects are currently shown on the Project list, addstaff will give an error. 
-   Use list to display all Projects. If no Projects are present, add a Project first 
+ * If no Projects are currently shown on the Project list, addstaff will give an error.
+   Use list to display all Projects. If no Projects are present, add a Project first
    using the addproj command.
- * If Staff is added successfully, the displayed Staff list will be updated to show the 
+ * If Staff is added successfully, the displayed Staff list will be updated to show the
    Staff list of the Project where the Staff is added to.
 ```
 
@@ -339,7 +339,7 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### **Deleting a Staff member from Project :** `delstaff`
 
-Deletes a Staff member and all their info from the Project which has its name specified. 
+Deletes a Staff member and all their info from the Project which has its name specified.
 The Project must be in the currently displayed Project list for this command to work as expected.
 
 Format: `delstaff INDEX pn/PROJECT_NAME`
@@ -350,11 +350,11 @@ Note:
   * PROJECT_NAME refers to the Project in displayed Project list where the Staff is deleted
     from.
   * Recommended to use the view command on a Project before deleting a Staff from it.
-  * A possible interaction is if you view the Staff list of Project A then try 
-    to delete Staff at index 1 (call this Staff Tom) from Project B, it will delete 
+  * A possible interaction is if you view the Staff list of Project A then try
+    to delete Staff at index 1 (call this Staff Tom) from Project B, it will delete
     Staff Tom from Project B if Staff Tom is also part of Project B.
   * The index must be a positive integer 1, 2, 3, …​
-  * If Staff is deleted successfully, it will update the displayed Staff list to show the 
+  * If Staff is deleted successfully, it will update the displayed Staff list to show the
     Staff list of the Project where the Staff was deleted from.
 ```
 
@@ -395,13 +395,13 @@ t/TAGS]`
 
 ```yaml
 Note:
-  * All fields in the `[]` are optional, but at least one of the optional fields must be 
+  * All fields in the `[]` are optional, but at least one of the optional fields must be
     provided.
-  * Recommended to use the view command on a Project before editing a Staff in its Staff 
+  * Recommended to use the view command on a Project before editing a Staff in its Staff
     list.
-  * INDEX refers to the numbering of the Staff in the displayed Staff list. It is the 
+  * INDEX refers to the numbering of the Staff in the displayed Staff list. It is the
     Staff to be edited.
-  * PROJECT_NAME refers to the numbering of the Project in the displayed Project list 
+  * PROJECT_NAME refers to the numbering of the Project in the displayed Project list
     where the Staff is to be edited.
   * A possible interaction is if you view the Staff list of Project A then try
     to edit Staff at index 1 (call this Staff Tom) from Project B, it will try to edit
@@ -410,7 +410,7 @@ Note:
 ```
 
 Examples:
-* `editstaff 1 pn/CS2103T sn/John Doe` edits the Staff name of the first Staff of the displayed Staff list of `CS2103T` to `John Doe` 
+* `editstaff 1 pn/CS2103T sn/John Doe` edits the Staff name of the first Staff of the displayed Staff list of `CS2103T` to `John Doe`
 
 [Back to top](#table-of-contents)<br>
 [Back to Staff Glossary](#staff-glossary)
@@ -424,17 +424,17 @@ Format: `findstaff KEYWORDS`
 
 ```yaml
 Note:
-  * `KEYWORDS` must not be an empty string. 
+  * `KEYWORDS` must not be an empty string.
   * For `findstaff` to work as expected, the current active Staff list must be non-empty.
   * The findstaff command is case-insensitive such that 'hans' will match 'HANS'.
-  * The findstaff command will match Staff name if there is a partial match, 'ha' or 
+  * The findstaff command will match Staff name if there is a partial match, 'ha' or
     'hA' will both match 'HANS'.
 ```
 
 Examples:
 * `findstaff Jon` returns a filtered view of the Staff list such that all Staff with name `Jon` are listed.
-* `findstaff Adrian Lam` returns a filtered view of the Staff list such that all Staff with name `Adrian Lam` are listed. 
-Staff whose name contains `Adrian` or `Lam` are also listed. 
+* `findstaff Adrian Lam` returns a filtered view of the Staff list such that all Staff with name `Adrian Lam` are listed.
+Staff whose name contains `Adrian` or `Lam` are also listed.
 * You can use the view command to list all the Staff in a Project if you wish to display the full Staff List again.
 
 [Back to top](#table-of-contents)<br>
@@ -456,14 +456,14 @@ This section contains information on all the commands related to Tasks.
 --------------------------------------------------------------------------------------------------------------------
 ### **Adding a Task :** `addtask`
 
-Adds a Task to the Task list. 
+Adds a Task to the Task list.
 
 Format: `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE`
 
 ```yaml
 Note:
   * Both Task fields `TASK_DESCRIPTION` and `TASK_DEADLINE` must be present.
-  * `TASK_DEADLINE` follows the YYYY-MM-DD format. 
+  * `TASK_DEADLINE` follows the YYYY-MM-DD format.
 ```
 
 Examples:
@@ -476,13 +476,13 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### **Deleting a Task :** `deltask`
 
-Deletes a Task at the specified `INDEX` from the Task list. 
+Deletes a Task at the specified `INDEX` from the Task list.
 
 Format: `delTask INDEX`
 
 ```yaml
 Note:
-  * INDEX must be a positive integer from 1, 2, 3, ... 
+  * INDEX must be a positive integer from 1, 2, 3, ...
 ```
 
 Examples:
@@ -503,7 +503,7 @@ Format: `findtask KEYWORDS`
 ```yaml
 Note:
   * The search is case-insensitive. e.g `call` will match `Call`
-  * The findtask command will match Task description if there is a partial match, 
+  * The findtask command will match Task description if there is a partial match,
     'Meet' or 'meet' will both match 'Meeting'.
 ```
 
@@ -521,7 +521,7 @@ Sorts all Tasks in displayed Task list by deadline. Earlier deadlines will be pl
 
 ```yaml
 Warning !!!:
-* This command is irreversible, you will not be able to get back the original ordering 
+* This command is irreversible, you will not be able to get back the original ordering
   after this command.
 ```
 
@@ -590,7 +590,7 @@ Format: `help`
 
 Show all the Projects and Tasks in the Project and Task list respectively.
 
-<div markdown="span" class="alert alert-primary"> 
+<div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** After using a find command, you can use `list` to return the display to its original state.
 </div>
 
@@ -615,7 +615,7 @@ Clears **all data** from HR Pro Max++.
 Format: `clear`
 
 ```yaml
-Warning !!!: 
+Warning !!!:
 * This command is irreversible, you will not be able to recover data after clearing it.
 ```
 
@@ -623,7 +623,7 @@ Warning !!!:
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Saving the data**
-Project data is saved in the hard disk automatically after any command that changes the data. 
+Project data is saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
 [Back to top](#table-of-contents)

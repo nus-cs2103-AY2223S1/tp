@@ -320,8 +320,8 @@ specifically for staff called `delstaff`. This `Staff` is then deleted.
 `delstaff Index pn/PROJECT_NAME ` : Get the Staff name of the Staff on the displayed Staff list identified
 by the INDEX. It then deletes the Staff from the Project identified by the PROJECT_NAME if the Staff exist.
 
-To align with the current implementation of deleting from only the displayed Project and Staff list, we 
-will only allow Staff that are displayed to be deleted. Since we do not save which Project is currently on 
+To align with the current implementation of deleting from only the displayed Project and Staff list, we
+will only allow Staff that are displayed to be deleted. Since we do not save which Project is currently on
 display, we pass in the PROJECT_NAME to delete the Staff from the Project identified by the PROJECT_NAME. However, if the Project
 with the PROJECT_NAME is not displayed, the Staff cannot be deleted also due to the above-mentioned reason.
 
@@ -682,28 +682,28 @@ and a `Task`. While the `Task` is quite similar to the `Person` in terms of impl
 lied within making the regex for their fields. `TaskMark`, `Deadline` and `Tag`, required us to do some reading up on how the regex API works, and for `Deadline`,
 initally we have tried to do it using Java regex but decided to change implementation into `LocalDate`, which API we also had to read upon.
 
-The biggest challenge for the project was the `Staff` and everything related to it. `Staff` existed as a `UniqueStaffList` within `Project`, something not in `Person`. Hence 
-there was nothing to reference too. We had many consideration on the implementation, perhaps wanting to save it independent from `Project` and to instead save a list of 
+The biggest challenge for the project was the `Staff` and everything related to it. `Staff` existed as a `UniqueStaffList` within `Project`, something not in `Person`. Hence
+there was nothing to reference too. We had many consideration on the implementation, perhaps wanting to save it independent from `Project` and to instead save a list of
 `Project` within each `Staff`. This caused many days of debate on the implementation. Such implementation also affected how it works when it came to UI and the logic for the commands.
-For `Staff` related commands, we had to switch between many implementation, whether we change the parameters passed or changed the way it is stored and reference to in modelManager. One other 
-implementation was not to use a filterStaffList, but instead a targetProject field, which had us needing to change how storage and UI would work. Due to the difficulty of this, we could easily take a few days 
+For `Staff` related commands, we had to switch between many implementation, whether we change the parameters passed or changed the way it is stored and reference to in modelManager. One other
+implementation was not to use a filterStaffList, but instead a targetProject field, which had us needing to change how storage and UI would work. Due to the difficulty of this, we could easily take a few days
 every week, contemplating on how `Staff` and its related commands should work, be implemented, and then implement them.
 
-For logic, we added many commands. Some of them like `taskMark`, `sortProj`, and `view` to name a few required us to understand how `modelManager`, 
-the old `addressBook` worked before we could try to create these commands. We had to consider how to write the logic that follows OOP standards from scratch 
-and had to read Java API such as for `Optional` and `Comparator` to reach a satisfactory implementation. 
+For logic, we added many commands. Some of them like `taskMark`, `sortProj`, and `view` to name a few required us to understand how `modelManager`,
+the old `addressBook` worked before we could try to create these commands. We had to consider how to write the logic that follows OOP standards from scratch
+and had to read Java API such as for `Optional` and `Comparator` to reach a satisfactory implementation.
 
-For the UI, we wanted a design that made us different from AB3, even if just a little. Our group has never worked with CSS files before or JavaFx, so we 
+For the UI, we wanted a design that made us different from AB3, even if just a little. Our group has never worked with CSS files before or JavaFx, so we
 had to experiment for ourselves, searching for help through API and suggestion offered online. We tried using VBox and HBox to fit our design but ultimately changed
-to splitpane when our dimensions were wrong. We had to learn how the different attributes in fxml and CSS worked, if we wanted to increase the number of fields displayed, 
+to splitpane when our dimensions were wrong. We had to learn how the different attributes in fxml and CSS worked, if we wanted to increase the number of fields displayed,
 change to different colours and also how to make a flowpane display different colours based on different conditions. All of these took lots of time
 and even back in V1.2, we nearly could not finish by the deadline since we could not figure out some bugs with the UI.
 
 With storage, we also did not have experience with JSON files, and had to learn how they were created and saved using the original for `Person`.
 We had much difficult as we wanted `Project` to store a list of `Staff` objects but were unsure how to do it. Unlike the `Tag`, each `Staff` also had its
-own fields to save and load, due to that we had to experiment for numerous days till we saved it. 
+own fields to save and load, due to that we had to experiment for numerous days till we saved it.
 
-For the test cases, we started them since V1.2, and faced many challenges when having to due with the many Stubs used and also just the general 
-difficulty of writing good test cases. We have been doing test cases for every command made, every addition to model and have been aiming to ensure that we 
+For the test cases, we started them since V1.2, and faced many challenges when having to due with the many Stubs used and also just the general
+difficulty of writing good test cases. We have been doing test cases for every command made, every addition to model and have been aiming to ensure that we
 keep our code coverage at 75% and above. The biggest challenge was writing test cases for `Staff` since the original stubs used were not applicable as `Staff` cannot
 exist without a `Project`, a dependency that `Person` did not have. Therefore, we could not refer to anything and had to create one for testing purposes.
