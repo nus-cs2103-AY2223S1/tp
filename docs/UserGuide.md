@@ -366,12 +366,17 @@ Consequently, the commands are split into **5** main sections:
 [help command section](#example-command-help-message---add-person---help)
 - Every command has a `-h` and `--help` flag available to see their help message
 - Parameters are in uppercase and wrapped with angle brackets, e.g. `<PARAMETER>`
-- Flags and parameters in square brackets (`[]`) are optional 
-- Flags and parameters can be specified in any order
+- The equals sign (`=`) for flags are optional and do not need to be specified
+- Flags in square brackets (`[]`) are optional
+- Flags can be specified in any order
   - For e.g. `-n name -p 98765432` is the same as `-p 98765432 -n name`
-- Flags and parameters wrapped with brackets (`()`) indicates that at least 1 flag/parameter inside the brackets is 
+- Flags wrapped with brackets (`()`) indicates that at least 1 flag/parameter inside the brackets
   must be specified
-  - For e.g. see the [edit person command](#editing-a-person--edit-person)
+  - For `([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-t [<TAGS>]]...)`, the following are valid
+    1. `-n name`
+    2. `-p 98765432`
+    3. `-e new@email.com`
+    4. `-t developer`
 - Flags/Parameters with ellipsis (`...`) behind them means that more than 1 parameter can be specified
   - For `[-t [TAGS...]]...`, the following are valid
     1. `-t`
@@ -392,7 +397,7 @@ Summary of commands can be found [here](#summary-of-person-commands)
 
 Adds a person to TruthTable.
 
-**Format:** `add person [-h] -e <EMAIL> -n <NAME> -p <PHONE> [-t [<TAGS>...]]...`
+**Format:** `add person [-h] -e=<EMAIL> -n=<NAME> -p=<PHONE> [-t[=<TAGS>...]]...`
 
 | Flags             | Required | Remarks                                                |
 |-------------------|:---------|--------------------------------------------------------|
@@ -419,7 +424,7 @@ A person can have any number of tags (including 0)
 
 Shows a list of all persons in TruthTable.
 
-**Format:** `list persons`
+**Format:** `list persons [-h]`
 
 | Flags             | Required | Remarks                                                |
 |-------------------|:---------|--------------------------------------------------------|
@@ -434,16 +439,29 @@ Shows a list of all persons in TruthTable.
 
 Edits an existing person in TruthTable.
 
-**Format:** `edit person [-h] ([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-t [<TAGS>]]...) <PERSON_INDEX>`
+**Format:** `edit person [-h] ([-n=<NAME>] [-p=<PHONE>] [-e=<EMAIL>] [-t[=<TAGS>...]]...) <PERSON_INDEX>`
 
-* Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person
+| Flags           | Required   | Remarks                                 |
+|-----------------|:-----------|-----------------------------------------|
+| `-h`, `--help`  |            | Shows help message                      |
+| `-e`, `--email` | *️⃣        | Email of person (e.g. truth@table.com)  |
+| `-n`, `--name`  | *️⃣        | Name of person (e.g. "Truth Table")     |
+| `-p`,`--phone`  | *️⃣        | Phone of person (e.g. 98765432)         |
+| `-t`,`--tags`   | *️⃣        | Tags of person (e.g. Frontend, Backend) |
+
+*️⃣ - at least one of the flags must be specified
+
+* Edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the displayed person
   list. 
-* The index **must be a positive integer** 1, 2, 3,...
-* At least one of the optional fields must be provided.
-* Only updates values if input values specified.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `-t` without
-  specifying any tags after it.
+* `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
+* Each field only updates if the flag for that field is specified.
+* When editing tags, the existing tags of the person will be replaced by the new tags specified.
+* You can remove all the person’s tags by typing `-t` without specifying any tags after it.
+
+**Command Aliases:**
+- `edit p`
+- `e person`
+- `e p`
 
 **Examples::** 
 *  `edit person 1 -p 91234567 -e johndoe@example.com` Edits the phone number and email address of the 1st person to be
