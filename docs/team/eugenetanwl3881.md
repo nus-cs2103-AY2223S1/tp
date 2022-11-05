@@ -35,7 +35,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Refactoring done to project packages (PR [\#149](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/149))
-  * Team tasks: Creation of issues, completing some weekly team tasks (PR [\#241](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/241))
+  * Team tasks: Creation of issues, completing some weekly team tasks, updating AboutUs (PR [\#241](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/241), [PR#22](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/22))
 
 * **Testing**:
   * Wrote some tests for tag features (PRs [\#235](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/235))
@@ -43,42 +43,21 @@ Given below are my contributions to the project.
 * **Documentation**:
 
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the commands `list`, `find`, `exit` ([PR#77](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/77))
+    * Add FAQ into UG ([PR#178](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/178))
+    * Add Command Summary Table ([PR#152](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/152))
+    * Updating sections and fixing bugs for UG ([PR#261](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/261), [PR#292](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/292), [PR#306](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/306), [PR#420](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/420) )
+    
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added User Stories and Use Cases in DG ([PR#79](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/79), [PR#142](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/142))
+    * Added NFRs in DG ([PR#57](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/57))
+    * Added implementation details of the `newtag` and `tag` feature. ([PR#230](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/230), [PR#464](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/464))
+    * DG User Stories Table  ([PR#419](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/419))
+    * Added Instructions for Manual testing ([PR#505](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/505))
+    * Added Effort Section ([PR#503](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/503))
+    * Updating and fixing bugs in DG ([PR#36](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/36),[PR#278](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/278), [PR#281](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/281), [PR#287](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/287), [PR#319](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/319), [PR#334](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/334), [PR#419](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/419))
 
 * **Community**:
   
   * PRs reviewed (with non-trivial review comments): [\#199](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/199), [\#32](), [\#232](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/232), [\#143](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/143)
 
-  
-* Update AboutUs ([PR#22](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/22))
-* Remove AB3 Info from Developer Guide ([PR#36](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/36))
-* Add NFRs to DG ([PR#57](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/57))
-* Add skeletal UG ([PR#65](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/65))
-* Add Commands for list, find and bye in UG ([PR#77](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/77))
-* Add Acknowledgments in README ([PR#78](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/78))
-* Add Use Cases 1 and 2 in DG ([PR#79](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/79))
-* Add User Stories and Update Use Cases ([PR#142](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/142))
-* Organize commands to subpackages based on their type. ([PR#149](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/149))
-* Update UG Command Summary Table  ([PR#152](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/152))
-* Update \"reset\" command ([PR#160](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/160))
-* Add tag command (tagging of items) UI ([PR#171](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/171))
-* Add \"tag\" and \"untag\" command (tags) to tag/untag an item ([PR#172](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/172))
-* Add FAQ into UG ([PR#178](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/178))
-* Add listtag command  ([PR#200](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/200))
-* Add Implementation details in DG ([PR#230](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/230))
-* Added Tests for Tag Commands ([PR#235](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/235))
-* Enable assertions for Week 10 Team Task ([PR#241](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/241))
-* Update UG  ([PR#261](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/261))
-* Update DG ([PR#278](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/278))
-* Small Fixes for DG Headers for Use Cases ([PR#281](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/281))
-* Minor DG updates ([PR#287](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/287))
-* Fix errors for UG Draft ([PR#292](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/292))
-* Update Images and Admonitions in UG ([PR#306](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/306))
-* DG Minor Updates ([PR#319](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/319))
-* Fix minor errors for DG ([PR#334](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/334))
-* Reformat DG User Stories Table  ([PR#419](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/419))
-* Fix UG Bugs reported in PED ([PR#420](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/420))
-* Fix bugs for renametag command
