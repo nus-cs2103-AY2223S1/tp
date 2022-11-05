@@ -24,10 +24,13 @@ Given below are my contributions to the project.
   * Justification: Users juggling many tasks may need to be reminded of what tasks are due most urgently, thus this allows them to clearly see what tasks should be completed by their specified date.
   * Highlights: Tasks past their deadline are still shown by remindT as users may still need to complete them.
 
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: Added command to show users their task completion progress for tasks with any of the specified tags.
   * What it does: Shows the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
   * Justification: Users keeping track of many tasks for different projects may need to see how close they are to completing their tasks for certain projects, so they can better manage their time and effort.
   * Highlights: Executing the `progressT` command will also filter the task list by the given tags so users can see which tasks are being counted for completion progress.
+
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nickeltea&breakdown=true)
 
