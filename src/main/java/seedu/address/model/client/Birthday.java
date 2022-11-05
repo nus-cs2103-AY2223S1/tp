@@ -56,4 +56,14 @@ public class Birthday extends Date {
         return !birthday.date.isAfter(LocalDate.now())
                 && !birthday.date.isBefore(LocalDate.now().minusYears(yearsBefore));
     }
+
+    /**
+     * Returns a new Birthday with the current year.
+     */
+    public Birthday upcomingBirthday() {
+        int year = LocalDate.now().getYear();
+        int mth = date.getMonthValue();
+        int day = date.getDayOfMonth();
+        return new Birthday(LocalDate.of(year, mth, day));
+    }
 }
