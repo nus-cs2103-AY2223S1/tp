@@ -8,10 +8,10 @@
       "mobile" : "87438807",
       "email" : "alexyeoh@example.com",
       "clientId" : "1",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "1"
+    "projectId" : "1",
+    "pin" : "false"
   }, {
     "name" : "Individual Project",
     "repository" : "johndoe/ip",
@@ -21,10 +21,10 @@
       "mobile" : "87438807",
       "email" : "alexyeoh@example.com",
       "clientId" : "1",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "1"
+    "projectId" : "1",
+    "pin" : "false"
   } ],
   "issues" : [ ]
 }

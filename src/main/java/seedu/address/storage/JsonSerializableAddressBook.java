@@ -21,9 +21,9 @@ import seedu.address.model.project.Project;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    private static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
-    private static final String MESSAGE_DUPLICATE_ISSUE = "Issues list contains duplicate issue(s).";
-    private static final String MESSAGE_INVALID_CLIENT = "Clients list contains invalid client(s).";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
+    public static final String MESSAGE_DUPLICATE_ISSUE = "Issues list contains duplicate issue(s).";
+    public static final String MESSAGE_INVALID_CLIENT = "Clients list contains invalid client(s).";
 
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
     private final List<JsonAdaptedIssue> issues = new ArrayList<>();

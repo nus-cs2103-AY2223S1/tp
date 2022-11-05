@@ -8,10 +8,10 @@
       "mobile" : "",
       "email" : "",
       "clientId" : "",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "1"
+    "projectId" : "1",
+    "pin" : "false"
   }, {
     "name" : "Team Project",
     "repository" : "",
@@ -21,10 +21,10 @@
       "mobile" : "",
       "email" : "",
       "clientId" : "1",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "2"
+    "projectId" : "2",
+    "pin" : "false"
   }, {
     "name" : "Group Project",
     "repository" : "",
@@ -34,10 +34,10 @@
       "mobile" : "",
       "email" : "",
       "clientId" : "",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "3"
+    "projectId" : "3",
+    "pin" : "false"
   } ],
   "issues" : [ {
     "title" : "Fix UI Bugs",
@@ -45,6 +45,7 @@
     "deadline" : "",
     "status" : "false",
     "issueId" : "1",
-    "project" : "3"
+    "project" : "3",
+    "pin" : "false"
   } ]
 }
