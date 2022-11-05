@@ -24,6 +24,7 @@ Given below are my contributions to the project.
 <br>
 
 * **Project management**:
+    * Set up AY2223S1-CS2103T-T10-2 Organization.
     * Set Up Java Continuous Integration.
     * Set up and link Code Coverage to team repository.
     * Set up Git Issues for tasks to be completed.
@@ -37,8 +38,6 @@ Given below are my contributions to the project.
 <br>
 
 * **Documentation**:
-    * Set Up:
-      * Set up AY2223S1-CS2103T-T10-2 Organization.
     * UI Mock Up
       * Design User Interface mockup of application with Figma.
     * User Guide:
