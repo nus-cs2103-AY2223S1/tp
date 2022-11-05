@@ -238,6 +238,51 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Adding a Task into the TaskList.
+
+#### Proposed Implementation
+
+The proposed insertion mechanism allows a `Task` to be added into the tasklist. A task consists of attributes such as
+its **name**, **description**, **priority level**, **category**, **deadline** and **email** of person assigned.
+The command is executed using the `AddTaskCommand`class which extends the `Command` class and the 
+respective attributes of a task is determined from the `AddTaskCommandParser` class which parses the user input 
+
+Given below is an example usage scenario and how the AddTask mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
+
+Step 2. The user executes `addTask n/homework d/coding assignment pr/high c/backend dl/2022-12-12 
+pe/charlotte@example.com` to add a task to the tasklist. The `AddTaskCommand` calls the `Model#hasTask()`, checking if
+the tasklist already contains the task. If the task already exist, an exception will be thrown and a **task already 
+exist** error message will be returned to the user.
+
+Step 3. If the task does not exist in the tasklist, the `AddTaskCommand` calls the `Model#addTask` to add the task into
+the tasklist. 
+
+step 4. After making an insert into the tasklist, the `AddTaskCommand` calls the `Model#update`, which calls 
+`AddressBook#setTasks` to update the tasklist in the model to the latest version
+
+The following sequence diagram shows how the AddTask operation works:
+
+
+The following activity diagram summarizes what happens when a user executes a AddTask command:
+
+
+
+
+**Design considerations**
+
+**Aspect: How Adding executes:**
+
+* **Alternative 1 (current choice):** Filters entire tasklist
+    * Pros: Easy to implement.
+    * Cons: May have performance issues as the entire tasklist must be parsed.
+
+* **Alternative 2:**
+    * Pros:
+    * Cons:
+
+
 ### \[Proposed\] Task and Person display each other
 
 #### Proposed Implementation
