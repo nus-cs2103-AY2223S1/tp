@@ -23,7 +23,7 @@ public class TaskUtil {
      */
     public static String[] convertTaskToArgs(Task task) {
         List<String> argList = new ArrayList<>();
-        argList.add(task.getName());
+        argList.add(task.getName().taskName);
         argList.add(FLAG_ASSIGNEE_STR);
         argList.add("1");
         argList.add(FLAG_DEADLINE_STR);
@@ -38,7 +38,7 @@ public class TaskUtil {
      */
     public static String[] convertPartialTaskToArgs(Task task) {
         List<String> argList = new ArrayList<>();
-        argList.add(task.getName());
+        argList.add(task.getName().taskName);
         argList.add(FLAG_ASSIGNEE_STR);
         argList.add("1");
         return argList.toArray(new String[0]);
@@ -52,7 +52,7 @@ public class TaskUtil {
         List<String> argList = new ArrayList<>();
         argList.add("1");
         argList.add(FLAG_NAME_STR);
-        argList.add(task.getName());
+        argList.add(task.getName().taskName);
         argList.add(FLAG_ASSIGNEE_STR);
         argList.add("1");
         argList.add(FLAG_DEADLINE_STR);
@@ -69,7 +69,7 @@ public class TaskUtil {
         List<String> argList = new ArrayList<>();
         argList.add("1");
         argList.add(FLAG_NAME_STR);
-        argList.add(task.getName());
+        argList.add(task.getName().taskName);
         argList.add(FLAG_ASSIGNEE_STR);
         argList.add("1");
         return argList.toArray(new String[0]);

@@ -17,7 +17,6 @@ import javafx.collections.ObservableList;
 import picocli.CommandLine;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressConverter;
 import seedu.address.logic.parser.EmailConverter;
 import seedu.address.logic.parser.NameConverter;
 import seedu.address.logic.parser.PhoneConverter;
@@ -26,7 +25,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTruthTable;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TruthTable;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -46,8 +44,7 @@ public class AddPersonCommandTest {
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Name.class, new NameConverter())
             .registerConverter(Email.class, new EmailConverter())
-            .registerConverter(Phone.class, new PhoneConverter())
-            .registerConverter(Address.class, new AddressConverter());
+            .registerConverter(Phone.class, new PhoneConverter());
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() {
