@@ -15,8 +15,8 @@ Given below are my contributions to the project.
 * **Undo Redo Feature**
   * What it does: Allows user to undo and redo certain commands that were executed.
   * Justification: Users do not have to type 2 or more commands just to rectify an erroneous command.
-  * Highlights: Feature is implemented through polymorphism where each undoable command implements its own undo method and commands are managed using an undoStack and redoStack.   
-  * Credits: 
+  * Highlights: Feature is implemented through polymorphism where each undoable command implements its own undo method and commands are managed using an undoStack and redoStack.
+  * Credits:
     * The feature Undo and Redo was reused with minimal changes from a tutorial called [Implementing Undo and Redo With The Command Design Pattern by ArjanCode](https://youtu.be/FM71_a3txTo).
 
 * **Person Profile UI**
@@ -43,4 +43,3 @@ Reviewed and merged teammates Pull Requests.
   * Contributed to the documentation for the Upcoming Meeting feature.
   * Contributed to the documentation for the Set File Path feature.
   * Created activity diagrams and sequence diagrams for undo/redo, sync and setFilePath commands.
-  
