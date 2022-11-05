@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -182,6 +184,16 @@ public class ModelManager implements Model {
     public void deleteTag(Tag tag) {
         soConnect.deleteTag(tag);
         todoList.deleteTag(tag);
+    }
+
+    @Override
+    public ArrayList<Tag> getTagList() {
+        return new ArrayList<Tag>(soConnect.getTagList());
+    }
+
+    @Override
+    public void setTagList(List<Tag> tagList) {
+        soConnect.setTags(tagList);
     }
 
     @Override
