@@ -48,7 +48,7 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
+        String trimmedName = name.trim().replaceAll("\\s{2,}", " ");
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -62,7 +62,7 @@ public class ParserUtil {
      */
     public static ClientPhone parseClientPhone(String phone) {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim();
+        String trimmedPhone = phone.trim().replaceAll("\\s{2,}", " ");
 
         ClientPhone newPhone = new ClientPhone(trimmedPhone);
         if (!ClientPhone.isValidPhone(trimmedPhone)) {
@@ -80,7 +80,7 @@ public class ParserUtil {
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
+        String trimmedAddress = address.trim().replaceAll("\\s{2,}", " ");
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
@@ -95,7 +95,7 @@ public class ParserUtil {
      */
     public static Text parseText(String text) throws ParseException {
         requireNonNull(text);
-        String trimmedText = text.trim();
+        String trimmedText = text.trim().replaceAll("\\s{2,}", " ");
         if (!Text.isValidText(trimmedText)) {
             throw new ParseException(Text.MESSAGE_CONSTRAINTS);
         }
@@ -109,7 +109,7 @@ public class ParserUtil {
      */
     public static ClientEmail parseClientEmail(String email) {
         requireNonNull(email);
-        String trimmedEmail = email.trim();
+        String trimmedEmail = email.trim().replaceAll("\\s{2,}", " ");
 
         ClientEmail newEmail = new ClientEmail(trimmedEmail);
         if (!ClientEmail.isValidEmail(trimmedEmail)) {
@@ -154,11 +154,11 @@ public class ParserUtil {
      */
     public static Goods parseGoods(String goods) throws ParseException {
         requireNonNull(goods);
-        String trimmedGoods = goods.trim();
+        String trimmedGoods = goods.trim().replaceAll("\\s{2,}", " ");
         if (!Goods.isValidName(trimmedGoods)) {
             throw new ParseException(Goods.MESSAGE_CONSTRAINTS);
         }
-        return new Goods(goods);
+        return new Goods(trimmedGoods);
     }
 
     /**
@@ -171,7 +171,7 @@ public class ParserUtil {
         requireNonNull(price);
         String trimmedPrice = price.trim();
         Price.parsePriceArguments(trimmedPrice);
-        return new Price(price);
+        return new Price(trimmedPrice);
     }
 
     /**
@@ -184,7 +184,7 @@ public class ParserUtil {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
         Quantity.parseQuantityArguments(trimmedQuantity);
-        return new Quantity(quantity);
+        return new Quantity(trimmedQuantity);
     }
 
 
@@ -200,6 +200,6 @@ public class ParserUtil {
         if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Date(date);
+        return new Date(trimmedDate);
     }
 }
