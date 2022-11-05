@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable
  */
 public class StudentID {
-    
+
     public final String value;
 
     /**
@@ -30,8 +30,8 @@ public class StudentID {
      */
     public String toCmpString() {
         return this.value.isEmpty()
-               ? null
-               : value;
+                ? null
+                : value;
     }
 
     @Override
