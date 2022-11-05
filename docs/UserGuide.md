@@ -60,9 +60,8 @@ No time to waste, let's start _Working_! :muscle:
 
 **Tip Box**
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** Provides pointers to enhance your experience using the application 
+**:bulb: Tip:** Provides pointers to enhance your experience using the application
 </div>
-
 
 **Highlights** <br>
 `commands` or `PARAMETERS`
@@ -151,9 +150,7 @@ No time to waste, let's start _Working_! :muscle:
 | **Exit**    | `exit`                                                                                                                                                                                                    |
 
 <div markdown="block" class="alert alert-info">
-
 **:information_source: Note:**<br>
-
 * Commands without examples are considered trivial and can be executed by inputting the command without additional parameters.
 * Commands are **case-sensitive**!
 
@@ -256,7 +253,7 @@ Format: `find c/COMPANY | r/ROLE | s/STAGE`
 </div>
 
 <div markdown="block" class="alert alert-warning">
-**:exclamation: Caution**
+**:exclamation: Caution** <br>
 * Only full words will be matched e.g. `met` will not match `Meta`.
 * Exactly one attribute can be searched for either Company, Role or Stage.
 * If you input keywords for more than one prefix it will result in an invalid command e.g. `find c/Meta s/Interview` will not be accepted
@@ -279,8 +276,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 <div markdown="block" class="alert alert-warning">
-**:exclamation: Caution**
-* The command will only be executed if the index provided corresponds to an internship application.
+**:exclamation: Caution:** The command will only be executed if the index provided corresponds to an internship application.
 </div>
 
 Examples:
@@ -303,69 +299,150 @@ Example:
 
 ### 5.8. Undoing your previous command
 
-Restores the WorkBook to the state before the previous <em>undoable</em> command was executed
+What if you accidentally made a mistake and performed a wrong <em>undoable</em> command?
+Workbook can help you to undo your changes after performing an undesirable <em>undoable</em> command! 
+Workbook will restore itself to the version before you performed the previous <em>undoable</em> command!
+
+WorkBook keeps track of all your previous <em>undoable</em> commands and its current version, allowing you to `undo` as many times
+to restore any desired state of your WorkBook.
 
 Format: `undo`
+* Undo the previous <em>undoable</em> command.
+* You can perform the `undo` command as many times as the number of tracked Workbook versions
+i.e. stacking 2 undo commands sequentially will revert the WorkBook back 2
+versions ago, assuming you performed at least 2 <em>undoable</em> commands previously!
+* When you perform an <em>undoable</em> command, it will be stacked on top of the
+previous <em>undoable</em> command in the stack. The `undo` command will undo the first <em>undoable</em> command at the
+top of the stack.
 
-Undoable commands: commands that modify the WorkBook's content (`add`, `delete`, `edit` and `clear`)
+* If you have not executed an <em>undoable</em> command previously, the WorkBook will remain in its current version
+and return an error message: "No previous changes to undo!". 
+
+![UndoFailure](images/UndoFailure.png)
+
 
 Examples:
-* `delete 1`
+* `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com` followed by `undo` will
+return the WorkBook version without the added internship.
+* `edit 1 s/Behavioural Interview e/hr@meta.com` followed by `clear` and then `undo` will undo the 
+clearing of the Workbook. The edited stage and email address of the first internship will remain in the 
+returned WorkBook version. 
 
-    `list`
+Workbook version before `undo`:
+![BeforeUndoStack](images/BeforeUndoStack.png)
 
-    `undo` (reverses the `delete 1` command)
+Workbook version after `undo`:
+![AfterUndoStack](images/AfterUndoStack.png)
 
 
-* `find google`
+* `delete 2` followed by `list` and then `undo` will restore the WorkBook to its version prior to the 
+`delete 2` command as the `list` command is not an <em>undoable</em> command and does not create a new
+version of the WorkBook.
+* `edit 2 l/golang t/` followed by `delete 1` and then 2 consecutive `undo` commands will first restore the
+WorkBook to its version before the `delete 1` command, and then the version before the `edit` command.
 
-  `list`
+Before executing command: `edit 2 l/golang t/`
+![BeforeEdit](images/BeforeEdit.png)
 
-  `undo` 
+After executing command: `edit 2 l/golang t/`
+![AfterEdit](images/AfterEdit.png)
 
-    The `undo` command fails as there are no undoable commands executed previously.
+After executing command: `delete 1`
+![AfterDelete](images/AfterDelete.png)
 
-    
-* `delete 1`
-    
-    `clear`
+After executing command: `undo`
+![AfterUndo1](images/AfterUndo1.png)
 
-    `undo` (reverses the `clear` command)
+After executing command: `undo`
+![AfterUndo2](images/AfterUndo2.png)
 
-    `undo` (reverses the `delete 1` command )
+
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+You can only undo <em>undoable</em> commands!
+* `add`
+* `edit`
+* `delete`
+* `clear`
+* `redo`
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**:bulb: Tip:** <br>
+* If you have undone your previous undoable command by mistake, fret not as you can easily redo this 
+to reapply the initial changes!
+* Performing multiple `undo` commands may confuse you as to which <em>undoable</em> command you are
+undoing and how your WorkBook currently looks like!
+* Tracked WorkBook versions will reset once you `exit` the application!
+
+</div>
 
 ### 5.9. Redoing your previous command
 
-Reverses the most recent `undo` command.
+Now, what if you mistakenly performed an `undo` command?
+Workbook can help you to redo your changes after performing an undesirable `undo` command!
+Workbook will reverse the previous `undo` command and restore itself to the version before that!
+
+WorkBook keeps track of all your previous <em>undoable</em> commands and its current version,
+allowing the `redo` command to be performed as many times to reverse the
+`undo` commands you have performed!
 
 Format: `redo`
+* Redo the previous `undo` command.
+* You can perform the redo command as many times as the number of undone versions in the Workbook's tracked versions
+i.e. stacking 2 redo commands sequentially will revert the WorkBook back to its version 2
+  `undo` commands ago, assuming that you performed at least 2 `undo` commands previously.
+* When you perform an `undo` command, it will be stacked on top of the 
+previous `undo` command in the stack. The `redo` command will redo the first `undo` command at the
+top of the stack.
+* If you have not executed a previous `undo` command, the WorkBook will remain in its current state
+  and return an error message: "No more commands to redo!".
+
+![RedoFailure](images/RedoFailure.png)
 
 Examples:
-* `delete 1`
+* `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com` followed by `undo` 
+and then `redo` will restore the WorkBook version with the added internship.
 
-  `undo` (reverses the `delete 1` command)
+Workbook version before `redo`:
+![BeforeRedoStack](images/BeforeRedoStack.png)
 
-  `redo` (reapplies the `delete 1` command)
+Workbook version after `redo`:
+![AfterRedoStack](images/AfterRedoStack.png)
+
+* `edit 1 s/Behavioural Interview e/hr@visa.com` followed by `clear` will create 2 new WorkBook versions. 
+If you perform 2 consecutive `undo` commands, the WorkBook will be restored to the version before both
+`edit` and `clear` commands. When you perform a `redo` command now,
+the WorkBook version will contain the edited stage and email for the first internship.
+
+After you perform command: `edit 1 s/Behavioural Interview e/hr@visa.com`
+![AfterEdit](images/RedoAfterEdit.png)
+
+After you perform command: `clear`
+![AfterClear](images/RedoAfterClear.png)
+
+After you perform command: `undo`
+![AfterUndo1](images/RedoAfterUndo1.png)
+
+After you perform command: `undo`
+![AfterUndo1](images/RedoAfterUndo2.png)
+
+After you perform command: `redo`
+![AfterRedo](images/RedoAfterRedo.png)
 
 
-* `delete 1`
+<div markdown="block" class="alert alert-success">
 
-  `redo`
-
-  The `redo` command fails as there are no `undo` commands executed previously.
-
-
-* `delete 1`
-
-  `clear`
-
-  `undo`(reverses the `clear` command)
-
-  `undo`(reverses the `delete 1` command)
-
-  `redo`(reapplies the `delete 1` command)
-
-  `redo`(reapplies the `clear` command)
+**:bulb: Tip:** <br>
+* If you have redone your previous undo command by mistake, fret not as you can easily undo this again
+to remove the initial changes!
+* Performing multiple `redo` commands may confuse you as to which `undo` command you are
+redoing and how your WorkBook currently looks like!
+* Tracked WorkBook versions will reset once you `exit` the application!
+</div>
 
 ### 5.10. Viewing help
 
