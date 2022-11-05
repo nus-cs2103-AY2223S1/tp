@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+abstract Class "{abstract}\nUIPart"
+Class PersonCard
+Class PersonListPanel
+Class HBox
+Class Label
+Class FlowPane
+Class Person
+Class MainWindow
+
+MainWindow *-- "1" "PersonListPanel"
+PersonListPanel --> "*" PersonCard
+"PersonCard" "0...1   " --> "*" "HBox"
+"PersonCard" "0...1" --> "*" "Label"
+"PersonCard" "   0...1" --> "*" "FlowPane"
+"{abstract}\nUIPart" <|-- PersonCard
+"{abstract}\nUIPart" <|-- PersonListPanel
+PersonCard ..> Person
+
+Class Person {
+toDisplayString()
+}
+
+@enduml
