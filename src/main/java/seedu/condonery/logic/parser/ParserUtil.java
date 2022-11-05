@@ -206,7 +206,12 @@ public class ParserUtil {
      */
     public static PropertyStatusEnum parsePropertyStatus(String propertyStatus) throws ParseException {
         requireNonNull(propertyStatus);
-        return PropertyStatusEnum.valueOf(propertyStatus);
+        try {
+            return PropertyStatusEnum.valueOf(propertyStatus.toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException ex) {
+            throw new ParseException(
+                "Invalid Property Status specified! Property Type must be one of AVAILABLE, SOLD, or PENDING");
+        }
     }
 
 }

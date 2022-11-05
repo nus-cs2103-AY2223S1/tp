@@ -4,6 +4,8 @@ import java.io.File;
 import java.nio.file.Path;
 import java.util.Comparator;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -57,12 +59,12 @@ public class PropertyCard extends UiPart<Region> {
         super(FXML);
         this.property = property;
         id.setText(displayedIndex + ". ");
-        name.setText(property.getName().fullName);
-        address.setText(property.getAddress().value);
+        name.setText(StringUtils.abbreviate(property.getName().fullName, 140));
+        address.setText(StringUtils.abbreviate(property.getAddress().value, 140));
         price.setText("$" + property.getPrice().value);
         property.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new Label(StringUtils.abbreviate(tag.tagName, 15))));
         displayPicture.setClip(new Circle(40, 40, 40));
         propertyType.setText(property.getPropertyTypeEnum().toString());
         propertyStatus.setText(property.getPropertyStatusEnum().toString());
