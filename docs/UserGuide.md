@@ -292,7 +292,9 @@ ___
 
 ### Adding an offer: `addO`
 
-Adds an offer in REal-Time.
+Adds an offer in REal-Time, with the given **_Name_** of the Client, **_Listing ID_** of the Listing and the 
+**_Offer_** made by the client. 
+
 
 Format - `addO l/LISTING_ID n/NAME o/OFFER_PRICE`
 
@@ -303,6 +305,8 @@ Examples:
 * `addO l/BUKIT_PANJANG_RD_BLK456_10 n/Betsy Crowe o/2500000`
 
 [Back to Table of Contents](#table-of-contents)
+
+[Back to Managing Offers](#managing-offers)
 
 ___
 
@@ -321,9 +325,11 @@ Deletes the specified offer in REal-Time.
 Format - `delO INDEX`
 
 Examples:
-* `delO 2` deletes the 2nd offer in the address book.
+* `delO 2` deletes the 2nd offer in REal-Time.
 
 [Back to Table of Contents](#table-of-contents)
+
+[Back to Managing Offers](#managing-offers)
 
 ___
 
@@ -342,6 +348,8 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
+[Back to Managing Offers](#managing-offers)
+
 ___
 
 
@@ -349,11 +357,15 @@ ___
 
 [Back to Table of Contents](#table-of-contents)
 
+[Back to Managing Offers](#managing-offers)
+
 ___
 
 ### Listing Offers: `[Coming Soon]`
 
 [Back to Table of Contents](#table-of-contents)
+
+[Back to Managing Offers](#managing-offers)
 
 ___
 
