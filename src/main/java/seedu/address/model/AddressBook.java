@@ -141,7 +141,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.toString();
+        return persons.toString() + user.toString();
         // TODO: refine later
     }
 
