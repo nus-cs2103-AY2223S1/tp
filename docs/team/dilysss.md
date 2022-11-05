@@ -4,21 +4,24 @@ layout: page title: Dilys' Project Portfolio Page
 
 ### Project: SETA
 
-SETA is a desktop tutorial management application used to help CS2103T TA's to track their students’ and tutorials’
-details, and questions asked by students. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java, and has about 10 kLoC.
+SETA is a desktop application for CS2103T Teaching Assistants to track their students’ and tutorials’ details, and
+questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a
+Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students
+more effectively than traditional GUI apps.
 
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add a student.
-    * What it does: Allows the user to add in the name, email and telegram handle of a student.
-    * Justification: This feature improves the product significantly because a user can keep track of his or her
-      students under him.
-    * Highlights: This enhancement requires me to make changes to existing classes.
+    * What it does: Allows the user to add a student with their name, email and telegram handle.
+    * Justification: This feature improves the product significantly because a user can add students into SETA in order
+      to keep track of his or her students under him.
+    * Highlights: This enhancement requires me to create new classes. It was also tricky because I added some additional checks within this feature, such as including an internal 
+      check to ensure that adding a student name will be case-insensitive. 
+      (E.g. if a student with the name "Alice Tan" is already in the addressbook, "alice   Tan" cannot be added).
 
 
 * **New Feature**: Added the ability to edit a student's details.
-    * What it does: Allows the user to edit the student's name, email or telegram handle.
+    * What it does: Allows the user to edit the student's name, email, telegram handle or attendance.
     * Justification: This feature improves the product significantly because a user can make any changes to a student's
       details if he or she keyed in the wrong details at the start or if the student makes any changes during the
       semester.
@@ -36,36 +39,52 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to list all students.
     * What it does: Allows the user to view the details of all his or her students at once.
     * Justification: This feature improves the product significantly because a user can easily have a overview of all
-      the students he or she has.
+      the students he or she has. This feature allows the user to go back to view all his students after executing a 
+      `findstu` command.
     * Highlights: This enhancement requires me to create new classes and make changes to existing classes.
 
-* **New Feature**: Added test cases for all the above features.
+
+* **New Feature**: Added test cases for all the above features and other classes related to Student.
     * What it does: Increase code coverage.
     * Justification: This feature improves the product significantly because it makes the application more bug-free.
     * Highlights: This enhancement requires me to create new classes and make changes to existing classes.
 
 * **Code
-  contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=T08&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=zoom&zA=Dilysss&zR=AY2223S1-CS2103T-T08-4%2Ftp%5Bmaster%5D&zACS=181.21900826446281&zS=2022-09-16&zFS=T08&zU=2022-10-31&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+  contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=dilysss&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * Managed releases v1.2 - v1.4 on Github
+    * Managed releases v1.2 - v1.4 on Github.
     
 * **Enhancements to existing features**:
-    * Updated the GUI
-        * Changed the layout of the application
-        * Changed the GUI colour scheme
+    * Updated the GUI.
+        * Changed the layout of the application.
+          * Added a close button
+          * Changed the look of the help button
+          * Added header
+          * Fixed window size of application
+        * Changed the GUI colour scheme.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `addstu`, `editstu` `findstu` and `liststu`
-        * Did cosmetic tweaks to existing documentation of features `exit`
+        * Added documentation and command summary for the features `addstu`, `editstu` `findstu` and `liststu`.
+        * Did up table of contents.
     * Developer Guide:
-        * Added implementation details of the `addstu`, `editstu` and `liststu` features.
+        * Contributed to `UI component` section.
+        * Added implementation details of the `addstu` feature.
         * Added use cases for `addstu`, `editstu`, `findstu` and `liststu` features.
+        * Updated activity, sequence and class diagrams, such as `AddQActivityDiagram`, `ModelClassDiagram`,
+          and `StorageClassDiagram`.
 
+* **Team-based tasks**:
+  * Maintaining the issue tracker by adding issues to be addressed by myself and other team members.
+  * Documenting parts in UG not specific to my features (E.g. Quick start (Adding UI image), FAQ).
+  * Helped to merge Pull Requests of team members.
 
 * **Community**:
     * PRs reviewed: [\#108](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/108)
       , [\#179](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/179)
+      , [\#200](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/200)
+      , [\#207](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/207)
+      , and more...
 
 
