@@ -21,18 +21,18 @@ Given below are my contributions to the project.
   * Managed releases `v1.3` - `v1.5` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated link for help command [\#162]
-  * Made parameters for commands case insensitive [\#162]
-  * Implemented errors for incorrect category when adding/editing task [\#162]
-  * Created test cases for editTask, addTask and deleteTask [\#59]
-  * Created classes for Deadline and Category for the Task class [\#42]
+  * Updated link for help command [\#162]()
+  * Made parameters for commands case insensitive [\#162]()
+  * Implemented errors for incorrect category when adding/editing task [\#162]()
+  * Created test cases for editTask, addTask and deleteTask [\#59]()
+  * Created classes for Deadline and Category for the Task class [\#42]()
 
 * **Documentation**:
   * User Guide:
-    * Updated add, delete and edit commands to be consistent with new features. [\#173]
-    * Updated find command image to be consistent with updated UI and command format [\#173]
-    * Updated Quickstart image to be consistent with Updated UI and added labels for each section of the interface [#\169]
-    * Documented what purpose each section of the interface serves [#\169]
+    * Updated add, delete and edit commands to be consistent with new features. [\#173]()
+    * Updated find command image to be consistent with updated UI and command format [\#173]()
+    * Updated Quickstart image to be consistent with Updated UI and added labels for each section of the interface [#\169]()
+    * Documented what purpose each section of the interface serves [\#169]()
     * 
   * Developer Guide:
     * Updated appendix to be consistent with new features
