@@ -30,8 +30,8 @@ public class StudentID {
      */
     public String toCmpString() {
         return this.value.isEmpty()
-               ? null
-               : value;
+                ? null
+                : value;
     }
 
     @Override
