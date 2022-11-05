@@ -71,6 +71,13 @@ public class CommandTestUtil {
     public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
     public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
 
+    // Values used by Event Methods
+    public static final String VALID_EVENT_TITLE_CHOCOLATE = "Chocolate Sale";
+    public static final String VALID_DATE_CHOCOLATE = "10/10/2022";
+    public static final String VALID_START_TIME_CHOCOLATE = "13:30";
+    public static final String VALID_PURPOSE_CHOCOLATE = "$10 off any 2 boxes of chocolates";
+
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
