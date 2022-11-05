@@ -802,8 +802,8 @@ testers are expected to do more *exploratory* testing.
        Expected: The patient for the first bill displayed in the list is changed to Edward and the complete list of bills
        is displayed. The details of the edited bill is shown in the status message.
 
-    3. Test case: `editbill 1 n/Edward p/unpaid`<br>
-       Expected: The patient for the first bill displayed in the list is changed to Edward and the payment status of the bill is changed to not paid and the complete list of bills
+    3. Test case: `editbill 1 n/Edward a/250`<br>
+       Expected: The patient for the first bill displayed in the list is changed to Edward and the amount is changed to 250 and the complete list of bills
        is displayed. The details of the edited bill is shown in the status message.
 
     4. Test case: `editbill 0 n/Ed`<br>
