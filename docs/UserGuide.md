@@ -117,7 +117,7 @@ above installed on your Computer.
 
 ### 2. Install
 
-Visit this [link](https://github.com/AY2223S1-CS2103T-W12-3/tp/releases/). Click on the underlined `rc4hdb.jar` button to download the latest `rc4hdb.jar`. Move the `rc4hdb.jar` file to the folder you want to use as the _home folder_ for RC4HDB. The home folder is the folder from which the application will run, save data to, and retrieve data from.
+Visit this [link](https://github.com/AY2223S1-CS2103T-W12-3/tp/releases/). Click on `rc4hdb.jar` to download the latest `rc4hdb.jar`. Move the `rc4hdb.jar` file to the folder you want to use as the _home folder_ for RC4HDB. The home folder is the folder from which the application will run, save data to, and retrieve data from.
 
 ### 3. Running RC4HDB
 
@@ -204,7 +204,7 @@ if it is open. </div>
 ### **Modifying Resident Data**
 
 In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear`
-to help you manipulate residents within **RC4HDB**.
+to help you modify resident data within **RC4HDB**.
 
 ---
 
@@ -346,8 +346,8 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 `h/HOUSE`
 * Represents the RC4 house that the resident is allocated to
-* Must be either `D`, `U`, `L`, `A`, `N`
-* `D` stands for **Draco**, `U` for **Ursa**, `L` for **Leo**, `A` for **Aquila**, `N` for **Noctua**
+* Must be either `A`, `D`, `L`, `N`, `U`
+* `A` stands for **Aquila**, `D` stands for **Draco**, `L` for **Leo**, `N` for **Noctua**`U` for **Ursa**
 
 `m/MATRIC_NUMBER`
 * Must be an uppercase `A`, followed by a **7**-digit non-negative integer and an uppercase alphabet. *i.e. `A0123456A`*
@@ -383,11 +383,6 @@ Format:
 
   ![list command](images/ug-photos/list_command.png)
 
-
-Examples:
-
-- `list` returns a table of *all* residents from the database with *all* fields included in the view.
-
 Note:
 
 - Any input entered after the `list` command will be ignored.
@@ -400,13 +395,15 @@ Note:
 
 ### Showing only some columns : `showonly`
 
-Shows only the specified columns from the **current** table view.
+Shows only the specified columns from the *current* table view.
 
-If your screen is too cluttered, you may use `showonly` to show only the columns you need!
+If your screen is too cluttered, you may use this command to show only the columns you need!
 Take note that:
 
 1. You can only use `showonly` on existing columns in the current table view, and
-2. The `showonly` command does not modify the list of residents being displayed. Filtered residents *stay filtered*!
+2. The `showonly` command does not modify the list of residents being displayed. 
+   
+Filtered residents *stay filtered*!
 
 Format: `showonly LETTER [MORE_LETTERS]`
 
@@ -416,7 +413,7 @@ Calling `filter /all g/M` (click [here](#filtering-residents-by-field--filter) t
 
 ![showonly](images/ug-photos/showonly_command.png)
 
-As you can see,`showonly` hides the specified columns and preserves the filter! This is one way you can 
+As you can see,`showonly` displays only the specified columns and preserves the filter! This is one way you can 
 use our commands in conjunction with one another.
 
 Sequential examples:
@@ -426,13 +423,12 @@ Sequential examples:
   *email* columns are *not present* in the current table.
 3. However, using `showonly n g` on said table is **valid**, and will return a table with only the *name* and
   *email* columns shown.
-
-<br>
+   
 
 Note:
 
 - Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
-  - This **should not** be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
+  - This *should not* be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
 - Letters *must* be separated by a single whitespace.
 - The order of each letter does not matter.
 - Duplicate letters are ignored. 
@@ -448,31 +444,34 @@ Note:
 
 ### Hiding only some columns : `hideonly`
 
-Hides only the specified columns from the **current** table view.
+Hides only the specified columns from the *current* table view.
 
 Use `hideonly` if there are more columns to show than hide.
 Like `showonly`:
 
 1. You can only use `hideonly` on existing columns in the current table view, and
-2. The `hideonly` command does not modify the list of residents being displayed. Residents found using `find` *stay
-   displayed* in the table!
+2. The `hideonly` command does not modify the list of residents being displayed. 
+   
+Residents found using `find` *stay displayed* in the table! (click [here](#locating-residents-by-name--find) to learn about `find`)
 
 Format: `hideonly LETTER [MORE_LETTERS]`
+
+![hideonly](images/ug-photos/hideonly_command.png)
 
 Sequential examples:
 
 1. `hideonly i r p e m t` on a full table returns a table with only the *index*, *room*, *phone*, *email*, *matric* 
    and *tags* columns hidden. 
-   * In other words, we see a table with only the *name*, *gender* and *house* columns shown.
+   * In other words, we see a table with only the *name*, *gender* and *house* columns shown, as above.
 2. Using `hideonly r e` on the table from point 1 is **invalid** as the *room* and *email* columns *are not
    present* in the current table.
-3. However, using `hideonly r` on said table is **valid**, and will return a table with only the *gender* and *house*
-   columns shown, as the *room* column has been hidden.
+3. However, using `hideonly n` on said table is **valid**, and will return a table with only the *gender* and *house*
+   columns shown, as the *name* column has been hidden.
 
 Note:
 
 - Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
-    - This **should not** be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
+    - This *should not* be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
 - Letters *must* be separated by a single whitespace.
 - The order of each letter does not matter.
 - Duplicate letters are ignored.
@@ -490,7 +489,7 @@ Note:
 
 Resets the columns in the table to the default view with *all* columns visible.
 
-Use this when you have called `showonly` or `hideonly` multiple times!
+Use this when you have called `showonly` or `hideonly` on the table!
 
 Format: `reset`
 
@@ -511,24 +510,22 @@ Finds residents whose names contain any of the given keywords.
 
 Format: `find NAME [ADDITIONAL_NAMES]`
 
-* The search is case-insensitive. e.g `peter` will match `Peter`
-* The order of the keywords does not matter. e.g. `Peter Pang` will match `Pang Peter`
+* The search is case-insensitive. e.g `peter pang` will match `Peter Pang`
 * Only the name is searched.
 * Full and partial words will be matched e.g. `Nav` will match `Navarun`
 * Residents matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Quek Wei` will return `Quek Xiang`, `Jun Wei`
 
-Calling `find mel` on our sample data will produce the following result:
+Calling `find el an` on our sample data will produce the following result:
 
 ![find_command](images/ug-photos/find_command.png)
 
-As you can see, the resident with the name "Melvin" contains the string "mel", and thus would appear as one a result of the `find` command.
+As you can see, the residents with names containing either "el" or "an", and are listed as the result of the `find` command.
 
 Examples:
 * `find shawn` returns `shawn` and `Shawn Tan`
 * `find elizabeth david` returns `Elizabeth Ong`, `David Lee`
 * `find char li` returns `Charmaine Yee`, `William Li`<br>
-  <!--- ![result for 'find alex david'](images/findAlexDavidResult.png) --->
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -539,7 +536,7 @@ Examples:
 ### Filtering residents by field : `filter`
 Shows a list of residents whose fields match the input keywords.
 
-Format: `filter [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
+Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 
 * A specifier is required in order for the command to work. If not it is an invalid command format
 * Only one specifier can be entered in a command.
@@ -934,20 +931,18 @@ Examples:
 
 **A**: You can use the `filter` command to search for people using the other fields.
 
-**Q:** Why is there a need to use `hideonly` if we can already use `showonly`?
+**Q: Why is there a need to use `hideonly` if we can already use `showonly`?**
 
 **A**: You can use `hideonly` when you want to display more fields than you want to hide. For example,
 `hideonly i` has the same effect as `showonly n p e r g h m t` on a full table. Using `hideonly` helps to save 
 time on typing!
 
-**Q:** How do I remember which commands use letters (as compared to other commands which use key/value) as inputs?
+**Q: How do I remember which commands use letters (as compared to other commands which use key/value) as inputs?**
 
 **A**: Only the column hiding features, i.e. `showonly` and `hideonly`, use letters. You can remember this by 
 associating the "only" in these commands to the convenience of typing *only* letters!
 
-**Q:** The section for `showonly` and `hideonly` says that `i n p e r g h m t` are valid letters. However, I am getting 
-an error message that says "Please enter columns to show or hide that are currently in the table view." when using these
-valid letters. 
+**Q: The section for `showonly` and `hideonly` says that `i n p e r g h m t` are valid letters. However, I am getting an error message that says "Please enter columns to show or hide that are currently in the table view." when using these valid letters.** 
 
 **A:** `i n p e r g h m t` *are* indeed valid letters. Recall that `showonly` and `hideonly` [only work on columns that are currently shown in the table view](#showing-only-some-columns--showonly).
 This means that for `showonly n p e` and `hideonly n p e` to work, the **name**, **phone**, and **email** columns *must 
@@ -968,8 +963,7 @@ This term refers to information that represents some (common) property in a data
 
 For example:
 
-1. In a rental bicycle sharing dataset, one possible field is the type of each rental bicycle, 
-   i.e. mountain vs road vs city bicycle.   
+1. In a rental bicycle sharing dataset, one possible field is the type of each rental bicycle.
 
 2. In a population demographic dataset, one possible field is the age of each individual.
 
@@ -990,67 +984,6 @@ This User Guide was co-written by Alvin, Jordan, Neale, Nicholas, and Naren, the
 For more information, please refer to our [about us](AboutUs.md) page.
 
 
-<!-- Perhaps we can add the features implemented by each author here? Please see the proposed template below. -->
-
-[comment]: <> (## Alvin )
-
-[comment]: <> (**Features implemented**:)
-
-[comment]: <> (1. Feature 1)
-
-[comment]: <> (2. Feature 2)
-
-[comment]: <> (3. Feature 3)
-
-[comment]: <> (<br> )
-
-[comment]: <> (## Jordan)
-
-[comment]: <> (**Features implemented**:)
-
-[comment]: <> (1. Feature 1)
-
-[comment]: <> (2. Feature 2)
-
-[comment]: <> (3. Feature 3)
-
-[comment]: <> (<br> )
-
-[comment]: <> (## Neale)
-
-[comment]: <> (**Features implemented**:)
-
-[comment]: <> (1. Feature 1)
-
-[comment]: <> (2. Feature 2)
-
-[comment]: <> (3. Feature 3)
-
-[comment]: <> (<br> )
-
-[comment]: <> (## Nicholas)
-
-[comment]: <> (**Features implemented**:)
-
-[comment]: <> (1. Allow `list` command to include and exclude table columns when listing )
-
-[comment]: <> (2. `showonly` and `hideonly` commands for persistent hiding of table columns )
-
-[comment]: <> (3. `reset` command for restoring full table view )
-
-[comment]: <> (<br>)
-
-[comment]: <> (## Naren)
-
-[comment]: <> (**Features implemented**:)
-
-[comment]: <> (1. Feature 1 )
-
-[comment]: <> (2. Feature 2 )
-
-[comment]: <> (3. Feature 3 )
-
-[comment]: <> (<br> )
 
 ---
 
@@ -1094,7 +1027,7 @@ commands. The tables below contain the full summary of our commands and how they
 | **Hide**   | `hideonly LETTER [MORE_LETTERS]`<br/>e.g. `hideonly i r g h m`                                             |
 | **Reset**  | `reset`                                                                                                    |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                  |
-| **Filter** | `filter [/specifier] KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g. `filter /all h/D g/M`        |
+| **Filter** | `filter /specifier KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g. `filter /all h/D g/M`        |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
