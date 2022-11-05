@@ -279,8 +279,10 @@ Step 5. storage#saveDatabase is then called on the current `database`, updates t
 
 ### Find feature
 
-This section explains the implementation of the `find` feature. The command takes in a number of parameters, which serve as the "filters" for the finding/searching function. At present, we have implemented finding by name, department, position, and any combination of these three. Thus it is possible to use these altogether to search for a person with high specificity.
-As of version `1.3.0`, the feature supports searching by name, position, or department, which are the 3 mandatory fields that a `Person` must have when added into the database.
+This section explains the implementation of the `find` feature.
+The command takes in a number of parameters, which serve as the "filters" for the finding/searching function.
+At present, we have implemented finding by name, department, position, and any combination of these three mandatory fields for an employee.
+Thus it is possible to use these altogether to search for a person with high specificity.
 
 The `find` command updates the model's filtered persons list based on the search filters.
 On the UI, the side panel will, by default, display the employee profile of the first person in the filtered list.
