@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# NOTE: This script is not used and kept for legacy purposes
+
 set -euxo pipefail
 
 # jq is preinstalled on GitHub runners
