@@ -11,7 +11,7 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Tags names should be alphanumeric, with a limit of 50 characters ";
-    
+
     /*
      * Tags should only contain alphanumeric characters with a limit of 50.
      */

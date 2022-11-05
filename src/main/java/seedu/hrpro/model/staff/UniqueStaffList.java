@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.model.staff.exceptions.DuplicateStaffException;
 import seedu.hrpro.model.staff.exceptions.StaffNotFoundException;
 
@@ -104,7 +103,7 @@ public class UniqueStaffList implements Iterable<Staff> {
     public int size() {
         return internalList.size();
     }
-    
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

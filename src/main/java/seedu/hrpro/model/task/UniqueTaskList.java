@@ -3,9 +3,7 @@ package seedu.hrpro.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.hrpro.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -113,8 +111,9 @@ public class UniqueTaskList implements Iterable<Task> {
      */
     public void sortComplete() {
         internalList.sort((a, b) ->
-                b.getTaskMark().toString().equals("true") ? -1 :
-                a.getTaskMark().toString().equals("true") ? 1 : 0);
+                b.getTaskMark().toString().equals("true") ? -1
+                : a.getTaskMark().toString().equals("true") ? 1
+                : 0);
     }
 
     /**
