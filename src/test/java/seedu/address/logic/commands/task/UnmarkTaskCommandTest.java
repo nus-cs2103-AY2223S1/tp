@@ -37,9 +37,9 @@ public class UnmarkTaskCommandTest {
 
     @Test
     public void execute_duplicateTaskUnfilteredList_failure() {
-        Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(firstTask).build();
-        UnmarkTaskCommand unmarkCommand = new UnmarkTaskCommand(INDEX_SECOND_TASK, descriptor);
+        Task task = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
+        UnmarkTaskCommand unmarkCommand = new UnmarkTaskCommand(INDEX_FIRST_TASK, descriptor);
 
         assertCommandFailure(unmarkCommand, model, UnmarkTaskCommand.MESSAGE_DUPLICATE_TASK);
     }
