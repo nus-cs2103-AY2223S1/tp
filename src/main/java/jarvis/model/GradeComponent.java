@@ -69,5 +69,19 @@ public class GradeComponent {
     public double getMarks() {
         return marks;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof GradeComponent)) { // instanceof handles nulls
+            return false;
+        }
+
+        GradeComponent gc = (GradeComponent) other;
+        return assessment == gc.assessment && isGraded == gc.isGraded && marks == gc.marks;
+    }
 }
 

@@ -1,5 +1,7 @@
 package jarvis.model;
 
+import jarvis.logic.commands.AddStudioCommand;
+
 import java.util.EnumMap;
 
 /**
@@ -18,7 +20,7 @@ public class GradeProfile {
         }
     }
 
-    public void grade(Assessment a, int mark) {
+    public void grade(Assessment a, double mark) {
         gradeMap.get(a).setGrade(mark);
     }
 
@@ -119,5 +121,19 @@ public class GradeProfile {
         GradeComponent gc = new GradeComponent(Assessment.STUDIO_ATTENDANCE);
         gc.setGrade(marks);
         gradeMap.put(Assessment.STUDIO_ATTENDANCE, gc);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof GradeProfile)) { // instanceof handles nulls
+            return false;
+        }
+
+        GradeProfile gp = (GradeProfile) other;
+        return gradeMap.equals(gp.gradeMap);
     }
 }
