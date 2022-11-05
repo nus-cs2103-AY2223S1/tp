@@ -55,14 +55,18 @@ Model --> Model : get()
 Model --> PinCommand : oldApplicant
 deactivate Model
 
-PinCommand --> PinCommand : createPinnedApplicant(oldApplicant)
+PinCommand -> PinCommand : createPinnedApplicant(oldApplicant)
+activate PinCommand
 
 create Applicant
 PinCommand -> Applicant : Applicant()
 activate Applicant
 
-Applicant --> PinCommand
+Applicant --> PinCommand : newApplicant
 deactivate Applicant
+
+PinCommand --> PinCommand : newApplicant
+deactivate PinCommand
 
 PinCommand -> Model : setApplicant(1,newApplicant)
 activate Model

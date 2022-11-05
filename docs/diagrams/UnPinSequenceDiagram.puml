@@ -64,14 +64,19 @@ Model --> Model : get()
 Model --> UnPinCommand : oldApplicant
 deactivate Model
 
-UnPinCommand --> UnPinCommand : createUnPinnedApplicant(oldApplicant)
+UnPinCommand -> UnPinCommand : createUnPinnedApplicant(oldApplicant)
+activate UnPinCommand
 
 create Applicant
 UnPinCommand -> Applicant : Applicant()
 activate Applicant
 
-Applicant --> UnPinCommand
+Applicant --> UnPinCommand : newApplicant
 deactivate Applicant
+
+UnPinCommand --> UnPinCommand : newApplicant
+
+deactivate UnPinCommand
 
 UnPinCommand -> Model : setApplicant(1,newApplicant)
 activate Model
