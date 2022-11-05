@@ -208,21 +208,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isSuccessStaffDelete(ProjectName projectName, Index index) {
-        requireNonNull(projectName);
-        requireNonNull(index);
+    public boolean isSuccessStaffDelete(Project targetProject, Index staffIndex) {
+        requireNonNull(targetProject);
+        requireNonNull(staffIndex);
 
-        for (Project currentProject : this.filteredProjects) {
-            if (currentProject.getProjectName().toString().equalsIgnoreCase(projectName.toString())) {
-                Project toDeleteFrom = currentProject;
-                Staff toRemove = this.filteredStaff.get(index.getZeroBased());
-                UniqueStaffList staffList = toDeleteFrom.getStaffList();
-                if (!staffList.contains(toRemove)) {
-                    return false;
-                }
-                staffList.remove(toRemove);
-                return true;
-            }
+        Staff toRemove = this.filteredStaff.get(staffIndex.getZeroBased());
+        UniqueStaffList staffList = targetProject.getStaffList();
+
+        if (staffList.contains(toRemove)) {
+            staffList.remove(toRemove);
+            return true;
         }
         return false;
     }
@@ -243,18 +238,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isSuccessStaffEdit(ProjectName projectName, Staff toEdit, Staff editWith) {
-        requireNonNull(projectName);
+    public boolean isSuccessStaffEdit(Project targetProject, Staff toEdit, Staff editWith) {
+        requireNonNull(targetProject);
         requireNonNull(toEdit);
 
-        Optional<Project> projectOptional = getProjectWithName(projectName);
-        Project project = projectOptional.get();
-        UniqueStaffList staffList = project.getStaffList();
-        if (!staffList.contains(toEdit)) {
-            return false;
+        UniqueStaffList staffList = targetProject.getStaffList();
+        if (staffList.contains(toEdit)) {
+            targetProject.getStaffList().setStaff(toEdit, editWith);
+            return true;
         }
-        project.getStaffList().setStaff(toEdit, editWith);
-        return true;
+        return false;
     }
 
     //=========== Tasks ================================================================================

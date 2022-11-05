@@ -37,7 +37,7 @@ public class DeleteStaffCommand extends Command {
     public static final String MESSAGE_DELETE_STAFF_SUCCESS = "Deleted Staff from %2$s: %1$s\n"
             + "Displaying all staff in project: %2$s ";
 
-    private String projectName;
+    private ProjectName projectName;
     private Index index;
 
     /**
@@ -47,7 +47,7 @@ public class DeleteStaffCommand extends Command {
      */
     public DeleteStaffCommand(Index index, ProjectName projectName) {
         this.index = index;
-        this.projectName = projectName.fullName;
+        this.projectName = projectName;
     }
 
     @Override
@@ -59,23 +59,24 @@ public class DeleteStaffCommand extends Command {
 
         checkForEmptyList(projectList, lastShownStaffList);
 
-        Optional<Staff> staffToDelete = model.getStaffFromProjectAtIndex(new ProjectName(projectName), index);
-        Optional<Project> projectToDelete = model.getProjectWithName(new ProjectName(projectName));
+        Optional<Staff> staffToDelete = model.getStaffFromProjectAtIndex(projectName, index);
+        Optional<Project> projectToDelete = model.getProjectWithName(projectName);
 
-        Project project = projectToDelete.orElseThrow(() ->
+        Project targetProject = projectToDelete.orElseThrow(() ->
                 new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName)));
 
         Staff toDelete = staffToDelete.orElseThrow(() ->
                 new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX));
 
-        boolean isSuccessfulDelete = model.isSuccessStaffDelete(new ProjectName(projectName), index);
+        boolean isSuccessfulDelete = model.isSuccessStaffDelete(targetProject, index);
         if (!isSuccessfulDelete) {
             throw new CommandException(String.format(MESSAGE_INVALID_STAFF, toDelete.getStaffName()));
         }
-        model.setFilteredStaffList(project.getStaffList());
+
+        model.setFilteredStaffList(targetProject.getStaffList());
         model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
         return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS,
-                toDelete.getStaffName(), project.getProjectName()));
+                toDelete.getStaffName(), targetProject.getProjectName()));
     }
 
     /**
