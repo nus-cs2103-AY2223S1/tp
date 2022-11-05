@@ -1,15 +1,17 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.DeleteModuleCommand;
-
-import static seedu.address.commons.core.Messages.*;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.DeleteModuleCommand;
+
 /**
- * Contains unit tests for {@code DeleteCommandParser}.
+ * Contains unit tests for {@code DeleteModuleCommandParser}.
  */
 public class DeleteModuleCommandParserTest {
 
@@ -34,10 +36,10 @@ public class DeleteModuleCommandParserTest {
         assertParseFailure(parser, "0", MESSAGE_INVALID_MODULE_INDEX);
 
         // negative index
-        assertParseFailure(parser, "-2",  MESSAGE_INVALID_MODULE_INDEX);
+        assertParseFailure(parser, "-2", MESSAGE_INVALID_MODULE_INDEX);
 
         // positive signed index
-        assertParseFailure(parser, "+3",  MESSAGE_INVALID_MODULE_INDEX);
+        assertParseFailure(parser, "+3", MESSAGE_INVALID_MODULE_INDEX);
 
         // valid index followed by string
         assertParseFailure(parser, "1 i/ string", String.format(

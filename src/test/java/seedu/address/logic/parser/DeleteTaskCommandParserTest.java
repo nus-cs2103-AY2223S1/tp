@@ -1,18 +1,17 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.DeleteModuleCommand;
-import seedu.address.logic.commands.DeleteTaskCommand;
-import seedu.address.logic.commands.UnmarkCommand;
-
-import static seedu.address.commons.core.Messages.*;
-import static seedu.address.logic.commands.CommandTestUtil.EXAMDESCRIPTIONONE;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.DeleteTaskCommand;
+
 /**
- * Contains unit tests for {@code DeleteCommandParser}.
+ * Contains unit tests for {@code DeleteTaskCommandParser}.
  */
 public class DeleteTaskCommandParserTest {
 
@@ -37,10 +36,10 @@ public class DeleteTaskCommandParserTest {
         assertParseFailure(parser, "0", MESSAGE_INVALID_TASK_INDEX);
 
         // negative index
-        assertParseFailure(parser, "-2",  MESSAGE_INVALID_TASK_INDEX);
+        assertParseFailure(parser, "-2", MESSAGE_INVALID_TASK_INDEX);
 
         // positive signed index
-        assertParseFailure(parser, "+3",  MESSAGE_INVALID_TASK_INDEX);
+        assertParseFailure(parser, "+3", MESSAGE_INVALID_TASK_INDEX);
 
         // valid index followed by string
         assertParseFailure(parser, "1 i/ string", String.format(

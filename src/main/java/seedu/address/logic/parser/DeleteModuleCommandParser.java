@@ -1,13 +1,13 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteModuleCommand;
-import seedu.address.logic.commands.DeleteTaskCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_INDEX;
 
 import java.util.regex.Pattern;
 
-import static seedu.address.commons.core.Messages.*;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteModuleCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteModuleCommand object

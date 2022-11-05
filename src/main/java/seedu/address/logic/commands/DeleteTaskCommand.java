@@ -23,7 +23,8 @@ public class DeleteTaskCommand extends Command {
             + "Example: t " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
-    public static final String MESSAGE_EXAM_LINK_DROPPED = "\nWarning! The link between this task and its exam is dropped.";
+    public static final String MESSAGE_EXAM_LINK_DROPPED =
+            "\nWarning! The link between this task and its exam is dropped.";
 
     private final Index targetIndex;
 
