@@ -160,8 +160,8 @@ The `Schedule` component
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to make `Schedule` abstract class, and create `LectureSchedule`, `TutorialSchedule`, `LabSchedule`, `RefelectionSchedule` that extend the `Schedule` class. The diagram is as follows: <br>
     <div align=center>
         <img src="images/ScheduleAlt.png" alt="NewScheduleUML" width=450; />
-    </div>
 </div>
+
 
 
 ### 4.5. Storage component
@@ -308,8 +308,7 @@ The following activity diagram summarizes what happens when a user executes a `m
 | **Option 2** <br/> Edit by making use of indexing in list | Allows convenience if module code is forgotten | Have to use `mlist` command to obtain the indexing |
 
 Reason for choosing option 1:
-A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence,
-an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
+A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence, an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
 
 ###  5.5. AddSchedule feature
 
@@ -331,7 +330,6 @@ During the execution, the following validity checks will be conducted:
 - Schedule conflict check — The model will check if the new schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.</div>
-
 
 ### 5.6. EditSchedule feature
 
@@ -356,7 +354,18 @@ During the execution, the following validity checks will be conducted:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the edit schedule command isn't executed successfully and a `CommandException` or `ParserException` is thrown, then no schedule will be edited.</div>
 
+#### Design consideration:
 
+##### Aspect: How medit executes
+
+|                                                              | Pros                                                | Cons                                                    |
+| ------------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------- |
+| **Option 1** <br/> Edit by module code, class type, and class group | Allows convenience if he knows the schedule details | Too much information to type.                           |
+| **Option 2** <br/> Edit by making use of indexing in list    | Allows convenience if schedule detail is forgotten  | Have to use `view` command to obtain the schedule list. |
+
+Reason for choosing Option 2: 
+
+To locate a schedule uniquely with schedule, a user needs to know the module code, class type, and class group. For example, `CS2103T tut W11`. However, when there are too many groups, professors can easily forget which group he is looking for. Therefore, using the index is better in this case.
 
 ### 5.7. ViewSchedule feature
 
@@ -558,9 +567,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a schedule
-2. ProfNUS adds the new schedule to schedule list
-3. 
+1. User requests to add a schedule.
+
+2. ProfNUS adds the new schedule to schedule list.
+
+3. ProfNUS shows the schedule list.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The module of the schedule doesn't exist
+
+  - 1a1. ProfNUS shows an error message.
+
+    Use case ends.
+
+- 1b. The schedule conflicts with existing schedules
+
+  - 1b1. ProfNUS shows an error message.
+
+    Use case ends.
+
+
+
+**Use case: Edit a schedule**
+
+**MSS**
+
+1. User requests to edit a schedule.
+
+2. ProfNUS edits the target schedule with new information.
+
+3. ProfNUS shows the schedule list.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. No field is edited.
+
+  - 1a1. ProfNUS shows an error message.
+
+    Use case ends.
+
+- 1b. The given index is invalid
+
+  - 1b1. ProfNUS shows an error message.
+
+    Use case ends.
+
+
+
+**Use case: Delete a schedule**
+
+**MSS**
+
+1. User requests to delete a schedule.
+
+2. ProfNUS deletes the target schedule.
+
+3. ProfNUS shows the schedule list.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The given index is invalid
+
+  - 1a1. ProfNUS shows an error message.
+
+  Use case ends.
 
 *{More to be added}*
 
@@ -643,7 +720,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding a student to ProfNUS. 
 
     1. Prerequisites: Arguments are valid and all compulsory parameters are provided. No duplicate student is allowed in ProfNUS.
-   
+      
     2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/A0123456G h/@good_student c/CS2030S`<br>
        Expected: Adds a new student with the name `John Doe`, phone number `98765432`, email address `johnd@example.com`, address `311, Clementi Ave 2, #02-25`, student id `A0123456G`, telegram handle `@good_student`and module code `CS2030S`.
 
