@@ -4,65 +4,93 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":UninurseBookParser" as UninurseBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":DeleteGenericCommandParser" as DeleteGenericCommandParser LOGIC_COLOR
+
+
+participant ":DeletePatientCommandParser" as DeletePatientCommandParser LOGIC_COLOR
+participant "command:DeletePatientCommand" as DeletePatientCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete -p 1")
 activate LogicManager
 
-LogicManager -> UninurseBookParser : parseCommand("delete 1")
+LogicManager -> UninurseBookParser : parseCommand("delete -p 1")
 activate UninurseBookParser
 
-create DeleteCommandParser
-UninurseBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeleteGenericCommandParser
+UninurseBookParser -> DeleteGenericCommandParser
+activate DeleteGenericCommandParser
 
-DeleteCommandParser --> UninurseBookParser
-deactivate DeleteCommandParser
+DeleteGenericCommandParser --> UninurseBookParser
+deactivate DeleteGenericCommandParser
 
-UninurseBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+UninurseBookParser -> DeleteGenericCommandParser : parse("-p 1")
+activate DeleteGenericCommandParser
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+create DeletePatientCommandParser
+DeleteGenericCommandParser -> DeletePatientCommandParser
+activate DeletePatientCommandParser
+DeletePatientCommandParser --> DeleteGenericCommandParser
+deactivate DeletePatientCommandParser
 
-DeleteCommandParser --> UninurseBookParser : d
-deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> UninurseBookParser
-destroy DeleteCommandParser
+DeleteGenericCommandParser -> DeletePatientCommandParser : parse("1")
+activate DeletePatientCommandParser
+create DeletePatientCommand
 
-UninurseBookParser --> LogicManager : d
+DeletePatientCommandParser -> DeletePatientCommand
+activate DeletePatientCommand
+DeletePatientCommand --> DeletePatientCommandParser : command
+deactivate DeletePatientCommand
+
+DeletePatientCommandParser --> DeleteGenericCommandParser : command
+deactivate DeletePatientCommandParser
+
+DeletePatientCommandParser -[hidden]-> DeleteGenericCommandParser
+destroy DeletePatientCommandParser
+
+DeleteGenericCommandParser --> UninurseBookParser : command
+deactivate DeleteGenericCommandParser
+
+DeleteGenericCommandParser -[hidden]-> UninurseBookParser
+destroy DeleteGenericCommandParser
+
+UninurseBookParser --> LogicManager : command
 deactivate UninurseBookParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+LogicManager -> DeletePatientCommand : execute()
+activate DeletePatientCommand
+
+DeletePatientCommand -> Model : getFilteredPersonList()
 activate Model
+Model --> DeletePatientCommand : filteredPersonList
+deactivate Model
 
-Model --> DeleteCommand
+
+DeletePatientCommand -> Model : deletePerson(patient)
+activate Model
+Model --> DeletePatientCommand
+deactivate Model
+
+DeletePatientCommand -> Model : setPatientOfInterest(patient)
+activate Model
+Model --> DeletePatientCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeletePatientCommand -> CommandResult
 activate CommandResult
-
-CommandResult --> DeleteCommand
+CommandResult --> DeletePatientCommand : result
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeletePatientCommand --> LogicManager : result
+deactivate DeletePatientCommand
 
 LogicManager -> Model : makeSnapshot(result)
 activate Model
@@ -70,6 +98,20 @@ activate Model
 Model --> LogicManager
 deactivate Model
 
-[<--LogicManager
+
+[<--LogicManager : result
 deactivate LogicManager
+
+
+
+
+
+
+
+
+
+
+
+
+
 @enduml
