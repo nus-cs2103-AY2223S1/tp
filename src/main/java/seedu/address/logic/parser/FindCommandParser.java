@@ -41,7 +41,7 @@ import seedu.address.model.tag.RiskTag;
  */
 public class FindCommandParser implements Parser<FindCommand> {
     private static final String SPACE_REGEX = "\\s+";
-    private static final String PLAN_REGEX = "(?<!\\G\\S+)\\s";
+    private static final String PLAN_REGEX = "(?<=Plan)";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
