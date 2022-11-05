@@ -86,22 +86,28 @@ The following is the main user interface of NUScheduler.
 
 ## Command format
 
-Most commands used in NUScheduler follow this command format:
+All commands used in NUScheduler follow this command format:
 ```
 <command word> <option flag> <parameters>
 ```
 
 ### Command Word
 
+Command words are used to specify what to perform the operation on.
+
 * Command words are case-sensitive, e.g. `exit` will work, but not `EXIT`.
 
 ### Option Flag
+
+Option flags are used to specify the operation to perform.
 
 * Option flags are prefixed by `-`, and are case-sensitive, e.g. `-v` will work, but not `-V`.
 * Option flags must be specified right after the command word.
 * Optional flags are only applicable for the profile and event command words.
 
 ### Parameters
+
+Parameters are extra inputs the command may require.
 
 * Words in `UPPER_CASE` are the parameters you will specify.<br>
   e.g. in `profile -a n/NAME`, `NAME` is a parameter which can be used as `profile -a n/John Doe`.
@@ -112,6 +118,7 @@ Most commands used in NUScheduler follow this command format:
   e.g. `pr/PROFILE_INDEX…​` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* Parameters may be prefixed, and the prefix is case-sensitive.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
