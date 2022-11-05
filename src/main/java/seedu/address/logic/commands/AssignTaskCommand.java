@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 
@@ -89,7 +88,7 @@ public class AssignTaskCommand extends Command {
                 .collect(Collectors.toList());
 
         // reset assignees
-        Task taskWithNoAssignees = task.setAssignees(new UniquePersonList());
+        Task taskWithNoAssignees = task.clearAssignees();
         team.setTask(task, taskWithNoAssignees);
 
         // add assignees

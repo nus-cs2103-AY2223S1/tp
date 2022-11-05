@@ -201,10 +201,10 @@ public class Task {
     }
 
     /**
-     * Replaces the current {@code assignees} with a new list of assignees and returns a new {@code Task}.
+     * Clears all assignees from a task and returns a new Task
      */
-    public Task setAssignees(UniquePersonList newAssignees) {
-        return new Task(name, newAssignees, completionStatus, deadline);
+    public Task clearAssignees() {
+        return new Task(name, List.of(), completionStatus, this.deadline);
     }
 
     /**
