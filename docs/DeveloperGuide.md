@@ -251,7 +251,7 @@ Given below is an example usage scenario and how the AddTask mechanism behaves a
 
 Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
 
-Step 2. The user executes `addTask n/homework d/coding assignment pr/high c/backend dl/2022-12-12 
+Step 2. The user executes `addTask n/Fix toggle d/Fix dark mode button pr/high c/frontend dl/2022-12-12 
 pe/charlotte@example.com` to add a task to the tasklist. The `AddTaskCommand` calls the `Model#hasTask()`, checking if
 the tasklist already contains the task. If the task already exist, an exception will be thrown and a **task already 
 exist** error message will be returned to the user.
@@ -263,10 +263,10 @@ step 4. After making an insert into the tasklist, the `AddTaskCommand` calls the
 `AddressBook#setTasks` to update the tasklist in the model to the latest version
 
 The following sequence diagram shows how the AddTask operation works:
-
+![AddTaskSequenceDiagram](images/AddTaskCommandUMLDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a AddTask command:
-
+![AddTaskActivityDiagram](images/AddTaskCommandActivityDiagram.png)
 
 
 
