@@ -529,7 +529,7 @@ For Windows user, check this [tutorial](https://www.happycoders.eu/java/how-to-s
 6. Press Enter and the command will run, the GUI will pop up.
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Arrow home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
