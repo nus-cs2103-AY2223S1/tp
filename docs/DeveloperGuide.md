@@ -269,9 +269,15 @@ Given below is an example usage scenario for __AddPatientCommand__ and how the m
 Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
 of the application as indexed lists.
 
-Step 2. The user executes `addpatient n/David …​` to add a new patient. The `addpatient` command calls `Model#addPatient()`, which adds the patient to the `UniquePatientList` in `ModelManager`.
+Step 2. The user executes `addpatient n/David …` to add a new patient.
 
-Step 3. The application will then save the patient into the `UniquePatientList` and display the patient added.
+Step 3. The `AddPatientCommand` checks if the fields are valid and adding the
+new `Patient` will cause duplicate `Patient`s.
+
+Step 4. The `AddPatient` command calls `Model#addPatient()`, which adds the
+patient to the `UniquePatientList` in `ModelManager`.
+
+Step 5. The application will then save the patient into the `UniquePatientList` and display the patient added.
 
 The sequence diagram below shows how the add patient operation works:
 ![AddPatientSequenceDiagram](images/dg/AddPatientCommandSequenceDiagram.png)
@@ -316,17 +322,23 @@ Given below is an example usage scenario for __EditPatientCommand__ and how the 
 Step 1. The user launches the application for the first time. All patients, appointments and bills are shown in different sections
 of the application as indexed lists.
 
-Step 2. The user executes `editpatient 1 n/John` to edit the first patient in the list to have the name John. The `editpatient` command
-calls `Model#editPatient`, which edits the patient in the `UniquePatientList` in `ModelManager`.
+Step 2. The user executes `editpatient 1 n/John` to edit the first patient in the list to have the name John.
+The parser creates an `EditPatientDescriptor` for the `EditPatientCommand`. 
 
-Step 3. The application will then save the edited patient into the `UniquePatientList` and display the edited patient.
+Step 3. The `EditPatientCommand` retrieves the old patient from the `Model` and
+creates the edited `Patient` using the `EditPatientDescriptor`.
+
+Step 4. The `EditPatientCommand` checks if the fields are valid and replacing the
+edited `Patient` will cause duplicate `Patient`s.
+
+Step 5. The `EditPatientCommand` calls `Model#setPatient`, which replaces
+the patient in the `UniquePatientList` in `ModelManager`.
 
 The sequence diagram below shows how the edit patient operation works:
 
 ![EditPatientSequenceDiagram](images/dg/EditCommandSequenceDiagram.png)
 
-The edit feature is now separated for the patients, appointments and bills sections.
-
+The edit feature is now separated for the patients, appointments and bills sections. The steps for editing appointments and bills are similar.
 Design considerations:
 1. Length of command word
 2. Whether to use a prefix for the name of the patient
