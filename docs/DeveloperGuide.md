@@ -191,15 +191,15 @@ be displayed below all tasks with deadline tags.
 
 #### Sequence of the SortTaskCommand
 
-Shown below is a sequence diagram of what occurs when the `excute` method of
+Shown below is a sequence diagram of what occurs when the `execute` method of
 `LogicManager` is invoked.
 
 <img src="images/SortTaskCommandSequenceDiagram.png" />
 
 **Sequence of actions made when `execute` method of `LogicManager` is invoked**
-1. `LogicManager` object takes in `"sort c/priority"` which the user keys into the command line. 
+1. `LogicManager` object takes in `"t sort c/priority"` which the user keys into the command line. 
 2. `LogicManager` object calls the `parseCommand` of the `AddressBookParser` object created during the initialisation 
-of `LogicManager` object and passes the `"sort c/priority"` as the arguments of `parseCommand`
+of `LogicManager` object and passes the `"t sort c/priority"` as the arguments of `parseCommand`
 3. `SortTaskCommandParser` object is created during execution of `parseCommand` of `AddressBookParser`
 4. `SortTaskCommandParser` object calls its `parse` method with `"c/priority"` being passed in as argument.
 5. `SortTaskCommand` object called st is created from `SortTaskCommandParser`

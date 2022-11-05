@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("sort c/priority")
+[-> LogicManager : execute("t sort c/priority")
 activate LogicManager
 
-LogicManager -> AddressBookParser: parseCommand("sort c/priority")
+LogicManager -> AddressBookParser: parseCommand("t sort c/priority")
 activate AddressBookParser
 
 create SortTaskCommandParser
