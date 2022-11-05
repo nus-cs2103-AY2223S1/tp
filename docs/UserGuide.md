@@ -124,22 +124,23 @@ Parameters are extra inputs the command may require.
 Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 </div>
 
-| Prefix | Parameter                                   | Remarks                                                                                                                                                                      |
-|--------|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|        | `INDEX`                                     | The position of the profile or event in the list.                                                                                                                            |
-|        | `EVENT_INDEX`                               | The position of the event in the event list displayed.                                                                                                                       |
-| `pr/`  | `PROFILE_INDEX`                             | For adding attendees, it is the position of the profile in the profile list displayed. For deleting attendees, it is the position of the profile under the particular event. |
-| `n/`   | `NAME`                                      | Name of the profile.                                                                                                                                                         |
-| `p/`   | `PHONE_NUMBER`                              | Phone number of the profile.                                                                                                                                                 |
-| `e/`   | `EMAIL`                                     | Email of the profile.                                                                                                                                                        |
-| `tg/`  | `TELEGRAM_USERNAME`                         | Telegram username of the profile.                                                                                                                                            |
-| `t/`   | `TAG`                                       | Tag of the profile or event.                                                                                                                                                 |
-|        | `KEYWORD`, `MORE_KEYWORDS`                  | The keywords to search for when finding profiles.                                                                                                                            |
-| `n/`   | `TITLE`                                     | Title of the event.                                                                                                                                                          |
-| `s/`   | `START`                                     | The start date (and time) of the event.                                                                                                                                      |
-| `e/`   | `END`                                       | The end date (and time) of the event.                                                                                                                                        |
-|        | `DAYS`                                      | The number of upcoming days to search for.                                                                                                                                   |
-|        | `KEYWORD_OR_DATE`, `MORE_KEYWORDS_OR_DATES` | The keyword or dates to search for when finding events.                                                                                                                      |
+| Prefix | Parameter                                   | Remarks                                                   |
+|--------|---------------------------------------------|-----------------------------------------------------------|
+|        | `INDEX`                                     | The position of the profile or event in the list          |
+|        | `EVENT_INDEX`                               | The position of the event in the event list displayed     |
+| `pr/`  | `PROFILE_INDEX`                             | The position of the profile in the profile list displayed |
+| `pr/`  | `ATTENDEE_INDEX`                            | The position of the profile under the particular event    |
+| `n/`   | `NAME`                                      | Name of the profile                                       |
+| `p/`   | `PHONE_NUMBER`                              | Phone number of the profile                               |
+| `e/`   | `EMAIL`                                     | Email of the profile                                      |
+| `tg/`  | `TELEGRAM_USERNAME`                         | Telegram username of the profile                          |
+| `t/`   | `TAG`                                       | Tag of the profile or event                               |
+|        | `KEYWORD`, `MORE_KEYWORDS`                  | The keywords to search for when finding profiles          |
+| `n/`   | `TITLE`                                     | Title of the event                                        |
+| `s/`   | `START`                                     | The start date (and time) of the event                    |
+| `e/`   | `END`                                       | The end date (and time) of the event                      |
+|        | `DAYS`                                      | The number of upcoming days to search for                 |
+|        | `KEYWORD_OR_DATE`, `MORE_KEYWORDS_OR_DATES` | The keyword or dates to search for when finding events    |
 
 --------------------------------------------------------------------------------------------------------------------
 
