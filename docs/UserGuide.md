@@ -161,7 +161,7 @@ Format: `loan USER_INDEX BOOK_INDEX [DUE_DATE]`
 * The indexes refer to the index number shown in the displayed user and book list respectively.
 * The indexes **must be a positive integer** 1, 2, 3, …​
 * The respective specified `INDEXES` **must be present in their lists**.
-* The books that are loaned out will appear at the top of the book list after closing and reopening of app.
+* The books that are loaned out will appear at the top of the book list after relaunching the app.
 * If due date is not specified, a default due date of 14 days from today is set when the book is loaned out.
 * Due date formats such as `dd/MM/yyyy`, `yyyy-MM-dd` or even text such as `next sunday`, `tomorrow` or `two mondays ago` would work.
 * Compound/complex statements or other date formats not stated below may not work properly.  (Fix coming in v1.5)
