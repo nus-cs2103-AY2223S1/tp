@@ -350,9 +350,9 @@ public class Student {
     }
 
     /**
-     * Resets the mark status to not present.
+     * Resets the mark status to being not present.
      */
     public void resetMarkStatus() {
-        this.mark = new Mark();
+        this.mark.reset();
     }
 }

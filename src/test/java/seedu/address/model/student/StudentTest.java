@@ -290,4 +290,13 @@ public class StudentTest {
         Student bob = new StudentBuilder(BOB).withPhone(VALID_PHONE_BOB).withNokPhone(VALID_PHONE_BOB).build();
         assertTrue(bob.hasSharedPhone());
     }
+
+    @Test
+    public void resetMarkStatusTest() {
+        Student alice = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
+        assertTrue(alice.getMarkStatus().isMarked());
+
+        alice.resetMarkStatus();
+        assertFalse(alice.getMarkStatus().isMarked());
+    }
 }
