@@ -38,7 +38,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         Deadline deadline =
                 ParserUtil.parseTaskDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).get());
         Task task = new Task(deadline, description, new TaskMark("false"));
-
+        assert task != null; //task is created and should not be null
         return new AddTaskCommand(task);
     }
 
