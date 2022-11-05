@@ -318,19 +318,23 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The sort mechanism is facilitated by `PersonContainsKeywordsPredicate`. It implements `Predicate<Person>`, which means it is a functional interface that tests a person object against a condition. The `test` method returns true if the person object contains all the keywords given by the user.
+The sort mechanism is facilitated by `PersonContainsKeywordsPredicate`. It implements `Predicate<Person>`, which means it is a functional interface that tests a person object against a condition. The `test` method returns true if the person object contains any of the keywords given by the user.
+
+Every instance of `FindContactCommand` is created with a `PersonContainsKeywordsPredicate` instance which encapsulates the keywords given by the user.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
 
 Step 1. The user enters with findC command with one or more of the contact's fields as parameters (e.g. name, address, phone, email)
 
-Step 2. The `FindCommandParser` class parses the user input and creates a `PersonContainsKeywordsPredicate` object with the given parameters.
+Step 2. The `FindContactCommandParser` class parses the user input and creates a `PersonContainsKeywordsPredicate` object with the given parameters.
 
 Step 3. The `FindCommand` class then calls the `Model#updateFilteredPersonList()` method with the predicate object as the parameter.
 
 Step 4. The `Model` class then updates the filtered list of contacts in the `AddressBook` class.
 
-Given below is an example usage scenario and how the find mechanism behaves at each step.
-
 ![FindContactSequenceDiagram](images/FindContactSequenceDiagram.png)
+
+The find task feature uses the same mechanism as the find contact feature, except that it uses classes and methods for `Task` instead of `Person`.
 
 #### Design considerations:
 
@@ -441,7 +445,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.

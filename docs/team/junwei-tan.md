@@ -38,7 +38,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Updated find contact command to search all fields in addition to name [\#110](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/110)
     * Added unique id to contacts using Java UUID class [\#168](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/168)
-    * Added Task class to model and implemented deadline/description class [\#126](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/126) 
+    * Added Task class to model and implemented description class [\#126](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/126) 
     * Wrote additional tests for existing features to increase coverage
 
 * **Documentation**:
