@@ -10,9 +10,15 @@ Introducing PleaseHireUs (PHU), the internship tracking application made just fo
 
 ![Ui](images/icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
+Here are its main features:
+- View the status of your application and assessment dates at a glance
+- Overall statistics of status of all your internship applications in a bar chart
+
 
 Now you will never miss any application deadlines or internship interviews again.
+
 PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
+
 We hope you find PleaseHireUs to be useful in your internship hunt.
 
 <div style="page-break-after: always;"></div>
@@ -332,7 +338,9 @@ Format: `view INDEX`
 
 * Only the index is searched.
 
-**:exclamation: Warning: If the website is "NA", the browser will not be opened when clicked**
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** If the website is "NA", the browser will not be opened when clicked
+</div>
 
 Examples:
 * `find sea shop` followed by `view 1` displays more details of the 1st internship in list.
@@ -562,6 +570,13 @@ _Details coming soon …​_
 <div style="page-break-after: always;"></div>
 
 ## Appendix: Manually Editing the Save File
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** <br>
+This section assumes that you are an advanced user and understand some basic computing terminologies
+</div>
+
+
 The save file contains a **single object** with a **single field** named `"internships"`. 
 
 Below is an example of a valid save file format:
@@ -595,37 +610,37 @@ Below is an example of a valid save file format:
 ```
 <div style="page-break-after: always;"></div>
 
-The `"internships"` field is a collection of objects which must contains all the following fields:
+The `"internships"` field is an array of objects which must contains all the following fields:
 1. `name`: Represents the company name. <br/>
-A **non-empty** word(s) which fulfills the `COMPANY_NAME` parameter constraints.
+A **non-empty** string which fulfills the `COMPANY_NAME` parameter constraints.
 
 2. `phone`: Represents the phone number. <br/>
 **EITHER** `"NA"` which represents no phone number provided
-**OR** a phone number which fulfills the `PHONE` parameter constraints.
+**OR** a string which fulfills the `PHONE` parameter constraints.
 
 3. `email`: Represents the email. <br />
 **EITHER** `"NA"` which represents no email provided
-**OR** an email address which fulfills the `EMAIL` parameter constraints.
+**OR** a string which fulfills the `EMAIL` parameter constraints.
 
 5. `remark`: Represents the remark. <br/>
-A (possibly empty) description which fulfills the `REMARK` parameter constraints.
+A (possibly empty) string which fulfills the `REMARK` parameter constraints.
 
 6. `position`: Represents the position of the internship. <br/>
-A **non-empty** word which fulfills the `POSITION` parameter constraints.
+A **non-empty** string which fulfills the `POSITION` parameter constraints.
 
 7. `applicationProcess`: Represents the application process of the corresponding internship.<br/>
-A word which fulfills the `APPLICATION_PROCESS` parameter constraints.
-Note that the word is case-insensitive.
+A string which fulfills the `APPLICATION_PROCESS` parameter constraints.
+Note that the string is case-insensitive.
 
 8. `date`: Represents the internship application date <br />
-A date which fulfills the `DATE` parameter constraints.
+A string which fulfills the `DATE` parameter constraints.
 
 9. `website`: Represents the company's website <br />
 **EITHER** `"NA"` which represents no website provided 
-**OR** a web address which fulfills the `WEBSITE` parameter constraints.
+**OR** a string which fulfills the `WEBSITE` parameter constraints.
 
 10. `tagged`: Represents a collection of tags for the corresponding internship<br />
-An (possibly empty) collection of words with each word 
+An (possibly empty) array of strings with each string 
 being non-empty and fulfilling the `TAG` parameter constraints.
 
 Refer to [this](#parameters-requirement) for the parameter requirements.  
