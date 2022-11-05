@@ -12,8 +12,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public abstract class Lesson {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Module names should contain a 2-4 letter prefix, followed by a "
+            + "4 digit module code, and an optional letter suffix";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z]{2,4}[0-9]{4}[a-zA-Z]{0,1}$";
 
     private String module;
     private LocalTime startTime;
