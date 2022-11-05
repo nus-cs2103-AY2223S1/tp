@@ -1,5 +1,7 @@
 package seedu.pennywise.model.entry;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.YearMonth;
 import java.util.function.Predicate;
 
@@ -10,6 +12,7 @@ public class EntryInYearMonthPredicate implements Predicate<Entry> {
     private final YearMonth yearMonth;
 
     public EntryInYearMonthPredicate(YearMonth yearMonth) {
+        requireNonNull(yearMonth);
         this.yearMonth = yearMonth;
     }
 
