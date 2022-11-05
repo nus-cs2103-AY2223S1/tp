@@ -173,9 +173,18 @@ add-module m/CS2104 t/Programming Language Concepts
 In the above example, we are adding a module `CS2104` which has the title `Programming Language Concepts`.
 Here's a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                                           | After executing the command                                                                                                                                                                                                            |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/add-module-before.png" width="300"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-module-after.png" width="300"/></p><p>A message will appear indicating that <code>CS2104</code> has been added. Observe that `CS2104` has been added to the modules list.</p>{:/} |
+{::nomarkdown}
+<table>
+    <tr>
+        <td width="50%">Before executing the command</td>
+        <td width="50%">After executing the command</td>
+    </tr>
+    <tr>
+        <td><p align="center"><img src="images/add-module-before.png" width="300"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
+        <td><p align="center"><img src="images/add-module-after.png" width="300"/></p><p>A message will appear indicating that <code>CS2104</code> has been added. Observe that `CS2104` has been added to the modules list.</p></td>
+    </tr>
+</table>
+{:/}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Adding a module will bring you back to the home page.
