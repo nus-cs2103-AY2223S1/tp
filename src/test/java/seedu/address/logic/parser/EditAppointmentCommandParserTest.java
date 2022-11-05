@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FIRST_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BOTH_FIELD_APPOINTMENT_DESC;
@@ -12,8 +14,10 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_FIELD_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.person.DateTime.DEFAULT_MONTH_OUT_OF_BOUNDS_ERROR_MESSAGE;
@@ -49,25 +53,30 @@ public class EditAppointmentCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative person index
-        assertParseFailure(parser, "-5.5" + VALID_DATETIME_21_JAN_2023, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5.5" + VALID_LOCATION_FIELD_APPOINTMENT_DESC,
+                MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         // negative appointment index
-        assertParseFailure(parser, "5.-5" + VALID_DATETIME_21_JAN_2023, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "5.-5" + VALID_LOCATION_FIELD_APPOINTMENT_DESC,
+                MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
 
         // only one index
-        assertParseFailure(parser, "1" + VALID_DATETIME_21_JAN_2023, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_LOCATION_FIELD_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + VALID_DATETIME_22_JAN_2023, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + VALID_LOCATION_FIELD_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble for person index
-        assertParseFailure(parser, "1 some random string.1", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string.1" + VALID_LOCATION_FIELD_APPOINTMENT_DESC,
+                MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble for appointment index
-        assertParseFailure(parser, "1.1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1.1 some random string" + VALID_LOCATION_FIELD_APPOINTMENT_DESC,
+                MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string" + VALID_LOCATION_FIELD_APPOINTMENT_DESC,
+                MESSAGE_INVALID_FORMAT);
     }
 
     @Test

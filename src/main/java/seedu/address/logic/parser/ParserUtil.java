@@ -52,38 +52,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code personAppointmentIndex} into an {@code Index} and returns the appointment index.
-     * Leading and trailing whitespaces will be trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Index parseAppointmentIndex(String personAppointmentIndex) throws ParseException {
-        requireNonNull(personAppointmentIndex);
-        String trimmedAppointmentIndex = personAppointmentIndex.trim();
-        String[] splitStr = trimmedAppointmentIndex.split("\\.");
-
-        if (splitStr.length != 2 || !StringUtil.isNonZeroUnsignedInteger(splitStr[1])) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Index.fromOneBased(Integer.parseInt(splitStr[1]));
-    }
-
-    /**
-     * Parses {@code personAppointmentIndex} into an {@code Index} and returns the person index.
-     * Leading and trailing whitespaces will be trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Index parsePersonIndex(String personAppointmentIndex) throws ParseException {
-        requireNonNull(personAppointmentIndex);
-        String trimmedAppointmentIndex = personAppointmentIndex.trim();
-        String[] splitStr = trimmedAppointmentIndex.split("\\.");
-
-        if (splitStr.length != 2 || !StringUtil.isNonZeroUnsignedInteger(splitStr[0])) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Index.fromOneBased(Integer.parseInt(splitStr[0]));
-    }
-
-    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *

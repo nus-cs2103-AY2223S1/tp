@@ -115,6 +115,7 @@ public class CommandTestUtil {
             + VALID_DATETIME_21_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + INVALID_LOCATION;
     public static final String VALID_LOCATION_FIELD_APPOINTMENT_DESC = " "
             + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_NUS;
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
