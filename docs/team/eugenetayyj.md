@@ -24,6 +24,8 @@ Given below are my contributions to the project.
 <br>
 
 * **Project management**:
+    * Set Up Java Continuous Integration.
+    * Set up and link Code Coverage to team repository.
     * Set up Git Issues for tasks to be completed.
     * Proposed meeting to decide group's decision on bug handling for v1.4.
 <br>
@@ -37,8 +39,6 @@ Given below are my contributions to the project.
 * **Documentation**:
     * Set Up:
       * Set up AY2223S1-CS2103T-T10-2 Organization.
-      * Set Up Java Continuous Integration.
-      * Set up and link Code Coverage to team repository.
     * UI Mock Up
       * Design User Interface mockup of application with Figma.
     * User Guide:
@@ -50,5 +50,8 @@ Given below are my contributions to the project.
       * Annotated all UI examples.
 
     * Developer Guide:
-      * Edited and improved on initial assigned client PDF feature implementation.
-      * Restructure Sequence and Activity Diagrams.
+      * Standardise and reformat all feature write-ups.
+      * Edited and improved on initial assigning client PDF feature implementation documentation.
+      * Redesign Sequence and Activity Diagrams for client PDF feature.
+      * Crafted Upcoming Meetings feature implementation documentation.
+      * Designed Sequence and Activity Diagrams for Upcoming Meetings feature.
