@@ -70,8 +70,8 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListPersonsCommand.COMMAND_WORD;
-        PersonSortField dummySortField = PersonSortField.sortByNoField();
-        String successMessage = String.format(ListPersonsCommand.MESSAGE_SUCCESS, dummySortField.getField());
+        PersonSortField sortFieldNoField = PersonSortField.sortByNoField();
+        String successMessage = String.format(ListPersonsCommand.MESSAGE_SUCCESS, sortFieldNoField.getField());
 
         assertCommandSuccess(listCommand, successMessage, model);
     }

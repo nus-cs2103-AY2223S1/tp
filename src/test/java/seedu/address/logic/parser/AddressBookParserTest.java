@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -25,6 +26,7 @@ import seedu.address.logic.commands.ListPersonsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonSortField;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -83,8 +85,14 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListPersonsCommand.COMMAND_WORD) instanceof ListPersonsCommand);
+    public void parseCommand_listPersons() throws Exception {
+        String arguments = " " + PREFIX_SORT + "n";
+        PersonSortField sortFieldName = PersonSortField.createSortField("n");
+
+        ListPersonsCommand command = (ListPersonsCommand) parser.parseCommand(
+                ListPersonsCommand.COMMAND_WORD + arguments);
+
+        assertEquals(new ListPersonsCommand(sortFieldName), command);
     }
 
     @Test
