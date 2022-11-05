@@ -84,7 +84,7 @@ public class ViewScheduleCommandTest {
                 new CommandResult(String.format(String.format(
                         Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
                 false, false, false, false,
-                false, true, false, false), expectedModel);
+                false, false, true, false, false), expectedModel);
     }
 
     @Test

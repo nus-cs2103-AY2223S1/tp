@@ -45,6 +45,6 @@ public class DeleteScheduleCommand extends Command {
         model.deleteSchedule(scheduleToDelete);
         logger.fine("DeleteScheduleCommand executes successfully");
         return new CommandResult(String.format(MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete), false, false, false,
-                false, false, true, false, false);
+                false, false, false, true, false, false);
     }
 }

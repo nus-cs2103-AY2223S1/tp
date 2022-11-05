@@ -233,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
         allTutorsPanel = new TutorListPanel(logic.getAllTutorList());
         allTutorsPanelPlaceholder.getChildren().add(allTutorsPanel.getRoot());
         tabPane.getSelectionModel().select(STUDENTLIST);
-        //resultDisplay.setFeedbackToUser("Show all students!");
+        resultDisplay.setFeedbackToUser("Listed all persons");
     }
 
     /**
@@ -252,6 +252,7 @@ public class MainWindow extends UiPart<Stage> {
                     new ScheduleListPanel.ScheduleListViewCell());
         }
         tabPane.getSelectionModel().select(MODULELIST);
+        resultDisplay.setFeedbackToUser("Selected a module!");
     }
 
     /**
@@ -262,7 +263,7 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanel = new ModuleListPanel(logic.getAllModuleList(), logic.getFilteredScheduleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
         tabPane.getSelectionModel().select(MODULELIST);
-        resultDisplay.setFeedbackToUser("Show all modules!");
+        resultDisplay.setFeedbackToUser("Listed all modules");
     }
 
 
@@ -346,6 +347,7 @@ public class MainWindow extends UiPart<Stage> {
     public void applyLightTheme() {
         applyTheme(Theme.LIGHT);
         scheduleGridPanel.setScrollPaneStyle(theme);
+        resultDisplay.setFeedbackToUser("Switched to light mode!");
     }
 
     /** Sets theme to Dark Theme. */
@@ -353,6 +355,7 @@ public class MainWindow extends UiPart<Stage> {
     public void applyDarkTheme() {
         applyTheme(Theme.DARK);
         scheduleGridPanel.setScrollPaneStyle(theme);
+        resultDisplay.setFeedbackToUser("Switched to dark mode!");
     }
 
     /**
@@ -391,11 +394,15 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowModuleList()) {
-                handleShowTabModules();
+                handleShowTabAllModules();
             }
 
             if (commandResult.isShowStudentList()) {
                 handleShowTabStudents();
+            }
+
+            if (commandResult.isShowTargetModule()) {
+                handleShowTabModules();
             }
 
             if (commandResult.isShowModule()) {

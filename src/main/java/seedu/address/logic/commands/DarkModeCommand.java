@@ -18,6 +18,6 @@ public class DarkModeCommand extends Command {
         requireNonNull(model);
         return new CommandResult(MESSAGE_SUCCESS, false, false, false,
                 false, false, false,
-                false, false, false, true);
+                false, false, false, false, true);
     }
 }

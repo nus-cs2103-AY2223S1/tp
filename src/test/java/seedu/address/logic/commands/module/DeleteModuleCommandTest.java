@@ -37,7 +37,7 @@ public class DeleteModuleCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete),
                 false, false, true,
-                false, false, false, false, false);
+                false, false, false, false, false, false);
 
         ModelManager expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deleteModule(moduleToDelete);
@@ -64,7 +64,7 @@ public class DeleteModuleCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete),
                 false, false, true,
-                false, false, false, false, false);
+                false, false, false, false, false, false);
 
         Model expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deleteModule(moduleToDelete);
