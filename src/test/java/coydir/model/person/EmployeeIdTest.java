@@ -138,10 +138,10 @@ public class EmployeeIdTest {
         EmployeeId base = new EmployeeId("1");
 
         assertTrue(base.equals(base)); // equal to itself
-        
+
         EmployeeId other = new EmployeeId(base.value);
         assertTrue(base.equals(other)); // equal to another instance
-        
+
         TestUtil.restartEmployeeId(1);
         other = new EmployeeId();
         assertTrue(base.equals(other)); // equal to new one created by default constructor
