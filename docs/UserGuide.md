@@ -7,9 +7,9 @@ title: User Guide
 
 Everything you need to know about **SoConnect**, an ultimate solution for your everyday contacts and tasks management problem, is finally here!
 
-If you are an **SoC student**, there is a high chance you are probably stressing over lack of social interactions and mounting assignments right now. Well, look no further! SoConnect is built to help you stay better connected to school life by doing the tedious management task, so you can focus on **creating real friends and finishing schoolwork quickly**. 
+If you are an **[SoC](#soc) student**, there is a high chance you are probably stressing over lack of social interactions and mounting assignments right now. Well, look no further! SoConnect is built to help you stay better connected to school life by doing the tedious management task, so you can focus on **creating real friends and finishing schoolwork quickly**. 
 
-Interested to use SoConnect? Then you are in the right place! In this user guide, we will cover step-by-step instructions from installing the app to customizing it according to your preference. Whether you are a beginner or an advance user, this guide will solve all your problems, just like our app!
+Interested to use SoConnect? Then you are in the right place! In this user guide, we will cover **step-by-step instructions** from installing the app to customising it according to your preference. Whether you are a beginner or an advance user, this guide will solve all your problems, just like our app!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,15 +24,64 @@ Interested to use SoConnect? Then you are in the right place! In this user guide
 
 ## 3. Introduction
 
-SoConnect is a **2-in-1 desktop app for managing contacts and tasks**. It is originally built to help NUS SoC students stay better connected to their school life, in terms of social connections and school tasks. SoConnect leverages on the simplicity of Command Line Interface (CLI) to optimize your productivity, while still maintaining user-friendliness through its Graphical User Interface (GUI).
+SoConnect is a **2-in-1 desktop app for managing contacts and tasks**. It is originally built to help [NUS](#nus) SoC students stay better connected to their school life, in terms of social connections and school tasks.
 
+SoConnect leverages on the simplicity of Command Line Interface ([CLI](#cli)) to optimize your productivity, while still maintaining user-friendliness through its Graphical User Interface ([GUI](#gui)). If you can type fast, SoConnect can get your contact and task management work done faster than even the popular applications such as Microsoft People and To Do!
 
+Let's look at the overview of our main features. 
 
 ### 3.1. Contact Management
 
-### 3.2. Task Management
+SoConnect allows you to store all your contact information, so that you no longer need to stress about forgetting someone. In particular, you can:
+1. Quickly **add, view, edit and delete** your contact.
+2. **Sort** your displayed contact list by name, email, address, phone number and tag.
+3. **Tag** specific people in your contact list, which can also be edited and removed.
+4. **Search** efficiently, just like how Google works.
+5. What's more, we even let you **customise** how you want the contact list to be shown!
 
-## 4. Quick start
+### 3.2. Todo Management
+
+SoConnect helps you keep track of your [todo](#todo) list, so that you can focus on finishing tasks quickly. In particular, you can:
+1. Quickly **add, view, edit and delete** your todo.
+2. **Filter** your todo according to deadline, tag and priority.
+3. **Tag** specific todo in your list, so that you can leverage on our Contact Management feature to find people who might be able to help you finish the task quickly!
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 4. Using This Guide
+
+### 4.1. Navigate Around
+
+As a first time user, we understand that you might be confused on how to even start up the application in the first place. Therefore, you can go to the [Installation](#5-installation) section to download SoConnect, if you have not done so.
+
+Once SoConnect is installed, you can navigate to the [Quickstart](#6-quickstart) section, where we will cover the basics of using SoConnect.
+
+If you are a returning user, you can head over to the [Command Summary](#command-summary) section for a quick overview of all SoConnect's commands. Alternatively, you can also read the detailed explanation of each command in the [Commands](#commands) section.
+
+Feeling stuck? The [FAQ](#faq) section might help find the answer you are looking for.
+
+You can also refer to the [Glossary](#glossary) section for definitions of commonly used terms in SoConnect.
+
+### 4.2. Icons
+
+In order to help you pay attention, we have used some icons along with highlighted text throughout this guide.
+
+| Icon                                                                                | Meaning                                       |
+|-------------------------------------------------------------------------------------|-----------------------------------------------|
+| <div markdown="span" class="alert alert-primary"> :book: **Note** </div>            | You should pay attention to this.             |
+| <div markdown="span" class="alert alert-success"> :bulb: **Tip** </div>             | You might find this useful.                   |
+| <div markdown="span" class="alert alert-info"> :information-source: **Info** </div> | You can get additional information from this. |
+| <div markdown="span" class="alert alert-warning">:warning: **Warning**</div>        | You should be cautious about this.            |
+| <div markdown="span" class="alert alert-danger">:danger: **Danger**</div>           | You should pay **extra** attention to this.   |
+
+### 4.3. Formatting
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 5. Installation
+
+## 6. Quickstart
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -60,7 +109,7 @@ SoConnect is a **2-in-1 desktop app for managing contacts and tasks**. It is ori
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
