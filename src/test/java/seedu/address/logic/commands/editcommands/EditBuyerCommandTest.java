@@ -415,16 +415,16 @@ public class EditBuyerCommandTest {
     private class ModelStubWithBuyer extends ModelStub {
         private final Buyer buyer;
 
+        ModelStubWithBuyer(Buyer buyer) {
+            requireNonNull(buyer);
+            this.buyer = buyer;
+        }
+
         @Override
         public ObservableList<Buyer> getFilteredBuyerList() {
             AddressBook ab = new AddressBook();
             ab.addBuyer(buyer);
             return ab.getBuyerList();
-        }
-
-        ModelStubWithBuyer(Buyer buyer) {
-            requireNonNull(buyer);
-            this.buyer = buyer;
         }
 
         @Override
