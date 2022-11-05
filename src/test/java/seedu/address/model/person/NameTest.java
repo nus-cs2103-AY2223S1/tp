@@ -31,11 +31,20 @@ public class NameTest {
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
         assertFalse(Name.isValidName("12345")); // numbers only
+        assertFalse(Name.isValidName("Captain Jack 2 Sparrow")); // standalone number
 
         // valid name
         assertTrue(Name.isValidName("peter jack")); // alphabets only
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
+        assertTrue(Name.isValidName("a2b"));
+        assertTrue(Name.isValidName("a987b"));
+        assertTrue(Name.isValidName("a98b76c543d2"));
+        assertTrue(Name.isValidName("a2"));
+        assertTrue(Name.isValidName("ab2"));
+        assertTrue(Name.isValidName("2a"));
+        assertTrue(Name.isValidName("2abc"));
+        assertTrue(Name.isValidName("a2b a234b"));
     }
 
     @Test
