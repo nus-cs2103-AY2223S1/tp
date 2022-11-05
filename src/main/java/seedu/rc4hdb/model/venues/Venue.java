@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
@@ -32,6 +31,7 @@ public class Venue implements BookingField {
      * @param venueName The name of the venue as specified by the venue book.
      */
     public Venue(VenueName venueName) {
+        requireNonNull(venueName);
         this.venueName = venueName;
     }
 
@@ -42,6 +42,7 @@ public class Venue implements BookingField {
      */
     public Venue(List<Booking> bookings, VenueName venueName) {
         this(venueName);
+        requireNonNull(bookings);
         this.bookings = bookings;
     }
 
@@ -61,6 +62,7 @@ public class Venue implements BookingField {
      * @throws BookingClashesException if the booking clashes with an existing booking.
      */
     public void addBooking(Booking booking) throws BookingClashesException {
+        requireNonNull(booking);
         if (hasClashes(booking)) {
             throw new BookingClashesException();
         }
@@ -73,6 +75,7 @@ public class Venue implements BookingField {
      * @throws BookingNotFoundException if there is no such booking with the same booked period and day in the list.
      */
     public void removeBooking(BookingDescriptor bookingDescriptor) throws BookingNotFoundException {
+        requireNonNull(bookingDescriptor);
         boolean isRemoved = this.bookings.removeIf(booking -> booking.isSameBooking(bookingDescriptor));
         if (!isRemoved) {
             throw new BookingNotFoundException();
@@ -108,9 +111,9 @@ public class Venue implements BookingField {
 
     //==================== Start of getters =================================
 
-    public ObservableList<Booking> getObservableBookings() {
+    public List<Booking> getBookings() {
         clearExpiredBookings();
-        return FXCollections.observableArrayList(bookings);
+        return bookings;
     }
 
     public VenueName getVenueName() {
@@ -126,10 +129,23 @@ public class Venue implements BookingField {
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof Venue
-                && (this.venueName.equals(((Venue) other).venueName)
-                && (this.bookings.equals(((Venue) other).bookings))));
+        if (other == null) {
+            return false;
+        }
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof Venue) {
+            Venue otherVenue = (Venue) other;
+
+            // Bi-directional subset relation implies equality
+            boolean hasSameBookings = this.bookings.containsAll(otherVenue.bookings)
+                    && otherVenue.bookings.containsAll(this.bookings);
+            boolean hasSameVenueName = this.venueName.equals(otherVenue.venueName);
+
+            return hasSameVenueName && hasSameBookings;
+        }
+        return false;
     }
 
     // Todo: Populate venue table with the venues specified in the .txt file and hook up class with storage

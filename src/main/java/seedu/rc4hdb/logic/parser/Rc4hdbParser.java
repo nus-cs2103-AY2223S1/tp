@@ -29,7 +29,6 @@ import seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.HideOnlyCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.RemoveCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ShowOnlyCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.VenueCommandParser;
@@ -78,7 +77,7 @@ public class Rc4hdbParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommandParser().parse(arguments);
+            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
