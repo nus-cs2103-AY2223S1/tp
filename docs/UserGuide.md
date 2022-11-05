@@ -774,7 +774,7 @@ Format: `exit`
 
 ### Editing the data file
 
-TrackO's data is saved as a JSON file in `[JAR file home folder]/data/trackO.json`. Advanced users are welcome to 
+TrackO's data is saved as a JSON file in `[JAR file home folder]/data/trackO.json`. **Advanced users** are welcome to 
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
