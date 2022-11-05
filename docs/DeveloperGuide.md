@@ -123,20 +123,21 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="550" />
 
 
 The `Model` component,
 
-* stores the HR Pro Max++ data consisting of all `Project` objects (which are contained in a `UniqueProjectList` object), all `Task` objects (which are contained in a `UniqueTaskList` object) and all `Staff` objects (which are contained in a `UniqueStaffList` object) belonging to the `Project` object that is being viewed (e.g. after a `ViewCommand`).
-* stores the filtered `Project`, `Task` and `Staff` objects  (e.g., results of a `FindCommand`) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<T>`, where `T` is either a `Project`, a `Task` or a `Staff` object, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
+* stores the data in HR Pro Max++ consisting of all `Project` and `Task` objects which are contained in their respective unique list (e.g. `UniqueProjectList` object).
+* The `UniqueStaffList` contains only staff members belonging to the `Project` object that is being viewed (e.g. after a `ViewCommand`).
+* stores the filtered `Project`, `Task` and `Staff` objects (e.g., results of a `FindCommand`) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<T>`, where `T` is either a `Project`, a `Task` or a `Staff` object, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 
-**API** : [`Project.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/project/Project.java)
+**API** : [`Project.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/project/Project.java)
 
 <img src="images/ModelProjectClassDiagram.png" width="650" />
 
@@ -144,10 +145,18 @@ The `Project` class,
 
 * stores the details of a particular project (i.e. `ProjectName`, `Budget`, `Deadline`).
 * stores the details of all Staff members (which are contained in a `UniqueStaffList` object) working on the project.
-* at most one of this `Project` object (e.g., result of a view query) is stored in a separate _target_ list whose `UniqueStaffList` will be shown to outsiders e.g. the UI can be bound to this list so that the UI automatically updates when the data in this list changes.
+* The `UniqueStaffList` of a chosen `Project` object in HR Pro Max++ is copied over to the `UniqueStaffList` in `HrPro` which is used to display the staff list shown to outsiders.
+* The copying is done whenever the user edits the `UniqueStaffList` of the `Project` object being viewed (e.g. `AddStaffCommand`, `EditStaffCommand`) or when the user wants to view a different `Project` object (e.g. after a `ViewCommand`)
 
+**API** : [`Staff.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/staff/Staff.java)
 
-**API** : [`Task.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
+<img src="images/ModelStaffClassDiagram.png" width="650" />
+
+The `Staff` class,
+
+* stores the details of a particular staff (i.e. `StaffName`, `StaffContact`, `StaffTitle`).
+
+**API** : [`Task.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/task/Task.java)
 
 <img src="images/ModelTaskClassDiagram.png" width="550" />
 
@@ -157,7 +166,7 @@ The `Task` class,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/hrpro/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -255,6 +264,25 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+
+### View Command
+
+#### Implementation:
+* The `ViewCommand` copies the `UniqueStaffList` from a `Project` object that is currently on the displayed list of `Project` objects.
+* This `Project` object is specified by the compulsory index argument following the `ViewCommand` e.g. `view 1` takes the first `Project` object on the displayed list.
+* The `UniqueStaffList` in `HrPro` will then be set to the contents of the copied `UniqueStaffList`.
+* In `MainWindow`, the `StaffListPanel` is set to an `ObservableList<Staff>` which has a listener that detects any changes made to the `UniqueStaffList` in `HrPro`.
+* The changes to the `UniqueStaffList` in `HrPro` made by the `ViewCommand` changes the displayed list of `Staff`.
+
+The following sequence diagram shows how the view command works.
+
+![view command](images/ViewCommandSequenceDiagram.png)
+
+#### Design considerations:
+* The `execute` method in `ViewCommand` interacts only with methods in `Model` to maintain the same level of abstraction.
+* We also decided to create a defensive copy of the project's `UniqueStaffList`, which exists in `HrPro`, to be linked to the UI for display.
+* Initially, we decided to create a target project attribute in `Model` that keeps track of the `Project` object being viewed, but we realised that this design exposes the `UniqueStaffList` attribute of the project to other components like UI. Also, other commands could potentially mutate this target project which would result in a lot of bugs.
+* The last viewed staff list would also be saved in `Storage` for convenience to users.
 
 ### Task List
 
