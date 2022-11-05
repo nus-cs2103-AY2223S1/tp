@@ -62,8 +62,6 @@ more succinct. If you're not familiar with ArtBuddy's CLI, you might want to loo
 |---------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Optional command parameters                             | Certain ArtBuddy commands have optional command parameters. These command parameters may be specified, or be left out. You'll be able to identify optional command parameters as they will appear around square brackets when specified in the command format. | For instance, the command format of the Add Customer command is `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...`. Notice that the address and tag command parameters appear around square brackets? That just means that you can choose whether to specify these command parameters! |
 | Command parameters that can be specified more than once | You may also notice that certain command have `...` after certain command parameters. This simply means indicates that the input parameter be used multiple times (including zero times).                                                                      | Following the example of the Add Customer example above, where you'll notice the tag command parameter `[t/TAG]...` is followed by `...`, this just means that the tag command input can be specified any number of times!                                                                        |
-| <code><em>code_italics</em></code>                      | ArtBuddy commands may also contain words that appear in italics. These refer to example command [parameters](), which you can replace with your own inputs.                                                                                                    |                                                                                                                                                                                                                                                                                                   |
-
 
 **Call-out text box conventions**  
 You might also notice call-out text boxes in this guide. These contain additional information tidbits that might be useful
@@ -350,26 +348,35 @@ capabilities of ArtBuddy.
 --------------------------------------------------------------------------------------------------------------------
 
 # Features
+Dive right into ArtBuddy's full list of features. This section guides you through all of ArtBuddy's commands.
 
-### Viewing help: `help`
-
-Shows you a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+For ease of reference, similar features are grouped into the individual subsections listed below:
+* [Customer related commands](#customer-related-commands)
+* [Commission related commands](#commission-related-commands)
+* [Iteration related commands](#iteration-related-commands)
+* [Statistical commands](#statistical-commands)
+* [Miscellaneous](#miscellaneous)
 
 ## Customer related commands
 
-A customer view is the first thing you see when you start up the application.
-This will help you keep track of all the customers you currently have.
+Customers are at the heart of ArtBuddy. ArtBuddy will help you keep track of all your customers and their
+details so you never have to lose a contact again.
 
-A customer will have the following details:
-* Name
-* Phone number
-* Email
-* Optional address
-* Optional Tags
+Customers stored in ArtBuddy have the following details:
+
+| Detail           | Explanation                                                                                                        |
+|------------------|--------------------------------------------------------------------------------------------------------------------|
+| Name             | The name of the customer                                                                                           |
+| Phone number     | The phone number of the customer                                                                                   |
+| Email            | The email of the customer                                                                                          |
+| Optional address | The address of the customer (which is optional, a customer may not have recorded address)                          |
+| Optional tags    | A customer may be tagged with any number of tags (including 0) which can be used to help categorise your customers |
+
+ArtBuddy offers the following commands to help you manage your customers:
+* [Viewing a customer: `opencus`](#viewing-a-customer-opencus)
+* [Adding a customer: `addcus`](#adding-a-customer-addcus)
+* [Editing a customer: `editcus`](#editing-a-customer-editcus)
+* [Deleting a customer: `delcus`](#deleting-a-customer-delcus)
 
 ### Viewing a customer: `opencus`
 
@@ -424,13 +431,21 @@ Examples:
 A customer may ask for multiple commissions with different needs.
 That is why we created the commission to help you keep track of all the commissions.
 
-A commission will have the following details:
-* Title
-* Fee
-* Deadline
-* Status
-* Optional Description
-* Optional Tags
+Commissions stored in ArtBuddy have the following details:
+
+| Detail               | Explanation                                                                                                            |
+|----------------------|------------------------------------------------------------------------------------------------------------------------|
+| Title                | The name of the commission                                                                                             |
+| Deadline             | The due date of the commission                                                                                         |
+| Status               | The completion status of the commission                                                                                |
+| Optional description | An optional description of the commission (for instance, the commission requirements)                                  |
+| Optional tags        | A commission may be tagged with any number of tags (including 0) which can be used to help categorise your commissions |
+
+ArtBuddy offers the following commands to help you manage your commissions:
+* [Viewing a commission: `opencom`](#viewing-a-commission-opencom)
+* [Adding a commission: `addcom`](#adding-a-commission-addcom)
+* [Editing a commission: `editcom`](#editing-a-commission-editcom)
+* [Deleting a commission: `delcom`](#deleting-a-commission-delcom)
 
 ### Viewing a commission: `opencom`
 
@@ -480,16 +495,27 @@ Example:
 
 ## Iteration related commands
 
-When working on a commission, you can expect to create multiple images to get feedback and update your commission.
-The iteration is created to serve this purpose of keeping track of your progress in the commission.
+Each piece of art represents a journey of growth. From ideation, sketches, drafts, to constant refinements.
+ArtBuddy wants to help you capture this process. That's why we created iterations, just for you.
 
-An iteration will have the following details:
-* Description
-* Date
-* Filepath for the image
-* Feedback
+Each iteration serves as a 'bookmark', representing a version of your artwork as you work on perfecting your commission.
 
-### Adding iteration to a commission: `additer`
+Iterations stored in ArtBuddy have the following details:
+
+| Detail      | Explanation                                                                           |
+|-------------|---------------------------------------------------------------------------------------|
+| Description | Describes the progress that was made in the iteration                                 |
+| Date        | Records the date tied to the iteration (for instance, when the iteration was created) |
+| Image       | A picture that captures how the commission looks like in the current iteration        |
+| Feedback    | Feedback attached to the current iteration (for instance, areas for improvement)      |
+
+
+ArtBuddy offers the following commands to help you manage your iterations:
+* [Adding iteration to a commission: `additer`](#adding-an-iteration-to-a-commission-additer)
+* [Editing an iteration from commission: `edititer`](#editing-an-iteration-from-commission-edititer)
+* [Deleting an iteration from commission: `deliter`](#deleting-an-iteration-from-commission-deliter)
+
+### Adding an iteration to a commission: `additer`
 Just like the other add commands, adding iterations can be done either via the command-line, or
 the graphical interface.
 
@@ -584,7 +610,7 @@ ArtBuddy creates a copy of each file you upload. This means that you can edit, d
 move your original copy of the file without affecting the uploaded image on ArtBuddy.
 </div>
 
-### Editing iteration from commission: `edititer`
+### Editing an iteration from commission: `edititer`
 Edits an iteration at `INDEX` in a commission.
 
 Format: `edititer INDEX [n/DESCRIPTION] [d/DATE] [p/FILEPATH] [f/FEEDBACK]`
@@ -596,7 +622,7 @@ Example:
   Edits the first iteration in the currently selected commission to have the above fields and image.
 * <code>edititer <em>2</em> n/<em>Sketch</em></code> Edits the description of the second iteration in the currently selected commission.
 
-### Deleting iteration from commission: `deliter`
+### Deleting an iteration from commission: `deliter`
 Deletes an iteration at `INDEX` from a commission.
 
 Format: `deliter INDEX`
@@ -667,6 +693,14 @@ Examples:
 * <code>find -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions who are either tagged `oil painting` or `canvas`.
 
 ## Miscellaneous
+
+### Viewing help: `help`
+
+Shows you a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
  
 ### Clearing all the customers: `clear`
 Clears all your customers from ArtBuddy, including their commissions and iterations.
