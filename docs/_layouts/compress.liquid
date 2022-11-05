@@ -11,6 +11,12 @@
   {% assign trimmed = trimmed | push: stripped %}
 {% endfor %}
 {% assign content = trimmed | join: newline %}
+{% comment %} REMOVE LINES CONTAINING ONLY COMMENTS {% endcomment %}
+{% comment %} MUST BE FORMATTED LIKE THIS TO PREVENT EXTRA LINES {% endcomment %}
+{% assign lines = content | split: newline %}
+{% assign without_comments = '' | split: '' %}
+{% for line in lines %}{% assign start = line | slice: 0, 5 %}{% if start != '<!-- ' %}{% assign without_comments = without_comments | push: line %}{% continue %}{% endif %}{% assign slice_index = line | size | minus: 4 %}{% assign end = line | slice: slice_index, 4 %}{% if end != ' -->' %}{% assign without_comments = without_comments | push: line %}{% continue %}{% endif %}{% endfor %}
+{% assign content = without_comments | join: newline %}
 {% comment %} REMOVE BLANK LINES {% endcomment %}
 {% assign content = content | split: newline | where_exp: 'item', 'item != ""' | join: newline %}
 {% comment %} RENDER {% endcomment %}
