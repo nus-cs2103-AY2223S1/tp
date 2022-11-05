@@ -164,7 +164,7 @@ public interface Model {
      * Returns if it can delete the staff at {@code index} from the staff list of the project with {@code projectName}.
      * If it can delete, it will delete in this method.
      */
-    boolean isSuccessStaffDelete(ProjectName projectName, Index index);
+    boolean isSuccessStaffDelete(Project targetProject, Index index);
 
     /**
      * Adds the staff {@code toAdd} to the staff list of the project with {@code projectName}.
@@ -175,7 +175,7 @@ public interface Model {
      * Return if it can edit the Staff {@code toEdit} in the staff list of the project with {@code projectName}
      * with the Staff {@code editWith}. If it can edit, it will edit in this method.
      */
-    boolean isSuccessStaffEdit(ProjectName projectName, Staff toEdit, Staff editWith);
+    boolean isSuccessStaffEdit(Project targetProject, Staff toEdit, Staff editWith);
 
     //=========== Tasks ================================================================================
     /**

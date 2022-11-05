@@ -93,7 +93,7 @@ public class EditStaffCommand extends Command {
         Optional<Staff> staffToEdit = model.getStaffFromProjectAtIndex(projectName, staffIndex);
         Optional<Project> projectToEdit = model.getProjectWithName(projectName);
 
-        Project toFindIn = projectToEdit.orElseThrow(() ->
+        Project targetProject = projectToEdit.orElseThrow(() ->
                 new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName)));
 
         Staff toEdit = staffToEdit.orElseThrow(() ->
@@ -103,14 +103,15 @@ public class EditStaffCommand extends Command {
         if (model.projectHasDuplicateStaff(projectName, toEdit, editedStaff)) {
             throw new CommandException(MESSAGE_DUPLICATE_STAFF);
         }
-        boolean isSuccessfulEdit = model.isSuccessStaffEdit(projectName, toEdit, editedStaff);
+        boolean isSuccessfulEdit = model.isSuccessStaffEdit(targetProject, toEdit, editedStaff);
         if (!isSuccessfulEdit) {
             throw new CommandException(String.format(MESSAGE_INVALID_STAFF, toEdit.getStaffName()));
         }
-        //model.editStaffInProject(projectName, toEdit, editedStaff);
-        model.setFilteredStaffList(toFindIn.getStaffList());
+
+        model.setFilteredStaffList(targetProject.getStaffList());
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
-        return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff, toFindIn.getProjectName()));
+        return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff,
+                targetProject.getProjectName()));
     }
 
     /**
