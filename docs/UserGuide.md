@@ -213,7 +213,7 @@ Format: `list KEY`
 
 
 Examples:
-* `list buyer` or `list b` lists all Buyer contacts with their orders.
+* `list buyer` or `list b`, lists all Buyer contacts with their orders.
 * `list deliverer` or `list d`, lists all Deliverer contacts.
 * `list supplier` or `list s`, lists all Supplier contacts with their pets.
 * `list all` or `list a`, lists all Buyer, Deliverer, Supplier contacts and their respective pets and orders details.
@@ -652,8 +652,8 @@ For example, if you want to edit a buyer by `edit-b 1`, do ensure at index 1 is 
 </div>
 
 Examples: 
-* `edit-b 1 n/Alex`, modifies the name of the `Buyer` contact at index 1 of Buyer List to Alex, if index is found.
-* `edit-s 3 n/Bobby ph/884321` modifies the name to Bobby and phone to 884321, of the `Supplier` contact at index 3 of Supplier List to Alex, if index is found.
+* `edit-b 1 n/Alex`, modifies the name of the Buyer contact at index 1 of Buyer List to Alex, if index is found.
+* `edit-s 3 n/Bobby ph/884321` modifies the name to Bobby and phone to 884321, of the Supplier contact at index 3 of Supplier List to Alex, if index is found.
 
 <div markdown="span" class="alert alert-warning">
 
@@ -666,13 +666,13 @@ Examples:
 
 ### Finding contact(s) using keywords : `find`
 
-Displays all contacts which match ONE specific attribute. This command is especially useful when you want to quickly
+Displays **all** contacts which match **one** specific attribute. This command is especially useful when you want to quickly
 find contacts based on a keyword.
 
 There are five possible attributes for finding contact(s):
 Address, Email, Location, Name, Phone.
 
-Format: `find prefix/INPUT`
+Format: `find prefix/ATTRIBUTE`
 
 #### Attributes and Their Corresponding Prefixes Table
 
@@ -695,11 +695,12 @@ Examples:
 
 #### Finding a buyer : `find-b`
 
-Displays all buyers who match ONE specific attribute. Check out
-the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
-for more information.
+Displays all buyers who match **one** specific attribute.
 
-Format: `find-b prefix/INPUT`
+Format: `find-b prefix/ATTRIBUTE`
+
+Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
+for more information on prefixes and attributes.
 
 Examples:
 
@@ -712,11 +713,12 @@ Examples:
 
 #### Finding a deliverer : `find-d`
 
-Displays all deliverers who match ONE specific attribute. Check out
-the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
-for more information.
+Displays all deliverers who match **one** specific attribute.
 
-Format: `find-d prefix/INPUT`
+Format: `find-d prefix/ATTRIBUTE`
+
+Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
+for more information on prefixes and attributes.
 
 Examples:
 
@@ -729,11 +731,12 @@ Examples:
 
 #### Finding a supplier : `find-s`
 
-Displays all suppliers who match ONE specific attribute. Check out
-the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
-for more information.
+Displays all suppliers who match **one** specific attribute.
 
-Format: `find-s prefix/INPUT`
+Format: `find-s prefix/ATTRIBUTE`
+
+Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
+for more information on prefixes and attributes.
 
 Examples:
 
