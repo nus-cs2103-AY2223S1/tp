@@ -234,7 +234,7 @@ The following sequence diagram shows how the `HistoryCommand()` command works:
 
 #### Implementation
 
-The proposed grouping feature is facilitated by managing groups with the existing `model` component. Additionally, it implements the following features:
+The grouping feature is facilitated by managing groups with the existing `model` component. Additionally, it implements the following features:
 
 * `#AddToGroup()` - Adds a person to a group.
 * `#Ungroup()` - Removes a person from a group.
