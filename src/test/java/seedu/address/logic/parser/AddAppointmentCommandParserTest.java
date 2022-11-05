@@ -8,8 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INCOME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BOTH_FIELD_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LOCATION_FIELD_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NON_INTEGER_DATE_APPOINTMENT_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_OUT_OF_BOUNDS_DAY_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_OUT_OF_BOUNDS_MONTH_APPOINTMENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_WRONGLENGTH_DAY_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MONTHLY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -20,7 +20,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.model.person.DateTime.DEFAULT_DAY_OUT_OF_BOUNDS_ERROR_MESSAGE;
 import static seedu.address.model.person.DateTime.DEFAULT_MONTH_OUT_OF_BOUNDS_ERROR_MESSAGE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
@@ -72,13 +71,13 @@ public class AddAppointmentCommandParserTest {
                 AddAppointmentCommand.MESSAGE_USAGE);
         int targetPersonIndex = INDEX_SECOND_PERSON.getOneBased();
 
-        // edit appointment with invalid date with out of bounds day of month
+        // edit appointment with invalid date with wrong length day
         assertParseFailure(parser, targetPersonIndex
-                + INVALID_OUT_OF_BOUNDS_DAY_APPOINTMENT_DESC, DEFAULT_DAY_OUT_OF_BOUNDS_ERROR_MESSAGE);
+                + INVALID_WRONGLENGTH_DAY_APPOINTMENT_DESC, DateTime.MESSAGE_CONSTRAINTS);
 
         // edit appointment with invalid date with out of bounds month
         assertParseFailure(parser, targetPersonIndex
-                + INVALID_OUT_OF_BOUNDS_MONTH_APPOINTMENT_DESC, DEFAULT_MONTH_OUT_OF_BOUNDS_ERROR_MESSAGE);
+                + INVALID_OUT_OF_BOUNDS_MONTH_APPOINTMENT_DESC, DEFAULT_MONTH_OUT_OF_BOUNDS_ERROR_MESSAGE + "13");
 
         // edit appointment with invalid date with non integer values
         assertParseFailure(parser, targetPersonIndex
@@ -91,7 +90,7 @@ public class AddAppointmentCommandParserTest {
 
         // add appointment with invalid location and invalid date
         assertParseFailure(parser, targetPersonIndex
-                + INVALID_BOTH_FIELD_APPOINTMENT_DESC, DEFAULT_DAY_OUT_OF_BOUNDS_ERROR_MESSAGE);
+                + INVALID_BOTH_FIELD_APPOINTMENT_DESC, DateTime.MESSAGE_CONSTRAINTS);
 
         // add appointment with no field
         assertParseFailure(parser, targetPersonIndex + "",
