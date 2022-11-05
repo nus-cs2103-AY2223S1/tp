@@ -34,11 +34,11 @@ use its text-based commands. Get started now by heading over to [How to use the 
 Throughout this website, you may find colored boxes that contain useful information. The icon at the top of the box represents
 the type of information contained.
 
-| Icon                                      | Meaning                              |
-|-------------------------------------------|--------------------------------------|
-| ![Tip](images/user-guide/tip.png)         | Something you may find useful.       |
-| ![Note](images/user-guide/note.png)       | Something you should keep in mind.   |
-| ![Caution](images/user-guide/caution.png) | Something you should be cautious of. |
+| Icon                                                      | Meaning                              |
+|-----------------------------------------------------------|--------------------------------------|
+| ![Tip](images/user-guide/tip.png){:height="32px"}         | Something you may find useful.       |
+| ![Note](images/user-guide/note.png){:height="32px"}       | Something you should keep in mind.   |
+| ![Caution](images/user-guide/caution.png){:height="32px"} | Something you should be cautious of. |
 
 ### Sections
 
@@ -98,25 +98,25 @@ To toggle between Contact View and Task View, you can use the [`Ctrl + Tab`](#to
 
 This table outlines the components shared by both Contact View and Task View.
 
-| Component Name        | Image                                                         |
-|-----------------------|---------------------------------------------------------------|
-| **Menu Bar**          | ![Menu Bar](images/user-guide/menu-bar.png)                   |
-| **Command Input Box** | ![Command Input Box](images/user-guide/command-input-box.png) |
-| **Search Results**    | ![Search Results](images/user-guide/search-results.png)       |
+| Component Name        | Image                                                                    |
+|-----------------------|--------------------------------------------------------------------------|
+| **Menu Bar**          | ![Menu Bar](images/user-guide/menu-bar.png)                              |
+| **Command Input Box** | ![Command Input Box](images/user-guide/command-input-box.png)            |
+| **Search Results**    | ![Search Results](images/user-guide/search-results.png){:height="120px"} |
 
 #### Contact View
 
-| Component Name   | Image                                               |
-|------------------|-----------------------------------------------------|
-| **Contact List** | ![Contact List](images/user-guide/contact-list.png) |
-| **Task Sidebar** | ![Task Sidebar](images/user-guide/task-sidebar.png) |
+| Component Name   | Image                                                                |
+|------------------|----------------------------------------------------------------------|
+| **Contact List** | ![Contact List](images/user-guide/contact-list.png){:height="200px"} |
+| **Task Sidebar** | ![Task Sidebar](images/user-guide/task-sidebar.png){:height="150px"} |
 
 #### Task View
 
-| Component Name      | Image                                                     |
-|---------------------|-----------------------------------------------------------|
-| **Task List**       | ![Task List](images/user-guide/task-list.png)             |
-| **Contact Sidebar** | ![Contact Sidebar](images/user-guide/contact-sidebar.png) |
+| Component Name      | Image                                                                      |
+|---------------------|----------------------------------------------------------------------------|
+| **Task List**       | ![Task List](images/user-guide/task-list.png){:height="200px"}             |
+| **Contact Sidebar** | ![Contact Sidebar](images/user-guide/contact-sidebar.png){:height="150px"} |
 
 ### How to use Swift+ commands 
 
