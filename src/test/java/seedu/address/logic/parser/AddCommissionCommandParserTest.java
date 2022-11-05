@@ -1,18 +1,50 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.AddCommissionCommand;
-import seedu.address.model.commission.*;
-import seedu.address.testutil.CommissionBuilder;
-
-import java.time.LocalDate;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_END;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_START;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_OF_CAT;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_OF_DOG;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_OF_ELEPHANT;
+import static seedu.address.logic.commands.CommandTestUtil.FEE_DESC_LITTLE;
+import static seedu.address.logic.commands.CommandTestUtil.FEE_DESC_NORMAL;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_FEE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_FALSE;
+import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_TRUE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_ANIMAL;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FOOD;
+import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_CAT;
+import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_DOG;
+import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_ELEPHANT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_FIRST_DAY_OF_YEAR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_LAST_DAY_OF_YEAR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CAT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEE_LITTLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEE_NORMAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ANIMAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CAT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_DOG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_ELEPHANT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRUE_STATUS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.AddCommissionCommand;
+import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.CompletionStatus;
+import seedu.address.model.commission.Fee;
+import seedu.address.model.commission.Title;
+import seedu.address.testutil.CommissionBuilder;
 
 public class AddCommissionCommandParserTest {
     private final AddCommissionCommandParser parser = new AddCommissionCommandParser();
@@ -34,7 +66,7 @@ public class AddCommissionCommandParserTest {
                         + DEADLINE_DESC_START + STATUS_DESC_TRUE + DESC_OF_CAT + TAG_DESC_ANIMAL,
                 new AddCommissionCommand(genericBuilder));
 
-        assertParseSuccess(parser, TITLE_DESC_DOG + TITLE_DESC_CAT +  FEE_DESC_NORMAL
+        assertParseSuccess(parser, TITLE_DESC_DOG + TITLE_DESC_CAT + FEE_DESC_NORMAL
                         + DEADLINE_DESC_START + STATUS_DESC_TRUE + DESC_OF_CAT + TAG_DESC_ANIMAL,
                 new AddCommissionCommand(genericBuilder));
 

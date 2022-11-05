@@ -1,28 +1,30 @@
 package seedu.address.model.customer;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.commission.CompositeCustomerPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CustomerBuilder;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 public class CompositeCustomerPredicateTest {
     @Test
     public void equals() {
-        List<String> firstKeywordList = Collections.singletonList("chainsaw");
-        List<String> secondKeywordList = Arrays.asList("hungry", "skull");
+        Set<String> firstKeywordList = Collections.singleton("chainsaw");
+        Set<String> secondKeywordList = new HashSet<>(Arrays.asList("hungry", "skull"));
 
-        List<Tag> firstMustTagList = Arrays.asList(new Tag("tag1"), new Tag("tag2"));
-        List<Tag> secondMustTagList = Arrays.asList(new Tag("tag2"), new Tag("tag3"));
+        Set<Tag> firstMustTagList = new HashSet<>(Arrays.asList(new Tag("tag1"), new Tag("tag2")));
+        Set<Tag> secondMustTagList = new HashSet<>(Arrays.asList(new Tag("tag2"), new Tag("tag3")));
 
-        List<Tag> firstOptionalTagList = Arrays.asList(new Tag("tag4"), new Tag("tag5"));
-        List<Tag> secondOptionalTagList = Arrays.asList(new Tag("tag4"), new Tag("tag6"));
+        Set<Tag> firstOptionalTagList = new HashSet<>(Arrays.asList(new Tag("tag4"), new Tag("tag5")));
+        Set<Tag> secondOptionalTagList = new HashSet<>(Arrays.asList(new Tag("tag4"), new Tag("tag6")));
 
         CompositeCustomerPredicate firstPredicate = new CompositeCustomerPredicate(firstKeywordList,
                 firstMustTagList, firstOptionalTagList);
@@ -44,9 +46,9 @@ public class CompositeCustomerPredicateTest {
 
     @Test
     public void test_nameContainsKeywordsAndTags_returnsTrue() {
-        List<String> keywordList = Arrays.asList("joseph", "frank");
-        List<Tag> mustTagList = Arrays.asList(new Tag("friend"), new Tag("handsome"));
-        List<Tag> optionalTagList = Arrays.asList(new Tag("smart"), new Tag("poor"));
+        Set<String> keywordList = new HashSet<>(Arrays.asList("joseph", "frank"));
+        Set<Tag> mustTagList = new HashSet<>(Arrays.asList(new Tag("friend"), new Tag("handsome")));
+        Set<Tag> optionalTagList = new HashSet<>(Arrays.asList(new Tag("smart"), new Tag("poor")));
         CompositeCustomerPredicate predicate = new CompositeCustomerPredicate(
                 keywordList, mustTagList, optionalTagList);
         // Meets all
@@ -72,9 +74,9 @@ public class CompositeCustomerPredicateTest {
 
     @Test
     public void test_nameDoesNotContainKeywordsAndTags_returnFalse() {
-        List<String> keywordList = Arrays.asList("joseph", "frank");
-        List<Tag> mustTagList = Arrays.asList(new Tag("friend"), new Tag("handsome"));
-        List<Tag> optionalTagList = Arrays.asList(new Tag("smart"), new Tag("poor"));
+        Set<String> keywordList = new HashSet<>(Arrays.asList("joseph", "frank"));
+        Set<Tag> mustTagList = new HashSet<>(Arrays.asList(new Tag("friend"), new Tag("handsome")));
+        Set<Tag> optionalTagList = new HashSet<>(Arrays.asList(new Tag("smart"), new Tag("poor")));
         CompositeCustomerPredicate predicate = new CompositeCustomerPredicate(
                 keywordList, mustTagList, optionalTagList);
 

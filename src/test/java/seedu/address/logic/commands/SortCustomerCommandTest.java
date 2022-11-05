@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalCustomers.DANIEL;
 import static seedu.address.testutil.TypicalCustomers.ELLE;
 import static seedu.address.testutil.TypicalCustomers.FIONA;
 import static seedu.address.testutil.TypicalCustomers.GEORGE;
+import static seedu.address.testutil.TypicalCustomers.MONA;
 import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -40,11 +41,11 @@ public class SortCustomerCommandTest {
 
     @Test
     public void execute_nameSort_sortsProperly() {
-        String expectedMessage = String.format(MESSAGE_CUSTOMERS_SORTED, 7, SortDirection.DECREASING, "description");
+        String expectedMessage = String.format(MESSAGE_CUSTOMERS_SORTED, 8, SortDirection.DECREASING, "description");
         SortCustomerCommand command = new SortCustomerCommand(
                 CUSTOMER_NAME_COMPARATOR.reversed(), "description", SortDirection.DECREASING);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(GEORGE, FIONA, ELLE, DANIEL, CARL, BENSON, ALICE),
+        assertEquals(Arrays.asList(MONA, GEORGE, FIONA, ELLE, DANIEL, CARL, BENSON, ALICE),
                 model.getSortedFilteredCustomerList());
     }
 

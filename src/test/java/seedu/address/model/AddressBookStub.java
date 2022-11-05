@@ -1,10 +1,13 @@
 package seedu.address.model;
 
+import java.util.ArrayList;
+
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 
-import java.util.ArrayList;
-
+/**
+ * An AddressBook stub.
+ */
 public class AddressBookStub extends AddressBook {
     private ArrayList<Commission> allCommissions = new ArrayList<>();
 

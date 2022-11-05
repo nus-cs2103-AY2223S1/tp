@@ -1,17 +1,27 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.commission.Commission;
-import seedu.address.model.customer.*;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.commission.Commission;
+import seedu.address.model.customer.Address;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Name;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.tag.Tag;
 
+/**
+ * A default customer stub that has all of its methods failing.
+ */
 public class CustomerStub extends Customer {
+    /**
+     * Constructs a CustomerStub with the given CustomerBuilder.
+     */
     public CustomerStub(CustomerBuilder builder) {
         super(builder);
         requireNonNull(builder);

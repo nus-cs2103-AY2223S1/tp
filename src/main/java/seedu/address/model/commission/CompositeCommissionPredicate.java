@@ -1,6 +1,6 @@
 package seedu.address.model.commission;
 
-import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
@@ -11,14 +11,14 @@ import seedu.address.model.tag.Tag;
  * tags in @code intersectTags and any of the tags in @code unionTags.
  */
 public class CompositeCommissionPredicate implements Predicate<Commission> {
-    private final List<String> keywords;
-    private final List<Tag> intersectTags;
-    private final List<Tag> unionTags;
+    private final Set<String> keywords;
+    private final Set<Tag> intersectTags;
+    private final Set<Tag> unionTags;
 
     /**
      * Constructor of the CompositePredicate.
      */
-    public CompositeCommissionPredicate(List<String> keywords, List<Tag> intersectTags, List<Tag> unionTags) {
+    public CompositeCommissionPredicate(Set<String> keywords, Set<Tag> intersectTags, Set<Tag> unionTags) {
         this.keywords = keywords;
         this.intersectTags = intersectTags;
         this.unionTags = unionTags;

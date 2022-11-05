@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -58,9 +58,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
         }
 
-        List<String> keywords = new ArrayList<>();
-        List<Tag> intersectTags = new ArrayList<>();
-        List<Tag> unionTags = new ArrayList<>();
+        Set<String> keywords = new HashSet<>();
+        Set<Tag> intersectTags = new HashSet<>();
+        Set<Tag> unionTags = new HashSet<>();
         if (!rawKeywords.isEmpty()) {
             rawKeywords = " " + rawKeywords;
             ArgumentMultimap argMultimap =

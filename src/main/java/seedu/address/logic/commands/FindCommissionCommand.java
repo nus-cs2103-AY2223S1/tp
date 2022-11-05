@@ -37,4 +37,11 @@ public class FindCommissionCommand extends Command {
         return new CommandResult(String.format(Messages.MESSAGE_COMMISSIONS_LISTED_OVERVIEW,
                 model.getFilteredCommissionList().size()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindCommissionCommand // instanceof handles nulls
+                && predicate.equals(((FindCommissionCommand) other).predicate)); // state check
+    }
 }

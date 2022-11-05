@@ -1,15 +1,15 @@
 package seedu.address.logic.commands.commission;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.ObservableObject;
-import seedu.address.model.AddressBookStub;
 import seedu.address.model.ModelStub;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 
-import java.util.ArrayList;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * A Model Stub that contains a single customer.
+ */
 public class ModelStubWithCustomer extends ModelStub {
     private final ObservableObject<Customer> selectedCustomer;
 

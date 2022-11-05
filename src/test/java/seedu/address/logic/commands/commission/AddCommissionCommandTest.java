@@ -1,19 +1,19 @@
 package seedu.address.logic.commands.commission;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCommissions.CAT_BUILDER;
+import static seedu.address.testutil.TypicalCommissions.DOG_BUILDER;
+import static seedu.address.testutil.TypicalCommissions.ELEPHANT_BUILDER;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommissionCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.commission.Commission;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.testutil.TypicalCommissions.CAT_BUILDER;
-import static seedu.address.testutil.TypicalCommissions.DOG_BUILDER;
-import static seedu.address.testutil.TypicalCommissions.ELEPHANT_BUILDER;
-
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class AddCommissionCommandTest {
     @Test

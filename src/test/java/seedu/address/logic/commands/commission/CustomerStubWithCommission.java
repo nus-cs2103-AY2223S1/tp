@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.commission;
 
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.CustomerStub;
@@ -7,8 +9,9 @@ import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Name;
 
-import java.util.ArrayList;
-
+/**
+ * A CustomerStub that holds a commission list.
+ */
 public class CustomerStubWithCommission extends CustomerStub {
     static final String CUSTOMER_NAME = "Dummy";
     final ArrayList<Commission> commissionsAdded = new ArrayList<>();

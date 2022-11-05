@@ -7,9 +7,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +28,7 @@ import seedu.address.logic.commands.SortCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commission.CompositeCustomerPredicate;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CustomerBuilder;
 import seedu.address.testutil.CustomerUtil;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
@@ -83,11 +84,15 @@ public class AddressBookParserTest {
     // TODO: Update test case for FindCommand
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        Set<String> keywords = new HashSet<>(Arrays.asList("foo", "bar", "baz"));
+        Set<Tag> mustTags = new HashSet<>(Arrays.asList(new Tag("tag1"),
+                new Tag("tag2"), new Tag("tag3")));
+        Set<Tag> anyTags = new HashSet<>(Arrays.asList(new Tag("tag4"),
+                new Tag("tag5"), new Tag("tag6")));
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " k/" + String.join(" k/", keywords));
-        assertEquals(new FindCommand(new CompositeCustomerPredicate(keywords,
-                new ArrayList<>(), new ArrayList<>())), command);
+                FindCommand.COMMAND_WORD + " k/" + String.join(" k/", keywords) + " -all t/tag1 "
+                + "t/tag2 t/tag3 -any t/tag4 t/tag5 t/tag6");
+        assertEquals(new FindCommand(new CompositeCustomerPredicate(keywords, mustTags, anyTags)), command);
     }
 
     @Test
