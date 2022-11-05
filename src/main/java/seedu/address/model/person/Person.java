@@ -64,17 +64,7 @@ public abstract class Person {
      * Returns true if both persons are the same except tags.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress());
-    }
+    public abstract boolean isSamePerson(Person otherPerson);
 
     /**
      * Returns true if both persons have the same identity and data fields.
