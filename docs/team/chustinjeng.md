@@ -25,11 +25,14 @@ The link to my contributions in the code dashboard is [here](https://nus-cs2103-
 
 ### Contributions to the User Guide
 
+- Contributed to the overall organisation of the user guide through use of tables and boxes
+- Came up with easy-to-understand examples to demonstrate how the application can be used
+- Proofread to ensure that the user guide is easy to read and appropriate for target audience
+
 ### Contributions to the Developer's Guide
 
-- Target persona
-- Target profile
-- Value proposition
+- In charge of UML diagrams of the features implemented in the application
+
 
 ### Contributions to team-based tasks
 
@@ -39,4 +42,9 @@ The link to my contributions in the code dashboard is [here](https://nus-cs2103-
 
 ### Reviewing/mentoring contributions
 
+- Reviewed PRs made my teammates
+- Gave advice to teammates when they encounter any coding difficulty or any bugs in their code
+- Shared with teammates any difficulty that I encountered during this project so that they do not make the same mistake
+
 ### Contributions beyond the project team
+- I contribute to the CS2103T forum by answering questions that I have the answers to.
