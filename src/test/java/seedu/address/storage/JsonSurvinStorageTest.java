@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.Survin;
 import seedu.address.model.ReadOnlySurvin;
+import seedu.address.model.Survin;
 
 public class JsonSurvinStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSurvinStorageTest");
