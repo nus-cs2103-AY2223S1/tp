@@ -319,7 +319,7 @@ Steps to take:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** 
 
-This example is a follow-up of [`removing a Tag`](#removing-a-tag-from-a-contact-tag-remove). Feel free to replace `Test2` wit any existing tag.
+This example is a follow-up of [`removing a Tag`](#removing-a-tag-from-a-contact-tag-remove). Feel free to replace `Test2` with any existing tag.
 </div>
 
 2. Press `Enter` on your keyboard.
