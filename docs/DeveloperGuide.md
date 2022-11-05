@@ -155,6 +155,42 @@ Classes used by multiple components are in the `seedu.workbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature
+
+#### Implementation
+
+The add feature is facilitated by `AddCommand` and `AddCommandParser` classes. The `parse` method in `AddCommandParser`
+checks if mandatory fields are first present. 
+If all are present, the new `Internship` will be added to the `UniqueInternshipList` in a sorted-by-date order.
+
+Below shows the class diagram of adding a new internship application into the list which automatically sorts using `SortedList`.
+This takes place in the `UniqueInternshipList` as shown in the diagram below.
+Some `logic` and `model` details are omitted as they are already explained in the [Architecture section](#architecture) above.
+
+<img src="images/AddCommandClassDiagram.png" width="550" />
+
+#### Design considerations:
+
+**Aspect: `Stage` field:**
+
+* **Alternative 1 (current choice):** Not restricting to enums, (proposed: warn if input does not match general stages)
+    * Pros: Flexibility for user by allowing unique stages from different companies which we did not prepare for to be added.
+    * Cons: Will not have stage-specific tips that have been gathered for more general interview stages.
+
+* **Alternative 2:** Restricting to enums
+    * Pros: Prevent the need for user to edit previous command in the event of a typo,
+    * Cons: Flexibility is heavily restricted, user may encounter stages that we may not have prepared for, which may annoy the user if the user is not allowed to add the stage into the internship tracker.
+
+**Aspect: `DateTime` field:**
+
+* **Alternative 1 (current choice):** Not modularizing Time and Date
+    * Pros: Most stages have a date and time associated with it. Making one of the two optional takes extra effort for something that uncommon. Can be left to later stages of development.
+    * Cons: May not be prepared for stages without date and/or time, therefore not making the tracker flexible enough.
+
+* **Alternative 2:** Modularizing Time and Date
+    * Pros: Some stages that we may not have prepared for may omit date or time, encouraging flexibility of the tracker.
+    * Cons: Effort required is too high in the early stages of development whereby a functional product is prioritized.
+
 ### Undo/Redo feature
 
 The undo feature allows for users to revert back to their previous undone state in the Workbook. 
