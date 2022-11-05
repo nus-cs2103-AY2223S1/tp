@@ -1,6 +1,6 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
+  "tasks" : [ {
     "name" : "Assignment 2",
     "module" : "CS2100",
     "deadline" : "2022-01-02",
