@@ -579,24 +579,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view usage instructions.
+
 2. InTrack displays the usage instructions.
 
     Use case ends.
 
-**Use case: UC02 - View all current internship applications**
+---
+
+**Use case: UC02 - View all internship applications**
 
 **MSS**
 
-1. User requests to list internship applications.
-2. InTrack displays a list of internship applications.
+1. User requests to list all internship applications.
+
+2. InTrack displays a list of all internship applications.
 
    Use case ends.
+
+---
 
 **Use case: UC03 - Add a new internship application**
 
 **MSS**
 
 1. User requests to add a new internship application to the list.
+
 2. InTrack adds the new internship application.
 
    Use case ends.
@@ -609,43 +616,333 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+* 1b. The given internship application already exists in InTrack.
+
+    * 1b1. InTrack shows an error message.
+
+      Use case ends.
+    
+---
+
 **Use case: UC04 - Delete an internship application**
 
 **MSS**
 
-1. User <u>views list of current internship applications (UC02)</u>.
+1. User <u>views list of internship applications (UC02)</u>.
+
 2. User requests to delete a specific internship application in the list.
+
 3. InTrack deletes the internship application.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. InTrack shows an error message.
+    * 2a1. InTrack shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: UC05 - Mark an internship application as completed**
+---
+
+**Use case: UC05 - Update the status of an internship application**
 
 **MSS**
 
-1. User <u>views list of current internship applications (UC02)</u>.
-2. User requests to mark a specific internship application in the list as completed.
-3. InTrack marks the internship application as completed.
+1. User <u>views list of internship applications (UC02)</u>.
+
+2. User requests to update the status of a specific internship application in the list.
+
+3. InTrack updates the status of the internship application.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. InTrack shows an error message.
+    * 2a1. InTrack shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 2b. The given status is invalid.
+
+    * 2b1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC06 - Add a tag to an internship application**
+
+**MSS**
+
+1. User <u>views list of internship applications (UC02)</u>.
+
+2. User requests to add a tag to a specific internship application in the list.
+
+3. InTrack adds the tag to the internship application.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given tag is invalid.
+
+    * 2b1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The given tag already exists in the internship application.
+
+    * 2c1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC07 - Delete a tag from an internship application**
+
+**MSS**
+
+1. User <u>views list of internship applications (UC02)</u>.
+
+2. User requests to delete a tag from a specific internship application in the list.
+
+3. InTrack deletes the tag from the internship application.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given tag is invalid.
+
+    * 2b1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The given tag does not exist in the internship application.
+
+    * 2c1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC08 - Select an internship application**
+
+**MSS**
+
+1. User <u>views list of current internship applications (UC02)</u>.
+
+2. User requests to select a specific internship application in the list.
+
+3. InTrack selects the internship application and displays its full details.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC09 - Edit an internship application**
+
+**MSS**
+
+1. User <u>selects an internship application (UC08)</u>.
+
+2. User requests to edit the selected internship application.
+
+3. InTrack edits the selected internship application.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given command has an invalid format.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The edited internship application already exists in InTrack.
+
+    * 2b1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC10 - Add a task to an internship application**
+
+**MSS**
+
+1. User <u>selects an internship application (UC08)</u>.
+
+2. User requests to add a task to the selected internship application.
+
+3. InTrack adds the task to the selected internship application.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given command has an invalid format.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC11 - Delete a task from an internship application**
+
+**MSS**
+
+1. User <u>selects an internship application (UC08)</u>.
+
+2. User requests to delete a task from the selected internship application.
+
+3. InTrack deletes the task to the selected internship application.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given task index is invalid.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC12 - Add a remark to an internship application**
+
+**MSS**
+
+1. User <u>selects an internship application (UC08)</u>.
+
+2. User requests to add a remark to the selected internship application.
+
+3. InTrack adds the remark to the selected internship application.
+
+   Use case ends.
+
+---
+
+**Extensions**
+
+* 2a. The given command has an invalid format.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC13 - Clear all internship applications**
+
+**MSS**
+
+1. User requests to clear all internship applications.
+
+2. InTrack clears all internship applications. 
+
+   Use case ends.
+
+---
+
+**Use case: UC14 - Find internship applications**
+
+**MSS**
+
+1. User requests to find internship applications.
+
+2. InTrack finds and displays the internship applications that match the given input parameters.
+
+   Use case ends.
+
+---
+
+**Use case: UC15 - Filter internship applications by status**
+
+**MSS**
+
+1. User requests to filter internship applications by status.
+
+2. InTrack filters and displays the internship applications with the given status.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given status is invalid.
+
+    * 1a1. InTrack shows an error message.
+
+      Use case ends.
+
+---
+
+**Use case: UC16 - Sort internship applications**
+
+**MSS**
+
+1. User requests to sort internship applications.
+
+2. InTrack sorts the internship applications via the given parameter in the given order.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given parameter is invalid.
+
+    * 1a1. InTrack shows an error message.
+
+      Use case ends.
+
+* 1b. The given order is invalid.
+
+    * 1b1. InTrack shows an error message.
+
+      Use case ends.
+
+---
+
+**Use case: UC17 - View statistics of internship applications**
+
+**MSS**
+
+1. User <u>views list of internship applications (UC02)</u>.
+
+2. User requests to view statistics of internship applications.
+
+3. InTrack displays the statistics of the list of internship applications.
+
+   Use case ends.
+
+---
 
 ### Non-Functional Requirements
 
