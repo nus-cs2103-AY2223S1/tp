@@ -111,28 +111,37 @@ public class DeletesCommandTest {
     }
 
     @Test
-    public void execute_singleExistingSession_success() {
+    public void execute_singleExistingSession_success() throws CommandException {
         ModuleClass focusedClass = model.getFocusedClass();
         model.setModuleClass(focusedClass, focusedClass.addSession(LAB_1));
+        expectedModel.setModuleClass(focusedClass, focusedClass.addSession(LAB_1));
+        assert model.getFocusedClass().hasSession(LAB_1);
         Set<Session> sessions = new HashSet<>(List.of(LAB_1));
         DeletesCommand command = new DeletesCommand(sessions);
+        command.execute(expectedModel);
         assertCommandSuccess(command, model, DeletesCommand.getCommandMessage(sessions), expectedModel);
     }
 
     @Test
-    public void execute_multipleExistingSessions_success() {
+    public void execute_multipleExistingSessions_success() throws CommandException {
         ModuleClass focusedClass = model.getFocusedClass();
+
         model.setModuleClass(focusedClass, focusedClass.addSession(LAB_1).addSession(TUTORIAL_1));
+        expectedModel.setModuleClass(focusedClass, focusedClass.addSession(LAB_1).addSession(TUTORIAL_1));
+
         assert model.getFocusedClass().hasSession(LAB_1);
         assert model.getFocusedClass().hasSession(TUTORIAL_1);
+
         Set<Session> sessions = new HashSet<>(List.of(LAB_1, TUTORIAL_1));
         DeletesCommand command = new DeletesCommand(sessions);
+        command.execute(expectedModel);
+
         assertCommandSuccess(command, model, DeletesCommand.getCommandMessage(sessions), expectedModel);
     }
 
     @Test
     public void execute_nonExistingSession_failure() {
-        Session nonExistingSession = LAB_1;
+        Session nonExistingSession = ASSIGNMENT_1;
         ModuleClass focusedClass = model.getFocusedClass();
         assert !focusedClass.hasSession(nonExistingSession);
         Set<Session> sessions = new HashSet<>(List.of(nonExistingSession));
