@@ -20,6 +20,7 @@ import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ResidentBook;
+import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
@@ -125,17 +126,20 @@ public class ModelCommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the resident book, filtered resident list and selected resident in {@code actualModel} remain unchanged
+     * - the resident book, filtered resident list,selected resident and venue book in {@code actualModel}
+     * remain unchanged
      */
     public static void assertCommandFailure(ModelCommand command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         ResidentBook expectedResidentBook = new ResidentBook(actualModel.getResidentBook());
+        VenueBook expectedVenueBook = new VenueBook(actualModel.getVenueBook());
         List<Resident> expectedFilteredList = new ArrayList<>(actualModel.getFilteredResidentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedResidentBook, actualModel.getResidentBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredResidentList());
+        assertEquals(expectedVenueBook, actualModel.getVenueBook());
     }
 
     /**

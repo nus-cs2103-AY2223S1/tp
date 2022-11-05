@@ -15,7 +15,7 @@ public class BookingBuilder {
     public static final String DEFAULT_VENUE_NAME = "Hall";
     public static final String DEFAULT_TIME_PERIOD = "8-23";
     public static final String DEFAULT_DAY = "Fri";
-    public static final Resident DEFAULT_RESIDENT = new ResidentBuilder().build();
+    public static final Resident DEFAULT_RESIDENT = TypicalResidents.ALICE;
 
     private VenueName venueName;
     private HourPeriod timePeriod;

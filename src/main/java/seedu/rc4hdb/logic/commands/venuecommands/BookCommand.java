@@ -52,7 +52,7 @@ public class BookCommand extends VenueCommand implements ModelCommand {
     /**
      * Creates a BookCommand to add the specified {@code Booking}
      */
-    public BookCommand(Index residentIndex, BookingDescriptor bookingDescriptor) {
+    public BookCommand(Index residentIndex, BookingDescriptor bookingDescriptor){
         super(bookingDescriptor.getVenueName().get());
         requireAllNonNull(residentIndex, bookingDescriptor);
         this.residentIndex = residentIndex;
@@ -87,7 +87,7 @@ public class BookCommand extends VenueCommand implements ModelCommand {
         assert bookingDescriptor != null && resident != null;
         HourPeriod hourPeriod = bookingDescriptor.getHourPeriod().get();
         Day dayOfWeek = bookingDescriptor.getDayOfWeek().get();
-        VenueName venueName = bookingDescriptor.getVenueName().get();
+        VenueName venueName = super.venueName;
         return new RecurrentBooking(venueName, resident, hourPeriod, dayOfWeek);
     }
 
