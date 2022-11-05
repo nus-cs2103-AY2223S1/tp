@@ -28,7 +28,7 @@ public class BookCommand extends Command {
             + PREFIX_REASON + "REASON "
             + PREFIX_DATE + "DATE "
             + "[" + PREFIX_RECURRING_PERIOD + "TIME PERIOD] "
-            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 3 "
             + PREFIX_REASON + "Sore Throat "
             + PREFIX_DATE + "2022-10-12 16:30 "
