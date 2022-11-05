@@ -405,6 +405,15 @@ After the command has been successfully executed, a new window will pop up, with
  
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the Summary Command**<br>
+   
+- If a summary window is opened, using any other commands will close the summary window.
+- You should call the `summary` command again after any changes.
+   
+</div>
+
 ### General Commands
 
 #### Clearing all entries: `clear`
