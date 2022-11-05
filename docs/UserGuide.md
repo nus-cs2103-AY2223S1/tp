@@ -307,9 +307,9 @@ zero times.
 
 ---
 
-## **Commands**
+## Commands
 
-This section covers how to use each command in detail.
+This section covers how to use each command in detail. You may wish to refer to the [Parameter](#parameter) section to view the constraints for each parameter.
 
 ### Contact commands
 

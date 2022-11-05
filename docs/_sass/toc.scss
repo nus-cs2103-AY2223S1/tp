@@ -37,15 +37,18 @@ article.post {
   h2:not(.no_toc)::before {
     counter-increment: section;
     content: counter(section) ". ";
+    font-weight: $base-font-weight;
   }
 
   h3:not(.no_toc)::before {
     counter-increment: subsection;
     content: counter(section) "." counter(subsection) ". ";
+    font-weight: $base-font-weight;
   }
 
   h4:not(.no_toc)::before {
     counter-increment: subsubsection;
     content: counter(section) "." counter(subsection) "." counter(subsubsection) ". ";
+    font-weight: $base-font-weight;
   }
 }
