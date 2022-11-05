@@ -3,16 +3,16 @@ layout: page
 title: Kartikeya's Project Portfolio Page
 ---
 
-#### Overview
+###### Overview
 
 checkUp is a desktop patient medical record management system. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
 
 Given below are my contributions to the project.
 
-#### Code contributed
+###### Code contributed
 RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxrt&breakdown=true)
 
-#### Enhancements implemented
+###### Enhancements implemented
 
 - Obtaining count of all patients: `count`
   - What it does: Returns count of all patients in the application, along with prescription counts for long-term medicine.
@@ -28,12 +28,12 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
   - What it does: Schedules a future appointment for a patient.
   - Justification: Allows medical staff to keep track of when a patient is next due for a visit.
 
-#### Other code contributions
+###### Other code contributions
 
 - UI changes to PersonViewPanel to beautify it from a rudimentary text layout.
 - Added unit tests for Appointment-based classes, increasing coverage by 3% across over 600 lines of test code.
 
-#### Contributions to the UG
+###### Contributions to the UG
 
 - Documented `count`, `appt`, `view`, `delappt` commands.
 - Updated documentation for `edit` and `add` commands to reflect changes made to them.
@@ -42,8 +42,9 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
 - Created UG [banner image](../images/ug-images/editCommand/checkUp_banner.png).
 - Refactored parameters for commands into tables for better readability.
 - Added `+`, `-` and `*` symbols to indicate the type of parameter.
+- Added relevant user stories for the `Appointment` and `CountCommand` features.
 
-#### Contributions to the DG
+###### Contributions to the DG
 
 - Added "Patient Administrator/Staff" to glossary.
 - Added documentation for the Appointment feature as a whole, including:
@@ -57,7 +58,7 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
 - Added use cases for `count`, `appt` and `edit ua/` commands.
 - Created and added class diagram for the `Person` class.
 
-#### Contributions to team-based tasks
+###### Contributions to team-based tasks
 
 - Set up project workspace and team repository with member management.
 - Set up code coverage, CI, CD on team repository.
@@ -70,14 +71,17 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
 - Created application [logo](../images/checkUp_512.png).
 - Defined and added non-functional requirements.
 
-#### Review/mentoring contributions
+###### Review/mentoring contributions
 
-- Reviewed multiple PRs across the different SDLC versions.
+- Reviewed [47 pull requests](https://github.com/AY2223S1-CS2103T-W16-3/tp/pulls?page=1&q=is%3Apr+reviewed-by%3Akxrt) across the different SDLC versions.
 - Planned Appointment feature and its integration with the other features in the application.
 
-#### Contributions beyond the project team
+###### Forum contributions beyond project team 
 
-- https://github.com/nus-cs2103-AY2223S1/forum/issues/323#issuecomment-1265182783
-- https://github.com/nus-cs2103-AY2223S1/forum/issues/335#issuecomment-1272447673
-- https://github.com/nus-cs2103-AY2223S1/forum/issues/366
-- https://github.com/nus-cs2103-AY2223S1/forum/issues/315#issuecomment-1263175854
+[#315](https://github.com/nus-cs2103-AY2223S1/forum/issues/315#issuecomment-1263175854)
+[#323](https://github.com/nus-cs2103-AY2223S1/forum/issues/323#issuecomment-1265182783)
+[#335](https://github.com/nus-cs2103-AY2223S1/forum/issues/335#issuecomment-1272447673)
+[#366](https://github.com/nus-cs2103-AY2223S1/forum/issues/366)
+[#367](https://github.com/nus-cs2103-AY2223S1/forum/issues/367#issuecomment-1287829837)
+[#370](https://github.com/nus-cs2103-AY2223S1/forum/issues/370#issuecomment-1288053235)
+

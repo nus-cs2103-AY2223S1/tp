@@ -491,6 +491,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | hospital staff         | remove patients from the database                  | remove redundant entries that are no longer necessary                                       |
 | `* *`    | hospital staff         | view the previous appointments of a patient        | see patients' medical history                                                               |
 | `* * *`  | hospital staff         | retrieve patients by their appointment date        | know which patients have scheduled an appointment on a particular day                       |
+| `*`      | hospital staff         | retrieve patient count by medication               | know which medication is most commonly prescribed                                           |
+| `* *`    | hospital staff         | add appointments to a patient's record             | keep track of a patient's medical history and backdate records                              |
+| `*`      | doctor                 | store a patient's next appointment date            | keep track of when the patient is due for their next appointment                            |
 
 ### Use cases
 
