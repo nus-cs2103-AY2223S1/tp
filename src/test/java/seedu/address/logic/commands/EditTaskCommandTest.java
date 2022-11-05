@@ -41,7 +41,6 @@ class EditTaskCommandTest {
         commandLine.parseArgs(TaskUtil.convertEditTaskToArgs(validTask));
         CommandResult expectedResult = new CommandResult(String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
                 validTask));
-        System.out.println(expectedResult.getFeedbackToUser());
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
@@ -67,7 +66,6 @@ class EditTaskCommandTest {
         commandLine.parseArgs(TaskUtil.convertEditPartialNoNameTaskToArgs(validTask));
         CommandResult expectedResult = new CommandResult(String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
                 TypicalTasks.TASK_2_EDITED));
-        System.out.println(expectedResult.getFeedbackToUser());
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
