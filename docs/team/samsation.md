@@ -22,6 +22,7 @@ Given below are my contributions to the project.
       Therefore, this functionality allows for quick and easy way to increment a Customer's Reward points without accessing the `Edit` Command, which is faster to enter into the CLI. Another added side benefit is that
       there would not be any accidental changes to other Customer fields since we are not directly calling the `Edit` Command.
 
+<div style="page-break-after: always;"></div>
 
 * **New Feature**: `Decrease` Command - Added the functionality for users to directly decrease a Customer's Reward points.
   (Pull Requests [#138](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/138), [#205](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/205))
@@ -48,6 +49,7 @@ Given below are my contributions to the project.
   * Created icon for bobaBot (Pull Request [#92](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/92))
   * Managed releases `v1.3.1` and `v1.3.2` (2 releases) on GitHub
 
+<div style="page-break-after: always;"></div>
 
 * **Enhancement to existing features**: Improved the original `Edit` Command to allow users to identify Customers to edit via Phone number or Email address, instead of via Index.
   (Pull Requests [#68](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/68), [#76](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/76), [#82](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/82), [#205](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/205))
