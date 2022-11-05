@@ -37,6 +37,7 @@ While reading this user guide, these symbols will inform you if there is some im
 | :information_source: | Important information                                            |
 | :alarm_clock:        | Reminder                                                         |
 | :bulb:               | Bonus information that is not important to the usage of TaskBook |
+| :exclamation:        | Critical information related to errors                           |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -600,7 +601,7 @@ TaskBook data is saved in the hard disk automatically after any command that cha
 TaskBook data is saved as a JSON file `[JAR file location]/data/taskbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TaskBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, TaskBook will discard all data and start with an empty data file on the next run.
 </div>
 
 ## Miscellaneous Notes
