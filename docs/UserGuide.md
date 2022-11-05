@@ -115,6 +115,8 @@ Adds an item of a specified type with the given details
 
 `add n/NAME p/PHONE(8 digits) pr/PRICE i/ITEM a/ADDRESS [t/TAG]` **(supplier)**
 
+**Note:** Each supplier only supplies one item.
+
 `addTask d/TASKNAME dl/DEADLINE [t/TAG]` **(task)**
 
 `addItem <supplier index> c/CURRENTSTOCK m/MINIMUMSTOCK` **(supply item)**
@@ -225,11 +227,15 @@ Edits a specified item's details
 
 `editTask <task index> [d/DESCRIPTION] [dl/DEADLINE] [t/TAG]` (task)
 
+**Note:** At least one field has to be edited for the command to execute successfully.
+
+
 `editStock <item index> c/CURRENTSTOCK` (supply item)
+
+**Note:** CURRENTSTOCK value for editStock command cannot be more than 9 digits.
 
 <div markdown="span" class="alert alert-info">
 
-**Note:** At least one field has to be edited for the command to execute successfully.
 
 Tag rules apply for `edit` and `editTask`. Refer to [this section](#2-important-information).
 

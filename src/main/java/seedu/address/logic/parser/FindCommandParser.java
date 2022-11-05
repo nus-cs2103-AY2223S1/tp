@@ -32,11 +32,24 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ITEM);
 
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            String[] nameKeywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
+        if (argMultimap.getValue(PREFIX_NAME).isPresent() && argMultimap.getValue(PREFIX_ITEM).isPresent()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            String nameInput = argMultimap.getValue(PREFIX_NAME).get();
+            if (nameInput.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_NAME_EMPTY_COMMAND));
+            }
+            String[] nameKeywords = nameInput.split("\\s+");
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (argMultimap.getValue(PREFIX_ITEM).isPresent()) {
-            String[] itemKeywords = argMultimap.getValue(PREFIX_ITEM).get().split("\\s+");
+            String itemInput = argMultimap.getValue(PREFIX_ITEM).get();
+            if (itemInput.isEmpty()) {
+                throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_ITEM_EMPTY_COMMAND));
+            }
+            String[] itemKeywords = itemInput.split("\\s+");
             return new FindCommand(new ItemContainsKeywordsPredicate(Arrays.asList(itemKeywords)));
         } else {
             throw new ParseException(
