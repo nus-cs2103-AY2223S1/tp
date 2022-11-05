@@ -1,0 +1,50 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SetPersonFileCommandParser" as SetPersonFileCommandParser LOGIC_COLOR
+participant ":SetPersonFileCommand" as SetPersonFileCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute(commandText)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(commandText)
+activate AddressBookParser
+
+create SetPersonFileCommandParser
+AddressBookParser -> SetPersonFileCommandParser
+activate SetPersonFileCommandParser
+
+SetPersonFileCommandParser --> AddressBookParser
+deactivate SetPersonFileCommandParser
+
+AddressBookParser -> SetPersonFileCommandParser : parse(arguments)
+activate SetPersonFileCommandParser
+
+create SetPersonFileCommand
+SetPersonFileCommandParser -> SetPersonFileCommand : SetPersonFileCommand(index, filePath)
+activate SetPersonFileCommand
+
+SetPersonFileCommand --> SetPersonFileCommandParser
+deactivate SetPersonFileCommand
+
+SetPersonFileCommandParser --> AddressBookParser
+deactivate SetPersonFileCommand
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+destroy SetPersonFileCommandParser
+
+LogicManager -> SetPersonFileCommand : execute()
+activate SetPersonFileCommand
+
+SetPersonFileCommand --> LogicManager : result
+destroy SetPersonFileCommand
+
+[<--LogicManager : result
+deactivate LogicManager
+@enduml

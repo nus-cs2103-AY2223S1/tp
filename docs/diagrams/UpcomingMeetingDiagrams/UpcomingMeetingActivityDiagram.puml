@@ -1,0 +1,23 @@
+@startuml
+!pragma useVerticalIf on
+!include ../style.puml
+
+start
+:User presses f2;
+
+:check a list of Person objects if any has meetings in the next 7 days;
+if() then ([else])
+:filtered out Person object;
+stop
+
+else ([person has meetings in next 7 days])
+:check filtered list for specific meeting times in the next 7 days;
+if() then ([else])
+:filtered out meeting times;
+stop
+
+else ([meeting is within next 7 days])
+:create Meeting Cards;
+stop
+
+@enduml

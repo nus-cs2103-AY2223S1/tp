@@ -1,0 +1,29 @@
+@startuml
+!pragma useVerticalIf on
+!include ../style.puml
+
+start
+:User executes SetPersonFilePathCommand;
+
+:is valid SetPersonFilePathCommand keyword;
+if() then ([else])
+:show error message;
+stop
+
+else ([is valid filePath])
+:is valid index in SetPersonFilePathCommand;
+if() then ([else])
+:show error message;
+stop
+
+else ([valid keyword])
+:is valid filePath in SetPersonFilePathCommand;
+if() then ([else])
+:show error message;
+stop
+
+else ([is valid filePath and Index])
+:create Person Object with filePath;
+:update FABook with Edited Person;
+stop
+@enduml

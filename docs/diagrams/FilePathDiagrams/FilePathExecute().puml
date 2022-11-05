@@ -1,0 +1,51 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":SetPersonFileCommand" as SetPersonFileCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "lastShownList:List<Person>" as lastShownList MODEL_COLOR
+participant "editedPerson:Person" as editedPerson MODEL_COLOR
+end box
+
+[-> SetPersonFileCommand : execute()
+activate SetPersonFileCommand
+
+SetPersonFileCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> SetPersonFileCommand : lastShownList
+deactivate Model
+
+SetPersonFileCommand -> lastShownList : get(index.getZeroBased())
+activate lastShownList
+
+lastShownList --> SetPersonFileCommand:personToEdit
+deactivate lastShownList
+
+Create editedPerson
+SetPersonFileCommand -> editedPerson
+activate editedPerson
+
+editedPerson --> SetPersonFileCommand
+deactivate editedPerson
+
+SetPersonFileCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> SetPersonFileCommand
+deactivate Model
+
+SetPersonFileCommand -> Model : updateFilterPersonList()
+activate Model
+
+Model --> SetPersonFileCommand
+deactivate Model
+
+SetPersonFileCommand -->[ : result
+destroy SetPersonFileCommand
+
+@enduml
