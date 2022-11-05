@@ -9,10 +9,10 @@ import seedu.address.model.Model;
 public abstract class Command {
 
     protected static final String MESSAGE_RECORD_COMMAND_PREREQUISITE =
-            "A person's record list should be displayed before calling record commands\n"
+            "A person's record list should be displayed before calling this command!\n"
             + "(Hint: rlist)";
     protected static final String MESSAGE_ADDRESS_BOOK_COMMAND_PREREQUISITE =
-            "The patient list should be displayed before calling patient commands\n"
+            "The patient list should be displayed before calling this command!\n"
             + "(Hint: list)";
 
     protected static final String MESSAGE_LIST_COMMAND_PREREQUISITE =

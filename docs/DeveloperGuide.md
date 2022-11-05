@@ -3,6 +3,10 @@ layout: page
 title: Developer Guide
 ---
 
+<p align="center" width="100%">
+    <img width="250" src="images/OmniHealth_logo.png" alt="">
+</p>
+
 ## Table of Contents
 - [**Acknowledgements**](#acknowledgements)
 - [**Setting up, getting started**](#setting-up-getting-started)
@@ -15,7 +19,7 @@ title: Developer Guide
   - [Common classes](#common-classes)
 - [**Implementation**](#implementation)
   - [Implemented features:](#implemented-features)
-    - [Record features:](#record-features)
+    - [Record features:](#patient-record-features)
       - [Add record feature](#implemented-add-record-feature)
       - [List records feature](#implemented-list-records-feature)
       - [Delete record feature](#implemented-delete-record-feature)
@@ -39,6 +43,7 @@ title: Developer Guide
   - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a person](#deleting-a-person)
   - [Saving data](#saving-data)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
