@@ -30,6 +30,7 @@ import seedu.realtime.model.person.Client;
 import seedu.realtime.model.person.NameContainsKeywordsPredicate;
 import seedu.realtime.testutil.EditClientDescriptorBuilder;
 import seedu.realtime.testutil.EditListingDescriptorBuilder;
+import seedu.realtime.testutil.EditOfferDescriptorBuilder;
 
 
 /**
@@ -95,6 +96,7 @@ public class CommandTestUtil {
     public static final EditClientCommand.EditClientDescriptor DESC_AMY;
     public static final EditClientCommand.EditClientDescriptor DESC_BOB;
 
+
     static {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -112,6 +114,16 @@ public class CommandTestUtil {
                 .withAddress(VALID_ADDRESS_AMY).withAskingPrice(VALID_PRICE_1).withTags(VALID_TAG_4_BEDROOM).build();
         DESC_LISTING_BOB = new EditListingDescriptorBuilder().withId(VALID_ID_BOB).withName(VALID_NAME_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withAskingPrice(VALID_PRICE_2).withTags(VALID_TAG_POOL).build();
+    }
+
+    public static final EditOfferCommand.EditOfferDescriptor DESC_OFFER_AMY;
+    public static final EditOfferCommand.EditOfferDescriptor DESC_OFFER_BOB;
+
+    static {
+        DESC_OFFER_AMY = new EditOfferDescriptorBuilder().withBuyer(VALID_NAME_AMY)
+                .withOfferPrice(VALID_PRICE_1).withListing(VALID_LISTING_ID_1).build();
+        DESC_OFFER_BOB = new EditOfferDescriptorBuilder().withBuyer(VALID_NAME_BOB)
+                .withOfferPrice(VALID_PRICE_2).withListing(VALID_LISTING_ID_2).build();
     }
 
     /**
