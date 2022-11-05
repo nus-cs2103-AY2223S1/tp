@@ -409,7 +409,7 @@ public class ModelManager implements Model {
                 }
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException("Undo cannot be done as there was no previous change in data");
+            throw new CommandException("Undo cannot be done as there was no previous action");
         }
     }
 
