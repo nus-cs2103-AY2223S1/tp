@@ -19,7 +19,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+# **Design**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -155,10 +155,11 @@ Classes used by multiple components are in the `longtimenosee.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+# **Feature Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## Client features
 ### pin and viewPin feature
 
 #### Implementation
@@ -193,32 +194,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Saves the entire address book of clients pinned.
   * Pros: More potential for further extensions.
   * Cons: May result in performance issues in terms of memory usage.
-
-### viewIncome feature
-
-#### Implementation
-
-This feature builds on the new policy class created. Where each client has a set of policies assigned to them. In this case, a financial advisor’s income is treated as a class by itself. Where inside the class there are methods of retrieving the income based on different factors stated below.
-
-The main calculation done in class FinancialAdvisorIncome is a function called calculateIncome. This function iterates through a list of clients and for each client, it iterates through the list of policies they have. For each of the policies, LocalDate and Period are used to determine which commission (out of the 3 year differing rates) the assigned policy of the current person is in. Subsequently, all commissions are multiplied by policy premium with the duration of the policy (relative from start date to given date) and summed to give income for a particular year.
-
-* `viewIncome <Year>` — Invokes the calculation of user's three year income with `<Year>` as the first year via the function .
-
-Given below is an example usage scenario and how the pin mechanism behaves at each step. (To be continued)
-
-#### Design considerations:
-
-**Aspect: How viewIncome executes:**
-
-* **Alternative 1 (current choice):** Encapsulate user's income into a class of its own
-    * Pros: By assigning FinancialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilise the income for other features.
-    * Cons: Might pose a problem for retrival of values from class.
-
-* **Alternative 2:** Saves the entire address book of clients pinned.
-    * Pros: More potential for further extensions.
-    * Cons: May result in performance issues in terms of memory usage.
-
-
+  
 ### Sort Feature
 
 #### Implementation
@@ -270,77 +246,92 @@ As any commands called which modifies the `AddressBook` will save these changes 
   * Cons: less abstraction; information about client attributes will have to be unnecessarily exposed to `Model` class 
 
 
-### \[Proposed\] Undo/redo feature
+##Policy Features
+### Assigning clients a policy
 
-#### Proposed Implementation
+Users can assign existing policies to a client, whilst providing uptake details
+such as the premium amount and start/end dates. This is facilitated by the `PolicyAssignCommand` class
+and `PolicyAssignCommandParser` classes.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The `PolicyAssignCommandParser` parses the input from the user and identifies which policy has to be assigned to
+which client. The appropriate AssignedPolicy object is created with details given in the input 
+and is then assigned to the respective client in `PolicyAssignCommand`.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `Person#addPolicy(assignedPolicy)` - Attempts to add an assigned policy to a set of assigned policies stored within
+the person object. It also returns a boolean describing if the assigned policy already exists in the set.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Given below is an example usage scenario and how an `assign` command is executed.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The interactions between the components during the usage scenario is shown in the *Sequence Diagram* below.
+The use of `"command details"` serves to substitute the command `assign 1 1 \npr/200 sd/2020-10-12 \ned/2022-10-12` for readability. 
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state/
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
+<p align="center" >
+  <img src="images/AssignPolicySequenceDiagram.png" width="700"/>
+</p>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img src="images/AssignPolicyActivityDiagram.png" width="700" />
 
 
+Step 1: The user enters `parse(assign 1 1 pr/200 sd/2020-10-12 ed/2022-10-12)` command to assign the first policy
+to the first person. The policy has a yearly premium of $200 and lasts for 2 years, from 2020 to 2022.
 
-## AddEvent Feature 
+Step 2: The `PolicyAssignCommandParser` parses the input and confirm that the indices are valid. 
+A `PolicyAssignCommand` object with all parameters is constructed. 
 
-### Proposed Implementation 
-The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `AddressBook` contains information on the list of people and the current events available (i.e: `UniqueEventList` and `UniquePersonList`). The `AddEventParser`  serves as an additional <i>abstraction of logic</i> to determine the validity of an Event on the following conditions, and throws an appropriate exception based on the following conditions. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+Policy and Person indices that are not found in the `UniquePersonList` and `UniquePolicyList` respectively
+would be regarded as invalid indices. 
+</div>
+
+Step 3: The `PolicyAssignCommand` is executed. The corresponding policy and person objects are retrieved and  
+if not already assigned, the policy is assigned to the person.
+
+#### Design considerations
+
+**Aspect: Whether to allow users to assign policies to persons using names:**
+
+* **Alternative 1:** Allows assignment using policy/persons names.
+  * Pros: More flexible and quicker assigning if user knows exactly who and which policy they want to assign.
+  * Cons: More-bug prone, and would require the user to accurately provide the exact name of the policy/person. 
+  Hard to get used to for new users, and complicated for established users with lots of clients and policies.
+
+* **Alternative 2: (Current implementation)** Allow assignment using policy/person indices.
+  * Pros: Easy to implement and avoids confusion for new users.
+  * Cons: Would require the user to check out the list and find out the indices of their target person/policy.
+  This is overcome by the functionality of the `find` command, which allows users to filter the lists for specific 
+  persons/policies.
+
+### viewIncome feature
+
+#### Implementation
+
+This feature builds on the new policy class created. Where each client has a set of policies assigned to them. In this case, a financial advisor’s income is treated as a class by itself. Where inside the class there are methods of retrieving the income based on different factors stated below.
+
+The main calculation done in class FinancialAdvisorIncome is a function called calculateIncome. This function iterates through a list of clients and for each client, it iterates through the list of policies they have. For each of the policies, LocalDate and Period are used to determine which commission (out of the 3 year differing rates) the assigned policy of the current person is in. Subsequently, all commissions are multiplied by policy premium with the duration of the policy (relative from start date to given date) and summed to give income for a particular year.
+
+* `viewIncome <Year>` — Invokes the calculation of user's three year income with `<Year>` as the first year via the function .
+
+Given below is an example usage scenario and how the pin mechanism behaves at each step. (To be continued)
+
+#### Design considerations:
+
+**Aspect: How viewIncome executes:**
+
+* **Alternative 1 (current choice):** Encapsulate user's income into a class of its own
+    * Pros: By assigning FinancialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilise the income for other features.
+    * Cons: Might pose a problem for retrival of values from class.
+
+* **Alternative 2:** Saves the entire address book of clients pinned.
+    * Pros: More potential for further extensions.
+    * Cons: May result in performance issues in terms of memory usage.
+
+## Event Features
+### AddEvent Feature
+
+### Proposed Implementation
+The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `AddressBook` contains information on the list of people and the current events available (i.e: `UniqueEventList` and `UniquePersonList`). The `AddEventParser`  serves as an additional <i>abstraction of logic</i> to determine the validity of an Event on the following conditions, and throws an appropriate exception based on the following conditions.
 
 * Valid Client Name : An event is tagged to a single Client. The Client’s name must already exist in the `UniqueEventList`. If said person specified does not exist, the `AddEventParser` throws an: `InvalidPersonException`
 
@@ -348,7 +339,7 @@ The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `
 
 ### Given below is an example usage scenario and how the `AddEventCommand` behaves at each step.
 
-<B>Step 1</B>. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. The lists are empty, with a person named `John Williams`. 
+<B>Step 1</B>. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. The lists are empty, with a person named `John Williams`.
 
 
 <B>Step 2</B>. The user adds an event `newEvent desc Star Wars Soundtrack  pName John Williams, date/2020-01-01, start/12:00 end/13:00`. The event is added successfully.
@@ -368,83 +359,25 @@ The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 
 **Aspect: Should events that occured in the past be auto-deleted on startup of app?:**
-* **Alternative 1 (current choice):** Don't delete, in fact allow users to add events that happened in the past. 
-   * Pros: Our target audience (Financial Advisors) might need to look up what past events or meetings have occured. Keeping past events serves as a good record.Increase in storage 
-   * Cons: More storage used by app
+* **Alternative 1 (current choice):** Don't delete, in fact allow users to add events that happened in the past.
+    * Pros: Our target audience (Financial Advisors) might need to look up what past events or meetings have occured. Keeping past events serves as a good record.Increase in storage
+    * Cons: More storage used by app
 
 * **Alternative 2 :** Delete all past events, users are not permitted to add events that happened in the past
-   * Pros: Less storage used up by app
-   * Cons: Difficult to implement without bugs.
+    * Pros: Less storage used up by app
+    * Cons: Difficult to implement without bugs.
 
-
-
-
-_{more aspects and alternatives to be added}_
-
-### Assigning clients a policy
-
-Users can assign existing policies to a client, whilst providing uptake details
-such as the premium amount and start/end dates. This is facilitated by the `PolicyAssignCommand` class
-and `PolicyAssignCommandParser` classes.
-
-The `PolicyAssignCommandParser` parses the input from the user and identifies which policy has to be assigned to
-which client. The appropriate AssignedPolicy object is created with details given in the input 
-and is then assigned to the respective client in `PolicyAssignCommand`.
-
-* `Person#addPolicy(assignedPolicy)` - Attempts to add an assigned policy to a set of assigned policies stored within
-the person object. It also returns a boolean describing if the assigned policy already exists in the set.
-
-Given below is an example usage scenario and how an `assign` command is executed.
-
-The interactions between the components during the usage scenario is shown in the *Sequence Diagram* below.
-
-<p align="center" >
-  <img src="images/AssignPolicySequenceDiagram.png" width="700"/>
-</p>
-
-Step 1: The user enters `parse(assign 1 1 pr/200 sd/2020-10-12 ed/2022-10-12)` command to assign the first policy
-to the first person. The policy has a yearly premium of $200 and lasts for 2 years, from 2020 to 2022.
-
-Step 2: The `PolicyAssignCommandParser` parses the input and confirm that the indices are valid. 
-A `PolicyAssignCommand` object with all parameters is constructed. 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
-Policy and Person indices that are not found in the `UniquePersonList` and `UniquePolicyList` respectively
-would be regarded as invalid indices. 
-</div>
-
-Step 3: The `PolicyAssignCommand` is executed. The corresponding policy and person objects are retrieved and the 
-if not already assigned, the policy is assigned to the person.
-
-#### Design considerations
-
-**Aspect: Whether to allow users to assign policies to persons using names:**
-
-* **Alternative 1:** Allows assignment using policy/persons names.
-  * Pros: More flexible and quicker assigning if user knows exactly who and which policy they want to assign.
-  * Cons: More-bug prone, and would require the user to accurately provide the exact name of the policy/person. 
-  Hard to get used to for new users, and complicated for established users with lots of clients and policies.
-
-* **Alternative 2: (Current implementation)** Allow assignment using policy/person indices.
-  * Pros: Easy to implement and avoids confusion for new users.
-  * Cons: Would require the user to check out the list and find out the indices of their target person/policy.
-  This is overcome by the functionality of the `find` command, which allows users to filter the lists for specific 
-  persons/policies.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+## General Features
 ### `Find` feature
 
 #### Implementation
@@ -521,7 +454,7 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 **Target user profile**:
 
 * has a need to manage a significant number of clients
-* Is a student financial advisor
+* Is a financial advisor
 * Has a  need to store additional client-related information
 * prefer desktop apps over other types
 * can type fast
@@ -690,8 +623,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. LTNS displays a new list of clients with matching metrics.
 
     Use case ends.
-
-*{More to be added}*
+  
 
 ### Non-Functional Requirements
 
@@ -706,8 +638,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. For added personality, user should be able to have some customisability.(e.g: Change UI’s theme based on system-defined presets)
 
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -718,7 +648,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+# **Appendix**
+
+## **Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -761,6 +693,80 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+## Testing policy functions
+
+### Adding a policy
+1. Adding a new policy
+   1. Prerequisites: None
+   2. Test case: `addPolicy ti/PruShield cmp/AIA cms/10% 5% 1% cov/LIFE` <br>
+      Expected: Policy is added, screen switches to the policies display.
+   3. Test case: `addPolicy ti/PruShield cmp/AIA cms/10% 5% 1% cov/LIFE` <br>
+      Expected: Policy "already added" message shown to user in status message.
+   4. Other incorrect `addPolicy` commands to try: `addPolicy`, `addPolicy ti/p` (or any other field left blank)
+
+### Deleting a policy
+   1. Deleting a policy
+      1. Prerequisites: Current displayed policy list has to be non-empty
+      2. Test case: `deletePolicy 1`<br>
+         Expected: Policy is deleted, list of updated policies is displayed.
+      3. Test case: `deletePolicy 0`<br>
+         Expected: No policy is deleted. Error details shown in the status message.
+      4. Other incorrect `deletePolicy` commands to try: `deletePolicy`, `deletePolicy x` (where x is larger than the list size)
+
+### Switching to the policy view
+   1. Switching to the policy view
+      1. Prerequisites: None
+      2. Test case: `policies` <br>
+         Expected: Policy view is shown, list of currently filtered policies is displayed.
+   
+### Listing all policies
+   1. Listing all policies
+      1. Prerequisites: The current policy list should be filtered. 
+      2. Test cases: `allPolicies` <br>
+         Expected: All policies stored in LTNS are displayed.
+      
+### Assigning a policy
+1. Assigning a policy
+   1. Prerequisites: The current policy and client list should be non-empty.
+   2. Test case: `assign 1 1 pr/2000 sd/2010-10-10 ed/2021-10-12` <br>
+      Expected: The first policy should be assigned to the first client in the respective lists. The view should swap to the clients view with information on which policy was assigned to who in the status message.
+   3. Test case: `assign 0 1 pr/2000 sd/2010-10-10 ed/2021-10-12` <br>
+      Expected: An error message for invalid client index should be displayed.
+   4. Other incorrect `assign` commands to try: `assign 1 0`, `assign`
+
+### Deleting an assigned policy
+1. Deleting the first assigned policy from the first client
+   1. Prerequisites: The current, first person in the client list has policies assigned to them.
+   2. Test case: `deleteAssigned 1 1` <br>
+      Expected: The first assigned policy of the first client should be deleted.
+   3. Test case: `deleteAssigned 0 1` <br>
+      Expected: An error message for invalid client index should be displayed.
+   4. Other incorrect `deleteAssigned` commands to try: `deleteAssigned 1 0`, `deleteAssigned`
+
+### Viewing a client's assigned policies
+1. Viewing the policies of the first client in the list
+   1. Prerequisites: There must be clients in the current displayed client list.
+   2. Test case: `listAssigned 1` <br>
+      Expected: The first client's assigned policies are displayed in the status message.
+   3. Test case: `listAssigned 0` <br>
+      Expected: An error message for invalid client index should be displayed.
+
+### Deleting a person
+2. Deleting a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+3. _{ more test cases …​ }_
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -768,3 +774,41 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+## Effort
+
+Long Time No See was a highly difficult project to complete.
+
+### Challenges faced, effort required and achievement
+To facilitate the functionality required by financial advisors, we first had to conduct research to understand the different
+requirements for information they needed. Then, we had to figure out the architecture and interdependencies between pieces of information
+to decide how they are represented. This was extremely challenging as we were essentially implementing 3 entire classes on top
+of AB3's existing person implementation. Namely, Client (re-implemented person class), Policy and Events. Furthermore, the Policy
+class was further expanded into an additional AssignedPolicy class to encapsulate the assignment of policies to a client.
+
+#### Size, multiplied.
+The **introduction of multiple entity types** added another layer of complexity in data representation and commands that involved
+more than one entity at a time. This can be seen from Events which held references to Clients and in assigned policies which held
+references to the Clients and Policies that were relevant.
+
+All in all, this resulted in the commands increasing from **9** (in AB3) to **29** (in LTNS), with the re-implementation of majority of the
+9 pre-existing commands and addition of numerous commands of greater complexity and difficulty than the existing commands.
+
+This translated into effort put into creating parsers for each of the 4 main classes as well as test cases for all classes and 
+their respective commands. We were able to match the code coverage of the original AB3 at around **~70%** which took a lot of time,
+considering the significantly increased amount of code to cover.
+
+#### Going beyond.
+
+Fringe enhancements (though fringe, were not trivial), include implementing the integration of graphical displays through
+JavaFX's relevant libraries.
+
+As a cherry on top, we also went the extra mile of a complete UI refresh to give the product a new look and feel we felt would honour
+the professional nature of the product's usage.
+
+Of course, these are the overall end-goals that we were able to meet and achieve. However, this section does not reflect the
+effort put into the iterative process and going back to the drawing board numerous times which multiplied the amount of effort
+required several fold. The additional challenges faced in between were explicitly left out to keep this section concise.
+
+Hopefully, this provides a good understanding of the effort that went into the product you see today!
