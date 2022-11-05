@@ -18,6 +18,7 @@ public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
     public MarkTaskCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
+            assert index != null; //index should not be null for mark task command
             return new MarkTaskCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(

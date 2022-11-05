@@ -114,6 +114,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code String contact} into a {@code StaffContact}.
+     *
+     * @throws ParseException if the given {@code staffContact} is invalid.
      */
     public static StaffContact parseStaffContact(String contact) throws ParseException {
         requireNonNull(contact);
@@ -126,6 +128,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code String department} into a {@code StaffDepartment}.
+     *
+     * @throws ParseException if the given {@code staffDepartment} is invalid.
      */
     public static StaffDepartment parseStaffDepartment(String department) throws ParseException {
         requireNonNull(department);
@@ -138,6 +142,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code String leave} into a {@code StaffLeave}.
+     *
+     * @throws ParseException if the given {@code staffLeave} is invalid.
      */
     public static StaffLeave parseStaffLeave(String leave) throws ParseException {
         requireNonNull(leave);
@@ -150,6 +156,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code String name} into a {@code StaffName}.
+     *
+     * @throws ParseException if the given {@code staffName} is invalid.
      */
     public static StaffName parseStaffName(String name) throws ParseException {
         requireNonNull(name);
@@ -162,6 +170,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code String title} into a {@code StaffTitle}.
+     *
+     * @throws ParseException if the given {@code staffTitle} is invalid.
      */
     public static StaffTitle parseStaffTitle(String title) throws ParseException {
         requireNonNull(title);
@@ -174,6 +184,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code String deadline} into a {@code TaskDeadline}
+     *
+     * @throws ParseException if the given {@code taskDeadline} is invalid.
      */
     public static Deadline parseTaskDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
@@ -186,6 +198,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code String description} into a {@code TaskDescription}
+     *
+     * @throws ParseException if the given {@code taskDescription} is invalid.
      */
     public static TaskDescription parseTaskDescription(String description) throws ParseException {
         requireNonNull(description);

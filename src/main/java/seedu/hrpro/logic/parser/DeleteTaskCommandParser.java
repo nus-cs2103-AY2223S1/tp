@@ -18,6 +18,7 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
     public DeleteTaskCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
+            assert index != null; //index should not be null for delete task command
             return new DeleteTaskCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
