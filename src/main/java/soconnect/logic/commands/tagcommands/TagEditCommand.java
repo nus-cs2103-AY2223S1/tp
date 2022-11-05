@@ -17,7 +17,7 @@ public class TagEditCommand extends TagCommand {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = TagCommand.COMMAND_WORD + " "
-            + COMMAND_WORD + ": Edits a tag to the taglist in the SoConnect.\n"
+            + COMMAND_WORD + ": Edits a tag in the taglist of SoConnect.\n"
             + "Parameters: "
             + PREFIX_TAG + "TAG" + " "
             + PREFIX_TAG + "TAG...\n"
