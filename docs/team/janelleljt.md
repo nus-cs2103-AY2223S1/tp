@@ -13,7 +13,7 @@ illustration of my contributions as well as the relevant documentation I have ad
 ### Summary of Contributions
 - **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=melissaharijanto&breakdown=true) <br/>
 
-- **Features and Enhancements implemented**:
+- **Features and Enhancements Implemented**:
   - Feature: **List Order Command**
     - Function: Lists all orders.
     - Purpose: Helps user to see all their orders in one place.
@@ -28,8 +28,7 @@ illustration of my contributions as well as the relevant documentation I have ad
     such as customer name, address and name of item ordered. 
     - Implications: This provides a more robust search functionality which allows the user to 
     better manage their orders.
-    - Relevant pull request(s): 
-      - [#66](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/66), [#125](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/125)
+    - Relevant pull request(s): [#66](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/66), [#125](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/125)
   
   - Enhancement: **Price field to items**
     - Function: Field representing the price of a particular item.
@@ -42,8 +41,7 @@ illustration of my contributions as well as the relevant documentation I have ad
     - Finding order(s)
   - Wrote **Using this guide** portion of User Guide.
   - Wrote **Tutorial** portion of the User Guide.
-  - Relevant pull request(s): 
-    - [#39](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/39), [#136](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/136), [#199](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/199)
+  - Relevant pull request(s): [#39](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/39), [#136](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/136), [#199](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/199)
 
 - **Contributions to the Developer Guide**:
   - Added implementation details for the find order command as well as a sequence diagram depicting the program flow.
@@ -54,7 +52,18 @@ illustration of my contributions as well as the relevant documentation I have ad
   - Facilitated team discussions and delegation of work.
   - Provided insights on potential implementations to certain features.
   - Assisted in fixing various bugs detected. 
-  - Increased test coverage of the application.
+    - Relevant pull request(s): [#117](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/117), [#199](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/199)
+  - Wrote test cases to test coverage of the application
+    - Contributed to the following test files:
+      - `FindOrderCommandParserTest`
+      - `PriceTest`
+      - `AddressTest`
+      - `EmailTest`
+      - `NameTest`
+      - `OrderDateTimeComparator`
+      - `OrderMatchesFlagsAndPrefixPredicateTest`
+      - `PhoneTest`
+    - Relevant pull request(s): [#209](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/209)
 
 - **Review/mentoring contributions:**: 
   - Provided timely feedback and suggestions to the pull requests of teammates.
