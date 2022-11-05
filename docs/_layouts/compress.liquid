@@ -1,4 +1,9 @@
 {% comment %}
   Copyright 2022 Richard Dominick
 {% endcomment %}
+{% capture newline %}
+{% endcapture %}
+{% comment %} REMOVE BLANK LINES {% endcomment %}
+{% assign content = content | split: newline | where_exp: 'item', 'item != ""' | join: newline %}
+{% comment %} RENDER {% endcomment %}
 {{ content }}
