@@ -5,12 +5,29 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+## **Introduction**
 
+Cobb is a JavaFX application that helps property agents manage their database of buyers and properties using a
+command-line interface. 
+
+### **Purpose**
+
+This guide is primarily targeted towards developers looking to understand or extend the functionalities of Cobb, 
+and software testers looking to test Cobb's features. You are also welcome to read this if you understand UML diagrams
+and have a general understanding of how a software application works under the hood.
+
+### **Scope**
+
+This guide first gives a high-level architecture overview of Cobb, before explaining the main components that make up 
+the application. It then explains some notable features and the design considerations behind their implementation. To
+better understand what the application does from the user's standpoint, you might want to dive into the 
+[Use cases](#Use cases) section first, or simply run the application and try it for yourself before reading the rest 
+of the guide.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* [AddressBook-Level3](https://github.com/se-edu/addressbook-level3)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -20,11 +37,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
 
 ### Architecture
 
@@ -36,7 +48,10 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called 
+[`Main`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
+It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -52,16 +67,21 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletebuyer 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues 
+the command `deletebuyer 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API 
+* `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality 
+using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given 
+component through its interface rather than the concrete class (reason: to prevent outside component's being coupled 
+to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -69,7 +89,8 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API**: 
+[`Ui.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -82,11 +103,12 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Buyer` and `Property` objects residing in `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : 
+[`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -94,15 +116,18 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `CobbParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddBuyerCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a buyer).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddBuyerCommand`) 
+which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a buyer).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletebuyer 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletebuyer 1")` 
+API call.
 
 ![Interactions Inside the Logic Component for the `deletebuyer 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteBuyerCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteBuyerCommandParser`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,41 +135,55 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `CobbParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddBuyerCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddBuyerCommand`) which the `CobbParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddBuyerCommandParser`, `DeletePropertyCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `CobbParser` class creates an `XYZCommandParser` (`XYZ` is a 
+placeholder for the specific command name e.g. `AddBuyerCommandParser`) which uses the other classes shown above to 
+parse the user command and create a `XYZCommand` object (e.g. `AddBuyerCommand`) which the `CobbParser` returns back 
+as a `Command` object.
+* All `XYZCommandParser` classes (e.g. `AddBuyerCommandParser`, `DeletePropertyCommandParser`, ...) inherit from the 
+`Parser` interface so that they can be treated similarly where possible e.g. during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : 
+[`Model.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<img src="images/ModelClassDiagram.png" width="950" />
 
 The `Model` component,
 
 * stores the buyer book data i.e., all `Buyer` objects (which are contained in a `UniqueBuyerList` object).
-* stores the property book date i.e, all `Property` objects (which are contained in a `UniquePropertyList` object).
-* stores the currently 'selected' `Buyer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Buyer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* * stores the currently 'selected' `Property` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Property>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores the property book data i.e, all `Property` objects (which are contained in a `UniquePropertyList` object).
+* stores the currently 'selected' `Buyer` and `Property` objects (e.g. results of a search query) as separate
+_filtered_ lists which are exposed to outsiders as unmodifiable `ObservableList<Buyer>` and `ObservableList<Property>`
+respectively that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when 
+the data in the lists change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a 
+`ReadOnlyUserPref` object.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they 
+should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. A generic Cobb class is created as the parent for BuyerBook and PropertyBook since that the two children classes have a lot of methods with identical purposes.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) 
+model is given below. A generic Cobb class is created as the parent for BuyerBook and PropertyBook since the two 
+children classes have a lot of methods with identical purposes.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="850" />
 
 </div>
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** :
+[`Storage.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="650" />
 
 The `Storage` component,
-* can save buyer book data, property book date, and user preference data in json format, and read them back into corresponding objects.
-* inherits from `BuyerBookStorage`, `PropertyBookStorage`, `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* can save buyer book data, property book data, and user preference data in JSON format, and read them back into 
+corresponding objects.
+* inherits from `BuyerBookStorage`, `PropertyBookStorage`, `UserPrefStorage`, which means it can be treated as either 
+one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects 
+that belong to the `Model`)
 
 ### Common classes
 
@@ -380,10 +419,51 @@ property's price falls within a specified price range.
 The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of
 this guide.
 
-Design considerations:
+#### Design considerations:
 As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is
 unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price
 falls within this range would be displayed.
+
+### Matching properties to a buyer, and vice versa
+
+`matchprop` and `matchbuyer` are convenience features, allowing the users to find suitable matches between buyers
+and properties easily. Without this, users would have to manually input the conditions from an identified buyer or 
+property and make use of the `filter` command. `matchprop` allows users to filter the buyer list with the conditions 
+set by a specific property. `matchbuyer` is similar, filtering the property list with the conditions set by a specific 
+buyer. 
+
+#### Specifications
+
+For `matchprop`, a `Buyer` is considered a match if its `PriceRange` contains the property's `Price` (inclusive),
+and contains at least 1 common characteristic with the property.
+For `matchbuyer`, a `Property` is considered a match if its `Price` is within the buyer's `PriceRange` (inclusive),
+and contains at least 1 common characteristic with the buyer.
+
+It is also possible to specify `-strict`, which would require a matching object to have _all_ (instead of at least 1)
+the characteristics of the target object. This was added due to the possibility that the user gets too many matches,
+and wishes to narrow down the results easily. Without this, the user would have to revert to the `filter` command 
+and manually input more specific conditions.
+
+Here is a Sequence Diagram of how `matchbuyer 1` is handled, assuming 1 is a valid index and the `Buyer` at index 1 
+contains both a `PriceRange` and `Characteristics`.
+
+![MatchBuyerSequenceDiagram](images/MatchBuyerCommandSequenceDiagram.png)
+
+We see how `MatchBuyerCommand` only works to create a combined predicate of `PriceRange` and `Characteristic`, which is 
+then passed to the constructor of `FilterPropertiesCommand` and executed.
+
+
+#### Design considerations:
+
+`Buyer` and `Property` have many different fields, but there were only a few common fields between them. Both classes
+contain `Characteristics`. `Property` contains `Price`, which inherits from `PriceRange` that `Buyer` contains. Thus,
+it makes sense that only these fields are used in the match commands, since it would not be possible to filter the list
+by a field that is not present in a matching object.
+
+Initially, we also considered allowing a `Buyer` or `Property` to be a match if it just contained at least 1 common
+characteristic (i.e. a match did not need to satisfy the pricing condition). However, we decided against this as we
+felt that a buyer would almost never consider a property that is not within their budget, and vice versa. Allowing this
+to occur would likely give the user more matches that were irrelevant instead of useful ones.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -412,8 +492,9 @@ falls within this range would be displayed.
 * can type fast and prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: increases efficiency and convenience by allowing quick text-based inputs, separate functionalities for two contact bases (buyers and sellers) and properties, and optimized searching and filtering to automate property to buyer matches
-
+**Value proposition**: increases efficiency and convenience by allowing quick text-based inputs,
+use of commands to quickly execute functionalities as compared to buttons in the UI on desktop applications, 
+automation of matching between suitable properties and buyers
 
 ### User stories
 

@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":CobbParser" as CobbParser LOGIC_COLOR
 participant ":DeleteBuyerCommandParser" as DeleteBuyerCommandParser LOGIC_COLOR
 participant "d:DeleteBuyerCommand" as DeleteBuyerCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -45,10 +45,10 @@ destroy DeleteBuyerCommandParser
 CobbParser --> LogicManager : d
 deactivate CobbParser
 
-LogicManager -> DeleteBuyerCommand : execute()
+LogicManager -> DeleteBuyerCommand : execute(model)
 activate DeleteBuyerCommand
 
-DeleteBuyerCommand -> Model : deleteBuyer(1)
+DeleteBuyerCommand -> Model : deleteBuyer(buyer)
 activate Model
 
 Model --> DeleteBuyerCommand
@@ -58,7 +58,7 @@ create CommandResult
 DeleteBuyerCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteBuyerCommand
+CommandResult --> DeleteBuyerCommand: result
 deactivate CommandResult
 
 DeleteBuyerCommand --> LogicManager : result
