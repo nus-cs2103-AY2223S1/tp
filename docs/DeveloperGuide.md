@@ -767,7 +767,7 @@ unless specified otherwise)
     * 1a1. UniNurse shows an error message.
 
       Use case ends.
-    
+
 
 ---
 
@@ -833,7 +833,7 @@ unless specified otherwise)
 
 **MSS**
 1. User requests to <u>view the list of patients (UC01)</u>.
-2. User requests to delete a medical condition by specifying the patient and medical condition .
+2. User requests to delete a medical condition by specifying the patient and medical condition.
 3. UniNurse deletes the medical condition of the specified patient.
 
    Use case ends.
@@ -935,6 +935,177 @@ unless specified otherwise)
     * 2b1. UniNurse shows an error message.
 
       Use case resumes at step 2.
+
+
+---
+
+**Use case: UC21 - Add a medication to a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to add a medication with its details to a specific patient.
+3. UniNurse adds the medication to a patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given medication details are invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC22 - Edit a medication associated with a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to edit a medication with the details they want to change, by specifying the patient and medication.
+3. UniNurse edits the details of the chosen medication of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given medication index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The given medication details are invalid.
+
+    * 2c1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+
+---
+
+**Use case: UC23 - Delete a medication associated with a specified patient**
+
+**MSS**
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to delete a medication by specifying the patient and medication.
+3. UniNurse deletes the medication of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given medication index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+
+---
+
+**Use case: UC24 - Add a remark to a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to add a remark with its details to a specific patient.
+3. UniNurse adds the remark to a patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given remark details are invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC25 - Edit a remark associated with a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to edit a remark with the details they want to change, by specifying the patient and remark.
+3. UniNurse edits the details of the chosen remark of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given remark index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The given remark details are invalid.
+
+    * 2c1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+
+---
+
+**Use case: UC26 - Delete a remark associated with a specified patient**
+
+**MSS**
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to delete a remark by specifying the patient and remark.
+3. UniNurse deletes the remark of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given remark index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
 
 *{More to be added}*
 
