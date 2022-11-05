@@ -107,7 +107,7 @@ public class AddTaskCommand extends Command {
         for (Person assignee : assigneePersonsList) {
             task.addAssignee(assignee);
         }
-        model.getTeam().addTask(task);
+        team.addTask(task);
 
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, task));
     }
