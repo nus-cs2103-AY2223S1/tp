@@ -164,7 +164,7 @@ This section describes some noteworthy details on how certain features are imple
 
 A `Review`,
 - is primarily stored in the Stall associated with it
-- is stored `uniqueReviewList` of the Model (reflecting its
+- is also stored in the `uniqueReviewList` of the Model (reflecting the reviews as stored in the Stall objects after each operation)
 
 A `Review` contains the following attributes,
 1. a `Name`, which represent the name of the Stall associated with the Review
