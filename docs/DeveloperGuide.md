@@ -1023,7 +1023,7 @@ exists.
 
 **Guarantees:**
 
-- List of students will be sorted by the specific category.
+- List of students will be sorted by the specified order.
 
 **MSS**
 
@@ -1035,7 +1035,7 @@ exists.
 
 **Extensions**
 
-* 2a. The given category to be sorted by is invalid.
+* 2a. The given order to be sorted by is invalid.
 
     * 2a1. myStudent shows an error message.
 
@@ -1045,7 +1045,7 @@ exists.
 
 **Guarantees:**
 
-- List of students will be sorted by the specific category.
+- List of tutors will be sorted by the specified order.
 
 **MSS**
 
@@ -1057,7 +1057,7 @@ exists.
 
 **Extensions**
 
-* 2a. The given category to be sorted by is invalid.
+* 2a. The given order to be sorted by is invalid.
 
     * 2a1. myStudent shows an error message.
 
@@ -1068,7 +1068,7 @@ exists.
 
 **Guarantees:**
 
-- List of students will be sorted by the specific category.
+- List of tuition classes will be sorted by the specified order.
 
 **MSS**
 
@@ -1080,7 +1080,7 @@ exists.
 
 **Extensions**
 
-* 2a. The given category to be sorted by is invalid.
+* 2a. The given order to be sorted by is invalid.
 
     * 2a1. myStudent shows an error message.
 
