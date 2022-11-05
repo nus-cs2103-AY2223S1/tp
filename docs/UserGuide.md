@@ -273,11 +273,12 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 
 * Tasks that are past their deadline can still be added since overdue tasks might have to be completed still.
 
-The following scenarios should not happen for your command to run successfully:
+<div markdown="span" class="alert alert-warning">:exclamation: The following scenarios should not happen for your command to run successfully:</div>
+
 - If the description of the task is empty.
 - If the deadline of the task is empty.
 - The deadline of the task is not in dd-mm-yyyy format.
-
+   
 Example:
 
 * `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
@@ -541,9 +542,9 @@ Example:
 
 * `deleteL c/12 t/14 l/CS2101` will remove the label "CS2101" from the 12th contact and 14th task on the task list.
 
-### Delete all contacts and tasks by label: `deleteA`
+### Deleting all contacts and tasks by label: `deleteA`
 
-Delete all contacts and tasks who contain the label(s) specified.
+Deleting all contacts and tasks who contain the label(s) specified.
 
 Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 
@@ -618,9 +619,9 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | **filterT**    | **filter** **T**asks                            | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |
 | **remindT**    | **remind** **T**asks due on/before certain date | `remindT DEADLINE` <br/> e.g., `remindT 12-09-2022`                                                                                                    |
 | **progressT**  | **progress** of **T**ask with label             | `progressT KEYWORD [MORE_KEYWORDS]` <br/> e.g., `progressT cs2103t`                                                                                    |
-| **sortD**      | **sort** **T**asks                              | `sortD`                                                                                                                                                |
-| **sortI**      | **sort** **T**asks                              | `sortI`                                                                                                                                                |
+| **sortD**      | **sort** by **D**eadline                        | `sortD`                                                                                                                                                |
+| **sortI**      | **sort** by **I**d                              | `sortI`                                                                                                                                                |
 | **listL**      | **list** **L**abels                             | `listL`                                                                                                                                                |
-| **addL**       | **add** **l**abel to contact or task            | `addL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR  `addL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `addL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]`                                                                                          |
-| **deleteL**    | **delete** **l**abel from contact or task       | `deleteL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]`                                                                                      |
+| **addL**       | **add** **L**abel to contact or task            | `addL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR  `addL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `addL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]`                                                                                          |
+| **deleteL**    | **delete** **L**abel from contact or task       | `deleteL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]`                                                                                      |
 | **deleteA**    | **delete** **A**ll contact(s)/task(s) with tag  | `deleteA LABEL_NAME [MORE_LABEL_NAMES]` <br> e.g., `deleteA cs2103t`                                                                                   |
