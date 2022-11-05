@@ -1,8 +1,8 @@
 package jarvis.model;
 
 import static jarvis.testutil.TypicalLessons.CONSULT_1;
-import static jarvis.testutil.TypicalLessons.DT2;
 import static jarvis.testutil.TypicalLessons.DT3;
+import static jarvis.testutil.TypicalLessons.DT2;
 import static jarvis.testutil.TypicalLessons.DT4;
 import static jarvis.testutil.TypicalLessons.MASTERY_CHECK_DESCRIPTION_1;
 import static jarvis.testutil.TypicalLessons.MASTERY_CHECK_DESCRIPTION_2;
@@ -22,12 +22,12 @@ import org.junit.jupiter.api.Test;
 
 class MasteryCheckIntegrationTest {
 
-    private final MasteryCheck masteryCheck = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT2, DT4),
+    private final MasteryCheck masteryCheck = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT3, DT4),
             MASTERY_CHECK_STUDENTS);
 
     @Test
     void startDateTime() {
-        assertEquals(DT2, masteryCheck.startDateTime());
+        assertEquals(DT3, masteryCheck.startDateTime());
     }
 
     @Test
@@ -94,27 +94,27 @@ class MasteryCheckIntegrationTest {
 
     @Test
     void hasDesc() {
-        MasteryCheck noDesc = new MasteryCheck(null, new TimePeriod(DT2, DT4), MASTERY_CHECK_STUDENTS);
+        MasteryCheck noDesc = new MasteryCheck(null, new TimePeriod(DT3, DT4), MASTERY_CHECK_STUDENTS);
         assertTrue(masteryCheck.hasDesc());
         assertFalse(noDesc.hasDesc());
     }
 
     @Test
     void testEquals() {
-        MasteryCheck sameValues = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT2, DT4),
+        MasteryCheck sameValues = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT3, DT4),
                 MASTERY_CHECK_STUDENTS);
-        MasteryCheck differentStudents = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT2, DT4),
+        MasteryCheck differentStudents = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT3, DT4),
                 List.of(ALICE));
 
-        MasteryCheck differentAttendance = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT2, DT4),
+        MasteryCheck differentAttendance = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT3, DT4),
                 MASTERY_CHECK_STUDENTS);
         differentAttendance.markAsPresent(ALICE);
 
-        MasteryCheck differentTime = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT3, DT4),
+        MasteryCheck differentTime = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT2, DT4),
                 MASTERY_CHECK_STUDENTS);
-        MasteryCheck differentDesc = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_2, new TimePeriod(DT2, DT4),
+        MasteryCheck differentDesc = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_2, new TimePeriod(DT3, DT4),
                 MASTERY_CHECK_STUDENTS);
-        MasteryCheck differentNotes = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT2, DT4),
+        MasteryCheck differentNotes = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT3, DT4),
                 MASTERY_CHECK_STUDENTS);
         differentNotes.addOverallNote("Note 1");
 

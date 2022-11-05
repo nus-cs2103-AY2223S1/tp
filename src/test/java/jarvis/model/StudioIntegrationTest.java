@@ -3,8 +3,8 @@ package jarvis.model;
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalLessons.CONSULT_1;
 import static jarvis.testutil.TypicalLessons.DT1;
-import static jarvis.testutil.TypicalLessons.DT2;
 import static jarvis.testutil.TypicalLessons.DT3;
+import static jarvis.testutil.TypicalLessons.DT2;
 import static jarvis.testutil.TypicalLessons.DT4;
 import static jarvis.testutil.TypicalLessons.MC_1;
 import static jarvis.testutil.TypicalLessons.STUDIO_1;
@@ -26,29 +26,29 @@ import jarvis.model.exceptions.InvalidParticipationException;
 import jarvis.model.exceptions.StudentNotFoundException;
 
 class StudioIntegrationTest {
-    private final Studio studio = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
+    private final Studio studio = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT3, DT4), STUDIO_STUDENTS);
 
     @Test
     void startDateTime() {
-        assertEquals(DT1, studio.startDateTime());
+        assertEquals(DT3, studio.startDateTime());
     }
 
     @Test
     void endDateTime() {
-        assertEquals(DT3, studio.endDateTime());
+        assertEquals(DT4, studio.endDateTime());
     }
 
     @Test
     void hasTimingConflict() {
         // Studios
-        assertFalse(studio.hasTimingConflict(STUDIO_2));
-        assertFalse(STUDIO_2.hasTimingConflict(studio));
-        assertTrue(STUDIO_1.hasTimingConflict(studio));
-        assertTrue(studio.hasTimingConflict(STUDIO_1));
+        assertFalse(studio.hasTimingConflict(STUDIO_1));
+        assertFalse(STUDIO_1.hasTimingConflict(studio));
+        assertTrue(STUDIO_2.hasTimingConflict(studio));
+        assertTrue(studio.hasTimingConflict(STUDIO_2));
 
         // Other lessons
-        assertTrue(studio.hasTimingConflict(MC_1));
-        assertFalse(studio.hasTimingConflict(CONSULT_1));
+        assertTrue(studio.hasTimingConflict(CONSULT_1));
+        assertFalse(studio.hasTimingConflict(MC_1));
     }
 
     @Test
@@ -97,7 +97,7 @@ class StudioIntegrationTest {
 
     @Test
     void hasDesc() {
-        Studio noDesc = new Studio(null, new TimePeriod(DT1, DT2), STUDIO_STUDENTS);
+        Studio noDesc = new Studio(null, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
         assertTrue(studio.hasDesc());
         assertFalse(noDesc.hasDesc());
     }
@@ -137,18 +137,18 @@ class StudioIntegrationTest {
 
     @Test
     void testEquals() {
-        Studio sameValues = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
-        Studio differentStudents = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), List.of(ALICE));
+        Studio sameValues = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT3, DT4), STUDIO_STUDENTS);
+        Studio differentStudents = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT3, DT4), List.of(ALICE));
 
-        Studio differentAttendance = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
+        Studio differentAttendance = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT3, DT4), STUDIO_STUDENTS);
         differentAttendance.markAsPresent(ALICE);
 
-        Studio differentParticipation = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
+        Studio differentParticipation = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT3, DT4), STUDIO_STUDENTS);
         differentParticipation.setParticipationForStudent(ALICE, 100);
 
-        Studio differentTime = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT3, DT4), STUDIO_STUDENTS);
-        Studio differentDesc = new Studio(STUDIO_DESCRIPTION_2, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
-        Studio differentNotes = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
+        Studio differentTime = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT2, DT4), STUDIO_STUDENTS);
+        Studio differentDesc = new Studio(STUDIO_DESCRIPTION_2, new TimePeriod(DT3, DT4), STUDIO_STUDENTS);
+        Studio differentNotes = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT3, DT4), STUDIO_STUDENTS);
         differentNotes.addOverallNote("Note 1");
 
         // same values -> returns true

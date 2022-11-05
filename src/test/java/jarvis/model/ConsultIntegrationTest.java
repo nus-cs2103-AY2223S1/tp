@@ -5,8 +5,8 @@ import static jarvis.testutil.TypicalLessons.CONSULT_2;
 import static jarvis.testutil.TypicalLessons.CONSULT_DESCRIPTION_1;
 import static jarvis.testutil.TypicalLessons.CONSULT_DESCRIPTION_2;
 import static jarvis.testutil.TypicalLessons.CONSULT_STUDENTS;
-import static jarvis.testutil.TypicalLessons.DT2;
 import static jarvis.testutil.TypicalLessons.DT3;
+import static jarvis.testutil.TypicalLessons.DT2;
 import static jarvis.testutil.TypicalLessons.DT4;
 import static jarvis.testutil.TypicalLessons.MC_1;
 import static jarvis.testutil.TypicalLessons.STUDIO_2;
@@ -22,11 +22,11 @@ import org.junit.jupiter.api.Test;
 
 class ConsultIntegrationTest {
 
-    private final Consult consult = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT2, DT4), CONSULT_STUDENTS);
+    private final Consult consult = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT3, DT4), CONSULT_STUDENTS);
 
     @Test
     void startDateTime() {
-        assertEquals(DT2, consult.startDateTime());
+        assertEquals(DT3, consult.startDateTime());
     }
 
     @Test
@@ -93,22 +93,22 @@ class ConsultIntegrationTest {
 
     @Test
     void hasDesc() {
-        Consult noDesc = new Consult(null, new TimePeriod(DT2, DT4), CONSULT_STUDENTS);
+        Consult noDesc = new Consult(null, new TimePeriod(DT3, DT4), CONSULT_STUDENTS);
         assertTrue(consult.hasDesc());
         assertFalse(noDesc.hasDesc());
     }
 
     @Test
     void testEquals() {
-        Consult sameValues = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT2, DT4), CONSULT_STUDENTS);
-        Consult differentStudents = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT2, DT4), List.of(HOON));
+        Consult sameValues = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT3, DT4), CONSULT_STUDENTS);
+        Consult differentStudents = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT3, DT4), List.of(HOON));
 
-        Consult differentAttendance = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT2, DT4), CONSULT_STUDENTS);
+        Consult differentAttendance = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT3, DT4), CONSULT_STUDENTS);
         differentAttendance.markAsPresent(ALICE);
 
-        Consult differentTime = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT3, DT4), CONSULT_STUDENTS);
-        Consult differentDesc = new Consult(CONSULT_DESCRIPTION_2, new TimePeriod(DT2, DT4), CONSULT_STUDENTS);
-        Consult differentNotes = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT2, DT4), CONSULT_STUDENTS);
+        Consult differentTime = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT2, DT4), CONSULT_STUDENTS);
+        Consult differentDesc = new Consult(CONSULT_DESCRIPTION_2, new TimePeriod(DT3, DT4), CONSULT_STUDENTS);
+        Consult differentNotes = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT3, DT4), CONSULT_STUDENTS);
         differentNotes.addOverallNote("Note 1");
 
         // same values -> returns true
