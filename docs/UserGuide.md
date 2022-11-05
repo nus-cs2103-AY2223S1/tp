@@ -4,9 +4,12 @@ title: User Guide
 ---
 # HealthContact User Guide
 
-HealthContact is a software for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
-It helps to keep track of patient data, patient appointments and patient bills for the family clinic.
--------------------------------------------------------------------------------------------------------------------------
+HealthContact is a software for the receptionist of a family clinic
+who arranges telemedicine services between doctors and patients.
+It helps to keep track of patient data, patient appointments and
+patient bills for the family clinic.
+
+---
 
 ## Features
 * [Add a patient (addpatient)](#111-adding-a-patient-addpatient-ap)
@@ -262,9 +265,9 @@ Examples:
 
 <img src="images/ug/editcommand/editbill.png" width="800px" height ="400px">
 
-* `editbill 1 d/2020-10-10` edits the bill date of the 1st bill to be `2020-10-10`.
 
-<img src="images/editbill2.png" width="800px" height ="400px">
+* `editbill 1 d/2020-10-10` edits the bill date of the 1st bill to be `2020-10-10`.
+<img src="images/ug/editcommand/editbill2.png" width="800px" height ="400px">
 
 ## 1.3 Find
 
@@ -558,10 +561,9 @@ Format:
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
 
-Example:
-`deletepatient 2` deletes patient `Bernice Yu` and all her related appointments and bills.
-
-<img src="images/ug/deletecommand/dp.png" width="800px" height ="400px">
+Examples:
+`deletepatient 2` deletes patient Bernice Yu and all their related appointments and bills.
+<img src="images/ug/deletecommand/dp.png">
 
 ### 1.8.2 Deleting an appointment of a patient `deleteappointment`, `da`
 
@@ -582,7 +584,7 @@ Example:
 * `deleteappointment 2` deletes `Charlotte Oliveiro`'s appointment with Dr. Prabhu on 2022-10-21 08:30 for
   knee exam.
 
-<img src="images/ug/deletecommand/da.png" width="800px" height ="400px">
+  <img src="images/ug/deletecommand/da.png">
 
 ### 1.8.3 Deleting a bill of an appointment `deletebill`, `db`
 
