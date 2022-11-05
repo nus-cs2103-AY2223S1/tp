@@ -13,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.team.Description;
 import seedu.address.model.team.LinkName;
 import seedu.address.model.team.Task;
@@ -29,6 +30,7 @@ public class TruthTableParser {
             .registerConverter(Email.class, new EmailConverter())
             .registerConverter(Phone.class, new PhoneConverter())
             .registerConverter(Index.class, new IndexConverter())
+            .registerConverter(Tag.class, new TagConverter())
             .registerConverter(LinkName.class, new LinkNameConverter())
             .registerConverter(Url.class, new UrlConverter())
             .registerConverter(Task.class, new TaskConverter())

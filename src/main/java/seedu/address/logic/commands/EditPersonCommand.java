@@ -30,7 +30,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.TagsConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -164,7 +163,7 @@ public class EditPersonCommand extends Command {
         private Email email;
 
         @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = FLAG_PERSON_TAGS_DESCRIPTION,
-                parameterConsumer = TagsConverter.class, arity = "*")
+                arity = "*")
         private Set<Tag> tags;
 
         @Override
@@ -173,10 +172,10 @@ public class EditPersonCommand extends Command {
                 return true;
             } else if (other instanceof Arguments) {
                 Arguments target = (Arguments) other;
-                return this.name == null ? false : this.name.equals(target.name)
-                        && this.phone == null ? false : this.phone.equals(target.phone)
-                        && this.email == null ? false : this.email.equals(target.email)
-                        && this.tags == null ? false : this.tags.equals(target.tags);
+                return this.name != null && this.name.equals(target.name)
+                        && this.phone != null && this.phone.equals(target.phone)
+                        && this.email != null && this.email.equals(target.email)
+                        && this.tags != null && this.tags.equals(target.tags);
             } else {
                 return false;
             }
