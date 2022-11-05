@@ -9,7 +9,8 @@ public class PhysicianTest {
 
     @Test
     public void toStringTest() {
-        String expectedToStringHouse = "Attending Physician: Name: Dr House; Phone: 91234567; Email: house@example.com;";
+        String expectedToStringHouse = "Attending Physician: Name: Dr House; Phone: 91234567; "
+                + "Email: house@example.com;";
         assertEquals(expectedToStringHouse, HOUSE.toString());
     }
 }
