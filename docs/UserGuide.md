@@ -44,7 +44,7 @@ If you are looking to help develop this project, take a look at our [Developer G
   * [**General features**](#general-features)
     * [Getting help: `help`](#getting-help-help)
     * [Clearing data in TrackO: `clear`](#clearing-all-data-in-tracko-clear)
-    * [Exiting TrackO: `exit`](#exiting-tracko--exit)
+    * [Exiting TrackO: `exit`](#exiting-tracko-exit)
 * [**Command Summary**](#command-summary)
 * [**Glossary**](#glossary)
 
