@@ -71,4 +71,3 @@ created with JavaFX. It is written in Java, and has about 15 kLoC.
        [#131](https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/131),
        [#184](https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/184),
        [#199](https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/199)
-
