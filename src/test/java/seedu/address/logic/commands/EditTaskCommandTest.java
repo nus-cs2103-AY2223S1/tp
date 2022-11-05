@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TWO;
-import static seedu.address.logic.commands.CommandTestUtil.TEST_DESCRIPTION_ONE;
+import static seedu.address.logic.commands.CommandTestUtil.TEST_DESCRIPTION_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -42,10 +42,10 @@ public class EditTaskCommandTest {
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task editedTask = taskInList.withName(VALID_NAME_BOB).withDescription(TEST_DESCRIPTION_ONE).build();
+        Task editedTask = taskInList.withName(VALID_NAME_BOB).withDescription(TEST_DESCRIPTION_TWO).build();
 
         EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withDescription(TEST_DESCRIPTION_ONE).build();
+                .withDescription(TEST_DESCRIPTION_TWO).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
