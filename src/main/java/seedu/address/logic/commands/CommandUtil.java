@@ -41,7 +41,7 @@ public class CommandUtil {
         Set<Tag> updatedTags = new HashSet<>();
         updatedTags.addAll(personToEdit.getTags());
         if (newTags.size() > 0) {
-            updatedTags.removeAll(newTags);
+            updatedTags.addAll(newTags);
         }
 
         return new Person(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);

@@ -5,7 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+
+import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
+import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
 
 /**
  * A utility class containing a list of {@code Tag} objects to be used in tests.
@@ -24,12 +29,18 @@ public class TypicalTags {
     private TypicalTags() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical tasks.
+     * Returns an {@code AddressBook} with all the typical persons, tasks and tags.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Tag task : getTypicalTags()) {
-            ab.addTag(task);
+        for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        for (Task task : getTypicalTasks()) {
+            ab.addTask(task);
+        }
+        for (Tag tag : getTypicalTags()) {
+            ab.addTag(tag);
         }
         return ab;
     }
