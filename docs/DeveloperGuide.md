@@ -812,38 +812,82 @@ a bug.
    1. Test case: `opencus`
       1. Expected: No customer is selected. Error details in the status message.
 
+### Commission-related commands
+> Note that you can run commission-related commands, even in the Customer view. That is a **feature**, not
+a bug.
+
 #### 5. `addcom` Command
+1. Prerequisites:
+    1. There are customers.
+    2. a **customer should be selected** (i.e. in the Customer view, you should see a customer on the right pane.)
+       If not fulfilled, run the `opencus` command, e.g `opencus 1`.
+1. Test case: `addcom n/Tokyo Ghoul Kaneki f/50 d/2022-10-10 s/False p/Unfamiliar, I will need to do up a reference board first. t/digital t/neon`
+   1. Expected: Commission added to customer's commission list. Application switches to the commission view. New
+      commission details displayed on the right pane.
+1. Test case:  `addcom n/Tokyo Ghoul Kaneki f/50 d/2022-10-10 s/False p/commission with the same name`
+   1. Expected: Commission is not added. Error message displayed.
 
 #### 6. `editcom` Command
+1. Prerequisites:
+    1. There are commissions in the displayed commission list.
+1. Test case: `editcom 1 t/tag`
+    1. Expected: Commission is edited. Application switches to Commission view. Edited commission's details displayed on
+       the right pane.
+1. Test case: `editcom 0`
+    1. Expected: No commission is edited. Error message displayed.
 
 #### 7. `delcom` Command
+1. Prerequisites:
+    1. There are commissions in the displayed commission list.
+1. Test case: `delcom 1`
+    1. Expected: Commission is deleted. Application switches to Commission view. If deleted commission was the selected
+       commission, selected commission is reset on the right pane.
+1. Test case: `delcom 0`
+    1. Expected: No commission is deleted. Error message displayed.
 
-#### 8. `additer` Command
+#### 8. `opencom` Command
+1. Prerequisites:
+    1. There are commissions in the displayed commission list.
+1. Test case: `opencom 1`
+    1. Expected: Application switches to Commission view. Selected commission's details displayed on right pane.
+1. Test case: `opencom 0`
+    1. Expected: No commission is selected. Error message displayed.
 
-#### 9. `edititer` Command
+### Iteration-related commands
+> Note that you can run Iteration-related commands, even in the Customer view. That is a **feature**, not
+a bug.
 
-#### 10. `deliter` Command
+#### 9. `additer` Command
 
-#### 11. `list` Command
+#### 10. `edititer` Command
 
-#### 12. `find` Command
+#### 11. `deliter` Command
 
-#### 13. `sortcus` Command
+### Filtering / Sorting commands
 
-#### 14. `listcom` Command
+#### 12. `list` Command
 
-#### 15. `allcom` Command
+#### 13. `find` Command
 
-#### 16. `findcom` Command
+#### 14. `sortcus` Command
+
+#### 15. `listcom` Command
+
+#### 16. `allcom` Command
+
+#### 17. `findcom` Command
 
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Prerequisites:
+      1. There is a data file. By default, it should be at `data/artbuddy.json`
+   1. Remove the starting `{`, then launch ArtBuddy.
+   1. ArtBuddy's customer and commission list will all be empty. The corrupted data file will be overwritten when new
+      customers are added to ArtBuddy.
+   1. To restart the application with sample data, delete the corrupted json file and re-run the application.
 
 ## **Appendix: Effort**
 
