@@ -1,9 +1,15 @@
 package bookface.logic.parser;
 
+import static bookface.commons.core.Messages.MULTIPLE_PREFIXES_ENTERED;
+import static bookface.commons.util.LambdaUtil.getExceptionThrowingFunction;
+import static bookface.logic.parser.CliSyntax.PREFIXES_MULTIPLE_ALLOWED;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import bookface.logic.parser.exceptions.ParseException;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
@@ -14,7 +20,6 @@ import java.util.stream.Collectors;
  *    in the above example.<br>
  */
 public class ArgumentTokenizer {
-
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
@@ -23,7 +28,7 @@ public class ArgumentTokenizer {
      * @param prefixes   Prefixes to tokenize the arguments string with
      * @return           ArgumentMultimap object that maps prefixes to their arguments
      */
-    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
+    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) throws ParseException {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
     }
@@ -35,23 +40,28 @@ public class ArgumentTokenizer {
      * @param prefixes   Prefixes to find in the arguments string
      * @return           List of zero-based prefix positions in the given arguments string
      */
-    private static List<PrefixPosition> findAllPrefixPositions(String argsString, Prefix... prefixes) {
+    private static List<PrefixPosition>
+            findAllPrefixPositions(String argsString, Prefix... prefixes) throws ParseException {
         return Arrays.stream(prefixes)
-                .flatMap(prefix -> findPrefixPositions(argsString, prefix).stream())
+                .flatMap(getExceptionThrowingFunction(prefix -> findPrefixPositions(argsString, prefix).stream()))
                 .collect(Collectors.toList());
     }
 
     /**
      * {@see findAllPrefixPositions}
      */
-    private static List<PrefixPosition> findPrefixPositions(String argsString, Prefix prefix) {
+    private static List<PrefixPosition> findPrefixPositions(String argsString, Prefix prefix) throws ParseException {
         List<PrefixPosition> positions = new ArrayList<>();
+        boolean isMultipleAllowed = PREFIXES_MULTIPLE_ALLOWED.contains(prefix);
 
         int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);
         while (prefixPosition != -1) {
             PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);
             positions.add(extendedPrefix);
             prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
+            if (!isMultipleAllowed && prefixPosition != -1) {
+                throw new ParseException(String.format(MULTIPLE_PREFIXES_ENTERED, prefix.getPrefix()));
+            }
         }
 
         return positions;
@@ -128,7 +138,7 @@ public class ArgumentTokenizer {
      * Represents a prefix's position in an arguments string.
      */
     private static class PrefixPosition {
-        private int startPosition;
+        private final int startPosition;
         private final Prefix prefix;
 
         PrefixPosition(Prefix prefix, int startPosition) {

@@ -13,7 +13,7 @@ import bookface.commons.util.AppUtil;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and not contain whitespace";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;

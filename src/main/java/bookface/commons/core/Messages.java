@@ -18,4 +18,6 @@ public class Messages {
             + "loaned out to someone!";
     public static final String MESSAGE_PERSON_HAS_LOANS = "Person cannot be deleted; there are loans that "
             + "are not settled!";
+    public static final String MULTIPLE_PREFIXES_ENTERED = "Multiple parameters of \"%1$s\" detected! Please only"
+            + " specify one \"%1$s\".";
 }
