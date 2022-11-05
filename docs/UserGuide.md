@@ -293,7 +293,7 @@ Steps to take:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** 
 
-This example is based of [`Editing a Tag`](#editing-a-tag-tag-edit). Feel free to replace `1` and `Test2` with any contact index and an existing tag within the contact indexed.
+This example is based on [`Editing a Tag`](#editing-a-tag-tag-edit). Feel free to replace `1` and `Test2` with the index of any contact and a tag of that contact.
 </div>
 
 2. Press `Enter` on your keyboard.
