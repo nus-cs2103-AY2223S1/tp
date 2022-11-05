@@ -323,7 +323,7 @@ Format:
 
 2. **Assigned to** Format: `task deadline o/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
-3. **Self-assigned** Format: `task deadline d/DESCRIPTION t/DATE`
+3. **Self-assigned** Format: `task deadline d/DESCRIPTION t/DATE [#/TAG]…`
 
 * Adds a deadline assigned by (`m/`) or assigned to (`o/`) a contact.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself the deadline.
