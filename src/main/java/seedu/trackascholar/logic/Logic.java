@@ -11,11 +11,12 @@ import seedu.trackascholar.model.ReadOnlyTrackAScholar;
 import seedu.trackascholar.model.applicant.Applicant;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
@@ -30,10 +31,10 @@ public interface Logic {
      */
     ReadOnlyTrackAScholar getTrackAScholar();
 
-    /** Returns an unmodifiable view of the filtered list of applicants */
+    /** Returns an unmodifiable view of the filtered list of applicants. */
     ObservableList<Applicant> getFilteredApplicantList();
 
-    /** Returns an unmodifiable view of the pinned list of applicants */
+    /** Returns an unmodifiable view of the pinned list of applicants. */
     ObservableList<Applicant> getPinnedApplicantList();
 
     /**

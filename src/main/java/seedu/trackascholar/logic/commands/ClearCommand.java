@@ -48,8 +48,9 @@ public class ClearCommand extends Command {
     }
 
     /**
-     * Prompts user for confirmation before proceeding with purging of data
-     * @param  message prompted to user
+     * Prompts user for confirmation before proceeding with purging of data.
+     *
+     * @param  message prompted to user.
      */
     public void promptUserConfirmation(String message) {
         AlertWindow window = new AlertWindow();

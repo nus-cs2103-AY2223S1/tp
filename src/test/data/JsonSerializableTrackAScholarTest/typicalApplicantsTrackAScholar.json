@@ -1,5 +1,5 @@
 {
-  "_comment": "TrackAScholar save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "TrackAScholar save file which contains the same Applicant values as in TypicalApplicants#getTypicalTrackAScholar()",
   "applicants" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
@@ -30,7 +30,7 @@
     "email" : "cornelia@example.com",
     "scholarship" : "Arts",
     "applicationStatus": "rejected",
-    "majors" : [ "friends" ],
+    "majors" : [ "Software Engineering" ],
     "hasPinned" : false
   }, {
     "name" : "Elle Meyer",

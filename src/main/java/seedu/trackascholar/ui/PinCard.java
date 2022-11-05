@@ -21,7 +21,7 @@ public class PinCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on TrackAScholar level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on TrackAScholar</a>
      */
 
     public final Applicant applicant;
@@ -42,7 +42,7 @@ public class PinCard extends UiPart<Region> {
     private FlowPane majors;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Applicant} and index to display.
+     * Creates a {@code ApplicantCode} with the given {@code Applicant} and index to display.
      */
     public PinCard(Applicant applicant) {
         super(FXML);
@@ -68,7 +68,7 @@ public class PinCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ApplicantCard)) {
             return false;
         }
 
