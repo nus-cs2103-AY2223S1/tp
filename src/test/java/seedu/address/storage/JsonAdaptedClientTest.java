@@ -28,7 +28,6 @@ public class JsonAdaptedClientTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().get().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().get().toString();
-
     private static final String VALID_BIRTHDAY = "";
     private static final List<JsonAdaptedProduct> VALID_PRODUCTS = BENSON.getProducts().stream()
             .map(JsonAdaptedProduct::new)

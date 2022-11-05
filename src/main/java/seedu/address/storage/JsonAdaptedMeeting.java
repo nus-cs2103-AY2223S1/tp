@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -18,8 +19,8 @@ import seedu.address.model.meeting.MeetingTime;
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
 class JsonAdaptedMeeting {
 
-    private JsonAdaptedClient client;
-    @JsonProperty
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Meeting's %s field is missing!";
+
     private String description;
     private String meetingDate;
     private String meetingStartTime;
@@ -28,8 +29,7 @@ class JsonAdaptedMeeting {
     /**
      * Converts a given {@code Meeting} into this class for Jackson use.
      */
-    JsonAdaptedMeeting(Meeting meeting) {
-        client = new JsonAdaptedClient(meeting.getClient(), this);
+    public JsonAdaptedMeeting(Meeting meeting) {
         description = meeting.getDescription().toString();
         meetingDate = meeting.getMeetingDate().toString();
         meetingStartTime = meeting.getMeetingStartTime().toString();
@@ -37,54 +37,17 @@ class JsonAdaptedMeeting {
     }
 
     /**
-     * Converts a given {@code Meeting} and {@code JsonAdaptedClient} into this class for Jackson use.
-     * @param meeting
-     * @param adaptedClient
+     * Constructs a {@code JsonAdaptedMeeting} with the given meeting details.
      */
-    JsonAdaptedMeeting(Meeting meeting, JsonAdaptedClient adaptedClient) {
-        client = adaptedClient;
-        description = meeting.getDescription().toString();
-        meetingDate = meeting.getMeetingDate().toString();
-        meetingStartTime = meeting.getMeetingStartTime().toString();
-        meetingEndTime = meeting.getMeetingEndTime().toString();
-    }
-
-    /**
-     * Default constructor for {@code JsonAdaptedMeeting}
-     */
-    public JsonAdaptedMeeting() {
-    }
-
-    public void setClient(JsonAdaptedClient client) {
-        this.client = client;
-    }
-
-    public JsonAdaptedClient getClient() {
-        return client;
-    }
-
-    public void setDescription(String description) {
+    @JsonCreator
+    public JsonAdaptedMeeting(@JsonProperty("description") String description,
+                              @JsonProperty("meetingStartTime") String meetingStartTime,
+                              @JsonProperty("meetingEndTime") String meetingEndTime,
+                              @JsonProperty("meetingDate") String meetingDate) {
         this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setMeetingDate(String meetingDate) {
+        this.meetingStartTime = meetingStartTime;
+        this.meetingEndTime = meetingEndTime;
         this.meetingDate = meetingDate;
-    }
-
-    public String getMeetingDate() {
-        return meetingDate;
-    }
-
-    public void setMeetingTime(String meetingTime) {
-        this.meetingStartTime = meetingTime;
-    }
-
-    public String getMeetingTime() {
-        return meetingStartTime;
     }
 
     /**
@@ -93,10 +56,40 @@ class JsonAdaptedMeeting {
      * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
      */
     public Meeting toModelType(Client client) throws IllegalValueException {
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
+        }
+        if (!Description.isValidDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
         Description modelDescription = new Description(description);
+
+        if (meetingDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MeetingDate.class.getSimpleName()));
+        }
+        if (!MeetingDate.isValidMeetingDate(meetingDate)) {
+            throw new IllegalValueException(MeetingDate.MESSAGE_CONSTRAINTS);
+        }
         MeetingDate modelMeetingDate = new MeetingDate(ParserUtil.parseDate(meetingDate, "meeting"));
+
+        if (meetingStartTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Meeting Start Time"));
+        }
+        if (!MeetingTime.isValidMeetingTime(meetingStartTime)) {
+            throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
+        }
         MeetingTime modelMeetingStartTime = ParserUtil.parseTime(meetingStartTime);
+
+        if (meetingEndTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Meeting End Time"));
+        }
+        if (!MeetingTime.isValidMeetingTime(meetingEndTime)) {
+            throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
+        }
         MeetingTime modelMeetingEndTime = ParserUtil.parseTime(meetingEndTime);
+
         return new Meeting(client, modelDescription, modelMeetingDate, modelMeetingStartTime, modelMeetingEndTime);
     }
 

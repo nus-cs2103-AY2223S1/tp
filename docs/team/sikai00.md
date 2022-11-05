@@ -67,8 +67,13 @@ Given below are my contributions to the project.
         * Introduce **Use case** subsections under every feature to boost user-centricness: [#218](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/218)
 
 * **Developer Guide**:
+    * Use cases for the features implemented: [#56](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/56)
     * Rationale for different view panels: [#180](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/180)
-    * `listMeeting` sequence diagram: [#180](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/180)
+    * `listMeeting`: [#180](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/180)
+    * Reorganize and refactor the Developer Guide: [#310](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/310)
+    * Updated the class diagrams for all major components: [#314](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/314)
+    * Added Effort section: [#314](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/314)
+    * Add client with product feature: [#314](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/314)
 
 * **Review/mentoring contributions**:
     * PRs reviewed:

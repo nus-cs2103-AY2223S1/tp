@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User adds client with product as a parameter;
+if () then ([Product is already added])
+  :Add the client with
+  the specified product;
+else ([else])
+  :Throws error;
+endif
+
+stop
+
+@enduml

@@ -2,6 +2,7 @@ package seedu.address.model.meeting;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.address.logic.parser.DateKeyword;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
@@ -99,6 +100,9 @@ public class Meeting {
         return meetingDate.compareTo(other) >= 0;
     }
 
+    public boolean isInPeriod(DateKeyword keyword) {
+        return meetingDate.isInPeriod(keyword);
+    }
 
     /**
      * Returns true if both meetings have the same date and time and conflicts.
@@ -134,4 +138,5 @@ public class Meeting {
 
         return builder.toString();
     }
+
 }

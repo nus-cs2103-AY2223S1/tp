@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ELEMENT;
+import static seedu.address.testutil.TypicalMeetings.MEETING1;
 import static seedu.address.testutil.TypicalMeetings.getTypicalMyInsuRec;
 
 import java.nio.file.Path;
@@ -40,7 +41,7 @@ public class AddMeetingCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        Meeting meetingToAdd = new MeetingBuilder().build();
+        Meeting meetingToAdd = MEETING1;
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand(INDEX_FIRST_ELEMENT, meetingToAdd);
 
         assertCommandFailure(addMeetingCommand, model, addMeetingCommand.MESSAGE_CONFLICTING_MEETING);

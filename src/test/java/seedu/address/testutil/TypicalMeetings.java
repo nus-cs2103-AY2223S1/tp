@@ -18,13 +18,18 @@ import seedu.address.model.meeting.Meeting;
  */
 public class TypicalMeetings {
     public static final Meeting MEETING1 = new MeetingBuilder().withDescription("meeting1")
-            .withMeetingDate(LocalDate.of(2023, 1, 8))
+            .withMeetingDate(LocalDate.now().plusDays(1))
             .withMeetingStartTime(LocalTime.of(7, 20, 45, 342123342))
             .withClient(ALICE).build();
 
     public static final Meeting MEETING2 = new MeetingBuilder().withDescription("meeting2")
-            .withMeetingDate(LocalDate.of(2020, 5, 5))
-            .withMeetingStartTime(LocalTime.of(7, 20, 45, 342123321))
+            .withMeetingDate(LocalDate.now().plusDays(5))
+            .withMeetingStartTime(LocalTime.of(7, 20))
+            .withClient(BENSON).build();
+
+    public static final Meeting MEETING3 = new MeetingBuilder().withDescription("meeting2")
+            .withMeetingDate(LocalDate.now().withDayOfMonth(1))
+            .withMeetingStartTime(LocalTime.of(7, 20))
             .withClient(BENSON).build();
 
     private TypicalMeetings() {} // prevents instantiation
@@ -43,6 +48,6 @@ public class TypicalMeetings {
     }
 
     public static List<Meeting> getTypicalMeetings() {
-        return new ArrayList<>(Arrays.asList(MEETING1, MEETING2));
+        return new ArrayList<>(Arrays.asList(MEETING1, MEETING2, MEETING3));
     }
 }
