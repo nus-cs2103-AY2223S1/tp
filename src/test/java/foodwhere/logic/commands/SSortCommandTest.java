@@ -4,7 +4,6 @@ import static foodwhere.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import foodwhere.testutil.TypicalIndexes;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.model.Model;
