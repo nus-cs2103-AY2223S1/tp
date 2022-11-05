@@ -35,10 +35,12 @@ public class SearchCommandParserTest {
         ContactContainsAllKeywordsPredicate firstPredicate =
                 new ContactContainsAllKeywordsPredicate(argMultimap);
         ContactMightBeRelevantPredicate alternativePredicate =
-                new ContactMightBeRelevantPredicate(argMultimap);
+                new ContactMightBeRelevantPredicate(argMultimap, false);
+        ContactMightBeRelevantPredicate leastAccuratePredicate =
+                new ContactMightBeRelevantPredicate(argMultimap, true);
 
         assertParseSuccess(parser, "and n/name a/address p/phone",
-                new SearchCommand(firstPredicate, alternativePredicate));
+                new SearchCommand(firstPredicate, alternativePredicate, leastAccuratePredicate));
     }
 
     @Test
@@ -48,10 +50,12 @@ public class SearchCommandParserTest {
         ContactContainsAnyKeywordsPredicate secondPredicate =
                 new ContactContainsAnyKeywordsPredicate(argMultimap);
         ContactMightBeRelevantPredicate alternativePredicate =
-                new ContactMightBeRelevantPredicate(argMultimap);
+                new ContactMightBeRelevantPredicate(argMultimap, false);
+        ContactMightBeRelevantPredicate leastAccuratePredicate =
+                new ContactMightBeRelevantPredicate(argMultimap, true);
 
         assertParseSuccess(parser, "or n/name a/address p/phone",
-                new SearchCommand(secondPredicate, alternativePredicate));
+                new SearchCommand(secondPredicate, alternativePredicate, leastAccuratePredicate));
     }
 
     @Test
@@ -61,10 +65,12 @@ public class SearchCommandParserTest {
         ContactContainsAllKeywordsPredicate firstPredicate =
                 new ContactContainsAllKeywordsPredicate(argMultimap);
         ContactMightBeRelevantPredicate alternativePredicate =
-                new ContactMightBeRelevantPredicate(argMultimap);
+                new ContactMightBeRelevantPredicate(argMultimap, false);
+        ContactMightBeRelevantPredicate leastAccuratePredicate =
+                new ContactMightBeRelevantPredicate(argMultimap, true);
 
         assertParseSuccess(parser, " n/name a/address p/phone",
-                new SearchCommand(firstPredicate, alternativePredicate));
+                new SearchCommand(firstPredicate, alternativePredicate, leastAccuratePredicate));
     }
 
     @Test
