@@ -10,8 +10,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 ---
 
 ## **Setting up, getting started**
@@ -150,7 +150,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 ---
 
@@ -318,11 +318,11 @@ This is a new enhancement in v1.3, as older iterations did not support viewing b
 
 This is achieved in the `ViewCommand` and `ViewCommandParser` classes.
 
-In `ViewCommandParser`, we make use of `ArugmenetMultimap` to parse the user input and interprets them to get the values of the suffixes input by the user. Note that there is a possibility that the values to said suffixes are `null`, but this is handled by wrapping them in an `Optional` by `ArgumentMultimap`.
+In `ViewCommandParser`, we make use of the `ArugmenetMultimap` class to parse the user input and interprets them to get the values of the suffixes input by the user. Note that there is a possibility that the values to said suffixes are `null`, but this is handled by wrapping them in an `Optional` by `ArgumentMultimap`.
 
-The lists of values of each suffix is used to create a predicate `PersonContainsAttributePredicate` object, which returns true whenever a person contains all attributes as specified by the list of values, and returns false otherwise.
+With this list of values, we make use of `Predicate` to define a predicate which returns true whenever a person contains the attributes as specified by the list of values, and returns false otherwise.
 
-The `PersonContainsAttributePredicate` object is then passed into `ViewCommand`, where we call `updateFilteredPersonList` in the `ModelManager` class to get a filtered list of people satisfying the predicate.
+The predicate is then passed into `ViewCommand`, where we call `updateFilteredPersonList` in the `ModelManager` class to get a filtered list of people satisfying the predicate.
 
 The sequence diagram below shows how the process works:
 
