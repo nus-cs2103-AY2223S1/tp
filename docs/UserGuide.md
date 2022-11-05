@@ -10,13 +10,13 @@ title: User Guide
 GuestBook is a **hotel management application** that aims to revolutionise the small
 hotel and backpacker's inn industry.
 As a **hotel manager**, capitalise on
-GuestBook's **efficient management style** to save you time. You can use GuestBook to manage your guests and
+GuestBook's **efficient management tools** to save you time. You can use GuestBook to manage your guests and
 their details with just your keyboard, literally all in the palm of your hands!
 By using our features, your essential hotel management needs are taken care of.
 With GuestBook, managing guests have never been easier.
 
 This user guide will ease you in using GuestBook and guide you along to incorporate GuestBook
-in your management workflow. It provides an in-depth description of GuestBook's core features
+into your management workflow. It provides an in-depth description of GuestBook's core features
 and how to best use them to suite your needs. With our intuitive design, you will become
 a master at using GuestBook in no time!
 
@@ -35,8 +35,8 @@ a master at using GuestBook in no time!
 * For a quick and easy way to **get started** with GuestBook, you can visit the [Quick Start](#quick-start) section.
 * To **understand the terms** we use in GuestBook, you can visit the [Glossary](#glossary) section.
 * To see the **amazing features** that GuestBook provides and how to use them, you can visit the [Features](#features) section.
-* Having **issues**? You can check out the [FAQ](#faq) section to see find solutions to your issues.
-* Have a **question** for us? Feel free to [contact us](#contact-us), and we will do our best to assist you.
+* Having **issues**? Check out the [FAQ](#faq) section and see if you can find your solutions there!
+* Have a **question** for us or require our **assistance**? Feel free to [contact us](#contact-us), and we will do our best to assist you!
 
 <div markdown="block" class="alert alert-success">
 
@@ -54,7 +54,7 @@ These styles below are consistently used throughout this user guide. This sectio
 you with a better understanding on how to interpret these formats.
 * [Phrases in blue](#style-guide) mean that they are hyperlinked to a
 section of this user guide or to an external website.
-* `Coded phrases` surrounded by a block indicate they are technical terms such as GuestBook commands.
+* `Coded phrases` surrounded by a block indicate that they are technical terms such as GuestBook commands.
 * **Bolded phrases** are key terms that you should pay attention to.
 * _Italicised phrases_ are used to highlight phrases that are part of an example.
 
@@ -75,7 +75,7 @@ section of this user guide or to an external website.
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Command Box**                        | This is where you **enter commands**.                                                                                                                             |
 | **Result Display**                     | This is where the detailed **results** of your commands will be shown.                                                                                            |
-| **Guest Card**                         | This is where all **guest information** of a guest will be shown.                                                                                                 |
+| **Guest Card**                         | This is where all the **guest information** of a guest will be shown.                                                                                             |
 | **Status Bar**                         | This shows the location of your **save file**.                                                                                                                    |
 | ![Phone](images/phone.png)             | This is the **phone number** of the guest.                                                                                                                        |
 | ![Email](images/email.png)             | This is the **email address** of the guest.                                                                                                                       |
@@ -100,8 +100,8 @@ section of this user guide or to an external website.
    * If you are using Windows, open the `Command Prompt` and enter `java -version`.
      * To open the `Command Prompt`, press `Windows` and `R` together to launch the "Run" box.
      * Following, enter `cmd` and click `OK`.
-   * If java is installed, you would get a similar output as shown below. You can continue to step 2.
-   (Do not worry about what the message says, it is not crucial to learn how to use GuestBook.)
+   * If `Java 11` is installed, you would get a similar output as shown below. You can continue to step 2.
+   (Do not worry about what the message says, it is not necessary to understand it when learning how to use GuestBook.)
    ```
     openjdk 11.0.16.1 2022-07-19 LTS
     OpenJDK Runtime Environment Zulu11.58+23-CA (build 11.0.16.1+1-LTS)
@@ -112,8 +112,8 @@ section of this user guide or to an external website.
    'java' is not recognized as an internal or external command, operable
     program or batch file.
    ```
-   * Follow these [instructions](https://www.oracle.com/sg/java/technologies/downloads/) to
-   download Java and return to step 1 once you have completed them. <br><br>
+   * Follow these [instructions](https://www.oracle.com/sg/java/technologies/downloads/#java11) to
+   download `Java 11` and return to step 1 once you have completed them to confirm if `Java 11` has been installed. <br><br>
 
 2. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases). <br> <br>
    ![Ui](images/DownloadInstruction.png) <br><br>
@@ -132,17 +132,17 @@ section of this user guide or to an external website.
 
 5. Type your commands in the command box and press Enter to execute it. E.g., typing **`help`** and pressing Enter will open the help window.<br><br>
 
-6. To kickstart your journey, you can add a guest, _John Doe_, to GuestBook using the **`add`** command.
-   * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named _John Doe_ to GuestBook along with the necessary information such as his particulars.
+6. To kickstart your journey, you can add a guest, _John Doe_, to GuestBook by using the **`add`** command.
+   * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named _John Doe_ to GuestBook along with the necessary information, such as his particulars.
 <br><br>
 
 7. To find _John Doe_, you can use the **`find`** command, and search through **any of _John Doe's_ fields**,
-   such as his `name` or `room`. The command below can help you find guests that match the keywords you entered. For example,
+   such as his `name` or `room`. The command helps you find guests that match **any of the keywords** you entered. For example,
    * `find John Doe` : Finds all the guests who have at least one field containing _John_ or _Doe_ (case-insensitive).
      <br><br>
 
 8. To make changes to _John Doe_, you can use the **`edit`** command. This changes the guest's fields based on the new values you provide. The other values will remain unchanged. <br>
-For example, if _John Doe_ is the second guest in the list, and you want to change his room number to _05-55_, you can execute the following command.
+For example, assume _John Doe_ is the second guest in the list. If you want to change his room number to _05-55_, you can execute the following command.
     * `edit 2 rm/05-55`: Changes the `Room` of _John Doe_ to _05-55_ in GuestBook.
       <br><br>
 
@@ -151,7 +151,7 @@ To see a list of all your guests, you can use the **`list`** command.
       * `list`: List all the guests in GuestBook.
         <br><br>
 
-10. In the event that a guest orders room service, you can add charges to the guest's bill using the **`bill`** command.<br>
+10. You might want to charge a guest in some scenarios, such as when a guest orders room service. You can add charges to the guest's bill using the **`bill`** command.<br>
 For example, you can charge the third guest _30.35_ by running the command below.
     * `bill 3 b/+30.35`: Adds _30.35_ to the `bill` of the third guest shown in the current list.
       <br><br>
@@ -162,8 +162,9 @@ For example, you can check out the third guest by executing the command below.
           <br><br>
     <div style="page-break-after: always;"></div>
     
-12. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
+12. Should you wish to clear your GuestBook of **all** entries, you can use the **`clear`** command.<br>
     * `clear` : Deletes all guests.
+    <br><br>
     <div markdown="block" class="alert alert-danger">
 
     :bangbang: **Warning:**<br>
@@ -171,12 +172,11 @@ For example, you can check out the third guest by executing the command below.
       guest data cannot be retrieved. Please use this command
       with utmost caution.
     </div>
-
 13. Finally, to quit GuestBook, you can run the **`exit`** command.
     * `exit` : Exits the app.
       <br><br>
 
-14. For more details, you can refer to the [Features](#features) below for the exact specifications of each command. Thank you and we hope you enjoy using GuestBook!
+14. We have come to the end of our Quick Start. For more details, you can refer to the [Features](#features) below for the exact specifications of each command. Thank you!
     <br><br>
 [Return to Table of Contents](#table-of-contents)
 
@@ -189,16 +189,16 @@ From this glossary section onwards, we will go into a deep dive of the commands 
 some technical terms present in the descriptions below, we have provided their definitions (contextualised
 to GuestBook) for you to get acquainted with.
 
-| Term             | Definition                                                                                                                                       |
-|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Alphanumeric** | Refers to characters that are numbers **0-9** and alphabets **A-Z**, both uppercase and lowercase.                                               |
-| **dd/MM/yy**     | Refers to the date format, where dd stands for 2 digit days, 2 digit months and the last 2 digits for the year. They must be separated by a "/". |
-| **Guest**        | A guest staying at the hotel.                                                                                                                    |
-| **GUI**          | Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.           |
-| **Hard disk**    | A data storage device used to store and retrieve data.                                                                                           |
-| **Index**        | The number that corresponds to the position of the Guest in the list. The index **must be a positive integer** like 1, 2 or 3.                   |
-| **Java**         | A programming language used to run GuestBook.                                                                                                    |
-| **JSON file**    | Stands for JavaScript Object Notation. It refers to a file format to store data.                                                                 |
+| Term             | Definition                                                                                                                                                      |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Alphanumeric** | Refers to characters that are numbers **0-9** and alphabets **A-Z**, both uppercase and lowercase.                                                              |
+| **dd/MM/yy**     | Refers to the date format, where dd stands for 2 digit days, 2 digit months and the last 2 digits for the year. They must be separated by a forward slash, "/". |
+| **Guest**        | A guest staying at the hotel.                                                                                                                                   |
+| **GUI**          | Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.                          |
+| **Hard disk**    | A data storage device used to store and retrieve data.                                                                                                          |
+| **Index**        | The number that corresponds to the position of the Guest in the list. The index **must be a positive integer**, such as 1, 2 or 3.                              |
+| **Java**         | A programming language used to run GuestBook.                                                                                                                   |
+| **JSON file**    | Stands for JavaScript Object Notation. It refers to a file format to store data.                                                                                |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -223,7 +223,7 @@ aid you in understanding their significance.
   E.g., `n/NAME [rq/REQUEST]` can be used as `n/John Doe rq/Extra towels` or as `n/John Doe`.
 
 
-* Parameters can be in **any order**.<br>
+* Parameters can be supplied in **any order**.<br>
   E.g., If the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 
@@ -290,8 +290,8 @@ you provide. The values that you **did not specify** to edit will remain **uncha
 
 **:bulb: Tip:**<br>
 
-* You can more accurately edit your guests by first searching for them
-using the [find command](#locating-guests) and then editing them accordingly!
+* You can efficiently locate the guests you want to edit by first searching for them
+using the [find command](#locating-guests), and then editing them accordingly!
 </div>
 
 [Return to Table of Contents](#table-of-contents)
@@ -336,13 +336,12 @@ or **decreased** respectively by the value you provide.
 
 ### Locating guests: `find`
 
-This command locates guests whose details contain any of the given keywords.
+This command locates guests whose details contain any of the given search terms.
 This allows you to search through all guests' fields.
 
-This command is typically used when searching for a guest of a **specific characteristic**.
-For example, the command `find no` will display all
-the rooms that have room clean statuses set to `no`. Likewise, the command `find yes`
-will display all rooms that have been cleaned.
+This command is typically used when searching for guest(s) of **specific characteristic(s)**.
+For example, the command `find no` will display the guests that have room clean statuses set to `no`. Likewise, the command `find yes`
+will display the guests that already have their rooms cleaned.
 
 **Format**: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -375,7 +374,7 @@ will display all rooms that have been cleaned.
 
 **:bulb: Tip:**<br>
 
-* To find guests based on their dates of stay, you should simply use the start and end dates without the hyphen ("-").
+* To find guests based on their dates of stay, you should simply use the **start or end dates**, without the hyphen ("-").
 </div>
 
 [Return to Table of Contents](#table-of-contents)
@@ -422,7 +421,7 @@ command with caution.
 **Examples**:
 * `list` followed by `delete 2` deletes the second guest in GuestBook.
 
-* `find Betsy` followed by `delete 1` deletes the first guest in the results of the `find` command.
+* `find Betsy` followed by `delete 1` deletes the first guest based on the results of the `find` command.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -517,7 +516,7 @@ Advanced users may change data directly by editing this data file.
 
 :exclamation: **Caution:**<br>
 
-* If your changes to the data file makes its format invalid, GuestBook will discard all data and start with an empty data file at the next run.
+* If your changes to the data file makes its format invalid, GuestBook will **discard all data** and start with an empty data file at the next run.
 </div>
 
 [Return to Table of Contents](#table-of-contents)
@@ -545,10 +544,10 @@ Listed here are some frequently asked questions that we hope will be helpful for
 **A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file has been **corrupted**, causing GuestBook to reset it to prevent any malicious files from being used.
 
 **Q**: Why am I getting error messages for fields that are correct, or that I'm not editing?<br>
-**A**: If you are using the `add`/`edit` commands and input the `name`/`request` fields, ensure that they do not contain any **field prefixes** after whitespace in their content (e.g., `rq/Extra bed & p/c`), as GuestBook could be parsing part of your input as another field. Consider using capital letters as this check is case-sensitive (`rq/Extra bed & P/C` will be parsed correctly). You may refer to [Field summary](#field-summary) for more information about field constraints.
+**A**: If you are using the `add` or `edit` commands and inputting the `name` or `request` fields, ensure that they **do not contain any field prefixes** after whitespace in their content (e.g., `rq/Extra bed & p/c`), as GuestBook could be parsing part of your input as another field. **Consider using capital letters** as this check is case-sensitive (e.g, `rq/Extra bed & P/C` will be parsed correctly as part of a `request`). You may refer to [Field summary](#field-summary) for more information about field constraints.
 
 **Q**: I cannot find a guest staying on a particular date even though it should be within the dates of stay. Why is that so?<br>
-**A**: You may have entered a date **between** the start and end dates of the guest's stay (e.g, searching for `13/01/22 - 15/01/22` by entering `14/01/22`). Currently, this feature is **not supported** by GuestBook.
+**A**: You may have entered a date **between** the start and end dates of the guest's stay (e.g, searching for `13/01/22 - 15/01/22` by entering `14/01/22`). Currently, this feature is **not supported** by GuestBook, and we are looking into implementing it in future iterations of GuestBook!
 
 **Q**: Why am I not able to add guests to the same room even though they have different dates of stay?<br>
 **A**: For this iteration of GuestBook, guests are added when they **check in** at the hotel and deleted when they **check out**. As such, there would not be different guests with the same room at any time. This feature is a safety check provided by GuestBook to ensure different guests are not allocated the same room during their stay. To ensure GuestBook remains simple and easy for you to use, each guest must have a **unique room** in GuestBook.
@@ -568,22 +567,22 @@ In the case where GuestBook rejects your field inputs, you can refer to this sec
 
 :exclamation: **Caution:**<br>
 
-* If you are specifying the `name`/`request` fields, ensure that they do not contain any field prefixes after whitespace in their content
+* If you are specifying the `name` or `request` fields, ensure that they do not contain any field prefixes after whitespace in their content
 (e.g., `rq/Extra bed & p/c`), as GuestBook may mistake part of your input as another field.
-Consider using capital letters as this check is case-sensitive (`rq/Extra bed & P/C` will be understood correctly).
+**Consider using capital letters** as this check is case-sensitive (`rq/Extra bed & P/C` will be understood correctly as part of a `request`).
 </div>
 
-| Field                  | Corresponding prefix | Format/Constraints                                                                                                                                                                                                                                                                                                                                                                        |
-|------------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`NAME`**             | `n/`                 | Should contain only **alphabets, spaces, and special characters (`'`, `-`, `.`, `,`, `/`)**.<br/><br/>:exclamation: **Caution:**<br>Names are case-sensitive and multiple consecutive spaces in-between them are allowed. GuestBook will not detect these names as the same.<br/>E.g. _John Doe_, _John  Doe_ and _john doe_ will all be detected as different guests.                    |
-| **`PHONE`**            | `p/`                 | Should contain only **numbers**, and it should be at least 3 digits and at most 15 digits long.                                                                                                                                                                                                                                                                                           |
-| **`EMAIL`**            | `e/`                 | Should contain only **alphanumeric characters, 1 `@` character, and special characters (`+`, `_`, `.`, `-`)**.<br/>The local segment (before `@`) should be at most 64 characters long, and the domain segment (after `@`) should be at most 255 characters long.<br/>Segments cannot start or end with special characters, and special characters cannot be used adjacent to each other. |
-| **`ROOM`**             | `rm/`                | Should contain only **alphanumeric characters and hyphens (`-`)**.<br/>A hyphen can only be added if it is in between 2 alphanumeric characters.                                                                                                                                                                                                                                          |
-| **`DATE_RANGE`**       | `dr/`                | Should follow the format `dd/MM/yy - dd/MM/yy` with 2 valid dates and the second date should be later than the first date.                                                                                                                                                                                                                                                                |
-| **`NUMBER_OF_GUESTS`** | `ng/`                | Should contain only **numbers**, and be at least 1 and at most 4 numbers long.                                                                                                                                                                                                                                                                                                            |
-| **`REQUEST`**          | `rq/`                | Is an **optional field**, and should be at most 500 characters long.                                                                                                                                                                                                                                                                                                                      |
-| **`IS_ROOM_CLEAN`**    | `rc/`                | Should be only `yes`, `no`, `y` or `n` (case-insensitive).                                                                                                                                                                                                                                                                                                                                |
-| **`BILL`**             | `b/`                 | Should contain only **numbers, optionally one decimal point (`.`), and optionally one leading sign (`+`/`-`)**.<br/>Can have up to 12 leading digits and 2 decimal places.<br/>Is assumed to be positive if no leading sign is used.                                                                                                                                                      |
+| Field                  | Corresponding prefix | Format/Constraints                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|------------------------|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`NAME`**             | `n/`                 | Should contain only **alphabets, spaces, and special characters (`'`, `-`, `.`, `,`, `/`)**.<br/><br/><div markdown="block" class="alert alert-danger">:exclamation: **Caution:**<br>Names are case-sensitive and multiple consecutive spaces in-between them are allowed. GuestBook will not detect these names as the same.<br/>E.g. _John Doe_, _John&nbsp;&nbsp;&nbsp;Doe_ and _john doe_ will all be detected as different guests.</div> |
+| **`PHONE`**            | `p/`                 | Should contain only **numbers**, and it should be **at least 3** digits and **at most 15** digits long.                                                                                                                                                                                                                                                                                                                                       |
+| **`EMAIL`**            | `e/`                 | Should contain only **alphanumeric characters, 1 `@` character, and the following special characters (`+`, `_`, `.`, `-`)**.<br/>The local segment (before `@`) should be at most 64 characters long, and the domain segment (after `@`) should be at most 255 characters long.<br/>Segments cannot start or end with special characters, and special characters cannot be used adjacent to each other.                                       |
+| **`ROOM`**             | `rm/`                | Should contain only **alphanumeric characters and hyphens (`-`)**.<br/>A hyphen can only be added if it is in between 2 alphanumeric characters (This also means that it **should not start or end with a hyphen**).                                                                                                                                                                                                                          |
+| **`DATE_RANGE`**       | `dr/`                | Should follow the format `dd/MM/yy - dd/MM/yy` with 2 valid dates and the second date should be later than the first date. There should only be **one spacing** before and after the hyphen(`-`).                                                                                                                                                                                                                                             |
+| **`NUMBER_OF_GUESTS`** | `ng/`                | Should contain only **numbers**, and **only** contain values 1, 2, 3, or 4.                                                                                                                                                                                                                                                                                                                                                                   |
+| **`REQUEST`**          | `rq/`                | Is an **optional field**, and should be **at most 500** characters long.                                                                                                                                                                                                                                                                                                                                                                      |
+| **`IS_ROOM_CLEAN`**    | `rc/`                | Should be only `yes`, `no`, `y` or `n` (case-insensitive).                                                                                                                                                                                                                                                                                                                                                                                    |
+| **`BILL`**             | `b/`                 | Should contain only **numbers, optionally one decimal point (`.`), and optionally one leading sign (`+`/`-`)**.<br/>Can have up to 12 leading digits and 2 decimal places.<br/>Is **assumed to be positive if no leading sign** is used.                                                                                                                                                                                                      |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -594,7 +593,7 @@ Consider using capital letters as this check is case-sensitive (`rq/Extra bed & 
 
 The format of commands in GuestBook are listed in the table below.
 
-In the case where GuestBook rejects your command (`Invalid command format!`), you can refer to this section to use the right command format.
+In the case where GuestBook rejects your command (`Invalid command format!`), you can refer to this section to find out the right command format.
 
 | Action                 | Format, Examples                                                                                                                                                                               |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -607,7 +606,7 @@ In the case where GuestBook rejects your command (`Invalid command format!`), yo
 | **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
 | **Help**               | `help`                                                                                                                                                                                         |
 | **List**               | `list`                                                                                                                                                                                         |
-| **Mark Rooms Unclean** | `markroomsunclean`                                                                                                                                                                             |                                                                                                                                                                                      |
+| **Mark Rooms Unclean** | `markroomsunclean`                                                                                                                                                                             | 
 
 [Return to Table of Contents](#table-of-contents)
 
