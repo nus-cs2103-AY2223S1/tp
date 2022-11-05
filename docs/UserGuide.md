@@ -499,7 +499,7 @@ Examples:
 <p align = "center">
 <img src="images/ExampleTaskEditBefore.png">
 </p>
-<figcaption align = "center"><b>Initial state of 5 contacts.</b>
+<figcaption align = "center"><b>Initial state of 5 tasks.</b>
 </figcaption>
 </figure>
 
