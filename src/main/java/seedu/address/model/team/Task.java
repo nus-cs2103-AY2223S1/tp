@@ -120,7 +120,7 @@ public class Task {
         if (deadline == null) {
             return "";
         } else {
-            return deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            return deadline.format(DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm"));
         }
     }
 
