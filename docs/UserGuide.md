@@ -752,8 +752,6 @@ Example:
 
 <img src="images/ug/undoredocommand/redo4.png">
 
-
-
 ## 1.11 Clear `clear`
 
 Deletes all patients, appointments and bills from HealthContact.

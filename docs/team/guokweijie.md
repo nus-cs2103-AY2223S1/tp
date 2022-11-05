@@ -5,13 +5,13 @@ title: Guok Wei Jie's Project Portfolio Page
 
 ## Project: HealthContact
 **Overview**: <br>
-HealthContact is a desktop application built for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
-It helps to keep track and manage patient data, appointments and bills, especially for clinics who do not have apps to expedite the process.
+HealthContact is a desktop application built for the receptionist of a family clinic who arranges telemedicine services for patients.
+It helps to manage and keep track of patient data, appointments and bills, especially for clinics who do not have apps to expedite the process.
 
 Given below are my contributions to the project.
 
 ### Code contributed:
-[Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=guokweijie&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=guokweijie&tabRepo=AY2223S1-CS2103T-W08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+[Link to tP Code Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=guokweijie&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=guokweijie&tabRepo=AY2223S1-CS2103T-W08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### Enhancements implemented:
 * FindPatientCommand
@@ -28,6 +28,7 @@ Given below are my contributions to the project.
   * It sets the payment status of a patient's bill to "PAID".
 * SetUnPaidCommand
   * It sets the payment status of a patient's bill to "UNPAID".
+* Fixed bug in Email class by modifying the regex for the constraints of the email field.
 
 ### Contributions to the User Guide:
 * Added documentation and screenshots for:
@@ -35,14 +36,22 @@ Given below are my contributions to the project.
   * FindAppointmentCommand
   * SetPaidCommand
   * SetUnPaidCommand
-  * Saving the data
-  * Editing the data file
-* Added the Quickstart guide
+  * Save the data
+  * Edit the data file
+* Added the Quick Start guide
 * Added the target user group and value proposition
 * Added the FAQ section
+* Added Navigation for Feature list
+* Modified and standardised headings, screenshot descriptions and spacing for consistency
 
 ### Contributions to the Developer Guide:
-to be added soon
+* Added the Appendix: Effort
+* Added the Non-Functional Requirements
+* Added the Glossary
+* Added Target User Profile, Product Scope and Value Proposition
+* Modified all the user stories and wrote use case UC-01
+* Added the Find feature implementation with a Sequence diagram
+* Added the SetPaid and SetUnPaid feature implementation with a Sequence diagram
 
 ### Contributions to other Documentations:
 * Ui image of the product for landing page
