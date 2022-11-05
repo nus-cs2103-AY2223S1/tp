@@ -14,25 +14,19 @@ bobaBot is written in Java and has about 13 kLoC.
 Given below are my contributions to the project.
 * **New Feature**: `UndoCommand` (Pull Requests [#141](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/141))
     * **What it does**: This feature allows the user to undo previously executed commands by storing the previous versions of bobaBot and retrieving them when the `undo` command is executed.
-
     * **Justification**: When the user executes an unintended command, they can easily execute `undo` to return the state before. For e.g., if the user accidentally deletes a customer, they can call `undo` to return to the previous state (where the customer is not deleted) instead of having trouble repeating the whole process again.
-
     *  **Credits**: Inspiration from AB3's Developer's Guide
 
 
 * **New Feature**: `RedoCommand` (Pull Requests [#141](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/141))
     * **What it does**: This feature allows the user to revert the previously executed `undo` commands by storing the versions of bobaBot and retrieving them when the `redo` command is executed.
-
     * **Justification**: When the user executes an unintended `undo` command, they can easily execute `redo` to return the state before. For e.g., if the user adds a customer into bobaBot and accidentally executes an `undo` command (returns to state where the customer is not added into bobaBot), they can call `redo` to return to the state (where the customer is added) instead of having trouble repeating the whole process again.
-
     *  **Credits**: Inspiration from AB3's Developer's Guide
 
 
 * **New Feature**: `Promotions` (Pull Requests [#150](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/150), [#154](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/154))
     * **What it does**: Renders the promotion images within a folder into the GUI so users can be aware of and double-check the ongoing promotions when customers claim a particular deal/offer.
-
     * **Justification**: There are often many ongoing promotions for a bubble tea shop and the user might not be aware of them if they are new to the job. This helps to keep them informed about the shop's ongoing promotions and also allows them to validate it when customers try to claim them.
-
     *  **Credits**: Adapted a method to reference files as a resource from [mkyong](https://mkyong.com/java/java-read-a-file-from-resources-folder/)
 
 
@@ -47,13 +41,11 @@ Given below are my contributions to the project.
 
 * **Enhancement to existing features**: `DeleteCommand` - Changing identifier from `index` to `PHONE_NUMBER` or `EMAIL`. (Pull Requests [#67](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/67), [#112](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/112))
     * **What it does**: This feature allows the user more flexibility in choosing the type of identifier to `delete` the customer by. Previously, the user can only `delete` customers by `index` according to AB3's implementation of `DeleteCommand`. However, bobaBot now supports `delete` via 2 types of identifiers - `PHONE_NUMBER` or `EMAIL`.
-
     * **Justification**: Previously, the user can only delete a customer by referencing the `index` shown on the result display and the process of deletion would often require a `find` customer first, followed by a `delete` customer based on the search result. However, this creates a dependency on `find` and is not very efficient. With the current implementation in bobaBot, users can ask for either the customer's `PHONE_NUMBER` or `EMAIL` and they can remove the customer via either identifier.
 
 
 * **Enhancement to existing features**: JavaFX - Transform the original AB3's UI to the proposed wire-framing design for bobaBot. (Pull Requests [#88](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/88), [#150](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/150))
     * **What it does**: Makes the bobaBot application more visually appealing to the user and support other features within bobaBot.
-
     * **Justification**: The previous UI from AB3 does not support all the features we implemented in bobaBot. Therefore, we had to change the UI to one that could support all the features in bobaBot such as the `promotions` feature. There is also a need to change the original `dark theme` to one that catered more towards our users such as a `milk tea theme`.
 
 
