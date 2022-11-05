@@ -198,7 +198,7 @@ The following sequence diagram shows how the add item operation works:
 ![AddItemSequenceDiagram](images/developer-guide/AddItemSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddItemCommand` should 
-end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
