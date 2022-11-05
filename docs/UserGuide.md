@@ -266,7 +266,7 @@ Steps to take:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** 
 
-This example is based of [`Adding a tag`](#adding-a-tag-to-a-contact-tag-add). Feel free to replace `Test` and `Test2` with any existing tag and a fresh new tag.
+This example is based on [`Adding a tag`](#adding-a-tag-to-a-contact-tag-add). Feel free to replace `Test` with any existing tag and `Test2` with a new name for the tag.
 </div>
 
 2. Press `Enter` on your keyboard.
