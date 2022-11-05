@@ -31,7 +31,7 @@ public class ListCommandTest {
         assertCommandSuccess(new ListCommand(), model,
                 new CommandResult(ListCommand.MESSAGE_SUCCESS, false, false,
                         false, true,
-                        false, false, false, false), expectedModel);
+                        false, false, false, false, false), expectedModel);
     }
 
     @Test
@@ -40,6 +40,6 @@ public class ListCommandTest {
         assertCommandSuccess(new ListCommand(), model,
                 new CommandResult(ListCommand.MESSAGE_SUCCESS, false, false,
                         false, true,
-                        false, false, false, false), expectedModel);
+                        false, false, false, false, false), expectedModel);
     }
 }

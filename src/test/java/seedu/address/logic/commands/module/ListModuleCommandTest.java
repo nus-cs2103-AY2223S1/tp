@@ -29,6 +29,6 @@ public class ListModuleCommandTest {
         assertCommandSuccess(new ListModuleCommand(), model,
                 new CommandResult(ListModuleCommand.MESSAGE_SUCCESS, false, false,
                         true, false,
-                        false, false, false, false), expectedModel);
+                        false, false, false, false, false), expectedModel);
     }
 }

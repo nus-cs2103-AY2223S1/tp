@@ -43,7 +43,7 @@ public class EditStuCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(EditStuCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent),
                 false, false, false,
-                true, false, false, false, false);
+                true, false, false, false, false, false);
 
         Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
@@ -67,7 +67,7 @@ public class EditStuCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(EditStuCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent),
                 false, false, false,
-                true, false, false, false, false);
+                true, false, false, false, false, false);
 
         Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setPerson(lastStudent, editedStudent);
@@ -83,7 +83,7 @@ public class EditStuCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(EditStuCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent),
                 false, false, false,
-                true, false, false, false, false);
+                true, false, false, false, false, false);
 
         Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
 
@@ -102,7 +102,7 @@ public class EditStuCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(EditStuCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent),
                 false, false, false,
-                true, false, false, false, false);
+                true, false, false, false, false, false);
 
         Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
