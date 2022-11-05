@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 
 * **New Features:** Added `goto` and `home` commands.
   * What it does: <br>
-    To allows users to navigate to specific module to view information relevant to the particular module and
+    To allow users to navigate to specific module to view information relevant to the particular module and
     navigate back to the home page to have an overview of details stored in Plannit.
   * Justification: <br>
     Initial implementation of AB3 consisted of only contacts, while Plannit features
@@ -52,7 +52,7 @@ Given below are my contributions to the project.
     original state.
 
 **Highlights** <br>
-* Much thoughts have to be put into considering whether to implement search functionalities as navigation
+* Much thought have to be put into considering whether to implement search functionalities, as navigation
   functionalities such as `home` and `goto` command are sufficient in showing the modules.
   However, we chose to include it to improve user experience by allowing them to search for modules and contacts
   from the home page.
