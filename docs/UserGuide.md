@@ -614,7 +614,7 @@ RC4HDB saves your data after every command. There is no need to save manually.
 * All file commands have a `FOLDER_NAME` or `FILE_NAME` field depending on the command that is being used. 
 * `FOLDER_NAME` signifies the name of the **sub** data folder that is being used.
 * `FILE_NAME` refers to the [CSV](#glossary-of-terms) file to be targeted.
-* Do not include any file types in the `FOLDER_NAME` or `FILE_NAME`. A file type is the description that comes after the`.` in a file. For example, The file name of the file `residents.csv` is  just `residents`.
+* Do not include any file types in the `FOLDER_NAME` or `FILE_NAME`. A file type is the description that comes after the `.` in a file. For example, The file name of the file `residents.csv` is just `residents`.
 * The following symbols are not to be used in `FOLDER_NAME` or `FILE_NAME`:
   * Empty spaces
   * `.` dots
