@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalTasks.COOK;
 import static seedu.address.testutil.TypicalTasks.STUDY;
 import static seedu.address.testutil.TypicalTeams.BACKEND;
@@ -18,7 +17,6 @@ import static seedu.address.testutil.TypicalTeams.FRONTEND;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.Arrays;
@@ -27,7 +25,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.task.Name;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.exceptions.TeamNotFoundException;
 import seedu.address.testutil.AddressBookBuilder;
@@ -162,7 +159,7 @@ public class ModelManagerTest {
     @Test
     public void deleteTask_nullTeamIndex_throwsNullPointerException() {
         modelManager.addTeam(FRONTEND);
-        assertThrows(NullPointerException.class, () -> modelManager.deleteTask(null,INDEX_FIRST_TASK));
+        assertThrows(NullPointerException.class, () -> modelManager.deleteTask(null, INDEX_FIRST_TASK));
     }
 
     @Test
