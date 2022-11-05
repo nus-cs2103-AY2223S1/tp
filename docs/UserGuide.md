@@ -100,7 +100,6 @@ The following table describes the sections in detail:
 | `TEACHING_NOMINATIONS` | - Teaching nominations take in positive integers including 0. Leading zeros in the teaching nominations will not be allowed. e.g. `00001` is invalid.                                                                                                       |
 | `RATING`               | - Ratings take in numbers **between 0 and 5 inclusive**. <br/>- Decimal values are optional but only a **maximum of 2 decimals** is allowed.                                                                                                                |
 | `TAG`                  | - A tutor can have any number of tags (including 0). <br/>- Tags should be alphanumeric and should not contain any spaces.                                                                                                                                  |
-| `TAG`                  | - A tutor can have any number of tags (including 0). <br/>- Tags should be alphanumeric and should not contain any spaces.                                                                                                                                  |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
