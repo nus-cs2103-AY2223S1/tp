@@ -2,12 +2,10 @@ package seedu.realtime.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import seedu.realtime.commons.exceptions.IllegalValueException;
 import seedu.realtime.model.listing.ListingId;
 import seedu.realtime.model.offer.Offer;
 import seedu.realtime.model.offer.Price;
-import seedu.realtime.model.person.Address;
 import seedu.realtime.model.person.Name;
 
 /**
@@ -59,12 +57,12 @@ public class JsonAdaptedOffer {
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, ListingId.class.getSimpleName()));
         }
         if (!ListingId.isValidListingId(listing)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(ListingId.MESSAGE_CONSTRAINTS);
         }
         final ListingId modelListingId = new ListingId(listing);
 
         if (offerPrice == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
         }
 
         if (!Price.isValidPrice(offerPrice)) {
