@@ -114,7 +114,7 @@ Given below are my contributions to the project.
 
 Text Extract:
 
-<div style="background-color:azure; padding:10px; border-style:solid; border-width: 0 0 0 5px; border-color: bisque;">
+<div style="background-color:LightCyan; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: Khaki;">
 
 <h2>User Interface</h2>
 
@@ -199,7 +199,7 @@ This section is too long to be reproduced in entirety. Here is an example of the
 
 Text extract:
 
--------
+<div style="background-color:LightCyan; padding-left:20px; padding-top: 5px; padding-bottom: 5px; padding-right=5px; border-style:solid; border-width: 0 0 0 5px; border-color: Khaki;">
 
 ### Email
 
@@ -210,8 +210,8 @@ This property can be identified from the GUI by the icon of an envelope.
 <img src="../images/icons/mail.png" width="50" height="50">
 
 
-- Identified by the prefix `email`.
-- Emails should be of the format `local-part@domain` and adhere to the following constraints:
+- Identified by the prefix <code>email</code>.
+- Emails should be of the format <code>local-part@domain</code> and adhere to the following constraints:
 
 Part    | Constraint |
 |---------|----------|
@@ -219,6 +219,8 @@ Local part |                                                                    
 Domain name |The domain name is made up of domain labels separated by periods. The domain name must:<p> - end with a domain label at least 2 characters long <br>- have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 The local part and domain part **must** be connected by a `@` symbol.
+
+</div>
 
 <br>
 
