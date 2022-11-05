@@ -572,7 +572,6 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
-
     @Test
     public void parseRelationship_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseRelationship((String) null));
@@ -595,10 +594,5 @@ public class ParserUtilTest {
         Relationship expectedRelationship = Relationship.createRelationship(VALID_RELATIONSHIP);
         assertEquals(expectedRelationship, ParserUtil.parseRelationship(relationshipWithWhitespace));
     }
-
-
-
-
-
 
 }
