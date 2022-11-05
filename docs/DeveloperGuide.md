@@ -259,6 +259,7 @@ The following activity diagram shows what happens when a user executes a `status
 #### Design considerations
 
 **Aspect: Command to update status of an internship application**
+
 Most internship applications added by users would still be in progress, so a default "Progress" status is provided for
 each new `Internship` instead of requiring the user to provide one initially, saving time. As such, there is no need for
 a prefix for the `Status` field and the `edit` command will not work in this case. Having a separate `status` command
@@ -319,7 +320,7 @@ The following activity diagram shows what happens when a user executes a `addtas
 The add internship remark feature allows users to add a remark to his/her internship interview information via the command
 `remark` `INDEX` `r/`.
 
-### How it is implemented
+#### How it is implemented
 The implemented `remark` command is facilitated by `RemarkCommand` and `RemarkCommandParser`. It enables users to add a Remark to their internship information.
 It uses the `get(int INDEX)` on the list of internships received from `getFilteredInternshipList()` which is exposed to the `Model` interface as `Model#getFilteredInternshipList()` to
 get an Internship Object. A new Internship object is then created with the new remark. Then the`InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the Model interface as
