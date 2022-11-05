@@ -25,6 +25,8 @@ public class TypicalLessons {
     public static final LessonDesc STUDIO_DESCRIPTION_1 = new LessonDesc("Studio 1");
     public static final LessonDesc STUDIO_DESCRIPTION_2 = new LessonDesc("Studio 2: Recursion");
     public static final LessonDesc CONSULT_DESCRIPTION = new LessonDesc("Streams Consultation");
+    public static final LessonDesc MASTERY_CHECK_DESCRIPTION_1 = new LessonDesc("Mastery Check 1");
+    public static final LessonDesc MASTERY_CHECK_DESCRIPTION_2 = new LessonDesc("Mastery Check 2");
 
     public static final List<Student> STUDIO_STUDENTS = getTypicalStudents();
     public static final List<Student> MASTERY_CHECK_STUDENTS = List.of(ALICE, BENSON);
@@ -37,7 +39,9 @@ public class TypicalLessons {
 
     public static final Consult CONSULT_1 = new Consult(CONSULT_DESCRIPTION, new TimePeriod(DT3, DT4),
             CONSULT_STUDENTS);
-    public static final MasteryCheck MC_1 = new MasteryCheck(null, new TimePeriod(DT1, DT2),
+    public static final MasteryCheck MC_1 = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT1, DT3),
+            MASTERY_CHECK_STUDENTS);
+    public static final MasteryCheck MC_2 = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_2, new TimePeriod(DT3, DT4),
             MASTERY_CHECK_STUDENTS);
     public static final Studio STUDIO_1 = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT2),
             STUDIO_STUDENTS);
