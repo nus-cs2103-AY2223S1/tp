@@ -656,7 +656,26 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a customer
+### \[Insert Numbering\] Adding a customer
+
+### \[Insert Numbering\] Editing a customer
+
+### \[Insert Numbering\] Increasing a customer's reward
+
+### \[Insert Numbering\] Decreasing a customer's reward
+
+### \[Insert Numbering\] Listing all customers
+
+1. Viewing all customers within bobaBot
+
+    1. Prerequisites: Ensure that some customer data/information has been added into bobaBot.
+
+    2. Test case: `list`<br>
+       Expected: All customers' data should be listed (listing order follows the order of addition).
+
+### \[Insert Numbering\] Finding a customer
+
+### \[Insert Numbering\] Deleting a customer
 
 1. Deleting a customer via `PHONE_NUMBER`
 
@@ -684,7 +703,68 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delete`, `delete e/`, `delete hello`, `...`<br>
        Expected: Similar to previous.
 
-### Saving data
+### \[Insert Numbering\] Undoing an unintended command
+
+1. Undo an unintended command that has been executed.
+
+   1. Prerequisites: Commands which causes a state change should have been executed before executing the `undo` command. Commands such as `list`, `help`, `calc`, `calc-gui`, `exit` and `find` DO NOT result in a state change.
+   
+   2. Test case: `undo` command after `delete e/charlotte@example.com`<br>
+      Expected: The customer `Charlotte Oliveiro` that has been deleted previously is back into bobaBot.
+   
+   3. Test case: `undo` command when the JAR file is just launched <br>
+      Expected: `No previous state found` error message will be shown in the status message as bobaBot is in the initialised state.
+
+   4. Other incorrect undo commands to try: `undo anya`, `undo 123`, `...`<br>
+      Expected: Similar to previous
+
+### \[Insert Numbering\] Redoing an UndoCommand
+
+1. Redo an UndoCommand that has been executed.
+
+    1. Prerequisites: One or more successful UndoCommands should have been executed before executing the `redo` command.
+
+    2. Test case: `redo` command after an `undo` command on `delete e/charlotte@example.com`<br>
+       Expected: The customer `Charlotte Oliveiro` removed from bobaBot again.
+
+    3. Test case: `redo` command when no `undo` command has been executed <br>
+       Expected: `No next state found` error message will be shown in the status message as bobaBot is in the most updated state.
+
+    4. Other incorrect undo commands to try: `redo anya`, `redo 123`, `...`<br>
+       Expected: Similar to previous
+
+### \[Insert Numbering\] Clearing all customers in bobaBot
+
+1. Clearing all customers within bobaBot
+
+   1. Prerequisites: Ensure that some customer data/information has been added into bobaBot.
+   
+   2. Test case: `clear`<br>
+      Expected: All customers' data cleared.
+
+### \[Insert Numbering\] Calculating simple arithmetic
+
+1. Performs simple arithmetic calculation
+
+   1. Prerequisites: Ensure that there are no spaces in between the arithmetic operands and symbols
+
+   2. Test case: `calc 5+2*(4-2)`<br>
+      Expected: The answer of `9.00` should be shown in the status message.
+   
+   3. Test case: `calc 5 + 2 * (4 - 2)`<br>
+      Expected: The `invalid expression` message will be shown in the status message.
+   
+   4. Other incorrect delete commands to try: `calc`, `calc hello`, `...`<br>
+      Expected: Similar to previous.
+
+### \[Insert Numbering\] Viewing Help
+
+1. View Help
+
+   1. Test case: `help`<br>
+      Expected: Help window appears.
+
+### \[Insert Numbering\] Saving data
 
 1. Dealing with missing/corrupted data files
 
