@@ -72,11 +72,6 @@ public class EditClientCommandTest {
     @Test
     public void execute_invalidProductsUnfilteredList_failure() {
         Index indexLastClient = Index.fromOneBased(model.getFilteredClientList().size());
-        Client lastClient = model.getFilteredClientList().get(indexLastClient.getZeroBased());
-
-        ClientBuilder clientInList = new ClientBuilder(lastClient);
-        Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withProducts(VALID_PRODUCT_2).build();
 
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withProducts(VALID_PRODUCT_2, INVALID_PRODUCT_1).build();
