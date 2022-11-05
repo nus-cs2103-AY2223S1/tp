@@ -49,7 +49,7 @@ public class FindBillCommandTest {
         Optional<Predicate<BillDate>> secondBillDatePredicate = Optional.of(billDate -> billDate.toString()
                 .contains("-08".toLowerCase()));
         Optional<Predicate<Amount>> secondAmountPredicate = Optional.of(amount -> amount.toString().toLowerCase()
-                .contains(".23".toLowerCase()));
+                .contains("1000".toLowerCase()));
 
         FindBillCommand firstCommand = new FindBillCommand(firstNamePredicate, firstPaymentStatusPredicate,
                 firstBillDatePredicate, firstAmountPredicate);
@@ -63,7 +63,9 @@ public class FindBillCommandTest {
         // same values -> returns true
         FindBillCommand firstCommandCopy = new FindBillCommand(firstNamePredicate, firstPaymentStatusPredicate,
                 firstBillDatePredicate, firstAmountPredicate);
-        assertTrue(firstCommand.equals(firstCommandCopy));*/
+        assertTrue(firstCommand.equals(firstCommandCopy));
+        */
+
 
         // different types -> returns false
         assertFalse(firstCommand.equals(1));
@@ -150,7 +152,7 @@ public class FindBillCommandTest {
         Optional<Predicate<BillDate>> slotPredicate = Optional.of(billDate -> billDate.toString()
                 .contains("2020-"));
         Optional<Predicate<Amount>> doctorPredicate = Optional.of(amount -> amount.toString().toLowerCase()
-                .contains(".23"));
+                .contains("1001.23"));
         FindBillCommand command = new FindBillCommand(namePredicate, testPredicate, slotPredicate,
                 doctorPredicate);
         expectedModel.updateFilteredBillList(command.getPredicate());
