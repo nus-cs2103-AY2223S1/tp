@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
@@ -59,7 +60,7 @@ public class Student implements Identity<Student>, Comparable<Student> {
     /**
      * Returns an Unmodifiable ObservableList of module data.
      */
-    public List<StudentModuleData> getModuleDataList() {
+    public ObservableList<StudentModuleData> getModuleDataList() {
         return moduleDataList.asUnmodifiableObservableList();
     }
 
