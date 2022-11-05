@@ -228,7 +228,7 @@ Examples:
 ### Adding / Editing an interview: `interview`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b><br>
-* Interview, being one of the branches of the application process, plays a crucial part in every application. It helps user to have a better clarity on understanding how's the current application process going on.
+Interview, being one of the branches of the application process, plays a crucial part in every application. It helps users have a better understanding on how the current application process is going on.
 </div>
 
 Adds an interview to an existing application or edits an existing interview in an application.
