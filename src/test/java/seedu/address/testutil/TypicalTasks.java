@@ -15,6 +15,7 @@ public class TypicalTasks {
     public static final Task READ_BOOK = new TaskBuilder()
             .withDescription("read book")
             .withDeadline("12-11-2022")
+            .withCompletionStatus(false)
             .withId(1)
             .build();
     public static final Task WRITE_TEST_CASES = new TaskBuilder()
