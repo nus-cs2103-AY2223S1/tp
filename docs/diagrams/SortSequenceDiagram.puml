@@ -48,7 +48,7 @@ deactivate AddressBookParser
 LogicManager -> SortCommand : execute()
 activate SortCommand
 
-SortCommand -> Model : updateFilteredPersonList()
+SortCommand -> Model : filterPersonList()
 activate Model
 
 Model --> SortCommand
