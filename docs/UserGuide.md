@@ -628,6 +628,10 @@ Phone numbers must consist of only numerical inputs 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 
 Phone numbers must be at least 3 digits long, as the shortest phone numbers in the world (emergency hotlines) are 3 digits long.
 
+### TAG Parameter
+
+The tag parameter `#/TAG` accepts only alphanumeric inputs and **no blank spaces**. (e.g. `#/friend` or `#/bestFriend` and **not** `#/best friend`)
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
