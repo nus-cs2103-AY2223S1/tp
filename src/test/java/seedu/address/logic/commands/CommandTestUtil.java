@@ -23,6 +23,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -158,6 +160,16 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    public static void showTeamAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTeamList().size());
+
+        Team team = model.getFilteredTeamList().get(targetIndex.getZeroBased());
+        final String[] splitName = team.getName().fullName.split("\\s+");
+        model.updateFilteredTeamList(new TeamNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredTeamList().size());
     }
 
 }
