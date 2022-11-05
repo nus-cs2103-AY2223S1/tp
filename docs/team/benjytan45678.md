@@ -11,8 +11,9 @@ It is written in Java, and has about 14 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added `FilterCommand` and `ApplicationStatusPredicate` class under `applicant` package with Jie Hui: [#57](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/57) and [#67](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/67).
+* **New Feature**: Added the ability to filter applicants by their scholarship application status: [#57](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/57) and [#67](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/67).
     * Justification: Allows administrative staff to manage scholarship applicants more easily by organising them based on their specific application status.
+    * Credits: Feature developed in tandem with Jie Hui.
 
 * **New Feature**: Added `PinCommand` and `UnPinCommand` class under `applicant` package with its respective parsers: [#105](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/105), [#115](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/115) and [#116](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/116)
     * What it does: Allows the user to pin scholarship applicants, which will be shown on the right-side panel.
@@ -36,9 +37,11 @@ Given below are my contributions to the project.
     * Implemented `PinCard`, `PinList` and its css files to improve the overall user interface.
 
 * **Documentation**: 
-  * User Guide: Added unpin command in features.
-  * Developer Guide: Added the filter command implementation, filter command
-    sequence diagram, filter command activity diagram and Use Case 3. [#96](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/96/files)
+  * User Guide: 
+    * Added unpin command in features. [#125](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/125)
+  * Developer Guide: 
+    * Added the filter command implementation, filter command sequence diagram, filter command activity diagram. [#96](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/96/files)
+    * Added use case 3
 
 * **Community**: 
   * Hosted multiple discussion sessions with team members on PR issues and several bugs.
