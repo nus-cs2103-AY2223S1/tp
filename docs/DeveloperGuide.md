@@ -391,7 +391,7 @@ The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `
 
 _{more aspects and alternatives to be added}_
 
-###\[Developed\] Assigning clients a policy
+### Assigning clients a policy
 
 Users can assign existing policies to a client, whilst providing uptake details
 such as the premium amount and start/end dates. This is facilitated by the `PolicyAssignCommand` class
