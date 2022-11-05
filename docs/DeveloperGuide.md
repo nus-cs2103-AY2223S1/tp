@@ -230,31 +230,31 @@ The following sequence diagram shows how the `HistoryCommand()` command works:
 
 </div>
 
-### \[Proposed\] Grouping feature
+### Grouping feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed grouping feature is facilitated by managing groups with the existing `model` component. Additionally, it implements the following features:
 
-* `Group#createGroup()` - Creates a new group.
-* `Group#addPersonToGroup()` - Adds a person to a group.
-* `Group#removePersonFromGroup()` - Removes a person from a group.
-* `Group#deleteGroup()` - Deletes a group (without deleting the people in the group).
-* `Group#getGroupPersonList()` - Returns list of grouped persons.
+* `#AddToGroup()` - Adds a person to a group.
+* `#Ungroup()` - Removes a person from a group.
+* `#Group()` - Opens a group window to view group members.
 
 Given below is an example usage scenario and how the grouping mechanism behaves at each step.
 
-Step 1. The user executes `newgroup friends` to create a new group called friends. The `Model` calls `createGroup(friends)` to create the group.
+Step 1. The user executes `addtogroup 1 friends` to group the first person in the list with "friends".
 
-Step 2. The user executes `group 1 friends` to group first person in the list with `friends`. The `Model` then calls `addPersonToGroup(person, group)` to add the specified person to the specified group.
+Step 2. The `AddToGroupCommandParser#parse` then parses the arguments.
 
-Step 3. The user now decides that it was a mistake to consider this person a friend. The user executes `ungroup 1 friends` to ungroup the first person in the list from `friends`. The `Model` then calls `removePersonFromGroup(person, group)` to remove the specified person from the specified group.
+Step 3. A `AddToGroupCommand` object is then created.
 
-Step 4. The user decides to delete the group `friends`. The user executes `dgroup friends` to delete the group `friends`. The `Model` calls `deleteGroup(group)` to delete the specified group.
+Step 4. `AddToGroupCommand#execute` will then call `setPerson(target, editedPerson)`, hence updating the person in `AddressBook` to be in the group "friends".
 
-The following sequence diagram shows how the `createGroup()` command works:
+Step 5. `CommandResult` contains the success message and the person is successfully added to the group "friends".
 
-![CreateGroupSequenceDiagram](images/CreateGroupSequenceDiagram.png)
+The following sequence diagram shows how the add to group operation works, the ungroup command also works in a similar way:
+
+![AddToGroupSequenceDiagram](images/AddToGroupSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CreateGroupCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
