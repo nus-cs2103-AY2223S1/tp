@@ -75,6 +75,26 @@ public class PersonTest {
     }
 
     @Test
+    public void testToString_withPersonGroup_success() {
+        Person aliliCopy = new PersonBuilder(ALILI).withGroups(new String[]{"CS2101"}).build();
+        String str = "Alili Pauline; "
+                + "Phone: 94351253; "
+                + "Email: alice@example.com; "
+                + "Address: 123, Jurong West Ave 6, #08-111; "
+                + "Tags: [friends]; "
+                + "Assignment: Group 1 [(LOW) Midterms]; "
+                + "Group: CS2101";
+
+        assertTrue(aliliCopy.toString().equals(str));
+    }
+
+    @Test
+    public void getWorkloadScoreTest() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        assertTrue(aliceCopy.getWorkloadScore() == 0);
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();

@@ -108,6 +108,10 @@ public class JsonUserPrefsStorageTest {
         Path pefsFilePath = testFolder.resolve("TempPrefs.json");
         JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
 
+        //Test same path
+        Path path = jsonUserPrefsStorage.getUserPrefsFilePath();
+        assertEquals(path, pefsFilePath);
+
         //Try writing when the file doesn't exist
         jsonUserPrefsStorage.saveUserPrefs(original);
         UserPrefs readBack = jsonUserPrefsStorage.readUserPrefs().get();

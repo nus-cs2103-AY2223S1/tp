@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.model.person.testutil.Assert.assertThrows;
 import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -15,6 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.Workload;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -215,6 +218,14 @@ public class ParserUtilTest {
     @Test
     public void parseAssignment_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAssignment(INVALID_ASSIGNMENT));
+    }
+
+    @Test
+    public void parseAssignmentWithDeadline_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssignmentWithDeadline(
+                INVALID_ASSIGNMENT,
+                Workload.HIGH,
+                new Deadline(LocalDateTime.now())));
     }
 
     @Test

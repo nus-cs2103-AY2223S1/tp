@@ -24,6 +24,8 @@ public class AddGroupMemberCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse("Alpha n/Bob"));
         assertThrows(ParseException.class, () -> parser.parse("g/Alpha Charles"));
         assertThrows(ParseException.class, () -> parser.parse(" "));
+        assertThrows(ParseException.class, () -> parser.parse(
+                AddGroupMemberCommand.COMMAND_WORD + " g/group n/-=/"));
     }
 
     @Test
