@@ -130,7 +130,7 @@ public class Client {
     }
 
     public boolean isBirthdayValid() {
-        return birthday.isEmpty() ? true : Birthday.isDateInValidPeriod(birthday.get());
+        return birthday.isEmpty() ? true : Birthday.isDateBeforeHundredYear(birthday.get());
     }
 
     /**

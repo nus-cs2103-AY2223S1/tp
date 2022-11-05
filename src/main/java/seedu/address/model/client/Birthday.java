@@ -52,7 +52,7 @@ public class Birthday extends Date {
      * Returns true if and only if the given date {@code birthday} is not after today
      * and not before {@code YEARS_BEFORE}.
      */
-    public static boolean isDateInValidPeriod(Birthday birthday) {
+    public static boolean isDateBeforeHundredYear(Birthday birthday) {
         return isBeforePeriod(birthday, YEARS_BEFORE);
     }
 
