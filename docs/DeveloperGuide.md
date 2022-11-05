@@ -340,15 +340,14 @@ _{more aspects and alternatives to be added}_
 
 **Target User**
 
-Hackathon participants - particularly team member with project management role
+Hackathon team leaders, in charge of distributing tasks to the people in his group
 
 **Target user profile**:
 
 * has a need to allocate and track tasks to team members
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* has a need to manage a significant number of people and tasks
+* has a need to manage tasks that can change significantly over the course of the project
+* prefer using a desktop application for management
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: help with project management tasks and team formation in Hackathons
@@ -368,7 +367,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | hackathon team leader                      | mark task as done                   | I can keep a moving record of what we have done                                      |
 | `* * *`  | hackathon team leader                      | mark task as not done               | in case we have tasks that end up being incomplete or the task requirements modified |
 | `* *`    | hackathon team leader                      | see which tasks are done/ not done  | plan the way forward                                                                 |
-| `* *`    | hackathon team leader                      | add further descriptions to ga task | add more details to a task                                                           |                             |
+| `* *`    | hackathon team leader                      | add further descriptions to the task | add more details to a task                                                           |                             |
+| `* *`    | hackathon team leader                      | sort tasks by deadline               | know what is most urgent                                                                 |
+| `* *`    | hackathon team leader                      | sort tasks by priority                | know what is most important                                                    |                             |
+
+| `* *`    | hackathon team leader                      | filter tasks by differnt tasks        | focus of tasks of a certain type                                                                 |
+| `* *`    | hackathon team leader                      | find a specific person               | know how much that person has assigned to him                                                      |                             |
 
 *{More to be added}*
 
@@ -379,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a new member
-2.  HackAssist shows a list of fields to input (Name, Rating of Ability, Role)
+2.  HackAssist shows a list of fields to input (Name,Phone Number, Email, Address, Tags)
 3.  User inputs fields
 4.  HackAssist shows list of all members, including new member
 Use case ends.
@@ -390,86 +394,175 @@ Extensions:
   * 3a. HackAssist detects that the member already exists
      * 3a1. Hackassist shows an error message
        Use case ends.
+       
+ * 3b. HackAssist detects that one of the input fields is incorrectly formated
+   * 3b1. Hackassist shows an error message, showing the incorrectly formated field and the specifications of that field
+      Use case ends.
 
- * *a. At any time, User chooses to cancel the process.
-    * *a1. HackAssist requests to confirm the cancellation.
-    * *a2. User confirms the cancellation.
+
+**Use case: Delete a team member**
+
+**MSS**
+
+1.  User requests to delete a new member
+2.  HackAssist shows a list of fields to input (index)
+3.  User inputs fields
+4.  HackAssist displays confirmation message
+5.  HackAssist removes the user's name and email from all the tasks assigned to that user
+6.  HackAssist shows list of all members, excluding deleted member, and the updated task list
+Use case ends.
+
+**Extensions**
+
+Extensions:
+  * 3a. HackAssist detects that the index is not a number
+     * 3a1. Hackassist shows an error message warnging that the command format is invalid
+       Use case resumes from step 2.
+  
+  * 3b. HackAssist detects that the index is invalid
+     * 3b1. Hackassist shows an error message warnging that the index is invalid
+       Use case resumes from step 2.
+
+**Use case: Edit a team member**
+
+**MSS**
+
+1.  User requests to edit a new member
+2.  HackAssist shows a list of fields to input (index and one or more of Name, Phone Number, Email Address, Tags)
+3.  User inputs fields
+4.  HackAssist displays confirmation message
+5.  HackAssist shows list of all members, with that particular member's fields updated
+Use case ends.
+
+**Extensions**
+
+Extensions:
+  * 3a. HackAssist detects that the index is not a number
+     * 3a1. Hackassist shows an error message warning that the command format is invalid
+       Use case resumes from step 2.
+  
+  * 3b. HackAssist detects that the index is invalid
+     * 3b1. Hackassist shows an error message warning that the index is invalid
+       Use case resumes from step 2.
+       
+  * 3c. HackAssist detects that none of optional fields were inputed
+     * 3c1. Hackassist shows an error message warning that at least one field must be edited
+       Use case resumes from step 2.
+     
+* 3d. HackAssist detects that not all the optional fields are different from existing fields
+     * 3d1. Hackassist shows an error message warning that the fields must be different from the ones inputed
+       Use case resumes from step 2.
+       
+ **Use case: Add a task**
+
+**MSS**
+
+1.  User requests to add a new member
+2.  HackAssist shows a list of fields to input (Name, Description, Priority, Category, Status)
+3.  User inputs fields
+4.  HackAssist shows list of all members, including new member
+Use case ends.
+
+**Extensions**
+
+Extensions:
+  * 3a. HackAssist detects that the task already exists
+     * 3a1. Hackassist shows an error message
        Use case ends.
+ 
+ * 3b. HackAssist detects that the deadline has already past
+     * 3b1. Hackassist shows an error message, warning that the deadline must be a future date
+       Use case ends.
+       
+ * 3c. HackAssist detects that the priority or category is not one of the accepted values
+    * 3c1. Hackassist shows an error message, showing the incorrect priority or category and showing the correct values
+      Use case ends.
+      
+ * 3d. HackAssist detects that one of the input fields is incorrectly formated
+    * 3d1. Hackassist shows an error message, showing the incorrectly formated field and the specifications of that field
+      Use case ends.
+      
+**Use case: Delete a task**
 
-**Use case: Add specific team member to an existing task**
+**MSS**
+
+1.  User requests to delete a new task
+2.  HackAssist shows a list of fields to input (index)
+3.  User inputs fields
+4.  HackAssist displays confirmation message
+5.  HackAssist removes the task from task list and all members assigned to that task
+6.  HackAssist shows list of all tasks, excluding deleted task, and the updated person list
+Use case ends.
+
+**Extensions**
+
+Extensions:
+  * 3a. HackAssist detects that the index is not a number
+     * 3a1. Hackassist shows an error message warnging that the command format is invalid
+       Use case resumes from step 2.
+  
+  * 3b. HackAssist detects that the index is invalid
+     * 3b1. Hackassist shows an error message warnging that the index is invalid
+       Use case resumes from step 2.
+       
+**Use case: Assign a task to an existing team member**
 
 **MSS**
 
 1.  User requests to see all tasks
 2.  HackAssist shows current list of tasks
-3.  User requests specific task
-4.  HackAssist displays information on that task
-5.  User requests to add member
-6.  HackAssist shows list of all members
-7.  User selects specific member
-8.  HackAssist displays information about member and prompts for confirmation
-9.  User confirms
-10.  User is added to existing task
+3.  User edits the task to have the email of a current member
+4.  User is updated to be assigned to existing task
+5.  Task is updated to show the user assigned to it, and that user's email
 Use case ends.
 
 **Extensions**
 
 Extensions:
   * 2a. There are no tasks
-       Use case ends.
+    * Use case ends.
+ 
+ * 3a. The format of the input email is invalid
+    * 3a1 Hackassist shows an error message that shows what is the expected input
+       Use case resumes from step 2.
 
- * 5a. There are no members
-    * 5a1 Hackassist shows an error message that there are no members
-       Use case ends.
+ * 3b. There are no members with the specified email
+    * 3b1 Hackassist shows an error message that there are no members
+       Use case resumes from step 2.
 
-* 7a. HackAssist detects that the member's Ability Rating is lower than the given task
-    * 7a1. Hackassist shows a warning message for low user rating
-    * 7a2. Hackassist promts for confirmation
-    * 7a3. User ackowledges and confirms addition of member
-      Use case resumes from step 8.
 
-* 7b. HackAssist detects that the member already has more than 3 tasks
-    * 7b1. Hackassist shows a warning message for potentially overloaded user
-    * 7b2. Hackassist promts for confirmation
-    * 7b3. User ackowledges and confirms addition of member
-      Use case resumes from step 8.
-
-* a. At any time, User chooses to cancel the process.
-    * a1. HackAssist requests to confirm the cancellation.
-    * a2. User confirms the cancellation.
-      Use case ends.
-
- **Use case: Edit deadline of task**
+ **Use case: Edit a task**
 
 **MSS**
 
-1.  User requests to see all tasks
-2.  HackAssist shows current list of tasks
-3.  User requests specific task
-4.  HackAssist displays information on that task
-5.  User requests to edit deadline
-6.  HackAssist promts input for new deadline
-7.  User inputs deadline
-8.  User confirms
-9.  HackAssist updates deadline
-10.  HackAssist displays updated information about task
+1.  User requests to edit a new member
+2.  HackAssist shows a list of fields to input (index and one or more of Name, Description, Priority, Category, Status )
+3.  User inputs fields
+4.  HackAssist displays confirmation message
+5.  HackAssist shows list of all members, with that particular member's fields updated
 Use case ends.
 
 Extensions:
-* 2a. There are no tasks
-    Use case ends.
-
-* 7a. HackAssist detects that the deadline is invalid
-    * 7a1. Hackassist shows an error message that the deadline is invalid
-    * 7a2. User enters new data
-    Steps 7a1-7a2 are repeated until the data entered are correct.
-    Use case resumes from step 8.
-
-* 7b. HackAssist detects that the deadline is already past
-    * 7b1. Hackassist shows an error message that the deadline has already past
-    * 7b2. User enters new data
-    Steps 7b1-7b2 are repeated until the data entered are correct.
-    Use case resumes from step 8.
+  * 3a. HackAssist detects that the index is not a number
+     * 3a1. Hackassist shows an error message warning that the command format is invalid
+       Use case resumes from step 2.
+  
+  * 3b. HackAssist detects that the index is invalid
+     * 3b1. Hackassist shows an error message warning that the index is invalid
+       Use case resumes from step 2.
+       
+  * 3c. HackAssist detects that none of optional fields were inputed
+     * 3c1. Hackassist shows an error message warning that at least one field must be edited
+       Use case resumes from step 2.
+  
+  * 3d. HackAssist detects that the priority or category is not one of the accepted values
+    * 3d1. Hackassist shows an error message, showing the incorrect priority or category and showing the correct values
+      Use case ends.
+       
+  * 3e. HackAssist detects that not all the optional fields are different from existing fields
+     * 3e1. Hackassist shows an error message warning that the fields must be different from the ones inputed
+       Use case resumes from step 2.
+       
 *{More to be added}*
 
 ### Non-Functional Requirements
