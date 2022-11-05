@@ -460,7 +460,7 @@ Here's a screenshot of Plannit before and after executing the command:
 
 | Before executing the command                                                    | After executing the command                                                    |
 |---------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/add-link-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-link-after.png"/></p>{:/} |
+| {::nomarkdown}<p align="center"><img src="images/add-link-before.PNG"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-link-after.PNG"/></p>{:/} |
 
 #### 2.3.2. Delete link
 You may delete link(s) from a specific module using the `delete-link` command. 
@@ -494,9 +494,9 @@ In the above example, we are deleting the links with the URL `https://www.nusmod
 from the module with module code `CS2040`, using their corresponding link alias `nus mods` and `kattis` respectively.
 Here's a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                       | After executing the command                                                       |
-|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/delete-link-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-link-after.png"/></p>{:/} |
+| Before executing the command                                                     | After executing the command                                                     |
+|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-link-before.PNG"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-link-after.PNG"/></p>{:/} |
 
 #### 2.3.3. Open link
 You may open link(s) from a specific module to your default browser using the `open-link` command.
