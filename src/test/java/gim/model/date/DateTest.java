@@ -2,6 +2,7 @@ package gim.model.date;
 
 import static gim.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 
@@ -101,9 +102,30 @@ public class DateTest {
     }
 
     @Test
-    public void isValidDate() {
+    public void isValidDateByRegex() {
         // null date
         assertThrows(NullPointerException.class, () -> Date.isValidDateByRegex(null));
     }
 
+    @Test
+    public void getDayString() {
+        assertEquals("Saturday", new Date("5/11/2022").getDayString());
+    }
+
+    @Test
+    public void checkWithinRange() {
+        Date testDate = new Date("5/11/2022");
+        assertTrue(testDate.checkWithinRange(new Date("4/11/2022"), new Date("6/11/2022")));
+    }
+
+    @Test
+    public void getPreviousDaysDate() {
+        Date testDate = new Date("5/11/2022");
+        assertEquals(new Date("4/11/2022"), testDate.getPreviousDaysDate(1));
+    }
+
+    @Test
+    public void equals() {
+        assertEquals(new Date("5/11/2022"), new Date("5/11/2022"));
+    }
 }
