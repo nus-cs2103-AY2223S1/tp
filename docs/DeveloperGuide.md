@@ -487,7 +487,7 @@ If any of the prefixes contain invalid values or no prefix values were provided,
 
 * **Alternative 2:** Edit the existing `Appointment` object itself.
   * Pros: Only have to edit the required fields.
-  * Cons: Editing the existing object may not reflect the changes in the Appointment listview as compared to setting a new object, hence requiring more Observable fields.
+  * Cons: Editing the existing object does not reflect the changes in the Appointment listview as compared to setting a new object, hence requiring more Observable fields.
 
 ### Mark/Unmark Feature
 
