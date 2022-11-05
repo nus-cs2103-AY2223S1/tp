@@ -182,6 +182,15 @@ Edits an existing student in a specified module.
 
 Format: `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/TELEGRAM_HANDLE] [m/MODULE] [tut/TUTORIAL] [g/GRADE] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command to:
+<ul>
+  <li>Update your student's grade after an assessment</li>
+  <li>Update your student's attendance and participation score after a lesson</li>
+  <li>Update your student's particulars</li>
+</ul>
+</div>
+
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -191,15 +200,6 @@ Format: `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/T
 * If nothing is given to `GRADE` even though `g/` is typed into the command box, it will automatically be set to `PENDING...`.
 * If nothing is given to `ATTENDANCE` even though `att/` is typed into the command box, it will automatically be set to `0`.
 * If nothing is given to `PARTICIPATION` even though `part/` is typed into the command box, it will automatically be set to `0`.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You may want to use this command to:
-<ul>
-  <li>Update your student's grade after an assessment</li>
-  <li>Update your student's attendance and participation score after a lesson</li>
-  <li>Update your student's particulars</li>
-</ul>
-</div>
 
 Examples:
 * `edit student 1 ph/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
