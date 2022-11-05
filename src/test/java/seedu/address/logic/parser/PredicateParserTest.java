@@ -243,6 +243,19 @@ public class PredicateParserTest {
     }
 
     @Test
+    public void parseDeliverer_moreThanOneEmail_throwParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser
+                .parseDeliverer("e/ggg@gmail.com fff@mail.com"));
+    }
+
+    @Test
+    public void parseDeliverer_moreThanOnePhone_throwParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseDeliverer("e/666 9999"));
+    }
+
+    @Test
     public void parseSupplier_address_addressContainsKeywordsPredicate() {
         AddressContainsKeywordsPredicate<Supplier> expected = new AddressContainsKeywordsPredicate<>(
                 Arrays.asList("Wall", "Street"));
@@ -334,6 +347,18 @@ public class PredicateParserTest {
     public void parseSupplier_emptyArguments_throwParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseSupplier("s/"));
+    }
+
+    @Test
+    public void parseSupplier_moreThanOneEmail_throwParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseSupplier("e/ggg@gmail.com fff@mail.com"));
+    }
+
+    @Test
+    public void parseParseSupplier_moreThanOnePhone_throwParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseSupplier("e/666 9999"));
     }
 
     //Pet tests
