@@ -212,7 +212,7 @@ public class Social {
 
     public String getPreferredLink() {
         if (this.preferred == null) {
-            return null;
+            return "<none>";
         } else {
             switch (this.preferred) {
             case WHATSAPP:
@@ -228,7 +228,7 @@ public class Social {
                 return this.getInstagram();
 
             default:
-                return null;
+                return "<none>";
             }
 
         }

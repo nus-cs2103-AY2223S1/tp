@@ -17,7 +17,6 @@ import static seedu.address.logic.commands.SocialTestUtil.VALID_TELEGRAM;
 import static seedu.address.logic.commands.SocialTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.logic.commands.SocialTestUtil.VALID_WHATSAPP;
 import static seedu.address.logic.commands.SocialTestUtil.VALID_WHATSAPP_AMY;
-import static seedu.address.logic.commands.SocialTestUtil.getAmySocial;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getSocialAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -60,12 +59,12 @@ public class IncludeCommandTest {
         Model expectedModel = new ModelManager(getSocialAddressBook(), new UserPrefs());
         Person editedPerson = new PersonBuilder().withOccupation(VALID_OCCUPATION_AMY).withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(CommandTestUtil.VALID_EMAIL_AMY).withTutorial(VALID_TUTORIAL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).withSocial(getAmySocial()).build();
+                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
         IncludeCommand includeWhatsapp = new IncludeCommand(INDEX_FIRST_PERSON, VALID_WHATSAPP, VALID_WHATSAPP_AMY);
         IncludeCommand includeTelegram = new IncludeCommand(INDEX_FIRST_PERSON, VALID_TELEGRAM, VALID_TELEGRAM_AMY);
         IncludeCommand includeEmail = new IncludeCommand(INDEX_FIRST_PERSON, VALID_EMAIL, VALID_EMAIL_AMY);
         IncludeCommand includeInstagram = new IncludeCommand(INDEX_FIRST_PERSON, VALID_INSTAGRAM, VALID_INSTAGRAM_AMY);
-        expectedModel.setPerson(expectedModel.getFilteredPersonList().get(0), editedPerson);
+        model.setPerson(expectedModel.getFilteredPersonList().get(0), editedPerson); //Remove first person's social
 
         CommandResult commandResult = includeWhatsapp.execute(model);
         assertEquals(String.format(IncludeCommand.MESSAGE_SUCCESS), commandResult.getFeedbackToUser());
