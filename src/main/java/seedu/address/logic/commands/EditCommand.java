@@ -55,7 +55,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "A person with the same email address already exists in the"
             + " address book.";
 
-    public static final String MESSAGE_DUPLICATE_VALUES = "All edited fields must be different from the existing values";
+    public static final String MESSAGE_DUPLICATE_VALUES = "All edited fields must be different"
+                    + " from the existing values";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -78,8 +79,9 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws CommandException {
-        if(!checkNewValues(personToEdit,editPersonDescriptor)) {
+    private static Person createEditedPerson(Person personToEdit,
+                EditPersonDescriptor editPersonDescriptor) throws CommandException {
+        if (!checkNewValues(personToEdit, editPersonDescriptor)) {
             throw new CommandException(MESSAGE_DUPLICATE_VALUES);
         }
         assert personToEdit != null;
