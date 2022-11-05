@@ -782,6 +782,8 @@ If your changes to the data file makes its format invalid, TrackO will discard a
 data file at the next run.
 </div>
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ## Command summary
 
 | Action                                                              | Format, Examples                                                                                                                                                                                                                                                                |
