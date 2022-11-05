@@ -435,7 +435,7 @@ Scenario 6: User tries to book an appointment with the same time as other appoin
 
 <img src="images/BookCommandObjectDiagram.png" width="450" />
 
-This object diagram illustrates the above scenario. As the specified person has already booked an appointmnet in `Dec 10 2022 12:00`, the newly created `Appointment` object will not be associated with the person. The `BookCommand` will throw a `CommandException`, which will feedback to the user that he tried to book an appointment at the same time as the other appointments.
+This object diagram illustrates the above scenario. As the specified person has already booked an appointment in `Dec 10 2022 12:00`, the newly created `Appointment` object will not be associated with the person. The `BookCommand` will throw a `CommandException`, which will feedback to the user that he tried to book an appointment at the same time as the other appointments.
 
 The following sequence diagram helps to provide a clearer picture to how the book operation works:
 
