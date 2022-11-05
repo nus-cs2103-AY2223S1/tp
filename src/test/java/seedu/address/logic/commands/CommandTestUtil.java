@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_ADD_STUDENTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_DELETE_STUDENTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -80,14 +81,15 @@ public class CommandTestUtil {
 
     public static final EditTaskCommand.EditTaskDescriptor DESC_TODO;
     public static final EditTaskCommand.EditTaskDescriptor DESC_DEADLINE;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_ASSIGNMENT;
 
     public static final String VALID_TASK_TITLE = "Grade assignments";
     public static final String VALID_TASK_DESCRIPTION = "Complete by tonight";
 
     public static final String VALID_DEADLINE_DATE = "2022-09-09";
     public static final String VALID_ASSIGNMENT_STUDENTS = "Adam, Ben, Charles";
+    public static final List<String> VALID_ASSIGNMENT_STUDENTS_LIST = Arrays.asList("Adam", "Ben", "Charles");
     public static final String VALID_ASSIGNMENT_STUDENT_ADAM = "Adam";
-    public static final String VALID_ASSIGNMENT_STUDENT_BEN = "Ben";
 
     public static final String INVALID_TASK_TITLE = "";
     public static final String INVALID_TASK_DESCRIPTION = "";
@@ -98,6 +100,8 @@ public class CommandTestUtil {
     public static final String DEADLINE_DATE_DESC = " " + PREFIX_DEADLINE_DATE + VALID_DEADLINE_DATE;
     public static final String ASSIGNMENT_ADD_STUDENTS_DESC =
             " " + PREFIX_ASSIGNMENT_ADD_STUDENTS + VALID_ASSIGNMENT_STUDENTS;
+    public static final String ASSIGNMENT_DELETE_STUDENTS_DESC =
+            " " + PREFIX_ASSIGNMENT_DELETE_STUDENTS + VALID_ASSIGNMENT_STUDENT_ADAM;
 
 
     static {
@@ -111,6 +115,8 @@ public class CommandTestUtil {
                 .withDescription(VALID_TASK_DESCRIPTION).build();
         DESC_DEADLINE = new EditTaskDescriptorBuilder().withTitle(VALID_TASK_TITLE)
                 .withDescription(VALID_TASK_DESCRIPTION).withDate(VALID_DEADLINE_DATE).build();
+        DESC_ASSIGNMENT = new EditTaskDescriptorBuilder().withTitle(VALID_TASK_TITLE)
+                .withDescription(VALID_TASK_DESCRIPTION).withAddStudents(VALID_ASSIGNMENT_STUDENTS).build();
     }
 
     /**

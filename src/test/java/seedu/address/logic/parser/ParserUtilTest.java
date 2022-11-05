@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_STUDENTS;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
@@ -9,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -305,5 +307,22 @@ public class ParserUtilTest {
         String formatDateWithWhitespace = WHITESPACE + VALID_FORMAT_DATE + WHITESPACE;
         FormatDate expectedFormatDate = new FormatDate(VALID_FORMAT_DATE);
         assertEquals(expectedFormatDate, ParserUtil.parseDate(formatDateWithWhitespace));
+    }
+
+    @Test
+    public void parseStudents_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStudents(null));
+    }
+
+    @Test
+    public void parseStudents_validValueWithoutWhitespace_returnsStudentList() throws Exception {
+        List<String> expectedStudents = Arrays.asList(VALID_ASSIGNMENT_STUDENTS.split(", "));
+        assertEquals(expectedStudents, ParserUtil.parseStudents(VALID_ASSIGNMENT_STUDENTS));
+    }
+
+    @Test
+    public void parseStudents_validValueWithWhitespace_returnsTrimmedStudentList() throws Exception {
+        List<String> expectedStudents = Arrays.asList(VALID_ASSIGNMENT_STUDENTS.split(", "));
+        assertEquals(expectedStudents, ParserUtil.parseStudents(WHITESPACE + VALID_ASSIGNMENT_STUDENTS + WHITESPACE));
     }
 }

@@ -15,10 +15,7 @@ import seedu.address.model.task.TaskTitle;
 public class AssignmentBuilder {
     public static final String DEFAULT_TITLE = "This is a title";
     public static final String DEFAULT_DESCRIPTION = "This is a description";
-    public static final String DEFAULT_STUDENT_ADAM = "Adam";
-    public static final String DEFAULT_STUDENT_BEN = "Ben";
-    public static final String DEFAULT_STUDENT_CHLOE = "Chloe";
-    public static final String DEFAULT_STUDENT_ETHAN = "Ethan";
+    public static final String DEFAULT_STUDENTS = "Adam, Ben, Chloe, Ethan";
 
     private TaskTitle title;
     private TaskDescription description;
@@ -31,8 +28,7 @@ public class AssignmentBuilder {
     public AssignmentBuilder() {
         title = new TaskTitle(DEFAULT_TITLE);
         description = new TaskDescription(DEFAULT_DESCRIPTION);
-        students = new ArrayList<>(Arrays.asList(DEFAULT_STUDENT_ADAM,
-                DEFAULT_STUDENT_BEN, DEFAULT_STUDENT_CHLOE, DEFAULT_STUDENT_ETHAN));
+        students = new ArrayList<>(Arrays.asList(DEFAULT_STUDENTS.split(", ")));
         type = "Assignment";
     }
 
@@ -68,8 +64,8 @@ public class AssignmentBuilder {
     /**
      * Sets the {@code Students} of the {@code Task} that we are building.
      */
-    public AssignmentBuilder withStudents(List<String> students) {
-        this.students = students;
+    public AssignmentBuilder withStudents(String students) {
+        this.students = Arrays.asList(students.split(", "));
         return this;
     }
 
