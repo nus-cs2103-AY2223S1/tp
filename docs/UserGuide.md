@@ -257,7 +257,7 @@ Format: `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`
 * At least one of the optional fields must be provided.
 * `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not exceed 27 characters.
 * `CALORIE` can only take in a non-negative integer that is less than 2147483648.
-* `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner.
+* `MEAL_TYPE` can only take on one of three values: breakfast, lunch or dinner.
 
 Example:
 
