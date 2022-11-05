@@ -24,7 +24,7 @@ public class TypicalMeetings {
 
     public static final Meeting MEETING2 = new MeetingBuilder().withDescription("meeting2")
             .withMeetingDate(LocalDate.of(2020, 5, 5))
-            .withMeetingStartTime(LocalTime.of(7, 20, 45, 342123321))
+            .withMeetingStartTime(LocalTime.of(7, 20))
             .withClient(BENSON).build();
 
     private TypicalMeetings() {} // prevents instantiation

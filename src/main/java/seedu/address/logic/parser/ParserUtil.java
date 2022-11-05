@@ -115,7 +115,7 @@ public class ParserUtil {
             return LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMuuuu").withResolverStyle(STRICT));
         } catch (DateTimeParseException e) {
             if (type.equals("meeting")) {
-                throw new ParseException(MeetingDate.MESSAGE_FORMAT_CONSTRAINTS);
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
             } else {
                 throw new ParseException(Birthday.MESSAGE_FORMAT_CONSTRAINTS);
             }

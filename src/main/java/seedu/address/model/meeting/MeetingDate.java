@@ -10,10 +10,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class MeetingDate implements Comparable<MeetingDate> {
 
-    public static final String MESSAGE_FORMAT_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Meeting dates should be in the format DDMMYYYY and should be a valid day of the year";
-
     public static final String MESSAGE_INVALID_DATE = "Date should not be in the past!";
+    public static final String VALIDATION_REGEX = "\\d{8}";
     private final LocalDate date;
 
     /**
@@ -24,6 +24,13 @@ public class MeetingDate implements Comparable<MeetingDate> {
     public MeetingDate(LocalDate meetingDate) {
         requireNonNull(meetingDate);
         date = meetingDate;
+    }
+
+    /**
+     * Returns true is a given string is a valid meeting date.
+     */
+    public static boolean isValidMeetingDate(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     public String toString() {

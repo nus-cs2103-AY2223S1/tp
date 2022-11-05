@@ -20,6 +20,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.product.Product;
 
 /**
@@ -77,7 +78,7 @@ class JsonAdaptedClient {
             ? ""
             : source.getBirthday().get().toString();
         meetings.addAll(source.getMeetings().stream()
-                .map(meeting -> new JsonAdaptedMeeting(meeting, this))
+                .map(meeting -> new JsonAdaptedMeeting(meeting))
                 .collect(Collectors.toList()));
         products.addAll(source.getProducts().stream()
                 .map(JsonAdaptedProduct::new)
@@ -170,8 +171,9 @@ class JsonAdaptedClient {
         if (meetings.isEmpty()) {
             return client;
         }
-        for (JsonAdaptedMeeting meeting : meetings) {
-            client.addMeeting(meeting.toModelType(client));
+        for (JsonAdaptedMeeting jsonMeeting : meetings) {
+            Meeting meeting = jsonMeeting.toModelType(client);
+            client.addMeeting(meeting);
         }
         return client;
     }
