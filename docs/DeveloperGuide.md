@@ -201,9 +201,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
->### Implemented features:
+## Implemented features
 
-### Record features:
+### Patient Record features:
+> Features relating to the patient's records
 ### \[Implemented\] Add record feature
 
 #### Patient Records
@@ -371,10 +372,10 @@ Given below is an example usage scenario for the command.
 [*<Back to ToC>*](#table-of-contents)
 
 ### Appointment features:
-
+> Features relating to the patient's appointments
 ### \[Implemented\] Add appointment feature
 
-The add appointment feature allows Omnihealth to manage future appointments for patients. Each `Patient` holds an appointment
+The add appointment feature allows OmniHealth to manage future appointments for patients. Each `Patient` holds an appointment
 reference for record keeping that the user is able to edit and clear.
 
 The feature currently does not support automatic removal of appointments which dates have passed, and require a new appointment
@@ -383,11 +384,23 @@ to override the old appointment or for the existing appointment to be cleared wi
 #### Implementation:
 The add appointment command mechanism is facilitated by the `AddAppointmentCommandParser` class which extends the `AddressbookParser`.
 
+`AddAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+
 `AddAppointmentParser` implements the following operations:
 * `AddAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as 
-an `ArgumentMultimap.`
+an `ArgumentMultimap`, and creates a new `AddAppointmentCommand` object with the parsed time and index. 
 
-`AddAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+The `AddAppoinmentCommand` object then communicates with the `Model` API by calling the following methods:
+* `Model#setPerson(Person, Person)` - Sets the person in the existing patient list to the new `Person` object which has
+been edited by `AddAppointmentCommand#execute()`.
+* `Model#updateFilteredPersonList(Predicate)` - Updates the view of the application to show all patients.
+
+The method `AddAppointmentCommand#execute()` returns a `CommandResult` object, which stores information about the completion 
+of the command.
+
+The diagram below details how the operation of adding an appointment works.
+
+![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
 
 Given below is an example usage scenario for the command.
 
@@ -417,6 +430,9 @@ Given below is an example usage scenario for the command.
 **Step 2:** The user executes the `apptcl INDEX ` command in the CLI.
 
 **Step 3:** The patient's appointment(if any) will be cleared. 
+
+Below is an activity diagram illustrating an example process of how the `Appointment` commands can be utilised.
+![AppointmentActivityDiagram](images/AppointmentActivityDiagram.png)
 
 [*<Back to ToC>*](#table-of-contents)
 
