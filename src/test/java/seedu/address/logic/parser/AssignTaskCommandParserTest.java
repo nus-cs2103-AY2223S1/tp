@@ -1,9 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_EMPTY_DEADLINE;
 import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_EMPTY_NAME;
 import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_GROUP;
 import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_TASK;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_NO_PREFIX_WORKLOAD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKLOAD;
@@ -55,15 +58,6 @@ public class AssignTaskCommandParserTest {
                         + PREFIX_WORKLOAD + "low",
                 String.format(MESSAGE_NO_PREFIX_TASK, AssignTaskCommand.MESSAGE_USAGE));
 
-        // no workload
-        assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
-
-        // invalid workload
-        assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group" + " "
-                        + PREFIX_WORKLOAD + "very high",
-                String.format(MESSAGE_NO_PREFIX_TASK, AssignTaskCommand.MESSAGE_USAGE));
-
         // invalid task
         assertParseFailure(parser, " " + "Alex Yeoh" + " "
                         + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + " " + PREFIX_WORKLOAD + "low",
@@ -72,12 +66,31 @@ public class AssignTaskCommandParserTest {
         // no task prefix
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group" + " " + "Task",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
+
+        // no workload
+        assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group"
+                        + PREFIX_TASK + "Task",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
+
+        // no workload prefix
+        assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group" + " "
+                        + PREFIX_TASK + "Task" + " " + "very high",
+                String.format(MESSAGE_NO_PREFIX_WORKLOAD, AssignTaskCommand.MESSAGE_USAGE));
+
+        // invalid deadline
+        assertParseFailure(parser, " " + "Alex Yeoh" + " "
+                        + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task" + " "
+                        + PREFIX_WORKLOAD + "low" + " " + PREFIX_DEADLINE,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EMPTY_DEADLINE));
     }
 
     @Test
     public void parse_validInput_commandParseSuccess() {
         assertParseSuccess(parser, " " + "Alex Yeoh" + " "
-                        + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
-                new AssignTaskCommand(new Name("Alex Yeoh"), "Group", new Assignment("Task")));
+                        + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task" + " "
+                        + PREFIX_WORKLOAD + "low" + " " + PREFIX_DEADLINE + "2022-12-12 23:59",
+                new AssignTaskCommand(new Name("Alex Yeoh"),
+                        "Group",
+                        new Assignment("Task")));
     }
 }

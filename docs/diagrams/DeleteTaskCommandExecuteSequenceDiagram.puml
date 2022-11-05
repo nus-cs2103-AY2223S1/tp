@@ -10,10 +10,9 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-DeleteTaskCommand -[hidden]-> Model
+[-> DeleteTaskCommand: execute()
 activate DeleteTaskCommand
 
-group sd [DeleteTaskCommand executes]
 DeleteTaskCommand -> Model : getPersonWithName("Alice")
 activate Model
 return Person
@@ -37,6 +36,7 @@ activate CommandResult
 CommandResult --> DeleteTaskCommand
 deactivate CommandResult
 
-end
+[<-- DeleteTaskCommand: CommandResult
+deactivate DeleteTaskCommand
 
 @enduml

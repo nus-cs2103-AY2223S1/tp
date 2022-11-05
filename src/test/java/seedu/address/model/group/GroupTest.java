@@ -1,5 +1,6 @@
 package seedu.address.model.group;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUPNAME_IP;
@@ -79,5 +80,31 @@ public class GroupTest {
         // different members -> returns false
         otherGroup = new GroupBuilder().withName(VALID_GROUPNAME_TP).withMembers(DANIEL, ELLE, FIONA).build();
         assertFalse(defaultGroup.equals(otherGroup));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Group g1 = new GroupBuilder().withName(VALID_GROUPNAME_IP).withMembers(ALICE, BOB, CARL).build();
+        Group g2 = new GroupBuilder().withName(VALID_GROUPNAME_IP).withMembers(ALICE, BOB, CARL).build();
+        Group g3 = new GroupBuilder().withName(VALID_GROUPNAME_TP).withMembers(DANIEL, ELLE, FIONA).build();
+
+        assertTrue(g1.hashCode() == g2.hashCode());
+        assertFalse(g1.hashCode() == g3.hashCode());
+    }
+
+    @Test
+    public void toStringTest() {
+        Group g1 = new GroupBuilder().withName("ABC").withMembers().build();
+        String str = "ABC | Members: None | ";
+
+        assertEquals(g1.toString(), str);
+    }
+
+    @Test
+    public void checkSameMembersTest() {
+        Group g1 = new GroupBuilder().withName("ABC").withMembers(ALICE, BOB).build();
+        Group g2 = new GroupBuilder().withName(VALID_GROUPNAME_IP).withMembers(ALICE).build();
+
+        assertFalse(g1.checkSameMembers(g2));
     }
 }

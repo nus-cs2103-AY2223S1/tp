@@ -20,20 +20,25 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.AddGroupMemberCommand;
 import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AssignTaskAllCommand;
 import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteGroupCommand;
 import seedu.address.logic.commands.DeleteGroupMemberCommand;
 import seedu.address.logic.commands.DeletePersonCommand;
+import seedu.address.logic.commands.DeleteTaskAllCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
+import seedu.address.logic.commands.DisplayGroupCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListGroupsCommand;
 import seedu.address.logic.commands.ListPersonsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.group.FullGroupNamePredicate;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupName;
 import seedu.address.model.person.FullNamePredicate;
@@ -90,6 +95,19 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_assigntaskall() throws Exception {
+        String group = "Group1";
+        String task = "assignment 0";
+        String workload = "low";
+        AssignTaskAllCommand command = (AssignTaskAllCommand) parser.parseCommand(
+                AssignTaskAllCommand.COMMAND_WORD + " "
+                        + PREFIX_GROUP + group + " "
+                        + PREFIX_TASK + task + " "
+                        + PREFIX_WORKLOAD + workload);
+        assertEquals(new AssignTaskAllCommand(group, new Assignment(task)), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -128,12 +146,31 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_deletetaskall() throws Exception {
+        String group = "Group1";
+        String task = "assignment 0";
+        DeleteTaskAllCommand command = (DeleteTaskAllCommand) parser.parseCommand(
+                DeleteTaskAllCommand.COMMAND_WORD + " "
+                        + PREFIX_GROUP + group + " "
+                        + PREFIX_TASK + task);
+        assertEquals(new DeleteTaskAllCommand(group, new Assignment(task)), command);
+    }
+
+    @Test
     public void parseCommand_deleteuserbyname() throws Exception {
         String name = "Alex";
         DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
                 DeletePersonCommand.COMMAND_WORD + " " + name);
         FullNamePredicate pred = new FullNamePredicate(name);
         assertEquals(new DeletePersonCommand(pred), command);
+    }
+
+    @Test
+    public void parseCommand_displaygroup() throws Exception {
+        DisplayGroupCommand command = (DisplayGroupCommand) parser.parseCommand(
+                DisplayGroupCommand.COMMAND_WORD + " 30");
+        FullGroupNamePredicate predicate = new FullGroupNamePredicate("30");
+        assertEquals(new DisplayGroupCommand(predicate), command);
     }
 
     @Test
@@ -164,6 +201,13 @@ public class AddressBookParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_listgroups() throws Exception {
+        ListGroupsCommand command = (ListGroupsCommand) parser.parseCommand(
+                ListGroupsCommand.COMMAND_WORD);
+        assertTrue(command instanceof ListGroupsCommand);
     }
 
     @Test

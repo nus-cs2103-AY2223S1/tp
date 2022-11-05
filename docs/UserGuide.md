@@ -5,15 +5,13 @@ title: User guide
 ---
 # Overview <a id="1-overview"></a>
 
-TABS is a project centric desktop application specially designed to manage contacts, groups and tasks within members of the group.
-## Target User
-TABS's target users are student project team leaders who are facing issues with **group management** and **task allocation**.
+TABS is a project centric desktop application specially designed to manage contacts, groups and tasks within members of the group. TABS's target users are student project team leaders who are facing issues with **group management** and **task allocation**.
 
 TABS aims to help project team leaders by
 1. Simplifying the **group management** process.
 2. Providing an **overview** of tasks assigned to members.
 
-It is targeted at individuals with less programming background i.e. **less CLI-intensive** in nature.
+Individuals with a fast typing speed will benefit more because TABS optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 # Structure of this Document
 This document is structured chronologically so that you can follow through with this guide while using the product.
@@ -80,7 +78,7 @@ Text that appear as `this` form refers to special terms related to TABS.
 
 ## 2.2 Feature Overview
 The features of TABS are as such:
-1. Contact management features - covering how to manage **Contacts** in TABS.
+1. Person management features - covering how to manage **Persons** in TABS.
 2. Group management features - covering how to manage **Groups**, which consists of **Members** in TABS.
 3. Task management features - covering how to manage **Tasks** amongst **Members**.
 4. Miscellaneous features - other features for convenience.
@@ -88,14 +86,16 @@ The features of TABS are as such:
 <div markdown="span" class="alert alert-primary">
   :information_source: **Note**:
 
-**Members** and **Contacts** are different. 
-- In order to add **Members**, the persons have to be present in TABS as **Contacts**.
+- _member_ and _person_ are different. A _person_ is someone who is registered in TABS. A _member_ is a _person_ who is part of a specific _group_.
+  - i.e Alex is a person, but he is not a member of Group 1. He is however a member of Group 2.
+
+- In order to add **Members**, the persons have to be present in TABS under **Contacts**.
+
 - On deletion of **Members** in **Groups**, the corresponding **Contacts** of the person will still remain.
 
 </div>
 
 ## 2.3 GUI Interface
-<div markdown="block" class="alert alert-info">
 The images below show the sections of the TABS user interface.
 
 ![TABS example](images/user-guide/Ui2.png)
@@ -125,7 +125,7 @@ Overview of the sections in the contacts pane:
 
 * Use arrow keys to switch between *Contact details* and *Assignments*.
 
-</div>
+
 
 ## 2.4 Command Format
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -149,6 +149,7 @@ Overview of the sections in the contacts pane:
 * Commands involving the parameter `NAME` is case-sensitive, the `NAME` specified must be exactly the same as the one stored in TABS.
 
 ## 2.5 Prefixes
+
 | Prefix | Field    |
 |--------|----------|
 | n/     | NAME     |
@@ -325,6 +326,7 @@ assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0`
 
 A workload indicator is shown beside each person in TABS.
 When the workload of the person increases, the workload indicator will gradually change from green to red.
+
 ![Workload_Indicator](images/user-guide/workload_indicator.png)
 </div>
 
@@ -369,19 +371,19 @@ Examples:
 
 This section covers other miscellaneous commands.
 
-### 3.4.1 Viewing help: help
+### 3.4.1 Viewing help: `help`
 
 Shows a list of commands explaining how to use TABS and a message to the TABS' user guide.
 
 ![Help Example](images/user-guide/Help.png)
 
-Format: help
+Format: `help`
 
 ### 3.4.2 Clearing all entries: `clear`
 
 Clears all entries from TABS.
 
-Format: clear
+Format: `clear`
 
 ### 3.4.3 Exiting the program: `exit`
 
@@ -397,7 +399,8 @@ Format: `exit`
 |-----------------------------------|-----------------------------------------------------------------------------------------|
 | **Command-line interface(CLI)**   | `An interface where the user interacts with the program with lines of text as commands` |
 | **Graphical user interface(GUI)** | `An interface where the user interacts with the program through graphical icons`        |
-| **Contacts**                      | `Persons that are stored in TABS, uniquely identified by their full name`               |
+| **Persons**                       | `People that are stored in TABS, uniquely identified by their full name`                |
+| **Contacts**                      | `List of Persons with their personal details`                                           |
 | **Members**                       | `Copies of contacts that are added to groups`                                           |
 | **Groups**                        | `Consists of members`                                                                   |
 | **Tasks**                         | `Tasks that are assigned to members, consisting of workload and optional deadline`      |
@@ -414,7 +417,7 @@ Format: `exit`
 |---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Person**            | `addperson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`<br> e.g. `addperson n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567` |
 | **Delete Person**         | `deleteperson NAME`<br> e.g. `deleteperson Betsy`                                                                                                           |
-| **Edit Person**           | `editperson NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g. `edituser 2 n/James Lee e/jameslee@example.com`                          |
+| **Edit Person**           | `editperson NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g. `editperson Alex Yeoh n/James Lee e/jameslee@example.com`                |
 | **Find Person**           | `findperson KEYWORD [MORE_KEYWORDS]`<br> e.g. `findperson James Jake`                                                                                       |
 | **List Persons**          | `listpersons`                                                                                                                                               |
 

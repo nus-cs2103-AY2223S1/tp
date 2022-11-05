@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
+import seedu.address.model.group.GroupName;
 import seedu.address.model.group.testutil.TypicalGroups;
 import seedu.address.model.person.testutil.TypicalPersons;
 
@@ -26,6 +27,8 @@ public class JsonSerializableAddressBookTest {
     private static final Path INVALID_GROUP_FILE = TEST_DATA_FOLDER.resolve("invalidGroupAddressBook.json");
     private static final Path INVALID_MEMBER_FILE = TEST_DATA_FOLDER.resolve("invalidMemberAddressBook.json");
     private static final Path DUPLICATE_GROUP_FILE = TEST_DATA_FOLDER.resolve("duplicateGroupAddressBook.json");
+    private static final Path NULL_GROUP_FILE = TEST_DATA_FOLDER.resolve("nullGroupAddressBook.json");
+
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
@@ -79,6 +82,15 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_GROUP_FILE,
                 JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_GROUP,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullGroup_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(NULL_GROUP_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class,
+                String.format(JsonAdaptedGroup.MISSING_FIELD_MESSAGE_FORMAT, GroupName.class.getSimpleName()),
                 dataFromFile::toModelType);
     }
 
