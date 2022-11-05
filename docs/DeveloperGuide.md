@@ -438,7 +438,7 @@ Removal of modules does not check the module lists to see if the module is prese
 ### Checking modules left
 
 This feature compares the user's current and previous modules list with a fixed list of CS Core Requirements or focus area
-modules. The program then finds the difference between the user's lists and the fixed list and outputs it onto the ResultDisplay. 
+modules. The program then finds the difference between the user's lists and the fixed list and outputs it onto the ResultDisplay.
 
 #### Implementation flow
 
