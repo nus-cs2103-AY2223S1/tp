@@ -6,6 +6,16 @@
 {% comment %} MOVE COMMENTS TO NEW LINES {% endcomment %}
 {% assign replacement = '>' | append: newline | append: '<!-- ' %}
 {% assign content = content | replace: '><!-- ', replacement %}
+{% comment %} HARDCODE MULTIPLE SPACE REPLACEMENT {% endcomment %}
+{% assign content = content
+  | replace: '>  <', '><'
+  | replace: '>   <', '><'
+  | replace: '>    <', '><'
+  | replace: '>     <', '><'
+  | replace: '>      <', '><'
+  | replace: '>       <', '><'
+  | replace: '>        <', '><'
+%}
 {% comment %} STRIP ALL LINES {% endcomment %}
 {% assign lines = content | split: newline %}
 {% assign trimmed = '' | split: '' %}
