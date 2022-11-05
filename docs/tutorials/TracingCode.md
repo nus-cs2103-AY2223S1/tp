@@ -9,8 +9,12 @@ title: "Tutorial: Tracing code"
 
 When trying to understand an unfamiliar code base, one common strategy used is to trace some representative execution path through the code base. One easy way to trace an execution path is to use a debugger to step through the code. In this tutorial, you will be using the IntelliJ IDEA’s debugger to trace the execution path of a specific user command.
 
+## Table of contents
+
 * Table of Contents
 {:toc}
+
+<div markdown="block" class="index">
 
 ## Before we start
 
@@ -299,3 +303,5 @@ Here are some quick questions you can try to answer based on your execution path
     5.  Add a new field to `Person`
 
     6.  Add a new entity to the address book
+
+</div>

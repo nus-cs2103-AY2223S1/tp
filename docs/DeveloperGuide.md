@@ -183,38 +183,69 @@ Classes used by multiple components are in the `seedu.nutrigoals.commons` packag
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
+
 This section describes some noteworthy details on how certain features are implemented.
 
-### Set Daily Calorie Target feature
+### Setup feature
 
 #### Implementation
 
-The set target mechanism is facilitated by `TargetCommand`, which extends `Command`. It overrides the following
+The setup mechanism is facilitated by `SetupCommand`, which extends `Command`. It overrides the following
 operation:
 
-* `TargetCommand#excecute()`: Sets the calorie target for the day
+* `SetupCommand#execute()`: Sets up the user profile.
 
-Given below is an example usage scenario and how set calorie target mechanism behaves at each step.
+#### Example usage
 
-Step 1. The user launches the application today.
+Given below is an example usage scenario of how the setup mechanism behaves at each step.
 
-Step 2. The user executes `target 2103`, which calls `LogicManager#execute()`. 
-`NutriGoals#parseCommand()` is called subsequently, which then creates a `TargetCommandParser` object.
-`TargetCommandParser#parser()` is then called to make sense of the arguments supplied by the user.
+Step 1. The user launches the application.
 
-Step 3. The `TargetCommand` is created, and then executed by `TargetCommand#execute()`.
+Step 2. The user executes `setup h/170 w/65 i/60 g/m a/20`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()`
+is called subsequently, which then creates a `SetupCommand` object.
 
-Step 4. The `TargetCommand#execute()` calls the following methods from `Model`:
-* `setCalorieTarget(calorieTarget)`
-* `getCalorieTarget()`
+Step 3. The `SetupCommand` created is executed by `SetupCommand#execute()`.
 
-Step 5. `TargetCommand#execute()` returns a `CommandResult` with the following result displayed:
+Step 4. `SetupCommand#execute()` calls the following methods from `Model`:
 
-Your calorie target set for today: 2103 calories
+* `Model#setUserDetails()`
+* `Model#getUserDetails()`
 
-The following diagram illustrates how the set calorie target operation works:
+Step 5. `SetupCommand#execute()` returns a `CommandResult` which displays the user's information.
 
-![TargetSequenceDiagram](./images/TargetSequenceDiagram.png)
+The following diagram illustrates how the setup operation works.
+
+![SetupSequenceDiagram](./images/SetupSequenceDiagram.png)
+
+### Profile feature
+
+#### Implementation
+
+The profile mechanism is facilitated by `ProfileCommand`, which extends `Command`. It overrides the
+following operation:
+
+* `ProfileCommand#execute()`: Retrieves and displays the user's information.
+
+#### Example usage
+
+Given below is an example usage scenario and how the profile mechanism behaves at each step.
+
+Step 1. The user launches the application on 19 October 2022.
+
+Step 2. The user executes `profile`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called subsequently, which then creates a `ProfileCommand` object.
+
+Step 3. The `ProfileCommand` created is executed by `ProfileCommand#execute()`.
+
+Step 4. `ProfileCommand#execute()` calls the following methods from `Model`:
+
+* `Model#isUserCreated()`
+* `Model#getUserDetails()`
+
+Step 5. `ProfileCommand#execute()` returns a `CommandResult` which displays the user's information.
+
+The following activity diagram outlines the process when the user executes the `ProfileCommand`:
+
+![ProfileCommandActivityDiagram](./images/ProfileCommandActivityDiagram.png)
 
 ### Edit feature
 
@@ -223,6 +254,8 @@ The following diagram illustrates how the set calorie target operation works:
 The edit mechanism is facilitated by `EditCommand`, which extends `Command`. It overrides the following operation:
 
 * `EditCommand#execute()`: Edits the food name, meal type or calories associated with the food at the specified index.
+
+#### Example usage
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
@@ -240,7 +273,7 @@ Step 3. The `EditCommand` is created, and then executed by `EditCommand#execute(
 
 Step 4. `EditCommand#execute()` calls the following methods from `Model`:
 
-* `Model#setFood(foodToEdit, editedFood)` replaces `foodToEdit` to `editedFood`.
+* `Model#setFood(foodToEdit, editedFood)` replaces `foodToEdit` to `editedFood`
 * `Model#updateFilteredFoodList(predicate)` filters the food list based on the given predicate
 
 Step 5. `EditCommand#execute()` returns a `CommandResult` with the following result displayed:
@@ -257,63 +290,6 @@ The following diagram illustrates how the edit operation works:
 
 ![EditSequenceDiagram](./images/EditSequenceDiagram.png)
 
-### Setup feature
-
-#### Implementation
-
-The setup mechanism is facilitated by `SetupCommand`, which extends `Command`. It overrides the following 
-operation: 
-
-* `SetupCommand#execute()`: Sets up the user profile.
-
-Given below is an example usage scenario of how the setup mechanism behaves at each step.
-
-Step 1. The user launches the application.
-
-Step 2. The user executes `setup h/170 w/65 i/60 g/m a/20`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` 
-is called subsequently, which then creates an `SetupCommand` object.
-
-Step 3. The `SetupCommand` created is executed by `SetupCommand#execute()`.
-
-Step 4. `SetupCommand#execute()` calls the following methods from `Model`:
-
-* `Model#setUserDetails()`
-* `Model#getUserDetails()`
-
-Step 5. `SetupCommand#execute()` returns a `CommandResult` which displays the user's information.
-
-The following diagram illustrates how the setup operation works.
-![SetupSequenceDiagram](./images/SetupSequenceDiagram.png)
-
-### Profile feature
-
-#### Implementation
-
-The profile mechanism is facilitated by `ProfileCommand`, which extends `Command`. It overrides the
-following operation:
-
-* `ProfileCommand#execute()`: Retrieves and displays the user's information.
-
-Given below is an example usage scenario and how the profile mechanism behaves at each step.
-
-Step 1. The user launches the application on 19 October 2022.
-
-Step 2. The user executes `profile`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called
-subsequently, which then creates an `ProfileCommand` object.
-
-Step 3. The `ProfileCommand` created is executed by `ProfileCommand#execute()`.
-
-Step 4. `ProfileCommand#execute()` calls the following methods from `Model`:
-
-* `Model#isUserCreated()`
-* `Model#getUserDetails()`
-
-Step 5. `ProfileCommand#execute()` returns a `CommandResult` which displays the user's information.
-
-The following activity diagram outlines the process when the user executes the `ProfileCommand`.
-
-![ProfileCommandActivityDiagram](./images/ProfileCommandActivityDiagram.png)
-
 ### List feature
 
 #### Implementation
@@ -322,9 +298,11 @@ The list mechanism is facilitated by `ListCommand`, which extends `Command`. It 
 
 * `ListCommand#execute()`: Shows a list of all food items and their respective calories for the specified day (if any).
 
+#### Example usage
+
 Given below is an example usage scenario and how the list mechanism behaves at each step.
 
-Step 1. The user launches the application on 19 October 2022. `NutriGoals` initially displays all foods added on the 
+Step 1. The user launches the application on 19 October 2022. `NutriGoals` initially displays all foods added on the
 current day, 19 October 2022.
 
 Step 2. The user executes `list 2022-07-29` command, which calls `LogicManager#execute()`.
@@ -342,12 +320,75 @@ Step 4. `ListCommand` is then executed by `ListCommand#execute()`, which calls t
 * `Model#updateFilteredFoodList(IsFoodAddedOnThisDatePredicate)` filters the food list for foods added on 29 July 2022
 * `Model#isFilteredFoodListEmpty()`
 
-Step 5. The filtered food list is shown to the user and `ListCommand#execute()` returns a `CommandResult` with a message 
-indicating the successful execution of the `list` command. 
+Step 5. The filtered food list is shown to the user and `ListCommand#execute()` returns a `CommandResult` with a message
+indicating the successful execution of the `list` command.
 
 The following activity diagram summarizes what happens when a user executes the `list` command:
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
+
+### Find feature
+
+#### Implementation
+
+The find mechanism is facilitated by `FindCommand`, which extends `Command`. It overrides the following operations:
+
+* `FindCommand#execute()`: Looks through all previously consumed food items and searches for those whose name matches the predicate. Returns the average calorie content for that particular food item if it is inside the list. If it is not in the list, checks if the food item is in the default list provided, and returns the suggested calorie content from the default list.
+
+#### Example usage
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user executes `find Banana` command, which calls `LogicManager#execute()`.
+`NutriGoals#parseCommand()` is called subsequently, which then creates a `FindCommandParser` object.
+`FindCommandParser#parse()` is then called to make sense of the food name supplied by the user.
+
+Step 3. A `FindCommand` object is created and then executed by `FindCommand#execute()`.
+
+Step 4. The `FindCommand#execute()` then calls the following methods from `Model`:
+
+* `Model#getFoodCalorieList()`
+* `Model#getUnfilteredFoodList()`
+
+Step 5. The `FindCommand#execute()` returns a `CommandResult` that displays the calorie content of the food item specified by the user which in this case is Banana.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+### Target feature
+
+#### Implementation
+
+The set target mechanism is facilitated by `TargetCommand`, which extends `Command`. It overrides the following operation:
+
+* `TargetCommand#excecute()`: Sets the calorie target for the day.
+
+#### Example usage
+
+Given below is an example usage scenario and how set calorie target mechanism behaves at each step.
+
+Step 1. The user launches the application today.
+
+Step 2. The user executes `target 2103`, which calls `LogicManager#execute()`. 
+`NutriGoals#parseCommand()` is called subsequently, which then creates a `TargetCommandParser` object.
+`TargetCommandParser#parser()` is then called to make sense of the arguments supplied by the user.
+
+Step 3. The `TargetCommand` is created, and then executed by `TargetCommand#execute()`.
+
+Step 4. The `TargetCommand#execute()` calls the following methods from `Model`:
+* `Model#setCalorieTarget(calorieTarget)`
+* `Model#getCalorieTarget()`
+
+Step 5. `TargetCommand#execute()` returns a `CommandResult` with the following result displayed:
+
+```
+Your calorie target set for today: 2103 calories
+```
+
+The following diagram illustrates how the target operation works:
+
+![TargetSequenceDiagram](./images/TargetSequenceDiagram.png)
 
 ### Review feature
 
@@ -357,6 +398,8 @@ The review mechanism is facilitated by `ReviewCommand`, which extends `Command`.
 
 * `ReviewCommand#execute()`: Calculates the total calories, the calorie target and the deficient or excess amount of
   calories for the day.
+
+#### Example usage
 
 Given below is an example usage scenario and how the review mechanism behaves at each step.
 
@@ -379,11 +422,13 @@ Step 5. `ReviewCommand#execute()` then calls the following methods from `Model`:
 * `Model#getCalorieTarget()`
 * `Model#getCalorieDifference()`
 
-Step 6. `ReviewCommand#execute()` returns a `CommandResult` with the following information to be displayed to the user:
+Step 6. `ReviewCommand#execute()` returns a `CommandResult` with the following information displayed to the user:
 
-* total calories: 1343 kcal
-* calorie target: 2000 kcal
-* deficient amount of calories: 657 kcal
+```
+Your calorie intake for today: 1343 calories
+Your calorie target for today: 2000 calories
+You should consume 657 more calories to reach your calorie target for today!
+```
 
 The following sequence diagram illustrates how the review operation works:
 
@@ -396,6 +441,8 @@ The following sequence diagram illustrates how the review operation works:
 The suggest mechanism is facilitated by `SuggestCommand`, which extends `Command`. It overrides the following operation:
 
 * `SuggestCommand#execute()`: Calculates a suggested amount of calories a user should consume per day.
+
+#### Example usage
 
 The following illustrates what objects are created when `suggest` is executed.
 
@@ -420,39 +467,13 @@ The following activity diagram outlines what happens when a user executes the `s
 
 ![SuggestActivityDiagram](images/SuggestActivityDiagram.png)
 
-### Find feature
-
-#### Implementation
-
-The find mechanism is facilitated by `FindCommand`, which extends `Command`. It overrides the following operations
-
-* `FindCommand#execute()`: Looks through all previously consumed food items and searches for those whose name matches the predicate. Returns the average calorie content for that particular food item if it is inside the list. If it is not in the list, checks if the food item is in the default list provided, and returns the suggested calorie content from the default list.
-
-Given below is an example usage scenario and how the find mechanism behaves at each step.
-
-Step 1. The user launches the application.
-
-Step 2. The user executes `find Banana` command, which calls `LogicManager#execute()`.
-`NutriGoals#parseCommand()` is called subsequently, which then creates a `FindCommandParser` object.
-`FindCommandParser#parse()` is then called to make sense of the food name supplied by the user.
-
-Step 3. A `FindCommand` object is created and then executed by `FindCommand#execute()`.
-
-Step 4. The `FindCommand#execute()` then calls the following methods from `Model`
-
-* `Model#getFoodCalorieList()`
-* `Model#getUnfilteredFoodList()`
-
-Step 5. The `FindCommand#execute()` returns a `CommandResult` that displays the calorie content of the food item specified by the user which in this case is Banana.
-
-![FindSequenceDiagram](images/FindSequenceDiagram.png)
-
 ### Locate gym feature
 
 #### Implementation
 
-The locate gym mechanism is facilitated by `LocateGymCommand`, which extends `Command`. It overrides the
-following operation:
+The locate gym mechanism is facilitated by `LocateGymCommand`, which extends `Command`. It overrides the following operation:
+
+#### Example usage
 
 * `LocateGymCommand#execute()`: Returns a list of gyms sorted by distance.
 
@@ -460,8 +481,7 @@ Given below is an example usage scenario and how the locate-gym mechanism behave
 
 Step 1. The user launches the application.
 
-Step 2. The user executes `locate CLB`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called
-subsequently, which then creates an `LocateGymCommand` object.
+Step 2. The user executes `locate CLB`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called subsequently, which then creates an `LocateGymCommand` object.
 
 Step 3. The `LocateGymCommand` created is executed by `LocateGymCommand#execute()`.
 
@@ -519,8 +539,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user            | get a suggested daily calorie intake based on my body composition | know what would be a reasonable calorie target                        |
 | `* *`    | user            | find the calorie content of a food item                           | know how many calories I am consuming for a particular food           |
 | `*`      | forgetful user  | receive information about my calorie deficiency / excess          | know if I should consume more / less calories                         |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -707,8 +725,6 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 4. The system should respond to a command within two seconds.
 5. Project scope:
     * The system only handles information regarding the calorie intake of a food and no other nutrients.
-
-*{More to be added}*
 
 ### Glossary
 
