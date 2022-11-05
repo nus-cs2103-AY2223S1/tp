@@ -410,7 +410,7 @@ testers are expected to do more *exploratory* testing.
        Expected: First a new Listing is created. Its id will be the contents after the 'id/' prefix.
                  Its Address will be the contents after the 'a/' prefix. Its owner's name
                  will be the contents after the 'n/' prefix. And the asking price of the Listing
-                 will be the contents after the 'ap/' prefix. 
+                 will be the contents after the 'ap/' prefix.
                  Details of the new listing will be shown in the status message.
     3. Other incorrect delete commands to try: `listing id/... ap/.. n.. a/..`, `listing`, `...` <br>
         Expected: Error message to warn incorrect input format.
@@ -447,7 +447,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all client using the `list` command. Multiple client in the list.
    2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.    
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. 
+Timestamp in the status bar is updated.
    3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
