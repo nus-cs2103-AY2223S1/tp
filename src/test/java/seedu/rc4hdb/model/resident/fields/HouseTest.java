@@ -18,7 +18,7 @@ public class HouseTest {
 
     @Test
     public void constructor_invalidHouse_throwsIllegalArgumentException() {
-        String invalidHouse = "a";
+        String invalidHouse = "q";
         assertThrows(IllegalArgumentException.class, () -> new House(invalidHouse));
     }
 
@@ -37,7 +37,6 @@ public class HouseTest {
         assertFalse(House.isValidHouse(" ")); // spaces only
         assertFalse(House.isValidHouse("^")); // only non-alphanumeric characters
         assertFalse(House.isValidHouse("D*")); // contains non-alphanumeric characters
-        assertFalse(House.isValidHouse("d")); // no lowercase character
         assertFalse(House.isValidHouse("f")); // only D, U, L, A or N
 
         // valid house

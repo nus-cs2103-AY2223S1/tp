@@ -50,15 +50,15 @@ public class RemoveCommand implements ModelCommand {
     public static final String MESSAGE_REMOVED_SUCCESS = "%1$d residents deleted!";
 
     /** description to remove the residents with */
-    private final ResidentStringDescriptor removePersonDescriptor;
+    private final ResidentStringDescriptor removeResidentDescriptor;
     private final Specifier specifier;
 
     /**
-     * @param removePersonDescriptor description object to remove the resident with
+     * @param removeResidentDescriptor description object to remove the resident with
      */
-    public RemoveCommand(ResidentStringDescriptor removePersonDescriptor, Specifier specifier) {
-        assert removePersonDescriptor != null : "Descriptor object is null";
-        this.removePersonDescriptor = new ResidentStringDescriptor(removePersonDescriptor);
+    public RemoveCommand(ResidentStringDescriptor removeResidentDescriptor, Specifier specifier) {
+        assert removeResidentDescriptor != null : "Descriptor object is null";
+        this.removeResidentDescriptor = new ResidentStringDescriptor(removeResidentDescriptor);
         this.specifier = specifier;
     }
 
@@ -70,9 +70,9 @@ public class RemoveCommand implements ModelCommand {
         List<Resident> lastShownList = model.getFilteredResidentList();
         Predicate<Resident> predicate;
         if (specifier.getSpecifier() == "any") {
-            predicate = new AttributesMatchAnyKeywordPredicate(removePersonDescriptor);
+            predicate = new AttributesMatchAnyKeywordPredicate(removeResidentDescriptor);
         } else {
-            predicate = new AttributesMatchAllKeywordsPredicate(removePersonDescriptor);
+            predicate = new AttributesMatchAllKeywordsPredicate(removeResidentDescriptor);
         }
 
         int deleted = 0;
@@ -106,6 +106,6 @@ public class RemoveCommand implements ModelCommand {
 
         // state check
         RemoveCommand r = (RemoveCommand) other;
-        return removePersonDescriptor.equals(r.removePersonDescriptor);
+        return removeResidentDescriptor.equals(r.removeResidentDescriptor);
     }
 }
