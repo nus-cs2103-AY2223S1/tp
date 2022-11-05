@@ -158,7 +158,7 @@ A profile must contain the following information:
 
 * Name, limited to 24 alphanumeric characters including spaces
 * A phone number, at least 3 digits and at most 15 digits long
-* A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email domains
+* A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email formats
 
 A profile may also contain:
 
@@ -265,7 +265,7 @@ Adds an event with a name, a start date and end date.
 
 Format: `event -a n/TITLE s/START e/END [t/TAG]…`
 
-* The start and end dates can be specified in various different formats, see [Accepted Date Time Format](#accepted-date-time-formats) for the full list.
+* The start and end dates can be specified in various formats. See [Accepted Date Time Formats](#accepted-date-time-formats) for the full list of formats.
 * The start and end dates must both contain either date only or date and time i.e. time is optional.
 * The start date must occur before or on the same day and time as the end date.
 
@@ -340,7 +340,10 @@ Format: `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the event will be removed i.e adding of tags is not cumulative.
 * You can remove all the event’s tags by typing `t/` without specifying any tags after it.
-* The start and end dates can be specified in [various formats](#accepted-date-time-formats).
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The start and end dates can be specified in various formats. See [Accepted Date Time Formats](#accepted-date-time-formats) for the full list of formats.
+</div>
 
 Example:
 * `event -e 1 n/Formal Dinner t/RC4` Edits the title of the first event in the displayed list to `Formal Dinner` and clears existing tags before adding the tag `RC4`.
