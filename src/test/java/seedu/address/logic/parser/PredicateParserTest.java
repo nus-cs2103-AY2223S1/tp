@@ -45,7 +45,7 @@ public class PredicateParserTest {
     @Test
     public void parseBuyer_address_addressContainsKeywordsPredicate() {
         AddressContainsKeywordsPredicate<Buyer> expected = new AddressContainsKeywordsPredicate<>(
-                Arrays.asList("Wall Street"));
+                Arrays.asList("Wall", "Street"));
         try {
             Predicate<Buyer> result1 = PredicateParser.parseBuyer("a/ Wall Street");
             Predicate<Buyer> result2 = PredicateParser.parseBuyer("a/Wall Street \n");
@@ -139,7 +139,7 @@ public class PredicateParserTest {
     @Test
     public void parseDeliverer_addresss_addressContainsKeywordsPredicate() {
         AddressContainsKeywordsPredicate<Deliverer> expected = new AddressContainsKeywordsPredicate<>(
-                Arrays.asList("Wall Street"));
+                Arrays.asList("Wall", "Street"));
         try {
             Predicate<Deliverer> result1 = PredicateParser.parseDeliverer("a/ Wall Street");
             Predicate<Deliverer> result2 = PredicateParser.parseDeliverer("a/Wall Street \n");
@@ -233,7 +233,7 @@ public class PredicateParserTest {
     @Test
     public void parseSupplier_address_addressContainsKeywordsPredicate() {
         AddressContainsKeywordsPredicate<Supplier> expected = new AddressContainsKeywordsPredicate<>(
-                Arrays.asList("Wall Street"));
+                Arrays.asList("Wall", "Street"));
         try {
             Predicate<Supplier> result1 = PredicateParser.parseSupplier("a/ Wall Street");
             Predicate<Supplier> result2 = PredicateParser.parseSupplier("a/Wall Street \n");

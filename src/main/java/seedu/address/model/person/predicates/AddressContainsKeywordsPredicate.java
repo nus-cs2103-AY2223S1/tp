@@ -20,7 +20,7 @@ public class AddressContainsKeywordsPredicate<T extends Person> implements Predi
     @Override
     public boolean test(T person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().toString(), keyword));
     }
 
     @Override

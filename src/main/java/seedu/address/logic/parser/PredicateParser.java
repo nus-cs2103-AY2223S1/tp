@@ -67,7 +67,7 @@ public class PredicateParser {
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
         case ADDRESS_PREFIX:
-            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case EMAIL_PREFIX:
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
@@ -96,7 +96,7 @@ public class PredicateParser {
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
         case ADDRESS_PREFIX:
-            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case EMAIL_PREFIX:
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
@@ -125,7 +125,7 @@ public class PredicateParser {
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
         case ADDRESS_PREFIX:
-            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case EMAIL_PREFIX:
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
