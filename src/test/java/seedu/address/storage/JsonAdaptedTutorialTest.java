@@ -36,14 +36,16 @@ public class JsonAdaptedTutorialTest {
 
     @Test
     public void toModelType_nullGroup_throwsIllegalValueException() {
-        JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(null, VALID_CONTENT, VALID_DATE_TIME, VALID_STATUS);
+        JsonAdaptedTutorial tutorial =
+                new JsonAdaptedTutorial(null, VALID_CONTENT, VALID_DATE_TIME, VALID_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Group.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
     }
 
     @Test
     public void toModelType_nullContent_throwsIllegalValueException() {
-        JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(VALID_GROUP, null, VALID_DATE_TIME, VALID_STATUS);
+        JsonAdaptedTutorial tutorial =
+                new JsonAdaptedTutorial(VALID_GROUP, null, VALID_DATE_TIME, VALID_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Content.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
     }
@@ -57,14 +59,16 @@ public class JsonAdaptedTutorialTest {
 
     @Test
     public void toModelType_invalidGroup_throwsIllegalValueException() {
-        JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(INVALID_GROUP, VALID_CONTENT, VALID_DATE_TIME, VALID_STATUS);
+        JsonAdaptedTutorial tutorial =
+                new JsonAdaptedTutorial(INVALID_GROUP, VALID_CONTENT, VALID_DATE_TIME, VALID_STATUS);
         String expectedMessage = Group.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
     }
 
     @Test
     public void toModelType_invalidContent_throwsIllegalValueException() {
-        JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(VALID_GROUP, INVALID_CONTENT, VALID_DATE_TIME, VALID_STATUS);
+        JsonAdaptedTutorial tutorial = new
+                JsonAdaptedTutorial(VALID_GROUP, INVALID_CONTENT, VALID_DATE_TIME, VALID_STATUS);
         String expectedMessage = Content.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
     }
@@ -73,7 +77,8 @@ public class JsonAdaptedTutorialTest {
     public void toModelType_invalidTime_throwsIllegalValueException() {
         String expectedMessage = Time.MESSAGE_CONSTRAINTS;
 
-        JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(VALID_GROUP, VALID_CONTENT, INVALID_DATE_TIME_FORMAT, VALID_STATUS);
+        JsonAdaptedTutorial tutorial = new
+                JsonAdaptedTutorial(VALID_GROUP, VALID_CONTENT, INVALID_DATE_TIME_FORMAT, VALID_STATUS);
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
 
         JsonAdaptedTutorial tutorial1 = new JsonAdaptedTutorial(VALID_GROUP, VALID_CONTENT, INVALID_DATE, VALID_STATUS);
