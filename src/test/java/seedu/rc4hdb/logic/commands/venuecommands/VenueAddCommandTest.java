@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
+import static seedu.rc4hdb.testutil.TypicalVenues.getTypicalVenues;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +20,6 @@ import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
-import seedu.rc4hdb.testutil.TypicalVenues;
 
 public class VenueAddCommandTest {
 
@@ -36,7 +36,7 @@ public class VenueAddCommandTest {
             CommandResult commandResult = new VenueAddCommand(validVenue).execute(modelStub);
 
             assertEquals(String.format(VenueAddCommand.MESSAGE_SUCCESS, validVenue), commandResult.getFeedbackToUser());
-            assertEquals(Arrays.asList(TypicalVenues.getTypicalVenue().get(0)), modelStub.venuesAdded);
+            assertEquals(Arrays.asList(getTypicalVenues().get(0)), modelStub.venuesAdded);
         }
 
         @Test
