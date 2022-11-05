@@ -23,7 +23,6 @@ public class MedicationTest {
     public void isValidTagName() {
         // null tag name
         assertThrows(NullPointerException.class, () -> Medication.isValidMedicationName(null));
-        
     }
 
     @Test
