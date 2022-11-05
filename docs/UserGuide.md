@@ -21,7 +21,7 @@ you can jump right into our [Features](#features) section to learn more about th
 --------------------------------------------------------------------------------------------------------------------
 # Table of Contents
 
-* Table of Contents
+1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -90,6 +90,7 @@ Made for commission-based artists, ArtBuddy is the easiest way to organise your 
 Powerful features and intuitive design, all packaged into one neat desktop app. ArtBuddy is supported on all
 major operating systems (Windows, macOS, Linux).
 
+{: .no_toc}
 #### Let ArtBuddy help you...
 
 1. **Manage your customers**  
@@ -107,6 +108,7 @@ a version of your artwork. Learn from feedback and your past work, so you can co
 Learn where your highest sales are coming from by leveraging on the powerful statistics ArtBuddy offers
 so that you can accelerate your business growth.
 
+{: .no_toc}
 #### Getting things done fast
 We get that your time is precious. So spend it on what you love doing, your art, and let ArtBuddy handle the
 rest. With optimised support for use via a Command Line Interface (CLI), ArtBuddy can help you manage your
@@ -199,6 +201,7 @@ Cool! You now have gotten ArtBuddy up and running. Let's get you familiar with A
 
 ArtBuddy has two tabs: a **Customers Tab**, and a **Commissions Tab**. Let's take a closer look at each tab individually.
 
+{: .no_toc}
 #### Customers Tab
 
 When you first open ArtBuddy, ArtBuddy will have the **Customers Tab** open by default. As its name implies,
@@ -216,7 +219,7 @@ in your **Customers Tab** does!
 | 5   | Customer Details | When you select a customer from your **Customer List**, ArtBuddy will show you the details and statistics of your selected customer in this pane.                                                           |
 | 6   | Saved Data File  | For advanced users, the [file path]() displayed here is where ArtBuddy stores your saved data (which you can [edit](#editing-the-data-file)).                                                               |
 
-
+{: .no_toc}
 #### Commissions Tab
 
 Notice that ArtBuddy also has a **Commissions Tab**? When you navigate to the **Commissions Tab**, this is what you'll see.
