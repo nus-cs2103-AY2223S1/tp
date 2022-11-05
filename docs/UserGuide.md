@@ -5,6 +5,7 @@ title: User Guide
 
 ## Table of Contents
 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -262,7 +263,7 @@ Examples:
 
 </div>
 
-### Manually editing save file:
+### Manually editing save file
 
 For advanced users, the data and state of EZLead is stored in `data/addressbook.json`.
 You can manually modify the data directly by accessing this JSON file.
