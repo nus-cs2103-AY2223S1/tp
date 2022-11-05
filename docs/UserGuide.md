@@ -246,7 +246,7 @@ This example is based on [`Creating a Tag`](#creating-a-tag-tag-create). Feel fr
 
 (insert image of a successful addition of the `Test` tag to contact `1`)
 
-4. Awesome! You have successfully added the `Test` to the first contact in your contact list.
+4. Awesome! You have successfully added the `Test` tag to the first contact in your contact list.
 
 ### Editing a Tag: `tag edit`
 
