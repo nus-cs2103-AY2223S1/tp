@@ -387,6 +387,13 @@ Consequently, the commands are split into **5** main sections:
   - For e.g. `help with extra words` will display an error message
 </div>
 
+<div markdown="span" class="alert alert-primary">
+**:star: Letter casing for parameters**
+
+Note that the parameters in this user guide are all upper-cased, which differs from the lower-cased parameters in 
+the help message that TruthTable displays whenever you run a command with `-h`.
+</div>
+
 [//]: # (TODO: add reference to flags/parameter summary)
 
 ### Commands to Manage Persons
@@ -451,8 +458,8 @@ Edits an existing person in TruthTable.
 
 *️⃣ - at least one of the flags must be specified
 
-* Edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the displayed person
-  list. 
+* Edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the 
+[persons section](#persons-section) 
 * `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
 * Each field only updates if the flag for that field is specified.
 * When editing tags, the existing tags of the person will be replaced by the new tags specified.
@@ -463,7 +470,7 @@ Edits an existing person in TruthTable.
 - `e person`
 - `e p`
 
-**Examples::** 
+**Examples:** 
 *  `edit person 1 -p 91234567 -e johndoe@example.com` Edits the phone number and email address of the 1st person to be
    `91234567` and `johndoe@example.com` respectively.
 *  `edit person 2 -n Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing
@@ -473,15 +480,24 @@ Edits an existing person in TruthTable.
 
 Finds person whose names contain any of the given keywords.
 
-**Format:** `find person KEYWORD [MORE_KEYWORDS]`
+**Format:** `find person [-h] <KEYWORDS>`
 
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
+
+* Only the name is searched.
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
 
-**Examples::** 
+**Command Aliases:**
+- `find p`
+- `f person`
+- `f p`
+
+**Examples:** 
 * `find person John` returns `john` and `John Doe`
 * `find person alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find person alex david'](images/findAlexDavidResult.png)
@@ -490,16 +506,24 @@ Finds person whose names contain any of the given keywords.
 
 Deletes the specified person from TruthTable.
 
-**Format:** `delete person PERSON_INDEX`
+**Format:** `delete person <PERSON_INDEX>`
 
-* Deletes the person at the specified `PERSON_INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3,...
+| Flags             | Required | Remarks                                                |
+|-------------------|:---------|--------------------------------------------------------|
+| `-h`, `--help`    |          | Shows help message                                     |
 
-**Examples::** 
-* `list persons` followed by `delete person 2` deletes the 2nd person in the TruthTable.
+* Deletes the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
+[persons section](#persons-section)
+* `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `delete p`
+- `d person`
+- `d p`
+
+**Examples:** 
+* `list persons` followed by `delete person 2` deletes the 2nd person in TruthTable.
 * `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find person` command.
-
 
 ### Commands to Manage Members
 
@@ -512,7 +536,7 @@ the team.
 
 **Format:** `add member MEMBER_INDEX`
 
-**Examples::** 
+**Examples:** 
 
 - `add member 1` will add the first person in the list of people as a member of the current team.
 
@@ -522,7 +546,7 @@ Delete a team member from the user’s team.
 
 **Format:** `delete member TEAM_MEMBER_INDEX`
 
-**Examples::** 
+**Examples:** 
 
 - `delete member 2` will delete the second member of the current team.
 
@@ -581,7 +605,7 @@ Team name must consist only of alphanumeric characters (i.e., **Spaces are NOT a
 
 **Format:** `add team TEAM_NAME [-d TEAM_DESCRIPTION]`
 
-**Examples::** 
+**Examples:** 
 
 - `add team CS2103` will create a new team by the name of "CS2103"
 - `add team CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
@@ -594,7 +618,7 @@ if the team does not exist
 
 **Format:** `set team TEAM_NAME`
 
-**Examples::** 
+**Examples:** 
 
 - `set team CS2103` will change the current working team to be the "CS2103" team.
 
@@ -602,7 +626,7 @@ if the team does not exist
 
 **Format:** `edit team [-n TEAM_NAME] [-d TEAM_DESCRIPTION]`
 
-**Examples::** 
+**Examples:** 
 - `edit team -n CS2103 -d "Software Engineering"` will edit the name of the current team to CS2103 and description
   to "Software Engineering"
 
@@ -615,7 +639,7 @@ Delete an existing team from the user's list of teams. Throws an error under the
 
 **Format:** `delete team TEAM_NAME`
 
-**Examples::** 
+**Examples:** 
 
 - `delete team CS2103` will delete the team with the name "CS2103"
 
@@ -634,7 +658,7 @@ e.g. `add task "Merge PR" -a 1 3 4` will assign members 1, 3 and 4 to the task "
 
 **Format:** `add task "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
 
-**Examples::** 
+**Examples:** 
 
 * `add task "Merge PR" -a 1 -d 2022-12-02 23:59` will add a task with the name "Merge PR", assign the task to the
 first member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's task list.
@@ -652,7 +676,7 @@ e.g. `edit task 1 -a 1 3 4` will assign members 1, 3 and 4.
 
 **Format:** `edit task TASK_INDEX -n "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
 
-**Examples::** 
+**Examples:** 
 
 * `edit task 1 "Merge PR" -a 1 -d 2022-12-02 23:59` will edit the first task in the current team's task
 list, setting the name as "Merge PR", setting the assignee as the first member in the team list and deadline
@@ -668,7 +692,7 @@ the task is not found in the user’s team.
 
 **Format:** `assign task TASK_INDEX -a MEMBER_INDEX`
 
-**Examples::** 
+**Examples:** 
 
 - `assign task 1 -a 1` will assign the first task on the task list to the first member in the team.
 - `assign task 2 -a 2` will assign the second task on the task list to the second member in the team.
@@ -681,7 +705,7 @@ or if the task has already been assigned to all members of the team.
 
 **Format:** `assign random TASK_INDEX`
 
-**Examples::** 
+**Examples:** 
 
 - `assign random 1` will assign the first task on the task list to a random team member.
 
@@ -693,7 +717,7 @@ The deadline must be specified in `YYYY-MM-DD HH:MM` format.
 
 **Format:** `set deadline TASK_INDEX DEADLINE`
 
-**Examples::** 
+**Examples:** 
 
 - `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023
 11.59pm.
@@ -705,7 +729,7 @@ the user’s team, i.e., when the index exceeds the number of tasks.
 
 **Format:** `delete task TASK_INDEX`
 
-**Examples::** 
+**Examples:** 
 
 - `delete task 1` will delete the first task of the current team.
 
@@ -715,7 +739,7 @@ Mark a specified task as done. To undo this command, see the `unmark` command be
 
 **Format:** `mark TASK_INDEX`
 
-**Examples::** 
+**Examples:** 
 
 - `mark 1` will mark the first task in the team as done.
 
@@ -725,7 +749,7 @@ Mark a specified task as incomplete. This will undo the `mark` command.
 
 **Format:** `unmark TASK_INDEX`
 
-**Examples::** 
+**Examples:** 
 
 - `unmark 1` will mark the first task in the team as incomplete.
 
@@ -756,7 +780,7 @@ The command `list tasks` can also be used to view all tasks again after the `fin
 
 **Format:** `list tasks [-i] [-c]`
 
-**Examples::** 
+**Examples:** 
 - `list tasks` will list all the tasks of the current team.
 - `list tasks -i` will list all the incomplete tasks of the current team.
 - `list tasks -c` will list all the completed tasks of the current team.
@@ -797,7 +821,7 @@ Add a new link to the user's currently selected team.
 
 **Format:** `add link -n NAME -l URL`
 
-**Examples::** 
+**Examples:** 
 
 - `add link -n google -l https://google.com` will add a link named "google" with the URL "https://google.com"
 
@@ -807,7 +831,7 @@ Edit an existing link in the user's currently selected team.
 
 **Format:** `edit link LINK_INDEX [-n NAME] [-l URL]`
 
-**Examples::** 
+**Examples:** 
 
 - `edit link 1 -n facebook -l https://facebook.com` will update the 1st link to have the name "facebook" with the 
   URL of "https://facebook.com"
@@ -818,7 +842,7 @@ Delete the specified link from the user's currently selected team.
 
 **Format:** `delete link LINK_INDEX`
 
-**Examples::** 
+**Examples:** 
 
 - `delete link 1`
 
