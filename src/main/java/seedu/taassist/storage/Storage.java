@@ -33,6 +33,12 @@ public interface Storage extends TaAssistStorage, UserPrefsStorage {
      * Creates a backup of the given {@code filePath} in the same directory.
      * The backup file will be named with the given {@code filePath} appended with a ".bak" extension.
      * If the backup file already exists, it will be overwritten.
+     * Assumption: the given {@code filePath} exists.
      */
     void backupFile(Path filePath) throws IOException;
+
+    /**
+     * Exports a CSV file with the given {@code fileName} and {@code fileData}.
+     */
+    void exportAsCsv(String fileName, String fileData) throws IOException;
 }

@@ -114,6 +114,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        classTitle.setVisible(false);
+        classTitle.textProperty().bind(logic.getFocusLabelProperty());
     }
 
     /**
@@ -172,7 +175,6 @@ public class MainWindow extends UiPart<Stage> {
         classLabel.setText("Sessions");
         unfocusButton.setVisible(true);
         classTitle.setVisible(true);
-        classTitle.textProperty().bind(logic.getFocusLabelProperty());
         helpButton.setId("helpFocusButton");
         classLabelContainer.setStyle("-fx-background-color:#f5d58b");
         buttonBar.setStyle("-fx-background-color: derive(#a5dff0, 20%);");
@@ -224,24 +226,27 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
-            if (commandResult.isFocus()) {
-                handleFocusMode();
-            }
-
-            if (commandResult.isUnfocus()) {
-                handleUnfocusMode();
+            if (commandResult.hasUiAction()) {
+                switch (commandResult.getUiAction()) {
+                case HELP:
+                    handleHelp();
+                    break;
+                case EXIT:
+                    handleExit();
+                    break;
+                case FOCUS:
+                    handleFocusMode();
+                    break;
+                case UNFOCUS:
+                    handleUnfocusMode();
+                    break;
+                default:
+                    assert false;
+                }
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | AssertionError e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

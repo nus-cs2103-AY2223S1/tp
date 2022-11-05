@@ -21,17 +21,14 @@ import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
 import seedu.taassist.model.student.Phone;
+import seedu.taassist.model.student.SessionData;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATE = "An invalid date is provided. "
-            + "Dates should be given in YYYY-MM-DD format and must be an actual date.";
-    public static final String MESSAGE_INVALID_GRADE = "An invalid grade value is provided. "
-            + "The grade must be a number.";
+    public static final String MESSAGE_INVALID_INDEX = "Index should be a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -163,7 +160,7 @@ public class ParserUtil {
         try {
             return new Date(LocalDate.parse(trimmedDate));
         } catch (DateTimeException de) {
-            throw new ParseException(MESSAGE_INVALID_DATE);
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
     }
 
@@ -174,11 +171,16 @@ public class ParserUtil {
      */
     public static Double parseGrade(String numberString) throws ParseException {
         requireNonNull(numberString);
+        Double grade;
         try {
-            return Double.parseDouble(numberString);
+            grade = Double.parseDouble(numberString);
         } catch (NumberFormatException nfe) {
-            throw new ParseException(MESSAGE_INVALID_GRADE);
+            throw new ParseException(SessionData.MESSAGE_CONSTRAINTS);
         }
+        if (!SessionData.isValidGrade(grade)) {
+            throw new ParseException(SessionData.MESSAGE_CONSTRAINTS);
+        }
+        return grade;
     }
 
     /**

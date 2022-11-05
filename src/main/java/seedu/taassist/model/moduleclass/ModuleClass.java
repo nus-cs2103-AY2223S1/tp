@@ -5,14 +5,15 @@ import static seedu.taassist.commons.util.AppUtil.checkArgument;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.caseInsensitiveEquals;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
+import seedu.taassist.model.moduleclass.exceptions.SessionNotFoundException;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
+import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
  * Represents a Class in TA-Assist.
@@ -20,12 +21,13 @@ import seedu.taassist.model.uniquelist.Identity;
  */
 public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClass> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric.";
+    public static final String MESSAGE_CONSTRAINTS = "Class name should be alphanumeric and"
+            + " doesn't exceed 25 characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String className;
 
-    private final ArrayList<Session> sessions;
+    private final UniqueList<Session> sessions = new UniqueList<>();
 
     /**
      * Constructs a {@code ModuleClass}.
@@ -36,7 +38,6 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         requireNonNull(className);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
         this.className = className;
-        sessions = new ArrayList<Session>();
     }
 
     /**
@@ -49,15 +50,15 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         requireAllNonNull(className, sessions);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
         this.className = className;
-        this.sessions = new ArrayList<>(sessions);
-        Collections.sort(this.sessions);
+        this.sessions.setElements(sessions);
     }
 
     /**
      * Returns true if a given string is a valid class name.
      */
-    public static boolean isValidModuleClassName(String test) { // TODO: Ensure that class exists
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidModuleClassName(String className) {
+        requireNonNull(className);
+        return className.matches(VALIDATION_REGEX) && className.length() <= 25;
     }
 
     public String getClassName() {
@@ -68,8 +69,13 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      * Returns an immutable sessions list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Session> getSessions() {
-        return Collections.unmodifiableList(sessions);
+    public ObservableList<Session> getSessions() {
+        return sessions.asUnmodifiableObservableList();
+    }
+
+    public Session getSessionWithSameName(Session session) throws SessionNotFoundException {
+        requireNonNull(session);
+        return sessions.findElement(session).orElseThrow(SessionNotFoundException::new);
     }
 
     /**
@@ -81,18 +87,18 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         if (hasSession(session)) {
             return this;
         }
-        List<Session> newSessions = new ArrayList<>(sessions);
-        newSessions.add(session);
-        Collections.sort(newSessions);
-        return new ModuleClass(className, newSessions);
+        ModuleClass newModuleClass = new ModuleClass(className, sessions.asUnmodifiableObservableList());
+        newModuleClass.sessions.add(session);
+        return newModuleClass;
     }
 
     /**
      * Returns a new {@code ModuleClass} by removing the {@code session}.
      */
-    public ModuleClass removeSession(Session session) {
-        requireNonNull(session);
-        List<Session> newSessions = sessions.stream().filter(s -> !s.isSame(session)).collect(Collectors.toList());
+    public ModuleClass removeSession(Session toRemove) {
+        requireNonNull(toRemove);
+        List<Session> newSessions = sessions.asUnmodifiableObservableList().stream().filter(s -> !s.isSame(toRemove))
+                .collect(Collectors.toList());
         return new ModuleClass(className, newSessions);
     }
 
@@ -124,8 +130,12 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
                 || (otherModule != null && caseInsensitiveEquals(this.className, otherModule.className));
     }
 
+    /**
+     * Returns true if the module class contains the session {@code toCheck}.
+     */
     public boolean hasSession(Session toCheck) {
-        return sessions.stream().anyMatch(toCheck::isSame);
+        requireNonNull(toCheck);
+        return sessions.contains(toCheck);
     }
 
     @Override
@@ -142,6 +152,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
 
     @Override
     public int compareTo(ModuleClass other) {
+        requireNonNull(other);
         return className.compareTo(other.className);
     }
 

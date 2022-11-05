@@ -5,7 +5,7 @@
 
 ### About the application
 
-* Teaching Assistant's Assistant (TA Assist) is a desktop application that aims to help Teaching Assistants (TAs) in NUS keep track of their students' grades, attendance, and work submission status of relevant modules.
+* Teaching Assistant's Assistant (TA-Assist) is a desktop application that aims to help Teaching Assistants (TAs) in NUS keep track of their students' grades, attendance, and work submission status of relevant modules.
 
 * The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 

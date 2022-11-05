@@ -49,6 +49,10 @@ public class LogicManager implements Logic {
         Command command = taAssistParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
+        if (commandResult.hasStorageAction()) {
+            commandResult = commandResult.performStorageAction(storage);
+        }
+
         try {
             storage.saveTaAssist(model.getTaAssist());
         } catch (IOException ioe) {
