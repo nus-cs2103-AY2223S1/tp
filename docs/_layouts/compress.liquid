@@ -3,6 +3,14 @@
 {% endcomment %}
 {% capture newline %}
 {% endcapture %}
+{% comment %} STRIP ALL LINES {% endcomment %}
+{% assign lines = content | split: newline %}
+{% assign trimmed = '' | split: '' %}
+{% for line in lines %}
+  {% assign stripped = line | strip %}
+  {% assign trimmed = trimmed | push: stripped %}
+{% endfor %}
+{% assign content = trimmed | join: newline %}
 {% comment %} REMOVE BLANK LINES {% endcomment %}
 {% assign content = content | split: newline | where_exp: 'item', 'item != ""' | join: newline %}
 {% comment %} RENDER {% endcomment %}
