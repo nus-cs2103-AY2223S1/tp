@@ -232,7 +232,19 @@ Example:`t/12-A nursing home`
 
 ### `d/TASK_DESCRIPTION | DATE TIME | INTERVAL TIME_PERIOD`
 
-_To be added_
+* `TASK_DESCRIPTION` can be any non-empty string made of alphanumeric characters.
+* `DATE TIME` must be of the form dd-MM-yy HHmm, but the time is optional. <br>
+  e.g. `2-7-22 1345`, `09-4-22`, `08-06-22 0900`, `7-06-22 2130` and `28-10-22` are all valid `DATE TIME`.
+* If `TIME` is omitted, the task will be created with a default time of `0000` hours.
+* `DATE TIME` itself can be omitted as well, this will result in the task being created with a task date and time of 24 hours from the moment of creation.
+* `INTERVAL TIME_PERIOD` is used to specify a recurring task i.e if the Task date passes, it will automatically generate the next Task based on the recurrence.
+* If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non recurring task, i.e one off task.
+* `TIME_PERIOD` can be: `day`/`days`, `week`/`weeks`, `month`/`months` or `year`/`years`
+* `INTERVAL` specifies the amount of such time periods between recurring tasks, and must be a **positive integer**.
+* Examples of valid `INTERVAL TIME_PERIOD` are: `3 days`, `7 weeks`, `2 months`.
+* Note that while a task can be created without `DATE TIME`, a recurring task must have a `DATE TIME`.
+
+Example: `d/Take CT scan | 23-11-22 1530 | 2 months`
 
 ### `c/CONDITION`
 
@@ -253,26 +265,6 @@ Example:`m/Amoxicillin | 0.5g every 8 hours`
 
 Example:`r/Allergic to peanuts`
 
-
-
-_Clean up Task parameters, some should be put in the feature, while things like date format maybe be put in this section_
-### Task parameters
-* A task is specified using two pieces of information: `TASK_DESCRIPTION` and `DATE TIME`.
-* `TASK_DESCRIPTION` can be any non-empty string made of alphanumeric characters.
-* `DATE TIME` must be of the form dd-MM-yy HHmm, but the time is optional. <br>
-  e.g. `2-7-22 1345`, `09-4-22`, `08-06-22 0900`, `7-06-22 2130` and `28-10-22` are all valid `DATE TIME`.
-* If a `TIME` of `2400` if provided, it would simply be translated into `0000` hours of the next day. <br>
-  e.g `2-11-22 2400` will be automatically be inferred as `3-11-22 0000`.
-* If the day portion of the date exceeds the last day of that calendar month, it would default to the last day of the month. <br>
-  e.g `31-4-22` will be automatically converted to `30-4-22` or `30-2-20` will be converted to `29-2-20` since 2020 is a leap year.
-* Although time can be omitted, this will result in the task being created with a default time of `0000` hours.
-* `DATE TIME` itself can be omitted as well, this will result in the task being created with a task date and time of 24 hours from the moment of creation.
-* A task can be recurring, i.e if the Task date passes, it will automatically generate the next Task based on the recurrence.
-* A recurring task can be specified using parameters `INTERVAL TIME_PERIOD`, in addition to the `TASK_DESCRIPTION` and `DATE TIME`.
-* `TIME_PERIOD` can be: `day`/`days`, `week`/`weeks`, `month`/`months` or `year`/`years`
-* `INTERVAL` specifies the amount of such time periods between recurring tasks, and must be a **positive integer**.
-* Examples of valid `INTERVAL TIME_PERIOD` are: `3 days`, `7 weeks`, `2 months`.
-* Note that while a task can be created without `DATE TIME`, a recurring task must have a `DATE TIME`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -457,53 +449,75 @@ Examples:
 
 ### Adding a task: `add` `-p`
 
-Adds a task or recurring task to a patient.
+You can add a task or recurring task to a patient with the `add` command.
 
-Format: `add -p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>`
+Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>`
 
-* Adds a task to a patient at the specified `PATIENT_INDEX`.
-* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#task-parameters).
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#parameter-constraints).
 * Note that tasks are automatically sorted in chronological order upon being added, i.e if a task on `25-10-22` is added, this task's `TASK_INDEX` would be based on its chronological order in the patients task list. E.g the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
+* If a `TIME` of `2400` if provided, it would simply be translated into `0000` hours of the next day. <br>
+  e.g `2-11-22 2400` will be automatically be inferred as `3-11-22 0000`.
+* If the day portion of the date exceeds the last day of that calendar month, it would default to the last day of the month. <br>
+  e.g `31-4-22` will be automatically converted to `30-4-22` or `30-2-20` will be converted to `29-2-20` since 2020 is a leap year.
+
+</div>
 
 Examples:
 * `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
 * `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-7-22` adds a task to the 2nd patient in results of the `find` command, on 12th July 2022 0000 hours.
 * `add -p 3 d/Take X-rays | 23-4-22 1345 | 3 weeks` adds a recurring task to the 3rd patient for every 3 weeks starting from 23rd April 2022 1345 hours.
 
+<div markdown="block" class="alert alert-success">
+
+:bulb **Tip:** You can add multiple tasks at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
+
 <br>
 
 ### Editing a task: `edit` `-p` `-d`
 
-Edits the specified task or recurring task associated with a patient.
+You can edit a task of a patient with the `edit` command.
 
-Format: `edit -p PATIENT_INDEX -d TASK_INDEX d/<TASK_DESCRIPTION> | <DATE TIME> | <INTERVAL TIME_PERIOD>`
+Format: **`edit`** `-p PATIENT_INDEX -d TASK_INDEX d/<TASK_DESCRIPTION> | <DATE TIME> | <INTERVAL TIME_PERIOD>`
 
-* Edits the task at the specified `TASK_INDEX` of the patient at the specified `PATIENT_INDEX`.
-* The task index refers to the index number shown in the task list of a patient.
-* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in notes under command format.
-* If there is no change for certain parameters from the original values, leave them as empty but use the `|` if the position of that parameter happens to precede the parameter to be edited, if the position of the parameter is after the parameter to be edited then `|` is not required (refer to examples below).
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#parameter-constraints).
 * If a `INTERVAL TIME_PERIOD` is provided for what was originally a non-recurring task, the edit will transform it into a recurring one based on the given frequency
-* Note that tasks are automatically sorted in chronological order upon being edited, i.e if a task on `25-10-22` is edited to be `30-10-22`, it's new `TASK INDEX` would be based on its chronological order in the patients task list.
+* Tasks are automatically sorted in chronological order upon modification, i.e. if a task on `25-10-22` is edited to be `30-10-22`, its new `TASK INDEX` would be based on the displayed order in the patient's task list.
+* If a `TIME` of `2400` if provided, it would simply be translated into `0000` hours of the next day. <br>
+  e.g `2-11-22 2400` will be automatically be inferred as `3-11-22 0000`.
+* If the day portion of the date exceeds the last day of that calendar month, it would default to the last day of the month. <br>
+  e.g `31-4-22` will be automatically converted to `30-4-22` or `30-2-20` will be converted to `29-2-20` since 2020 is a leap year.
+
+</div>
 
 Examples:
 * `list` followed by `edit -p 1 -d 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st patient in the patient list to `Administer 3ml of example medicine`, while retaining the original date and time for the task.
-* `find Betsy` followed by `edit -p 2 -d 3 d/ | 23-10-22 0800` edits the date and time of the 3rd task of the 2nd patient in results of the `find` command to 23rd October 2022 0800 hours, while retaining the original description for the task.
-* `list` followed by `edit -p 1 -d 1 d/ | | 3 days` edits the recurrence of the 1st task of the 1st patient if the task was a recurring task to every 3 days, while keeping the original description, date and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 3 days.
-* `list` followed by `edit -p 2 -d 3 d/ | 25-10-22 | 2 weeks` edits the date and recurrence of the 3rd task fo the 2nd patient in the patient list to 25th october 2022 and every 2 weeks, while keeping the original description and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 2 weeks.
+* `find Betsy` followed by `edit -p 2 -d 3 d/| 23-10-22 0800` edits the date and time of the 3rd task of the 2nd patient in results of the `find` command to 23rd October 2022 0800 hours, while retaining the original description for the task.
+* `list` followed by `edit -p 1 -d 1 d/| | 3 days` edits the recurrence of the 1st task of the 1st patient if the task was a recurring task to every 3 days, while keeping the original description, date and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 3 days.
+* `list` followed by `edit -p 2 -d 3 d/| 25-10-22 | 2 weeks` edits the date and recurrence of the 3rd task fo the 2nd patient in the patient list to 25th october 2022 and every 2 weeks, while keeping the original description and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 2 weeks.
 * `find David` followed by `edit -p 1 -d 2 d/Change bandage | | 4 days` edits the description and recurrence of the 2nd task of the 1st patient in the results of `find` command to `Change bandage` and every 4 days, while keeping the original date and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 4 days.
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
 * Note that you cannot edit only the time portion of the task, to change the time you would have to provide the date as well, e.g to change from `25-10-22 0800` to `25-10-22 0900`, the edit would have to involve the full date and time `d/ | 25-10-22 0900`.
+
+</div>
 
 <br>
 
 ### Deleting a task: `delete` `-p` `-d`
 
-Deletes the specified task or recurring task associated with a patient.
+You can delete a task of a patient with the `delete` command.
 
-Format: `delete -p PATIENT_INDEX -d TASK_INDEX`
-
-* Deletes the task at the specified `TASK_INDEX` of the patient at the specified `PATIENT_INDEX`.
-* The task index refers to the index number shown in the task list of a patient.
+Format: **`delete`** `-p PATIENT_INDEX -d TASK_INDEX`
 
 Examples:
 * `list` followed by `delete -p 2 -d 3` deletes the 3rd task of the 2nd patient in the patient list.
