@@ -318,9 +318,9 @@ Examples:
 | **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/ISDONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                         |
 | **Delete Task**      | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`                                                                                                                                                                              |
 | **List Tasks**       | `listTasks`                                                                                                                                                                                                                     |
-| **Filter Task**      | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                            |
-| **Sort by Deadline** | `sortByDeadline [o/ORDER]` <br> e.g., `sortByDeadline o/asc`                                                                                                                                                                    |
-| **Sort by Priority** | `sortByPriority [o/ORDER]` <br> e.g., `sortByPriority o/desc`                                                                                                                                                                   |
+| **Filter Tasks**      | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                            |
+| **Sort Tasks** | `sort [pr/ORDER] [dl/ORDER]` <br> e.g., `sort pr/asc`                                                                                                                                                                    |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -358,9 +358,9 @@ Examples:
 | dl/DEADLINE             | Should be in the format `YYYY-MM-DD` and after the current date                                                                                        |
 | pe/EMAIL_OF_PERSON_ASSIGNED | Should be the email address of an existing member (case-insensitive). For the [`editTask`](#editing-a-task-edittask) command, it can also be `none`, i.e. `pe/none`.                    |
 | do/IS_DONE               | *For [`editTask`](#editing-a-task-edittask) command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
-## Glossory
+## Glossary
 
 | Word               | Definition                                                                                                                                                 |
 |-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| GUI                 | Graphical User Interface - The Visual representation of the application                                                                                            |
+| GUI                 | Graphical User Interface - The visual representation of the application                                                                                            |
 | Parameter           | Input to the command called                                                                                  |
