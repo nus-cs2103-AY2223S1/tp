@@ -2,9 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.DeleteCommand.MESSAGE_USAGE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -18,12 +20,17 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonOutOfBoundException;
+import seedu.address.model.item.DisplayItem;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    private static final seedu.address.commons.util.FunctionalInterfaces.Getter<seedu.address.model.person.Person> P_GETTER = (m, i) -> m.getFromFilteredPerson(i);
+    private static final seedu.address.commons.util.FunctionalInterfaces.Changer<seedu.address.model.person.Person> P_DELETER = (m, item) -> m.deletePerson(item);
+    private static final java.util.function.Predicate<Object> P_TESTER = o -> o instanceof Person;
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -75,12 +82,12 @@ public class DeleteCommandTest {
 
         DeleteCommand<Person> deleteCommand = CmdBuilder.makeDelPerson(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, String.format(PersonOutOfBoundException.ERR_MSG,
+        assertCommandFailure(deleteCommand, model, String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE,//String.format(PersonOutOfBoundException.ERR_MSG,
             model.getFilteredPersonList().size(), outOfBoundIndex.getOneBased()));
     }
 
     @Test
-    public void equals() {
+    public void equals() throws seedu.address.logic.commands.exceptions.CommandException {
         DeleteCommand<Person> deleteFirstCommand = CmdBuilder.makeDelPerson(INDEX_FIRST);
         DeleteCommand<Person> deleteSecondCommand = CmdBuilder.makeDelPerson(INDEX_SECOND);
 
@@ -99,8 +106,23 @@ public class DeleteCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+
+        deleteFirstCommand.setInput(P_GETTER.apply(model, INDEX_FIRST));
+        deleteFirstCommandCopy.setInput(P_GETTER.apply(model, INDEX_FIRST));
+
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
     }
 
+    @Test
+    public void setInput_test () throws seedu.address.logic.commands.exceptions.CommandException {
+        DisplayItem dataStub = model.getFromFilteredPerson(Index.fromZeroBased(1));
+
+        DeleteCommand delCommandStub = new DeleteCommand(Index.fromZeroBased(1), P_GETTER, P_DELETER, P_TESTER);
+
+        delCommandStub.setInput(dataStub);
+
+        assertTrue(delCommandStub.equals(delCommandStub));
+    }
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
@@ -109,4 +131,6 @@ public class DeleteCommandTest {
 
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
+
+
 }
