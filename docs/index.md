@@ -4,11 +4,16 @@ layout: page
 ---
 
 <div align="center">
-<img src="../docs/images/Logo.png" width="360">
-
-[![CI Status](https://github.com/AY2223S1-CS2103T-T11-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T11-4/tp/actions)
-[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T11-4/tp/branch/master/graph/badge.svg?token=SQHP14Y75Q)](https://codecov.io/gh/AY2223S1-CS2103T-T11-4/tp)
+    <img src="https://raw.githubusercontent.com/AY2223S1-CS2103T-T11-4/tp/master/docs/images/Logo.png" width="360">
 </div>
+<p align="center">
+    <a href="https://github.com/AY2223S1-CS2103T-T11-4/tp/actions">
+        <img src="https://github.com/AY2223S1-CS2103T-T11-4/tp/workflows/Java%20CI/badge.svg" />
+    </a>
+    <a href="https://codecov.io/gh/AY2223S1-CS2103T-T11-4/tp">
+        <img alt="Coverage" src="https://codecov.io/gh/AY2223S1-CS2103T-T11-4/tp/branch/master/graph/badge.svg?token=SQHP14Y75Q">
+    </a>
+</p>
 
 ![Ui](images/Ui.png)
 

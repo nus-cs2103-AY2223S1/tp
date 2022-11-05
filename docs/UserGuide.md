@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 <div align="center">
-<img src="../docs/images/Logo.png" width="360">
+<img src="images/Logo.png" width="360">
 </div>
 
 Welcome to Mass Linkers &mdash; a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates.
@@ -13,8 +13,8 @@ Welcome to Mass Linkers &mdash; a powerful Desktop application tool that helps *
 
 Mass Linkers helps you find batchmates to form study groups and seek study advice through the following way.
 
-It provides a **centralised** platform for you to 
-- save your batchmates' contact and module details 
+It provides a **centralised** platform for you to
+- save your batchmates' contact and module details
 - search for batchmates with common interests or who are taking similar modules as you **conveniently**.
 
 A fast typer? Mass Linkers is made just for you.
@@ -61,11 +61,11 @@ The following icons are used in the _User Guide_ to denote special information t
 3. Copy the file to the folder you want to use as the _home folder_ for your Mass Linkers.
 
 4. Double-click the file to start the app. If done correctly, the GUI similar to the one below should appear in a few seconds. The image below is annotated with the various sections of the UI.
-   * Note for OS-X users: If you face difficulty running Mass Linkers, refer to the [FAQ](#6-faq) section.<br>
+   * Note for Mac users: If you face difficulty running Mass Linkers, refer to the [FAQ](#6-faq) section.<br>
 ![Ui](images/UiBreakDown.png)
 
 5. The app has been populated with some sample data. If you wish to start with an empty set of data, execute the [Clear](#542-clear-all-data-clear) command.
-6. Type a command in the command box and press Enter to execute it. Refer to the section on [Features](#5-features) below for details and usage of each command. 
+6. Type a command in the command box and press Enter to execute it. Refer to the section on [Features](#5-features) below for details and usage of each command.
 7. You can also use the [`help`](#541-view-help-help) command in Mass Linkers to view a summary of all available commands and their syntax.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -98,15 +98,21 @@ The following notes outline several noteworthy format which the [Feature](#5-fea
   Example:
   * If the command specifies `n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]`, then `[i/INTEREST] [e/EMAIL] [p/PHONE] n/NAME [g/GITHUB] t/TELEGRAM` is also acceptable.
 
+* Any words that come after a prefix will be taken as the parameter.<br>
+  Example:
+  * `n/john smith t/john parallelisation` john parallelization would be considered as the parameter for telegram handle which is invalid.
+    <br>ie. a space does not demarcate the end of a parameter.
+
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
   Example:
   * If you specify `n/John Doe n/Bob Tan`, only `n/Bob Tan` will be saved.
   * If you specify `p/12341234` `p/56785678`, only `p/56785678` will be saved.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
-  Example:
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) and `mod mark all` will be ignored.
+  <br>Example:
   * If the command specifies `help 123`, it will be interpreted as `help`.
   * If the command specifies `exit 345`, it will be interpreted as `exit`.
+  * If the command specifies `mod mark all 123`, it will be interpreted as `mod mark all`.
 
 </div>
 
@@ -118,7 +124,7 @@ Parameters are the input words that come after a command word to specify how the
 * For all commands involving `INDEX`, `INDEX` refers to the index number shown in the currently displayed list.<br>
   * ___Beware!!!___ This may not be the full list of batchmates you have in Mass Linkers! For example, you may have entered the [find command](#514-find-a-batchmate-find), so the currently displayed list will be the result of `find` which is not the full list.
   * The index __must be a positive integer__, e.g. 1, 2, 3 … and be smaller than or equal to the number of batchmates in the currently displayed list.
-  
+
 </div>
 
 ### 5.1. Batchmate commands
@@ -187,7 +193,7 @@ __Format:__ `find KEYWORD [MORE_KEYWORDS]...`
   * Partial words are accepted. E.g. `uxu` will return `yuxuan`.
   * Unlike `NAME`, these items (`TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL`) are not separated by spaces. If full words are needed for matching, you will have to type the full item out each time you search.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 `TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL` are unique. if your partial text input is too common and list too many batchmates, simply type a few more letters! It is still better than typing the entire item!
 </div>
 
@@ -341,9 +347,10 @@ __Examples:__
 * `mod unmark 3 cs2100 cs2103t cs2101 cs2105` unmarks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `not taken`.
 
 #### 5.3.6. Mark all modules as taken: `mod mark all`
+
 <div markdown="span" class="alert alert-warning">:warning: **Warning:** The `mod mark all` command is irreversible. Only execute it if you intend to mark __all existing modules__ for __all batchmates__ as taken. 
  </div>
- 
+
 Marks all current modules of every batchmate in Mass Linkers as `taken` in the _Modules panel_. This makes it convenient to update the module status of all existing modules of every batchmate as taken after each semester.
 
 __Format:__ `mod mark all`
@@ -387,6 +394,7 @@ Shows a brief summary of commands with their syntax and a link to the user guide
 __Format:__ `help`
 
 #### 5.4.2. Clear all data: `clear`
+
 <div markdown="span" class="alert alert-warning">:warning: **Warning:** The `clear` command is irreversible. Only execute it if you intend to clear __all existing data__. 
  </div>
 
@@ -408,7 +416,7 @@ Mass Linkers ensures your data is saved automatically each time after you execut
 
 ### 5.5. Parameter Requirements
 
-Below is the summary of requirements to take note of for each parameter for the different commands. 
+Below is the summary of requirements to take note of for each parameter for the different commands.
 
 | Parameter       | Requirements                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 |-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -418,7 +426,7 @@ Below is the summary of requirements to take note of for each parameter for the 
 | GitHub username | May only contain alphanumeric characters or hyphens and have a length between 1 - 39 characters.<br> Consecutive and/or starting with hyphens are not allowed as per GitHub requirements. <br/> Examples: `john1`, `john-doe`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Interest        | Only alphanumerical characters allowed. <br/> Examples: `swe`, `ai`, `algo`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Email           | Emails should be of the format local-part@domain and adhere to the following constraints: <br> 1. The local-part should only contain alphanumeric characters and these special characters within the quotation marks: "`+_.-`". The local-part may not start or end with any special characters.<br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br>The domain name must:<br>- end with a domain label at least 2 characters long<br>- have each domain label start and end with alphanumeric characters<br>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. <br/> Examples: `john12@gmail.com`, `joe-lim@u.nus.edu`, `joe@mail` |
-| Modules         | Module names should be numbers prefixed with alphabet(s) and be less than 10 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Modules         | Module names should be numbers prefixed with alphabets and be less than 10 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
 ### 5.6. Module Categorisation
 
@@ -452,8 +460,9 @@ Facing an issue? Below are several commonly asked questions, which address techn
 **Q**: Do I need internet connection to use Mass Linkers?<br>
 **A**: No, internet connection is not required.
 
+<span style="background-color: #FFFF00">Important for Mac users</span><br>
 **Q**: I am using Mac and I tried opening the `MassLinkers.jar` file by double-clicking it in Finder. It says *"MassLinkers.jar" cannot be opened because it is from an unidentified developer.*<br>
-**A**: Right-click the `MassLinkers.jar file` and select `Open`. When a warning message that says _macOS cannot verify the developer of "MassLinkers.jar". Are you sure you want to open it?_ appears, select `Open`. Alternatively, you can right-click the `MassLinkers.jar` file and select `Open with JavaLauncher(default)`. 
+**A**: Right-click the `MassLinkers.jar file` and select `Open`. When a warning message that says _macOS cannot verify the developer of "MassLinkers.jar". Are you sure you want to open it?_ appears, select `Open`. Alternatively, you can right-click the `MassLinkers.jar` file and select `Open with JavaLauncher(default)`.
 
 **Q**: Will the data of batchmates be saved if the program was not closed via the ```exit``` command?<br>
 **A**: Yes, the data will still be saved if the program is closed by closing the application window directly. However, we advise using the ```exit``` command for a better user experience.
@@ -466,7 +475,7 @@ Facing an issue? Below are several commonly asked questions, which address techn
 
 ### 6.2. Privacy Issues
 **Q**: What if I do not want to share some of my personal data like my phone number and email address?<br>
-**A**: While it is every student's responsibility to exercise discretion in sharing their batchmates' contacts, Mass Linkers has made more sensitive data fields such as GitHub, Phone and Email optional. In this way, the only mandatory fields are your name and telegram handle. If you are uncomfortable sharing your name, you can use a pseudo-name for identification purposes. 
+**A**: While it is every student's responsibility to exercise discretion in sharing their batchmates' contacts, Mass Linkers has made more sensitive data fields such as GitHub, Phone and Email optional. In this way, the only mandatory fields are your name and telegram handle. If you are uncomfortable sharing your name, you can use a pseudo-name for identification purposes.
 
 --------------------------------------------------------------------------------------------------------------------
 
