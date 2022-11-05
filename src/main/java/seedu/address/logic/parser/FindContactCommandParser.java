@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.CanHelpWithTaskPredicate;
@@ -54,12 +55,13 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
 
         } else if (searchPrefix.equals(PREFIX_TASK)) {
 
-            int taskIndex = Integer.parseInt(argMultimap.getValue(PREFIX_TASK).get());
-            if (taskIndex < 1) {
+            try {
+                Index taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK).get());
+                return new FindContactCommand(new CanHelpWithTaskPredicate(taskIndex));
+            } catch (ParseException pe) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
             }
-            return new FindContactCommand(new CanHelpWithTaskPredicate(taskIndex));
 
         } else {
 
