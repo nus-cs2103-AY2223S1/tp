@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 * **Plannit** is an **all-in-one application** that streamlines the execution of module
   deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
   **module-mates** (i.e., students in the same module) to increase their productivity.
@@ -19,11 +20,26 @@ Students do not have to worry about forgetting which friend takes which module.
 while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
 
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## 0. How to use this guide
+This guide is targeted at new users who are looking at learning more about 
+our app.
+1. If this is your very first time using the application, welcome! You may head 
+   over to the [quick start](#1-quick-start) section to begin your journey with us!
+2. If you already have a specific feature in mind, you can check out the 
+   [command summary](#11-command-summary) section.
+3. Throughout this guide, you will encounter the icons :bulb:,
+  :information_source: or :eye: icon. Their meanings are as follows:
+
+| Icon                 | Meaning                                                                     |
+|----------------------|-----------------------------------------------------------------------------|
+| :bulb:               | A relevant tip which you may find helpful.                                  |
+| :information_source: | Information that you should **must** note of when using a specific feature. |
+| :eye:                | A feature related to the section you are currently looking at.              |
+
 
 ## 1. Quick start
 
@@ -33,16 +49,21 @@ If you can type fast, Plannit can help you track your module information and tas
 
 3. Copy the file to the folder you want to use as the _home folder_ for Plannit.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
+4. Double-click the file to start the app. The window below should appear in a 
+   few seconds. <br>
 
-<p align="center">
-    <img src="images/Ui.png" width="500"/>
-</p>
 
-6. Type the command in the command box and press Enter to execute it. e.g.
-   `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary)
+    | Screenshot of Plannit                                                                     | Description of labels                                                                                            |
+    |-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+    | {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500"/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Modules list</li><li>Persons list</li></ol>{:/} |
 
-7. Refer to the [Features](#2-features) for details of each command.
+
+5. Type the command in the command box and press Enter to execute it. e.g.
+   `add-module m/CS2103T`. For more commands, you may refer to the [Command summary](#11-command-summary).
+   Alternatively, head over to [Features](#2-features) to find the details of each command.
+
+6. After a command has been executed, a message will be displayed in the result 
+   display to indicate whether the command's execution has been successful.
 
 ### 1.1. Command summary
 
@@ -60,7 +81,7 @@ If you can type fast, Plannit can help you track your module information and tas
 | [`delete-link`](#232-delete-link)                             | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                           | Delete link URL from a module by its specified module code and alias            |
 | [`open-link`](#233-open-link)                                 | `open-link       m/MODULE_CODE la/LINK_ALIAS`                           | Open link URL from a module by its specified module code and alias              |
 | [`add-person`](#241-add-person)                               | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
-| [`add-person-to-module`](#242-add-person-to-module)           | `add-person-to-module m/MODULE_CODE <br/>n/NAME`                        | Add person with specified name to the module with the specified module code     |
+| [`add-person-to-module`](#242-add-person-to-module)           | `add-person-to-module m/MODULE_CODE n/NAME`                             | Add person with specified name to the module with the specified module code     |
 | [`delete-person`](#243-delete-person)                         | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
 | [`delete-person-from-module`](#244-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                        | Delete person with specified name from a module with specified module code      |
 | [`edit-person`](#245-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
@@ -70,11 +91,11 @@ If you can type fast, Plannit can help you track your module information and tas
 | [`goto`](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
 | [`exit`](#26-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/> 
 Features marked with * can only be utilised when users are at the home page.
 </div>
 
-<div markdown="span" class="alert alert-info">:eye: **See also:** 
+<div markdown="span" class="alert alert-info"> :eye: **See also:**<br/>  
 [Peeking at tasks](#224-peeking-at-tasks).
 </div>
 
@@ -89,7 +110,7 @@ Features marked with * can only be utilised when users are at the home page.
 
 * Items in square brackets are optional. The `*` after a set of square brackets means that it can be used multiple times<br>
   e.g. `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
-  e.g. `[la/LINK_ALIAS]*` can be used as `la/google`, `la/facebook`, and `la/luminus` or just as `la/google`.
+  e.g. `[la/LINK_ALIAS]*` can be used as `la/google la/facebook la/luminus` or just as `la/google`.
 
 * A round bracket surrounding multiple square brackets indicate a need for at least one of the items in square brackets
 to be present.  
@@ -252,20 +273,21 @@ In the above example, we list every module that exist in Plannit.
 
 ### 2.2. Tasks
 #### 2.2.1. Add task
-You may add a task using the `add-task` command.
+Suppose a particular module has assigned you a task to be completed. You can 
+keep track of it by adding it to Plannit using the `add-task` command.
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:**<br/> 
-Make sure you have [added a module](#211-add-module) to Plannit before 
-proceeding!
+Make sure you have [added a module](#211-add-module-add-module) to Plannit 
+before proceeding!
 </div>
 
-This command will require two flags:
+This command will require two prefixes:
 
-| Field                            | Flag  | Constraints                                             |
-|----------------------------------|-------|---------------------------------------------------------|
-| **Module Code**                  | `m/`  | Can only be non-empty string of alphanumeric characters |
-| **Task Description of New Task** | `td/` | Can be any string of characters                         |
+| Field                            | Prefix | Constraints                                                                                                                            |
+|----------------------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**                  | `m/`   | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/} |
+| **Task Description of New Task** | `td/`  | Can be any string of characters                                                                                                        |
 
 Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
 * Each task must belong to a specific module.
@@ -273,15 +295,15 @@ Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
 
 Example:
 ```
-add-task m/CS2103T td/Complete tP tasks for W07
+add-task m/CS2103T td/Complete week 7's weekly assignments
 ```
-In the above example, we are adding the task `Complete tP tasks for W07` to the
+In the above example, we are adding the task `Complete week 7's weekly assignments` to the
 module `CS2103T`. Here's a screenshot of Plannit before and after executing the
 command:
 
-| Before executing the command                                                    | After executing the command                                                    |
-|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/add-task-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-task-after.png"/></p>{:/} |
+| Before executing the command                                                                                                                             | After executing the command                                                                                                                       |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-task-after.png"/></p><p>A message will appear indicating that a task has been added.</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
 You may view the tasks added to a module by navigating to a module's page 
@@ -291,15 +313,15 @@ module's tasks while on the home page.
 </div>
 
 #### 2.2.2. Delete task
-You may delete a task belonging to a particular module using the
-`delete-task` command.
+Suppose you have completed a task and would now like to remove it from 
+Plannit. You may delete the task using the `delete-task` command.
 
-This command will require two flags:
+This command will require two prefixes:
 
-| Field                   | Flag  | Constraints                                                                                                                                                       |
-|-------------------------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**         | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                           |
-| **Task Number of Task** | `tn/` | {::nomarkdown}Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul>{:/} |                 
+| Field                   | Prefix | Constraints                                                                                                                                                       |
+|-------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**         | `m/`   | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/}                            |
+| **Task Number of Task** | `tn/`  | {::nomarkdown}Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul>{:/} |                 
 
 Format: `delete-task m/MODULE_CODE tn/TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
@@ -314,20 +336,21 @@ In the above example, we are deleting task number **2** from the module
 `CS2103T`. Here's a screenshot of Plannit before and after executing the 
 command: 
 
-| Before executing the command                                                       | After executing the command                                                       |
-|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/delete-task-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-task-after.png"/></p>{:/} |
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                            |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-task-after.png"/></p><p>A message will appear indicating that a task has been deleted.</p>{:/} |
 
 #### 2.2.3. Reorder tasks (swap)
-You may change the order in which tasks appear in the task list of a 
-particular module using the `swap-task` command.
+Suppose you have an urgent task which you like to place at the very top of 
+your list. You may change the order of tasks in your module's task list  using
+the `swap-task` command.
 
-This command will require two flags:
+This command will require two prefixes:
 
-| Field                                                     | Flag  | Constraints                                                                                                                                                                                                                                                 |
-|-----------------------------------------------------------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**                                           | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                     |
-| **Task Numbers of Tasks whose ordering is to be swapped** | `ts/` | {::nomarkdown}The two task numbers must: <ul><li>be separated by a <code>SPACE</code> character ("<code> </code>") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul>{:/} |
+| Field                                                     | Prefix | Constraints                                                                                                                                                                                                                                                 |
+|-----------------------------------------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**                                           | `m/`   | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/}                                                                                                                      |
+| **Task Numbers of Tasks whose ordering is to be swapped** | `ts/`  | {::nomarkdown}The two task numbers must: <ul><li>be separated by a <code>SPACE</code> character ("<code> </code>") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul>{:/} |
 
 Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
@@ -345,33 +368,33 @@ task within the task list of the module `CS2103T`. Here's a screenshot of
 Plannit before and after executing the command. Note that ["peek"](#224-peeking-at-tasks)
 has been enabled for clarity:
 
-| Before executing the command                                                                 | After executing the command                                                                                                                              |
-|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png"/></p><p><br/><p/>{:/} | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png"/></p> <p align="right"><i>Notice tasks 1 and 3 have swapped positions!</i><p/>{:/} |
+| Before executing the command                                                                                                                              | After executing the command                                                                                                 |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png"/></p><p>Tasks 1 and 3 have swapped positions!</p>{:/} |
 
 #### 2.2.4. Peeking at tasks
 You may "peek" at a module's tasks by clicking on the module while on the 
 `home` page. <br/>
  **Step 1**: Let's say you wish to view the tasks of `CS2103T SOFTWARE 
-ENGINEERING` (module number 1)
+ENGINEERING` (module number 1).
 <p align="center">
-  <img src="images/home-page.png" width="500"/>
+  <img src="images/home-page-with-cs2103-circled.png" width="500"/>
 </p>
 
 **Step 2**: You will notice a blue glow when hovering your mouse over the 
-module
+module.
 <p align="center">
   <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
 </p>
 
 **Step 3**: Double-clicking on the blue area will allow you to view the 
- tasks of `CS2103T SOFTWARE ENGINEERING`
+ tasks of `CS2103T SOFTWARE ENGINEERING`.
 <p align="center">
   <img src="images/home-page-with-cs2103-tasks.png" width="500"/>
 </p>
 
 **Step 4**: Clicking again on the blue area will close the dropdown and hide 
-the tasks
+the tasks.
 <p align="center">
   <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
 </p>
@@ -386,53 +409,32 @@ home page and view more details of a specific module, you may use the
 <br>
 
 ### 2.3. Links
-All links in Plannit are composed of a URL and a user-defined alias (case-sensitive).
+All links in Plannit are composed of a URL and an alias (case-sensitive). Aliases are short nicknames defined by you 
+for each module-related link that you found to be helpful. The succinct nature of aliases empowers you to identify 
+and launch module-related links from Plannit in a swift manner. Additionally, the personalised nature of aliases 
+enables you to attach your own meanings to generically-named links, saving you the
+hassle of searching and remembering links.
 
-| :exclamation: Plannit provides no guarantee of the link URL's existence |
-|-------------------------------------------------------------------------|
+E.g., Using the alias `tutorial zoom` to label the link `nus-sg.zoom.us/j/81374731875?pwd=ZE9hWFlNVGJVNEREhVVEs5Zz09`
+allows you to join the zoom room effortlessly whenever you want to.
 
 #### 2.3.1. Add link
 You may add link(s) to a specific module using the `add-link` command.
 Links will be added by its URL and alias.
 
-If there exists a link URL or alias that is detected as invalid within a chained command,
-none of the links in the command will be added. 
+If there exists a link URL or alias that is detected as invalid within a command,
+none of the link(s) in the command will be added. 
 Link aliases will be paired with link URLs according to their respective order of input (left-to-right).
 
-<table>
-<tr>
-  <th>Field</th>
-  <th>Flag</th>
-  <th>Constraints</th>
-</tr>
-<tr>
-  <td><b>Module Code</b></td>
-  <td><code>m/</code></td>
-  <td>
-    Can only be non-empty string of alphanumeric characters
-  </td>
-</tr>
-<tr>
-  <td><b>Link Alias</b></td>
-  <td><code>la/</code></td>
-  <td>
-    <li>Alphanumeric and whitespace characters</li>
-    <li>Trailing and leading whitespace characters will be removed</li>
-    <li>Character limit of 15</li>
-    <li>At least 1 alphanumeric character</li>
-  </td>
-</tr>
-<tr>
-  <td><b>Link URL</b></td>
-  <td><code>la/</code></td>
-  <td>
-    <li>Whitespace characters are not allowed</li>
-    <li>At least one top-level domain, i.e., consists of at least one period character <code>.</code></li>
-    <li>Domain length of 1 to 256 characters (e.g., the domain is `google` for 'www.google.com')</li>
-    <li>Supported by 'https' or 'http' (the inclusion of <code>https://</code> or <code>http://</code> is optional)</li>
-  </td>
-</tr>
-</table>
+<div markdown="span" class="alert alert-info"> :exclamation: **Alert:**<br/>  
+Plannit provides no guarantee of the link URL's existence.
+</div>
+
+| Field           | Flag  | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|-----------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Link URL**    | `l/`  | <li>Supported by 'https' or 'http' (used by most URLs)</li><li>The inclusion of http headers `http://` or `https://` at the front of the input is optional (exact spelling required if included)<li>Whitespace characters are not allowed</li><li>At least one top-level domain, e.g., `.com` or `.org`</li><li>Only hyphen `-` or alphanumeric characters allowed for and on the left of the top level domain (besides the optional https header)</li><li>Domain length of 1 to 256 characters (e.g., the domain is `google` for `www.google.com`)</li><li>Any non-whitespace characters found on a typical english keyboard allowed for the remainder of the input</li> |
+| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS [l/LINK_URL la/LINK_ALIAS]*`
 * You cannot add a link to a non-existent module code.
@@ -453,6 +455,11 @@ add-link m/CS2040 l/https://www.nusmods.com l/open.kattis.com la/nus mods la/kat
 ```
 In the above example, we are adding the links with the URL `https://www.nusmods.com` and `open.kattis.com`
 to the module with module code `CS2040`, represented by the link alias `nus mods` and `kattis` respectively.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                    | After executing the command                                                    |
+|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-link-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-link-after.png"/></p>{:/} |
 
 #### 2.3.2. Delete link
 You may delete link(s) from a specific module using the `delete-link` command. 
@@ -462,30 +469,11 @@ Multiple links can be deleted at once using their corresponding alias.
 If there exists a link alias that is detected as invalid within a chained command,
 none of the links in the command will be deleted.
 
-<table>
-<tr>
-  <th>Field</th>
-  <th>Flag</th>
-  <th>Constraints</th>
-</tr>
-<tr>
-  <td><b>Module Code</b></td>
-  <td><code>m/</code></td>
-  <td>
-    Can only be non-empty string of alphanumeric characters
-  </td>
-</tr>
-<tr>
-  <td><b>Link Alias</b></td>
-  <td><code>la/</code></td>
-  <td>
-    <li>Alphanumeric and whitespace characters</li>
-    <li>Trailing and leading whitespace characters will be removed</li>
-    <li>Character limit of 15</li>
-    <li>At least 1 alphanumeric character</li>
-  </td>
-</tr>
-</table>
+
+| Field           | Flag  | Constraints                                                                                                                                                                                |
+|-----------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                    |
+| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
 
 Format: `delete-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * You cannot delete a link from a non-existent module code.
@@ -503,10 +491,19 @@ delete-link m/CS2040 la/nus mods la/kattis
 ```
 In the above example, we are deleting the links with the URL `https://www.nusmods.com` and `open.kattis.com`
 from the module with module code `CS2040`, using their corresponding link alias `nus mods` and `kattis` respectively.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                       | After executing the command                                                       |
+|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-link-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-link-after.png"/></p>{:/} |
 
 #### 2.3.3. Open link
 You may open link(s) from a specific module to your default browser using the `open-link` command.
 Links will be opened by means of their corresponding alias.
+
+<div markdown="span" class="alert alert-info"> :bulb: **Tip:**<br/>  
+Hover your cursor over aliases in Plannit to peak at their associated URL.
+</div>
 
 An alternative way to open links is by means of clicking on their aliases on the application window.
 
@@ -514,33 +511,15 @@ Multiple links can be opened at once using its corresponding alias according to 
 (left to right). If there exists a link alias that is detected as invalid within a chained command,
 the links to its left will be opened while the links to its right will not be opened.
 
-| :exclamation: Permissions from your operating system may be required for some users to open links from Plannit using either way |
-|---------------------------------------------------------------------------------------------------------------------------------|
+<div markdown="span" class="alert alert-info"> :exclamation: **Alert:**<br/>  
+Permissions from your operating system may be required for some users to open links from Plannit using either way<br>
+(They are enabled by default for most users)
+</div>
 
-<table>
-<tr>
-  <th>Field</th>
-  <th>Flag</th>
-  <th>Constraints</th>
-</tr>
-<tr>
-  <td><b>Module Code</b></td>
-  <td><code>m/</code></td>
-  <td>
-    Can only be non-empty string of alphanumeric characters
-  </td>
-</tr>
-<tr>
-  <td><b>Link Alias</b></td>
-  <td><code>la/</code></td>
-  <td>
-    <li>Alphanumeric and whitespace characters</li>
-    <li>Trailing and leading whitespace characters will be removed</li>
-    <li>Character limit of 15</li>
-    <li>At least 1 alphanumeric character</li>
-  </td>
-</tr>
-</table>
+| Field           | Flag  | Constraints                                                                                                                                                                                |
+|-----------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                    |
+| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
 
 Format: `open-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * You cannot open a link from a non-existent module code.
