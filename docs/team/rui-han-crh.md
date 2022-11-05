@@ -192,7 +192,7 @@ Each note contains an index, a title, contents and tags.
 
 <br>
 
-The index of the notes only applies to the currently displayed list, it <b>is not</b> tied to the note itself.
+The index of the notes only applies to the currently displayed list, it is <b>not</b> tied to the note itself.
 
 Both the People Panel and Notes Panel share a pool of tags to more easily relate a group of people to a specific note.
 
