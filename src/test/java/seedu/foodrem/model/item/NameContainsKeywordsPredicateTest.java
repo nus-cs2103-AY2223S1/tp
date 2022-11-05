@@ -75,7 +75,7 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ItemBuilder()
                 .withItemName("Potatoes")
                 .withItemQuantity("12345")
-                .withItemBoughtDate("11-11-2022")
+                .withItemBoughtDate("11-10-2022")
                 .withItemExpiryDate("12-12-2022").build()));
     }
 }
