@@ -140,7 +140,7 @@ public class EditTaskCommand extends Command {
                 assigneePersonList.add(memberList.get(assigneeIndex - 1));
             }
             for (Person assignee : assigneePersonList) {
-                editedTask.assignTo(assignee);
+                editedTask.addAssignee(assignee);
             }
         }
         if (!taskToEdit.equals(editedTask) && model.getTeam().hasTask(editedTask)) {
@@ -185,14 +185,16 @@ public class EditTaskCommand extends Command {
         public boolean equals(Object other) {
             if (other == this) {
                 return true;
-            } else if (other instanceof Arguments) {
-                Arguments target = (Arguments) other;
-                return this.name == null ? false : this.name.equals(target.name)
-                        && this.deadline == null ? false : this.deadline.equals(target.deadline)
-                        && Arrays.equals(assignees, target.assignees);
-            } else {
+            }
+
+            if (!(other instanceof Arguments)) {
                 return false;
             }
+
+            Arguments target = (Arguments) other;
+            return this.name != null && this.name.equals(target.name)
+                    && this.deadline != null && this.deadline.equals(target.deadline)
+                    && Arrays.equals(assignees, target.assignees);
         }
     }
 

@@ -88,10 +88,6 @@ public class Task {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public boolean isValidIndex(int test) {
-        return test < getAssigneesList().size();
-    }
-
     @Override
     public String toString() {
         return getCompletionStatus() + name + " " + getAssigneesAsString() + " " + getDeadlineAsString();
@@ -144,44 +140,6 @@ public class Task {
     }
 
     /**
-     * Returns true if two tasks have the same name, members that task is assigned to and deadline.
-     *
-     * @param other the other task to be compared with.
-     * @return true if the tasks are considered equal, false otherwise.
-     */
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Task // instanceof handles nulls
-                && name.equals(((Task) other).name))
-                && assignees.equals(((Task) other).assignees)
-                && this.getDeadlineAsString().equals(((Task) other).getDeadlineAsString()); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return name.hashCode();
-    }
-
-    /**
-     * Assigns a Task to a person and returns a new Task
-     */
-    public Task assignTo(Person assignee) {
-        assignees.add(assignee);
-        return new Task(name, assignees, completionStatus, this.deadline);
-    }
-
-    /**
-     * Checks if task has already been assigned to the specified assignee.
-     *
-     * @param assignee The specified assignee.
-     * @return true if the task has been assigned to the assignee before, false otherwise.
-     */
-    public boolean checkAssignee(Person assignee) {
-        return this.assignees.contains(assignee);
-    }
-
-    /**
      * Set a new deadline and returns a new Task with that deadline
      */
     public Task setDeadline(LocalDateTime newDeadline) {
@@ -208,9 +166,15 @@ public class Task {
     }
 
     /**
-     * Removes the person from the assignee list, if exists.
-     *
-     * @param person assignee to be removed.
+     * Assigns a {@code Task} to the specified {@code Person} and returns a new {@code Task}
+     */
+    public Task addAssignee(Person assignee) {
+        assignees.add(assignee);
+        return new Task(name, assignees, completionStatus, this.deadline);
+    }
+
+    /**
+     * Removes the specified {@code Person} from the assignee list, if they exist.
      */
     public Task removeAssignee(Person person) {
         assignees.remove(person);
@@ -218,11 +182,49 @@ public class Task {
     }
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson} in the assignees list for all tasks.
-     * {@code target} must exist in assignee list.
+     * Replaces the specified person {@code target} with {@code editedPerson} in the assignees list for all tasks.
+     * Note: {@code target} must exist in assignee list.
      */
     public Task setAssignee(Person target, Person editedPerson) {
         assignees.setPerson(target, editedPerson);
         return new Task(name, assignees, completionStatus, deadline);
     }
+
+    /**
+     * Checks if {@code Task} has already been assigned to the specified assignee.
+     *
+     * @param assignee The specified assignee.
+     * @return true if the task has been assigned to the assignee before, false otherwise.
+     */
+    public boolean checkAssignee(Person assignee) {
+        return this.assignees.contains(assignee);
+    }
+
+    /**
+     * Replaces the current {@code assignees} with a new list of assignees and returns a new {@code Task}.
+     */
+    public Task setAssignees(UniquePersonList newAssignees) {
+        return new Task(name, newAssignees, completionStatus, deadline);
+    }
+
+    /**
+     * Returns true if two tasks have the same name, members that task is assigned to and deadline.
+     *
+     * @param other the other task to be compared with.
+     * @return true if the tasks are considered equal, false otherwise.
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Task // instanceof handles nulls
+                && name.equals(((Task) other).name))
+                && assignees.equals(((Task) other).assignees)
+                && this.getDeadlineAsString().equals(((Task) other).getDeadlineAsString()); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
 }
