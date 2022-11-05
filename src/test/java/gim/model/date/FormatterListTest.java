@@ -28,8 +28,8 @@ class FormatterListTest {
     @Test
     public void validDateWithFormatters_validInputTwo_success() {
         String[] dateStrings = {
-                "01-01-2020", "01-1-2020", "1-01-2020", "1-1-2020",
-                "2020-01-01", "2020-1-01", "2020-01-1", "2020-1-1",
+            "01-01-2020", "01-1-2020", "1-01-2020", "1-1-2020",
+            "2020-01-01", "2020-1-01", "2020-01-1", "2020-1-1",
         };
         for (String dateString: dateStrings) {
             assertNotNull(formatterList.validateDateWithFormatters(dateString));
@@ -39,8 +39,8 @@ class FormatterListTest {
     @Test
     public void validDateWithFormatters_validInputThree_success() {
         String[] dateStrings = {
-                "01 01 2020", "01 1 2020", "1 01 2020", "1 1 2020",
-                "2020 01 01", "2020 1 01", "2020 01 1", "2020 1 1",
+            "01 01 2020", "01 1 2020", "1 01 2020", "1 1 2020",
+            "2020 01 01", "2020 1 01", "2020 01 1", "2020 1 1",
         };
         for (String dateString: dateStrings) {
             assertNotNull(formatterList.validateDateWithFormatters(dateString));
@@ -61,8 +61,8 @@ class FormatterListTest {
     @Test
     public void validDateWithFormatters_invalidInputTwo_failure() {
         String[] dateStrings = {
-                "1 /1/20", "01/ 1/20", "1/01 /20", "01/01/ 20",
-                "20 /1/1", "20/ 1/01", "20/01 /1", "20/01/ 01",
+            "1 /1/20", "01/ 1/20", "1/01 /20", "01/01/ 20",
+            "20 /1/1", "20/ 1/01", "20/01 /1", "20/01/ 01",
         };
         for (String dateString: dateStrings) {
             assertNull(formatterList.validateDateWithFormatters(dateString));
@@ -72,8 +72,8 @@ class FormatterListTest {
     @Test
     public void validDateWithFormatters_invalidInputThree_failure() {
         String[] dateStrings = {
-                "01 -01-2020", "01- 1-2020", "1-01 -2020", "1-1- 2020",
-                "2020 -01-01", "2020- 1-01", "2020-01 -1", "2020-1- 1",
+            "01 -01-2020", "01- 1-2020", "1-01 -2020", "1-1- 2020",
+            "2020 -01-01", "2020- 1-01", "2020-01 -1", "2020-1- 1",
         };
         for (String dateString: dateStrings) {
             assertNull(formatterList.validateDateWithFormatters(dateString));
@@ -83,8 +83,8 @@ class FormatterListTest {
     @Test
     public void validDateWithFormatters_invalidInputFour_failure() {
         String[] dateStrings = {
-                "01 -01-20", "01- 1-20", "1-01 -20", "1-1- 20",
-                "20 -01-01", "20- 1-01", "20-01 -1", "20-1- 1",
+            "01 -01-20", "01- 1-20", "1-01 -20", "1-1- 20",
+            "20 -01-01", "20- 1-01", "20-01 -1", "20-1- 1",
         };
         for (String dateString: dateStrings) {
             assertNull(formatterList.validateDateWithFormatters(dateString));
