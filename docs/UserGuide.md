@@ -3,14 +3,25 @@ layout: page
 title: User Guide
 ---
 
-# Welcome to SoConnect's User Guide!
+## Welcome to SoConnect's User Guide!
 
-SoConnect is a **desktop app for managing contacts and tasks**. It aims to help NUS SoC students stay better connected to their school life, in terms of social connections and school tasks. SoConnect is also **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SoConnect can **get your contact and task management done faster than traditional GUI apps.**
+Everything you need to know about **SoConnect**, an ultimate solution for your everyday contacts and tasks management problem, is finally here!
+
+If you are an **SoC student**, there is a high chance you are probably stressing over lack of social interactions and mounting assignments right now. Well, look no further! SoConnect is built to help you stay better connected to school life by doing the tedious management task, so you can focus on **creating real friends and finishing schoolwork quickly**. 
+
+Interested to use SoConnect? Then you are in the right place! In this user guide, we will cover step-by-step instructions from installing the app to customizing it according to your preference. Whether you are a beginner or an advance user, this guide will solve all your problems, just like our app!
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+
 
 # Quick start
 
