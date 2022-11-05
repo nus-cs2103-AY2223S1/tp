@@ -178,11 +178,11 @@ You can add an activity to HobbyList using this command.
 </div>
 
 Examples:
-1. `add n/42km run d/NUS Run event t/sport`
+* `add n/42km run d/NUS Run event t/sport`
 
   *Adds an activity with the name "42km run" with a description "NUS Run event" and with a tag "sport".*
   
-2. `add n/Badminton d/play badminton t/sport t/entertainment date/2022-10-19 s/completed`
+* `add n/Badminton d/play badminton t/sport t/entertainment date/2022-10-19 s/completed`
 
   *Adds an activity with the name "Badminton", description "play badminton", tags "sport" and "entertainment", date "2022-10-19" and status "COMPLETED".*
 
