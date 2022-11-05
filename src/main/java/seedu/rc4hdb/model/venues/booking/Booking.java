@@ -118,4 +118,14 @@ public abstract class Booking {
 
     //====================== Compare Days =================================
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof Booking
+                && (this.venueName.equals(((Booking) other).venueName)
+                && (this.resident.equals(((Booking) other).resident))
+                && (this.hourPeriod.equals(((Booking) other).hourPeriod))
+                && (this.dayOfWeek.equals(((Booking) other).dayOfWeek))));
+    }
+
 }
