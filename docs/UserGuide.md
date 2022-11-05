@@ -399,7 +399,8 @@ Format: `exit`
 |-----------------------------------|-----------------------------------------------------------------------------------------|
 | **Command-line interface(CLI)**   | `An interface where the user interacts with the program with lines of text as commands` |
 | **Graphical user interface(GUI)** | `An interface where the user interacts with the program through graphical icons`        |
-| **Contacts**                      | `Persons that are stored in TABS, uniquely identified by their full name`               |
+| **Persons**                       | `People that are stored in TABS, uniquely identified by their full name`                |
+| **Contacts**                      | `List of Persons with their personal details`                                           |
 | **Members**                       | `Copies of contacts that are added to groups`                                           |
 | **Groups**                        | `Consists of members`                                                                   |
 | **Tasks**                         | `Tasks that are assigned to members, consisting of workload and optional deadline`      |
