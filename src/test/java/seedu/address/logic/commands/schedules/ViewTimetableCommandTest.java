@@ -1,12 +1,12 @@
 package seedu.address.logic.commands.schedules;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
+
 import static seedu.address.testutil.Assert.assertThrows;
-import java.util.Collections;
+import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
+
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -82,5 +82,22 @@ public class ViewTimetableCommandTest {
                 , expectedModel);
     }
 
+
+    @Test
+    public void execute_invalidInput_throwCommandException() {
+        ViewTimeTableCommand viewTimeTableCommand = new ViewTimeTableCommand(-1);
+        assertThrows(CommandException.class, () -> viewTimeTableCommand.execute(model));
+    }
+
+    @Test
+    public void execute_emptyInput_showHorizontalSchedule() {
+        CommandResult expectedCommandResult = new CommandResult(
+                    String.format(ViewTimeTableCommand.SHOWING_HORIZONTAL_TIMETABLE_MESSAGE),
+                    false, false, false, false, false,
+                    false, true, false,
+                    false, false);
+        CommandTestUtil.assertCommandSuccess(new ViewTimeTableCommand(0), model, expectedCommandResult
+                    , expectedModel);
+    }
 
 }

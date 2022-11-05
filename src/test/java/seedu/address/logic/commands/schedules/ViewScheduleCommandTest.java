@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSched
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,6 +20,7 @@ import seedu.address.logic.commands.schedule.ViewScheduleCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
 
 /**
@@ -81,6 +83,14 @@ public class ViewScheduleCommandTest {
                 false, true, false, false), expectedModel);
     }
 
+    @Test
+    public void execute_nonExistModule_throwCommandException() {
 
+
+        List<Schedule> schedules = model.getFilteredScheduleList();
+
+
+
+    }
 
 }
