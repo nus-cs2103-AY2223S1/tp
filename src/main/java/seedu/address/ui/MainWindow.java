@@ -233,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
         allTutorsPanel = new TutorListPanel(logic.getAllTutorList());
         allTutorsPanelPlaceholder.getChildren().add(allTutorsPanel.getRoot());
         tabPane.getSelectionModel().select(STUDENTLIST);
-        //resultDisplay.setFeedbackToUser("Show all students!");
+        resultDisplay.setFeedbackToUser("Listed all persons");
     }
 
     /**
