@@ -35,7 +35,7 @@ public class DeleteCommissionCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage...storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         List<Commission> lastShownList = model.getFilteredCommissionList();
         if (lastShownList == null || targetIndex.getZeroBased() >= lastShownList.size()) {

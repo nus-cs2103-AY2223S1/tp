@@ -53,7 +53,7 @@ public class AddCommissionCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage...storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasSelectedCustomer()) {

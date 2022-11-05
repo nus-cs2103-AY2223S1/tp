@@ -27,7 +27,7 @@ public class DeleteIterationCommandTest {
     public void execute_modelNoSelectedCommission_throwsCommandError() {
         DeleteIterationCommand deleteIterationCommand = new DeleteIterationCommand(INDEX_FIRST);
         assertThrows(CommandException.class, Messages.MESSAGE_NO_ACTIVE_COMMISSION, () ->
-                deleteIterationCommand.execute(new ModelStubWithoutCommission()));
+                deleteIterationCommand.execute(new ModelStubWithoutCommission(), null));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class DeleteIterationCommandTest {
         DeleteIterationCommand deleteIterationCommand = new DeleteIterationCommand(INDEX_FIRST);
         ModelStubWithCommission modelStub = new ModelStubWithCommission(commissionStub);
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_ITERATION_DISPLAYED_INDEX, () ->
-                        deleteIterationCommand.execute(modelStub));
+                        deleteIterationCommand.execute(modelStub, null));
         assertEquals(commissionStub.getIterationsAsList(),
                 modelStub.getSelectedCommissionStub().getIterationsAsList());
     }
@@ -46,7 +46,7 @@ public class DeleteIterationCommandTest {
         CommissionStubWithIteration commissionStub = new CommissionStubWithIteration();
         commissionStub.addIteration(FINALISED);
         ModelStubWithCommission modelStub = new ModelStubWithCommission(commissionStub);
-        CommandResult commandResult = new DeleteIterationCommand(INDEX_FIRST).execute(modelStub);
+        CommandResult commandResult = new DeleteIterationCommand(INDEX_FIRST).execute(modelStub, null);
         assertEquals(String.format(DeleteIterationCommand.MESSAGE_DELETE_ITERATION_SUCCESS, FINALISED),
                 commandResult.getFeedbackToUser());
         assertEquals(commissionStub.getIterationsAsList(),

@@ -46,7 +46,7 @@ public class OpenCustomerCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredCustomerList().size() + 1);
         OpenCustomerCommand openCustomerCommand = new OpenCustomerCommand(outOfBoundIndex);
 
-        assertCommandFailure(openCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(openCustomerCommand, model, null, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -74,13 +74,13 @@ public class OpenCustomerCommandTest {
 
         OpenCustomerCommand openCommand = new OpenCustomerCommand(outOfBoundIndex);
 
-        assertCommandFailure(openCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(openCommand, model, null, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_noIndex_switchesTab() {
         model = new ModelManager();
-        CommandResult result = assertDoesNotThrow(() -> new OpenCustomerCommand().execute(model));
+        CommandResult result = assertDoesNotThrow(() -> new OpenCustomerCommand().execute(model, null));
         assertEquals(result.getFeedbackToUser(), OpenCustomerCommand.MESSAGE_USAGE);
         assertEquals(model.getSelectedTab(), GuiTab.CUSTOMER);
     }

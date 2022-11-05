@@ -30,7 +30,7 @@ public class AddCustomerCommandTest {
         ModelStubAcceptingCustomerAdded modelStub = new ModelStubAcceptingCustomerAdded();
         Customer validCustomer = new CustomerBuilder().build();
 
-        CommandResult commandResult = new AddCustomerCommand(validCustomer).execute(modelStub);
+        CommandResult commandResult = new AddCustomerCommand(validCustomer).execute(modelStub, null);
 
         assertEquals(String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer),
                 commandResult.getFeedbackToUser());
@@ -45,7 +45,7 @@ public class AddCustomerCommandTest {
         ModelStub modelStub = new ModelStubWithCustomer(validCustomer);
 
         assertThrows(CommandException.class,
-                AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCustomerCommand.execute(modelStub));
+                AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCustomerCommand.execute(modelStub, null));
     }
 
     @Test
