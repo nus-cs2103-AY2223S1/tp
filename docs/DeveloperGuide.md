@@ -756,7 +756,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. From the terminal, `cd` into that empty folder and run `java -jar artbuddy.jar`
+   
+      Expected: Shows the GUI with a set of sample customers, commissions and iterations. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -765,24 +767,75 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Shutdown
+   2. Shutdown the application via closing the window or using the `exit` command.
 
-### Deleting a customer
+### Commands
 
+#### Customer-related commands
+> Note that you can run customer-related commands, even in the Commission view. That is a **feature**, not
+a bug.
+
+#### 1. `addcus` Command
+  1. Prerequisites: None. 
+     1. Test case: `addcus n/John Doe p/98765432 e/johnd@example.com t/tag`
+        1. Expected:  New customer named John Doe appears on the customer list. Application switched to the Customer view. 
+           Details of new customer shown on the right pane.
+     1. Test case: `addcus n/John Doe p/98765432 e/johnd@example.com t/tag`
+        1. Expected: Duplicate customer not added. Error message is displayed.
+
+#### 2. `editcus` Command
+1. Prerequisites: There is at least one customer.
+  1. Test case: `editcus 1 t/new tag`
+     1. Expected: The first customer should now only have one tag. Application switched to customer view. Edited customer's
+    details displayed on the right pane.
+  1. Test case: `editcus 1`
+     1. No customer edited. Error details displayed.
+  1. Test case: `editcus 0 t/new tag`
+     1. No customer edited. Error details displayed.
+
+#### 3. `delcus` Command
 1. Deleting a customer while all customers are being shown
+    1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
+    1. Test case: `delcus 1`<br>
+       1. Expected: First contact is deleted from the list. Details of the deleted customer shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delcus 0`<br>
+       1. Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Other incorrect delete commands to try: `delcus`, `delcus x`, `...` (where x is larger than the list size)<br>
+       1. Expected: Similar to previous.
 
-   1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
+#### 4. `opencus` Command
+1. Prerequisites: At least one customer.
+   1. Test case: `opencus 1`
+      1. Expected: Customer's details shown on the right pane. If customer has any commissions, they can be seen with
+      `listcom`.
+   1. Test case: `opencus`
+      1. Expected: No customer is selected. Error details in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+#### 5. `addcom` Command
 
-   1. Test case: `delete 0`<br>
-      Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
+#### 6. `editcom` Command
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+#### 7. `delcom` Command
 
-1. _{ more test cases …​ }_
+#### 8. `additer` Command
+
+#### 9. `edititer` Command
+
+#### 10. `deliter` Command
+
+#### 11. `list` Command
+
+#### 12. `find` Command
+
+#### 13. `sortcus` Command
+
+#### 14. `listcom` Command
+
+#### 15. `allcom` Command
+
+#### 16. `findcom` Command
+
 
 ### Saving data
 
