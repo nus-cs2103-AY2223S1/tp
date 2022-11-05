@@ -85,7 +85,7 @@ public class ApplicationTest {
 
         // two different application, different archived status -> returns false
         Application editedFacebook = new ApplicationBuilder(FACEBOOK).withArchiveStatus(true).build();
-        assertFalse(GOOGLE.hasSameArchiveStatus(editedGoogle));
+        assertFalse(GOOGLE.hasSameArchiveStatus(editedFacebook));
     }
 
     @Test
