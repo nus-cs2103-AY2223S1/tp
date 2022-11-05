@@ -167,6 +167,17 @@ An `Exercise` contains the following attributes:
 * **Current choice**: The aforementioned fields in `Exercise` are final, effectively making our Exercise class immutable.
   * Rationale: Code written with immutable objects is easier to reason with and easier to understand, facilitating a smoother process when it comes to debugging and testing any code related to `Exercise`.
 
+### **Exercise Hashmap**
+
+#### **Implementation**
+The Exercise Hashmap stores data in the form of a hashmap, where the key of the hashmap is the `Name` of an `Exercise` and its associated value is an `Exercise` ArrayList, containing a list of exercises(with the same name).
+
+#### **Design Considerations**
+
+**Aspect: Choosing the Data Structure**
+* **Current choice**: We decided to use a hashmap data structure.
+  * Rationale: We wanted to create associations between exercises with the same name. Utilising a hashmap structure, we can easily identify and retrieve exercises with the same exercise name (by their unique key identifier). Hence, this facilitates commands that rely on this retrieval to be implemented, such as [Listing of Personal Records](#listing-of-personal-records) and [Generating a suggested workout routine](#generating-a-suggested-workout-routine).
+
 ### **Sorting Exercise List**
 
 #### **Implementation**

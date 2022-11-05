@@ -46,4 +46,5 @@ Given below are my contributions to the project.
 
   * Developer Guide:
     * Exercise Model ([PR #98](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/98))
+    * Exercise Hashmap ([PR #85](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/85))
     * Listing of Personal Records ([PR #120](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/120))
