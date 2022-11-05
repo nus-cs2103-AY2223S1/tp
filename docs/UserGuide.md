@@ -74,9 +74,9 @@ our app.
 | [`edit-module`](#213-edit-module)                             | `edit-module     INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`              | Edit module belonging to the specified index currently displayed on the screen  |
 | *[`find-module`](#214-find-module)                            | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
 | *[`list-module`](#215-list-module)                            | `list-module`                                                           | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task-add-task)                          | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task-delete-task)                 | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
-| [`swap-task`](#223-reorder-tasks-swap-swap-task)              | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
+| [`add-task`](#221-add-task)                                   | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task)                             | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
+| [`swap-task`](#223-reorder-tasks-swap)                        | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
 | [`add-link`](#231-add-link)                                   | `add-link        m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`                | Add link URL with an alias to a module by its specified module code             |
 | [`delete-link`](#232-delete-link)                             | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                           | Delete link URL from a module by its specified module code and alias            |
 | [`open-link`](#233-open-link)                                 | `open-link       m/MODULE_CODE la/LINK_ALIAS`                           | Open link URL from a module by its specified module code and alias              |
@@ -266,8 +266,6 @@ You will remain on the home page after executing the `find-module` command. This
 from the behavior of [`goto`](#251-navigate-between-modules) command, where the person list will be
 updated with the persons associated with the module.
 
-</div>
-
 #### 2.1.5. List module
 When you are on the home page, you may obtain the list of every module in Plannit.
 
@@ -283,7 +281,7 @@ Here's a screenshot of Plannit before and after executing the command:
 <br>
 
 ### 2.2. Tasks
-#### 2.2.1. Add task: `add-task`
+#### 2.2.1. Add task
 Suppose a particular module has assigned you a task to be completed. You can 
 keep track of it by adding it to Plannit using the `add-task` command.
 
@@ -323,7 +321,7 @@ you may double-click on a module to ["peek"](#224-peeking-at-tasks) at a
 module's tasks while on the home page.
 </div>
 
-#### 2.2.2. Delete task: `delete-task`
+#### 2.2.2. Delete task
 Suppose you have completed a task and would now like to remove it from 
 Plannit. You may delete the task using the `delete-task` command.
 
@@ -351,7 +349,7 @@ command:
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/delete-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-task-after.png"/></p><p>A message will appear indicating that a task has been deleted.</p>{:/} |
 
-#### 2.2.3. Reorder tasks (swap): `swap-task`
+#### 2.2.3. Reorder tasks (swap)
 Suppose you have an urgent task which you like to place at the very top of 
 your list. You may change the order of tasks in your module's task list  using
 the `swap-task` command.
@@ -415,7 +413,6 @@ the tasks.
 You remain on the home page even when you "peek" at a module. To leave the 
 home page and view more details of a specific module, you may use the
 [`goto`](#251-navigate-between-modules) command.
-
 </div>
 
 <br>
