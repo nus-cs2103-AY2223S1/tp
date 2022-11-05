@@ -45,10 +45,16 @@ destroy DeleteItemCommandParser
 TrackOParser --> LogicManager : command
 deactivate TrackOParser
 
-LogicManager -> DeleteItemCommand : execute()
+LogicManager -> DeleteItemCommand : execute(model)
 activate DeleteItemCommand
 
-DeleteItemCommand -> Model : deleteItem(1)
+DeleteItemCommand -> Model : getFilteredList()
+activate Model
+
+Model --> DeleteItemCommand : filteredList
+deactivate Model
+
+DeleteItemCommand -> Model : deleteItem(inventoryItemToDelete)
 activate Model
 deactivate Model
 
