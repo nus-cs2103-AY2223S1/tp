@@ -54,4 +54,15 @@ public class DateTest {
         assertTrue(Date.isValidDate("02/11/1900"));
         assertTrue(Date.isValidDate("11/11/1111"));
     }
+
+    @Test
+    public void isFutureDate() {
+        //future date
+        assertTrue(Date.isAfterCurrentDate("2/2/3000"));
+        assertTrue(Date.isAfterCurrentDate("22/10/2999"));
+
+        //past date
+        assertFalse(Date.isAfterCurrentDate("2/2/1000"));
+        assertFalse(Date.isAfterCurrentDate("22/10/2022"));
+    }
 }
