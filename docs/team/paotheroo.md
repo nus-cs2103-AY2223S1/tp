@@ -37,7 +37,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the `listTasks` feature (Pull request [\#108](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/108))
+    * Added documentation for the `listTasks` and `findTask` feature (Pull requests [\#108](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/108), [\#194](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/194))
   * Developer Guide:
     * Added non-function requirements (Pull request [\#21](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/21))
     * Added implementation details of the `filterByDeadline` feature (Pull request [\#108](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/108))
