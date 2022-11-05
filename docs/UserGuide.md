@@ -24,6 +24,13 @@ Interested to use SoConnect? Then you are in the right place! In this user guide
 
 ## 3. Introduction
 
+SoConnect is a **2-in-1 desktop app for managing contacts and tasks**. It is originally built to help NUS SoC students stay better connected to their school life, in terms of social connections and school tasks. SoConnect leverages on the simplicity of Command Line Interface (CLI) to optimize your productivity, while still maintaining user-friendliness through its Graphical User Interface (GUI).
+
+
+
+### 3.1. Contact Management
+
+### 3.2. Task Management
 
 ## 4. Quick start
 
@@ -442,19 +449,6 @@ If your changes to the data file makes its format invalid, SoConnect will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **CLI**: A text-based user interface used to run programs.
-* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
-* **JavaFX**: A Java library used to develop client applications.
-* **kLoC**: Stands for thousands of lines of code.
-* **NUS**: National University of Singapore.
-* **SoC**: School of Computing, a computing school in NUS.
-* **Private Contact Detail**: A contact detail that is not meant to be shared with others.
-* **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full.
-* **Todo**: A task that the user needs to complete. <a id="glossary-todo"></a>
-
 # Command summary
 
 | Action          | Format, Examples                                                                                                                                                                                                     |
@@ -478,3 +472,37 @@ If your changes to the data file makes its format invalid, SoConnect will discar
 | **Delete Todo** | `todo delete INDEX` <br> e.g. `todo delete 3`                                                                                                                                                                        |
 | **Clear Todo**  | `todo clear`                                                                                                                                                                                                         |
 | **Show Todo**   | `todo show`<br> `todo show today` <br> `todo show date/DATE` <br> `todo show date/DATE to DATE` <br> `todo show t/TAG` <br> `todo show pr/Priority` <br> e.g. `todo show`, `todo show pr/high`, `todo show t/CS2100` |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+### Mainstream OS
+Windows, Linux, Unix, OS-X. 
+
+### CLI
+A text-based user interface used to run programs. 
+
+### GUI
+A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
+
+### JavaFX
+A Java library used to develop client applications. 
+
+### kLoC
+Stands for thousands of lines of code.
+
+### NUS
+National University of Singapore.
+
+### SoC
+School of Computing, a computing school in NUS.
+
+### Private Contact Detail
+A contact detail that is not meant to be shared with others. 
+
+### Autocomplete
+A feature that shows a list of completed words or strings without the user needing to type them in full. 
+
+### Todo
+A task that the user needs to complete.
