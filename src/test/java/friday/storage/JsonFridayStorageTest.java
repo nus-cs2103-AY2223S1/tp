@@ -44,17 +44,20 @@ public class JsonFridayStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readFriday("notJsonFormatFriday.json"));
+        assertThrows(DataConversionException.class, () ->
+                readFriday("notJsonFormatFriday.json"));
     }
 
     @Test
     public void readFriday_invalidStudentFriday_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readFriday("invalidStudentFriday.json"));
+        assertThrows(DataConversionException.class, () ->
+                readFriday("invalidStudentFriday.json"));
     }
 
     @Test
     public void readFriday_invalidAndValidStudentFriday_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readFriday("invalidAndValidStudentFriday.json"));
+        assertThrows(DataConversionException.class, () ->
+                readFriday("invalidAndValidStudentFriday.json"));
     }
 
 
@@ -86,7 +89,8 @@ public class JsonFridayStorageTest {
 
     @Test
     public void saveFriday_nullFriday_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveFriday(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () ->
+                saveFriday(null, "SomeFile.json"));
     }
 
     /**

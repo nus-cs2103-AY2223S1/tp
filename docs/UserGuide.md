@@ -7,19 +7,19 @@ FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track 
 use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can
 type fast, FRIDAY can get your contact management tasks done faster than traditional GUI apps.
 
-### Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quickstart
 
-1.Ensure you have Java 11 or above installed in your Computer.
+1. Ensure you have Java 11 or above installed in your Computer.
 
-2.Download the latest FRIDAY.jar from here
+2. Download the latest FRIDAY.jar from here
 
-3.Copy the file to the folder you want to use as the home folder for your FRIDAY system.
+3. Copy the file to the folder you want to use as the home folder for your FRIDAY system.
 
-4.Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
 --------------------------------------------------------------------------------------------------------------------
 ![Startup.png](images/Startup.png)
