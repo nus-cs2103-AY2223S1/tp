@@ -49,8 +49,13 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
 - Added documentation for the Appointment feature as a whole, including:
   - A description of the feature.
   - Class and object diagrams for the feature's implementation.
-  - A possible use case with outlined steps for the feature.
-  - A sequence diagram of the use case with method calls shown. [TBA]
+  - A sequence diagram of the use case with method calls shown.
+- Added documentation for the CountCommand feature, including:
+  - A description of the feature.
+  - A sequence diagram of the use case with method calls shown.
+- Updated documentation for `Model` component, including creating new class diagrams.
+- Added use cases for `count`, `appt` and `edit ua/` commands.
+- Created and added class diagram for the `Person` class.
 
 #### Contributions to team-based tasks
 
@@ -63,6 +68,7 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
 - Scheduled tasks for team members and ensured they were completed on time.
 - Checked for code quality and adherence to coding standards.
 - Created application [logo](../images/checkUp_512.png).
+- Defined and added non-functional requirements.
 
 #### Review/mentoring contributions
 

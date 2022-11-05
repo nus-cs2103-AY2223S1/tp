@@ -76,6 +76,16 @@ public class GetFloorNumberCommandTest {
         assertEquals(Arrays.asList(BENSON, DANIEL, FIONA), model.getFilteredPersonList());
     }
 
+    @Test
+    public void execute_noneMatching_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        FloorNumberPredicate predicate = preparePredicate("10 6 7");
+        GetFloorNumberCommand command = new GetFloorNumberCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */

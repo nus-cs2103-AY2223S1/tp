@@ -45,8 +45,8 @@ checkUp's features include creating, viewing and managing patients' medical reco
 checkUp also allows users to:
 * search for patients by:
   * name;
-  * location in the hospital; and
-  * long-term medication.
+  * location in the hospital;
+  * long-term medication;
 * view the total number of patients in the system; and
 * view the total number of patients under specific long-term medication prescriptions.
 
@@ -54,7 +54,7 @@ checkUp also allows users to:
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the following guide: [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -172,34 +172,36 @@ How the parsing works:
   a `Command` object.
 * When parsing a `get` command, the `AddressBookParser` class creates a `GetCommandParser` to parse the prefix of the 
   `get` command (e.g., `/hw`). If the `get` command only requires a prefix (e.g., `get /inp` & `get /outp`), the 
-  respective `GetXYZCommand` object is created. If the `get` command requires parameters (e.g., `get /hw North`), the
-  respective `GetXYZCommandParser` is created to parse the parameters and create the appropriate `GetXYZCommand` to be
-  returned.
+  respective `GetXYZCommand` object is created. If the `get` command requires parameters (e.g., `get /hw North`), the 
+  prefix is parsed accordingly within the `GetCommandParser` before the respective `GetXYZCommandParser` is created to
+  parse the parameters and create the appropriate `GetXYZCommand` to be returned.
 * All `XYZCommandParser` and `GetXYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) 
   inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="550" />
+
+The partial class diagram above shows the classes that make up the `Model` component. Classes used by Person objects
+through composition are omitted for brevity and shown later. 
 
 The `Model` component,
 
 * stores all registered patient data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
-  this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a 
-  `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they 
-  should make sense on their own without depending on other components)
+    is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+    this list so that the UI automatically updates when the data in the list change.
+* stores all prescribed medication data in a `MedicationMap` object.
+* stores all [appointment](#appointments-feature) data (as `Appointment` objects in a `Person` object). 
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
+    `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
+    should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+A patient (i.e. `Person`) stores related fields through composition, as shown in the class diagram below.
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
+<img src="images/ModelPersonCompositionClassDiagram.png" width="550" />
 
 ### Storage component
 
@@ -282,6 +284,34 @@ now has an `UpcomingAppointment` associated with him.
 
 ![AppointmentObjectDiagramWithBothAppt](images/AppointmentObjectDiagramWithBothAppt.png)
 
+### Count feature
+
+The count feature allows the user to count the number of patients stored in checkUp. It also returns a list of long-term
+medications and how many patients are taking them. The count feature is facilitated by the `CountCommand` class.
+
+**Implementation**
+
+The count feature is implemented by the `CountCommand` class which extends the `Command` class. The overriden `execute()`
+method returns a `CommandResult` object which contains the number of patients and the list of long-term medications.
+
+The list of patients are stored in the `UniquePersonList` class. The list of medications are stored in the
+`MedicationMap` class, which encapsulates an `ObservableMap` object that maps the name of a medication (represented by a
+string) to the number of patients taking it (represented by an integer). Both the `UniquePersonList` and `MedicationMap`
+classes are stored in the `Model` component, and accessible through the `ReadOnlyAddressBook` interface.
+
+The `CountCommand` class indicates to the `UI` component to open the count window upon execution. The `UI` component
+depends on the `Logic` interface to get the count data, through the `Logic#getCensus()` method. The `Logic` interface
+uses the `Model` interface through the `Model#getCensus()` method which uses the `ReadOnlyAddressBook` interface to get
+the data. `Model#getCensus()` in turn calls the `ReadOnlyAddressBook#getCensus()` method which interacts with the
+`UniquePersonList` class to get the list of patients, and the `MedicationMap` class to get the list of long-term
+medications.
+
+The following sequence diagram shows how the count feature works:
+
+[![CountSequenceDiagram](images/CountSequenceDiagram.png)](images/CountCommandSequenceDiagram.png)
+
+
+
 ### Get Features (By prefixes)
 
 The get feature contains a series of sub-features that allows the user to get
@@ -330,6 +360,9 @@ Getting the list of patients in the query hospital wing involves the following s
 3. a `GetHospitalWingCommand` instance is returned
 4. the model is updated such that the *filtered* list only displays patients who are in the query hospital wing
 
+Strict restrictions are placed to prevent too many varieties of hospital wings. Hospital wings only accepts 
+the following values (case-insensitive) `south` `north` `east` `west` as valid inputs. 
+
 #### Next of Kin (/nok)
 
 Getting the information of the next of kin of the list of query patient names involves the following steps:
@@ -351,6 +384,16 @@ Getting the list of patients in the query ward number involves the following ste
 Strict restrictions are placed to prevent too many varieties of ward number inputs. This way the regex for searching
 for ward numbers is simplified. Due to differing places having different ways of numbering their ward numbers, we
 have standardised it to be in the format of `Uppercase Alphabet` + `3 Numbers`. For example, `A123`, `B241`, `C005`, etc.
+
+#### Appointment Date (/appton)
+
+Getting the list of patients in th query appointment date involves the following steps:
+1. prefix "/appton" is matched in `GetCommandParser` class
+2. a new `GetAppointmentByDateCommandParser` instance is created and parsers the user input
+3. a `GetAppointmentByDateCommand` instance is returned
+4. the model is updated such that the *filtered* list only displays patients who have the same query appointment date
+
+To ease the parsing of date inputs, we have standardized the input query to be in the format of `dd-MM-yyyy`.
 
 #### Patient type (`/inp` & `/outp`)
 
@@ -378,7 +421,7 @@ Getting patients with an appointment on a specified date involves the following 
 1. prefix `/appton` is matched using an instance of `GetCommandParser`
 2. a new `GetAppointmentByDateCommandParser` instance is created and parses the user input (specifically the date inputted)
 3. a `GetAppointmentByDateCommand` instance containing the date of the appointment is created and returned
-4. the `GetAppointmentByDateCommand` command is executed, accessing the list of `PastAppointment` of the specified patient
+4. the `GetAppointmentByDateCommand` is executed, accessing the list of `PastAppointment` of the specified patient
    to be returned in a `CommandResult`
 5. the model is updated such that the *filtered* list only displays patients who have an appointment on the specified 
    date.
@@ -396,7 +439,7 @@ flow of the old command, as illustrated in the Activity Diagram below.
 As the Add Command now includes more fields for the patients, the Person class has also been updated to store these
 fields, as shown in the class diagram below.
 
-![PersonClassDiagram](images/PersonClassDiagram.png)
+![ModelPersonCompositionClassDiagram](images/ModelPersonCompositionClassDiagram.png)
 
 The usage of the Add Command remains the same as before.
 
@@ -436,31 +479,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …                 | I want to …                                        | So that I can …                                                                             |
 |----------|------------------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
 | `* * *`  | doctor                 | search for patients by name                        | view medication patient is currently taking and prescribe new medication based on that info |
-| `* * *`  | doctor                 | retrieve patient contact info and next-of-kin data | quickly and efficiently contact the patient or someone near them                            |
+| `* * *`  | hospital staff         | retrieve patient contact info and next-of-kin data | quickly and efficiently contact the patient or someone near them                            |
 | `* * *`  | hospital administrator | check the total number of patients in my hospital  | know when my hospital is oversubscribed                                                     |
 | `* * *`  | hospital staff         | retrieve patients by ward number                   | attend to them quickly                                                                      |
 | `* * *`  | hospital staff         | retrieve patients by floor number                  | attend to them quickly                                                                      |
 | `* * *`  | hospital staff         | retrieve patients by hospital wings                | attend to them quickly                                                                      |
 | `* * *`  | hospital staff         | have a list of inpatients and outpatients          | easily see which patients are staying in the hospital                                       |
-| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup | knows where to direct them                                                                  |
+| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup | know where to direct them                                                                   |
 | `* * *`  | hospital staff         | create patient profiles                            | store new patients into the system                                                          |
 | `* * *`  | nurse                  | retrieve patients by medication                    | find out a list of patients under each medication                                           |
 | `* * *`  | hospital staff         | remove patients from the database                  | remove redundant entries that are no longer necessary                                       |
 | `* *`    | hospital staff         | view the previous appointments of a patient        | see patients' medical history                                                               |
-*{More to be added}*
+| `* * *`  | hospital staff         | retrieve patients by their appointment date        | know which patients have scheduled an appointment on a particular day                       |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a patient**
+<h3>Use case: Delete a patient</h3>
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list patients
+2.  checkUp shows a list of patients
+3.  User requests to delete a specific patient in the list
+4.  checkUp deletes the patient 
 
     Use case ends.
 
@@ -472,21 +515,110 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. checkUp shows an error message.
 
       Use case resumes at step 2.
 
+<h3>Use case: Backdating a patient's appointment record</h3>
 
+**MSS**
 
-*{More to be added}*
+1. User requests to list patients 
+2. checkUp shows a list of patients
+3. User requests to create a past appointment for a specific patient in the list
+4. checkUp creates the appointment
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. checkUp shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given date is invalid.
+    
+    * 3b1. checkUp shows an error message.
+    
+      Use case resumes at step 2.
+
+* 4a. The command is missing the date or diagnosis.
+
+    * 4a1. checkUp shows an error message.
+
+      Use case resumes at step 2.
+
+<h3>Use case: Setting a patient's next appointment date</h3>
+
+**MSS**
+
+1. User requests to list patients
+2. checkUp shows a list of patients
+3. User requests to set a future appointment for a specific patient in the list
+4. checkUp sets the appointment
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. checkUp shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given date is invalid or in the past.
+
+    * 3b1. checkUp shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The user sets the wrong date.
+  
+  Use case resumes at step 2.
+
+<h3>Use case: Removing a patient's next appointment date</h3>
+
+**MSS**
+
+1. User requests to list patients
+2. checkUp shows a list of patients
+3. User requests to remove a future appointment for a specific patient in the list
+4. checkUp removes the appointment
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. checkUp shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Stored data should be compatible with other OSes and versions of the application.
+5. Users must be able to access the application without an internet connection.
+6. The application should load up within 3-5 seconds.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -520,8 +652,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -537,7 +667,45 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Creating appointments 
+
+1. Creating a past appointment while a list of patients is being shown.
+
+    1. Prerequisites: List all patients using the `list` command. Multiple patients are in the list.
+
+    2. Test case: `appt 1 on/10-10-2020 diag/Fever m/Ibuprofen`<br>
+       Expected: A past appointment is created for the first patient in the list. Details of the appointment shown in the status message.
+
+    3. Test case: `appt 1 on/10-10-2020 diag/Fever`<br>
+       Expected: Success message as the above test case, as the medication fields are optional.
+
+    4. Test case: `appt 1 on/10-10-2020 diag/Fever m/Ibuprofen m/Paracetamol`<br>
+       Expected: Success message as the above test case, as there can be multiple medication fields.
+
+    5. Test case: `appt 1 diag/Fever m/Ibuprofen`<br>
+       Expected: No appointment is created, as the date field is not optional. Error details shown in the status message.
+
+    6. Test case: `appt 1 on/10-10-2020 m/Ibuprofen`<br>
+       Expected: No appointment is created, as the diagnosis field is not optional. Error details shown in the status message.
+   
+    7. Test case: `appt 0 on/10-10-2020 diag/Fever`<br>
+       Expected: No appointment is created, as the index is invalid. Error details shown in the status message.
+
+2. Editing a patient's upcoming appointment while a list of patients is being shown.
+
+    1. Prerequisites: List all patients using the `list` command. Multiple patients are in the list.
+
+    2. Test case: `edit 1 ua/10-10-2035`<br>
+       Expected: The first patient's upcoming appointment is edited to be on 10-10-2020. Details of the appointment shown in the status message. 
+   
+    3. Test case: `edit 1 ua/10-10-2020`<br>
+       Expected: The upcoming appointment is not set, as the date is in the past. Error details shown in the status message. 
+    
+    4. Test case: `edit 1 ua/`<br>
+       Expected: The first patient's upcoming appointment is set to None. Details of the appointment shown in the status message.
+
+    5. Test case: `edit 0 ua/10-10-2035`<br>
+         Expected: No appointment is edited, as the index is invalid. Error details shown in the status message.
 
 ### Saving data
 
