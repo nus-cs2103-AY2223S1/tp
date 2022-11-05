@@ -31,7 +31,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validNameArgs_returnsViewCommand() {
+    public void parse_validNameArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
@@ -42,7 +42,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validIdArgs_returnsViewCommand() {
+    public void parse_validIdArgs_returnsFindCommand() {
         FindCommand expectedFindCommand =
                 new FindCommand(new IdPredicate(new Id("123A")));
         assertParseSuccess(parser, " id/123a", expectedFindCommand);
