@@ -17,6 +17,6 @@
             </Label>
          </children>
       </HBox>
-      <ListView fx:id="venueListView" style="-fx-background-color: #FFFFFF;" styleClass="pane-with-border" stylesheets="@DarkTheme.css" VBox.vgrow="ALWAYS" />
+      <ListView fx:id="venueListView" styleClass="pane-with-border" stylesheets="@DarkTheme.css" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

@@ -1,5 +1,6 @@
 package seedu.rc4hdb.ui;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -105,6 +106,7 @@ public class CommandBox extends UiPart<Region> {
                 CommandHistory commandHistory = this.commandHistoryParser.parse(event.getCode());
                 String commandText = commandHistory.execute();
                 commandTextField.setText(commandText);
+                Platform.runLater(() -> commandTextField.end());
             }
             commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         }
