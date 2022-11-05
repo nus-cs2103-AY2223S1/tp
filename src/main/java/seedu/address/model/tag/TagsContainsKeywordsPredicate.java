@@ -12,6 +12,10 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
 
     private final String keywords;
 
+    /**
+     * Constructor for the TagsContainsKeywordsPredicate class.
+     * @param keywords The name of the tag(s) that the user wants to find in their contact list.
+     */
     public TagsContainsKeywordsPredicate(String keywords) {
         this.keywords = keywords;
     }

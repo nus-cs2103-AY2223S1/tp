@@ -1,5 +1,7 @@
 package seedu.address.model.module;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
@@ -12,7 +14,12 @@ public class PrevModContainsKeywordsPredicate implements Predicate<Person> {
 
     private final String keywords;
 
+    /**
+     * Constructor for the PrevModContainsKeywordsPredicate class.
+     * @param keywords The name of the previous module(s) that the user wants to find in their contact list.
+     */
     public PrevModContainsKeywordsPredicate(String keywords) {
+        requireNonNull(keywords);
         this.keywords = keywords;
     }
 

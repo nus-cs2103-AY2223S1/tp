@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.module.Module.MESSAGE_CONSTRAINTS;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,14 +21,18 @@ public class FilterPlanModCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFilterTagCommand() {
+    public void parse_validArgs_returnsFilterPlanModCommand() {
         // no leading and trailing whitespaces
         FilterPlanModCommand expectedFilterPlanModCommand =
-                new FilterPlanModCommand(new PlanModContainsKeywordsPredicate("Alice"));
-        assertParseSuccess(parser, "Alice", expectedFilterPlanModCommand);
+                new FilterPlanModCommand(new PlanModContainsKeywordsPredicate("CS2100"));
+        assertParseSuccess(parser, "CS2100", expectedFilterPlanModCommand);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t", expectedFilterPlanModCommand);
+        assertParseSuccess(parser, " CS2100", expectedFilterPlanModCommand);
+    }
+
+    @Test
+    public void parse_invalidArgs_returnsInvalidCommandErrorMessage() {
+        assertParseFailure(parser, "Alice", MESSAGE_CONSTRAINTS);
     }
 
 }

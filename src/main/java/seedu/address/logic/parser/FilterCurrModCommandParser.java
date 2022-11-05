@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
+
 import seedu.address.logic.commands.FilterCurrModCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.CurrModContainsKeywordsPredicate;
@@ -23,8 +25,10 @@ public class FilterCurrModCommandParser implements Parser<FilterCurrModCommand> 
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCurrModCommand.MESSAGE_USAGE));
         }
 
-        String tagKeyword = trimmedArgs;
+        String keyword = trimmedArgs;
+        String[] keywords = trimmedArgs.split(" ");
+        ParserUtil.parseCurrentModules(Arrays.asList(keywords));
 
-        return new FilterCurrModCommand(new CurrModContainsKeywordsPredicate(tagKeyword));
+        return new FilterCurrModCommand(new CurrModContainsKeywordsPredicate(keyword));
     }
 }

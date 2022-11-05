@@ -158,7 +158,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_filterCurrMod() throws Exception {
-        String keywords = "foo bar";
+        String keywords = "CS2100 CS2103T";
         FilterCurrModCommand command = (FilterCurrModCommand) parser.parseCommand(
                 FilterCurrModCommand.COMMAND_WORD + " " + keywords);
         assertEquals(new FilterCurrModCommand(new CurrModContainsKeywordsPredicate(keywords)), command);
@@ -166,7 +166,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_filterPrevMod() throws Exception {
-        String keywords = "foo bar";
+        String keywords = "CS2100 CS2103T";
         FilterPrevModCommand command = (FilterPrevModCommand) parser.parseCommand(
                 FilterPrevModCommand.COMMAND_WORD + " " + keywords);
         assertEquals(new FilterPrevModCommand(new PrevModContainsKeywordsPredicate(keywords)), command);
@@ -174,7 +174,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_filterPlanMod() throws Exception {
-        String keywords = "foo bar";
+        String keywords = "CS2100 CS2103T";
         FilterPlanModCommand command = (FilterPlanModCommand) parser.parseCommand(
                 FilterPlanModCommand.COMMAND_WORD + " " + keywords);
         assertEquals(new FilterPlanModCommand(new PlanModContainsKeywordsPredicate(keywords)), command);
