@@ -761,7 +761,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Sushi is added into the food list, and it is tagged as a lunch item with 400 calories.
 
     2. Test case: `add n/Sushi c/400`<br />
-       Expected: Sushi is not added into the food list as there are missing fields. Error details is shown on the result display.
+       Expected: Sushi is not added into the food list as there are missing fields. Error details are shown on the result display.
 
     3. Test case: `add n/Sushi t/lunch`<br />
        Expected: Similar to #2.
