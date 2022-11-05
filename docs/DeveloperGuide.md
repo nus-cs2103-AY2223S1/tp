@@ -297,6 +297,50 @@ Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientC
 
 As logic should be handled in the parser and to minimise modifications of the entity list (which could affect entity IDs), Alternative 1 was chosen as the current design for editing the fields of the entity.
 
+### Pin Feature
+
+The pin mechanism is facilitated by `AddressBook`. It contains a `UniqueEntityList` for each entity type. Upon the execution of either a `PinProjectCommand`, `PinClientCommand` or `PinIssueCommand`, the following operations are carried out:
+* `AddressBook#sortProjectsByPin()` — Sorts the current project list according to pin.
+* `AddressBook#sortClientsByPin()`, `AddressBook#sortIssuesByPin()` — Similar function as above, but for clients and issues.
+* `AddressBook#sortProjectsByCurrentCategory()`  — Sorts the current project list according to the last known sorting category.
+* `AddressBook#sortClientsByCurrentCategory()`, `AddressBook#sortIssuesByCurrentCategory()` — Similar function as above, but for clients and issues.
+
+These operations are exposed in the Model interface as methods with the same name e.g. `Model#sortProjectsByPin()`, `Model#sortProjectsByCurrentCategory()`.
+
+Given below is an example usage scenario and how the pin mechanism behaves at each step.
+
+Step 1. The user creates an entity with a unique ID. The entity is unpinned by default and will be displayed according to the current sorting order.
+
+Step 2. The user executes `client -p 3` to pin the 3rd client in the project book. The `PinClientCommand` is executed and calls `togglePinned()`, toggling the `Pin` attribute of the 5th client from `false` to `true`. This is followed by a call to `Model#sortClientsByCurrentCategory()` and `Model#sortClientsByPin()`, which displays the sorted client list with pinned clients (now including the 4th client) at the top.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** If the current client is already pinned, `Client#togglePin()` will toggle the `Pin` attribute of the client from `true` to `false` and call the latest sort order, causing the client to be displayed in its original position.
+</div>
+
+The following sequence diagram shows how the pin operation works:
+
+![ListSequenceDiagram](images/PinSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `PinClientCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a pin command:
+
+![ListActivityDiagram](images/PinActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How entities can be unpinned:**
+
+* **Alternative 1 (current choice):** The `togglePinned()` method is called which sets the `Pin` attribute from `true` back to `false`. The same command used to pin is also used to unpin the entity.
+    * Pros: Less duplication of code and less commands for the user to remember.
+    * Cons: Lesser separation of responsibilities as the same command is used for different (but similar) functionality.
+
+* **Alternative 2:** An additional unpin command is created e.g. `UnpinClientCommand`, `UnpinProjectCommand`, `UnpinIssueCommand`. Different pin commands `setPinned()`, `setUnpinned()` are used to pin and unpin the entity.
+    * Pros: Better separation of responsibilities as one command is used to pin and the other is used to unpin the entity. There is no overlap.
+    * Cons: More duplication of code, additional command for user to remember with roughly the same functionality.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
