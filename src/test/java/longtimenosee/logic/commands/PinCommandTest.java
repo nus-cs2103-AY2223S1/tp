@@ -30,8 +30,8 @@ public class PinCommandTest {
 
     @Test
     public void execute_indexOutOfRange_failure() {
-        String expectedMessage = "The person index provided is invalid";
-        PinCommand command = new PinCommand(Index.fromOneBased(10000));
+        String expectedMessage = "The client index provided is invalid";
+        PinCommand command = new PinCommand(Index.fromOneBased(1000));
         assertCommandFailure(command, model, expectedMessage);
     }
     @Test
