@@ -121,17 +121,10 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the exercise tracker data i.e., all `Exercise` objects (which are contained in a `UniqueExerciseList` object).
+* stores the exercise tracker data i.e., all `Exercise` objects (which are contained in a `ExerciseList` and `ExerciseHashMap` object).
 * stores the currently 'selected' `Exercise` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Exercise>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExerciseTracker`, which `Exercise` references. This allows `ExerciseTracker` to only require one `Tag` object per unique tag, instead of each `Exercise` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -146,7 +139,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `gimbook.commons` package.
+Classes used by multiple components are in the `gim.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,16 +147,14 @@ Classes used by multiple components are in the `gimbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### **Exercise Components**
-* Added Classes into the model Component to encapsulate an Exercise
+### **Exercise**
 
 #### **Implementation**
 <img src="images/ModelClassDiagram.png" width="450" />
 
-An `Exercise`,
-- is stored in `ExerciseList` and `ExerciseHashmap` of the Model
+An `Exercise` is stored in `ExerciseList` and `ExerciseHashmap` of Model
 
-An `Exercise` contains the following attributes,
+An `Exercise` contains the following attributes:
 1. a `Name`, which represents the name of the Exercise
 2. a `Weight`, which represents the total weight used for a certain Exercise
 3. a `Reps`, which represents the number of times a specific exercise was performed
@@ -193,6 +184,22 @@ Therefore, coupling within the code base will not increase much.
 2. Testing will not be affected by the fact that singleton objects carry data from one test to another because there is no mutation
 of data inside the singleton objects `RegexList` and `FormatterList`. All tests will have the same singleton objects used.
 
+#### **Design Considerations**
+
+**Aspect: Fields of Exercise are Final:**
+* **Current choice**: The aforementioned fields in `Exercise` are final, effectively making our Exercise class immutable.
+  * Rationale: Code written with immutable objects is easier to reason with and easier to understand, facilitating a smoother process when it comes to debugging and testing any code related to `Exercise`.
+
+### **Exercise Hashmap**
+
+#### **Implementation**
+The Exercise Hashmap stores data in the form of a hashmap, where the key of the hashmap is the `Name` of an `Exercise` and its associated value is an `Exercise` ArrayList, containing a list of exercises (with the same name).
+
+#### **Design Considerations**
+
+**Aspect: Choosing the Data Structure**
+* **Current choice**: We decided to use a hashmap data structure.
+  * Rationale: We wanted to create associations between exercises with the same name. Utilising a hashmap structure, we can easily identify and retrieve exercises with the same exercise name (by their unique key identifier). Hence, this facilitates commands that rely on this retrieval to be implemented, such as [Listing of Personal Records](#listing-of-personal-records) and [Generating a suggested workout routine](#generating-a-suggested-workout-routine).
 
 ### **Sorting Exercise List**
 
@@ -324,7 +331,9 @@ Step 1. The user launches the application and already has 4 Exercise instances, 
 
 Step 2: The user enters the command `:pr n/Squat` to view their personal record for the exercise 'Squat'.
 
-![ListPersonalRecord](images/ListPersonalRecord.png)
+The following sequence diagram shows how the `PrCommand` works.
+
+![ListPersonalRecordSequenceDiagram](images/ListPersonalRecordSequenceDiagram.png)
 
 #### Design considerations:
 
@@ -337,9 +346,13 @@ Step 2: The user enters the command `:pr n/Squat` to view their personal record 
     * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition.
     * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow.
 
-### \[Proposed\] Generating a suggested workout routine
+### Generating a suggested workout routine
 
-#### Proposed Implementation
+#### Implementation
+
+Workout suggestions are suggested by `Generator` objects. The suggestion mechanism follows the command pattern. The `GeneratorFactory` creates a concrete `Generator` object, and passes it to the `GenerateCommand` object, which treats all generators as a general `Generator` type. `GenerateCommand` is able to get a workout suggestion without knowledge of the type of generator. The following class diagram illustrates this.
+
+![GeneratorCommandPattern](images/GeneratorCommandPattern.png)
 
 The mechanism for generating a suggested workout routine is facilitated by `GenerateCommand`, which extends from `Command`.
 
@@ -356,29 +369,27 @@ Step 1. The user launches the application, and already has 2 exercises, squat an
 
 Step 2: The user enters the command `:gen 1,2 l/easy` to generate an easy workout routine consisting of the exercises squat and deadlift.
 
-The following sequence diagram shows how the `GenerateCommand` works:
+The following sequence diagram shows how the `GenerateCommand` works.
+A `Name` object `exerciseName` is returned to `g:GenerateCommand` by calling a method in `:Model`. 
+For the sake of brevity, this interaction is omitted from the diagram.
 
 ![GenerateWorkoutSequenceDiagram](images/GenerateWorkoutSequenceDiagram.png)
 
-The diagram detailing the interaction between `g:GenerateCommand` and `GeneratorFactory` class is shown below.
+The diagram below illustrates the interaction between `g:GenerateCommand` and `GeneratorFactory` class.
 The static method `GeneratorFactory#getGenerator()` creates a `Generator` of the correct difficulty level, such as `EasyGenerator`.
 The number of `Generator` objects created is equal to the number of unique exercise names. They are `s:EasyGenerator` and `d:EasyGenerator` for squat and deadlift respectively.
 
 ![GetSuggestionSequenceDiagram](images/GetSuggestionSequenceDiagram.png)
 
-#### Design considerations:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The sd frame should capture the entire diagram here, but due to a limitation of PlantUML, it appears as such.
 
-**Aspect: Type of arguments to accept:**
-* **Alternative 1 (current choice)**: Accept index as arguments.
-    * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition.
-    * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow.
-* **Alternative 2**: Accept exercise names.
-    * Pros: Easier to implement.
-    * Cons: Would require users to type more characters; also require users to enter exercise names accurately.
+</div>
+
+#### Design considerations:
 
 **Aspect: Number of `Generator` objects:**
 * **Current choice**: Pairing each unique exercise to one `Generator`.
-    * Rationale: Allow generating suggestions of different difficulty level for different exercises, possibly in the future.
+    * Rationale: The current `:gen` command specifies a single difficulty level for all exercises listed in the command. A possible extension in the future would be to allow each exercise to be linked to its own difficulty level, for example, `:gen deadlift/easy squat/hard`. This design would make such an implementation possible.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -464,24 +475,18 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation
 
-The display window is located in the bottom right of the application. The display mechanism has been implemented with the Observer pattern in mind.
+The display window is located in the bottom right of the application. The display mechanism has been implemented with the Observer design pattern in mind.
 
 It is primarily driven by `SavedExerciseListWindow` (which holds the UI for the display). The logic is
 handled by `ExerciseKeys` and `ExerciseHashMap`.
 
 ##### General class diagram
-The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The
-`ExerciseHashMap` class maintains an internal ArrayList of type `Observer`, which can be modified through the
-addUI function. As the UI elements are usually initialized later than the data, the `SavedExerciseListWindow`
-UI object is only added as an observer after its constructor is called. This guards against any nullpointer exceptions
-which may occur when preloading data from a hashmap in storage.
+The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The `ExerciseHashMap` class maintains an internal ArrayList of type `Observer`, which can be modified through the addUI function. As the UI elements are usually initialized later than the data on loading of the application, the `SavedExerciseListWindow`UI object is only added as an observer after its constructor is called. This guards against any null-pointer exceptions which may occur when preloading data from a hashmap in storage.
 
 ![ObserverPatternClass](images/ObserverPattern.png)
 
 ##### Subscribing to updates
-Once the `SavedExerciseListWindow` object has been added to the arraylist of `Observer` in the  `ExerciseHashMap`
-, it 'subscribes' to notifications whenever the ExerciseHashMap changes. Based on the functionality of the Hashmap as
-well as the application, this can be generalised into two distinct scenarios.
+Once the `SavedExerciseListWindow` object has been added to the arraylist of `Observer` in the  `ExerciseHashMap`, it 'subscribes' to notifications whenever the ExerciseHashMap changes. Based on the functionality of the Hashmap as well as the application, this can be generalised into two distinct scenarios.
 
 * **Adding an exercise** - Whenever a new exercise has been added, there is a possibility of a new key being added.
 * **Removing an exercise** - Whenever a new exercise has been removed, there is a possibility of a key being removed permanently.
@@ -490,40 +495,32 @@ well as the application, this can be generalised into two distinct scenarios.
 </div>
 
 ##### Updating
-Whenever there is a state changing operation, the `ExerciseHashMap` object will notify all observers through the notifyObservers
-method. All Observers in the list will run the update method that is individually specified in their class. As `SavedExerciseListWindow`
-keeps a copy of `ExerciseHashmap`, it is required to do its calculations and formatting to display the text. The logic behind the calculations
-and formatting of the display message is handled by the `ExerciseKeys` class.
-
-Let us use `SavedExerciseListWindow` update function as an example of how the system is updated. A notification would notify
-`SavedExerciseListWindow` that it needs to relook at the `ExerciseHashMap` it stores and regenerate the input. It calls
-the update function which first gives the `ExerciseKeys` object an ArrayList of Strings which are the key names, arranged in
-natural alphabetical order, as defined in Collections.Sort .
+Whenever there is a state changing operation, the `ExerciseHashMap` object will notify all observers through the notifyObservers method. All Observers in the list will run the update method that is individually specified in their class. As such , all Observers of ExerciseHashMap are required to override the update method as shown below.
 
 ```
-    public String getDisplay() {
-            if (keyArrayList.size() == 0) {
-                return "You have no stored exercises in the system!";
-            }
-            StringBuilder sb = new StringBuilder("Stored exercises:\n");
-            for (int i = 1; i < keyArrayList.size() + 1; i++) {
-                sb.append(i);
-                sb.append(". ");
-                sb.append(keyArrayList.get(i - 1));
-                sb.append("\n");
-            }
-            return sb.toString();
+    @Override
+    public void update() {
+        .
+        unique implementation detail here... 
+        . 
     }
 ```
 
-It then calls the getDisplay function in  `ExerciseKeys` takes the size of the ArrayList to decide the output to be generated. It returns the output as a string
-which `SavedExerciseListWindow` can use to set the textarea of the UI to the most updated version.
+Below is a sample sequence diagram for the current implementation of how NotifyObservers work. There is only SavedExerciseListWindow observing the ExerciseHashMap. 
+
+![NotifyObservers](images/NotifyObservers.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Currently, there is only SavedExerciseListWindow observing the ExerciseHashMap
+</div>
+
+The logic behind the calculations and formatting of the display message is handled by the `ExerciseKeys` class.
+
+Through this pattern, each observer gets to define exactly what the required display/result should be.
 
 ### Design considerations
 
 ##### Polymorphism
-The immediately apparent benefit of this design would be the Polymorphism that it capitalises on. In particular, the
-notifyObservers function in `ExerciseHashMap`.
+The immediately apparent benefit of this design would be the Polymorphism that it capitalises on. In particular, the notifyObservers function in `ExerciseHashMap`.
 
 ```
     public void notifyObservers() {
@@ -532,13 +529,9 @@ notifyObservers function in `ExerciseHashMap`.
         }
     }
 ```
-Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it.
-`ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update,
-instead, the responsibility of deciding what to do is passed on to the Observers themselves.
+Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it. `ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update, instead, the responsibility of deciding what to do is passed on to the Observers themselves.
 
-This allows for flexibility in having different types of objects having different forms of updating. This keeps the code
-in `ExerciseHashMap` short and hides the implementation of the Observers behind the `Observer` interface which acts as an
-intermediary to help the UI communicate with `ExerciseHashMap`.
+This allows for flexibility in having different types of objects having different forms of updating. This keeps the code in `ExerciseHashMap` short and hides the implementation of the Observers behind the `Observer` interface which acts as an intermediary to help the UI communicate with `ExerciseHashMap`.
 
 ### \[Proposed\] Data archiving
 
@@ -587,6 +580,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user          | generate workouts of different difficulty                            | customise my workout based on how I’m feeling that day                     |
 | `* * *`  | user          | view my recent exercises                                             | plan for my next gym session                                               |
 | `* * *`  | user          | view my exercises done within a date range                           | track my overall progress over a period of time (eg. weekly, monthly, etc) |
+| `* * *`  | user          | see what names the system has registered                             | add exercises correctly and quickly                                        |
 | `* * `   | new user      | remove all sample data                                               | input my own data                                                          |
 | `* *  `  | advanced user | have a quick summary of all the commands I can do in the application | save time                                                                  |
 | `* * `   | clumsy user   | have a safeguard against accidentally clearing all data              | preserve my exercise                                                       |
@@ -776,11 +770,32 @@ Guarantees: Personal Record (PR) for exercise(s) will be calculated and displaye
     * 1a1. Gim displays the error message.
       <br>Use case ends.
 * 1b. User enters the name of exercise(s) wrongly.
-    * 2a1. Gim displays exercise(s) not registered in system message.
+    * 1b1. Gim displays exercise(s) not registered in system message.
       <br>Use case ends.
 
 #### Use case 10: Generate
 
+System: Gim <br>
+Use case: UC10 - Generate workout suggestion for exercise(s) <br>
+Actor: User <br>
+Guarantees: Sample workout suggestion will be displayed.
+
+**MSS**
+
+1. User wishes to generate a workout suggestion.
+2. User enters the exercise and difficulty level desired.
+3. Gim computes a sample workout for the user.
+   <br>Use case ends.
+
+**Extensions**
+
+* 2a. Gim detects an error in the command format.
+    * 2a1. Gim requests user to enter a valid command format.
+    * 2a2. User enters new command.
+      <br>Steps 2a1-2a2 are repeated until the command entered is of valid format.
+      Use case resumes from step 3.
+
+  
 #### Use case 11: Exit Gim
 
 System: Gim <br>
@@ -812,6 +827,7 @@ Guarantees: Gim will exit.
 * **Reps**: Number of times you perform a specific exercise
 * **Sets**: Number of cycles of reps that you complete
 * **Weight**: Total weight (include barbell if applicable, exclude body weight)
+* **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
 
 --------------------------------------------------------------------------------------------------------------------
 

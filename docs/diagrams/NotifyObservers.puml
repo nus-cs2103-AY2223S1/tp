@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+
+box MODEL_COLOR_T1
+participant ":ExerciseHashMap" as ExerciseHashMap MODEL_COLOR
+end box
+box
+
+box UI_COLOR_T1
+participant ":SavedExerciseListWindow" as SavedExerciseListWindow UI_COLOR
+end box
+
+box MODEL_COLOR_T1
+participant ":ExerciseKeys" as ExerciseKeys MODEL_COLOR
+end box
+
+[-> ExerciseHashMap : notifyObservers()
+activate ExerciseHashMap
+
+ExerciseHashMap -> SavedExerciseListWindow : update()
+activate SavedExerciseListWindow
+
+create ExerciseKeys
+SavedExerciseListWindow -> ExerciseKeys
+activate ExerciseKeys
+
+ExerciseKeys -> ExerciseKeys :getDisplay()
+ExerciseKeys --> SavedExerciseListWindow
+deactivate ExerciseKeys
+
+SavedExerciseListWindow -> SavedExerciseListWindow :setText(display)
+SavedExerciseListWindow --> ExerciseHashMap
+deactivate SavedExerciseListWindow
+
+[<-- ExerciseHashMap
+deactivate ExerciseHashMap
+
+
+@enduml

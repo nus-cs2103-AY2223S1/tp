@@ -15,6 +15,7 @@ Class ExerciseListPanel
 Class ExerciseCard
 Class StatusBarFooter
 Class CommandBox
+Class SavedExerciseListWindow
 }
 
 package Model <<Rectangle>> {
@@ -31,6 +32,7 @@ HiddenOutside ..> Ui
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
+MainWindow *-down->  "1" SavedExerciseListWindow
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" ExerciseListPanel
 MainWindow *-down-> "1" StatusBarFooter
@@ -46,6 +48,8 @@ ExerciseListPanel --|> UiPart
 ExerciseCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+SavedExerciseListWindow --up|> UiPart
+
 
 ExerciseCard ..> Model
 UiManager -right-> Logic

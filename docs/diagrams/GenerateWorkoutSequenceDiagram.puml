@@ -3,22 +3,22 @@
 skinparam sequenceReferenceBackgroundColor AntiqueWhite
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ExerciseTrackerParser" as ExerciseTrackerParser LOGIC_COLOR
-participant ":GenerateCommandParser" as GenerateCommandParser LOGIC_COLOR
-participant "g:GenerateCommand" as GenerateCommand LOGIC_COLOR
-participant GeneratorFactory as "<<class>>\nGeneratorFactory" LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":Logic\nManager" as LogicManager LOGIC_COLOR
+participant ":ExerciseTracker\nParser" as ExerciseTrackerParser LOGIC_COLOR
+participant ":Generate\nCommandParser" as GenerateCommandParser LOGIC_COLOR
+participant "g:Generate\nCommand" as GenerateCommand LOGIC_COLOR
+participant GeneratorFactory as "<<class>>\nGenerator\nFactory" LOGIC_COLOR
+participant ":Command\nResult" as CommandResult LOGIC_COLOR
 end box
 
-'box Model MODEL_COLOR_T1
-'participant ":Model" as Model MODEL_COLOR
-'end box
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
 
-[-> LogicManager : execute(":gen 1,2 l/easy")
+[-> LogicManager : execute\n(":gen 1,2 l/easy")
 activate LogicManager
 
-LogicManager -> ExerciseTrackerParser : parseCommand(":gen 1,2 l/easy")
+LogicManager -> ExerciseTrackerParser : parseCommand\n(":gen 1,2 l/easy")
 activate ExerciseTrackerParser
 
 create GenerateCommandParser
@@ -28,7 +28,7 @@ activate GenerateCommandParser
 GenerateCommandParser --> ExerciseTrackerParser
 deactivate GenerateCommandParser
 
-ExerciseTrackerParser -> GenerateCommandParser : parse("1,2 l/easy")
+ExerciseTrackerParser -> GenerateCommandParser : parse\n("1,2 l/easy")
 activate GenerateCommandParser
 
 create GenerateCommand
@@ -49,6 +49,12 @@ deactivate ExerciseTrackerParser
 
 LogicManager -> GenerateCommand : execute()
 activate GenerateCommand
+
+
+GenerateCommand -> Model : getExercisePR(exerciseName)
+activate Model
+Model --> GenerateCommand : exercisePR
+deactivate Model
 
 ref over GenerateCommand, GeneratorFactory
 get suggested workouts

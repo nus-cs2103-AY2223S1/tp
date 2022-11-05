@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+skinparam classAttributeIconSize 0
+
+
+Class "<<interface>>\nGenerator" as Generator
+Generator : + suggest()
+GenerateCommand .right.> Generator : gets suggestion from >
+
+
+GeneratorFactory .right.> XYZGenerator : creates >
+XYZGenerator -up-|> Generator
+
+note right of XYZGenerator: XYZGenerator = EasyGenerator, \nMediumGenerator, etc
+
+@enduml

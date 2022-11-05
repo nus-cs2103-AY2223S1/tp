@@ -19,7 +19,7 @@ Class "<<interface>>\nExerciseTrackerStorage" as ExerciseTrackerStorage
 Class JsonExerciseTrackerStorage
 Class JsonSerializableExerciseTracker
 Class JsonAdaptedExercise
-Class JsonAdaptedTag
+Class JsonAdaptedDate
 }
 
 }
@@ -38,6 +38,6 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonExerciseTrackerStorage .up.|> ExerciseTrackerStorage
 JsonExerciseTrackerStorage ..> JsonSerializableExerciseTracker
 JsonSerializableExerciseTracker --> "*" JsonAdaptedExercise
-JsonAdaptedExercise --> "*" JsonAdaptedTag
+JsonAdaptedExercise --> "*" JsonAdaptedDate
 
 @enduml
