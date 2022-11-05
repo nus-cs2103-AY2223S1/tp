@@ -5,15 +5,13 @@ title: User guide
 ---
 # Overview <a id="1-overview"></a>
 
-TABS is a project centric desktop application specially designed to manage contacts, groups and tasks within members of the group.
-## Target User
-TABS's target users are student project team leaders who are facing issues with **group management** and **task allocation**.
+TABS is a project centric desktop application specially designed to manage contacts, groups and tasks within members of the group. TABS's target users are student project team leaders who are facing issues with **group management** and **task allocation**.
 
 TABS aims to help project team leaders by
 1. Simplifying the **group management** process.
 2. Providing an **overview** of tasks assigned to members.
 
-It is targeted at individuals with less programming background i.e. **less CLI-intensive** in nature.
+Individuals with a fast typing speed will benefit more because TABS optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 # Structure of this Document
 This document is structured chronologically so that you can follow through with this guide while using the product.
@@ -80,7 +78,7 @@ Text that appear as `this` form refers to special terms related to TABS.
 
 ## 2.2 Feature Overview
 The features of TABS are as such:
-1. Contact management features - covering how to manage **Contacts** in TABS.
+1. Person management features - covering how to manage **Persons** in TABS.
 2. Group management features - covering how to manage **Groups**, which consists of **Members** in TABS.
 3. Task management features - covering how to manage **Tasks** amongst **Members**.
 4. Miscellaneous features - other features for convenience.
@@ -88,8 +86,11 @@ The features of TABS are as such:
 <div markdown="span" class="alert alert-primary">
   :information_source: **Note**:
 
-**Members** and **Contacts** are different. 
-- In order to add **Members**, the persons have to be present in TABS as **Contacts**.
+- _member_ and _person_ are different. A _person_ is someone who is registered in TABS. A _member_ is a _person_ who is part of a specific _group_.
+  - i.e Alex is a person, but he is not a member of Group 1. He is however a member of Group 2.
+
+- In order to add **Members**, the persons have to be present in TABS under **Contacts**.
+
 - On deletion of **Members** in **Groups**, the corresponding **Contacts** of the person will still remain.
 
 </div>
@@ -325,6 +326,7 @@ assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0`
 
 A workload indicator is shown beside each person in TABS.
 When the workload of the person increases, the workload indicator will gradually change from green to red.
+
 ![Workload_Indicator](images/user-guide/workload_indicator.png)
 </div>
 
