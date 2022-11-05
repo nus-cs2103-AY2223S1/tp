@@ -6,6 +6,10 @@ import seedu.address.logic.commands.FilterPlanModCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.PlanModContainsKeywordsPredicate;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.Collectors;
+
 /**
  * Parses input arguments and creates a new FilterPlanModCommand object
  */
@@ -23,8 +27,10 @@ public class FilterPlanModCommandParser implements Parser<FilterPlanModCommand> 
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPlanModCommand.MESSAGE_USAGE));
         }
 
-        String tagKeyword = trimmedArgs;
+        String keyword = trimmedArgs;
+        String[] keywords = trimmedArgs.split(" ");
+        ParserUtil.parsePlannedModules(Arrays.asList(keywords));
 
-        return new FilterPlanModCommand(new PlanModContainsKeywordsPredicate(tagKeyword));
+        return new FilterPlanModCommand(new PlanModContainsKeywordsPredicate(keyword));
     }
 }

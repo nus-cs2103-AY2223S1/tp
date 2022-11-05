@@ -1636,6 +1636,33 @@ testers are expected to do more *exploratory* testing.
   3. Test case: `delete user` then run `nextsem` <br>
      Expected: Status message shows that the user is deleted. Status message shows "No user created!"
 
+### Filtering contacts tags
+
+1. Listing out all persons in contact list with the tag(s)
+
+   1. Test case: `filtertag friends` <br>
+   Expected: All persons in the contact list with the friends tag will be listed. 
+   
+   2. Test case: `clear` then run `filtertag friends` <br>
+   Expected: Status message shows that the contact list has been cleared. Status message shows "0 persons listed!"
+   
+   3. Test case: `filtercurrmod CS` <br>
+   Expected: Error details shown in message.
+   4. Other incorrect filter module commands to try: `filtercurrmod`, `filtercurrmod 1`, `filtercurrmod C1000`, 
+   `filtercurrmod xxyyyy`, `...` (where any x is not an alphabet and any y is not a number).
+
+### Filtering contacts modules
+
+1. Listing out all persons in contact list with the current/previous/planned module(s)
+
+  1. Test case: `filtercurrmod CS2100` <br>
+     Expected: All persons in the contact list with CS2100 in their current module list will be listed.
+
+  2. Test case: `clear` then run `filtercurrmod CS2100` <br>
+     Expected: Status message shows that the contact list has been cleared. Status message shows "0 persons listed!"
+
+  3. Test case: `filtercurrmod CS` <br>
+     Expected: Error details shown in message.
 
 ### Saving data
 

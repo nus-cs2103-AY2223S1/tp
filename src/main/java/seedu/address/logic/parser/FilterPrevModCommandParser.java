@@ -6,6 +6,8 @@ import seedu.address.logic.commands.FilterPrevModCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.PrevModContainsKeywordsPredicate;
 
+import java.util.Arrays;
+
 /**
  * Parses input arguments and creates a new FilterPrevModCommand object
  */
@@ -23,8 +25,10 @@ public class FilterPrevModCommandParser implements Parser<FilterPrevModCommand> 
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPrevModCommand.MESSAGE_USAGE));
         }
 
-        String tagKeyword = trimmedArgs;
+        String keyword = trimmedArgs;
+        String[] keywords = trimmedArgs.split(" ");
+        ParserUtil.parsePreviousModules(Arrays.asList(keywords));
 
-        return new FilterPrevModCommand(new PrevModContainsKeywordsPredicate(tagKeyword));
+        return new FilterPrevModCommand(new PrevModContainsKeywordsPredicate(keyword));
     }
 }

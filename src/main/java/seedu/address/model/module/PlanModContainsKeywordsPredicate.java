@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Tests that a {@code Person}'s {@code PlannedModule} matches the keyword given.
  */
@@ -13,6 +16,7 @@ public class PlanModContainsKeywordsPredicate implements Predicate<Person> {
     private final String keywords;
 
     public PlanModContainsKeywordsPredicate(String keywords) {
+        requireNonNull(keywords);
         this.keywords = keywords;
     }
 
