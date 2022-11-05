@@ -1,34 +1,27 @@
 package seedu.studmap.model.student;
 
-import static seedu.studmap.commons.util.AppUtil.checkArgument;
-import static seedu.studmap.commons.util.CollectionUtil.requireAllNonNull;
-
 /**
  * Represents an Attendance object in StudMap.
  * Guarantees: immutable; name is valid as declared in {@link #isValidClassName(String)}
  */
-public class Attendance {
+public class Attendance extends MultiStateAttribute<String, Attendance.Status> {
 
     public static final String MESSAGE_CONSTRAINTS = "Class names should consist of "
             + "alphanumerics, space, dash and underscore.";
+    public static final String MESSAGE_STATUS_CONSTRAINTS = "Option must either be 'present' or 'absent' for "
+            + "attendance";
     public static final String VALIDATION_REGEX = "[\\p{Alnum} \\-_]+";
     public static final String ATTENDANCE_TRUE = "Present";
     public static final String ATTENDANCE_FALSE = "Absent";
 
-    public final String className;
-    public final boolean hasAttended;
-
     /**
      * Constructs an {@code Attendance} object.
      *
-     * @param className A valid class name.
-     * @param hasAttended A boolean representing whether the student has attended or not
+     * @param state       A valid class name.
+     * @param hasAttended Attendance status.
      */
-    public Attendance(String className, Boolean hasAttended) {
-        requireAllNonNull(className, hasAttended);
-        checkArgument(isValidClassName(className), MESSAGE_CONSTRAINTS);
-        this.className = className;
-        this.hasAttended = hasAttended;
+    public Attendance(String state, Status hasAttended) {
+        super(state, hasAttended);
     }
 
     /**
@@ -38,32 +31,63 @@ public class Attendance {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public String getString() {
-        return className + ':' + getAttendanceString();
+    @Override
+    public boolean isSameAttribute(MultiStateAttribute<String, Status> other) {
+        return other.identifier.equalsIgnoreCase(this.identifier);
     }
 
-    public String getAttendanceString() {
-        return (hasAttended ? ATTENDANCE_TRUE : ATTENDANCE_FALSE);
+    @Override
+    public boolean isValidAttributeIdentifier(String identifier) {
+        return isValidClassName(identifier);
+    }
+
+    @Override
+    public String getIdentifierConstraintsMessage() {
+        return MESSAGE_CONSTRAINTS;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Attendance // instanceof handles nulls
-                && className.equals(((Attendance) other).className)); // state check
-                // no check for hasAttended to ensure only one attendance record per className
+                && state.equals(((Attendance) other).state)); // state check
     }
 
     @Override
     public int hashCode() {
-        return className.hashCode();
+        return state.hashCode();
     }
 
     /**
-     * Format state as text for viewing.
+     * Possible states of an Attendance.
      */
-    public String toString() {
-        return '[' + getString() + ']';
+    public enum Status {
+        PRESENT {
+            @Override
+            public String toString() {
+                return ATTENDANCE_TRUE;
+            }
+        },
+        ABSENT {
+            @Override
+            public String toString() {
+                return ATTENDANCE_FALSE;
+            }
+        };
+
+        /**
+         * Translates a string value of {@code Status} to an enum value.
+         */
+        public static Status fromString(String value) throws IllegalArgumentException {
+            switch (value) {
+            case ATTENDANCE_TRUE:
+                return PRESENT;
+            case ATTENDANCE_FALSE:
+                return ABSENT;
+            default:
+                throw new IllegalArgumentException(MESSAGE_STATUS_CONSTRAINTS);
+            }
+        }
     }
 
 }

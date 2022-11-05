@@ -33,7 +33,7 @@ class UnmarkCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Student studentToUnmark = model.getFilteredStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
-        Attendance attendance = new Attendance("T01", true);
+        Attendance attendance = new Attendance("T01", Attendance.Status.PRESENT);
         UnmarkCommand unmarkCommand = new UnmarkCommand(new SingleIndexGenerator(INDEX_SECOND_STUDENT),
                 new UnmarkCommand.UnmarkCommandStudentEditor(attendance));
 
@@ -42,7 +42,7 @@ class UnmarkCommandTest {
         Student unmarkedStudent = new StudentBuilder(studentToUnmark).setAttended(attendanceSet).build();
 
         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_SINGLE_ATTENDANCE_SUCCESS,
-                attendance.className, unmarkedStudent);
+                attendance.identifier, unmarkedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList()
@@ -56,7 +56,7 @@ class UnmarkCommandTest {
         showStudentAtIndex(model, INDEX_SECOND_STUDENT);
 
         Student studentInFilteredList = model.getFilteredStudentList().get(0);
-        Attendance attendance = new Attendance("T01", true);
+        Attendance attendance = new Attendance("T01", Attendance.Status.PRESENT);
         UnmarkCommand unmarkCommand = new UnmarkCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
                 new UnmarkCommand.UnmarkCommandStudentEditor(attendance));
 
@@ -65,7 +65,7 @@ class UnmarkCommandTest {
         Student unmarkedStudent = new StudentBuilder(studentInFilteredList).setAttended(attendanceSet).build();
 
         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_SINGLE_ATTENDANCE_SUCCESS,
-                attendance.className, unmarkedStudent);
+                attendance.identifier, unmarkedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_SECOND_STUDENT);
@@ -76,7 +76,7 @@ class UnmarkCommandTest {
     @Test
     public void execute_invalidstudentIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        Attendance attendance = new Attendance("T04", true);
+        Attendance attendance = new Attendance("T04", Attendance.Status.PRESENT);
         UnmarkCommand unmarkCommand = new UnmarkCommand(new SingleIndexGenerator(outOfBoundIndex),
                 new UnmarkCommand.UnmarkCommandStudentEditor(attendance));
 

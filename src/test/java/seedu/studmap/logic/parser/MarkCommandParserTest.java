@@ -21,16 +21,18 @@ public class MarkCommandParserTest {
         String className = "T01";
         assertParseSuccess(parser, "1 absent c/   " + className,
                 new MarkCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
-                        new MarkCommand.MarkCommandStudentEditor(new Attendance(className, true))));
+                        new MarkCommand.MarkCommandStudentEditor(
+                                new Attendance(className, Attendance.Status.ABSENT))));
     }
 
     @Test
     public void parse_invalidOption_throwsParseException() {
-        assertParseFailure(parser, "1 asd c/ T01", MarkCommandParser.MESSAGE_INVALID_OPTION);
+        assertParseFailure(parser, "1 asd c/ T01", Attendance.MESSAGE_STATUS_CONSTRAINTS);
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
     }
 }

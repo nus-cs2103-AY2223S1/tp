@@ -35,7 +35,7 @@ public class UnmarkCommandParser extends EditStudentCommandParser<UnmarkCommand.
         UnmarkCommand.UnmarkCommandStudentEditor editor = null;
 
         String className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).orElse(""));
-        Attendance attendance = new Attendance(className, true);
+        Attendance attendance = new Attendance(className, Attendance.Status.PRESENT);
         editor = new UnmarkCommand.UnmarkCommandStudentEditor(attendance);
 
         return new UnmarkCommand(indexListGenerator, editor);

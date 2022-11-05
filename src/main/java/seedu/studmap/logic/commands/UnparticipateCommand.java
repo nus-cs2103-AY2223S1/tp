@@ -47,14 +47,14 @@ public class UnparticipateCommand extends EditStudentCommand<UnparticipateComman
     @Override
     public String getSingleEditSuccessMessage(Student editedStudent) {
         return String.format(MESSAGE_UNMARK_SINGLE_PARTICIPATION_SUCCESS,
-                studentEditor.getParticipation().participationComponent,
+                studentEditor.getParticipation().identifier,
                 editedStudent);
     }
 
     @Override
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
         return String.format(MESSAGE_UNMARK_MULTI_PARTICIPATION_SUCCESS,
-                studentEditor.getParticipation().participationComponent,
+                studentEditor.getParticipation().identifier,
                 editedStudents.size());
     }
 

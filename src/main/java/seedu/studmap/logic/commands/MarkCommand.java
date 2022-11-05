@@ -40,7 +40,7 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
     @Override
     public String getSingleEditSuccessMessage(Student editedStudent) {
         return String.format(MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE,
-                studentEditor.getAttendance().getAttendanceString(),
+                studentEditor.getAttendance().getString(),
                 editedStudent);
     }
 

@@ -43,7 +43,7 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
     public String getSingleEditSuccessMessage(Student editedStudent) {
         requireNonNull(studentEditor.getParticipation());
         return String.format(MESSAGE_MARK_SINGLE_SUCCESS_PARTICIPATION,
-                studentEditor.getParticipation().getParticipationString(),
+                studentEditor.getParticipation().getString(),
                 editedStudent);
     }
 

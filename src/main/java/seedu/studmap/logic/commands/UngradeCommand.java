@@ -43,7 +43,7 @@ public class UngradeCommand extends EditStudentCommand<UngradeCommand.UngradeCom
     public String getSingleEditSuccessMessage(Student editedStudent) {
         Assignment assignment = studentEditor.getAssignment();
         return String.format(MESSAGE_UNGRADE_SINGLE_ASSIGNMENT_SUCCESS,
-                assignment.getAssignmentName(),
+                assignment.getAttributeName(),
                 editedStudent);
     }
 
@@ -51,7 +51,7 @@ public class UngradeCommand extends EditStudentCommand<UngradeCommand.UngradeCom
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
         Assignment assignment = studentEditor.getAssignment();
         return String.format(MESSAGE_UNGRADE_MULTI_ASSIGNMENT_SUCCESS,
-                assignment.getAssignmentName(),
+                assignment.getAttributeName(),
                 editedStudents.size());
     }
 

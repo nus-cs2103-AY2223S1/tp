@@ -16,7 +16,8 @@ public class ParticipationTest {
     @Test
     public void constructor_invalidClassName_throwsIllegalArgumentException() {
         String invalidClassName = "!";
-        assertThrows(IllegalArgumentException.class, () -> new Participation(invalidClassName, Boolean.TRUE));
+        assertThrows(IllegalArgumentException.class, () -> new Participation(invalidClassName,
+                Participation.Status.PARTICIPATED));
     }
 
     @Test

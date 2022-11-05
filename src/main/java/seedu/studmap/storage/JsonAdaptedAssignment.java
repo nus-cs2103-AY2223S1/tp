@@ -38,13 +38,13 @@ class JsonAdaptedAssignment {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted Assignment.
      */
-    public Assignment toModelType() throws IllegalValueException {
+    public Assignment toModelType() throws IllegalArgumentException {
         String[] values = assignmentName.split(":");
         if (values.length != 2
                 || !Assignment.isValidAssignmentName(values[0])) {
-            throw new IllegalValueException(Assignment.MESSAGE_CONSTRAINTS);
+            throw new IllegalArgumentException(Assignment.MESSAGE_CONSTRAINTS);
         }
-        Assignment.Status markingStatus = Assignment.stringToStatus(values[1]);
+        Assignment.Status markingStatus = Assignment.Status.fromString(values[1]);
         return new Assignment(values[0], markingStatus);
     }
 

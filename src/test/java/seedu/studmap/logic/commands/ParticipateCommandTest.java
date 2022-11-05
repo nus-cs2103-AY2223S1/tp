@@ -30,14 +30,14 @@ class ParticipateCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Student studentToMark = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Participation participation = new Participation("P04", true);
+        Participation participation = new Participation("P04", Participation.Status.PARTICIPATED);
         ParticipateCommand participateCommand = new ParticipateCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
                 new ParticipateCommand.ParticipateCommandStudentEditor(participation));
 
         Student markedStudent = new StudentBuilder(studentToMark).addParticipated("P04").build();
 
         String expectedMessage = String.format(ParticipateCommand.MESSAGE_MARK_SINGLE_SUCCESS_PARTICIPATION,
-                participation.getParticipationString(), markedStudent);
+                participation.getString(), markedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), markedStudent);
@@ -49,14 +49,14 @@ class ParticipateCommandTest {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Participation participation = new Participation("P04", true);
+        Participation participation = new Participation("P04", Participation.Status.PARTICIPATED);
         ParticipateCommand participateCommand = new ParticipateCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
                 new ParticipateCommand.ParticipateCommandStudentEditor(participation));
 
         Student markedStudent = new StudentBuilder(studentInFilteredList).addParticipated("P04").build();
 
         String expectedMessage = String.format(ParticipateCommand.MESSAGE_MARK_SINGLE_SUCCESS_PARTICIPATION,
-                participation.getParticipationString(), markedStudent);
+                participation.getString(), markedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
@@ -67,7 +67,7 @@ class ParticipateCommandTest {
     @Test
     public void execute_invalidstudentIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        Participation participation = new Participation("P04", true);
+        Participation participation = new Participation("P04", Participation.Status.PARTICIPATED);
         ParticipateCommand participateCommand = new ParticipateCommand(new SingleIndexGenerator(outOfBoundIndex),
                 new ParticipateCommand.ParticipateCommandStudentEditor(participation));
 

@@ -33,7 +33,7 @@ class UnparticipateCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Student studentToUnmark = model.getFilteredStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
-        Participation participation = new Participation("P01", true);
+        Participation participation = new Participation("P01", Participation.Status.PARTICIPATED);
         UnparticipateCommand unparticipateCommand = new UnparticipateCommand(
                 new SingleIndexGenerator(INDEX_SECOND_STUDENT),
                 new UnparticipateCommand.UnparticipateCommandStudentEditor(participation));
@@ -43,7 +43,7 @@ class UnparticipateCommandTest {
         Student unmarkedStudent = new StudentBuilder(studentToUnmark).setParticipated(participationSet).build();
 
         String expectedMessage = String.format(UnparticipateCommand.MESSAGE_UNMARK_SINGLE_PARTICIPATION_SUCCESS,
-                participation.participationComponent, unmarkedStudent);
+                participation.identifier, unmarkedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList()
@@ -57,7 +57,7 @@ class UnparticipateCommandTest {
         showStudentAtIndex(model, INDEX_SECOND_STUDENT);
 
         Student studentInFilteredList = model.getFilteredStudentList().get(0);
-        Participation participation = new Participation("P01", true);
+        Participation participation = new Participation("P01", Participation.Status.PARTICIPATED);
         UnparticipateCommand unparticipateCommand = new UnparticipateCommand(
                 new SingleIndexGenerator(INDEX_FIRST_STUDENT),
                 new UnparticipateCommand.UnparticipateCommandStudentEditor(participation));
@@ -67,7 +67,7 @@ class UnparticipateCommandTest {
         Student unmarkedStudent = new StudentBuilder(studentInFilteredList).setParticipated(participationSet).build();
 
         String expectedMessage = String.format(UnparticipateCommand.MESSAGE_UNMARK_SINGLE_PARTICIPATION_SUCCESS,
-                participation.participationComponent, unmarkedStudent);
+                participation.identifier, unmarkedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_SECOND_STUDENT);
@@ -78,7 +78,7 @@ class UnparticipateCommandTest {
     @Test
     public void execute_invalidstudentIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        Participation participation = new Participation("T04", true);
+        Participation participation = new Participation("T04", Participation.Status.PARTICIPATED);
         UnparticipateCommand unparticipateCommand = new UnparticipateCommand(new SingleIndexGenerator(outOfBoundIndex),
                 new UnparticipateCommand.UnparticipateCommandStudentEditor(participation));
 

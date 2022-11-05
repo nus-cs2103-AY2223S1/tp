@@ -30,14 +30,14 @@ class MarkCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Student studentToMark = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Attendance attendance = new Attendance("T04", true);
+        Attendance attendance = new Attendance("T04", Attendance.Status.PRESENT);
         MarkCommand markCommand = new MarkCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
                 new MarkCommand.MarkCommandStudentEditor(attendance));
 
         Student markedStudent = new StudentBuilder(studentToMark).addAttended("T04").build();
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE,
-                attendance.getAttendanceString(), markedStudent);
+                attendance.getString(), markedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), markedStudent);
@@ -49,14 +49,14 @@ class MarkCommandTest {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Attendance attendance = new Attendance("T04", true);
+        Attendance attendance = new Attendance("T04", Attendance.Status.PRESENT);
         MarkCommand markCommand = new MarkCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
                 new MarkCommand.MarkCommandStudentEditor(attendance));
 
         Student markedStudent = new StudentBuilder(studentInFilteredList).addAttended("T04").build();
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE,
-                attendance.getAttendanceString(), markedStudent);
+                attendance.getString(), markedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
@@ -67,7 +67,7 @@ class MarkCommandTest {
     @Test
     public void execute_invalidstudentIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        Attendance attendance = new Attendance("T04", true);
+        Attendance attendance = new Attendance("T04", Attendance.Status.PRESENT);
         MarkCommand markCommand = new MarkCommand(new SingleIndexGenerator(outOfBoundIndex),
                 new MarkCommand.MarkCommandStudentEditor(attendance));
 

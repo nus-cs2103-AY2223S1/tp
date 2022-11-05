@@ -86,20 +86,8 @@ public class StudentData {
         this.tags = tags;
     }
 
-    public void setAttendances(Set<Attendance> attendances) {
-        this.attendances = attendances;
-    }
-
     public void addAttendances(Set<Attendance> attendances) {
         this.attendances.addAll(attendances);
-    }
-
-    public void setAssignments(Set<Assignment> assignments) {
-        this.assignments = assignments;
-    }
-
-    public void setParticipations(Set<Participation> participations) {
-        this.participations = participations;
     }
 
     public void addParticipations(Set<Participation> participations) {
@@ -114,12 +102,24 @@ public class StudentData {
         return attendances;
     }
 
+    public void setAttendances(Set<Attendance> attendances) {
+        this.attendances = attendances;
+    }
+
     public Set<Assignment> getAssignments() {
         return assignments;
     }
 
+    public void setAssignments(Set<Assignment> assignments) {
+        this.assignments = assignments;
+    }
+
     public Set<Participation> getParticipations() {
         return participations;
+    }
+
+    public void setParticipations(Set<Participation> participations) {
+        this.participations = participations;
     }
 
     @Override
@@ -131,22 +131,33 @@ public class StudentData {
             return false;
         }
         StudentData that = (StudentData) o;
-        return Objects.equals(name, that.name)
-                && Objects.equals(phone, that.phone)
-                && Objects.equals(email, that.email)
-                && Objects.equals(studentID, that.studentID)
-                && Objects.equals(gitName, that.gitName)
-                && Objects.equals(teleHandle, that.teleHandle)
-                && Objects.equals(module, that.module)
-                && Objects.equals(tags, that.tags)
-                && Objects.equals(attendances, that.attendances)
-                && Objects.equals(assignments, that.assignments);
+        return Objects.equals(this.studentID, that.studentID)
+                && Objects.equals(this.gitName, that.gitName)
+                && Objects.equals(this.teleHandle, that.teleHandle)
+                && Objects.equals(this.name, that.name)
+                && Objects.equals(this.phone, that.phone)
+                && Objects.equals(this.email, that.email)
+                && Objects.equals(this.module, that.module)
+                && Objects.equals(this.tags, that.tags)
+                && Objects.equals(this.attendances, that.attendances)
+                && Objects.equals(this.assignments, that.assignments)
+                && Objects.equals(this.participations, that.participations);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, phone, email, studentID, gitName,
-                teleHandle, module, tags, attendances, assignments);
+        return Objects.hash(
+                studentID,
+                gitName,
+                teleHandle,
+                name,
+                phone,
+                email,
+                module,
+                tags,
+                attendances,
+                assignments,
+                participations);
     }
 
 }

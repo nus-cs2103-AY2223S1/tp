@@ -45,9 +45,9 @@ public class GradeCommand extends EditStudentCommand<GradeCommand.GradeCommandSt
     public String getSingleEditSuccessMessage(Student editedStudent) {
         Assignment assignment = studentEditor.getAssignment();
         return String.format(MESSAGE_GRADE_SINGLE_SUCCESS_ASSIGNMENT,
-                assignment.getAssignmentName(),
+                assignment.getAttributeName(),
                 editedStudent.getName(),
-                assignment.getAssignmentString(),
+                assignment.state,
                 editedStudent);
     }
 
@@ -55,8 +55,8 @@ public class GradeCommand extends EditStudentCommand<GradeCommand.GradeCommandSt
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
         Assignment assignment = studentEditor.getAssignment();
         return String.format(MESSAGE_GRADE_MULTI_SUCCESS_ASSIGNMENT,
-                assignment.getAssignmentName(),
-                assignment.getAssignmentString(),
+                assignment.getAttributeName(),
+                assignment.state,
                 editedStudents.size());
     }
 

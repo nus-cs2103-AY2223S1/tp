@@ -34,7 +34,7 @@ public class UnparticipateCommandParser extends EditStudentCommandParser<Unparti
 
         String participationComponent = ParserUtil
                 .parseParticipationComponent(argMultimap.getValue(PREFIX_PARTICIPATION).orElse(""));
-        Participation participation = new Participation(participationComponent, true);
+        Participation participation = new Participation(participationComponent, Participation.Status.PARTICIPATED);
         editor = new UnparticipateCommand.UnparticipateCommandStudentEditor(participation);
 
         return new UnparticipateCommand(indexListGenerator, editor);

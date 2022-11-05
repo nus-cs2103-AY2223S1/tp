@@ -21,7 +21,7 @@ public class AssignmentContainsKeywordsPredicate implements Predicate<Student> {
         Set<Assignment> assignmentSet = student.getAssignments();
         for (Assignment assignment : assignmentSet) {
             if (keywords.stream().anyMatch(keywords ->
-                    StringUtil.containsWordIgnoreCase(assignment.assignmentName, keywords))) {
+                    StringUtil.containsWordIgnoreCase(assignment.identifier, keywords))) {
                 return true;
             }
         }

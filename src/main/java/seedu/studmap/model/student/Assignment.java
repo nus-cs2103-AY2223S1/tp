@@ -1,54 +1,33 @@
 package seedu.studmap.model.student;
 
-import static seedu.studmap.commons.util.AppUtil.checkArgument;
-import static seedu.studmap.commons.util.CollectionUtil.requireAllNonNull;
-
-import seedu.studmap.commons.exceptions.IllegalValueException;
-
 /**
  * Represents an Assignment object in StudMap.
- * Guarantees: immutable; name is valid as declared in {@link #isValidAssignmentName(String)}
+ * Guarantees: immutable; identifier is valid as declared in {@link #isValidAttributeIdentifier(String)} (String)}
  */
-public class Assignment {
+public class Assignment extends MultiStateAttribute<String, Assignment.Status> {
 
     public static final String MESSAGE_CONSTRAINTS = "Assignment names should consist of "
             + "alphanumerics, space, dash and underscore.";
-    public static final String MESSAGE_STATUS_CONSTRAINTS = "Assignment marking status should be one of "
-            + "new, received or marked.";
     public static final String VALIDATION_REGEX = "[\\p{Alnum} \\-_]+";
-    /**
-     * Represents the possible status the assignment can take.
-     */
-    public static enum Status {
-        MARKED,
-        RECEIVED,
-        NEW
-    }
-    public static final String ASSIGNMENT_MARKED = "marked";
-    public static final String ASSIGNMENT_RECEIVED = "received";
-    public static final String ASSIGNMENT_NEW = "new";
+    public static final String ASSIGNMENT_MARKED = "Marked";
+    public static final String ASSIGNMENT_RECEIVED = "Received";
+    public static final String ASSIGNMENT_NEW = "New";
+    public static final String MESSAGE_STATUS_CONSTRAINTS = "Assignment marking status should be one of "
+            + ASSIGNMENT_NEW + ", " + ASSIGNMENT_RECEIVED + " or " + ASSIGNMENT_RECEIVED + ".";
 
-    public final String assignmentName;
-    public final Status markingStatus;
 
     /**
      * Constructs an {@code Assignment} object.
      *
-     * @param assignmentName A valid assignment name.
-     * @param markingStatus A status representing whether the assignment has been marked
+     * @param identifier A valid assignment name.
+     * @param state      A status representing whether the assignment has been marked
      */
-    public Assignment(String assignmentName, Status markingStatus) {
-        requireAllNonNull(assignmentName, markingStatus);
-        checkArgument(isValidAssignmentName(assignmentName), MESSAGE_CONSTRAINTS);
-        this.assignmentName = assignmentName.toUpperCase();
-        this.markingStatus = markingStatus;
+    public Assignment(String identifier, Status state) {
+        super(identifier, state);
     }
 
-    /**
-     * Returns true if a given string is a valid assignment name.
-     */
-    public static boolean isValidAssignmentName(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidAssignmentName(String assignmentName) {
+        return assignmentName != null && assignmentName.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -60,61 +39,31 @@ public class Assignment {
                 || test.equals(ASSIGNMENT_NEW);
     }
 
-    /**
-     * Converts the status of the assignment to string.
-     */
-    public static String statusToString(Status status) {
-        switch (status) {
-        case MARKED:
-            return ASSIGNMENT_MARKED;
-        case RECEIVED:
-            return ASSIGNMENT_RECEIVED;
-        default:
-            return ASSIGNMENT_NEW;
-        }
+    @Override
+    public boolean isSameAttribute(MultiStateAttribute<String, Status> other) {
+        return other.identifier.equalsIgnoreCase(this.identifier);
     }
 
-    /**
-     * Converts a string to the assignment status.
-     */
-    public static Status stringToStatus(String statusString) throws IllegalValueException {
-        statusString = statusString.toLowerCase();
-        switch (statusString) {
-        case ASSIGNMENT_MARKED:
-            return Status.MARKED;
-        case ASSIGNMENT_RECEIVED:
-            return Status.RECEIVED;
-        case ASSIGNMENT_NEW:
-            return Status.NEW;
-        default:
-            throw new IllegalValueException(MESSAGE_STATUS_CONSTRAINTS);
-        }
+    @Override
+    public boolean isValidAttributeIdentifier(String identifier) {
+        return isValidAssignmentName(identifier);
     }
 
-    public String getString() {
-        return assignmentName + ':' + statusToString(markingStatus);
+    @Override
+    public String getIdentifierConstraintsMessage() {
+        return MESSAGE_CONSTRAINTS;
     }
-
-    public String getAssignmentString() {
-        return statusToString(markingStatus);
-    }
-
-    public String getAssignmentName() {
-        return assignmentName;
-    }
-
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Assignment // instanceof handles nulls
-                && assignmentName.equals(((Assignment) other).assignmentName)); // state check
-                // no check for markingStatus to ensure only one assignment record per assignmentName
+                && identifier.equals(((Assignment) other).identifier)); // state check
     }
 
     @Override
     public int hashCode() {
-        return assignmentName.hashCode();
+        return identifier.hashCode();
     }
 
     /**
@@ -122,6 +71,46 @@ public class Assignment {
      */
     public String toString() {
         return '[' + getString() + ']';
+    }
+
+    /**
+     * Possible states of an Assignment.
+     */
+    public enum Status {
+        MARKED {
+            @Override
+            public String toString() {
+                return ASSIGNMENT_MARKED;
+            }
+        },
+        RECEIVED {
+            @Override
+            public String toString() {
+                return ASSIGNMENT_RECEIVED;
+            }
+        },
+        NEW {
+            @Override
+            public String toString() {
+                return ASSIGNMENT_NEW;
+            }
+        };
+
+        /**
+         * Translates a string value of {@code Status} to an enum value.
+         */
+        public static Status fromString(String value) throws IllegalArgumentException {
+            switch (value) {
+            case ASSIGNMENT_MARKED:
+                return MARKED;
+            case ASSIGNMENT_RECEIVED:
+                return RECEIVED;
+            case ASSIGNMENT_NEW:
+                return NEW;
+            default:
+                throw new IllegalArgumentException(MESSAGE_STATUS_CONSTRAINTS);
+            }
+        }
     }
 
 }

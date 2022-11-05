@@ -42,14 +42,14 @@ public class UnmarkCommand extends EditStudentCommand<UnmarkCommand.UnmarkComman
     @Override
     public String getSingleEditSuccessMessage(Student editedStudent) {
         return String.format(MESSAGE_UNMARK_SINGLE_ATTENDANCE_SUCCESS,
-                studentEditor.getAttendance().className,
+                studentEditor.getAttendance().identifier,
                 editedStudent);
     }
 
     @Override
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
         return String.format(MESSAGE_UNMARK_MULTI_ATTENDANCE_SUCCESS,
-                studentEditor.getAttendance().className,
+                studentEditor.getAttendance().identifier,
                 editedStudents.size());
     }
 

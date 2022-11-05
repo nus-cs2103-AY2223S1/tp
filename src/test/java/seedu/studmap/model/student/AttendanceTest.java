@@ -16,7 +16,7 @@ public class AttendanceTest {
     @Test
     public void constructor_invalidClassName_throwsIllegalArgumentException() {
         String invalidClassName = "!";
-        assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidClassName, Boolean.TRUE));
+        assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidClassName, Attendance.Status.PRESENT));
     }
 
     @Test

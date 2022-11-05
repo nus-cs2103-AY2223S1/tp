@@ -42,7 +42,7 @@ class UngradeCommandTest {
         Student unmarkedStudent = new StudentBuilder(studentToUnmark).setAssigned(assignmentSet).build();
 
         String expectedMessage = String.format(UngradeCommand.MESSAGE_UNGRADE_SINGLE_ASSIGNMENT_SUCCESS,
-                assignment.getAssignmentName(), unmarkedStudent);
+                assignment.getAttributeName(), unmarkedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList()
@@ -64,7 +64,7 @@ class UngradeCommandTest {
         Student unmarkedStudent = new StudentBuilder(studentInFilteredList).setAssigned(assignmentSet).build();
 
         String expectedMessage = String.format(UngradeCommand.MESSAGE_UNGRADE_SINGLE_ASSIGNMENT_SUCCESS,
-                assignment.assignmentName, unmarkedStudent);
+                assignment.identifier, unmarkedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_THIRD_STUDENT);

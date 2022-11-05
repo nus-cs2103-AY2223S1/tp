@@ -14,10 +14,13 @@ import seedu.studmap.model.student.Participation;
  * Parses input arguments and creates a new ParticipateCommand object
  */
 public class ParticipateCommandParser extends EditStudentCommandParser
-        <ParticipateCommand.ParticipateCommandStudentEditor> {
+                                                      <ParticipateCommand.ParticipateCommandStudentEditor> {
 
-    public static final String MESSAGE_INVALID_OPTION = "Option must either be 'yes' or 'no' for participation";
 
+    public static final String OPTION_PARTICIPATED = "yes";
+    public static final String OPTION_NOT_PARTICIPATED = "no";
+    public static final String MESSAGE_INVALID_OPTION =
+            "Option must either be " + OPTION_PARTICIPATED + " or " + OPTION_NOT_PARTICIPATED + " for participation";
 
     @Override
     public Prefix[] getPrefixes() {
@@ -43,7 +46,7 @@ public class ParticipateCommandParser extends EditStudentCommandParser
 
         ParticipateCommand.ParticipateCommandStudentEditor editor = null;
 
-        boolean participated = parseOption(preamble[1]);
+        Participation.Status participated = parseOption(preamble[1]);
 
         if (argMultimap.getValue(PREFIX_PARTICIPATION).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, getUsageMessage()));
@@ -58,12 +61,13 @@ public class ParticipateCommandParser extends EditStudentCommandParser
 
     }
 
-    private boolean parseOption(String option) throws ParseException {
-        if (option.equals("yes")) {
-            return true;
-        } else if (option.equals("no")) {
-            return false;
-        } else {
+    private Participation.Status parseOption(String option) throws ParseException {
+        switch (option) {
+        case OPTION_PARTICIPATED:
+            return Participation.Status.PARTICIPATED;
+        case OPTION_NOT_PARTICIPATED:
+            return Participation.Status.NOT_PARTICIPATED;
+        default:
             throw new ParseException(MESSAGE_INVALID_OPTION);
         }
     }

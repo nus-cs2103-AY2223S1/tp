@@ -5,7 +5,6 @@ import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.studmap.logic.parser.ParserUtil.separatePreamble;
 
 import seedu.studmap.commons.core.index.IndexListGenerator;
-import seedu.studmap.commons.exceptions.IllegalValueException;
 import seedu.studmap.logic.commands.EditStudentCommand;
 import seedu.studmap.logic.commands.GradeCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
@@ -16,8 +15,13 @@ import seedu.studmap.model.student.Assignment;
  */
 public class GradeCommandParser extends EditStudentCommandParser<GradeCommand.GradeCommandStudentEditor> {
 
-    public static final String MESSAGE_INVALID_OPTION = "Option must either be 'new' or "
-            + "'received' or 'marked' for assignment status";
+    public static final String OPTION_ASSIGNMENT_NEW = "new";
+    public static final String OPTION_ASSIGNMENT_RECEIVED = "received";
+    public static final String OPTION_ASSIGNMENT_MARKED = "marked";
+
+    public static final String MESSAGE_INVALID_OPTION = "Option must either be " + OPTION_ASSIGNMENT_NEW + " or "
+            + OPTION_ASSIGNMENT_RECEIVED + " or " + OPTION_ASSIGNMENT_MARKED + " for assignment status";
+
 
     @Override
     public Prefix[] getPrefixes() {
@@ -58,10 +62,15 @@ public class GradeCommandParser extends EditStudentCommandParser<GradeCommand.Gr
 
     }
 
-    private Assignment.Status parseStatus(String status) throws ParseException {
-        try {
-            return Assignment.stringToStatus(status);
-        } catch (IllegalValueException e) {
+    private Assignment.Status parseStatus(String option) throws ParseException {
+        switch (option) {
+        case OPTION_ASSIGNMENT_NEW:
+            return Assignment.Status.NEW;
+        case OPTION_ASSIGNMENT_RECEIVED:
+            return Assignment.Status.RECEIVED;
+        case OPTION_ASSIGNMENT_MARKED:
+            return Assignment.Status.MARKED;
+        default:
             throw new ParseException(MESSAGE_INVALID_OPTION);
         }
     }

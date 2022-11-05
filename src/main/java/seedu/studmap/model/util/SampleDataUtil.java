@@ -20,6 +20,7 @@ import seedu.studmap.model.student.StudentData;
 import seedu.studmap.model.student.StudentID;
 import seedu.studmap.model.student.TeleHandle;
 import seedu.studmap.model.tag.Tag;
+
 /**
  * Contains utility methods for populating {@code StudMap} with sample data.
  */
@@ -130,7 +131,7 @@ public class SampleDataUtil {
      */
     public static Set<Attendance> getAttendedSet(String... strings) {
         return Arrays.stream(strings)
-                .map(className -> new Attendance(className, Boolean.TRUE))
+                .map(className -> new Attendance(className, Attendance.Status.PRESENT))
                 .collect(Collectors.toSet());
     }
 
@@ -139,7 +140,7 @@ public class SampleDataUtil {
      */
     public static Set<Attendance> getNotAttendedSet(String... strings) {
         return Arrays.stream(strings)
-                .map(className -> new Attendance(className, Boolean.FALSE))
+                .map(className -> new Attendance(className, Attendance.Status.ABSENT))
                 .collect(Collectors.toSet());
     }
 
@@ -148,8 +149,9 @@ public class SampleDataUtil {
      */
     public static Set<Participation> getParticipatedSet(String... strings) {
         return Arrays.stream(strings)
-                     .map(participationComponent -> new Participation(participationComponent, Boolean.TRUE))
-                     .collect(Collectors.toSet());
+                .map(participationComponent -> new Participation(participationComponent,
+                        Participation.Status.PARTICIPATED))
+                .collect(Collectors.toSet());
     }
 
     /**
@@ -157,8 +159,9 @@ public class SampleDataUtil {
      */
     public static Set<Participation> getNotParticipatedSet(String... strings) {
         return Arrays.stream(strings)
-                     .map(participationComponent -> new Participation(participationComponent, Boolean.FALSE))
-                     .collect(Collectors.toSet());
+                .map(participationComponent -> new Participation(participationComponent,
+                        Participation.Status.NOT_PARTICIPATED))
+                .collect(Collectors.toSet());
     }
 
     /**

@@ -40,16 +40,18 @@ class JsonAdaptedAttendance {
      */
     public Attendance toModelType() throws IllegalValueException {
         String[] values = className.split(":");
-        boolean hasAttended;
+        Attendance.Status status;
         if (values.length != 2 || !Attendance.isValidClassName(values[0])) {
             throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        if (values[1].equals(Attendance.ATTENDANCE_TRUE)) {
-            hasAttended = true;
-        } else {
-            hasAttended = false;
+
+        try {
+            status = Attendance.Status.fromString(values[1]);
+        } catch (IllegalArgumentException iae) {
+            throw new IllegalValueException(iae.getMessage());
         }
-        return new Attendance(values[0], hasAttended);
+
+        return new Attendance(values[0], status);
     }
 
 }

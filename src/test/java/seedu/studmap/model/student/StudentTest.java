@@ -107,7 +107,7 @@ public class StudentTest {
         GitName gitName = new GitName(StudentBuilder.DEFAULT_GIT);
         TeleHandle handle = new TeleHandle(StudentBuilder.DEFAULT_TELE);
         Set<Tag> tags = Set.of(new Tag("Friends"));
-        Set<Attendance> attendances = Set.of(new Attendance("T01", true));
+        Set<Attendance> attendances = Set.of(new Attendance("T01", Attendance.Status.PRESENT));
         studentData.setName(name);
         studentData.setPhone(phone);
         studentData.setEmail(email);

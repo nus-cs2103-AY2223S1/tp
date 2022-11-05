@@ -8,7 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextFlow;
-import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Student;
 
 /**
@@ -134,29 +133,29 @@ public class StudentCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         student.getAttendances().stream()
-                .sorted(Comparator.comparing(attendance -> attendance.className))
+                .sorted(Comparator.comparing(attendance -> attendance.identifier))
                 .map(attendance -> {
-                    Label x = new Label(attendance.className);
-                    x.setId(attendance.hasAttended ? "present" : "absent");
+                    Label x = new Label(attendance.identifier);
+                    x.setId(attendance.state.toString());
                     return x;
                 })
                 .forEach(attendance -> attendances.getChildren().add(attendance));
         student.getAssignments().stream()
-                .sorted(Comparator.comparing(assignment -> assignment.assignmentName))
+                .sorted(Comparator.comparing(assignment -> assignment.identifier))
                 .map(assignment -> {
-                    Label x = new Label(assignment.assignmentName);
-                    x.setId(Assignment.statusToString(assignment.markingStatus));
+                    Label x = new Label(assignment.identifier);
+                    x.setId(assignment.state.toString());
                     return x;
                 })
                 .forEach(assignment -> assignments.getChildren().add(assignment));
         student.getParticipations().stream()
-               .sorted(Comparator.comparing(participation -> participation.participationComponent))
-               .map(participation -> {
-                   Label x = new Label(participation.participationComponent);
-                   x.setId(participation.hasParticipated ? "participated" : "didNotParticipate");
-                   return x;
-               })
-               .forEach(participation -> participations.getChildren().add(participation));
+                .sorted(Comparator.comparing(participation -> participation.identifier))
+                .map(participation -> {
+                    Label x = new Label(participation.identifier);
+                    x.setId(participation.state.toString());
+                    return x;
+                })
+                .forEach(participation -> participations.getChildren().add(participation));
     }
 
     @Override
