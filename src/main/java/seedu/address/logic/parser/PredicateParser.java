@@ -71,9 +71,9 @@ public class PredicateParser {
         case EMAIL_PREFIX:
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
-            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
-            return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
@@ -100,9 +100,9 @@ public class PredicateParser {
         case EMAIL_PREFIX:
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
-            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
-            return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
@@ -129,9 +129,9 @@ public class PredicateParser {
         case EMAIL_PREFIX:
             return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
         case LOC_PREFIX:
-            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case NAME_PREFIX:
-            return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new NameContainsKeywordsPredicate<>(Arrays.asList(query.split("\\s+")));
         case PHONE_PREFIX:
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:

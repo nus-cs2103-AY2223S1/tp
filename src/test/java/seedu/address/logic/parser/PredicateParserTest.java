@@ -73,7 +73,7 @@ public class PredicateParserTest {
     @Test
     public void parseBuyer_location_locationContainsKeywordsPredicate() {
         LocationContainsKeywordsPredicate<Buyer> expected = new LocationContainsKeywordsPredicate<>(
-                Arrays.asList("New York"));
+                Arrays.asList("New", "York"));
         try {
             Predicate<Buyer> result1 = PredicateParser.parseBuyer("l/ New York");
             Predicate<Buyer> result2 = PredicateParser.parseBuyer("l/New York \n");
@@ -167,7 +167,7 @@ public class PredicateParserTest {
     @Test
     public void parseDeliverer_location_locationContainsKeywordsPredicate() {
         LocationContainsKeywordsPredicate<Deliverer> expected = new LocationContainsKeywordsPredicate<>(
-                Arrays.asList("New York"));
+                Arrays.asList("New", "York"));
         try {
             Predicate<Deliverer> result1 = PredicateParser.parseDeliverer("l/ New York");
             Predicate<Deliverer> result2 = PredicateParser.parseDeliverer("l/New York \n");
@@ -261,7 +261,7 @@ public class PredicateParserTest {
     @Test
     public void parseSupplier_location_locationContainsKeywordsPredicate() {
         LocationContainsKeywordsPredicate<Supplier> expected = new LocationContainsKeywordsPredicate<>(
-                Arrays.asList("New York"));
+                Arrays.asList("New", "York"));
         try {
             Predicate<Supplier> result1 = PredicateParser.parseSupplier("l/ New York");
             Predicate<Supplier> result2 = PredicateParser.parseSupplier("l/New York \n");
