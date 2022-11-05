@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's social media in the address book.
+ * Represents a Person's preferred game type in the address book.
  */
 public class GameType {
 

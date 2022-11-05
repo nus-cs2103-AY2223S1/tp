@@ -140,7 +140,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> gameTypesSet =
                 gameTypes.size() == 1 && gameTypes.contains("") ? Collections.emptySet() : gameTypes;
-        return Optional.of(ParserUtil.parseGameType(gameTypesSet));
+        return Optional.of(ParserUtil.parseGameTypes(gameTypesSet));
     }
 
     private Optional<Set<ITimesAvailable>> parseTimeIntervalsForEdit(Collection<String> timeIntervals)

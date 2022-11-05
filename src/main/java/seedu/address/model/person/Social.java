@@ -57,6 +57,7 @@ public class Social {
         String[] strArray = test.split("@");
         return strArray.length == 2 && !strArray[0].equals("") && !strArray[1].equals("")
                 && test.matches(VALIDATION_REGEX);
+
     }
 
     /**
