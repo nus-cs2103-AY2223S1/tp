@@ -360,7 +360,7 @@ Examples:
 * `find n/John n/Sam` returns applicant with Name `john`, applicant with Name `John Doe` and applicant with Name `Sam Ong`
 * `find n/alex m/Business` returns any applicants with Name containing `Alex` and Major containing `Business`
 
-Sample output for `find n/alex m/Business`:
+Sample output for `find n/Alex n/Irfan m/Medicine`:
 
 ![find message](images/UserGuideCommands/find.png)
 

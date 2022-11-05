@@ -14,20 +14,26 @@ public class ImportCommandParserTest {
     private static final String ERROR_MESSAGE =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE);
 
-    private ImportCommandParserTest() {
-
+    @Test
+    public void parse_validArgs_returnsImportCommand() {
+        assertParseSuccess(parser, ImportCommand.KEEP, new ImportCommand(ImportCommand.KEEP));
+        assertParseSuccess(parser, ImportCommand.REPLACE, new ImportCommand(ImportCommand.REPLACE));
     }
 
     @Test
-    public void parse_wrongInput_failure() {
+    public void parse_invalidArg_throwsParseException() {
         assertParseFailure(parser, "something", ERROR_MESSAGE);
-        assertParseFailure(parser, "", ERROR_MESSAGE);
         assertParseFailure(parser, "1234", ERROR_MESSAGE);
     }
 
     @Test
-    public void parse_correctInput_success() {
-        assertParseSuccess(parser, ImportCommand.KEEP, new ImportCommand(ImportCommand.KEEP));
-        assertParseSuccess(parser, ImportCommand.REPLACE, new ImportCommand(ImportCommand.REPLACE));
+    public void parse_emptyArg_throwsParseException() {
+        assertParseFailure(parser, "", ERROR_MESSAGE);
+        assertParseFailure(parser, "     ", ERROR_MESSAGE);
+    }
+
+    @Test
+    public void parse_multipleArgs_throwsParseException() {
+        assertParseFailure(parser, ImportCommand.KEEP + ImportCommand.REPLACE, ERROR_MESSAGE);
     }
 }
