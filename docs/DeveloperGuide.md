@@ -797,113 +797,94 @@ Given below are instructions to test the app manually.
 
 ### 7.1 Launch and shutdown
 
-1. Initial launch
-   1. Download the jar file and copy into an empty folder
-   2. Double-click the jar file
+1. Initial launch 
+   * Download the jar file and copy into an empty folder 
+   * Double-click the jar file 
+   * Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-2. Saving window preferences
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-   2. Re-launch the app by double-clicking the jar file.<br>
-
-Expected: The most recent window size and location is retained.
+2. Saving window preferences 
+   * Resize the window to an optimum size. Move the window to a different location. Close the window. 
+   * Re-launch the app by double-clicking the jar file.<br>
+   * Expected: The most recent window size and location is retained.
 
 ### 7.2 Adding a new student record
 
 Prerequisites: Existing student records do not have the names or IDs that will be added.
-1. Test case: `addStudent nm/Peter Tan id/452B class/1F`
-   
-Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since no exam grades have been provided, the student card UI does not show anything below the grades section.
+
+1. Test case: `addStudent nm/Peter Tan id/452B class/1F`  
+   * Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since no exam grades have been provided, the student card UI does not show anything below the grades section.
 
 2. Test case: `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
-
-Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since exam grades have been provided, the student card UI shows the exam scores for each exam that has been provided.
+   * Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since exam grades have been provided, the student card UI shows the exam scores for each exam that has been provided.
 
 3. Test case: `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
-
-Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. This test case includes parents' details as well.
+   * Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. This test case includes parents' details as well.
 
 4. Test case: `addStudent nm/Jonathan Lim id/abc2 class/2A`
-
-Expected: The command entered by the user is highlighted red. The status message shows an error: "Id should only contain 3 digits and 1 character". "abc2" is an invalid value for the ID as Class-ify only accepts the last 3 numbers and last letter of a student's ID.
+   * Expected: The command entered by the user is highlighted red. The status message shows an error: "Id should only contain 3 digits and 1 character". "abc2" is an invalid value for the ID as Class-ify only accepts the last 3 numbers and last letter of a student's ID.
 
 ### 7.3 Editing a student record
 
 1. Test case: `edit 1 exam/CA2 70 exam/SA1 60`
-
-Expected: Adds or updates the CA2 and SA1 exam grades of the 1st student in the list to be `70` and `60` respectively.
+   * Expected: Adds or updates the CA2 and SA1 exam grades of the 1st student in the list to be `70` and `60` respectively.
 
 2. Test case `edit 2 nm/Jacob Teo`
-
-Expected: Edits the name of the 2nd student in the list to `Jacob Teo`.
+   * Expected: Edits the name of the 2nd student in the list to `Jacob Teo`.
 
 ### 7.4 Deleting a student record
 
 Prerequisites: List all persons using the `list` command. Multiple students in the list.
 
 1. Test case: `delete 1`
-
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   * Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
 2. Test case: `delete 0`
-
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   * Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
 3. Other incorrect delete commands to try: `delete`, `delete x`
-
-Expected: Similar to previous.
+   * Expected: Similar to previous.
 
 ### 7.5 Finding a student record
 
-Prerequisites: Students with "Alex" in their name exist in the list.
+Prerequisites: Students with "Alex" in their name or "123A" as their ID exist in the list.
 
 1. Test case: `find nm/Alex`
+   * Expected: Students with "Alex" in their name appears in the list.
 
-Expected: Students with "Alex" in their name appears in the list.
-
-Prerequisites: Student with "123A" as their ID exists in the list.
-
-1. Test case: `find id/123A`
-
-Expected: Student with "123A" as their ID appears in the list.
+2. Test case: `find id/123A`
+   * Expected: Student with "123A" as their ID appears in the list.
 
 ### 7.6 Viewing all student records
 
 Prerequisites: There are existing student records.
 
 1. Test case: `viewAll`
-
-Expected: All student records will appear in the list.
+   * Expected: All student records will appear in the list.
 
 ### 7.7 Viewing student records from a class
 
 Prerequisites: Class provided must exist within the student records.
 
 1. Test case: `viewClass 1A`
-
-Expected: Student records from class 1A will appear in the list.
+   * Expected: Student records from class 1A will appear in the list.
 
 ### 7.8 Toggling view
 
 1. Test case: `toggleView`
-
-Expected: Shows/hides parent details in each student card UI.
+   * Expected: Shows/hides parent details in each student card UI.
 
 ### 7.9 Calculating exam statistics
 
 Prerequisites: Student records with class "4a" and exam results for "sa1" exists.
 
 1. Test case: `viewStats class/4a exam/sa1 filter/off`
-
-Expected: Displays the mean obtained by class "4A" for "SA1", as well as the list of all the students in the class '4A', arranged in ascending grades for "SA1".
+   * Expected: Displays the mean obtained by class "4A" for "SA1", as well as the list of all the students in the class '4A', arranged in ascending grades for "SA1".
 
 ### 7.10 Saving data
 
 Prerequisites: Missing `data/classify.json` file
 
-1. Dealing with missing/corrupted data files
-      1. Test case: Delete `data/classify.json` file and relaunch the application.
-         Expected: Application will be populated with sample data.
+1. Test case: Delete `data/classify.json` file and relaunch the application. 
+   * Expected: Application will be populated with sample data.
 
 Click <a href="#top">here</a> to return to the top.
