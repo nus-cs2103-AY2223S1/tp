@@ -38,7 +38,6 @@ public class AddStudentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the FYP manager";
-    public static final String MESSAGE_EMAIL_USED = "This email is used by another student in the list already.";
     private final Student toAdd;
 
     /**
