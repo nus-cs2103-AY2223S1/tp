@@ -72,7 +72,6 @@ public class SortBuyerCommandTest {
         }
     }
 
-    /*
     @Test
     public void equals_sameObject_returnsTrue() {
         try {
@@ -83,20 +82,6 @@ public class SortBuyerCommandTest {
             assert false;
         }
     }
-
-    @Test
-    public void equals_sameComparator_returnsTrue() {
-        try {
-            Comparator<Buyer> comparator = getBuyerComparator("Address Email Phone");
-            SortBuyerCommand firstCommand = new SortBuyerCommand(comparator);
-            SortBuyerCommand secondCommand = new SortBuyerCommand(comparator);
-            assertEquals(firstCommand, secondCommand);
-        } catch (ParseException e) {
-            assert false;
-        }
-    }
-
-     */
 
     private Comparator<Buyer> getBuyerComparator(String attributes) throws ParseException {
         String[] attributesArr = attributes.split("\\s+");
