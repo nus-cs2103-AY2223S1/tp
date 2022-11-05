@@ -256,7 +256,6 @@ find-module CS
 In either of the above examples, we find every module whose module code starts with CS in Plannit. Here's
 a screenshot of Plannit before and after executing the command:
 
-<<<<<<< HEAD
 | Before executing the command                                                                                                                                | After executing the command                                                                                                                                                          |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p> <p align="right"><i>Notice that only modules with module code starting with `CS` are listed!</i><p/>{:/} |
@@ -266,11 +265,7 @@ a screenshot of Plannit before and after executing the command:
 You will remain on the home page after executing the `find-module` command. This is different
 from the behavior of [`goto`](#251-navigate-between-modules) command, where the person list will be
 updated with the persons associated with the module.
-=======
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>You will
-remain on the home page after executing the `find-module` command. This is different
-from the behavior of [`goto`](#252-navigate-between-modules-goto) command.
->>>>>>> bc3a0b83759fe86208da55099ab7e9e1b2665ad9
+
 </div>
 
 #### 2.1.5. List module
@@ -322,14 +317,9 @@ command:
 | {::nomarkdown}<p align="center"><img src="images/add-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-task-after.png"/></p><p>A message will appear indicating that a task has been added.</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
-You may view the tasks added to a module by navigating to a module's page 
-<<<<<<< HEAD
+You may view the tasks added to a module by navigating to a module's page
 using the [`goto`](##251-navigate-between-modules) command. Alternatively,
-you may double-click on a module to ["peek"](#224-peeking-at-tasks) at a 
-=======
-using the [`goto`](##252-navigate-between-modules-goto) command. Alternatively, 
-you may double-click on a module to ["peek"](#224-peeking-at-modules) at a 
->>>>>>> bc3a0b83759fe86208da55099ab7e9e1b2665ad9
+you may double-click on a module to ["peek"](#224-peeking-at-tasks) at a
 module's tasks while on the home page.
 </div>
 
@@ -423,12 +413,9 @@ the tasks.
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:**<br/> 
 You remain on the home page even when you "peek" at a module. To leave the 
-home page and view more details of a specific module, you may use the 
-<<<<<<< HEAD
+home page and view more details of a specific module, you may use the
 [`goto`](#251-navigate-between-modules) command.
-=======
-[`goto`](#252-navigate-between-modules-goto) command.
->>>>>>> bc3a0b83759fe86208da55099ab7e9e1b2665ad9
+
 </div>
 
 <br>
