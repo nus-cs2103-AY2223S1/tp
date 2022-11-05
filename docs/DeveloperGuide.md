@@ -151,17 +151,19 @@ The `Model` component,
 
 **API** : [Schedule.java](https://github.com/AY2223S1-CS2103T-W11-2/tp/tree/master/src/main/java/seedu/address/model/module/schedule)
 
-<img src="images/ScheduleUML.png" alt="ScheduleUML" style="zoom:65%;" />
+<img src="images/Schedule.png" alt="ScheduleUML"  width="450" />
 
 The `Schedule` component
 
 - represents a schedule of its corresponding module
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to let `Schedule` object have a reference of the module it belongs to. The diagram is as follows: <br>
-  <div align=center><img src="images/NewScheduleUML.png" alt="NewScheduleUML" style="zoom: 50%; width=450; " /></div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to make `Schedule` abstract class, and create `LectureSchedule`, `TutorialSchedule`, `LabSchedule`, `RefelectionSchedule` that extend the `Schedule` class. The diagram is as follows: <br>
+<div align=center>
+    <img src="images/ScheduleAlt.png" alt="NewScheduleUML" width=450; />
 </div>
 
-  
+</div>
+
 
 ### Storage component
 
@@ -326,7 +328,7 @@ The proposed add schedule functionality is accomplished by `AddScheduleCommand` 
 
 The following sequence diagram shows how add schedule operation works
 
-![AddScheduleSequence](images/AddScheduleSequence.png)
+![AddScheduleSequence](images/AddScheduleSequenceDiagram.png)
 
 After the ProfNUS receives the instruction to add a new `Scheudule`, it will find the corresponding `Module` and add the new schedule to its schedule list.
 
@@ -345,10 +347,11 @@ During the execution, the following validity checks will be conducted:
 The proposed edit schedule functionality is accomplished by `EditScheduleCommand` which extends the `Command` class. The `EditScheduleCommand` overrides the following method:
 
 - `EditScheduleCommand#execute(Model model)` — Executes the command and edits the target schedule with new information
+- `EditScheduleCommand#createEditedSchedule(Schedule scheduleToEdit, EditScheduleDescriptor descriptor)` — Creates an edited schedule. The edited schedule overwirtes fields given by the `descriptor` and remains other fields in the `scheduleToEdit`.
 
 The following sequence diagram shows how add schedule operation works
 
-![EditScheduleSequence](images/EditScheduleSequence.png)
+![EditScheduleSequence](images/EditScheduleSequenceDiagram.png)
 
 After the ProfNUS receives the instruction to edit a target `Schedule` (indicated by the index in the shown schedule list), it will modify it based on new information given by the user.
 
@@ -408,8 +411,8 @@ The following sequence diagram shows how view schedule operation works :
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​       | I want to …​                                | So that I can…​                             |
-|----------|---------------|---------------------------------------------|---------------------------------------------|
+| Priority | As a …​        | I want to …​                                 | So that I can…​                              |
+| -------- | ------------- | ------------------------------------------- | ------------------------------------------- |
 | `* * *`  | SoC Professor | View the contact information of my students | I can contact them                          |
 | `* * *`  | SoC Professor | View the list of modules                    | Better plan my module's timeslots           |
 | `* * *`  | SoC Professor | Edit the information of my students         | Rectify inaccuracies in student information |
@@ -417,7 +420,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | SoC Professor | Add new student to a module                 |                                             |
 | `* * *`  | SoC Professor | Add a module                                |                                             |
 | `* * *`  | SoC Professor | Delete a module                             |                                             |
-| `* *`    | SoC Professor | View my teaching timetable                  | Plan my activities in advance               |
+| `* * *`  | SoC Professor | Add a schedule                              |                                             |
+| `* * *`  | SoC Professor | Edit a schedule                             |                                             |
+| `* * * ` | SoC Professor | Delete a schedule                           |                                             |
+| `* *`    | SoC Professor | View my teaching schedules                  | Plan my activities in advance               |
 
 *{More to be added}*
 
@@ -552,6 +558,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ProfNUS shows an error message.
 
       Use case resumes at step 2.
+
+
+
+**Use case: Add a schedule**
+
+**MSS**
+
+1. User requests to add a schedule
+2. ProfNUS adds the new schedule to schedule list
+3. 
 
 *{More to be added}*
 

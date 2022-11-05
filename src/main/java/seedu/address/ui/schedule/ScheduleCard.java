@@ -52,7 +52,7 @@ public class ScheduleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         module.setText(schedule.getModule().toUpperCase());
         weekday.setText(schedule.getWeekday().name() + ", ");
-        classType.setText(schedule.getClassType().name());
+        classType.setText(schedule.getClassType().name() + "  [" + schedule.getClassGroup() + "]");
         startTime.setText(schedule.getStartTime() + " - ");
         endTime.setText(schedule.getEndTime());
         venue.setText("Venue: " + schedule.getVenue().toString());
