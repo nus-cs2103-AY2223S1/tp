@@ -15,12 +15,14 @@ For more information, please visit the [Product Website](https://ay2223s1-cs2103
 
 ## Using this Product
 
-1. Download the latest InTrack.jar from [here](https://github.com/AY2223S1-CS2103T-T11-2/tp/releases).
+1. Download the latest `InTrack.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-2/tp/releases).
 2. Copy the file to the folder you want to use as the home folder for InTrack. 
 3. Launch the app by double-clicking the file or by using the command `java -jar InTrack.jar` in your terminal.
 
+To fully utilise the features, please visit the [User Guide](https://ay2223s1-cs2103t-t11-2.github.io/tp/UserGuide.html).
+
 ---
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 
 
