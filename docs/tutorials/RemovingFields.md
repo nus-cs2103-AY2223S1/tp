@@ -18,9 +18,12 @@ This tutorial aims to give you some practice on such a code 'removal' activity b
 However, if you have no such prior knowledge, removing a field can take a quite a bit of detective work. This tutorial takes you through that process. **At least have a read even if you don't actually do the steps yourself.**
 </div>
 
+## Table of contents
 
 * Table of Contents
 {:toc}
+
+<div markdown="block" class="index">
 
 ## Safely deleting `Address`
 
@@ -110,3 +113,5 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 ```
 
 You can go through each individual `json` file and manually remove the `address` field.
+
+</div>

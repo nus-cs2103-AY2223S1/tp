@@ -11,6 +11,7 @@ This command allows users of the AddressBook application to add optional remarks
 
 We’ll assume that you have already set up the development environment as outlined in the Developer’s Guide.
 
+<div markdown="block" class="index">
 
 ## Create a new `remark` command
 
@@ -399,3 +400,5 @@ You should end up with a test that looks something like [this](https://github.co
 ## Conclusion
 
 This concludes the tutorial for adding a new `Command` to AddressBook.
+
+</div>
