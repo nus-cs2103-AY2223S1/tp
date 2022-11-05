@@ -15,6 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_BOB;
 import static seedu.address.logic.commands.SocialTestUtil.getAmySocial;
+import static seedu.address.logic.commands.SocialTestUtil.getBobSocial;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -95,6 +96,10 @@ public class TypicalPersons {
         ab.addPerson(new PersonBuilder().withOccupation(VALID_OCCUPATION_AMY).withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withTutorial(VALID_TUTORIAL_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).withSocial(getAmySocial()).build());
+        ab.addPerson(new PersonBuilder().withName(VALID_NAME_BOB).withOccupation(VALID_OCCUPATION_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withTutorial(VALID_TUTORIAL_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withSocial(getBobSocial()).build());
         return ab;
     }
 }
