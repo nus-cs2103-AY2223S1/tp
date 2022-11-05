@@ -24,17 +24,18 @@ public class FindContactCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all persons whose field(s) contain one or more parameters \n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_PHONE + "PHONE "
-            + "[" + PREFIX_EMAIL + "EMAIL "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_REMARK + "REMARK] \n"
             + "Example: "
+            + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_REMARK + "Likes to swim";
+            + PREFIX_REMARK + "swim";
 
     private final PersonContainsKeywordsPredicate predicate;
 

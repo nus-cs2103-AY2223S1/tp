@@ -1,12 +1,12 @@
 package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandUtil.createEditedTask;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.model.task.Task.PREDICATE_SHOW_NON_ARCHIVED_TASKS;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -15,10 +15,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EditTaskDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Id;
 import seedu.address.model.task.Task;
 
 /**
@@ -77,29 +73,10 @@ public class EditTaskCommand extends Command {
         model.updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+
     }
 
-    /**
-     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
-     * edited with {@code editTaskDescriptor}.
-     */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
-        assert taskToEdit != null;
 
-        Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        /* Optional not needed as we edit isDone through markT/unmarkT instead
-         * and editTaskDescriptor's isDone is never set to taskToEdit's isDone.
-         */
-        Boolean updatedIsDone = taskToEdit.getCompletionStatus();
-        Boolean updatedIsArchived = taskToEdit.getArchivalStatus();
-
-        Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
-        // Id cannot be updated
-        Id id = taskToEdit.getId();
-
-        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedIsArchived, updatedTags, id);
-    }
 
     @Override
     public boolean equals(Object other) {

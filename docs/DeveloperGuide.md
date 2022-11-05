@@ -121,7 +121,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object), 
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object),
 all `Task` objects (which are contained in a `TaskList` object), and all `Tag` objects (which are contained in a `UniqueTagList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 The same goes for `Task` and `Tag`.
@@ -133,7 +133,7 @@ The same goes for `Task` and `Tag`.
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="700" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -154,7 +154,7 @@ These are the specifications for the fields of 'Person' and 'Task'.
 
 Each field is implemented by a class with the same name, except for `Id` which is implemented using Java UUID class.
 
-Id is unique and automatically generated when person is added. 
+Id is unique and automatically generated when person is added.
 
 Persons with the same fields for email, phone or ID are not allowed.
 This is because these field would always be unique for each individual, so there should not be a situation where two individuals have the same data in any of these fields.
@@ -173,7 +173,7 @@ This is because these field would always be unique for each individual, so there
 
 Each Task is implemented by a class with the same name, except for `Status` which is implemented using a boolean.
 
-Id is unique and automatically generated when task is added. 
+Id is unique and automatically generated when task is added.
 Tasks with the same fields in all of description, deadline and tag are not allowed.
 This is because two tasks would be considered the same if they were the same task with the same deadline and labels.
 As we are maintaining a unique task list in our app, this is disallowed.
@@ -420,6 +420,10 @@ The following sequence diagram shows how the sort by deadline operation works:
 Step 3. The user has seen the most urgent tasks to be completed but realises that there is one more task that has not been added. The user executes `addT d/do …` to add a new task.  The `addT` command eventually calls `TaskList#sortByDeadline()` to sort the task list after adding the new task.
 
 Step 4. The user now decides that the initial order of the task list looks much better after finding out the tasks to do. The user executes `sortI` to sort the task list by id. The `sortI` command calls `Model#sortById()` to sort the task list based on id.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/SortActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
