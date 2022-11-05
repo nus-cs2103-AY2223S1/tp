@@ -125,5 +125,4 @@ deactivate Storage
 [<-- LogicManager
 deactivate LogicManager
 
-
 @enduml

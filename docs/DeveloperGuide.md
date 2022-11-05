@@ -321,12 +321,12 @@ Implementation:
 The following is a more detailed explanation on how the `TaskCommand` works.
 1. If the title or description fields are missing or invalid, a `ParserException` will be thrown and the new `Task` will not be added.
 2. If the deadline or student list fields are present and invalid, a `ParserException` will be thrown and the new `Task` will not be added.
-3. After the successful parsing of user input into `TaskCommandParser`, the `TaskCommand` object is created with a `Task` object. 
+3. After the successful parsing of user input into `TaskCommandParser`, the `TaskCommand` object is created with a `Task` object.
 
    - If only title and description fields are present, `ToDo` Task object is created.
    - If deadline field is also present, `Deadline` Task object is created.
    - If student list field is also present, `Assignment` Task object is created.
- 
+
 4. Following which, `TaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#add(Task toAdd)` method, adding the new `Task` object to the internal list.
 5. Next, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
 6. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
