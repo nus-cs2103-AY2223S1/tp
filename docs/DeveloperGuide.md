@@ -858,10 +858,36 @@ a bug.
 a bug.
 
 ##### 9. `additer` Command
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Our commands use file paths, which means they are dependent on your computer. Please try the following command with an
+absolute filepath, that is **unique to you**, of images when testing our `additer` command. You can refer to the User
+Guide for more information.
+</div>
+
+1. Prerequisites:
+   1. A commission is selected. If not fulfilled, use the `opencom` command first.
+1. Test case: <code>additer d/2022-10-10 n/Changed the colour scheme. p/<span style="color:red;">{YOUR OWN FILE PATH HERE}</span> f/Updated colour scheme is much better.</code>
+   1. Expected: A new iteration is created. You can see it in the right pane of the Commission's view, at the bottom of the iteration's list.
+1. Test case: <code>additer d/2022-10-10 n/Changed the colour scheme. p/<span style="color:red;">{YOUR OWN FILE PATH HERE}</span> f/Updated colour scheme is much better.</code>
+   1. Expected: Duplicate iteration not created. Error details displayed.
 
 ##### 10. `edititer` Command
+1. Prerequisites:
+   1. A commission is selected. If not fulfilled, use the `opencom` command first.
+   1. The selected commission has at least one iteration.
+1. Test case: `edititer 1 f/feedback changed`
+   1. Expected: Feedback of first iteration changed.
+1. Test case: `edititer 0`
+   2. Expected: No iteration edited. Error details displayed.
 
 ##### 11. `deliter` Command
+1. Prerequisites:
+    1. A commission is selected. If not fulfilled, use the `opencom` command first.
+    1. The selected commission has at least one iteration.
+1. Test case: `deliter 1`
+    1. Expected: Iteration deleted.
+1. Test case: `edititer 0`
+    2. Expected: No iteration deleted. Error details displayed.
 
 #### Filtering / Sorting commands
 
