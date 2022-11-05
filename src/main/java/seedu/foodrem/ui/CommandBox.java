@@ -75,6 +75,6 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see seedu.foodrem.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, IllegalArgumentException;
+        CommandResult<?> execute(String commandText) throws CommandException, IllegalArgumentException;
     }
 }
