@@ -22,6 +22,10 @@ public class TaskNameContainsKeywordsPredicate implements Predicate<Task> {
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getName().toString(), keyword));
     }
 
+    public String getKeywordsAsString() {
+        return keywords.toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
