@@ -4,46 +4,54 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "v:PinCommand" as PinCommand LOGIC_COLOR
+participant ":ViewIncomeCommandParser" as ViewIncomeCommandParser LOGIC_COLOR
+participant "p:ViewIncomeCommand" as ViewIncomeCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "personToPin:Person" as Person MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute(pin)
+[-> LogicManager : execute("viewIncome 2000")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(viewIncome)
+LogicManager -> AddressBookParser : parseCommand("viewIncome 2000")
 activate AddressBookParser
 
-create PinCommand
-AddressBookParser -> PinCommand
-activate PinCommand
+create ViewIncomeCommandParser
+AddressBookParser -> ViewIncomeCommandParser
+activate ViewIncomeCommandParser
 
-PinCommand --> AddressBookParser
-deactivate PinCommand
+ViewIncomeCommandParser --> AddressBookParser
+deactivate ViewIncomeCommandParser
+
+AddressBookParser -> ViewIncomeCommandParser : parse("2000")
+activate ViewIncomeCommandParser
+
+create ViewIncomeCommand
+ViewIncomeCommandParser -> ViewIncomeCommand
+activate ViewIncomeCommand
+
+ViewIncomeCommand --> ViewIncomeCommandParser : p
+deactivate ViewIncomeCommand
+
+ViewIncomeCommandParser --> AddressBookParser : p
+deactivate ViewIncomeCommandParser
 
 AddressBookParser --> LogicManager : p
 deactivate AddressBookParser
 
-LogicManager -> PinCommand : execute()
-activate PinCommand
+LogicManager -> ViewIncomeCommand : execute(model)
+activate ViewIncomeCommand
 
-PinCommand -> Model : getFilteredPersonList()
+ViewIncomeCommand -> Model : threeYearIncome(date, model), \n calculateIncome(date, model)
 activate Model
 
-Model --> PinCommand
+Model --> ViewIncomeCommand : income, result
 deactivate Model
 
-PinCommand -> Person:setPin(!personToPin.getPin())
-activate Person
-Person --> PinCommand
-deactivate Person
-
-PinCommand --> LogicManager : result
-deactivate PinCommand
-PinCommand -[hidden]-> LogicManager : result
+ViewIncomeCommand --> LogicManager : result
+deactivate ViewIncomeCommand
+ViewIncomeCommand -[hidden]-> LogicManager : result
 
 
 [<--LogicManager
