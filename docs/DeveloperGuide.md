@@ -269,14 +269,20 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation:
 * The `ViewCommand` copies the `UniqueStaffList` from a `Project` object that is currently on the displayed list of `Project` objects.
-* This `Project` object is specified by the compulsory index arugment following the `ViewCommand` e.g. `view 1` takes the first `Project` object on the displayed list.
+* This `Project` object is specified by the compulsory index argument following the `ViewCommand` e.g. `view 1` takes the first `Project` object on the displayed list.
 * The `UniqueStaffList` in `HrPro` will then be set to the contents of the copied `UniqueStaffList`.
 * In `MainWindow`, the `StaffListPanel` is set to an `ObservableList<Staff>` which has a listener that detects any changes made to the `UniqueStaffList` in `HrPro`.
 * The changes to the `UniqueStaffList` in `HrPro` made by the `ViewCommand` changes the displayed list of `Staff`.
 
-The following sequence diagram shows how the view command will run through HR Pro Max++.
+The following sequence diagram shows how the view command works.
+
+![view command](images/ViewCommandSequenceDiagram.png)
 
 #### Design considerations:
+* The `execute` method in `ViewCommand` interacts only with methods in `Model` to maintain the same level of abstraction.
+* We also decided to create a defensive copy of the project's `UniqueStaffList`, which exists in `HrPro`, to be linked to the UI for display.
+* Initially, we decided to create a target project attribute in `Model` that keeps track of the `Project` object being viewed, but we realised that this design exposes the `UniqueStaffList` attribute of the project to other components like UI. Also, other commands could potentially mutate this target project which would result in a lot of bugs.
+* The last viewed staff list would also be saved in `Storage` for convenience to users.
 
 ### Task List
 

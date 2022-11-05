@@ -4,13 +4,14 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":HrProParser" as HrProParser LOGIC_COLOR
-participant "u:ViewCommand" as ViewCommand LOGIC_COLOR
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":HrPro" as HrPro MODEL_COLOR
 end box
+
 [-> LogicManager : execute(View)
 activate LogicManager
 
@@ -18,25 +19,30 @@ LogicManager -> HrProParser : parseCommand(View)
 activate HrProParser
 
 create ViewCommand
-HrProParser -> ViewCommand
+HrProParser -> ViewCommand : new ViewCommand(Index)
 activate ViewCommand
 
 ViewCommand --> HrProParser
 deactivate ViewCommand
 
-HrProParser --> LogicManager : u
+HrProParser --> LogicManager : v
 deactivate HrProParser
 
 LogicManager -> ViewCommand : execute()
 activate ViewCommand
 
-ViewCommand -> Model : ViewHrPro()
+ViewCommand -> Model : getProjectWithIndex(Index)
 activate Model
 
-Model -> HrPro : View()
+Model --> ViewCommand : Project
+deactivate Model
+
+ViewCommand -> Model : SetFilteredStaffList(StaffList)
+activate Model
+
+Model -> HrPro : SetStaffList(StaffList)
 activate HrPro
 
-HrPro -> HrPro :resetData(ReadOnlyHrPro)
 HrPro --> Model :
 deactivate HrPro
 
