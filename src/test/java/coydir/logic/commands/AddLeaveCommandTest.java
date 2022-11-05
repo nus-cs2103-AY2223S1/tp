@@ -110,10 +110,12 @@ public class AddLeaveCommandTest {
     @Test
     public void equals() {
         EmployeeId id = new EmployeeId("1");
+        EmployeeId id2 = new EmployeeId("2");
         Leave leave1 = new Leave("02-01-2022", "05-01-2022");
         Leave leave2 = new Leave("03-01-2022", "04-01-2022");
         AddLeaveCommand addLeaveCommand1 = new AddLeaveCommand(id, leave1);
         AddLeaveCommand addLeaveCommand2 = new AddLeaveCommand(id, leave2);
+        AddLeaveCommand addLeaveCommand3 = new AddLeaveCommand(id2, leave1);
         // same object -> returns true
         assertTrue(addLeaveCommand1.equals(addLeaveCommand1));
 
@@ -129,5 +131,8 @@ public class AddLeaveCommandTest {
 
         // different leave periods -> returns false
         assertFalse(addLeaveCommand1.equals(addLeaveCommand2));
+
+        // different ID -> returns false
+        assertFalse(addLeaveCommand1.equals(addLeaveCommand3));
     }
 }
