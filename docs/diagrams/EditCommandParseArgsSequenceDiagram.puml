@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 15
+skinparam titleFontSize 15
+
+title Edit Parse Args
+
+box Logic LOGIC_COLOR_T1
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+end box
+box
+
+activate EditCommandParser
+
+EditCommandParser->ParserUtil:parseIndex(oneBasedIndex)
+activate ParserUtil
+return index
+
+
+opt if name is present
+EditCommandParser->ParserUtil:parseName(name)
+activate ParserUtil
+return name
+end opt
+
+opt if phone is present
+EditCommandParser->ParserUtil:parsePhone(phone)
+activate ParserUtil
+return phone
+end opt
+
+opt if email is present
+EditCommandParser->ParserUtil:parseEmail(email)
+activate ParserUtil
+return email
+end opt
+
+opt if NoK is present
+EditCommandParser->ParserUtil:parseNextOfKin(nextOfKin)
+activate ParserUtil
+return nextOfKin
+end opt
+
+opt if PatientType is present
+EditCommandParser->ParserUtil:parsePatientType(patientType)
+activate ParserUtil
+return patientType
+end opt
+
+opt if upcomingAppointment is present
+EditCommandParser->ParserUtil:parseUpcomingAppointment(upcomingAppointment)
+activate ParserUtil
+return upcomingAppointment
+end opt
+
+opt if hospitalWing is present
+EditCommandParser->ParserUtil:parseHospitalWing(hospitalWing)
+activate ParserUtil
+return hospitalWing
+end opt
+
+opt if floorNumber is present
+EditCommandParser->ParserUtil:parseFloorNumber(floorNumber)
+activate ParserUtil
+return floorNumber
+end opt
+
+opt if wardNumber is present
+EditCommandParser->ParserUtil:parseWardNumber(wardNumber)
+activate ParserUtil
+return wardNumber
+end opt
+
+opt if Medications is present
+EditCommandParser->ParserUtil:parseMedications(medications)
+activate ParserUtil
+return medications
+end opt
+@enduml

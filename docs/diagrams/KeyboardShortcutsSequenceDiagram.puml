@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 40
+
+Actor User as user USER_COLOR
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as mw UI_COLOR
+participant ":CommandBox" as cb UI_COLOR
+participant ":CommandHistory" as ch UI_COLOR
+end box
+
+user -> mw : press a key
+activate mw
+
+mw -> cb : getOnKeyPressed()
+activate cb
+return handleKeyPress
+
+mw -> cb : handleKeyPress(event)
+activate cb
+
+opt 'UP' arrow key pressed
+cb -> ch : previousCommand()
+activate ch
+return
+end opt
+
+opt 'DOWN' arrow key pressed
+cb -> ch : nextCommand()
+activate ch
+return
+end opt
+
+opt 'Ctrl' + 'Shift' + 'C' keys pressed
+cb -> cb : setCommandTextField("")
+activate cb
+return
+end opt
+
+opt commandChanged
+cb -> ch : getCommand()
+activate ch
+return command
+cb -> cb : setCommandTextField(command)
+activate cb
+return
+end opt
+
+return
+@enduml

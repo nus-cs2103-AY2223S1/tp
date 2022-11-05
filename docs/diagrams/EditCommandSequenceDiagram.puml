@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 40
+skinparam SequenceReferencebackgroundColor LightYellow
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":EditPersonDescriptor" as EditPersonDescriptor MODEL_COLOR
+participant ":Person" as Person MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(userInput)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(userInput)
+activate AddressBookParser
+
+create EditCommandParser
+AddressBookParser -> EditCommandParser++
+return
+
+AddressBookParser -> EditCommandParser:parse(args)
+activate EditCommandParser
+
+ref over EditCommandParser
+  Edit Parse Args
+end
+
+create EditPersonDescriptor
+EditCommandParser -> EditPersonDescriptor++
+return e
+
+create EditCommand
+EditCommandParser -> EditCommand++
+
+return
+return editCommand
+destroy EditCommandParser
+return editCommand
+
+LogicManager->EditCommand : execute(model)
+activate EditCommand
+
+EditCommand -> Model : getFilteredPersonList()
+activate Model
+return
+
+create Person
+EditCommand -> Person++
+return editedPerson
+
+EditCommand -> Model : setPerson(currPerson, editedPerson)
+activate Model
+return
+
+EditCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+return
+
+create CommandResult
+EditCommand ->CommandResult++
+return
+
+return commandResult
+return
+
+@enduml

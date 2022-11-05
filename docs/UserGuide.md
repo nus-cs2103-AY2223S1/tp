@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+<a id="back-to-topt"></a>
 * Table of Contents
 {:toc}
 ---
@@ -55,7 +56,7 @@ can also serve as a reference for experienced users, with a convenient [Command 
 
 8. Refer to the [Features](#features) below for details of each command.
 
-[back to top](#back-to-topt)
+<sup><sub>[back to top](#back-to-topt)</sub></sup>
 
 ---
 ## Installation Guide
@@ -108,6 +109,10 @@ For example, the Java version installed on the example system is Java 11.0.16, w
 If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, 
 head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
 
+<sub><sup>[back to top](#back-to-topt)</sub></sup>
+
+---
+
 ## Glossary
 
 | Term              | Definition                                                                                |
@@ -133,7 +138,7 @@ head over to [Oracle's Java download page](https://www.oracle.com/java/technolog
 | `-`           | Optional field.                         |
 | `*`           | Multiple inputs are allowed.            |
 
-[back to top](#back-to-topt)
+<sub><sup>[back to top](#back-to-topt)</sub></sup>
 
 ---
 
@@ -167,14 +172,18 @@ head over to [Oracle's Java download page](https://www.oracle.com/java/technolog
 * [Retrieving Patient Info](#retrieving-patient-info)
 * [General Commands](#general-commands)
 
-[back to top](#back-to-topt)
+<sub><sup>[back to top](#back-to-topt)</sub></sup>
 
----
 ## Creating Patient Info
 The commands in this segment are focused on creating, editing and removing data to and from the application. 
 These commands are:
 
 * [Adding a patient](#adding-a-patient-add)
+* [Editing a patient](#editing-a-patient-edit)
+* [Deleting a patient](#deleting-a-patient-delete)
+* [Creating an appointment](#creating-past-appointment-for-patient-appt)
+* [Deleting an appointment](#deleting-past-appointment-for-patient-delappt)
+* [Consulting a patient](#consulting-a-patient-consult)
 
 ### Adding a patient: `add`
 
@@ -206,9 +215,12 @@ Format: `add {Prefix}/{Parameter}…​`
 A patient can have any number of medications (including 0)!
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If patient type is outpatient, user should not input the prefixes and any value for
-hospital wing, floor number, and ward number. 
+<div markdown="block" class="alert alert-info">
+
+**:notebook: Notes about Patient Type:**<br>
+When the patient is an outpatient, `add` will throw an error if any values are input for the `hw/`, `fn/` and `wn/` fields.
+Similarly, for an inpatient, `add` will throw an error if values are **not** input any of the `hw/`, `fn/` and `wn/` fields.
+Please see the [Examples](#add-examples) below for more information.
 </div>
 
 **Upon Execution**
@@ -218,6 +230,7 @@ If the command was successfully executed, you should see something similar to th
 
 If not, please follow the error message given and format above to enter the correct command.
 
+<a id="add-examples"></a>
 **Examples:**
 
 If patient type is inpatient: <br>
@@ -230,7 +243,7 @@ If patient type is outpatient: <br>
 `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/outpatient m/panadol m/ibuprofen`
 ![Add John Doe Outpatient Result](images/ug-images/addCommand/addJohnDoeOutpatientResult.png)
 
-[back to top](#back-to-topt)
+</sub></sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sub></sup>
 
 ### Editing a patient: `edit`
 
@@ -284,6 +297,8 @@ If not, please follow the error message given and format above to enter the corr
 * `edit 2 n/Betsy Crower m/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medication.
   ![edit Betsy Crower Result](images/ug-images/editCommand/editBetsyCrowerResult.png)
 
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sub></sup>
+
 ### Deleting a patient: `delete`
 
 <div markdown="block" class="alert alert-info">
@@ -315,6 +330,8 @@ If not, please follow the error message given and format above to enter the corr
   command.
 ![Delete Betsy Crower](images/ug-images/deleteCommand/deleteBetsyCrowerCommandResult.png)
 
+</sub></sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)<sub><sup>
+
 ### Creating past appointment for patient: `appt`
 
 Creates a past appointment for the patient specified by the index number used in the patient list panel.
@@ -344,6 +361,8 @@ If not, please follow the error message given and format above to enter the corr
   for `John Doe`.
 ![Create Appointment for John Doe](images/ug-images/apptCommand/apptJohnDoeCommandResult.png)
 
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sub></sup>
+
 ### Deleting past appointment for patient: `delappt`
 
 <div markdown="block" class="alert alert-info">
@@ -370,6 +389,8 @@ If not, please follow the error message given and format above to enter the corr
 * `get /n John` displays `John Doe` at index 1 and `John` at index 2.
 * Following this, `delappt 1` will remove `John Doe`'s most recent past appointment.
 ![Delete Appointment for John Doe](images/ug-images/delapptCommand/delapptJohnDoeCommandResult.png)
+
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sub></sup>
 
 ### Consulting a patient: `consult`
 Creates a past appointment for the patient on the current date. If the patient has an upcoming appointment for the current 
@@ -399,8 +420,15 @@ If not, please follow the error message given and format above to enter the corr
 clear his upcoming appointment which was scheduled for the current date.
   ![Consult Alex Yeoh](images/ug-images/consultCommand/consultAlexYeohCommandResult.png)
 
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sub></sup>
+
 ---
 ## Retrieving Patient Info
+The commands in this segment are focused on filtering, processing then retrieving patient information in meaningful ways.
+These commands are:
+* [Listing all patients](#listing-all-patients-list)
+* [Locating patients](#locating-patients-get)
+* [Counting all patients](#obtaining-total-patient-count-count)
 
 ### Listing all patients: `list`
 
@@ -409,6 +437,8 @@ Lists all the patients in checkUp.
 Format: `list`
 
 * This command resets any filters applied via the `get` command below.
+
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
 
 ### Locating patients: `get`
 Finds patients based on the predicates and parameters you input.
@@ -448,6 +478,8 @@ Format: `get /n NAME`
 * `get /n alex david` displays `Alex Yeoh`, `David Li`.<br>
   ![result for 'find alex david'](images/ug-images/getCommand/getByNameAlexDavidResult.png)
 
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
+
 #### by next-of-kin data: `/nok`
 
 Finds next-of-kin data for patients matching the input `PATIENT_NAME`.
@@ -482,6 +514,8 @@ Format: `get /fn FLOOR_NUMBER`
 * All the patients in that floor number will be displayed. e.g. `get /fn 2` will display `John` `Peter` `Mary`.
 * Multiple `FLOOR_NUMBER` can be inputted. e.g. `get /fn 1 3` will display all patients staying in the 1st and 3rd floor.
 * `get /fn 1 /fn 3` matches `get /fn 1 3`.
+
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
 
 #### by ward number: `/wn`
 
@@ -521,6 +555,8 @@ Format: `get /outp`
 Example:
 * `get /outp` displays `Bernice`, `David` and `Irfan`.
 
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
+
 #### by appointments: `/appt`
 
 Finds all past appointments of a patient specified by the index number used in the patient list panel.
@@ -532,7 +568,6 @@ Format: `get /appt INDEX`
 Example: `get /appt 3` will display <br>
 `On: 12 Jun 2022; Diagnosis: Common viral flu; Prescribed Medication: [lozenges][panadol]`.<br>
 `On: 01 Jan 2001; Diagnosis: headache, medicine given for 3 days; Prescribed Medication: [ibuprofen]`.
-
 
 #### by appointment date: `/appton`
 
@@ -552,6 +587,8 @@ If the command was successfully executed, you should see something similar to th
 
 If not, please follow the error message given and format above to enter the correct command.
 
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
+
 ### Obtaining total patient count: `count`
 
 Gets total number of patients. Also gets the total number of types of long-term medications prescribed to patients, and a breakdown of the number of patients
@@ -564,8 +601,19 @@ Format: `count`
 * If 32 of those patients are on long-term antidepressants, the count will also display
   `antidepressants: 32`.
 
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
+
 ---
 ## General Commands
+The commands in this segment are essential commands needed for the app to run correctly 
+and quality of life commands to improve the user experience.
+These commands are:
+* [Viewing a patient](#viewing-a-patient-view)
+* [Clearing all data](#clearing-all-data--clear)
+* [Viewing help](#open-the-help-page--help)
+* [Exiting the program](#exiting-the-program--exit)
+* [Mouse interactions](#mouse-interactions)
+* [Keyboard shortcuts](#keyboard-shortcuts)
 
 ### Viewing a Patient: `view`
 
@@ -592,7 +640,9 @@ If the command was successfully executed, you should see something similar to th
 
 If not, please follow the error message given and format above to enter the correct command.
 
-### Clearing all entries : `clear`
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sub></sup>
+
+### Clearing all data : `clear`
 
 <div markdown="block" class="alert alert-info">
 
@@ -622,6 +672,8 @@ Format: `exit`
 
 * GUI settings (window height and width) are preserved during this process.
 
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sub></sup>
+
 ### Saving the data
 
 checkUp has been created in such a manner that you do not need to manually save data. Simply executing commands saves
@@ -632,6 +684,7 @@ any data created or deleted from the application.
 * checkUp stores data in the JSON format, improving readability and allowing for manually editing the data file.
 * The data file can be found in `data/checkup.json` in the home folder where checkUp's `jar` file is stored.
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
+
 
 ### Mouse Interactions
 
@@ -662,6 +715,8 @@ Example:
 Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
   * Navigate past commands with the `UP` and `DOWN` arrow keys.
   * Clear the text currently in the command box with `Ctrl + Shift + C`.
+
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sub></sup>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -698,3 +753,5 @@ the data of your previous checkUp home folder.
 | [**clear**](#clearing-all-entries--clear)                     | `clear`                                                                                                                                                                                                                                                                                                                                            |
 | [**help**](#open-the-help-page--help)                         | `help`                                                                                                                                                                                                                                                                                                                                             |
 | [**exit**](#exiting-the-program--exit)                        | `exit`                                                                                                                                                                                                                                                                                                                                             |
+
+<sub><sup>[back to top](#back-to-topt)</sub></sup>
