@@ -258,13 +258,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### ADD Feature
+### Add Feature
 
 #### Current Implementation
 
@@ -405,8 +400,19 @@ to identify whose appointments and bills to show.
 The `SelectPatientCommandParser` and `SelectAppointmentCommandParser` convert
 input String containing target index to the SelectCommand objects.
 
+The following sequence diagram shows how the `SelectXXXCommand` is parsed:
+![SelectParserSequenceDiagram](images/dg/SelectParserSequenceDiagram.png)
+
+
 On execution, the SelectPatientCommand will invoke the `Model#selectPatient()` and `Model#selectAppointment()` in the Model to
 update the `FilteredAppointmentList` and `FilteredBillList` to include selected patient's information only.
+
+The following sequence diagram shows how the `SelectPatientCommand` is executed:
+![SelectPatientCommandSequenceDiagram](images/dg/SelectPatientCommandSequenceDiagram.png)
+
+The following sequence diagram shows how the `SelectAppointmentCommand` is executed:
+![SelectPatientCommandSequenceDiagram](images/dg/SelectAppointmentCommandSequenceDiagram.png)
+
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
