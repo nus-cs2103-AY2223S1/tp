@@ -171,6 +171,9 @@ It appears when you execute the `help` command.
 * Inputs that contain angled braces `<>` can only take one of the values within the braces.<br>
   e.g. `-pr PRIORITY<HIGH, NORMAL, LOW>` means that the `PRIORITY` input can only take values `HIGH`, `NORMAL` or `LOW`.
 
+* For commands immediately followed by an `INDEX`, it is the index of the entry on the currently visible list that you want to execute the command on.
+  Note that if an entry is not currently displayed on the list, then the command cannot be executed on it.
+  e.g. `deletebuyer 7`.
 
 * Inputs can be in any order.<br>
   e.g. if the command specifies `[-n NAME] [-ph PHONE NUMBER]`, `[-ph PHONE NUMBER] [-n NAME]` is also acceptable.
@@ -237,64 +240,60 @@ It is in "Toa Payoh" and "Bright".
 
 
 ### Delete Commands
-#### Deleting buyers from the database: `deletebuyer`
-
-Syntax: `deletebuyer INDEX`
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 Note that this command has a slightly different syntax from the usual commands, as a number representing the index of the item that you would like to delete
 has to be specified immediately after the command word, instead of using flags.
 </div>
 
-The `INDEX` specified in this command refers to the index of the entry that is currently visible on the list.
-Note that if an entry is not currently displayed on the list, then a `deletebuyer` command cannot be executed on it.
+#### Deleting buyers from the database: `deletebuyer`
+
+Deletes the buyer at the specified index in the list from the database.<br>
+Syntax: `deletebuyer INDEX`
 
 Examples:<br>
 `deletebuyer 5`: Deletes the fifth buyer currently visible on the buyer list.
 
 #### Deleting properties from the database: `deleteprop`
 
+Deletes the property at the specified index in the list from the database.<br>
 Syntax: `deleteprop INDEX`
-
-The `INDEX` specified in this command refers to the index of the entry that is currently visible on the list.
-Note that if an entry has been filtered out / is not currently on the list, then a `deleteprop` command cannot be executed on it.
 
 Examples:<br>
 `deleteprop 5`: Deletes the fifth property currently visible on the property list.
 
 ### Edit Commands
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
+All inputs are optional as we can choose to update a particular detail without changing the others, but at least one input must be specified.
+</div>
+
 #### Edit a buyer entry in the database: `editbuyer`
 
-Syntax: `editbuyer INDEX {-n NAME} {-ph PHONE} {-e EMAIL} {-a ADDRESS} {-r PRICERANGE} {-c CHARACTERISTICS} {-pr PRIORITY<HIGH, NORMAL, LOW>}`
-
-Edits a buyer’s details with specified information in specified categories.
+Edits a buyer’s details with specified information in specified categories.<br>
+Syntax: `editbuyer INDEX [-n NAME] [-ph PHONE] [-e EMAIL] [-a ADDRESS] [-r PRICE RANGE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>]`
 
 The `-n` flag indicates the buyer's new name.<br>
 The `-ph` flag indicates the buyer's new phone number.<br>
-The `-e` flag indicates the buyer's new email address.<br>
-The `-a` flag indicates the buyer's new address.<br>
-The `-r` flag indicates the buyer's new acceptable price range.<br>
-The `-c` flag indicates the buyer's new desired property characteristics.<br>
-The `-pr` flag indicates the buyer's new priority - Priority values must be one of `HIGH, NORMAL, LOW`.
+The `-e` flag indicates the buyer's new email.<br>
+The `-a` flag indicates the buyer's new home address.<br>
+The `-r` flag indicates the new price range of properties that the buyer can accept, denoted using `-`.<br>
+The `-c` flag indicates the characteristics that the buyer is looking for in a property, separated by `;`.<br>
+The `-pr` flag indicates the new priority of the buyer.
 
-
-<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-Note that we are updating existing entries in the database, hence all parameters above are optional,
-as we can choose to update a parameter without changing the others.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Only the price range and characteristics fields can be edited to "Not Specified" by entering an empty flag.
+e.g. `-c  `.
 </div>
-
-The `INDEX` field specifies the index of the buyer that we want to edit
-on the current visible buyer list, so if the buyer is not on this list, then we cannot execute this command on the buyer.
 
 Examples:<br>
 `editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -pr HIGH`: Edits buyer at index 3 to have a new name "John Doe", new email "johndoe@yahoo.com", new acceptable price range of $40000 - $500000, and a high priority.<br>
-`editbuyer 1 -c bright; sunny`: Edits buyer at index 1 to have new desired characteristics of bright and sunny.
+`editbuyer 1 -c bright; sunny`: Edits buyer at index 1 to have new desired characteristics of "bright" and "sunny".
 
 #### Edit a property entry in database: `editprop`
 
-Syntax: `editprop INDEX {-n NAME} {-p PRICE} {-a ADDRESS} {-d DESCRIPTION} {-c CHARACTERISTICS} {-owner OWNERNAME} {-ph PHONE}`
-
-Edits a property’s details with specified information in specified categories.
+Edits a property’s details with specified information in specified categories.<br>
+Syntax: `editprop INDEX [-n NAME] [-p PRICE] [-a ADDRESS] [-d DESCRIPTION] [-c CHARACTERISTICS] [-owner OWNERNAME] [-ph PHONE]`
 
 The `INDEX` indicates which property in the list we are choosing to edit.
 The `-n` flag indicates the property's new name.<br>
@@ -305,9 +304,10 @@ The `-c` flag indicates the property's new characteristics.<br>
 The `-o` flag indicates the property's owner's new name.<br>
 The `-ph` flag indicates the property's owner's new phone number.<br>
 
-Note that we are updating existing entries in the database, hence all parameters above are optional,
-as we can choose to update a parameter without changing the others. Also, the `INDEX` field specifies the index of the property that we want to update
-on the current visible property list, so if the property is not on this list, then we cannot execute this command on the property.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Only the characteristics fields can be edited to "Not Specified" by entering an empty flag.
+e.g. `-c  `.
+</div>
 
 Examples:<br>
 `editprop 3 -n Hill Residence -a Block 225 -ph 750000`: Edits property at index 3 of the list to have a new name Hill Residence, a new address Block 225 and price 750000.
@@ -315,52 +315,37 @@ Examples:<br>
 ### List Commands
 #### List buyers in database: `listbuyers`
 
-Lists all buyers in the database in the visible list, that is, removes all filters.
-
-This command updates the buyers list to display all current entries.
-
+Lists all buyers in the database in the visible list, that is, removes all filters.<br>
 Syntax: `listbuyers`
 
 #### List properties in database: `listprops`
 
-Lists all buyers in the database in the visible list, that is, removes all filters.
-
-This command updates the properties list to display all current entries.
-
+Lists all properties in the database in the visible list, that is, removes all filters.<br>
 Syntax: `listprops`
 
 ### Find Commands
-#### Find buyer entry in database: `findbuyer`
-Syntax: `findbuyer [-k KEYWORDS]`
 
-Searches through the database and returns all buyers whose names contain any keywords in KEYWORDS _(case-insensitive)_.
-
-The `-k` flag indicates the keywords that Cobb will be using to search through the database. 
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Note that each space-separated keyword will be taken as its own search term. That is,
-`findbuyer -k tan lee` will list buyers that have `tan` or `lee` in their name, as `tan` and `lee` are taken
-as individual search terms.
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+No flags are used for these commands and the search word is to be supplied directly.
 </div>
 
-Examples:<br>
-`findbuyer -k John`: Looks for all buyers that have “John” in their name.<br>
-`findbuyer -k John Alice Bob`: Looks for all buyers that have "John", "Alice" or "Bob" in their name.
+#### Find buyer entry in database: `findbuyers`
 
-#### Find property entry in database: `findprop`
-Syntax: `findprop [-k KEYWORDS]`
-
-Searches through the database and returns all properties whose names contain any keywords in KEYWORDS _(case-insensitive)_.
-
-The `-k` flag indicates the keywords that Cobb will be using to search through the database. Each space-separated keyword will be taken as its own search term.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-See above for the definition of space-separated terms.
-</div>
+Searches through the database and displays all buyers whose names contain the given word (case-insensitive).<br>
+Syntax: `findbuyers WORD`
 
 Examples:<br>
-`findprop -k Peak`: Looks for all properties that have “Peak” in their name.<br>
-`findprop -k Peak Residence Hut`: Looks for all properties that have "Peak", "Residence" or "Hut" in their name.
+`findbuyer John`: Looks for all buyers that have “John” in their name.<br>
+`findbuyer John Alice Bob`: Looks for all buyers that have "John Alice Bob" in their name.
+
+#### Find property entry in database: `findprops`
+
+Searches through the database and displays all properties whose names contain the given word (case-insensitive).<br>
+Syntax: `findprops WORD`
+
+Examples:<br>
+`findprop Peak`: Looks for all properties that have “Peak” in their name.<br>
+`findprop Peak Residence Hut`: Looks for all properties that have "Peak Residence Hut" in their name.
 
 ### Filter Commands
 #### Filter buyers in database (multiple conditions): `filterbuyers`
