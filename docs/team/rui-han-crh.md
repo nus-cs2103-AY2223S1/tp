@@ -114,7 +114,7 @@ Given below are my contributions to the project.
 
 Text Extract:
 
-<blockquote>
+<div style="background-color:azure; padding:10px; border-style:solid; border-width: 0 0 0 5px; border-color: bisque;">
 
 <h2>User Interface</h2>
 
@@ -189,7 +189,7 @@ Both the People Panel and Notes Panel share a pool of tags to more easily relate
 
 Check Notes Features to learn more about the commands you can execute related to notes.
 
-</blockquote>
+</div>
 
 <br>
 
