@@ -138,6 +138,7 @@ The `Model` component,
 * Take note that,
     * the application differentiates patients by `Name`
     * same letters of `Name` in different cases are considered as the same `Name`
+  
 #### Appointment
 
 <img src="images/dg/UniqueAppointmentListClassDiagram.png" width="450">
@@ -157,8 +158,7 @@ The `Model` component,
     * the `Appointment` must be the same as an existing `Appointment`
     * one `Appointment` can attach at most one bill
     * the application differentiates bills by all four attributes.
-
-
+    
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -429,9 +429,9 @@ of the application as indexed lists.
 Step 2. The user executes `deletePatient 2` command to delete the patient at index 2 in the list.
 The `delete` command calls `Model#deletePatient` to delete the patient from the list of patients.
 
-The delete feature is now separated for the patients, appointments and bills sections. Deleting a patient also deletes
-related appointments.
 
+The delete feature is now seperated for the patients, appointments and bills sections. Deleting a patient also deletes
+related appointments and bills. Deleting an appointment deletes its related bills.
 
 ### Select Feature
 
@@ -1170,7 +1170,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `editappointment 0 n/Ed`<br>
        Expected: No appointment is edited. Error details shown in the status message.
 
-    5. Other incorrect edit commands to try: `editappointment`, `editappointment 1`(missing field(s)), `editappointment x n/Ed`, `...` (where x is larger than the list size)<br>
+    5. Other incorrect edit commands to try: `editappointment`, `editappointment 1`(missing field(s)), `editappointment x n/Ed`(where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Editing bill details
@@ -1183,14 +1183,14 @@ testers are expected to do more *exploratory* testing.
        Expected: The patient for the first bill displayed in the list is changed to Edward and the complete list of bills
        is displayed. The details of the edited bill is shown in the status message.
 
-    3. Test case: `editbill 1 n/Edward p/unpaid`<br>
-       Expected: The patient for the first bill displayed in the list is changed to Edward and the payment status of the bill is changed to not paid and the complete list of bills
+    3. Test case: `editbill 1 n/Edward a/250`<br>
+       Expected: The patient for the first bill displayed in the list is changed to Edward and the amount is changed to 250 and the complete list of bills
        is displayed. The details of the edited bill is shown in the status message.
 
     4. Test case: `editbill 0 n/Ed`<br>
        Expected: No bill is edited. Error details shown in the status message.
 
-    5. Other incorrect edit commands to try: `editbill`, `editbill 1`(missing field(s)), `editbill x n/Ed`, `...` (where x is larger than the list size)<br>
+    5. Other incorrect edit commands to try: `editbill`, `editbill 1`(missing field(s)), `editbill x n/Ed`(where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Set payment status
@@ -1205,7 +1205,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `setpaid 0`<br>
        Expected: Payment status of no bill is changed. Error details shown in the status message.
 
-    4. Other incorrect set payment status commands to try: `setpaid`, `setpaid x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect set payment status commands to try: `setpaid`, `setpaid x`(where x is larger than the list size)<br>
            Expected: Similar to previous.
    
 2. Set a bill's payment status to unpaid
@@ -1218,7 +1218,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `setunpaid 0`<br>
        Expected: Payment status of no bill is changed. Error details shown in the status message.
 
-    4. Other incorrect set payment status commands to try: `setunpaid`, `setunpaid x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect set payment status commands to try: `setunpaid`, `setunpaid x`(where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Sorting patients
@@ -1264,6 +1264,36 @@ testers are expected to do more *exploratory* testing.
        Expected: Bills are not sorted. Error details shown in the status message.
 
     4. Other incorrect sort commands to try: `sortbill`, `sortbill o/asc`<br>
+       Expected: Similar to previous.
+
+### Select patient
+
+1. Selecting a patient to display the patient's appointments and bills
+
+    1. Prerequisites: A list of patients is being shown with at least 1 patient in the list.
+
+    2. Test case: `selectpatient 1`<br>
+       Expected: The appointments and bills of the first patient are displayed. The details of the selected patient are shown in the status message.
+
+    3. Test case: `selectpatient 0`<br>
+       Expected: No patient is selected. Error details shown in the status message.
+
+    4. Other incorrect select commands to try: `selectpatient`, `selectpatient x`(where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Select appointment
+
+1. Selecting an appointment to display the related bills
+
+    1. Prerequisites: A list of appointments is being shown with at least 1 patient in the list.
+
+    2. Test case: `selectappointment 1`<br>
+       Expected: The bills of the first appointment are displayed. The details of the selected appointment are shown in the status message.
+
+    3. Test case: `selectappointment 0`<br>
+       Expected: No appointment is selected. Error details shown in the status message.
+
+    4. Other incorrect select commands to try: `selectappointment`, `selectappointment x`(where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 
