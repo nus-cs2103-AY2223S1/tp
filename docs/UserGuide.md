@@ -86,24 +86,22 @@ The following is the main user interface of NUScheduler.
 
 ## Command format
 
-### Basic command format
-
 Most commands used in NUScheduler follow this command format:
 ```
 <command word> <option flag> <parameters>
 ```
 
-#### Command Word
+### Command Word
 
 * Command words are case-sensitive, e.g. `exit` will work, but not `EXIT`.
 
-#### Option Flag
+### Option Flag
 
 * Option flags are prefixed by `-`, and are case-sensitive, e.g. `-v` will work, but not `-V`.
 * Option flags must be specified right after the command word.
 * Optional flags are only applicable for the profile and event command words.
 
-#### Parameters
+### Parameters
 
 * Words in `UPPER_CASE` are the parameters to you will specify.<br>
   e.g. in `profile -a n/NAME`, `NAME` is a parameter which can be used as `profile -a n/John Doe`.
