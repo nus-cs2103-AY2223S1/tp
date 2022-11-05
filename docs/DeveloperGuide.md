@@ -858,7 +858,7 @@ exploratory* testing.
    1. Prerequisites: List all students using the `liststu` command. Multiple students in the
       list.
    2. Test case: `editstu 1 n/Mary Doe` <br>
-      Expected: First student's name is edited to Mary Doe. Details of edited student shown in the status message.
+      Expected: First student's name is edited to Mary Doe, rest of the details remain unedited. Details of edited student shown in the status message. 
    3. Test case: `editstu 1` <br>
       Expected: No student is edited. Error details shown in the status message. Status bar remains the same.
    4. Other incorrect editstu commands to try: `editstu`, `editstu -1` <br>
