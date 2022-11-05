@@ -9,38 +9,39 @@ HackAssist is a desktop address book and task management application used for ma
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Created models for task and task list, and integrated them into the application.
+  * What it does: allows tasks and task commands to be created and implemented respectively.
+  * Justification: This feature provides a baseline foundation for the team to build on for future task commands.
+  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of all possible class designs, without breaking the usability of existing features related to person.
+  * Credits: Inspiration was taken from how a person is modelled in the application.
+  * Pull requests: [\#43](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/43), [\#44](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/44), [#54](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/54)
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added the ability to filter tasks by deadline.
+  * What it does: allows the user to filter the task list to only display tasks that have deadlines specific to and before the input date.
+  * Justification: This feature improves the product significantly because a user can now modify the task list and quickly identify specific tasks based on input deadline, without having to search through the entire task list.
+  * Credits: Inspiration was taken from the `find` feature.
+  * Pull request: [\#84](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/84)
 
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: Added the ability to find tasks using keywords.
+  * What it does: allows the user to find and list all tasks that have names or descriptions that contain any of the input keywords. Keyword matching is case-insensitive.
+  * Justification: This feature improves the product significantly because a user can now modify the task list and quickly identify specific tasks based on input keywords, without having to search through the entire task list.
+  * Credits: Inspiration was taken from the `find` feature.
+  * Pull request: [\#114](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/114)
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=paotheroo&tabRepo=AY2223S1-CS2103T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Synced the `filterByCategory` and `filterByDeadline` features into a single `filter` command (Pull request [\#98](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/98))
+  * Synced the `sortByPriority` and `sortByDeadline` features into a single `sort` command (Pull request [\#112](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/112))
+  * Bugfixed the `addTask` feature (Pull request [\#171](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/171))
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the `listTasks` feature (Pull request [\#108](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/108))
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added non-function requirements (Pull request [\#21](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/21))
+    * Added implementation details of the `filterByDeadline` feature (Pull request [\#108](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/108))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{to be updated soon}_
+  * PRs reviewed: [\#42](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/42), [\#88](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/88), [\#184](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/183)
+  * Reported bugs and suggestions for other teams (Total issues: [14](https://github.com/paotheroo/ped/issues))
