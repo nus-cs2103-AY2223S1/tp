@@ -512,6 +512,7 @@ Format: `find NAME [ADDITIONAL_NAMES]`
 
 * The search is case-insensitive. e.g `peter pang` will match `Peter Pang`
 * Only the name is searched.
+* The order of the keywords does not matter.
 * Full and partial words will be matched e.g. `Nav` will match `Navarun`
 * Residents matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Quek Wei` will return `Quek Xiang`, `Jun Wei`
