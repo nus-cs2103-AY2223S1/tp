@@ -21,6 +21,9 @@ Given below are my contributions to the project.
     thought on the design. This was previously not in the design of AB3.
 
 * **New Feature**: add/delete/edit module
+  * Highlights: While this enhancement was similar to AB3, modules have an additional layer of
+    complexity in that modules store a collection of tasks and links, which also have their own set
+    of attributes. Hence, this laid the groundwork for the development of Plannit.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=cheeheng&breakdown=true)
 
@@ -51,5 +54,5 @@ Given below are my contributions to the project.
      and [#103](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/103)) 
 
 * **Contributions beyond the project team**:
-  * Sent 13 bug reports in [InternConnect](https://github.com/AY2223S1-CS2103-F14-2/tp) during 
+  * Sent 13 bug [reports](https://github.com/cheeheng/ped/issues) in [InternConnect](https://github.com/AY2223S1-CS2103-F14-2/tp) during 
     the practical exam dry run.
