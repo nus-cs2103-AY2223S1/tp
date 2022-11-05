@@ -462,14 +462,6 @@ Format: `find -c KEYWORD [MORE_KEYWORDS]`
 * Client profiles matching at least one keyword will be returned (i.e. `OR` search). e.g. `Sean Lee` will return `Sean Tan`, `Bob Lee`
 </div>
 
-Returns a filtered list of clients according to specified tags.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
-* A TAG has to be **fully** and not partially typed out (i.e. 'high-end' instead of 'high').
-</div>
-
-Format: `filter -c TAG...`
-
 Examples:
 * `find -c Janice` returns `Janice Tan` and `Janice Ong`
 * `find -c Dustin Chan` returns `Dustin Ong`, `Jane Chan`<br>
