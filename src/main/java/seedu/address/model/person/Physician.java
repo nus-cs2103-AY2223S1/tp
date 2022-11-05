@@ -18,7 +18,7 @@ public class Physician extends BasePerson {
 
     @Override
     public String toString() {
-        return "Attending Physician " + super.toString();
+        return "Attending Physician: " + super.toString();
     }
 
     public boolean isPhysician() {
