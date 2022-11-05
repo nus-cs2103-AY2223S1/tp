@@ -32,5 +32,4 @@ For information about CodeConnect's application structure, check our [Developer 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 We use the following libraries in CodeConnect:
-
-* [JChronic](https://mvnrepository.com/artifact/com.rubiconproject.oss/jchronic)
+* [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [jchronic](https://github.com/samtingleff/jchronic)
