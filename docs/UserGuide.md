@@ -490,7 +490,7 @@ in the address book using this command.
 Format: `deleteAssigned CLIENT_INDEX ASSIGNED_POLICY_INDEX`
 
 Example Usage:
-1. Similar to [listAssigned](#listing-out-policies-assigned-to-a-clientlistassigned), filter the list for the desired client and find out which policies they have been assigned to.
+1. Similar to [listAssigned](#listing-out-policies-assigned-to-a-client--listassigned), filter the list for the desired client and find out which policies they have been assigned to.
 2. `deleteAssigned 1 1` to delete the first assigned policy in the assigned policy list from Step 1, of the first client obtained from filtering the client list.
 
 ### Tracking your Income  : `viewIncome`
