@@ -198,6 +198,34 @@ The following activity diagram summarizes what happens when a user executes a li
 * **Alternative 2:** The children nodes of the `StackPane` are never cleared and holds a single list of entities (`Project`, `Client`, `Issue`) and the list is filtered for the desired instance type for each list `Command`.
   * Pros: Less duplication of code.
   * Cons: Leads to more `instanceof` checks. Not much common behaviour between the entity classes to be abstracted via polymorphism.
+
+### Default View Feature
+
+The default view mechanism is facilitated by `GuiSettings`. It is stored internally as a `DefaultView` enumeration which can take either of three values, `PROJECT`, `CLIENT` or `ISSUE`. Upon the execution of either a `SetProjectDefaultViewCommand`, `SetClientDefaultViewCommand` or `SetIssueDefaultViewCommand`, the following operation is called:
+* `GuiSettings#setDefaultView()` — Sets the default view variable to the specified `DefaultView` type.
+
+This operation is exposed in the Model interface as `Model#setDefaultView()`.
+
+Given below is an example usage scenario and how the default view mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The list of projects is shown by default.
+
+Step 2. The user executes `client -v` to set the default view to clients. The `SetClientDefaultViewCommand` is executed and calls `Model#setDefaultView()`, setting the default view to the list of clients.
+
+Step 3. The next time the user launches the application, the list of clients is shown by default.
+
+The following sequence diagram shows how the default view operation works:
+
+![DefaultViewSequenceDiagram](images/DefaultViewSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `SetClientDefaultViewCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a default view command:
+
+![DefaultViewActivityDiagram](images/DefaultViewActivityDiagram.png)
   
 ### Add Command Feature
 
@@ -319,7 +347,7 @@ Step 2. The user executes `client -p 3` to pin the 3rd client in the project boo
 
 The following sequence diagram shows how the pin operation works:
 
-![ListSequenceDiagram](images/PinSequenceDiagram.png)
+![PinSequenceDiagram](images/PinSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The lifeline for `PinClientCommand`
@@ -328,7 +356,7 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 The following activity diagram summarizes what happens when a user executes a pin command:
 
-![ListActivityDiagram](images/PinActivityDiagram.png)
+![PinActivityDiagram](images/PinActivityDiagram.png)
 
 #### Design considerations:
 
