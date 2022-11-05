@@ -497,7 +497,7 @@ SORT_TYPE parameters:
 
 **:information_source: Notes about alphabetical sorting:**<br>
 
-Alphabetical sorting will prioritize valid letters by their ASCII values, meaning capital letters come before their non-capital counterparts with `task sort s/a`. This order is reversed for `task sort s/ca`.
+Alphabetical sorting for tasks are not case sensitive. Between any lower-case letter and their capital counterpart, there is no guarantee on the order of the sort.
 
 </div>
 
