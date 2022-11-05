@@ -24,8 +24,7 @@ Given below are my contributions to the project.
 * **New Feature**: `BirthdayMonth` Tag - Reflects whether it is currently a Customer's birthday month.
   (Pull Request [#146](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/146))
     * What it does: Automatically adds a `BDAY` tag to Customers whose `BirthdayMonth` is the current month (syncs with the local system's month). For example, if the Customer's birthday is in November, then
-      from 1 November onwards, the `BDAY` tag would be automatically added to the Customer for the entire month. Once it becomes 1 December, this tag will then be automatically removed as it is synced with
-      the local system.
+      from 1 November to 30 November, the `BDAY` tag would be automatically added to the Customer.
     * Justification: This allows the users (bubble tea shop cashiers) to easily track who is eligible for any ongoing birthday promotions.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w09&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=Samsation&tabRepo=AY2223S1-CS2103T-W09-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 * **Project management**:
