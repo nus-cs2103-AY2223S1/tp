@@ -497,7 +497,10 @@ Arrow data are saved in the hard disk automatically after any command that chang
 
 ### Editing the data file
 
-Arrow data are saved as a JSON file `[JAR file location]/data/arrow.json`. Advanced users are welcome to update data directly by editing that data file.
+Arrow data are saved as JSON files, one for Teammates and one for Task Panel.
+* Teammates: `[JAR file location]/data/addressbook.json`
+* TaskPanel: `[JAR file location]/data/taskpanel.json`
+Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
