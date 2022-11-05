@@ -14,7 +14,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.team.Description;
+import seedu.address.model.team.LinkName;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.TaskName;
 import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Url;
 
@@ -27,8 +29,10 @@ public class TruthTableParser {
             .registerConverter(Email.class, new EmailConverter())
             .registerConverter(Phone.class, new PhoneConverter())
             .registerConverter(Index.class, new IndexConverter())
+            .registerConverter(LinkName.class, new LinkNameConverter())
             .registerConverter(Url.class, new UrlConverter())
             .registerConverter(Task.class, new TaskConverter())
+            .registerConverter(TaskName.class, new TaskNameConverter())
             .registerConverter(TeamName.class, new TeamNameConverter())
             .registerConverter(Description.class, new DescriptionConverter())
             .registerConverter(Order.class, new OrderConverter());
