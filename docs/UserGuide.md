@@ -106,7 +106,7 @@ Features marked with * can only be utilised when you are at the home page.
 
 **:information_source: Notes about the command format:**<br>
 
-* You are to include the parameter in the command that are labelled in `UPPER_CASE`.<br>
+* You are to include the parameters in the command that are labelled in `UPPER_CASE`.<br>
   e.g. in `add m/MODULE`, `MODULE` is a parameter which can be used as `add m/MODULE`.
 
 * Items in square brackets are optional. The `*` after a set of square brackets means that it can be used multiple times<br>
