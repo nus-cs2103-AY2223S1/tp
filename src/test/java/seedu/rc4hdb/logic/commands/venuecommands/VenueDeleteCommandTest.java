@@ -40,7 +40,6 @@ public class VenueDeleteCommandTest {
         VenueDeleteCommand deleteCommand = new VenueDeleteCommand(invalidVenueName);
 
         String expectedMessage = String.format(VenueDeleteCommand.MESSAGE_VENUE_NOT_FOUND, invalidVenueName);
-        
         assertCommandFailure(deleteCommand, model, expectedMessage);
     }
 
