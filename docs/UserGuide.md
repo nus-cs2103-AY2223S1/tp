@@ -288,8 +288,6 @@ We are also planning to introduce 2 new features in the future, namely [finding]
 
 **If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
 
-[Back to Table of Contents](#table-of-contents)
-
 ___
 
 ### Adding an offer: `addO`
@@ -542,25 +540,25 @@ ___
 
 # Command Summary
 
-|                      Action                       |                                       Format                                       |                                              Examples                                              |
-|:-------------------------------------------------:|:----------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------:|
-|      [**Add Client**](#adding-a-client-addc)      |              `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`               | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-|     [**Add Listing**](#adding-a-listing-addl)     |        `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`        |                                          **to be filled**                                          |
-|     [**Add Meeting**](#adding-a-meeting-addm)     |                   `addM id/Listing_ID n/CLIENT_NAME d/DATE_TIME`                   |                                          **to be filled**                                          |
-|      [**Add Offer**](#adding-an-offer-addo)       |                    `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE`                    |                        `addoffer l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`                        |
-|     [**Clear**](#clearing-all-entries--clear)     |                                      `clear`                                       |                                                                                                    |
-|   [**Delete Client**](#deleting-a-client--delc)   |                                    `delC INDEX`                                    |                                             `delete 3`                                             |
-|  [**Delete Listing**](#deleting-a-listing--dell)  |                                    `delL INDEX`                                    |                                          **to be filled**                                          |
-| [**Delete Meeting**](#deleting-an-meeting--delm)  |                                    `delM INDEX`                                    |                                          **to be filled**                                          |
-|   [**Delete Offer**](#deleting-an-offer--delo)    |                                    `delO INDEX`                                    |                                            `deleteO 2`                                             |
-|    [**Edit Client**](#editing-a-client--editc)    |      `editC INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`       |                            `edit 2 n/James Lee e/jameslee@example.com`                             |
-|   [**Edit Listing**](#editing-a-listing--editl)   | `editL INDEX [l/LISTING_ID][a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​` |                                          **to be filled**                                          |
-|   [**Edit Meeting**](#editing-a-meeting--editm)   |                     `editM INDEX [n/OWNER_NAME] [d/DATE_TIME]`                     |                                          **to be filled**                                          |
-|    [**Edit Offer**](#editing-an-offer--edito)     |               `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`                |                                 `editO 2 n/Betsy Crower o/123456`                                  |
-| [**Find Client**](#finding-clients-by-name-findc) |                          `findC KEYWORD [MORE_KEYWORDS]`                           |                                         `findC James Jake`                                         |
-|     [**List Client**](#listing-clients-listc)     |                                       `list`                                       |                                                                                                    |
-|    [**List Listing**](#listing-listings-listl)    |                                                                                    |                                                                                                    |
-|          [**Help**](#viewing-help--help)          |                                       `help`                                       |                                                                                                    |
+|                      Action                       |                                       Format                                       |                                              Examples                                               |
+|:-------------------------------------------------:|:----------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------:|
+|      [**Add Client**](#adding-a-client-addc)      |              `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`              | `addC n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+|     [**Add Listing**](#adding-a-listing-addl)     |        `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`        |                     `addL l/007 a/100 Charming Ave n/Joke Peralta ap/10000000`                      |
+|     [**Add Meeting**](#adding-a-meeting-addm)     |                   `addM id/Listing_ID n/CLIENT_NAME d/DATE_TIME`                   |                   `addM id/1 a/John street, block 123, #01-01 d/2022-10-20 12:00`                   |
+|      [**Add Offer**](#adding-an-offer-addo)       |                      `addO l/LISTING_ID n/NAME o/OFFER_PRICE`                      |                          `addO l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`                           |
+|     [**Clear**](#clearing-all-entries--clear)     |                                      `clear`                                       |                                               `clear`                                               |
+|   [**Delete Client**](#deleting-a-client--delc)   |                                    `delC INDEX`                                    |                                              `delC 3`                                               |
+|  [**Delete Listing**](#deleting-a-listing--dell)  |                                    `delL INDEX`                                    |                                              `delL 1`                                               |
+| [**Delete Meeting**](#deleting-an-meeting--delm)  |                                    `delM INDEX`                                    |                                              `delM 4`                                               |
+|   [**Delete Offer**](#deleting-an-offer--delo)    |                                    `delO INDEX`                                    |                                              `delO 2`                                               |
+|    [**Edit Client**](#editing-a-client--editc)    |      `editC INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`       |                            `editC 2 n/James Lee e/jameslee@example.com`                             |
+|   [**Edit Listing**](#editing-a-listing--editl)   | `editL INDEX [l/LISTING_ID][a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​` |                                        `editL 4 ap/1234567`                                         |
+|   [**Edit Meeting**](#editing-a-meeting--editm)   |                     `editM INDEX [n/OWNER_NAME] [d/DATE_TIME]`                     |                                      `editM 2 n/Roza Santiago`                                      |
+|    [**Edit Offer**](#editing-an-offer--edito)     |               `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`                |                                  `editO 2 n/Betsy Crower o/123456`                                  |
+| [**Find Client**](#finding-clients-by-name-findc) |                          `findC KEYWORD [MORE_KEYWORDS]`                           |                                         `findC James Jake`                                          |
+|     [**List Client**](#listing-clients-listc)     |                                      `listC`                                       |                                               `listC`                                               |
+|    [**List Listing**](#listing-listings-listl)    |                                      `listL`                                       |                                               `listL`                                               |
+|          [**Help**](#viewing-help--help)          |                                       `help`                                       |                                               `help`                                                |
 
 
 [Back to Table of Contents](#table-of-contents)
