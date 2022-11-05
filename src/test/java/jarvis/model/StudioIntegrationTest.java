@@ -1,156 +1,189 @@
 package jarvis.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static jarvis.testutil.Assert.assertThrows;
+import static jarvis.testutil.TypicalLessons.DT1;
+import static jarvis.testutil.TypicalLessons.DT2;
+import static jarvis.testutil.TypicalLessons.DT3;
+import static jarvis.testutil.TypicalLessons.DT4;
+import static jarvis.testutil.TypicalLessons.MC_1;
+import static jarvis.testutil.TypicalLessons.STUDIO_DESCRIPTION_1;
+import static jarvis.testutil.TypicalLessons.STUDIO_DESCRIPTION_2;
+import static jarvis.testutil.TypicalLessons.STUDIO_STUDENTS;
+import static jarvis.testutil.TypicalLessons.STUDIO_1;
+import static jarvis.testutil.TypicalLessons.STUDIO_2;
+import static jarvis.testutil.TypicalLessons.CONSULT_1;
+import static jarvis.testutil.TypicalStudents.ALICE;
+import static jarvis.testutil.TypicalStudents.HOON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
 
 import jarvis.model.exceptions.InvalidParticipationException;
 import jarvis.model.exceptions.StudentNotFoundException;
-import jarvis.model.util.SampleStudentUtil;
 
 class StudioIntegrationTest {
-    private TreeSet<Student> students = new TreeSet<>(List.of(SampleStudentUtil.getSampleStudents()));
-    private LocalDateTime dt1 = LocalDateTime.of(2022, 12, 12, 10, 0);
-    private LocalDateTime dt2 = LocalDateTime.of(2022, 12, 12, 12, 0);
-    private Studio studio1 = new Studio(null, new TimePeriod(dt1, dt2), students);
-
-    private LocalDateTime dt3 = LocalDateTime.of(2022, 12, 12, 11, 0);
-    private LocalDateTime dt4 = LocalDateTime.of(2022, 12, 12, 13, 0);
-    private LocalDateTime dt5 = LocalDateTime.of(2022, 12, 13, 10, 0);
-    private LocalDateTime dt6 = LocalDateTime.of(2022, 12, 13, 12, 0);
-
-
+    private final Studio STUDIO_3 = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
 
     @Test
     void startDateTime() {
-        assertEquals(dt1, studio1.startDateTime());
+        assertEquals(DT1, STUDIO_3.startDateTime());
     }
 
     @Test
     void endDateTime() {
-        assertEquals(dt2, studio1.endDateTime());
+        assertEquals(DT3, STUDIO_3.endDateTime());
     }
 
     @Test
     void hasTimingConflict() {
-        Studio studio2 = new Studio(null, new TimePeriod(dt3, dt4), students);
-        Studio studio3 = new Studio(null, new TimePeriod(dt5, dt6), students);
+        // Studios
+        assertFalse(STUDIO_3.hasTimingConflict(STUDIO_2));
+        assertFalse(STUDIO_2.hasTimingConflict(STUDIO_3));
+        assertTrue(STUDIO_1.hasTimingConflict(STUDIO_3));
+        assertTrue(STUDIO_3.hasTimingConflict(STUDIO_1));
 
-        assertTrue(studio1.hasTimingConflict(studio2));
-        assertTrue(studio2.hasTimingConflict(studio1));
-        assertFalse(studio1.hasTimingConflict(studio3));
-        assertFalse(studio3.hasTimingConflict(studio1));
+        // Other lessons
+        assertTrue(STUDIO_3.hasTimingConflict(MC_1));
+        assertFalse(STUDIO_3.hasTimingConflict(CONSULT_1));
     }
 
     @Test
     void hasStudent() {
-        assertTrue(studio1.hasStudent(students.first()));
+        assertTrue(STUDIO_3.hasStudent(ALICE));
+        assertFalse(STUDIO_3.hasStudent(HOON));
+    }
 
-        Student studentToRemove = students.first();
-        students.remove(studentToRemove);
-        Studio studio2 = new Studio(null, new TimePeriod(dt1, dt2), students);
-        assertFalse(studio2.hasStudent(studentToRemove));
+    @Test
+    void isPresent() {
+        assertEquals("Absent", STUDIO_1.isPresent(ALICE)); // Student is absent by default
+        assertEquals("Absent", STUDIO_1.isPresent(HOON)); // Students not involved in studio are absent
     }
 
     @Test
     void markAsPresent() {
-        Student student = students.first();
-        studio1.markAsPresent(student);
-        assertEquals("Present", studio1.isPresent(student));
+        STUDIO_3.markAsPresent(ALICE);
+        assertEquals("Present", STUDIO_3.isPresent(ALICE));
     }
 
     @Test
     void markAsAbsent() {
-        Student student = students.first();
-        studio1.markAsPresent(student);
-        assertEquals("Absent", studio1.isPresent(student));
-    }
-
-    @Test
-    void isPresent_studentNotInLesson_returnAbsent() {
-        Student studentToRemove = students.first();
-        students.remove(studentToRemove);
-        Studio studio2 = new Studio(null, new TimePeriod(dt1, dt2), students);
-        assertEquals("Absent", studio2.isPresent(studentToRemove));
+        STUDIO_3.markAsPresent(ALICE);
+        STUDIO_3.markAsAbsent(ALICE);
+        assertEquals("Absent", STUDIO_3.isPresent(ALICE));
     }
 
     @Test
     void markAsCompleted() {
-        assertFalse(studio1.isCompleted()); // Not completed by default
-        studio1.markAsCompleted();
-        assertTrue(studio1.isCompleted());
-        studio1.markAsCompleted();
-        assertTrue(studio1.isCompleted());
+        assertFalse(STUDIO_3.isCompleted()); // Not completed by default
+        STUDIO_3.markAsCompleted();
+        assertTrue(STUDIO_3.isCompleted());
+        STUDIO_3.markAsCompleted();
+        assertTrue(STUDIO_3.isCompleted());
     }
 
     @Test
     void markAsNotCompleted() {
-        studio1.markAsCompleted();
-        assertTrue(studio1.isCompleted());
-        studio1.markAsNotCompleted();
-        assertFalse(studio1.isCompleted());
-        studio1.markAsNotCompleted();
-        assertFalse(studio1.isCompleted());
+        STUDIO_3.markAsCompleted();
+        assertTrue(STUDIO_3.isCompleted());
+        STUDIO_3.markAsNotCompleted();
+        assertFalse(STUDIO_3.isCompleted());
+        STUDIO_3.markAsNotCompleted();
+        assertFalse(STUDIO_3.isCompleted());
     }
 
     @Test
     void hasDesc() {
-        assertFalse(studio1.hasDesc());
-
-        Studio studio2 = new Studio(new LessonDesc("Studio 2"), new TimePeriod(dt1, dt2), students);
-        assertTrue(studio2.hasDesc());
+        Studio noDesc = new Studio(null, new TimePeriod(DT1, DT2), STUDIO_STUDENTS);
+        assertTrue(STUDIO_3.hasDesc());
+        assertFalse(noDesc.hasDesc());
     }
 
     @Test
     void setParticipationForStudent_invalidStudent_exceptionThrown() {
         assertThrows(NullPointerException.class,
-                () -> studio1.setParticipationForStudent(null, 100)); // null student
-
-        Student studentToRemove = students.first();
-        students.remove(studentToRemove);
-        Studio studio2 = new Studio(new LessonDesc("Studio 2"), new TimePeriod(dt1, dt2), students);
+                () -> STUDIO_3.setParticipationForStudent(null, 100)); // null student
         assertThrows(StudentNotFoundException.class,
-                () -> studio2.setParticipationForStudent(studentToRemove, 100));
+                () -> STUDIO_3.setParticipationForStudent(HOON, 100)); // Student not in lesson
     }
 
     @Test
     void setParticipationForStudent_invalidParticipation_exceptionThrown() {
-        Student student = students.first();
         assertThrows(InvalidParticipationException.class,
-                () -> studio1.setParticipationForStudent(student, -1));
+                () -> STUDIO_3.setParticipationForStudent(ALICE, -1));
         assertThrows(InvalidParticipationException.class,
-                () -> studio1.setParticipationForStudent(student, 501));
+                () -> STUDIO_3.setParticipationForStudent(ALICE, 501));
         assertThrows(InvalidParticipationException.class,
-                () -> studio1.setParticipationForStudent(student, 700));
+                () -> STUDIO_3.setParticipationForStudent(ALICE, 700));
     }
 
     @Test
     void testParticipation_validArguments() {
-        Student student = students.first();
-        assertEquals(0, studio1.getParticipationForStudent(student)); // default participation is 0
-        studio1.setParticipationForStudent(student, 100);
-        assertEquals(100, studio1.getParticipationForStudent(student));
-        studio1.setParticipationForStudent(student, 200);
-        assertEquals(200, studio1.getParticipationForStudent(student));
+        assertEquals(0, STUDIO_3.getParticipationForStudent(ALICE)); // default participation is 0
+        STUDIO_3.setParticipationForStudent(ALICE, 100);
+        assertEquals(100, STUDIO_3.getParticipationForStudent(ALICE));
+        STUDIO_3.setParticipationForStudent(ALICE, 200);
+        assertEquals(200, STUDIO_3.getParticipationForStudent(ALICE));
 
         // Boundary values
-        studio1.setParticipationForStudent(student, 500);
-        assertEquals(500, studio1.getParticipationForStudent(student));
-        studio1.setParticipationForStudent(student, 0);
-        assertEquals(0, studio1.getParticipationForStudent(student));
+        STUDIO_3.setParticipationForStudent(ALICE, 500);
+        assertEquals(500, STUDIO_3.getParticipationForStudent(ALICE));
+        STUDIO_3.setParticipationForStudent(ALICE, 0);
+        assertEquals(0, STUDIO_3.getParticipationForStudent(ALICE));
     }
 
     @Test
     void testEquals() {
+        Studio sameValues = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
+        Studio differentStudents = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), List.of(ALICE));
 
+        Studio differentAttendance = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
+        differentAttendance.markAsPresent(ALICE);
+
+        Studio differentParticipation = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
+        differentParticipation.setParticipationForStudent(ALICE, 100);
+
+        Studio differentTime = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT3, DT4), STUDIO_STUDENTS);
+        Studio differentDesc = new Studio(STUDIO_DESCRIPTION_2, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
+        Studio differentNotes = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT3), STUDIO_STUDENTS);
+        differentNotes.addOverallNote("Note 1");
+
+        // same values -> returns true
+        assertTrue(STUDIO_3.equals(sameValues));
+
+        // same object -> returns true
+        assertTrue(STUDIO_3.equals(STUDIO_3));
+
+        // null -> returns false
+        assertFalse(STUDIO_3.equals(null));
+
+        // different type -> returns false
+        assertFalse(STUDIO_3.equals(5));
+
+        // same students but different attendance values -> returns false
+        assertFalse(STUDIO_3.equals(differentAttendance));
+
+        // different students -> returns false
+        assertFalse(STUDIO_3.equals(differentStudents));
+
+        // different participation -> returns false
+        assertFalse(STUDIO_3.equals(differentParticipation));
+
+        // different time period -> returns false
+        assertFalse(STUDIO_3.equals(differentTime));
+
+        // different description -> returns false
+        assertFalse(STUDIO_3.equals(differentDesc));
+
+        // different notes -> returns true
+        assertTrue(STUDIO_3.equals(differentNotes));
     }
 
     @Test
     void getLessonType() {
-        assertEquals(LessonType.STUDIO, studio1.getLessonType());
+        assertEquals(LessonType.STUDIO, STUDIO_1.getLessonType());
     }
 }

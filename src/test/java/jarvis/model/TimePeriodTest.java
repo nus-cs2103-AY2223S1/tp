@@ -95,6 +95,7 @@ class TimePeriodTest {
         TimePeriod timePeriod1 = new TimePeriod(dt1, dt2);
         TimePeriod timePeriod2 = new TimePeriod(dt3, dt4);
         TimePeriod timePeriod3 = new TimePeriod(dt1, dt3);
+        TimePeriod timePeriod4 = new TimePeriod(dt2, dt4);
 
         // same time -> returns true
         TimePeriod timePeriod1Copy = new TimePeriod(dt1, dt2);
@@ -109,8 +110,9 @@ class TimePeriodTest {
         // different type -> returns false
         assertFalse(timePeriod1.equals(5));
 
-        //different values -> returns false
+        //different start or end times -> returns false
         assertFalse(timePeriod1.equals(timePeriod2));
         assertFalse(timePeriod1.equals(timePeriod3));
+        assertFalse(timePeriod2.equals(timePeriod4));
     }
 }

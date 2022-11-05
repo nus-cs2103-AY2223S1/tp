@@ -22,9 +22,9 @@ import jarvis.model.TimePeriod;
  * A utility class containing a list of {@code Lesson} objects to be used in tests.
  */
 public class TypicalLessons {
-    public static final String STUDIO_DESCRIPTION_1 = "Studio 1";
-    public static final String STUDIO_DESCRIPTION_2 = "Studio 2: Recursion";
-    public static final String CONSULT_DESCRIPTION = "Streams Consultation";
+    public static final LessonDesc STUDIO_DESCRIPTION_1 = new LessonDesc("Studio 1");
+    public static final LessonDesc STUDIO_DESCRIPTION_2 = new LessonDesc("Studio 2: Recursion");
+    public static final LessonDesc CONSULT_DESCRIPTION = new LessonDesc("Streams Consultation");
 
     public static final List<Student> STUDIO_STUDENTS = getTypicalStudents();
     public static final List<Student> MASTERY_CHECK_STUDENTS = List.of(ALICE, BENSON);
@@ -34,18 +34,15 @@ public class TypicalLessons {
     public static final LocalDateTime DT2 = LocalDateTime.of(2022, 12, 12, 12, 0);
     public static final LocalDateTime DT3 = LocalDateTime.of(2022, 12, 12, 11, 0);
     public static final LocalDateTime DT4 = LocalDateTime.of(2022, 12, 12, 13, 0);
-    public static final LocalDateTime DT5 = LocalDateTime.of(2022, 12, 13, 10, 0);
-    public static final LocalDateTime DT6 = LocalDateTime.of(2022, 12, 13, 12, 0);
 
-    public static final Consult CONSULT_1 = new Consult(new LessonDesc(CONSULT_DESCRIPTION), new TimePeriod(DT1, DT3),
+    public static final Consult CONSULT_1 = new Consult(CONSULT_DESCRIPTION, new TimePeriod(DT3, DT4),
             CONSULT_STUDENTS);
     public static final MasteryCheck MC_1 = new MasteryCheck(null, new TimePeriod(DT1, DT2),
             MASTERY_CHECK_STUDENTS);
-    public static final Studio STUDIO_1 = new Studio(new LessonDesc(STUDIO_DESCRIPTION_1), new TimePeriod(DT1, DT2),
+    public static final Studio STUDIO_1 = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT1, DT2),
             STUDIO_STUDENTS);
-    public static final Studio STUDIO_2 = new Studio(new LessonDesc(STUDIO_DESCRIPTION_2), new TimePeriod(DT3, DT4),
+    public static final Studio STUDIO_2 = new Studio(STUDIO_DESCRIPTION_2, new TimePeriod(DT3, DT4),
             STUDIO_STUDENTS);
-    public static final Studio STUDIO_3 = new Studio(null, new TimePeriod(DT5, DT6), STUDIO_STUDENTS);
 
     private TypicalLessons() {} // prevents instantiation
 
@@ -61,6 +58,6 @@ public class TypicalLessons {
     }
 
     public static List<Lesson> getTypicalLessons() {
-        return new ArrayList<>(Arrays.asList(CONSULT_1, MC_1, STUDIO_1, STUDIO_2, STUDIO_3));
+        return new ArrayList<>(Arrays.asList(CONSULT_1, MC_1, STUDIO_1, STUDIO_2));
     }
 }
