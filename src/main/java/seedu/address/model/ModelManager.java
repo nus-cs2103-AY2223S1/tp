@@ -29,6 +29,7 @@ import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.user.ExistingUser;
 import seedu.address.model.person.user.User;
 import seedu.address.model.tag.Tag;
 
@@ -207,7 +208,23 @@ public class ModelManager implements Model {
         }
 
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        getUser().updatePrevMods();
+
+        User user = getUser();
+        ModuleCommand.EditModuleDescriptor editModuleDescriptor = new ModuleCommand.EditModuleDescriptor();
+        editModuleDescriptor.setCurrModules(null);
+        editModuleDescriptor.setPlanModules(user.getPlanModules());
+        Set<PreviousModule> updatedPreviousModules = new HashSet<>();
+        for (int n = 0; n < user.getCurrModules().size(); n++) {
+            Object currCurrentModule = user.getCurrModules().toArray()[n];
+            if (currCurrentModule instanceof CurrentModule) {
+                CurrentModule currentModule = (CurrentModule) currCurrentModule;
+                updatedPreviousModules.add(currentModule.toPrevModule());
+            }
+        }
+        updatedPreviousModules.addAll(user.getPrevModules());
+        editModuleDescriptor.setPrevModules(updatedPreviousModules);
+        User editedUser = createEditedUser(user, editModuleDescriptor);
+        setUser(editedUser);
     }
 
     /**
@@ -229,6 +246,27 @@ public class ModelManager implements Model {
         Set<PlannedModule> setPlannedModules = editModuleDescriptor.getPlanModules();
 
         return new Person(name, phone, email, address, github, tags, setCurrentModules, setPreviousModules,
+                setPlannedModules);
+    }
+
+    /**
+     * Creates and returns a {@code User} with the details of {@code userToEdit}
+     * edited with {@code editModuleDescriptor}.
+     */
+    private static ExistingUser createEditedUser(User user,
+                                             ModuleCommand.EditModuleDescriptor editModuleDescriptor) {
+        assert user != null;
+
+        Name name = user.getName();
+        Phone phone = user.getPhone();
+        Email email = user.getEmail();
+        Address address = user.getAddress();
+        Github github = user.getGithub();
+        Set<CurrentModule> setCurrentModules = editModuleDescriptor.getCurrModules();
+        Set<PreviousModule> setPreviousModules = editModuleDescriptor.getPrevModules();
+        Set<PlannedModule> setPlannedModules = editModuleDescriptor.getPlanModules();
+
+        return new ExistingUser(name, phone, email, address, github, setCurrentModules, setPreviousModules,
                 setPlannedModules);
     }
 
