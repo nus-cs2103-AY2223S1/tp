@@ -412,6 +412,69 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Tutorial
+
+#### Adding a tutorial
+
+Do the test cases sequentially to ensure correct expectation.
+
+1. Adding a tutorial while tutorial tab is being shown. 
+
+   1. Prerequisites: Switch to tutorial tab using the `switch f/tutorial` command. Ensure tutorials data are empty by using `clear f/tutorial` (you may skip this if you do not have any tutorials).
+
+   2. Test case: `add tutorial n/G08 m/CS2101 v/COM2-0209 T/16:00-18:00 D/2`<br>
+      Expected:  A new tutorial is added to the tutorial list. A success message containing details of the added tutorial is shown in result display box and the list of tutorials is shown.
+
+   3. Test case: `add tutorial n/G02 m/CS2101 v/COM2-0209 T/15:00-17:00 D/2`<br>
+      Expected: Conflicting tutorial error message is shown.
+
+   4. Test case: `add tutorial n/G02 m/CS2101 v/COM2-0209 T/19:00-17:00 D/2`<br>
+      Expected: Error message is shown as time range is invalid. No tutorial is added. 
+
+   5. Test case: `add tutorial n/G02 m/CS2101`<br>
+      Expected: Error message is shown as missing prefix. No tutorial is added.
+   
+   6. Other incorrect add tutorial commands to try: `add tutorials`, `add tutorial n/G01 m/sususu v/ T/ D/`, `...` <br>
+      Expected: Error message is shown in the result display box.
+
+2. Adding a tutorial while tutorial tab is not being shown.
+
+   1. Prerequisites: Switch to another tab that is not tutorial, for example, using the `switch f/student` command. 
+    
+   2. Test case: `add tutorial n/TW08 m/GEC1027 v/AS1-0203 T/10:00-11:00 D/10`<br>
+      Expected:  Error message is shown as day is invalid. Main display remains the same.
+
+   3. Test case: `add tutorial n/TW08 m/GEC1027 v/AS1-0203 T/10:00-11:00 D/1`<br>
+      Expected:  A success message containing details of the added tutorial is shown. Main display changes to tutorial and tutorial list is updated.
+    
+   
+#### Deleting a tutorial
+
+1. Deleting a tutorial while tutorial tab is being shown
+
+    1. Prerequisites: Switch to tutorial tab using `switch f/tutorial` command (you can skip this if the main display is already tutorial). Multiple tutorials in the list.
+
+    1. Test case: `delete tutorial 1`<br>
+       Expected: First tutorial is deleted from the list. Details of the deleted tutorial shown in the status message. Tutorial list is updated.
+
+    1. Test case: `delete tutorial 0`<br>
+       Expected: No tutorial is deleted. Error details shown in the status message. Tutorial list remains the same.
+
+    1. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+#### Editing a tutorial
+
+1. Editing a tutorial while tutorial tab is being shown.
+
+    1. Prerequisites: Switch to tutorial tab using the `switch f/tutorial` command (you may skip this if the main display is already tutorial). There exists at least 1 tutorial in the list.
+
+    2. Test case: `edit tutorial 1 v/LT27`<br>
+       Expected: Venue of first tutorial is edited. Details of the edited tutorial shown in the status message.
+
+    3. Test case: `edit tutorial 0`<br>
+       Expected: No tutorial is edited. Error message shown in result display box.
+
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
