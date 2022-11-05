@@ -708,7 +708,7 @@ Priority legend
 | Minecraft      | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
 | Minefriends    | The name of our app                                                                              |
 | Username       | The uniquely identifiable Minecraft username of each player                                      |
-| Server         | A multiplayer Minecraft server                                                                   |.                              |
+| Server         | A multiplayer Minecraft server                                                                   |
 | Player         | A person who plays Minecraft                                                                     |
 | Mojang Studios | The company that created and owns Minecraft                                                      |
 | Microsoft      | The company that bought over Mojang Studios in 2014                                              |
@@ -723,7 +723,7 @@ For a complete glossary of Minecraft terms, please visit this page on the
 |---------------|----------------------------------------------------------------------------|
 | Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X        |
 | Socials       | A person's social media account information, such as their Telegram handle |
-| CLI           | An acronym for "command line interface"                                     |
+| CLI           | An acronym for "command line interface"                                    |
 
 --------------------------------------------------------------------------------------------------------------------
 
