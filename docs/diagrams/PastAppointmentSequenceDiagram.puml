@@ -24,7 +24,7 @@ create CreatePastAppointmentCommandParser
 AddressBookParser -> CreatePastAppointmentCommandParser
 activate CreatePastAppointmentCommandParser
 
-CreatePastAppointmentCommandParser -> AddressBookParser
+CreatePastAppointmentCommandParser --> AddressBookParser
 deactivate CreatePastAppointmentCommandParser
 
 AddressBookParser -> CreatePastAppointmentCommandParser : parse("appt 1...")
@@ -36,14 +36,14 @@ create CreatePastAppointmentCommand
 CreatePastAppointmentCommandParser -> CreatePastAppointmentCommand
 activate CreatePastAppointmentCommand
 
-CreatePastAppointmentCommand --> CreatePastAppointmentCommandParser : appt
+CreatePastAppointmentCommand --> CreatePastAppointmentCommandParser : cmd
 deactivate CreatePastAppointmentCommand
 
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-CreatePastAppointmentCommandParser --> AddressBookParser : appt
+CreatePastAppointmentCommandParser --> AddressBookParser : cmd
 destroy CreatePastAppointmentCommandParser
 
-AddressBookParser --> LogicManager : appt
+AddressBookParser --> LogicManager : cmd
 deactivate AddressBookParser
 
 LogicManager -> CreatePastAppointmentCommand : execute()
