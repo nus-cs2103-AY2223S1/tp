@@ -49,8 +49,8 @@ public class GradeTest {
         assertThrows(NullPointerException.class, () -> Grade.isValidScore(null));
 
         // invalid score
-        assertFalse(Grade.isValidScore("a"));
-        assertFalse(Grade.isValidScore("-1"));
+        assertFalse(Grade.isValidScore("a")); // non-number score
+        assertFalse(Grade.isValidScore("-1")); // negative score
 
         // valid score
         assertTrue(Grade.isValidScore(VALID_SCORE_1));
