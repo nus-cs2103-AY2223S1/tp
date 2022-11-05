@@ -163,7 +163,7 @@ An `Exercise` contains the following attributes:
 
 #### **Design Considerations**
 
-**Aspect: Fields of Exercise are Final**
+**Aspect: Fields of Exercise are Final:**
 * **Current choice**: The aforementioned fields in `Exercise` are final, effectively making our Exercise class immutable.
   * Rationale: Code written with immutable objects is easier to reason with and easier to understand, facilitating a smoother process when it comes to debugging and testing any code related to `Exercise`.
 
@@ -306,7 +306,9 @@ Step 1. The user launches the application and already has 4 Exercise instances, 
 
 Step 2: The user enters the command `:pr n/Squat` to view their personal record for the exercise 'Squat'.
 
-![ListPersonalRecord](images/ListPersonalRecord.png)
+The following sequence diagram shows how the `PrCommand` works.
+
+![ListPersonalRecordSequenceDiagram](images/ListPersonalRecordSequenceDiagram.png)
 
 #### Design considerations:
 
