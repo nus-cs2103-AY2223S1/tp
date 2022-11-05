@@ -202,44 +202,22 @@ Format: `clear`
 
 ### Creating a Tag: `tag create`
 
-Creates a new tag
+You can create a new `TAG` and add it into the tag list.
 
 Format: `tag create t/TAG`
 
-Example:
-* `tag create t/family` creates a `family` tag.
+Steps to take:
+1. Input `tag create t/Test` into the Command box.
+2. Press `Enter` on your keyboard. 
+3. You should now see `New Tag added: [Test]` in the Command result box just like the image below.
 
-### Deleting a Tag: `tag delete`
+(insert image of a successful creation of the `Test` tag)
 
-Deletes a tag.
-
-Format: `tag delete t/TAG`
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
-</div>
-
-Example:
-* `tag delete t/family` deletes the `family` tag.
-
-### Editing a Tag: `tag edit`
-
-Renames an existing tag.
-
-Format: `tag edit t/TAG1 t/TAG2`
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** The new Tag must not have the same name as any other existing tags.
-</div>
-
-* `TAG1` is the current name of the tag and `TAG2` is the new name of the tag.
-
-Example:
-* `tag edit t/friend t/bestFriend` changes the friend tag to a bestFriend tag.
+4. Great! You have successfully added the first `TAG` you have made. Now, you can start utilising the other tag features.
 
 ### Adding a Tag to a Contact: `tag add`
 
-Adds an existing tag to an existing contact.
+You can now add a `TAG` from the tag list to a contact.
 * `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
 
 Format: `tag add INDEX t/TAG`
@@ -251,27 +229,109 @@ A contact can have any number of tags. Add as many as you want.
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** The tag has to be made first before you can add it into a contact.
 
-Refer to [`Creating a Tag`](#Creating a Tag) on how to create a tag.
+Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
 </div>
 
-* Adds a `TAG` to the contact at the specified `INDEX`.
+Steps to take:
+1. Input `tag add 1 t/Test` into the Command box.
 
-Example:
-* `tag add 1 t/friend` adds the friend tag to the first contact shown in the list.
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** 
+
+This example is based of [`Creating a Tag`](#creating-a-tag-tag-create). Feel free to replace `1` and Test` with the contact and tag of your choice.
+</div>
+
+2. Press `Enter` on your keyboard.
+3. You should now see `Tag added: [Test]` in the Command result box just like the image below.
+
+(insert image of a successful addition of the `Test` tag to contact `1`)
+
+4. Awesome! You have successfully added the `Test` to the first contact in your contact list.
+
+### Editing a Tag: `tag edit`
+
+If you make a mistake or  want to update your tags, you can simply update them accordingly.
+
+Format: `tag edit t/TAG1 t/TAG2`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The new Tag must not have the same name as any other existing tags.
+</div>
+
+* `TAG1` is the current name of the tag and `TAG2` is the new name of the tag.
+
+Steps to take:
+1. Input `tag edit t/Test t/Test2` into the Command box. 
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** 
+
+This example is based of [`Adding a tag`](#adding-a-tag-to-a-contact-tag-add). Feel free to replace `Test` and `Test2` with any existing tag and a fresh new tag.
+</div>
+
+2. Press `Enter` on your keyboard.
+3. You should now see `Tag has changed from [Test] to [Test2]` in the Command result box. Images of Before and After are provided below. Within each contact, those which have `Test` tag, will now display `Test2` instead.
+
+before:
+(insert image a contact with `Test` tag)
+
+After:
+(insert image of the same contact with `Test2` tag instead of `Test`)
+
+4. Fantastic! You have successfully changed the `Test` tag to the `Test2` tag.
 
 ### Removing a Tag from a Contact: `tag remove`
 
-Removes an existing tag from an existing contact.
+You can remove a tag from a contact.
 * `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
 
 Format: `tag remove INDEX t/TAG`
 
-* Removes a `TAG` from the contact at the specified `INDEX`.
+Steps to take:
+1. Input `tag remove 1 t/Test2` into the Command box. 
 
-Example:
-* `tag remove 1 t/friend` removes the friend tag from the first contact shown in the list.
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** 
+
+This example is based of [`Editing a Tag`](#editing-a-tag-tag-edit). Feel free to replace `1` and `Test2` with any contact index and an existing tag within the contact indexed.
+</div>
+
+2. Press `Enter` on your keyboard.
+3. You should now see `Tag removed: [Test2]` in the Command result box just like the image below.
+
+(insert image of contact `1` without the `Test2` tag)
+
+4. Nice! You have successfully removed a tag from a contact.
+
+### Deleting a Tag: `tag delete`
+
+You can delete a tag from the tag list.
+
+Format: `tag delete t/TAG`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
+</div>
+
+Steps to take:
+1. Input `tag delete t/Test2` in the Command box. 
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** 
+
+This example is a follow-up of [`removing a Tag`](#removing-a-tag-from-a-contact-tag-remove). Feel free to replace `Test2` wit any existing tag.
+</div>
+
+2. Press `Enter` on your keyboard.
+3. You should now see `Tag deleted: [Test2]` in the Command result box just like the image below.
+
+(insert successful deletion og `Test2` tag)
+
+4. Terrific! You have successfully deleted a tag.
 
 ### Viewing tags `[Coming soon in v1.5]`
+
+Now that you made it here, you have successfully mastered the tag features! Refer to the [Commannd summary](#command-summary) for a quick reference to all tag commands. Let us move on to the [Customisation Features](#customisation-features).
 
 ## Customisation Features
 
@@ -404,7 +464,7 @@ Examples:
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
