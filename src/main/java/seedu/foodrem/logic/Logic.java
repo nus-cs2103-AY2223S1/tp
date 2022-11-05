@@ -21,10 +21,10 @@ public interface Logic {
      * @throws CommandException         If an error occurs during command execution.
      * @throws IllegalArgumentException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, IllegalArgumentException;
+    CommandResult<?> execute(String commandText) throws CommandException, IllegalArgumentException;
 
     /**
-     * Returns the FoodRem.
+     * Returns FoodRem.
      *
      * @see seedu.foodrem.model.Model#getFoodRem()
      */
