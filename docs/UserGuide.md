@@ -119,23 +119,7 @@ Format: `list`
 
 ### Finding keywords in contacts and/or modules: `find`
 
-Finds modules and contacts with any of the given keywords.
-
-Fields that you can filter for modules:
-
-* [Module code](#module-code)
-* [Lecture details](#lecture-details)
-* [Tutorial details](#tutorial-details)
-* [Assignment details](#assignment-details)
-
-Fields that you can filter for contacts:
-
-* [Person name](#name)
-* [Phone number](#phone-number)
-* [Module code](#module-code)
-* [Email address](#email-address)
-* [Telegram handle](#telegram-handle)
-* [Person tags](#tags)
+Finds modules and contacts with any of the given keywords in any field.
 
 Format: `find KEYWORD [MORE_KEYWORDS]…​`
 
