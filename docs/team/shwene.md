@@ -34,7 +34,7 @@ Given below are my contributions to the project.
     in the design of AB3. It has the effect of making each link object look visually distinct
     while having the benefit of being functional.
 
-* **Code contributed [coming soon]**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=shwene&breakdown=true)
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=shwene&breakdown=true)
 
 * **Documentation**
     * User Guide:
