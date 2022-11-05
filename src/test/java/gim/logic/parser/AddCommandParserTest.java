@@ -65,19 +65,6 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS
                 + SETS_DESC_ARM_CURLS + SETS_DESC_BENCH_PRESS
                 + REPS_DESC_BENCH_PRESS + DATE_DESC, new AddCommand(expectedExercise));
-
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS
-                + SETS_DESC_BENCH_PRESS + REPS_DESC_ARM_CURLS
-                + REPS_DESC_BENCH_PRESS + DATE_DESC, new AddCommand(expectedExercise));
-
-        // multiple tags - all accepted
-        Exercise expectedExerciseMultipleTags = new ExerciseBuilder(BENCH_PRESS)
-                .withDate(VALID_DATE)
-                .build();
-        assertParseSuccess(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS
-                + SETS_DESC_BENCH_PRESS + REPS_DESC_BENCH_PRESS + DATE_DESC,
-                new AddCommand(expectedExerciseMultipleTags));
     }
 
     @Test
