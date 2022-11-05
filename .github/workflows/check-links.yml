@@ -9,7 +9,7 @@ jobs:
       - name: Set up repository
         uses: actions/checkout@main
       - name: Install Jekyll
-        run: apt-get update && apt-get install -y jekyll
+        run: sudo apt-get update && sudo apt-get install -y jekyll
       - name: Set up server and check all links are valid
         working-directory: ${{ github.workspace }}/cli-test/linkchecker
         run: python serve-and-check.py
