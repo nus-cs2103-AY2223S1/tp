@@ -1,6 +1,10 @@
 @startuml
 !include style.puml
 
+skinparam defaultFontSize 23
+skinparam maxMessageSize 200
+skinparam noteFontSize 18
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
@@ -10,24 +14,24 @@ participant "CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "personToAdd:Person" as Person MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute(assign 1 1 \npr/200 sd/2020-10-12 \ned/2022-10-12)
+[-> LogicManager: execute(command_details)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(assign 1 1 \npr/200 sd/2020-10-12 \ned/2022-10-12)
+note right : command_details = "assign 1 1 \npr/200 sd/2020-10-12 \ned/2022-10-12"`
+LogicManager -> AddressBookParser: parseCommand(command_details)
 activate AddressBookParser
 
 create PolicyAssignCommandParser
-AddressBookParser -> PolicyAssignCommandParser :
+AddressBookParser -> PolicyAssignCommandParser
 activate PolicyAssignCommandParser
 
 PolicyAssignCommandParser --> AddressBookParser
 deactivate PolicyAssignCommandParser
 
-AddressBookParser --> PolicyAssignCommandParser: parse(assign 1 1 \npr/200 sd/2020-10-12 \ned/2022-10-12)
+AddressBookParser --> PolicyAssignCommandParser:: parse(command_details)
 activate PolicyAssignCommandParser
 
 create PolicyAssignCommand
@@ -46,28 +50,18 @@ deactivate AddressBookParser
 LogicManager -> PolicyAssignCommand : execute(model)
 activate PolicyAssignCommand
 
-PolicyAssignCommand -> Model : getFilteredPersonList()
+PolicyAssignCommand -> Model : get first policy, get first client
 activate Model
 
-Model --> PolicyAssignCommand : lastShownPersonList
 
-PolicyAssignCommand -> Model : get(0)
-Model --> PolicyAssignCommand: personToAdd
+Model --> PolicyAssignCommand: policyToAdd, personToAdd
 deactivate Model
 
-PolicyAssignCommand -> Model : getFilteredPolicyList()
+PolicyAssignCommand -> Model:addPolicy(command_details)
 activate Model
 
-Model --> PolicyAssignCommand : lastShownPolicyList
-
-PolicyAssignCommand -> Model : get(0)
-Model --> PolicyAssignCommand: policyToAdd
+Model --> PolicyAssignCommand
 deactivate Model
-
-PolicyAssignCommand -> Person:addPolicy(new AssignedPolicy \npolicyToAdd, 200, 2020-10-12 \n2022-10-12 )
-activate Person
-Person --> PolicyAssignCommand
-deactivate Person
 
 create CommandResult
 PolicyAssignCommand -> CommandResult
