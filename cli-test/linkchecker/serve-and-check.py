@@ -14,7 +14,7 @@ async def main():
 
 if __name__ == '__main__':
     with subprocess.Popen(['bundle', 'exec', 'jekyll serve'], cwd='../../docs') as p:
-        time.sleep(3.0)
+        time.sleep(10.0)
         asyncio.get_event_loop().run_until_complete(main())
         p.kill()
     sys.exit(exitstatus)
