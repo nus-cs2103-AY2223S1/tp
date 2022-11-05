@@ -1060,15 +1060,15 @@ testers are expected to do more *exploratory* testing.
    
     2. Test case: `sfind n/chicken`<br>
        Condition: There is a stall with the word `chicken` in its name<br>
-       Expected: Status message responds with the number of stalls that matches the name in command. GUI updates to show stalls that matches the name in command. 
+       Expected: Status message responds with the number of stalls with `chicken` as a word in the name. GUI updates to show these stalls. 
    
     3. Test case: `sfind t/opendaily`<br>
        Condition: There is a stall with the tag `opendaily`<br>
-       Expected: Status message responds with the number of stalls that matches the tag in command. GUI updates to show stalls that matches the tag in command.
+       Expected: Status message responds with the number of stalls that has `opendaily` as a tag. GUI updates to show these stalls.
    
     4. Test case: `sfind n/chicken t/opendaily`<br>
-       Condition: There is a stall with the word `chicken` in its name or with the tag `opendaily`<br>
-       Expected: Status message responds with the number of stalls that matches the name and tag in command. GUI updates to show stalls that matches the name or tag in command.
+       Condition: There is a stall with the word `chicken` in its name and/or with the tag `opendaily`<br>
+       Expected: Status message responds with the number of stalls with `chicken` as a word in the name and/or has `opendaily` as a tag. GUI updates to show these stalls.
    
     5. Test case: `sfind n/`<br>
        Expected: No stalls are found. GUI updates to show no stalls.
@@ -1087,15 +1087,15 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `rfind n/chicken`<br>
        Condition: There is a review with the word `chicken` in its stall name<br>
-       Expected: Status message responds with the number of reviews that matches the stall name in command. GUI updates to show reviews that matches the stall name in command.
+       Expected: Status message responds with the number of reviews with `chicken` as a word in the stall name. GUI updates to show these reviews.
 
     3. Test case: `rfind t/delicious`<br>
        Condition: There is a review with the tag `delicious`<br>
-       Expected: Status message responds with the number of reviews that matches the tag in command. GUI updates to show reviews that matches the tag in command.
+       Expected: Status message responds with the number of reviews that has `delicious` as a tag. GUI updates to show these reviews.
 
     4. Test case: `rfind n/chicken t/delicious`<br>
        Condition: There is a review with the word `chicken` in its stall name or with the tag `delicious`<br>
-       Expected: Status message responds with the number of reviews that matches the stall name and tag in command. GUI updates to show reviews that matches the stall name or tag in command.
+       Expected: Status message responds with the number of reviews with `chicken` as a word in the stall name and/or has `delicious` as a tag. GUI updates to show these reviews.
    
     5. Test case: `rfind n/`<br>
        Expected: No reviews are found. GUI updates to show no reviews.
