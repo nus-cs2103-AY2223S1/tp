@@ -182,7 +182,12 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return this.title + " " + this.issueId.uiRepresentation();
     }
 
-    //To modify based on format to be saved in json file
+    /**
+     * Check if the project has a valid id.
+     */
+    public boolean hasValidId() {
+        return this.issueId.isValid();
+    }
     @Override
     public String toString() {
         return this.title.toString();

@@ -70,6 +70,10 @@ public class AddIssueCommand extends IssueCommand {
 
         Issue toAdd = toAddWithoutModel.apply(model);
 
+        if (!toAdd.hasValidId()) {
+            throw new CommandException(ID_OVERFLOW);
+        }
+
         if (model.hasIssue(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
         }
