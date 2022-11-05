@@ -468,11 +468,11 @@ Format: `rfind [d/RECORD_DATE_TIME] [r/DATA] [m/MEDICATION]`
 * The order of the keywords does not matter. e.g. `r/Has SARS` will match `SARS Has` stored in record data
 * Only full words will be matched e.g. `Covid` will not match `Covid-19`.
 * The order that the fields are specified does not matter. eg. `r/SARS m/Panadol` is equivalent to `m/Panadol r/SARS`
-* PREFIXES specify the field of a record that the keywords will be matched to.
+* FLAGS specify the field of a record that the keywords will be matched to.
   * If the specified field of a record contains at least one matching keyword, the record is returned.
   * e.g. `m/Paracetamol Benzonatate` will return records with medications of `Benzonatate Benzonatate`, `Paracetamol Paracetamol`.
-* Specifying more PREFIXES increases the constraint of the search.
-  * If all fields of a record that is specified by the PREFIX contains at least one matching keyword each, the record is returned.
+* Specifying more FLAGS increases the constraint of the search.
+  * If all fields of a record that is specified by the FLAG contains at least one matching keyword each, the record is returned.
   * e.g. `r/Covid-19 m/cold` will only return records that contains both `Covid-19` in record data and `cold` in record medication.
 
 Examples:
