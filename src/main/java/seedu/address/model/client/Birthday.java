@@ -60,9 +60,7 @@ public class Birthday extends Date {
      * Returns a new Birthday with the current year.
      */
     public Birthday upcomingBirthday() {
-        int year = LocalDate.now().getYear();
-        int mth = date.getMonthValue();
-        int day = date.getDayOfMonth();
-        return new Birthday(LocalDate.of(year, mth, day));
+        int yearDifference = LocalDate.now().getYear() - date.getYear();
+        return new Birthday(date.plusYears(yearDifference));
     }
 }
