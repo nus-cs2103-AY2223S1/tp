@@ -800,7 +800,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No food is edited. Error details are shown on the result display.
 
     4. Test case: `edit 1 n/P@ncake`<br />
-       Expected: No food is edited. Error details is shown on the result display.
+       Expected: No food is edited. Error details are shown on the result display.
 
     5. Test case: `edit 4`<br />
        Expected: No food is edited. Error details is shown on the result display.
