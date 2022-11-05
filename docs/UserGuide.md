@@ -638,8 +638,6 @@ Example:
 
 <img src="images/ug/undoredocommand/redo1.PNG" width="800px" height ="400px">
 
-
-
 ## 1.11 Clear `clear`
 
 Deletes all patients, appointments and bills from HealthContact.
@@ -701,3 +699,4 @@ HealthContact data are saved as a JSON file `[JAR file location]/data/healthcont
 
 3. Q: What do I do if the data on the application panels are too long and are partially hidden by "..."?
 - Use select commands to view the details or expand the window.
+- 

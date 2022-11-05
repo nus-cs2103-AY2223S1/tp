@@ -5,13 +5,13 @@ title: Guok Wei Jie's Project Portfolio Page
 
 ## Project: HealthContact
 **Overview**: <br>
-HealthContact is a desktop application built for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
-It helps to keep track and manage patient data, appointments and bills, especially for clinics who do not have apps to expedite the process.
+HealthContact is a desktop application built for the receptionist of a family clinic who arranges telemedicine services for patients.
+It helps to manage and keep track of patient data, appointments and bills, especially for clinics who do not have apps to expedite the process.
 
 Given below are my contributions to the project.
 
 ### Code contributed:
-[Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=guokweijie&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=guokweijie&tabRepo=AY2223S1-CS2103T-W08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+[Link to tP Code Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=guokweijie&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=guokweijie&tabRepo=AY2223S1-CS2103T-W08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### Enhancements implemented:
 * FindPatientCommand
