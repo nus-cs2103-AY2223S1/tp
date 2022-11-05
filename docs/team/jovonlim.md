@@ -26,8 +26,9 @@ Updated `Intro`, `Quick Start` sections and added `Book` command, `Edit Appts` c
 
 Contributions to the DG:
 
-Updated UML diagrams and descriptions for `Ui`, `Model` and `Storage`.
-Added UML diagrams and descriptions for `book` and `edit appt` commands.
+* Updated UML diagrams and descriptions for `Ui`, `Model` and `Storage`.
+* Added UML diagrams and descriptions for `Book` and `Edit Appts` commands.
+* Added Appendix Effort.
 
 Contributions to team-based tasks:
 
