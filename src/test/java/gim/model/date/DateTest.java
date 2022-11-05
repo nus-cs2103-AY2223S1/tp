@@ -25,38 +25,72 @@ public class DateTest {
     }
 
     /**
-     * Test for invalid date where the formatting does not conform to dd/MM/uuuu format.
+     * Tests for invalid date where the formatting does not conform to dd/MM/uuuu format.
      */
+
     @Test
-    public void constructor_invalidDate_throwsIllegalArgumentException() {
-        String invalidDateEmptyString = "";
-        String invalidDateWhitespaces = "     ";
+    public void constructor_invalidDateOne_throwsIllegalArgumentExceptionOne() {
         String invalidDateFormatOne = "005/5/2022";
-        String invalidDateFormatTwo = "05/005/2022";
-        String invalidDateFormatThree = "5/05/20220";
-        String invalidDateFormatFour = "20 October 2022";
-        String invalidDateFormatFive = "32/01/2022";
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateEmptyString));
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateWhitespaces));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatOne));
+    }
+
+    @Test
+    public void constructor_invalidDateTwo_throwsIllegalArgumentException() {
+        String invalidDateFormatTwo = "05/005/2022";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatTwo));
+    }
+
+    @Test
+    public void constructor_invalidDateThree_throwsIllegalArgumentException() {
+        String invalidDateFormatThree = "5/05/20220";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatThree));
+    }
+
+    @Test
+    public void constructor_invalidDateFour_throwsIllegalArgumentException() {
+        String invalidDateFormatFour = "20 October 2022";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatFour));
+    }
+
+    @Test
+    public void constructor_invalidDateFive_throwsIllegalArgumentException() {
+        String invalidDateFormatFive = "32/01/2022";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatFive));
     }
+
+    @Test
+    public void constructor_invalidDateWhitespaces_throwsIllegalArgumentException() {
+        String invalidDateWhitespaces = "     ";
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateWhitespaces));
+    }
+
+    @Test
+    public void constructor_invalidDateEmptyString_throwsIllegalArgumentException() {
+        String invalidDateEmptyString = "";
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateEmptyString));
+    }
+
 
     /**
      * Test for invalid date where the date is non-existent, but is not covered by the regex.
      * Example: 31st February 2022 is a non-existent date.
      */
-    @Test
-    public void constructor_nonExistentDate_throwsIllegalArgumentException() {
-        String nonExistentDateOne = "31/02/2022";
-        String nonExistentDateTwo = "29/02/2022"; // 2022 is a non-leap year
-        String nonExistentDateThree = "31/04/2022";
 
+    @Test
+    public void constructor_nonExistentDateOne_throwsIllegalArgumentException() {
+        String nonExistentDateOne = "31/02/2022";
         assertThrows(IllegalArgumentException.class, () -> new Date(nonExistentDateOne));
+    }
+
+    @Test
+    public void constructor_nonExistentDateTwo_throwsIllegalArgumentException() {
+        String nonExistentDateTwo = "29/02/2022"; // 2022 is a non-leap year
         assertThrows(IllegalArgumentException.class, () -> new Date(nonExistentDateTwo));
+    }
+
+    @Test
+    public void constructor_nonExistentDateThree_throwsIllegalArgumentException() {
+        String nonExistentDateThree = "31/04/2022";
         assertThrows(IllegalArgumentException.class, () -> new Date(nonExistentDateThree));
     }
 
