@@ -256,8 +256,11 @@ Step 6. `SetPathFileCommand#execute()` method is called in `LogicManager`. This 
 
 Step 7. `SetPathFileCommand#execute()` method will instantiate a new `Person` object with the original `Person` object's attributes and the new filePath. This `Person` object be set in `Model` and updated in `filterPersonList`.
 
-The following sequence diagram shows how the assigning filepath to a client feature works.
+The following sequence diagram shows how the assigning filepath to a client works up till the setPersonFileCommand.
 ![SetPersonFileSequenceDiagram](images/DeveloperGuide/FilePath/FilePathSequenceDiagram.png)
+
+The next sequence diagram shows how setPersonFileCommand works.
+![SetPersonFileSequenceDiagram](images/DeveloperGuide/FilePath/FilePathExecute().png)
 
 The following activity diagram shows how the assigning filepath to a client feature works.
 ![SetPersonFileActivityDiagram](images/DeveloperGuide/FilePath/FilePathActivityDiagram.png)
