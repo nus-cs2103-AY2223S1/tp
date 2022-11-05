@@ -50,6 +50,9 @@ public class CommandTestUtil {
     public static final String VALID_ID_BOB = "bob";
     public static final String VALID_PRICE_1 = "1";
     public static final String VALID_PRICE_2 = "2";
+    public static final String VALID_PRICE_3 = "1000000";
+    public static final String VALID_LISTING_ID_BEDOK = "BEDOK_SOUTH";
+    public static final String VALID_LISTING_ID_1= "1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
