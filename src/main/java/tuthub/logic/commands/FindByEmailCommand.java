@@ -16,7 +16,7 @@ public class FindByEmailCommand extends FindByPrefixCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutors whose email contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_EMAIL + " alex john";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_EMAIL + "alex john";
 
     private final EmailContainsKeywordsPredicate predicate;
 

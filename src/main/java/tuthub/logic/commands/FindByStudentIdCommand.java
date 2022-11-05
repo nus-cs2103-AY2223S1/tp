@@ -15,7 +15,7 @@ public class FindByStudentIdCommand extends FindByPrefixCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutors whose student id matches "
             + "the specified keywords and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_STUDENTID + " A0000000X";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_STUDENTID + "A0000000X";
 
     private final StudentIdContainsKeywordsPredicate predicate;
 

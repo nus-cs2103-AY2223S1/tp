@@ -15,7 +15,7 @@ public class FindByPhoneCommand extends FindByPrefixCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutors whose phone number contains any of "
             + "the specified keywords and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_PHONE + " 99999999";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_PHONE + "99999999";
 
     private final PhoneContainsKeywordsPredicate predicate;
 

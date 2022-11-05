@@ -15,7 +15,7 @@ public class FindByRatingCommand extends FindByPrefixCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutors whose rating matches "
             + "the specified keywords and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_RATING + " 4.1";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_RATING + "4.1";
 
     private final RatingContainsKeywordsPredicate predicate;
 

@@ -20,7 +20,7 @@ public class MailCommand extends Command {
     public static final String COMMAND_WORD = "mail";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Launches the mail composing window with "
-            + "the \"to\" specified for a tutor or all tutors displayed. "
+            + "the \"to\" specified for a tutor or all tutors displayed.\n"
             + "Parameters: "
             + "INDEX or \"all\" \n"
             + "Example: " + COMMAND_WORD + " "

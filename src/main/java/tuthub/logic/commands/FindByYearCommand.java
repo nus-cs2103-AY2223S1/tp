@@ -15,7 +15,7 @@ public class FindByYearCommand extends FindByPrefixCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutors whose year matches the "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_YEAR + " 3";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_YEAR + "3";
 
     private final YearContainsKeywordsPredicate predicate;
 

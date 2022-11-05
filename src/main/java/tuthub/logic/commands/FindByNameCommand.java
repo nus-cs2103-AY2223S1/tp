@@ -16,7 +16,7 @@ public class FindByNameCommand extends FindByPrefixCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutors whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alex john";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alex john";
 
     private final NameContainsKeywordsPredicate predicate;
 
