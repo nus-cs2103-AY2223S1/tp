@@ -68,7 +68,7 @@ public class DeleteStaffCommand extends Command {
         Staff toDelete = staffToDelete.orElseThrow(() ->
                 new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX));
 
-        boolean isSuccessfulDelete = model.removeStaffFromProject(new ProjectName(projectName), index);
+        boolean isSuccessfulDelete = model.isSuccessStaffDelete(new ProjectName(projectName), index);
         if (!isSuccessfulDelete) {
             throw new CommandException(String.format(MESSAGE_INVALID_STAFF, toDelete.getStaffName()));
         }

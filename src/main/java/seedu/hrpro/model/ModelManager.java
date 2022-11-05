@@ -208,7 +208,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean removeStaffFromProject(ProjectName projectName, Index index) {
+    public boolean isSuccessStaffDelete(ProjectName projectName, Index index) {
         requireNonNull(projectName);
         requireNonNull(index);
 
@@ -243,13 +243,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void editStaffInProject(ProjectName projectName, Staff toEdit, Staff editWith) {
+    public boolean isSuccessStaffEdit(ProjectName projectName, Staff toEdit, Staff editWith) {
         requireNonNull(projectName);
         requireNonNull(toEdit);
 
         Optional<Project> projectOptional = getProjectWithName(projectName);
         Project project = projectOptional.get();
+        UniqueStaffList staffList = project.getStaffList();
+        if (!staffList.contains(toEdit)) {
+            return false;
+        }
         project.getStaffList().setStaff(toEdit, editWith);
+        return true;
     }
 
     //=========== Tasks ================================================================================

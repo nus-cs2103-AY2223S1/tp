@@ -163,7 +163,7 @@ public interface Model {
     /**
      * Removes the staff at {@code index} from the staff list of the project with {@code projectName}.
      */
-    boolean removeStaffFromProject(ProjectName projectName, Index index);
+    boolean isSuccessStaffDelete(ProjectName projectName, Index index);
 
     /**
      * Adds the staff {@code toAdd} to the staff list of the project with {@code projectName}.
@@ -174,7 +174,7 @@ public interface Model {
      * Edits the staff {@code toEdit} in the staff list of the project with {@code projectName}
      * with {@code editWith}.
      */
-    void editStaffInProject(ProjectName projectName, Staff toEdit, Staff editWith);
+    boolean isSuccessStaffEdit(ProjectName projectName, Staff toEdit, Staff editWith);
 
     //=========== Tasks ================================================================================
     /**
