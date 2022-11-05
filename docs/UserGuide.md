@@ -41,17 +41,23 @@ DevEnable is a **desktop app for developers to manager their projects, optimized
 
 **:information_source: Notes about the command format:**<br>
 
-* Commands are in the following format: `COMMAND FLAG [ID/ARGUMENTS]*`. Every command starts with a command keyword, followed by the command flag, then the arguments for said command. Typically, flags start with a dash `-`, and arguments start with an identifier `ID/ARGUMENT`.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `project -a n/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used as `project -a n/PROJECT_NAME`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/PROJECT_NAME [r/REPOSITORY]` can be used as `project -a n/ProjectY r/AgentX/ProjectY`.
+  e.g. `n/PROJECT_NAME [r/REPOSITORY]` can be used as `project -a n/ProjectY r/AgentX/ProjectY` or
+  `project -a n/ProjectY`.
+
+* Commands are in the following format: `COMMAND FLAG [ID/ARGUMENTS]*`. Every command starts with a command keyword,
+  followed by the command flag, then the arguments for said command. Typically, flags start with a dash `-`, and
+  arguments start with an identifier `ID/ARGUMENT`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `client -a p/PROJECT_ID n/CLIENT_NAME [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`, `client -a p/PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [m/CLIENT_MOBILE]` are both acceptable.
+  e.g. if the command specifies `client -a p/PROJECT_ID n/CLIENT_NAME [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`, 
+  `client -a p/PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [m/CLIENT_MOBILE]` are both acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. (Does not apply for Sort Command) <br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
+  of the parameter will be taken. (Does not apply for Sort Command and Find Command) <br>
   e.g. if you specify `m/12341234 m/56785678`, only `m/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
@@ -90,7 +96,7 @@ Format: `exit`
 
 ### Adding a project: `project -a`
 
-Adds a project to the AddressBook. A unique project ID will be automatically generated.
+Adds a project to the ProjectBook. A unique project ID will be automatically generated.
 
 ![add project command](images/AddProjectCommand.png)
 
@@ -103,15 +109,15 @@ Format: `project -a n/PROJECT_NAME [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
 * `DEADLINE` must be in the format yyyy-mm-dd.
 
 Examples:
-* `project -a n/Coding101` Adds a project with `PROJECT_NAME` Coding101 to the `ProjectList`.
+* `project -a n/Coding101` Adds a project with `PROJECT_NAME` Coding101 to the list of projects.
 * `project -a n/MyFavProject r/Jeff/MyFavProject` Adds a project with `PROJECT_NAME` MyFavProject and 
-`REPOSITORY` Jeff/MyFavProject to the `ProjectList`.
-* `project -a n/AnotherProject c/1` Adds a project with `PROJECT_NAME` AnotherProject to the `ProjectList` and adds a
+`REPOSITORY` Jeff/MyFavProject to the list of projects.
+* `project -a n/AnotherProject c/1` Adds a project with `PROJECT_NAME` AnotherProject to the list of projects and adds a
 client with `CLIENT_ID` 1 to the project.
 * `project -a n/OneMoreProject c/1 d/2022-03-07` Adds a project with `PROJECT_NAME` OneMoreProject and `PROJECT_DEADLINE`
-2022-03-07 to the `ProjectList` and adds a client with `CLIENT_ID` 1 to the project.
+2022-03-07 to the list of projects and adds a client with `CLIENT_ID` 1 to the project.
 * `project -a n/LastProject d/2023-10-01 r/Dave/LastProject c/2` Adds a project with `PROJECT_NAME` LastProject and 
-`DEADLINE` 2023-10-01 and `REPOSITORY` Dave/LastProject to the `ProjectList` and adds a client with `CLIENT_ID` 2 
+`DEADLINE` 2023-10-01 and `REPOSITORY` Dave/LastProject to the list of projects and adds a client with `CLIENT_ID` 2 
 to the project.
 
 ### Editing a project : `project -e`
@@ -168,6 +174,7 @@ Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY] [p/PROJECT_ID] [c/CLIENT_ID]
 * Finds all the projects with the specified `PROJECT_NAME`, `REPOSITORY`, `PROJECT_ID`, `CLIENT_ID` and `CLIENT_LABEL`.
 * Finds all the projects such that the fields under the project contain at least one word from the keywords provided
   after each search criteria.
+* At least one of the optional fields must be provided.
 * The keywords provided must be valid arguments for their respective search criteria.
 
 Examples:
@@ -205,7 +212,7 @@ Sorts all projects based on a specified key.
 Format: `project -s [p/PROJECT_ID] [d/DEADLINE] [i/ISSUE_COUNT] [n/PROJECT_NAME]`
 
 * Exactly one optional value (the prefix/the sorting key) is to be provided 
-(Command will not accept multiple optional values).
+(Command will not accept multiple optional values or repeated prefixes).
 * Input 0/1 for each Prefix (e.g. p/0):
   * For `PROJECT_ID`, 0 for ascending and 1 for descending.
   * For `DEADLINE`, 0 for chronological and 1 for reverse chronological.
@@ -229,7 +236,7 @@ Format: `project -v`
 
 ### Adding a client : `client -a`
 
-Adds a client to the AddressBook. A unique client ID will be automatically generated. 
+Adds a client to the ProjectBook. A unique client ID will be automatically generated. 
 
 ![add client command](images/AddClientCommand.png)
 
@@ -243,14 +250,14 @@ Format: `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]
 * `CLIENT_EMAIL` must be in the format LOCAL_NAME@DOMAIN_NAME.com (local name must be longer than 3 characters).
 
 Examples:
-*  `client -a n/Amy p/1` Adds a client with `CLIENT_NAME` Amy to the `ClientList` and to the project with 
+*  `client -a n/Amy p/1` Adds a client with `CLIENT_NAME` Amy to the list of clients and to the project with 
    `PROJECT_ID` 1.
 *  `client -a n/Bob p/2 m/12345678` Adds a client with `CLIENT_NAME` Bob and `CLIENT_MOBILE` 12345678 to the 
-   `ClientList` and to the project with `PROJECT_ID` 2.
+   list of clients and to the project with `PROJECT_ID` 2.
 *  `client -a n/Charlie e/charlie@gmail.com p/3` Adds a client with `CLIENT_NAME` Charlie and `CLIENT_EMAIL` 
-   charlie@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 3.
+   charlie@gmail.com to the list of clients and to the project with `PROJECT_ID` 3.
 *  `client -a n/Dave m/12345678 e/dave@gmail.com p/4` Adds a client with `CLIENT_NAME` Dave, `CLIENT_MOBILE` 
-   12345678 and `CLIENT_EMAIL` dave@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 4.
+   12345678 and `CLIENT_EMAIL` dave@gmail.com to the list of clients and to the project with `PROJECT_ID` 4.
 
 ### Editing a client : `client -e`
 
@@ -306,6 +313,7 @@ Format: `client -f [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL] [c/CLIENT_
 * Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_ID`, `CLIENT_MOBILE` and `CLIENT_EMAIL`.
 * Finds all the clients such that the fields under the client contain at least one word from the keywords provided 
   after each search criteria.
+* At least one of the optional fields must be provided.
 * The keywords provided must be valid arguments for their respective search criteria.
 
 Examples:
@@ -345,7 +353,7 @@ Sorts all clients based on a specified key.
 Format: `client -s [c/CLIENT_ID] [n/CLIENT_NAME]`
 
 * Exactly one optional value (sorting key) to be provided 
-(Command will not accept multiple optional values).
+(Command will not accept multiple optional values or repeated prefixes).
 * Input 0/1 for each Prefix (e.g. c/1):
   * For `CLIENT_ID`, 0 for ascending and 1 for descending.
   * For `CLIENT_NAME`, 0 for alphabetical and 1 for reverse alphabetical
@@ -367,7 +375,7 @@ Format: `client -v`
 
 ### Adding an issue : `issue -a`
 
-Adds an issue to the AddressBook. A unique issue ID will be automatically generated. 
+Adds an issue to the ProjectBook. A unique issue ID will be automatically generated. 
 
 ![add_issue_command](images/AddIssueCommand.png)
 
@@ -380,12 +388,12 @@ Format: `issue -a p/PROJECT_ID t/TITLE [d/DEADLINE] [u/URGENCY]`
 * `URGENCY` must be an integer from 0 to 3, 0 for NONE, 1 for LOW, 2 for MEDIUM and 3 for HIGH
 
 Examples:
-* `issue -a p/1 t/Fix Ui` Adds an issue with `TITLE` Fix Ui to the overall `IssueList` and to the `IssueList` of the 
-project with `PROJECT_ID` 1.
-* `issue -a p/2 t/Add tests u/2`Adds an issue with `TITLE` Add tests and `URGENCY` MEDIUM(2) to the overall `IssueList`
-and to the `IssueList` of the project with `PROJECT_ID` 2.
+* `issue -a p/1 t/Fix Ui` Adds an issue with `TITLE` Fix Ui to the overall list of issues and to the list of issues of 
+the project with `PROJECT_ID` 1.
+* `issue -a p/2 t/Add tests u/2`Adds an issue with `TITLE` Add tests and `URGENCY` MEDIUM(2) to the overall list of 
+issues and to the list of issues of the project with `PROJECT_ID` 2.
 * `issue -a t/Design GUI u/0 d/2022-09-12 p/3` Adds an issue with `TITLE` Design GUI, `URGENCY` NONE(0) and `DEADLINE` 
-2022-09-12 to the overall `IssueList` and to the `IssueList` of the project with `PROJECT_ID` 3.
+2022-09-12 to the overall list of issues and to the list of issues of the project with `PROJECT_ID` 3.
 
 ### Editing an issue : `issue -e`
 
@@ -442,6 +450,7 @@ Format: `issue -f [t/TITLE] [n/PROJECT_NAME] [p/PROJECT_ID] [u/URGENCY] [s/STATU
 * Finds all the issues with the specified `TITLE`, `PROJECT_ID`, `PROJECT_NAME`, `URGENCY`, `STATUS` and `ISSUE_ID`.
 * Finds all the issues such that the fields under the issue contain at least one word from the keywords provided
   after each search criteria.
+* At least one of the optional fields must be provided.
 * The keywords provided must be valid arguments for their respective search criteria.
 
 Examples:
@@ -481,7 +490,7 @@ Sorts all issues based on a specified key.
 Format: `issue -s [i/ISSUE_ID] [d/DEADLINE] [u/URGENCY]`
 
 * Exactly one optional value (sorting key) to be provided 
-(Command will not accept multiple optional values).
+(Command will not accept multiple optional values or repeated prefixes).
 * Input 0/1 for each Prefix (e.g. i/0):
   * For `ISSUE_ID`, 0 for ascending and 1 for descending.
   * For `DEADLINE`, 0 for chronological and 1 for reverse chronological.

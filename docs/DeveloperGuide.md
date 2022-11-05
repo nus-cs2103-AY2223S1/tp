@@ -235,13 +235,13 @@ should end at destroy marker (X) but due to a limitation of PlantUML, the lifeli
 
 #### Design considerations:
 
-**Aspect: Add command access to the model: **
+**Aspect: Add command access to the model:**
 
 **Alternative 1: (current choice)** Only `AddProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
 * Pros: No coupling between Parser class and Model class.
 * Cons: Mappings could not be performed within the parser.
-* 
-**Alternative 2: ** Refactor `ProjectCommandParser:parseAddProjectCommand`, `IssueCommandParser:parseAddIssueCommand` and `ClientCommandParser:parseAddClientCommand` to have access to the Model.
+
+**Alternative 2:** Refactor `ProjectCommandParser:parseAddProjectCommand`, `IssueCommandParser:parseAddIssueCommand` and `ClientCommandParser:parseAddClientCommand` to have access to the Model.
  * Pros: Mappings could be performed within the parser which fitted its responsibility.
  * Cons: May result in extra coupling between Parser class and Model class.
  
@@ -274,7 +274,7 @@ Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
 Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
-![AddSequenceDiagram](images/EditSequenceDiagram.png)
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
 #### Design considerations: 
 
@@ -282,19 +282,61 @@ Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
 
 **Alternative 1: (current choice)** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`. 
 Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, set the fields to the new field objects.
-* Pros: Logic is handled within the parser and no creation of a new entity object.
-* Cons: Many new objects being created 
+* Pros: No creation of a new entity object
+* Cons: Requires use of multiple accessors for various fields of each entity.
 
-**Alternative 2:** For each possible field to be edited, pass the parsed arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`. Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, access each of the fields and set the parsed arguments as the new parameters.
-* Pros: No new objects being created.
-* Cons: Requires many steps to access each field and set the value through a setter, logic is also then handled by the commands
-
-**Alternative 3:** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
+**Alternative 2:** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
 Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, retrieve the entity to be edited and create a new entity with the new field objects and the original fields not to be edited.
-* Pros: Logic is handled within the parser
-* Cons: Creation of a new entity object requiring modification of the entity list 
+* Pros: Only requires getters for fields, preventing field values from being easily edited.
+* Cons:  Creation of a new entity object, requiring modification of entity list.
 
-As logic should be handled in the parser and to minimise modifications of the entity list (which could affect entity IDs), Alternative 1 was chosen as the current design for editing the fields of the entity.
+Taking into consideration the potential issues with ID that came with modifying the entity lists, Alternative 1 was chosen as the current design for editing fields of an entity.
+
+### Mark/Unmark Issue Command Feature
+
+An important feature of DevEnable is the ability to mark issues as completed or incomplete. 
+The command word will be `issue`, followed by the flag `-m`, representing a Mark command, which marks the issue as completed, or `-u` representing an Unmark command, which marks the issue as incomplete. 
+Next, it is followed by a compulsory argument, representing the `IssueID`, to initialise the issue.
+
+#### Mark Issue Command
+
+When a user enters a valid Mark command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser and calls the `IssueCommandParser#parse` method.
+Within this method, the `-m` flag is detected, calling `IssueCommandParser#parseMarkIssueCommand`, which checks for input argument validity (only positive integers) with the `ParserUtil#parseIssueID` method.
+A new `status` object, initialised with `isCompleted` equals true is created. The parsed issueid and new status object are passed into and returned in an instance of the `MarkIssueCommand`, `MarkIssueCommand#execute` is called, 
+which retrieves the issue with the parsed issueid from the `IssueList` in the system. The status of the issue is set to the new status object, list is updated and the UI displays the updated filtered issue list.
+
+Example Use: `issue -m 1`
+
+#### Unmark Issue Command
+
+When a user enters a valid Unmark command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser and calls the `IssueCommandParser#parse` method.
+Within this method, the `-u` flag is detected, calling `IssueCommandParser#parseUnmarkIssueCommand`, which checks for input argument validity (only positive integers) with the `ParserUtil#parseIssueID` method.
+A new `status` object, initialised with `isCompleted` equals false is created. The parsed issueid and new status object are passed into and returned in an instance of the `UnmarkIssueCommand`, `UnmarkIssueCommand#execute` is called,
+which retrieves the issue with the parsed issueid from the `IssueList` in the system. The status of the issue is set to the new status object, list is updated and the UI displays the updated filtered issue list.
+
+Example Use: `issue -u 2`
+
+#### The following sequence diagram shows how the mark command operation works for mark an issue entity:
+Example: `issue -m 1`
+
+#### Design Considerations
+
+**Aspect: Number of commands and required inputs**
+
+**Alternative 1: (current choice)** Mark command to mark status as completed and Unmark command to mark status as incomplete, regardless of current status of issue.
+* Pros: Requires minimal input from the user. User can set the status regardless of the current status.
+* Cons: User is required to know two different command flags
+
+**Alternative 2:** Mark command which flips the status of the issue (completed issues become incomplete and vice versa).
+* Pros: Requires minimal input from the user
+* Cons: Rather than setting the state, it is simply changed from the current state. User has to check current status of each issue before marking it.
+
+**Alternative 3:** Mark command which takes in issue id as well as the completion status to set the issue to (completed or incomplete)
+* Pros: Requires only one command to set it to the desired status. User can set the status regardless of current status.
+* Cons: Requires user to input the desired status (completed or incomplete) when marking.
+
+With user convenience in mind, Alternative 1 was chosen as the design method, since it allowed users to set the desired status regardless of current status 
+with the shortest and easiest to type command possible. 
 
 --------------------------------------------------------------------------------------------------------------------
 
