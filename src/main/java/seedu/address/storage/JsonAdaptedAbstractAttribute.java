@@ -48,16 +48,16 @@ class JsonAdaptedAbstractAttribute {
     }
 
     /**
-     * Converts this Jackson-friendly adapted attribute object into the model's
-     * {@code Attribute} object.
+     * Converts this Jackson-friendly adapted attribute object into the model's {@code Attribute}
+     * object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in
-     *                               the adapted attribute.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted
+     *         attribute.
      */
     public Attribute<?> toModelType() throws IllegalValueException {
         assert data != null;
         if (!data.containsKey(KEY_TYPE) || !data.containsKey(KEY_CONTENT)
-                || !data.containsKey(KEY_DISPLAY_FORMAT) || !data.containsKey(KEY_STYLE_FORMAT)) {
+            || !data.containsKey(KEY_DISPLAY_FORMAT) || !data.containsKey(KEY_STYLE_FORMAT)) {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
 
@@ -90,7 +90,7 @@ class JsonAdaptedAbstractAttribute {
                 throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
             }
 
-            modelAttribute = new Address((String) modelValue);
+            modelAttribute = new Name((String) modelValue);
             break;
         case Phone.TYPE:
             if (!Phone.isValidPhone((String) modelValue)) {
@@ -101,8 +101,7 @@ class JsonAdaptedAbstractAttribute {
             break;
         default:
             modelAttribute = new AbstractAttribute<Object>(modelTypeName, modelValue,
-                    modelDisplayFormat, modelStyleFormat) {
-            };
+                modelDisplayFormat, modelStyleFormat) {};
         }
         return modelAttribute;
     }
