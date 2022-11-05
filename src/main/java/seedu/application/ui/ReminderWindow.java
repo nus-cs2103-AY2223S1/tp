@@ -31,6 +31,9 @@ public class ReminderWindow extends UiPart<Stage> {
         root.setHeight(400);
         root.setWidth(400);
 
+        for (Application application : applicationListWithUpcomingInterview) {
+            assert application.hasInterview(); //ensure every application does not contain empty interview
+        }
         upcomingInterviewListView.setItems(applicationListWithUpcomingInterview);
         upcomingInterviewListView.setCellFactory(listView -> new InterviewListPanel.InterviewListViewCell());
     }
