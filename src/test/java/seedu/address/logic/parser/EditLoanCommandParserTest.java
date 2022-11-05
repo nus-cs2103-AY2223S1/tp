@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NON_POSITIVE_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_AMOUNT_DESC;
@@ -58,8 +59,8 @@ public class EditLoanCommandParserTest {
                 MESSAGE_INVALID_FORMAT);
 
         // invalid preamble
-        assertParseFailure(parser, "313-" + VALID_AMOUNT + VALID_REASON,
-                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "313-" + AMOUNT_DESC + REASON_DESC,
+                String.format(MESSAGE_INVALID_NAME, "\"313-\""));
     }
 
     @Test
