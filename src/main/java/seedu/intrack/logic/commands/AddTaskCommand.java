@@ -34,6 +34,7 @@ public class AddTaskCommand extends Command {
      */
     public AddTaskCommand(Task task) {
         requireNonNull(task);
+        assert task != null : "task should not be null";
 
         this.task = task;
     }

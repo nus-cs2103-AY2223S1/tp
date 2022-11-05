@@ -31,6 +31,7 @@ public class DeleteCommand extends Command {
      * @param targetIndex Index of the internship application to be deleted.
      */
     public DeleteCommand(Index targetIndex) {
+        assert targetIndex.getOneBased() > 0 : "index should be a positive unsigned integer";
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
