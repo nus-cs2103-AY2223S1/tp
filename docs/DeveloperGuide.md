@@ -20,10 +20,11 @@ title: Developer Guide
     * [Common classes](#common-classes)
 * [**Implementation**](#implementation)
     * [Resident class](#the-resident-class)
-    * [Displaying results](#changes-in-displaying-results)
+    * [Displaying data](#displaying-data)
     * [Show/Hide fields](#showhide-feature-for-resident-fields)
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
+    * [Command history](#command-history)
 * [**Conclusion**](#conclusion)
 * [**Appendix: Project requirements**](#appendix-project-requirements)
     * [Product scope](#product-scope)
@@ -36,6 +37,7 @@ title: Developer Guide
     * [Modifying residents](#modifying-residents)
     * [File management](#file-management)
     * [Venue management](#venue-management)
+    * [Quality-of-life](#quality-of-life)
 
 ---
 
@@ -495,21 +497,29 @@ Due to file switching requiring an update to not only `Storage`, but also `Model
 
 ### Command history
 
-`CommandHistory` allows the user to access past successfully executed commands by using the `UP_ARROW_KEY` and `DOWN_ARROW_KEY`.
-As our implementation of `CommandHistory` only tracks past successfully executed commands, the `CommandHistory` does not have any
-dependencies to `Model` and `Storage`, but it does to `Logic`.
+The command history functionality allows the user to access past successfully executed commands by using the `UP_ARROW_KEY` and `DOWN_ARROW_KEY`.
+The functionality consists of four classes, `CommandHistoryParser`, `CommandHistory`, `ForwardHistory` and `BackwardHistory`.
+
+The `CommandHistoryParser` determines the `KEY` that was pressed by the user, and propagates the action to be taken, down to either
+the `ForwardHistory` or `BackwardHistory` classes. 
+
+These two classes extend from `CommandHistory`, which internally holds two stacks. The stacks maintain the order of retrieval of commands by
+popping from one stack and pushing to the other. These actions are performed by the `ForwardHistory` and `BackwardHistory` classes as mentioned above.
 
 The class diagram of `CommandHistory` is as follows.
 
-![CommandHistoryClassDiagram](images/CommandHistoryClassDiagram-0.png)
+![CommandHistoryClassDiagram](images/CommandHistoryClassDiagram.png)
+
+While not mentioned in the diagram, the determination of a successful command is handled by the `Parsers` within the `Logic` component,
+and therefore has an implicit dependency on them. Furthermore, as the list of successful commands are tracked in the `Ui` component,
+and there is no need for the history to persist between instances, there is no dependency on the `Storage` component. There is also no
+dependency on `Model`, as the functionalities are independent of it.
 
 To illustrate how `CommandHistory` works, an activity diagram when using the `UP_ARROW_KEY` is provided below.
 
-![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram-0.png)
+![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram.png)
 
-Internally, the `CommandHistory` is implemented using two stacks, which pops and pushes the most recently browsed command
-between the two, thereby maintaining its ordering.
-
+The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one above.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -1121,6 +1131,11 @@ testers are expected to do more *exploratory* testing.
   * [Viewing a venue](#viewing-a-venue)
   * [Adding a booking](#adding-a-booking)
   * [Deleting a booking](#deleting-a-booking)
+* [**Quality-of-life**](#quality-of-life)
+  * [Command history](#browsing-recently-used-commands)
+  * [Opening help window](#getting-help)
+  * [Accessing command input box](#accessing-the-command-input-box)
+  * [Switching tabs](#switching-tabs))
 
 ---
 
@@ -1505,7 +1520,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Quality-of-life
 
-We recommend viewing the [Quality-of-life](ug-pages/quality-of-life.md) section before proceeding, as the following largely tests the functionality from that section.
+We recommend viewing the [Quality-of-life](UserGuide.md#quality-of-life) section before proceeding, as the following largely tests the functionality from that section.
 
 #### Browsing recently-used commands
 
@@ -1557,7 +1572,7 @@ We recommend viewing the [Quality-of-life](ug-pages/quality-of-life.md) section 
    2. Test case: Pressing `F3`<br>
       Expected: Command input box is in focus and ready for user command.
 
-#### Switching from tabs
+#### Switching tabs
 
 1. Switching between `Resident` and `Bookings` tab
 
