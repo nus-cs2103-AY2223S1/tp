@@ -114,7 +114,8 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 
 2. Download the latest `TrackO.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your TrackO. <br>
+3. Copy the file to the folder you want to use as the _home folder_ for your TrackO.
+
     <img src="./images/user-guide/HomeFolder.png" alt="HomeFolder">
 
     <div markdown="span" class="alert alert-primary">
@@ -124,8 +125,9 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
     </div>
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. The application will already contain some sample
-   data.<br>
-   ![Ui](images/Ui.png)
+   data.
+
+   <img src="./images/Ui.png" alt="Ui">
 
 5. Head over to the [tutorial](#tutorial) section for a small walkthrough of some of TrackO's commands and use cases.
 
