@@ -5,6 +5,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
@@ -49,7 +50,7 @@ public class ModelStubWithNoModuleClass extends ModelStub {
 
     @Override
     public ObservableList<Student> getFilteredStudentList() {
-        return new UniqueList<Student>().asUnmodifiableObservableList();
+        return FXCollections.emptyObservableList();
     }
 
     @Override

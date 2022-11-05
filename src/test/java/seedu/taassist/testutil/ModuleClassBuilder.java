@@ -51,6 +51,15 @@ public class ModuleClassBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code sessions} of the {@code ModuleClass} that we are building.
+     */
+    public ModuleClassBuilder withSessions(List<Session> sessions) {
+        this.sessions = sessions;
+        return this;
+    }
+
+
     public ModuleClass build() {
         return new ModuleClass(name, sessions);
     }

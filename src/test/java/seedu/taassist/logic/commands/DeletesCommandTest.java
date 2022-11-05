@@ -2,7 +2,6 @@ package seedu.taassist.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.taassist.commons.core.Messages.MESSAGE_SESSION_DOES_NOT_EXIST;
-import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_LAB1;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taassist.testutil.Assert.assertThrows;
@@ -11,23 +10,28 @@ import static seedu.taassist.testutil.TypicalSessions.LAB_1;
 import static seedu.taassist.testutil.TypicalSessions.TUTORIAL_1;
 import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
+import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.UserPrefs;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.stubs.ModelStub;
 import seedu.taassist.model.stubs.ModelStubNeverInFocusMode;
+import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.ModuleClassBuilder;
-import seedu.taassist.testutil.SessionBuilder;
 
 public class DeletesCommandTest {
 
@@ -44,8 +48,7 @@ public class DeletesCommandTest {
     @Test
     public void execute_notInFocusMode_throwsCommandException() {
         ModelStubNeverInFocusMode modelStub = new ModelStubNeverInFocusMode();
-        Session validSession = new SessionBuilder().withName(VALID_SESSION_LAB1).build();
-        Set<Session> validSessions = new HashSet<>(List.of(validSession));
+        Set<Session> validSessions = new HashSet<>(List.of(LAB_1));
         assertThrows(CommandException.class, () -> new DeletesCommand(validSessions).execute(modelStub));
     }
 
@@ -53,30 +56,49 @@ public class DeletesCommandTest {
     public void execute_existingSessionInFocusMode_success() throws CommandException {
         ModelStubWithModuleClassWithSessions modelStub = new ModelStubWithModuleClassWithSessions();
         assert !modelStub.getFocusedClass().getSessions().isEmpty();
-        Session existingSession = modelStub.getFocusedClass().getSessions().get(0);
-        Set<Session> existingSessions = new HashSet<>(List.of(existingSession));
-        DeletesCommand command = new DeletesCommand(existingSessions);
+
+        // getSessions() returns an unmodifiable list
+        List<Session> expectedSessions = new ArrayList<>(modelStub.getFocusedClass().getSessions());
+        Session sessionToRemove = modelStub.getFocusedClass().getSessions().get(0);
+        Set<Session> sessionsToRemove = new HashSet<>(List.of(sessionToRemove));
+        expectedSessions.remove(sessionToRemove);
+
+        DeletesCommand command = new DeletesCommand(sessionsToRemove);
         CommandResult commandResult = command.execute(modelStub);
-        assertEquals(DeletesCommand.getCommandMessage(existingSessions), commandResult.getFeedbackToUser());
+
+        assertEquals(DeletesCommand.getCommandMessage(sessionsToRemove), commandResult.getFeedbackToUser());
+        assertEquals(expectedSessions, modelStub.getFocusedClass().getSessions());
     }
 
     @Test
     public void execute_multipleExistingSessionsInFocusMode_success() throws CommandException {
         ModelStubWithModuleClassWithSessions modelStub = new ModelStubWithModuleClassWithSessions();
-        assert modelStub.getFocusedClass().getSessions().size() > 1;
-        Set<Session> existingSessions = new HashSet<>(modelStub.getFocusedClass().getSessions());
-        DeletesCommand command = new DeletesCommand(existingSessions);
+        assert modelStub.getFocusedClass().hasSession(LAB_1);
+        assert modelStub.getFocusedClass().hasSession(ASSIGNMENT_1);
+
+        List<Session> expectedSessions = new ArrayList<>(modelStub.getFocusedClass().getSessions());
+        Set<Session> sessionsToRemove = new HashSet<>(List.of(LAB_1, ASSIGNMENT_1));
+        expectedSessions.removeAll(sessionsToRemove);
+
+        DeletesCommand command = new DeletesCommand(sessionsToRemove);
         CommandResult commandResult = command.execute(modelStub);
-        assertEquals(DeletesCommand.getCommandMessage(existingSessions), commandResult.getFeedbackToUser());
+
+        assertEquals(DeletesCommand.getCommandMessage(sessionsToRemove), commandResult.getFeedbackToUser());
+        assertEquals(expectedSessions, modelStub.getFocusedClass().getSessions());
+
     }
 
     @Test
-    public void execute_nonExistingSessionInFocusMode_success() {
+    public void execute_nonExistingSessionInFocusMode_failure() {
         ModelStubWithModuleClassWithSessions modelStub = new ModelStubWithModuleClassWithSessions();
-        assert !modelStub.getFocusedClass().hasSession(TUTORIAL_1);
+        ModuleClass focusedClass = modelStub.getFocusedClass();
+        assert !focusedClass.hasSession(TUTORIAL_1);
         Set<Session> nonExistingSessions = new HashSet<>(List.of(TUTORIAL_1));
         DeletesCommand command = new DeletesCommand(nonExistingSessions);
+
         assertThrows(CommandException.class, () -> command.execute(modelStub));
+        assertCommandFailure(command, modelStub, String.format(MESSAGE_SESSION_DOES_NOT_EXIST,
+                TUTORIAL_1.getSessionName(), focusedClass));
     }
 
     //==================================== Integration Tests =========================================================
@@ -109,7 +131,7 @@ public class DeletesCommandTest {
     }
 
     @Test
-    public void execute_nonExistingSession_success() {
+    public void execute_nonExistingSession_failure() {
         Session nonExistingSession = LAB_1;
         ModuleClass focusedClass = model.getFocusedClass();
         assert !focusedClass.hasSession(nonExistingSession);
@@ -122,7 +144,7 @@ public class DeletesCommandTest {
     //==================================== Model Stubs ===============================================================
 
     private static class ModelStubWithModuleClassWithSessions extends ModelStub {
-        private final ModuleClass moduleClass = new ModuleClassBuilder().withSessions(LAB_1, ASSIGNMENT_1).build();
+        private List<Session> sessions = new ArrayList<>(List.of(LAB_1, ASSIGNMENT_1));
 
         @Override
         public boolean isInFocusMode() {
@@ -131,11 +153,28 @@ public class DeletesCommandTest {
 
         @Override
         public void removeSessions(ModuleClass moduleClass, Set<Session> sessions) {
+            this.sessions = this.sessions.stream().filter(session -> !sessions.contains(session))
+                    .collect(Collectors.toList());
         }
 
         @Override
         public ModuleClass getFocusedClass() {
-            return moduleClass;
+            ModuleClassBuilder classBuilder = new ModuleClassBuilder().withSessions(sessions);
+            return classBuilder.build();
+        }
+
+        @Override
+        public void enterFocusMode(ModuleClass moduleClass) {
+        }
+
+        @Override
+        public TaAssist getTaAssist() {
+            return new TaAssist();
+        }
+
+        @Override
+        public ObservableList<Student> getFilteredStudentList() {
+            return FXCollections.observableArrayList();
         }
     }
 }
