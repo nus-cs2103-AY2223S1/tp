@@ -28,6 +28,12 @@ import javafx.scene.control.Label;
  * Creates an Abstract class to handle repeated and overused methods when making Attributes.
  */
 public abstract class AbstractAttribute<T> implements Attribute<T> {
+
+    public static final String SAVE_KEY_TYPE_NAME = "type";
+    public static final String SAVE_KEY_VALUE = "content";
+    public static final String SAVE_KEY_DISPLAY_FORMAT = "display_format";
+    public static final String SAVE_KEY_STYLE_FORMAT = "style_format";
+
     protected T value;
     protected String typeName;
     private int accessCtrl;
@@ -141,10 +147,10 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
     @Override
     public Map<String, Object> toSaveableData() {
         Map<String, Object> ret = new HashMap<>();
-        ret.put("type", typeName);
-        ret.put("content", value);
-        ret.put("display_format", accessCtrl);
-        ret.put("style_format", styleFlag);
+        ret.put(SAVE_KEY_TYPE_NAME, typeName);
+        ret.put(SAVE_KEY_VALUE, value);
+        ret.put(SAVE_KEY_DISPLAY_FORMAT, accessCtrl);
+        ret.put(SAVE_KEY_STYLE_FORMAT, styleFlag);
 
         return ret;
     }

@@ -3,9 +3,13 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.DisplayItemUtil.INVALID_NAME_RACHEL;
+import static seedu.address.testutil.DisplayItemUtil.INVALID_TAG_HASH;
+import static seedu.address.testutil.DisplayItemUtil.INVALID_TAG_SPECIAL;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -19,20 +23,19 @@ import seedu.address.model.tag.Tag;
 
 
 public class JsonAdaptedPersonTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = INVALID_NAME_RACHEL;
     private static final List<JsonAdaptedTag> INVALID_TAGS = List.of(
-            new JsonAdaptedTag("#tag"),
-            new JsonAdaptedTag("%)*^"));
-    private static final List<JsonAdaptedAbstractAttribute> INVALID_ATTRIBUTES =
-            List.of(new JsonAdaptedAbstractAttribute(Map.of("type", "Check", "content",
-                    "Paperwork is not done.", "display_format", "31", "style_format", "288")));
+            new JsonAdaptedTag(INVALID_TAG_HASH),
+            new JsonAdaptedTag(INVALID_TAG_SPECIAL));
+    //    private static final List<JsonAdaptedAbstractAttribute> INVALID_ATTRIBUTES =
+    //            List.of(new JsonAdaptedAbstractAttribute(Map.of("random", "Check", "description",
+    //                    "Paperwork is not done.", "display_format", "31", "style_format", "288")));
 
-    private static final String VALID_NAME = BENSON.getName().fullName;
+    private static final String VALID_NAME = BENSON.getName().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_UID = UUID.nameUUIDFromBytes(("Person: " + VALID_NAME)
-            .getBytes(StandardCharsets.UTF_8)).toString();
+    private static final String VALID_UID = BENSON.getUid().toString();
     private static final List<JsonAdaptedAbstractAttribute> VALID_ATTRIBUTES = BENSON.getAttributes()
             .stream()
             .map(JsonAdaptedAbstractAttribute::new)
@@ -75,5 +78,4 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_UID, null, VALID_ATTRIBUTES);
         assertEquals(0, person.toModelType().getTags().size());
     }
-
 }

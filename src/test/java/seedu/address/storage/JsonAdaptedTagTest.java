@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ import seedu.address.model.tag.Tag;
 public class JsonAdaptedTagTest {
 
     private static final String INVALID_TAG = "#TAGGING";
-    private static final String VALID_TAG = "Warning";
+    private static final String VALID_TAG = VALID_TAG_FRIEND;
 
     @Test
     public void toModelType_validTagDetails_returnsTag() throws Exception {
