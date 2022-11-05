@@ -124,12 +124,13 @@ Examples:
     Before executing the AddCommand:
     <br>
     <img src="images/screenshots/AddCommand/AddCommand1.png"><br>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
+      
     After executing the AddCommand:
     <br>
     <img src="images/screenshots/AddCommand/AddCommand1Result.png"><br>
     </details>
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 * `add n/Charlie Puth p/81234567 e/charlie@puth.com r/3000 t/silver m/12`
     <details>
