@@ -7,7 +7,7 @@ const options = {
   fragments: true,
 };
 
-const HOST = "http://localhost:4000";
+const HOST = process.env.HOST ?? "http://localhost:4000";
 
 const PATHS_TO_CHECK = ["/", "/UserGuide.html", "/DeveloperGuide.html"];
 const links = new Set();
