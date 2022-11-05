@@ -11,20 +11,8 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class TutorListPanel
-Class ModuleListPanel
-Class ModuleInfoPanel
-Class ModulePanel
-Class ScheduleListPanel
-Class ScheduleGridPanel
-Class StudentCard
-Class TutorCard
-Class ModuleCard
-Class ModuleInfoCard
-Class ScheduleCard
-Class WeekdayCard
-Class WeekdayCardVertical
+Class ABCListPanel
+Class ABCCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -44,51 +32,29 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "2" TutorListPanel
-MainWindow *-down-> "1" ModuleListPanel
-MainWindow *-down-> "1" ModuleInfoPanel
-MainWindow *-down-> "1" ModulePanel
-MainWindow *-down-> "1" ScheduleListPanel
-MainWindow *-down-> "1" ScheduleGridPanel
+MainWindow *-down-> "1" ABCListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" StudentCard
-TutorListPanel -down-> "*" TutorCard
-ModuleListPanel -down-> "*" ModuleCard
-ModuleInfoPanel -down-> "*" StudentCard
-ModulePanel -down-> "*" ModuleInfoCard
-ScheduleListPanel -down-> "*" ScheduleCard
-ScheduleGridPanel -down-> "*" WeekdayCard
-ScheduleGridPanel -down-> "*" WeekdayCardVertical
+ABCListPanel -down-> "*" ABCCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-StudentCard --|> UiPart
-TutorCard --|> UiPart
-ModuleCard --|> UiPart
-ModuleInfoCard --|> UiPart
-ScheduleCard --|> UiPart
-WeekdayCard --|> UiPart
-WeekdayCardVertical --|> UiPart
+ABCListPanel --|> UiPart
+ABCCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-StudentCard ..> Model
-TutorCard ..> Model
-ModuleInfoCard ..> Model
-ModuleCard ..> Model
-ScheduleCard ..> Model
-WeekdayCard ..> Model
-WeekdayCardVertical ..> Model
+ABCCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+note right of ABCCard : ABC refers to Students, Tutors, Modules and Schedules.
+note right of ABCListPanel : ABC refers to Persons, Tutors, Modules and Schedules.
+
+ABCListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
