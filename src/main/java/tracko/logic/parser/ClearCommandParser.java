@@ -35,4 +35,6 @@ public class ClearCommandParser implements Parser<ClearCommand> {
             throw new ParseException(INCORRECT_USER_INPUT_FORMAT);
         }
     }
+
+
 }
