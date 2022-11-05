@@ -32,10 +32,6 @@ class DateTest {
         assertThrows(NullPointerException.class, () -> Date.isValidDateFormat(null));
 
         // invalid date
-        /*assertFalse(Date.isValidDateFormat("")); // empty string
-        assertFalse(Date.isValidDateFormat(" ")); // spaces only
-
-         */
         assertFalse(Date.isValidDateFormat("11/09/200*")); // contains non-integers
 
 
