@@ -233,11 +233,16 @@
     -fx-font-size: 22px;
     -fx-font-weight: 700;
     -fx-text-fill: #FFDFEA;
+    -fx-wrap-text: true;
 }
 
 #attributeA {
     -fx-hgap: 10;
     -fx-vgap: 10;
+}
+
+.personAttribute {
+    -fx-wrap-text: true;
 }
 
 #attributeB {

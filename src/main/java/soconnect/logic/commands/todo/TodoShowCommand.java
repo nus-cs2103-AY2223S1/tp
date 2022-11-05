@@ -29,8 +29,9 @@ public class TodoShowCommand extends TodoCommand {
         + PREFIX_DATE + "DATE, " + PREFIX_DATE + "DATE to DATE, "
         + PREFIX_PRIORITY + "PRIORITY, " + PREFIX_TAG + "TAG\n"
         + "Parameters: [CONDITION]\n"
-        + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + "\n"
-        + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + PREFIX_DATE + "21/10/2022 - 28/10/2022"
+        + "Example: \n"
+        + COMMAND_WORD + " " + SUB_COMMAND_WORD + "\n"
+        + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + PREFIX_DATE + "21-10-2022 to 28-10-2022\n"
         + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + PREFIX_PRIORITY + "low";
 
     private final Predicate<Todo> predicate;

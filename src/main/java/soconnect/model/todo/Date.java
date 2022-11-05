@@ -6,27 +6,30 @@ import static soconnect.commons.util.AppUtil.checkArgument;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a {code Todo}'s date in the {@code TodoList}.
  * Guarantees: is valid as declared in {@link #isValidDate(String)}.
  */
 public class Date {
-    public static final String MESSAGE_CONSTRAINS = "Date should be of the format dd-MM-yyyy.";
+    public static final String MESSAGE_CONSTRAINS = "Date should be of the format dd-MM-yyyy "
+            + "and it should be a valid date.";
 
     public static final String MESSAGE_INVALID_DATE_RANGE = MESSAGE_CONSTRAINS + "\n"
             + "Date range should be of the format "
             + "dd-MM-yyyy to dd-MM-yyyy.\n"
-            + "For date range, the first date should not be latter than the second date.";
+            + "For date range, the first date should not be later than the second date.";
 
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+            .withResolverStyle(ResolverStyle.STRICT);
 
     private static final DateTimeFormatter DATE_DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     public final LocalDate date;
 
     /**
-     * Constructs a {@code Date}.
+     * Constructs a {@code Date} with a given {@code String}.
      *
      * @param date A valid date.
      */
@@ -47,11 +50,11 @@ public class Date {
     }
 
     /**
-     * Returns true if a given string is a valid {@code Date} with the format dd/MM/yyyy.
+     * Returns true if a given string is a valid {@code Date} with the format dd-MM-uuuu.
      */
     public static boolean isValidDate(String test) {
         try {
-            LocalDate date = DATE_FORMATTER.parse(test, LocalDate::from);
+            LocalDate.parse(test, DATE_FORMATTER);
             return true;
         } catch (DateTimeException e) {
             return false;
@@ -102,7 +105,7 @@ public class Date {
      *
      * @param other The other {@code Date}.
      * @return Negative integer if this {@code Date} is earlier and positive integer
-     *     if this {@code Date} is latter than the other {@code Date}, otherwise 0.
+     *     if this {@code Date} is later than the other {@code Date}, otherwise 0.
      */
     public int compareTo(Date other) {
         return date.compareTo(other.date);
