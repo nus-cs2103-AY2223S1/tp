@@ -35,11 +35,11 @@ public class RenameTagCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasTag(originalTag)) {
-            throw new CommandException("This tag does not exist in the FoodRem.");
+            throw new CommandException("This tag does not exist in FoodRem.");
         }
 
         if (model.hasTag(renamedTag)) {
-            throw new CommandException("This tag name already exists in the FoodRem.");
+            throw new CommandException("This tag name already exists in FoodRem.");
         }
 
         model.setTag(originalTag, renamedTag);
