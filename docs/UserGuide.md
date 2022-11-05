@@ -5,12 +5,10 @@ title: User Guide
 
 ## Introduction
 
-JeeqTracker is a desktop application created for **home-based business owners / resellers**. It provides a fast and simple
-way for you to keep track of **`BUY / SELL`** transactions with clients, and allows you to add **`REMARKS`** of clients.
-With JeeqTracker, you can quickly find out who you are earning the most profit from, who is causing you to lose money, and
-who is not a pleasant person to work with. This will help your business prosper and yield more profits.
+JeeqTracker is a desktop application created for **home-based business owners**. It helps 
+you keep track of your clients’ contact details, transaction records, and remarks about the client. 
 
-To get you started, you might want to read the section on [how to use this User Guide](#how-to-use-the-user-guide)!
+If this is your first time using our User Guide, you might want to read this section on [how to use this User Guide](#how-to-use-the-user-guide)
 
 ## Table of Contents
 
@@ -52,7 +50,8 @@ To get you started, you might want to read the section on [how to use this User 
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. If you do not have Java, you can download it from 
+[here for Window Users](https://www.oracle.com/java/technologies/downloads/#java11) and [here for Mac Users](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 
 2. Download the latest `jeeqtracker.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases).
 
@@ -164,7 +163,7 @@ The following section highlights **all** commands related to `clients`.
 
 ### Adding a client: `add`
 
-Adds a client to your list of clients.
+Adds a new client to your list of clients.
 
 Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 
@@ -183,7 +182,6 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 Examples:
 * `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com` adds a new client, **Alice** with the specified **address**, **phone** and **email** to the client list, as depicted by the diagram below.
 * `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier` adds a new client, **John** with the specified **address**, **phone**, **email**, and **tags** to the client list.
-
 
 ![Ui](images/SampleAddCommand.png)
 
