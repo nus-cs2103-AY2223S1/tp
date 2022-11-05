@@ -185,9 +185,9 @@ A `Review` contains the following attributes,
     * Pros: Less overhead as fewer objects are created
     * Cons: Prone to error as a Component might not be correctly changed
 
-### Review Adding feature
+### Review adding feature
 
-#### What is Review Adding feature about?
+#### What is Review adding feature about?
 
 The Add Review mechanism is facilitated by `AddressBook`. This feature enhances `AddressBook` by allowing to store not only `Stall`, but also `Review`. This is stored internally as a `UniqueStallList` and `UniqueReviewList`. `Review` requires a `Stall` as `Review` is stored in `Stall`. Additionally, the feature implements the following operations:
 
@@ -196,7 +196,7 @@ The Add Review mechanism is facilitated by `AddressBook`. This feature enhances 
 For the command, the feature extends `Command`, and is implemented as such:
 * `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`
 
-#### Implementation flow of Review Adding feature
+#### Implementation flow of Review adding feature
 
 Given below is an example usage scenario and how the Review adding mechanism behaves at each step.
 
@@ -208,7 +208,7 @@ Step 2. The user executes `radd s/1 d/20-09-2022 c/The food was good, the chicke
 
 ![AddReview](images/AddReview.png)
 
-#### UML Diagram for Adding Review
+#### UML Diagram for adding Review
 
 The following activity diagram summarizes what happens when a user executes a new `radd` command:
 
@@ -218,9 +218,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 - The Review adding commands are straight to the point and efficient for users to add Review for Stall in FoodWhere.
 - The prefixes allow users to understand what the different types of data fields Review need in order to be created.
 
-### Finding stalls and reviews feature
+### Finding Stalls and Reviews feature
 
-#### What is finding stalls and reviews feature about?
+#### What is finding Stall and Review feature about?
 
 This feature is used to find stalls and reviews in FoodWhere by name and/or by tags. It uses the following two commands:
 * `sfind`: Finds stalls
@@ -253,7 +253,7 @@ Step 6. When the SFindCommand executes, the predicate will be sent to ModelManag
 
 ![AddTodo1](images/sfind.png)
 
-#### UML Diagram for finding stalls/ reviews
+#### UML Diagram for finding Stalls/Reviews
 
 The following activity diagram summarizes what happens when a user executes a new `sfind` or `rfind` command:
 
@@ -292,14 +292,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Review Deleting feature
 
-#### What is Review Deleting feature about?
+#### What is Review deleting feature about?
 
 The Delete Review mechanism is facilitated by `AddressBook`. This feature allows the user to delete a review.
 
 For the command, the feature extends `Command`, and is implemented as such:
 * `rdel REVIEW_INDEX`
 
-#### Implementation flow of Review Deleting feature
+#### Implementation flow of Review deleting feature
 
 Given below is an example usage scenario and how the listing of all reviews mechanism behaves at each step.
 
@@ -313,15 +313,15 @@ Step 3. The user executes `rdel 2` command to delete the last review with index 
 
 ![DeleteReview](images/DeleteReview.png)
 
-#### UML Diagram for Deleting Review
+#### UML Diagram for deleting Review
 
 The following activity diagram summarizes what happens when a user executes a new `rdel` command:
 
 <img src="images/DeleteReviewActivityDiagram.png" width="250" />
 
-### Review Editing feature
+### Review editing feature
 
-#### What is Review Editing feature about?
+#### What is Review editing feature about?
 
 The Edit Review mechanism is facilitated by `REditCommandParser` and `REditCommand`. This feature allows the user to edit a review after it has been created.
 
@@ -330,7 +330,7 @@ The Edit Review mechanism is facilitated by `REditCommandParser` and `REditComma
 For the command, the feature extends `Command`, and is implemented as such:
 * `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…`
 
-#### Implementation flow of Review Editing feature
+#### Implementation flow of Review editing feature
 
 Given below is an example usage scenario and how the listing of all reviews mechanism behaves at each step.
 
@@ -354,7 +354,7 @@ Step 7. `model.setReview()` will interact with the model to have it replace the 
 
 ![REditSequenceDiagram](images/REditSequenceDiagram.png)
 
-#### UML Diagram for Editing Review
+#### UML Diagram for editing Review
 
 The following activity diagram summarizes what happens when a user executes a new `redit` command:
 
@@ -365,7 +365,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Sorting Stalls and Reviews feature
 
-#### What is sorting stalls and reviews feature about?
+#### What is sorting Stalls and Reviews feature about?
 
 `ssort`: The Sort Stalls mechanism is facilitated by `Model` and `StallsComparatorList`. This feature allows the user to sort all stalls by specified criterion. The list of supported sorting criteria is stored in `StallsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Stall>` field that will be passed in as an argument for `Model.sortStalls()` for sorting the stall list.
 
