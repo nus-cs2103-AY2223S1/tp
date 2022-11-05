@@ -86,8 +86,10 @@ Adds a student to FRIDAY, with the given name, Telegram handle, consultation dat
 Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** 
-All student names and Telegram handles in FRIDAY must be unique.
+**:information_source: Note:** <br>
+* All student names and Telegram handles in FRIDAY must be unique.
+* Names and Telegram handles are case-insensitive.
+* Dates for consultation and Mastery Check must be in the format YYYY-MM-DD.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -185,13 +187,24 @@ Sorts all students in FRIDAY with the given criteria, in ascending or descending
 
 Format: `sort CRITERIA/ORDER`
 
-* `CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`
-* `ORDER` can be `a` (ascending) or `d` (descending)
+* `CRITERIA` can be 
+  * `n` (name) 
+  * `t` (Telegram handle)
+  * `c` (consultation)
+  * `m` (Mastery Check)
+  * `ra1` (Reading Assessment 1)
+  * `ra2` (Reading Assessment 2)
+  * `pa` (Practical Assessment)
+  * `mt` (Midterm Test)
+  * `ft` (Final Examination)
+* `ORDER` can be 
+  * `a` (ascending)
+  * `d` (descending)
 
 How criteria are sorted:
-* Names and Telegram handles are sorted in alphabetical order
-* Consultations and Mastery Checks are sorted by time
-* Grades are sorted in numerical order
+* Names and Telegram handles - alphabetical order
+* Consultations and Mastery Checks - chronological order
+* Grades - numerical order
 
 
 <div markdown="block" class="alert alert-info">
