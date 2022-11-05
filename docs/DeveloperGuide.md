@@ -348,42 +348,44 @@ or just search for occurrence of keywords (including name) vaguely.
 * **Future Extension:** bobaBot can support priority in listing of search results.
 
 
-### \[Proposed\] Undo/redo feature
+### \[Insert Numbering\] Undo/Redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedBobaBot`. It extends `BobaBot` with an undo/redo history, stored internally as an `bobaBotStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedBobaBot`. It extends `BobaBot` with an undo/redo history, stored internally as an `bobaBotStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedBobaBot#commit()` — Saves the current address book state in its history.
-* `VersionedBobaBot#undo()` — Restores the previous address book state from its history.
-* `VersionedBobaBot#redo()` — Restores a previously undone address book state from its history.
+* `VersionedBobaBot#commit()` — Saves the current bobaBot state in its history if it differs from the previously saved state.
+* `VersionedBobaBot#undo()` — Restores the previous bobaBot state from its history as long as it is not in its initialised state.
+* `VersionedBobaBot#redo()` — Restores a previously undone bobaBot state from its history as long as it is not in the most updated state.
 
 These operations are exposed in the `BobaBotModel` interface as `BobaBotModel#commitBobaBot()`, `BobaBotModel#undoBobaBot()` and `BobaBotModel#redoBobaBot()` respectively.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The bobaBotStatelist only keeps track of 20 of the most recent state changes! This is by design to minimise the storage space required for bobaBot application. However, you may configure the limit depending on your needs.
+
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedBobaBot` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedBobaBot` will be initialized with the initial bobaBot state, and the `currentStatePointer` pointing to that single bobaBot state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th customer in the address book. The `delete` command calls `BobaBotModel#commitBobaBot()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `bobaBotStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete p/87438807` command to delete the customer with phone number `87438807` which corresponds to `Alex Yeoh` from the bobaBot. The `delete` command calls `BobaBotModel#commitBobaBot()`, causing the modified state of the bobaBot after the `delete p/87438807` command executes to be saved in the `bobaBotStateList`, and the `currentStatePointer` is shifted to the newly inserted bobaBot state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new customer. The `add` command also calls `BobaBotModel#commitBobaBot()`, causing another modified address book state to be saved into the `bobaBotStateList`.
+Step 3. The user executes `add n/David …​` to add a new customer. The `add` command also calls `BobaBotModel#commitBobaBot()`, causing another modified bobaBot to be saved into the `bobaBotStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `BobaBotModel#commitBobaBot()`, so the address book state will not be saved into the `bobaBotStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `BobaBotModel#commitBobaBot()`, so the bobaBot state will not be saved into the `bobaBotStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the customer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `BobaBotModel#undoBobaBot()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the customer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `BobaBotModel#undoBobaBot()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous bobaBot state, and restores the bobaBot to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial BobaBot state, then there are no previous BobaBot states to restore. The `undo` command uses `BobaBotModel#canUndoBobaBot()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial bobaBot state, then there are no previous bobaBot states to restore. The `undo` command uses `BobaBotModel#canUndoBobaBot()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the `undo` command.
 
 </div>
 
@@ -395,17 +397,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `BobaBotModel#redoBobaBot()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `BobaBotModel#redoBobaBot()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the bobaBot to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `bobaBotStateList.size() - 1`, pointing to the latest address book state, then there are no undone BobaBot states to restore. The `redo` command uses `BobaBotModel#canRedoBobaBot()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `bobaBotStateList.size() - 1`, pointing to the latest bobaBot state, then there are no undone bobaBot states to restore. The `redo` command uses `BobaBotModel#canRedoBobaBot()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `BobaBotModel#commitBobaBot()`, `BobaBotModel#undoBobaBot()` or `BobaBotModel#redoBobaBot()`. Thus, the `bobaBotStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the bobaBot, such as `list`, will usually not call `BobaBotModel#commitBobaBot()`, `BobaBotModel#undoBobaBot()` or `BobaBotModel#redoBobaBot()`. Thus, the `bobaBotStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `BobaBotModel#commitBobaBot()`. Since the `currentStatePointer` is not pointing at the end of the `bobaBotStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `BobaBotModel#commitBobaBot()`. Since the `currentStatePointer` is not pointing at the end of the `bobaBotStateList`, all bobaBot states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -417,7 +419,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire bobaBot.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
