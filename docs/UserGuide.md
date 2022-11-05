@@ -163,30 +163,6 @@ You may also click on the `Help Toolbar` to access the command summary table.
 
 </div>
 
-### Adding a tutor: `add`
-
-Adds a tutor to the Tuthub.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENT_ID tn/TEACHING_NOMINATIONS r/RATING [t/TAG]…​`
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **Note:**
-Tutors are regarded as the same if they have the **same email or student ID**!
-
-</div>
-
-<div markdown="block" class="alert alert-primary">
-
-:bulb: **Tip:**
-Refer to [this section](#notes-about-frequently-used-command-parameters) for more information about various parameters!
-
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0`
-* `add n/Betsy Crowe t/seniorTa e/e1234567 m/CS1101S y/3 p/1234567 s/A0123456X tn/2 r/4.5`
-
 ### Listing all tutors: `list`
 
 Shows a list of all tutors registered in Tuthub.
@@ -211,34 +187,30 @@ You may also click on a `Tutor List Card` to execute a `view` command instead
 
 </div>
 
-### Commenting on a tutor: `comment`
+### Adding a tutor: `add`
 
-Tracking a tutor? Use the comment command to add comments to a tutor.
+Adds a tutor to the Tuthub.
 
-Format: `comment INDEX c/COMMENT`
-
-Examples:
-* `comment 1 c/Tasks not Finished` adds a comment of "Tasks not Finished" on the 1st tutor, reflected on their `Tutor Details Pane` as shown below:
-
-![added comment](images/user-guide/comment.png)
-
-### Deleting comments on a tutor: `deletecomment` or `dc`
-
-Deletes a specific comment from the specified tutor.
-
-Format: `deletecomment TUTOR_INDEX COMMENT_INDEX` or `dc TUTOR_INDEX COMMENT_INDEX`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENT_ID tn/TEACHING_NOMINATIONS r/RATING [t/TAG]…​`
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**
-* `TUTOR_INDEX` refers to the index number shown in the displayed tutor list.
-* `COMMENT_INDEX` refers to the index number of the comment shown in the comment section. 
-* Both indices **must be positive integers** 1, 2, 3, …​
+Tutors are regarded as the same if they have the **same email or student ID**!
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+Refer to [this section](#notes-about-frequently-used-command-parameters) for more information about various parameters!
 
 </div>
 
 Examples:
-* `deletecomment 1 1` and `dc 1 1` deletes the 1st comment from the 1st tutor.
+* `add n/Betsy Crowe t/seniorTa e/e1134567 m/CS1101S y/3 p/1234567 s/A1123456X tn/2 r/4.5` adds a new tutor, Betsy Crowe, as shown in the screenshot (after viewing):
+
+![add](images/user-guide/add.png)
 
 ### Editing a tutor: `edit`
 
@@ -270,6 +242,35 @@ Examples:
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd tutor to be Betsy Crower and clears all existing tags.
 * `edit 3 m/CS2100 y/3 s/A0654729L` Edits the module code, year, and student id of the 3rd tutor to be CS2100, 3, and A0654729L respectively.
 * `edit 3 tn/2 r/4.58` Edits the number of teaching nominations and rating of the 3rd tutor to be 2 and 4.58 respectively.
+
+### Commenting on a tutor: `comment`
+
+Tracking a tutor? Use the comment command to add comments to a tutor.
+
+Format: `comment INDEX c/COMMENT`
+
+Examples:
+* `comment 1 c/Tasks not Finished` adds a comment of "Tasks not Finished" on the 1st tutor, reflected on their `Tutor Details Pane` as shown below:
+
+![added comment](images/user-guide/comment.png)
+
+### Deleting comments on a tutor: `deletecomment` or `dc`
+
+Deletes a specific comment from the specified tutor.
+
+Format: `deletecomment TUTOR_INDEX COMMENT_INDEX` or `dc TUTOR_INDEX COMMENT_INDEX`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
+* `TUTOR_INDEX` refers to the index number shown in the displayed tutor list.
+* `COMMENT_INDEX` refers to the index number of the comment shown in the comment section. 
+* Both indices **must be positive integers** 1, 2, 3, …​
+
+</div>
+
+Examples:
+* `deletecomment 1 1` and `dc 1 1` deletes the 1st comment from the 1st tutor.
 
 ### Search for tutor by attribute: `find`
 
