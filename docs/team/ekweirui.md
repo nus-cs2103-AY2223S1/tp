@@ -11,6 +11,7 @@ deliverables by **empowering NUS students** with the ability to manage **tasks**
 
 Given below are my contributions to the project.
 
+
 * **New Feature:** Added the ability to display persons associated to a module upon navigating to it, ie a module-person
   association ([#79](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/79))
   * What it does: <br>
@@ -26,6 +27,7 @@ Given below are my contributions to the project.
   bug-prone nature of the feature, it required an in-depth analysis of design alternatives. The implementation was
   also challenging because existing commands had to be modified. This was previously not in the design of AB3.
   (see [#98](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/98)).
+  
 
 
 * **New Feature:** Added `delete-person-from-module` command
@@ -39,19 +41,7 @@ Given below are my contributions to the project.
   * Highlights: <br>
   Same as the new feature before.
 
-
-* **New Feature:** Added the ability to display the modules and persons list in sorted order
-  ([#106](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/106))
-  * What it does: <br>
-  Allows users to view modules and contacts in a sorted order.
-  * Justification: <br>
-  This feature allows users to easily locate modules/contacts and identify missing or wrong modules/contacts with
-  one look ([motivation](https://github.com/AY2223S1-CS2103T-T10-1/tp/issues/96)).
-  * Highlights: <br>
-  This enhancement was tricky to implement due to the presence of the module-person association. This
-  made it not obvious if simply sorting at one place was enough to cover for all instances whereby modules/persons
-  lists were displayed.
-
+    
 
 * **Enhancements/modifications to existing features**:
     * Modified AB3's `add` command to better suit project needs
@@ -67,12 +57,16 @@ Given below are my contributions to the project.
           ([#92](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/92)).
 
 
-* **Highlights**
+
+* **Highlights and minor features**
     * Spearheaded discussions and laid foundation down for the module-person association and all of its related commands
       ([some discussions found here](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/79)).
     * Led discussions related to UI display issues after execution of commands and implemented the final behaviour
       ([#157](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/157)).
+    * Added the ability to display the modules and persons list in sorted order
+      ([#106](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/106)).
     
+
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ekweirui&breakdown=true)
 
@@ -91,6 +85,7 @@ Given below are my contributions to the project.
         * Added user stories and use cases related to contacts.
 
 
+
 * **Review contributions**:
   * PRs reviewed (with non-trivial review comments):
     [#90](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/90),
@@ -101,6 +96,7 @@ Given below are my contributions to the project.
     [here](https://github.com/AY2223S1-CS2103T-T10-1/tp/pulls?q=is%3Apr+reviewed-by%3Aekweirui)
 
 
+
 * **Team based tasks**:
     * Necessary general code enhancements:
       * Refactoring of `contact` related commands to `person` after feedback from teammates
@@ -108,6 +104,7 @@ Given below are my contributions to the project.
     * Maintaining the issue tracker:
       * Created and assigned the majority of labels and milestones 
       * Resolved issues after a relevant PR has been merged
+
 
 
 * **Community**:
