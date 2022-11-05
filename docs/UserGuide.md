@@ -89,7 +89,8 @@ While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your 
 
 ## Features
 
-Before proceeding, do make sure that you can understand our notation for command formats:
+In this section, we will be explaining our commands. Under every command, you will find it's "Format". This refers to the text that you can enter in order to execute that command. 
+To understand the notation of these "Formats", read on! 
 
 <div markdown="block" class="alert alert-info" >
 
@@ -248,13 +249,6 @@ Format: `clear`
 listing all tasks, unmarked tasks, all tasks under a module name, etc. You may apply multiple list flags in one
 command to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Notes about usage of the list command:**
-
-* Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match. It is also case-insensitive. 
-* Any command that searches for tags finds all tags that exactly match, but is also case-insensitive.
-</div>
-
 Current filters applied will be shown in the UI at the top bar.
 
 ![Before image of List Command](images/user-guide/ListCommandBefore.png)
@@ -299,6 +293,10 @@ Format: `ls -t TAG_NAME`
 
 Example: `ls -t highPriority` will find tags with `highpriority` (Case-insensitive)
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+Any command that searches for tags finds all tags that exactly match, but is case-insensitive.
+</div>
+
 #### Listing all tasks with deadline on or after a date : `ls -d`
 
 Shows a list of all tasks with deadline on or after the inputted date.
@@ -319,6 +317,10 @@ Format: `ls -n KEYWORD*`
 * `KEYWORD`: One or more keywords can be provided. Each keyword should consist of only letters and numbers, and are separated by spaces.
 
 Example: `ls -n task1`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match. It is also case-insensitive.
+</div>
 
 ### Find tasks by name : `find`
 
@@ -431,7 +433,7 @@ If your changes to the data file makes its format invalid, NotionUS will discard
 **A**: No, NotionUS functions fully without internet connection.
 
 **Q**: I need help! How can I contact the team?<br>
-**A**: Please contact us via GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen), do provide screenshots of the error you are facing. We will assist you as soon as possible! 
+**A**: You may contact us via GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen). If possible, do provide screenshots demonstrating the problem you are facing. We will assist you as soon as possible! 
 
 --------------------------------------------------------------------------------------------------------------------
 
