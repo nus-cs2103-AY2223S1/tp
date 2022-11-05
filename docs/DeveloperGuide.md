@@ -461,24 +461,18 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation
 
-The display window is located in the bottom right of the application. The display mechanism has been implemented with the Observer pattern in mind.
+The display window is located in the bottom right of the application. The display mechanism has been implemented with the Observer design pattern in mind.
 
 It is primarily driven by `SavedExerciseListWindow` (which holds the UI for the display). The logic is
 handled by `ExerciseKeys` and `ExerciseHashMap`.
 
 ##### General class diagram
-The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The
-`ExerciseHashMap` class maintains an internal ArrayList of type `Observer`, which can be modified through the
-addUI function. As the UI elements are usually initialized later than the data, the `SavedExerciseListWindow`
-UI object is only added as an observer after its constructor is called. This guards against any nullpointer exceptions
-which may occur when preloading data from a hashmap in storage.
+The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The `ExerciseHashMap` class maintains an internal ArrayList of type `Observer`, which can be modified through the addUI function. As the UI elements are usually initialized later than the data on loading of the application, the `SavedExerciseListWindow`UI object is only added as an observer after its constructor is called. This guards against any null-pointer exceptions which may occur when preloading data from a hashmap in storage.
 
 ![ObserverPatternClass](images/ObserverPattern.png)
 
 ##### Subscribing to updates
-Once the `SavedExerciseListWindow` object has been added to the arraylist of `Observer` in the  `ExerciseHashMap`
-, it 'subscribes' to notifications whenever the ExerciseHashMap changes. Based on the functionality of the Hashmap as 
-well as the application, this can be generalised into two distinct scenarios.
+Once the `SavedExerciseListWindow` object has been added to the arraylist of `Observer` in the  `ExerciseHashMap`, it 'subscribes' to notifications whenever the ExerciseHashMap changes. Based on the functionality of the Hashmap as well as the application, this can be generalised into two distinct scenarios.
 
 * **Adding an exercise** - Whenever a new exercise has been added, there is a possibility of a new key being added.
 * **Removing an exercise** - Whenever a new exercise has been removed, there is a possibility of a key being removed permanently.
@@ -487,40 +481,32 @@ well as the application, this can be generalised into two distinct scenarios.
 </div>
 
 ##### Updating
-Whenever there is a state changing operation, the `ExerciseHashMap` object will notify all observers through the notifyObservers
-method. All Observers in the list will run the update method that is individually specified in their class. As `SavedExerciseListWindow`
-keeps a copy of `ExerciseHashmap`, it is required to do its calculations and formatting to display the text. The logic behind the calculations
-and formatting of the display message is handled by the `ExerciseKeys` class.
-
-Let us use `SavedExerciseListWindow` update function as an example of how the system is updated. A notification would notify
-`SavedExerciseListWindow` that it needs to relook at the `ExerciseHashMap` it stores and regenerate the input. It calls
-the update function which first gives the `ExerciseKeys` object an ArrayList of Strings which are the key names, arranged in
-natural alphabetical order, as defined in Collections.Sort .
+Whenever there is a state changing operation, the `ExerciseHashMap` object will notify all observers through the notifyObservers method. All Observers in the list will run the update method that is individually specified in their class. As such , all Observers of ExerciseHashMap are required to override the update method as shown below.
 
 ```
-    public String getDisplay() {
-            if (keyArrayList.size() == 0) {
-                return "You have no stored exercises in the system!";
-            }
-            StringBuilder sb = new StringBuilder("Stored exercises:\n");
-            for (int i = 1; i < keyArrayList.size() + 1; i++) {
-                sb.append(i);
-                sb.append(". ");
-                sb.append(keyArrayList.get(i - 1));
-                sb.append("\n");
-            }
-            return sb.toString();
+    @Override
+    public void update() {
+        .
+        unique implementation detail here... 
+        . 
     }
 ```
 
-It then calls the getDisplay function in  `ExerciseKeys` takes the size of the ArrayList to decide the output to be generated. It returns the output as a string
-which `SavedExerciseListWindow` can use to set the textarea of the UI to the most updated version.
+Below is a sample sequence diagram for the current implementation of how NotifyObservers work. There is only SavedExerciseListWindow observing the ExerciseHashMap. 
+
+![NotifyObservers](images/NotifyObservers.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Currently, there is only SavedExerciseListWindow observing the ExerciseHashMap
+</div>
+
+The logic behind the calculations and formatting of the display message is handled by the `ExerciseKeys` class.
+
+Through this pattern, each observer gets to define exactly what the required display/result should be.
 
 ### Design considerations
 
 ##### Polymorphism
-The immediately apparent benefit of this design would be the Polymorphism that it capitalises on. In particular, the
-notifyObservers function in `ExerciseHashMap`.
+The immediately apparent benefit of this design would be the Polymorphism that it capitalises on. In particular, the notifyObservers function in `ExerciseHashMap`.
 
 ```
     public void notifyObservers() {
@@ -529,13 +515,9 @@ notifyObservers function in `ExerciseHashMap`.
         }
     }
 ```
-Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it.
-`ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update,
-instead, the responsibility of deciding what to do is passed on to the Observers themselves.
+Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it. `ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update, instead, the responsibility of deciding what to do is passed on to the Observers themselves.
 
-This allows for flexibility in having different types of objects having different forms of updating. This keeps the code
-in `ExerciseHashMap` short and hides the implementation of the Observers behind the `Observer` interface which acts as an
-intermediary to help the UI communicate with `ExerciseHashMap`.
+This allows for flexibility in having different types of objects having different forms of updating. This keeps the code in `ExerciseHashMap` short and hides the implementation of the Observers behind the `Observer` interface which acts as an intermediary to help the UI communicate with `ExerciseHashMap`.
 
 ### \[Proposed\] Data archiving
 
@@ -584,6 +566,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user          | generate workouts of different difficulty                            | customise my workout based on how I’m feeling that day                     |
 | `* * *`  | user          | view my recent exercises                                             | plan for my next gym session                                               |
 | `* * *`  | user          | view my exercises done within a date range                           | track my overall progress over a period of time (eg. weekly, monthly, etc) |
+| `* * *`  | user          | see what names the system has registered                             | add exercises correctly and quickly                                        |
 | `* * `   | new user      | remove all sample data                                               | input my own data                                                          |
 | `* *  `  | advanced user | have a quick summary of all the commands I can do in the application | save time                                                                  |
 | `* * `   | clumsy user   | have a safeguard against accidentally clearing all data              | preserve my exercise                                                       |
