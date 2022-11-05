@@ -1,7 +1,5 @@
 package seedu.condonery.model.property;
 
-import static seedu.condonery.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
@@ -28,19 +26,21 @@ public class Property {
     private final Address address;
     private final Price price;
     private final Set<Tag> tags = new HashSet<>();
-    private Path imageDirectoryPath;
     private final Set<Client> interestedClients = new HashSet<>();
     private PropertyTypeEnum propertyTypeEnum;
     private PropertyStatusEnum propertyStatusEnum;
+    private Path imageDirectoryPath;
 
     /**
      * Every field must be present and not null.
      */
     public Property(Name name, Address address, Price price, Set<Tag> tags, Set<Client> interestedClients,
-                PropertyTypeEnum propertyTypeEnum, PropertyStatusEnum propertyStatusEnum) {
+                    PropertyTypeEnum propertyTypeEnum,
+                    PropertyStatusEnum propertyStatusEnum) {
         this.name = name;
         this.address = address;
         this.price = price;
+        this.tags.addAll(tags);
         this.propertyTypeEnum = propertyTypeEnum;
         this.propertyStatusEnum = propertyStatusEnum;
         this.interestedClients.addAll(interestedClients);
@@ -63,7 +63,9 @@ public class Property {
     }
 
     public Path getImagePath() {
-        requireAllNonNull(imageDirectoryPath);
+        if (imageDirectoryPath == null) {
+            return null;
+        }
         return imageDirectoryPath.resolve("property-" + getCamelCaseName());
     }
 
@@ -180,7 +182,8 @@ public class Property {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, price, tags, interestedClients, propertyTypeEnum, propertyStatusEnum);
+        return Objects.hash(name, address, price, tags, interestedClients,
+                propertyTypeEnum, propertyStatusEnum);
     }
 
     @Override

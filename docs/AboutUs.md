@@ -16,8 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/zacchaeuschok)]
 [[portfolio](team/zacchaeuschok.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Zebra
+* Responsibilities: Generate code + testing + documentation
 
 ### Sng Haoren
 

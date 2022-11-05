@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
@@ -71,6 +72,11 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
             editPropertyDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            try {
+                Integer.parseInt(argMultimap.getValue(PREFIX_PRICE).get());
+            } catch (NumberFormatException e) {
+                throw new ParseException(Messages.MESSAGE_NUMBER_OUT_OF_RANGE);
+            }
             editPropertyDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPropertyDescriptor::setTags);
