@@ -1,15 +1,19 @@
 package seedu.address.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DEADLINE_COOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_COOK;
 import static seedu.address.testutil.TypicalTasks.COOK;
+import static seedu.address.testutil.TypicalTasks.REVIEW;
 import static seedu.address.testutil.TypicalTasks.STUDY;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TaskBuilder;
+
+import java.time.LocalDate;
 
 public class TaskTest {
 
@@ -37,6 +41,28 @@ public class TaskTest {
         editedStudy = new TaskBuilder(STUDY).withIsDone(true).build();
         editedStudy.markAsNotDone();
         assertFalse(editedStudy.getIsDone());
+    }
+
+    @Test
+    public void editTaskDesc() {
+        Task editedStudy = new TaskBuilder(STUDY).build();
+        Name newName = new Name("SLEEP");
+        LocalDate newDeadline = STUDY.getDeadline().get();
+        editedStudy.editTaskDesc(newName, newDeadline);
+        assertEquals(newName, editedStudy.getName());
+        assertEquals(newDeadline, editedStudy.getDeadline().get());
+    }
+
+    @Test
+    public void getDeadlineString_hasDeadline_returnDeadlineString() {
+        Task taskWithDeadline = new TaskBuilder(STUDY).build();
+        assertEquals(taskWithDeadline.getDeadlineString(), "2022-01-02");
+    }
+
+    @Test
+    public void getDeadlineString_hasNoDeadline_returnEmptyString() {
+        Task taskWithDeadline = new TaskBuilder(REVIEW).build();
+        assertEquals(taskWithDeadline.getDeadlineString(), "");
     }
 
     @Test

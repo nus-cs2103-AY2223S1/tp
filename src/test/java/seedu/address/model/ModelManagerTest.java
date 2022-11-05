@@ -168,7 +168,6 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.deleteTask(INDEX_FIRST_TEAM, null));
     }
 
-
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
