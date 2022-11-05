@@ -88,6 +88,14 @@ public class VenueBook implements ReadOnlyVenueBook {
     }
 
     /**
+     * Gets the venue in {@code venues} has the same name as {@code venueName}.
+     * @see Venue#isSameVenue(VenueName)
+     */
+    public Venue getVenueWithName(VenueName venueName) {
+        return venues.getVenueWithName(venueName);
+    }
+
+    /**
      * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
@@ -117,15 +125,10 @@ public class VenueBook implements ReadOnlyVenueBook {
         // TODO: refine later
     }
 
-    //=========== Observable Booking List Accessors =============================================================
+    //=========== Observable Venue List Accessors =============================================================
 
     public ObservableList<Venue> getVenueList() {
         return venues.asUnmodifiableObservableList();
-    }
-
-    public ObservableList<Booking> getBookings(VenueName venueName) throws VenueNotFoundException {
-        requireNonNull(venueName);
-        return venues.getBookings(venueName);
     }
 
     @Override

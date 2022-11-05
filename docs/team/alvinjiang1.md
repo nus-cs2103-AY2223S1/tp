@@ -5,101 +5,62 @@ title: Project Portfolio Page for Alvin Jiang
 
 ## Overview
 
-**RC4 Housing Database** offers a convenient and intuitive interface for RC4 housing management staff to streamline their daily operations.
-## Summary of Contributions
+RC4HDB is a desktop application which streamlines the daily workflow of RC4 housing management staff, by providing specialised features which solve their resident & venue management needs.
 
-### Code contributed:
-
-I contributed code to the following modules/classes:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
-
+Below is a summary of my key contributions over the course of tP. <br>
 You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=alvinjiang1&breakdown=true).
 
-<!-- Please replace the placeholder in the above URL with your github username. -->
+### Code contributions:
 
-### Enhancements implemented:
+* Enhancements to new and existing features:
+  * Refactor `Person` to `Resident` and include more `Resident` related fields ([#58](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/58), [#74](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/74))
+  * Write initial logic to Venue Booking system ([#123](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/123))
 
-I made the following enhancements to our product:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
+* Code Testing:
+  * Refactor existing test cases to make use of `Resident`s.([#74](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/74))
+  * Code tests for `Venue` related commands under`Logic` module (<to be added>);
 
-### Contributions to the UG:
+### Documentation
 
-I contributed to the following sections of the user guide:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
+* User Guide
+  * Increase readability and increase user-focus
+  * Refactor UG to single page and fix formatting ([#257](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/257))
 
-### Contributions to the DG:
+* Developer Guide
+  * Increase readability
+  * Design Section([#55](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/55))
+  * Resident Class under Implementation Section([#126](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/126))
+  * Update Architecture Sequence Diagram
+  * Added section on manual testing for venue management
 
-I contributed to the following sections of the developer guide:
-1. *Enter contributions here*
-2. *Enter contributions here*
 3. *Enter contributions here*
 
 In particular, I added/updated the following UML diagrams:
-1. []()
-2. []()
-3. []()
+1. [Architecture Sequence Diagram](#contributions-to-the-developer-guide)
+2. [Delete Sequence Diagram](#contributions-to-the-developer-guide)
 
 <!-- Provide links to the diagrams in the appendix at the bottom of the page -->
-
-### Contributions to team-based tasks:
-
-I contributed to the following team-based tasks:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
 
 ### Review/mentoring contributions:
 
 I reviewed the following pull requests:
-1. [Add profile photo for Nicholas #21](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/21)
-2. [Create skeletal project portfolio page #22](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/22)
-3. [Edit README #28](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/28)
-4. [Update index.md #29](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/29)
-5. [Update UG and DG #30](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/30)
 
-I also gave guidance to my team on the following matters:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
+* [Update UG and DG #30](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/30)
 
-### Contributions beyond the project team:
-
-Beyond the project team, I also participated actively in the forum.
-
-These are some threads in which I offered help to my classmates:
-1. []()
-2. []()
-3. []()
-
-<!-- Provide links to the threads here -->
 
 For the practical examination, I also surfaced critical bugs in the other team's product.
 
 Some examples of these are:
-1. []()
-2. []()
-3. []()
+
 
 ## Appendix
 
 ### Contributions to the Developer Guide:
 
-1. ![]()
-2. ![]()
-3. ![]()
+UML Diagrams added/updated for DG:
 
-<!-- Embed the diagrams here -->
-
-### Contributions to the User Guide:
-
-1. ![]()
-2. ![]()
-3. ![]()
+![](../images/ArchitectureSequenceDiagram.png)
+![](../images/DeleteSequenceDiagram2.png)
+![]()
 
 <!-- Embed the diagrams here -->
