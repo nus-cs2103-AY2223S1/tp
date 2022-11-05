@@ -1061,56 +1061,115 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+Assumption: The sample data is loaded into Plannit.
+
+### Launching the application
 
 1. Initial launch
 
-    1. Download the `JAR` file and copy into an empty folder
+    1. Download the `JAR` file and copy it into an empty folder
 
-    1. Double-click the `JAR` file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the `JAR` file or run `java -jar plannit.jar` using the terminal.
+       Expected:
+        * Shows the GUI with a set of sample contacts.
+        * The window size may not be optimum.
 
 1. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     1. Re-launch the app by double-clicking the `JAR` file.<br>
-       Expected: The most recent window size and location is retained.
+       Expected:
+        * The most recent window size and location is retained.
 
-1. _{ more test cases … }_
+### Adding a module
+1. Adding a module
+    1. Test case: `add-module m/MA2104`<br>
+       Expected:
+        * Module `MA2104` included in module list.
+        * Result display shows `MA2104` successfully added.
+        * Plannit returns to home page.
+
+    2. Test case: `add-module m/CS2103T`<br>
+       Expected:
+        * No module is added.
+        * Result display shows `CS2103T` cannot be added because module already exists.
+
+    3. Test case: `add-module m/MA2104 t/Multivariable Calculus`<br>
+       Expected:
+        * Module `MA2104` with module title `Multivariable Calculus` included in module list.
+        * Result display shows `MA2104` successfully added. Plannit returns to home page.
+
+    4. Other incorrect `add-module` command (e.g., `add-module`, `add-module MA2104`)<br>
+       Expected:
+        * No module is added.
+        * Result display shows incorrect command format.
+
+### Editing a module
+
+1. Editing a module
+    1. Test case: `edit-module 5 m/MA2104`, assuming there are less than 5 modules currently displayed in Plannit<br>
+       Expected:
+        * No module is edited.
+        * Plannit notifies user of invalid index.
+
+    2. Test case: `edit-module 0.4 m/MA2104`<br>
+       Expected:
+        * No module is edited.
+        * Result display shows error message that indices must be integer.
+
+    3. Test case: `edit-module 1 m/MA2104`, assuming there is at least 1 module currently displayed in Plannit<br>
+       Expected:
+        * Module code of first module changed to `MA2104`.
+        * Plannit automatically sorts resulting list of modules in lexicographical order.
+
+    4. Other incorrect `edit-module` commands (e.g., `edit-module`, `edit-module 32`)<br>
+       Expected:
+        * No module is edited.
+        * Result display shows error message about incorrect command format.
 
 ### Deleting a module
 
 1. Deleting a module while all modules are being shown
 
-    1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
+    1. Prerequisites: List all modules using the `list` command. At least one module in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First module is deleted from the list. Details of the deleted module shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete-module m/CS2103T`<br>
+       Expected:
+        * Module `CS2103T` is deleted from the list.
+        * Details of the deleted module shown in the result display.
 
-    1. Test case: `delete 0`<br>
-       Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete-module m/MA2104`<br>
+       Expected:
+        * No module is deleted.
+        * Error details shown in the result display.
+        * Currently-displayed module list and person list remain the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where `x` is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
+       Expected:
+        * Similar to previous.
 
-1. _{ more test cases … }_
+2. Deleting module while some, but not all, modules are being shown
+    1. Prerequisites: Search module using `find-module` or navigate to module using `goto`. The following test case assumes `goto CS2103T` is the most recent command before the deletion.
 
-### Deleting a contact
+    1. Test case: `delete-module m/CS2103T`<br>
+       Expected:
+        * Module `CS2103T` is deleted from the list.
+        * Details of the deleted module shown in the result display.
 
-1. Deleting a contact while all contacts are being shown
+    1. Test case: `delete-module m/MA2104`<br>
+       Expected:
+        * No module is deleted.
+        * Error details shown in the result display. Module list and person list remain the same.
 
-    1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
+    1. Test case: `delete-module m/GE3238`<br>
+       Expected: Similar to (3).
+        * Note: GE3238 exists on Plannit but gets filtered away by `goto CS2103T`.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Other incorrect `delete-module` commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
+       Expected: Similar to (3).
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
-
-1. _{ more test cases … }_
 
 ### Saving data
 
