@@ -22,7 +22,7 @@ Given below are my contributions to the project.
     are tied to that module, which is critical for our value proposition.
   * Highlights <br>
     The navigation function introduces a new concept of home page and module page which is previously not found
-    in AB3. Hence, deliberate considerations have to be put into designing the behaviour to maximise user experience.
+    in AB3. Hence, deliberate considerations have to be put into designing the behaviour to maximise user experience. <br>
     Additionally, The implementation of the navigation system involves constant updating of `UniqueModuleList`,
     `UniquePersonList` and `isHome` status. Hence, it is not trivial as stringent checks are required to ensure the
     proper integration between `Logic`, `Model` and `Ui` to ensure what is executed matches what is seen by the user
@@ -30,11 +30,11 @@ Given below are my contributions to the project.
 
 ##### Search ([#81](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/81))
 **Enhancements to existing features:** `find` and `list` commands
+Much thought have to be put into designing the implementation of search functionalities
+to complement well with the navigation functionalities.
   * Implemented `find-module`, `find-person`, `list-module` and `list-person` commands.
-  * Much thought have to be put into designing the implementation of search functionalities to complement well with
-the navigation functionalities. 
-    * Modified existing AB3's predicate to allow users to search by module and person name prefixes to better suit our project needs. 
-    * Added constraints that users can only use `find` and `list` at the home page for better user experience.
+  * Modified existing AB3's predicate to allow users to search by module and person name prefixes to better suit our project needs. 
+  * Added constraints that users can only use `find` and `list` at the home page for better user experience.
 
 **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tan-jia-rong&breakdown=true)
 
