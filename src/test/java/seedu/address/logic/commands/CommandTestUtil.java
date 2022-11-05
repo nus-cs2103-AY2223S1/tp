@@ -23,6 +23,8 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.student.StuNameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.tutorial.TutNameContainsKeywordsPredicate;
+import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
@@ -173,6 +175,20 @@ public class CommandTestUtil {
         model.updateFilteredStudentList(new StuNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the tutorial at the given {@code targetIndex} in the
+     * {@code model}'s tutorial list.
+     */
+    public static void showTutorialAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorialList().size());
+
+        Tutorial tutorial = model.getFilteredTutorialList().get(targetIndex.getZeroBased());
+        final String[] splitContent = tutorial.getContent().content.split("\\s+");
+        model.updateFilteredTutorialList(new TutNameContainsKeywordsPredicate(Arrays.asList(splitContent[0])));
+
+        assertEquals(1, model.getFilteredTutorialList().size());
     }
 
 
