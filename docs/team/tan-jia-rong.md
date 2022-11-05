@@ -30,11 +30,11 @@ Given below are my contributions to the project.
 
 ##### Search ([#81](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/81))
 **Enhancements to existing features:** `find` and `list` commands <br>
-Much thought have to be put into designing the implementation of search functionalities
-to complement well with the navigation functionalities.
-  * Implemented `find-module`, `find-person`, `list-module` and `list-person` commands.
+To ensure that the search functionality complements the navigation functionality, much thought 
+has been put into its design.
+  * Implemented the follow search commands: `find-module`, `find-person`, `list-module` and `list-person`.
   * Modified existing AB3's predicate to allow users to search by module and person name prefixes to better suit our project needs. 
-  * Added constraints that users can only use the search features at the home page for better user experience.
+  * Added constraints that users can only use the search commands at the home page for better user experience.
 
 **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tan-jia-rong&breakdown=true)
 
