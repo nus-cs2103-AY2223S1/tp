@@ -57,7 +57,7 @@ class MasteryCheckIntegrationTest {
     @Test
     void isPresent() {
         assertEquals("Absent", MC_3.isPresent(ALICE)); // Student is absent by default
-        assertEquals("Absent", MC_3.isPresent(HOON)); // Students not involved in mastery check are absent
+        assertEquals("Absent", MC_3.isPresent(HOON)); // Students not involved in the mastery check are absent
     }
 
     @Test

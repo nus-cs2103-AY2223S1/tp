@@ -24,7 +24,8 @@ import jarvis.model.TimePeriod;
 public class TypicalLessons {
     public static final LessonDesc STUDIO_DESCRIPTION_1 = new LessonDesc("Studio 1");
     public static final LessonDesc STUDIO_DESCRIPTION_2 = new LessonDesc("Studio 2: Recursion");
-    public static final LessonDesc CONSULT_DESCRIPTION = new LessonDesc("Streams Consultation");
+    public static final LessonDesc CONSULT_DESCRIPTION_1 = new LessonDesc("Recursion Consultation");
+    public static final LessonDesc CONSULT_DESCRIPTION_2 = new LessonDesc("Streams Consultation");
     public static final LessonDesc MASTERY_CHECK_DESCRIPTION_1 = new LessonDesc("Mastery Check 1");
     public static final LessonDesc MASTERY_CHECK_DESCRIPTION_2 = new LessonDesc("Mastery Check 2");
 
@@ -37,7 +38,9 @@ public class TypicalLessons {
     public static final LocalDateTime DT3 = LocalDateTime.of(2022, 12, 12, 11, 0);
     public static final LocalDateTime DT4 = LocalDateTime.of(2022, 12, 12, 13, 0);
 
-    public static final Consult CONSULT_1 = new Consult(CONSULT_DESCRIPTION, new TimePeriod(DT3, DT4),
+    public static final Consult CONSULT_1 = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT3, DT4),
+            CONSULT_STUDENTS);
+    public static final Consult CONSULT_2 = new Consult(CONSULT_DESCRIPTION_2, new TimePeriod(DT1, DT3),
             CONSULT_STUDENTS);
     public static final MasteryCheck MC_1 = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT1, DT3),
             MASTERY_CHECK_STUDENTS);
@@ -62,6 +65,6 @@ public class TypicalLessons {
     }
 
     public static List<Lesson> getTypicalLessons() {
-        return new ArrayList<>(Arrays.asList(CONSULT_1, MC_1, STUDIO_1, STUDIO_2));
+        return new ArrayList<>(Arrays.asList(CONSULT_1, CONSULT_2, MC_1, MC_2, STUDIO_1, STUDIO_2));
     }
 }
