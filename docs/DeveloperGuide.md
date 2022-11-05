@@ -71,9 +71,9 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UpdatedUiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `MeetingListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModifiedModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
@@ -131,7 +131,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/ModifiedModelClassDiagram.png" width="450" />
+
 </div>
 
 
@@ -506,27 +506,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                                      | So that I can…​                                                                         |
-|-------| -------------------------------------- |---------------------------------------------------|-----------------------------------------------------------------------------------------|
-| `***` | user                                   | add a new contact to my contact list              |                                                                                         |
-| `***` | user                                   | edit existing contacts in my contact list         |                                                                                         |
-| `***` | user                                   | delete contacts in my contact list                |                                                                                         |
-| `***` | user                                   | view all my contacts                              |                                                                                         |
-| `***` | user                                   | search for specific contacts                      | find particular people                                                                  |
-| `***` | user                                   | add a new meeting                                 | keep track of my meetings with the people in the database                               |
-| `***` | user                                   | edit my existing meetings                         |                                                                                         |
-| `***` | user                                   | delete my existing meetings                       |                                                                                         |
-| `***` | user                                   | view all my meetings                              | have an overview of the people I will be meeting at certain timings and plan my schedule |
-| `***` | user                                   | search for specific meetings                      |                                                                                         |
-| `***` | user                                   | add multiple tags to my contacts                  | categorise them more accurately                                                         |
-| `***` | user                                   | add meeting times with people on my contact list  | better remember these meetings                                                          |
-| `**`  | user                                   | prioritise my upcoming meetings                   | better manage my time                                                                   |
-| `**`  | user                                   | sort my meetings based on priority                | see my meetings with greater priority on the top                                        |
-| `*`  | user                                   | customise the theme                               |                                                                                         |
-| `**` | user                                   | share my contacts                                 | share with my friends                                                                   |
-| `**` | user                                   | share my meeting schedule                         | communicate with other people my availability                                           |
-| `**` | user                                   | import my meeting schedule                        |                                                                                         |
-| `*` | user                                   | view the calendar in a day/week/month/year format |                                                                  |
+| Priority | As a …​ | I want to …​                                                     | So that I can…​                                                                          |
+|----------|---------|------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| `***`    | user    | add a new contact to my contact list                             |                                                                                          |
+| `***`    | user    | edit existing contacts in my contact list                        |                                                                                          |
+| `***`    | user    | delete contacts in my contact list                               |                                                                                          |
+| `***`    | user    | view all my contacts                                             |                                                                                          |
+| `***`    | user    | search for specific contacts                                     | find particular people                                                                   |
+| `***`    | user    | add a new meeting                                                | keep track of my meetings with the people in the database                                |
+| `***`    | user    | edit my existing meetings                                        |                                                                                          |
+| `***`    | user    | delete my existing meetings                                      |                                                                                          |
+| `***`    | user    | view all my meetings                                             | have an overview of the people I will be meeting at certain timings and plan my schedule |
+| `***`    | user    | search for specific meetings by description, location and people | find specific meetings easily                                                            |
+| `***`    | user    | add multiple tags to my contacts                                 | categorise them more accurately                                                          |
+| `***`    | user    | filter meetings between dates                                    | easily find meetings in due in a specific date range                                     |
+| `**`     | user    | prioritise my upcoming meetings                                  | better manage my time                                                                    |
+| `***`    | user    | sort my meetings based on time                                   | see my meetings with greater priority on the top                                         |
+| `*`      | user    | customise the theme                                              |                                                                                          |
+| `*`      | user    | share my contacts                                                | share with my friends                                                                    |
+| `*`      | user    | share my meeting schedule                                        | communicate with other people my availability                                            |
+| `*`      | user    | import my meeting schedule                                       |                                                                                          |
+| `*`      | user    | view the calendar in a day/week/month/year format                |                                                                                          |
 
 
 
@@ -541,19 +541,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User opens the software
 2. System displays the welcome message and makes CLI ready for user input
 3. User inputs command search for all contacts with the tag
-4. Software displays acknowledgement message
-5. Software searches for contacts associated with the tag and displays the entire list
+4. Software searches for contacts associated with the tag and displays the entire list
+5. Software displays success message
 6. Use case ends
 
-**Use case: Find all contacts taking same module**
+**Use case: Find a particular meeting**
 
 **MSS**
 
 1. User opens the software
 2. System displays the welcome message and makes CLI ready for user input
-3. User inputs command search for all contacts with the tag
-4. Software displays acknowledgement message
-5. Software searches for contacts associated with the tag and displays the entire list
+3. User inputs command to search for a meeting by description
+4. Software searches for contacts associated with the tag and displays the entire list
+5. Software displays success message
 6. Use case ends
 
 **Use case: Create meeting with 2 contacts**
@@ -563,9 +563,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User opens software
 2. System displays the welcome message and makes CLI ready for user input
 3. User inputs command to create a meeting at a specific timing with specific contacts
-4. Software displays acknowledgement message
-5. Software creates meeting object with 2 contacts associated at specified time
-6. Software displays creation message with meeting name and 2 contacts
+4. Software creates meeting object with 2 contacts associated at specified time
+5. Software displays creation message with meeting name and 2 contacts
+6. Software lists newly created meeting in the meeting list
 7. Use case ends
 
 
@@ -573,10 +573,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * Domain rules: User should ideally be a student or staff of NUS
 * Constraints: - Data from the original database cannot be modified
-* Technical requirements: Program should work on both Mac and Windows
+* Technical requirements: Program should work on both Mac, Windows and Linux
 * Performance requirements: Opening the app should be within two seconds.
 * Quality requirements: System should be usable by anyone, and does not require a guide
-* Process requirements: Project expected to be completed by week 10
+* Process requirements: Project expected to be completed by week 13
 * Notes about project scope: The product is not required to interface with other messaging apps
 
 

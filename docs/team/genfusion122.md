@@ -56,6 +56,7 @@ Contributions:
       - Fixed a myriad of typos, missing examples and general issues found in the PE-D. (also in [\#134](https://github.com/AY2223S1-CS2103-F13-3/tp/pull/134))
     - Developer Guide: 
       - Added implementation details of `filter`, `sort` and `find` meetings. 
+      - Tweaked/updated numerous minor things ([\#152](https://github.com/AY2223S1-CS2103-F13-3/tp/issues/152))
     - Misc.
       - Updated various other miscellaneous documentation files such as Index.md, UI.png, About Us and README. 
 	  ([\#22](https://github.com/AY2223S1-CS2103-F13-3/tp/issues/22),
