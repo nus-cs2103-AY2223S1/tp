@@ -37,7 +37,7 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhideAppointmentsCommand.MESSAGE_USAGE));
         }
-        processArgMap(argMultimap);
+        processArgMultiMap(argMultimap);
         return new UnhideAppointmentsCommand(new HideAppointmentPredicate(cond, val));
     }
 
@@ -46,7 +46,7 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
      * @param argMultimap The given argument map to be processed.
      * @throws ParseException If the arguments found are invalid.
      */
-    private void processArgMap(ArgumentMultimap argMultimap) throws ParseException {
+    private void processArgMultiMap(ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
             val = argMultimap.getAllValues(PREFIX_REASON);
             cond = HideAppointmentPredicate.HideBy.KEYWORD;
