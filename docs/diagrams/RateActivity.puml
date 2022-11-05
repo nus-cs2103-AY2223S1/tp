@@ -46,7 +46,7 @@
 
  LogicManager -> RateCommand : execute()
  activate RateCommand
- 
+
  RateCommand -> RateCommand : createActivityWithRating()
 
  RateCommand -> Model : setActivity(activityToRate, activityWithRating)
@@ -67,5 +67,6 @@
 
  [<--LogicManager
  deactivate LogicManager
-
+ 
  @enduml
+ 
