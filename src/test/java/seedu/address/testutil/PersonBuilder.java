@@ -12,7 +12,6 @@ import seedu.address.model.attribute.Phone;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.person.Person;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -42,13 +41,25 @@ public class PersonBuilder extends AbstractDisplayItemBuilder {
 
     @Override
     public PersonBuilder withName(String name) {
-        this.name = new Name(name);
+        super.setName(name);
         return this;
     }
 
     @Override
     public PersonBuilder withTags(String... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        super.setTags(tags);
+        return this;
+    }
+
+    @Override
+    public PersonBuilder withAttribute(Attribute<?> attribute) {
+        super.addAttribute(attribute);
+        return this;
+    }
+
+    @Override
+    public <U> PersonBuilder withAttribute(String name, U data) {
+        super.addAttribute(name, data);
         return this;
     }
 

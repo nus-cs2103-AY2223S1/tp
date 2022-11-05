@@ -13,6 +13,7 @@ import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 abstract class AbstractDisplayItemBuilder {
 
@@ -47,14 +48,38 @@ abstract class AbstractDisplayItemBuilder {
     /**
      * Adds a custom attribute to the {@code AbstractDisplayItemBuilder}.
      */
-    protected void withAttribute(Attribute<?> attribute) {
+    public abstract AbstractDisplayItemBuilder withAttribute(Attribute<?> attribute);
+
+    /**
+     * Adds a custom attribute. Refer to {@link #withAttribute(Attribute)} for more information.
+     */
+    public abstract <U> AbstractDisplayItemBuilder withAttribute(String name, U data);
+
+    /**
+     * Sets the name for this {@code AbstractDisplayItem}.
+     */
+    protected void setName(String name) {
+        this.name = new Name(name);
+    }
+
+    /**
+     * Sets the tags for this {@code AbstractDisplayItem}.
+     */
+    protected void setTags(String... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+    }
+
+    /**
+     * Adds a custom attribute. Refer to {@link #withAttribute(Attribute)} for more information.
+     */
+    protected void addAttribute(Attribute<?> attribute) {
         this.attributes.add(attribute);
     }
 
     /**
-     * Adds a custom attribute to the {@code AbstractDisplayItemBuilder}.
+     * Adds a custom attribute. Refer to {@link #withAttribute(Attribute)} for more information.
      */
-    protected <U> void withAttribute(String name, U data) {
+    protected <U> void addAttribute(String name, U data) {
         this.attributes.add(new Attribute<U>() {
             @Override
             public String getAttributeType() {

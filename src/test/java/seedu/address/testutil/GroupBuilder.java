@@ -9,7 +9,6 @@ import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractSingleItem;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Group objects.
@@ -44,13 +43,25 @@ public class GroupBuilder extends AbstractSingleItemBuilder {
 
     @Override
     public GroupBuilder withName(String name) {
-        this.name = new Name(name);
+        super.setName(name);
         return this;
     }
 
     @Override
     public GroupBuilder withTags(String... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        super.setTags(tags);
+        return this;
+    }
+
+    @Override
+    public GroupBuilder withAttribute(Attribute<?> attribute) {
+        super.addAttribute(attribute);
+        return this;
+    }
+
+    @Override
+    public <U> GroupBuilder withAttribute(String name, U data) {
+        super.addAttribute(name, data);
         return this;
     }
 
