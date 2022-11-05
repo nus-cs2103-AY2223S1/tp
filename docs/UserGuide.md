@@ -97,7 +97,7 @@ The following table describes the sections in detail:
 | `PHONE`                | - Phone numbers can only contain digits, i.e.`0-9` and must be at least 3 digits long.                                                                                                                                                                      |
 | `EMAIL`                | - Emails must be the tutor's NUSNet ID, e.g. `E1234567` or `E1234567@u.nus.edu`, where the `E` is case-insensitive. <br/>- If `@u.nus.edu` is not provided, Tuthub will automatically append it for you.                                                    |
 | `MODULE`               | - Modules consist of the following (in order): 2 compulsory letters, 2 optional letters, 4 compulsory digits, 2 optional letters.                                                                                                                           |
-| `YEAR`                 | - Year takes in an integer from 0 to 6.                                                                                                                                                                                                                     |
+| `YEAR`                 | - Year takes in an integer from 1 to 6.                                                                                                                                                                                                                     |
 | `STUDENT_ID`           | - Student IDs consists of an `A` followed by 7 digits and any single capital letter behind.                                                                                                                                                                 |
 | `TEACHING_NOMINATIONS` | - Teaching nominations take in positive integers including 0. Leading zeros in the teaching nominations will not be allowed. e.g. `00001` is invalid.                                                                                                       |
 | `RATING`               | - Ratings take in numbers **between 0 and 5 inclusive**. <br/>- Decimal values are optional but only a **maximum of 2 decimals** is allowed.                                                                                                                |
@@ -161,7 +161,7 @@ Empty commands such as ` ` (whitespace) will display the usage of the `help` com
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**
-You may also click on the Help Toolbar to access the command summary table.
+You may also click on the `Help Toolbar` to access the command summary table.
 
 </div>
 
@@ -265,7 +265,7 @@ Refer to [this section](#notes-about-frequently-used-command-parameters) for mor
 </div>
 
 Examples:
-* `edit 1 p/91234567 e/e7654321` Edits the phone number and email address of the 1st tutor to be 91234567 and johndoe@example.com respectively.
+* `edit 1 p/91234567 e/e7654321` Edits the phone number and email address of the 1st tutor to be 91234567 and e7654321@u.nus.edu respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd tutor to be Betsy Crower and clears all existing tags.
 * `edit 3 m/CS2100 y/3 s/A0654729L` Edits the module code, year, and student id of the 3rd tutor to be CS2100, 3, and A0654729L respectively.
 * `edit 3 tn/2 r/4.58` Edits the number of teaching nominations and rating of the 3rd tutor to be 2 and 4.58 respectively.
