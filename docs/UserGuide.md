@@ -346,7 +346,7 @@ Format: `add-o INDEX_OF_BUYER o_st/STATUS o_r/add-r o_a/AGE o_sp/SPECIES o_c/COL
 
 :exclamation: **Caution**: `INDEX_OF_BUYER` should be immediately after `add-o`.
 Ensure that at the index is a buyer before executing this command,
-which can be achieved using the [List Command](#listing-contacts-or-items--list) or [Find buyer command](#finding-a-buyer--find-b).
+which can be achieved by executing the [List Command](#listing-contacts-or-items--list) or [Find buyer command](#finding-a-buyer--find-b) beforehand.
 
 :exclamation: **Caution**: Please ensure that `o_r/` is followed by `add-r` immediately and there are no other prefixes
 between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_sp/`. This is because they as a whole specify how the requested pet
@@ -394,9 +394,9 @@ Format: `add-p INDEX_OF_SUPPLIER p_n/PET_NAME p_d/DATE_OF_BIRTH p_c/COLOR p_cp/C
 
 <div markdown="span" class="alert alert-warning">
 
-`INDEX_OF_SUPPLIER` should be immediately after `add-p`.
+:exclamation: **Caution**: `INDEX_OF_SUPPLIER` should be immediately after `add-p`.
 Ensure that at the index is a supplier before executing this command,
-which can be achieving using the [List Command](#listing-contacts-or-items--list) or [Find supplier command](#finding-a-supplier--find-s).
+which can be achieving by executing the [List Command](#listing-contacts-or-items--list) or [Find supplier command](#finding-a-supplier--find-s) beforehand.
 
 </div>
 
@@ -477,19 +477,29 @@ only **open the file explorer** and **do nothing more**. You may be able to uplo
 
 ### Matching pets to an order : `match`
 
-Matches the "best fit" pet to an order. This is especially useful if you want to find out which pet waiting for sale is 
-the best fit when you receive a new order. 
+Matches the "best fit" pet to an order. This is especially useful when you receive an order
+and want to find out **which pet(s)** on sales is the **best fit** (i.e. description of the pet matches as many requirements specified in the order as possible).
+With this information, you may contact the suppliers who own these pets for further negotiation.
 
 Format: `match INDEX`
-`INDEX` is the index of the order to which you would like to find the best fitting pet. 
+
+<div markdown="span" class="alert alert-warning">
+
+Please ensure that at the index is an order, which can be achieved by executing the [List command](#listing-contacts-or-items--list) or [Filter order command](#filtering-orders--filter-o) beforehand.
+
+</div>
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: This command sorts all pets currently being displayed on your screen, i.e filtered out pets will 
-not be sorted. <br><br>The sorting is based on our score evaluation algorithm and in descending order. This means that  
-the top few displayed pets are the ones that best match your order. <br><br> With this information, you may contact the
-suppliers who own these pets for further negotiation. If you are interested in the algorithm, check out our developer guide.
-<br><br> At this point in time, the score is calculated using a default set of weightages. In the future, you may be able to define your own
+:information_source: **How does the match command work?**
+
+This command sorts all pets currently being displayed on your screen, i.e filtered out pets will not be sorted.
+
+
+We have designed an algorithm to give each pet in the storage a score. Pets with descriptions that are closer to the requirements specified in the order will be given a higher score.
+Pets with higher scores (i.e. more fitting to the order) are displayed on top. If you want to know how we design the algorithm, check out our [Developer Guide](DeveloperGuide.md).
+
+In the current version of PetCode, the score calculation in the algorithm uses a default set of weightages. In the future, you may be able to define your own
 weightages for different fields, such as price, age, species and so on.
 
 </div>
@@ -502,7 +512,7 @@ weightages for different fields, such as price, age, species and so on.
 Displays the specified type of contacts or items. This command is especially useful when you want to find the index of a
 contact / item.
 
-Format: `list [KEY]`
+Format: `list KEY`
 
 #### List KEY Types Table
 
@@ -517,13 +527,12 @@ Format: `list [KEY]`
 
 
 Examples:
-* `list buyer`, lists all Buyer contacts and all the orders from each buyer.
-* `list deliverer`, lists all Deliverer contacts and all the taken by each deliverer.
-* `list supplier`, lists all Supplier contacts and all the pets that each supplier has on sale.
+* `list buyer`, lists all Buyer contacts with their orders.
+* `list deliverer`, lists all Deliverer contacts.
+* `list supplier`, lists all Supplier contacts with their pets.
 * `list all`, lists all Buyer, Deliverer, Supplier contacts and their respective pets and orders details.
 * `list order`, lists all Orders.
 * `list pet`, lists all Pets.
-* `list`, list all the items in the current list.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
