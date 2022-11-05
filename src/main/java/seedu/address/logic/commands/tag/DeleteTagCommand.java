@@ -1,7 +1,8 @@
 package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.CommandUtil.*;
+import static seedu.address.logic.commands.CommandUtil.createEditedPersonWithDeleteTags;
+import static seedu.address.logic.commands.CommandUtil.createEditedTaskWithDeleteTags;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;

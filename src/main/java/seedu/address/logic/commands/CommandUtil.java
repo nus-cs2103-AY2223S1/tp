@@ -51,7 +51,8 @@ public class CommandUtil {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    public static Person createEditedPersonWithDeleteTags(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    public static Person createEditedPersonWithDeleteTags(Person personToEdit,
+        EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         // Person id does not get updated
