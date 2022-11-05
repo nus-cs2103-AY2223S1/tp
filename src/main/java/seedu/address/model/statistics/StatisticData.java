@@ -12,7 +12,7 @@ import javafx.scene.chart.PieChart.Data;
 public class StatisticData {
 
     //PieChart data point.
-    private final Data chartData;
+    public final Data chartData;
 
     /**
      * Constructs a {@code StatisticData} with the given {@code name} and {@code value}.
@@ -54,5 +54,25 @@ public class StatisticData {
     public void updateValueByOne() {
         double initialValue = this.getValue();
         this.chartData.setPieValue(initialValue + 1);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        //short-circuit if same object
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof StatisticData) {
+            StatisticData otherData = (StatisticData) other;
+            if (this.getName().equals(otherData.getName()) & this.getValue() == otherData.getValue()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getName().hashCode();
     }
 }

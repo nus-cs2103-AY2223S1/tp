@@ -17,7 +17,7 @@ import seedu.address.model.statistics.exceptions.DuplicateDataException;
 public class StatisticDataList {
 
     //ObservableList of StatisticData points.
-    private final ObservableList<StatisticData> chartDataList = FXCollections.observableArrayList();
+    public final ObservableList<StatisticData> chartDataList = FXCollections.observableArrayList();
 
     /**
      * Adds {@code toAdd} into the ObservableList of StatisticData points.
@@ -78,5 +78,17 @@ public class StatisticDataList {
             pieChartData.add(statData.getData());
         }
         return pieChartData;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof StatisticDataList) {
+            return this.getChartDataList()
+                    .equals(((StatisticDataList) other).getChartDataList());
+        }
+        return false;
     }
 }
