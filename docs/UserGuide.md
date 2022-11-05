@@ -91,13 +91,13 @@ All commands used in NUScheduler follow this command format:
 <command word> <option flag> <parameters>
 ```
 
-### Command Word
+### Command word
 
 Command words are used to specify what to perform the operation on.
 
 * Command words are case-sensitive, e.g. `exit` will work, but not `EXIT`.
 
-### Option Flag
+### Option flag
 
 Option flags are used to specify the operation to perform.
 
