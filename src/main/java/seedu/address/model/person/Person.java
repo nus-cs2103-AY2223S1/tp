@@ -118,7 +118,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getEmail().equals(getEmail());
+                && otherPerson.getEmail().equals(this.email);
     }
 
     public boolean emailMatches(Email email) {
