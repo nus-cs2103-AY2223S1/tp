@@ -8,9 +8,9 @@ title: FABook
 
 ![Ui](images/Ui.png)
 
-**FABook** can be your dependable assistant who **reminds** you of meetings and consolidates **crucial information** like financial plans and client information right at your fingertips! <br>
+**FABook** is a dependable assistant for financial advisers by **reminding** them of meetings and consolidating **crucial information** like financial plans and client information right at their fingertips!
 
-You can now focus on giving your full attention to your clients without having to worry about things slipping your mind.
+Financial advisers now focus on giving their full attention to their clients without having to worry about things slipping their mind.
 
 **FABook** is optimized for a **one-stop storage solution** to store and remind them on
 **everything** they need to know about their client.
