@@ -797,7 +797,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The name and calorie of the first food item is changed to Pancake and 250 respectively.
 
     3. Test case: `edit 0 n/Pancake c/250`<br />
-       Expected: No food is edited. Error details is shown on the result display.
+       Expected: No food is edited. Error details are shown on the result display.
 
     4. Test case: `edit 1 n/P@ncake`<br />
        Expected: No food is edited. Error details is shown on the result display.
