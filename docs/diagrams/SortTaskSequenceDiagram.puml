@@ -50,6 +50,7 @@ modelManager -> hrPro : sortTasks()
 activate hrPro
 
 hrPro --> modelManager
+deactivate hrPro
 
 autoActivate on
 modelManager -> modelManager :updateFilteredTaskList(Predicate)
