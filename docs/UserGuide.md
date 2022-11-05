@@ -877,7 +877,7 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Copy the link to your clipboard by clicking the `Copy Link` button and paste it in your favourite browser to come back to this page anytime.
+Copy the link to your clipboard by clicking the `Copy URL` button and paste it in your favourite browser to come back to this page anytime.
 
 Format: `help`
 
