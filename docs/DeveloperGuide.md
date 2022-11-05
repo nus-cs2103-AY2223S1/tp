@@ -224,8 +224,10 @@ The `AddressBookParser` will first check for the `cancel` command word. The canc
 is facilitated by the `CancelCommandParser` and `CancelCommand` classes. The `CancelCommandParser`
 parses the user input and obtains the index inputted by the user, before creating the cancel command to
 execute the deletion of the appointment from the current appointment list.
+
 Given below is an overview of how the cancel command executes the deletion of an appointment to delete the
 first appointment (index 1) in the appointment list:
+
 ![Cancel Command](images/CancelSequenceDiagram.png)
 
 #### Design considerations:
