@@ -81,4 +81,25 @@ class UngradeCommandTest {
 
         assertCommandFailure(ungradeCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void executeNoEdit_success() {
+
+        // student not edited if not graded
+
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+        Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Assignment assignment = new Assignment("A123", Assignment.Status.NEW);
+
+        UngradeCommand ungradeCommand = new UngradeCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
+                new UngradeCommand.UngradeCommandStudentEditor(assignment));
+        String expectedMessage = String.format(UngradeCommand.MESSAGE_UNMARK_SINGLE_ASSIGNMENT_UNEDITED,
+                assignment.getAttributeName(), studentInFilteredList);
+
+        ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), studentInFilteredList);
+        assertCommandSuccess(ungradeCommand, model, expectedMessage, expectedModel);
+
+    }
 }

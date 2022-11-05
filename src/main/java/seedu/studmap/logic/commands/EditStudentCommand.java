@@ -105,7 +105,7 @@ public abstract class EditStudentCommand<T extends StudentEditor> extends Comman
             commandOutput.append("\n").append(getMultiUneditedMessage(uneditedStudents));
         }
 
-        return new CommandResult(commandOutput.toString());
+        return new CommandResult(commandOutput.toString().trim());
     }
 
     @Override

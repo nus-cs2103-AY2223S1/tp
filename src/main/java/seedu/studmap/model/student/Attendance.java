@@ -17,11 +17,11 @@ public class Attendance extends MultiStateAttribute<String, Attendance.Status> {
     /**
      * Constructs an {@code Attendance} object.
      *
-     * @param state       A valid class name.
-     * @param hasAttended Attendance status.
+     * @param className A valid class name.
+     * @param status    Attendance status.
      */
-    public Attendance(String state, Status hasAttended) {
-        super(state, hasAttended);
+    public Attendance(String className, Status status) {
+        super(className, status);
     }
 
     /**

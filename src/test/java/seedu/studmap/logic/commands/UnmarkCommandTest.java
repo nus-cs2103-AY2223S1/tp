@@ -24,7 +24,7 @@ import seedu.studmap.testutil.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code MarkCommand}.
+ * {@code UnmarkCommand}.
  */
 class UnmarkCommandTest {
 
@@ -81,5 +81,26 @@ class UnmarkCommandTest {
                 new UnmarkCommand.UnmarkCommandStudentEditor(attendance));
 
         assertCommandFailure(unmarkCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void executeNoEdit_success() {
+
+        // student not edited if not marked
+
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+        Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Attendance attendance = new Attendance("T62", Attendance.Status.PRESENT);
+
+        UnmarkCommand unmarkCommand = new UnmarkCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
+                new UnmarkCommand.UnmarkCommandStudentEditor(attendance));
+        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_SINGLE_ATTENDANCE_UNEDITED,
+                attendance.getAttributeName(), studentInFilteredList);
+
+        ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), studentInFilteredList);
+        assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
+
     }
 }

@@ -47,7 +47,7 @@ class UnparticipateCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList()
-                                      .get(INDEX_SECOND_STUDENT.getZeroBased()), unmarkedStudent);
+                .get(INDEX_SECOND_STUDENT.getZeroBased()), unmarkedStudent);
         assertCommandSuccess(unparticipateCommand, model, expectedMessage, expectedModel);
     }
 
@@ -83,5 +83,27 @@ class UnparticipateCommandTest {
                 new UnparticipateCommand.UnparticipateCommandStudentEditor(participation));
 
         assertCommandFailure(unparticipateCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void executeNoEdit_success() {
+
+        // student not edited if not graded
+
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+        Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Participation participation = new Participation("A123", Participation.Status.PARTICIPATED);
+
+        UnparticipateCommand unparticipateCommand =
+                new UnparticipateCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
+                        new UnparticipateCommand.UnparticipateCommandStudentEditor(participation));
+        String expectedMessage = String.format(UnparticipateCommand.MESSAGE_UNMARK_SINGLE_PARTICIPATION_UNEDITED,
+                participation.getAttributeName(), studentInFilteredList);
+
+        ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), studentInFilteredList);
+        assertCommandSuccess(unparticipateCommand, model, expectedMessage, expectedModel);
+
     }
 }

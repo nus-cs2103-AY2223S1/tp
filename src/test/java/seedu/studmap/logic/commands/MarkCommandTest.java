@@ -73,4 +73,50 @@ class MarkCommandTest {
 
         assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_presentNoEdit_success() {
+
+        // student not edited if already marked
+
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+        Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Attendance attendance = new Attendance("T62", Attendance.Status.PRESENT);
+        Student studentToMark = new StudentBuilder(studentInFilteredList).addAttendances(attendance).build();
+        model.setStudent(studentInFilteredList, studentToMark);
+
+        MarkCommand markCommand = new MarkCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
+                new MarkCommand.MarkCommandStudentEditor(attendance));
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SINGLE_UNEDITED_ATTENDANCE,
+                attendance.getString(), studentToMark);
+
+        ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), studentToMark);
+        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
+
+    }
+
+    @Test
+    public void execute_absentNoEdit_success() {
+
+        // student not edited if already marked
+
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+        Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Attendance attendance = new Attendance("T62", Attendance.Status.ABSENT);
+        Student studentToMark = new StudentBuilder(studentInFilteredList).addAttendances(attendance).build();
+        model.setStudent(studentInFilteredList, studentToMark);
+
+        MarkCommand markCommand = new MarkCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
+                new MarkCommand.MarkCommandStudentEditor(attendance));
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SINGLE_UNEDITED_ATTENDANCE,
+                attendance.getString(), studentToMark);
+
+        ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), studentToMark);
+        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
+
+    }
 }
