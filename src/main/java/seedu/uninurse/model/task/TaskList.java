@@ -190,16 +190,6 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * Checks whether the TaskList has the given Task.
-     *
-     * @param task to check for.
-     * @return Whether the given Task is in TaskList.
-     */
-    public boolean hasTask(Task task) {
-        return internalTaskList.contains(task);
-    }
-
-    /**
      * Updates this TaskList with all the new tasks generated because of RecurringTasks
      * and their next RecurringTask once past the task date.
      */
