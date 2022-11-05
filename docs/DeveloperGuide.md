@@ -302,6 +302,57 @@ Step 4. The user executes `mark 1`, which marks the first trip as well as the ev
 Step 5. The user executes `completed`, which displays all completed trips and events, which includes both 'Trip to Japan'
 and 'Try Takoyakis'.
 
+### \[Implemented\] Display Travelr Summary Window
+#### Implementation
+
+The summary command is facilitated by `SummaryVariables`. It contains several fields which are the `property` representing statistics of the Travelr app that will displayed to the user in the Summary Window.
+
+Here are some key properties 
+* `tripsProgress` --- A `SimpleStringProperty` which has a `String` value representing the percentage of trips completed.
+* `eventsProgress` --- A `SimpleStringProperty` which has a `String` value representing the percentage of trips completed.
+* `totalUniqueLocations` --- A `SimpleIntegerProperty` which has an `Integer` value representing the total unique locations a User visited.
+
+These methods added to the `ModelManager` helps to manage the `SummaryVariables`.
+
+* `ModelManager#getSummaryVariables()` — Returns the `SummaryVariables` stored in the `ModelManager`.
+* `ModelManager#refreshSummaryVariables()` — Refreshes the `SummaryVariables`.
+
+Given below is an example usage scenario and how the summary mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `Travelr` will be initialized with the initial Travelr state, with no trips or events added.
+
+Step 2. The user executes `add n/Trip Name ...` to add a new trip, and `add-e n/Event Name ...` to add a new event. Throughout the usage of the app, the user adds multiple trips and events to Travelr, and also uses `add-et n/Event Name t/Trip Name ...` to add events to trips. 
+
+Step 3. The user now completes a `Trip` and marks it as completed using the `mark` command. Throughout the usage of the app, the user `mark` multiple trips as he carries out his trips.
+
+Step 4. The user now decides that he wants to see a summary of his travels, and he does so using the `summary` command. The `summary` command will call `Model#refreshSummaryVariables()`,  which calls `SummaryVariables#refresh()` to get new updates for the summary variables and the list of completed trips.
+
+The following sequence diagram shows how the summary command works:
+
+![SummarySequenceDiagram](images/SummarySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+Step 5. Now that the `SummaryVariables` are refreshed, the GUI will display a new window through `MainWindow#handleSummary`.
+
+The following sequence diagram shows how the GUI displays the Summary Window:
+
+![SummaryWindowDiagram](images/SummaryWindowDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How summary executes:**
+
+* **Alternative 1 (current choice):** Show new window.
+  * Pros: Easy to implement.
+  * Cons: Poorer user experience from having to change windows.
+
+* **Alternative 2:** Overlay the summary panel over the trips and events panel in the main window.
+  * Pros: Easier for users to see the summary information from one window.
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
