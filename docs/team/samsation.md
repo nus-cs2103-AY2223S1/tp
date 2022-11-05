@@ -13,23 +13,14 @@ bobaBot is written in Java and has about 13 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: `Increase` Command - Added the functionality for users to directly increase a Customer's Reward points.
+* **New Feature**: `Increase`/ `Decrease` Command - Added the functionality for users to directly increase/ decrease a Customer's Reward points.
   (Pull Requests [#138](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/138), [#205](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/205))
-    * What it does: Allows the user to increase a Customer's Reward points without accessing the Edit Command. For example, the user choose to identify the Customer via Phone number
-      or Email address to increase his/ her Reward points. The command will only increment the Reward points if the final value **DOES NOT** exceed the **MAXIMUM INTEGER VALUE (2147483647)**. If it is exceeded,
+    * What it does: Allows the user to increase/ decrease a Customer's Reward points without accessing the Edit Command. For example, the user choose to identify the Customer via Phone number
+      or Email address to increase/decrease his or her Reward points. The command will only increment/ decrement the Reward points if the final value **DOES NOT** exceed the **MAXIMUM INTEGER VALUE (2147483647)**/ **DOES NOT** become a **NEGATIVE VALUE**. Or else,
       an appropriate error message would be thrown.
-    * Justification: This feature improves the product efficiency for the users (bubble tea shop cashiers), as this would be easily the most used Command during any transaction, along with the `Decrease` Command.
+    * Justification: This feature improves the product efficiency for the users (bubble tea shop cashiers), as this would be easily the most used Commands during any transaction.
       Therefore, this functionality allows for quick and easy way to increment a Customer's Reward points without accessing the `Edit` Command, which is faster to enter into the CLI. Another added side benefit is that
       there would not be any accidental changes to other Customer fields since we are not directly calling the `Edit` Command.
-
-<div style="page-break-after: always;"></div>
-
-* **New Feature**: `Decrease` Command - Added the functionality for users to directly decrease a Customer's Reward points.
-  (Pull Requests [#138](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/138), [#205](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/205))
-    * What it does: Similar to the above `Increase` Command, this allows the user to decrease a Customer's Reward points without accessing the `Edit` Command. For example, the user choose to identify the Customer via Phone number
-      or Email address to decrease his/ her Reward points. The command will only decrement the Reward points if the final value **DOES NOT** become a **NEGATIVE VALUE**. If it becomes negative,
-      an appropriate error message would be thrown.
-    * Justification: This feature provides the same efficiency benefits as the `Increase` Command stated above.
 
 
 * **New Feature**: `BirthdayMonth` Tag - Reflects whether it is currently a Customer's birthday month.
@@ -49,7 +40,6 @@ Given below are my contributions to the project.
   * Created icon for bobaBot (Pull Request [#92](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/92))
   * Managed releases `v1.3.1` and `v1.3.2` (2 releases) on GitHub
 
-<div style="page-break-after: always;"></div>
 
 * **Enhancement to existing features**: Improved the original `Edit` Command to allow users to identify Customers to edit via Phone number or Email address, instead of via Index.
   (Pull Requests [#68](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/68), [#76](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/76), [#82](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/82), [#205](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/205))
@@ -58,8 +48,6 @@ Given below are my contributions to the project.
   entire list of Customers to find his/ her Index, then execute the `Edit` Command. With this improvement, this entire step is skipped, greatly improving the efficiency of this Command.
   We also thought of including Name as a unique identifier, but eventually decided against it since there is a high change of multiple same-named Customers appearing in the list, which does
   not help in achieving the desired efficiency.
-  * Highlights: Customers' identification is now more flexible since we have 2 unique identifiers to aid in this process. This change would also later form the foundation of the `Increase` and
-  `Decrease` Commands, as well as how other Commands deal with identifying unique Customers.
 
 
 * **Enhancement to existing features**: Improved the original `Find` Command to allow users to find unique Customers via Phone number or Email address as well.
@@ -67,7 +55,6 @@ Given below are my contributions to the project.
     * What it does: Allows users to find Customers via Phone number or Email address, which are both unique identifiers for individuals.
     * Justification: This feature ensures that only one unique Customer will be displayed after the `Find` Command has been executed, which is helpful when the user does not want to scroll
     through multiple Customers in the resultant list. 
-    * Highlights: This is an alternative way to use the `Find` Command, the other being searching via keywords, which allows for greater flexibility for the users.
 
 
 * **Enhancement to existing features**: Added appropriate colours for special Tags.
