@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+actor  user     as user
+
+box Ui UI_COLOR_T1
+participant ":MainWindow"  as mainWindow UI_COLOR
+participant ":ResultDisplay" as resultDisplay UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":logicManager"  as logicManager LOGIC_COLOR
+participant ":addressBookParser"  as addressBookParser LOGIC_COLOR
+participant ":FindTaskCommandParser"  as findTaskCommandParser LOGIC_COLOR
+participant ":FindTaskCommand"  as findCommand LOGIC_COLOR
+participant ":CommandResult" as commandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":modelManager" as modelManager MODEL_COLOR
+end box
+
+user -> mainWindow : findtask todo
+activate mainWindow
+
+mainWindow -> logicManager : execute("findtask todo")
+activate logicManager
+
+logicManager -> addressBookParser : parseCommand("findtask todo")
+activate addressBookParser
+
+create findTaskCommandParser
+addressBookParser -> findTaskCommandParser : new()
+activate findTaskCommandParser
+
+findTaskCommandParser --> addressBookParser
+
+addressBookParser -> findTaskCommandParser : parse("todo")
+
+create findCommand
+findTaskCommandParser -> findCommand
+activate findCommand
+
+findCommand --> findTaskCommandParser
+deactivate findCommand
+
+findTaskCommandParser --> addressBookParser
+deactivate findTaskCommandParser
+
+addressBookParser --> logicManager
+deactivate addressBookParser
+
+logicManager -> findCommand : execute()
+activate findCommand
+
+findCommand -> modelManager : updateFilteredTaskList(predicate)
+activate modelManager
+return
+
+findCommand -> modelManager : getFilteredTaskList()
+activate modelManager
+return
+
+create commandResult
+findCommand -> commandResult : new()
+activate commandResult
+
+commandResult --> findCommand
+deactivate commandResult
+return
+logicManager --> mainWindow
+deactivate logicManager
+
+mainWindow --> resultDisplay :setFeedbackToUser("1 task listed!")
+activate resultDisplay
+return
+return 1 task listed!
+
+@enduml
