@@ -39,11 +39,14 @@ Given below are my contributions to the project.
 * **Documentation**
     * User Guide:
       * Added documentation for commands `add-link`, `delete-link` and
-      `open-link` (e.g, [#51](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/51) and
+      `open-link` with diagrams (e.g, [#51](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/51) and
         [#167](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/167))
     * Developer Guide:
-      * Added implementation detail of `Link` components
+      * Added implementation detail of `Link` components with diagrams
       (see [#89](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/89))
+
+* **Contribution to team-based-tasks**:
+    * Created sample data for first time users of Plannit.
 
 * **Review contributions**:
     * Reviewed numerous PRs (e.g., [#36](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/36),
