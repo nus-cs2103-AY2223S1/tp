@@ -14,22 +14,22 @@ Given below are my contributions to the project.
 [Link to tP Code Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=guokweijie&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=guokweijie&tabRepo=AY2223S1-CS2103T-W08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### Enhancements implemented:
-* FindPatientCommand
-  * It allows the user to filter patients by name, phone number, email, address, remarks and tags and lists them.
-  * It allows the user to filter by one field or multiple fields in one command.
-  * The command is case-insensitive.
-  * Users can input half words, full words, special characters and numbers to filter by, according to the constraints of each field.
-* FindAppointmentCommand
-  * It allows the user to filter appointments by name, medical test, slot and doctor.
-  * It allows the user to filter by one field or multiple fields in one command.
-  * The command is case-insensitive.
-  * Users can input half words, full words, special characters and/or numbers to filter by, according to the constraints of each field.
-* SetPaidCommand
-  * It sets the payment status of a patient's bill to "PAID".
-* SetUnPaidCommand
-  * It sets the payment status of a patient's bill to "UNPAID".
-* Fixed bug in Email class by modifying the regex for the constraints of the email field.
-* Wrote tests for FindPatientCommand, FindAppointmentCommand, FindPatientCommandParser, FindAppointmentCommandParser, SetPaidCommand, SetPaidCommandParser, SetUnPaidCommand and SetUnpaidCommandParser.
+* FindPatientCommand and FindAppointmentCommand
+  * FindPatientCommand allows the user to filter patients by name, phone number, email, address, remarks and tags
+  * FindAppointmentCommand allows the user to filter appointments by name, medical test, slot and doctor
+  * Both commands are case-insensitive and allow the user to filter by one or multiple fields in a single command
+  * Both commands are implemented using Optional predicates instead of adding a new predicate class for each field
+  * Users can input half words, full words, special characters and numbers to filter by, according to the constraints of each field
+* SetPaidCommand and SetUnpaidCommand
+  * SetPaidCommand sets the payment status of a patient's bill to "PAID"
+  * SetUnpaidCommand sets the payment status of a patient's bill to "UNPAID"
+* Added tests:
+  * FindPatientCommandTest and FindPatientCommandParserTest
+  * FindAppointmentCommandTest and FindAppointmentCommandParserTest
+  * SetPaidCommandTest and SetPaidCommandParserTest
+  * SetUnPaidCommandTest and SetUnpaidCommandParserTest
+* Modified CommandTestUtil and ModelManagerTest due to usage of Optional predicates for the find commands
+* Fixed AB3's bug in Email class by modifying the regex for the constraints of the email field
 
 ### Contributions to the User Guide:
 * Added documentation and screenshots for:
@@ -68,6 +68,7 @@ Given below are my contributions to the project.
 * Debugged and fixed more than half of the bugs from PE Dry Run
 * Organised team meetings and discussions
 * Led the team by assigning tasks, reminding teammates to complete them and checking through their work
+* Managed and scribed the project Google document and made team submissions like PE Dry Run bug report and app demo screenshots
 
 ### Review/mentoring contributions:
 * Reviewed PRs
@@ -76,7 +77,11 @@ Given below are my contributions to the project.
   * [#3](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/158)
 
 ### Tools:
-to be added soon
+* IntelliJ IDEA
+* Gradle
+* PlantUML
+* CheckStyle
+* SourceTree
 
 ### Project management:
 to be added soon
