@@ -41,9 +41,9 @@ public class StringUtil {
      * Returns true if the {@code sentence} contains the {@code word} partially.
      *   Ignores case, but a full word match is not required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "ab") == true
-     *       containsWordIgnoreCase("ABc def", "DE") == true
-     *       containsWordIgnoreCase("ABc def", "Ac") == false
+     *       containsPartialWordIgnoreCase("ABc def", "ab") == true
+     *       containsPartialWordIgnoreCase("ABc def", "DE") == true
+     *       containsPartialWordIgnoreCase("ABc def", "Ac") == false
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
@@ -66,8 +66,7 @@ public class StringUtil {
     //@@author parth-io-reused
     // referenced from https://stackoverflow.com/a/14018549/13742805
     /**
-     * Returns true if the {@code stringToSearchIn} contains the {@code keyword} partially.
-     *   Ignores case, but a full match is not required.
+     * Returns true if a string contains a keyword, ignoring case.
      * @param stringToSearchIn cannot be null
      * @param keyword cannot be null
      */

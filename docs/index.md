@@ -1,6 +1,6 @@
 ---
 layout: page
-title: BookFace Level-3
+title: BookFace
 ---
 
 [![CI Status](https://github.com/AY2223S1-CS2103-F14-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103-F14-4/tp/actions)

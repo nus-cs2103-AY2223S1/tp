@@ -10,12 +10,12 @@ import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.ObjectContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates the relevant new AddCommand object for the relevant entity to be added
+ * Parses input arguments and creates the relevant new FindBookCommand object for the relevant entity to be added
  */
 public class FindBookArgumentsParser implements Parseable<FindBookCommand> {
     /**
-     * Parses the given arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given arguments in the context of the FindBookCommand
+     * and returns a FindBookCommand object for execution.
      */
     @Override
     public FindBookCommand parse(String args) throws ParseException {

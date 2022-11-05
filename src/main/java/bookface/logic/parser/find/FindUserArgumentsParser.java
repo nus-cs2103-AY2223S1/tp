@@ -10,12 +10,12 @@ import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.ObjectContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates the relevant new FindCommand object for the relevant entity to be added
+ * Parses input arguments and creates the relevant new FindUserCommand object for the relevant entity to be added
  */
 public class FindUserArgumentsParser implements Parseable<FindUserCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindUserCommand
+     * and returns a FindUserCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

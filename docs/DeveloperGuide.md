@@ -14,6 +14,7 @@ title: Developer Guide
   - [Storage component](#storage-component)
   - [Common classes](#common-classes)
 - [Implementation](#implementation)
+  - [Command Parsing](#command-parsing)
   - [Add](#add-feature)
   - [Delete](#delete-feature)
   - [List](#list-feature)
@@ -218,7 +219,8 @@ This approach was chosen to reduce code duplication, and to manage the complexit
 
 Enums were chosen, as they use less memory (as enums are `final` subclasses of java.lang.Enum) than HashMap for key-value storage, and are easy to modify. Furthermore, they help to ensure type-checking during compile-time, preventing bugs. They also have a semantic value; they represent to both readers and future developers the current allowed constants.
 
-### Adding a book/user
+### Add feature
+#### Adding a book/user
 
 The `add` command is an important command that is commonly used in BookFace. It allows the user to add a new book or a user to the system.
 
@@ -242,10 +244,31 @@ The following is the sequence diagram for this operation:
 #### Adding a user with `add user`
 *To be updated.*
 
-
 ### Delete feature
+#### Deleting a book/user
+The `delete` allows the user to delete a book or a user from the system.
 
+#### Deleting a book with `delete book`
 
+`delete book` deletes a book from the model. Specifically, `ModelManager` maintains a list of books and contains the method `deleteBook()` that is invoked by `DeleteBookCommand`to perform this deletion.
+
+The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("delete user 1")` API call.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Deleting a user with `delete user`
+`delete book` deletes a user from the model. Specifically, `ModelManager` maintains a list of users and contains the method `deletePerson()` that is invoked by `DeleteUserCommand` to perform this deletion.
+
+The sequence diagram is rather similar to that of `delete book`, so in the interest of brevity, it has been omitted.
+
+#### Activity Diagram
+
+The following activity diagram summarizes what happens when the librarian executes a `delete` command:
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
 
 ### List feature
@@ -256,10 +279,13 @@ The list mechanism is facilitated by `LogicManager`. During its process of parsi
 a new `ListCommandParser` will be created to internally parse the argument of the command
 through `ListSubcommand`.
 
-Currently, there are 2 possible `Command` classes that can be returned from `ListSubcommand`, and
+Currently, there are 5 possible `Command` classes that can be returned from `ListSubcommand`, and
 they are created in respect to the subcommand that is parsed:
 * `ListBooksCommand` for `Book` upon the command `list books`
 * `ListUsersCommand` for `Person` upon the command `list users`
+* `ListALLCommand` for both `Book` and `Person` upon the command `list all`
+* `ListLoansCommand` for both `Book` and `Person` upon the command `list loans`
+* `ListOverdueCommand` for both `Book` and `Person` upon the command `list overdue`
 
 Given below is an example usage scenario and how the list mechanism behaves
 at each step.
@@ -289,32 +315,6 @@ the end of diagram.</div>
 The following activity diagram summarizes what happens when a user executes a list command:
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
-
-### Deleting a book/user
-The `delete` allows the user to delete a book or a user from the system.
-
-#### Deleting a book with `delete book`
-
-`delete book` deletes a book from the model. Specifically, `ModelManager` maintains a list of books and contains the method `deleteBook()` that is invoked by `DeleteBookCommand`to perform this deletion.
-
-The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("delete user 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-#### Deleting a user with `delete user`
-`delete book` deletes a user from the model. Specifically, `ModelManager` maintains a list of users and contains the method `deletePerson()` that is invoked by `DeleteUserCommand` to perform this deletion.
-
-The sequence diagram is rather similar to that of `delete book`, so in the interest of brevity, it has been omitted.
-
-#### Activity Diagram
-
-The following activity diagram summarizes what happens when the librarian executes a `delete` command:
-
-![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
-
 
 ### Find feature
 
@@ -604,6 +604,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                               | delete patrons from my library |                                                        |
 | `* * *`  | user                               | add loans                      | mark books as unavailable                              |
 | `* * *`  | user                               | mark loans as returned         | mark books as available                                |
+| `* * *`  | user                               | view the overdue books         |                                                        |
 | `* * *`  | person who likes to talk to others | type my commands to a CLI      | so I can work while interacting with my patrons        |
 
 *{More to be added}*

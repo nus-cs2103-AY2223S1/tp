@@ -5,7 +5,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Object}'s fields specified in {@code wrappedPredicate} matches any of the keywords given.
  */
 public class ObjectContainsKeywordsPredicate<T, R> implements Predicate<T> {
     private final List<? extends R> keywords;
