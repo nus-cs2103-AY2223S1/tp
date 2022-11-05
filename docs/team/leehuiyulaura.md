@@ -84,11 +84,12 @@ Given below are my contributions to the project.
     * Did cosmetic tweaks to existing documentation of the `nextsem` feature as well as the Navigating the User Guide section [#203](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/203)
   * Developer Guide:
     * Added proposed implementation details for the `nextsem` and `filter` features [#80](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/80)
-    * Edited the Ui Class Diagram to include a User Profile [#80](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/80)
+    * Updated the Ui Class Diagram to include a User Profile [#80](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/80)
     * Updated the implementation details for the `nextsem` and `filter` features [#203](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/203)
     * Added an activity and sequence diagram to illustrate the execution of the `filter` features [#203](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/203)
     * Added a sequence diagram to illustrate the implementation of the `nextsem` feature [#203](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/203)
-    * Use cases 1 and 5 [#57](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/57)
+    * Use cases 1, 5, 20, 21, 22, 23 and 24 [#57](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/57), [#214](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/214)
+    * Add manual testing for refreshing to next semester [#214](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/214)
 
 
 * **Contributions to Team-based tasks**:

@@ -34,8 +34,8 @@ title: User Guide
   - [Filtering features](#filtering-features)
     - [Filtering Tags](#filtering-tags)
     - [Filtering Current Modules](#filtering-current-modules)
-    - [Filtering Planned Modules](#filtering-planned-modules)
     - [Filtering Previous Modules](#filtering-previous-modules)
+    - [Filtering Planned Modules](#filtering-planned-modules)
   - [Data features](#data-features)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
@@ -665,11 +665,11 @@ Examples:
 
 * `filtertag friends` lists all contacts with a friends tag.
 
-<img src="images/filtertagfriends.png" width="300" />
+![Filter Tag 1](images/FilterTagFriends.png)
 
 * `filtertag friends family` lists all contacts with either a friends or family tag.
 
-<img src="images/filtertagfriendsfamily.png" width="300" />
+![Filter Tag 2](images/FilterTagFriendsFamily.png)
 
 [Scroll back to top](#table-of-contents)
 
@@ -687,7 +687,7 @@ Examples:
 
 * `filtercurrmod CS1000` lists all contacts with module code CS1000 in their current modules list.
 
-<img src="images/filtercurrmodCS1000.png" width="300" />
+![Filter Current Module](images/FilterCurrModCS1000.png)
 
 [Scroll back to top](#table-of-contents)
 
@@ -705,7 +705,7 @@ Examples:
 
 * `filterprevmod CS2000` lists all contacts with module code CS2000 in their previous modules list.
 
-<img src="images/filterprevmodCS2000.png" width="300" />
+![Filter Previous Module](images/FilterPrevModCS2000.png)
 
 [Scroll back to top](#table-of-contents)
 
@@ -723,7 +723,7 @@ Examples:
 
 * `filterplanmod CS23333` lists all contacts with module code CS3333 in their planned modules list.
 
-<img src="images/filterplanmodCS3333.png" width="300" />
+![Filter Planned Module](images/FilterPlanModCS3333.png)
 
 [Scroll back to top](#table-of-contents)
 
