@@ -184,7 +184,7 @@ public class ModelManager implements Model {
         HashMap<String, Integer> ratingCount = new HashMap<>();
         for (Person person : filteredPersons) {
             assert person.getRating() != null : "Person's rating should not be null";
-            String rating = person.getRating().toString();
+            String rating = person.getRating().toString() + "/10";
             if (ratingCount.containsKey(rating)) {
                 ratingCount.put(rating, ratingCount.get(rating) + 1);
             } else {
