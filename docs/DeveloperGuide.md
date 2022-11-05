@@ -234,6 +234,54 @@ Alternative 1 was chosen to enable more efficient parsing of commands.
 
 `PropertyPriceWithinRangePredicate`
 
+### Filter by Property Status Feature [Yue Hern]
+This feature allows users to filter properties by `PropertyStatusEnum`. 
+
+The feature is activated by the command patter `status -p [property_status]`
+
+**Parsing of command within the Logic component**
+
+This command uses the `StatusPropertyCommandParser` to parse the command.
+
+These are the steps that will be taken when parsing a range command:
+
+1. The `CondoneryParser` checks if the user command is a range command. Then it creates a `StatusPropertyCommandParser`.
+2. The `StatusPropertyCommandParser` which implements the `Parser` interface, parses the command via `Parser#parse`.
+3. If the user `command` is valid, the parser creates the corresponding `Command` object for execution.
+
+![StatusPropertySequenceDiagram](images/StatusPropertySequenceDiagram.png)
+
+**Execution of command within the Logic component**
+
+When a `StatusPropertyCommand` is created by the `StatusPropertyCommandParser`, it is executed with model passed in as the parameter.
+
+Firstly, the `updateFilteredPropertyList` is called to get the list of properties within the specified price range.
+
+Next, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+**Error handling within the Logic component**
+
+![StatusPropertyActivityDiagram](images/StatusPropertyActivityDiagram.png)
+
+**Design consideration**
+
+Aspect: Input format for `StatusPropertyCommand`
+
+- **Alternative 1** (current choice): Accept both lower and upper case for `StatusPropertyCommand` argument
+(e.g. accept both `status -p available` and `status -p AVAILABLE` inputs)
+  - Pros: 
+    - Less prone to error for the user
+    - More intuitive for the user
+  - Cons:
+    - Format be confusing for user
+- **Alternative 2**: Only accept upper case input for `StatusPropertyCommand`
+  - Cons:
+    - More prone to error
+    - User has to follow case, which can be troublesome
+
+- Alternative 1 was chosen because of its ease of use, more intuitive, and less error-prone reasons.
+
+
 ### Commands
 
 #### \[Proposed\] Search Command
