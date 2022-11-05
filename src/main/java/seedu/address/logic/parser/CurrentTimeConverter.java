@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  * Converts the current time to a String format.
  * Makes use of Java time api to obtain current time.
  */
-public class CurrentTimeParser {
+public class CurrentTimeConverter {
 
     public static final DateTimeFormatter STANDARD_TIME_FORMAT = DateTimeFormatter.ofPattern("HHmm");
 
@@ -22,9 +22,7 @@ public class CurrentTimeParser {
         LocalDateTime currentTime = LocalDateTime.now();
         DayOfWeek currentDay = currentTime.getDayOfWeek();
         String currentDayInString = convertDayOfWeekToString(currentDay);
-        System.out.println(currentDayInString);
         String formattedTime = currentTime.format(STANDARD_TIME_FORMAT);
-        System.out.println(formattedTime);
         return currentDayInString + "@" + formattedTime;
     }
 
