@@ -31,6 +31,9 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
     public static final String MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE = "Marked Student as %1$s: %2$s";
     public static final String MESSAGE_MARK_MULTI_SUCCESS_ATTENDANCE = "Marked %1$s students as %2$s";
 
+    public static final String MESSAGE_MARK_SINGLE_UNEDITED_ATTENDANCE = "Student already marked as %1$s: %2$s";
+    public static final String MESSAGE_MARK_MULTI_UNEDITED_ATTENDANCE = "%1$s students are already marked as %2$s";
+
     public static final String MESSAGE_NO_EDIT = "Attendance must be provided.";
 
     public MarkCommand(IndexListGenerator indexListGenerator, MarkCommandStudentEditor studentEditor) {
@@ -48,6 +51,19 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
         return String.format(MESSAGE_MARK_MULTI_SUCCESS_ATTENDANCE,
                 editedStudents.size(), studentEditor.getAttendance());
+    }
+
+    @Override
+    public String getSingleUneditedMessage(Student uneditedStudent) {
+        return String.format(MESSAGE_MARK_SINGLE_UNEDITED_ATTENDANCE,
+                studentEditor.getAttendance().getString(),
+                uneditedStudent);
+    }
+
+    @Override
+    public String getMultiUneditedMessage(List<Student> uneditedStudents) {
+        return String.format(MESSAGE_MARK_MULTI_UNEDITED_ATTENDANCE,
+                uneditedStudents.size(), studentEditor.getAttendance());
     }
 
     @Override
@@ -76,15 +92,18 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
         }
 
         @Override
-        public Student editStudent(Student studentToEdit) {
+        public EditResult editStudent(Student studentToEdit) {
             StudentData studentData = studentToEdit.getStudentData();
+            Set<Attendance> newAttendances = new HashSet<>(studentToEdit.getAttendances());
 
-            Set<Attendance> newAttendance = new HashSet<>(studentToEdit.getAttendances());
-            newAttendance.remove(attendance);
-            newAttendance.add(attendance);
-            studentData.setAttendances(newAttendance);
+            if (newAttendances.stream().anyMatch(x -> x.strongEquals(attendance))) {
+                return new EditResult(studentToEdit, false);
+            }
 
-            return new Student(studentData);
+            newAttendances.remove(attendance);
+            newAttendances.add(attendance);
+            studentData.setAttendances(newAttendances);
+            return new EditResult(new Student(studentData), true);
         }
 
         @Override

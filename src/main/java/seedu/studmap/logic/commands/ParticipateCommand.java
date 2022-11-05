@@ -33,6 +33,10 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
     public static final String MESSAGE_MARK_SINGLE_SUCCESS_PARTICIPATION = "Recorded Student as %1$s: %2$s";
     public static final String MESSAGE_MARK_MULTI_SUCCESS_PARTICIPATION = "Recorded %1$s students as %2$s";
 
+    public static final String MESSAGE_MARK_SINGLE_UNEDITED_PARTICIPATION = "Student is already recorded as %1$s: %2$s";
+    public static final String MESSAGE_GRADE_MULTI_UNEDITED_ASSIGNMENT =
+            "%1$s students are already recorded as %2$s";
+
     public static final String MESSAGE_NO_EDIT = "Participation component must be provided.";
 
     public ParticipateCommand(IndexListGenerator indexListGenerator, ParticipateCommandStudentEditor studentEditor) {
@@ -52,6 +56,21 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
         requireNonNull(studentEditor.getParticipation());
         return String.format(MESSAGE_MARK_MULTI_SUCCESS_PARTICIPATION,
                 editedStudents.size(), studentEditor.getParticipation());
+    }
+
+    @Override
+    public String getSingleUneditedMessage(Student uneditedStudent) {
+        requireNonNull(studentEditor.getParticipation());
+        return String.format(MESSAGE_MARK_SINGLE_UNEDITED_PARTICIPATION,
+                studentEditor.getParticipation().getString(),
+                uneditedStudent);
+    }
+
+    @Override
+    public String getMultiUneditedMessage(List<Student> uneditedStudents) {
+        requireNonNull(studentEditor.getParticipation());
+        return String.format(MESSAGE_GRADE_MULTI_UNEDITED_ASSIGNMENT,
+                uneditedStudents.size(), studentEditor.getParticipation());
     }
 
     @Override
@@ -79,20 +98,19 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
             return participation;
         }
 
-
-
         @Override
-        public Student editStudent(Student studentToEdit) {
+        public EditResult editStudent(Student studentToEdit) {
             StudentData studentData = studentToEdit.getStudentData();
+            Set<Participation> newParticipations = new HashSet<>(studentToEdit.getParticipations());
 
-            if (participation != null) {
-                Set<Participation> newParticipation = new HashSet<>(studentToEdit.getParticipations());
-                newParticipation.remove(participation);
-                newParticipation.add(participation);
-                studentData.setParticipations(newParticipation);
+            if (newParticipations.stream().anyMatch(x -> x.strongEquals(participation))) {
+                return new EditResult(studentToEdit, false);
             }
 
-            return new Student(studentData);
+            newParticipations.remove(participation);
+            newParticipations.add(participation);
+            studentData.setParticipations(newParticipations);
+            return new EditResult(new Student(studentData), true);
         }
 
         @Override

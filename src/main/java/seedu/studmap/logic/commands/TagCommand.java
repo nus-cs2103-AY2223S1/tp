@@ -43,6 +43,10 @@ public class TagCommand extends EditStudentCommand<TagCommand.TagCommandStudentE
 
     public static final String MESSAGE_MULTI_ADD_TAGS_SUCCESS = "Added tags %1$s for %2$d students";
 
+    public static final String MESSAGE_SINGLE_UNEDITED = "Tags not added to Student: %1$s";
+
+    public static final String MESSAGE_MULTI_UNEDITED = "Tags not added to %1$d students";
+
     public static final String MESSAGE_TAGS_NOT_ADDED = "At least one tag must be added";
 
     public TagCommand(IndexListGenerator indexListGenerator, TagCommandStudentEditor editor) {
@@ -60,6 +64,18 @@ public class TagCommand extends EditStudentCommand<TagCommand.TagCommandStudentE
         return String.format(MESSAGE_MULTI_ADD_TAGS_SUCCESS,
                 CollectionUtil.collectionToString(studentEditor.tags),
                 editedStudents.size());
+    }
+
+    @Override
+    public String getSingleUneditedMessage(Student uneditedStudent) {
+        return String.format(MESSAGE_SINGLE_UNEDITED,
+                uneditedStudent.getName());
+    }
+
+    @Override
+    public String getMultiUneditedMessage(List<Student> uneditedStudents) {
+        return String.format(MESSAGE_MULTI_UNEDITED,
+                uneditedStudents.size());
     }
 
     @Override
@@ -101,15 +117,15 @@ public class TagCommand extends EditStudentCommand<TagCommand.TagCommandStudentE
         }
 
         @Override
-        public Student editStudent(Student studentToEdit) {
+        public EditResult editStudent(Student studentToEdit) {
             assert studentToEdit != null;
 
             StudentData studentData = studentToEdit.getStudentData();
             Set<Tag> newTags = studentData.getTags();
-            newTags.addAll(tags);
+            boolean isEdited = newTags.addAll(tags);
             studentData.setTags(newTags);
 
-            return new Student(studentData);
+            return new EditResult(new Student(studentData), isEdited);
         }
 
         @Override

@@ -40,6 +40,10 @@ public abstract class EditStudentCommand<T extends StudentEditor> extends Comman
 
     public abstract String getMultiEditSuccessMessage(List<Student> editedStudents);
 
+    public abstract String getSingleUneditedMessage(Student uneditedStudent);
+
+    public abstract String getMultiUneditedMessage(List<Student> uneditedStudents);
+
     public abstract String getNoEditMessage();
 
     @Override
@@ -59,6 +63,11 @@ public abstract class EditStudentCommand<T extends StudentEditor> extends Comman
         List<Student> lastShownList = model.getFilteredStudentList();
 
         ArrayList<Student> editedStudents = new ArrayList<>();
+        ArrayList<Student> uneditedStudents = new ArrayList<>();
+
+        if (!studentEditor.hasEdits()) {
+            return new CommandResult(getNoEditMessage());
+        }
 
         for (Index index : indicesToEdit.apply(model)) {
             if (index.getZeroBased() >= lastShownList.size()) {
@@ -66,26 +75,37 @@ public abstract class EditStudentCommand<T extends StudentEditor> extends Comman
             }
 
             Student studentToEdit = lastShownList.get(index.getZeroBased());
-            Student editedStudent = studentEditor.editStudent(studentToEdit);
+            StudentEditor.EditResult editResult = studentEditor.editStudent(studentToEdit);
+            Student editedStudent = editResult.editedStudent;
 
             if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
                 throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
             }
 
-            if (studentEditor.hasEdits()) {
+            if (editResult.isEdited) {
                 editedStudents.add(editedStudent);
+                model.setStudent(studentToEdit, editedStudent);
+            } else {
+                uneditedStudents.add(studentToEdit);
             }
 
-            model.setStudent(studentToEdit, editedStudent);
         }
 
-        if (editedStudents.size() == 0) {
-            return new CommandResult(getNoEditMessage());
-        } else if (editedStudents.size() == 1) {
-            return new CommandResult(getSingleEditSuccessMessage(editedStudents.get(0)));
-        } else {
-            return new CommandResult(getMultiEditSuccessMessage(editedStudents));
+        StringBuilder commandOutput = new StringBuilder();
+
+        if (editedStudents.size() == 1) {
+            commandOutput.append(getSingleEditSuccessMessage(editedStudents.get(0)));
+        } else if (editedStudents.size() > 1) {
+            commandOutput.append(getMultiEditSuccessMessage(editedStudents));
         }
+
+        if (uneditedStudents.size() == 1) {
+            commandOutput.append("\n").append(getSingleUneditedMessage(uneditedStudents.get(0)));
+        } else if (uneditedStudents.size() > 1) {
+            commandOutput.append("\n").append(getMultiUneditedMessage(uneditedStudents));
+        }
+
+        return new CommandResult(commandOutput.toString());
     }
 
     @Override

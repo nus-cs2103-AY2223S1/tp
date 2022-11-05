@@ -34,8 +34,10 @@ public class UnparticipateCommand extends EditStudentCommand<UnparticipateComman
     public static final String MESSAGE_UNMARK_MULTI_PARTICIPATION_SUCCESS = "Removed Participation component %1$s from "
             + "%2$s students";
 
-    public static final String MESSAGE_UNMARK_PARTICIPATION_NOTFOUND = "Participation component %1$s not found in "
-            + "Student: %2$s";
+    public static final String MESSAGE_UNMARK_SINGLE_PARTICIPATION_UNEDITED = "Participation component %1$s not found "
+            + "in Student: %2$s";
+    public static final String MESSAGE_UNMARK_MULTI_PARTICIPATION_UNEDITED = "Participation component %1$s not found "
+            + "in %2$s students";
 
     public static final String MESSAGE_NO_EDIT = "Participation component must be provided.";
 
@@ -56,6 +58,20 @@ public class UnparticipateCommand extends EditStudentCommand<UnparticipateComman
         return String.format(MESSAGE_UNMARK_MULTI_PARTICIPATION_SUCCESS,
                 studentEditor.getParticipation().identifier,
                 editedStudents.size());
+    }
+
+    @Override
+    public String getSingleUneditedMessage(Student uneditedStudent) {
+        return String.format(MESSAGE_UNMARK_SINGLE_PARTICIPATION_UNEDITED,
+                studentEditor.getParticipation().identifier,
+                uneditedStudent);
+    }
+
+    @Override
+    public String getMultiUneditedMessage(List<Student> uneditedStudents) {
+        return String.format(MESSAGE_UNMARK_MULTI_PARTICIPATION_UNEDITED,
+                studentEditor.getParticipation().identifier,
+                uneditedStudents.size());
     }
 
     @Override
@@ -84,14 +100,14 @@ public class UnparticipateCommand extends EditStudentCommand<UnparticipateComman
         }
 
         @Override
-        public Student editStudent(Student studentToEdit) {
+        public EditResult editStudent(Student studentToEdit) {
             StudentData studentData = studentToEdit.getStudentData();
 
-            Set<Participation> newParticipation = new HashSet<>(studentToEdit.getParticipations());
-            newParticipation.remove(participation);
-            studentData.setParticipations(newParticipation);
+            Set<Participation> newParticipations = new HashSet<>(studentToEdit.getParticipations());
+            boolean isEdited = newParticipations.remove(participation);
+            studentData.setParticipations(newParticipations);
 
-            return new Student(studentData);
+            return new EditResult(new Student(studentData), isEdited);
         }
 
         @Override

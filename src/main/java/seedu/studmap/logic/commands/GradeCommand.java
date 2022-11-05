@@ -35,6 +35,11 @@ public class GradeCommand extends EditStudentCommand<GradeCommand.GradeCommandSt
     public static final String MESSAGE_GRADE_MULTI_SUCCESS_ASSIGNMENT =
             "Set assignment %1$s as %2$s for %3$s students: ";
 
+    public static final String MESSAGE_GRADE_SINGLE_UNEDITED_ASSIGNMENT =
+            "Assignment %1$s for student %2$s is already %3$s:" + " \n%4$s";
+    public static final String MESSAGE_GRADE_MULTI_UNEDITED_ASSIGNMENT =
+            "Assignment %1$s are already set as %2$s for %3$s students";
+
     public static final String MESSAGE_NO_EDIT = "Assignment must be provided.";
 
     public GradeCommand(IndexListGenerator indexListGenerator, GradeCommandStudentEditor studentEditor) {
@@ -58,6 +63,25 @@ public class GradeCommand extends EditStudentCommand<GradeCommand.GradeCommandSt
                 assignment.getAttributeName(),
                 assignment.state,
                 editedStudents.size());
+    }
+
+    @Override
+    public String getSingleUneditedMessage(Student uneditedStudent) {
+        Assignment assignment = studentEditor.getAssignment();
+        return String.format(MESSAGE_GRADE_SINGLE_UNEDITED_ASSIGNMENT,
+                assignment.getAttributeName(),
+                uneditedStudent.getName(),
+                assignment.state,
+                uneditedStudent);
+    }
+
+    @Override
+    public String getMultiUneditedMessage(List<Student> uneditedStudents) {
+        Assignment assignment = studentEditor.getAssignment();
+        return String.format(MESSAGE_GRADE_MULTI_UNEDITED_ASSIGNMENT,
+                assignment.getAttributeName(),
+                assignment.state,
+                uneditedStudents.size());
     }
 
     @Override
@@ -87,14 +111,19 @@ public class GradeCommand extends EditStudentCommand<GradeCommand.GradeCommandSt
 
 
         @Override
-        public Student editStudent(Student studentToEdit) {
+        public EditResult editStudent(Student studentToEdit) {
+
             StudentData studentData = studentToEdit.getStudentData();
             Set<Assignment> newAssignments = new HashSet<>(studentToEdit.getAssignments());
+
+            if (newAssignments.stream().anyMatch(x -> x.strongEquals(assignment))) {
+                return new EditResult(studentToEdit, false);
+            }
+
             newAssignments.remove(assignment);
             newAssignments.add(assignment);
             studentData.setAssignments(newAssignments);
-
-            return new Student(studentData);
+            return new EditResult(new Student(studentData), true);
         }
 
         @Override

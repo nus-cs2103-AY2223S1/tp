@@ -56,6 +56,8 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_EDIT_MULTIPLE_STUDENTS_SUCCESS = "Edited %1$d students.";
+    public static final String MESSAGE_UNEDITED_STUDENT = "Student not edited: %1$s";
+    public static final String MESSAGE_UNEDITED_MULTIPLE_STUDENTS = "%1$d students not edited.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     public EditCommand(IndexListGenerator indexListGenerator, EditCommandStudentEditor studentEditor) {
@@ -70,6 +72,16 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
     @Override
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
         return String.format(MESSAGE_EDIT_MULTIPLE_STUDENTS_SUCCESS, editedStudents.size());
+    }
+
+    @Override
+    public String getSingleUneditedMessage(Student uneditedStudent) {
+        return String.format(MESSAGE_UNEDITED_STUDENT, uneditedStudent);
+    }
+
+    @Override
+    public String getMultiUneditedMessage(List<Student> uneditedStudents) {
+        return String.format(MESSAGE_UNEDITED_MULTIPLE_STUDENTS, uneditedStudents.size());
     }
 
     @Override
@@ -239,7 +251,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
         }
 
         @Override
-        public Student editStudent(Student studentToEdit) {
+        public EditResult editStudent(Student studentToEdit) {
             assert studentToEdit != null;
 
             StudentData studentData = studentToEdit.getStudentData();
@@ -252,7 +264,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             studentData.setTeleHandle(getHandle().orElse(studentToEdit.getTeleHandle()));
             studentData.setTags(getTags().orElse(studentToEdit.getTags()));
 
-            return new Student(studentData);
+            return new EditResult(new Student(studentData), !studentData.equals(studentToEdit.getStudentData()));
         }
 
         @Override

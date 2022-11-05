@@ -28,8 +28,11 @@ public abstract class MultiStateAttribute<S, T> {
 
     /**
      * Checks equality with another MultiStateAttribute with the same type parameters.
+     * Has additional requirement that the states are equal.
      */
-    public abstract boolean isSameAttribute(MultiStateAttribute<S, T> other);
+    public boolean strongEquals(MultiStateAttribute<S, T> other) {
+        return equals(other) && this.state.equals(other.state);
+    }
 
     /**
      * Checks equality of identifier with another.

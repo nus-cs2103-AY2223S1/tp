@@ -14,10 +14,29 @@ public interface StudentEditor {
      * @param studentToEdit Student to be edited
      * @return New edited student
      */
-    Student editStudent(Student studentToEdit);
+    EditResult editStudent(Student studentToEdit);
 
     /**
      * Returns true if this editor will make edits when used.
      */
     boolean hasEdits();
+
+    /**
+     * A class that encapsulates the edit result of an editStudent operation.
+     */
+    final class EditResult {
+        public final Student editedStudent;
+        public final boolean isEdited;
+
+        /**
+         * Constructor for EditResult.
+         *
+         * @param editedStudent Student that has been edited.
+         * @param isEdited      Whether there is an edit.
+         */
+        public EditResult(Student editedStudent, boolean isEdited) {
+            this.editedStudent = editedStudent;
+            this.isEdited = isEdited;
+        }
+    }
 }

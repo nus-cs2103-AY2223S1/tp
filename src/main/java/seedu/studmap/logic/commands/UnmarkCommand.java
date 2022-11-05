@@ -31,7 +31,8 @@ public class UnmarkCommand extends EditStudentCommand<UnmarkCommand.UnmarkComman
 
     public static final String MESSAGE_UNMARK_MULTI_ATTENDANCE_SUCCESS = "Removed Class %1$s from %2$s students";
 
-    public static final String MESSAGE_UNMARK_ATTENDANCE_NOTFOUND = "Class %1$s not found in Student: %2$s";
+    public static final String MESSAGE_UNMARK_SINGLE_ATTENDANCE_UNEDITED = "Class %1$s not found in Student: %2$s";
+    public static final String MESSAGE_UNMARK_MULTI_ATTENDANCE_UNEDITED = "Class %1$s not found in %2$s students";
 
     public static final String MESSAGE_NO_EDIT = "Attendance must be provided.";
 
@@ -51,6 +52,20 @@ public class UnmarkCommand extends EditStudentCommand<UnmarkCommand.UnmarkComman
         return String.format(MESSAGE_UNMARK_MULTI_ATTENDANCE_SUCCESS,
                 studentEditor.getAttendance().identifier,
                 editedStudents.size());
+    }
+
+    @Override
+    public String getSingleUneditedMessage(Student uneditedStudent) {
+        return String.format(MESSAGE_UNMARK_SINGLE_ATTENDANCE_UNEDITED,
+                studentEditor.getAttendance().identifier,
+                uneditedStudent);
+    }
+
+    @Override
+    public String getMultiUneditedMessage(List<Student> uneditedStudents) {
+        return String.format(MESSAGE_UNMARK_MULTI_ATTENDANCE_UNEDITED,
+                studentEditor.getAttendance().identifier,
+                uneditedStudents.size());
     }
 
     @Override
@@ -79,14 +94,14 @@ public class UnmarkCommand extends EditStudentCommand<UnmarkCommand.UnmarkComman
         }
 
         @Override
-        public Student editStudent(Student studentToEdit) {
+        public EditResult editStudent(Student studentToEdit) {
             StudentData studentData = studentToEdit.getStudentData();
 
             Set<Attendance> newAttendance = new HashSet<>(studentToEdit.getAttendances());
-            newAttendance.remove(attendance);
+            boolean isEdited = newAttendance.remove(attendance);
             studentData.setAttendances(newAttendance);
 
-            return new Student(studentData);
+            return new EditResult(new Student(studentData), isEdited);
         }
 
         @Override

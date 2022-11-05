@@ -31,7 +31,8 @@ public class UngradeCommand extends EditStudentCommand<UngradeCommand.UngradeCom
 
     public static final String MESSAGE_UNGRADE_MULTI_ASSIGNMENT_SUCCESS = "Removed Assignment %1$s from %2$s Students";
 
-    public static final String MESSAGE_UNGRADE_ASSIGNMENT_NOTFOUND = "Assignment %1$s not found in Student: %2$s";
+    public static final String MESSAGE_UNMARK_SINGLE_ASSIGNMENT_UNEDITED = "Assignment %1$s not found in Student: %2$s";
+    public static final String MESSAGE_UNMARK_MULTI_ASSIGNMENT_UNEDITED = "Assignment %1$s not found in %2$s students";
 
     public static final String MESSAGE_NO_EDIT = "Assignment must be provided.";
 
@@ -53,6 +54,22 @@ public class UngradeCommand extends EditStudentCommand<UngradeCommand.UngradeCom
         return String.format(MESSAGE_UNGRADE_MULTI_ASSIGNMENT_SUCCESS,
                 assignment.getAttributeName(),
                 editedStudents.size());
+    }
+
+    @Override
+    public String getSingleUneditedMessage(Student uneditedStudent) {
+        Assignment assignment = studentEditor.getAssignment();
+        return String.format(MESSAGE_UNMARK_SINGLE_ASSIGNMENT_UNEDITED,
+                assignment.getAttributeName(),
+                uneditedStudent);
+    }
+
+    @Override
+    public String getMultiUneditedMessage(List<Student> uneditedStudents) {
+        Assignment assignment = studentEditor.getAssignment();
+        return String.format(MESSAGE_UNMARK_MULTI_ASSIGNMENT_UNEDITED,
+                assignment.getAttributeName(),
+                uneditedStudents.size());
     }
 
     @Override
@@ -82,14 +99,14 @@ public class UngradeCommand extends EditStudentCommand<UngradeCommand.UngradeCom
 
 
         @Override
-        public Student editStudent(Student studentToEdit) {
+        public EditResult editStudent(Student studentToEdit) {
             StudentData studentData = studentToEdit.getStudentData();
 
             Set<Assignment> newAssignments = new HashSet<>(studentToEdit.getAssignments());
-            newAssignments.remove(assignment);
+            boolean isEdited = newAssignments.remove(assignment);
             studentData.setAssignments(newAssignments);
 
-            return new Student(studentData);
+            return new EditResult(new Student(studentData), isEdited);
         }
 
         @Override

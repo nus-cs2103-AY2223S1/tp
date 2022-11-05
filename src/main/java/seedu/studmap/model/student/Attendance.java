@@ -32,11 +32,6 @@ public class Attendance extends MultiStateAttribute<String, Attendance.Status> {
     }
 
     @Override
-    public boolean isSameAttribute(MultiStateAttribute<String, Status> other) {
-        return other.identifier.equalsIgnoreCase(this.identifier);
-    }
-
-    @Override
     public boolean isValidAttributeIdentifier(String identifier) {
         return isValidClassName(identifier);
     }
@@ -50,7 +45,7 @@ public class Attendance extends MultiStateAttribute<String, Attendance.Status> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Attendance // instanceof handles nulls
-                && state.equals(((Attendance) other).state)); // state check
+                && identifier.equals(((Attendance) other).identifier)); // identifier check
     }
 
     @Override

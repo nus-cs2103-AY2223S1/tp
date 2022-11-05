@@ -40,11 +40,6 @@ public class Assignment extends MultiStateAttribute<String, Assignment.Status> {
     }
 
     @Override
-    public boolean isSameAttribute(MultiStateAttribute<String, Status> other) {
-        return other.identifier.equalsIgnoreCase(this.identifier);
-    }
-
-    @Override
     public boolean isValidAttributeIdentifier(String identifier) {
         return isValidAssignmentName(identifier);
     }
@@ -58,7 +53,7 @@ public class Assignment extends MultiStateAttribute<String, Assignment.Status> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Assignment // instanceof handles nulls
-                && identifier.equals(((Assignment) other).identifier)); // state check
+                && identifier.equals(((Assignment) other).identifier)); // identifier check
     }
 
     @Override

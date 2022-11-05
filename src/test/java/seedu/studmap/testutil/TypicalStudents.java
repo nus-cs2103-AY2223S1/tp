@@ -32,13 +32,16 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withId("E1234561").withGitName("user1")
             .withTeleHandle("@user1").withPhone("94351253").withModule("CS2103T")
-            .withTags("friends").build();
+            .withTags("friends")
+            .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432").withModule("CS2103T")
             .withId("E1234562").withGitName("user2")
             .withTeleHandle("@user2").withTags("owesMoney", "friends")
             .addAttended("T01", "T02")
-            .addNotAttended("T03").build();
+            .addNotAttended("T03")
+            .addParticipated("P01")
+            .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withModule("CS2103T")
             .withId("E1234563").withGitName("user3")
