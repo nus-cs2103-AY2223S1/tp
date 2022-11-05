@@ -52,22 +52,22 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 BuyerBook *--> "1" UniqueBuyerList
 PropertyBook *--> "1" UniquePropertyList
 UniqueBuyerList --> "~* all" Buyer
-Buyer *--> Name
-Buyer *--> Phone
-Buyer *--> Priority
-Buyer *--> Email
-Buyer *--> PriceRange
-Buyer *--> Address
-Buyer *--> Characteristics
-Buyer *--> LocalDateTime
+Buyer *--> "1" Name
+Buyer *--> "1" Phone
+Buyer *--> "1" Priority
+Buyer *--> "1" Email
+Buyer *--> "0..1" PriceRange
+Buyer *--> "1" Address
+Buyer *--> "0..1" Characteristics
+Buyer *--> "1" LocalDateTime
 UniquePropertyList --> "~* all" Property
-Property *--> Address
-Property *--> Characteristics
-Property *--> LocalDateTime
-Property *--> PropertyName
-Property *--> Description
-Property *--> Price
-Property *--> Owner
+Property *--> "1" Address
+Property *--> "0..1" Characteristics
+Property *--> "1" LocalDateTime
+Property *--> "1" PropertyName
+Property *--> "1" Description
+Property *--> "1" Price
+Property *--> "1" Owner
 
 ModelManager -[hidden]up-> ReadOnlyPropertyBook
 Name -[hidden]left-> Phone

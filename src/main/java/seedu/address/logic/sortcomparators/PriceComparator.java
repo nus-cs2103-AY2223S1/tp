@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
-import seedu.address.model.property.Price;
+import seedu.address.model.price.Price;
 
 /**
  * A comparator to compare two Prices.

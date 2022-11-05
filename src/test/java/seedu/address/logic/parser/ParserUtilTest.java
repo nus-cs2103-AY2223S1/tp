@@ -13,7 +13,7 @@ import seedu.address.model.buyer.Email;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.price.PriceRange;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

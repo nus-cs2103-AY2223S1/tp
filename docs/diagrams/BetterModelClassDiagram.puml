@@ -9,24 +9,22 @@ Cobb *-down-> "1" PropertyBook
 BuyerBook *-down-> "1" UniqueBuyerList
 PropertyBook *-down-> "1" UniquePropertyList
 
+UniqueBuyerList -down-> "*" Buyer
+UniquePropertyList -down-> "*" Property
 
-
-UniqueBuyerList -down-> Buyer
-UniquePropertyList -down-> Property
-
-Buyer *--> Name
-Buyer *--> Phone
-Buyer *--> Priority
-Buyer *--> Email
-Buyer *--> PriceRange
-Buyer *--> Address
-Buyer *--> Characteristics
-Buyer *--> LocalDateTime
-Property *--> Address
-Property *--> Characteristics
-Property *--> LocalDateTime
-Property *--> PropertyName
-Property *--> Description
-Property *--> Price
-Property *--> Owner
+Buyer *--> "1" Name
+Buyer *--> "1" Phone
+Buyer *--> "1" Priority
+Buyer *--> "1" Email
+Buyer *--> "0..1" PriceRange
+Buyer *--> "1" Address
+Buyer *--> "0..1" Characteristics
+Buyer *--> "1" LocalDateTime
+Property *--> "1" Address
+Property *--> "0..1" Characteristics
+Property *--> "1" LocalDateTime
+Property *--> "1" PropertyName
+Property *--> "1" Description
+Property *--> "1" Price
+Property *--> "1" Owner
 @enduml

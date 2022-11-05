@@ -24,7 +24,7 @@ import seedu.address.model.buyer.FilterBuyerContainingAllCharacteristicsPredicat
 import seedu.address.model.buyer.FilterBuyerContainingAnyCharacteristicPredicate;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.property.Price;
+import seedu.address.model.price.Price;
 
 /**
  * Parses user input to create a {@code FilterBuyersCommand}.

@@ -2,7 +2,7 @@ package seedu.address.model.property;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.price.PriceRange;
 
 
 
