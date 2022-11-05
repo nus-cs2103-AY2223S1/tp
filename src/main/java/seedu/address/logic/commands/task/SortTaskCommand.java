@@ -1,12 +1,14 @@
 package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_INCOMPLETE_TASKS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
+import javafx.collections.transformation.SortedList;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.model.Model;
@@ -33,9 +35,10 @@ public class SortTaskCommand extends TaskCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        List<Task> taskList = new ArrayList<>(model.getFilteredTaskList());
-        taskList.sort(DeadlineComparator);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        List<Task> taskList = new SortedList<>(model.getFilteredTaskList(), DeadlineComparator);
         model.setFilteredTaskList(FXCollections.observableList(taskList));
+        model.updateFilteredTaskList(PREDICATE_INCOMPLETE_TASKS);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
