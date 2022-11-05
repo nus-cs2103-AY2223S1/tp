@@ -316,6 +316,51 @@ Step 9. The user now decides he wants to be more specific with his search, and d
 The following sequence diagram shows how the `find` operation works:
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
+#### Proposed implementations / add-ons ####
+
+#### 1. Filter feature ####
+
+The `find` feature works very similarly to a "filter" feature, where the list of items is reduced to fit a set of criteria. Currently, the feature "finds" students, tutors or tuition classes by checking if the respective fields contains a keyword string. 
+However, many of the field classes of each entity are implemented as enums, where the values of the enums are constant and predictable. For example, the `Day` class has enum values such as `Monday`, `Tuesday`, `Wednesday` etc. 
+In such cases, users can input keywords like "day" that matches every single possible enum value for this class, which ends up fulfilling the predicate for every entity on the list.
+
+Therefore, we could let the user use the feature as a "filter", where the user cannot simply input a partial search keyword such as "Mon" and check if the value of the actual `Day` object is a `Monday`. Instead, the user has to input the entire enum value as a filter (e.g. `Monday`) in order for the
+function to pass through. Below are some considerations for this approach:
+
+Pros:
+- Blocks off unintended use cases, such as giving the input "day" that matches every single entity on the list.
+- Reduces unintended errors by limiting the inputs that the user can give. E.g. Can only input `Monday`, `Tuesday`, `Wednesday` etc. for the `Day` field
+
+Cons:
+- Much more inflexible as users cannot give inputs that are more lenient and that matches more entities on the list.
+- It would be much more troublesome to use on a CLI-centric application as users may have to key in the full spelling of the filter being applied.
+
+Alternatively, the filter feature can be implemented as a separate feature altogether in future iterations.
+
+#### 2. Add more fields for find feature ####
+
+The find feature currently doesn't allow users to search by the following critera:
+
+Student:
+1. Details of `NextOfKins`
+2. Details of `TuitionClasses` that they are attending
+
+Tutor:
+1. Details of `TuitionClasses` that they are teaching
+
+TuitionClass:
+1. Details of `Students` that are attending
+2. Details of `Tutors` that are teaching
+
+These could be added in future iterations to give users more flexibility in their search.
+
+#### 3. Add interactive UI interactions ####
+
+The find feature is currently a full CLI-centric feature, where users have to key in the command in the correct format to execute the command.
+While the application was indeed intended for fast typists, we could consider adding elements of UI interaction to accommodate more user preferences.
+For example, we can implement clickable elements to allow users to select a set of "commonly used searches" so that they don't have to re-type predicates that they frequently use.
+Furthermore, we can add individual search boxes for each searchable field so that it is much more intuitive for the users to input their predicates.
+Therefore, there is a lot of potential for UI to be integrated with the find feature in future iterations.
 
 ### \[Implemented\] List type feature
 
