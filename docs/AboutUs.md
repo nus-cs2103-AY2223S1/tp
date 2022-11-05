@@ -5,11 +5,11 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at our Github links, click on each individual name to be brought to each of our Github profiles.
+You can reach us on our GitHub portfolios, links provided below.
 
 ## Project team
 
-### [T Neethesh](https://github.com/Neethesh26)
+### T Neethesh
 
 <img src="images/neethesh26.png" width="200px">
 
@@ -17,9 +17,9 @@ You can reach us at our Github links, click on each individual name to be brough
 [[portfolio](team/johndoe.md)]
 
 * Role:
-Responsibilities:
+* Responsibilities:
 
-### [Chen Ruihan](https://github.com/rui-han-crh)
+### Chen Ruihan
 
 <img src="images/rui-han-crh.png" width="200px">
 
@@ -33,7 +33,7 @@ Responsibilities:
   * English Proofreading
   * Project Embellishments
 
-### [Ryan Chua](https://github.com/ryanczx)
+### Ryan Chua
 
 <img src="images/ryanczx.png" width="200px">
 
@@ -43,7 +43,7 @@ Responsibilities:
 * Role:
 * Responsibilities:
 
-### [Chee Zhong Wei](https://github.com/czhongwei)
+### Chee Zhong Wei
 
 <img src="images/czhongwei.png" width="200px">
 
@@ -53,7 +53,7 @@ Responsibilities:
 * Role:
 * Responsibilities:
 
-### [Jiang Pinran](https://github.com/Pinran-J)
+### Jiang Pinran
 
 <img src="images/pinran-j.png" width="200px">
 
