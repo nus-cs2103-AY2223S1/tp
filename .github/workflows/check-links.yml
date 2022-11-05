@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@main
       - name: Set up server dependencies
         working-directory: ${{ github.workspace }}/docs
-        run: bundle install
+        run: gem install --user-install bundler && bundle install
       - name: Set up checker dependencies
         working-directory: ${{ github.workspace }}/cli-test/linkchecker
         run: npm install
