@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
     * What it does: allows the user to access previous commands using the up and down arrow keys.
     * Justification: This feature improves the product significantly because for users who are fast-typists, this feature allows them to revisit frequently used commands with a click of a button.
-    * Credits: *{ code adapted from [seniors](https://github.com/AY2122S2-CS2103T-W13-3/tp) }*
+    * Credits: *{ Code adapted from [seniors](https://github.com/AY2122S2-CS2103T-W13-3/tp) }*
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=gowribhat&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -32,6 +32,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Modified find command to make searching generic (Pull request [\#62](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/62))
     * Modified add and edit commands to include class input (Pull request [\#59](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/59))
+    * Wrote additional tests for existing features to increase coverage by 1.36% (Pull request [\#214](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/214))
 
 * **Documentation**:
     * User Guide:
