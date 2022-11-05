@@ -207,6 +207,7 @@ Examples:
 `t del 3` deletes the third task in the task list
 
 <div markdown="span" class="alert alert-info">
+
 :information_source: **Note:** When the task is deleted, if it has a link to an exam, the task will be unlinked from the exam.
 </div>
 
