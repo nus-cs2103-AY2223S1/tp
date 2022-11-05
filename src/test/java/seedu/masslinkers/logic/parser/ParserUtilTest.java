@@ -297,7 +297,7 @@ public class ParserUtilTest {
     }
 
     /**
-     * Tests the behaviour of the {@code parseModsToCategory} method
+     * Tests the behaviour of the {@code parseModsToCategory} method.
      */
     @Test
     public void parseMods_correctAssigmentOfCategory() {
