@@ -21,7 +21,7 @@ work done faster than a traditional GUI apps.
 ---
 ## About
 This user guide provides a detailed documentation of how to install and use myStudent. It provides explanations of how 
-to use and what it does for all the features available in myStudent. You don't have to have any technical knowledge to be able to use this guide.
+to use and what it does for all the features available in myStudent. If you don't have any technical knowledge, don't worry as it is not needed to be able to use this guide.
 
 <div markdown="block" class="alert alert-info">
 
