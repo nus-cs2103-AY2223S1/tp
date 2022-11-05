@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
@@ -17,9 +19,9 @@ import seedu.address.model.person.PersonContainsKeywordsPredicate;
 public class CopyContactEmailCommand extends Command {
     public static final String COMMAND_WORD = "copyC";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays emails of all persons whose taglist contains "
-            + "the specified tag (case-sensitive) for easy copy-pasting.\n"
-            + "Parameters: TAG.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays emails of all persons who have "
+            + "the specified label (case-sensitive) for easy copy-pasting.\n"
+            + "Parameters: LABEL.\n"
             + "Example: " + COMMAND_WORD + " CS2103T";
     public static final String MESSAGE_COPIED_EMAILS = "Emails: %s";
 
@@ -30,9 +32,13 @@ public class CopyContactEmailCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+
+        if (model.getFilteredPersonList().size() == 0) {
+            throw new CommandException(Messages.MESSAGE_LABEL_DOES_NOT_EXIST);
+        }
 
         StringBuilder builder = new StringBuilder();
         List<Person> people = model.getFilteredPersonList();
