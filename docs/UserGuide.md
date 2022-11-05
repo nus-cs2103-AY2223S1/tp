@@ -198,7 +198,7 @@ For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, l
 
 - PennyWise will **IGNORE** any extra words or characters present after the following commands: 
  `summary` (except [`summary [mo/MONTH]`](#summary-of-entries)) `help`, `clear` and `exit`. 
-  e.g. `summary abcdefg` will be interpreted as `summary` or `help 123456` will also be interpreted as `help`.  
+  e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.  
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
   e.g. In `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
