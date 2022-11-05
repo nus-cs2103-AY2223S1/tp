@@ -8,6 +8,7 @@ import java.util.List;
 
 import seedu.address.model.ProfNus;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.schedule.ClassType;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.module.schedule.Venue;
@@ -53,6 +54,17 @@ public class TypicalSchedules {
 
     public static List<Schedule> getTypicalSchedules() {
         return new ArrayList<>(Arrays.asList(schedule1, schedule2, schedule3, schedule4, schedule5));
+    }
+
+    public static ArrayList<ModuleCode> getTypicalModuleCodeFromTypicalSchedules() {
+        ArrayList<ModuleCode> typicalModuleCodeList = new ArrayList<>();
+        if (!getTypicalSchedules().isEmpty()) {
+            for(Schedule schedule : getTypicalSchedules()) {
+                ModuleCode curModuleCode = new ModuleCode(schedule.getModule());
+                typicalModuleCodeList.add(curModuleCode);
+            }
+        }
+        return typicalModuleCodeList;
     }
 
 }
