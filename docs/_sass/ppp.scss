@@ -1,0 +1,43 @@
+.pr-badge {
+  $color: #8250df;
+  $border-color: #d0d7de;
+
+  vertical-align: text-bottom;
+
+  display: inline-flex;
+  column-gap: 4px;
+  align-items: center;
+
+  background-color: #f8f8f8;
+  border-radius: 3px;
+  border: 1px solid $border-color;
+
+  margin-inline: 2px;
+  padding: 2px 4px;
+
+  > a {
+    display: inline-block;
+    color: inherit !important;
+    line-height: 100%;
+    font-weight: bold;
+    font-size: 0.75em;
+    text-decoration: none;
+  }
+
+  &:hover > a {
+    color: $link-base-color !important;
+  }
+
+  .icon {
+    $size: 14px;
+    fill: $color;
+    vertical-align: text-top;
+    display: inline-block;
+    height: $size;
+    width: $size;
+  }
+
+  .tooltip {
+    display: none;
+  }
+}
