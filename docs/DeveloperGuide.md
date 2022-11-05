@@ -290,6 +290,9 @@ tuition classes in the student/tutor.
 
 The proposed find by fields mechanism searches the currently displayed list based on multiple fields by taking in a set of prefixes with their respective keywords and updating the respective `FilteredList`.
 
+The following activity diagram shows how the `find` operation works:
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
 Given below is an example usage scenario and how the find by fields mechanism behaves at each step.
 
 Step 1. The user launches the application. The `ModelManager` would be initialised and the type is set to the default list type which is `STUDENT_LIST`.
