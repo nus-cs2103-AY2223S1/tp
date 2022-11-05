@@ -10,7 +10,7 @@ SectresBook helps secretaries to maintain all the information of the members of 
 Given below are my contributions to the project.
 
 ## New Features Implemented
-1. **_Loan Property of a Person_**
+1\. **_Loan Property of a Person_**
    * **What it does**: Implements the ability to track monetary amounts that are represented as loaned amounts. If the amount is positive, the amount is to be paid _by_ the person. If the amount is negative, the amount is to be paid _to_ the person.
    * **Justification**: A treasurer requires the need to keep track of details of monetary transactions.
    * **Highlights**: When combined with the Loans History, containing the records of increments and UI Inspect section of loan history, the loan object can be represented to show monetary amounts. 
@@ -18,7 +18,7 @@ Given below are my contributions to the project.
   
   <br>
 
-2. **_User Interface Design_**
+2\. **_User Interface Design_**
    * **What it does**: Remodels the user interface as shown in the landing page. It contains 4 main section, the text field, the horizontal person card list, the vertical notes list and the inspection panel which updates based on the person inspected. Various small icons, images, alignment details and transitions are also applied for visual enhancement.
    * **Justification**: The previous UI design did not look appealing, so a more visually appealing design was created
    * **Highlights**: When combined with the Loans History, containing the records of increments and UI Inspect section of loan history, the loan object can be represented to show monetary amounts. Other features I implemented work on top of the same UI that I designed.
@@ -26,7 +26,7 @@ Given below are my contributions to the project.
 
   <br>
 
-3. **_Inspect command_**
+3\. **_Inspect command_**
    * **What it does**: Inspects a person in the person's list. Inspection is a UI-centric command that updates the UI values shown. It does not mutate any data in the model. This is also equivalent to just click on the person card, which does exactly the same thing. Inspection can be performed using NAME or INDEX.
    * **Justification**: The UI requires more flexibility when coupled with the CLI, there shouldn't be things that the GUI can do that the CLI cannot, so the `inspect` command was created.
    * **Highlights**: `inspect Alex` or `inspect 1` where Alex is at the first index will populate the Inspection Panel with data of the person, such as name, phone number, birthday, etc.
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
 
   <br>
 
-4. **_Hide Notes Panel Command_**
+4\. **_Hide Notes Panel Command_**
    * **What it does**: Hides the notes panel by applying a translational transition with a fade transition to the StackPane containing the notes panel. The UI uses anchor pane with a Vertical anchor point and a horizontal anchor point shared by all 3 components of the UI (People List, Inspect Panel and Notes Panel). The translation is applied through interpolating the vertical anchor point from 0.6 to 1 such that it moves from the original position to the right side of the screen. This pushes the notes panel to the right side and, at the same time, elongates and pulls the people panel and inspect panel to the right. <p> To maintain the aspect of the panel, a difference in initial left and right anchor point of the Notes Stackpane is calculated and maintained through the translation. The fade transition simply reduces the opacity of the entire pane to zero. This creates the effect of hiding the panel.
    * **Justification**: Because the person panel is horizontally scrolling, it is difficult to view more than 6 people in the list at the same time especially if working on a monitor with a smaller resolution. By hiding the notes panel and pulling the vertical anchor to the right, the people panel becomes wider, allowing for the use of more relevant screen real estate. The inspect panel is also elongated but is also an anchorpane itself, so it maintains equal division between the basic information and the loan history by a ratio.
    * **Highlights**: The transition effect looks nice. All other elements maintain its aspect through ratio instead of absolute values. `hideNotes` to hide the notes panel
@@ -42,7 +42,7 @@ Given below are my contributions to the project.
 
   <br>
 
-5. **_Show Notes Panel Command_**
+5\. **_Show Notes Panel Command_**
    * **What it does**: The opposite of hiding the notes panel. Fades the notes panel in while translating the vertical anchor to the left from 1.0 to 0.6 to slide the notes panel in.
    * **Justification**: If this did not exist, short of restarting the program, there is no way to bring the notes panel back. This provides the inverse functionality of hiding the notes panel.
    * **Highlights**: The transition effect looks nice. `showNotes` to show the notes panel.
