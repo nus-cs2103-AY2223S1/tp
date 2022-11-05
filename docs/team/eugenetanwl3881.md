@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability tag an item
 
-  * What it does: allows the user to tag a valid  item with a valid tag (PR [\#171](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/171), [\#172](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/172))
+  * What it does: allows the user to tag a valid item with a valid tag (PR [\#171](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/171), [\#172](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/172))
   * Justification: This feature improves the product significantly since a user will be able to tag items with a specific tag for classification purposes. This tag will be unique and can be referenced by any item if the item contains this tag
   * Highlights: This enhancement will allow for better classification and searching for items in other commands. For instance 
 
@@ -47,7 +47,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
+  * PRs reviewed (with non-trivial review comments): [\#199](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/199), [\#32](), [\#232](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/232), [\#143](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/143)
 
   
 * Update AboutUs ([PR#22](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/22))
