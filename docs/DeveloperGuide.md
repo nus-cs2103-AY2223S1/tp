@@ -331,9 +331,7 @@ Step 2. `f2` is set by `MainWindow#setAccelerator()` to call `MainWindow#handleM
 
 Step 3. `MeetingsWindow#getMeetings()` method filters a list of `Person` objects by calling `MeetingsWindow#isWithinOneWeek()` method on the `Set<MeetingTime>` of each `Person`. The filtered list will contain `Person` objects that have meetings from now till 7 days later.
 
-Step 4. `MeetingsWindow#getMeetings()` instantiates a `MeetingsListPanel` object where `MeetingsListPanel#updateItem()` method creates a `MeetingCard` for each `Person` in the list and the `MeetingsListPanel` is populated with `MeetingCard` objects.
-
-Step 5. The `MeetingsWindow` contains a `MeetingListPanel` with `MeetingCard` and these objects are linked to `MeetingsWindow.FXML`, `MeetingListPanel.FXML` and `MeetingCard.FXML` which provides the design and UI shown to the user.
+Step 4. `MeetingsWindow#getMeetings()` instantiates a `MeetingsListPanel` object where `MeetingsListPanel#updateItem()` method creates a `MeetingCard` for each `Person` in the list and the `MeetingsListPanel` is populated with `MeetingCard` objects on the `MeetingsWindow`.
 
 The following sequence diagram shows how upcoming meetings feature works.
 ![UpcomingMeetingSequenceDiagram](images/DeveloperGuide/UpcomingMeetings/UpcomingMeetingSequenceDiagram.png)
