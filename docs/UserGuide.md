@@ -337,7 +337,11 @@ Searches for students whose name contains the specified name keywords, or whose 
 
 **Usage**
 
-*Describe when to use this command here*
+There are a few scenarios when you may want to use this command: 
+* When you are relatively unfamiliar with the class, and need to access certain information about a particular student.
+* When you want to edit a student's details using the
+[`edit`](https://ay2223s1-cs2103t-t15-2.github.io/tp/UserGuide.html#422-editing-a-student-record--edit) command, 
+running the find command first would simplify the process.
 
 <div markdown="span" class="alert alert-info">:information_source:
    **Note:**
@@ -351,6 +355,8 @@ Format: `find nm/STUDENT-NAME` or `find id/ID`
 * The search only recognises whole words, and searching for substrings is not valid. e.g. `Han` will not match `Hans`.
 
 Examples:
+* `find nm/lee` returns the list of students with `lee` in their names.
+![FindByName](images/FindByName.png)
 * `find nm/John` returns the records for any student named `john` or any student with `john` in their name. 
 * `find nm/john alice` returns the records for the students whose names contain either `john` or `alice` or both.
 * `find id/123A` returns the student record for the student with `123A` as their student ID.
@@ -409,8 +415,9 @@ Format: `viewStats class/CLASS exam/EXAM-NAME filter/FILTER`
 Examples:
 * `viewStats class/4a exam/sa1 filter/off` Displays the mean obtained by class "4A" for "SA1", as well as the list of 
 all the students in the class '4A', arranged in ascending grades for "SA1".
-* `viewStats class/4A exam/sa1 filter/on` Displays the mean obtained by class "4A" for "SA1", as well as the list of 
-students in class "4A" whose grade for "SA1" falls below the mean, arranged in ascending grades for "SA1".
+* `viewStats class/4A exam/ca1 filter/on` Displays the mean obtained by class "4A" for "CA1", as well as the list of 
+students in class "4A" whose grade for "CA1" falls below the mean, arranged in ascending grades for "CA1".
+![ViewStats](images/ViewStats.png)
 
 <div style="page-break-after: always;"></div>
 
