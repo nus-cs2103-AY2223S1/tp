@@ -547,3 +547,65 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
+### Sorting patients by patient type
+
+1. Displaying all inpatients registered in checkUp 
+   1. Prerequisites: List all patients using the `list` command. At least one inpatient in the list of people.
+   2. Test case: `get /inp`<br>
+      Expected: All inpatients are listed. The number of inpatients listed is displayed in the result box.
+   3. Test case: `get /inp hello world`<br>
+      Expected: All inpatients are listed. The number of inpatients listed is displayed in the result box.
+   4. Test case: `get /inp /outp`<br>
+      Expected: All inpatients are listed. The number of inpatients listed is displayed in the result box.
+   5. Test case: `get inp`<br>
+      Expected: The current list remains unchanged. Error message is displayed in the result box.
+   6. Test case: `get inp/`<br>
+      Expected: The current list remains unchanged. Error message is displayed in the result box.
+
+2. Displaying all outpatients registered in checkUp
+   1. Prerequisites: List all patients using the `list` command. At least one outpatient in the list of people.
+   2. Test case: `get /outp`<br>
+      Expected: All outpatients are listed. The number of outpatients listed is displayed in the result box.
+   3. Test case: `get /outp hello world`<br>
+      Expected: All outpatients are listed. The number of outpatients listed is displayed in the result box.
+   4. Test case: `get /outp /inp`<br>
+      Expected: All outpatients are listed. The number of outpatients listed is displayed in the result box.
+   5. Test case: `get outp`<br>
+      Expected: The current list remains unchanged. Error message is displayed in the result box.
+   6. Test case: `get outp/`<br>
+      Expected: The current list remains unchanged. Error message is displayed in the result box.
+
+### Displaying all past appointments of a patient
+
+1. Displaying the past appointment of a patient when all patients have past appointments.
+   1. Prerequisite: List all patients using the `list` command. All patients have at least one past appointment.
+   2. Test case: `get /appt 1`<br>
+      Expected: Displays all the past appointments of the first patient in the list. The list of past appointments will 
+                be arranged from most recent to oldest in the result box.
+   3. Test case: `get /appt 0`<br>
+      Expected: No past appointment is displayed. Error message is displayed in the result box.
+   4. Test case: `get /appt INVALID_INDEX` where `INVALID_INDEX` is an index outside the displayed list (e.g. `7` in a
+                 list of size 6)<br>
+      Expected: No past appointment is displayed. Error message is displayed in the result box.
+
+2. Displaying the past appointment of a patient that does not have any past appointments.
+   1. Prerequisite: At least one patient in the list of displayed patients must have no past appointments.
+   2. Test case: `get /appt INDEX_OF_PATIENT` where `INDEX_OF_PATIENT` is the index of the patient with no past 
+                 appointments.<br>
+      Expected: Result box will display `Obtained Past Appointments of Patient:` only, indicating there are no past
+                appointments.
+
+### Sorting of the past appointments
+
+1. Testing if past appointments are arranged from most recent to oldest
+   1. Prerequisite: At least one patient in the list of displayed patients must have no past appointments.
+   2. Test case: `appt INDEX_OF_PATIENT on/01-01-2022 diag/fever`, 
+                 `appt INDEX_OF_PATIENT on/04-01-2022 diag/fever follow up`, `get /appt INDEX_OF_PATIENT` where 
+                 `INDEX_OF_PATIENT` is the index of the patient with no past appointments.<br>
+      Expected: The list of past appointments will display the appointment on 04-01-2022 first followed by the 
+                appointment on 01-01-2022 in the result box.
+   3. Test case: `appt INDEX_OF_PATIENT on/04-01-2022 diag/fever follow up`,
+                 `appt INDEX_OF_PATIENT on/01-01-2022 diag/fever`, `get /appt INDEX_OF_PATIENT` where `INDEX_OF_PATIENT`
+                 is the index of the patient with no past appointments.<br>
+      Expected: The list of past appointments will display the appointment on 04-01-2022 first followed by the
+                appointment on 01-01-2022 in the result box. 
