@@ -21,7 +21,7 @@ public class Scholarship implements Comparable<Scholarship> {
     private final String scholarship;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Scholarship}.
      *
      * @param scholarship A valid scholarship.
      */

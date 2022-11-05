@@ -52,7 +52,7 @@ public interface Model {
      */
     void setTrackAScholar(ReadOnlyTrackAScholar trackAScholarData);
 
-    /** Returns the TrackAScholar */
+    /** Returns the TrackAScholar. */
     ReadOnlyTrackAScholar getTrackAScholar();
 
     /**
@@ -60,8 +60,24 @@ public interface Model {
      */
     boolean hasApplicant(Applicant applicant);
 
+    /**
+     * Returns the applicant with the same identity as {@code applicant}.
+     * The applicant must exist in TrackAScholar.
+     */
+    Applicant findSimilarApplicant(Applicant applicant);
+
+    /**
+     * Appends the imported {@code applicantList} to the current applicant list stored in TrackAScholar.
+     * Duplicate applicants conflict is resolved by replacing the current applicant in TrackAScholar with
+     * the data of the imported applicant.
+     */
     void importWithReplace(ObservableList<Applicant> applicantList);
 
+    /**
+     * Appends the imported {@code applicantList} to the current applicant list stored in TrackAScholar.
+     * Duplicate applicants conflict is resolved by keeping the current applicant in TrackAScholar and
+     * disregarding the imported applicant data.
+     */
     void importWithoutReplace(ObservableList<Applicant> applicantList);
 
     /**
@@ -71,7 +87,7 @@ public interface Model {
     void deleteApplicant(Applicant target);
 
     /**
-     * Removes all applicants by completion status (accepted/pending).
+     * Removes all applicants whose application status is completed (accepted/pending).
      */
     void removeApplicant(ApplicationStatus applicationStatus);
 
@@ -89,6 +105,9 @@ public interface Model {
      */
     void setApplicant(Applicant target, Applicant editedApplicant);
 
+    /**
+     * Sorts the applicant list with the given {@code comparator}.
+     */
     void sortApplicants(Comparator<Applicant> comparator);
 
     /** Returns an unmodifiable view of the filtered applicant list */
@@ -102,9 +121,8 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered applicant list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicantList(Predicate<Applicant> predicate);
-
-    Applicant findSimilarApplicant(Applicant a);
 }

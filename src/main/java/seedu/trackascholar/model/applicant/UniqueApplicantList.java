@@ -40,6 +40,7 @@ public class UniqueApplicantList implements Iterable<Applicant> {
 
     /**
      * Checks if the list contains an applicant with the same name as the given one.
+     *
      * @param toCheck the applicant to be compared with the rest of the list
      * @return applicant from the list with the same name
      */
@@ -107,8 +108,7 @@ public class UniqueApplicantList implements Iterable<Applicant> {
     }
 
     /**
-     * Removes the equivalent applicant from the list.
-     * The applicant must exist in the list.
+     * Sorts the list with the given {@code comparator}.
      */
     public void sort(Comparator<Applicant> comparator) {
         requireNonNull(comparator);

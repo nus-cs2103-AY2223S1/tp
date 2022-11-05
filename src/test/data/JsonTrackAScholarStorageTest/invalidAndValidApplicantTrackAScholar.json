@@ -1,12 +1,12 @@
 {
   "applicants": [ {
-    "name": "Valid Person",
+    "name": "Valid Applicant",
     "phone": "94824245",
     "email": "hans@example.com",
     "applicationStatus" : "pending",
     "scholarship": "Merit"
   }, {
-    "name": "Person With Invalid Phone Field",
+    "name": "Applicant With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "applicationStatus" : "pending",
