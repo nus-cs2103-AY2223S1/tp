@@ -530,6 +530,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
+**Extensions**
+
+* 1a. User requests for a list of all meetings tomorrow.
+    * 1a1. System shows a list of all meetings tomorrow.
+* 1b. User requests for a list of all meetings in the next 7 days.
+    * 1b1. System shows a list of all meetings in the next 7 days.
+* 1c. User requests for a list of all meetings in this month.
+    * 1c1. System shows a list of all meetings in this month.
+
 #### 5.3.5 Use case: UC5 - Delete a meeting
 
 **MSS**
