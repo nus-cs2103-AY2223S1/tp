@@ -7,7 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.SocialTestUtil;
 import seedu.address.model.social.Social;
 import seedu.address.model.social.exceptions.SocialException;
 

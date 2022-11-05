@@ -17,7 +17,6 @@ import static seedu.address.logic.commands.SocialTestUtil.VALID_TELEGRAM;
 import static seedu.address.logic.commands.SocialTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.logic.commands.SocialTestUtil.VALID_WHATSAPP;
 import static seedu.address.logic.commands.SocialTestUtil.VALID_WHATSAPP_AMY;
-import static seedu.address.logic.commands.SocialTestUtil.getAmySocial;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getSocialAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -65,7 +64,7 @@ public class IncludeCommandTest {
         IncludeCommand includeTelegram = new IncludeCommand(INDEX_FIRST_PERSON, VALID_TELEGRAM, VALID_TELEGRAM_AMY);
         IncludeCommand includeEmail = new IncludeCommand(INDEX_FIRST_PERSON, VALID_EMAIL, VALID_EMAIL_AMY);
         IncludeCommand includeInstagram = new IncludeCommand(INDEX_FIRST_PERSON, VALID_INSTAGRAM, VALID_INSTAGRAM_AMY);
-        model.setPerson(expectedModel.getFilteredPersonList().get(0), editedPerson); // Remove social from first person in model
+        model.setPerson(expectedModel.getFilteredPersonList().get(0), editedPerson); //Remove first person's social
 
         CommandResult commandResult = includeWhatsapp.execute(model);
         assertEquals(String.format(IncludeCommand.MESSAGE_SUCCESS), commandResult.getFeedbackToUser());
