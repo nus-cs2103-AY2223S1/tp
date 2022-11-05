@@ -14,9 +14,11 @@ UniqueStudentList -right-> Student
 
 Student -up-> "*" Tag
 
-Student *--> Name
-Student *--> Phone
-Student *--> Email
-Student *--> ClassGroup
-Student *--> StudentId
+Student *--> "1" Name
+Student *--> "0..1" Phone
+Student *--> "0..1" Email
+Student *--> "0..1"ClassGroup
+Student *--> "1" StudentId
+Student *--> "1" AttendanceList
+AttendanceList *--> "0..12" Attendance
 @enduml
