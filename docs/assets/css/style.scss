@@ -63,12 +63,6 @@ h5:before {
     display: block
 }
 
-
-<<<<<<< HEAD
-li:before {
-    counter-increment: item;
-    content: counters(item, ".", decimal) ". ";
-=======
 // Third Level
 #markdown-toc > li > ul > li > ul > li {
   margin-left: 28px;
@@ -82,5 +76,4 @@ li:before {
 #markdown-toc li:before {
   content: counters(item, ".") ". ";
   counter-increment: item;
->>>>>>> 5f2b43ba802f9bbbf05bfaf3b09116cab90acf5a
 }
