@@ -56,5 +56,5 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[github](https://github.com/elizabethhky)]
 [[portfolio](team/elizabethhky.md)]
 
-* Role: *to be added*
-* Responsibilites: *to be added*
+* Role: Developer
+* Responsibilities: Delete Feature, Documentation
