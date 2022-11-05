@@ -4,19 +4,19 @@
 start
 :User executes SetPersonFilePathCommand;
 
-:Verify SetPersonFilePathCommand keyword;
+:is valid SetPersonFilePathCommand keyword;
 if() then ([else])
 :show error message;
 stop
 
 else ([is valid filePath])
-:Verify Index in SetPersonFilePathCommand;
+:is valid index in SetPersonFilePathCommand;
 if() then ([else])
 :show error message;
 stop
 
 else ([valid keyword])
-:Verify filePath in SetPersonFilePathCommand;
+:is valid filePath in SetPersonFilePathCommand;
 if() then ([else])
 :show error message;
 stop
