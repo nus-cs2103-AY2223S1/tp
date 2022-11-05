@@ -103,7 +103,8 @@ public class ClassStorage {
                 LocalTime endOfCurrClass = currStudent.getAClass().endTime;
                 if (hasConflict(start, end, startOfCurrClass, endOfCurrClass)
                         && indexOfEditedStudent != getIndex(currStudent)) {
-                    throw new CommandException(EditCommand.MESSAGE_CLASS_CONFLICT);
+                    throw new CommandException(String.format("%s\n" + "%s currently has a class on %s.",
+                            EditCommand.MESSAGE_CLASS_CONFLICT, currStudent.getName(), currStudent.getAClass()));
                 }
             }
             listOfStudents.add(editedStudent);

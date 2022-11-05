@@ -3,7 +3,6 @@ package seedu.address.model.student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.AVA;
@@ -14,6 +13,7 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.StudentBuilder;
 
@@ -40,20 +40,22 @@ public class StudentTest {
         assertFalse(ALICE.isSameStudent(null));
 
         // same name, all other attributes different -> returns false
-        Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_INTERMEDIATE).build();
+        Student editedAlice = new StudentBuilder(ALICE).withPhone(CommandTestUtil.VALID_PHONE_BOB)
+                .withNokPhone(CommandTestUtil.VALID_NOK_PHONE_BOB)
+                .withEmail(CommandTestUtil.VALID_EMAIL_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+                .withTags(CommandTestUtil.VALID_TAG_INTERMEDIATE).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns true (same student by same phone number)
-        editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withName(CommandTestUtil.VALID_NAME_BOB).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // name differs in case, all other attributes same -> returns true
-        Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Student editedBob = new StudentBuilder(BOB).withName(CommandTestUtil.VALID_NAME_BOB.toLowerCase()).build();
         assertTrue(BOB.isSameStudent(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns true
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
+        String nameWithTrailingSpaces = CommandTestUtil.VALID_NAME_BOB + " ";
         editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertTrue(BOB.isSameStudent(editedBob));
 
@@ -85,27 +87,27 @@ public class StudentTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Student editedAlice = new StudentBuilder(ALICE).withName(CommandTestUtil.VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withPhone(CommandTestUtil.VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different next of kin phone -> returns false
-        editedAlice = new StudentBuilder(ALICE).withNokPhone(VALID_NOK_PHONE_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withNokPhone(CommandTestUtil.VALID_NOK_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withEmail(CommandTestUtil.VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_INTERMEDIATE).build();
+        editedAlice = new StudentBuilder(ALICE).withTags(CommandTestUtil.VALID_TAG_INTERMEDIATE).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
@@ -284,10 +286,12 @@ public class StudentTest {
 
     @Test
     public void shareSameNumberAsNokTest() {
-        Student alice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_AMY).withNokPhone(VALID_NOK_PHONE_BOB).build();
+        Student alice = new StudentBuilder(ALICE).withPhone(CommandTestUtil.VALID_PHONE_AMY)
+                .withNokPhone(CommandTestUtil.VALID_NOK_PHONE_BOB).build();
         assertFalse(alice.hasSharedPhone());
 
-        Student bob = new StudentBuilder(BOB).withPhone(VALID_PHONE_BOB).withNokPhone(VALID_PHONE_BOB).build();
+        Student bob = new StudentBuilder(BOB).withPhone(CommandTestUtil.VALID_PHONE_BOB)
+                .withNokPhone(CommandTestUtil.VALID_PHONE_BOB).build();
         assertTrue(bob.hasSharedPhone());
     }
 
