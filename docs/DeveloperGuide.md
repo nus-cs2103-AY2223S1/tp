@@ -9,7 +9,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This application is built on code from the [AddressBook-Level3](https://github.com/nus-cs2103-AY2223S1/tp) project created by SE-EDU 
+initiative at [https://se-education.org/](https://se-education.org/)
+* Libraries used in our application: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), 
+[JUnit5](https://github.com/junit-team/junit5)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -22,7 +25,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W15-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -74,7 +77,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ItemListPanel`, `OrderListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -446,7 +449,7 @@ This adds a new `ItemQuantityPair` object that references the found `InventoryIt
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an item name that does not match any of the items in the model's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs
 </div>
 
-![AddOrderState2b](images/developer-guide/AddOrderState2b.png);
+![AddOrderState2b](images/developer-guide/AddOrderState2b.png)
 
 Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Order`'s list of ordered items.
 
@@ -679,12 +682,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|----------------------------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | `* * *`  | business owner                               | add orders easily                                                       | keep track of ongoing orders                                                      |
 | `* * *`  | business owner                               | delete entire orders                                                    |                                                                                   |
-| `* * *`  | busy business owner                          | list all orders                                                         | see all my ongoing orders in one place and keep track of them                     |
+| `* * *`  | business owner                               | list all orders                                                         | see all my ongoing orders in one place and keep track of them                     |
 | `* * *`  | business owner                               | add items to my inventory                                               | keep track of additions to my inventory                                           |
 | `* * *`  | business owner                               | delete items from my inventory                                          | have an updated list of inventory items                                           |
 | `* * *`  | business owner                               | list all items in my inventory                                          | see all items in my inventory in one place                                        |
 | `* * *`  | business owner                               | tag inventory items                                                     | keep an organised inventory of items                                              |
-| `* *  `  | busy business owner                          | find orders                                                             | locate an order without manually searching through the entire list                |
+| `* *  `  | business owner                               | find orders                                                             | locate an order without manually searching through the entire list                |
 | `* *  `  | business owner                               | find items in my inventory                                              | locate an item in my inventory without manually searching through the entire list |
 | `* * `   | business owner                               | edit order details                                                      | update changes to orders                                                          |
 | `* *  `  | business owner                               | edit inventory item details                                             | update changes to inventory                                                       |
@@ -696,7 +699,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | business owner                               | look at my total earnings                                               | better optimise my earnings                                                       |
 | `*    `  | business owner                               | export all business data                                                | save the data elsewhere if needed                                                 |
 | `*    `  | business owner who is new to the application | import my current database of order and inventory information to TrackO | seamlessly transfer from other applications to TrackO                             |
-| `*   `   | business owner who is a new user             | use more verbose commands to complete my tasks                          | get more used to the syntax of the commands in the application                    |
+| `*   `   | business owner who is new to the application | use more verbose commands to complete my tasks                          | get more used to the syntax of the commands in the application                    |
 | `*   `   | tired business owner working at night        | view the application's GUI in dark mode                                 | my eyes don't get strained                                                        |
 
 ## **Appendix C: Use cases**
@@ -843,16 +846,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC09 - Tag an inventory item**
-
-**MSS**
-
-1. User requests to tag an inventory item.
-2. System tags the inventory item.
-
-    Use case ends.
-
-**Use case: UC10 - Edit an inventory item**
+**Use case: UC09 - Edit an inventory item**
 
 1. User requests to edit an inventory item.
 2. System edits the inventory item.
@@ -882,6 +876,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **GUI**: Graphical User Interface, a system of interactive user components for computer software
 * **Inventory**: Any item that the business needs to operate
 * **Order**: Any sales promise that needs to be fulfilled
+* **Command**: An instruction for the application to execute
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -900,33 +895,20 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample orders and items. 
+   The window automatically expands to occupy the entire screen.
 
-1. Saving window preferences
+### Deleting an order
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+1. Deleting an order while all orders are being shown 
+   1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list. 
+   2. Test case: `deleteo 1` <br>
+   Expected: First order is deleted from the list. Details of the deleted order shown in the status message. 
+   3. Test case: `deleteo 0` <br>
+   Expected: No order is deleted. Error details shown in the status message. 
+   4. Other incorrect delete commands to try: `deleteo`, `deleteo x`, `...` (where x is larger than the list size) <br>
+   Expected: Similar to previous.
+2. Deleting an order while 
 
 ### Saving data
 

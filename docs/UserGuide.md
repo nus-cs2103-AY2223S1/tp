@@ -520,3 +520,8 @@ the typed in command in response.
 Through a `GUI`, users interact with a system or application by clicking on these elements. The system then responds to the user's actions
 by updating the user interface.
 
+### Inventory
+An **inventory item** is a user interface that provides interactive visual components _(e.g. icons, etc)_.
+Through a `GUI`, users interact with a system or application by clicking on these elements. The system then responds to the user's actions
+by updating the user interface.
+
