@@ -114,21 +114,21 @@ Given below are my contributions to the project.
 
 Text Extract:
 
-------
+<blockquote>
 
-## User Interface
+<h2>User Interface</h2>
 
 Here is an overview of the User Interface (UI) components.
 
 The UI comprises four sections:
 
-![UILabeled](../images/UiLabeled.png)
+<img src="../images/UiLabeled.png"/>
 
-### Command Box
+<h3>Command Box</h3>
 
 The Command Box is where you type in your command inputs. For more information on command inputs, refer to Features below.
 
-Once the command box is selected, a results display will appear to report the status of the program to you. Error messages and success messages will be shown in this box. Click anywhere else on the screen, or press the `ESC` key to exit the command box and hide the results display.
+Once the command box is selected, a results display will appear to report the status of the program to you. Error messages and success messages will be shown in this box. Click anywhere else on the screen, or press the <code>ESC</code> key to exit the command box and hide the results display.
 
 <p align="center">
   <img src="../images/ResultsDisplay.png" width="400">
@@ -142,11 +142,11 @@ You may activate the command box by simply pressing the spacebar on your keyboar
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Similarly, you may press the `ESC` key on your keyboard to exit out of the command box and hide the results display.
+Similarly, you may press the <code>ESC</code> key on your keyboard to exit out of the command box and hide the results display.
 </div>
 
 
-### People Panel
+<h3>People Panel</h3>
 
 The People Panel contains all the club and organisation members you have registered in this book. They are laid out horizontally. You can scroll the list by hovering your mouse over the People Panel and scrolling the mouse-wheel, or by clicking on and dragging the horizontal scroll bar to scroll.
 
@@ -157,13 +157,13 @@ Each card represents a person and displays their name, phone number and total pr
 </p>
 <center style="font-size:3mm;">A person card.</center>
 
-The index of the person only applies to the currently displayed list, it is **not** tied to the person itself.
+The index of the person only applies to the currently displayed list, it is <b>not</b> tied to the person itself.
 
 Check Person Features to learn more about the commands you can execute related to people.
 
-### Inspect Panel
+<h3>Inspect Panel</h3>
 
-The Inspect Panel is related to the People Panel and shows the basic information of the currently inspected person. A person can be inspected by either clicking on his or her card, or by using the `inspect` command.
+The Inspect Panel is related to the People Panel and shows the basic information of the currently inspected person. A person can be inspected by either clicking on his or her card, or by using the <code>inspect</code> command.
 
 The left side of the Inspect Panel shows the basic information, while the right side shows the history of loan transactions.
 
@@ -172,7 +172,7 @@ Note that the transaction record next to the icon of the hand holding coins is t
 The total amount of the loans is also stated in the right of this panel, describing in fuller detail if the sum is owed by or to be paid to the person.
 
 
-### Notes Panel
+<h3> Notes Panel </h3>
 
 This Notes Panel stores all the information related to notes and tasks that the user may want to keep track of.
 
@@ -183,13 +183,13 @@ Each note contains an index, a title, contents and tags.
 </p>
 <center style="font-size:3mm;">A note card.</center>
 
-The index of the notes only applies to the currently displayed list, it **is not** tied to the note itself.
+The index of the notes only applies to the currently displayed list, it <b>is not</b> tied to the note itself.
 
 Both the People Panel and Notes Panel share a pool of tags to more easily relate a group of people to a specific note.
 
 Check Notes Features to learn more about the commands you can execute related to notes.
 
---------------
+</blockquote>
 
 <br>
 
