@@ -10,7 +10,7 @@ Overall structure of this user guide is adapted from https://ay2223s1-cs2103t-w1
 ## **About Swift+**
 
 Swift+ is a **project management app** designed to help software engineering (SWE) project leads in tracking their daily 
-interactions with contacts. As a project lead, you can easily record down your clients and teammates by **creating contacts**
+interactions with contacts. As a project lead, you can easily **record down your clients and teammates** by creating contacts
 using Swift+. Using Swift+’s **task management system**, you can assign tasks to contacts and mark tasks as completed. 
 Finally, you can gain an overview of your project with our intuitive side-by-side user interface.
 
@@ -89,7 +89,7 @@ The app comes with sample contacts and tasks by default. To delete the sample da
 ### Layout
 
 After you open Swift+, the app will appear in the form of a graphical user interface, or GUI. In Swift+, you can toggle 
-between the Contact View, which is primarily for viewing contacts, and the Task View, which is mainly for viewing tasks. 
+between the [Contact View](#contact-view) and the [Task View](#task-view).
 Let's take a look at the different components in Swift+ below.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
@@ -99,7 +99,7 @@ To toggle between Contact View and Task View, you can use the [`Ctrl + Tab`](#to
 **Swift+'s GUI:**
 ![Ui](images/Ui.png)
 
-This table outlines the components shared by both Contact View and Task View.
+This table showcases the components shared by both Contact View and Task View.
 
 | Component Name        | Image                                                                    |
 |-----------------------|--------------------------------------------------------------------------|
@@ -109,12 +109,16 @@ This table outlines the components shared by both Contact View and Task View.
 
 #### Contact View
 
+The contact view is primarily for viewing contacts. The main panel on the left displays a list of contacts and all of their details. The right sidebar contains a list of tasks with some essential details.
+
 | Component Name   | Image                                                                |
 |------------------|----------------------------------------------------------------------|
 | **Contact List** | ![Contact List](images/user-guide/contact-list.png){:height="200px"} |
 | **Task Sidebar** | ![Task Sidebar](images/user-guide/task-sidebar.png){:height="150px"} |
 
 #### Task View
+
+The task view is primarily for viewing tasks. The main panel on the left displays a list of tasks and all of their details. The right sidebar contains a list of contacts with some essential details.
 
 | Component Name      | Image                                                                      |
 |---------------------|----------------------------------------------------------------------------|
@@ -424,7 +428,7 @@ A contact can have any number of tags (including 0)
 
 #### Finding tasks by name: `find_task`
 
-Finds tasks whose names contain any of the given keywords.
+> Finds tasks whose names contain any of the given keywords.
 
 **Format:** `find_task KEYWORD [MORE_KEYWORDS]`
 
