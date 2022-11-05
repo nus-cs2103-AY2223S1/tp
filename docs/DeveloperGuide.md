@@ -273,6 +273,15 @@ Step 2. The user executes `addpatient n/David …​` to add a new patient. The 
 
 Step 3. The application will then save the patient into the `UniquePatientList` and display the patient added.
 
+The sequence diagram below shows how the add patient operation works:
+![AddPatientSequenceDiagram](images/dg/AddPatientCommandSequenceDiagram.png)
+
+The sequence diagram below shows how the add appointment operation works:
+![AddAppointmentSequenceDiagram](images/dg/AddAppointmentCommandSequenceDiagram.png)
+
+The sequence diagram below shows how the add bill operation works:
+![AddBillSequenceDiagram](images/dg/AddBillCommandSequenceDiagram.png)
+
 The add feature is now separated for the patients, appointments and bills sections.
 
 Design considerations:
@@ -311,6 +320,10 @@ Step 2. The user executes `editpatient 1 n/John` to edit the first patient in th
 calls `Model#editPatient`, which edits the patient in the `UniquePatientList` in `ModelManager`.
 
 Step 3. The application will then save the edited patient into the `UniquePatientList` and display the edited patient.
+
+The sequence diagram below shows how the edit patient operation works:
+
+![EditPatientSequenceDiagram](images/dg/EditCommandSequenceDiagram.png)
 
 The edit feature is now separated for the patients, appointments and bills sections.
 
