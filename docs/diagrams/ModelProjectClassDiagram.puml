@@ -32,5 +32,5 @@ Deadline -[hidden]right-> Staff
 
 ModelManager -left->"~* filtered" Project
 
-note right of UniqueStaffList: The UniqueStaffList in HrPro \nrepresents the UniqueStaffList in \none the Projects in UniqueProjectList \nbut they are not the same reference. 
+note right of UniqueStaffList: The UniqueStaffList in HrPro \nrepresents the UniqueStaffList in \none the Projects in UniqueProjectList \nbut they are not the same reference.
 @enduml
