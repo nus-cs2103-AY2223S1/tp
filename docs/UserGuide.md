@@ -135,6 +135,7 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 
 <div markdown="span" class="alert alert-primary">
 Our application is loaded with sample data to help visualize how the application works.
+<br>
 
 :bulb: **Tip:** Want start using TrackO from scratch? Enter the [`clear`](#clearing-all-data-in-tracko-clear) command to remove
 the application's sample data.
@@ -624,7 +625,7 @@ the `2` `Apples`.
 * The order's created time cannot be edited.
 
 * An order's paid status and delivery status also cannot be edited through this command. To modify those,
-  see [`marko`](#marking-an-order-as-paid-or-delivered-marko) instead.
+  see [`marko`](#marking-an-order-as-paiddelivered-marko) instead.
 
 </div>
 
