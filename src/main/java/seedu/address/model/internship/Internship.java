@@ -137,7 +137,7 @@ public class Internship {
                 && otherInternship.getInternshipRole().equals(getInternshipRole())
                 && otherInternship.getInternshipStatus().equals(getInternshipStatus())
                 && Objects.equals(otherInternship.getInternshipId(), getInternshipId())
-                && otherInternship.getContactPersonId().equals(getContactPersonId())
+                && Objects.equals(otherInternship.getContactPersonId(), getContactPersonId())
                 && otherInternship.getInterviewDate().equals(getInterviewDate());
     }
 

@@ -65,7 +65,7 @@ public class InternshipBuilder {
     /**
      * Sets the {@code Company Name} of the {@code Internship} that we are building.
      */
-    public InternshipBuilder withName(String name) {
+    public InternshipBuilder withCompanyName(String name) {
         this.name = new CompanyName(name);
         return this;
     }

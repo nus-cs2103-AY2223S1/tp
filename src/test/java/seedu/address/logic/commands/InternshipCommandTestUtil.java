@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
 import seedu.address.model.internship.InternshipStatus;
+import seedu.address.testutil.EditInternshipDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -54,19 +55,18 @@ public class InternshipCommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    /*
-    public static final EditCommand.EditInternshipDescriptor DESC_ABC;
-    public static final EditCommand.EditInternshipDescriptor DESC_BOBBY;
+
+    public static final EditInternshipCommand.EditInternshipDescriptor DESC_ABC;
+    public static final EditInternshipCommand.EditInternshipDescriptor DESC_BOBBY;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_ABC = new EditInternshipDescriptorBuilder().withCompanyName(VALID_NAME_ABC)
+                .withInternshipRole(VALID_ROLE_ABC).withInternshipStatus(VALID_STATUS_ABC)
+                .withInterviewDate(VALID_INTERVIEW_ABC).build();
+        DESC_BOBBY = new EditInternshipDescriptorBuilder().withCompanyName(VALID_NAME_BOBBY)
+                .withInternshipRole(VALID_ROLE_BOBBY).withInternshipStatus(VALID_STATUS_BOBBY)
+                .withInterviewDate(VALID_INTERVIEW_BOBBY).build();
     }
-     */
 
     /**
      * Executes the given {@code command}, confirms that <br>
