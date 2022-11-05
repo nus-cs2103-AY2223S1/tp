@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: ppp
 title: Richard Dominick's Project Portfolio Page
 ---
 
