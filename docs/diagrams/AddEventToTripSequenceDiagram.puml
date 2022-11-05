@@ -1,0 +1,109 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TravelrParser" as TravelrParser LOGIC_COLOR
+participant ":AddEventToTripCommandParser" as AddEventToTripCommandParser LOGIC_COLOR
+participant "a:AddEventToTripCommand" as AddEventToTripCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":CommandException" as CommandException LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "toAddInto:Trip" as trip MODEL_COLOR
+participant "event:Event" as event MODEL_COLOR
+participant "trip:Title" as tTitle MODEL_COLOR
+participant "event:Title" as eTitle MODEL_COLOR
+participant "fakeTrip:Trip" as Trip MODEL_COLOR
+participant "fakeEvent:Event" as Event MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add-et n/Dive t/Bali")
+activate LogicManager
+
+LogicManager -> TravelrParser : parseCommand("add-et n/Dive t/Bali")
+activate TravelrParser
+
+create AddEventToTripCommandParser
+TravelrParser -> AddEventToTripCommandParser
+activate AddEventToTripCommandParser
+
+AddEventToTripCommandParser --> TravelrParser
+deactivate AddEventToTripCommandParser
+
+TravelrParser -> AddEventToTripCommandParser : parse("n/Dive t/Bali")
+activate AddEventToTripCommandParser
+
+create "eTitle"
+AddEventToTripCommandParser -> "eTitle"
+activate "eTitle"
+
+"eTitle" --> AddEventToTripCommandParser : eventTitle
+deactivate "eTitle"
+
+create "tTitle"
+AddEventToTripCommandParser -> "tTitle"
+activate "tTitle"
+
+"tTitle" --> AddEventToTripCommandParser : tripTitle
+deactivate "tTitle"
+
+create AddEventToTripCommand
+AddEventToTripCommandParser -> AddEventToTripCommand
+activate AddEventToTripCommand
+
+AddEventToTripCommand --> AddEventToTripCommandParser : a
+deactivate AddEventToTripCommand
+
+AddEventToTripCommandParser --> TravelrParser : a
+deactivate AddEventToTripCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddEventToTripCommandParser -[hidden]-> TravelrParser
+
+TravelrParser --> LogicManager : a
+deactivate TravelrParser
+
+LogicManager -> AddEventToTripCommand : execute()
+activate AddEventToTripCommand
+
+create Trip
+AddEventToTripCommand -> Trip
+activate Trip
+
+Trip --> AddEventToTripCommand : fakeTrip
+deactivate Trip
+
+create Event
+AddEventToTripCommand -> Event
+activate Event
+
+Event --> AddEventToTripCommand : fakeEvent
+deactivate Event
+
+alt invalid trip or event
+
+create CommandException
+AddEventToTripCommand -> CommandException
+
+activate CommandException
+CommandException -> AddEventToTripCommand
+AddEventToTripCommand -> LogicManager
+deactivate CommandException
+
+end
+create AddEventToTripCommand
+create CommandResult
+AddEventToTripCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddEventToTripCommand
+deactivate CommandResult
+
+AddEventToTripCommand --> LogicManager : result
+deactivate AddEventToTripCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

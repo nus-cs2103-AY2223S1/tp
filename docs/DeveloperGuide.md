@@ -292,15 +292,12 @@ being in its `Itinerary`.
 
 </div>
 
-The following sequence diagram shows how the select operation works:
-![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-![SelectActivityDiagram](images/SelectActivityDiagram.png)
+The following sequence diagram shows how the Add Event To Trip command works:
+![AddEventToTripSequenceDiagram](images/AddEventToTripSequenceDiagram.png)
 
 #### Design considerations:
 
-**Aspect: How add event to trip command format:**
+**Aspect: Format of add event to trip command:**
 * **Alternative 1 (current choice):** Uses event and trip title as arguments
     * Pros: Given the previous code structure, easy and fast to implement. Less error prone in term of user mistakes.
     * Cons: Creates many dummy Objects. In entering the command, using the exact titles' name can be harder and time-consuming for the user.
