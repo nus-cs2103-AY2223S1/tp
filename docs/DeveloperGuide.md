@@ -504,8 +504,6 @@ To illustrate how `CommandHistory` works, an activity diagram when using the `UP
 
 ![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram.png)
 
-[//]: # (<img src="images/CommandHistoryActivityDiagram.png" width="250" />)
-
 The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one above.
 
 ### \[Proposed\] Undo/redo feature
