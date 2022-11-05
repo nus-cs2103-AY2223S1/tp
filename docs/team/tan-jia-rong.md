@@ -34,7 +34,7 @@ Much thought have to be put into designing the implementation of search function
 to complement well with the navigation functionalities.
   * Implemented `find-module`, `find-person`, `list-module` and `list-person` commands.
   * Modified existing AB3's predicate to allow users to search by module and person name prefixes to better suit our project needs. 
-  * Added constraints that users can only use `find` and `list` at the home page for better user experience.
+  * Added constraints that users can only use the search features at the home page for better user experience.
 
 **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tan-jia-rong&breakdown=true)
 
