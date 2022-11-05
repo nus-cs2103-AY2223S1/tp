@@ -814,43 +814,114 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
+### Listing an entity
+
+1. Listing an entity while any list of entities is currently being shown
+
+    1. Test case: `project -l`<br>
+       Expected: All project entities are listed regardless of the initial display. Details of the pinned project shown in the status message.
+
+    2. Test case: `project -l 012345`<br>
+       Expected: Similar to previous. Extraneous parameters are ignored.
+
+    3. Test case: `project l`<br>
+       Expected: Displayed list does not change. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect pin commands to try: `project list`, `project -list`, `...` <br>
+       Expected: Similar to previous.
+
+### Setting default view
+
+1. Setting the default view to any list of entities
+
+    1. Prerequisites: Current default view not set to clients (DevEnable sets the default view to project for first time users)
+
+    2. Test case: `client -v`<br>
+       Expected: On reopening the application, the list of clients will be displayed. Details of the changed default view shown in the status message.
+
+    3. Test case: `client -v 012345`<br>
+       Expected: Similar to previous. Extraneous parameters are ignored.
+
+    4. Test case: `client v`<br>
+       Expected: List displayed by default does not change. Error details shown in the status message. Status bar remains the same.
+
+    5. Other incorrect pin commands to try: `client view`, `client -dv`, `...` <br>
+       Expected: Similar to previous.
+
+### Pinning an entity
+
+1. Pinning an entity while any list of entities is being shown
+
+    1. Prerequisites: List all projects using the `project -l` command. Multiple projects in the list.
+
+    2. Test case: `project -p 3`<br>
+       Expected: Third project appears with a pin symbol at the top of the list. Details of the pinned project shown in the status message.
+
+    3. Test case: Repeat `project -p 2` twice.<br>
+       Expected: On the first enter of the command, the second project appears as in 2. On the second enter of the command, the second project is no longer at the top of the list and does not have any pin symbol in its display. Details of the unpinned project shown in the status message.
+
+    4. Test case: `project -p 0`<br>
+       Expected: No project is pinned. Error details shown in the status message. Status bar remains the same.
+
+    5. Other incorrect pin commands to try: `project -p`, `project -p x`, `...` (where x is a project ID not in the list)<br>
+       Expected: Similar to previous.
+
+### Pinning an entity
+
+1. Pinning an entity while any list of entities is being shown
+
+    1. Prerequisites: List all projects using the `project -l` command. Multiple projects in the list.
+
+    2. Test case: `project -p 3`<br>
+       Expected: Third project appears with a pin symbol at the top of the list. Details of the pinned project shown in the status message.
+
+    3. Test case: Repeat `project -p 2` twice.<br>
+       Expected: On the first enter of the command, the second project appears as in 2. On the second enter of the command, the second project is no longer at the top of the list and does not have any pin symbol in its display. Details of the unpinned project shown in the status message.
+
+    4. Test case: `project -p 0`<br>
+       Expected: No project is pinned. Error details shown in the status message. Status bar remains the same.
+
+    5. Other incorrect pin commands to try: `project -p`, `project -p x`, `...` (where x is a project ID not in the list)<br>
+       Expected: Similar to previous.
+
 ### Saving data
 
 1. Editing the data file
+
    1. Prerequisites: Obtain sample data file from running the application for the first time.
-   2. Test case: Change the `pin` attribute for any `project` or `issue` object from `false` to `true` or vice-versa.
-
+   
+   2. Test case: Change the `pin` attribute for any `project` or `issue` object from `false` to `true` or vice-versa.<br>
       Expected: Application starts with the corresponding `project` or `issue` pinned to the top of their respective lists.
-   3. Test case: Change the `mobile` attribute for **all** instances of the `client` object with name `Alex Yeoh`.
-
+   
+   3. Test case: Change the `mobile` attribute for **all** instances of the `client` object with name `Alex Yeoh`.<br>
       Expected: Application starts with the respective change in the `mobile` attribute.
+   
 2. Dealing with missing data file
 
-   1. Test case: Delete the `addressbook.json` data file and open up the application.
-
+   1. Test case: Delete the `addressbook.json` data file and open up the application.<br>
       Expected: Application starts up with sample data. Details of the missing data file is logged in `addressbook.log.0`
 
 3. Dealing with corrupted data files
 
    1. Prerequisites: Same as that for editing the data file.
-   2. Test case: Remove the `pin` attribute from any JSON object and open up the application.
-
+   
+   2. Test case: Remove the `pin` attribute from any JSON object and open up the application.<br>
       Expected: Application starts with empty data. Error details logged in `addressbook.log.0`
-   3. Test case: Change the `deadline` attribute to an invalid deadline string e.g. `2022-50-04`.
-
+   
+   3. Test case: Change the `deadline` attribute to an invalid deadline string e.g. `2022-50-04`.<br>
       Expected: Similar to previous.
-   4. Test case: Change the `projectId` attribute of the first project object (with `name` attribute `Individual Project`) to `2` such that there is a duplicate project ID.
-
+   
+   4. Test case: Change the `projectId` attribute of the first project object (with `name` attribute `Individual Project`) to `2` such that there is a duplicate project ID.<br>
       Expected: Similar to previous.
-   5. Test case: Change the `mobile` attribute of the first client object (with `name` attribute `Alex Yeoh`) to `91111111` such that it does not tally with the second copy of `Alex Yeoh`.
 
+   5. Test case: Change the `mobile` attribute of the first client object (with `name` attribute `Alex Yeoh`) to `91111111` such that it does not tally with the second copy of `Alex Yeoh`.<br>
       Expected: Similar to previous.
-   6. Test case: Change the `name` attribute of the first project object (with `name` attribute `Individual Project`) to `Team Project` such that there is a duplicate project name.
 
+   6. Test case: Change the `name` attribute of the first project object (with `name` attribute `Individual Project`) to `Team Project` such that there is a duplicate project name.<br>
       Expected: Similar to previous.
-   7. Test case: Add an extra comma `,` after any other comma e.g. `"name" : "Individual Project",,` such that the data file is in the wrong format.
-
+   
+   7. Test case: Add an extra comma `,` after any other comma e.g. `"name" : "Individual Project",,` such that the data file is in the wrong format.<br>
       Expected: Similar to previous.
-   8. Test case: Add an extraneous attribute e.g. `"remark" : "likes to eat"` after any other attribute in the file.
 
+   8. Test case: Add an extraneous attribute e.g. `"remark" : "likes to eat"` after any other attribute in the file.<br>
       Expected: The extraneous attribute is ignored and the application starts up as per normal with the correct data.
