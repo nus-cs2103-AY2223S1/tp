@@ -1,11 +1,13 @@
 @startuml
+skinparam defaultFontSize 20
 !include style.puml
+
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":IncludeCommandParser" as IncludeCommandParser LOGIC_COLOR
-participant "i:addTelegram" as addTelegram LOGIC_COLOR
+participant "i:IncludeCommand" as IncludeCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,10 +15,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("include 1 \TELEGRAM #t.me/JohnDoe123")
+[-> LogicManager : execute("include 1 s/TELEGRAM #/JohnDoe123")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("include 1 \TELEGRAM #t.me/JohnDoe123")
+LogicManager -> AddressBookParser : parseCommand("include 1 s/TELEGRAM #/JohnDoe123")
 activate AddressBookParser
 
 create IncludeCommandParser
@@ -26,15 +28,15 @@ activate IncludeCommandParser
 IncludeCommandParser --> AddressBookParser
 deactivate IncludeCommandParser
 
-AddressBookParser -> IncludeCommandParser : parse("1 \TELEGRAM #t.me/JohnDoe123")
+AddressBookParser -> IncludeCommandParser : parse("1 s/TELEGRAM #/JohnDoe123")
 activate IncludeCommandParser
 
-create addTelegram
-IncludeCommandParser -> addTelegram
-activate addTelegram
+create IncludeCommand
+IncludeCommandParser -> IncludeCommand
+activate IncludeCommand
 
-addTelegram --> IncludeCommandParser : i
-deactivate addTelegram
+IncludeCommand --> IncludeCommandParser : i
+deactivate IncludeCommand
 
 IncludeCommandParser --> AddressBookParser : i
 deactivate IncludeCommandParser
@@ -45,24 +47,24 @@ destroy IncludeCommandParser
 AddressBookParser --> LogicManager : i
 deactivate AddressBookParser
 
-LogicManager -> addTelegram : execute()
-activate addTelegram
+LogicManager -> IncludeCommand : execute()
+activate IncludeCommand
 
-addTelegram -> Model : addTelegram(1, t.me/JohnDoe123)
+IncludeCommand -> Model : IncludeCommand(1, TELEGRAM, JohnDoe123)
 activate Model
 
-Model --> addTelegram
+Model --> IncludeCommand
 deactivate Model
 
 create CommandResult
-addTelegram -> CommandResult
+IncludeCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> addTelegram
+CommandResult --> IncludeCommand
 deactivate CommandResult
 
-addTelegram --> LogicManager : result
-deactivate addTelegram
+IncludeCommand --> LogicManager : result
+deactivate IncludeCommand
 
 [<--LogicManager
 deactivate LogicManager
