@@ -15,8 +15,8 @@ We are developing NutriGoals - a free-to-use CLI nutritional tracker for beginne
 
 [[GitHub](https://github.com/xav168)][[Portfolio](team/xav168.md)]
 
-* Role: Team Lead
-* Responsibilities: Scheduling and tracking
+* Role: Developer
+* Responsibilities: Assigning issues
 
 ### Nicole Lim
 
