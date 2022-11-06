@@ -117,6 +117,9 @@ public class AddressBookParser {
      * Checks if the name is a valid command name
      */
     public static boolean isValidName(String test) {
+        if (test == null) {
+            return false;
+        }
         return NAME_CHECK.matcher(test.trim()).matches();
     }
 

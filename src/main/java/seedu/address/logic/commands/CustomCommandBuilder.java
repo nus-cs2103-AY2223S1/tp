@@ -9,6 +9,9 @@ import seedu.address.model.Model;
  * Class with the ability to build a custom command.
  */
 public class CustomCommandBuilder {
+
+    public static final String MESSAGE_CONSTRAINTS = "Custom commands cannot be empty!";
+
     private final String repr;
     private final String commandData;
 

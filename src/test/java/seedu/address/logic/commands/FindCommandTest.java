@@ -80,6 +80,17 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
+    @Test
+    public void setInput_test() throws seedu.address.logic.commands.exceptions.CommandException {
+        Object dataStub = model.getFromFilteredPerson(seedu.address.commons.core.index.Index.fromZeroBased(1));
+        String input = String.valueOf(dataStub.toString().split("\\s+"));
+        NameContainsKeywordsPredicate predicateStub = new NameContainsKeywordsPredicate<>(Arrays.asList(input));
+        FindCommand<Person> findCommandStub = new FindCommand<>(predicateStub, changerStub,
+                getSizeStub);
+        FindCommand<Person> findCommandStubCopy = (FindCommand<Person>) findCommandStub.setInput(dataStub);
+
+        assertTrue(findCommandStub.equals(findCommandStubCopy));
+    }
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */

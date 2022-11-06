@@ -24,10 +24,9 @@ public class TaskBuilder extends AbstractSingleItemBuilder {
 
     public static final String DEFAULT_NAME = "Make your bed";
     public static final String DEFAULT_DESCRIPTION = "Making your bed is important!";
-    public static final String DEFAULT_COMPLETED_TIME = "2022-10-30T16:02:48.649155";
 
-    private final Description description;
-    private final LocalDateTime completedTime;
+    private Description description;
+    private LocalDateTime completedTime;
     private Set<Person> assignedParents;
 
     /**
@@ -36,7 +35,6 @@ public class TaskBuilder extends AbstractSingleItemBuilder {
     public TaskBuilder() {
         super(new Name(DEFAULT_NAME), new ArrayList<>(), new HashSet<>());
         this.description = new Description(DEFAULT_DESCRIPTION);
-        this.completedTime = LocalDateTime.parse(DEFAULT_COMPLETED_TIME);
         this.assignedParents = new HashSet<>();
     }
 
@@ -76,6 +74,34 @@ public class TaskBuilder extends AbstractSingleItemBuilder {
     @Override
     public TaskBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    @Override
+    public TaskBuilder withAttribute(Attribute<?> attribute) {
+        super.addAttribute(attribute);
+        return this;
+    }
+
+    @Override
+    public <U> TaskBuilder withAttribute(String name, U data) {
+        super.addAttribute(name, data);
+        return this;
+    }
+
+    /**
+     * Sets the description of the {@code TaskBuilder} that is being built.
+     */
+    public TaskBuilder withDescription(String description) {
+        this.description = new Description(description);
+        return this;
+    }
+
+    /**
+     * Sets the completed time of the {@code TaskBuilder} that is being built.
+     */
+    public TaskBuilder withCompletedTime(LocalDateTime completedTime) {
+        this.completedTime = completedTime;
         return this;
     }
 

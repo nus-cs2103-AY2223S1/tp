@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attribute.Address;
 import seedu.address.model.attribute.Email;
+import seedu.address.model.attribute.Field;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
 import seedu.address.model.group.Group;
@@ -225,5 +226,18 @@ public class ParserUtilTest {
     @Test
     public void parseGroup_invalidTeamNameHasWhitespace_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseGroup(INVALID_TEAM_NAME));
+    }
+
+    @Test
+    public void parseField_validFieldName_returnsField() throws ParseException {
+        Field expectedField = ParserUtil.parseField("fieldStub");
+        Field actualField = new Field("fieldStub");
+
+        assertEquals(expectedField, actualField);
+    }
+
+    @Test
+    public void parseField_invalidFieldName_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseField(" "));
     }
 }
