@@ -85,5 +85,4 @@ deactivate AvailabilityCommand
 
 [<-- LogicManager
 deactivate LogicManager
-
 @enduml

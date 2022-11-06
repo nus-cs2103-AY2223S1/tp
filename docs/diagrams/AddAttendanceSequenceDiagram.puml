@@ -85,5 +85,4 @@ deactivate AttendanceCommand
 
 [<-- LogicManager
 deactivate LogicManager
-
 @enduml

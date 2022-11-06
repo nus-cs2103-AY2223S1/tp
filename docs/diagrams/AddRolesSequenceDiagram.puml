@@ -85,5 +85,4 @@ deactivate RolesCommand
 
 [<-- LogicManager
 deactivate LogicManager
-
 @enduml

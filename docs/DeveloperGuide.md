@@ -167,9 +167,9 @@ where it overrides the `Command#execute` method to add in new contacts whenever 
 
 1. The user input to add a `Person` to TAB, is passed to and executed by `LogicManager`, which calls `AddressBookParser#parseCommand` to instantiate a `AddCommandParser`.
 2. The `AddCommandParser#parse` will return a `AddCommand`, provided the user input is valid.
-3. `LogicManager` will then call the `Command#execute` method of `AddCommand`, 
-creating a new `Person` through `Model#addPerson` method. 
-4. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult `
+3. `LogicManager` will then call the `Command#execute` method of `AddCommand`,
+creating a new `Person` through `Model#addPerson` method.
+4. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult`
 to `LogicManager`.
 
 The sequence diagram below illustrates how the command to add a `Person` works:
@@ -179,7 +179,7 @@ The sequence diagram below illustrates how the command to add a `Person` works:
 ### Editing a contact
 
 The editing of a contact's details in TAB is facilitated by the `EditCommand` command. `EditCommand` extends the abstract `Command` class,
-where it overrides the `Command#execute` method to edit details of contacts whenever called. 
+where it overrides the `Command#execute` method to edit details of contacts whenever called.
 
 #### Implementation
 
@@ -433,7 +433,7 @@ The following activity diagram summarizes what happens in AddressBookParser when
 * **Alternative 2:** Creates a new Address Book.
     * Pros: Does not modify the master address book.
     * Cons: May have performance issues in terms of memory usage.
-  
+
 ### Display details of contacts in secondary panel
 
 #### Implementation

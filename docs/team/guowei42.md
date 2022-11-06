@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 * **New Feature**: _{WIP}_
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=guowei42&breakdown=true)
 
-* **Project management**:
+* **Project management**: 
     * _{WIP}_
 
 * **Enhancements to existing features**:
