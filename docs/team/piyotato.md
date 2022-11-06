@@ -5,8 +5,6 @@ title: Sheyuan's Project Portfolio Page
 
 ### Project: StudMap
 
-[To be added]
-
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
@@ -22,9 +20,10 @@ title: Sheyuan's Project Portfolio Page
     * This allowed the syntax of `all` to be used in all such commands, including those mentioned above.
     * This improved the extensibility of the code to possibly support more sophisticated syntax for specifying `index` in commands without major refactors.
   * Added the ability for some fields in `Student` such as `Email` and `Phone` to be left optional.
+  * Added `MultiStateAttribute` to abstract the commonalities betweeen `Attendance`, `Assignment`, and `Participation`.
 
 * **Documentation**:
-  * [To be added]
+  * Wrote User Guide and Developer Guide.
 
 * **Community**:
   * Reviewed 36 pull requests from team members.
