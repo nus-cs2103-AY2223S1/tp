@@ -21,7 +21,7 @@ public class AssignmentDetailsTest {
 
     @Test
     public void isValidAssignmentDetailsDescription() {
-        // null tag name
+        // null assignment details
         assertThrows(NullPointerException.class, () -> AssignmentDetails.areValidAssignmentDetails(null));
 
         // invalid assignment details
