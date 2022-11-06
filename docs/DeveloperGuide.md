@@ -460,6 +460,26 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case resumes at step 2.
 
+**Use case: UC04 - Creating a buy transaction**
+
+1.  User requests to list clients
+2.  JeeqTracker shows a list of clients
+3.  User requests to add a buy transaction to a specific client in the list
+4.  JeeqTracker adds the buy transaction to the client
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given client does not exist in the list.
+
+    * 3a1. JeeqTracker shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: Find a Client**
 
 **MSS**
