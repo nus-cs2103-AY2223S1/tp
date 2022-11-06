@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -71,18 +71,20 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/NewUiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts (`CommandBox`, `ResultDisplay`, `ClientListPanel`, `TransactionListPanel`, `RemarkListPanel`, `StatusBarFooter`, `HelpWindow`, `NetTransactionBox`). All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `ClientListPanel`, `TransactionListPanel`, `RemarkListPanel` contains `ClientCard`, `TransactionCard`, `RemarkCard` respectively. These **panels** can hold any number of their respective **card**. These cards also inherit from the abstract `UiPart`, and represents the GUI of a single Client, Transaction, or Panel.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T09-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Client`, `Transaction`, and `Remark` object residing in the `Model`.
 
 ### Logic component
 
@@ -344,36 +346,48 @@ The process for deleting `transaction` and `remark` is almost the same as the pr
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+This product is for **home-based business owners / reseller** who need help in keeping track of clients' contacts,
+transaction records, and remarks about the client.
+
+It is particularly meant for people with these characteristics:
+
+* needs to get things done extremely fast
+* prefer desktop applications over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-* tends to forget commands
-* easily overwhelmed by too many information
+* is reasonably comfortable using Command Line Interface (CLI) applications
+
 
 **Value proposition**:
-* manage contacts faster than a typical mouse/GUI driven app
-* provides a clean and easy to use UI
-* does not require highly skilled workers to use
-* easy to track financial transactions
+
+With JeeqTracker, users can analyze and understand the demands of each client and provide a more personalized service
+that will meet the needs of the users' clients, increasing customer engagement. Furthermore, users can keep track of
+clients, transactions and remarks of a client much faster than traditional applications.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                  | I want to …​                              | So that I can…​                                                 |
-|----------|--------------------------|-------------------------------------------|-----------------------------------------------------------------|
-| `* * *`  | business owner           | choose which client and remark to delete | save only relevant clients and remark to remove clutter        |
-| `* * *`  | forgetful business owner | see usage instructions                    | refer to instructions when I forget how to use the application  |
-| `* * *`  | new business owner       | simply search for contacts                | retrieve only the essential details I need                      |
-| `* * *`  | new business owner       | view a client's details and remark       | easily know who to contact for that client                      |
-| `* * *`  | busy business owner      | quickly retrieve the data of the client   | save time without having to go through multiple layers          |
-| `* * *`  | new business owner       | create a new client input                 | keep track of all the new clients I work with                   |
-| `* * *`  | new business owner       | add a remark to a client                 | know who to contact in that client                              |
-| `* *`    | careless business owner  | edit the details of remark               | correct the mistakes that I did                                 |
-| `* *`    | efficient business owner | sort the search result by price           | quickly know which client I have made the most transaction with |
+| Priority | As a …​                               | I can …​                                                                                        | So that I can…​                                                                          |
+|----------|---------------------------------------|-------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| `* * *`  | home-based business owner             | add a client with his name, phone, email and address                                            | keep track of clients who I will have transactions with                                  |
+| `* * *`  | home-based business owner             | add a buy / sell transaction with a specific client                                             | keep track of transactions with a particular client                                      |
+| `* * *`  | home-based business owner             | add a remark to a specific client                                                               | record down things about the client to help me know more about the client in the future  |
+| `* * *`  | home-based business owner             | view a client's details (name, phone, email, address, remarks)                                  | easily know who and how to contact him                                                   |
+| `* * *`  | home-based business owner             | view all transactions (Goods name, price, quantity, date transacted) with a client              | analyse my business                                                                      |
+| `* * *`  | home-based business owner             | view all remarks of a specific client                                                           | know more about the client                                                               |
+| `* * *`  | home-based business owner             | delete any client, transaction, or remark of my choice                                          | remove anything that is added wrongly, or incorrect                                      |
+| `* * *`  | careless home-based business owner    | edit the details of any client, transaction or remark of my choice                              | correct any erroneous fields that I have added                                           |
+| `* * *`  | calculative home-based business owner | see my overall profits with a particular client or all clients                                  | I can analyse how to earn more profits                                                   |
+| `* *`    | forgetful home-based business owner   | access a built-in help functionality that tells me what commands are valid, and how to use them | have assistance within the application without opening the user guide in another browser |
+| `* *`    | efficient home-based business owner   | sort the transactions of a specific client by date                                              | easily tell which are my latest or oldest transaction                                    |
+| `* *`    | home-based business owner             | filter all transactions by `buy` or `sell`                                                      | see all my transactions that are of type `buy` or `sell` at one glance                   |
+| `* *`    | busy home-based business owner        | do a simple and quick retrieval of clients by finding them by name                              | save time                                                                                |
+| `* *`    | forgetful home-based business owner   | open an instructions sheet (user guide) within the application                                  | learn more about different commands with pictorial assistance                            |
+| `*`      | calculative home-based business owner | upload invoices for transactions                                                                | retrieve a proof of transaction when required                                            |
+| `*`      | artistic home-based business owner    | have some form of control over the colour of the program                                        | customise the application to my liking                                                   |
+| `*`      | forgetful home-based business owner   | upload profile photos for my clients                                                            | I can recognise them easily                                                              |
 
 *{More to be added}*
 
@@ -473,21 +487,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 clients / remarks without a noticeable sluggishness in performance for typical usage.
+1.  Should work on any _mainstream OS_ as long as it has Java `11`.
+2.  Should be able to hold up to 1000 clients, transactions, and remarks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  JeeqTracker should respond within 2 seconds
-5.  The system should be usable by a business owner who has basic knowledge of how to use a computer
-6.  JeeqTracker is not required to handle the contacting of saved contacts
-7.  JeeqTracker is offered as a free tool
-8.  The source code should be open source
+4.  The User Interface should be fully rendered within 2 seconds of launching the application.
+5.  The system should be usable by a business owner who has basic knowledge of how to use a computer.
+6.  The user is not required to handle the saving of clients, transactions and remarks.
+7.  JeeqTracker is offered as a free tool.
+8.  The source code should be open source.
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+| Terms         | Definition                                                                                    |
+|---------------|-----------------------------------------------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                                                                    |
+| Client        | People who the user wants to have transactions with, or have already transacted with the user |
+| Remark        | Characteristics of a client (e.g. Punctual, Friendly)                                         |
+| Transaction   | can only be a **buy** or **sell** transaction, not a trade                                    |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
