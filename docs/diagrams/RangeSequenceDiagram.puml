@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("range start/10/10/2022 end/15/10/2022")
+[-> LogicManager : execute(command)
 activate LogicManager
 
-LogicManager -> ExerciseTrackerParser : parseCommand("range start/10/10/2022 end/15/10/2022")
+LogicManager -> ExerciseTrackerParser : parseCommand(command)
 activate ExerciseTrackerParser
 
 create RangeCommandParser
@@ -26,7 +26,7 @@ activate RangeCommandParser
 RangeCommandParser --> ExerciseTrackerParser
 deactivate RangeCommandParser
 
-ExerciseTrackerParser -> RangeCommandParser : parse("start/10/10/2022 end/15/10/2022")
+ExerciseTrackerParser -> RangeCommandParser : parse(arguments)
 activate RangeCommandParser
 
 create RangeCommand
