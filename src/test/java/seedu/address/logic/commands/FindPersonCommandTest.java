@@ -20,7 +20,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 public class FindPersonCommandTest {
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = model;
+    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new FindPersonCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Name.class, new NameConverter())
@@ -32,6 +32,7 @@ public class FindPersonCommandTest {
         commandLine.parseArgs(keywords);
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of("Alice", "Carl"));
         model.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
         CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
                 model.getFilteredPersonList().size()));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);

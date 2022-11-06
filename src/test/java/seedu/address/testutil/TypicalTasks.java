@@ -23,6 +23,9 @@ public class TypicalTasks {
             false, LocalDateTime.of(2022, 12, 12, 23, 59));
     public static final Task TASK_3 = new Task(new TaskName("task three"), List.of(TypicalPersons.ALICE), false,
             LocalDateTime.of(2022, 12, 12, 23, 59));
+
+    public static final Task TASK_ONLY_ALICE =  new Task(new TaskName("task alice"), List.of(TypicalPersons.ALICE),
+            false, LocalDateTime.of(2022, 12, 12, 23, 59));
     public static final Task TASK_3_NO_DEADLINE = new Task(new TaskName("task three"), List.of(TypicalPersons.ALICE),
             false,
             null);
@@ -37,6 +40,9 @@ public class TypicalTasks {
             TYPICAL_MEMBERS_CARL, false,
             LocalDateTime.parse("2023-12-25 23:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 
+    public static final Task TASK_2_NO_ASSIGNEE = new Task(new TaskName("two"),
+            List.of(), false,
+            LocalDateTime.parse("2023-12-25 23:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
     public static final Task TASK_MARKED = new Task(new TaskName("task"),
             List.of(), true, null);
 }

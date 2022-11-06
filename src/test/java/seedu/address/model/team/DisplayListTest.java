@@ -22,7 +22,7 @@ public class DisplayListTest {
         taskList = new TaskList();
         taskList.add(TASK_CODE);
         taskList.add(TASK_REVIEW);
-        displayList = new DisplayList(taskList.asUnmodifiableObservableList());
+        displayList = new DisplayList<>(taskList.asUnmodifiableObservableList());
     }
 
     @Test
