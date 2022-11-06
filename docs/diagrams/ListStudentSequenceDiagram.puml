@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+scale 2.5
 
 box Ui UI_COLOR_T1
 participant ":MainWindow" as MainWindow UI_COLOR
