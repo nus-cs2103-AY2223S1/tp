@@ -264,7 +264,7 @@ Tags: {vegetables}
   * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
   * yyyy: The current year. For example, "2019" would represent the year 2019.
 * `PRICE` do not require you to include the currency. Only include the value.
-* If two or more of the same [[paramter:parameters]] are provided, the last parameter will be taken.
+* If two or more of the same [[ parameter ]] are provided, the last parameter will be taken.
 ```
 
 **Example Input:**
