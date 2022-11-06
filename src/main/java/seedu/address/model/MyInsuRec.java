@@ -6,13 +6,13 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.ClientRebuilder;
 import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.NoConflictMeetingList;
 import seedu.address.model.meeting.exceptions.ConflictingMeetingException;
 import seedu.address.model.product.Product;
 import seedu.address.model.product.UniqueProductList;
+import seedu.address.model.util.ClientRebuilder;
 
 /**
  * Wraps all data at the client-book level
