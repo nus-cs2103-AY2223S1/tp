@@ -158,21 +158,22 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-This feature is facilitated by `AddDebtCommand` and `AddDebtCommandParser` in the `Logic` component, and work as per described above.
+This feature is facilitated by `AddDebtCommand` and `AddDebtCommandParser` in the `Logic` component, and work as per [described above](#logic-component).
 
 When given a valid user input, the `AddDebtCommandParser` will create a new `Debt` object to add to the `DebtList` of the specified `Person`.
 
-To speed up adding similar `Debt` objects (for example, when each person is to pay $30 for lunch) to the `DebtList` of more than 1 `Person`, the `AddDebtCommand` can take in multiple indices such that a new `Debt` object will be added to the `DebtList` of each specified `Person`. To ensure that modifying (such as marking as paid, or other future possible extensions such as editing) the `Debt` for 1 `Person` does not also erroneously modify the `Debt` of another `Person`, each `Debt` object should only be added to one `DebtList`, and an `equal` instance of `Debt` should be created and added to each `DebtList`.
+Consider a scenario where the user wishes to add a $10 food debt to multiple people. To speed up adding similar `Debt` objects to the `DebtList` of more than 1 `Person`, the `AddDebtCommand` takes in a `Set` of multiple indices. For each `Person` that an `Index` corresponds to, a new `Debt` object will be added to the `DebtList` of the specified `Person`. Some commands such as marking debts as paid, or possible future extensions such as editing a debt, may require modifying a `Debt` object in the `DebtList` of a `Person`. To ensure that modifying this `Debt` for 1 `Person` does not also erroneously modify the `Debt` of another `Person`, during execution of `adddebt`, each `Debt` object is only added to one `DebtList`, and an `equal` instance of `Debt` is created and added for each other `DebtList`.
 
 To enable the user to retroactively add a `Debt` that is backdated, the `AddDebtCommandParser` can take in optional `<date>` and `<time>` parameters. By making these parameters optional, a default behaviour can be implemented such that when neither parameter is specified, a `Debt` object with the current date and time is created. This will improve the efficiency at which users can input new `Debt` objects for the (expected) most common scenario where they add the `Debt` into PayMeLah on the actual day the debt occurred.
 
-An example of the new objects in the internal state when a valid `adddebt` command provided by the user, `adddebt 1 2 d/food m/10`, has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify the date and time parameters in their command.
+Consider an example of a valid `adddebt` command, `adddebt 1 2 d/food m/10`. The new objects in the final internal state after this example has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify date and time parameters in their input command.
 
 <img src="images/AddDebtObjectDiagram.png" width="450" />
 
-The activity diagram below details the behaviour of PayMeLah when a user inputs an `adddebt` command of valid syntax to be executed.
+The activity diagrams below detail the behaviour of PayMeLah when a user inputs an `adddebt` command of valid syntax to be executed.
 
 <img src="images/AddDebtActivityDiagram.png" width="450" />
+<img src="images/AddDebtActivityDiagramRake.png" width="450" />
 
 ### \[Proposed\] Improved find command
 
