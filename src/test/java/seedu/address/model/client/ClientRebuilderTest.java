@@ -22,12 +22,18 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingTime;
 import seedu.address.model.product.Product;
+import seedu.address.model.util.ClientRebuilder;
 
 public class ClientRebuilderTest {
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new ClientRebuilder(null));
+    }
+
+    @Test
+    public void noChange_success() {
+        Client client = new ClientRebuilder(ALICE).build();
+        assertEquals(ALICE, client);
     }
 
     @Test
@@ -36,11 +42,8 @@ public class ClientRebuilderTest {
         Name newName = new Name("ALICIA");
         Client editedClient = cr.withName(newName).build();
 
+        assertEqualsExcept(ALICE, editedClient, Name.class);
         assertEquals(editedClient.getName(), newName);
-        assertEquals(editedClient.getAddress(), ALICE.getAddress());
-        assertEquals(editedClient.getEmail(), ALICE.getEmail());
-        assertEquals(editedClient.getPhone(), ALICE.getPhone());
-        assertEquals(editedClient.getProducts(), ALICE.getProducts());
     }
 
     @Test
@@ -49,11 +52,8 @@ public class ClientRebuilderTest {
         Address newAddress = BOB.getAddress().get();
         Client editedClient = cr.withAddress(newAddress).build();
 
-        assertEquals(editedClient.getName(), ALICE.getName());
+        assertEqualsExcept(ALICE, editedClient, Address.class);
         assertEquals(editedClient.getAddress().get(), newAddress);
-        assertEquals(editedClient.getEmail(), ALICE.getEmail());
-        assertEquals(editedClient.getPhone(), ALICE.getPhone());
-        assertEquals(editedClient.getProducts(), ALICE.getProducts());
     }
 
     @Test
@@ -62,11 +62,48 @@ public class ClientRebuilderTest {
         Phone newPhone = new Phone("81234567");
         Client editedClient = cr.withPhone(newPhone).build();
 
-        assertEquals(editedClient.getName(), ALICE.getName());
-        assertEquals(editedClient.getAddress(), ALICE.getAddress());
-        assertEquals(editedClient.getEmail(), ALICE.getEmail());
+        assertEqualsExcept(ALICE, editedClient, Phone.class);
         assertEquals(editedClient.getPhone(), newPhone);
-        assertEquals(editedClient.getProducts(), ALICE.getProducts());
+    }
+
+    @Test
+    public void withEmail_validEmail_success() {
+        ClientRebuilder cr = new ClientRebuilder(ALICE);
+        Email newEmail = new Email("alice123@gmail.com");
+        Client editedClient = cr.withEmail(newEmail).build();
+
+        assertEqualsExcept(ALICE, editedClient, Email.class);
+        assertEquals(editedClient.getEmail().get(), newEmail);
+    }
+
+    @Test
+    public void withBirthday_validBirthday_success() {
+        ClientRebuilder cr = new ClientRebuilder(ALICE);
+        Birthday newBirthday = new Birthday(LocalDate.of(2000, 2, 28));
+        Client editedClient = cr.withBirthday(newBirthday).build();
+
+        assertEqualsExcept(ALICE, editedClient, Birthday.class);
+        assertEquals(editedClient.getBirthday().get(), newBirthday);
+    }
+
+    @Test
+    public void withProducts_validProducts_success() {
+        ClientRebuilder cr = new ClientRebuilder(ALICE);
+        Set<Product> newProducts = BENSON.getProducts();
+        Client editedClient = cr.withProducts(newProducts).build();
+
+        assertEqualsExcept(ALICE, editedClient, Product.class);
+        assertEquals(editedClient.getProducts(), newProducts);
+    }
+
+    @Test
+    public void withMeetings_validMeetings_success() {
+        ClientRebuilder cr = new ClientRebuilder(ALICE);
+        List<Meeting> newMeetings = new ArrayList<>();
+        Client editedClient = cr.withMeetings(newMeetings).build();
+
+        assertEqualsExcept(ALICE, editedClient, Meeting.class);
+        assertEquals(editedClient.getMeetings(), newMeetings);
     }
 
     @Test
@@ -147,5 +184,29 @@ public class ClientRebuilderTest {
 
         editedClient = cr.removeProduct(newProduct).build();
         assertFalse(editedClient.getProducts().contains(newProduct));
+    }
+
+    private static <T> void assertEqualsExcept(Client original, Client edited, Class<T> except) {
+        if (!(except.equals(Name.class))) {
+            assertEquals(original.getName(), edited.getName());
+        }
+        if (!(except.equals(Phone.class))) {
+            assertEquals(original.getPhone(), edited.getPhone());
+        }
+        if (!(except.equals(Birthday.class))) {
+            assertEquals(original.getBirthday(), edited.getBirthday());
+        }
+        if (!(except.equals(Address.class))) {
+            assertEquals(original.getAddress(), edited.getAddress());
+        }
+        if (!(except.equals(Email.class))) {
+            assertEquals(original.getEmail(), edited.getEmail());
+        }
+        if (!(except.equals(Product.class))) {
+            assertEquals(original.getProducts(), edited.getProducts());
+        }
+        if (!(except.equals(Meeting.class))) {
+            assertEquals(original.getMeetings(), edited.getMeetings());
+        }
     }
 }
