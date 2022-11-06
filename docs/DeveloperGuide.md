@@ -37,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103-F14-1/tp/blob/master/src/main/java/nus/climods/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103-F14-1/tp/blob/master/src/main/java/nus/climods/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -119,7 +119,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F14-1/tp/blob/master/src/main/java/nus/climods/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -133,7 +133,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103-F14-1/tp/blob/master/src/main/java/nus/climods/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -144,7 +144,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `nus.climods.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -227,9 +227,6 @@ We do not control other websites, and we want the user to only view the user gui
 
 We also considered just displaying the link with a `Copy URL` button.  However, the user has to copy the link into
 their web browser, making the user experience not smooth.  
-
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
