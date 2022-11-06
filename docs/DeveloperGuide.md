@@ -105,7 +105,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The delete command deletes the specified entity in the current list, which is `Student`, `Tutor` or `TuitionClass` list. Here we assume that the current list is the `Student` list.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The delete command deletes the specified entity in the current list, which is `Student`, `Tutor` or `Tuition Class` list. Here we assume that the current list is the `Student` list.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -120,20 +120,20 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The class diagram below shows a broad overview of the model component. 
-The certain details and dependencies between the `Student`, `Tutor` and `Tuition Classes` has been omitted for simplicity.
-The class diagram for `Student`, `Tutor` and `Tuition Classes` can be found right after model class diagram.
+The certain details and dependencies between the `Student`, `Tutor` and `Tuition Class` has been omitted for simplicity.
+The class diagram for `Student`, `Tutor` and `Tuition Class` can be found right after model class diagram.
 <img src="images/ModelClassDiagram.png" width="650" />
 
-This is the full class diagram for `Student`, `Tutor` and `Tuition Classes`.
+This is the full class diagram for `Student`, `Tutor` and `Tuition Class`.
 
 <img src="images/ClassDiagram.png" width="650" />
 
 The `Model` component,
 
 * stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object), 
-all `Tutor` objects (which are contained in a `UniqueTutorList` object) and all `TuitionClass` objects 
+all `Tutor` objects (which are contained in a `UniqueTutorList` object) and all `Tuition Class` objects 
 (which are contained in a `UniqueTuitionClassList` object).
-* stores the currently 'selected' `Student` objects, `Tutor` objects and `TuitionClass` objects 
+* stores the currently 'selected' `Student` objects, `Tutor` objects and `Tuition Class` objects 
 (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an 
 unmodifiable `ObservableList<Student>`, `ObservableList<Tutor>` and `ObservableList<TuitionClass>` respectively that 
 can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
@@ -141,11 +141,11 @@ can be 'observed' e.g. the UI can be bound to this list so that the UI automatic
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model 
-is given below. It has a `Tag` list in the `AddressBook`, which `Student`, `Tutor` and `Tuition Classes` references. 
+is given below. It has a `Tag` list in the `AddressBook`, which `Student`, `Tutor` and `Tuition Class` references. 
 This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each , `Tutor` and 
-`Tuition Classes` needing their own `Tag` objects respectively. Again certain details and dependencies between the 
-`Student`, `Tutor` and `Tuition Classes` has been omitted for simplicity. The class diagram between `Student`, `Tutor` 
-and `Tuition Classes` can be found above. <br>
+`Tuition Class` needing their own `Tag` objects respectively. Again certain details and dependencies between the 
+`Student`, `Tutor` and `Tuition Class` has been omitted for simplicity. The class diagram between `Student`, `Tutor` 
+and `Tuition Class` can be found above. <br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -177,7 +177,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The add mechanism is facilitated by `AddCommand`. It extends `Command` with an enum type `Entity` representing the three different types of entities that can be added to the `Model`. Also, it stores the `Person` or `TuitionClass` instances to be added. Additionally, it implements the following operations:
+The add mechanism is facilitated by `AddCommand`. It extends `Command` with an enum type `Entity` representing the three different types of entities that can be added to the `Model`. Also, it stores the `Person` or `Tuition Class` instances to be added. Additionally, it implements the following operations:
 
 * `AddCommand#of()` — Creates an `AddCommand` instance encapsulating the entity to be added.
 * `AddCommand#execute()` — Executes adding of the encapsulated entity to the `Model`.
@@ -203,7 +203,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 **Aspect: How to handle the adding of class and person separating:**
 
-* **Alternative 1 (current choice):** An `AddCommand` instance has both `Person` and `Class` fields but only atmost one can be non-null at a time.
+* **Alternative 1 (current choice):** An `AddCommand` instance has both `Person` and `Tuition Class` fields but only atmost one can be non-null at a time.
     * Pros: Less cluttered.
     * Cons: Harder to implement.
 * **Alternative 2:** Separate classes that extend `Command` for adding of class and person separately.
@@ -319,14 +319,14 @@ The find feature currently doesn't allow users to search by the following criter
 
 Student:
 1. Details of `NextOfKins`
-2. Details of `TuitionClasses` that they are attending
+2. Details of `Tuition Class` that they are attending
 
 Tutor:
-1. Details of `TuitionClasses` that they are teaching
+1. Details of `Tuition Class` that they are teaching
 
 TuitionClass:
-1. Details of `Students` that are attending
-2. Details of `Tutors` that are teaching
+1. Details of `Student` that are attending
+2. Details of `Tutor` that are teaching
 
 These could be added in future iterations to give users more flexibility in their search.
 
@@ -342,11 +342,11 @@ Therefore, there is a lot of potential for UI to be integrated with the find fea
 
 #### Implementation
 
-The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely `Student`, `Tutor` and `TuitionClass`. 
+The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely `Student`, `Tutor` and `Tuition Class`. 
 It is implemented as an enum class `ListType` in `Model` which includes three types - `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST`. 
 
 The current list type is kept as a `ListType` field `type` in `ModelManager` which implements `Model`. 
-As `Student`, `Tutor` and `TuitionClass` instances are stored in `filteredStudent`, `filterdTutors` and `filterdTuitionClass` in `ModelManager`, the `type` field in `ModelManager` would indicate which of the three would be operated on by the `Logic` component when a command is executed. 
+As `Student`, `Tutor` and `Tuition Class` instances are stored in `filteredStudent`, `filterdTutors` and `filterdTuitionClass` in `ModelManager`, the `type` field in `ModelManager` would indicate which of the three would be operated on by the `Logic` component when a command is executed. 
 Additionally, to allow access by the `Logic` component, `Model` implements setter and getter methods for the `type`:
 
 * `Model#updateCurrentListType()` - Updates the `type` to the specified list type.
@@ -368,7 +368,7 @@ Step 4. The `commandResult` is then returned to the `commandResult` in the `exec
 Step 5. The `handleList()` method checks the `type` in `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to `TUTOR_LIST`, `MainWindow#handleList()` will clear the children of `entityListPanelPlaceholder`, and add `tutorListPanel` to it, which holds the `Tutor` list.
 
 Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in `ModelManager` and set the style class of the `tutorLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tuitionClassLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
-This will cause the `List Tabs` on top of the `List Display Panel` in Ui changes to highlight the current displayed list, the `Class` list.
+This will cause the `List Tabs` on top of the `List Display Panel` in Ui changes to highlight the current displayed list, the `Tuition Class` list.
 
 The following sequence diagram shows how the `find` operation works:
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
@@ -379,7 +379,7 @@ Sorting by default means sorting by oldest to newest updated entry. Editing an e
 *(To be added)*: sort by class timings, level.
 
 #### Implementation
-Since the list displayed is directly linked to each `Student`, `Tutor` and `TuitionClass` internal list, we can just sort it and the displayed list will be updated. The list to be sorted will be the list that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
+Since the list displayed is directly linked to each `Student`, `Tutor` and `Tuition Class` internal list, we can just sort it and the displayed list will be updated. The list to be sorted will be the list that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
 Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, and sorting in reverse is done using `java.util.Collections`.  
 ** *TODO: add PlantUML diagram* ** 
 
@@ -402,7 +402,7 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 
 
 * **Alternative 2:** Store the order of entries as a field in their respective objects.
-    - Have a static field to count the number of `Student`, `Tutor` and `TuitionClass` instances.
+    - Have a static field to count the number of `Student`, `Tutor` and `Tuition Class` instances.
     - When a new entry is added, it'll contain a `uniqueId` field, which is the order the entry was added in.
     - When the user wants to sort by default, the comparator can use this `uniqueId` to compare 2 instances.
 
