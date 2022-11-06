@@ -538,8 +538,8 @@ public class ParserUtil {
     public static boolean parametersOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validParameters) {
         requireAllNonNull(argumentMultimap, validParameters);
         // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
-        return Arrays.stream(PREFIXES_PATIENT_ALL).allMatch(option ->
-                Arrays.stream(validParameters).anyMatch(x -> x.equals(option))
-                        ^ !argumentMultimap.getValue(option).isPresent());
+        return Arrays.stream(PREFIXES_PATIENT_ALL).allMatch(parameter ->
+                Arrays.stream(validParameters).anyMatch(x -> x.equals(parameter))
+                        ^ !argumentMultimap.getValue(parameter).isPresent());
     }
 }

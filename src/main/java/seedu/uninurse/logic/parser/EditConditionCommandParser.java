@@ -2,6 +2,7 @@ package seedu.uninurse.logic.parser;
 
 import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_PATIENT_ALL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
 
 import java.util.List;
@@ -27,7 +28,12 @@ public class EditConditionCommandParser implements Parser<EditConditionCommand> 
     public EditConditionCommand parse(String args) throws ParseException {
         requireAllNonNull(args);
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CONDITION);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIXES_PATIENT_ALL);
+
+        if (!ParserUtil.parametersOnlyContains(argMultimap, PREFIX_CONDITION)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditConditionCommand.MESSAGE_USAGE));
+        }
 
         try {
             List<Index> indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
@@ -36,7 +42,8 @@ public class EditConditionCommandParser implements Parser<EditConditionCommand> 
             return new EditConditionCommand(indices.get(0), indices.get(1), condition);
         } catch (NoSuchElementException nse) {
             // Handles missing prefix
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditConditionCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditConditionCommand.MESSAGE_USAGE));
         }
     }
 }

@@ -1,6 +1,8 @@
 package seedu.uninurse.logic.parser;
 
+import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_PATIENT_ALL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import java.util.List;
@@ -26,7 +28,12 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
     public EditTaskCommand parse(String args) throws ParseException {
         requireAllNonNull(args);
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TASK_DESCRIPTION);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIXES_PATIENT_ALL);
+
+        if (!ParserUtil.parametersOnlyContains(argMultimap, PREFIX_TASK_DESCRIPTION)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditTaskCommand.MESSAGE_USAGE));
+        }
 
         try {
             List<Index> indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
