@@ -9,23 +9,29 @@ IdENTify is a **desktop app made for Ear, Nose and Throat (ENT) administrative s
 {:toc}
 
 ## **Glossary**
-- **ENT**: Stands for ear, nose and throat. ENT departments of a hospital therefore handle patients whom require medical attention for issues pertaining to ear, nose or throat.
-- **UI**: Stands for User Interface, it is the space where users interact with an application or website. In this case, the launching idENTify shows the UI to the user directly and the user can interact with the application by entering commands.
-- **GUI**: Stands for Graphical User Interface, it is a type of user interface through which users interact with electronic devices via visual indicator representations.
-- **Command Line Interface**: A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
-- **Parameters**: A parameter is a kind of variable that is used to pass information or data between functions or procedures in a computer. For example, adding a patient into idENTify requires the name of the patient, and the name is a parameter.
-- **Alphanumeric**: Text that consists only of letters and numbers. For example, abc12 is alphanumeric, but (O_O) is not.
-- **Recurring**: Something that occurs repeatedly or periodically. For example, an appointment that repeats every 7 days is considered recurring.
-- **Sort**: A process that involves arranging the data into some meaningful order to make it easier to understand, analyze or visualize. For example, sorting patients by name would arrange all patients alphabetically by name.
-- **Case-sensitive**: Difference between capital and lower-case letters matters. Therefore, not case-sensitive or case-insensitive means capital and lower-case letters are treated as the same.
+There are a few technical terms that will appear in this user guide. 
+This table might be useful for you to understand more about what those terms mean.
 
+| Term                       | Meaning                                                                                                                                                                                                                                                |
+|----------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **ENT**                    | Stands for **E**ar, **N**ose and **T**hroat. ENT departments of a hospital therefore handle patients whom require medical attention for issues pertaining to ear, nose or throat.                                                                      |
+| **UI**                     | Stands for **U**ser **I**nterface, it is the space where users interact with an application or website. In this case, the window that appears when idENTify is launched is the UI and the user can interact with the application by entering commands. |
+| **GUI**                    | Stands for **G**raphical **U**ser **I**nterface. It is a type of user interface through which users interact with electronic devices via visual indicator representations.                                                                             |
+| **Command Line Interface** | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                         |
+| **Parameters**             | A parameter is a kind of variable that is used to pass information or data between functions or procedures in a computer. For example, adding a patient into idENTify requires the name of the patient, and the name is a parameter.                   |
+| **Alphanumeric**           | Text that consists only of letters and numbers. For example, abc12 is alphanumeric, but (O_O) is not.                                                                                                                                                  |
+| **Recurring**              | Something that occurs repeatedly or periodically. For example, an appointment that repeats every 7 days is considered recurring.                                                                                                                       |
+| **Sort**                   | A process that involves arranging the data into some meaningful order to make it easier to understand, analyze or visualize. For example, sorting patients by name would arrange all patients alphabetically by name.                                  |
+| **Case-sensitive**         | Difference between upper-case and lower-case letters matters. Therefore, not case-sensitive or case-insensitive means capital and lower-case letters are treated as the same.                                                                          |
+| **Command**                | An instruction typed into a computer for it to carry out. (e.g, `add n/John p/12345678`)                                                                                                                                                               |
+| **Integer**                | A whole number. (e.g., 1, 2, 3 are integers, but 1.99, 2.3 are not.)                                                                                                                                                                                   |
 
 ## **Quick Start**
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest [idENTify.jar](https://github.com/AY2223S1-CS2103T-T17-4/tp/releases/tag/v1.3) from here.
 3. Copy the file to your preferred folder.
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
-![start_up](images/IdENTifyStartUp.png)
+![start_up](images/StartingUI.png)
 
 ## **UI Components**
 ![SampleUiImage](images/SampleUI.png)
@@ -100,7 +106,7 @@ Component | Purpose
   * `domain-name` must:
     * Be at least 2 characters long.
     * Begin and end with alphanumeric characters.
-    * Have both parts consist of alphanumeric characters, separated only by hyphens, if any.
+    * Have both parts consist of alphanumeric characters, separated only by hyphens (`-`), if any.
   * Examples:
     * Valid
       * `John@example.com`
@@ -108,7 +114,7 @@ Component | Purpose
     * Invalid
       * `John`: Missing `@` and `domain-name`.
       * `John@^s^`: `^s^` does not start and end with alphanumeric characters.
-      * `John@x`: `x` is not less than 2 characters long.
+      * `John@x`: `x` is less than 2 characters long.
 </div>
 
 
@@ -134,9 +140,7 @@ Adds a patient into idENTify.
 Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
-
 **:bulb: Tip:** A patient can have 0 to 3 number of tags.
-
 </div>
 
 Examples:
@@ -156,7 +160,7 @@ Format: `delete INDEX [END_INDEX]`
 Examples:
 * `list patients` followed by `delete 2` deletes the 2nd patient in idENTify.
 * `delete 1 3` deletes the first 3 patients (index 1 to 3 inclusive) in idENTify
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 #### Book an appointment:  `book`
 
@@ -230,16 +234,14 @@ Format: `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​`
 * At least one of the optional parameters must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the appointment will be removed i.e. adding of tags is not cumulative.
-* You can remove all the appointment’s tags by typing `t/` without
-  specifying any tags after it. <br>
-  e.g. `edit appts 1 t/`
-* You can set the appointment to be non-recurring by typing `pe/` without specifying any values after it. <br>
-  e.g. `edit appts 1 pe/`
+* You can remove all the appointment’s tags by typing `t/` without specifying any tags after it. 
+* You can set the appointment to be non-recurring by typing `pe/` without specifying any values after it. 
 
 Examples:
 * `edit appts 1 r/Cough d/2022-12-10 16:30` Edits the reason and date of the first appointment to be `Cough` and `2022-12-10 16:30`
 respectively. Existing time period and tags will not be edited.
 * `edit appts 1 pe/1Y2M` Edits the time period of the first appointment to be recurring every 1 year 2 months. Existing reason, date and tags will not be edited.
+* `edit appts 2 pe/ t/` Edits the second appointment to be non-recurring and clears all existing tags. Existing reason and date will not be edited.
 
 #### Mark an appointment as completed:  `mark`
 
@@ -475,17 +477,17 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/
   * View the `find r/Checkup` example below for a visual explanation.
 * Additional details on each parameter are listed in the tables below.
 
-| Patient Related Parameters                                           | Additional Notes                                                              |
-|----------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| **[n/NAME]**<br/>**[p/PHONE]**<br/>**[e/EMAIL]**<br/>**[a/ADDRESS]** | -                                                                             |
-| **[t/PATIENT_TAG]...**                                               | Finds patients matching all the inputted tag(s).<br/>**Full match required.** |
+| Patient Related Parameters                                           | Additional Notes                                                                       |
+|----------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| **[n/NAME]**<br/>**[p/PHONE]**<br/>**[e/EMAIL]**<br/>**[a/ADDRESS]** | -                                                                                      |
+| **[t/PATIENT_TAG]...**                                               | Finds patients with all the inputted tag(s).<br/>**Full match for each tag required.** |
 
 | Appointment Related Parameters | Additional Notes                                                                                                                                                 |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **[r/REASON]**                 | -                                                                                                                                                                |
 | **[ds/DATE_START]**            | Finds appointments occurring **at or after** the inputted date. <br/> **Must be a valid date.** <br/> **Date must be at or after [de/DATE_END], if present.**    |
 | **[de/DATE_END]**              | Finds appointments occurring **at or before** the inputted date. <br/> **Must be a valid date.** <br/> **Date must be at or after [de/DATE_START], if present.** |
-| **[ta/APPOINTMENT_TAG]**       | Finds appointments matching all the appointment's tag(s).<br/> **Full match required.**                                                                          |
+| **[ta/APPOINTMENT_TAG]**       | Finds appointments with all the inputted appointment tag(s).<br/> **Full match for each tag required.**                                                          |
 
 Visual example of finding results by an appointment's reason, using `find r/Checkup`:
 
@@ -553,26 +555,26 @@ If your changes to the data file makes its format invalid, idENTify will discard
 
 ## **Command summary**
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`
-**Clear** | `clear`
-**Delete** | `delete INDEX [END_INDEX]`<br> e.g. `delete 3`
-**Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g. `find n/Joshua e/Josh@example.com r/Tinnitus`
-**Book** | `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
-**Group Patients** | `group patients`
-**Group Appointments** | `group appts k/KEY` <br> e.g. `group appts k/mark`
-**Ungroup** | `ungroup patients` <br> `ungroup appts`
-**Mark** | `mark APPOINTMENT_INDEX` <br> e.g. `mark 3`
-**Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`
-**Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g. `cancel 2`
-**History** | Control key <br> Arrow keys <br> e.g. `Up Arrow` key on keyboard
-**Hide Patients** | `hide patients CONDITION` <br> e.g. `hide patients t/nose`
-**Hide Appointments** | `hide appts CONDITION` <br> e.g. `hide appts s/marked`
-**Unhide Patients** | `unhide patients CONDITION` <br> e.g. `unhide patients t/nose`
-**Unhide Appointments** | `unhide appts CONDITION` <br> e.g. `unhide appts r/pain`
-**Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `edit patients 1 n/Bernice Yu`
-**Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `edit appts 1 r/Cough`
-**List** | `list patients` <br> `list appts` <br> `list all`
-**Help** | `help`
-**Exit** | `exit`
+| Action                    | Format, Examples                                                                                                                                                                         |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                  | `help`                                                                                                                                                                                   |
+| **Add**                   | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`                                                              |
+| **Delete**                | `delete INDEX [END_INDEX]`<br> e.g. `delete 3`                                                                                                                                           |
+| **Book**                  | `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`                                                                      |
+| **Cancel**                | `cancel APPOINTMENT_INDEX` <br> e.g. `cancel 2`                                                                                                                                          |
+| **Clear**                 | `clear`                                                                                                                                                                                  |
+| **Edit Patient**          | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `edit patients 1 n/Bernice Yu`                                                                        |
+| **Edit Appointment**      | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `edit appts 1 r/Cough`                                                                                       |
+| **Mark**                  | `mark APPOINTMENT_INDEX` <br> e.g. `mark 3`                                                                                                                                              |
+| **Unmark**                | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`                                                                                                                                          |
+| **List**                  | `list patients` <br> `list appts` <br> `list all`                                                                                                                                        |
+| **Group Patients**        | `group patients`                                                                                                                                                                         |
+| **Group Appointments**    | `group appts k/KEY` <br> e.g. `group appts k/mark`                                                                                                                                       |
+| **Ungroup**               | `ungroup patients` <br> `ungroup appts`                                                                                                                                                  |
+| **Hide Patients**         | `hide patients CONDITION` <br> e.g. `hide patients t/nose`                                                                                                                               |
+| **Unhide Patients**       | `unhide patients CONDITION` <br> e.g. `unhide patients t/nose`                                                                                                                           |
+| **Hide Appointments**     | `hide appts CONDITION` <br> e.g. `hide appts s/marked`                                                                                                                                   |
+| **Unhide Appointments**   | `unhide appts CONDITION` <br> e.g. `unhide appts r/pain`                                                                                                                                 |
+| **Find**                  | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g. `find n/Joshua e/Josh@example.com r/Tinnitus` |
+| **History**               | Control key <br> Arrow keys <br> e.g. `Up Arrow` key on keyboard                                                                                                                         |
+| **Exit**                  | `exit`                                                                                                                                                                                   |

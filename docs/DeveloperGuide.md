@@ -197,6 +197,7 @@ For `list appts`, it follows a similar
 process as well, but with `updateFilteredAppointmentList()` instead. For `list all`, you can think of the
 behaviour as executing both `list patients` and `list appts`.
 
+#### Design considerations:
 
 **Aspect: How the command is implemented:**
 * **Alternative 1 (current choice):** `list patients`, `list appts` and `list all` as a command word `list` with
@@ -299,6 +300,8 @@ This approach is easier to implement, as we do not have to worry about the appoi
 
 ### Group Patient Feature
 
+#### Implementation
+
 The group mechanism implements the following operations:
 
 * Group patients according to their tags.
@@ -330,6 +333,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   tag group where a patient belongs.
 
 ### Group Appointment Feature
+
+#### Implementation
 
 The group mechanism implements the following operations:
 
@@ -363,6 +368,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   tag group where a patient belongs or the patient attached to the appointment.
 
 ### Ungroup Feature
+
+#### Implementation
 
 The ungroup mechanism implements the following operations:
 
@@ -502,6 +509,8 @@ If any of the prefixes contain invalid values or no prefix values were provided,
 
 ### Mark/Unmark Feature
 
+#### Implementation
+
 The parameters involved in the `mark`/`unmark` commands is the same as that of the `cancel` command. 
 All 3 commands take in a single parameter denoting the desired appointment number to modify. 
 
@@ -537,16 +546,38 @@ constructor directly
 
 ### Find Feature
 
+#### Implementation
+
 ![MarkSequenceDiagram](images/FindClassDiagram.png)
 
-The `find` command,
-* Takes in 2 predicates `CombinedPersonPredicate` and `CombinedAppointmentPredicate`.
+The `find` command takes in 2 predicates `CombinedPersonPredicate`, `CombinedAppointmentPredicate` and a boolean `isAppointmentPredicateUsed`.
 * `CombinedPersonPredicate` stores all person related search strings and tests for all patients that satisfies all
-the search terms.
-* `CombinedAppointmentPredicate` stores all appointment related search tags and tests for all appointments that
-satisfies all the search terms.
-* These 2 predicates are then used together in `FindCommand#execute()` to create a single predicate that displays all
-* the relevant patient and appointments.
+  the search terms.
+* `CombinedAppointmentPredicate` stores all appointment related search fields and tests for all appointments that
+  satisfies all the search terms.
+* `isAppointmentPredicateUsed` tracks if there are any appointment related search terms are specified by the user. 
+
+These 3 fields are generated and supplied by the `FindCommandParser`, which takes in the user inputs during a `find` command, 
+and sorts the input into the 2 predicate classes accordingly as shown in the diagram above, 
+in addition to also producing the value of `isAppointmentPredicateUsed`.
+
+To facilitate the idea of returning only relevant results to the user, the `execute()` method of `FindCommand` follows a 3-step process.
+1. `personFulfillingBothPredicates`, the predicate to display all patients that satisfy the `CombinedPersonPredicate` is generated first. If `isAppointmentPredicateUsed` is `true`,
+the predicate is also modified to check if the patient has at least 1 appointment that satisfies the `CombinedAppointmentPredicate`. 
+As such, the `isAppointmentPredicateUsed` field ensures  that patients with no appointments are still displayed when a user inputs 
+only patient related search parameters.
+2. `appointmentFulfillingBothPredicates` is generated next. It is a predicate that displays all appointments that satisfy the `CombinedAppointmentPredicate` with a patient owner that
+satisfies the `personFufillingBothPredicates` predicated generated in step 1.
+3. To display only results in the current patient and appointment lists shown to the user that satisfies all the search terms,
+The 2 predicates generated in step 1 and 2 are combined with the current active predicate in the model.
+
+The logical flow of this command is summarised in the activity diagram below.
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+Ultimately, this ensures that for an entry to be displayed:
+* A patient must satisfy all patient search terms and have at least 1 appointment that satisfies all the appointment search terms, if provided.
+* An appointment must satisfy all appointment search terms and belong to a patient that satisfies all the patient search terms.
+* The entry must also exist in the list prior to the execution of the find command.
 
 #### Design considerations:
 
@@ -1361,4 +1392,4 @@ In v1.2, we updated the GUI to contain 2 listviews: one for patients and one for
 
 In v1.3, we implemented our organisation features: hide, unhide, group, ungroup and find. While they all individually worked as expected, we had a hard time integrating hide/unhide/find to work well together, as these commands all deal with inserting a Predicate into the filtered list. It took some time for us to figure out how to keep track of the current Predicate in each filtered list and to add onto this Predicate while executing any hide/unhide/find command.
 
-Overall, we are satisfied with our project given the time constraints and huge learning curve for the starting weeks. While workload is relatively high, it was an enjoyable experience to be working in a group.
+Overall, we are satisfied with our project given the time constraints and huge learning curve for the starting weeks. While workload is relatively high, it was an enjoyable experience to be working in a team.
