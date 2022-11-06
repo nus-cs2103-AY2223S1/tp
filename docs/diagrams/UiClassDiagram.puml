@@ -11,10 +11,23 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+
+together {
+    Class StudentListPanel
+    Class StudentCard
+    Class TutorialListPanel
+    Class TutorialCard
+    Class ConsultationListPanel
+    Class ConsultationCard
+    Class ReminderListPanel
+    Class ReminderCard
+    Class GradeChart
+}
+
+note "All classes in this package except\n**Ui** and **UiManager**\ninherit from **UiPart** class" as N1
+
 }
 
 package Model <<Rectangle>> {
@@ -32,26 +45,36 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" StudentListPanel
+MainWindow *-down-> "1" TutorialListPanel
+MainWindow *-down-> "1" ConsultationListPanel
+MainWindow *-down-> "1" ReminderListPanel
+MainWindow *-down-> "0..1" GradeChart
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+StudentListPanel -down-> "*" StudentCard
+TutorialListPanel -down-> "*" TutorialCard
+ConsultationListPanel -down-> "*" ConsultationCard
+ReminderListPanel -down-> "*" ReminderCard
 
 MainWindow -left-|> UiPart
 
+GradeChart -up[hidden]- UiPart
+
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-PersonCard ..> Model
+StudentCard ..> Model
+TutorialCard ..> Model
+ConsultationCard ..> Model
+ReminderCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+StudentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
