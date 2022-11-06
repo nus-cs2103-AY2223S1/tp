@@ -736,5 +736,4 @@ This includes, but is not limited to:
 
 Amongst these changes, we had the hardest time redesigning the `Person` model, as we encountered various bugs after
 we had modified it to include additional fields, thus in the end we took many hours to fix more than 200 test cases related to it. 
-Due to our iterative approach, we had to redesign other features to fit the needs of a redesigned `Person` model, which 
-took quite a few iterations.
+Due to our iterative approach, we had to redesign other features to fit the needs of a redesigned `Person` model.
