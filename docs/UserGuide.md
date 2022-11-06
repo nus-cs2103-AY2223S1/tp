@@ -124,6 +124,8 @@ Contact management has never been this simple.
 
 <div markdown="block" class="alert alert-info">
 
+:information_source::<br>
+
 * Contacts have no labels by default.<br>
 
 * Contact remarks are limited to alphanumeric characters and spaces.<br>
@@ -250,6 +252,8 @@ Monitor your progress, track deadlines and archive tasks with a few simple comma
 Leave your task management to YellowBook, so you can do your best work.
 
 <div markdown="block" class="alert alert-info">
+
+:information_source::<br>
 
 * Tasks have no labels by default.<br>
 
@@ -484,7 +488,9 @@ are working on together.
 Whether it be a software engineering module or a business pitch, you can customise every person and task.
 With our label feature, managing your numerous projects on the go has just gotten a lot easier.
 
-<div markdown="span" class="alert alert-info">:information_source::
+<div markdown="span" class="alert alert-info">
+
+:information_source::<br>
 
 * Labels must be alphanumeric and one word long.<br>
 
@@ -506,11 +512,15 @@ This list is unique, meaning each label with a distinct name is only shown once,
 
 Only a maximum of one contact and one task can be labelled within the same command.
 
-<div markdown="span" class="alert alert-warning">:warning::
+<div markdown="span" class="alert alert-warning">
 
-- Contact/task does not exist.<br>
-- Contact/task already has the required label.<br>
-- More than one contact or more than one task is specified.<br>
+:warning::<br>
+
+* Contact/task does not exist.<br>
+ 
+* Contact/task already has the required label.<br>
+ 
+* More than one contact or more than one task is specified.<br>
 
 </div>
 
@@ -529,11 +539,15 @@ Otherwise, it is only removed from the specified contact/task label list.
 
 Only a maximum of one contact and one task can be edited within the same command.
 
-<div markdown="span" class="alert alert-warning">:warning::
+<div markdown="span" class="alert alert-warning">
 
-- Contact/task does not exist.<br>
-- Label does not exist on specified contact/task.<br>
-- More than one contact or more than one task is specified.<br>
+:warning::<br>
+
+* Contact/task does not exist.<br>
+ 
+* Label does not exist on specified contact/task.<br>
+ 
+* More than one contact or more than one task is specified.<br>
 
 </div>
 
