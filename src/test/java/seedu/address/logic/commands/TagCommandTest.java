@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TagCommand.EditPersonTags;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonTagsBuilder;
@@ -57,7 +57,7 @@ public class TagCommandTest {
 
         String expectedMessage = String.format(TagCommand.MESSAGE_TAG_PERSON_SUCCESS, taggedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new TaskList(model.getAddressBook()),
                 model.getArchivedTaskList(), new UserPrefs());
         expectedModel.setTask(taggedTask, taggedTask);
 
@@ -77,7 +77,7 @@ public class TagCommandTest {
 
         String expectedMessage = String.format(TagCommand.MESSAGE_TAG_PERSON_SUCCESS, taggedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new TaskList(model.getAddressBook()),
                 model.getArchivedTaskList(), new UserPrefs());
         expectedModel.setTask(model.getFilteredPersonList().get(0), taggedTask);
 
@@ -102,7 +102,7 @@ public class TagCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
 
         TagCommand tagCommand = new TagCommand(outOfBoundIndex,
                 new EditPersonTagsBuilder().build());

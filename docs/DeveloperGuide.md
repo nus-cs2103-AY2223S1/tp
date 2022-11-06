@@ -166,12 +166,15 @@ The `Model` component,
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
+* stores the archived `Task` objects in another `UniqueTaskList` object
 * stores the filter status when the task list is filtered and also updates when the list changes.
-* to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
+
+For the `Task` class,
+* to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
 * As `Deadline` is an optional field, their values are stored in an `Optional` object.
 
 ### 4.5 Storage component

@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.ArchivedTaskList;
+import seedu.address.model.TaskList;
 import seedu.address.model.task.Task;
 
 /**
@@ -101,10 +101,10 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code TaskList} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static TaskList getTypicalAddressBook() {
+        TaskList ab = new TaskList();
         for (Task task : getTypicalPersons()) {
             ab.addPerson(task);
         }

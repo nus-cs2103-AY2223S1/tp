@@ -13,7 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
@@ -56,12 +56,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyTaskList getAddressBook() {
         return model.getAddressBook();
     }
 
     @Override
-    public ReadOnlyAddressBook getArchivedTaskList() {
+    public ReadOnlyTaskList getArchivedTaskList() {
         return model.getArchivedTaskList();
     }
 

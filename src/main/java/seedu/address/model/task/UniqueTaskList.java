@@ -11,18 +11,19 @@ import javafx.collections.ObservableList;
 import seedu.address.model.task.exceptions.DuplicatePersonException;
 import seedu.address.model.task.exceptions.PersonNotFoundException;
 
+//@@author
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A task is considered unique by comparing using {@code Task#isSamePerson(Task)}. As such, adding and updating of
- * persons uses Task#isSamePerson(Task) for equality so as to ensure that the task being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a task uses Task#equals(Object) so
+ * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
+ * A task is considered unique by comparing using {@code Task#isSameTask(Task)}. As such, adding and updating of
+ * tasks uses Task#isSameTask(Task) for equality so as to ensure that the task being added or updated is
+ * unique in terms of identity in the UniqueTaskList. However, the removal of a task uses Task#equals(Object) so
  * as to ensure that the task with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see Task#isSameTask(Task)
  */
-public class UniquePersonList implements Iterable<Task> {
+public class UniqueTaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
@@ -81,7 +82,7 @@ public class UniquePersonList implements Iterable<Task> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueTaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         internalList.sort(null);
@@ -116,8 +117,8 @@ public class UniquePersonList implements Iterable<Task> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueTaskList // instanceof handles nulls
+                        && internalList.equals(((UniqueTaskList) other).internalList));
     }
 
     @Override
