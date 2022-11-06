@@ -170,6 +170,8 @@ Delete a module to the user's own list of modules.
 
 ### Pick module lessons: `pick`
 
+![PickCommand Demo](images/commands/PickCommand.png)
+
 Format: `pick MODULE-CODE LESSON-TYPE LESSON-ID`
 
 Required Arguments:
