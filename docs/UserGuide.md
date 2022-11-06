@@ -32,7 +32,7 @@ If you need help setting up GREWZ, jump over to [Quick start](#2-quick-start) to
 
 For understanding more about GREWZ features and commands, head over to [Features](#3-features).
 
-To have a look at frequently asked question, refer to [FAQs](#4-faq)
+To have a look at frequently asked questions, refer to [FAQs](#4-faq)
 
 If you want the quick overview of GREWZ commands, jump over to [Command Summary](#5-command-summary)
 
