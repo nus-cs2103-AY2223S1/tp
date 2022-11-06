@@ -454,13 +454,13 @@ Do the test cases sequentially to ensure correct expectation.
 
     1. Prerequisites: Switch to tutorial tab using `switch f/tutorial` command (you can skip this if the main display is already tutorial). Multiple tutorials in the list.
 
-    1. Test case: `delete tutorial 1`<br>
+    2. Test case: `delete tutorial 1`<br>
        Expected: First tutorial is deleted from the list. Details of the deleted tutorial shown in the status message. Tutorial list is updated.
 
-    1. Test case: `delete tutorial 0`<br>
+    3. Test case: `delete tutorial 0`<br>
        Expected: No tutorial is deleted. Error details shown in the status message. Tutorial list remains the same.
 
-    1. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 #### Editing a tutorial
@@ -483,8 +483,7 @@ Do the test cases sequentially to ensure correct expectation.
 
 1. Adding a consultation while consultation tab is being shown.
 
-    1. Prerequisites: There must exist a tutorial with the same module used in consultation. Ensure module existing by using `clear f/tutorial` then `add tutorial n/W10-1 m/CS2103T v/COM2-0209 T/16:00-18:00 D/2`<br>
-       Switch to consultation tab using the `switch f/consultation` command. Ensure consultations data are empty by using `clear f/consultation` (you may skip this if you do not have any consultations).
+    1. Prerequisites: Switch to consultation tab using the `switch f/consultation` command. Ensure consultations data are empty by using `clear f/consultation` (you may skip this if you do not have any consultations).
 
     2. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/16:00-18:00 d/AY2019-2020 Question 3,6,8`<br>
        Expected:  A new consultation is added to the tutorial list. A success message containing details of the added consultation is shown in result display box and the list of consultations is shown.
@@ -506,8 +505,7 @@ Do the test cases sequentially to ensure correct expectation.
 
 2. Adding a consultation while consultation tab is not being shown.
 
-    1. Prerequisites: There must exist a tutorial with the same module used in consultation. Ensure module existing by using `clear f/tutorial` then `add tutorial n/W10-1 m/CS2103T v/COM2-0209 T/16:00-18:00 D/2`<br>
-       Switch to another tab that is not consultation, for example, using the `switch f/student` command.
+    1. Prerequisites: Switch to another tab that is not consultation, for example, using the `switch f/student` command.
 
     2. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/1900-1700 d/AY2019-2020 Question 3,6,8`<br>
        Expected: Error message is shown as time range format is invalid. Main display remains the same.
@@ -522,26 +520,26 @@ Do the test cases sequentially to ensure correct expectation.
 
     1. Prerequisites: Switch to consultation tab using `switch f/consultation` command (you can skip this if the main display is already consultation). Multiple consultation in the list.
 
-    1. Test case: `delete consultation 1`<br>
+    2. Test case: `delete consultation 1`<br>
        Expected: First consultation is deleted from the list. Details of the deleted consultation shown in the status message. Consultation list is updated.
 
-    1. Test case: `delete consultation 0`<br>
+    3. Test case: `delete consultation 0`<br>
        Expected: No consultation is deleted. Error details shown in the status message. Consultation list remains the same.
 
-    1. Other incorrect delete consultation commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete consultation commands to try: `delete`, `delete x`, `...` (where x is larger than the consultation list size)<br>
        Expected: Similar to previous.
 
-#### Editing a tutorial
+#### Editing a consultation
 
-1. Editing a tutorial while tutorial tab is being shown.
+1. Editing a consultation while consultation tab is being shown.
 
-    1. Prerequisites: Switch to tutorial tab using the `switch f/tutorial` command (you may skip this if the main display is already tutorial). There exists at least 1 tutorial in the list.
+    1. Prerequisites: Switch to consultation tab using the `switch f/consultation` command (you may skip this if the main display is already consultation). There exists at least 1 consultation in the list.
 
-    2. Test case: `edit tutorial 1 v/LT27`<br>
-       Expected: Venue of first tutorial is edited. Details of the edited tutorial shown in the status message.
+    2. Test case: `edit consultation 1 v/AS16`<br>
+       Expected: Venue of first consultation is edited. Details of the edited tutorial shown in the status message.
 
-    3. Test case: `edit tutorial 0`<br>
-       Expected: No tutorial is edited. Error message shown in result display box.
+    3. Test case: `edit consultation 0`<br>
+       Expected: No consultation is edited. Error message shown in result display box.
 
 ### Deleting a student
 
