@@ -334,22 +334,22 @@ If your changes to the data file makes its format invalid, BookFace will discard
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                              |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **Add book**    | `add book t/TITLE a/AUTHOR` <br> E.g: `add book t/James and The Giant Peach  a/Roald Dahl`                                    |
-| **Add user**    | `add user n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> E.g: `add user n/John Doe p/91234567 t/friend e/johndoe@outlook.com` |
-| **Delete book** | `delete book BOOK_INDEX`<br> E.g: `delete book 1`                                                                             |
-| **Delete user** | `delete user USER_INDEX`<br> E.g: `delete user 1`                                                                             |
-| **Loan book**   | `loan USER_INDEX BOOK_INDEX [DUE_DATE]` <br> E.g: `loan 1 1` or `loan 1 1 2022-12-28`                                         |
-| **Return book** | `return BOOK_INDEX`<br> E.g: `return 1`                                                                                       |
-| **Find book**   | `find book KEYWORD [KEYWORD]...` <br> E.g: `find book Peach`                                                                  |
-| **Find user**   | `find user KEYWORD [KEYWORD]...` <br> E.g: `find user John Sim`                                                               |
-| **Edit book**   | `edit book BOOK_INDEX [t/TITLE] [a/AUTHOR]` <br> E.g: `edit book t/The Broken House`                                          |
-| **Edit user**   | `edit user USER_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...` <br> E.g: `edit user 1 p/91234567 e/johndoe@example.com`       |
-| **List books**  | `list books`                                                                                                                  |
-| **List users**  | `list users`                                                                                                                  |
-| **List all**    | `list all`                                                                                                                    |
-| **List loans**  | `list loans`                                                                                                                  |
-| **List overdue**| `list overdue`                                                                                                                |
-| **Clear**       | `clear all`                                                                                                                   |
-| **Exit**        | `exit`                                                                                                                        |
+| Action          | Format, Examples                                                                                                        |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------|
+| **Add book**    | `add book t/TITLE a/AUTHOR` <br> E.g: `add book t/James and The Giant Peach  a/Roald Dahl`                              |
+| **Add user**    | `add user n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> E.g: `add user n/John Doe p/91234567 e/johndoe@outlook.com t/friend`   |
+| **Delete book** | `delete book BOOK_INDEX`<br> E.g: `delete book 1`                                                                       |
+| **Delete user** | `delete user USER_INDEX`<br> E.g: `delete user 1`                                                                       |
+| **Loan book**   | `loan USER_INDEX BOOK_INDEX [DUE_DATE]` <br> E.g: `loan 1 1` or `loan 1 1 2022-12-28`                                   |
+| **Return book** | `return BOOK_INDEX`<br> E.g: `return 1`                                                                                 |
+| **Find book**   | `find book KEYWORD [KEYWORD]...` <br> E.g: `find book Peach`                                                            |
+| **Find user**   | `find user KEYWORD [KEYWORD]...` <br> E.g: `find user John Sim`                                                         |
+| **Edit book**   | `edit book BOOK_INDEX [t/TITLE] [a/AUTHOR]` <br> E.g: `edit book t/The Broken House`                                    |
+| **Edit user**   | `edit user USER_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...` <br> E.g: `edit user 1 p/91234567 e/johndoe@example.com` |
+| **List books**  | `list books`                                                                                                            |
+| **List users**  | `list users`                                                                                                            |
+| **List all**    | `list all`                                                                                                              |
+| **List loans**  | `list loans`                                                                                                            |
+| **List overdue**| `list overdue`                                                                                                          |
+| **Clear**       | `clear all`                                                                                                             |
+| **Exit**        | `exit`                                                                                                                  |
