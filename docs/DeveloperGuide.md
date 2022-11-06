@@ -290,7 +290,7 @@ Sequence diagram for PictureUploadCommand
 - Pros: Users only needs to type.
 - Cons: File paths can be very lengthy and if their file names are similar it is very easy to make a mistake when typing it out.
 
-**Aspect: Proccessing of Images**
+**Aspect: Processing of Images**
 - Current Implementation: Handled by functions in the ImageStorage Class.
 - Pros: All operations regarding choosing, uploading and validating the picture is done in the same class.
 - Cons: The ImageStorage Class becomes just a class of static functions which cannot be tested.
@@ -312,7 +312,7 @@ which invokes the `TaskCommand` and the `RemoveTaskCommand` respectively.
 These commands when executed will use methods exposed by the `Model` and `TaskBookStorage` interface and perform the related operations.
 
 #### About Task
-Each `Task` has non-optional title and description fields. Future iterations may introduce new types of `Task`, including `Deadline` and `Assignment`.
+Each `Task` has compulsory title and description fields. There are three different types of `Task` - `ToDo`, `Deadline` and `Assignment`.
 Currently, task information is stored in a different file from student information as they are two separate (and unrelated) data types.
 
 The following is a more detailed explanation on how the `TaskCommand` works.
@@ -435,8 +435,8 @@ The feature uses the command :
 
 
 #### Feature Updates
-* Optional Fields to Fill in (Fields in Square Bracket are Optional).
-* ***Only*** Name and Student ID are a must.
+* Fields in Square Bracket are Optional.
+* ***Only*** Name and Student ID are compulsory to fill in.
 * Provides a **more flexible way** of adding students' profiles.
 
 The improved feature allows user to leave certain fields empty if they do not have the information to fill them.
@@ -446,8 +446,8 @@ The improved feature allows user to leave certain fields empty if they do not ha
 The following is a more detailed explanation on how the new `add` feature works.
 
 1. The `AddressBookParser` will select `AddCommandParser` and parse the user input.
-2. `AddCommandParser` checks for optional fields that are not filled in and will automatically set them to 'NA' in the Addressbook.
-3. Following which, `AddCommand#execute(Model model)` method is called which adds the students into the Addressbook.
+2. `AddCommandParser` checks for optional fields that are not filled in and will automatically set them to 'NA' in the AddressBook.
+3. Following which, `AddCommand#execute(Model model)` method is called which adds the students into the AddressBook.
 4. If the student's data is already there, the input will throw an error saying "This student already exists."
 
 ![AddCommand Sequence Diagram](images/AddCommandSequenceDiagram.png)
@@ -459,7 +459,7 @@ Activity Diagram for Improved AddCommand Feature
 
 **Aspect: Wrapping 'NA' into Type X**
 * Current implementation : Making 'NA' into a new X type when Information for X is not available where X can be Email, Phone or Class Group Type.
-* Pros: Simple to Store and Understand, works as intended even if users decide to input 'NA' into these optional fields.
+* Pros: Simple to store and understand, works as intended even if users decide to input 'NA' into these optional fields.
 * Cons: Not exactly logically correct as NA is not of Type X.
 
 
@@ -724,7 +724,8 @@ Use case ends.
 
 ### Glossary
 * **CLI**: Command Line Interface
-* **CLI**: Graphical User Interface
+* **GUI**: Graphical User Interface
+* **JSON**: A file format that uses human-readable text to store and transmit data objects consisting of attribute-value pairs and arrays
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Command**: An instruction to be executed by GREWZ.
@@ -769,8 +770,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is negative or larger than the list size)<br>
+      Expected: Similar to previous. 
 
 1. _{ more test cases …​ }_
 

@@ -18,7 +18,7 @@ public class JsonAdaptedToDo extends JsonAdaptedTask {
     private final String description;
 
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given task details.
+     * Constructs a {@code JsonAdaptedToDo} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedToDo(@JsonProperty("title") String title,
@@ -28,7 +28,7 @@ public class JsonAdaptedToDo extends JsonAdaptedTask {
     }
 
     /**
-     * Converts a given {@code Task} into this class for Jackson use.
+     * Converts a given {@code ToDo} into this class for Jackson use.
      */
     public JsonAdaptedToDo(Task source) {
         title = source.getTitle().title;
@@ -36,9 +36,9 @@ public class JsonAdaptedToDo extends JsonAdaptedTask {
     }
 
     /**
-     * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted ToDo object into the model's {@code task} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted task.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted ToDo.
      */
     public Task toModelType() throws IllegalValueException {
         if (title == null) {

@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Task;
 
 /**
- * Jackson-friendly version of a superclass for Deadlines and ToDos to inherit from.
+ * Jackson-friendly version of a superclass for ToDo, Deadline and Assignment class to inherit from.
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,

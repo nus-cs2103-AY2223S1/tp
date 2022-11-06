@@ -96,7 +96,7 @@ Take note of the following symbols and formatting used in this document:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* [Extraneous](#glossary) parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -114,13 +114,14 @@ Format: `add n/NAME i/STUDENT_ID [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS_GROUP] [t/T
 
 * Fields in square bracket`[]` are optional.
 * The fields can be written in any order.
-* ***Only*** Name and Student ID are a must.
-* Name must only consist of alphanumeric characters and spaces, as well as special characters such as `, ' .`
+* ***Only*** Name and Student ID are compulsory to fill in.
+* Name must only consist of alphanumeric characters and spaces, as well as special characters such as `, ' .`.
 * Student ID must take the format of e0XXXXXX where X is a digit from 0 to 9.
 * A student can have any number of tags (including 0).
 
 <div markdown="span" class="alert alert-warning">:information_source: **Note:**
-Students CANNOT have the same name. 
+Students CANNOT have the same name.
+
 GREWZ naming convention is [case-insensitive](#glossary), but [whitespace-sensitive](#glossary).
 This means that it does not allow for students with the exact same name to be keyed into the application. 
 Thus trying to add a student with the name `Ben` and `ben` will not work.
@@ -165,7 +166,7 @@ GREWZ allows you to upload image of your students into your application. The fol
 Format: `upload-pic INDEX`
 
 * Uploads a picture for the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
-* A window will open to allow you to select a file from your computer. The file **must** be of .JPG format.
+* A window will open to allow you to select a file from your computer. The file **must** be of [.JPG](#glossary) format.
 * If no picture exists for the student specified, the selected picture will be assigned to the student.
 * Existing picture will be updated to the input file picture.
 
@@ -298,7 +299,7 @@ Adds a task to the Task List.
 There is three different types of Task - ***ToDo***, ***Deadline*** and ***Assignment***.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-You can have multiple same tasks as tasks can be duplicated.
+Tasks can be duplicated, so it is possible to have multiple same tasks.
 </div>
 
 #### Adding a ToDo
@@ -326,7 +327,7 @@ Format: `task t/TITLE d/DESC by/YYYY-MM-DD`
 
 * A Deadline should always include a title, description and date and should not be left blank.
 * Both title and description should not be left blank.
-* A date should strictly follow the format of YYYY-MM-DD.
+* A date should strictly follow the format of YYYY-MM-DD and it should be a valid date.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Invalid input:**
 0000-00-00 is <strong>not</strong> considered a valid date.
@@ -379,10 +380,6 @@ Format: `edit-task [t/TITLE] [d/DESCRIPTION] [by/YYYY-MM-DD] [addStu/STUDENT_1, 
     * `deleteStu/` is case-sensitive so `deleteStu/adam yeoh` will **NOT** delete `Adam Yeoh` in the assignment's student list.
 * Existing values will be updated to the input values.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Invalid input:**
-0000-00-00 is <strong>not</strong> considered a valid date.
-</div>
-
 Examples:
 * `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang`
   Edits the title, description and adds to student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and adds `Adam Lee, Ben Tang` respectively.
@@ -411,7 +408,7 @@ Format: `clear`
 
 ### Navigating User Input History: `↑`, `↓`
 
-Allows user to quickly retrieve their previous inputs from current session by using the up and down arrow keys.
+Allows user to quickly retrieve their previous inputs from current session by using the up and down arrow keys of your keyboard.
 
 Format: `↑`, `↓`
 
@@ -421,7 +418,7 @@ GREWZ data are saved in the hard disk automatically after any command that chang
 
 ### Editing the data file
 
-GREWZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+GREWZ data are saved as a [JSON](#glossary) file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, GREWZ will discard all data and start with an empty data file at the next run.
@@ -429,7 +426,7 @@ If your changes to the data file makes its format invalid, GREWZ will discard al
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -445,7 +442,7 @@ Format: `exit`
 
 ## FAQ
 
-**Q:** I don't know if I have Java `11` installed in my computer. What do I do?
+**Q:** I don't know if I have [Java `11`](#glossary) installed in my computer. What do I do?
 <br />
 **A:** To check your Java version, open a Command Prompt or Terminal window on your computer and type:
 ```
@@ -469,10 +466,6 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 **Q:** How to add a deadline to an existing toDo task?
 <br />
 **A:** Remove the existing toDo task, then add the same task with your given deadline.
-
-**Q:** How to edit an existing task?
-<br />
-**A:** Remove the existing task, then add the same task with the change that you want to make.
 
 **Q:** How do I transfer my data into another computer?
 <br />
@@ -527,5 +520,9 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 | **Attendance List**                        | Attendance list is a record of the student's attendance for his class.                                                                         |
 | **Case-sensitive**                         | Case-sensitive is the ability to differentiate between capital and lower case letters                                                          |
 | **Space-insensitive**                      | Space-insensitive is the lack of ability to differentiate between blank spaces in words.                                                       |
+| **JSON**                                   | It is plain text written in JavaScript Object Notation and used to send data between computers.                                                |        
+| **Extraneous**                             | Irrelevant or unrelated to the subject being dealt with.                                                                                       |
+| **.JPG**                                   | Standard file format for compressing pictures so that they can be stored or sent by email more easily.                                         |
+| **Java**                                   | Widely used programming language and it is a software platform used in distributed environment of the internet.                                |
 
 [Back to Top ↑](#introduction)
